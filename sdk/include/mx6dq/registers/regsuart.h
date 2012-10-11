@@ -128,13 +128,11 @@ typedef union _hw_uart_urxd
  * forced to 0. In 8-bit mode, all bits are active.
  */
 //@{
-
 #define BP_UART_URXD_RX_DATA      (0)      //!< Bit position for UART_URXD_RX_DATA.
 #define BM_UART_URXD_RX_DATA      (0x000000ff)  //!< Bit mask for UART_URXD_RX_DATA.
 
 //! @brief Get value of UART_URXD_RX_DATA from a register value.
 #define BG_UART_URXD_RX_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_URXD_RX_DATA) >> BP_UART_URXD_RX_DATA)
-
 //@}
 
 /*! @name Register UART_URXD, field PRERR[10] (RO)
@@ -149,13 +147,11 @@ typedef union _hw_uart_urxd
  * - 1 - = A parity error was detected for data in the RX_DATA field
  */
 //@{
-
 #define BP_UART_URXD_PRERR      (10)      //!< Bit position for UART_URXD_PRERR.
 #define BM_UART_URXD_PRERR      (0x00000400)  //!< Bit mask for UART_URXD_PRERR.
 
 //! @brief Get value of UART_URXD_PRERR from a register value.
 #define BG_UART_URXD_PRERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_URXD_PRERR) >> BP_UART_URXD_PRERR)
-
 //@}
 
 /*! @name Register UART_URXD, field BRK[11] (RO)
@@ -170,13 +166,11 @@ typedef union _hw_uart_urxd
  * - 1 - The current character is a BREAK character
  */
 //@{
-
 #define BP_UART_URXD_BRK      (11)      //!< Bit position for UART_URXD_BRK.
 #define BM_UART_URXD_BRK      (0x00000800)  //!< Bit mask for UART_URXD_BRK.
 
 //! @brief Get value of UART_URXD_BRK from a register value.
 #define BG_UART_URXD_BRK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_URXD_BRK) >> BP_UART_URXD_BRK)
-
 //@}
 
 /*! @name Register UART_URXD, field FRMERR[12] (RO)
@@ -189,13 +183,11 @@ typedef union _hw_uart_urxd
  * - 1 - The current character has a framing error
  */
 //@{
-
 #define BP_UART_URXD_FRMERR      (12)      //!< Bit position for UART_URXD_FRMERR.
 #define BM_UART_URXD_FRMERR      (0x00001000)  //!< Bit mask for UART_URXD_FRMERR.
 
 //! @brief Get value of UART_URXD_FRMERR from a register value.
 #define BG_UART_URXD_FRMERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_URXD_FRMERR) >> BP_UART_URXD_FRMERR)
-
 //@}
 
 /*! @name Register UART_URXD, field OVRRUN[13] (RO)
@@ -209,13 +201,11 @@ typedef union _hw_uart_urxd
  * - 1 - A RxFIFO overrun was detected
  */
 //@{
-
 #define BP_UART_URXD_OVRRUN      (13)      //!< Bit position for UART_URXD_OVRRUN.
 #define BM_UART_URXD_OVRRUN      (0x00002000)  //!< Bit mask for UART_URXD_OVRRUN.
 
 //! @brief Get value of UART_URXD_OVRRUN from a register value.
 #define BG_UART_URXD_OVRRUN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_URXD_OVRRUN) >> BP_UART_URXD_OVRRUN)
-
 //@}
 
 /*! @name Register UART_URXD, field ERR[14] (RO)
@@ -228,13 +218,11 @@ typedef union _hw_uart_urxd
  * - 1 - An error status was detected
  */
 //@{
-
 #define BP_UART_URXD_ERR      (14)      //!< Bit position for UART_URXD_ERR.
 #define BM_UART_URXD_ERR      (0x00004000)  //!< Bit mask for UART_URXD_ERR.
 
 //! @brief Get value of UART_URXD_ERR from a register value.
 #define BG_UART_URXD_ERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_URXD_ERR) >> BP_UART_URXD_ERR)
-
 //@}
 
 /*! @name Register UART_URXD, field CHARRDY[15] (RO)
@@ -248,13 +236,11 @@ typedef union _hw_uart_urxd
  * - 1 - Character in RX_DATA field and associated flags valid and ready for reading.
  */
 //@{
-
 #define BP_UART_URXD_CHARRDY      (15)      //!< Bit position for UART_URXD_CHARRDY.
 #define BM_UART_URXD_CHARRDY      (0x00008000)  //!< Bit mask for UART_URXD_CHARRDY.
 
 //! @brief Get value of UART_URXD_CHARRDY from a register value.
 #define BG_UART_URXD_CHARRDY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_URXD_CHARRDY) >> BP_UART_URXD_CHARRDY)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -307,7 +293,6 @@ typedef union _hw_uart_utxd
  * TRDY bit is high to ensure that corrupted data is not sent.
  */
 //@{
-
 #define BP_UART_UTXD_TX_DATA      (0)      //!< Bit position for UART_UTXD_TX_DATA.
 #define BM_UART_UTXD_TX_DATA      (0x000000ff)  //!< Bit mask for UART_UTXD_TX_DATA.
 
@@ -316,7 +301,6 @@ typedef union _hw_uart_utxd
 
 //! @brief Format value for bitfield UART_UTXD_TX_DATA.
 #define BF_UART_UTXD_TX_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_UART_UTXD_TX_DATA) & BM_UART_UTXD_TX_DATA)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -389,7 +373,6 @@ typedef union _hw_uart_ucr1
  * - 1 - Enable the UART
  */
 //@{
-
 #define BP_UART_UCR1_UARTEN      (0)      //!< Bit position for UART_UCR1_UARTEN.
 #define BM_UART_UCR1_UARTEN      (0x00000001)  //!< Bit mask for UART_UCR1_UARTEN.
 
@@ -403,7 +386,6 @@ typedef union _hw_uart_ucr1
 //! @brief Set the UARTEN field to a new value.
 #define BW_UART_UCR1_UARTEN(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_UARTEN) | BF_UART_UCR1_UARTEN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR1, field DOZE[1] (RW)
@@ -418,7 +400,6 @@ typedef union _hw_uart_ucr1
  * - 1 - The UART is disabled when in DOZE state
  */
 //@{
-
 #define BP_UART_UCR1_DOZE      (1)      //!< Bit position for UART_UCR1_DOZE.
 #define BM_UART_UCR1_DOZE      (0x00000002)  //!< Bit mask for UART_UCR1_DOZE.
 
@@ -432,7 +413,6 @@ typedef union _hw_uart_ucr1
 //! @brief Set the DOZE field to a new value.
 #define BW_UART_UCR1_DOZE(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_DOZE) | BF_UART_UCR1_DOZE(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR1, field ATDMAEN[2] (RW)
@@ -445,7 +425,6 @@ typedef union _hw_uart_ucr1
  * - 1 - Enable AGTIM DMA request
  */
 //@{
-
 #define BP_UART_UCR1_ATDMAEN      (2)      //!< Bit position for UART_UCR1_ATDMAEN.
 #define BM_UART_UCR1_ATDMAEN      (0x00000004)  //!< Bit mask for UART_UCR1_ATDMAEN.
 
@@ -459,7 +438,6 @@ typedef union _hw_uart_ucr1
 //! @brief Set the ATDMAEN field to a new value.
 #define BW_UART_UCR1_ATDMAEN(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_ATDMAEN) | BF_UART_UCR1_ATDMAEN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR1, field TXDMAEN[3] (RW)
@@ -475,7 +453,6 @@ typedef union _hw_uart_ucr1
  * - 1 - Enable transmit DMA request
  */
 //@{
-
 #define BP_UART_UCR1_TXDMAEN      (3)      //!< Bit position for UART_UCR1_TXDMAEN.
 #define BM_UART_UCR1_TXDMAEN      (0x00000008)  //!< Bit mask for UART_UCR1_TXDMAEN.
 
@@ -489,7 +466,6 @@ typedef union _hw_uart_ucr1
 //! @brief Set the TXDMAEN field to a new value.
 #define BW_UART_UCR1_TXDMAEN(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_TXDMAEN) | BF_UART_UCR1_TXDMAEN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR1, field SNDBRK[4] (RW)
@@ -506,7 +482,6 @@ typedef union _hw_uart_ucr1
  * - 1 - Send a BREAK character (continuous 0s)
  */
 //@{
-
 #define BP_UART_UCR1_SNDBRK      (4)      //!< Bit position for UART_UCR1_SNDBRK.
 #define BM_UART_UCR1_SNDBRK      (0x00000010)  //!< Bit mask for UART_UCR1_SNDBRK.
 
@@ -520,7 +495,6 @@ typedef union _hw_uart_ucr1
 //! @brief Set the SNDBRK field to a new value.
 #define BW_UART_UCR1_SNDBRK(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_SNDBRK) | BF_UART_UCR1_SNDBRK(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR1, field RTSDEN[5] (RW)
@@ -533,7 +507,6 @@ typedef union _hw_uart_ucr1
  * - 1 - Enable RTSD interrupt
  */
 //@{
-
 #define BP_UART_UCR1_RTSDEN      (5)      //!< Bit position for UART_UCR1_RTSDEN.
 #define BM_UART_UCR1_RTSDEN      (0x00000020)  //!< Bit mask for UART_UCR1_RTSDEN.
 
@@ -547,7 +520,6 @@ typedef union _hw_uart_ucr1
 //! @brief Set the RTSDEN field to a new value.
 #define BW_UART_UCR1_RTSDEN(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_RTSDEN) | BF_UART_UCR1_RTSDEN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR1, field TXMPTYEN[6] (RW)
@@ -562,7 +534,6 @@ typedef union _hw_uart_ucr1
  * - 1 - Enable the transmitter FIFO empty interrupt
  */
 //@{
-
 #define BP_UART_UCR1_TXMPTYEN      (6)      //!< Bit position for UART_UCR1_TXMPTYEN.
 #define BM_UART_UCR1_TXMPTYEN      (0x00000040)  //!< Bit mask for UART_UCR1_TXMPTYEN.
 
@@ -576,7 +547,6 @@ typedef union _hw_uart_ucr1
 //! @brief Set the TXMPTYEN field to a new value.
 #define BW_UART_UCR1_TXMPTYEN(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_TXMPTYEN) | BF_UART_UCR1_TXMPTYEN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR1, field IREN[7] (RW)
@@ -590,7 +560,6 @@ typedef union _hw_uart_ucr1
  * - 1 - Enable the IR interface
  */
 //@{
-
 #define BP_UART_UCR1_IREN      (7)      //!< Bit position for UART_UCR1_IREN.
 #define BM_UART_UCR1_IREN      (0x00000080)  //!< Bit mask for UART_UCR1_IREN.
 
@@ -604,7 +573,6 @@ typedef union _hw_uart_ucr1
 //! @brief Set the IREN field to a new value.
 #define BW_UART_UCR1_IREN(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_IREN) | BF_UART_UCR1_IREN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR1, field RXDMAEN[8] (RW)
@@ -618,7 +586,6 @@ typedef union _hw_uart_ucr1
  * - 1 - Enable DMA request
  */
 //@{
-
 #define BP_UART_UCR1_RXDMAEN      (8)      //!< Bit position for UART_UCR1_RXDMAEN.
 #define BM_UART_UCR1_RXDMAEN      (0x00000100)  //!< Bit mask for UART_UCR1_RXDMAEN.
 
@@ -632,7 +599,6 @@ typedef union _hw_uart_ucr1
 //! @brief Set the RXDMAEN field to a new value.
 #define BW_UART_UCR1_RXDMAEN(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_RXDMAEN) | BF_UART_UCR1_RXDMAEN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR1, field RRDYEN[9] (RW)
@@ -646,7 +612,6 @@ typedef union _hw_uart_ucr1
  * - 1 - Enables the RRDY interrupt
  */
 //@{
-
 #define BP_UART_UCR1_RRDYEN      (9)      //!< Bit position for UART_UCR1_RRDYEN.
 #define BM_UART_UCR1_RRDYEN      (0x00000200)  //!< Bit mask for UART_UCR1_RRDYEN.
 
@@ -660,7 +625,6 @@ typedef union _hw_uart_ucr1
 //! @brief Set the RRDYEN field to a new value.
 #define BW_UART_UCR1_RRDYEN(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_RRDYEN) | BF_UART_UCR1_RRDYEN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR1, field ICD[11:10] (RW)
@@ -675,7 +639,6 @@ typedef union _hw_uart_ucr1
  * - 11 - Idle for more than 32 frames
  */
 //@{
-
 #define BP_UART_UCR1_ICD      (10)      //!< Bit position for UART_UCR1_ICD.
 #define BM_UART_UCR1_ICD      (0x00000c00)  //!< Bit mask for UART_UCR1_ICD.
 
@@ -689,7 +652,6 @@ typedef union _hw_uart_ucr1
 //! @brief Set the ICD field to a new value.
 #define BW_UART_UCR1_ICD(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_ICD) | BF_UART_UCR1_ICD(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR1, field IDEN[12] (RW)
@@ -702,7 +664,6 @@ typedef union _hw_uart_ucr1
  * - 1 - Enable the IDLE interrupt
  */
 //@{
-
 #define BP_UART_UCR1_IDEN      (12)      //!< Bit position for UART_UCR1_IDEN.
 #define BM_UART_UCR1_IDEN      (0x00001000)  //!< Bit mask for UART_UCR1_IDEN.
 
@@ -716,7 +677,6 @@ typedef union _hw_uart_ucr1
 //! @brief Set the IDEN field to a new value.
 #define BW_UART_UCR1_IDEN(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_IDEN) | BF_UART_UCR1_IDEN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR1, field TRDYEN[13] (RW)
@@ -733,7 +693,6 @@ typedef union _hw_uart_ucr1
  * - 1 - Enable the transmitter ready interrupt
  */
 //@{
-
 #define BP_UART_UCR1_TRDYEN      (13)      //!< Bit position for UART_UCR1_TRDYEN.
 #define BM_UART_UCR1_TRDYEN      (0x00002000)  //!< Bit mask for UART_UCR1_TRDYEN.
 
@@ -747,7 +706,6 @@ typedef union _hw_uart_ucr1
 //! @brief Set the TRDYEN field to a new value.
 #define BW_UART_UCR1_TRDYEN(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_TRDYEN) | BF_UART_UCR1_TRDYEN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR1, field ADBR[14] (RW)
@@ -762,7 +720,6 @@ typedef union _hw_uart_ucr1
  * - 1 - Enable automatic detection of baud rate
  */
 //@{
-
 #define BP_UART_UCR1_ADBR      (14)      //!< Bit position for UART_UCR1_ADBR.
 #define BM_UART_UCR1_ADBR      (0x00004000)  //!< Bit mask for UART_UCR1_ADBR.
 
@@ -776,7 +733,6 @@ typedef union _hw_uart_ucr1
 //! @brief Set the ADBR field to a new value.
 #define BW_UART_UCR1_ADBR(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_ADBR) | BF_UART_UCR1_ADBR(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR1, field ADEN[15] (RW)
@@ -789,7 +745,6 @@ typedef union _hw_uart_ucr1
  * - 1 - Enable the automatic baud rate detection interrupt
  */
 //@{
-
 #define BP_UART_UCR1_ADEN      (15)      //!< Bit position for UART_UCR1_ADEN.
 #define BM_UART_UCR1_ADEN      (0x00008000)  //!< Bit mask for UART_UCR1_ADEN.
 
@@ -803,7 +758,6 @@ typedef union _hw_uart_ucr1
 //! @brief Set the ADEN field to a new value.
 #define BW_UART_UCR1_ADEN(x, v)   (HW_UART_UCR1_WR(x, (HW_UART_UCR1_RD(x) & ~BM_UART_UCR1_ADEN) | BF_UART_UCR1_ADEN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -875,7 +829,6 @@ typedef union _hw_uart_ucr2
  * - 1 - No reset
  */
 //@{
-
 #define BP_UART_UCR2_SRST      (0)      //!< Bit position for UART_UCR2_SRST.
 #define BM_UART_UCR2_SRST      (0x00000001)  //!< Bit mask for UART_UCR2_SRST.
 
@@ -889,7 +842,6 @@ typedef union _hw_uart_ucr2
 //! @brief Set the SRST field to a new value.
 #define BW_UART_UCR2_SRST(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_SRST) | BF_UART_UCR2_SRST(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR2, field RXEN[1] (RW)
@@ -903,7 +855,6 @@ typedef union _hw_uart_ucr2
  * - 1 - Enable the receiver
  */
 //@{
-
 #define BP_UART_UCR2_RXEN      (1)      //!< Bit position for UART_UCR2_RXEN.
 #define BM_UART_UCR2_RXEN      (0x00000002)  //!< Bit mask for UART_UCR2_RXEN.
 
@@ -917,7 +868,6 @@ typedef union _hw_uart_ucr2
 //! @brief Set the RXEN field to a new value.
 #define BW_UART_UCR2_RXEN(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_RXEN) | BF_UART_UCR2_RXEN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR2, field TXEN[2] (RW)
@@ -932,7 +882,6 @@ typedef union _hw_uart_ucr2
  * - 1 - Enable the transmitter
  */
 //@{
-
 #define BP_UART_UCR2_TXEN      (2)      //!< Bit position for UART_UCR2_TXEN.
 #define BM_UART_UCR2_TXEN      (0x00000004)  //!< Bit mask for UART_UCR2_TXEN.
 
@@ -946,7 +895,6 @@ typedef union _hw_uart_ucr2
 //! @brief Set the TXEN field to a new value.
 #define BW_UART_UCR2_TXEN(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_TXEN) | BF_UART_UCR2_TXEN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR2, field ATEN[3] (RW)
@@ -958,7 +906,6 @@ typedef union _hw_uart_ucr2
  * - 1 - AGTIM interrupt enabled
  */
 //@{
-
 #define BP_UART_UCR2_ATEN      (3)      //!< Bit position for UART_UCR2_ATEN.
 #define BM_UART_UCR2_ATEN      (0x00000008)  //!< Bit mask for UART_UCR2_ATEN.
 
@@ -972,7 +919,6 @@ typedef union _hw_uart_ucr2
 //! @brief Set the ATEN field to a new value.
 #define BW_UART_UCR2_ATEN(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_ATEN) | BF_UART_UCR2_ATEN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR2, field RTSEN[4] (RW)
@@ -986,7 +932,6 @@ typedef union _hw_uart_ucr2
  * - 1 - Enable request to send interrupt
  */
 //@{
-
 #define BP_UART_UCR2_RTSEN      (4)      //!< Bit position for UART_UCR2_RTSEN.
 #define BM_UART_UCR2_RTSEN      (0x00000010)  //!< Bit mask for UART_UCR2_RTSEN.
 
@@ -1000,7 +945,6 @@ typedef union _hw_uart_ucr2
 //! @brief Set the RTSEN field to a new value.
 #define BW_UART_UCR2_RTSEN(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_RTSEN) | BF_UART_UCR2_RTSEN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR2, field WS[5] (RW)
@@ -1016,7 +960,6 @@ typedef union _hw_uart_ucr2
  * - 1 - 8-bit transmit and receive character length (not including START, STOP or PARITY bits)
  */
 //@{
-
 #define BP_UART_UCR2_WS      (5)      //!< Bit position for UART_UCR2_WS.
 #define BM_UART_UCR2_WS      (0x00000020)  //!< Bit mask for UART_UCR2_WS.
 
@@ -1030,7 +973,6 @@ typedef union _hw_uart_ucr2
 //! @brief Set the WS field to a new value.
 #define BW_UART_UCR2_WS(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_WS) | BF_UART_UCR2_WS(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR2, field STPB[6] (RW)
@@ -1043,7 +985,6 @@ typedef union _hw_uart_ucr2
  * - 1 - The transmitter sends 2 stop bits. The receiver expects 2 or more stop bits.
  */
 //@{
-
 #define BP_UART_UCR2_STPB      (6)      //!< Bit position for UART_UCR2_STPB.
 #define BM_UART_UCR2_STPB      (0x00000040)  //!< Bit mask for UART_UCR2_STPB.
 
@@ -1057,7 +998,6 @@ typedef union _hw_uart_ucr2
 //! @brief Set the STPB field to a new value.
 #define BW_UART_UCR2_STPB(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_STPB) | BF_UART_UCR2_STPB(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR2, field PROE[7] (RW)
@@ -1071,7 +1011,6 @@ typedef union _hw_uart_ucr2
  * - 1 - Odd parity
  */
 //@{
-
 #define BP_UART_UCR2_PROE      (7)      //!< Bit position for UART_UCR2_PROE.
 #define BM_UART_UCR2_PROE      (0x00000080)  //!< Bit mask for UART_UCR2_PROE.
 
@@ -1085,7 +1024,6 @@ typedef union _hw_uart_ucr2
 //! @brief Set the PROE field to a new value.
 #define BW_UART_UCR2_PROE(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_PROE) | BF_UART_UCR2_PROE(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR2, field PREN[8] (RW)
@@ -1099,7 +1037,6 @@ typedef union _hw_uart_ucr2
  * - 1 - Enable parity generator and checker
  */
 //@{
-
 #define BP_UART_UCR2_PREN      (8)      //!< Bit position for UART_UCR2_PREN.
 #define BM_UART_UCR2_PREN      (0x00000100)  //!< Bit mask for UART_UCR2_PREN.
 
@@ -1113,7 +1050,6 @@ typedef union _hw_uart_ucr2
 //! @brief Set the PREN field to a new value.
 #define BW_UART_UCR2_PREN(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_PREN) | BF_UART_UCR2_PREN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR2, field RTEC[10:9] (RW)
@@ -1127,7 +1063,6 @@ typedef union _hw_uart_ucr2
  * - 1X - Trigger interrupt on any edge
  */
 //@{
-
 #define BP_UART_UCR2_RTEC      (9)      //!< Bit position for UART_UCR2_RTEC.
 #define BM_UART_UCR2_RTEC      (0x00000600)  //!< Bit mask for UART_UCR2_RTEC.
 
@@ -1141,7 +1076,6 @@ typedef union _hw_uart_ucr2
 //! @brief Set the RTEC field to a new value.
 #define BW_UART_UCR2_RTEC(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_RTEC) | BF_UART_UCR2_RTEC(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR2, field ESCEN[11] (RW)
@@ -1153,7 +1087,6 @@ typedef union _hw_uart_ucr2
  * - 1 - Enable escape sequence detection
  */
 //@{
-
 #define BP_UART_UCR2_ESCEN      (11)      //!< Bit position for UART_UCR2_ESCEN.
 #define BM_UART_UCR2_ESCEN      (0x00000800)  //!< Bit mask for UART_UCR2_ESCEN.
 
@@ -1167,7 +1100,6 @@ typedef union _hw_uart_ucr2
 //! @brief Set the ESCEN field to a new value.
 #define BW_UART_UCR2_ESCEN(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_ESCEN) | BF_UART_UCR2_ESCEN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR2, field CTS[12] (RW)
@@ -1180,7 +1112,6 @@ typedef union _hw_uart_ucr2
  * - 1 - The CTS pin is low (active)
  */
 //@{
-
 #define BP_UART_UCR2_CTS      (12)      //!< Bit position for UART_UCR2_CTS.
 #define BM_UART_UCR2_CTS      (0x00001000)  //!< Bit mask for UART_UCR2_CTS.
 
@@ -1194,7 +1125,6 @@ typedef union _hw_uart_ucr2
 //! @brief Set the CTS field to a new value.
 #define BW_UART_UCR2_CTS(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_CTS) | BF_UART_UCR2_CTS(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR2, field CTSC[13] (RW)
@@ -1214,7 +1144,6 @@ typedef union _hw_uart_ucr2
  * - 1 - The CTS pin is controlled by the receiver
  */
 //@{
-
 #define BP_UART_UCR2_CTSC      (13)      //!< Bit position for UART_UCR2_CTSC.
 #define BM_UART_UCR2_CTSC      (0x00002000)  //!< Bit mask for UART_UCR2_CTSC.
 
@@ -1228,7 +1157,6 @@ typedef union _hw_uart_ucr2
 //! @brief Set the CTSC field to a new value.
 #define BW_UART_UCR2_CTSC(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_CTSC) | BF_UART_UCR2_CTSC(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR2, field IRTS[14] (RW)
@@ -1242,7 +1170,6 @@ typedef union _hw_uart_ucr2
  * - 1 - Ignore the RTS pin
  */
 //@{
-
 #define BP_UART_UCR2_IRTS      (14)      //!< Bit position for UART_UCR2_IRTS.
 #define BM_UART_UCR2_IRTS      (0x00004000)  //!< Bit mask for UART_UCR2_IRTS.
 
@@ -1256,7 +1183,6 @@ typedef union _hw_uart_ucr2
 //! @brief Set the IRTS field to a new value.
 #define BW_UART_UCR2_IRTS(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_IRTS) | BF_UART_UCR2_IRTS(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR2, field ESCI[15] (RW)
@@ -1268,7 +1194,6 @@ typedef union _hw_uart_ucr2
  * - 1 - Enable the escape sequence interrupt
  */
 //@{
-
 #define BP_UART_UCR2_ESCI      (15)      //!< Bit position for UART_UCR2_ESCI.
 #define BM_UART_UCR2_ESCI      (0x00008000)  //!< Bit mask for UART_UCR2_ESCI.
 
@@ -1282,7 +1207,6 @@ typedef union _hw_uart_ucr2
 //! @brief Set the ESCI field to a new value.
 #define BW_UART_UCR2_ESCI(x, v)   (HW_UART_UCR2_WR(x, (HW_UART_UCR2_RD(x) & ~BM_UART_UCR2_ESCI) | BF_UART_UCR2_ESCI(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1352,7 +1276,6 @@ typedef union _hw_uart_ucr3
  * - 1 - ACST interrupt enabled
  */
 //@{
-
 #define BP_UART_UCR3_ACIEN      (0)      //!< Bit position for UART_UCR3_ACIEN.
 #define BM_UART_UCR3_ACIEN      (0x00000001)  //!< Bit mask for UART_UCR3_ACIEN.
 
@@ -1366,7 +1289,6 @@ typedef union _hw_uart_ucr3
 //! @brief Set the ACIEN field to a new value.
 #define BW_UART_UCR3_ACIEN(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_ACIEN) | BF_UART_UCR3_ACIEN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR3, field INVT[1] (RW)
@@ -1384,7 +1306,6 @@ typedef union _hw_uart_ucr3
  * - 1 - TXD Active high transmission
  */
 //@{
-
 #define BP_UART_UCR3_INVT      (1)      //!< Bit position for UART_UCR3_INVT.
 #define BM_UART_UCR3_INVT      (0x00000002)  //!< Bit mask for UART_UCR3_INVT.
 
@@ -1398,7 +1319,6 @@ typedef union _hw_uart_ucr3
 //! @brief Set the INVT field to a new value.
 #define BW_UART_UCR3_INVT(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_INVT) | BF_UART_UCR3_INVT(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR3, field RXDMUXSEL[2] (RW)
@@ -1407,7 +1327,6 @@ typedef union _hw_uart_ucr3
  * chip, UARTs are used in MUXED mode, so that this bit should always be set.
  */
 //@{
-
 #define BP_UART_UCR3_RXDMUXSEL      (2)      //!< Bit position for UART_UCR3_RXDMUXSEL.
 #define BM_UART_UCR3_RXDMUXSEL      (0x00000004)  //!< Bit mask for UART_UCR3_RXDMUXSEL.
 
@@ -1421,7 +1340,6 @@ typedef union _hw_uart_ucr3
 //! @brief Set the RXDMUXSEL field to a new value.
 #define BW_UART_UCR3_RXDMUXSEL(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_RXDMUXSEL) | BF_UART_UCR3_RXDMUXSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR3, field DTRDEN[3] (RW)
@@ -1435,7 +1353,6 @@ typedef union _hw_uart_ucr3
  * - 1 - Enable DTRD interrupt
  */
 //@{
-
 #define BP_UART_UCR3_DTRDEN      (3)      //!< Bit position for UART_UCR3_DTRDEN.
 #define BM_UART_UCR3_DTRDEN      (0x00000008)  //!< Bit mask for UART_UCR3_DTRDEN.
 
@@ -1449,7 +1366,6 @@ typedef union _hw_uart_ucr3
 //! @brief Set the DTRDEN field to a new value.
 #define BW_UART_UCR3_DTRDEN(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_DTRDEN) | BF_UART_UCR3_DTRDEN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR3, field AWAKEN[4] (RW)
@@ -1462,7 +1378,6 @@ typedef union _hw_uart_ucr3
  * - 1 - Enable the AWAKE interrupt
  */
 //@{
-
 #define BP_UART_UCR3_AWAKEN      (4)      //!< Bit position for UART_UCR3_AWAKEN.
 #define BM_UART_UCR3_AWAKEN      (0x00000010)  //!< Bit mask for UART_UCR3_AWAKEN.
 
@@ -1476,7 +1391,6 @@ typedef union _hw_uart_ucr3
 //! @brief Set the AWAKEN field to a new value.
 #define BW_UART_UCR3_AWAKEN(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_AWAKEN) | BF_UART_UCR3_AWAKEN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR3, field AIRINTEN[5] (RW)
@@ -1489,7 +1403,6 @@ typedef union _hw_uart_ucr3
  * - 1 - Enable the AIRINT interrupt
  */
 //@{
-
 #define BP_UART_UCR3_AIRINTEN      (5)      //!< Bit position for UART_UCR3_AIRINTEN.
 #define BM_UART_UCR3_AIRINTEN      (0x00000020)  //!< Bit mask for UART_UCR3_AIRINTEN.
 
@@ -1503,7 +1416,6 @@ typedef union _hw_uart_ucr3
 //! @brief Set the AIRINTEN field to a new value.
 #define BW_UART_UCR3_AIRINTEN(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_AIRINTEN) | BF_UART_UCR3_AIRINTEN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR3, field RXDSEN[6] (RW)
@@ -1516,7 +1428,6 @@ typedef union _hw_uart_ucr3
  * - 1 - Enable the RXDS interrupt
  */
 //@{
-
 #define BP_UART_UCR3_RXDSEN      (6)      //!< Bit position for UART_UCR3_RXDSEN.
 #define BM_UART_UCR3_RXDSEN      (0x00000040)  //!< Bit mask for UART_UCR3_RXDSEN.
 
@@ -1530,7 +1441,6 @@ typedef union _hw_uart_ucr3
 //! @brief Set the RXDSEN field to a new value.
 #define BW_UART_UCR3_RXDSEN(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_RXDSEN) | BF_UART_UCR3_RXDSEN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR3, field ADNIMP[7] (RW)
@@ -1543,7 +1453,6 @@ typedef union _hw_uart_ucr3
  * - 1 - Keep old autobaud detection mechanism
  */
 //@{
-
 #define BP_UART_UCR3_ADNIMP      (7)      //!< Bit position for UART_UCR3_ADNIMP.
 #define BM_UART_UCR3_ADNIMP      (0x00000080)  //!< Bit mask for UART_UCR3_ADNIMP.
 
@@ -1557,7 +1466,6 @@ typedef union _hw_uart_ucr3
 //! @brief Set the ADNIMP field to a new value.
 #define BW_UART_UCR3_ADNIMP(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_ADNIMP) | BF_UART_UCR3_ADNIMP(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR3, field RI[8] (RW)
@@ -1573,7 +1481,6 @@ typedef union _hw_uart_ucr3
  * - 1 - RIDELT interrupt enabled (DTE mode)
  */
 //@{
-
 #define BP_UART_UCR3_RI      (8)      //!< Bit position for UART_UCR3_RI.
 #define BM_UART_UCR3_RI      (0x00000100)  //!< Bit mask for UART_UCR3_RI.
 
@@ -1587,7 +1494,6 @@ typedef union _hw_uart_ucr3
 //! @brief Set the RI field to a new value.
 #define BW_UART_UCR3_RI(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_RI) | BF_UART_UCR3_RI(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR3, field DCD[9] (RW)
@@ -1603,7 +1509,6 @@ typedef union _hw_uart_ucr3
  * - 1 - DCDDELT interrupt enabled (DTE mode)
  */
 //@{
-
 #define BP_UART_UCR3_DCD      (9)      //!< Bit position for UART_UCR3_DCD.
 #define BM_UART_UCR3_DCD      (0x00000200)  //!< Bit mask for UART_UCR3_DCD.
 
@@ -1617,7 +1522,6 @@ typedef union _hw_uart_ucr3
 //! @brief Set the DCD field to a new value.
 #define BW_UART_UCR3_DCD(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_DCD) | BF_UART_UCR3_DCD(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR3, field DSR[10] (RW)
@@ -1630,7 +1534,6 @@ typedef union _hw_uart_ucr3
  * - 1 - DSR/ DTR pin is logic one
  */
 //@{
-
 #define BP_UART_UCR3_DSR      (10)      //!< Bit position for UART_UCR3_DSR.
 #define BM_UART_UCR3_DSR      (0x00000400)  //!< Bit mask for UART_UCR3_DSR.
 
@@ -1644,7 +1547,6 @@ typedef union _hw_uart_ucr3
 //! @brief Set the DSR field to a new value.
 #define BW_UART_UCR3_DSR(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_DSR) | BF_UART_UCR3_DSR(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR3, field FRAERREN[11] (RW)
@@ -1657,7 +1559,6 @@ typedef union _hw_uart_ucr3
  * - 1 - Enable the frame error interrupt
  */
 //@{
-
 #define BP_UART_UCR3_FRAERREN      (11)      //!< Bit position for UART_UCR3_FRAERREN.
 #define BM_UART_UCR3_FRAERREN      (0x00000800)  //!< Bit mask for UART_UCR3_FRAERREN.
 
@@ -1671,7 +1572,6 @@ typedef union _hw_uart_ucr3
 //! @brief Set the FRAERREN field to a new value.
 #define BW_UART_UCR3_FRAERREN(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_FRAERREN) | BF_UART_UCR3_FRAERREN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR3, field PARERREN[12] (RW)
@@ -1684,7 +1584,6 @@ typedef union _hw_uart_ucr3
  * - 1 - Enable the parity error interrupt
  */
 //@{
-
 #define BP_UART_UCR3_PARERREN      (12)      //!< Bit position for UART_UCR3_PARERREN.
 #define BM_UART_UCR3_PARERREN      (0x00001000)  //!< Bit mask for UART_UCR3_PARERREN.
 
@@ -1698,7 +1597,6 @@ typedef union _hw_uart_ucr3
 //! @brief Set the PARERREN field to a new value.
 #define BW_UART_UCR3_PARERREN(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_PARERREN) | BF_UART_UCR3_PARERREN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR3, field DTREN[13] (RW)
@@ -1711,7 +1609,6 @@ typedef union _hw_uart_ucr3
  * - 1 - Data Terminal Ready Interrupt Enabled
  */
 //@{
-
 #define BP_UART_UCR3_DTREN      (13)      //!< Bit position for UART_UCR3_DTREN.
 #define BM_UART_UCR3_DTREN      (0x00002000)  //!< Bit mask for UART_UCR3_DTREN.
 
@@ -1725,7 +1622,6 @@ typedef union _hw_uart_ucr3
 //! @brief Set the DTREN field to a new value.
 #define BW_UART_UCR3_DTREN(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_DTREN) | BF_UART_UCR3_DTREN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR3, field DPEC[15:14] (RW)
@@ -1739,7 +1635,6 @@ typedef union _hw_uart_ucr3
  * - 1X - interrupt generated on either edge
  */
 //@{
-
 #define BP_UART_UCR3_DPEC      (14)      //!< Bit position for UART_UCR3_DPEC.
 #define BM_UART_UCR3_DPEC      (0x0000c000)  //!< Bit mask for UART_UCR3_DPEC.
 
@@ -1753,7 +1648,6 @@ typedef union _hw_uart_ucr3
 //! @brief Set the DPEC field to a new value.
 #define BW_UART_UCR3_DPEC(x, v)   (HW_UART_UCR3_WR(x, (HW_UART_UCR3_RD(x) & ~BM_UART_UCR3_DPEC) | BF_UART_UCR3_DPEC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1818,7 +1712,6 @@ typedef union _hw_uart_ucr4
  * - 1 - Enable RDR interrupt
  */
 //@{
-
 #define BP_UART_UCR4_DREN      (0)      //!< Bit position for UART_UCR4_DREN.
 #define BM_UART_UCR4_DREN      (0x00000001)  //!< Bit mask for UART_UCR4_DREN.
 
@@ -1832,7 +1725,6 @@ typedef union _hw_uart_ucr4
 //! @brief Set the DREN field to a new value.
 #define BW_UART_UCR4_DREN(x, v)   (HW_UART_UCR4_WR(x, (HW_UART_UCR4_RD(x) & ~BM_UART_UCR4_DREN) | BF_UART_UCR4_DREN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR4, field OREN[1] (RW)
@@ -1844,7 +1736,6 @@ typedef union _hw_uart_ucr4
  * - 1 - Enable ORE interrupt
  */
 //@{
-
 #define BP_UART_UCR4_OREN      (1)      //!< Bit position for UART_UCR4_OREN.
 #define BM_UART_UCR4_OREN      (0x00000002)  //!< Bit mask for UART_UCR4_OREN.
 
@@ -1858,7 +1749,6 @@ typedef union _hw_uart_ucr4
 //! @brief Set the OREN field to a new value.
 #define BW_UART_UCR4_OREN(x, v)   (HW_UART_UCR4_WR(x, (HW_UART_UCR4_RD(x) & ~BM_UART_UCR4_OREN) | BF_UART_UCR4_OREN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR4, field BKEN[2] (RW)
@@ -1871,7 +1761,6 @@ typedef union _hw_uart_ucr4
  * - 1 - Enable the BRCD interrupt
  */
 //@{
-
 #define BP_UART_UCR4_BKEN      (2)      //!< Bit position for UART_UCR4_BKEN.
 #define BM_UART_UCR4_BKEN      (0x00000004)  //!< Bit mask for UART_UCR4_BKEN.
 
@@ -1885,7 +1774,6 @@ typedef union _hw_uart_ucr4
 //! @brief Set the BKEN field to a new value.
 #define BW_UART_UCR4_BKEN(x, v)   (HW_UART_UCR4_WR(x, (HW_UART_UCR4_RD(x) & ~BM_UART_UCR4_BKEN) | BF_UART_UCR4_BKEN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR4, field TCEN[3] (RW)
@@ -1900,7 +1788,6 @@ typedef union _hw_uart_ucr4
  * - 1 - Enable TXDC interrupt
  */
 //@{
-
 #define BP_UART_UCR4_TCEN      (3)      //!< Bit position for UART_UCR4_TCEN.
 #define BM_UART_UCR4_TCEN      (0x00000008)  //!< Bit mask for UART_UCR4_TCEN.
 
@@ -1914,7 +1801,6 @@ typedef union _hw_uart_ucr4
 //! @brief Set the TCEN field to a new value.
 #define BW_UART_UCR4_TCEN(x, v)   (HW_UART_UCR4_WR(x, (HW_UART_UCR4_RD(x) & ~BM_UART_UCR4_TCEN) | BF_UART_UCR4_TCEN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR4, field LPBYP[4] (RW)
@@ -1927,7 +1813,6 @@ typedef union _hw_uart_ucr4
  * - 1 - Low power features disabled
  */
 //@{
-
 #define BP_UART_UCR4_LPBYP      (4)      //!< Bit position for UART_UCR4_LPBYP.
 #define BM_UART_UCR4_LPBYP      (0x00000010)  //!< Bit mask for UART_UCR4_LPBYP.
 
@@ -1941,7 +1826,6 @@ typedef union _hw_uart_ucr4
 //! @brief Set the LPBYP field to a new value.
 #define BW_UART_UCR4_LPBYP(x, v)   (HW_UART_UCR4_WR(x, (HW_UART_UCR4_RD(x) & ~BM_UART_UCR4_LPBYP) | BF_UART_UCR4_LPBYP(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR4, field IRSC[5] (RW)
@@ -1955,7 +1839,6 @@ typedef union _hw_uart_ucr4
  * - 1 - The vote logic uses the UART reference clock
  */
 //@{
-
 #define BP_UART_UCR4_IRSC      (5)      //!< Bit position for UART_UCR4_IRSC.
 #define BM_UART_UCR4_IRSC      (0x00000020)  //!< Bit mask for UART_UCR4_IRSC.
 
@@ -1969,7 +1852,6 @@ typedef union _hw_uart_ucr4
 //! @brief Set the IRSC field to a new value.
 #define BW_UART_UCR4_IRSC(x, v)   (HW_UART_UCR4_WR(x, (HW_UART_UCR4_RD(x) & ~BM_UART_UCR4_IRSC) | BF_UART_UCR4_IRSC(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR4, field IDDMAEN[6] (RW)
@@ -1982,7 +1864,6 @@ typedef union _hw_uart_ucr4
  * - 1 - DMA IDLE interrupt enabled
  */
 //@{
-
 #define BP_UART_UCR4_IDDMAEN      (6)      //!< Bit position for UART_UCR4_IDDMAEN.
 #define BM_UART_UCR4_IDDMAEN      (0x00000040)  //!< Bit mask for UART_UCR4_IDDMAEN.
 
@@ -1996,7 +1877,6 @@ typedef union _hw_uart_ucr4
 //! @brief Set the IDDMAEN field to a new value.
 #define BW_UART_UCR4_IDDMAEN(x, v)   (HW_UART_UCR4_WR(x, (HW_UART_UCR4_RD(x) & ~BM_UART_UCR4_IDDMAEN) | BF_UART_UCR4_IDDMAEN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR4, field WKEN[7] (RW)
@@ -2009,7 +1889,6 @@ typedef union _hw_uart_ucr4
  * - 1 - Enable the WAKE interrupt
  */
 //@{
-
 #define BP_UART_UCR4_WKEN      (7)      //!< Bit position for UART_UCR4_WKEN.
 #define BM_UART_UCR4_WKEN      (0x00000080)  //!< Bit mask for UART_UCR4_WKEN.
 
@@ -2023,7 +1902,6 @@ typedef union _hw_uart_ucr4
 //! @brief Set the WKEN field to a new value.
 #define BW_UART_UCR4_WKEN(x, v)   (HW_UART_UCR4_WR(x, (HW_UART_UCR4_RD(x) & ~BM_UART_UCR4_WKEN) | BF_UART_UCR4_WKEN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR4, field ENIRI[8] (RW)
@@ -2035,7 +1913,6 @@ typedef union _hw_uart_ucr4
  * - 1 - Serial infrared Interrupt enabled
  */
 //@{
-
 #define BP_UART_UCR4_ENIRI      (8)      //!< Bit position for UART_UCR4_ENIRI.
 #define BM_UART_UCR4_ENIRI      (0x00000100)  //!< Bit mask for UART_UCR4_ENIRI.
 
@@ -2049,7 +1926,6 @@ typedef union _hw_uart_ucr4
 //! @brief Set the ENIRI field to a new value.
 #define BW_UART_UCR4_ENIRI(x, v)   (HW_UART_UCR4_WR(x, (HW_UART_UCR4_RD(x) & ~BM_UART_UCR4_ENIRI) | BF_UART_UCR4_ENIRI(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR4, field INVR[9] (RW)
@@ -2067,7 +1943,6 @@ typedef union _hw_uart_ucr4
  * - 1 - RXD active high detection
  */
 //@{
-
 #define BP_UART_UCR4_INVR      (9)      //!< Bit position for UART_UCR4_INVR.
 #define BM_UART_UCR4_INVR      (0x00000200)  //!< Bit mask for UART_UCR4_INVR.
 
@@ -2081,7 +1956,6 @@ typedef union _hw_uart_ucr4
 //! @brief Set the INVR field to a new value.
 #define BW_UART_UCR4_INVR(x, v)   (HW_UART_UCR4_WR(x, (HW_UART_UCR4_RD(x) & ~BM_UART_UCR4_INVR) | BF_UART_UCR4_INVR(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UCR4, field CTSTL[15:10] (RW)
@@ -2099,7 +1973,6 @@ typedef union _hw_uart_ucr4
  * - 100000 - 32 characters in the RxFIFO (maximum)
  */
 //@{
-
 #define BP_UART_UCR4_CTSTL      (10)      //!< Bit position for UART_UCR4_CTSTL.
 #define BM_UART_UCR4_CTSTL      (0x0000fc00)  //!< Bit mask for UART_UCR4_CTSTL.
 
@@ -2113,7 +1986,6 @@ typedef union _hw_uart_ucr4
 //! @brief Set the CTSTL field to a new value.
 #define BW_UART_UCR4_CTSTL(x, v)   (HW_UART_UCR4_WR(x, (HW_UART_UCR4_RD(x) & ~BM_UART_UCR4_CTSTL) | BF_UART_UCR4_CTSTL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2178,7 +2050,6 @@ typedef union _hw_uart_ufcr
  * - 100000 - RxFIFO has 32 characters (maximum)
  */
 //@{
-
 #define BP_UART_UFCR_RXTL      (0)      //!< Bit position for UART_UFCR_RXTL.
 #define BM_UART_UFCR_RXTL      (0x0000003f)  //!< Bit mask for UART_UFCR_RXTL.
 
@@ -2192,7 +2063,6 @@ typedef union _hw_uart_ufcr
 //! @brief Set the RXTL field to a new value.
 #define BW_UART_UFCR_RXTL(x, v)   (HW_UART_UFCR_WR(x, (HW_UART_UFCR_RD(x) & ~BM_UART_UFCR_RXTL) | BF_UART_UFCR_RXTL(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UFCR, field DCEDTE[6] (RW)
@@ -2205,7 +2075,6 @@ typedef union _hw_uart_ufcr
  * - 1 - DTE mode selected
  */
 //@{
-
 #define BP_UART_UFCR_DCEDTE      (6)      //!< Bit position for UART_UFCR_DCEDTE.
 #define BM_UART_UFCR_DCEDTE      (0x00000040)  //!< Bit mask for UART_UFCR_DCEDTE.
 
@@ -2219,7 +2088,6 @@ typedef union _hw_uart_ufcr
 //! @brief Set the DCEDTE field to a new value.
 #define BW_UART_UFCR_DCEDTE(x, v)   (HW_UART_UFCR_WR(x, (HW_UART_UFCR_RD(x) & ~BM_UART_UFCR_DCEDTE) | BF_UART_UFCR_DCEDTE(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UFCR, field RFDIV[9:7] (RW)
@@ -2239,7 +2107,6 @@ typedef union _hw_uart_ufcr
  * - 111 - Reserved
  */
 //@{
-
 #define BP_UART_UFCR_RFDIV      (7)      //!< Bit position for UART_UFCR_RFDIV.
 #define BM_UART_UFCR_RFDIV      (0x00000380)  //!< Bit mask for UART_UFCR_RFDIV.
 
@@ -2253,7 +2120,6 @@ typedef union _hw_uart_ufcr
 //! @brief Set the RFDIV field to a new value.
 #define BW_UART_UFCR_RFDIV(x, v)   (HW_UART_UFCR_WR(x, (HW_UART_UFCR_RD(x) & ~BM_UART_UFCR_RFDIV) | BF_UART_UFCR_RFDIV(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UFCR, field TXTL[15:10] (RW)
@@ -2273,7 +2139,6 @@ typedef union _hw_uart_ufcr
  * - 100000 - TxFIFO has 32 characters (maximum)
  */
 //@{
-
 #define BP_UART_UFCR_TXTL      (10)      //!< Bit position for UART_UFCR_TXTL.
 #define BM_UART_UFCR_TXTL      (0x0000fc00)  //!< Bit mask for UART_UFCR_TXTL.
 
@@ -2287,7 +2152,6 @@ typedef union _hw_uart_ufcr
 //! @brief Set the TXTL field to a new value.
 #define BW_UART_UFCR_TXTL(x, v)   (HW_UART_UFCR_WR(x, (HW_UART_UFCR_RD(x) & ~BM_UART_UFCR_TXTL) | BF_UART_UFCR_TXTL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2358,7 +2222,6 @@ typedef union _hw_uart_usr1
  * - 1 - Slave address detected
  */
 //@{
-
 #define BP_UART_USR1_SAD      (3)      //!< Bit position for UART_USR1_SAD.
 #define BM_UART_USR1_SAD      (0x00000008)  //!< Bit mask for UART_USR1_SAD.
 
@@ -2372,7 +2235,6 @@ typedef union _hw_uart_usr1
 //! @brief Set the SAD field to a new value.
 #define BW_UART_USR1_SAD(x, v)   (HW_UART_USR1_WR(x, (HW_UART_USR1_RD(x) & ~BM_UART_USR1_SAD) | BF_UART_USR1_SAD(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_USR1, field AWAKE[4] (W1C)
@@ -2385,7 +2247,6 @@ typedef union _hw_uart_usr1
  * - 1 - A falling edge was detected on the RXD Serial pin
  */
 //@{
-
 #define BP_UART_USR1_AWAKE      (4)      //!< Bit position for UART_USR1_AWAKE.
 #define BM_UART_USR1_AWAKE      (0x00000010)  //!< Bit mask for UART_USR1_AWAKE.
 
@@ -2399,7 +2260,6 @@ typedef union _hw_uart_usr1
 //! @brief Set the AWAKE field to a new value.
 #define BW_UART_USR1_AWAKE(x, v)   (HW_UART_USR1_WR(x, (HW_UART_USR1_RD(x) & ~BM_UART_USR1_AWAKE) | BF_UART_USR1_AWAKE(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_USR1, field AIRINT[5] (W1C)
@@ -2412,7 +2272,6 @@ typedef union _hw_uart_usr1
  * - 1 - A pulse was detected on the RXD IrDA pin
  */
 //@{
-
 #define BP_UART_USR1_AIRINT      (5)      //!< Bit position for UART_USR1_AIRINT.
 #define BM_UART_USR1_AIRINT      (0x00000020)  //!< Bit mask for UART_USR1_AIRINT.
 
@@ -2426,7 +2285,6 @@ typedef union _hw_uart_usr1
 //! @brief Set the AIRINT field to a new value.
 #define BW_UART_USR1_AIRINT(x, v)   (HW_UART_USR1_WR(x, (HW_UART_USR1_RD(x) & ~BM_UART_USR1_AIRINT) | BF_UART_USR1_AIRINT(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_USR1, field RXDS[6] (RO)
@@ -2440,13 +2298,11 @@ typedef union _hw_uart_usr1
  * - 1 - Receiver is IDLE
  */
 //@{
-
 #define BP_UART_USR1_RXDS      (6)      //!< Bit position for UART_USR1_RXDS.
 #define BM_UART_USR1_RXDS      (0x00000040)  //!< Bit mask for UART_USR1_RXDS.
 
 //! @brief Get value of UART_USR1_RXDS from a register value.
 #define BG_UART_USR1_RXDS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_RXDS) >> BP_UART_USR1_RXDS)
-
 //@}
 
 /*! @name Register UART_USR1, field DTRD[7] (W1C)
@@ -2460,7 +2316,6 @@ typedef union _hw_uart_usr1
  * - 1 - DTR (DCE) or DSR (DTE) pin changed state (write 1 to clear)
  */
 //@{
-
 #define BP_UART_USR1_DTRD      (7)      //!< Bit position for UART_USR1_DTRD.
 #define BM_UART_USR1_DTRD      (0x00000080)  //!< Bit mask for UART_USR1_DTRD.
 
@@ -2474,7 +2329,6 @@ typedef union _hw_uart_usr1
 //! @brief Set the DTRD field to a new value.
 #define BW_UART_USR1_DTRD(x, v)   (HW_UART_USR1_WR(x, (HW_UART_USR1_RD(x) & ~BM_UART_USR1_DTRD) | BF_UART_USR1_DTRD(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_USR1, field AGTIM[8] (W1C)
@@ -2489,7 +2343,6 @@ typedef union _hw_uart_usr1
  * - 1 - AGTIM is active (write 1 to clear)
  */
 //@{
-
 #define BP_UART_USR1_AGTIM      (8)      //!< Bit position for UART_USR1_AGTIM.
 #define BM_UART_USR1_AGTIM      (0x00000100)  //!< Bit mask for UART_USR1_AGTIM.
 
@@ -2503,7 +2356,6 @@ typedef union _hw_uart_usr1
 //! @brief Set the AGTIM field to a new value.
 #define BW_UART_USR1_AGTIM(x, v)   (HW_UART_USR1_WR(x, (HW_UART_USR1_RD(x) & ~BM_UART_USR1_AGTIM) | BF_UART_USR1_AGTIM(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_USR1, field RRDY[9] (RO)
@@ -2518,13 +2370,11 @@ typedef union _hw_uart_usr1
  * - 1 - Character(s) ready (interrupt posted)
  */
 //@{
-
 #define BP_UART_USR1_RRDY      (9)      //!< Bit position for UART_USR1_RRDY.
 #define BM_UART_USR1_RRDY      (0x00000200)  //!< Bit mask for UART_USR1_RRDY.
 
 //! @brief Get value of UART_USR1_RRDY from a register value.
 #define BG_UART_USR1_RRDY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_RRDY) >> BP_UART_USR1_RRDY)
-
 //@}
 
 /*! @name Register UART_USR1, field FRAMERR[10] (W1C)
@@ -2538,7 +2388,6 @@ typedef union _hw_uart_usr1
  * - 1 - Frame error detected (write 1 to clear)
  */
 //@{
-
 #define BP_UART_USR1_FRAMERR      (10)      //!< Bit position for UART_USR1_FRAMERR.
 #define BM_UART_USR1_FRAMERR      (0x00000400)  //!< Bit mask for UART_USR1_FRAMERR.
 
@@ -2552,7 +2401,6 @@ typedef union _hw_uart_usr1
 //! @brief Set the FRAMERR field to a new value.
 #define BW_UART_USR1_FRAMERR(x, v)   (HW_UART_USR1_WR(x, (HW_UART_USR1_RD(x) & ~BM_UART_USR1_FRAMERR) | BF_UART_USR1_FRAMERR(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_USR1, field ESCF[11] (W1C)
@@ -2566,7 +2414,6 @@ typedef union _hw_uart_usr1
  * - 1 - Escape sequence detected (write 1 to clear).
  */
 //@{
-
 #define BP_UART_USR1_ESCF      (11)      //!< Bit position for UART_USR1_ESCF.
 #define BM_UART_USR1_ESCF      (0x00000800)  //!< Bit mask for UART_USR1_ESCF.
 
@@ -2580,7 +2427,6 @@ typedef union _hw_uart_usr1
 //! @brief Set the ESCF field to a new value.
 #define BW_UART_USR1_ESCF(x, v)   (HW_UART_USR1_WR(x, (HW_UART_USR1_RD(x) & ~BM_UART_USR1_ESCF) | BF_UART_USR1_ESCF(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_USR1, field RTSD[12] (W1C)
@@ -2595,7 +2441,6 @@ typedef union _hw_uart_usr1
  * - 1 - RTS pin changed state (write 1 to clear)
  */
 //@{
-
 #define BP_UART_USR1_RTSD      (12)      //!< Bit position for UART_USR1_RTSD.
 #define BM_UART_USR1_RTSD      (0x00001000)  //!< Bit mask for UART_USR1_RTSD.
 
@@ -2609,7 +2454,6 @@ typedef union _hw_uart_usr1
 //! @brief Set the RTSD field to a new value.
 #define BW_UART_USR1_RTSD(x, v)   (HW_UART_USR1_WR(x, (HW_UART_USR1_RD(x) & ~BM_UART_USR1_RTSD) | BF_UART_USR1_RTSD(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_USR1, field TRDY[13] (RO)
@@ -2623,13 +2467,11 @@ typedef union _hw_uart_usr1
  * - 1 - The transmitter requires data (interrupt posted)
  */
 //@{
-
 #define BP_UART_USR1_TRDY      (13)      //!< Bit position for UART_USR1_TRDY.
 #define BM_UART_USR1_TRDY      (0x00002000)  //!< Bit mask for UART_USR1_TRDY.
 
 //! @brief Get value of UART_USR1_TRDY from a register value.
 #define BG_UART_USR1_TRDY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_TRDY) >> BP_UART_USR1_TRDY)
-
 //@}
 
 /*! @name Register UART_USR1, field RTSS[14] (RO)
@@ -2643,13 +2485,11 @@ typedef union _hw_uart_usr1
  * - 1 - The RTS pin is low (active)
  */
 //@{
-
 #define BP_UART_USR1_RTSS      (14)      //!< Bit position for UART_USR1_RTSS.
 #define BM_UART_USR1_RTSS      (0x00004000)  //!< Bit mask for UART_USR1_RTSS.
 
 //! @brief Get value of UART_USR1_RTSS from a register value.
 #define BG_UART_USR1_RTSS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR1_RTSS) >> BP_UART_USR1_RTSS)
-
 //@}
 
 /*! @name Register UART_USR1, field PARITYERR[15] (W1C)
@@ -2663,7 +2503,6 @@ typedef union _hw_uart_usr1
  * - 1 - Parity error detected (write 1 to clear)
  */
 //@{
-
 #define BP_UART_USR1_PARITYERR      (15)      //!< Bit position for UART_USR1_PARITYERR.
 #define BM_UART_USR1_PARITYERR      (0x00008000)  //!< Bit mask for UART_USR1_PARITYERR.
 
@@ -2677,7 +2516,6 @@ typedef union _hw_uart_usr1
 //! @brief Set the PARITYERR field to a new value.
 #define BW_UART_USR1_PARITYERR(x, v)   (HW_UART_USR1_WR(x, (HW_UART_USR1_RD(x) & ~BM_UART_USR1_PARITYERR) | BF_UART_USR1_PARITYERR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2749,13 +2587,11 @@ typedef union _hw_uart_usr2
  * - 1 - Receive data ready
  */
 //@{
-
 #define BP_UART_USR2_RDR      (0)      //!< Bit position for UART_USR2_RDR.
 #define BM_UART_USR2_RDR      (0x00000001)  //!< Bit mask for UART_USR2_RDR.
 
 //! @brief Get value of UART_USR2_RDR from a register value.
 #define BG_UART_USR2_RDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_RDR) >> BP_UART_USR2_RDR)
-
 //@}
 
 /*! @name Register UART_USR2, field ORE[1] (W1C)
@@ -2769,7 +2605,6 @@ typedef union _hw_uart_usr2
  * - 1 - Overrun error (write 1 to clear)
  */
 //@{
-
 #define BP_UART_USR2_ORE      (1)      //!< Bit position for UART_USR2_ORE.
 #define BM_UART_USR2_ORE      (0x00000002)  //!< Bit mask for UART_USR2_ORE.
 
@@ -2783,7 +2618,6 @@ typedef union _hw_uart_usr2
 //! @brief Set the ORE field to a new value.
 #define BW_UART_USR2_ORE(x, v)   (HW_UART_USR2_WR(x, (HW_UART_USR2_RD(x) & ~BM_UART_USR2_ORE) | BF_UART_USR2_ORE(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_USR2, field BRCD[2] (W1C)
@@ -2796,7 +2630,6 @@ typedef union _hw_uart_usr2
  * - 1 - A BREAK condition was detected (write 1 to clear)
  */
 //@{
-
 #define BP_UART_USR2_BRCD      (2)      //!< Bit position for UART_USR2_BRCD.
 #define BM_UART_USR2_BRCD      (0x00000004)  //!< Bit mask for UART_USR2_BRCD.
 
@@ -2810,7 +2643,6 @@ typedef union _hw_uart_usr2
 //! @brief Set the BRCD field to a new value.
 #define BW_UART_USR2_BRCD(x, v)   (HW_UART_USR2_WR(x, (HW_UART_USR2_RD(x) & ~BM_UART_USR2_BRCD) | BF_UART_USR2_BRCD(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_USR2, field TXDC[3] (RO)
@@ -2824,13 +2656,11 @@ typedef union _hw_uart_usr2
  * - 1 - Transmit is complete
  */
 //@{
-
 #define BP_UART_USR2_TXDC      (3)      //!< Bit position for UART_USR2_TXDC.
 #define BM_UART_USR2_TXDC      (0x00000008)  //!< Bit mask for UART_USR2_TXDC.
 
 //! @brief Get value of UART_USR2_TXDC from a register value.
 #define BG_UART_USR2_TXDC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_TXDC) >> BP_UART_USR2_TXDC)
-
 //@}
 
 /*! @name Register UART_USR2, field RTSF[4] (W1C)
@@ -2845,7 +2675,6 @@ typedef union _hw_uart_usr2
  * - 1 - Programmed edge detected on RTS (write 1 to clear)
  */
 //@{
-
 #define BP_UART_USR2_RTSF      (4)      //!< Bit position for UART_USR2_RTSF.
 #define BM_UART_USR2_RTSF      (0x00000010)  //!< Bit mask for UART_USR2_RTSF.
 
@@ -2859,7 +2688,6 @@ typedef union _hw_uart_usr2
 //! @brief Set the RTSF field to a new value.
 #define BW_UART_USR2_RTSF(x, v)   (HW_UART_USR2_WR(x, (HW_UART_USR2_RD(x) & ~BM_UART_USR2_RTSF) | BF_UART_USR2_RTSF(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_USR2, field DCDIN[5] (RO)
@@ -2873,13 +2701,11 @@ typedef union _hw_uart_usr2
  * - 1 - No Carrier signal Detected
  */
 //@{
-
 #define BP_UART_USR2_DCDIN      (5)      //!< Bit position for UART_USR2_DCDIN.
 #define BM_UART_USR2_DCDIN      (0x00000020)  //!< Bit mask for UART_USR2_DCDIN.
 
 //! @brief Get value of UART_USR2_DCDIN from a register value.
 #define BG_UART_USR2_DCDIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_DCDIN) >> BP_UART_USR2_DCDIN)
-
 //@}
 
 /*! @name Register UART_USR2, field DCDDELT[6] (W1C)
@@ -2894,7 +2720,6 @@ typedef union _hw_uart_usr2
  * - 1 - Data Carrier Detect input has changed state (write 1 to clear)
  */
 //@{
-
 #define BP_UART_USR2_DCDDELT      (6)      //!< Bit position for UART_USR2_DCDDELT.
 #define BM_UART_USR2_DCDDELT      (0x00000040)  //!< Bit mask for UART_USR2_DCDDELT.
 
@@ -2908,7 +2733,6 @@ typedef union _hw_uart_usr2
 //! @brief Set the DCDDELT field to a new value.
 #define BW_UART_USR2_DCDDELT(x, v)   (HW_UART_USR2_WR(x, (HW_UART_USR2_RD(x) & ~BM_UART_USR2_DCDDELT) | BF_UART_USR2_DCDDELT(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_USR2, field WAKE[7] (W1C)
@@ -2921,7 +2745,6 @@ typedef union _hw_uart_usr2
  * - 1 - start bit detected (write 1 to clear)
  */
 //@{
-
 #define BP_UART_USR2_WAKE      (7)      //!< Bit position for UART_USR2_WAKE.
 #define BM_UART_USR2_WAKE      (0x00000080)  //!< Bit mask for UART_USR2_WAKE.
 
@@ -2935,7 +2758,6 @@ typedef union _hw_uart_usr2
 //! @brief Set the WAKE field to a new value.
 #define BW_UART_USR2_WAKE(x, v)   (HW_UART_USR2_WR(x, (HW_UART_USR2_RD(x) & ~BM_UART_USR2_WAKE) | BF_UART_USR2_WAKE(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_USR2, field IRINT[8] (W1C)
@@ -2949,7 +2771,6 @@ typedef union _hw_uart_usr2
  * - 1 - valid edge detected (write 1 to clear)
  */
 //@{
-
 #define BP_UART_USR2_IRINT      (8)      //!< Bit position for UART_USR2_IRINT.
 #define BM_UART_USR2_IRINT      (0x00000100)  //!< Bit mask for UART_USR2_IRINT.
 
@@ -2963,7 +2784,6 @@ typedef union _hw_uart_usr2
 //! @brief Set the IRINT field to a new value.
 #define BW_UART_USR2_IRINT(x, v)   (HW_UART_USR2_WR(x, (HW_UART_USR2_RD(x) & ~BM_UART_USR2_IRINT) | BF_UART_USR2_IRINT(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_USR2, field RIIN[9] (RO)
@@ -2977,13 +2797,11 @@ typedef union _hw_uart_usr2
  * - 1 - No Ring Detected
  */
 //@{
-
 #define BP_UART_USR2_RIIN      (9)      //!< Bit position for UART_USR2_RIIN.
 #define BM_UART_USR2_RIIN      (0x00000200)  //!< Bit mask for UART_USR2_RIIN.
 
 //! @brief Get value of UART_USR2_RIIN from a register value.
 #define BG_UART_USR2_RIIN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_RIIN) >> BP_UART_USR2_RIIN)
-
 //@}
 
 /*! @name Register UART_USR2, field RIDELT[10] (W1C)
@@ -2997,7 +2815,6 @@ typedef union _hw_uart_usr2
  * - 1 - Ring Indicator input has changed state (write 1 to clear)
  */
 //@{
-
 #define BP_UART_USR2_RIDELT      (10)      //!< Bit position for UART_USR2_RIDELT.
 #define BM_UART_USR2_RIDELT      (0x00000400)  //!< Bit mask for UART_USR2_RIDELT.
 
@@ -3011,7 +2828,6 @@ typedef union _hw_uart_usr2
 //! @brief Set the RIDELT field to a new value.
 #define BW_UART_USR2_RIDELT(x, v)   (HW_UART_USR2_WR(x, (HW_UART_USR2_RD(x) & ~BM_UART_USR2_RIDELT) | BF_UART_USR2_RIDELT(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_USR2, field ACST[11] (W1C)
@@ -3026,7 +2842,6 @@ typedef union _hw_uart_usr2
  * - 1 - Measurement of bit length finished (in autobaud). (write 1 to clear)
  */
 //@{
-
 #define BP_UART_USR2_ACST      (11)      //!< Bit position for UART_USR2_ACST.
 #define BM_UART_USR2_ACST      (0x00000800)  //!< Bit mask for UART_USR2_ACST.
 
@@ -3040,7 +2855,6 @@ typedef union _hw_uart_usr2
 //! @brief Set the ACST field to a new value.
 #define BW_UART_USR2_ACST(x, v)   (HW_UART_USR2_WR(x, (HW_UART_USR2_RD(x) & ~BM_UART_USR2_ACST) | BF_UART_USR2_ACST(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_USR2, field IDLE[12] (W1C)
@@ -3054,7 +2868,6 @@ typedef union _hw_uart_usr2
  * - 1 - Idle condition detected (write 1 to clear)
  */
 //@{
-
 #define BP_UART_USR2_IDLE      (12)      //!< Bit position for UART_USR2_IDLE.
 #define BM_UART_USR2_IDLE      (0x00001000)  //!< Bit mask for UART_USR2_IDLE.
 
@@ -3068,7 +2881,6 @@ typedef union _hw_uart_usr2
 //! @brief Set the IDLE field to a new value.
 #define BW_UART_USR2_IDLE(x, v)   (HW_UART_USR2_WR(x, (HW_UART_USR2_RD(x) & ~BM_UART_USR2_IDLE) | BF_UART_USR2_IDLE(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_USR2, field DTRF[13] (W1C)
@@ -3082,7 +2894,6 @@ typedef union _hw_uart_usr2
  * - 1 - Programmed edge detected on DTR/DSR (write 1 to clear)
  */
 //@{
-
 #define BP_UART_USR2_DTRF      (13)      //!< Bit position for UART_USR2_DTRF.
 #define BM_UART_USR2_DTRF      (0x00002000)  //!< Bit mask for UART_USR2_DTRF.
 
@@ -3096,7 +2907,6 @@ typedef union _hw_uart_usr2
 //! @brief Set the DTRF field to a new value.
 #define BW_UART_USR2_DTRF(x, v)   (HW_UART_USR2_WR(x, (HW_UART_USR2_RD(x) & ~BM_UART_USR2_DTRF) | BF_UART_USR2_DTRF(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_USR2, field TXFE[14] (RO)
@@ -3110,13 +2920,11 @@ typedef union _hw_uart_usr2
  * - 1 - The transmit buffer (TxFIFO) is empty
  */
 //@{
-
 #define BP_UART_USR2_TXFE      (14)      //!< Bit position for UART_USR2_TXFE.
 #define BM_UART_USR2_TXFE      (0x00004000)  //!< Bit mask for UART_USR2_TXFE.
 
 //! @brief Get value of UART_USR2_TXFE from a register value.
 #define BG_UART_USR2_TXFE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_USR2_TXFE) >> BP_UART_USR2_TXFE)
-
 //@}
 
 /*! @name Register UART_USR2, field ADET[15] (W1C)
@@ -3130,7 +2938,6 @@ typedef union _hw_uart_usr2
  * - 1 - ASCII "A" or "a" was received (write 1 to clear)
  */
 //@{
-
 #define BP_UART_USR2_ADET      (15)      //!< Bit position for UART_USR2_ADET.
 #define BM_UART_USR2_ADET      (0x00008000)  //!< Bit mask for UART_USR2_ADET.
 
@@ -3144,7 +2951,6 @@ typedef union _hw_uart_usr2
 //! @brief Set the ADET field to a new value.
 #define BW_UART_USR2_ADET(x, v)   (HW_UART_USR2_WR(x, (HW_UART_USR2_RD(x) & ~BM_UART_USR2_ADET) | BF_UART_USR2_ADET(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3196,7 +3002,6 @@ typedef union _hw_uart_uesc
  * compared against to detect an escape sequence.
  */
 //@{
-
 #define BP_UART_UESC_ESC_CHAR      (0)      //!< Bit position for UART_UESC_ESC_CHAR.
 #define BM_UART_UESC_ESC_CHAR      (0x000000ff)  //!< Bit mask for UART_UESC_ESC_CHAR.
 
@@ -3210,7 +3015,6 @@ typedef union _hw_uart_uesc
 //! @brief Set the ESC_CHAR field to a new value.
 #define BW_UART_UESC_ESC_CHAR(x, v)   (HW_UART_UESC_WR(x, (HW_UART_UESC_RD(x) & ~BM_UART_UESC_ESC_CHAR) | BF_UART_UESC_ESC_CHAR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3263,7 +3067,6 @@ typedef union _hw_uart_utim
  * UART escape sequence detection. Reset value 0x000 = 2 ms up to 0xFFF = 8.192 s.
  */
 //@{
-
 #define BP_UART_UTIM_TIM      (0)      //!< Bit position for UART_UTIM_TIM.
 #define BM_UART_UTIM_TIM      (0x00000fff)  //!< Bit mask for UART_UTIM_TIM.
 
@@ -3277,7 +3080,6 @@ typedef union _hw_uart_utim
 //! @brief Set the TIM field to a new value.
 #define BW_UART_UTIM_TIM(x, v)   (HW_UART_UTIM_WR(x, (HW_UART_UTIM_RD(x) & ~BM_UART_UTIM_TIM) | BF_UART_UTIM_TIM(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3337,7 +3139,6 @@ typedef union _hw_uart_ubir
  * and is undefined.
  */
 //@{
-
 #define BP_UART_UBIR_INC      (0)      //!< Bit position for UART_UBIR_INC.
 #define BM_UART_UBIR_INC      (0x0000ffff)  //!< Bit mask for UART_UBIR_INC.
 
@@ -3351,7 +3152,6 @@ typedef union _hw_uart_ubir
 //! @brief Set the INC field to a new value.
 #define BW_UART_UBIR_INC(x, v)   (HW_UART_UBIR_WR(x, (HW_UART_UBIR_RD(x) & ~BM_UART_UBIR_INC) | BF_UART_UBIR_INC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3411,7 +3211,6 @@ typedef union _hw_uart_ubmr
  * and undefined.
  */
 //@{
-
 #define BP_UART_UBMR_MOD      (0)      //!< Bit position for UART_UBMR_MOD.
 #define BM_UART_UBMR_MOD      (0x0000ffff)  //!< Bit mask for UART_UBMR_MOD.
 
@@ -3425,7 +3224,6 @@ typedef union _hw_uart_ubmr
 //! @brief Set the MOD field to a new value.
 #define BW_UART_UBMR_MOD(x, v)   (HW_UART_UBMR_WR(x, (HW_UART_UBMR_RD(x) & ~BM_UART_UBMR_MOD) | BF_UART_UBMR_MOD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3477,13 +3275,11 @@ typedef union _hw_uart_ubrc
  * FFFF in the case of an overflow.
  */
 //@{
-
 #define BP_UART_UBRC_BCNT      (0)      //!< Bit position for UART_UBRC_BCNT.
 #define BM_UART_UBRC_BCNT      (0x0000ffff)  //!< Bit mask for UART_UBRC_BCNT.
 
 //! @brief Get value of UART_UBRC_BCNT from a register value.
 #define BG_UART_UBRC_BCNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_UART_UBRC_BCNT) >> BP_UART_UBRC_BCNT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3544,7 +3340,6 @@ typedef union _hw_uart_onems
  * used in infrared special case mode (IRSC = UCR4[5] = 1'b1), see .
  */
 //@{
-
 #define BP_UART_ONEMS_ONEMS      (0)      //!< Bit position for UART_ONEMS_ONEMS.
 #define BM_UART_ONEMS_ONEMS      (0x00ffffff)  //!< Bit mask for UART_ONEMS_ONEMS.
 
@@ -3558,7 +3353,6 @@ typedef union _hw_uart_onems
 //! @brief Set the ONEMS field to a new value.
 #define BW_UART_ONEMS_ONEMS(x, v)   (HW_UART_ONEMS_WR(x, (HW_UART_ONEMS_RD(x) & ~BM_UART_ONEMS_ONEMS) | BF_UART_ONEMS_ONEMS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3624,7 +3418,6 @@ typedef union _hw_uart_uts
  * - 1 - Software reset active
  */
 //@{
-
 #define BP_UART_UTS_SOFTRST      (0)      //!< Bit position for UART_UTS_SOFTRST.
 #define BM_UART_UTS_SOFTRST      (0x00000001)  //!< Bit mask for UART_UTS_SOFTRST.
 
@@ -3638,7 +3431,6 @@ typedef union _hw_uart_uts
 //! @brief Set the SOFTRST field to a new value.
 #define BW_UART_UTS_SOFTRST(x, v)   (HW_UART_UTS_WR(x, (HW_UART_UTS_RD(x) & ~BM_UART_UTS_SOFTRST) | BF_UART_UTS_SOFTRST(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UTS, field RXFULL[3] (RW)
@@ -3650,7 +3442,6 @@ typedef union _hw_uart_uts
  * - 1 - The RxFIFO is full
  */
 //@{
-
 #define BP_UART_UTS_RXFULL      (3)      //!< Bit position for UART_UTS_RXFULL.
 #define BM_UART_UTS_RXFULL      (0x00000008)  //!< Bit mask for UART_UTS_RXFULL.
 
@@ -3664,7 +3455,6 @@ typedef union _hw_uart_uts
 //! @brief Set the RXFULL field to a new value.
 #define BW_UART_UTS_RXFULL(x, v)   (HW_UART_UTS_WR(x, (HW_UART_UTS_RD(x) & ~BM_UART_UTS_RXFULL) | BF_UART_UTS_RXFULL(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UTS, field TXFULL[4] (RW)
@@ -3676,7 +3466,6 @@ typedef union _hw_uart_uts
  * - 1 - The TxFIFO is full
  */
 //@{
-
 #define BP_UART_UTS_TXFULL      (4)      //!< Bit position for UART_UTS_TXFULL.
 #define BM_UART_UTS_TXFULL      (0x00000010)  //!< Bit mask for UART_UTS_TXFULL.
 
@@ -3690,7 +3479,6 @@ typedef union _hw_uart_uts
 //! @brief Set the TXFULL field to a new value.
 #define BW_UART_UTS_TXFULL(x, v)   (HW_UART_UTS_WR(x, (HW_UART_UTS_RD(x) & ~BM_UART_UTS_TXFULL) | BF_UART_UTS_TXFULL(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UTS, field RXEMPTY[5] (RW)
@@ -3702,7 +3490,6 @@ typedef union _hw_uart_uts
  * - 1 - The RxFIFO is empty
  */
 //@{
-
 #define BP_UART_UTS_RXEMPTY      (5)      //!< Bit position for UART_UTS_RXEMPTY.
 #define BM_UART_UTS_RXEMPTY      (0x00000020)  //!< Bit mask for UART_UTS_RXEMPTY.
 
@@ -3716,7 +3503,6 @@ typedef union _hw_uart_uts
 //! @brief Set the RXEMPTY field to a new value.
 #define BW_UART_UTS_RXEMPTY(x, v)   (HW_UART_UTS_WR(x, (HW_UART_UTS_RD(x) & ~BM_UART_UTS_RXEMPTY) | BF_UART_UTS_RXEMPTY(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UTS, field TXEMPTY[6] (RW)
@@ -3728,7 +3514,6 @@ typedef union _hw_uart_uts
  * - 1 - The TxFIFO is empty
  */
 //@{
-
 #define BP_UART_UTS_TXEMPTY      (6)      //!< Bit position for UART_UTS_TXEMPTY.
 #define BM_UART_UTS_TXEMPTY      (0x00000040)  //!< Bit mask for UART_UTS_TXEMPTY.
 
@@ -3742,7 +3527,6 @@ typedef union _hw_uart_uts
 //! @brief Set the TXEMPTY field to a new value.
 #define BW_UART_UTS_TXEMPTY(x, v)   (HW_UART_UTS_WR(x, (HW_UART_UTS_RD(x) & ~BM_UART_UTS_TXEMPTY) | BF_UART_UTS_TXEMPTY(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UTS, field RXDBG[9] (RW)
@@ -3755,7 +3539,6 @@ typedef union _hw_uart_uts
  * - 1 - rx_fifo read pointer increments as normal
  */
 //@{
-
 #define BP_UART_UTS_RXDBG      (9)      //!< Bit position for UART_UTS_RXDBG.
 #define BM_UART_UTS_RXDBG      (0x00000200)  //!< Bit mask for UART_UTS_RXDBG.
 
@@ -3769,7 +3552,6 @@ typedef union _hw_uart_uts
 //! @brief Set the RXDBG field to a new value.
 #define BW_UART_UTS_RXDBG(x, v)   (HW_UART_UTS_WR(x, (HW_UART_UTS_RD(x) & ~BM_UART_UTS_RXDBG) | BF_UART_UTS_RXDBG(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UTS, field LOOPIR[10] (RW)
@@ -3782,7 +3564,6 @@ typedef union _hw_uart_uts
  * - 1 - Connect IR transmitter to IR receiver
  */
 //@{
-
 #define BP_UART_UTS_LOOPIR      (10)      //!< Bit position for UART_UTS_LOOPIR.
 #define BM_UART_UTS_LOOPIR      (0x00000400)  //!< Bit mask for UART_UTS_LOOPIR.
 
@@ -3796,7 +3577,6 @@ typedef union _hw_uart_uts
 //! @brief Set the LOOPIR field to a new value.
 #define BW_UART_UTS_LOOPIR(x, v)   (HW_UART_UTS_WR(x, (HW_UART_UTS_RD(x) & ~BM_UART_UTS_LOOPIR) | BF_UART_UTS_LOOPIR(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UTS, field DBGEN[11] (RW)
@@ -3808,7 +3588,6 @@ typedef union _hw_uart_uts
  * - 1 - UART will not go into debug mode even if debug_req is HIGH
  */
 //@{
-
 #define BP_UART_UTS_DBGEN      (11)      //!< Bit position for UART_UTS_DBGEN.
 #define BM_UART_UTS_DBGEN      (0x00000800)  //!< Bit mask for UART_UTS_DBGEN.
 
@@ -3822,7 +3601,6 @@ typedef union _hw_uart_uts
 //! @brief Set the DBGEN field to a new value.
 #define BW_UART_UTS_DBGEN(x, v)   (HW_UART_UTS_WR(x, (HW_UART_UTS_RD(x) & ~BM_UART_UTS_DBGEN) | BF_UART_UTS_DBGEN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UTS, field LOOP[12] (RW)
@@ -3837,7 +3615,6 @@ typedef union _hw_uart_uts
  * - 1 - Internally connect the transmitter output to the receiver input
  */
 //@{
-
 #define BP_UART_UTS_LOOP      (12)      //!< Bit position for UART_UTS_LOOP.
 #define BM_UART_UTS_LOOP      (0x00001000)  //!< Bit mask for UART_UTS_LOOP.
 
@@ -3851,7 +3628,6 @@ typedef union _hw_uart_uts
 //! @brief Set the LOOP field to a new value.
 #define BW_UART_UTS_LOOP(x, v)   (HW_UART_UTS_WR(x, (HW_UART_UTS_RD(x) & ~BM_UART_UTS_LOOP) | BF_UART_UTS_LOOP(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UTS, field FRCPERR[13] (RW)
@@ -3864,7 +3640,6 @@ typedef union _hw_uart_uts
  * - 1 - Generate inverted parity (error)
  */
 //@{
-
 #define BP_UART_UTS_FRCPERR      (13)      //!< Bit position for UART_UTS_FRCPERR.
 #define BM_UART_UTS_FRCPERR      (0x00002000)  //!< Bit mask for UART_UTS_FRCPERR.
 
@@ -3878,7 +3653,6 @@ typedef union _hw_uart_uts
 //! @brief Set the FRCPERR field to a new value.
 #define BW_UART_UTS_FRCPERR(x, v)   (HW_UART_UTS_WR(x, (HW_UART_UTS_RD(x) & ~BM_UART_UTS_FRCPERR) | BF_UART_UTS_FRCPERR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3938,7 +3712,6 @@ typedef union _hw_uart_umcr
  * - 1 - Enable RS-485 mode, see for detail
  */
 //@{
-
 #define BP_UART_UMCR_MDEN      (0)      //!< Bit position for UART_UMCR_MDEN.
 #define BM_UART_UMCR_MDEN      (0x00000001)  //!< Bit mask for UART_UMCR_MDEN.
 
@@ -3952,7 +3725,6 @@ typedef union _hw_uart_umcr
 //! @brief Set the MDEN field to a new value.
 #define BW_UART_UMCR_MDEN(x, v)   (HW_UART_UMCR_WR(x, (HW_UART_UMCR_RD(x) & ~BM_UART_UMCR_MDEN) | BF_UART_UMCR_MDEN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UMCR, field SLAM[1] (RW)
@@ -3964,7 +3736,6 @@ typedef union _hw_uart_umcr
  * - 1 - Select Automatic Address Detect mode
  */
 //@{
-
 #define BP_UART_UMCR_SLAM      (1)      //!< Bit position for UART_UMCR_SLAM.
 #define BM_UART_UMCR_SLAM      (0x00000002)  //!< Bit mask for UART_UMCR_SLAM.
 
@@ -3978,7 +3749,6 @@ typedef union _hw_uart_umcr
 //! @brief Set the SLAM field to a new value.
 #define BW_UART_UMCR_SLAM(x, v)   (HW_UART_UMCR_WR(x, (HW_UART_UMCR_RD(x) & ~BM_UART_UMCR_SLAM) | BF_UART_UMCR_SLAM(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UMCR, field TXB8[2] (RW)
@@ -3991,7 +3761,6 @@ typedef union _hw_uart_umcr
  * - 1 - 1 will be transmitted as the RS485 9 th data bit
  */
 //@{
-
 #define BP_UART_UMCR_TXB8      (2)      //!< Bit position for UART_UMCR_TXB8.
 #define BM_UART_UMCR_TXB8      (0x00000004)  //!< Bit mask for UART_UMCR_TXB8.
 
@@ -4005,7 +3774,6 @@ typedef union _hw_uart_umcr
 //! @brief Set the TXB8 field to a new value.
 #define BW_UART_UMCR_TXB8(x, v)   (HW_UART_UMCR_WR(x, (HW_UART_UMCR_RD(x) & ~BM_UART_UMCR_TXB8) | BF_UART_UMCR_TXB8(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UMCR, field SADEN[3] (RW)
@@ -4017,7 +3785,6 @@ typedef union _hw_uart_umcr
  * - 1 - Enable RS-485 Slave Address Detected Interrupt
  */
 //@{
-
 #define BP_UART_UMCR_SADEN      (3)      //!< Bit position for UART_UMCR_SADEN.
 #define BM_UART_UMCR_SADEN      (0x00000008)  //!< Bit mask for UART_UMCR_SADEN.
 
@@ -4031,7 +3798,6 @@ typedef union _hw_uart_umcr
 //! @brief Set the SADEN field to a new value.
 #define BW_UART_UMCR_SADEN(x, v)   (HW_UART_UMCR_WR(x, (HW_UART_UMCR_RD(x) & ~BM_UART_UMCR_SADEN) | BF_UART_UMCR_SADEN(v)))
 #endif
-
 //@}
 
 /*! @name Register UART_UMCR, field SLADDR[15:8] (RW)
@@ -4040,7 +3806,6 @@ typedef union _hw_uart_umcr
  * try to detect.
  */
 //@{
-
 #define BP_UART_UMCR_SLADDR      (8)      //!< Bit position for UART_UMCR_SLADDR.
 #define BM_UART_UMCR_SLADDR      (0x0000ff00)  //!< Bit mask for UART_UMCR_SLADDR.
 
@@ -4054,7 +3819,6 @@ typedef union _hw_uart_umcr
 //! @brief Set the SLADDR field to a new value.
 #define BW_UART_UMCR_SLADDR(x, v)   (HW_UART_UMCR_WR(x, (HW_UART_UMCR_RD(x) & ~BM_UART_UMCR_SLADDR) | BF_UART_UMCR_SLADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4097,3 +3861,5 @@ typedef struct _hw_uart
 #endif
 
 #endif // __HW_UART_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

@@ -95,10 +95,6 @@ typedef union _hw_sata_phy_clock_crcmp_lt_limit
  */
 //@{
 #define HW_SATA_PHY_CLOCK_CRCMP_LT_LIMIT_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0x1)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_CRCMP_LT_LIMIT           (*(volatile hw_sata_phy_clock_crcmp_lt_limit_t *) HW_SATA_PHY_CLOCK_CRCMP_LT_LIMIT_ADDR)
-#endif
 //@}
 
 /*
@@ -110,7 +106,6 @@ typedef union _hw_sata_phy_clock_crcmp_lt_limit
  * Less-than-limit compare point
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CRCMP_LT_LIMIT_CRCMP_LT_LIMIT      (0)      //!< Bit position for SATA_PHY_CLOCK_CRCMP_LT_LIMIT_CRCMP_LT_LIMIT.
 #define BM_SATA_PHY_CLOCK_CRCMP_LT_LIMIT_CRCMP_LT_LIMIT      (0x0000ffff)  //!< Bit mask for SATA_PHY_CLOCK_CRCMP_LT_LIMIT_CRCMP_LT_LIMIT.
 
@@ -119,7 +114,6 @@ typedef union _hw_sata_phy_clock_crcmp_lt_limit
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CRCMP_LT_LIMIT_CRCMP_LT_LIMIT.
 #define BF_SATA_PHY_CLOCK_CRCMP_LT_LIMIT_CRCMP_LT_LIMIT(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CRCMP_LT_LIMIT_CRCMP_LT_LIMIT) & BM_SATA_PHY_CLOCK_CRCMP_LT_LIMIT_CRCMP_LT_LIMIT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -150,10 +144,6 @@ typedef union _hw_sata_phy_clock_crcmp_gt_limit
  */
 //@{
 #define HW_SATA_PHY_CLOCK_CRCMP_GT_LIMIT_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0x2)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_CRCMP_GT_LIMIT           (*(volatile hw_sata_phy_clock_crcmp_gt_limit_t *) HW_SATA_PHY_CLOCK_CRCMP_GT_LIMIT_ADDR)
-#endif
 //@}
 
 /*
@@ -165,7 +155,6 @@ typedef union _hw_sata_phy_clock_crcmp_gt_limit
  * Greater-than-limit compare point
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CRCMP_GT_LIMIT_CRCMP_GT_LIMIT      (0)      //!< Bit position for SATA_PHY_CLOCK_CRCMP_GT_LIMIT_CRCMP_GT_LIMIT.
 #define BM_SATA_PHY_CLOCK_CRCMP_GT_LIMIT_CRCMP_GT_LIMIT      (0x0000ffff)  //!< Bit mask for SATA_PHY_CLOCK_CRCMP_GT_LIMIT_CRCMP_GT_LIMIT.
 
@@ -174,7 +163,6 @@ typedef union _hw_sata_phy_clock_crcmp_gt_limit
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CRCMP_GT_LIMIT_CRCMP_GT_LIMIT.
 #define BF_SATA_PHY_CLOCK_CRCMP_GT_LIMIT_CRCMP_GT_LIMIT(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CRCMP_GT_LIMIT_CRCMP_GT_LIMIT) & BM_SATA_PHY_CLOCK_CRCMP_GT_LIMIT_CRCMP_GT_LIMIT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -205,10 +193,6 @@ typedef union _hw_sata_phy_clock_crcmp_mask
  */
 //@{
 #define HW_SATA_PHY_CLOCK_CRCMP_MASK_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0x3)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_CRCMP_MASK           (*(volatile hw_sata_phy_clock_crcmp_mask_t *) HW_SATA_PHY_CLOCK_CRCMP_MASK_ADDR)
-#endif
 //@}
 
 /*
@@ -220,7 +204,6 @@ typedef union _hw_sata_phy_clock_crcmp_mask
  * Mask for comparisons
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CRCMP_MASK_CRCMP_MASK      (0)      //!< Bit position for SATA_PHY_CLOCK_CRCMP_MASK_CRCMP_MASK.
 #define BM_SATA_PHY_CLOCK_CRCMP_MASK_CRCMP_MASK      (0x0000ffff)  //!< Bit mask for SATA_PHY_CLOCK_CRCMP_MASK_CRCMP_MASK.
 
@@ -229,7 +212,6 @@ typedef union _hw_sata_phy_clock_crcmp_mask
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CRCMP_MASK_CRCMP_MASK.
 #define BF_SATA_PHY_CLOCK_CRCMP_MASK_CRCMP_MASK(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CRCMP_MASK_CRCMP_MASK) & BM_SATA_PHY_CLOCK_CRCMP_MASK_CRCMP_MASK)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -262,10 +244,6 @@ typedef union _hw_sata_phy_clock_crcmp_ctl
  */
 //@{
 #define HW_SATA_PHY_CLOCK_CRCMP_CTL_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0x4)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_CRCMP_CTL           (*(volatile hw_sata_phy_clock_crcmp_ctl_t *) HW_SATA_PHY_CLOCK_CRCMP_CTL_ADDR)
-#endif
 //@}
 
 /*
@@ -277,7 +255,6 @@ typedef union _hw_sata_phy_clock_crcmp_ctl
  * Scratch0 is not updated on register reads.
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CRCMP_CTL_HOLD_SCRATCH0      (0)      //!< Bit position for SATA_PHY_CLOCK_CRCMP_CTL_HOLD_SCRATCH0.
 #define BM_SATA_PHY_CLOCK_CRCMP_CTL_HOLD_SCRATCH0      (0x00000001)  //!< Bit mask for SATA_PHY_CLOCK_CRCMP_CTL_HOLD_SCRATCH0.
 
@@ -286,7 +263,6 @@ typedef union _hw_sata_phy_clock_crcmp_ctl
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CRCMP_CTL_HOLD_SCRATCH0.
 #define BF_SATA_PHY_CLOCK_CRCMP_CTL_HOLD_SCRATCH0(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CRCMP_CTL_HOLD_SCRATCH0) & BM_SATA_PHY_CLOCK_CRCMP_CTL_HOLD_SCRATCH0)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CRCMP_CTL, field HOLD_SCRATCH1[1] (RW)
@@ -294,7 +270,6 @@ typedef union _hw_sata_phy_clock_crcmp_ctl
  * Scratch1 is not updated on register reads.
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CRCMP_CTL_HOLD_SCRATCH1      (1)      //!< Bit position for SATA_PHY_CLOCK_CRCMP_CTL_HOLD_SCRATCH1.
 #define BM_SATA_PHY_CLOCK_CRCMP_CTL_HOLD_SCRATCH1      (0x00000002)  //!< Bit mask for SATA_PHY_CLOCK_CRCMP_CTL_HOLD_SCRATCH1.
 
@@ -303,7 +278,6 @@ typedef union _hw_sata_phy_clock_crcmp_ctl
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CRCMP_CTL_HOLD_SCRATCH1.
 #define BF_SATA_PHY_CLOCK_CRCMP_CTL_HOLD_SCRATCH1(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CRCMP_CTL_HOLD_SCRATCH1) & BM_SATA_PHY_CLOCK_CRCMP_CTL_HOLD_SCRATCH1)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -340,10 +314,6 @@ typedef union _hw_sata_phy_clock_crcmp_stat
  */
 //@{
 #define HW_SATA_PHY_CLOCK_CRCMP_STAT_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0x5)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_CRCMP_STAT           (*(volatile hw_sata_phy_clock_crcmp_stat_t *) HW_SATA_PHY_CLOCK_CRCMP_STAT_ADDR)
-#endif
 //@}
 
 /*
@@ -355,13 +325,11 @@ typedef union _hw_sata_phy_clock_crcmp_stat
  * Masked Scratch0 is lower than CRCMP_LT_LIMIT
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CRCMP_STAT_S0_LOW      (0)      //!< Bit position for SATA_PHY_CLOCK_CRCMP_STAT_S0_LOW.
 #define BM_SATA_PHY_CLOCK_CRCMP_STAT_S0_LOW      (0x00000001)  //!< Bit mask for SATA_PHY_CLOCK_CRCMP_STAT_S0_LOW.
 
 //! @brief Get value of SATA_PHY_CLOCK_CRCMP_STAT_S0_LOW from a register value.
 #define BG_SATA_PHY_CLOCK_CRCMP_STAT_S0_LOW(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_CRCMP_STAT_S0_LOW) >> BP_SATA_PHY_CLOCK_CRCMP_STAT_S0_LOW)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CRCMP_STAT, field S0_HIGH[1] (RO)
@@ -369,13 +337,11 @@ typedef union _hw_sata_phy_clock_crcmp_stat
  * Masked Scratch0 is higher than CRCMP_HT_LIMIT.
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CRCMP_STAT_S0_HIGH      (1)      //!< Bit position for SATA_PHY_CLOCK_CRCMP_STAT_S0_HIGH.
 #define BM_SATA_PHY_CLOCK_CRCMP_STAT_S0_HIGH      (0x00000002)  //!< Bit mask for SATA_PHY_CLOCK_CRCMP_STAT_S0_HIGH.
 
 //! @brief Get value of SATA_PHY_CLOCK_CRCMP_STAT_S0_HIGH from a register value.
 #define BG_SATA_PHY_CLOCK_CRCMP_STAT_S0_HIGH(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_CRCMP_STAT_S0_HIGH) >> BP_SATA_PHY_CLOCK_CRCMP_STAT_S0_HIGH)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CRCMP_STAT, field S1_S0_LOW[2] (RO)
@@ -383,13 +349,11 @@ typedef union _hw_sata_phy_clock_crcmp_stat
  * Masked (Scratch1 - Scratch0) is lower than CRCMP_LT_LIMIT.
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CRCMP_STAT_S1_S0_LOW      (2)      //!< Bit position for SATA_PHY_CLOCK_CRCMP_STAT_S1_S0_LOW.
 #define BM_SATA_PHY_CLOCK_CRCMP_STAT_S1_S0_LOW      (0x00000004)  //!< Bit mask for SATA_PHY_CLOCK_CRCMP_STAT_S1_S0_LOW.
 
 //! @brief Get value of SATA_PHY_CLOCK_CRCMP_STAT_S1_S0_LOW from a register value.
 #define BG_SATA_PHY_CLOCK_CRCMP_STAT_S1_S0_LOW(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_CRCMP_STAT_S1_S0_LOW) >> BP_SATA_PHY_CLOCK_CRCMP_STAT_S1_S0_LOW)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CRCMP_STAT, field S1_S0_HIGH[3] (RO)
@@ -397,13 +361,11 @@ typedef union _hw_sata_phy_clock_crcmp_stat
  * Masked (Scratch1 - Scratch0) is higher than CRCMP_HT_LIMIT.
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CRCMP_STAT_S1_S0_HIGH      (3)      //!< Bit position for SATA_PHY_CLOCK_CRCMP_STAT_S1_S0_HIGH.
 #define BM_SATA_PHY_CLOCK_CRCMP_STAT_S1_S0_HIGH      (0x00000008)  //!< Bit mask for SATA_PHY_CLOCK_CRCMP_STAT_S1_S0_HIGH.
 
 //! @brief Get value of SATA_PHY_CLOCK_CRCMP_STAT_S1_S0_HIGH from a register value.
 #define BG_SATA_PHY_CLOCK_CRCMP_STAT_S1_S0_HIGH(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_CRCMP_STAT_S1_S0_HIGH) >> BP_SATA_PHY_CLOCK_CRCMP_STAT_S1_S0_HIGH)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CRCMP_STAT, field S0_OUTSIDE[4] (RO)
@@ -411,13 +373,11 @@ typedef union _hw_sata_phy_clock_crcmp_stat
  * Logical OR of S0_LOW and S0_HIGH Useful for determining if the value is near signed zero.
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CRCMP_STAT_S0_OUTSIDE      (4)      //!< Bit position for SATA_PHY_CLOCK_CRCMP_STAT_S0_OUTSIDE.
 #define BM_SATA_PHY_CLOCK_CRCMP_STAT_S0_OUTSIDE      (0x00000010)  //!< Bit mask for SATA_PHY_CLOCK_CRCMP_STAT_S0_OUTSIDE.
 
 //! @brief Get value of SATA_PHY_CLOCK_CRCMP_STAT_S0_OUTSIDE from a register value.
 #define BG_SATA_PHY_CLOCK_CRCMP_STAT_S0_OUTSIDE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_CRCMP_STAT_S0_OUTSIDE) >> BP_SATA_PHY_CLOCK_CRCMP_STAT_S0_OUTSIDE)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CRCMP_STAT, field S1_S0_OUTSIDE[5] (RO)
@@ -426,13 +386,11 @@ typedef union _hw_sata_phy_clock_crcmp_stat
  * zero.
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CRCMP_STAT_S1_S0_OUTSIDE      (5)      //!< Bit position for SATA_PHY_CLOCK_CRCMP_STAT_S1_S0_OUTSIDE.
 #define BM_SATA_PHY_CLOCK_CRCMP_STAT_S1_S0_OUTSIDE      (0x00000020)  //!< Bit mask for SATA_PHY_CLOCK_CRCMP_STAT_S1_S0_OUTSIDE.
 
 //! @brief Get value of SATA_PHY_CLOCK_CRCMP_STAT_S1_S0_OUTSIDE from a register value.
 #define BG_SATA_PHY_CLOCK_CRCMP_STAT_S1_S0_OUTSIDE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_CRCMP_STAT_S1_S0_OUTSIDE) >> BP_SATA_PHY_CLOCK_CRCMP_STAT_S1_S0_OUTSIDE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -463,10 +421,6 @@ typedef union _hw_sata_phy_clock_scope_samples
  */
 //@{
 #define HW_SATA_PHY_CLOCK_SCOPE_SAMPLES_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0x6)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_SCOPE_SAMPLES           (*(volatile hw_sata_phy_clock_scope_samples_t *) HW_SATA_PHY_CLOCK_SCOPE_SAMPLES_ADDR)
-#endif
 //@}
 
 /*
@@ -478,7 +432,6 @@ typedef union _hw_sata_phy_clock_scope_samples
  * The number of samples to count
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_SCOPE_SAMPLES_SCOPE_SAMPLES      (0)      //!< Bit position for SATA_PHY_CLOCK_SCOPE_SAMPLES_SCOPE_SAMPLES.
 #define BM_SATA_PHY_CLOCK_SCOPE_SAMPLES_SCOPE_SAMPLES      (0x0000ffff)  //!< Bit mask for SATA_PHY_CLOCK_SCOPE_SAMPLES_SCOPE_SAMPLES.
 
@@ -487,7 +440,6 @@ typedef union _hw_sata_phy_clock_scope_samples
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_SCOPE_SAMPLES_SCOPE_SAMPLES.
 #define BF_SATA_PHY_CLOCK_SCOPE_SAMPLES_SCOPE_SAMPLES(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_SCOPE_SAMPLES_SCOPE_SAMPLES) & BM_SATA_PHY_CLOCK_SCOPE_SAMPLES_SCOPE_SAMPLES)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -519,10 +471,6 @@ typedef union _hw_sata_phy_clock_scope_count
  */
 //@{
 #define HW_SATA_PHY_CLOCK_SCOPE_COUNT_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0x7)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_SCOPE_COUNT           (*(volatile hw_sata_phy_clock_scope_count_t *) HW_SATA_PHY_CLOCK_SCOPE_COUNT_ADDR)
-#endif
 //@}
 
 /*
@@ -534,13 +482,11 @@ typedef union _hw_sata_phy_clock_scope_count
  * Results of scope counting
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_SCOPE_COUNT_SCOPE_COUNT      (0)      //!< Bit position for SATA_PHY_CLOCK_SCOPE_COUNT_SCOPE_COUNT.
 #define BM_SATA_PHY_CLOCK_SCOPE_COUNT_SCOPE_COUNT      (0x0000ffff)  //!< Bit mask for SATA_PHY_CLOCK_SCOPE_COUNT_SCOPE_COUNT.
 
 //! @brief Get value of SATA_PHY_CLOCK_SCOPE_COUNT_SCOPE_COUNT from a register value.
 #define BG_SATA_PHY_CLOCK_SCOPE_COUNT_SCOPE_COUNT(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_SCOPE_COUNT_SCOPE_COUNT) >> BP_SATA_PHY_CLOCK_SCOPE_COUNT_SCOPE_COUNT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -574,10 +520,6 @@ typedef union _hw_sata_phy_clock_dac_ctl
  */
 //@{
 #define HW_SATA_PHY_CLOCK_DAC_CTL_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0x8)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_DAC_CTL           (*(volatile hw_sata_phy_clock_dac_ctl_t *) HW_SATA_PHY_CLOCK_DAC_CTL_ADDR)
-#endif
 //@}
 
 /*
@@ -589,7 +531,6 @@ typedef union _hw_sata_phy_clock_dac_ctl
  * Digital value to be used for DAC
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_DAC_CTL_DAC_VAL      (0)      //!< Bit position for SATA_PHY_CLOCK_DAC_CTL_DAC_VAL.
 #define BM_SATA_PHY_CLOCK_DAC_CTL_DAC_VAL      (0x000003ff)  //!< Bit mask for SATA_PHY_CLOCK_DAC_CTL_DAC_VAL.
 
@@ -598,7 +539,6 @@ typedef union _hw_sata_phy_clock_dac_ctl
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_DAC_CTL_DAC_VAL.
 #define BF_SATA_PHY_CLOCK_DAC_CTL_DAC_VAL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_DAC_CTL_DAC_VAL) & BM_SATA_PHY_CLOCK_DAC_CTL_DAC_VAL)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_DAC_CTL, field OVRD_RTUNE_TX[10] (RW)
@@ -606,7 +546,6 @@ typedef union _hw_sata_phy_clock_dac_ctl
  * Writes DAC_VAL[5:0] to the Tx rtune bus
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_DAC_CTL_OVRD_RTUNE_TX      (10)      //!< Bit position for SATA_PHY_CLOCK_DAC_CTL_OVRD_RTUNE_TX.
 #define BM_SATA_PHY_CLOCK_DAC_CTL_OVRD_RTUNE_TX      (0x00000400)  //!< Bit mask for SATA_PHY_CLOCK_DAC_CTL_OVRD_RTUNE_TX.
 
@@ -615,7 +554,6 @@ typedef union _hw_sata_phy_clock_dac_ctl
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_DAC_CTL_OVRD_RTUNE_TX.
 #define BF_SATA_PHY_CLOCK_DAC_CTL_OVRD_RTUNE_TX(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_DAC_CTL_OVRD_RTUNE_TX) & BM_SATA_PHY_CLOCK_DAC_CTL_OVRD_RTUNE_TX)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_DAC_CTL, field OVRD_RTUNE_RX[11] (RW)
@@ -623,7 +561,6 @@ typedef union _hw_sata_phy_clock_dac_ctl
  * Writes DAC_VAL[5:0] to the Rx rtune bus
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_DAC_CTL_OVRD_RTUNE_RX      (11)      //!< Bit position for SATA_PHY_CLOCK_DAC_CTL_OVRD_RTUNE_RX.
 #define BM_SATA_PHY_CLOCK_DAC_CTL_OVRD_RTUNE_RX      (0x00000800)  //!< Bit mask for SATA_PHY_CLOCK_DAC_CTL_OVRD_RTUNE_RX.
 
@@ -632,7 +569,6 @@ typedef union _hw_sata_phy_clock_dac_ctl
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_DAC_CTL_OVRD_RTUNE_RX.
 #define BF_SATA_PHY_CLOCK_DAC_CTL_OVRD_RTUNE_RX(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_DAC_CTL_OVRD_RTUNE_RX) & BM_SATA_PHY_CLOCK_DAC_CTL_OVRD_RTUNE_RX)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_DAC_CTL, field DAC_MODE[14:12] (RW)
@@ -650,7 +586,6 @@ typedef union _hw_sata_phy_clock_dac_ctl
  * - 111 - 36% range DAC, 66% offset
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_DAC_CTL_DAC_MODE      (12)      //!< Bit position for SATA_PHY_CLOCK_DAC_CTL_DAC_MODE.
 #define BM_SATA_PHY_CLOCK_DAC_CTL_DAC_MODE      (0x00007000)  //!< Bit mask for SATA_PHY_CLOCK_DAC_CTL_DAC_MODE.
 
@@ -659,7 +594,6 @@ typedef union _hw_sata_phy_clock_dac_ctl
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_DAC_CTL_DAC_MODE.
 #define BF_SATA_PHY_CLOCK_DAC_CTL_DAC_MODE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_DAC_CTL_DAC_MODE) & BM_SATA_PHY_CLOCK_DAC_CTL_DAC_MODE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -699,10 +633,6 @@ typedef union _hw_sata_phy_clock_rtune_ctl
  */
 //@{
 #define HW_SATA_PHY_CLOCK_RTUNE_CTL_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0x9)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_RTUNE_CTL           (*(volatile hw_sata_phy_clock_rtune_ctl_t *) HW_SATA_PHY_CLOCK_RTUNE_CTL_ADDR)
-#endif
 //@}
 
 /*
@@ -720,7 +650,6 @@ typedef union _hw_sata_phy_clock_rtune_ctl
  * - 11 - Tx Resistor test
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_RTUNE_CTL_MODE      (0)      //!< Bit position for SATA_PHY_CLOCK_RTUNE_CTL_MODE.
 #define BM_SATA_PHY_CLOCK_RTUNE_CTL_MODE      (0x00000003)  //!< Bit mask for SATA_PHY_CLOCK_RTUNE_CTL_MODE.
 
@@ -729,7 +658,6 @@ typedef union _hw_sata_phy_clock_rtune_ctl
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_RTUNE_CTL_MODE.
 #define BF_SATA_PHY_CLOCK_RTUNE_CTL_MODE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_RTUNE_CTL_MODE) & BM_SATA_PHY_CLOCK_RTUNE_CTL_MODE)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_RTUNE_CTL, field FRC_PWRON[2] (RW)
@@ -737,7 +665,6 @@ typedef union _hw_sata_phy_clock_rtune_ctl
  * Overrides internal power-on
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_RTUNE_CTL_FRC_PWRON      (2)      //!< Bit position for SATA_PHY_CLOCK_RTUNE_CTL_FRC_PWRON.
 #define BM_SATA_PHY_CLOCK_RTUNE_CTL_FRC_PWRON      (0x00000004)  //!< Bit mask for SATA_PHY_CLOCK_RTUNE_CTL_FRC_PWRON.
 
@@ -746,7 +673,6 @@ typedef union _hw_sata_phy_clock_rtune_ctl
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_RTUNE_CTL_FRC_PWRON.
 #define BF_SATA_PHY_CLOCK_RTUNE_CTL_FRC_PWRON(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_RTUNE_CTL_FRC_PWRON) & BM_SATA_PHY_CLOCK_RTUNE_CTL_FRC_PWRON)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_RTUNE_CTL, field PWRON_LCL[3] (RW)
@@ -754,7 +680,6 @@ typedef union _hw_sata_phy_clock_rtune_ctl
  * Value of power-on to force
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_RTUNE_CTL_PWRON_LCL      (3)      //!< Bit position for SATA_PHY_CLOCK_RTUNE_CTL_PWRON_LCL.
 #define BM_SATA_PHY_CLOCK_RTUNE_CTL_PWRON_LCL      (0x00000008)  //!< Bit mask for SATA_PHY_CLOCK_RTUNE_CTL_PWRON_LCL.
 
@@ -763,7 +688,6 @@ typedef union _hw_sata_phy_clock_rtune_ctl
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_RTUNE_CTL_PWRON_LCL.
 #define BF_SATA_PHY_CLOCK_RTUNE_CTL_PWRON_LCL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_RTUNE_CTL_PWRON_LCL) & BM_SATA_PHY_CLOCK_RTUNE_CTL_PWRON_LCL)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_RTUNE_CTL, field SEL_ATBP[4] (RW)
@@ -771,7 +695,6 @@ typedef union _hw_sata_phy_clock_rtune_ctl
  * Selects atb_s_p for A/D measurement
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_RTUNE_CTL_SEL_ATBP      (4)      //!< Bit position for SATA_PHY_CLOCK_RTUNE_CTL_SEL_ATBP.
 #define BM_SATA_PHY_CLOCK_RTUNE_CTL_SEL_ATBP      (0x00000010)  //!< Bit mask for SATA_PHY_CLOCK_RTUNE_CTL_SEL_ATBP.
 
@@ -780,7 +703,6 @@ typedef union _hw_sata_phy_clock_rtune_ctl
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_RTUNE_CTL_SEL_ATBP.
 #define BF_SATA_PHY_CLOCK_RTUNE_CTL_SEL_ATBP(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_RTUNE_CTL_SEL_ATBP) & BM_SATA_PHY_CLOCK_RTUNE_CTL_SEL_ATBP)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_RTUNE_CTL, field RSC_X4[5] (RW)
@@ -788,7 +710,6 @@ typedef union _hw_sata_phy_clock_rtune_ctl
  * Sets x4 in rescal circuitry
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_RTUNE_CTL_RSC_X4      (5)      //!< Bit position for SATA_PHY_CLOCK_RTUNE_CTL_RSC_X4.
 #define BM_SATA_PHY_CLOCK_RTUNE_CTL_RSC_X4      (0x00000020)  //!< Bit mask for SATA_PHY_CLOCK_RTUNE_CTL_RSC_X4.
 
@@ -797,7 +718,6 @@ typedef union _hw_sata_phy_clock_rtune_ctl
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_RTUNE_CTL_RSC_X4.
 #define BF_SATA_PHY_CLOCK_RTUNE_CTL_RSC_X4(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_RTUNE_CTL_RSC_X4) & BM_SATA_PHY_CLOCK_RTUNE_CTL_RSC_X4)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_RTUNE_CTL, field DAC_CHOP[6] (RW)
@@ -805,7 +725,6 @@ typedef union _hw_sata_phy_clock_rtune_ctl
  * Polarity of chop control for DAC
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_RTUNE_CTL_DAC_CHOP      (6)      //!< Bit position for SATA_PHY_CLOCK_RTUNE_CTL_DAC_CHOP.
 #define BM_SATA_PHY_CLOCK_RTUNE_CTL_DAC_CHOP      (0x00000040)  //!< Bit mask for SATA_PHY_CLOCK_RTUNE_CTL_DAC_CHOP.
 
@@ -814,7 +733,6 @@ typedef union _hw_sata_phy_clock_rtune_ctl
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_RTUNE_CTL_DAC_CHOP.
 #define BF_SATA_PHY_CLOCK_RTUNE_CTL_DAC_CHOP(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_RTUNE_CTL_DAC_CHOP) & BM_SATA_PHY_CLOCK_RTUNE_CTL_DAC_CHOP)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_RTUNE_CTL, field CMP_INVERT[7] (RW)
@@ -822,7 +740,6 @@ typedef union _hw_sata_phy_clock_rtune_ctl
  * Inverts output of comparator (to reverse successive approximation register (SAR) feedback loop)
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_RTUNE_CTL_CMP_INVERT      (7)      //!< Bit position for SATA_PHY_CLOCK_RTUNE_CTL_CMP_INVERT.
 #define BM_SATA_PHY_CLOCK_RTUNE_CTL_CMP_INVERT      (0x00000080)  //!< Bit mask for SATA_PHY_CLOCK_RTUNE_CTL_CMP_INVERT.
 
@@ -831,7 +748,6 @@ typedef union _hw_sata_phy_clock_rtune_ctl
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_RTUNE_CTL_CMP_INVERT.
 #define BF_SATA_PHY_CLOCK_RTUNE_CTL_CMP_INVERT(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_RTUNE_CTL_CMP_INVERT) & BM_SATA_PHY_CLOCK_RTUNE_CTL_CMP_INVERT)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_RTUNE_CTL, field RTUNE_DIS[8] (RW)
@@ -839,7 +755,6 @@ typedef union _hw_sata_phy_clock_rtune_ctl
  * Disables automatic resistor recalibrations
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_RTUNE_CTL_RTUNE_DIS      (8)      //!< Bit position for SATA_PHY_CLOCK_RTUNE_CTL_RTUNE_DIS.
 #define BM_SATA_PHY_CLOCK_RTUNE_CTL_RTUNE_DIS      (0x00000100)  //!< Bit mask for SATA_PHY_CLOCK_RTUNE_CTL_RTUNE_DIS.
 
@@ -848,7 +763,6 @@ typedef union _hw_sata_phy_clock_rtune_ctl
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_RTUNE_CTL_RTUNE_DIS.
 #define BF_SATA_PHY_CLOCK_RTUNE_CTL_RTUNE_DIS(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_RTUNE_CTL_RTUNE_DIS) & BM_SATA_PHY_CLOCK_RTUNE_CTL_RTUNE_DIS)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_RTUNE_CTL, field RTUNE_TRIG[9] (RW)
@@ -856,7 +770,6 @@ typedef union _hw_sata_phy_clock_rtune_ctl
  * Triggers manual resistor calibration
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_RTUNE_CTL_RTUNE_TRIG      (9)      //!< Bit position for SATA_PHY_CLOCK_RTUNE_CTL_RTUNE_TRIG.
 #define BM_SATA_PHY_CLOCK_RTUNE_CTL_RTUNE_TRIG      (0x00000200)  //!< Bit mask for SATA_PHY_CLOCK_RTUNE_CTL_RTUNE_TRIG.
 
@@ -865,7 +778,6 @@ typedef union _hw_sata_phy_clock_rtune_ctl
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_RTUNE_CTL_RTUNE_TRIG.
 #define BF_SATA_PHY_CLOCK_RTUNE_CTL_RTUNE_TRIG(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_RTUNE_CTL_RTUNE_TRIG) & BM_SATA_PHY_CLOCK_RTUNE_CTL_RTUNE_TRIG)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_RTUNE_CTL, field ADC_TRIG[10] (RW)
@@ -873,7 +785,6 @@ typedef union _hw_sata_phy_clock_rtune_ctl
  * Triggers ADC conversion
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_RTUNE_CTL_ADC_TRIG      (10)      //!< Bit position for SATA_PHY_CLOCK_RTUNE_CTL_ADC_TRIG.
 #define BM_SATA_PHY_CLOCK_RTUNE_CTL_ADC_TRIG      (0x00000400)  //!< Bit mask for SATA_PHY_CLOCK_RTUNE_CTL_ADC_TRIG.
 
@@ -882,7 +793,6 @@ typedef union _hw_sata_phy_clock_rtune_ctl
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_RTUNE_CTL_ADC_TRIG.
 #define BF_SATA_PHY_CLOCK_RTUNE_CTL_ADC_TRIG(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_RTUNE_CTL_ADC_TRIG) & BM_SATA_PHY_CLOCK_RTUNE_CTL_ADC_TRIG)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -915,10 +825,6 @@ typedef union _hw_sata_phy_clock_adc_out
  */
 //@{
 #define HW_SATA_PHY_CLOCK_ADC_OUT_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0xa)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_ADC_OUT           (*(volatile hw_sata_phy_clock_adc_out_t *) HW_SATA_PHY_CLOCK_ADC_OUT_ADDR)
-#endif
 //@}
 
 /*
@@ -931,13 +837,11 @@ typedef union _hw_sata_phy_clock_adc_out
  * conversion (MODES 0 or 1) or the current Tx/Rx cal value (MODES 3/2).
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_ADC_OUT_VALUE      (0)      //!< Bit position for SATA_PHY_CLOCK_ADC_OUT_VALUE.
 #define BM_SATA_PHY_CLOCK_ADC_OUT_VALUE      (0x000003ff)  //!< Bit mask for SATA_PHY_CLOCK_ADC_OUT_VALUE.
 
 //! @brief Get value of SATA_PHY_CLOCK_ADC_OUT_VALUE from a register value.
 #define BG_SATA_PHY_CLOCK_ADC_OUT_VALUE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_ADC_OUT_VALUE) >> BP_SATA_PHY_CLOCK_ADC_OUT_VALUE)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_ADC_OUT, field FRESH[10] (RO)
@@ -945,13 +849,11 @@ typedef union _hw_sata_phy_clock_adc_out
  * Flag indicates that a new A/D conversion result is present.
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_ADC_OUT_FRESH      (10)      //!< Bit position for SATA_PHY_CLOCK_ADC_OUT_FRESH.
 #define BM_SATA_PHY_CLOCK_ADC_OUT_FRESH      (0x00000400)  //!< Bit mask for SATA_PHY_CLOCK_ADC_OUT_FRESH.
 
 //! @brief Get value of SATA_PHY_CLOCK_ADC_OUT_FRESH from a register value.
 #define BG_SATA_PHY_CLOCK_ADC_OUT_FRESH(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_ADC_OUT_FRESH) >> BP_SATA_PHY_CLOCK_ADC_OUT_FRESH)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -985,10 +887,6 @@ typedef union _hw_sata_phy_clock_ss_phase
  */
 //@{
 #define HW_SATA_PHY_CLOCK_SS_PHASE_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0xb)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_SS_PHASE           (*(volatile hw_sata_phy_clock_ss_phase_t *) HW_SATA_PHY_CLOCK_SS_PHASE_ADDR)
-#endif
 //@}
 
 /*
@@ -1000,7 +898,6 @@ typedef union _hw_sata_phy_clock_ss_phase
  * Bits below the useful resolution
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_SS_PHASE_DTHR      (0)      //!< Bit position for SATA_PHY_CLOCK_SS_PHASE_DTHR.
 #define BM_SATA_PHY_CLOCK_SS_PHASE_DTHR      (0x00000003)  //!< Bit mask for SATA_PHY_CLOCK_SS_PHASE_DTHR.
 
@@ -1009,7 +906,6 @@ typedef union _hw_sata_phy_clock_ss_phase
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_SS_PHASE_DTHR.
 #define BF_SATA_PHY_CLOCK_SS_PHASE_DTHR(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_SS_PHASE_DTHR) & BM_SATA_PHY_CLOCK_SS_PHASE_DTHR)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_SS_PHASE, field VAL[11:2] (RW)
@@ -1017,7 +913,6 @@ typedef union _hw_sata_phy_clock_ss_phase
  * Phase value from zero reference
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_SS_PHASE_VAL      (2)      //!< Bit position for SATA_PHY_CLOCK_SS_PHASE_VAL.
 #define BM_SATA_PHY_CLOCK_SS_PHASE_VAL      (0x00000ffc)  //!< Bit mask for SATA_PHY_CLOCK_SS_PHASE_VAL.
 
@@ -1026,7 +921,6 @@ typedef union _hw_sata_phy_clock_ss_phase
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_SS_PHASE_VAL.
 #define BF_SATA_PHY_CLOCK_SS_PHASE_VAL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_SS_PHASE_VAL) & BM_SATA_PHY_CLOCK_SS_PHASE_VAL)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_SS_PHASE, field ZERO_FREQ[12] (RW)
@@ -1034,7 +928,6 @@ typedef union _hw_sata_phy_clock_ss_phase
  * Zero frequency register Must be set for PHASE writes to not be immediately overwritten.
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_SS_PHASE_ZERO_FREQ      (12)      //!< Bit position for SATA_PHY_CLOCK_SS_PHASE_ZERO_FREQ.
 #define BM_SATA_PHY_CLOCK_SS_PHASE_ZERO_FREQ      (0x00001000)  //!< Bit mask for SATA_PHY_CLOCK_SS_PHASE_ZERO_FREQ.
 
@@ -1043,7 +936,6 @@ typedef union _hw_sata_phy_clock_ss_phase
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_SS_PHASE_ZERO_FREQ.
 #define BF_SATA_PHY_CLOCK_SS_PHASE_ZERO_FREQ(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_SS_PHASE_ZERO_FREQ) & BM_SATA_PHY_CLOCK_SS_PHASE_ZERO_FREQ)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1073,10 +965,6 @@ typedef union _hw_sata_phy_clock_chip_id_hi
  */
 //@{
 #define HW_SATA_PHY_CLOCK_CHIP_ID_HI_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0xc)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_CHIP_ID_HI           (*(volatile hw_sata_phy_clock_chip_id_hi_t *) HW_SATA_PHY_CLOCK_CHIP_ID_HI_ADDR)
-#endif
 //@}
 
 /*
@@ -1088,13 +976,11 @@ typedef union _hw_sata_phy_clock_chip_id_hi
  * Internal chip ID (high 16 bits)
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CHIP_ID_HI_CHIP_ID_HI      (0)      //!< Bit position for SATA_PHY_CLOCK_CHIP_ID_HI_CHIP_ID_HI.
 #define BM_SATA_PHY_CLOCK_CHIP_ID_HI_CHIP_ID_HI      (0x0000ffff)  //!< Bit mask for SATA_PHY_CLOCK_CHIP_ID_HI_CHIP_ID_HI.
 
 //! @brief Get value of SATA_PHY_CLOCK_CHIP_ID_HI_CHIP_ID_HI from a register value.
 #define BG_SATA_PHY_CLOCK_CHIP_ID_HI_CHIP_ID_HI(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_CHIP_ID_HI_CHIP_ID_HI) >> BP_SATA_PHY_CLOCK_CHIP_ID_HI_CHIP_ID_HI)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1124,10 +1010,6 @@ typedef union _hw_sata_phy_clock_chip_id_low
  */
 //@{
 #define HW_SATA_PHY_CLOCK_CHIP_ID_LOW_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0xd)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_CHIP_ID_LOW           (*(volatile hw_sata_phy_clock_chip_id_low_t *) HW_SATA_PHY_CLOCK_CHIP_ID_LOW_ADDR)
-#endif
 //@}
 
 /*
@@ -1139,13 +1021,11 @@ typedef union _hw_sata_phy_clock_chip_id_low
  * Internal chip ID (low 16 bits)
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CHIP_ID_LOW_CHIP_ID_LO      (0)      //!< Bit position for SATA_PHY_CLOCK_CHIP_ID_LOW_CHIP_ID_LO.
 #define BM_SATA_PHY_CLOCK_CHIP_ID_LOW_CHIP_ID_LO      (0x0000ffff)  //!< Bit mask for SATA_PHY_CLOCK_CHIP_ID_LOW_CHIP_ID_LO.
 
 //! @brief Get value of SATA_PHY_CLOCK_CHIP_ID_LOW_CHIP_ID_LO from a register value.
 #define BG_SATA_PHY_CLOCK_CHIP_ID_LOW_CHIP_ID_LO(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_CHIP_ID_LOW_CHIP_ID_LO) >> BP_SATA_PHY_CLOCK_CHIP_ID_LOW_CHIP_ID_LO)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1181,10 +1061,6 @@ typedef union _hw_sata_phy_clock_freq_stat
  */
 //@{
 #define HW_SATA_PHY_CLOCK_FREQ_STAT_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0xe)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_FREQ_STAT           (*(volatile hw_sata_phy_clock_freq_stat_t *) HW_SATA_PHY_CLOCK_FREQ_STAT_ADDR)
-#endif
 //@}
 
 /*
@@ -1196,13 +1072,11 @@ typedef union _hw_sata_phy_clock_freq_stat
  * Proportional charge pump control
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_FREQ_STAT_PROP_CTL      (0)      //!< Bit position for SATA_PHY_CLOCK_FREQ_STAT_PROP_CTL.
 #define BM_SATA_PHY_CLOCK_FREQ_STAT_PROP_CTL      (0x00000007)  //!< Bit mask for SATA_PHY_CLOCK_FREQ_STAT_PROP_CTL.
 
 //! @brief Get value of SATA_PHY_CLOCK_FREQ_STAT_PROP_CTL from a register value.
 #define BG_SATA_PHY_CLOCK_FREQ_STAT_PROP_CTL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_FREQ_STAT_PROP_CTL) >> BP_SATA_PHY_CLOCK_FREQ_STAT_PROP_CTL)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_FREQ_STAT, field INT_CTL[5:3] (RO)
@@ -1210,13 +1084,11 @@ typedef union _hw_sata_phy_clock_freq_stat
  * Integral charge pump control
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_FREQ_STAT_INT_CTL      (3)      //!< Bit position for SATA_PHY_CLOCK_FREQ_STAT_INT_CTL.
 #define BM_SATA_PHY_CLOCK_FREQ_STAT_INT_CTL      (0x00000038)  //!< Bit mask for SATA_PHY_CLOCK_FREQ_STAT_INT_CTL.
 
 //! @brief Get value of SATA_PHY_CLOCK_FREQ_STAT_INT_CTL from a register value.
 #define BG_SATA_PHY_CLOCK_FREQ_STAT_INT_CTL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_FREQ_STAT_INT_CTL) >> BP_SATA_PHY_CLOCK_FREQ_STAT_INT_CTL)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_FREQ_STAT, field NCY5[7:6] (RO)
@@ -1224,13 +1096,11 @@ typedef union _hw_sata_phy_clock_freq_stat
  * Divide-by-5 control
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_FREQ_STAT_NCY5      (6)      //!< Bit position for SATA_PHY_CLOCK_FREQ_STAT_NCY5.
 #define BM_SATA_PHY_CLOCK_FREQ_STAT_NCY5      (0x000000c0)  //!< Bit mask for SATA_PHY_CLOCK_FREQ_STAT_NCY5.
 
 //! @brief Get value of SATA_PHY_CLOCK_FREQ_STAT_NCY5 from a register value.
 #define BG_SATA_PHY_CLOCK_FREQ_STAT_NCY5(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_FREQ_STAT_NCY5) >> BP_SATA_PHY_CLOCK_FREQ_STAT_NCY5)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_FREQ_STAT, field NCY[12:8] (RO)
@@ -1238,13 +1108,11 @@ typedef union _hw_sata_phy_clock_freq_stat
  * Divide-by-4 cycle control
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_FREQ_STAT_NCY      (8)      //!< Bit position for SATA_PHY_CLOCK_FREQ_STAT_NCY.
 #define BM_SATA_PHY_CLOCK_FREQ_STAT_NCY      (0x00001f00)  //!< Bit mask for SATA_PHY_CLOCK_FREQ_STAT_NCY.
 
 //! @brief Get value of SATA_PHY_CLOCK_FREQ_STAT_NCY from a register value.
 #define BG_SATA_PHY_CLOCK_FREQ_STAT_NCY(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_FREQ_STAT_NCY) >> BP_SATA_PHY_CLOCK_FREQ_STAT_NCY)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_FREQ_STAT, field PRESCALE[14:13] (RO)
@@ -1252,13 +1120,11 @@ typedef union _hw_sata_phy_clock_freq_stat
  * Prescaler control
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_FREQ_STAT_PRESCALE      (13)      //!< Bit position for SATA_PHY_CLOCK_FREQ_STAT_PRESCALE.
 #define BM_SATA_PHY_CLOCK_FREQ_STAT_PRESCALE      (0x00006000)  //!< Bit mask for SATA_PHY_CLOCK_FREQ_STAT_PRESCALE.
 
 //! @brief Get value of SATA_PHY_CLOCK_FREQ_STAT_PRESCALE from a register value.
 #define BG_SATA_PHY_CLOCK_FREQ_STAT_PRESCALE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_FREQ_STAT_PRESCALE) >> BP_SATA_PHY_CLOCK_FREQ_STAT_PRESCALE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1301,10 +1167,6 @@ typedef union _hw_sata_phy_clock_ctl_stat
  */
 //@{
 #define HW_SATA_PHY_CLOCK_CTL_STAT_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0xf)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_CTL_STAT           (*(volatile hw_sata_phy_clock_ctl_stat_t *) HW_SATA_PHY_CLOCK_CTL_STAT_ADDR)
-#endif
 //@}
 
 /*
@@ -1316,13 +1178,11 @@ typedef union _hw_sata_phy_clock_ctl_stat
  * Alternate refclk is used
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CTL_STAT_USE_REFCLK_ALT      (0)      //!< Bit position for SATA_PHY_CLOCK_CTL_STAT_USE_REFCLK_ALT.
 #define BM_SATA_PHY_CLOCK_CTL_STAT_USE_REFCLK_ALT      (0x00000001)  //!< Bit mask for SATA_PHY_CLOCK_CTL_STAT_USE_REFCLK_ALT.
 
 //! @brief Get value of SATA_PHY_CLOCK_CTL_STAT_USE_REFCLK_ALT from a register value.
 #define BG_SATA_PHY_CLOCK_CTL_STAT_USE_REFCLK_ALT(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_CTL_STAT_USE_REFCLK_ALT) >> BP_SATA_PHY_CLOCK_CTL_STAT_USE_REFCLK_ALT)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CTL_STAT, field MPLL_CLK_OFF[1] (RO)
@@ -1330,13 +1190,11 @@ typedef union _hw_sata_phy_clock_ctl_stat
  * Reference clock is off
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CTL_STAT_MPLL_CLK_OFF      (1)      //!< Bit position for SATA_PHY_CLOCK_CTL_STAT_MPLL_CLK_OFF.
 #define BM_SATA_PHY_CLOCK_CTL_STAT_MPLL_CLK_OFF      (0x00000002)  //!< Bit mask for SATA_PHY_CLOCK_CTL_STAT_MPLL_CLK_OFF.
 
 //! @brief Get value of SATA_PHY_CLOCK_CTL_STAT_MPLL_CLK_OFF from a register value.
 #define BG_SATA_PHY_CLOCK_CTL_STAT_MPLL_CLK_OFF(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_CTL_STAT_MPLL_CLK_OFF) >> BP_SATA_PHY_CLOCK_CTL_STAT_MPLL_CLK_OFF)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CTL_STAT, field MPLL_PWRON[2] (RO)
@@ -1344,13 +1202,11 @@ typedef union _hw_sata_phy_clock_ctl_stat
  * MPLL power-on control
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CTL_STAT_MPLL_PWRON      (2)      //!< Bit position for SATA_PHY_CLOCK_CTL_STAT_MPLL_PWRON.
 #define BM_SATA_PHY_CLOCK_CTL_STAT_MPLL_PWRON      (0x00000004)  //!< Bit mask for SATA_PHY_CLOCK_CTL_STAT_MPLL_PWRON.
 
 //! @brief Get value of SATA_PHY_CLOCK_CTL_STAT_MPLL_PWRON from a register value.
 #define BG_SATA_PHY_CLOCK_CTL_STAT_MPLL_PWRON(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_CTL_STAT_MPLL_PWRON) >> BP_SATA_PHY_CLOCK_CTL_STAT_MPLL_PWRON)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CTL_STAT, field MPLL_SS_EN[3] (RO)
@@ -1358,13 +1214,11 @@ typedef union _hw_sata_phy_clock_ctl_stat
  * Spread spectrum enable
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CTL_STAT_MPLL_SS_EN      (3)      //!< Bit position for SATA_PHY_CLOCK_CTL_STAT_MPLL_SS_EN.
 #define BM_SATA_PHY_CLOCK_CTL_STAT_MPLL_SS_EN      (0x00000008)  //!< Bit mask for SATA_PHY_CLOCK_CTL_STAT_MPLL_SS_EN.
 
 //! @brief Get value of SATA_PHY_CLOCK_CTL_STAT_MPLL_SS_EN from a register value.
 #define BG_SATA_PHY_CLOCK_CTL_STAT_MPLL_SS_EN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_CTL_STAT_MPLL_SS_EN) >> BP_SATA_PHY_CLOCK_CTL_STAT_MPLL_SS_EN)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CTL_STAT, field CKO_ALIVE_CON[5:4] (RO)
@@ -1372,13 +1226,11 @@ typedef union _hw_sata_phy_clock_ctl_stat
  * cko_alive MUX control
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CTL_STAT_CKO_ALIVE_CON      (4)      //!< Bit position for SATA_PHY_CLOCK_CTL_STAT_CKO_ALIVE_CON.
 #define BM_SATA_PHY_CLOCK_CTL_STAT_CKO_ALIVE_CON      (0x00000030)  //!< Bit mask for SATA_PHY_CLOCK_CTL_STAT_CKO_ALIVE_CON.
 
 //! @brief Get value of SATA_PHY_CLOCK_CTL_STAT_CKO_ALIVE_CON from a register value.
 #define BG_SATA_PHY_CLOCK_CTL_STAT_CKO_ALIVE_CON(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_CTL_STAT_CKO_ALIVE_CON) >> BP_SATA_PHY_CLOCK_CTL_STAT_CKO_ALIVE_CON)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CTL_STAT, field CKO_WORD_CON[8:6] (RO)
@@ -1386,13 +1238,11 @@ typedef union _hw_sata_phy_clock_ctl_stat
  * cko_word MUX control
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CTL_STAT_CKO_WORD_CON      (6)      //!< Bit position for SATA_PHY_CLOCK_CTL_STAT_CKO_WORD_CON.
 #define BM_SATA_PHY_CLOCK_CTL_STAT_CKO_WORD_CON      (0x000001c0)  //!< Bit mask for SATA_PHY_CLOCK_CTL_STAT_CKO_WORD_CON.
 
 //! @brief Get value of SATA_PHY_CLOCK_CTL_STAT_CKO_WORD_CON from a register value.
 #define BG_SATA_PHY_CLOCK_CTL_STAT_CKO_WORD_CON(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_CTL_STAT_CKO_WORD_CON) >> BP_SATA_PHY_CLOCK_CTL_STAT_CKO_WORD_CON)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CTL_STAT, field RTUNE_DO_TUNE[10] (RO)
@@ -1400,13 +1250,11 @@ typedef union _hw_sata_phy_clock_ctl_stat
  * Manual resistor tune control
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CTL_STAT_RTUNE_DO_TUNE      (10)      //!< Bit position for SATA_PHY_CLOCK_CTL_STAT_RTUNE_DO_TUNE.
 #define BM_SATA_PHY_CLOCK_CTL_STAT_RTUNE_DO_TUNE      (0x00000400)  //!< Bit mask for SATA_PHY_CLOCK_CTL_STAT_RTUNE_DO_TUNE.
 
 //! @brief Get value of SATA_PHY_CLOCK_CTL_STAT_RTUNE_DO_TUNE from a register value.
 #define BG_SATA_PHY_CLOCK_CTL_STAT_RTUNE_DO_TUNE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_CTL_STAT_RTUNE_DO_TUNE) >> BP_SATA_PHY_CLOCK_CTL_STAT_RTUNE_DO_TUNE)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CTL_STAT, field WIDE_XFACE[11] (RO)
@@ -1414,13 +1262,11 @@ typedef union _hw_sata_phy_clock_ctl_stat
  * Wide interface control
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CTL_STAT_WIDE_XFACE      (11)      //!< Bit position for SATA_PHY_CLOCK_CTL_STAT_WIDE_XFACE.
 #define BM_SATA_PHY_CLOCK_CTL_STAT_WIDE_XFACE      (0x00000800)  //!< Bit mask for SATA_PHY_CLOCK_CTL_STAT_WIDE_XFACE.
 
 //! @brief Get value of SATA_PHY_CLOCK_CTL_STAT_WIDE_XFACE from a register value.
 #define BG_SATA_PHY_CLOCK_CTL_STAT_WIDE_XFACE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_CTL_STAT_WIDE_XFACE) >> BP_SATA_PHY_CLOCK_CTL_STAT_WIDE_XFACE)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CTL_STAT, field VPH_IS_3P3[12] (RO)
@@ -1428,13 +1274,11 @@ typedef union _hw_sata_phy_clock_ctl_stat
  * High voltage supply is 3.3 V
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CTL_STAT_VPH_IS_3P3      (12)      //!< Bit position for SATA_PHY_CLOCK_CTL_STAT_VPH_IS_3P3.
 #define BM_SATA_PHY_CLOCK_CTL_STAT_VPH_IS_3P3      (0x00001000)  //!< Bit mask for SATA_PHY_CLOCK_CTL_STAT_VPH_IS_3P3.
 
 //! @brief Get value of SATA_PHY_CLOCK_CTL_STAT_VPH_IS_3P3 from a register value.
 #define BG_SATA_PHY_CLOCK_CTL_STAT_VPH_IS_3P3(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_CTL_STAT_VPH_IS_3P3) >> BP_SATA_PHY_CLOCK_CTL_STAT_VPH_IS_3P3)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CTL_STAT, field VP_IS_1P2[13] (RO)
@@ -1442,13 +1286,11 @@ typedef union _hw_sata_phy_clock_ctl_stat
  * Low voltage supply is 1.2 V
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CTL_STAT_VP_IS_1P2      (13)      //!< Bit position for SATA_PHY_CLOCK_CTL_STAT_VP_IS_1P2.
 #define BM_SATA_PHY_CLOCK_CTL_STAT_VP_IS_1P2      (0x00002000)  //!< Bit mask for SATA_PHY_CLOCK_CTL_STAT_VP_IS_1P2.
 
 //! @brief Get value of SATA_PHY_CLOCK_CTL_STAT_VP_IS_1P2 from a register value.
 #define BG_SATA_PHY_CLOCK_CTL_STAT_VP_IS_1P2(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_CTL_STAT_VP_IS_1P2) >> BP_SATA_PHY_CLOCK_CTL_STAT_VP_IS_1P2)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CTL_STAT, field FAST_TECH[14] (RO)
@@ -1456,13 +1298,11 @@ typedef union _hw_sata_phy_clock_ctl_stat
  * Technology is fast
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CTL_STAT_FAST_TECH      (14)      //!< Bit position for SATA_PHY_CLOCK_CTL_STAT_FAST_TECH.
 #define BM_SATA_PHY_CLOCK_CTL_STAT_FAST_TECH      (0x00004000)  //!< Bit mask for SATA_PHY_CLOCK_CTL_STAT_FAST_TECH.
 
 //! @brief Get value of SATA_PHY_CLOCK_CTL_STAT_FAST_TECH from a register value.
 #define BG_SATA_PHY_CLOCK_CTL_STAT_FAST_TECH(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_CTL_STAT_FAST_TECH) >> BP_SATA_PHY_CLOCK_CTL_STAT_FAST_TECH)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1496,10 +1336,6 @@ typedef union _hw_sata_phy_clock_lvl_stat
  */
 //@{
 #define HW_SATA_PHY_CLOCK_LVL_STAT_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0x10)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_LVL_STAT           (*(volatile hw_sata_phy_clock_lvl_stat_t *) HW_SATA_PHY_CLOCK_LVL_STAT_ADDR)
-#endif
 //@}
 
 /*
@@ -1511,13 +1347,11 @@ typedef union _hw_sata_phy_clock_lvl_stat
  * ACJTAG comparator level
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_LVL_STAT_ACJT_LVL      (0)      //!< Bit position for SATA_PHY_CLOCK_LVL_STAT_ACJT_LVL.
 #define BM_SATA_PHY_CLOCK_LVL_STAT_ACJT_LVL      (0x0000001f)  //!< Bit mask for SATA_PHY_CLOCK_LVL_STAT_ACJT_LVL.
 
 //! @brief Get value of SATA_PHY_CLOCK_LVL_STAT_ACJT_LVL from a register value.
 #define BG_SATA_PHY_CLOCK_LVL_STAT_ACJT_LVL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_LVL_STAT_ACJT_LVL) >> BP_SATA_PHY_CLOCK_LVL_STAT_ACJT_LVL)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_LVL_STAT, field LOS_LVL[9:5] (RO)
@@ -1525,13 +1359,11 @@ typedef union _hw_sata_phy_clock_lvl_stat
  * Loss of Signal Detector level
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_LVL_STAT_LOS_LVL      (5)      //!< Bit position for SATA_PHY_CLOCK_LVL_STAT_LOS_LVL.
 #define BM_SATA_PHY_CLOCK_LVL_STAT_LOS_LVL      (0x000003e0)  //!< Bit mask for SATA_PHY_CLOCK_LVL_STAT_LOS_LVL.
 
 //! @brief Get value of SATA_PHY_CLOCK_LVL_STAT_LOS_LVL from a register value.
 #define BG_SATA_PHY_CLOCK_LVL_STAT_LOS_LVL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_LVL_STAT_LOS_LVL) >> BP_SATA_PHY_CLOCK_LVL_STAT_LOS_LVL)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_LVL_STAT, field TX_LVL[14:10] (RO)
@@ -1539,13 +1371,11 @@ typedef union _hw_sata_phy_clock_lvl_stat
  * Transmit level
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_LVL_STAT_TX_LVL      (10)      //!< Bit position for SATA_PHY_CLOCK_LVL_STAT_TX_LVL.
 #define BM_SATA_PHY_CLOCK_LVL_STAT_TX_LVL      (0x00007c00)  //!< Bit mask for SATA_PHY_CLOCK_LVL_STAT_TX_LVL.
 
 //! @brief Get value of SATA_PHY_CLOCK_LVL_STAT_TX_LVL from a register value.
 #define BG_SATA_PHY_CLOCK_LVL_STAT_TX_LVL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_LVL_STAT_TX_LVL) >> BP_SATA_PHY_CLOCK_LVL_STAT_TX_LVL)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1584,10 +1414,6 @@ typedef union _hw_sata_phy_clock_creg_stat
  */
 //@{
 #define HW_SATA_PHY_CLOCK_CREG_STAT_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0x11)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_CREG_STAT           (*(volatile hw_sata_phy_clock_creg_stat_t *) HW_SATA_PHY_CLOCK_CREG_STAT_ADDR)
-#endif
 //@}
 
 /*
@@ -1599,13 +1425,11 @@ typedef union _hw_sata_phy_clock_creg_stat
  * Read request
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CREG_STAT_CR_READ      (0)      //!< Bit position for SATA_PHY_CLOCK_CREG_STAT_CR_READ.
 #define BM_SATA_PHY_CLOCK_CREG_STAT_CR_READ      (0x00000001)  //!< Bit mask for SATA_PHY_CLOCK_CREG_STAT_CR_READ.
 
 //! @brief Get value of SATA_PHY_CLOCK_CREG_STAT_CR_READ from a register value.
 #define BG_SATA_PHY_CLOCK_CREG_STAT_CR_READ(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_CREG_STAT_CR_READ) >> BP_SATA_PHY_CLOCK_CREG_STAT_CR_READ)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CREG_STAT, field CR_WRITE[1] (RO)
@@ -1613,13 +1437,11 @@ typedef union _hw_sata_phy_clock_creg_stat
  * Write request
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CREG_STAT_CR_WRITE      (1)      //!< Bit position for SATA_PHY_CLOCK_CREG_STAT_CR_WRITE.
 #define BM_SATA_PHY_CLOCK_CREG_STAT_CR_WRITE      (0x00000002)  //!< Bit mask for SATA_PHY_CLOCK_CREG_STAT_CR_WRITE.
 
 //! @brief Get value of SATA_PHY_CLOCK_CREG_STAT_CR_WRITE from a register value.
 #define BG_SATA_PHY_CLOCK_CREG_STAT_CR_WRITE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_CREG_STAT_CR_WRITE) >> BP_SATA_PHY_CLOCK_CREG_STAT_CR_WRITE)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CREG_STAT, field CR_CAP_DATA[2] (RO)
@@ -1627,13 +1449,11 @@ typedef union _hw_sata_phy_clock_creg_stat
  * Captures data request
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CREG_STAT_CR_CAP_DATA      (2)      //!< Bit position for SATA_PHY_CLOCK_CREG_STAT_CR_CAP_DATA.
 #define BM_SATA_PHY_CLOCK_CREG_STAT_CR_CAP_DATA      (0x00000004)  //!< Bit mask for SATA_PHY_CLOCK_CREG_STAT_CR_CAP_DATA.
 
 //! @brief Get value of SATA_PHY_CLOCK_CREG_STAT_CR_CAP_DATA from a register value.
 #define BG_SATA_PHY_CLOCK_CREG_STAT_CR_CAP_DATA(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_CREG_STAT_CR_CAP_DATA) >> BP_SATA_PHY_CLOCK_CREG_STAT_CR_CAP_DATA)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CREG_STAT, field CR_CAP_ADDR[3] (RO)
@@ -1641,13 +1461,11 @@ typedef union _hw_sata_phy_clock_creg_stat
  * Captures address request
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CREG_STAT_CR_CAP_ADDR      (3)      //!< Bit position for SATA_PHY_CLOCK_CREG_STAT_CR_CAP_ADDR.
 #define BM_SATA_PHY_CLOCK_CREG_STAT_CR_CAP_ADDR      (0x00000008)  //!< Bit mask for SATA_PHY_CLOCK_CREG_STAT_CR_CAP_ADDR.
 
 //! @brief Get value of SATA_PHY_CLOCK_CREG_STAT_CR_CAP_ADDR from a register value.
 #define BG_SATA_PHY_CLOCK_CREG_STAT_CR_CAP_ADDR(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_CREG_STAT_CR_CAP_ADDR) >> BP_SATA_PHY_CLOCK_CREG_STAT_CR_CAP_ADDR)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CREG_STAT, field CR_ACK[5] (RO)
@@ -1655,13 +1473,11 @@ typedef union _hw_sata_phy_clock_creg_stat
  * Creg request acknowledgement
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CREG_STAT_CR_ACK      (5)      //!< Bit position for SATA_PHY_CLOCK_CREG_STAT_CR_ACK.
 #define BM_SATA_PHY_CLOCK_CREG_STAT_CR_ACK      (0x00000020)  //!< Bit mask for SATA_PHY_CLOCK_CREG_STAT_CR_ACK.
 
 //! @brief Get value of SATA_PHY_CLOCK_CREG_STAT_CR_ACK from a register value.
 #define BG_SATA_PHY_CLOCK_CREG_STAT_CR_ACK(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_CREG_STAT_CR_ACK) >> BP_SATA_PHY_CLOCK_CREG_STAT_CR_ACK)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CREG_STAT, field POWER_GOOD[6] (RO)
@@ -1669,13 +1485,11 @@ typedef union _hw_sata_phy_clock_creg_stat
  * Power good output
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CREG_STAT_POWER_GOOD      (6)      //!< Bit position for SATA_PHY_CLOCK_CREG_STAT_POWER_GOOD.
 #define BM_SATA_PHY_CLOCK_CREG_STAT_POWER_GOOD      (0x00000040)  //!< Bit mask for SATA_PHY_CLOCK_CREG_STAT_POWER_GOOD.
 
 //! @brief Get value of SATA_PHY_CLOCK_CREG_STAT_POWER_GOOD from a register value.
 #define BG_SATA_PHY_CLOCK_CREG_STAT_POWER_GOOD(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_CREG_STAT_POWER_GOOD) >> BP_SATA_PHY_CLOCK_CREG_STAT_POWER_GOOD)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CREG_STAT, field OP_DONE[7] (RO)
@@ -1683,13 +1497,11 @@ typedef union _hw_sata_phy_clock_creg_stat
  * Operation is complete output
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CREG_STAT_OP_DONE      (7)      //!< Bit position for SATA_PHY_CLOCK_CREG_STAT_OP_DONE.
 #define BM_SATA_PHY_CLOCK_CREG_STAT_OP_DONE      (0x00000080)  //!< Bit mask for SATA_PHY_CLOCK_CREG_STAT_OP_DONE.
 
 //! @brief Get value of SATA_PHY_CLOCK_CREG_STAT_OP_DONE from a register value.
 #define BG_SATA_PHY_CLOCK_CREG_STAT_OP_DONE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_CREG_STAT_OP_DONE) >> BP_SATA_PHY_CLOCK_CREG_STAT_OP_DONE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1725,10 +1537,6 @@ typedef union _hw_sata_phy_clock_frew_ovrd
  */
 //@{
 #define HW_SATA_PHY_CLOCK_FREW_OVRD_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0x12)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_FREW_OVRD           (*(volatile hw_sata_phy_clock_frew_ovrd_t *) HW_SATA_PHY_CLOCK_FREW_OVRD_ADDR)
-#endif
 //@}
 
 /*
@@ -1740,7 +1548,6 @@ typedef union _hw_sata_phy_clock_frew_ovrd
  * Proportional charge pump control Proportional current = (n + 1) / 8 x full_scale
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_FREW_OVRD_PROP_CTL      (0)      //!< Bit position for SATA_PHY_CLOCK_FREW_OVRD_PROP_CTL.
 #define BM_SATA_PHY_CLOCK_FREW_OVRD_PROP_CTL      (0x00000007)  //!< Bit mask for SATA_PHY_CLOCK_FREW_OVRD_PROP_CTL.
 
@@ -1749,7 +1556,6 @@ typedef union _hw_sata_phy_clock_frew_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_FREW_OVRD_PROP_CTL.
 #define BF_SATA_PHY_CLOCK_FREW_OVRD_PROP_CTL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_FREW_OVRD_PROP_CTL) & BM_SATA_PHY_CLOCK_FREW_OVRD_PROP_CTL)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_FREW_OVRD, field INT_CTL[5:3] (RW)
@@ -1757,7 +1563,6 @@ typedef union _hw_sata_phy_clock_frew_ovrd
  * Integral charge pump control Integral current = (n + 1) / 8 x full_scale
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_FREW_OVRD_INT_CTL      (3)      //!< Bit position for SATA_PHY_CLOCK_FREW_OVRD_INT_CTL.
 #define BM_SATA_PHY_CLOCK_FREW_OVRD_INT_CTL      (0x00000038)  //!< Bit mask for SATA_PHY_CLOCK_FREW_OVRD_INT_CTL.
 
@@ -1766,7 +1571,6 @@ typedef union _hw_sata_phy_clock_frew_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_FREW_OVRD_INT_CTL.
 #define BF_SATA_PHY_CLOCK_FREW_OVRD_INT_CTL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_FREW_OVRD_INT_CTL) & BM_SATA_PHY_CLOCK_FREW_OVRD_INT_CTL)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_FREW_OVRD, field NCY5[7:6] (RW)
@@ -1774,7 +1578,6 @@ typedef union _hw_sata_phy_clock_frew_ovrd
  * Divide-by-5 control MPLL Divider period = 4 x (NCY + 1) + NCY5. Valid only when NCY5 <=NCY
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_FREW_OVRD_NCY5      (6)      //!< Bit position for SATA_PHY_CLOCK_FREW_OVRD_NCY5.
 #define BM_SATA_PHY_CLOCK_FREW_OVRD_NCY5      (0x000000c0)  //!< Bit mask for SATA_PHY_CLOCK_FREW_OVRD_NCY5.
 
@@ -1783,7 +1586,6 @@ typedef union _hw_sata_phy_clock_frew_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_FREW_OVRD_NCY5.
 #define BF_SATA_PHY_CLOCK_FREW_OVRD_NCY5(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_FREW_OVRD_NCY5) & BM_SATA_PHY_CLOCK_FREW_OVRD_NCY5)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_FREW_OVRD, field NCY[12:8] (RW)
@@ -1791,7 +1593,6 @@ typedef union _hw_sata_phy_clock_frew_ovrd
  * Divide-by-4 cycle control MPLL Divider period = 4 x (NCY + 1) + NCY5. Valid only when NCY5 <=NCY.
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_FREW_OVRD_NCY      (8)      //!< Bit position for SATA_PHY_CLOCK_FREW_OVRD_NCY.
 #define BM_SATA_PHY_CLOCK_FREW_OVRD_NCY      (0x00001f00)  //!< Bit mask for SATA_PHY_CLOCK_FREW_OVRD_NCY.
 
@@ -1800,7 +1601,6 @@ typedef union _hw_sata_phy_clock_frew_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_FREW_OVRD_NCY.
 #define BF_SATA_PHY_CLOCK_FREW_OVRD_NCY(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_FREW_OVRD_NCY) & BM_SATA_PHY_CLOCK_FREW_OVRD_NCY)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_FREW_OVRD, field PRESCALE[14:13] (RW)
@@ -1814,7 +1614,6 @@ typedef union _hw_sata_phy_clock_frew_ovrd
  * - 11 - Reserved
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_FREW_OVRD_PRESCALE      (13)      //!< Bit position for SATA_PHY_CLOCK_FREW_OVRD_PRESCALE.
 #define BM_SATA_PHY_CLOCK_FREW_OVRD_PRESCALE      (0x00006000)  //!< Bit mask for SATA_PHY_CLOCK_FREW_OVRD_PRESCALE.
 
@@ -1823,7 +1622,6 @@ typedef union _hw_sata_phy_clock_frew_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_FREW_OVRD_PRESCALE.
 #define BF_SATA_PHY_CLOCK_FREW_OVRD_PRESCALE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_FREW_OVRD_PRESCALE) & BM_SATA_PHY_CLOCK_FREW_OVRD_PRESCALE)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_FREW_OVRD, field OVRD[15] (RW)
@@ -1831,7 +1629,6 @@ typedef union _hw_sata_phy_clock_frew_ovrd
  * Enables override of all bits in this register
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_FREW_OVRD_OVRD      (15)      //!< Bit position for SATA_PHY_CLOCK_FREW_OVRD_OVRD.
 #define BM_SATA_PHY_CLOCK_FREW_OVRD_OVRD      (0x00008000)  //!< Bit mask for SATA_PHY_CLOCK_FREW_OVRD_OVRD.
 
@@ -1840,7 +1637,6 @@ typedef union _hw_sata_phy_clock_frew_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_FREW_OVRD_OVRD.
 #define BF_SATA_PHY_CLOCK_FREW_OVRD_OVRD(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_FREW_OVRD_OVRD) & BM_SATA_PHY_CLOCK_FREW_OVRD_OVRD)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1883,10 +1679,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
  */
 //@{
 #define HW_SATA_PHY_CLOCK_CTL_OVRD_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0x13)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_CTL_OVRD           (*(volatile hw_sata_phy_clock_ctl_ovrd_t *) HW_SATA_PHY_CLOCK_CTL_OVRD_ADDR)
-#endif
 //@}
 
 /*
@@ -1898,7 +1690,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
  * Uses alternate refclk
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CTL_OVRD_USE_REFCLK_ALT      (0)      //!< Bit position for SATA_PHY_CLOCK_CTL_OVRD_USE_REFCLK_ALT.
 #define BM_SATA_PHY_CLOCK_CTL_OVRD_USE_REFCLK_ALT      (0x00000001)  //!< Bit mask for SATA_PHY_CLOCK_CTL_OVRD_USE_REFCLK_ALT.
 
@@ -1907,7 +1698,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CTL_OVRD_USE_REFCLK_ALT.
 #define BF_SATA_PHY_CLOCK_CTL_OVRD_USE_REFCLK_ALT(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CTL_OVRD_USE_REFCLK_ALT) & BM_SATA_PHY_CLOCK_CTL_OVRD_USE_REFCLK_ALT)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CTL_OVRD, field MPLL_CLK_OFF[1] (RW)
@@ -1915,7 +1705,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
  * Reference clock is off
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CTL_OVRD_MPLL_CLK_OFF      (1)      //!< Bit position for SATA_PHY_CLOCK_CTL_OVRD_MPLL_CLK_OFF.
 #define BM_SATA_PHY_CLOCK_CTL_OVRD_MPLL_CLK_OFF      (0x00000002)  //!< Bit mask for SATA_PHY_CLOCK_CTL_OVRD_MPLL_CLK_OFF.
 
@@ -1924,7 +1713,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CTL_OVRD_MPLL_CLK_OFF.
 #define BF_SATA_PHY_CLOCK_CTL_OVRD_MPLL_CLK_OFF(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CTL_OVRD_MPLL_CLK_OFF) & BM_SATA_PHY_CLOCK_CTL_OVRD_MPLL_CLK_OFF)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CTL_OVRD, field MPLL_PWRON[2] (RW)
@@ -1932,7 +1720,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
  * MPLL power-on control
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CTL_OVRD_MPLL_PWRON      (2)      //!< Bit position for SATA_PHY_CLOCK_CTL_OVRD_MPLL_PWRON.
 #define BM_SATA_PHY_CLOCK_CTL_OVRD_MPLL_PWRON      (0x00000004)  //!< Bit mask for SATA_PHY_CLOCK_CTL_OVRD_MPLL_PWRON.
 
@@ -1941,7 +1728,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CTL_OVRD_MPLL_PWRON.
 #define BF_SATA_PHY_CLOCK_CTL_OVRD_MPLL_PWRON(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CTL_OVRD_MPLL_PWRON) & BM_SATA_PHY_CLOCK_CTL_OVRD_MPLL_PWRON)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CTL_OVRD, field MPLL_SS_EN[3] (RW)
@@ -1949,7 +1735,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
  * Spread spectrum enable
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CTL_OVRD_MPLL_SS_EN      (3)      //!< Bit position for SATA_PHY_CLOCK_CTL_OVRD_MPLL_SS_EN.
 #define BM_SATA_PHY_CLOCK_CTL_OVRD_MPLL_SS_EN      (0x00000008)  //!< Bit mask for SATA_PHY_CLOCK_CTL_OVRD_MPLL_SS_EN.
 
@@ -1958,7 +1743,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CTL_OVRD_MPLL_SS_EN.
 #define BF_SATA_PHY_CLOCK_CTL_OVRD_MPLL_SS_EN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CTL_OVRD_MPLL_SS_EN) & BM_SATA_PHY_CLOCK_CTL_OVRD_MPLL_SS_EN)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CTL_OVRD, field CKO_ALIVE_CON[5:4] (RW)
@@ -1966,7 +1750,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
  * cko_alive mux control
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CTL_OVRD_CKO_ALIVE_CON      (4)      //!< Bit position for SATA_PHY_CLOCK_CTL_OVRD_CKO_ALIVE_CON.
 #define BM_SATA_PHY_CLOCK_CTL_OVRD_CKO_ALIVE_CON      (0x00000030)  //!< Bit mask for SATA_PHY_CLOCK_CTL_OVRD_CKO_ALIVE_CON.
 
@@ -1975,7 +1758,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CTL_OVRD_CKO_ALIVE_CON.
 #define BF_SATA_PHY_CLOCK_CTL_OVRD_CKO_ALIVE_CON(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CTL_OVRD_CKO_ALIVE_CON) & BM_SATA_PHY_CLOCK_CTL_OVRD_CKO_ALIVE_CON)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CTL_OVRD, field CKO_WORD_CON[8:6] (RW)
@@ -1983,7 +1765,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
  * cko_word mux control
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CTL_OVRD_CKO_WORD_CON      (6)      //!< Bit position for SATA_PHY_CLOCK_CTL_OVRD_CKO_WORD_CON.
 #define BM_SATA_PHY_CLOCK_CTL_OVRD_CKO_WORD_CON      (0x000001c0)  //!< Bit mask for SATA_PHY_CLOCK_CTL_OVRD_CKO_WORD_CON.
 
@@ -1992,7 +1773,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CTL_OVRD_CKO_WORD_CON.
 #define BF_SATA_PHY_CLOCK_CTL_OVRD_CKO_WORD_CON(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CTL_OVRD_CKO_WORD_CON) & BM_SATA_PHY_CLOCK_CTL_OVRD_CKO_WORD_CON)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CTL_OVRD, field OVRD_CLK[9] (RW)
@@ -2000,7 +1780,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
  * Overrides clock controls (bits [8:0])
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CTL_OVRD_OVRD_CLK      (9)      //!< Bit position for SATA_PHY_CLOCK_CTL_OVRD_OVRD_CLK.
 #define BM_SATA_PHY_CLOCK_CTL_OVRD_OVRD_CLK      (0x00000200)  //!< Bit mask for SATA_PHY_CLOCK_CTL_OVRD_OVRD_CLK.
 
@@ -2009,7 +1788,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CTL_OVRD_OVRD_CLK.
 #define BF_SATA_PHY_CLOCK_CTL_OVRD_OVRD_CLK(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CTL_OVRD_OVRD_CLK) & BM_SATA_PHY_CLOCK_CTL_OVRD_OVRD_CLK)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CTL_OVRD, field RTUNE_DO_TUNE[10] (RW)
@@ -2017,7 +1795,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
  * Manual resistor tune control
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CTL_OVRD_RTUNE_DO_TUNE      (10)      //!< Bit position for SATA_PHY_CLOCK_CTL_OVRD_RTUNE_DO_TUNE.
 #define BM_SATA_PHY_CLOCK_CTL_OVRD_RTUNE_DO_TUNE      (0x00000400)  //!< Bit mask for SATA_PHY_CLOCK_CTL_OVRD_RTUNE_DO_TUNE.
 
@@ -2026,7 +1803,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CTL_OVRD_RTUNE_DO_TUNE.
 #define BF_SATA_PHY_CLOCK_CTL_OVRD_RTUNE_DO_TUNE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CTL_OVRD_RTUNE_DO_TUNE) & BM_SATA_PHY_CLOCK_CTL_OVRD_RTUNE_DO_TUNE)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CTL_OVRD, field WIDE_XFACE[11] (RW)
@@ -2034,7 +1810,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
  * Wide interface control
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CTL_OVRD_WIDE_XFACE      (11)      //!< Bit position for SATA_PHY_CLOCK_CTL_OVRD_WIDE_XFACE.
 #define BM_SATA_PHY_CLOCK_CTL_OVRD_WIDE_XFACE      (0x00000800)  //!< Bit mask for SATA_PHY_CLOCK_CTL_OVRD_WIDE_XFACE.
 
@@ -2043,7 +1818,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CTL_OVRD_WIDE_XFACE.
 #define BF_SATA_PHY_CLOCK_CTL_OVRD_WIDE_XFACE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CTL_OVRD_WIDE_XFACE) & BM_SATA_PHY_CLOCK_CTL_OVRD_WIDE_XFACE)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CTL_OVRD, field VPH_IS_3P3[12] (RW)
@@ -2051,7 +1825,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
  * High-voltage supply is 3.3 V
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CTL_OVRD_VPH_IS_3P3      (12)      //!< Bit position for SATA_PHY_CLOCK_CTL_OVRD_VPH_IS_3P3.
 #define BM_SATA_PHY_CLOCK_CTL_OVRD_VPH_IS_3P3      (0x00001000)  //!< Bit mask for SATA_PHY_CLOCK_CTL_OVRD_VPH_IS_3P3.
 
@@ -2060,7 +1833,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CTL_OVRD_VPH_IS_3P3.
 #define BF_SATA_PHY_CLOCK_CTL_OVRD_VPH_IS_3P3(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CTL_OVRD_VPH_IS_3P3) & BM_SATA_PHY_CLOCK_CTL_OVRD_VPH_IS_3P3)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CTL_OVRD, field VP_IS_1P2[13] (RW)
@@ -2068,7 +1840,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
  * Low-voltage supply is 1.2 V
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CTL_OVRD_VP_IS_1P2      (13)      //!< Bit position for SATA_PHY_CLOCK_CTL_OVRD_VP_IS_1P2.
 #define BM_SATA_PHY_CLOCK_CTL_OVRD_VP_IS_1P2      (0x00002000)  //!< Bit mask for SATA_PHY_CLOCK_CTL_OVRD_VP_IS_1P2.
 
@@ -2077,7 +1848,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CTL_OVRD_VP_IS_1P2.
 #define BF_SATA_PHY_CLOCK_CTL_OVRD_VP_IS_1P2(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CTL_OVRD_VP_IS_1P2) & BM_SATA_PHY_CLOCK_CTL_OVRD_VP_IS_1P2)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CTL_OVRD, field FAST_TECH[14] (RW)
@@ -2085,7 +1855,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
  * Technology is fast
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CTL_OVRD_FAST_TECH      (14)      //!< Bit position for SATA_PHY_CLOCK_CTL_OVRD_FAST_TECH.
 #define BM_SATA_PHY_CLOCK_CTL_OVRD_FAST_TECH      (0x00004000)  //!< Bit mask for SATA_PHY_CLOCK_CTL_OVRD_FAST_TECH.
 
@@ -2094,7 +1863,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CTL_OVRD_FAST_TECH.
 #define BF_SATA_PHY_CLOCK_CTL_OVRD_FAST_TECH(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CTL_OVRD_FAST_TECH) & BM_SATA_PHY_CLOCK_CTL_OVRD_FAST_TECH)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CTL_OVRD, field OVRD_STATIC[15] (RW)
@@ -2102,7 +1870,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
  * Overrides static controls (bits [14:10])
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CTL_OVRD_OVRD_STATIC      (15)      //!< Bit position for SATA_PHY_CLOCK_CTL_OVRD_OVRD_STATIC.
 #define BM_SATA_PHY_CLOCK_CTL_OVRD_OVRD_STATIC      (0x00008000)  //!< Bit mask for SATA_PHY_CLOCK_CTL_OVRD_OVRD_STATIC.
 
@@ -2111,7 +1878,6 @@ typedef union _hw_sata_phy_clock_ctl_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CTL_OVRD_OVRD_STATIC.
 #define BF_SATA_PHY_CLOCK_CTL_OVRD_OVRD_STATIC(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CTL_OVRD_OVRD_STATIC) & BM_SATA_PHY_CLOCK_CTL_OVRD_OVRD_STATIC)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2145,10 +1911,6 @@ typedef union _hw_sata_phy_clock_lvl_ovrd
  */
 //@{
 #define HW_SATA_PHY_CLOCK_LVL_OVRD_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0x14)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_LVL_OVRD           (*(volatile hw_sata_phy_clock_lvl_ovrd_t *) HW_SATA_PHY_CLOCK_LVL_OVRD_ADDR)
-#endif
 //@}
 
 /*
@@ -2160,7 +1922,6 @@ typedef union _hw_sata_phy_clock_lvl_ovrd
  * ACJTAG comparator level
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_LVL_OVRD_ACJT_LVL      (0)      //!< Bit position for SATA_PHY_CLOCK_LVL_OVRD_ACJT_LVL.
 #define BM_SATA_PHY_CLOCK_LVL_OVRD_ACJT_LVL      (0x0000001f)  //!< Bit mask for SATA_PHY_CLOCK_LVL_OVRD_ACJT_LVL.
 
@@ -2169,7 +1930,6 @@ typedef union _hw_sata_phy_clock_lvl_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_LVL_OVRD_ACJT_LVL.
 #define BF_SATA_PHY_CLOCK_LVL_OVRD_ACJT_LVL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_LVL_OVRD_ACJT_LVL) & BM_SATA_PHY_CLOCK_LVL_OVRD_ACJT_LVL)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_LVL_OVRD, field LOS_LVL[9:5] (RW)
@@ -2177,7 +1937,6 @@ typedef union _hw_sata_phy_clock_lvl_ovrd
  * Loss of Signal Detector
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_LVL_OVRD_LOS_LVL      (5)      //!< Bit position for SATA_PHY_CLOCK_LVL_OVRD_LOS_LVL.
 #define BM_SATA_PHY_CLOCK_LVL_OVRD_LOS_LVL      (0x000003e0)  //!< Bit mask for SATA_PHY_CLOCK_LVL_OVRD_LOS_LVL.
 
@@ -2186,7 +1945,6 @@ typedef union _hw_sata_phy_clock_lvl_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_LVL_OVRD_LOS_LVL.
 #define BF_SATA_PHY_CLOCK_LVL_OVRD_LOS_LVL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_LVL_OVRD_LOS_LVL) & BM_SATA_PHY_CLOCK_LVL_OVRD_LOS_LVL)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_LVL_OVRD, field LEVEL_TX_LVL[14:10] (RW)
@@ -2194,7 +1952,6 @@ typedef union _hw_sata_phy_clock_lvl_ovrd
  * Transmit level
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_LVL_OVRD_LEVEL_TX_LVL      (10)      //!< Bit position for SATA_PHY_CLOCK_LVL_OVRD_LEVEL_TX_LVL.
 #define BM_SATA_PHY_CLOCK_LVL_OVRD_LEVEL_TX_LVL      (0x00007c00)  //!< Bit mask for SATA_PHY_CLOCK_LVL_OVRD_LEVEL_TX_LVL.
 
@@ -2203,7 +1960,6 @@ typedef union _hw_sata_phy_clock_lvl_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_LVL_OVRD_LEVEL_TX_LVL.
 #define BF_SATA_PHY_CLOCK_LVL_OVRD_LEVEL_TX_LVL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_LVL_OVRD_LEVEL_TX_LVL) & BM_SATA_PHY_CLOCK_LVL_OVRD_LEVEL_TX_LVL)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_LVL_OVRD, field OVRD[15] (RW)
@@ -2211,7 +1967,6 @@ typedef union _hw_sata_phy_clock_lvl_ovrd
  * Overrides all level controls
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_LVL_OVRD_OVRD      (15)      //!< Bit position for SATA_PHY_CLOCK_LVL_OVRD_OVRD.
 #define BM_SATA_PHY_CLOCK_LVL_OVRD_OVRD      (0x00008000)  //!< Bit mask for SATA_PHY_CLOCK_LVL_OVRD_OVRD.
 
@@ -2220,7 +1975,6 @@ typedef union _hw_sata_phy_clock_lvl_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_LVL_OVRD_OVRD.
 #define BF_SATA_PHY_CLOCK_LVL_OVRD_OVRD(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_LVL_OVRD_OVRD) & BM_SATA_PHY_CLOCK_LVL_OVRD_OVRD)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2260,10 +2014,6 @@ typedef union _hw_sata_phy_clock_creg_ovrd
  */
 //@{
 #define HW_SATA_PHY_CLOCK_CREG_OVRD_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0x15)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_CREG_OVRD           (*(volatile hw_sata_phy_clock_creg_ovrd_t *) HW_SATA_PHY_CLOCK_CREG_OVRD_ADDR)
-#endif
 //@}
 
 /*
@@ -2275,7 +2025,6 @@ typedef union _hw_sata_phy_clock_creg_ovrd
  * Reads request
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CREG_OVRD_CR_READ      (0)      //!< Bit position for SATA_PHY_CLOCK_CREG_OVRD_CR_READ.
 #define BM_SATA_PHY_CLOCK_CREG_OVRD_CR_READ      (0x00000001)  //!< Bit mask for SATA_PHY_CLOCK_CREG_OVRD_CR_READ.
 
@@ -2284,7 +2033,6 @@ typedef union _hw_sata_phy_clock_creg_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CREG_OVRD_CR_READ.
 #define BF_SATA_PHY_CLOCK_CREG_OVRD_CR_READ(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CREG_OVRD_CR_READ) & BM_SATA_PHY_CLOCK_CREG_OVRD_CR_READ)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CREG_OVRD, field CR_WRITE[1] (RW)
@@ -2292,7 +2040,6 @@ typedef union _hw_sata_phy_clock_creg_ovrd
  * Writes request
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CREG_OVRD_CR_WRITE      (1)      //!< Bit position for SATA_PHY_CLOCK_CREG_OVRD_CR_WRITE.
 #define BM_SATA_PHY_CLOCK_CREG_OVRD_CR_WRITE      (0x00000002)  //!< Bit mask for SATA_PHY_CLOCK_CREG_OVRD_CR_WRITE.
 
@@ -2301,7 +2048,6 @@ typedef union _hw_sata_phy_clock_creg_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CREG_OVRD_CR_WRITE.
 #define BF_SATA_PHY_CLOCK_CREG_OVRD_CR_WRITE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CREG_OVRD_CR_WRITE) & BM_SATA_PHY_CLOCK_CREG_OVRD_CR_WRITE)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CREG_OVRD, field CR_CAP_DATA[2] (RW)
@@ -2309,7 +2055,6 @@ typedef union _hw_sata_phy_clock_creg_ovrd
  * Captures data request
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CREG_OVRD_CR_CAP_DATA      (2)      //!< Bit position for SATA_PHY_CLOCK_CREG_OVRD_CR_CAP_DATA.
 #define BM_SATA_PHY_CLOCK_CREG_OVRD_CR_CAP_DATA      (0x00000004)  //!< Bit mask for SATA_PHY_CLOCK_CREG_OVRD_CR_CAP_DATA.
 
@@ -2318,7 +2063,6 @@ typedef union _hw_sata_phy_clock_creg_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CREG_OVRD_CR_CAP_DATA.
 #define BF_SATA_PHY_CLOCK_CREG_OVRD_CR_CAP_DATA(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CREG_OVRD_CR_CAP_DATA) & BM_SATA_PHY_CLOCK_CREG_OVRD_CR_CAP_DATA)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CREG_OVRD, field CR_CAP_ADDR[3] (RW)
@@ -2326,7 +2070,6 @@ typedef union _hw_sata_phy_clock_creg_ovrd
  * Captures address request
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CREG_OVRD_CR_CAP_ADDR      (3)      //!< Bit position for SATA_PHY_CLOCK_CREG_OVRD_CR_CAP_ADDR.
 #define BM_SATA_PHY_CLOCK_CREG_OVRD_CR_CAP_ADDR      (0x00000008)  //!< Bit mask for SATA_PHY_CLOCK_CREG_OVRD_CR_CAP_ADDR.
 
@@ -2335,7 +2078,6 @@ typedef union _hw_sata_phy_clock_creg_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CREG_OVRD_CR_CAP_ADDR.
 #define BF_SATA_PHY_CLOCK_CREG_OVRD_CR_CAP_ADDR(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CREG_OVRD_CR_CAP_ADDR) & BM_SATA_PHY_CLOCK_CREG_OVRD_CR_CAP_ADDR)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CREG_OVRD, field OVRD_IN[4] (RW)
@@ -2343,7 +2085,6 @@ typedef union _hw_sata_phy_clock_creg_ovrd
  * Overrides inputs (bits [3:0])
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CREG_OVRD_OVRD_IN      (4)      //!< Bit position for SATA_PHY_CLOCK_CREG_OVRD_OVRD_IN.
 #define BM_SATA_PHY_CLOCK_CREG_OVRD_OVRD_IN      (0x00000010)  //!< Bit mask for SATA_PHY_CLOCK_CREG_OVRD_OVRD_IN.
 
@@ -2352,7 +2093,6 @@ typedef union _hw_sata_phy_clock_creg_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CREG_OVRD_OVRD_IN.
 #define BF_SATA_PHY_CLOCK_CREG_OVRD_OVRD_IN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CREG_OVRD_OVRD_IN) & BM_SATA_PHY_CLOCK_CREG_OVRD_OVRD_IN)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CREG_OVRD, field CR_ACK[5] (RW)
@@ -2360,7 +2100,6 @@ typedef union _hw_sata_phy_clock_creg_ovrd
  * Creg request acknowledgement
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CREG_OVRD_CR_ACK      (5)      //!< Bit position for SATA_PHY_CLOCK_CREG_OVRD_CR_ACK.
 #define BM_SATA_PHY_CLOCK_CREG_OVRD_CR_ACK      (0x00000020)  //!< Bit mask for SATA_PHY_CLOCK_CREG_OVRD_CR_ACK.
 
@@ -2369,7 +2108,6 @@ typedef union _hw_sata_phy_clock_creg_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CREG_OVRD_CR_ACK.
 #define BF_SATA_PHY_CLOCK_CREG_OVRD_CR_ACK(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CREG_OVRD_CR_ACK) & BM_SATA_PHY_CLOCK_CREG_OVRD_CR_ACK)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CREG_OVRD, field POWER_GOOD[6] (RW)
@@ -2377,7 +2115,6 @@ typedef union _hw_sata_phy_clock_creg_ovrd
  * Power good output
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CREG_OVRD_POWER_GOOD      (6)      //!< Bit position for SATA_PHY_CLOCK_CREG_OVRD_POWER_GOOD.
 #define BM_SATA_PHY_CLOCK_CREG_OVRD_POWER_GOOD      (0x00000040)  //!< Bit mask for SATA_PHY_CLOCK_CREG_OVRD_POWER_GOOD.
 
@@ -2386,7 +2123,6 @@ typedef union _hw_sata_phy_clock_creg_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CREG_OVRD_POWER_GOOD.
 #define BF_SATA_PHY_CLOCK_CREG_OVRD_POWER_GOOD(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CREG_OVRD_POWER_GOOD) & BM_SATA_PHY_CLOCK_CREG_OVRD_POWER_GOOD)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CREG_OVRD, field OP_DONE[7] (RW)
@@ -2394,7 +2130,6 @@ typedef union _hw_sata_phy_clock_creg_ovrd
  * Operation is complete output
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CREG_OVRD_OP_DONE      (7)      //!< Bit position for SATA_PHY_CLOCK_CREG_OVRD_OP_DONE.
 #define BM_SATA_PHY_CLOCK_CREG_OVRD_OP_DONE      (0x00000080)  //!< Bit mask for SATA_PHY_CLOCK_CREG_OVRD_OP_DONE.
 
@@ -2403,7 +2138,6 @@ typedef union _hw_sata_phy_clock_creg_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CREG_OVRD_OP_DONE.
 #define BF_SATA_PHY_CLOCK_CREG_OVRD_OP_DONE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CREG_OVRD_OP_DONE) & BM_SATA_PHY_CLOCK_CREG_OVRD_OP_DONE)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_CREG_OVRD, field OVRD_OUT[8] (RW)
@@ -2411,7 +2145,6 @@ typedef union _hw_sata_phy_clock_creg_ovrd
  * Overrides outputs (bits [7:5])
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_CREG_OVRD_OVRD_OUT      (8)      //!< Bit position for SATA_PHY_CLOCK_CREG_OVRD_OVRD_OUT.
 #define BM_SATA_PHY_CLOCK_CREG_OVRD_OVRD_OUT      (0x00000100)  //!< Bit mask for SATA_PHY_CLOCK_CREG_OVRD_OVRD_OUT.
 
@@ -2420,7 +2153,6 @@ typedef union _hw_sata_phy_clock_creg_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_CREG_OVRD_OVRD_OUT.
 #define BF_SATA_PHY_CLOCK_CREG_OVRD_OVRD_OUT(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_CREG_OVRD_OVRD_OUT) & BM_SATA_PHY_CLOCK_CREG_OVRD_OVRD_OUT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2457,10 +2189,6 @@ typedef union _hw_sata_phy_clock_mpll_ctl
  */
 //@{
 #define HW_SATA_PHY_CLOCK_MPLL_CTL_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0x16)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_MPLL_CTL           (*(volatile hw_sata_phy_clock_mpll_ctl_t *) HW_SATA_PHY_CLOCK_MPLL_CTL_ADDR)
-#endif
 //@}
 
 /*
@@ -2472,7 +2200,6 @@ typedef union _hw_sata_phy_clock_mpll_ctl
  * Value for analog clock drivers
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_MPLL_CTL_CLKDRV_ANA      (0)      //!< Bit position for SATA_PHY_CLOCK_MPLL_CTL_CLKDRV_ANA.
 #define BM_SATA_PHY_CLOCK_MPLL_CTL_CLKDRV_ANA      (0x00000001)  //!< Bit mask for SATA_PHY_CLOCK_MPLL_CTL_CLKDRV_ANA.
 
@@ -2481,7 +2208,6 @@ typedef union _hw_sata_phy_clock_mpll_ctl
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_MPLL_CTL_CLKDRV_ANA.
 #define BF_SATA_PHY_CLOCK_MPLL_CTL_CLKDRV_ANA(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_MPLL_CTL_CLKDRV_ANA) & BM_SATA_PHY_CLOCK_MPLL_CTL_CLKDRV_ANA)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_MPLL_CTL, field CLKDRV_DIG[1] (RW)
@@ -2489,7 +2215,6 @@ typedef union _hw_sata_phy_clock_mpll_ctl
  * Value for digital clock drivers
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_MPLL_CTL_CLKDRV_DIG      (1)      //!< Bit position for SATA_PHY_CLOCK_MPLL_CTL_CLKDRV_DIG.
 #define BM_SATA_PHY_CLOCK_MPLL_CTL_CLKDRV_DIG      (0x00000002)  //!< Bit mask for SATA_PHY_CLOCK_MPLL_CTL_CLKDRV_DIG.
 
@@ -2498,7 +2223,6 @@ typedef union _hw_sata_phy_clock_mpll_ctl
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_MPLL_CTL_CLKDRV_DIG.
 #define BF_SATA_PHY_CLOCK_MPLL_CTL_CLKDRV_DIG(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_MPLL_CTL_CLKDRV_DIG) & BM_SATA_PHY_CLOCK_MPLL_CTL_CLKDRV_DIG)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_MPLL_CTL, field OVRD_CLKDRV[2] (RW)
@@ -2506,7 +2230,6 @@ typedef union _hw_sata_phy_clock_mpll_ctl
  * Overrides clock driver controls
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_MPLL_CTL_OVRD_CLKDRV      (2)      //!< Bit position for SATA_PHY_CLOCK_MPLL_CTL_OVRD_CLKDRV.
 #define BM_SATA_PHY_CLOCK_MPLL_CTL_OVRD_CLKDRV      (0x00000004)  //!< Bit mask for SATA_PHY_CLOCK_MPLL_CTL_OVRD_CLKDRV.
 
@@ -2515,7 +2238,6 @@ typedef union _hw_sata_phy_clock_mpll_ctl
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_MPLL_CTL_OVRD_CLKDRV.
 #define BF_SATA_PHY_CLOCK_MPLL_CTL_OVRD_CLKDRV(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_MPLL_CTL_OVRD_CLKDRV) & BM_SATA_PHY_CLOCK_MPLL_CTL_OVRD_CLKDRV)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_MPLL_CTL, field DIS_PARA_CREG[3] (RW)
@@ -2523,7 +2245,6 @@ typedef union _hw_sata_phy_clock_mpll_ctl
  * Disables parallel creg interface
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_MPLL_CTL_DIS_PARA_CREG      (3)      //!< Bit position for SATA_PHY_CLOCK_MPLL_CTL_DIS_PARA_CREG.
 #define BM_SATA_PHY_CLOCK_MPLL_CTL_DIS_PARA_CREG      (0x00000008)  //!< Bit mask for SATA_PHY_CLOCK_MPLL_CTL_DIS_PARA_CREG.
 
@@ -2532,7 +2253,6 @@ typedef union _hw_sata_phy_clock_mpll_ctl
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_MPLL_CTL_DIS_PARA_CREG.
 #define BF_SATA_PHY_CLOCK_MPLL_CTL_DIS_PARA_CREG(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_MPLL_CTL_DIS_PARA_CREG) & BM_SATA_PHY_CLOCK_MPLL_CTL_DIS_PARA_CREG)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_MPLL_CTL, field REFCLK_DELAY[4] (RW)
@@ -2540,7 +2260,6 @@ typedef union _hw_sata_phy_clock_mpll_ctl
  * Delays refclk output of prescaler
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_MPLL_CTL_REFCLK_DELAY      (4)      //!< Bit position for SATA_PHY_CLOCK_MPLL_CTL_REFCLK_DELAY.
 #define BM_SATA_PHY_CLOCK_MPLL_CTL_REFCLK_DELAY      (0x00000010)  //!< Bit mask for SATA_PHY_CLOCK_MPLL_CTL_REFCLK_DELAY.
 
@@ -2549,7 +2268,6 @@ typedef union _hw_sata_phy_clock_mpll_ctl
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_MPLL_CTL_REFCLK_DELAY.
 #define BF_SATA_PHY_CLOCK_MPLL_CTL_REFCLK_DELAY(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_MPLL_CTL_REFCLK_DELAY) & BM_SATA_PHY_CLOCK_MPLL_CTL_REFCLK_DELAY)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_MPLL_CTL, field DTB_SEL0[9:5] (RW)
@@ -2579,7 +2297,6 @@ typedef union _hw_sata_phy_clock_mpll_ctl
  * - 10011 - mpll_ck_off
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_MPLL_CTL_DTB_SEL0      (5)      //!< Bit position for SATA_PHY_CLOCK_MPLL_CTL_DTB_SEL0.
 #define BM_SATA_PHY_CLOCK_MPLL_CTL_DTB_SEL0      (0x000003e0)  //!< Bit mask for SATA_PHY_CLOCK_MPLL_CTL_DTB_SEL0.
 
@@ -2588,7 +2305,6 @@ typedef union _hw_sata_phy_clock_mpll_ctl
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_MPLL_CTL_DTB_SEL0.
 #define BF_SATA_PHY_CLOCK_MPLL_CTL_DTB_SEL0(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_MPLL_CTL_DTB_SEL0) & BM_SATA_PHY_CLOCK_MPLL_CTL_DTB_SEL0)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_MPLL_CTL, field DTB_SEL1[14:10] (RW)
@@ -2618,7 +2334,6 @@ typedef union _hw_sata_phy_clock_mpll_ctl
  * - 10011 - mpll_ck_off
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_MPLL_CTL_DTB_SEL1      (10)      //!< Bit position for SATA_PHY_CLOCK_MPLL_CTL_DTB_SEL1.
 #define BM_SATA_PHY_CLOCK_MPLL_CTL_DTB_SEL1      (0x00007c00)  //!< Bit mask for SATA_PHY_CLOCK_MPLL_CTL_DTB_SEL1.
 
@@ -2627,7 +2342,6 @@ typedef union _hw_sata_phy_clock_mpll_ctl
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_MPLL_CTL_DTB_SEL1.
 #define BF_SATA_PHY_CLOCK_MPLL_CTL_DTB_SEL1(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_MPLL_CTL_DTB_SEL1) & BM_SATA_PHY_CLOCK_MPLL_CTL_DTB_SEL1)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2662,10 +2376,6 @@ typedef union _hw_sata_phy_clock_mpll_test
  */
 //@{
 #define HW_SATA_PHY_CLOCK_MPLL_TEST_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0x17)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_MPLL_TEST           (*(volatile hw_sata_phy_clock_mpll_test_t *) HW_SATA_PHY_CLOCK_MPLL_TEST_ADDR)
-#endif
 //@}
 
 /*
@@ -2677,7 +2387,6 @@ typedef union _hw_sata_phy_clock_mpll_test
  * Hooks up ATB sense lines
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_MPLL_TEST_ATB_SENSE      (0)      //!< Bit position for SATA_PHY_CLOCK_MPLL_TEST_ATB_SENSE.
 #define BM_SATA_PHY_CLOCK_MPLL_TEST_ATB_SENSE      (0x00000001)  //!< Bit mask for SATA_PHY_CLOCK_MPLL_TEST_ATB_SENSE.
 
@@ -2686,7 +2395,6 @@ typedef union _hw_sata_phy_clock_mpll_test
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_MPLL_TEST_ATB_SENSE.
 #define BF_SATA_PHY_CLOCK_MPLL_TEST_ATB_SENSE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_MPLL_TEST_ATB_SENSE) & BM_SATA_PHY_CLOCK_MPLL_TEST_ATB_SENSE)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_MPLL_TEST, field MEAS_GD[1] (RW)
@@ -2695,7 +2403,6 @@ typedef union _hw_sata_phy_clock_mpll_test
  * set.
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_MPLL_TEST_MEAS_GD      (1)      //!< Bit position for SATA_PHY_CLOCK_MPLL_TEST_MEAS_GD.
 #define BM_SATA_PHY_CLOCK_MPLL_TEST_MEAS_GD      (0x00000002)  //!< Bit mask for SATA_PHY_CLOCK_MPLL_TEST_MEAS_GD.
 
@@ -2704,7 +2411,6 @@ typedef union _hw_sata_phy_clock_mpll_test
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_MPLL_TEST_MEAS_GD.
 #define BF_SATA_PHY_CLOCK_MPLL_TEST_MEAS_GD(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_MPLL_TEST_MEAS_GD) & BM_SATA_PHY_CLOCK_MPLL_TEST_MEAS_GD)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_MPLL_TEST, field MEAS_IV[12:2] (RW)
@@ -2719,7 +2425,6 @@ typedef union _hw_sata_phy_clock_mpll_test
  * interpolator and VCO
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_MPLL_TEST_MEAS_IV      (2)      //!< Bit position for SATA_PHY_CLOCK_MPLL_TEST_MEAS_IV.
 #define BM_SATA_PHY_CLOCK_MPLL_TEST_MEAS_IV      (0x00001ffc)  //!< Bit mask for SATA_PHY_CLOCK_MPLL_TEST_MEAS_IV.
 
@@ -2728,7 +2433,6 @@ typedef union _hw_sata_phy_clock_mpll_test
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_MPLL_TEST_MEAS_IV.
 #define BF_SATA_PHY_CLOCK_MPLL_TEST_MEAS_IV(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_MPLL_TEST_MEAS_IV) & BM_SATA_PHY_CLOCK_MPLL_TEST_MEAS_IV)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_MPLL_TEST, field RESET_VAL[13] (RW)
@@ -2736,7 +2440,6 @@ typedef union _hw_sata_phy_clock_mpll_test
  * Value to override for mpll_reset
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_MPLL_TEST_RESET_VAL      (13)      //!< Bit position for SATA_PHY_CLOCK_MPLL_TEST_RESET_VAL.
 #define BM_SATA_PHY_CLOCK_MPLL_TEST_RESET_VAL      (0x00002000)  //!< Bit mask for SATA_PHY_CLOCK_MPLL_TEST_RESET_VAL.
 
@@ -2745,7 +2448,6 @@ typedef union _hw_sata_phy_clock_mpll_test
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_MPLL_TEST_RESET_VAL.
 #define BF_SATA_PHY_CLOCK_MPLL_TEST_RESET_VAL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_MPLL_TEST_RESET_VAL) & BM_SATA_PHY_CLOCK_MPLL_TEST_RESET_VAL)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_MPLL_TEST, field GEARSHIFT_VAL[14] (RW)
@@ -2753,7 +2455,6 @@ typedef union _hw_sata_phy_clock_mpll_test
  * Value to override for mpll_gearshift
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_MPLL_TEST_GEARSHIFT_VAL      (14)      //!< Bit position for SATA_PHY_CLOCK_MPLL_TEST_GEARSHIFT_VAL.
 #define BM_SATA_PHY_CLOCK_MPLL_TEST_GEARSHIFT_VAL      (0x00004000)  //!< Bit mask for SATA_PHY_CLOCK_MPLL_TEST_GEARSHIFT_VAL.
 
@@ -2762,7 +2463,6 @@ typedef union _hw_sata_phy_clock_mpll_test
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_MPLL_TEST_GEARSHIFT_VAL.
 #define BF_SATA_PHY_CLOCK_MPLL_TEST_GEARSHIFT_VAL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_MPLL_TEST_GEARSHIFT_VAL) & BM_SATA_PHY_CLOCK_MPLL_TEST_GEARSHIFT_VAL)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_MPLL_TEST, field OVRD_CTL[15] (RW)
@@ -2770,7 +2470,6 @@ typedef union _hw_sata_phy_clock_mpll_test
  * Overrides MPLL reset and gearshift controls
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_MPLL_TEST_OVRD_CTL      (15)      //!< Bit position for SATA_PHY_CLOCK_MPLL_TEST_OVRD_CTL.
 #define BM_SATA_PHY_CLOCK_MPLL_TEST_OVRD_CTL      (0x00008000)  //!< Bit mask for SATA_PHY_CLOCK_MPLL_TEST_OVRD_CTL.
 
@@ -2779,7 +2478,6 @@ typedef union _hw_sata_phy_clock_mpll_test
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_MPLL_TEST_OVRD_CTL.
 #define BF_SATA_PHY_CLOCK_MPLL_TEST_OVRD_CTL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_MPLL_TEST_OVRD_CTL) & BM_SATA_PHY_CLOCK_MPLL_TEST_OVRD_CTL)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2813,10 +2511,6 @@ typedef union _hw_sata_phy_clock_ss_freq
  */
 //@{
 #define HW_SATA_PHY_CLOCK_SS_FREQ_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0x18)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_SS_FREQ           (*(volatile hw_sata_phy_clock_ss_freq_t *) HW_SATA_PHY_CLOCK_SS_FREQ_ADDR)
-#endif
 //@}
 
 /*
@@ -2828,7 +2522,6 @@ typedef union _hw_sata_phy_clock_ss_freq
  * Frequency counter step value. Note: This value is independent of the freq_pk value.
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_SS_FREQ_FREQ_CNT_INIT      (0)      //!< Bit position for SATA_PHY_CLOCK_SS_FREQ_FREQ_CNT_INIT.
 #define BM_SATA_PHY_CLOCK_SS_FREQ_FREQ_CNT_INIT      (0x0000007f)  //!< Bit mask for SATA_PHY_CLOCK_SS_FREQ_FREQ_CNT_INIT.
 
@@ -2837,7 +2530,6 @@ typedef union _hw_sata_phy_clock_ss_freq
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_SS_FREQ_FREQ_CNT_INIT.
 #define BF_SATA_PHY_CLOCK_SS_FREQ_FREQ_CNT_INIT(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_SS_FREQ_FREQ_CNT_INIT) & BM_SATA_PHY_CLOCK_SS_FREQ_FREQ_CNT_INIT)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_SS_FREQ, field FREQ_PK[13:7] (RW)
@@ -2845,7 +2537,6 @@ typedef union _hw_sata_phy_clock_ss_freq
  * Peak frequency value
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_SS_FREQ_FREQ_PK      (7)      //!< Bit position for SATA_PHY_CLOCK_SS_FREQ_FREQ_PK.
 #define BM_SATA_PHY_CLOCK_SS_FREQ_FREQ_PK      (0x00003f80)  //!< Bit mask for SATA_PHY_CLOCK_SS_FREQ_FREQ_PK.
 
@@ -2854,7 +2545,6 @@ typedef union _hw_sata_phy_clock_ss_freq
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_SS_FREQ_FREQ_PK.
 #define BF_SATA_PHY_CLOCK_SS_FREQ_FREQ_PK(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_SS_FREQ_FREQ_PK) & BM_SATA_PHY_CLOCK_SS_FREQ_FREQ_PK)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_SS_FREQ, field FREQ_REG_OVRD[14] (RW)
@@ -2862,7 +2552,6 @@ typedef union _hw_sata_phy_clock_ss_freq
  * Override control, indicating that overridden value is active
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_SS_FREQ_FREQ_REG_OVRD      (14)      //!< Bit position for SATA_PHY_CLOCK_SS_FREQ_FREQ_REG_OVRD.
 #define BM_SATA_PHY_CLOCK_SS_FREQ_FREQ_REG_OVRD      (0x00004000)  //!< Bit mask for SATA_PHY_CLOCK_SS_FREQ_FREQ_REG_OVRD.
 
@@ -2871,7 +2560,6 @@ typedef union _hw_sata_phy_clock_ss_freq
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_SS_FREQ_FREQ_REG_OVRD.
 #define BF_SATA_PHY_CLOCK_SS_FREQ_FREQ_REG_OVRD(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_SS_FREQ_FREQ_REG_OVRD) & BM_SATA_PHY_CLOCK_SS_FREQ_FREQ_REG_OVRD)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2904,10 +2592,6 @@ typedef union _hw_sata_phy_clock_sel_stat
  */
 //@{
 #define HW_SATA_PHY_CLOCK_SEL_STAT_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0x19)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_SEL_STAT           (*(volatile hw_sata_phy_clock_sel_stat_t *) HW_SATA_PHY_CLOCK_SEL_STAT_ADDR)
-#endif
 //@}
 
 /*
@@ -2919,13 +2603,11 @@ typedef union _hw_sata_phy_clock_sel_stat
  * MPLL spread spectrum select input
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_SEL_STAT_MPLL_SS_SEL      (0)      //!< Bit position for SATA_PHY_CLOCK_SEL_STAT_MPLL_SS_SEL.
 #define BM_SATA_PHY_CLOCK_SEL_STAT_MPLL_SS_SEL      (0x00000003)  //!< Bit mask for SATA_PHY_CLOCK_SEL_STAT_MPLL_SS_SEL.
 
 //! @brief Get value of SATA_PHY_CLOCK_SEL_STAT_MPLL_SS_SEL from a register value.
 #define BG_SATA_PHY_CLOCK_SEL_STAT_MPLL_SS_SEL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_SEL_STAT_MPLL_SS_SEL) >> BP_SATA_PHY_CLOCK_SEL_STAT_MPLL_SS_SEL)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_SEL_STAT, field REF_CLK_SEL[9:2] (RO)
@@ -2933,13 +2615,11 @@ typedef union _hw_sata_phy_clock_sel_stat
  * Reference clock select input
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_SEL_STAT_REF_CLK_SEL      (2)      //!< Bit position for SATA_PHY_CLOCK_SEL_STAT_REF_CLK_SEL.
 #define BM_SATA_PHY_CLOCK_SEL_STAT_REF_CLK_SEL      (0x000003fc)  //!< Bit mask for SATA_PHY_CLOCK_SEL_STAT_REF_CLK_SEL.
 
 //! @brief Get value of SATA_PHY_CLOCK_SEL_STAT_REF_CLK_SEL from a register value.
 #define BG_SATA_PHY_CLOCK_SEL_STAT_REF_CLK_SEL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_CLOCK_SEL_STAT_REF_CLK_SEL) >> BP_SATA_PHY_CLOCK_SEL_STAT_REF_CLK_SEL)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2973,10 +2653,6 @@ typedef union _hw_sata_phy_clock_sel_ovrd
  */
 //@{
 #define HW_SATA_PHY_CLOCK_SEL_OVRD_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0x1a)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_SEL_OVRD           (*(volatile hw_sata_phy_clock_sel_ovrd_t *) HW_SATA_PHY_CLOCK_SEL_OVRD_ADDR)
-#endif
 //@}
 
 /*
@@ -2988,7 +2664,6 @@ typedef union _hw_sata_phy_clock_sel_ovrd
  * MPLL spread spectrum select
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_SEL_OVRD_MPLL_SS_SEL      (0)      //!< Bit position for SATA_PHY_CLOCK_SEL_OVRD_MPLL_SS_SEL.
 #define BM_SATA_PHY_CLOCK_SEL_OVRD_MPLL_SS_SEL      (0x00000003)  //!< Bit mask for SATA_PHY_CLOCK_SEL_OVRD_MPLL_SS_SEL.
 
@@ -2997,7 +2672,6 @@ typedef union _hw_sata_phy_clock_sel_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_SEL_OVRD_MPLL_SS_SEL.
 #define BF_SATA_PHY_CLOCK_SEL_OVRD_MPLL_SS_SEL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_SEL_OVRD_MPLL_SS_SEL) & BM_SATA_PHY_CLOCK_SEL_OVRD_MPLL_SS_SEL)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_SEL_OVRD, field REF_CLK_SEL[9:2] (RW)
@@ -3005,7 +2679,6 @@ typedef union _hw_sata_phy_clock_sel_ovrd
  * Reference clock select
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_SEL_OVRD_REF_CLK_SEL      (2)      //!< Bit position for SATA_PHY_CLOCK_SEL_OVRD_REF_CLK_SEL.
 #define BM_SATA_PHY_CLOCK_SEL_OVRD_REF_CLK_SEL      (0x000003fc)  //!< Bit mask for SATA_PHY_CLOCK_SEL_OVRD_REF_CLK_SEL.
 
@@ -3014,7 +2687,6 @@ typedef union _hw_sata_phy_clock_sel_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_SEL_OVRD_REF_CLK_SEL.
 #define BF_SATA_PHY_CLOCK_SEL_OVRD_REF_CLK_SEL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_SEL_OVRD_REF_CLK_SEL) & BM_SATA_PHY_CLOCK_SEL_OVRD_REF_CLK_SEL)
-
 //@}
 
 /*! @name Register SATA_PHY_CLOCK_SEL_OVRD, field CLK_SEL_OVRD[10] (RW)
@@ -3022,7 +2694,6 @@ typedef union _hw_sata_phy_clock_sel_ovrd
  * Override control, indicating that the overridden value is active
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_SEL_OVRD_CLK_SEL_OVRD      (10)      //!< Bit position for SATA_PHY_CLOCK_SEL_OVRD_CLK_SEL_OVRD.
 #define BM_SATA_PHY_CLOCK_SEL_OVRD_CLK_SEL_OVRD      (0x00000400)  //!< Bit mask for SATA_PHY_CLOCK_SEL_OVRD_CLK_SEL_OVRD.
 
@@ -3031,7 +2702,6 @@ typedef union _hw_sata_phy_clock_sel_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_SEL_OVRD_CLK_SEL_OVRD.
 #define BF_SATA_PHY_CLOCK_SEL_OVRD_CLK_SEL_OVRD(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_SEL_OVRD_CLK_SEL_OVRD) & BM_SATA_PHY_CLOCK_SEL_OVRD_CLK_SEL_OVRD)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3070,10 +2740,6 @@ typedef union _hw_sata_phy_clock_reset
  */
 //@{
 #define HW_SATA_PHY_CLOCK_RESET_ADDR      (REGS_SATA_PHY_CLOCK_BASE + 0x7f3f)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_CLOCK_RESET           (*(volatile hw_sata_phy_clock_reset_t *) HW_SATA_PHY_CLOCK_RESET_ADDR)
-#endif
 //@}
 
 /*
@@ -3085,7 +2751,6 @@ typedef union _hw_sata_phy_clock_reset
  * Writing a 1 to this field resets the SATA2 PHY.
  */
 //@{
-
 #define BP_SATA_PHY_CLOCK_RESET_RESET      (0)      //!< Bit position for SATA_PHY_CLOCK_RESET_RESET.
 #define BM_SATA_PHY_CLOCK_RESET_RESET      (0x00000001)  //!< Bit mask for SATA_PHY_CLOCK_RESET_RESET.
 
@@ -3094,7 +2759,8 @@ typedef union _hw_sata_phy_clock_reset
 
 //! @brief Format value for bitfield SATA_PHY_CLOCK_RESET_RESET.
 #define BF_SATA_PHY_CLOCK_RESET_RESET(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_CLOCK_RESET_RESET) & BM_SATA_PHY_CLOCK_RESET_RESET)
-
 //@}
 
 #endif // __HW_SATA_PHY_CLOCK_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

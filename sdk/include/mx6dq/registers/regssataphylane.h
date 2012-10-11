@@ -98,10 +98,6 @@ typedef union _hw_sata_phy_lane0_tx_stat
  */
 //@{
 #define HW_SATA_PHY_LANE0_TX_STAT_ADDR      (REGS_SATA_PHY_LANE0_BASE + 0x2001)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_LANE0_TX_STAT           (*(volatile hw_sata_phy_lane0_tx_stat_t *) HW_SATA_PHY_LANE0_TX_STAT_ADDR)
-#endif
 //@}
 
 /*
@@ -113,13 +109,11 @@ typedef union _hw_sata_phy_lane0_tx_stat
  * tx_cko clock enable
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_STAT_TX_CKO_EN      (0)      //!< Bit position for SATA_PHY_LANE0_TX_STAT_TX_CKO_EN.
 #define BM_SATA_PHY_LANE0_TX_STAT_TX_CKO_EN      (0x00000001)  //!< Bit mask for SATA_PHY_LANE0_TX_STAT_TX_CKO_EN.
 
 //! @brief Get value of SATA_PHY_LANE0_TX_STAT_TX_CKO_EN from a register value.
 #define BG_SATA_PHY_LANE0_TX_STAT_TX_CKO_EN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_LANE0_TX_STAT_TX_CKO_EN) >> BP_SATA_PHY_LANE0_TX_STAT_TX_CKO_EN)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_STAT, field TX_EN[3:1] (RO)
@@ -127,13 +121,11 @@ typedef union _hw_sata_phy_lane0_tx_stat
  * Transmit enable control
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_STAT_TX_EN      (1)      //!< Bit position for SATA_PHY_LANE0_TX_STAT_TX_EN.
 #define BM_SATA_PHY_LANE0_TX_STAT_TX_EN      (0x0000000e)  //!< Bit mask for SATA_PHY_LANE0_TX_STAT_TX_EN.
 
 //! @brief Get value of SATA_PHY_LANE0_TX_STAT_TX_EN from a register value.
 #define BG_SATA_PHY_LANE0_TX_STAT_TX_EN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_LANE0_TX_STAT_TX_EN) >> BP_SATA_PHY_LANE0_TX_STAT_TX_EN)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_STAT, field TX_CLK_ALIGN[4] (RO)
@@ -141,13 +133,11 @@ typedef union _hw_sata_phy_lane0_tx_stat
  * Command to align clocks
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_STAT_TX_CLK_ALIGN      (4)      //!< Bit position for SATA_PHY_LANE0_TX_STAT_TX_CLK_ALIGN.
 #define BM_SATA_PHY_LANE0_TX_STAT_TX_CLK_ALIGN      (0x00000010)  //!< Bit mask for SATA_PHY_LANE0_TX_STAT_TX_CLK_ALIGN.
 
 //! @brief Get value of SATA_PHY_LANE0_TX_STAT_TX_CLK_ALIGN from a register value.
 #define BG_SATA_PHY_LANE0_TX_STAT_TX_CLK_ALIGN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_LANE0_TX_STAT_TX_CLK_ALIGN) >> BP_SATA_PHY_LANE0_TX_STAT_TX_CLK_ALIGN)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_STAT, field TX_BOOST[9:6] (RO)
@@ -155,13 +145,11 @@ typedef union _hw_sata_phy_lane0_tx_stat
  * Boost amount control
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_STAT_TX_BOOST      (6)      //!< Bit position for SATA_PHY_LANE0_TX_STAT_TX_BOOST.
 #define BM_SATA_PHY_LANE0_TX_STAT_TX_BOOST      (0x000003c0)  //!< Bit mask for SATA_PHY_LANE0_TX_STAT_TX_BOOST.
 
 //! @brief Get value of SATA_PHY_LANE0_TX_STAT_TX_BOOST from a register value.
 #define BG_SATA_PHY_LANE0_TX_STAT_TX_BOOST(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_LANE0_TX_STAT_TX_BOOST) >> BP_SATA_PHY_LANE0_TX_STAT_TX_BOOST)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_STAT, field TX_ATTEN[12:10] (RO)
@@ -169,13 +157,11 @@ typedef union _hw_sata_phy_lane0_tx_stat
  * Attenuation amount control
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_STAT_TX_ATTEN      (10)      //!< Bit position for SATA_PHY_LANE0_TX_STAT_TX_ATTEN.
 #define BM_SATA_PHY_LANE0_TX_STAT_TX_ATTEN      (0x00001c00)  //!< Bit mask for SATA_PHY_LANE0_TX_STAT_TX_ATTEN.
 
 //! @brief Get value of SATA_PHY_LANE0_TX_STAT_TX_ATTEN from a register value.
 #define BG_SATA_PHY_LANE0_TX_STAT_TX_ATTEN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_LANE0_TX_STAT_TX_ATTEN) >> BP_SATA_PHY_LANE0_TX_STAT_TX_ATTEN)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_STAT, field TX_EDGERATE[14:13] (RO)
@@ -183,13 +169,11 @@ typedef union _hw_sata_phy_lane0_tx_stat
  * Edge rate control
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_STAT_TX_EDGERATE      (13)      //!< Bit position for SATA_PHY_LANE0_TX_STAT_TX_EDGERATE.
 #define BM_SATA_PHY_LANE0_TX_STAT_TX_EDGERATE      (0x00006000)  //!< Bit mask for SATA_PHY_LANE0_TX_STAT_TX_EDGERATE.
 
 //! @brief Get value of SATA_PHY_LANE0_TX_STAT_TX_EDGERATE from a register value.
 #define BG_SATA_PHY_LANE0_TX_STAT_TX_EDGERATE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_LANE0_TX_STAT_TX_EDGERATE) >> BP_SATA_PHY_LANE0_TX_STAT_TX_EDGERATE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -229,10 +213,6 @@ typedef union _hw_sata_phy_lane0_rx_stat
  */
 //@{
 #define HW_SATA_PHY_LANE0_RX_STAT_ADDR      (REGS_SATA_PHY_LANE0_BASE + 0x2002)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_LANE0_RX_STAT           (*(volatile hw_sata_phy_lane0_rx_stat_t *) HW_SATA_PHY_LANE0_RX_STAT_ADDR)
-#endif
 //@}
 
 /*
@@ -244,13 +224,11 @@ typedef union _hw_sata_phy_lane0_rx_stat
  * Digital half-rate data control
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_STAT_HALF_RATE      (0)      //!< Bit position for SATA_PHY_LANE0_RX_STAT_HALF_RATE.
 #define BM_SATA_PHY_LANE0_RX_STAT_HALF_RATE      (0x00000001)  //!< Bit mask for SATA_PHY_LANE0_RX_STAT_HALF_RATE.
 
 //! @brief Get value of SATA_PHY_LANE0_RX_STAT_HALF_RATE from a register value.
 #define BG_SATA_PHY_LANE0_RX_STAT_HALF_RATE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_LANE0_RX_STAT_HALF_RATE) >> BP_SATA_PHY_LANE0_RX_STAT_HALF_RATE)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_STAT, field RX_PLL_PWRON[1] (RO)
@@ -258,13 +236,11 @@ typedef union _hw_sata_phy_lane0_rx_stat
  * PLL power state control
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_STAT_RX_PLL_PWRON      (1)      //!< Bit position for SATA_PHY_LANE0_RX_STAT_RX_PLL_PWRON.
 #define BM_SATA_PHY_LANE0_RX_STAT_RX_PLL_PWRON      (0x00000002)  //!< Bit mask for SATA_PHY_LANE0_RX_STAT_RX_PLL_PWRON.
 
 //! @brief Get value of SATA_PHY_LANE0_RX_STAT_RX_PLL_PWRON from a register value.
 #define BG_SATA_PHY_LANE0_RX_STAT_RX_PLL_PWRON(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_LANE0_RX_STAT_RX_PLL_PWRON) >> BP_SATA_PHY_LANE0_RX_STAT_RX_PLL_PWRON)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_STAT, field RX_EN[2] (RO)
@@ -272,13 +248,11 @@ typedef union _hw_sata_phy_lane0_rx_stat
  * Receiver enable control
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_STAT_RX_EN      (2)      //!< Bit position for SATA_PHY_LANE0_RX_STAT_RX_EN.
 #define BM_SATA_PHY_LANE0_RX_STAT_RX_EN      (0x00000004)  //!< Bit mask for SATA_PHY_LANE0_RX_STAT_RX_EN.
 
 //! @brief Get value of SATA_PHY_LANE0_RX_STAT_RX_EN from a register value.
 #define BG_SATA_PHY_LANE0_RX_STAT_RX_EN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_LANE0_RX_STAT_RX_EN) >> BP_SATA_PHY_LANE0_RX_STAT_RX_EN)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_STAT, field RX_ALIGN_EN[3] (RO)
@@ -286,13 +260,11 @@ typedef union _hw_sata_phy_lane0_rx_stat
  * Receiver alignment enable
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_STAT_RX_ALIGN_EN      (3)      //!< Bit position for SATA_PHY_LANE0_RX_STAT_RX_ALIGN_EN.
 #define BM_SATA_PHY_LANE0_RX_STAT_RX_ALIGN_EN      (0x00000008)  //!< Bit mask for SATA_PHY_LANE0_RX_STAT_RX_ALIGN_EN.
 
 //! @brief Get value of SATA_PHY_LANE0_RX_STAT_RX_ALIGN_EN from a register value.
 #define BG_SATA_PHY_LANE0_RX_STAT_RX_ALIGN_EN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_LANE0_RX_STAT_RX_ALIGN_EN) >> BP_SATA_PHY_LANE0_RX_STAT_RX_ALIGN_EN)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_STAT, field RX_TERM_EN[4] (RO)
@@ -300,13 +272,11 @@ typedef union _hw_sata_phy_lane0_rx_stat
  * Receiver termination enable
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_STAT_RX_TERM_EN      (4)      //!< Bit position for SATA_PHY_LANE0_RX_STAT_RX_TERM_EN.
 #define BM_SATA_PHY_LANE0_RX_STAT_RX_TERM_EN      (0x00000010)  //!< Bit mask for SATA_PHY_LANE0_RX_STAT_RX_TERM_EN.
 
 //! @brief Get value of SATA_PHY_LANE0_RX_STAT_RX_TERM_EN from a register value.
 #define BG_SATA_PHY_LANE0_RX_STAT_RX_TERM_EN(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_LANE0_RX_STAT_RX_TERM_EN) >> BP_SATA_PHY_LANE0_RX_STAT_RX_TERM_EN)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_STAT, field RX_EQ_VAL[7:5] (RO)
@@ -314,13 +284,11 @@ typedef union _hw_sata_phy_lane0_rx_stat
  * Equalization amount control
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_STAT_RX_EQ_VAL      (5)      //!< Bit position for SATA_PHY_LANE0_RX_STAT_RX_EQ_VAL.
 #define BM_SATA_PHY_LANE0_RX_STAT_RX_EQ_VAL      (0x000000e0)  //!< Bit mask for SATA_PHY_LANE0_RX_STAT_RX_EQ_VAL.
 
 //! @brief Get value of SATA_PHY_LANE0_RX_STAT_RX_EQ_VAL from a register value.
 #define BG_SATA_PHY_LANE0_RX_STAT_RX_EQ_VAL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_LANE0_RX_STAT_RX_EQ_VAL) >> BP_SATA_PHY_LANE0_RX_STAT_RX_EQ_VAL)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_STAT, field RX_DPLL_MODE[10:8] (RO)
@@ -328,13 +296,11 @@ typedef union _hw_sata_phy_lane0_rx_stat
  * DPLL mode control
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_STAT_RX_DPLL_MODE      (8)      //!< Bit position for SATA_PHY_LANE0_RX_STAT_RX_DPLL_MODE.
 #define BM_SATA_PHY_LANE0_RX_STAT_RX_DPLL_MODE      (0x00000700)  //!< Bit mask for SATA_PHY_LANE0_RX_STAT_RX_DPLL_MODE.
 
 //! @brief Get value of SATA_PHY_LANE0_RX_STAT_RX_DPLL_MODE from a register value.
 #define BG_SATA_PHY_LANE0_RX_STAT_RX_DPLL_MODE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_LANE0_RX_STAT_RX_DPLL_MODE) >> BP_SATA_PHY_LANE0_RX_STAT_RX_DPLL_MODE)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_STAT, field DPLL_RESET[11] (RO)
@@ -342,13 +308,11 @@ typedef union _hw_sata_phy_lane0_rx_stat
  * DPLL reset control
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_STAT_DPLL_RESET      (11)      //!< Bit position for SATA_PHY_LANE0_RX_STAT_DPLL_RESET.
 #define BM_SATA_PHY_LANE0_RX_STAT_DPLL_RESET      (0x00000800)  //!< Bit mask for SATA_PHY_LANE0_RX_STAT_DPLL_RESET.
 
 //! @brief Get value of SATA_PHY_LANE0_RX_STAT_DPLL_RESET from a register value.
 #define BG_SATA_PHY_LANE0_RX_STAT_DPLL_RESET(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_LANE0_RX_STAT_DPLL_RESET) >> BP_SATA_PHY_LANE0_RX_STAT_DPLL_RESET)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_STAT, field LOS_CTL[13:12] (RO)
@@ -356,13 +320,11 @@ typedef union _hw_sata_phy_lane0_rx_stat
  * LOS filtering mode control
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_STAT_LOS_CTL      (12)      //!< Bit position for SATA_PHY_LANE0_RX_STAT_LOS_CTL.
 #define BM_SATA_PHY_LANE0_RX_STAT_LOS_CTL      (0x00003000)  //!< Bit mask for SATA_PHY_LANE0_RX_STAT_LOS_CTL.
 
 //! @brief Get value of SATA_PHY_LANE0_RX_STAT_LOS_CTL from a register value.
 #define BG_SATA_PHY_LANE0_RX_STAT_LOS_CTL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_LANE0_RX_STAT_LOS_CTL) >> BP_SATA_PHY_LANE0_RX_STAT_LOS_CTL)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -398,10 +360,6 @@ typedef union _hw_sata_phy_lane0_out_stat
  */
 //@{
 #define HW_SATA_PHY_LANE0_OUT_STAT_ADDR      (REGS_SATA_PHY_LANE0_BASE + 0x2003)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_LANE0_OUT_STAT           (*(volatile hw_sata_phy_lane0_out_stat_t *) HW_SATA_PHY_LANE0_OUT_STAT_ADDR)
-#endif
 //@}
 
 /*
@@ -413,13 +371,11 @@ typedef union _hw_sata_phy_lane0_out_stat
  * Receiver valid output
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_OUT_STAT_RX_VALID      (0)      //!< Bit position for SATA_PHY_LANE0_OUT_STAT_RX_VALID.
 #define BM_SATA_PHY_LANE0_OUT_STAT_RX_VALID      (0x00000001)  //!< Bit mask for SATA_PHY_LANE0_OUT_STAT_RX_VALID.
 
 //! @brief Get value of SATA_PHY_LANE0_OUT_STAT_RX_VALID from a register value.
 #define BG_SATA_PHY_LANE0_OUT_STAT_RX_VALID(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_LANE0_OUT_STAT_RX_VALID) >> BP_SATA_PHY_LANE0_OUT_STAT_RX_VALID)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_OUT_STAT, field RX_PLL_STATE[1] (RO)
@@ -427,13 +383,11 @@ typedef union _hw_sata_phy_lane0_out_stat
  * Current state of Rx PLL
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_OUT_STAT_RX_PLL_STATE      (1)      //!< Bit position for SATA_PHY_LANE0_OUT_STAT_RX_PLL_STATE.
 #define BM_SATA_PHY_LANE0_OUT_STAT_RX_PLL_STATE      (0x00000002)  //!< Bit mask for SATA_PHY_LANE0_OUT_STAT_RX_PLL_STATE.
 
 //! @brief Get value of SATA_PHY_LANE0_OUT_STAT_RX_PLL_STATE from a register value.
 #define BG_SATA_PHY_LANE0_OUT_STAT_RX_PLL_STATE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_LANE0_OUT_STAT_RX_PLL_STATE) >> BP_SATA_PHY_LANE0_OUT_STAT_RX_PLL_STATE)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_OUT_STAT, field LOS[2] (RO)
@@ -441,13 +395,11 @@ typedef union _hw_sata_phy_lane0_out_stat
  * Loss of signal output
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_OUT_STAT_LOS      (2)      //!< Bit position for SATA_PHY_LANE0_OUT_STAT_LOS.
 #define BM_SATA_PHY_LANE0_OUT_STAT_LOS      (0x00000004)  //!< Bit mask for SATA_PHY_LANE0_OUT_STAT_LOS.
 
 //! @brief Get value of SATA_PHY_LANE0_OUT_STAT_LOS from a register value.
 #define BG_SATA_PHY_LANE0_OUT_STAT_LOS(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_LANE0_OUT_STAT_LOS) >> BP_SATA_PHY_LANE0_OUT_STAT_LOS)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_OUT_STAT, field TX_DONE[3] (RO)
@@ -455,13 +407,11 @@ typedef union _hw_sata_phy_lane0_out_stat
  * Transmit operation is complete output
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_OUT_STAT_TX_DONE      (3)      //!< Bit position for SATA_PHY_LANE0_OUT_STAT_TX_DONE.
 #define BM_SATA_PHY_LANE0_OUT_STAT_TX_DONE      (0x00000008)  //!< Bit mask for SATA_PHY_LANE0_OUT_STAT_TX_DONE.
 
 //! @brief Get value of SATA_PHY_LANE0_OUT_STAT_TX_DONE from a register value.
 #define BG_SATA_PHY_LANE0_OUT_STAT_TX_DONE(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_LANE0_OUT_STAT_TX_DONE) >> BP_SATA_PHY_LANE0_OUT_STAT_TX_DONE)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_OUT_STAT, field TX_RXPRES[4] (RO)
@@ -469,13 +419,11 @@ typedef union _hw_sata_phy_lane0_out_stat
  * Transmit receiver detection result
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_OUT_STAT_TX_RXPRES      (4)      //!< Bit position for SATA_PHY_LANE0_OUT_STAT_TX_RXPRES.
 #define BM_SATA_PHY_LANE0_OUT_STAT_TX_RXPRES      (0x00000010)  //!< Bit mask for SATA_PHY_LANE0_OUT_STAT_TX_RXPRES.
 
 //! @brief Get value of SATA_PHY_LANE0_OUT_STAT_TX_RXPRES from a register value.
 #define BG_SATA_PHY_LANE0_OUT_STAT_TX_RXPRES(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_SATA_PHY_LANE0_OUT_STAT_TX_RXPRES) >> BP_SATA_PHY_LANE0_OUT_STAT_TX_RXPRES)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -513,10 +461,6 @@ typedef union _hw_sata_phy_lane0_tx_ovrd
  */
 //@{
 #define HW_SATA_PHY_LANE0_TX_OVRD_ADDR      (REGS_SATA_PHY_LANE0_BASE + 0x2004)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_LANE0_TX_OVRD           (*(volatile hw_sata_phy_lane0_tx_ovrd_t *) HW_SATA_PHY_LANE0_TX_OVRD_ADDR)
-#endif
 //@}
 
 /*
@@ -528,7 +472,6 @@ typedef union _hw_sata_phy_lane0_tx_ovrd
  * tx_cko clock enable
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_OVRD_TX_CKO_EN      (0)      //!< Bit position for SATA_PHY_LANE0_TX_OVRD_TX_CKO_EN.
 #define BM_SATA_PHY_LANE0_TX_OVRD_TX_CKO_EN      (0x00000001)  //!< Bit mask for SATA_PHY_LANE0_TX_OVRD_TX_CKO_EN.
 
@@ -537,7 +480,6 @@ typedef union _hw_sata_phy_lane0_tx_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_OVRD_TX_CKO_EN.
 #define BF_SATA_PHY_LANE0_TX_OVRD_TX_CKO_EN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_OVRD_TX_CKO_EN) & BM_SATA_PHY_LANE0_TX_OVRD_TX_CKO_EN)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_OVRD, field TX_EN[3:1] (RW)
@@ -545,7 +487,6 @@ typedef union _hw_sata_phy_lane0_tx_ovrd
  * Transmit enable control
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_OVRD_TX_EN      (1)      //!< Bit position for SATA_PHY_LANE0_TX_OVRD_TX_EN.
 #define BM_SATA_PHY_LANE0_TX_OVRD_TX_EN      (0x0000000e)  //!< Bit mask for SATA_PHY_LANE0_TX_OVRD_TX_EN.
 
@@ -554,7 +495,6 @@ typedef union _hw_sata_phy_lane0_tx_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_OVRD_TX_EN.
 #define BF_SATA_PHY_LANE0_TX_OVRD_TX_EN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_OVRD_TX_EN) & BM_SATA_PHY_LANE0_TX_OVRD_TX_EN)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_OVRD, field TX_CLK_ALIGN[4] (RW)
@@ -562,7 +502,6 @@ typedef union _hw_sata_phy_lane0_tx_ovrd
  * Command to align clocks
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_OVRD_TX_CLK_ALIGN      (4)      //!< Bit position for SATA_PHY_LANE0_TX_OVRD_TX_CLK_ALIGN.
 #define BM_SATA_PHY_LANE0_TX_OVRD_TX_CLK_ALIGN      (0x00000010)  //!< Bit mask for SATA_PHY_LANE0_TX_OVRD_TX_CLK_ALIGN.
 
@@ -571,7 +510,6 @@ typedef union _hw_sata_phy_lane0_tx_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_OVRD_TX_CLK_ALIGN.
 #define BF_SATA_PHY_LANE0_TX_OVRD_TX_CLK_ALIGN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_OVRD_TX_CLK_ALIGN) & BM_SATA_PHY_LANE0_TX_OVRD_TX_CLK_ALIGN)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_OVRD, field TX_DIS_ALIGN[5] (RW)
@@ -579,7 +517,6 @@ typedef union _hw_sata_phy_lane0_tx_ovrd
  * Disables clock alignment FSM
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_OVRD_TX_DIS_ALIGN      (5)      //!< Bit position for SATA_PHY_LANE0_TX_OVRD_TX_DIS_ALIGN.
 #define BM_SATA_PHY_LANE0_TX_OVRD_TX_DIS_ALIGN      (0x00000020)  //!< Bit mask for SATA_PHY_LANE0_TX_OVRD_TX_DIS_ALIGN.
 
@@ -588,7 +525,6 @@ typedef union _hw_sata_phy_lane0_tx_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_OVRD_TX_DIS_ALIGN.
 #define BF_SATA_PHY_LANE0_TX_OVRD_TX_DIS_ALIGN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_OVRD_TX_DIS_ALIGN) & BM_SATA_PHY_LANE0_TX_OVRD_TX_DIS_ALIGN)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_OVRD, field TX_BOOST[9:6] (RW)
@@ -596,7 +532,6 @@ typedef union _hw_sata_phy_lane0_tx_ovrd
  * Boost amount control
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_OVRD_TX_BOOST      (6)      //!< Bit position for SATA_PHY_LANE0_TX_OVRD_TX_BOOST.
 #define BM_SATA_PHY_LANE0_TX_OVRD_TX_BOOST      (0x000003c0)  //!< Bit mask for SATA_PHY_LANE0_TX_OVRD_TX_BOOST.
 
@@ -605,7 +540,6 @@ typedef union _hw_sata_phy_lane0_tx_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_OVRD_TX_BOOST.
 #define BF_SATA_PHY_LANE0_TX_OVRD_TX_BOOST(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_OVRD_TX_BOOST) & BM_SATA_PHY_LANE0_TX_OVRD_TX_BOOST)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_OVRD, field TX_ATTEN[12:10] (RW)
@@ -613,7 +547,6 @@ typedef union _hw_sata_phy_lane0_tx_ovrd
  * Attenuation amount control
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_OVRD_TX_ATTEN      (10)      //!< Bit position for SATA_PHY_LANE0_TX_OVRD_TX_ATTEN.
 #define BM_SATA_PHY_LANE0_TX_OVRD_TX_ATTEN      (0x00001c00)  //!< Bit mask for SATA_PHY_LANE0_TX_OVRD_TX_ATTEN.
 
@@ -622,7 +555,6 @@ typedef union _hw_sata_phy_lane0_tx_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_OVRD_TX_ATTEN.
 #define BF_SATA_PHY_LANE0_TX_OVRD_TX_ATTEN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_OVRD_TX_ATTEN) & BM_SATA_PHY_LANE0_TX_OVRD_TX_ATTEN)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_OVRD, field TX_EDGERATE[14:13] (RW)
@@ -630,7 +562,6 @@ typedef union _hw_sata_phy_lane0_tx_ovrd
  * Edge rate control
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_OVRD_TX_EDGERATE      (13)      //!< Bit position for SATA_PHY_LANE0_TX_OVRD_TX_EDGERATE.
 #define BM_SATA_PHY_LANE0_TX_OVRD_TX_EDGERATE      (0x00006000)  //!< Bit mask for SATA_PHY_LANE0_TX_OVRD_TX_EDGERATE.
 
@@ -639,7 +570,6 @@ typedef union _hw_sata_phy_lane0_tx_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_OVRD_TX_EDGERATE.
 #define BF_SATA_PHY_LANE0_TX_OVRD_TX_EDGERATE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_OVRD_TX_EDGERATE) & BM_SATA_PHY_LANE0_TX_OVRD_TX_EDGERATE)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_OVRD, field OVRD[15] (RW)
@@ -647,7 +577,6 @@ typedef union _hw_sata_phy_lane0_tx_ovrd
  * Enables override of all bits in this register
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_OVRD_OVRD      (15)      //!< Bit position for SATA_PHY_LANE0_TX_OVRD_OVRD.
 #define BM_SATA_PHY_LANE0_TX_OVRD_OVRD      (0x00008000)  //!< Bit mask for SATA_PHY_LANE0_TX_OVRD_OVRD.
 
@@ -656,7 +585,6 @@ typedef union _hw_sata_phy_lane0_tx_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_OVRD_OVRD.
 #define BF_SATA_PHY_LANE0_TX_OVRD_OVRD(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_OVRD_OVRD) & BM_SATA_PHY_LANE0_TX_OVRD_OVRD)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -697,10 +625,6 @@ typedef union _hw_sata_phy_lane0_rx_ovrd
  */
 //@{
 #define HW_SATA_PHY_LANE0_RX_OVRD_ADDR      (REGS_SATA_PHY_LANE0_BASE + 0x2005)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_LANE0_RX_OVRD           (*(volatile hw_sata_phy_lane0_rx_ovrd_t *) HW_SATA_PHY_LANE0_RX_OVRD_ADDR)
-#endif
 //@}
 
 /*
@@ -712,7 +636,6 @@ typedef union _hw_sata_phy_lane0_rx_ovrd
  * Digital half-rate data control
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_OVRD_HALF_RATE      (0)      //!< Bit position for SATA_PHY_LANE0_RX_OVRD_HALF_RATE.
 #define BM_SATA_PHY_LANE0_RX_OVRD_HALF_RATE      (0x00000001)  //!< Bit mask for SATA_PHY_LANE0_RX_OVRD_HALF_RATE.
 
@@ -721,7 +644,6 @@ typedef union _hw_sata_phy_lane0_rx_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_OVRD_HALF_RATE.
 #define BF_SATA_PHY_LANE0_RX_OVRD_HALF_RATE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_OVRD_HALF_RATE) & BM_SATA_PHY_LANE0_RX_OVRD_HALF_RATE)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_OVRD, field RX_PLL_PWRON[1] (RW)
@@ -729,7 +651,6 @@ typedef union _hw_sata_phy_lane0_rx_ovrd
  * PLL power state control
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_OVRD_RX_PLL_PWRON      (1)      //!< Bit position for SATA_PHY_LANE0_RX_OVRD_RX_PLL_PWRON.
 #define BM_SATA_PHY_LANE0_RX_OVRD_RX_PLL_PWRON      (0x00000002)  //!< Bit mask for SATA_PHY_LANE0_RX_OVRD_RX_PLL_PWRON.
 
@@ -738,7 +659,6 @@ typedef union _hw_sata_phy_lane0_rx_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_OVRD_RX_PLL_PWRON.
 #define BF_SATA_PHY_LANE0_RX_OVRD_RX_PLL_PWRON(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_OVRD_RX_PLL_PWRON) & BM_SATA_PHY_LANE0_RX_OVRD_RX_PLL_PWRON)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_OVRD, field RX_EN[2] (RW)
@@ -746,7 +666,6 @@ typedef union _hw_sata_phy_lane0_rx_ovrd
  * Receiver enable control
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_OVRD_RX_EN      (2)      //!< Bit position for SATA_PHY_LANE0_RX_OVRD_RX_EN.
 #define BM_SATA_PHY_LANE0_RX_OVRD_RX_EN      (0x00000004)  //!< Bit mask for SATA_PHY_LANE0_RX_OVRD_RX_EN.
 
@@ -755,7 +674,6 @@ typedef union _hw_sata_phy_lane0_rx_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_OVRD_RX_EN.
 #define BF_SATA_PHY_LANE0_RX_OVRD_RX_EN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_OVRD_RX_EN) & BM_SATA_PHY_LANE0_RX_OVRD_RX_EN)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_OVRD, field RX_ALIGN_EN[3] (RW)
@@ -763,7 +681,6 @@ typedef union _hw_sata_phy_lane0_rx_ovrd
  * Receiver alignment enable
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_OVRD_RX_ALIGN_EN      (3)      //!< Bit position for SATA_PHY_LANE0_RX_OVRD_RX_ALIGN_EN.
 #define BM_SATA_PHY_LANE0_RX_OVRD_RX_ALIGN_EN      (0x00000008)  //!< Bit mask for SATA_PHY_LANE0_RX_OVRD_RX_ALIGN_EN.
 
@@ -772,7 +689,6 @@ typedef union _hw_sata_phy_lane0_rx_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_OVRD_RX_ALIGN_EN.
 #define BF_SATA_PHY_LANE0_RX_OVRD_RX_ALIGN_EN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_OVRD_RX_ALIGN_EN) & BM_SATA_PHY_LANE0_RX_OVRD_RX_ALIGN_EN)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_OVRD, field RX_TERM_EN[4] (RW)
@@ -780,7 +696,6 @@ typedef union _hw_sata_phy_lane0_rx_ovrd
  * Receiver termination enable
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_OVRD_RX_TERM_EN      (4)      //!< Bit position for SATA_PHY_LANE0_RX_OVRD_RX_TERM_EN.
 #define BM_SATA_PHY_LANE0_RX_OVRD_RX_TERM_EN      (0x00000010)  //!< Bit mask for SATA_PHY_LANE0_RX_OVRD_RX_TERM_EN.
 
@@ -789,7 +704,6 @@ typedef union _hw_sata_phy_lane0_rx_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_OVRD_RX_TERM_EN.
 #define BF_SATA_PHY_LANE0_RX_OVRD_RX_TERM_EN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_OVRD_RX_TERM_EN) & BM_SATA_PHY_LANE0_RX_OVRD_RX_TERM_EN)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_OVRD, field RX_EQ_VAL[7:5] (RW)
@@ -797,7 +711,6 @@ typedef union _hw_sata_phy_lane0_rx_ovrd
  * Equalization amount control
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_OVRD_RX_EQ_VAL      (5)      //!< Bit position for SATA_PHY_LANE0_RX_OVRD_RX_EQ_VAL.
 #define BM_SATA_PHY_LANE0_RX_OVRD_RX_EQ_VAL      (0x000000e0)  //!< Bit mask for SATA_PHY_LANE0_RX_OVRD_RX_EQ_VAL.
 
@@ -806,7 +719,6 @@ typedef union _hw_sata_phy_lane0_rx_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_OVRD_RX_EQ_VAL.
 #define BF_SATA_PHY_LANE0_RX_OVRD_RX_EQ_VAL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_OVRD_RX_EQ_VAL) & BM_SATA_PHY_LANE0_RX_OVRD_RX_EQ_VAL)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_OVRD, field RX_DPLL_MODE[10:8] (RW)
@@ -814,7 +726,6 @@ typedef union _hw_sata_phy_lane0_rx_ovrd
  * DPLL mode control
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_OVRD_RX_DPLL_MODE      (8)      //!< Bit position for SATA_PHY_LANE0_RX_OVRD_RX_DPLL_MODE.
 #define BM_SATA_PHY_LANE0_RX_OVRD_RX_DPLL_MODE      (0x00000700)  //!< Bit mask for SATA_PHY_LANE0_RX_OVRD_RX_DPLL_MODE.
 
@@ -823,7 +734,6 @@ typedef union _hw_sata_phy_lane0_rx_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_OVRD_RX_DPLL_MODE.
 #define BF_SATA_PHY_LANE0_RX_OVRD_RX_DPLL_MODE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_OVRD_RX_DPLL_MODE) & BM_SATA_PHY_LANE0_RX_OVRD_RX_DPLL_MODE)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_OVRD, field DPLL_RESET[11] (RW)
@@ -831,7 +741,6 @@ typedef union _hw_sata_phy_lane0_rx_ovrd
  * DPLL reset control
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_OVRD_DPLL_RESET      (11)      //!< Bit position for SATA_PHY_LANE0_RX_OVRD_DPLL_RESET.
 #define BM_SATA_PHY_LANE0_RX_OVRD_DPLL_RESET      (0x00000800)  //!< Bit mask for SATA_PHY_LANE0_RX_OVRD_DPLL_RESET.
 
@@ -840,7 +749,6 @@ typedef union _hw_sata_phy_lane0_rx_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_OVRD_DPLL_RESET.
 #define BF_SATA_PHY_LANE0_RX_OVRD_DPLL_RESET(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_OVRD_DPLL_RESET) & BM_SATA_PHY_LANE0_RX_OVRD_DPLL_RESET)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_OVRD, field LOS_CTL[13:12] (RW)
@@ -848,7 +756,6 @@ typedef union _hw_sata_phy_lane0_rx_ovrd
  * LOS filtering mode control
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_OVRD_LOS_CTL      (12)      //!< Bit position for SATA_PHY_LANE0_RX_OVRD_LOS_CTL.
 #define BM_SATA_PHY_LANE0_RX_OVRD_LOS_CTL      (0x00003000)  //!< Bit mask for SATA_PHY_LANE0_RX_OVRD_LOS_CTL.
 
@@ -857,7 +764,6 @@ typedef union _hw_sata_phy_lane0_rx_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_OVRD_LOS_CTL.
 #define BF_SATA_PHY_LANE0_RX_OVRD_LOS_CTL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_OVRD_LOS_CTL) & BM_SATA_PHY_LANE0_RX_OVRD_LOS_CTL)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_OVRD, field OVRD[14] (RW)
@@ -865,7 +771,6 @@ typedef union _hw_sata_phy_lane0_rx_ovrd
  * Enables override of all bits in this register
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_OVRD_OVRD      (14)      //!< Bit position for SATA_PHY_LANE0_RX_OVRD_OVRD.
 #define BM_SATA_PHY_LANE0_RX_OVRD_OVRD      (0x00004000)  //!< Bit mask for SATA_PHY_LANE0_RX_OVRD_OVRD.
 
@@ -874,7 +779,6 @@ typedef union _hw_sata_phy_lane0_rx_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_OVRD_OVRD.
 #define BF_SATA_PHY_LANE0_RX_OVRD_OVRD(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_OVRD_OVRD) & BM_SATA_PHY_LANE0_RX_OVRD_OVRD)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -911,10 +815,6 @@ typedef union _hw_sata_phy_lane0_out_ovrd
  */
 //@{
 #define HW_SATA_PHY_LANE0_OUT_OVRD_ADDR      (REGS_SATA_PHY_LANE0_BASE + 0x2006)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_LANE0_OUT_OVRD           (*(volatile hw_sata_phy_lane0_out_ovrd_t *) HW_SATA_PHY_LANE0_OUT_OVRD_ADDR)
-#endif
 //@}
 
 /*
@@ -926,7 +826,6 @@ typedef union _hw_sata_phy_lane0_out_ovrd
  * Receiver valid output
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_OUT_OVRD_RX_VALID      (0)      //!< Bit position for SATA_PHY_LANE0_OUT_OVRD_RX_VALID.
 #define BM_SATA_PHY_LANE0_OUT_OVRD_RX_VALID      (0x00000001)  //!< Bit mask for SATA_PHY_LANE0_OUT_OVRD_RX_VALID.
 
@@ -935,7 +834,6 @@ typedef union _hw_sata_phy_lane0_out_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_OUT_OVRD_RX_VALID.
 #define BF_SATA_PHY_LANE0_OUT_OVRD_RX_VALID(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_OUT_OVRD_RX_VALID) & BM_SATA_PHY_LANE0_OUT_OVRD_RX_VALID)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_OUT_OVRD, field RX_PLL_STATE[1] (RW)
@@ -943,7 +841,6 @@ typedef union _hw_sata_phy_lane0_out_ovrd
  * Current state of Rx PLL
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_OUT_OVRD_RX_PLL_STATE      (1)      //!< Bit position for SATA_PHY_LANE0_OUT_OVRD_RX_PLL_STATE.
 #define BM_SATA_PHY_LANE0_OUT_OVRD_RX_PLL_STATE      (0x00000002)  //!< Bit mask for SATA_PHY_LANE0_OUT_OVRD_RX_PLL_STATE.
 
@@ -952,7 +849,6 @@ typedef union _hw_sata_phy_lane0_out_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_OUT_OVRD_RX_PLL_STATE.
 #define BF_SATA_PHY_LANE0_OUT_OVRD_RX_PLL_STATE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_OUT_OVRD_RX_PLL_STATE) & BM_SATA_PHY_LANE0_OUT_OVRD_RX_PLL_STATE)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_OUT_OVRD, field LOS[2] (RW)
@@ -960,7 +856,6 @@ typedef union _hw_sata_phy_lane0_out_ovrd
  * Loss of signal output
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_OUT_OVRD_LOS      (2)      //!< Bit position for SATA_PHY_LANE0_OUT_OVRD_LOS.
 #define BM_SATA_PHY_LANE0_OUT_OVRD_LOS      (0x00000004)  //!< Bit mask for SATA_PHY_LANE0_OUT_OVRD_LOS.
 
@@ -969,7 +864,6 @@ typedef union _hw_sata_phy_lane0_out_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_OUT_OVRD_LOS.
 #define BF_SATA_PHY_LANE0_OUT_OVRD_LOS(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_OUT_OVRD_LOS) & BM_SATA_PHY_LANE0_OUT_OVRD_LOS)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_OUT_OVRD, field TX_DONE[3] (RW)
@@ -977,7 +871,6 @@ typedef union _hw_sata_phy_lane0_out_ovrd
  * Transmit operation is complete output
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_OUT_OVRD_TX_DONE      (3)      //!< Bit position for SATA_PHY_LANE0_OUT_OVRD_TX_DONE.
 #define BM_SATA_PHY_LANE0_OUT_OVRD_TX_DONE      (0x00000008)  //!< Bit mask for SATA_PHY_LANE0_OUT_OVRD_TX_DONE.
 
@@ -986,7 +879,6 @@ typedef union _hw_sata_phy_lane0_out_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_OUT_OVRD_TX_DONE.
 #define BF_SATA_PHY_LANE0_OUT_OVRD_TX_DONE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_OUT_OVRD_TX_DONE) & BM_SATA_PHY_LANE0_OUT_OVRD_TX_DONE)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_OUT_OVRD, field TX_RXPRES[4] (RW)
@@ -994,7 +886,6 @@ typedef union _hw_sata_phy_lane0_out_ovrd
  * Transmit receiver detection result
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_OUT_OVRD_TX_RXPRES      (4)      //!< Bit position for SATA_PHY_LANE0_OUT_OVRD_TX_RXPRES.
 #define BM_SATA_PHY_LANE0_OUT_OVRD_TX_RXPRES      (0x00000010)  //!< Bit mask for SATA_PHY_LANE0_OUT_OVRD_TX_RXPRES.
 
@@ -1003,7 +894,6 @@ typedef union _hw_sata_phy_lane0_out_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_OUT_OVRD_TX_RXPRES.
 #define BF_SATA_PHY_LANE0_OUT_OVRD_TX_RXPRES(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_OUT_OVRD_TX_RXPRES) & BM_SATA_PHY_LANE0_OUT_OVRD_TX_RXPRES)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_OUT_OVRD, field OVRD[5] (RW)
@@ -1011,7 +901,6 @@ typedef union _hw_sata_phy_lane0_out_ovrd
  * Enables override of all bits in this register
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_OUT_OVRD_OVRD      (5)      //!< Bit position for SATA_PHY_LANE0_OUT_OVRD_OVRD.
 #define BM_SATA_PHY_LANE0_OUT_OVRD_OVRD      (0x00000020)  //!< Bit mask for SATA_PHY_LANE0_OUT_OVRD_OVRD.
 
@@ -1020,7 +909,6 @@ typedef union _hw_sata_phy_lane0_out_ovrd
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_OUT_OVRD_OVRD.
 #define BF_SATA_PHY_LANE0_OUT_OVRD_OVRD(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_OUT_OVRD_OVRD) & BM_SATA_PHY_LANE0_OUT_OVRD_OVRD)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1057,10 +945,6 @@ typedef union _hw_sata_phy_lane0_dbg_ctl
  */
 //@{
 #define HW_SATA_PHY_LANE0_DBG_CTL_ADDR      (REGS_SATA_PHY_LANE0_BASE + 0x2007)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_LANE0_DBG_CTL           (*(volatile hw_sata_phy_lane0_dbg_ctl_t *) HW_SATA_PHY_LANE0_DBG_CTL_ADDR)
-#endif
 //@}
 
 /*
@@ -1072,7 +956,6 @@ typedef union _hw_sata_phy_lane0_dbg_ctl
  * Overrides all transmit data to zeros
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_DBG_CTL_ZERO_TX_DATA      (0)      //!< Bit position for SATA_PHY_LANE0_DBG_CTL_ZERO_TX_DATA.
 #define BM_SATA_PHY_LANE0_DBG_CTL_ZERO_TX_DATA      (0x00000001)  //!< Bit mask for SATA_PHY_LANE0_DBG_CTL_ZERO_TX_DATA.
 
@@ -1081,7 +964,6 @@ typedef union _hw_sata_phy_lane0_dbg_ctl
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_DBG_CTL_ZERO_TX_DATA.
 #define BF_SATA_PHY_LANE0_DBG_CTL_ZERO_TX_DATA(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_DBG_CTL_ZERO_TX_DATA) & BM_SATA_PHY_LANE0_DBG_CTL_ZERO_TX_DATA)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_DBG_CTL, field ZERO_RX_DATA[1] (RW)
@@ -1089,7 +971,6 @@ typedef union _hw_sata_phy_lane0_dbg_ctl
  * Overrides all receive data to zeros
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_DBG_CTL_ZERO_RX_DATA      (1)      //!< Bit position for SATA_PHY_LANE0_DBG_CTL_ZERO_RX_DATA.
 #define BM_SATA_PHY_LANE0_DBG_CTL_ZERO_RX_DATA      (0x00000002)  //!< Bit mask for SATA_PHY_LANE0_DBG_CTL_ZERO_RX_DATA.
 
@@ -1098,7 +979,6 @@ typedef union _hw_sata_phy_lane0_dbg_ctl
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_DBG_CTL_ZERO_RX_DATA.
 #define BF_SATA_PHY_LANE0_DBG_CTL_ZERO_RX_DATA(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_DBG_CTL_ZERO_RX_DATA) & BM_SATA_PHY_LANE0_DBG_CTL_ZERO_RX_DATA)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_DBG_CTL, field INVERT_TX[2] (RW)
@@ -1106,7 +986,6 @@ typedef union _hw_sata_phy_lane0_dbg_ctl
  * Inverts transmit data (post-LBERT)
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_DBG_CTL_INVERT_TX      (2)      //!< Bit position for SATA_PHY_LANE0_DBG_CTL_INVERT_TX.
 #define BM_SATA_PHY_LANE0_DBG_CTL_INVERT_TX      (0x00000004)  //!< Bit mask for SATA_PHY_LANE0_DBG_CTL_INVERT_TX.
 
@@ -1115,7 +994,6 @@ typedef union _hw_sata_phy_lane0_dbg_ctl
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_DBG_CTL_INVERT_TX.
 #define BF_SATA_PHY_LANE0_DBG_CTL_INVERT_TX(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_DBG_CTL_INVERT_TX) & BM_SATA_PHY_LANE0_DBG_CTL_INVERT_TX)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_DBG_CTL, field INVERT_RX[3] (RW)
@@ -1123,7 +1001,6 @@ typedef union _hw_sata_phy_lane0_dbg_ctl
  * Inverts receive data (pre-LBERT)
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_DBG_CTL_INVERT_RX      (3)      //!< Bit position for SATA_PHY_LANE0_DBG_CTL_INVERT_RX.
 #define BM_SATA_PHY_LANE0_DBG_CTL_INVERT_RX      (0x00000008)  //!< Bit mask for SATA_PHY_LANE0_DBG_CTL_INVERT_RX.
 
@@ -1132,7 +1009,6 @@ typedef union _hw_sata_phy_lane0_dbg_ctl
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_DBG_CTL_INVERT_RX.
 #define BF_SATA_PHY_LANE0_DBG_CTL_INVERT_RX(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_DBG_CTL_INVERT_RX) & BM_SATA_PHY_LANE0_DBG_CTL_INVERT_RX)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_DBG_CTL, field DISABLE_RX_CK[4] (RW)
@@ -1140,7 +1016,6 @@ typedef union _hw_sata_phy_lane0_dbg_ctl
  * Disables rx_ck output
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_DBG_CTL_DISABLE_RX_CK      (4)      //!< Bit position for SATA_PHY_LANE0_DBG_CTL_DISABLE_RX_CK.
 #define BM_SATA_PHY_LANE0_DBG_CTL_DISABLE_RX_CK      (0x00000010)  //!< Bit mask for SATA_PHY_LANE0_DBG_CTL_DISABLE_RX_CK.
 
@@ -1149,7 +1024,6 @@ typedef union _hw_sata_phy_lane0_dbg_ctl
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_DBG_CTL_DISABLE_RX_CK.
 #define BF_SATA_PHY_LANE0_DBG_CTL_DISABLE_RX_CK(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_DBG_CTL_DISABLE_RX_CK) & BM_SATA_PHY_LANE0_DBG_CTL_DISABLE_RX_CK)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_DBG_CTL, field DTB_SEL0[9:5] (RW)
@@ -1186,7 +1060,6 @@ typedef union _hw_sata_phy_lane0_dbg_ctl
  * - 11010 - acjt receiver o/p from rx_m
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_DBG_CTL_DTB_SEL0      (5)      //!< Bit position for SATA_PHY_LANE0_DBG_CTL_DTB_SEL0.
 #define BM_SATA_PHY_LANE0_DBG_CTL_DTB_SEL0      (0x000003e0)  //!< Bit mask for SATA_PHY_LANE0_DBG_CTL_DTB_SEL0.
 
@@ -1195,7 +1068,6 @@ typedef union _hw_sata_phy_lane0_dbg_ctl
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_DBG_CTL_DTB_SEL0.
 #define BF_SATA_PHY_LANE0_DBG_CTL_DTB_SEL0(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_DBG_CTL_DTB_SEL0) & BM_SATA_PHY_LANE0_DBG_CTL_DTB_SEL0)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_DBG_CTL, field DTB_SEL1[14:10] (RW)
@@ -1232,7 +1104,6 @@ typedef union _hw_sata_phy_lane0_dbg_ctl
  * - 11010 - acjt receiver o/p from rx_m
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_DBG_CTL_DTB_SEL1      (10)      //!< Bit position for SATA_PHY_LANE0_DBG_CTL_DTB_SEL1.
 #define BM_SATA_PHY_LANE0_DBG_CTL_DTB_SEL1      (0x00007c00)  //!< Bit mask for SATA_PHY_LANE0_DBG_CTL_DTB_SEL1.
 
@@ -1241,7 +1112,6 @@ typedef union _hw_sata_phy_lane0_dbg_ctl
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_DBG_CTL_DTB_SEL1.
 #define BF_SATA_PHY_LANE0_DBG_CTL_DTB_SEL1(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_DBG_CTL_DTB_SEL1) & BM_SATA_PHY_LANE0_DBG_CTL_DTB_SEL1)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1275,10 +1145,6 @@ typedef union _hw_sata_phy_lane0_pg_ctl
  */
 //@{
 #define HW_SATA_PHY_LANE0_PG_CTL_ADDR      (REGS_SATA_PHY_LANE0_BASE + 0x2010)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_LANE0_PG_CTL           (*(volatile hw_sata_phy_lane0_pg_ctl_t *) HW_SATA_PHY_LANE0_PG_CTL_ADDR)
-#endif
 //@}
 
 /*
@@ -1300,7 +1166,6 @@ typedef union _hw_sata_phy_lane0_pg_ctl
  * - 111 - Reserved
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PG_CTL_MODE      (0)      //!< Bit position for SATA_PHY_LANE0_PG_CTL_MODE.
 #define BM_SATA_PHY_LANE0_PG_CTL_MODE      (0x00000007)  //!< Bit mask for SATA_PHY_LANE0_PG_CTL_MODE.
 
@@ -1309,7 +1174,6 @@ typedef union _hw_sata_phy_lane0_pg_ctl
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PG_CTL_MODE.
 #define BF_SATA_PHY_LANE0_PG_CTL_MODE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PG_CTL_MODE) & BM_SATA_PHY_LANE0_PG_CTL_MODE)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_PG_CTL, field TRIGGER_ERR[3] (RW)
@@ -1317,7 +1181,6 @@ typedef union _hw_sata_phy_lane0_pg_ctl
  * Inserts a single error into the LSB
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PG_CTL_TRIGGER_ERR      (3)      //!< Bit position for SATA_PHY_LANE0_PG_CTL_TRIGGER_ERR.
 #define BM_SATA_PHY_LANE0_PG_CTL_TRIGGER_ERR      (0x00000008)  //!< Bit mask for SATA_PHY_LANE0_PG_CTL_TRIGGER_ERR.
 
@@ -1326,7 +1189,6 @@ typedef union _hw_sata_phy_lane0_pg_ctl
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PG_CTL_TRIGGER_ERR.
 #define BF_SATA_PHY_LANE0_PG_CTL_TRIGGER_ERR(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PG_CTL_TRIGGER_ERR) & BM_SATA_PHY_LANE0_PG_CTL_TRIGGER_ERR)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_PG_CTL, field PAT0[13:4] (RW)
@@ -1334,7 +1196,6 @@ typedef union _hw_sata_phy_lane0_pg_ctl
  * Pattern for modes 3-5
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PG_CTL_PAT0      (4)      //!< Bit position for SATA_PHY_LANE0_PG_CTL_PAT0.
 #define BM_SATA_PHY_LANE0_PG_CTL_PAT0      (0x00003ff0)  //!< Bit mask for SATA_PHY_LANE0_PG_CTL_PAT0.
 
@@ -1343,7 +1204,6 @@ typedef union _hw_sata_phy_lane0_pg_ctl
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PG_CTL_PAT0.
 #define BF_SATA_PHY_LANE0_PG_CTL_PAT0(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PG_CTL_PAT0) & BM_SATA_PHY_LANE0_PG_CTL_PAT0)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1376,10 +1236,6 @@ typedef union _hw_sata_phy_lane0_pm_ctl
  */
 //@{
 #define HW_SATA_PHY_LANE0_PM_CTL_ADDR      (REGS_SATA_PHY_LANE0_BASE + 0x2018)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_LANE0_PM_CTL           (*(volatile hw_sata_phy_lane0_pm_ctl_t *) HW_SATA_PHY_LANE0_PM_CTL_ADDR)
-#endif
 //@}
 
 /*
@@ -1398,7 +1254,6 @@ typedef union _hw_sata_phy_lane0_pm_ctl
  * - 100 - d[n] = !d[n-10]
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PM_CTL_MODE      (0)      //!< Bit position for SATA_PHY_LANE0_PM_CTL_MODE.
 #define BM_SATA_PHY_LANE0_PM_CTL_MODE      (0x00000007)  //!< Bit mask for SATA_PHY_LANE0_PM_CTL_MODE.
 
@@ -1407,7 +1262,6 @@ typedef union _hw_sata_phy_lane0_pm_ctl
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PM_CTL_MODE.
 #define BF_SATA_PHY_LANE0_PM_CTL_MODE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PM_CTL_MODE) & BM_SATA_PHY_LANE0_PM_CTL_MODE)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_PM_CTL, field SYNC[3] (RW)
@@ -1416,7 +1270,6 @@ typedef union _hw_sata_phy_lane0_pm_ctl
  * turned off.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PM_CTL_SYNC      (3)      //!< Bit position for SATA_PHY_LANE0_PM_CTL_SYNC.
 #define BM_SATA_PHY_LANE0_PM_CTL_SYNC      (0x00000008)  //!< Bit mask for SATA_PHY_LANE0_PM_CTL_SYNC.
 
@@ -1425,7 +1278,6 @@ typedef union _hw_sata_phy_lane0_pm_ctl
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PM_CTL_SYNC.
 #define BF_SATA_PHY_LANE0_PM_CTL_SYNC(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PM_CTL_SYNC) & BM_SATA_PHY_LANE0_PM_CTL_SYNC)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1458,10 +1310,6 @@ typedef union _hw_sata_phy_lane0_pm_err
  */
 //@{
 #define HW_SATA_PHY_LANE0_PM_ERR_ADDR      (REGS_SATA_PHY_LANE0_BASE + 0x2019)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_LANE0_PM_ERR           (*(volatile hw_sata_phy_lane0_pm_err_t *) HW_SATA_PHY_LANE0_PM_ERR_ADDR)
-#endif
 //@}
 
 /*
@@ -1473,7 +1321,6 @@ typedef union _hw_sata_phy_lane0_pm_err
  * Current error count If the ov14 field is active, the count is multiplied by 128.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PM_ERR_COUNT      (0)      //!< Bit position for SATA_PHY_LANE0_PM_ERR_COUNT.
 #define BM_SATA_PHY_LANE0_PM_ERR_COUNT      (0x00007fff)  //!< Bit mask for SATA_PHY_LANE0_PM_ERR_COUNT.
 
@@ -1482,7 +1329,6 @@ typedef union _hw_sata_phy_lane0_pm_err
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PM_ERR_COUNT.
 #define BF_SATA_PHY_LANE0_PM_ERR_COUNT(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PM_ERR_COUNT) & BM_SATA_PHY_LANE0_PM_ERR_COUNT)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_PM_ERR, field OV14[15] (RW)
@@ -1491,7 +1337,6 @@ typedef union _hw_sata_phy_lane0_pm_err
  * 1, indicates overflow of counter.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PM_ERR_OV14      (15)      //!< Bit position for SATA_PHY_LANE0_PM_ERR_OV14.
 #define BM_SATA_PHY_LANE0_PM_ERR_OV14      (0x00008000)  //!< Bit mask for SATA_PHY_LANE0_PM_ERR_OV14.
 
@@ -1500,7 +1345,6 @@ typedef union _hw_sata_phy_lane0_pm_err
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PM_ERR_OV14.
 #define BF_SATA_PHY_LANE0_PM_ERR_OV14(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PM_ERR_OV14) & BM_SATA_PHY_LANE0_PM_ERR_OV14)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1533,10 +1377,6 @@ typedef union _hw_sata_phy_lane0_dpll_phase
  */
 //@{
 #define HW_SATA_PHY_LANE0_DPLL_PHASE_ADDR      (REGS_SATA_PHY_LANE0_BASE + 0x201a)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_LANE0_DPLL_PHASE           (*(volatile hw_sata_phy_lane0_dpll_phase_t *) HW_SATA_PHY_LANE0_DPLL_PHASE_ADDR)
-#endif
 //@}
 
 /*
@@ -1548,7 +1388,6 @@ typedef union _hw_sata_phy_lane0_dpll_phase
  * Bits below the useful resolution
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_DPLL_PHASE_DTHR      (0)      //!< Bit position for SATA_PHY_LANE0_DPLL_PHASE_DTHR.
 #define BM_SATA_PHY_LANE0_DPLL_PHASE_DTHR      (0x00000001)  //!< Bit mask for SATA_PHY_LANE0_DPLL_PHASE_DTHR.
 
@@ -1557,7 +1396,6 @@ typedef union _hw_sata_phy_lane0_dpll_phase
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_DPLL_PHASE_DTHR.
 #define BF_SATA_PHY_LANE0_DPLL_PHASE_DTHR(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_DPLL_PHASE_DTHR) & BM_SATA_PHY_LANE0_DPLL_PHASE_DTHR)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_DPLL_PHASE, field VAL[10:1] (RW)
@@ -1565,7 +1403,6 @@ typedef union _hw_sata_phy_lane0_dpll_phase
  * Phase is .UI/512 x VAL ps from zero reference
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_DPLL_PHASE_VAL      (1)      //!< Bit position for SATA_PHY_LANE0_DPLL_PHASE_VAL.
 #define BM_SATA_PHY_LANE0_DPLL_PHASE_VAL      (0x000007fe)  //!< Bit mask for SATA_PHY_LANE0_DPLL_PHASE_VAL.
 
@@ -1574,7 +1411,6 @@ typedef union _hw_sata_phy_lane0_dpll_phase
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_DPLL_PHASE_VAL.
 #define BF_SATA_PHY_LANE0_DPLL_PHASE_VAL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_DPLL_PHASE_VAL) & BM_SATA_PHY_LANE0_DPLL_PHASE_VAL)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1607,10 +1443,6 @@ typedef union _hw_sata_phy_lane0_dpll_freq
  */
 //@{
 #define HW_SATA_PHY_LANE0_DPLL_FREQ_ADDR      (REGS_SATA_PHY_LANE0_BASE + 0x201b)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_LANE0_DPLL_FREQ           (*(volatile hw_sata_phy_lane0_dpll_freq_t *) HW_SATA_PHY_LANE0_DPLL_FREQ_ADDR)
-#endif
 //@}
 
 /*
@@ -1622,7 +1454,6 @@ typedef union _hw_sata_phy_lane0_dpll_freq
  * Bits below the useful resolution
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_DPLL_FREQ_DTHR      (0)      //!< Bit position for SATA_PHY_LANE0_DPLL_FREQ_DTHR.
 #define BM_SATA_PHY_LANE0_DPLL_FREQ_DTHR      (0x00000001)  //!< Bit mask for SATA_PHY_LANE0_DPLL_FREQ_DTHR.
 
@@ -1631,7 +1462,6 @@ typedef union _hw_sata_phy_lane0_dpll_freq
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_DPLL_FREQ_DTHR.
 #define BF_SATA_PHY_LANE0_DPLL_FREQ_DTHR(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_DPLL_FREQ_DTHR) & BM_SATA_PHY_LANE0_DPLL_FREQ_DTHR)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_DPLL_FREQ, field VAL[13:1] (RW)
@@ -1639,7 +1469,6 @@ typedef union _hw_sata_phy_lane0_dpll_freq
  * Frequency is 1.526 x VAL ppm from the reference
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_DPLL_FREQ_VAL      (1)      //!< Bit position for SATA_PHY_LANE0_DPLL_FREQ_VAL.
 #define BM_SATA_PHY_LANE0_DPLL_FREQ_VAL      (0x00003ffe)  //!< Bit mask for SATA_PHY_LANE0_DPLL_FREQ_VAL.
 
@@ -1648,7 +1477,6 @@ typedef union _hw_sata_phy_lane0_dpll_freq
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_DPLL_FREQ_VAL.
 #define BF_SATA_PHY_LANE0_DPLL_FREQ_VAL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_DPLL_FREQ_VAL) & BM_SATA_PHY_LANE0_DPLL_FREQ_VAL)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1682,10 +1510,6 @@ typedef union _hw_sata_phy_lane0_scope_ctl
  */
 //@{
 #define HW_SATA_PHY_LANE0_SCOPE_CTL_ADDR      (REGS_SATA_PHY_LANE0_BASE + 0x201c)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_LANE0_SCOPE_CTL           (*(volatile hw_sata_phy_lane0_scope_ctl_t *) HW_SATA_PHY_LANE0_SCOPE_CTL_ADDR)
-#endif
 //@}
 
 /*
@@ -1703,7 +1527,6 @@ typedef union _hw_sata_phy_lane0_scope_ctl
  * - 11 - Sample every 12 + 10 x delay bits
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_SCOPE_CTL_MODE      (0)      //!< Bit position for SATA_PHY_LANE0_SCOPE_CTL_MODE.
 #define BM_SATA_PHY_LANE0_SCOPE_CTL_MODE      (0x00000003)  //!< Bit mask for SATA_PHY_LANE0_SCOPE_CTL_MODE.
 
@@ -1712,7 +1535,6 @@ typedef union _hw_sata_phy_lane0_scope_ctl
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_SCOPE_CTL_MODE.
 #define BF_SATA_PHY_LANE0_SCOPE_CTL_MODE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_SCOPE_CTL_MODE) & BM_SATA_PHY_LANE0_SCOPE_CTL_MODE)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_SCOPE_CTL, field DELAY[10:2] (RW)
@@ -1720,7 +1542,6 @@ typedef union _hw_sata_phy_lane0_scope_ctl
  * Number of symbols to skip between samples
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_SCOPE_CTL_DELAY      (2)      //!< Bit position for SATA_PHY_LANE0_SCOPE_CTL_DELAY.
 #define BM_SATA_PHY_LANE0_SCOPE_CTL_DELAY      (0x000007fc)  //!< Bit mask for SATA_PHY_LANE0_SCOPE_CTL_DELAY.
 
@@ -1729,7 +1550,6 @@ typedef union _hw_sata_phy_lane0_scope_ctl
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_SCOPE_CTL_DELAY.
 #define BF_SATA_PHY_LANE0_SCOPE_CTL_DELAY(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_SCOPE_CTL_DELAY) & BM_SATA_PHY_LANE0_SCOPE_CTL_DELAY)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_SCOPE_CTL, field BASE[14:11] (RW)
@@ -1737,7 +1557,6 @@ typedef union _hw_sata_phy_lane0_scope_ctl
  * The bit to be sampled when mode = 2'b01
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_SCOPE_CTL_BASE      (11)      //!< Bit position for SATA_PHY_LANE0_SCOPE_CTL_BASE.
 #define BM_SATA_PHY_LANE0_SCOPE_CTL_BASE      (0x00007800)  //!< Bit mask for SATA_PHY_LANE0_SCOPE_CTL_BASE.
 
@@ -1746,7 +1565,6 @@ typedef union _hw_sata_phy_lane0_scope_ctl
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_SCOPE_CTL_BASE.
 #define BF_SATA_PHY_LANE0_SCOPE_CTL_BASE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_SCOPE_CTL_BASE) & BM_SATA_PHY_LANE0_SCOPE_CTL_BASE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1786,10 +1604,6 @@ typedef union _hw_sata_phy_lane0_rx_ctl
  */
 //@{
 #define HW_SATA_PHY_LANE0_RX_CTL_ADDR      (REGS_SATA_PHY_LANE0_BASE + 0x201d)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_LANE0_RX_CTL           (*(volatile hw_sata_phy_lane0_rx_ctl_t *) HW_SATA_PHY_LANE0_RX_CTL_ADDR)
-#endif
 //@}
 
 /*
@@ -1801,7 +1615,6 @@ typedef union _hw_sata_phy_lane0_rx_ctl
  * Enables phase detector Top bit is odd slicers, bottom is even.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_CTL_PHDET_EN      (0)      //!< Bit position for SATA_PHY_LANE0_RX_CTL_PHDET_EN.
 #define BM_SATA_PHY_LANE0_RX_CTL_PHDET_EN      (0x00000003)  //!< Bit mask for SATA_PHY_LANE0_RX_CTL_PHDET_EN.
 
@@ -1810,7 +1623,6 @@ typedef union _hw_sata_phy_lane0_rx_ctl
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_CTL_PHDET_EN.
 #define BF_SATA_PHY_LANE0_RX_CTL_PHDET_EN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_CTL_PHDET_EN) & BM_SATA_PHY_LANE0_RX_CTL_PHDET_EN)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_CTL, field PHDET_EDGE[3:2] (RW)
@@ -1818,7 +1630,6 @@ typedef union _hw_sata_phy_lane0_rx_ctl
  * Edges to use for phase detection Top bit is rising edges, bottom is falling.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_CTL_PHDET_EDGE      (2)      //!< Bit position for SATA_PHY_LANE0_RX_CTL_PHDET_EDGE.
 #define BM_SATA_PHY_LANE0_RX_CTL_PHDET_EDGE      (0x0000000c)  //!< Bit mask for SATA_PHY_LANE0_RX_CTL_PHDET_EDGE.
 
@@ -1827,7 +1638,6 @@ typedef union _hw_sata_phy_lane0_rx_ctl
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_CTL_PHDET_EDGE.
 #define BF_SATA_PHY_LANE0_RX_CTL_PHDET_EDGE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_CTL_PHDET_EDGE) & BM_SATA_PHY_LANE0_RX_CTL_PHDET_EDGE)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_CTL, field PHDET_POL[4] (RW)
@@ -1835,7 +1645,6 @@ typedef union _hw_sata_phy_lane0_rx_ctl
  * Reverses polarity of phase error
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_CTL_PHDET_POL      (4)      //!< Bit position for SATA_PHY_LANE0_RX_CTL_PHDET_POL.
 #define BM_SATA_PHY_LANE0_RX_CTL_PHDET_POL      (0x00000010)  //!< Bit mask for SATA_PHY_LANE0_RX_CTL_PHDET_POL.
 
@@ -1844,7 +1653,6 @@ typedef union _hw_sata_phy_lane0_rx_ctl
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_CTL_PHDET_POL.
 #define BF_SATA_PHY_LANE0_RX_CTL_PHDET_POL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_CTL_PHDET_POL) & BM_SATA_PHY_LANE0_RX_CTL_PHDET_POL)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_CTL, field OVRD_DPLL_GAIN[5] (RW)
@@ -1852,7 +1660,6 @@ typedef union _hw_sata_phy_lane0_rx_ctl
  * Overrides phase update gain (PHUG) and frequency update gain (FRUG) values
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_CTL_OVRD_DPLL_GAIN      (5)      //!< Bit position for SATA_PHY_LANE0_RX_CTL_OVRD_DPLL_GAIN.
 #define BM_SATA_PHY_LANE0_RX_CTL_OVRD_DPLL_GAIN      (0x00000020)  //!< Bit mask for SATA_PHY_LANE0_RX_CTL_OVRD_DPLL_GAIN.
 
@@ -1861,7 +1668,6 @@ typedef union _hw_sata_phy_lane0_rx_ctl
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_CTL_OVRD_DPLL_GAIN.
 #define BF_SATA_PHY_LANE0_RX_CTL_OVRD_DPLL_GAIN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_CTL_OVRD_DPLL_GAIN) & BM_SATA_PHY_LANE0_RX_CTL_OVRD_DPLL_GAIN)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_CTL, field PHUG_VALUE[7:6] (RW)
@@ -1869,7 +1675,6 @@ typedef union _hw_sata_phy_lane0_rx_ctl
  * Overrides value for phase update gain (PHUG)
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_CTL_PHUG_VALUE      (6)      //!< Bit position for SATA_PHY_LANE0_RX_CTL_PHUG_VALUE.
 #define BM_SATA_PHY_LANE0_RX_CTL_PHUG_VALUE      (0x000000c0)  //!< Bit mask for SATA_PHY_LANE0_RX_CTL_PHUG_VALUE.
 
@@ -1878,7 +1683,6 @@ typedef union _hw_sata_phy_lane0_rx_ctl
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_CTL_PHUG_VALUE.
 #define BF_SATA_PHY_LANE0_RX_CTL_PHUG_VALUE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_CTL_PHUG_VALUE) & BM_SATA_PHY_LANE0_RX_CTL_PHUG_VALUE)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_CTL, field FRUG_VALUE[9:8] (RW)
@@ -1886,7 +1690,6 @@ typedef union _hw_sata_phy_lane0_rx_ctl
  * Overrides value for frequency update gain (FRUG)
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_CTL_FRUG_VALUE      (8)      //!< Bit position for SATA_PHY_LANE0_RX_CTL_FRUG_VALUE.
 #define BM_SATA_PHY_LANE0_RX_CTL_FRUG_VALUE      (0x00000300)  //!< Bit mask for SATA_PHY_LANE0_RX_CTL_FRUG_VALUE.
 
@@ -1895,7 +1698,6 @@ typedef union _hw_sata_phy_lane0_rx_ctl
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_CTL_FRUG_VALUE.
 #define BF_SATA_PHY_LANE0_RX_CTL_FRUG_VALUE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_CTL_FRUG_VALUE) & BM_SATA_PHY_LANE0_RX_CTL_FRUG_VALUE)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_CTL, field MODE_BP[12:10] (RW)
@@ -1908,7 +1710,6 @@ typedef union _hw_sata_phy_lane0_rx_ctl
  * - 12 - Ends frequency update gain (FRUG) profile at 142/110 additional cycles
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_CTL_MODE_BP      (10)      //!< Bit position for SATA_PHY_LANE0_RX_CTL_MODE_BP.
 #define BM_SATA_PHY_LANE0_RX_CTL_MODE_BP      (0x00001c00)  //!< Bit mask for SATA_PHY_LANE0_RX_CTL_MODE_BP.
 
@@ -1917,7 +1718,6 @@ typedef union _hw_sata_phy_lane0_rx_ctl
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_CTL_MODE_BP.
 #define BF_SATA_PHY_LANE0_RX_CTL_MODE_BP(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_CTL_MODE_BP) & BM_SATA_PHY_LANE0_RX_CTL_MODE_BP)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_CTL, field OVRD_SWITCH[13] (RW)
@@ -1925,7 +1725,6 @@ typedef union _hw_sata_phy_lane0_rx_ctl
  * Overrides the value of the data/phase MUX
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_CTL_OVRD_SWITCH      (13)      //!< Bit position for SATA_PHY_LANE0_RX_CTL_OVRD_SWITCH.
 #define BM_SATA_PHY_LANE0_RX_CTL_OVRD_SWITCH      (0x00002000)  //!< Bit mask for SATA_PHY_LANE0_RX_CTL_OVRD_SWITCH.
 
@@ -1934,7 +1733,6 @@ typedef union _hw_sata_phy_lane0_rx_ctl
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_CTL_OVRD_SWITCH.
 #define BF_SATA_PHY_LANE0_RX_CTL_OVRD_SWITCH(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_CTL_OVRD_SWITCH) & BM_SATA_PHY_LANE0_RX_CTL_OVRD_SWITCH)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_CTL, field SWITCH_VAL[14] (RW)
@@ -1942,7 +1740,6 @@ typedef union _hw_sata_phy_lane0_rx_ctl
  * Value to override the data/phase MUX
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_CTL_SWITCH_VAL      (14)      //!< Bit position for SATA_PHY_LANE0_RX_CTL_SWITCH_VAL.
 #define BM_SATA_PHY_LANE0_RX_CTL_SWITCH_VAL      (0x00004000)  //!< Bit mask for SATA_PHY_LANE0_RX_CTL_SWITCH_VAL.
 
@@ -1951,7 +1748,6 @@ typedef union _hw_sata_phy_lane0_rx_ctl
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_CTL_SWITCH_VAL.
 #define BF_SATA_PHY_LANE0_RX_CTL_SWITCH_VAL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_CTL_SWITCH_VAL) & BM_SATA_PHY_LANE0_RX_CTL_SWITCH_VAL)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1984,10 +1780,6 @@ typedef union _hw_sata_phy_lane0_rx_dbg
  */
 //@{
 #define HW_SATA_PHY_LANE0_RX_DBG_ADDR      (REGS_SATA_PHY_LANE0_BASE + 0x201e)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_LANE0_RX_DBG           (*(volatile hw_sata_phy_lane0_rx_dbg_t *) HW_SATA_PHY_LANE0_RX_DBG_ADDR)
-#endif
 //@}
 
 /*
@@ -2017,7 +1809,6 @@ typedef union _hw_sata_phy_lane0_rx_dbg
  * - 1111 - bp_state[1]
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_DBG_DTB_SEL0      (0)      //!< Bit position for SATA_PHY_LANE0_RX_DBG_DTB_SEL0.
 #define BM_SATA_PHY_LANE0_RX_DBG_DTB_SEL0      (0x0000000f)  //!< Bit mask for SATA_PHY_LANE0_RX_DBG_DTB_SEL0.
 
@@ -2026,7 +1817,6 @@ typedef union _hw_sata_phy_lane0_rx_dbg
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_DBG_DTB_SEL0.
 #define BF_SATA_PHY_LANE0_RX_DBG_DTB_SEL0(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_DBG_DTB_SEL0) & BM_SATA_PHY_LANE0_RX_DBG_DTB_SEL0)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_DBG, field DTB_SEL1[7:4] (RW)
@@ -2052,7 +1842,6 @@ typedef union _hw_sata_phy_lane0_rx_dbg
  * - 1111 - bp_state[1]
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_DBG_DTB_SEL1      (4)      //!< Bit position for SATA_PHY_LANE0_RX_DBG_DTB_SEL1.
 #define BM_SATA_PHY_LANE0_RX_DBG_DTB_SEL1      (0x000000f0)  //!< Bit mask for SATA_PHY_LANE0_RX_DBG_DTB_SEL1.
 
@@ -2061,7 +1850,6 @@ typedef union _hw_sata_phy_lane0_rx_dbg
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_DBG_DTB_SEL1.
 #define BF_SATA_PHY_LANE0_RX_DBG_DTB_SEL1(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_DBG_DTB_SEL1) & BM_SATA_PHY_LANE0_RX_DBG_DTB_SEL1)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2096,10 +1884,6 @@ typedef union _hw_sata_phy_lane0_rx_ana_control
  */
 //@{
 #define HW_SATA_PHY_LANE0_RX_ANA_CONTROL_ADDR      (REGS_SATA_PHY_LANE0_BASE + 0x2030)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_LANE0_RX_ANA_CONTROL           (*(volatile hw_sata_phy_lane0_rx_ana_control_t *) HW_SATA_PHY_LANE0_RX_ANA_CONTROL_ADDR)
-#endif
 //@}
 
 /*
@@ -2111,7 +1895,6 @@ typedef union _hw_sata_phy_lane0_rx_ana_control
  * ATB enable bit When this field is set to 1, internal atb_s_p,m = external atb_s_p,m.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_ANA_CONTROL_ATB_EN      (0)      //!< Bit position for SATA_PHY_LANE0_RX_ANA_CONTROL_ATB_EN.
 #define BM_SATA_PHY_LANE0_RX_ANA_CONTROL_ATB_EN      (0x00000001)  //!< Bit mask for SATA_PHY_LANE0_RX_ANA_CONTROL_ATB_EN.
 
@@ -2120,7 +1903,6 @@ typedef union _hw_sata_phy_lane0_rx_ana_control
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_ANA_CONTROL_ATB_EN.
 #define BF_SATA_PHY_LANE0_RX_ANA_CONTROL_ATB_EN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_ANA_CONTROL_ATB_EN) & BM_SATA_PHY_LANE0_RX_ANA_CONTROL_ATB_EN)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_ANA_CONTROL, field MARGIN_EN[1] (RW)
@@ -2129,7 +1911,6 @@ typedef union _hw_sata_phy_lane0_rx_ana_control
  * ensure that you set atb_en so that atb_s_p/m are connected.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_ANA_CONTROL_MARGIN_EN      (1)      //!< Bit position for SATA_PHY_LANE0_RX_ANA_CONTROL_MARGIN_EN.
 #define BM_SATA_PHY_LANE0_RX_ANA_CONTROL_MARGIN_EN      (0x00000002)  //!< Bit mask for SATA_PHY_LANE0_RX_ANA_CONTROL_MARGIN_EN.
 
@@ -2138,7 +1919,6 @@ typedef union _hw_sata_phy_lane0_rx_ana_control
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_ANA_CONTROL_MARGIN_EN.
 #define BF_SATA_PHY_LANE0_RX_ANA_CONTROL_MARGIN_EN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_ANA_CONTROL_MARGIN_EN) & BM_SATA_PHY_LANE0_RX_ANA_CONTROL_MARGIN_EN)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_ANA_CONTROL, field RCK625_EN[2] (RW)
@@ -2146,7 +1926,6 @@ typedef union _hw_sata_phy_lane0_rx_ana_control
  * rck625 enable bit When this field is set to 1, pll_alt_ref is driven by ck_i_p / 2.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_ANA_CONTROL_RCK625_EN      (2)      //!< Bit position for SATA_PHY_LANE0_RX_ANA_CONTROL_RCK625_EN.
 #define BM_SATA_PHY_LANE0_RX_ANA_CONTROL_RCK625_EN      (0x00000004)  //!< Bit mask for SATA_PHY_LANE0_RX_ANA_CONTROL_RCK625_EN.
 
@@ -2155,7 +1934,6 @@ typedef union _hw_sata_phy_lane0_rx_ana_control
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_ANA_CONTROL_RCK625_EN.
 #define BF_SATA_PHY_LANE0_RX_ANA_CONTROL_RCK625_EN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_ANA_CONTROL_RCK625_EN) & BM_SATA_PHY_LANE0_RX_ANA_CONTROL_RCK625_EN)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_ANA_CONTROL, field RXLBE_EN[3] (RW)
@@ -2164,7 +1942,6 @@ typedef union _hw_sata_phy_lane0_rx_ana_control
  * connected to the lane's input (Rx) through pass gates.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_ANA_CONTROL_RXLBE_EN      (3)      //!< Bit position for SATA_PHY_LANE0_RX_ANA_CONTROL_RXLBE_EN.
 #define BM_SATA_PHY_LANE0_RX_ANA_CONTROL_RXLBE_EN      (0x00000008)  //!< Bit mask for SATA_PHY_LANE0_RX_ANA_CONTROL_RXLBE_EN.
 
@@ -2173,7 +1950,6 @@ typedef union _hw_sata_phy_lane0_rx_ana_control
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_ANA_CONTROL_RXLBE_EN.
 #define BF_SATA_PHY_LANE0_RX_ANA_CONTROL_RXLBE_EN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_ANA_CONTROL_RXLBE_EN) & BM_SATA_PHY_LANE0_RX_ANA_CONTROL_RXLBE_EN)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_ANA_CONTROL, field RXLBI_EN[4] (RW)
@@ -2182,7 +1958,6 @@ typedef union _hw_sata_phy_lane0_rx_ana_control
  * serializer is connected to the first comparator stage.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_ANA_CONTROL_RXLBI_EN      (4)      //!< Bit position for SATA_PHY_LANE0_RX_ANA_CONTROL_RXLBI_EN.
 #define BM_SATA_PHY_LANE0_RX_ANA_CONTROL_RXLBI_EN      (0x00000010)  //!< Bit mask for SATA_PHY_LANE0_RX_ANA_CONTROL_RXLBI_EN.
 
@@ -2191,7 +1966,6 @@ typedef union _hw_sata_phy_lane0_rx_ana_control
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_ANA_CONTROL_RXLBI_EN.
 #define BF_SATA_PHY_LANE0_RX_ANA_CONTROL_RXLBI_EN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_ANA_CONTROL_RXLBI_EN) & BM_SATA_PHY_LANE0_RX_ANA_CONTROL_RXLBI_EN)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2227,10 +2001,6 @@ typedef union _hw_sata_phy_lane0_rx_ana_atb
  */
 //@{
 #define HW_SATA_PHY_LANE0_RX_ANA_ATB_ADDR      (REGS_SATA_PHY_LANE0_BASE + 0x2031)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_LANE0_RX_ANA_ATB           (*(volatile hw_sata_phy_lane0_rx_ana_atb_t *) HW_SATA_PHY_LANE0_RX_ANA_ATB_ADDR)
-#endif
 //@}
 
 /*
@@ -2242,7 +2012,6 @@ typedef union _hw_sata_phy_lane0_rx_ana_atb
  * Connects atb_f_p to rx_p Use for measuring Rx termination.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_ANA_ATB_FORCEP_RX_P      (0)      //!< Bit position for SATA_PHY_LANE0_RX_ANA_ATB_FORCEP_RX_P.
 #define BM_SATA_PHY_LANE0_RX_ANA_ATB_FORCEP_RX_P      (0x00000001)  //!< Bit mask for SATA_PHY_LANE0_RX_ANA_ATB_FORCEP_RX_P.
 
@@ -2251,7 +2020,6 @@ typedef union _hw_sata_phy_lane0_rx_ana_atb
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_ANA_ATB_FORCEP_RX_P.
 #define BF_SATA_PHY_LANE0_RX_ANA_ATB_FORCEP_RX_P(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_ANA_ATB_FORCEP_RX_P) & BM_SATA_PHY_LANE0_RX_ANA_ATB_FORCEP_RX_P)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_ANA_ATB, field FORCEP_RX_M[1] (RW)
@@ -2259,7 +2027,6 @@ typedef union _hw_sata_phy_lane0_rx_ana_atb
  * Connects atb_f_p to rx_m Use for measuring Rx termination.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_ANA_ATB_FORCEP_RX_M      (1)      //!< Bit position for SATA_PHY_LANE0_RX_ANA_ATB_FORCEP_RX_M.
 #define BM_SATA_PHY_LANE0_RX_ANA_ATB_FORCEP_RX_M      (0x00000002)  //!< Bit mask for SATA_PHY_LANE0_RX_ANA_ATB_FORCEP_RX_M.
 
@@ -2268,7 +2035,6 @@ typedef union _hw_sata_phy_lane0_rx_ana_atb
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_ANA_ATB_FORCEP_RX_M.
 #define BF_SATA_PHY_LANE0_RX_ANA_ATB_FORCEP_RX_M(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_ANA_ATB_FORCEP_RX_M) & BM_SATA_PHY_LANE0_RX_ANA_ATB_FORCEP_RX_M)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_ANA_ATB, field SENSEP_RX_P[2] (RW)
@@ -2276,7 +2042,6 @@ typedef union _hw_sata_phy_lane0_rx_ana_atb
  * Connects atb_s_p to rx_p Use for measuring Rx termination.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_ANA_ATB_SENSEP_RX_P      (2)      //!< Bit position for SATA_PHY_LANE0_RX_ANA_ATB_SENSEP_RX_P.
 #define BM_SATA_PHY_LANE0_RX_ANA_ATB_SENSEP_RX_P      (0x00000004)  //!< Bit mask for SATA_PHY_LANE0_RX_ANA_ATB_SENSEP_RX_P.
 
@@ -2285,7 +2050,6 @@ typedef union _hw_sata_phy_lane0_rx_ana_atb
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_ANA_ATB_SENSEP_RX_P.
 #define BF_SATA_PHY_LANE0_RX_ANA_ATB_SENSEP_RX_P(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_ANA_ATB_SENSEP_RX_P) & BM_SATA_PHY_LANE0_RX_ANA_ATB_SENSEP_RX_P)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_ANA_ATB, field SENSEM_RX_M[3] (RW)
@@ -2293,7 +2057,6 @@ typedef union _hw_sata_phy_lane0_rx_ana_atb
  * Connects atb_s_m to rx_m Use for measuring Rx termination.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_ANA_ATB_SENSEM_RX_M      (3)      //!< Bit position for SATA_PHY_LANE0_RX_ANA_ATB_SENSEM_RX_M.
 #define BM_SATA_PHY_LANE0_RX_ANA_ATB_SENSEM_RX_M      (0x00000008)  //!< Bit mask for SATA_PHY_LANE0_RX_ANA_ATB_SENSEM_RX_M.
 
@@ -2302,7 +2065,6 @@ typedef union _hw_sata_phy_lane0_rx_ana_atb
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_ANA_ATB_SENSEM_RX_M.
 #define BF_SATA_PHY_LANE0_RX_ANA_ATB_SENSEM_RX_M(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_ANA_ATB_SENSEM_RX_M) & BM_SATA_PHY_LANE0_RX_ANA_ATB_SENSEM_RX_M)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_ANA_ATB, field SENSEM_VCM[4] (RW)
@@ -2310,7 +2072,6 @@ typedef union _hw_sata_phy_lane0_rx_ana_atb
  * Connects atb_s_m to Rx vcm Use in margining.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_ANA_ATB_SENSEM_VCM      (4)      //!< Bit position for SATA_PHY_LANE0_RX_ANA_ATB_SENSEM_VCM.
 #define BM_SATA_PHY_LANE0_RX_ANA_ATB_SENSEM_VCM      (0x00000010)  //!< Bit mask for SATA_PHY_LANE0_RX_ANA_ATB_SENSEM_VCM.
 
@@ -2319,7 +2080,6 @@ typedef union _hw_sata_phy_lane0_rx_ana_atb
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_ANA_ATB_SENSEM_VCM.
 #define BF_SATA_PHY_LANE0_RX_ANA_ATB_SENSEM_VCM(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_ANA_ATB_SENSEM_VCM) & BM_SATA_PHY_LANE0_RX_ANA_ATB_SENSEM_VCM)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_RX_ANA_ATB, field SENSEM_VREF_LOS[5] (RW)
@@ -2327,7 +2087,6 @@ typedef union _hw_sata_phy_lane0_rx_ana_atb
  * Connects atb_s_m to vref_los (vref_rx / 14)
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS      (5)      //!< Bit position for SATA_PHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS.
 #define BM_SATA_PHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS      (0x00000020)  //!< Bit mask for SATA_PHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS.
 
@@ -2336,7 +2095,6 @@ typedef union _hw_sata_phy_lane0_rx_ana_atb
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS.
 #define BF_SATA_PHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS) & BM_SATA_PHY_LANE0_RX_ANA_ATB_SENSEM_VREF_LOS)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2374,10 +2132,6 @@ typedef union _hw_sata_phy_lane0_pll_prg2
  */
 //@{
 #define HW_SATA_PHY_LANE0_PLL_PRG2_ADDR      (REGS_SATA_PHY_LANE0_BASE + 0x2032)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_LANE0_PLL_PRG2           (*(volatile hw_sata_phy_lane0_pll_prg2_t *) HW_SATA_PHY_LANE0_PLL_PRG2_ADDR)
-#endif
 //@}
 
 /*
@@ -2393,7 +2147,6 @@ typedef union _hw_sata_phy_lane0_pll_prg2
  * - 1 - Tests phase linearity of phase interpolator and VCO.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PLL_PRG2_ENABLE_TEST_PD      (0)      //!< Bit position for SATA_PHY_LANE0_PLL_PRG2_ENABLE_TEST_PD.
 #define BM_SATA_PHY_LANE0_PLL_PRG2_ENABLE_TEST_PD      (0x00000001)  //!< Bit mask for SATA_PHY_LANE0_PLL_PRG2_ENABLE_TEST_PD.
 
@@ -2402,7 +2155,6 @@ typedef union _hw_sata_phy_lane0_pll_prg2
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PLL_PRG2_ENABLE_TEST_PD.
 #define BF_SATA_PHY_LANE0_PLL_PRG2_ENABLE_TEST_PD(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PLL_PRG2_ENABLE_TEST_PD) & BM_SATA_PHY_LANE0_PLL_PRG2_ENABLE_TEST_PD)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_PLL_PRG2, field RESET_LCL[1] (RW)
@@ -2414,7 +2166,6 @@ typedef union _hw_sata_phy_lane0_pll_prg2
  * - 1 - PLL is held/placed in reset.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PLL_PRG2_RESET_LCL      (1)      //!< Bit position for SATA_PHY_LANE0_PLL_PRG2_RESET_LCL.
 #define BM_SATA_PHY_LANE0_PLL_PRG2_RESET_LCL      (0x00000002)  //!< Bit mask for SATA_PHY_LANE0_PLL_PRG2_RESET_LCL.
 
@@ -2423,7 +2174,6 @@ typedef union _hw_sata_phy_lane0_pll_prg2
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PLL_PRG2_RESET_LCL.
 #define BF_SATA_PHY_LANE0_PLL_PRG2_RESET_LCL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PLL_PRG2_RESET_LCL) & BM_SATA_PHY_LANE0_PLL_PRG2_RESET_LCL)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_PLL_PRG2, field FRC_RESET[2] (RW)
@@ -2431,7 +2181,6 @@ typedef union _hw_sata_phy_lane0_pll_prg2
  * Enables override of default value of pll_pwron. Enables pwron_lcl to control PLL power-on.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PLL_PRG2_FRC_RESET      (2)      //!< Bit position for SATA_PHY_LANE0_PLL_PRG2_FRC_RESET.
 #define BM_SATA_PHY_LANE0_PLL_PRG2_FRC_RESET      (0x00000004)  //!< Bit mask for SATA_PHY_LANE0_PLL_PRG2_FRC_RESET.
 
@@ -2440,7 +2189,6 @@ typedef union _hw_sata_phy_lane0_pll_prg2
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PLL_PRG2_FRC_RESET.
 #define BF_SATA_PHY_LANE0_PLL_PRG2_FRC_RESET(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PLL_PRG2_FRC_RESET) & BM_SATA_PHY_LANE0_PLL_PRG2_FRC_RESET)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_PLL_PRG2, field PWRON_LCL[3] (RW)
@@ -2452,7 +2200,6 @@ typedef union _hw_sata_phy_lane0_pll_prg2
  * - 1 - Supplies power to PLL.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PLL_PRG2_PWRON_LCL      (3)      //!< Bit position for SATA_PHY_LANE0_PLL_PRG2_PWRON_LCL.
 #define BM_SATA_PHY_LANE0_PLL_PRG2_PWRON_LCL      (0x00000008)  //!< Bit mask for SATA_PHY_LANE0_PLL_PRG2_PWRON_LCL.
 
@@ -2461,7 +2208,6 @@ typedef union _hw_sata_phy_lane0_pll_prg2
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PLL_PRG2_PWRON_LCL.
 #define BF_SATA_PHY_LANE0_PLL_PRG2_PWRON_LCL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PLL_PRG2_PWRON_LCL) & BM_SATA_PHY_LANE0_PLL_PRG2_PWRON_LCL)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_PLL_PRG2, field FRC_PWRON[4] (RW)
@@ -2469,7 +2215,6 @@ typedef union _hw_sata_phy_lane0_pll_prg2
  * Enables override of default value of pll_pwron. Enables pwron_lcl to control PLL power-on.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PLL_PRG2_FRC_PWRON      (4)      //!< Bit position for SATA_PHY_LANE0_PLL_PRG2_FRC_PWRON.
 #define BM_SATA_PHY_LANE0_PLL_PRG2_FRC_PWRON      (0x00000010)  //!< Bit mask for SATA_PHY_LANE0_PLL_PRG2_FRC_PWRON.
 
@@ -2478,7 +2223,6 @@ typedef union _hw_sata_phy_lane0_pll_prg2
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PLL_PRG2_FRC_PWRON.
 #define BF_SATA_PHY_LANE0_PLL_PRG2_FRC_PWRON(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PLL_PRG2_FRC_PWRON) & BM_SATA_PHY_LANE0_PLL_PRG2_FRC_PWRON)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_PLL_PRG2, field HCPL_LCL[5] (RW)
@@ -2490,7 +2234,6 @@ typedef union _hw_sata_phy_lane0_pll_prg2
  * - 1 - Forces coupling in VCO to maximum.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PLL_PRG2_HCPL_LCL      (5)      //!< Bit position for SATA_PHY_LANE0_PLL_PRG2_HCPL_LCL.
 #define BM_SATA_PHY_LANE0_PLL_PRG2_HCPL_LCL      (0x00000020)  //!< Bit mask for SATA_PHY_LANE0_PLL_PRG2_HCPL_LCL.
 
@@ -2499,7 +2242,6 @@ typedef union _hw_sata_phy_lane0_pll_prg2
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PLL_PRG2_HCPL_LCL.
 #define BF_SATA_PHY_LANE0_PLL_PRG2_HCPL_LCL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PLL_PRG2_HCPL_LCL) & BM_SATA_PHY_LANE0_PLL_PRG2_HCPL_LCL)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_PLL_PRG2, field FRC_HCPL[6] (RW)
@@ -2507,7 +2249,6 @@ typedef union _hw_sata_phy_lane0_pll_prg2
  * Enables override of hcpl default value. Enables hcpl_lcl to control high-coupling mode.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PLL_PRG2_FRC_HCPL      (6)      //!< Bit position for SATA_PHY_LANE0_PLL_PRG2_FRC_HCPL.
 #define BM_SATA_PHY_LANE0_PLL_PRG2_FRC_HCPL      (0x00000040)  //!< Bit mask for SATA_PHY_LANE0_PLL_PRG2_FRC_HCPL.
 
@@ -2516,7 +2257,6 @@ typedef union _hw_sata_phy_lane0_pll_prg2
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PLL_PRG2_FRC_HCPL.
 #define BF_SATA_PHY_LANE0_PLL_PRG2_FRC_HCPL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PLL_PRG2_FRC_HCPL) & BM_SATA_PHY_LANE0_PLL_PRG2_FRC_HCPL)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_PLL_PRG2, field ATB_SENSE_SEL[7] (RW)
@@ -2528,7 +2268,6 @@ typedef union _hw_sata_phy_lane0_pll_prg2
  * - 1 - Enables signals internal to PLL to connect to the analog test bus.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PLL_PRG2_ATB_SENSE_SEL      (7)      //!< Bit position for SATA_PHY_LANE0_PLL_PRG2_ATB_SENSE_SEL.
 #define BM_SATA_PHY_LANE0_PLL_PRG2_ATB_SENSE_SEL      (0x00000080)  //!< Bit mask for SATA_PHY_LANE0_PLL_PRG2_ATB_SENSE_SEL.
 
@@ -2537,7 +2276,6 @@ typedef union _hw_sata_phy_lane0_pll_prg2
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PLL_PRG2_ATB_SENSE_SEL.
 #define BF_SATA_PHY_LANE0_PLL_PRG2_ATB_SENSE_SEL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PLL_PRG2_ATB_SENSE_SEL) & BM_SATA_PHY_LANE0_PLL_PRG2_ATB_SENSE_SEL)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2571,10 +2309,6 @@ typedef union _hw_sata_phy_lane0_pll_prg1
  */
 //@{
 #define HW_SATA_PHY_LANE0_PLL_PRG1_ADDR      (REGS_SATA_PHY_LANE0_BASE + 0x2033)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_LANE0_PLL_PRG1           (*(volatile hw_sata_phy_lane0_pll_prg1_t *) HW_SATA_PHY_LANE0_PLL_PRG1_ADDR)
-#endif
 //@}
 
 /*
@@ -2587,7 +2321,6 @@ typedef union _hw_sata_phy_lane0_pll_prg1
  * 3'b010: 0.375 x full_scale
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PLL_PRG1_INT_CNTRL      (2)      //!< Bit position for SATA_PHY_LANE0_PLL_PRG1_INT_CNTRL.
 #define BM_SATA_PHY_LANE0_PLL_PRG1_INT_CNTRL      (0x0000001c)  //!< Bit mask for SATA_PHY_LANE0_PLL_PRG1_INT_CNTRL.
 
@@ -2596,7 +2329,6 @@ typedef union _hw_sata_phy_lane0_pll_prg1
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PLL_PRG1_INT_CNTRL.
 #define BF_SATA_PHY_LANE0_PLL_PRG1_INT_CNTRL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PLL_PRG1_INT_CNTRL) & BM_SATA_PHY_LANE0_PLL_PRG1_INT_CNTRL)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_PLL_PRG1, field PROP_CNTRL[7:5] (RW)
@@ -2605,7 +2337,6 @@ typedef union _hw_sata_phy_lane0_pll_prg1
  * value = 3'b101: 0.75 x full_scale
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PLL_PRG1_PROP_CNTRL      (5)      //!< Bit position for SATA_PHY_LANE0_PLL_PRG1_PROP_CNTRL.
 #define BM_SATA_PHY_LANE0_PLL_PRG1_PROP_CNTRL      (0x000000e0)  //!< Bit mask for SATA_PHY_LANE0_PLL_PRG1_PROP_CNTRL.
 
@@ -2614,7 +2345,6 @@ typedef union _hw_sata_phy_lane0_pll_prg1
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PLL_PRG1_PROP_CNTRL.
 #define BF_SATA_PHY_LANE0_PLL_PRG1_PROP_CNTRL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PLL_PRG1_PROP_CNTRL) & BM_SATA_PHY_LANE0_PLL_PRG1_PROP_CNTRL)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_PLL_PRG1, field SEL_RXCK[8] (RW)
@@ -2626,7 +2356,6 @@ typedef union _hw_sata_phy_lane0_pll_prg1
  * - 1 - Uses recovered clock as reference to PLL
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PLL_PRG1_SEL_RXCK      (8)      //!< Bit position for SATA_PHY_LANE0_PLL_PRG1_SEL_RXCK.
 #define BM_SATA_PHY_LANE0_PLL_PRG1_SEL_RXCK      (0x00000100)  //!< Bit mask for SATA_PHY_LANE0_PLL_PRG1_SEL_RXCK.
 
@@ -2635,7 +2364,6 @@ typedef union _hw_sata_phy_lane0_pll_prg1
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PLL_PRG1_SEL_RXCK.
 #define BF_SATA_PHY_LANE0_PLL_PRG1_SEL_RXCK(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PLL_PRG1_SEL_RXCK) & BM_SATA_PHY_LANE0_PLL_PRG1_SEL_RXCK)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2675,10 +2403,6 @@ typedef union _hw_sata_phy_lane0_pll_prg3
  */
 //@{
 #define HW_SATA_PHY_LANE0_PLL_PRG3_ADDR      (REGS_SATA_PHY_LANE0_BASE + 0x2034)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_LANE0_PLL_PRG3           (*(volatile hw_sata_phy_lane0_pll_prg3_t *) HW_SATA_PHY_LANE0_PLL_PRG3_ADDR)
-#endif
 //@}
 
 /*
@@ -2690,7 +2414,6 @@ typedef union _hw_sata_phy_lane0_pll_prg3
  * Measures crowbar bias voltage on atb_sense_p; gd on atb_sense_m.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PLL_PRG3_MEAS_CROWBAR      (1)      //!< Bit position for SATA_PHY_LANE0_PLL_PRG3_MEAS_CROWBAR.
 #define BM_SATA_PHY_LANE0_PLL_PRG3_MEAS_CROWBAR      (0x00000002)  //!< Bit mask for SATA_PHY_LANE0_PLL_PRG3_MEAS_CROWBAR.
 
@@ -2699,7 +2422,6 @@ typedef union _hw_sata_phy_lane0_pll_prg3
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PLL_PRG3_MEAS_CROWBAR.
 #define BF_SATA_PHY_LANE0_PLL_PRG3_MEAS_CROWBAR(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PLL_PRG3_MEAS_CROWBAR) & BM_SATA_PHY_LANE0_PLL_PRG3_MEAS_CROWBAR)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_PLL_PRG3, field MEAS_1V[2] (RW)
@@ -2708,7 +2430,6 @@ typedef union _hw_sata_phy_lane0_pll_prg3
  * vpcp - vp.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PLL_PRG3_MEAS_1V      (2)      //!< Bit position for SATA_PHY_LANE0_PLL_PRG3_MEAS_1V.
 #define BM_SATA_PHY_LANE0_PLL_PRG3_MEAS_1V      (0x00000004)  //!< Bit mask for SATA_PHY_LANE0_PLL_PRG3_MEAS_1V.
 
@@ -2717,7 +2438,6 @@ typedef union _hw_sata_phy_lane0_pll_prg3
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PLL_PRG3_MEAS_1V.
 #define BF_SATA_PHY_LANE0_PLL_PRG3_MEAS_1V(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PLL_PRG3_MEAS_1V) & BM_SATA_PHY_LANE0_PLL_PRG3_MEAS_1V)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_PLL_PRG3, field MEAS_VP_CP[3] (RW)
@@ -2726,7 +2446,6 @@ typedef union _hw_sata_phy_lane0_pll_prg3
  * measures vpcp - vp.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PLL_PRG3_MEAS_VP_CP      (3)      //!< Bit position for SATA_PHY_LANE0_PLL_PRG3_MEAS_VP_CP.
 #define BM_SATA_PHY_LANE0_PLL_PRG3_MEAS_VP_CP      (0x00000008)  //!< Bit mask for SATA_PHY_LANE0_PLL_PRG3_MEAS_VP_CP.
 
@@ -2735,7 +2454,6 @@ typedef union _hw_sata_phy_lane0_pll_prg3
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PLL_PRG3_MEAS_VP_CP.
 #define BF_SATA_PHY_LANE0_PLL_PRG3_MEAS_VP_CP(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PLL_PRG3_MEAS_VP_CP) & BM_SATA_PHY_LANE0_PLL_PRG3_MEAS_VP_CP)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_PLL_PRG3, field MEAS_VCO[4] (RW)
@@ -2743,7 +2461,6 @@ typedef union _hw_sata_phy_lane0_pll_prg3
  * Measures VCO supply voltage on atb_sense_p; gd on atb_sense_m.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PLL_PRG3_MEAS_VCO      (4)      //!< Bit position for SATA_PHY_LANE0_PLL_PRG3_MEAS_VCO.
 #define BM_SATA_PHY_LANE0_PLL_PRG3_MEAS_VCO      (0x00000010)  //!< Bit mask for SATA_PHY_LANE0_PLL_PRG3_MEAS_VCO.
 
@@ -2752,7 +2469,6 @@ typedef union _hw_sata_phy_lane0_pll_prg3
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PLL_PRG3_MEAS_VCO.
 #define BF_SATA_PHY_LANE0_PLL_PRG3_MEAS_VCO(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PLL_PRG3_MEAS_VCO) & BM_SATA_PHY_LANE0_PLL_PRG3_MEAS_VCO)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_PLL_PRG3, field MEAS_STARTUP[5] (RW)
@@ -2760,7 +2476,6 @@ typedef union _hw_sata_phy_lane0_pll_prg3
  * Measures startup voltage on atb_sense_p; gd on atb_sense_m.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PLL_PRG3_MEAS_STARTUP      (5)      //!< Bit position for SATA_PHY_LANE0_PLL_PRG3_MEAS_STARTUP.
 #define BM_SATA_PHY_LANE0_PLL_PRG3_MEAS_STARTUP      (0x00000020)  //!< Bit mask for SATA_PHY_LANE0_PLL_PRG3_MEAS_STARTUP.
 
@@ -2769,7 +2484,6 @@ typedef union _hw_sata_phy_lane0_pll_prg3
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PLL_PRG3_MEAS_STARTUP.
 #define BF_SATA_PHY_LANE0_PLL_PRG3_MEAS_STARTUP(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PLL_PRG3_MEAS_STARTUP) & BM_SATA_PHY_LANE0_PLL_PRG3_MEAS_STARTUP)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_PLL_PRG3, field MEAS_VP16[6] (RW)
@@ -2777,7 +2491,6 @@ typedef union _hw_sata_phy_lane0_pll_prg3
  * Measures vp16 on atb_sense_p; gd on atb_sense_m.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PLL_PRG3_MEAS_VP16      (6)      //!< Bit position for SATA_PHY_LANE0_PLL_PRG3_MEAS_VP16.
 #define BM_SATA_PHY_LANE0_PLL_PRG3_MEAS_VP16      (0x00000040)  //!< Bit mask for SATA_PHY_LANE0_PLL_PRG3_MEAS_VP16.
 
@@ -2786,7 +2499,6 @@ typedef union _hw_sata_phy_lane0_pll_prg3
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PLL_PRG3_MEAS_VP16.
 #define BF_SATA_PHY_LANE0_PLL_PRG3_MEAS_VP16(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PLL_PRG3_MEAS_VP16) & BM_SATA_PHY_LANE0_PLL_PRG3_MEAS_VP16)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_PLL_PRG3, field MEAS_VREF[7] (RW)
@@ -2795,7 +2507,6 @@ typedef union _hw_sata_phy_lane0_pll_prg3
  * measures vref - vcntrl.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PLL_PRG3_MEAS_VREF      (7)      //!< Bit position for SATA_PHY_LANE0_PLL_PRG3_MEAS_VREF.
 #define BM_SATA_PHY_LANE0_PLL_PRG3_MEAS_VREF      (0x00000080)  //!< Bit mask for SATA_PHY_LANE0_PLL_PRG3_MEAS_VREF.
 
@@ -2804,7 +2515,6 @@ typedef union _hw_sata_phy_lane0_pll_prg3
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PLL_PRG3_MEAS_VREF.
 #define BF_SATA_PHY_LANE0_PLL_PRG3_MEAS_VREF(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PLL_PRG3_MEAS_VREF) & BM_SATA_PHY_LANE0_PLL_PRG3_MEAS_VREF)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_PLL_PRG3, field MEAS_VCNTRL[8] (RW)
@@ -2812,7 +2522,6 @@ typedef union _hw_sata_phy_lane0_pll_prg3
  * Measures vcntrl on atb_sense_m. If meas_vref is also set, atb_sense_p,m measures vref - vcntrl.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PLL_PRG3_MEAS_VCNTRL      (8)      //!< Bit position for SATA_PHY_LANE0_PLL_PRG3_MEAS_VCNTRL.
 #define BM_SATA_PHY_LANE0_PLL_PRG3_MEAS_VCNTRL      (0x00000100)  //!< Bit mask for SATA_PHY_LANE0_PLL_PRG3_MEAS_VCNTRL.
 
@@ -2821,7 +2530,6 @@ typedef union _hw_sata_phy_lane0_pll_prg3
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PLL_PRG3_MEAS_VCNTRL.
 #define BF_SATA_PHY_LANE0_PLL_PRG3_MEAS_VCNTRL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PLL_PRG3_MEAS_VCNTRL) & BM_SATA_PHY_LANE0_PLL_PRG3_MEAS_VCNTRL)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_PLL_PRG3, field MEAS_BIAS[9] (RW)
@@ -2829,7 +2537,6 @@ typedef union _hw_sata_phy_lane0_pll_prg3
  * Measures copy of bias current in oscillator on atb_force_m.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_PLL_PRG3_MEAS_BIAS      (9)      //!< Bit position for SATA_PHY_LANE0_PLL_PRG3_MEAS_BIAS.
 #define BM_SATA_PHY_LANE0_PLL_PRG3_MEAS_BIAS      (0x00000200)  //!< Bit mask for SATA_PHY_LANE0_PLL_PRG3_MEAS_BIAS.
 
@@ -2838,7 +2545,6 @@ typedef union _hw_sata_phy_lane0_pll_prg3
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_PLL_PRG3_MEAS_BIAS.
 #define BF_SATA_PHY_LANE0_PLL_PRG3_MEAS_BIAS(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_PLL_PRG3_MEAS_BIAS) & BM_SATA_PHY_LANE0_PLL_PRG3_MEAS_BIAS)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2876,10 +2582,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel1
  */
 //@{
 #define HW_SATA_PHY_LANE0_TX_ANA_ATBSEL1_ADDR      (REGS_SATA_PHY_LANE0_BASE + 0x2035)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_LANE0_TX_ANA_ATBSEL1           (*(volatile hw_sata_phy_lane0_tx_ana_atbsel1_t *) HW_SATA_PHY_LANE0_TX_ANA_ATBSEL1_ADDR)
-#endif
 //@}
 
 /*
@@ -2891,7 +2593,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel1
  * Regulator gate voltage on ATB_S_P To validate this field, set lane0.tx_ana.atbsel2.atb_en.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P      (0)      //!< Bit position for SATA_PHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P.
 #define BM_SATA_PHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P      (0x00000001)  //!< Bit mask for SATA_PHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P.
 
@@ -2900,7 +2601,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel1
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P.
 #define BF_SATA_PHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P) & BM_SATA_PHY_LANE0_TX_ANA_ATBSEL1_VGR_S_P)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_ANA_ATBSEL1, field VREF_S_P[1] (RW)
@@ -2908,7 +2608,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel1
  * tx_vref voltage on ATB_S_P To validate this field, set lane0.tx_ana.atbsel2.atb_en.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P      (1)      //!< Bit position for SATA_PHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P.
 #define BM_SATA_PHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P      (0x00000002)  //!< Bit mask for SATA_PHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P.
 
@@ -2917,7 +2616,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel1
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P.
 #define BF_SATA_PHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P) & BM_SATA_PHY_LANE0_TX_ANA_ATBSEL1_VREF_S_P)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_ANA_ATBSEL1, field VREG_S_M[2] (RW)
@@ -2925,7 +2623,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel1
  * Regulator output voltage on ATB_S_M To validate this field, set lane0.tx_ana.atbsel2.atb_en.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M      (2)      //!< Bit position for SATA_PHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M.
 #define BM_SATA_PHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M      (0x00000004)  //!< Bit mask for SATA_PHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M.
 
@@ -2934,7 +2631,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel1
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M.
 #define BF_SATA_PHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M) & BM_SATA_PHY_LANE0_TX_ANA_ATBSEL1_VREG_S_M)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_ANA_ATBSEL1, field TXP_F_P[3] (RW)
@@ -2942,7 +2638,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel1
  * txp connected to ATB_F_P For termination resistance measurements.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P      (3)      //!< Bit position for SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P.
 #define BM_SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P      (0x00000008)  //!< Bit mask for SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P.
 
@@ -2951,7 +2646,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel1
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P.
 #define BF_SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P) & BM_SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXP_F_P)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_ANA_ATBSEL1, field TXP_S_P[4] (RW)
@@ -2959,7 +2653,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel1
  * txp connected to ATB_S_P To validate this field, set lane0.tx_ana.atbsel2.atb_en.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P      (4)      //!< Bit position for SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P.
 #define BM_SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P      (0x00000010)  //!< Bit mask for SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P.
 
@@ -2968,7 +2661,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel1
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P.
 #define BF_SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P) & BM_SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXP_S_P)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_ANA_ATBSEL1, field TXM_F_P[5] (RW)
@@ -2976,7 +2668,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel1
  * txm connected to ATB_S_P For termination resistance measurements.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P      (5)      //!< Bit position for SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P.
 #define BM_SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P      (0x00000020)  //!< Bit mask for SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P.
 
@@ -2985,7 +2676,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel1
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P.
 #define BF_SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P) & BM_SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXM_F_P)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_ANA_ATBSEL1, field TXM_S_M[6] (RW)
@@ -2993,7 +2683,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel1
  * txm on ATB_S_M To validate this field, set lane0.tx_ana.atbsel2.atb_en.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M      (6)      //!< Bit position for SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M.
 #define BM_SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M      (0x00000040)  //!< Bit mask for SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M.
 
@@ -3002,7 +2691,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel1
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M.
 #define BF_SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M) & BM_SATA_PHY_LANE0_TX_ANA_ATBSEL1_TXM_S_M)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_ANA_ATBSEL1, field VBPF_S_P[7] (RW)
@@ -3011,7 +2699,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel1
  * lane0.tx_ana.atbsel2.atb_en.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P      (7)      //!< Bit position for SATA_PHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P.
 #define BM_SATA_PHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P      (0x00000080)  //!< Bit mask for SATA_PHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P.
 
@@ -3020,7 +2707,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel1
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P.
 #define BF_SATA_PHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P) & BM_SATA_PHY_LANE0_TX_ANA_ATBSEL1_VBPF_S_P)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3058,10 +2744,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel2
  */
 //@{
 #define HW_SATA_PHY_LANE0_TX_ANA_ATBSEL2_ADDR      (REGS_SATA_PHY_LANE0_BASE + 0x2036)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_LANE0_TX_ANA_ATBSEL2           (*(volatile hw_sata_phy_lane0_tx_ana_atbsel2_t *) HW_SATA_PHY_LANE0_TX_ANA_ATBSEL2_ADDR)
-#endif
 //@}
 
 /*
@@ -3073,7 +2755,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel2
  * Enables Tx internal loopback
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK      (0)      //!< Bit position for SATA_PHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK.
 #define BM_SATA_PHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK      (0x00000001)  //!< Bit mask for SATA_PHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK.
 
@@ -3082,7 +2763,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel2
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK.
 #define BF_SATA_PHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK) & BM_SATA_PHY_LANE0_TX_ANA_ATBSEL2_EN_TXILPBK)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_ANA_ATBSEL2, field ENLPBK[1] (RW)
@@ -3090,7 +2770,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel2
  * Enables Tx external loopback Ensure that internal loopback is not on.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_ANA_ATBSEL2_ENLPBK      (1)      //!< Bit position for SATA_PHY_LANE0_TX_ANA_ATBSEL2_ENLPBK.
 #define BM_SATA_PHY_LANE0_TX_ANA_ATBSEL2_ENLPBK      (0x00000002)  //!< Bit mask for SATA_PHY_LANE0_TX_ANA_ATBSEL2_ENLPBK.
 
@@ -3099,7 +2778,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel2
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_ANA_ATBSEL2_ENLPBK.
 #define BF_SATA_PHY_LANE0_TX_ANA_ATBSEL2_ENLPBK(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_ANA_ATBSEL2_ENLPBK) & BM_SATA_PHY_LANE0_TX_ANA_ATBSEL2_ENLPBK)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_ANA_ATBSEL2, field VBNF_S_M[2] (RW)
@@ -3107,7 +2785,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel2
  * vbnf in edge rate control circuit on ATB_S_M To validate this field, set the atb_en field.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M      (2)      //!< Bit position for SATA_PHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M.
 #define BM_SATA_PHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M      (0x00000004)  //!< Bit mask for SATA_PHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M.
 
@@ -3116,7 +2793,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel2
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M.
 #define BF_SATA_PHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M) & BM_SATA_PHY_LANE0_TX_ANA_ATBSEL2_VBNF_S_M)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_ANA_ATBSEL2, field VBPS_S_P[3] (RW)
@@ -3124,7 +2800,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel2
  * vbps in edge rate control circuit on ATB_S_M To validate this field, set the atb_en field.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P      (3)      //!< Bit position for SATA_PHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P.
 #define BM_SATA_PHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P      (0x00000008)  //!< Bit mask for SATA_PHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P.
 
@@ -3133,7 +2808,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel2
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P.
 #define BF_SATA_PHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P) & BM_SATA_PHY_LANE0_TX_ANA_ATBSEL2_VBPS_S_P)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_ANA_ATBSEL2, field VBNS_S_M[4] (RW)
@@ -3141,7 +2815,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel2
  * vbps in edge rate control circuit on ATB_S_M To validate this field, set the atb_en field.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M      (4)      //!< Bit position for SATA_PHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M.
 #define BM_SATA_PHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M      (0x00000010)  //!< Bit mask for SATA_PHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M.
 
@@ -3150,7 +2823,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel2
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M.
 #define BF_SATA_PHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M) & BM_SATA_PHY_LANE0_TX_ANA_ATBSEL2_VBNS_S_M)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_ANA_ATBSEL2, field VCM_S_P[5] (RW)
@@ -3158,7 +2830,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel2
  * Vcm replica on ATB_S_P To validate this field, set the atb_en field.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P      (5)      //!< Bit position for SATA_PHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P.
 #define BM_SATA_PHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P      (0x00000020)  //!< Bit mask for SATA_PHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P.
 
@@ -3167,7 +2838,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel2
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P.
 #define BF_SATA_PHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P) & BM_SATA_PHY_LANE0_TX_ANA_ATBSEL2_VCM_S_P)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_ANA_ATBSEL2, field VREFRXD_S_M[6] (RW)
@@ -3175,7 +2845,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel2
  * Reference voltage for RX_DETECT on ATB_S_M To validate this field, set the atb_en field.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M      (6)      //!< Bit position for SATA_PHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M.
 #define BM_SATA_PHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M      (0x00000040)  //!< Bit mask for SATA_PHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M.
 
@@ -3184,7 +2853,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel2
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M.
 #define BF_SATA_PHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M) & BM_SATA_PHY_LANE0_TX_ANA_ATBSEL2_VREFRXD_S_M)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_ANA_ATBSEL2, field ATB_EN[7] (RW)
@@ -3192,7 +2860,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel2
  * RWCr 7 RWCr Connects internal and external ATB buses Required for all ATB measurements.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_ANA_ATBSEL2_ATB_EN      (7)      //!< Bit position for SATA_PHY_LANE0_TX_ANA_ATBSEL2_ATB_EN.
 #define BM_SATA_PHY_LANE0_TX_ANA_ATBSEL2_ATB_EN      (0x00000080)  //!< Bit mask for SATA_PHY_LANE0_TX_ANA_ATBSEL2_ATB_EN.
 
@@ -3201,7 +2868,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_atbsel2
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_ANA_ATBSEL2_ATB_EN.
 #define BF_SATA_PHY_LANE0_TX_ANA_ATBSEL2_ATB_EN(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_ANA_ATBSEL2_ATB_EN) & BM_SATA_PHY_LANE0_TX_ANA_ATBSEL2_ATB_EN)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3239,10 +2905,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_control
  */
 //@{
 #define HW_SATA_PHY_LANE0_TX_ANA_CONTROL_ADDR      (REGS_SATA_PHY_LANE0_BASE + 0x2037)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SATA_PHY_LANE0_TX_ANA_CONTROL           (*(volatile hw_sata_phy_lane0_tx_ana_control_t *) HW_SATA_PHY_LANE0_TX_ANA_CONTROL_ADDR)
-#endif
 //@}
 
 /*
@@ -3254,7 +2916,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_control
  * Local beacon on/off control value To validate this field, set lane0.tx_ana.control.frc_beacon.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_ANA_CONTROL_BCN_LCL      (1)      //!< Bit position for SATA_PHY_LANE0_TX_ANA_CONTROL_BCN_LCL.
 #define BM_SATA_PHY_LANE0_TX_ANA_CONTROL_BCN_LCL      (0x00000002)  //!< Bit mask for SATA_PHY_LANE0_TX_ANA_CONTROL_BCN_LCL.
 
@@ -3263,7 +2924,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_control
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_ANA_CONTROL_BCN_LCL.
 #define BF_SATA_PHY_LANE0_TX_ANA_CONTROL_BCN_LCL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_ANA_CONTROL_BCN_LCL) & BM_SATA_PHY_LANE0_TX_ANA_CONTROL_BCN_LCL)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_ANA_CONTROL, field FRC_BEACON[2] (RW)
@@ -3272,7 +2932,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_control
  * value.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_ANA_CONTROL_FRC_BEACON      (2)      //!< Bit position for SATA_PHY_LANE0_TX_ANA_CONTROL_FRC_BEACON.
 #define BM_SATA_PHY_LANE0_TX_ANA_CONTROL_FRC_BEACON      (0x00000004)  //!< Bit mask for SATA_PHY_LANE0_TX_ANA_CONTROL_FRC_BEACON.
 
@@ -3281,7 +2940,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_control
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_ANA_CONTROL_FRC_BEACON.
 #define BF_SATA_PHY_LANE0_TX_ANA_CONTROL_FRC_BEACON(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_ANA_CONTROL_FRC_BEACON) & BM_SATA_PHY_LANE0_TX_ANA_CONTROL_FRC_BEACON)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_ANA_CONTROL, field DATAOVRD_LCL[3] (RW)
@@ -3289,7 +2947,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_control
  * RWCr Local dataovrd control value To validate this field, set lane0.tx_ana.control.frc_do.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL      (3)      //!< Bit position for SATA_PHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL.
 #define BM_SATA_PHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL      (0x00000008)  //!< Bit mask for SATA_PHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL.
 
@@ -3298,7 +2955,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_control
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL.
 #define BF_SATA_PHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL) & BM_SATA_PHY_LANE0_TX_ANA_CONTROL_DATAOVRD_LCL)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_ANA_CONTROL, field FRC_DO[4] (RW)
@@ -3306,7 +2962,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_control
  * Forces dataovrd locally When set to 1, this field overrides the input data_ovrd value.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_ANA_CONTROL_FRC_DO      (4)      //!< Bit position for SATA_PHY_LANE0_TX_ANA_CONTROL_FRC_DO.
 #define BM_SATA_PHY_LANE0_TX_ANA_CONTROL_FRC_DO      (0x00000010)  //!< Bit mask for SATA_PHY_LANE0_TX_ANA_CONTROL_FRC_DO.
 
@@ -3315,7 +2970,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_control
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_ANA_CONTROL_FRC_DO.
 #define BF_SATA_PHY_LANE0_TX_ANA_CONTROL_FRC_DO(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_ANA_CONTROL_FRC_DO) & BM_SATA_PHY_LANE0_TX_ANA_CONTROL_FRC_DO)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_ANA_CONTROL, field EN_LCL[6:5] (RW)
@@ -3329,7 +2983,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_control
  * - 11 - Tx idle (fast)
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_ANA_CONTROL_EN_LCL      (5)      //!< Bit position for SATA_PHY_LANE0_TX_ANA_CONTROL_EN_LCL.
 #define BM_SATA_PHY_LANE0_TX_ANA_CONTROL_EN_LCL      (0x00000060)  //!< Bit mask for SATA_PHY_LANE0_TX_ANA_CONTROL_EN_LCL.
 
@@ -3338,7 +2991,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_control
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_ANA_CONTROL_EN_LCL.
 #define BF_SATA_PHY_LANE0_TX_ANA_CONTROL_EN_LCL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_ANA_CONTROL_EN_LCL) & BM_SATA_PHY_LANE0_TX_ANA_CONTROL_EN_LCL)
-
 //@}
 
 /*! @name Register SATA_PHY_LANE0_TX_ANA_CONTROL, field FRC_PWRST[7] (RW)
@@ -3347,7 +2999,6 @@ typedef union _hw_sata_phy_lane0_tx_ana_control
  * en_lcl.
  */
 //@{
-
 #define BP_SATA_PHY_LANE0_TX_ANA_CONTROL_FRC_PWRST      (7)      //!< Bit position for SATA_PHY_LANE0_TX_ANA_CONTROL_FRC_PWRST.
 #define BM_SATA_PHY_LANE0_TX_ANA_CONTROL_FRC_PWRST      (0x00000080)  //!< Bit mask for SATA_PHY_LANE0_TX_ANA_CONTROL_FRC_PWRST.
 
@@ -3356,7 +3007,8 @@ typedef union _hw_sata_phy_lane0_tx_ana_control
 
 //! @brief Format value for bitfield SATA_PHY_LANE0_TX_ANA_CONTROL_FRC_PWRST.
 #define BF_SATA_PHY_LANE0_TX_ANA_CONTROL_FRC_PWRST(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_SATA_PHY_LANE0_TX_ANA_CONTROL_FRC_PWRST) & BM_SATA_PHY_LANE0_TX_ANA_CONTROL_FRC_PWRST)
-
 //@}
 
 #endif // __HW_SATA_PHY_LANE0_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

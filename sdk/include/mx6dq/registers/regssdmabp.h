@@ -99,7 +99,6 @@ typedef union _hw_sdmabp_dc0ptr
  * SDMA has a read-only access.
  */
 //@{
-
 #define BP_SDMABP_DC0PTR_DC0PTR      (0)      //!< Bit position for SDMABP_DC0PTR_DC0PTR.
 #define BM_SDMABP_DC0PTR_DC0PTR      (0xffffffff)  //!< Bit mask for SDMABP_DC0PTR_DC0PTR.
 
@@ -113,7 +112,6 @@ typedef union _hw_sdmabp_dc0ptr
 //! @brief Set the DC0PTR field to a new value.
 #define BW_SDMABP_DC0PTR_DC0PTR(v)   (HW_SDMABP_DC0PTR_WR((HW_SDMABP_DC0PTR_RD() & ~BM_SDMABP_DC0PTR_DC0PTR) | BF_SDMABP_DC0PTR_DC0PTR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -168,7 +166,6 @@ typedef union _hw_sdmabp_intr
  * current channel when the corresponding done instruction is executed.
  */
 //@{
-
 #define BP_SDMABP_INTR_DI      (0)      //!< Bit position for SDMABP_INTR_DI.
 #define BM_SDMABP_INTR_DI      (0xffffffff)  //!< Bit mask for SDMABP_INTR_DI.
 
@@ -182,7 +179,6 @@ typedef union _hw_sdmabp_intr
 //! @brief Set the DI field to a new value.
 #define BW_SDMABP_INTR_DI(v)   (HW_SDMABP_INTR_WR((HW_SDMABP_INTR_RD() & ~BM_SDMABP_INTR_DI) | BF_SDMABP_INTR_DI(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -235,7 +231,6 @@ typedef union _hw_sdmabp_stop_stat
  * state of the DE[i] bits.
  */
 //@{
-
 #define BP_SDMABP_STOP_STAT_DE      (0)      //!< Bit position for SDMABP_STOP_STAT_DE.
 #define BM_SDMABP_STOP_STAT_DE      (0xffffffff)  //!< Bit mask for SDMABP_STOP_STAT_DE.
 
@@ -249,7 +244,6 @@ typedef union _hw_sdmabp_stop_stat
 //! @brief Set the DE field to a new value.
 #define BW_SDMABP_STOP_STAT_DE(v)   (HW_SDMABP_STOP_STAT_WR((HW_SDMABP_STOP_STAT_RD() & ~BM_SDMABP_STOP_STAT_DE) | BF_SDMABP_STOP_STAT_DE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -269,7 +263,7 @@ typedef union _hw_sdmabp_dstart
     reg32_t U;
     struct _hw_sdmabp_dstart_bitfields
     {
-        unsigned DSTART : 32; //!< [31:0] The DSTART/DE registers are 32 bits wide with one bit for every channel.
+        unsigned DSTART_DE : 32; //!< [31:0] The DSTART_DE registers are 32 bits wide with one bit for every channel.
     } B;
 } hw_sdmabp_dstart_t;
 #endif
@@ -290,9 +284,9 @@ typedef union _hw_sdmabp_dstart
  * constants & macros for individual SDMABP_DSTART bitfields
  */
 
-/*! @name Register SDMABP_DSTART, field DSTART[31:0] (RO)
+/*! @name Register SDMABP_DSTART, field DSTART_DE[31:0] (RO)
  *
- * The DSTART/DE registers are 32 bits wide with one bit for every channel. When a bit is written to
+ * The DSTART_DE registers are 32 bits wide with one bit for every channel. When a bit is written to
  * 1, it enables the corresponding channel. Two physical registers are accessed with that address
  * (DSTART and DE), which enables the BP to trigger a channel a second time before the first trigger
  * was processed. This register is a "write-ones" register to the BP. Neither DSTART[i] bit can be
@@ -305,13 +299,11 @@ typedef union _hw_sdmabp_dstart
  * the DSTART[i] bits. This mechanism enables the BP to pipeline two DSTART commands per channel.
  */
 //@{
+#define BP_SDMABP_DSTART_DSTART_DE      (0)      //!< Bit position for SDMABP_DSTART_DSTART_DE.
+#define BM_SDMABP_DSTART_DSTART_DE      (0xffffffff)  //!< Bit mask for SDMABP_DSTART_DSTART_DE.
 
-#define BP_SDMABP_DSTART_DSTART      (0)      //!< Bit position for SDMABP_DSTART_DSTART.
-#define BM_SDMABP_DSTART_DSTART      (0xffffffff)  //!< Bit mask for SDMABP_DSTART_DSTART.
-
-//! @brief Get value of SDMABP_DSTART_DSTART from a register value.
-#define BG_SDMABP_DSTART_DSTART(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMABP_DSTART_DSTART) >> BP_SDMABP_DSTART_DSTART)
-
+//! @brief Get value of SDMABP_DSTART_DSTART_DE from a register value.
+#define BG_SDMABP_DSTART_DSTART_DE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMABP_DSTART_DSTART_DE) >> BP_SDMABP_DSTART_DSTART_DE)
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -364,13 +356,11 @@ typedef union _hw_sdmabp_evterr
  * unaffected if the BP tries to set the EP[i] bit when that EP[i] bit is already set.
  */
 //@{
-
 #define BP_SDMABP_EVTERR_CHNERR      (0)      //!< Bit position for SDMABP_EVTERR_CHNERR.
 #define BM_SDMABP_EVTERR_CHNERR      (0xffffffff)  //!< Bit mask for SDMABP_EVTERR_CHNERR.
 
 //! @brief Get value of SDMABP_EVTERR_CHNERR from a register value.
 #define BG_SDMABP_EVTERR_CHNERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMABP_EVTERR_CHNERR) >> BP_SDMABP_EVTERR_CHNERR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -422,7 +412,6 @@ typedef union _hw_sdmabp_intrmask
  * channel i (for example, EVTERR[i] is set).
  */
 //@{
-
 #define BP_SDMABP_INTRMASK_DIMASK      (0)      //!< Bit position for SDMABP_INTRMASK_DIMASK.
 #define BM_SDMABP_INTRMASK_DIMASK      (0xffffffff)  //!< Bit mask for SDMABP_INTRMASK_DIMASK.
 
@@ -436,7 +425,6 @@ typedef union _hw_sdmabp_intrmask
 //! @brief Set the DIMASK field to a new value.
 #define BW_SDMABP_INTRMASK_DIMASK(v)   (HW_SDMABP_INTRMASK_WR((HW_SDMABP_INTRMASK_RD() & ~BM_SDMABP_INTRMASK_DIMASK) | BF_SDMABP_INTRMASK_DIMASK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -484,13 +472,11 @@ typedef union _hw_sdmabp_evterrdbg
  * it.
  */
 //@{
-
 #define BP_SDMABP_EVTERRDBG_CHNERR      (0)      //!< Bit position for SDMABP_EVTERRDBG_CHNERR.
 #define BM_SDMABP_EVTERRDBG_CHNERR      (0xffffffff)  //!< Bit mask for SDMABP_EVTERRDBG_CHNERR.
 
 //! @brief Get value of SDMABP_EVTERRDBG_CHNERR from a register value.
 #define BG_SDMABP_EVTERRDBG_CHNERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SDMABP_EVTERRDBG_CHNERR) >> BP_SDMABP_EVTERRDBG_CHNERR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -522,3 +508,5 @@ typedef struct _hw_sdmabp
 #endif
 
 #endif // __HW_SDMABP_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

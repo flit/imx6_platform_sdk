@@ -109,7 +109,6 @@ typedef union _hw_dvfsc_thrs
  * Panic threshold for load tracking
  */
 //@{
-
 #define BP_DVFSC_THRS_PNCTHR      (0)      //!< Bit position for DVFSC_THRS_PNCTHR.
 #define BM_DVFSC_THRS_PNCTHR      (0x0000003f)  //!< Bit mask for DVFSC_THRS_PNCTHR.
 
@@ -123,7 +122,6 @@ typedef union _hw_dvfsc_thrs
 //! @brief Set the PNCTHR field to a new value.
 #define BW_DVFSC_THRS_PNCTHR(v)   (HW_DVFSC_THRS_WR((HW_DVFSC_THRS_RD() & ~BM_DVFSC_THRS_PNCTHR) | BF_DVFSC_THRS_PNCTHR(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_THRS, field DWTHR[21:16] (RW)
@@ -131,7 +129,6 @@ typedef union _hw_dvfsc_thrs
  * Down threshold for load tracking
  */
 //@{
-
 #define BP_DVFSC_THRS_DWTHR      (16)      //!< Bit position for DVFSC_THRS_DWTHR.
 #define BM_DVFSC_THRS_DWTHR      (0x003f0000)  //!< Bit mask for DVFSC_THRS_DWTHR.
 
@@ -145,7 +142,6 @@ typedef union _hw_dvfsc_thrs
 //! @brief Set the DWTHR field to a new value.
 #define BW_DVFSC_THRS_DWTHR(v)   (HW_DVFSC_THRS_WR((HW_DVFSC_THRS_RD() & ~BM_DVFSC_THRS_DWTHR) | BF_DVFSC_THRS_DWTHR(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_THRS, field UPTHR[27:22] (RW)
@@ -153,7 +149,6 @@ typedef union _hw_dvfsc_thrs
  * Upper threshold for load tracking
  */
 //@{
-
 #define BP_DVFSC_THRS_UPTHR      (22)      //!< Bit position for DVFSC_THRS_UPTHR.
 #define BM_DVFSC_THRS_UPTHR      (0x0fc00000)  //!< Bit mask for DVFSC_THRS_UPTHR.
 
@@ -167,7 +162,6 @@ typedef union _hw_dvfsc_thrs
 //! @brief Set the UPTHR field to a new value.
 #define BW_DVFSC_THRS_UPTHR(v)   (HW_DVFSC_THRS_WR((HW_DVFSC_THRS_RD() & ~BM_DVFSC_THRS_UPTHR) | BF_DVFSC_THRS_UPTHR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -220,7 +214,6 @@ typedef union _hw_dvfsc_coun
  * UP counter threshold value
  */
 //@{
-
 #define BP_DVFSC_COUN_UPCNT      (0)      //!< Bit position for DVFSC_COUN_UPCNT.
 #define BM_DVFSC_COUN_UPCNT      (0x000000ff)  //!< Bit mask for DVFSC_COUN_UPCNT.
 
@@ -234,7 +227,6 @@ typedef union _hw_dvfsc_coun
 //! @brief Set the UPCNT field to a new value.
 #define BW_DVFSC_COUN_UPCNT(v)   (HW_DVFSC_COUN_WR((HW_DVFSC_COUN_RD() & ~BM_DVFSC_COUN_UPCNT) | BF_DVFSC_COUN_UPCNT(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_COUN, field DN_CNT[23:16] (RW)
@@ -242,7 +234,6 @@ typedef union _hw_dvfsc_coun
  * Down counter threshold value
  */
 //@{
-
 #define BP_DVFSC_COUN_DN_CNT      (16)      //!< Bit position for DVFSC_COUN_DN_CNT.
 #define BM_DVFSC_COUN_DN_CNT      (0x00ff0000)  //!< Bit mask for DVFSC_COUN_DN_CNT.
 
@@ -256,7 +247,6 @@ typedef union _hw_dvfsc_coun
 //! @brief Set the DN_CNT field to a new value.
 #define BW_DVFSC_COUN_DN_CNT(v)   (HW_DVFSC_COUN_WR((HW_DVFSC_COUN_RD() & ~BM_DVFSC_COUN_DN_CNT) | BF_DVFSC_COUN_DN_CNT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -316,7 +306,6 @@ typedef union _hw_dvfsc_sig1
  * General purpose load tracking signal weight dvfs_w_sig[6]
  */
 //@{
-
 #define BP_DVFSC_SIG1_WSW6      (2)      //!< Bit position for DVFSC_SIG1_WSW6.
 #define BM_DVFSC_SIG1_WSW6      (0x0000001c)  //!< Bit mask for DVFSC_SIG1_WSW6.
 
@@ -330,7 +319,6 @@ typedef union _hw_dvfsc_sig1
 //! @brief Set the WSW6 field to a new value.
 #define BW_DVFSC_SIG1_WSW6(v)   (HW_DVFSC_SIG1_WR((HW_DVFSC_SIG1_RD() & ~BM_DVFSC_SIG1_WSW6) | BF_DVFSC_SIG1_WSW6(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_SIG1, field WSW7[7:5] (RW)
@@ -338,7 +326,6 @@ typedef union _hw_dvfsc_sig1
  * General purpose load tracking signal weight dvfs_w_sig[7]
  */
 //@{
-
 #define BP_DVFSC_SIG1_WSW7      (5)      //!< Bit position for DVFSC_SIG1_WSW7.
 #define BM_DVFSC_SIG1_WSW7      (0x000000e0)  //!< Bit mask for DVFSC_SIG1_WSW7.
 
@@ -352,7 +339,6 @@ typedef union _hw_dvfsc_sig1
 //! @brief Set the WSW7 field to a new value.
 #define BW_DVFSC_SIG1_WSW7(v)   (HW_DVFSC_SIG1_WR((HW_DVFSC_SIG1_RD() & ~BM_DVFSC_SIG1_WSW7) | BF_DVFSC_SIG1_WSW7(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_SIG1, field WSW8[10:8] (RW)
@@ -360,7 +346,6 @@ typedef union _hw_dvfsc_sig1
  * General purpose load tracking signal weight dvfs_w_sig[8]
  */
 //@{
-
 #define BP_DVFSC_SIG1_WSW8      (8)      //!< Bit position for DVFSC_SIG1_WSW8.
 #define BM_DVFSC_SIG1_WSW8      (0x00000700)  //!< Bit mask for DVFSC_SIG1_WSW8.
 
@@ -374,7 +359,6 @@ typedef union _hw_dvfsc_sig1
 //! @brief Set the WSW8 field to a new value.
 #define BW_DVFSC_SIG1_WSW8(v)   (HW_DVFSC_SIG1_WR((HW_DVFSC_SIG1_RD() & ~BM_DVFSC_SIG1_WSW8) | BF_DVFSC_SIG1_WSW8(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_SIG1, field WSW9[13:11] (RW)
@@ -382,7 +366,6 @@ typedef union _hw_dvfsc_sig1
  * General purpose load tracking signal weight dvfs_w_sig[9]
  */
 //@{
-
 #define BP_DVFSC_SIG1_WSW9      (11)      //!< Bit position for DVFSC_SIG1_WSW9.
 #define BM_DVFSC_SIG1_WSW9      (0x00003800)  //!< Bit mask for DVFSC_SIG1_WSW9.
 
@@ -396,7 +379,6 @@ typedef union _hw_dvfsc_sig1
 //! @brief Set the WSW9 field to a new value.
 #define BW_DVFSC_SIG1_WSW9(v)   (HW_DVFSC_SIG1_WR((HW_DVFSC_SIG1_RD() & ~BM_DVFSC_SIG1_WSW9) | BF_DVFSC_SIG1_WSW9(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_SIG1, field WSW10[16:14] (RW)
@@ -404,7 +386,6 @@ typedef union _hw_dvfsc_sig1
  * General purpose load tracking signal weight dvfs_w_sig[10]
  */
 //@{
-
 #define BP_DVFSC_SIG1_WSW10      (14)      //!< Bit position for DVFSC_SIG1_WSW10.
 #define BM_DVFSC_SIG1_WSW10      (0x0001c000)  //!< Bit mask for DVFSC_SIG1_WSW10.
 
@@ -418,7 +399,6 @@ typedef union _hw_dvfsc_sig1
 //! @brief Set the WSW10 field to a new value.
 #define BW_DVFSC_SIG1_WSW10(v)   (HW_DVFSC_SIG1_WR((HW_DVFSC_SIG1_RD() & ~BM_DVFSC_SIG1_WSW10) | BF_DVFSC_SIG1_WSW10(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_SIG1, field WSW11[19:17] (RW)
@@ -426,7 +406,6 @@ typedef union _hw_dvfsc_sig1
  * General purpose load tracking signal weight dvfs_w_sig[11]
  */
 //@{
-
 #define BP_DVFSC_SIG1_WSW11      (17)      //!< Bit position for DVFSC_SIG1_WSW11.
 #define BM_DVFSC_SIG1_WSW11      (0x000e0000)  //!< Bit mask for DVFSC_SIG1_WSW11.
 
@@ -440,7 +419,6 @@ typedef union _hw_dvfsc_sig1
 //! @brief Set the WSW11 field to a new value.
 #define BW_DVFSC_SIG1_WSW11(v)   (HW_DVFSC_SIG1_WR((HW_DVFSC_SIG1_RD() & ~BM_DVFSC_SIG1_WSW11) | BF_DVFSC_SIG1_WSW11(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_SIG1, field WSW12[22:20] (RW)
@@ -448,7 +426,6 @@ typedef union _hw_dvfsc_sig1
  * General purpose load tracking signal weight dvfs_w_sig[12]
  */
 //@{
-
 #define BP_DVFSC_SIG1_WSW12      (20)      //!< Bit position for DVFSC_SIG1_WSW12.
 #define BM_DVFSC_SIG1_WSW12      (0x00700000)  //!< Bit mask for DVFSC_SIG1_WSW12.
 
@@ -462,7 +439,6 @@ typedef union _hw_dvfsc_sig1
 //! @brief Set the WSW12 field to a new value.
 #define BW_DVFSC_SIG1_WSW12(v)   (HW_DVFSC_SIG1_WR((HW_DVFSC_SIG1_RD() & ~BM_DVFSC_SIG1_WSW12) | BF_DVFSC_SIG1_WSW12(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_SIG1, field WSW13[25:23] (RW)
@@ -470,7 +446,6 @@ typedef union _hw_dvfsc_sig1
  * General purpose load tracking signal weight dvfs_w_sig[13]
  */
 //@{
-
 #define BP_DVFSC_SIG1_WSW13      (23)      //!< Bit position for DVFSC_SIG1_WSW13.
 #define BM_DVFSC_SIG1_WSW13      (0x03800000)  //!< Bit mask for DVFSC_SIG1_WSW13.
 
@@ -484,7 +459,6 @@ typedef union _hw_dvfsc_sig1
 //! @brief Set the WSW13 field to a new value.
 #define BW_DVFSC_SIG1_WSW13(v)   (HW_DVFSC_SIG1_WR((HW_DVFSC_SIG1_RD() & ~BM_DVFSC_SIG1_WSW13) | BF_DVFSC_SIG1_WSW13(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_SIG1, field WSW14[28:26] (RW)
@@ -492,7 +466,6 @@ typedef union _hw_dvfsc_sig1
  * General purpose load tracking signal weight dvfs_w_sig[14]
  */
 //@{
-
 #define BP_DVFSC_SIG1_WSW14      (26)      //!< Bit position for DVFSC_SIG1_WSW14.
 #define BM_DVFSC_SIG1_WSW14      (0x1c000000)  //!< Bit mask for DVFSC_SIG1_WSW14.
 
@@ -506,7 +479,6 @@ typedef union _hw_dvfsc_sig1
 //! @brief Set the WSW14 field to a new value.
 #define BW_DVFSC_SIG1_WSW14(v)   (HW_DVFSC_SIG1_WR((HW_DVFSC_SIG1_RD() & ~BM_DVFSC_SIG1_WSW14) | BF_DVFSC_SIG1_WSW14(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_SIG1, field WSW15[31:29] (RW)
@@ -514,7 +486,6 @@ typedef union _hw_dvfsc_sig1
  * General purpose load tracking signal weight dvfs_w_sig[15]
  */
 //@{
-
 #define BP_DVFSC_SIG1_WSW15      (29)      //!< Bit position for DVFSC_SIG1_WSW15.
 #define BM_DVFSC_SIG1_WSW15      (0xe0000000)  //!< Bit mask for DVFSC_SIG1_WSW15.
 
@@ -528,7 +499,6 @@ typedef union _hw_dvfsc_sig1
 //! @brief Set the WSW15 field to a new value.
 #define BW_DVFSC_SIG1_WSW15(v)   (HW_DVFSC_SIG1_WR((HW_DVFSC_SIG1_RD() & ~BM_DVFSC_SIG1_WSW15) | BF_DVFSC_SIG1_WSW15(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -585,7 +555,6 @@ typedef union _hw_dvfsc_dvfssig0
  * counting period or when GPB0 is set.
  */
 //@{
-
 #define BP_DVFSC_DVFSSIG0_WSW0      (0)      //!< Bit position for DVFSC_DVFSSIG0_WSW0.
 #define BM_DVFSC_DVFSSIG0_WSW0      (0x0000003f)  //!< Bit mask for DVFSC_DVFSSIG0_WSW0.
 
@@ -599,7 +568,6 @@ typedef union _hw_dvfsc_dvfssig0
 //! @brief Set the WSW0 field to a new value.
 #define BW_DVFSC_DVFSSIG0_WSW0(v)   (HW_DVFSC_DVFSSIG0_WR((HW_DVFSC_DVFSSIG0_RD() & ~BM_DVFSC_DVFSSIG0_WSW0) | BF_DVFSC_DVFSSIG0_WSW0(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSSIG0, field WSW1[11:6] (RW)
@@ -608,7 +576,6 @@ typedef union _hw_dvfsc_dvfssig0
  * counting period or when GPB1 is set.
  */
 //@{
-
 #define BP_DVFSC_DVFSSIG0_WSW1      (6)      //!< Bit position for DVFSC_DVFSSIG0_WSW1.
 #define BM_DVFSC_DVFSSIG0_WSW1      (0x00000fc0)  //!< Bit mask for DVFSC_DVFSSIG0_WSW1.
 
@@ -622,7 +589,6 @@ typedef union _hw_dvfsc_dvfssig0
 //! @brief Set the WSW1 field to a new value.
 #define BW_DVFSC_DVFSSIG0_WSW1(v)   (HW_DVFSC_DVFSSIG0_WR((HW_DVFSC_DVFSSIG0_RD() & ~BM_DVFSC_DVFSSIG0_WSW1) | BF_DVFSC_DVFSSIG0_WSW1(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSSIG0, field WSW2[22:20] (RW)
@@ -630,7 +596,6 @@ typedef union _hw_dvfsc_dvfssig0
  * General purpose load tracking signal weight dvfs_w_sig[2]
  */
 //@{
-
 #define BP_DVFSC_DVFSSIG0_WSW2      (20)      //!< Bit position for DVFSC_DVFSSIG0_WSW2.
 #define BM_DVFSC_DVFSSIG0_WSW2      (0x00700000)  //!< Bit mask for DVFSC_DVFSSIG0_WSW2.
 
@@ -644,7 +609,6 @@ typedef union _hw_dvfsc_dvfssig0
 //! @brief Set the WSW2 field to a new value.
 #define BW_DVFSC_DVFSSIG0_WSW2(v)   (HW_DVFSC_DVFSSIG0_WR((HW_DVFSC_DVFSSIG0_RD() & ~BM_DVFSC_DVFSSIG0_WSW2) | BF_DVFSC_DVFSSIG0_WSW2(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSSIG0, field WSW3[25:23] (RW)
@@ -652,7 +616,6 @@ typedef union _hw_dvfsc_dvfssig0
  * General purpose load tracking signal weight dvfs_w_sig[3]
  */
 //@{
-
 #define BP_DVFSC_DVFSSIG0_WSW3      (23)      //!< Bit position for DVFSC_DVFSSIG0_WSW3.
 #define BM_DVFSC_DVFSSIG0_WSW3      (0x03800000)  //!< Bit mask for DVFSC_DVFSSIG0_WSW3.
 
@@ -666,7 +629,6 @@ typedef union _hw_dvfsc_dvfssig0
 //! @brief Set the WSW3 field to a new value.
 #define BW_DVFSC_DVFSSIG0_WSW3(v)   (HW_DVFSC_DVFSSIG0_WR((HW_DVFSC_DVFSSIG0_RD() & ~BM_DVFSC_DVFSSIG0_WSW3) | BF_DVFSC_DVFSSIG0_WSW3(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSSIG0, field WSW4[28:26] (RW)
@@ -674,7 +636,6 @@ typedef union _hw_dvfsc_dvfssig0
  * General purpose load tracking signal weight dvfs_w_sig[4]
  */
 //@{
-
 #define BP_DVFSC_DVFSSIG0_WSW4      (26)      //!< Bit position for DVFSC_DVFSSIG0_WSW4.
 #define BM_DVFSC_DVFSSIG0_WSW4      (0x1c000000)  //!< Bit mask for DVFSC_DVFSSIG0_WSW4.
 
@@ -688,7 +649,6 @@ typedef union _hw_dvfsc_dvfssig0
 //! @brief Set the WSW4 field to a new value.
 #define BW_DVFSC_DVFSSIG0_WSW4(v)   (HW_DVFSC_DVFSSIG0_WR((HW_DVFSC_DVFSSIG0_RD() & ~BM_DVFSC_DVFSSIG0_WSW4) | BF_DVFSC_DVFSSIG0_WSW4(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSSIG0, field WSW5[31:29] (RW)
@@ -696,7 +656,6 @@ typedef union _hw_dvfsc_dvfssig0
  * General purpose load tracking signal weight dvfs_w_sig[5]
  */
 //@{
-
 #define BP_DVFSC_DVFSSIG0_WSW5      (29)      //!< Bit position for DVFSC_DVFSSIG0_WSW5.
 #define BM_DVFSC_DVFSSIG0_WSW5      (0xe0000000)  //!< Bit mask for DVFSC_DVFSSIG0_WSW5.
 
@@ -710,7 +669,6 @@ typedef union _hw_dvfsc_dvfssig0
 //! @brief Set the WSW5 field to a new value.
 #define BW_DVFSC_DVFSSIG0_WSW5(v)   (HW_DVFSC_DVFSSIG0_WR((HW_DVFSC_DVFSSIG0_RD() & ~BM_DVFSC_DVFSSIG0_WSW5) | BF_DVFSC_DVFSSIG0_WSW5(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -764,7 +722,6 @@ typedef union _hw_dvfsc_dvfsgpc0
  * and WSW0 will be added to the calculations.
  */
 //@{
-
 #define BP_DVFSC_DVFSGPC0_GPBC0      (0)      //!< Bit position for DVFSC_DVFSGPC0_GPBC0.
 #define BM_DVFSC_DVFSGPC0_GPBC0      (0x0001ffff)  //!< Bit mask for DVFSC_DVFSGPC0_GPBC0.
 
@@ -778,7 +735,6 @@ typedef union _hw_dvfsc_dvfsgpc0
 //! @brief Set the GPBC0 field to a new value.
 #define BW_DVFSC_DVFSGPC0_GPBC0(v)   (HW_DVFSC_DVFSGPC0_WR((HW_DVFSC_DVFSGPC0_RD() & ~BM_DVFSC_DVFSGPC0_GPBC0) | BF_DVFSC_DVFSGPC0_GPBC0(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSGPC0, field C0ACT[30] (RO)
@@ -791,13 +747,11 @@ typedef union _hw_dvfsc_dvfsgpc0
  * - 1 - General Purpose bit0 counter didn't reach value of "0" - the WSW0 is provided to DVFS calculation
  */
 //@{
-
 #define BP_DVFSC_DVFSGPC0_C0ACT      (30)      //!< Bit position for DVFSC_DVFSGPC0_C0ACT.
 #define BM_DVFSC_DVFSGPC0_C0ACT      (0x40000000)  //!< Bit mask for DVFSC_DVFSGPC0_C0ACT.
 
 //! @brief Get value of DVFSC_DVFSGPC0_C0ACT from a register value.
 #define BG_DVFSC_DVFSGPC0_C0ACT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSGPC0_C0ACT) >> BP_DVFSC_DVFSGPC0_C0ACT)
-
 //@}
 
 /*! @name Register DVFSC_DVFSGPC0, field C0STRT[31] (RW)
@@ -808,7 +762,6 @@ typedef union _hw_dvfsc_dvfsgpc0
  * continuously
  */
 //@{
-
 #define BP_DVFSC_DVFSGPC0_C0STRT      (31)      //!< Bit position for DVFSC_DVFSGPC0_C0STRT.
 #define BM_DVFSC_DVFSGPC0_C0STRT      (0x80000000)  //!< Bit mask for DVFSC_DVFSGPC0_C0STRT.
 
@@ -822,7 +775,6 @@ typedef union _hw_dvfsc_dvfsgpc0
 //! @brief Set the C0STRT field to a new value.
 #define BW_DVFSC_DVFSGPC0_C0STRT(v)   (HW_DVFSC_DVFSGPC0_WR((HW_DVFSC_DVFSGPC0_RD() & ~BM_DVFSC_DVFSGPC0_C0STRT) | BF_DVFSC_DVFSGPC0_C0STRT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -876,7 +828,6 @@ typedef union _hw_dvfsc_dvfsgpc1
  * and WSW1 will be added to the calculations.
  */
 //@{
-
 #define BP_DVFSC_DVFSGPC1_GPBC1      (0)      //!< Bit position for DVFSC_DVFSGPC1_GPBC1.
 #define BM_DVFSC_DVFSGPC1_GPBC1      (0x0001ffff)  //!< Bit mask for DVFSC_DVFSGPC1_GPBC1.
 
@@ -890,7 +841,6 @@ typedef union _hw_dvfsc_dvfsgpc1
 //! @brief Set the GPBC1 field to a new value.
 #define BW_DVFSC_DVFSGPC1_GPBC1(v)   (HW_DVFSC_DVFSGPC1_WR((HW_DVFSC_DVFSGPC1_RD() & ~BM_DVFSC_DVFSGPC1_GPBC1) | BF_DVFSC_DVFSGPC1_GPBC1(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSGPC1, field C1ACT[30] (RO)
@@ -903,13 +853,11 @@ typedef union _hw_dvfsc_dvfsgpc1
  * - 1 - General Purpose bit1 counter didn't reach value of "0" - the WSW1 is provided to DVFS calculation
  */
 //@{
-
 #define BP_DVFSC_DVFSGPC1_C1ACT      (30)      //!< Bit position for DVFSC_DVFSGPC1_C1ACT.
 #define BM_DVFSC_DVFSGPC1_C1ACT      (0x40000000)  //!< Bit mask for DVFSC_DVFSGPC1_C1ACT.
 
 //! @brief Get value of DVFSC_DVFSGPC1_C1ACT from a register value.
 #define BG_DVFSC_DVFSGPC1_C1ACT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSGPC1_C1ACT) >> BP_DVFSC_DVFSGPC1_C1ACT)
-
 //@}
 
 /*! @name Register DVFSC_DVFSGPC1, field C1STRT[31] (RW)
@@ -920,7 +868,6 @@ typedef union _hw_dvfsc_dvfsgpc1
  * continuously
  */
 //@{
-
 #define BP_DVFSC_DVFSGPC1_C1STRT      (31)      //!< Bit position for DVFSC_DVFSGPC1_C1STRT.
 #define BM_DVFSC_DVFSGPC1_C1STRT      (0x80000000)  //!< Bit mask for DVFSC_DVFSGPC1_C1STRT.
 
@@ -934,7 +881,6 @@ typedef union _hw_dvfsc_dvfsgpc1
 //! @brief Set the C1STRT field to a new value.
 #define BW_DVFSC_DVFSGPC1_C1STRT(v)   (HW_DVFSC_DVFSGPC1_WR((HW_DVFSC_DVFSGPC1_RD() & ~BM_DVFSC_DVFSGPC1_C1STRT) | BF_DVFSC_DVFSGPC1_C1STRT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1001,7 +947,6 @@ typedef union _hw_dvfsc_dvfsgpbt
  * disregarded, WSW0 value is applied continuously.
  */
 //@{
-
 #define BP_DVFSC_DVFSGPBT_GPB0      (0)      //!< Bit position for DVFSC_DVFSGPBT_GPB0.
 #define BM_DVFSC_DVFSGPBT_GPB0      (0x00000001)  //!< Bit mask for DVFSC_DVFSGPBT_GPB0.
 
@@ -1015,7 +960,6 @@ typedef union _hw_dvfsc_dvfsgpbt
 //! @brief Set the GPB0 field to a new value.
 #define BW_DVFSC_DVFSGPBT_GPB0(v)   (HW_DVFSC_DVFSGPBT_WR((HW_DVFSC_DVFSGPBT_RD() & ~BM_DVFSC_DVFSGPBT_GPB0) | BF_DVFSC_DVFSGPBT_GPB0(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSGPBT, field GPB1[1] (RW)
@@ -1024,7 +968,6 @@ typedef union _hw_dvfsc_dvfsgpbt
  * disregarded, WSW1 value is applied continuously.
  */
 //@{
-
 #define BP_DVFSC_DVFSGPBT_GPB1      (1)      //!< Bit position for DVFSC_DVFSGPBT_GPB1.
 #define BM_DVFSC_DVFSGPBT_GPB1      (0x00000002)  //!< Bit mask for DVFSC_DVFSGPBT_GPB1.
 
@@ -1038,7 +981,6 @@ typedef union _hw_dvfsc_dvfsgpbt
 //! @brief Set the GPB1 field to a new value.
 #define BW_DVFSC_DVFSGPBT_GPB1(v)   (HW_DVFSC_DVFSGPBT_WR((HW_DVFSC_DVFSGPBT_RD() & ~BM_DVFSC_DVFSGPBT_GPB1) | BF_DVFSC_DVFSGPBT_GPB1(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSGPBT, field GPB2[2] (RW)
@@ -1046,7 +988,6 @@ typedef union _hw_dvfsc_dvfsgpbt
  * General purpose bit 2. Its weight is set by WSW2 value.
  */
 //@{
-
 #define BP_DVFSC_DVFSGPBT_GPB2      (2)      //!< Bit position for DVFSC_DVFSGPBT_GPB2.
 #define BM_DVFSC_DVFSGPBT_GPB2      (0x00000004)  //!< Bit mask for DVFSC_DVFSGPBT_GPB2.
 
@@ -1060,7 +1001,6 @@ typedef union _hw_dvfsc_dvfsgpbt
 //! @brief Set the GPB2 field to a new value.
 #define BW_DVFSC_DVFSGPBT_GPB2(v)   (HW_DVFSC_DVFSGPBT_WR((HW_DVFSC_DVFSGPBT_RD() & ~BM_DVFSC_DVFSGPBT_GPB2) | BF_DVFSC_DVFSGPBT_GPB2(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSGPBT, field GPB3[3] (RW)
@@ -1068,7 +1008,6 @@ typedef union _hw_dvfsc_dvfsgpbt
  * General purpose bit 3. Its weight is set by WSW3 value.
  */
 //@{
-
 #define BP_DVFSC_DVFSGPBT_GPB3      (3)      //!< Bit position for DVFSC_DVFSGPBT_GPB3.
 #define BM_DVFSC_DVFSGPBT_GPB3      (0x00000008)  //!< Bit mask for DVFSC_DVFSGPBT_GPB3.
 
@@ -1082,7 +1021,6 @@ typedef union _hw_dvfsc_dvfsgpbt
 //! @brief Set the GPB3 field to a new value.
 #define BW_DVFSC_DVFSGPBT_GPB3(v)   (HW_DVFSC_DVFSGPBT_WR((HW_DVFSC_DVFSGPBT_RD() & ~BM_DVFSC_DVFSGPBT_GPB3) | BF_DVFSC_DVFSGPBT_GPB3(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSGPBT, field GPB4[4] (RW)
@@ -1090,7 +1028,6 @@ typedef union _hw_dvfsc_dvfsgpbt
  * General purpose bit 4. Its weight is set by WSW4 value.
  */
 //@{
-
 #define BP_DVFSC_DVFSGPBT_GPB4      (4)      //!< Bit position for DVFSC_DVFSGPBT_GPB4.
 #define BM_DVFSC_DVFSGPBT_GPB4      (0x00000010)  //!< Bit mask for DVFSC_DVFSGPBT_GPB4.
 
@@ -1104,7 +1041,6 @@ typedef union _hw_dvfsc_dvfsgpbt
 //! @brief Set the GPB4 field to a new value.
 #define BW_DVFSC_DVFSGPBT_GPB4(v)   (HW_DVFSC_DVFSGPBT_WR((HW_DVFSC_DVFSGPBT_RD() & ~BM_DVFSC_DVFSGPBT_GPB4) | BF_DVFSC_DVFSGPBT_GPB4(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSGPBT, field GPB5[5] (RW)
@@ -1112,7 +1048,6 @@ typedef union _hw_dvfsc_dvfsgpbt
  * General purpose bit 5. Its weight is set by WSW5 value.
  */
 //@{
-
 #define BP_DVFSC_DVFSGPBT_GPB5      (5)      //!< Bit position for DVFSC_DVFSGPBT_GPB5.
 #define BM_DVFSC_DVFSGPBT_GPB5      (0x00000020)  //!< Bit mask for DVFSC_DVFSGPBT_GPB5.
 
@@ -1126,7 +1061,6 @@ typedef union _hw_dvfsc_dvfsgpbt
 //! @brief Set the GPB5 field to a new value.
 #define BW_DVFSC_DVFSGPBT_GPB5(v)   (HW_DVFSC_DVFSGPBT_WR((HW_DVFSC_DVFSGPBT_RD() & ~BM_DVFSC_DVFSGPBT_GPB5) | BF_DVFSC_DVFSGPBT_GPB5(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSGPBT, field GPB6[6] (RW)
@@ -1134,7 +1068,6 @@ typedef union _hw_dvfsc_dvfsgpbt
  * General purpose bit 6. Its weight is set by WSW6 value.
  */
 //@{
-
 #define BP_DVFSC_DVFSGPBT_GPB6      (6)      //!< Bit position for DVFSC_DVFSGPBT_GPB6.
 #define BM_DVFSC_DVFSGPBT_GPB6      (0x00000040)  //!< Bit mask for DVFSC_DVFSGPBT_GPB6.
 
@@ -1148,7 +1081,6 @@ typedef union _hw_dvfsc_dvfsgpbt
 //! @brief Set the GPB6 field to a new value.
 #define BW_DVFSC_DVFSGPBT_GPB6(v)   (HW_DVFSC_DVFSGPBT_WR((HW_DVFSC_DVFSGPBT_RD() & ~BM_DVFSC_DVFSGPBT_GPB6) | BF_DVFSC_DVFSGPBT_GPB6(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSGPBT, field GPB7[7] (RW)
@@ -1156,7 +1088,6 @@ typedef union _hw_dvfsc_dvfsgpbt
  * General purpose bit 7. Its weight is set by WSW7 value.
  */
 //@{
-
 #define BP_DVFSC_DVFSGPBT_GPB7      (7)      //!< Bit position for DVFSC_DVFSGPBT_GPB7.
 #define BM_DVFSC_DVFSGPBT_GPB7      (0x00000080)  //!< Bit mask for DVFSC_DVFSGPBT_GPB7.
 
@@ -1170,7 +1101,6 @@ typedef union _hw_dvfsc_dvfsgpbt
 //! @brief Set the GPB7 field to a new value.
 #define BW_DVFSC_DVFSGPBT_GPB7(v)   (HW_DVFSC_DVFSGPBT_WR((HW_DVFSC_DVFSGPBT_RD() & ~BM_DVFSC_DVFSGPBT_GPB7) | BF_DVFSC_DVFSGPBT_GPB7(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSGPBT, field GPB8[8] (RW)
@@ -1178,7 +1108,6 @@ typedef union _hw_dvfsc_dvfsgpbt
  * General purpose bit 8. Its weight is set by WSW8 value.
  */
 //@{
-
 #define BP_DVFSC_DVFSGPBT_GPB8      (8)      //!< Bit position for DVFSC_DVFSGPBT_GPB8.
 #define BM_DVFSC_DVFSGPBT_GPB8      (0x00000100)  //!< Bit mask for DVFSC_DVFSGPBT_GPB8.
 
@@ -1192,7 +1121,6 @@ typedef union _hw_dvfsc_dvfsgpbt
 //! @brief Set the GPB8 field to a new value.
 #define BW_DVFSC_DVFSGPBT_GPB8(v)   (HW_DVFSC_DVFSGPBT_WR((HW_DVFSC_DVFSGPBT_RD() & ~BM_DVFSC_DVFSGPBT_GPB8) | BF_DVFSC_DVFSGPBT_GPB8(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSGPBT, field GPB9[9] (RW)
@@ -1200,7 +1128,6 @@ typedef union _hw_dvfsc_dvfsgpbt
  * General purpose bit 9. Its weight is set by WSW9 value.
  */
 //@{
-
 #define BP_DVFSC_DVFSGPBT_GPB9      (9)      //!< Bit position for DVFSC_DVFSGPBT_GPB9.
 #define BM_DVFSC_DVFSGPBT_GPB9      (0x00000200)  //!< Bit mask for DVFSC_DVFSGPBT_GPB9.
 
@@ -1214,7 +1141,6 @@ typedef union _hw_dvfsc_dvfsgpbt
 //! @brief Set the GPB9 field to a new value.
 #define BW_DVFSC_DVFSGPBT_GPB9(v)   (HW_DVFSC_DVFSGPBT_WR((HW_DVFSC_DVFSGPBT_RD() & ~BM_DVFSC_DVFSGPBT_GPB9) | BF_DVFSC_DVFSGPBT_GPB9(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSGPBT, field GPB10[10] (RW)
@@ -1222,7 +1148,6 @@ typedef union _hw_dvfsc_dvfsgpbt
  * General purpose bit 10. Its weight is set by WSW10 value.
  */
 //@{
-
 #define BP_DVFSC_DVFSGPBT_GPB10      (10)      //!< Bit position for DVFSC_DVFSGPBT_GPB10.
 #define BM_DVFSC_DVFSGPBT_GPB10      (0x00000400)  //!< Bit mask for DVFSC_DVFSGPBT_GPB10.
 
@@ -1236,7 +1161,6 @@ typedef union _hw_dvfsc_dvfsgpbt
 //! @brief Set the GPB10 field to a new value.
 #define BW_DVFSC_DVFSGPBT_GPB10(v)   (HW_DVFSC_DVFSGPBT_WR((HW_DVFSC_DVFSGPBT_RD() & ~BM_DVFSC_DVFSGPBT_GPB10) | BF_DVFSC_DVFSGPBT_GPB10(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSGPBT, field GPB11[11] (RW)
@@ -1244,7 +1168,6 @@ typedef union _hw_dvfsc_dvfsgpbt
  * General purpose bit 11. Its weight is set by WSW11 value.
  */
 //@{
-
 #define BP_DVFSC_DVFSGPBT_GPB11      (11)      //!< Bit position for DVFSC_DVFSGPBT_GPB11.
 #define BM_DVFSC_DVFSGPBT_GPB11      (0x00000800)  //!< Bit mask for DVFSC_DVFSGPBT_GPB11.
 
@@ -1258,7 +1181,6 @@ typedef union _hw_dvfsc_dvfsgpbt
 //! @brief Set the GPB11 field to a new value.
 #define BW_DVFSC_DVFSGPBT_GPB11(v)   (HW_DVFSC_DVFSGPBT_WR((HW_DVFSC_DVFSGPBT_RD() & ~BM_DVFSC_DVFSGPBT_GPB11) | BF_DVFSC_DVFSGPBT_GPB11(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSGPBT, field GPB12[12] (RW)
@@ -1266,7 +1188,6 @@ typedef union _hw_dvfsc_dvfsgpbt
  * General purpose bit 12. Its weight is set by WSW12 value.
  */
 //@{
-
 #define BP_DVFSC_DVFSGPBT_GPB12      (12)      //!< Bit position for DVFSC_DVFSGPBT_GPB12.
 #define BM_DVFSC_DVFSGPBT_GPB12      (0x00001000)  //!< Bit mask for DVFSC_DVFSGPBT_GPB12.
 
@@ -1280,7 +1201,6 @@ typedef union _hw_dvfsc_dvfsgpbt
 //! @brief Set the GPB12 field to a new value.
 #define BW_DVFSC_DVFSGPBT_GPB12(v)   (HW_DVFSC_DVFSGPBT_WR((HW_DVFSC_DVFSGPBT_RD() & ~BM_DVFSC_DVFSGPBT_GPB12) | BF_DVFSC_DVFSGPBT_GPB12(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSGPBT, field GPB13[13] (RW)
@@ -1288,7 +1208,6 @@ typedef union _hw_dvfsc_dvfsgpbt
  * General purpose bit 13. Its weight is set by WSW13 value.
  */
 //@{
-
 #define BP_DVFSC_DVFSGPBT_GPB13      (13)      //!< Bit position for DVFSC_DVFSGPBT_GPB13.
 #define BM_DVFSC_DVFSGPBT_GPB13      (0x00002000)  //!< Bit mask for DVFSC_DVFSGPBT_GPB13.
 
@@ -1302,7 +1221,6 @@ typedef union _hw_dvfsc_dvfsgpbt
 //! @brief Set the GPB13 field to a new value.
 #define BW_DVFSC_DVFSGPBT_GPB13(v)   (HW_DVFSC_DVFSGPBT_WR((HW_DVFSC_DVFSGPBT_RD() & ~BM_DVFSC_DVFSGPBT_GPB13) | BF_DVFSC_DVFSGPBT_GPB13(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSGPBT, field GPB14[14] (RW)
@@ -1310,7 +1228,6 @@ typedef union _hw_dvfsc_dvfsgpbt
  * General purpose bit 14. Its weight is set by WSW14 value.
  */
 //@{
-
 #define BP_DVFSC_DVFSGPBT_GPB14      (14)      //!< Bit position for DVFSC_DVFSGPBT_GPB14.
 #define BM_DVFSC_DVFSGPBT_GPB14      (0x00004000)  //!< Bit mask for DVFSC_DVFSGPBT_GPB14.
 
@@ -1324,7 +1241,6 @@ typedef union _hw_dvfsc_dvfsgpbt
 //! @brief Set the GPB14 field to a new value.
 #define BW_DVFSC_DVFSGPBT_GPB14(v)   (HW_DVFSC_DVFSGPBT_WR((HW_DVFSC_DVFSGPBT_RD() & ~BM_DVFSC_DVFSGPBT_GPB14) | BF_DVFSC_DVFSGPBT_GPB14(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSGPBT, field GPB15[15] (RW)
@@ -1332,7 +1248,6 @@ typedef union _hw_dvfsc_dvfsgpbt
  * General purpose bit 15. Its weight is set by WSW15 value.
  */
 //@{
-
 #define BP_DVFSC_DVFSGPBT_GPB15      (15)      //!< Bit position for DVFSC_DVFSGPBT_GPB15.
 #define BM_DVFSC_DVFSGPBT_GPB15      (0x00008000)  //!< Bit mask for DVFSC_DVFSGPBT_GPB15.
 
@@ -1346,7 +1261,6 @@ typedef union _hw_dvfsc_dvfsgpbt
 //! @brief Set the GPB15 field to a new value.
 #define BW_DVFSC_DVFSGPBT_GPB15(v)   (HW_DVFSC_DVFSGPBT_WR((HW_DVFSC_DVFSGPBT_RD() & ~BM_DVFSC_DVFSGPBT_GPB15) | BF_DVFSC_DVFSGPBT_GPB15(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1410,7 +1324,6 @@ typedef union _hw_dvfsc_dvfsemac
  * EMAC - EMA control value
  */
 //@{
-
 #define BP_DVFSC_DVFSEMAC_EMAC      (0)      //!< Bit position for DVFSC_DVFSEMAC_EMAC.
 #define BM_DVFSC_DVFSEMAC_EMAC      (0x000001ff)  //!< Bit mask for DVFSC_DVFSEMAC_EMAC.
 
@@ -1424,7 +1337,6 @@ typedef union _hw_dvfsc_dvfsemac
 //! @brief Set the EMAC field to a new value.
 #define BW_DVFSC_DVFSEMAC_EMAC(v)   (HW_DVFSC_DVFSEMAC_WR((HW_DVFSC_DVFSEMAC_RD() & ~BM_DVFSC_DVFSEMAC_EMAC) | BF_DVFSC_DVFSEMAC_EMAC(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSEMAC, field DVFEN0[9] (RW)
@@ -1436,7 +1348,6 @@ typedef union _hw_dvfsc_dvfsemac
  * - 1 - DVFS enabled.
  */
 //@{
-
 #define BP_DVFSC_DVFSEMAC_DVFEN0      (9)      //!< Bit position for DVFSC_DVFSEMAC_DVFEN0.
 #define BM_DVFSC_DVFSEMAC_DVFEN0      (0x00000200)  //!< Bit mask for DVFSC_DVFSEMAC_DVFEN0.
 
@@ -1450,7 +1361,6 @@ typedef union _hw_dvfsc_dvfsemac
 //! @brief Set the DVFEN0 field to a new value.
 #define BW_DVFSC_DVFSEMAC_DVFEN0(v)   (HW_DVFSC_DVFSEMAC_WR((HW_DVFSC_DVFSEMAC_RD() & ~BM_DVFSC_DVFSEMAC_DVFEN0) | BF_DVFSC_DVFSEMAC_DVFEN0(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSEMAC, field DVFEN1[10] (RW)
@@ -1462,7 +1372,6 @@ typedef union _hw_dvfsc_dvfsemac
  * - 1 - DVFS enabled.
  */
 //@{
-
 #define BP_DVFSC_DVFSEMAC_DVFEN1      (10)      //!< Bit position for DVFSC_DVFSEMAC_DVFEN1.
 #define BM_DVFSC_DVFSEMAC_DVFEN1      (0x00000400)  //!< Bit mask for DVFSC_DVFSEMAC_DVFEN1.
 
@@ -1476,7 +1385,6 @@ typedef union _hw_dvfsc_dvfsemac
 //! @brief Set the DVFEN1 field to a new value.
 #define BW_DVFSC_DVFSEMAC_DVFEN1(v)   (HW_DVFSC_DVFSEMAC_WR((HW_DVFSC_DVFSEMAC_RD() & ~BM_DVFSC_DVFSEMAC_DVFEN1) | BF_DVFSC_DVFSEMAC_DVFEN1(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSEMAC, field DVFEN2[11] (RW)
@@ -1488,7 +1396,6 @@ typedef union _hw_dvfsc_dvfsemac
  * - 1 - DVFS enabled.
  */
 //@{
-
 #define BP_DVFSC_DVFSEMAC_DVFEN2      (11)      //!< Bit position for DVFSC_DVFSEMAC_DVFEN2.
 #define BM_DVFSC_DVFSEMAC_DVFEN2      (0x00000800)  //!< Bit mask for DVFSC_DVFSEMAC_DVFEN2.
 
@@ -1502,7 +1409,6 @@ typedef union _hw_dvfsc_dvfsemac
 //! @brief Set the DVFEN2 field to a new value.
 #define BW_DVFSC_DVFSEMAC_DVFEN2(v)   (HW_DVFSC_DVFSEMAC_WR((HW_DVFSC_DVFSEMAC_RD() & ~BM_DVFSC_DVFSEMAC_DVFEN2) | BF_DVFSC_DVFSEMAC_DVFEN2(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSEMAC, field DVFEN3[12] (RW)
@@ -1514,7 +1420,6 @@ typedef union _hw_dvfsc_dvfsemac
  * - 1 - DVFS enabled.
  */
 //@{
-
 #define BP_DVFSC_DVFSEMAC_DVFEN3      (12)      //!< Bit position for DVFSC_DVFSEMAC_DVFEN3.
 #define BM_DVFSC_DVFSEMAC_DVFEN3      (0x00001000)  //!< Bit mask for DVFSC_DVFSEMAC_DVFEN3.
 
@@ -1528,7 +1433,6 @@ typedef union _hw_dvfsc_dvfsemac
 //! @brief Set the DVFEN3 field to a new value.
 #define BW_DVFSC_DVFSEMAC_DVFEN3(v)   (HW_DVFSC_DVFSEMAC_WR((HW_DVFSC_DVFSEMAC_RD() & ~BM_DVFSC_DVFSEMAC_DVFEN3) | BF_DVFSC_DVFSEMAC_DVFEN3(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSEMAC, field FSVAI0[17:16] (RO)
@@ -1546,13 +1450,11 @@ typedef union _hw_dvfsc_dvfsemac
  *     if FSVAIM=0. Interrupt is masked if MAXF = 1 (highest frequency).
  */
 //@{
-
 #define BP_DVFSC_DVFSEMAC_FSVAI0      (16)      //!< Bit position for DVFSC_DVFSEMAC_FSVAI0.
 #define BM_DVFSC_DVFSEMAC_FSVAI0      (0x00030000)  //!< Bit mask for DVFSC_DVFSEMAC_FSVAI0.
 
 //! @brief Get value of DVFSC_DVFSEMAC_FSVAI0 from a register value.
 #define BG_DVFSC_DVFSEMAC_FSVAI0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSEMAC_FSVAI0) >> BP_DVFSC_DVFSEMAC_FSVAI0)
-
 //@}
 
 /*! @name Register DVFSC_DVFSEMAC, field FSVAI1[19:18] (RO)
@@ -1570,13 +1472,11 @@ typedef union _hw_dvfsc_dvfsemac
  *     if FSVAIM=0. Interrupt is masked if MAXF = 1 (highest frequency).
  */
 //@{
-
 #define BP_DVFSC_DVFSEMAC_FSVAI1      (18)      //!< Bit position for DVFSC_DVFSEMAC_FSVAI1.
 #define BM_DVFSC_DVFSEMAC_FSVAI1      (0x000c0000)  //!< Bit mask for DVFSC_DVFSEMAC_FSVAI1.
 
 //! @brief Get value of DVFSC_DVFSEMAC_FSVAI1 from a register value.
 #define BG_DVFSC_DVFSEMAC_FSVAI1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSEMAC_FSVAI1) >> BP_DVFSC_DVFSEMAC_FSVAI1)
-
 //@}
 
 /*! @name Register DVFSC_DVFSEMAC, field FSVAI2[21:20] (RO)
@@ -1594,13 +1494,11 @@ typedef union _hw_dvfsc_dvfsemac
  *     if FSVAIM=0. Interrupt is masked if MAXF = 1 (highest frequency).
  */
 //@{
-
 #define BP_DVFSC_DVFSEMAC_FSVAI2      (20)      //!< Bit position for DVFSC_DVFSEMAC_FSVAI2.
 #define BM_DVFSC_DVFSEMAC_FSVAI2      (0x00300000)  //!< Bit mask for DVFSC_DVFSEMAC_FSVAI2.
 
 //! @brief Get value of DVFSC_DVFSEMAC_FSVAI2 from a register value.
 #define BG_DVFSC_DVFSEMAC_FSVAI2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSEMAC_FSVAI2) >> BP_DVFSC_DVFSEMAC_FSVAI2)
-
 //@}
 
 /*! @name Register DVFSC_DVFSEMAC, field FSVAI3[23:22] (RO)
@@ -1618,13 +1516,11 @@ typedef union _hw_dvfsc_dvfsemac
  *     if FSVAIM=0. Interrupt is masked if MAXF = 1 (highest frequency).
  */
 //@{
-
 #define BP_DVFSC_DVFSEMAC_FSVAI3      (22)      //!< Bit position for DVFSC_DVFSEMAC_FSVAI3.
 #define BM_DVFSC_DVFSEMAC_FSVAI3      (0x00c00000)  //!< Bit mask for DVFSC_DVFSEMAC_FSVAI3.
 
 //! @brief Get value of DVFSC_DVFSEMAC_FSVAI3 from a register value.
 #define BG_DVFSC_DVFSEMAC_FSVAI3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSEMAC_FSVAI3) >> BP_DVFSC_DVFSEMAC_FSVAI3)
-
 //@}
 
 /*! @name Register DVFSC_DVFSEMAC, field WFIM0[24] (RW)
@@ -1636,7 +1532,6 @@ typedef union _hw_dvfsc_dvfsemac
  * - 1 - Wait for interrupt of core 0 is masked.
  */
 //@{
-
 #define BP_DVFSC_DVFSEMAC_WFIM0      (24)      //!< Bit position for DVFSC_DVFSEMAC_WFIM0.
 #define BM_DVFSC_DVFSEMAC_WFIM0      (0x01000000)  //!< Bit mask for DVFSC_DVFSEMAC_WFIM0.
 
@@ -1650,7 +1545,6 @@ typedef union _hw_dvfsc_dvfsemac
 //! @brief Set the WFIM0 field to a new value.
 #define BW_DVFSC_DVFSEMAC_WFIM0(v)   (HW_DVFSC_DVFSEMAC_WR((HW_DVFSC_DVFSEMAC_RD() & ~BM_DVFSC_DVFSEMAC_WFIM0) | BF_DVFSC_DVFSEMAC_WFIM0(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSEMAC, field WFIM1[25] (RW)
@@ -1662,7 +1556,6 @@ typedef union _hw_dvfsc_dvfsemac
  * - 1 - Wait for interrupt of core 1 is masked.
  */
 //@{
-
 #define BP_DVFSC_DVFSEMAC_WFIM1      (25)      //!< Bit position for DVFSC_DVFSEMAC_WFIM1.
 #define BM_DVFSC_DVFSEMAC_WFIM1      (0x02000000)  //!< Bit mask for DVFSC_DVFSEMAC_WFIM1.
 
@@ -1676,7 +1569,6 @@ typedef union _hw_dvfsc_dvfsemac
 //! @brief Set the WFIM1 field to a new value.
 #define BW_DVFSC_DVFSEMAC_WFIM1(v)   (HW_DVFSC_DVFSEMAC_WR((HW_DVFSC_DVFSEMAC_RD() & ~BM_DVFSC_DVFSEMAC_WFIM1) | BF_DVFSC_DVFSEMAC_WFIM1(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSEMAC, field WFIM2[26] (RW)
@@ -1688,7 +1580,6 @@ typedef union _hw_dvfsc_dvfsemac
  * - 1 - Wait for interrupt of core 2 is masked.
  */
 //@{
-
 #define BP_DVFSC_DVFSEMAC_WFIM2      (26)      //!< Bit position for DVFSC_DVFSEMAC_WFIM2.
 #define BM_DVFSC_DVFSEMAC_WFIM2      (0x04000000)  //!< Bit mask for DVFSC_DVFSEMAC_WFIM2.
 
@@ -1702,7 +1593,6 @@ typedef union _hw_dvfsc_dvfsemac
 //! @brief Set the WFIM2 field to a new value.
 #define BW_DVFSC_DVFSEMAC_WFIM2(v)   (HW_DVFSC_DVFSEMAC_WR((HW_DVFSC_DVFSEMAC_RD() & ~BM_DVFSC_DVFSEMAC_WFIM2) | BF_DVFSC_DVFSEMAC_WFIM2(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSEMAC, field WFIM3[27] (RW)
@@ -1714,7 +1604,6 @@ typedef union _hw_dvfsc_dvfsemac
  * - 1 - Wait for interrupt of core 3 is masked.
  */
 //@{
-
 #define BP_DVFSC_DVFSEMAC_WFIM3      (27)      //!< Bit position for DVFSC_DVFSEMAC_WFIM3.
 #define BM_DVFSC_DVFSEMAC_WFIM3      (0x08000000)  //!< Bit mask for DVFSC_DVFSEMAC_WFIM3.
 
@@ -1728,7 +1617,6 @@ typedef union _hw_dvfsc_dvfsemac
 //! @brief Set the WFIM3 field to a new value.
 #define BW_DVFSC_DVFSEMAC_WFIM3(v)   (HW_DVFSC_DVFSEMAC_WR((HW_DVFSC_DVFSEMAC_RD() & ~BM_DVFSC_DVFSEMAC_WFIM3) | BF_DVFSC_DVFSEMAC_WFIM3(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1805,7 +1693,6 @@ typedef union _hw_dvfsc_cntr
  * - 11 - reserved
  */
 //@{
-
 #define BP_DVFSC_CNTR_LTBRSR      (3)      //!< Bit position for DVFSC_CNTR_LTBRSR.
 #define BM_DVFSC_CNTR_LTBRSR      (0x00000018)  //!< Bit mask for DVFSC_CNTR_LTBRSR.
 
@@ -1819,7 +1706,6 @@ typedef union _hw_dvfsc_cntr
 //! @brief Set the LTBRSR field to a new value.
 #define BW_DVFSC_CNTR_LTBRSR(v)   (HW_DVFSC_CNTR_WR((HW_DVFSC_CNTR_RD() & ~BM_DVFSC_CNTR_LTBRSR) | BF_DVFSC_CNTR_LTBRSR(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_CNTR, field LTBRSH[5] (RW)
@@ -1831,7 +1717,6 @@ typedef union _hw_dvfsc_cntr
  * - 1 - values of [4:1] of the selected input are saving in Load Tracking Buffer
  */
 //@{
-
 #define BP_DVFSC_CNTR_LTBRSH      (5)      //!< Bit position for DVFSC_CNTR_LTBRSH.
 #define BM_DVFSC_CNTR_LTBRSH      (0x00000020)  //!< Bit mask for DVFSC_CNTR_LTBRSH.
 
@@ -1845,7 +1730,6 @@ typedef union _hw_dvfsc_cntr
 //! @brief Set the LTBRSH field to a new value.
 #define BW_DVFSC_CNTR_LTBRSH(v)   (HW_DVFSC_CNTR_WR((HW_DVFSC_CNTR_RD() & ~BM_DVFSC_CNTR_LTBRSH) | BF_DVFSC_CNTR_LTBRSH(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_CNTR, field PFUS[8:6] (RO)
@@ -1860,13 +1744,11 @@ typedef union _hw_dvfsc_cntr
  * - 111 - DVFSPT3 period, previous finished (can be EMA-detected performance level)
  */
 //@{
-
 #define BP_DVFSC_CNTR_PFUS      (6)      //!< Bit position for DVFSC_CNTR_PFUS.
 #define BM_DVFSC_CNTR_PFUS      (0x000001c0)  //!< Bit mask for DVFSC_CNTR_PFUS.
 
 //! @brief Get value of DVFSC_CNTR_PFUS from a register value.
 #define BG_DVFSC_CNTR_PFUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_CNTR_PFUS) >> BP_DVFSC_CNTR_PFUS)
-
 //@}
 
 /*! @name Register DVFSC_CNTR, field PFUE[9] (RW)
@@ -1878,7 +1760,6 @@ typedef union _hw_dvfsc_cntr
  * - 1 - enabled
  */
 //@{
-
 #define BP_DVFSC_CNTR_PFUE      (9)      //!< Bit position for DVFSC_CNTR_PFUE.
 #define BM_DVFSC_CNTR_PFUE      (0x00000200)  //!< Bit mask for DVFSC_CNTR_PFUE.
 
@@ -1892,7 +1773,6 @@ typedef union _hw_dvfsc_cntr
 //! @brief Set the PFUE field to a new value.
 #define BW_DVFSC_CNTR_PFUE(v)   (HW_DVFSC_CNTR_WR((HW_DVFSC_CNTR_RD() & ~BM_DVFSC_CNTR_PFUE) | BF_DVFSC_CNTR_PFUE(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_CNTR, field DIV_RATIO[16:11] (RW)
@@ -1900,7 +1780,6 @@ typedef union _hw_dvfsc_cntr
  * DIV_RATIO - Divider value. Divider divides the input ARM clock, following the table
  */
 //@{
-
 #define BP_DVFSC_CNTR_DIV_RATIO      (11)      //!< Bit position for DVFSC_CNTR_DIV_RATIO.
 #define BM_DVFSC_CNTR_DIV_RATIO      (0x0001f800)  //!< Bit mask for DVFSC_CNTR_DIV_RATIO.
 
@@ -1914,7 +1793,6 @@ typedef union _hw_dvfsc_cntr
 //! @brief Set the DIV_RATIO field to a new value.
 #define BW_DVFSC_CNTR_DIV_RATIO(v)   (HW_DVFSC_CNTR_WR((HW_DVFSC_CNTR_RD() & ~BM_DVFSC_CNTR_DIV_RATIO) | BF_DVFSC_CNTR_DIV_RATIO(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_CNTR, field MINF[17] (RW)
@@ -1927,7 +1805,6 @@ typedef union _hw_dvfsc_cntr
  * - 1 - min frequency reached
  */
 //@{
-
 #define BP_DVFSC_CNTR_MINF      (17)      //!< Bit position for DVFSC_CNTR_MINF.
 #define BM_DVFSC_CNTR_MINF      (0x00020000)  //!< Bit mask for DVFSC_CNTR_MINF.
 
@@ -1941,7 +1818,6 @@ typedef union _hw_dvfsc_cntr
 //! @brief Set the MINF field to a new value.
 #define BW_DVFSC_CNTR_MINF(v)   (HW_DVFSC_CNTR_WR((HW_DVFSC_CNTR_RD() & ~BM_DVFSC_CNTR_MINF) | BF_DVFSC_CNTR_MINF(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_CNTR, field MAXF[18] (RW)
@@ -1954,7 +1830,6 @@ typedef union _hw_dvfsc_cntr
  * - 1 - max frequency reached
  */
 //@{
-
 #define BP_DVFSC_CNTR_MAXF      (18)      //!< Bit position for DVFSC_CNTR_MAXF.
 #define BM_DVFSC_CNTR_MAXF      (0x00040000)  //!< Bit mask for DVFSC_CNTR_MAXF.
 
@@ -1968,7 +1843,6 @@ typedef union _hw_dvfsc_cntr
 //! @brief Set the MAXF field to a new value.
 #define BW_DVFSC_CNTR_MAXF(v)   (HW_DVFSC_CNTR_WR((HW_DVFSC_CNTR_RD() & ~BM_DVFSC_CNTR_MAXF) | BF_DVFSC_CNTR_MAXF(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_CNTR, field FSVAI[21:20] (RO)
@@ -1986,13 +1860,11 @@ typedef union _hw_dvfsc_cntr
  *     FSVAIM=0. Interrupt is masked if MAXF = 1 (highest frequency).
  */
 //@{
-
 #define BP_DVFSC_CNTR_FSVAI      (20)      //!< Bit position for DVFSC_CNTR_FSVAI.
 #define BM_DVFSC_CNTR_FSVAI      (0x00300000)  //!< Bit mask for DVFSC_CNTR_FSVAI.
 
 //! @brief Get value of DVFSC_CNTR_FSVAI from a register value.
 #define BG_DVFSC_CNTR_FSVAI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_CNTR_FSVAI) >> BP_DVFSC_CNTR_FSVAI)
-
 //@}
 
 /*! @name Register DVFSC_CNTR, field FSVAIM[22] (RW)
@@ -2005,7 +1877,6 @@ typedef union _hw_dvfsc_cntr
  * - 1 - interrupt is masked.
  */
 //@{
-
 #define BP_DVFSC_CNTR_FSVAIM      (22)      //!< Bit position for DVFSC_CNTR_FSVAIM.
 #define BM_DVFSC_CNTR_FSVAIM      (0x00400000)  //!< Bit mask for DVFSC_CNTR_FSVAIM.
 
@@ -2019,7 +1890,6 @@ typedef union _hw_dvfsc_cntr
 //! @brief Set the FSVAIM field to a new value.
 #define BW_DVFSC_CNTR_FSVAIM(v)   (HW_DVFSC_CNTR_WR((HW_DVFSC_CNTR_RD() & ~BM_DVFSC_CNTR_FSVAIM) | BF_DVFSC_CNTR_FSVAIM(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_CNTR, field PIRQS[23] (RW)
@@ -2032,7 +1902,6 @@ typedef union _hw_dvfsc_cntr
  * - 1 - DVFS IRQ source was from pattern
  */
 //@{
-
 #define BP_DVFSC_CNTR_PIRQS      (23)      //!< Bit position for DVFSC_CNTR_PIRQS.
 #define BM_DVFSC_CNTR_PIRQS      (0x00800000)  //!< Bit mask for DVFSC_CNTR_PIRQS.
 
@@ -2046,7 +1915,6 @@ typedef union _hw_dvfsc_cntr
 //! @brief Set the PIRQS field to a new value.
 #define BW_DVFSC_CNTR_PIRQS(v)   (HW_DVFSC_CNTR_WR((HW_DVFSC_CNTR_RD() & ~BM_DVFSC_CNTR_PIRQS) | BF_DVFSC_CNTR_PIRQS(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_CNTR, field DVFIS[24] (RW)
@@ -2058,7 +1926,6 @@ typedef union _hw_dvfsc_cntr
  * - 1 - MCU interrupt will be generated for DVFS events.
  */
 //@{
-
 #define BP_DVFSC_CNTR_DVFIS      (24)      //!< Bit position for DVFSC_CNTR_DVFIS.
 #define BM_DVFSC_CNTR_DVFIS      (0x01000000)  //!< Bit mask for DVFSC_CNTR_DVFIS.
 
@@ -2072,7 +1939,6 @@ typedef union _hw_dvfsc_cntr
 //! @brief Set the DVFIS field to a new value.
 #define BW_DVFSC_CNTR_DVFIS(v)   (HW_DVFSC_CNTR_WR((HW_DVFSC_CNTR_RD() & ~BM_DVFSC_CNTR_DVFIS) | BF_DVFSC_CNTR_DVFIS(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_CNTR, field LBFL0[25] (RW)
@@ -2086,7 +1952,6 @@ typedef union _hw_dvfsc_cntr
  * - 1 - Load buffer1 is full.
  */
 //@{
-
 #define BP_DVFSC_CNTR_LBFL0      (25)      //!< Bit position for DVFSC_CNTR_LBFL0.
 #define BM_DVFSC_CNTR_LBFL0      (0x02000000)  //!< Bit mask for DVFSC_CNTR_LBFL0.
 
@@ -2100,7 +1965,6 @@ typedef union _hw_dvfsc_cntr
 //! @brief Set the LBFL0 field to a new value.
 #define BW_DVFSC_CNTR_LBFL0(v)   (HW_DVFSC_CNTR_WR((HW_DVFSC_CNTR_RD() & ~BM_DVFSC_CNTR_LBFL0) | BF_DVFSC_CNTR_LBFL0(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_CNTR, field LBFL1[26] (RW)
@@ -2114,7 +1978,6 @@ typedef union _hw_dvfsc_cntr
  * - 1 - Load buffer0 is full.
  */
 //@{
-
 #define BP_DVFSC_CNTR_LBFL1      (26)      //!< Bit position for DVFSC_CNTR_LBFL1.
 #define BM_DVFSC_CNTR_LBFL1      (0x04000000)  //!< Bit mask for DVFSC_CNTR_LBFL1.
 
@@ -2128,7 +1991,6 @@ typedef union _hw_dvfsc_cntr
 //! @brief Set the LBFL1 field to a new value.
 #define BW_DVFSC_CNTR_LBFL1(v)   (HW_DVFSC_CNTR_WR((HW_DVFSC_CNTR_RD() & ~BM_DVFSC_CNTR_LBFL1) | BF_DVFSC_CNTR_LBFL1(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_CNTR, field LBMI[27] (RW)
@@ -2138,7 +2000,6 @@ typedef union _hw_dvfsc_cntr
  * generated) Load buffer full interrupt is enabled.
  */
 //@{
-
 #define BP_DVFSC_CNTR_LBMI      (27)      //!< Bit position for DVFSC_CNTR_LBMI.
 #define BM_DVFSC_CNTR_LBMI      (0x08000000)  //!< Bit mask for DVFSC_CNTR_LBMI.
 
@@ -2152,7 +2013,6 @@ typedef union _hw_dvfsc_cntr
 //! @brief Set the LBMI field to a new value.
 #define BW_DVFSC_CNTR_LBMI(v)   (HW_DVFSC_CNTR_WR((HW_DVFSC_CNTR_RD() & ~BM_DVFSC_CNTR_LBMI) | BF_DVFSC_CNTR_LBMI(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_CNTR, field DVFEV[28] (RW)
@@ -2164,7 +2024,6 @@ typedef union _hw_dvfsc_cntr
  * - 1 - Always give event.
  */
 //@{
-
 #define BP_DVFSC_CNTR_DVFEV      (28)      //!< Bit position for DVFSC_CNTR_DVFEV.
 #define BM_DVFSC_CNTR_DVFEV      (0x10000000)  //!< Bit mask for DVFSC_CNTR_DVFEV.
 
@@ -2178,7 +2037,6 @@ typedef union _hw_dvfsc_cntr
 //! @brief Set the DVFEV field to a new value.
 #define BW_DVFSC_CNTR_DVFEV(v)   (HW_DVFSC_CNTR_WR((HW_DVFSC_CNTR_RD() & ~BM_DVFSC_CNTR_DVFEV) | BF_DVFSC_CNTR_DVFEV(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_CNTR, field DIV3CK[31:29] (RW)
@@ -2186,7 +2044,6 @@ typedef union _hw_dvfsc_cntr
  * DIV3CK - div_3_clk division ratio inside the DVFS module. According to the
  */
 //@{
-
 #define BP_DVFSC_CNTR_DIV3CK      (29)      //!< Bit position for DVFSC_CNTR_DIV3CK.
 #define BM_DVFSC_CNTR_DIV3CK      (0xe0000000)  //!< Bit mask for DVFSC_CNTR_DIV3CK.
 
@@ -2200,7 +2057,6 @@ typedef union _hw_dvfsc_cntr
 //! @brief Set the DIV3CK field to a new value.
 #define BW_DVFSC_CNTR_DIV3CK(v)   (HW_DVFSC_CNTR_WR((HW_DVFSC_CNTR_RD() & ~BM_DVFSC_CNTR_DIV3CK) | BF_DVFSC_CNTR_DIV3CK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2253,13 +2109,11 @@ typedef union _hw_dvfsc_dvfsltr0_0
  * core 0 Load Tracking Sample 0
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR0_0_LTS0_0      (0)      //!< Bit position for DVFSC_DVFSLTR0_0_LTS0_0.
 #define BM_DVFSC_DVFSLTR0_0_LTS0_0      (0x0000000f)  //!< Bit mask for DVFSC_DVFSLTR0_0_LTS0_0.
 
 //! @brief Get value of DVFSC_DVFSLTR0_0_LTS0_0 from a register value.
 #define BG_DVFSC_DVFSLTR0_0_LTS0_0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR0_0_LTS0_0) >> BP_DVFSC_DVFSLTR0_0_LTS0_0)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR0_0, field LTS0_1[7:4] (RO)
@@ -2267,13 +2121,11 @@ typedef union _hw_dvfsc_dvfsltr0_0
  * core 0 Load Tracking Sample 1
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR0_0_LTS0_1      (4)      //!< Bit position for DVFSC_DVFSLTR0_0_LTS0_1.
 #define BM_DVFSC_DVFSLTR0_0_LTS0_1      (0x000000f0)  //!< Bit mask for DVFSC_DVFSLTR0_0_LTS0_1.
 
 //! @brief Get value of DVFSC_DVFSLTR0_0_LTS0_1 from a register value.
 #define BG_DVFSC_DVFSLTR0_0_LTS0_1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR0_0_LTS0_1) >> BP_DVFSC_DVFSLTR0_0_LTS0_1)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR0_0, field LTS0_2[11:8] (RO)
@@ -2281,13 +2133,11 @@ typedef union _hw_dvfsc_dvfsltr0_0
  * core 0 Load Tracking Sample 2
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR0_0_LTS0_2      (8)      //!< Bit position for DVFSC_DVFSLTR0_0_LTS0_2.
 #define BM_DVFSC_DVFSLTR0_0_LTS0_2      (0x00000f00)  //!< Bit mask for DVFSC_DVFSLTR0_0_LTS0_2.
 
 //! @brief Get value of DVFSC_DVFSLTR0_0_LTS0_2 from a register value.
 #define BG_DVFSC_DVFSLTR0_0_LTS0_2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR0_0_LTS0_2) >> BP_DVFSC_DVFSLTR0_0_LTS0_2)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR0_0, field LTS0_3[15:12] (RO)
@@ -2295,13 +2145,11 @@ typedef union _hw_dvfsc_dvfsltr0_0
  * core 0 Load Tracking Sample 3
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR0_0_LTS0_3      (12)      //!< Bit position for DVFSC_DVFSLTR0_0_LTS0_3.
 #define BM_DVFSC_DVFSLTR0_0_LTS0_3      (0x0000f000)  //!< Bit mask for DVFSC_DVFSLTR0_0_LTS0_3.
 
 //! @brief Get value of DVFSC_DVFSLTR0_0_LTS0_3 from a register value.
 #define BG_DVFSC_DVFSLTR0_0_LTS0_3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR0_0_LTS0_3) >> BP_DVFSC_DVFSLTR0_0_LTS0_3)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR0_0, field LTS0_4[19:16] (RO)
@@ -2309,13 +2157,11 @@ typedef union _hw_dvfsc_dvfsltr0_0
  * core 0 Load Tracking Sample 4
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR0_0_LTS0_4      (16)      //!< Bit position for DVFSC_DVFSLTR0_0_LTS0_4.
 #define BM_DVFSC_DVFSLTR0_0_LTS0_4      (0x000f0000)  //!< Bit mask for DVFSC_DVFSLTR0_0_LTS0_4.
 
 //! @brief Get value of DVFSC_DVFSLTR0_0_LTS0_4 from a register value.
 #define BG_DVFSC_DVFSLTR0_0_LTS0_4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR0_0_LTS0_4) >> BP_DVFSC_DVFSLTR0_0_LTS0_4)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR0_0, field LTS0_5[23:20] (RO)
@@ -2323,13 +2169,11 @@ typedef union _hw_dvfsc_dvfsltr0_0
  * core 0 Load Tracking Sample 5
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR0_0_LTS0_5      (20)      //!< Bit position for DVFSC_DVFSLTR0_0_LTS0_5.
 #define BM_DVFSC_DVFSLTR0_0_LTS0_5      (0x00f00000)  //!< Bit mask for DVFSC_DVFSLTR0_0_LTS0_5.
 
 //! @brief Get value of DVFSC_DVFSLTR0_0_LTS0_5 from a register value.
 #define BG_DVFSC_DVFSLTR0_0_LTS0_5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR0_0_LTS0_5) >> BP_DVFSC_DVFSLTR0_0_LTS0_5)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR0_0, field LTS0_6[27:24] (RO)
@@ -2337,13 +2181,11 @@ typedef union _hw_dvfsc_dvfsltr0_0
  * core 0 Load Tracking Sample 6
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR0_0_LTS0_6      (24)      //!< Bit position for DVFSC_DVFSLTR0_0_LTS0_6.
 #define BM_DVFSC_DVFSLTR0_0_LTS0_6      (0x0f000000)  //!< Bit mask for DVFSC_DVFSLTR0_0_LTS0_6.
 
 //! @brief Get value of DVFSC_DVFSLTR0_0_LTS0_6 from a register value.
 #define BG_DVFSC_DVFSLTR0_0_LTS0_6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR0_0_LTS0_6) >> BP_DVFSC_DVFSLTR0_0_LTS0_6)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR0_0, field LTS0_7[31:28] (RO)
@@ -2351,13 +2193,11 @@ typedef union _hw_dvfsc_dvfsltr0_0
  * core 0 Load Tracking Sample 7
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR0_0_LTS0_7      (28)      //!< Bit position for DVFSC_DVFSLTR0_0_LTS0_7.
 #define BM_DVFSC_DVFSLTR0_0_LTS0_7      (0xf0000000)  //!< Bit mask for DVFSC_DVFSLTR0_0_LTS0_7.
 
 //! @brief Get value of DVFSC_DVFSLTR0_0_LTS0_7 from a register value.
 #define BG_DVFSC_DVFSLTR0_0_LTS0_7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR0_0_LTS0_7) >> BP_DVFSC_DVFSLTR0_0_LTS0_7)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2410,13 +2250,11 @@ typedef union _hw_dvfsc_dvfsltr0_1
  * core 0 Load Tracking Sample 8
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR0_1_LTS0_8      (0)      //!< Bit position for DVFSC_DVFSLTR0_1_LTS0_8.
 #define BM_DVFSC_DVFSLTR0_1_LTS0_8      (0x0000000f)  //!< Bit mask for DVFSC_DVFSLTR0_1_LTS0_8.
 
 //! @brief Get value of DVFSC_DVFSLTR0_1_LTS0_8 from a register value.
 #define BG_DVFSC_DVFSLTR0_1_LTS0_8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR0_1_LTS0_8) >> BP_DVFSC_DVFSLTR0_1_LTS0_8)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR0_1, field LTS0_9[7:4] (RO)
@@ -2424,13 +2262,11 @@ typedef union _hw_dvfsc_dvfsltr0_1
  * core 0 Load Tracking Sample 9
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR0_1_LTS0_9      (4)      //!< Bit position for DVFSC_DVFSLTR0_1_LTS0_9.
 #define BM_DVFSC_DVFSLTR0_1_LTS0_9      (0x000000f0)  //!< Bit mask for DVFSC_DVFSLTR0_1_LTS0_9.
 
 //! @brief Get value of DVFSC_DVFSLTR0_1_LTS0_9 from a register value.
 #define BG_DVFSC_DVFSLTR0_1_LTS0_9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR0_1_LTS0_9) >> BP_DVFSC_DVFSLTR0_1_LTS0_9)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR0_1, field LTS0_10[11:8] (RO)
@@ -2438,13 +2274,11 @@ typedef union _hw_dvfsc_dvfsltr0_1
  * core 0 Load Tracking Sample 10
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR0_1_LTS0_10      (8)      //!< Bit position for DVFSC_DVFSLTR0_1_LTS0_10.
 #define BM_DVFSC_DVFSLTR0_1_LTS0_10      (0x00000f00)  //!< Bit mask for DVFSC_DVFSLTR0_1_LTS0_10.
 
 //! @brief Get value of DVFSC_DVFSLTR0_1_LTS0_10 from a register value.
 #define BG_DVFSC_DVFSLTR0_1_LTS0_10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR0_1_LTS0_10) >> BP_DVFSC_DVFSLTR0_1_LTS0_10)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR0_1, field LTS0_11[15:12] (RO)
@@ -2452,13 +2286,11 @@ typedef union _hw_dvfsc_dvfsltr0_1
  * core 0 Load Tracking Sample 11
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR0_1_LTS0_11      (12)      //!< Bit position for DVFSC_DVFSLTR0_1_LTS0_11.
 #define BM_DVFSC_DVFSLTR0_1_LTS0_11      (0x0000f000)  //!< Bit mask for DVFSC_DVFSLTR0_1_LTS0_11.
 
 //! @brief Get value of DVFSC_DVFSLTR0_1_LTS0_11 from a register value.
 #define BG_DVFSC_DVFSLTR0_1_LTS0_11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR0_1_LTS0_11) >> BP_DVFSC_DVFSLTR0_1_LTS0_11)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR0_1, field LTS0_12[19:16] (RO)
@@ -2466,13 +2298,11 @@ typedef union _hw_dvfsc_dvfsltr0_1
  * core 0 Load Tracking Sample 12
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR0_1_LTS0_12      (16)      //!< Bit position for DVFSC_DVFSLTR0_1_LTS0_12.
 #define BM_DVFSC_DVFSLTR0_1_LTS0_12      (0x000f0000)  //!< Bit mask for DVFSC_DVFSLTR0_1_LTS0_12.
 
 //! @brief Get value of DVFSC_DVFSLTR0_1_LTS0_12 from a register value.
 #define BG_DVFSC_DVFSLTR0_1_LTS0_12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR0_1_LTS0_12) >> BP_DVFSC_DVFSLTR0_1_LTS0_12)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR0_1, field LTS0_13[23:20] (RO)
@@ -2480,13 +2310,11 @@ typedef union _hw_dvfsc_dvfsltr0_1
  * core 0 Load Tracking Sample 13
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR0_1_LTS0_13      (20)      //!< Bit position for DVFSC_DVFSLTR0_1_LTS0_13.
 #define BM_DVFSC_DVFSLTR0_1_LTS0_13      (0x00f00000)  //!< Bit mask for DVFSC_DVFSLTR0_1_LTS0_13.
 
 //! @brief Get value of DVFSC_DVFSLTR0_1_LTS0_13 from a register value.
 #define BG_DVFSC_DVFSLTR0_1_LTS0_13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR0_1_LTS0_13) >> BP_DVFSC_DVFSLTR0_1_LTS0_13)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR0_1, field LTS0_14[27:24] (RO)
@@ -2494,13 +2322,11 @@ typedef union _hw_dvfsc_dvfsltr0_1
  * core 0 Load Tracking Sample 14
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR0_1_LTS0_14      (24)      //!< Bit position for DVFSC_DVFSLTR0_1_LTS0_14.
 #define BM_DVFSC_DVFSLTR0_1_LTS0_14      (0x0f000000)  //!< Bit mask for DVFSC_DVFSLTR0_1_LTS0_14.
 
 //! @brief Get value of DVFSC_DVFSLTR0_1_LTS0_14 from a register value.
 #define BG_DVFSC_DVFSLTR0_1_LTS0_14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR0_1_LTS0_14) >> BP_DVFSC_DVFSLTR0_1_LTS0_14)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR0_1, field LTS0_15[31:28] (RO)
@@ -2508,13 +2334,11 @@ typedef union _hw_dvfsc_dvfsltr0_1
  * core 0 Load Tracking Sample 15
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR0_1_LTS0_15      (28)      //!< Bit position for DVFSC_DVFSLTR0_1_LTS0_15.
 #define BM_DVFSC_DVFSLTR0_1_LTS0_15      (0xf0000000)  //!< Bit mask for DVFSC_DVFSLTR0_1_LTS0_15.
 
 //! @brief Get value of DVFSC_DVFSLTR0_1_LTS0_15 from a register value.
 #define BG_DVFSC_DVFSLTR0_1_LTS0_15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR0_1_LTS0_15) >> BP_DVFSC_DVFSLTR0_1_LTS0_15)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2567,13 +2391,11 @@ typedef union _hw_dvfsc_dvfsltr1_0
  * core 0 Load Tracking Sample 0
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR1_0_LTS1_0      (0)      //!< Bit position for DVFSC_DVFSLTR1_0_LTS1_0.
 #define BM_DVFSC_DVFSLTR1_0_LTS1_0      (0x0000000f)  //!< Bit mask for DVFSC_DVFSLTR1_0_LTS1_0.
 
 //! @brief Get value of DVFSC_DVFSLTR1_0_LTS1_0 from a register value.
 #define BG_DVFSC_DVFSLTR1_0_LTS1_0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR1_0_LTS1_0) >> BP_DVFSC_DVFSLTR1_0_LTS1_0)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR1_0, field LTS1_1[7:4] (RO)
@@ -2581,13 +2403,11 @@ typedef union _hw_dvfsc_dvfsltr1_0
  * core 0 Load Tracking Sample 1
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR1_0_LTS1_1      (4)      //!< Bit position for DVFSC_DVFSLTR1_0_LTS1_1.
 #define BM_DVFSC_DVFSLTR1_0_LTS1_1      (0x000000f0)  //!< Bit mask for DVFSC_DVFSLTR1_0_LTS1_1.
 
 //! @brief Get value of DVFSC_DVFSLTR1_0_LTS1_1 from a register value.
 #define BG_DVFSC_DVFSLTR1_0_LTS1_1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR1_0_LTS1_1) >> BP_DVFSC_DVFSLTR1_0_LTS1_1)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR1_0, field LTS1_2[11:8] (RO)
@@ -2595,13 +2415,11 @@ typedef union _hw_dvfsc_dvfsltr1_0
  * core 0 Load Tracking Sample 2
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR1_0_LTS1_2      (8)      //!< Bit position for DVFSC_DVFSLTR1_0_LTS1_2.
 #define BM_DVFSC_DVFSLTR1_0_LTS1_2      (0x00000f00)  //!< Bit mask for DVFSC_DVFSLTR1_0_LTS1_2.
 
 //! @brief Get value of DVFSC_DVFSLTR1_0_LTS1_2 from a register value.
 #define BG_DVFSC_DVFSLTR1_0_LTS1_2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR1_0_LTS1_2) >> BP_DVFSC_DVFSLTR1_0_LTS1_2)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR1_0, field LTS1_3[15:12] (RO)
@@ -2609,13 +2427,11 @@ typedef union _hw_dvfsc_dvfsltr1_0
  * core 0 Load Tracking Sample 3
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR1_0_LTS1_3      (12)      //!< Bit position for DVFSC_DVFSLTR1_0_LTS1_3.
 #define BM_DVFSC_DVFSLTR1_0_LTS1_3      (0x0000f000)  //!< Bit mask for DVFSC_DVFSLTR1_0_LTS1_3.
 
 //! @brief Get value of DVFSC_DVFSLTR1_0_LTS1_3 from a register value.
 #define BG_DVFSC_DVFSLTR1_0_LTS1_3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR1_0_LTS1_3) >> BP_DVFSC_DVFSLTR1_0_LTS1_3)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR1_0, field LTS1_4[19:16] (RO)
@@ -2623,13 +2439,11 @@ typedef union _hw_dvfsc_dvfsltr1_0
  * core 0 Load Tracking Sample 4
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR1_0_LTS1_4      (16)      //!< Bit position for DVFSC_DVFSLTR1_0_LTS1_4.
 #define BM_DVFSC_DVFSLTR1_0_LTS1_4      (0x000f0000)  //!< Bit mask for DVFSC_DVFSLTR1_0_LTS1_4.
 
 //! @brief Get value of DVFSC_DVFSLTR1_0_LTS1_4 from a register value.
 #define BG_DVFSC_DVFSLTR1_0_LTS1_4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR1_0_LTS1_4) >> BP_DVFSC_DVFSLTR1_0_LTS1_4)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR1_0, field LTS1_5[23:20] (RO)
@@ -2637,13 +2451,11 @@ typedef union _hw_dvfsc_dvfsltr1_0
  * core 0 Load Tracking Sample 5
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR1_0_LTS1_5      (20)      //!< Bit position for DVFSC_DVFSLTR1_0_LTS1_5.
 #define BM_DVFSC_DVFSLTR1_0_LTS1_5      (0x00f00000)  //!< Bit mask for DVFSC_DVFSLTR1_0_LTS1_5.
 
 //! @brief Get value of DVFSC_DVFSLTR1_0_LTS1_5 from a register value.
 #define BG_DVFSC_DVFSLTR1_0_LTS1_5(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR1_0_LTS1_5) >> BP_DVFSC_DVFSLTR1_0_LTS1_5)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR1_0, field LTS1_6[27:24] (RO)
@@ -2651,13 +2463,11 @@ typedef union _hw_dvfsc_dvfsltr1_0
  * core 0 Load Tracking Sample 6
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR1_0_LTS1_6      (24)      //!< Bit position for DVFSC_DVFSLTR1_0_LTS1_6.
 #define BM_DVFSC_DVFSLTR1_0_LTS1_6      (0x0f000000)  //!< Bit mask for DVFSC_DVFSLTR1_0_LTS1_6.
 
 //! @brief Get value of DVFSC_DVFSLTR1_0_LTS1_6 from a register value.
 #define BG_DVFSC_DVFSLTR1_0_LTS1_6(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR1_0_LTS1_6) >> BP_DVFSC_DVFSLTR1_0_LTS1_6)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR1_0, field LTS1_7[31:28] (RO)
@@ -2665,13 +2475,11 @@ typedef union _hw_dvfsc_dvfsltr1_0
  * core 0 Load Tracking Sample 7
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR1_0_LTS1_7      (28)      //!< Bit position for DVFSC_DVFSLTR1_0_LTS1_7.
 #define BM_DVFSC_DVFSLTR1_0_LTS1_7      (0xf0000000)  //!< Bit mask for DVFSC_DVFSLTR1_0_LTS1_7.
 
 //! @brief Get value of DVFSC_DVFSLTR1_0_LTS1_7 from a register value.
 #define BG_DVFSC_DVFSLTR1_0_LTS1_7(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR1_0_LTS1_7) >> BP_DVFSC_DVFSLTR1_0_LTS1_7)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2724,13 +2532,11 @@ typedef union _hw_dvfsc_dvfsltr1_1
  * core 0 Load Tracking Sample 8
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR1_1_LTS1_8      (0)      //!< Bit position for DVFSC_DVFSLTR1_1_LTS1_8.
 #define BM_DVFSC_DVFSLTR1_1_LTS1_8      (0x0000000f)  //!< Bit mask for DVFSC_DVFSLTR1_1_LTS1_8.
 
 //! @brief Get value of DVFSC_DVFSLTR1_1_LTS1_8 from a register value.
 #define BG_DVFSC_DVFSLTR1_1_LTS1_8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR1_1_LTS1_8) >> BP_DVFSC_DVFSLTR1_1_LTS1_8)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR1_1, field LTS1_9[7:4] (RO)
@@ -2738,13 +2544,11 @@ typedef union _hw_dvfsc_dvfsltr1_1
  * core 0 Load Tracking Sample 9
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR1_1_LTS1_9      (4)      //!< Bit position for DVFSC_DVFSLTR1_1_LTS1_9.
 #define BM_DVFSC_DVFSLTR1_1_LTS1_9      (0x000000f0)  //!< Bit mask for DVFSC_DVFSLTR1_1_LTS1_9.
 
 //! @brief Get value of DVFSC_DVFSLTR1_1_LTS1_9 from a register value.
 #define BG_DVFSC_DVFSLTR1_1_LTS1_9(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR1_1_LTS1_9) >> BP_DVFSC_DVFSLTR1_1_LTS1_9)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR1_1, field LTS1_10[11:8] (RO)
@@ -2752,13 +2556,11 @@ typedef union _hw_dvfsc_dvfsltr1_1
  * core 0 Load Tracking Sample 10
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR1_1_LTS1_10      (8)      //!< Bit position for DVFSC_DVFSLTR1_1_LTS1_10.
 #define BM_DVFSC_DVFSLTR1_1_LTS1_10      (0x00000f00)  //!< Bit mask for DVFSC_DVFSLTR1_1_LTS1_10.
 
 //! @brief Get value of DVFSC_DVFSLTR1_1_LTS1_10 from a register value.
 #define BG_DVFSC_DVFSLTR1_1_LTS1_10(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR1_1_LTS1_10) >> BP_DVFSC_DVFSLTR1_1_LTS1_10)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR1_1, field LTS1_11[15:12] (RO)
@@ -2766,13 +2568,11 @@ typedef union _hw_dvfsc_dvfsltr1_1
  * core 0 Load Tracking Sample 11
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR1_1_LTS1_11      (12)      //!< Bit position for DVFSC_DVFSLTR1_1_LTS1_11.
 #define BM_DVFSC_DVFSLTR1_1_LTS1_11      (0x0000f000)  //!< Bit mask for DVFSC_DVFSLTR1_1_LTS1_11.
 
 //! @brief Get value of DVFSC_DVFSLTR1_1_LTS1_11 from a register value.
 #define BG_DVFSC_DVFSLTR1_1_LTS1_11(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR1_1_LTS1_11) >> BP_DVFSC_DVFSLTR1_1_LTS1_11)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR1_1, field LTS1_12[19:16] (RO)
@@ -2780,13 +2580,11 @@ typedef union _hw_dvfsc_dvfsltr1_1
  * core 0 Load Tracking Sample 12
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR1_1_LTS1_12      (16)      //!< Bit position for DVFSC_DVFSLTR1_1_LTS1_12.
 #define BM_DVFSC_DVFSLTR1_1_LTS1_12      (0x000f0000)  //!< Bit mask for DVFSC_DVFSLTR1_1_LTS1_12.
 
 //! @brief Get value of DVFSC_DVFSLTR1_1_LTS1_12 from a register value.
 #define BG_DVFSC_DVFSLTR1_1_LTS1_12(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR1_1_LTS1_12) >> BP_DVFSC_DVFSLTR1_1_LTS1_12)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR1_1, field LTS1_13[23:20] (RO)
@@ -2794,13 +2592,11 @@ typedef union _hw_dvfsc_dvfsltr1_1
  * core 0 Load Tracking Sample 13
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR1_1_LTS1_13      (20)      //!< Bit position for DVFSC_DVFSLTR1_1_LTS1_13.
 #define BM_DVFSC_DVFSLTR1_1_LTS1_13      (0x00f00000)  //!< Bit mask for DVFSC_DVFSLTR1_1_LTS1_13.
 
 //! @brief Get value of DVFSC_DVFSLTR1_1_LTS1_13 from a register value.
 #define BG_DVFSC_DVFSLTR1_1_LTS1_13(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR1_1_LTS1_13) >> BP_DVFSC_DVFSLTR1_1_LTS1_13)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR1_1, field LTS1_14[27:24] (RO)
@@ -2808,13 +2604,11 @@ typedef union _hw_dvfsc_dvfsltr1_1
  * core 0 Load Tracking Sample 14
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR1_1_LTS1_14      (24)      //!< Bit position for DVFSC_DVFSLTR1_1_LTS1_14.
 #define BM_DVFSC_DVFSLTR1_1_LTS1_14      (0x0f000000)  //!< Bit mask for DVFSC_DVFSLTR1_1_LTS1_14.
 
 //! @brief Get value of DVFSC_DVFSLTR1_1_LTS1_14 from a register value.
 #define BG_DVFSC_DVFSLTR1_1_LTS1_14(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR1_1_LTS1_14) >> BP_DVFSC_DVFSLTR1_1_LTS1_14)
-
 //@}
 
 /*! @name Register DVFSC_DVFSLTR1_1, field LTS1_15[31:28] (RO)
@@ -2822,13 +2616,11 @@ typedef union _hw_dvfsc_dvfsltr1_1
  * core 0 Load Tracking Sample 15
  */
 //@{
-
 #define BP_DVFSC_DVFSLTR1_1_LTS1_15      (28)      //!< Bit position for DVFSC_DVFSLTR1_1_LTS1_15.
 #define BM_DVFSC_DVFSLTR1_1_LTS1_15      (0xf0000000)  //!< Bit mask for DVFSC_DVFSLTR1_1_LTS1_15.
 
 //! @brief Get value of DVFSC_DVFSLTR1_1_LTS1_15 from a register value.
 #define BG_DVFSC_DVFSLTR1_1_LTS1_15(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSLTR1_1_LTS1_15) >> BP_DVFSC_DVFSLTR1_1_LTS1_15)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2881,7 +2673,6 @@ typedef union _hw_dvfsc_dvfspt0
  * from the EMA-detected level.
  */
 //@{
-
 #define BP_DVFSC_DVFSPT0_FPTN0      (0)      //!< Bit position for DVFSC_DVFSPT0_FPTN0.
 #define BM_DVFSC_DVFSPT0_FPTN0      (0x0001ffff)  //!< Bit mask for DVFSC_DVFSPT0_FPTN0.
 
@@ -2895,7 +2686,6 @@ typedef union _hw_dvfsc_dvfspt0
 //! @brief Set the FPTN0 field to a new value.
 #define BW_DVFSC_DVFSPT0_FPTN0(v)   (HW_DVFSC_DVFSPT0_WR((HW_DVFSC_DVFSPT0_RD() & ~BM_DVFSC_DVFSPT0_FPTN0) | BF_DVFSC_DVFSPT0_FPTN0(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSPT0, field PT0A[17] (RO)
@@ -2907,13 +2697,11 @@ typedef union _hw_dvfsc_dvfspt0
  * - 1 - active
  */
 //@{
-
 #define BP_DVFSC_DVFSPT0_PT0A      (17)      //!< Bit position for DVFSC_DVFSPT0_PT0A.
 #define BM_DVFSC_DVFSPT0_PT0A      (0x00020000)  //!< Bit mask for DVFSC_DVFSPT0_PT0A.
 
 //! @brief Get value of DVFSC_DVFSPT0_PT0A from a register value.
 #define BG_DVFSC_DVFSPT0_PT0A(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSPT0_PT0A) >> BP_DVFSC_DVFSPT0_PT0A)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2966,7 +2754,6 @@ typedef union _hw_dvfsc_dvfspt1
  * the EMA-detected level.
  */
 //@{
-
 #define BP_DVFSC_DVFSPT1_FPTN1      (0)      //!< Bit position for DVFSC_DVFSPT1_FPTN1.
 #define BM_DVFSC_DVFSPT1_FPTN1      (0x0001ffff)  //!< Bit mask for DVFSC_DVFSPT1_FPTN1.
 
@@ -2980,7 +2767,6 @@ typedef union _hw_dvfsc_dvfspt1
 //! @brief Set the FPTN1 field to a new value.
 #define BW_DVFSC_DVFSPT1_FPTN1(v)   (HW_DVFSC_DVFSPT1_WR((HW_DVFSC_DVFSPT1_RD() & ~BM_DVFSC_DVFSPT1_FPTN1) | BF_DVFSC_DVFSPT1_FPTN1(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSPT1, field PT1A[17] (RO)
@@ -2992,13 +2778,11 @@ typedef union _hw_dvfsc_dvfspt1
  * - 1 - active
  */
 //@{
-
 #define BP_DVFSC_DVFSPT1_PT1A      (17)      //!< Bit position for DVFSC_DVFSPT1_PT1A.
 #define BM_DVFSC_DVFSPT1_PT1A      (0x00020000)  //!< Bit mask for DVFSC_DVFSPT1_PT1A.
 
 //! @brief Get value of DVFSC_DVFSPT1_PT1A from a register value.
 #define BG_DVFSC_DVFSPT1_PT1A(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSPT1_PT1A) >> BP_DVFSC_DVFSPT1_PT1A)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3052,7 +2836,6 @@ typedef union _hw_dvfsc_dvfspt2
  * to higher, than detected by the EMA-detected level.
  */
 //@{
-
 #define BP_DVFSC_DVFSPT2_FPTN2      (0)      //!< Bit position for DVFSC_DVFSPT2_FPTN2.
 #define BM_DVFSC_DVFSPT2_FPTN2      (0x0001ffff)  //!< Bit mask for DVFSC_DVFSPT2_FPTN2.
 
@@ -3066,7 +2849,6 @@ typedef union _hw_dvfsc_dvfspt2
 //! @brief Set the FPTN2 field to a new value.
 #define BW_DVFSC_DVFSPT2_FPTN2(v)   (HW_DVFSC_DVFSPT2_WR((HW_DVFSC_DVFSPT2_RD() & ~BM_DVFSC_DVFSPT2_FPTN2) | BF_DVFSC_DVFSPT2_FPTN2(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSPT2, field PT2A[17] (RO)
@@ -3078,13 +2860,11 @@ typedef union _hw_dvfsc_dvfspt2
  * - 1 - active
  */
 //@{
-
 #define BP_DVFSC_DVFSPT2_PT2A      (17)      //!< Bit position for DVFSC_DVFSPT2_PT2A.
 #define BM_DVFSC_DVFSPT2_PT2A      (0x00020000)  //!< Bit mask for DVFSC_DVFSPT2_PT2A.
 
 //! @brief Get value of DVFSC_DVFSPT2_PT2A from a register value.
 #define BG_DVFSC_DVFSPT2_PT2A(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSPT2_PT2A) >> BP_DVFSC_DVFSPT2_PT2A)
-
 //@}
 
 /*! @name Register DVFSC_DVFSPT2, field P2THR[31:26] (RW)
@@ -3095,7 +2875,6 @@ typedef union _hw_dvfsc_dvfspt2
  * generation.
  */
 //@{
-
 #define BP_DVFSC_DVFSPT2_P2THR      (26)      //!< Bit position for DVFSC_DVFSPT2_P2THR.
 #define BM_DVFSC_DVFSPT2_P2THR      (0xfc000000)  //!< Bit mask for DVFSC_DVFSPT2_P2THR.
 
@@ -3109,7 +2888,6 @@ typedef union _hw_dvfsc_dvfspt2
 //! @brief Set the P2THR field to a new value.
 #define BW_DVFSC_DVFSPT2_P2THR(v)   (HW_DVFSC_DVFSPT2_WR((HW_DVFSC_DVFSPT2_RD() & ~BM_DVFSC_DVFSPT2_P2THR) | BF_DVFSC_DVFSPT2_P2THR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3162,7 +2940,6 @@ typedef union _hw_dvfsc_dvfspt3
  * the EMA-detected level.
  */
 //@{
-
 #define BP_DVFSC_DVFSPT3_FPTN3      (0)      //!< Bit position for DVFSC_DVFSPT3_FPTN3.
 #define BM_DVFSC_DVFSPT3_FPTN3      (0x0001ffff)  //!< Bit mask for DVFSC_DVFSPT3_FPTN3.
 
@@ -3176,7 +2953,6 @@ typedef union _hw_dvfsc_dvfspt3
 //! @brief Set the FPTN3 field to a new value.
 #define BW_DVFSC_DVFSPT3_FPTN3(v)   (HW_DVFSC_DVFSPT3_WR((HW_DVFSC_DVFSPT3_RD() & ~BM_DVFSC_DVFSPT3_FPTN3) | BF_DVFSC_DVFSPT3_FPTN3(v)))
 #endif
-
 //@}
 
 /*! @name Register DVFSC_DVFSPT3, field PT3A[17] (RO)
@@ -3188,13 +2964,11 @@ typedef union _hw_dvfsc_dvfspt3
  * - 1 - active
  */
 //@{
-
 #define BP_DVFSC_DVFSPT3_PT3A      (17)      //!< Bit position for DVFSC_DVFSPT3_PT3A.
 #define BM_DVFSC_DVFSPT3_PT3A      (0x00020000)  //!< Bit mask for DVFSC_DVFSPT3_PT3A.
 
 //! @brief Get value of DVFSC_DVFSPT3_PT3A from a register value.
 #define BG_DVFSC_DVFSPT3_PT3A(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DVFSC_DVFSPT3_PT3A) >> BP_DVFSC_DVFSPT3_PT3A)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3234,3 +3008,5 @@ typedef struct _hw_dvfsc
 #endif
 
 #endif // __HW_DVFSC_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

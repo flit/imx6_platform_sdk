@@ -207,13 +207,11 @@ typedef union _hw_usbc_uog1_id
  * High-Speed core.
  */
 //@{
-
 #define BP_USBC_UOG1_ID_ID      (0)      //!< Bit position for USBC_UOG1_ID_ID.
 #define BM_USBC_UOG1_ID_ID      (0x0000003f)  //!< Bit mask for USBC_UOG1_ID_ID.
 
 //! @brief Get value of USBC_UOG1_ID_ID from a register value.
 #define BG_USBC_UOG1_ID_ID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_ID_ID) >> BP_USBC_UOG1_ID_ID)
-
 //@}
 
 /*! @name Register USBC_UOG1_ID, field NID[13:8] (RO)
@@ -221,13 +219,11 @@ typedef union _hw_usbc_uog1_id
  * Complement version of ID
  */
 //@{
-
 #define BP_USBC_UOG1_ID_NID      (8)      //!< Bit position for USBC_UOG1_ID_NID.
 #define BM_USBC_UOG1_ID_NID      (0x00003f00)  //!< Bit mask for USBC_UOG1_ID_NID.
 
 //! @brief Get value of USBC_UOG1_ID_NID from a register value.
 #define BG_USBC_UOG1_ID_NID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_ID_NID) >> BP_USBC_UOG1_ID_NID)
-
 //@}
 
 /*! @name Register USBC_UOG1_ID, field REVISION[23:16] (RO)
@@ -235,13 +231,11 @@ typedef union _hw_usbc_uog1_id
  * Revision number of the controller core.
  */
 //@{
-
 #define BP_USBC_UOG1_ID_REVISION      (16)      //!< Bit position for USBC_UOG1_ID_REVISION.
 #define BM_USBC_UOG1_ID_REVISION      (0x00ff0000)  //!< Bit mask for USBC_UOG1_ID_REVISION.
 
 //! @brief Get value of USBC_UOG1_ID_REVISION from a register value.
 #define BG_USBC_UOG1_ID_REVISION(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_ID_REVISION) >> BP_USBC_UOG1_ID_REVISION)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -299,13 +293,11 @@ typedef union _hw_usbc_uog1_hwgeneral
  * - 11 - Reset to 16 bit wide data bus  Software programmable
  */
 //@{
-
 #define BP_USBC_UOG1_HWGENERAL_PHYW      (4)      //!< Bit position for USBC_UOG1_HWGENERAL_PHYW.
 #define BM_USBC_UOG1_HWGENERAL_PHYW      (0x00000030)  //!< Bit mask for USBC_UOG1_HWGENERAL_PHYW.
 
 //! @brief Get value of USBC_UOG1_HWGENERAL_PHYW from a register value.
 #define BG_USBC_UOG1_HWGENERAL_PHYW(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_HWGENERAL_PHYW) >> BP_USBC_UOG1_HWGENERAL_PHYW)
-
 //@}
 
 /*! @name Register USBC_UOG1_HWGENERAL, field PHYM[8:6] (RO)
@@ -328,13 +320,11 @@ typedef union _hw_usbc_uog1_hwgeneral
  * - 1011 - Software programmable - reset to HSIC
  */
 //@{
-
 #define BP_USBC_UOG1_HWGENERAL_PHYM      (6)      //!< Bit position for USBC_UOG1_HWGENERAL_PHYM.
 #define BM_USBC_UOG1_HWGENERAL_PHYM      (0x000001c0)  //!< Bit mask for USBC_UOG1_HWGENERAL_PHYM.
 
 //! @brief Get value of USBC_UOG1_HWGENERAL_PHYM from a register value.
 #define BG_USBC_UOG1_HWGENERAL_PHYM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_HWGENERAL_PHYM) >> BP_USBC_UOG1_HWGENERAL_PHYM)
-
 //@}
 
 /*! @name Register USBC_UOG1_HWGENERAL, field SM[10:9] (RO)
@@ -348,13 +338,11 @@ typedef union _hw_usbc_uog1_hwgeneral
  * - 11 - Software programmable - Reset to use serial signalling for FS/LS
  */
 //@{
-
 #define BP_USBC_UOG1_HWGENERAL_SM      (9)      //!< Bit position for USBC_UOG1_HWGENERAL_SM.
 #define BM_USBC_UOG1_HWGENERAL_SM      (0x00000600)  //!< Bit mask for USBC_UOG1_HWGENERAL_SM.
 
 //! @brief Get value of USBC_UOG1_HWGENERAL_SM from a register value.
 #define BG_USBC_UOG1_HWGENERAL_SM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_HWGENERAL_SM) >> BP_USBC_UOG1_HWGENERAL_SM)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -406,13 +394,11 @@ typedef union _hw_usbc_uog1_hwhost
  * - 1 - Supported
  */
 //@{
-
 #define BP_USBC_UOG1_HWHOST_HC      (0)      //!< Bit position for USBC_UOG1_HWHOST_HC.
 #define BM_USBC_UOG1_HWHOST_HC      (0x00000001)  //!< Bit mask for USBC_UOG1_HWHOST_HC.
 
 //! @brief Get value of USBC_UOG1_HWHOST_HC from a register value.
 #define BG_USBC_UOG1_HWHOST_HC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_HWHOST_HC) >> BP_USBC_UOG1_HWHOST_HC)
-
 //@}
 
 /*! @name Register USBC_UOG1_HWHOST, field NPORT[3:1] (RO)
@@ -421,13 +407,11 @@ typedef union _hw_usbc_uog1_hwhost
  * value is '000', it indicates a single-port host controller.
  */
 //@{
-
 #define BP_USBC_UOG1_HWHOST_NPORT      (1)      //!< Bit position for USBC_UOG1_HWHOST_NPORT.
 #define BM_USBC_UOG1_HWHOST_NPORT      (0x0000000e)  //!< Bit mask for USBC_UOG1_HWHOST_NPORT.
 
 //! @brief Get value of USBC_UOG1_HWHOST_NPORT from a register value.
 #define BG_USBC_UOG1_HWHOST_NPORT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_HWHOST_NPORT) >> BP_USBC_UOG1_HWHOST_NPORT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -479,13 +463,11 @@ typedef union _hw_usbc_uog1_hwdevice
  * - 1 - Supported
  */
 //@{
-
 #define BP_USBC_UOG1_HWDEVICE_DC      (0)      //!< Bit position for USBC_UOG1_HWDEVICE_DC.
 #define BM_USBC_UOG1_HWDEVICE_DC      (0x00000001)  //!< Bit mask for USBC_UOG1_HWDEVICE_DC.
 
 //! @brief Get value of USBC_UOG1_HWDEVICE_DC from a register value.
 #define BG_USBC_UOG1_HWDEVICE_DC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_HWDEVICE_DC) >> BP_USBC_UOG1_HWDEVICE_DC)
-
 //@}
 
 /*! @name Register USBC_UOG1_HWDEVICE, field DEVEP[5:1] (RO)
@@ -493,13 +475,11 @@ typedef union _hw_usbc_uog1_hwdevice
  * Device Endpoint Number
  */
 //@{
-
 #define BP_USBC_UOG1_HWDEVICE_DEVEP      (1)      //!< Bit position for USBC_UOG1_HWDEVICE_DEVEP.
 #define BM_USBC_UOG1_HWDEVICE_DEVEP      (0x0000003e)  //!< Bit mask for USBC_UOG1_HWDEVICE_DEVEP.
 
 //! @brief Get value of USBC_UOG1_HWDEVICE_DEVEP from a register value.
 #define BG_USBC_UOG1_HWDEVICE_DEVEP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_HWDEVICE_DEVEP) >> BP_USBC_UOG1_HWDEVICE_DEVEP)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -549,13 +529,11 @@ typedef union _hw_usbc_uog1_hwtxbuf
  * core regsiter USB_n_BURSTSIZE. Please see .
  */
 //@{
-
 #define BP_USBC_UOG1_HWTXBUF_TXBURST      (0)      //!< Bit position for USBC_UOG1_HWTXBUF_TXBURST.
 #define BM_USBC_UOG1_HWTXBUF_TXBURST      (0x000000ff)  //!< Bit mask for USBC_UOG1_HWTXBUF_TXBURST.
 
 //! @brief Get value of USBC_UOG1_HWTXBUF_TXBURST from a register value.
 #define BG_USBC_UOG1_HWTXBUF_TXBURST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_HWTXBUF_TXBURST) >> BP_USBC_UOG1_HWTXBUF_TXBURST)
-
 //@}
 
 /*! @name Register USBC_UOG1_HWTXBUF, field TXCHANADD[23:16] (RO)
@@ -567,13 +545,11 @@ typedef union _hw_usbc_uog1_hwtxbuf
  * as a single TX buffer. Therefore, there is only 1 of this buffer
  */
 //@{
-
 #define BP_USBC_UOG1_HWTXBUF_TXCHANADD      (16)      //!< Bit position for USBC_UOG1_HWTXBUF_TXCHANADD.
 #define BM_USBC_UOG1_HWTXBUF_TXCHANADD      (0x00ff0000)  //!< Bit mask for USBC_UOG1_HWTXBUF_TXCHANADD.
 
 //! @brief Get value of USBC_UOG1_HWTXBUF_TXCHANADD from a register value.
 #define BG_USBC_UOG1_HWTXBUF_TXCHANADD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_HWTXBUF_TXCHANADD) >> BP_USBC_UOG1_HWTXBUF_TXCHANADD)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -622,13 +598,11 @@ typedef union _hw_usbc_uog1_hwrxbuf
  * core regsiter USB_n_BURSTSIZE. Please see .
  */
 //@{
-
 #define BP_USBC_UOG1_HWRXBUF_RXBURST      (0)      //!< Bit position for USBC_UOG1_HWRXBUF_RXBURST.
 #define BM_USBC_UOG1_HWRXBUF_RXBURST      (0x000000ff)  //!< Bit mask for USBC_UOG1_HWRXBUF_RXBURST.
 
 //! @brief Get value of USBC_UOG1_HWRXBUF_RXBURST from a register value.
 #define BG_USBC_UOG1_HWRXBUF_RXBURST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_HWRXBUF_RXBURST) >> BP_USBC_UOG1_HWRXBUF_RXBURST)
-
 //@}
 
 /*! @name Register USBC_UOG1_HWRXBUF, field RXADD[15:8] (RO)
@@ -639,13 +613,11 @@ typedef union _hw_usbc_uog1_hwrxbuf
  * mode.
  */
 //@{
-
 #define BP_USBC_UOG1_HWRXBUF_RXADD      (8)      //!< Bit position for USBC_UOG1_HWRXBUF_RXADD.
 #define BM_USBC_UOG1_HWRXBUF_RXADD      (0x0000ff00)  //!< Bit mask for USBC_UOG1_HWRXBUF_RXADD.
 
 //! @brief Get value of USBC_UOG1_HWRXBUF_RXADD from a register value.
 #define BG_USBC_UOG1_HWRXBUF_RXADD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_HWRXBUF_RXADD) >> BP_USBC_UOG1_HWRXBUF_RXADD)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -699,7 +671,6 @@ typedef union _hw_usbc_uog1_gptimer0ld
  * seconds.
  */
 //@{
-
 #define BP_USBC_UOG1_GPTIMER0LD_GPTLD      (0)      //!< Bit position for USBC_UOG1_GPTIMER0LD_GPTLD.
 #define BM_USBC_UOG1_GPTIMER0LD_GPTLD      (0x00ffffff)  //!< Bit mask for USBC_UOG1_GPTIMER0LD_GPTLD.
 
@@ -713,7 +684,6 @@ typedef union _hw_usbc_uog1_gptimer0ld
 //! @brief Set the GPTLD field to a new value.
 #define BW_USBC_UOG1_GPTIMER0LD_GPTLD(v)   (HW_USBC_UOG1_GPTIMER0LD_WR((HW_USBC_UOG1_GPTIMER0LD_RD() & ~BM_USBC_UOG1_GPTIMER0LD_GPTLD) | BF_USBC_UOG1_GPTIMER0LD_GPTLD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -772,7 +742,6 @@ typedef union _hw_usbc_uog1_gptimer0ctrl
  * General Purpose Timer Counter. This field is the count value of the countdown timer.
  */
 //@{
-
 #define BP_USBC_UOG1_GPTIMER0CTRL_GPTCNT      (0)      //!< Bit position for USBC_UOG1_GPTIMER0CTRL_GPTCNT.
 #define BM_USBC_UOG1_GPTIMER0CTRL_GPTCNT      (0x00ffffff)  //!< Bit mask for USBC_UOG1_GPTIMER0CTRL_GPTCNT.
 
@@ -786,7 +755,6 @@ typedef union _hw_usbc_uog1_gptimer0ctrl
 //! @brief Set the GPTCNT field to a new value.
 #define BW_USBC_UOG1_GPTIMER0CTRL_GPTCNT(v)   (HW_USBC_UOG1_GPTIMER0CTRL_WR((HW_USBC_UOG1_GPTIMER0CTRL_RD() & ~BM_USBC_UOG1_GPTIMER0CTRL_GPTCNT) | BF_USBC_UOG1_GPTIMER0CTRL_GPTCNT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_GPTIMER0CTRL, field GPTMODE[24] (RW)
@@ -801,7 +769,6 @@ typedef union _hw_usbc_uog1_gptimer0ctrl
  * - 1 - Repeat Mode
  */
 //@{
-
 #define BP_USBC_UOG1_GPTIMER0CTRL_GPTMODE      (24)      //!< Bit position for USBC_UOG1_GPTIMER0CTRL_GPTMODE.
 #define BM_USBC_UOG1_GPTIMER0CTRL_GPTMODE      (0x01000000)  //!< Bit mask for USBC_UOG1_GPTIMER0CTRL_GPTMODE.
 
@@ -815,7 +782,6 @@ typedef union _hw_usbc_uog1_gptimer0ctrl
 //! @brief Set the GPTMODE field to a new value.
 #define BW_USBC_UOG1_GPTIMER0CTRL_GPTMODE(v)   (HW_USBC_UOG1_GPTIMER0CTRL_WR((HW_USBC_UOG1_GPTIMER0CTRL_RD() & ~BM_USBC_UOG1_GPTIMER0CTRL_GPTMODE) | BF_USBC_UOG1_GPTIMER0CTRL_GPTMODE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_GPTIMER0CTRL, field GPTRST[30] (RW)
@@ -827,7 +793,6 @@ typedef union _hw_usbc_uog1_gptimer0ctrl
  * - 1 - Load counter value from GPTLD bits in n_GPTIMER0LD
  */
 //@{
-
 #define BP_USBC_UOG1_GPTIMER0CTRL_GPTRST      (30)      //!< Bit position for USBC_UOG1_GPTIMER0CTRL_GPTRST.
 #define BM_USBC_UOG1_GPTIMER0CTRL_GPTRST      (0x40000000)  //!< Bit mask for USBC_UOG1_GPTIMER0CTRL_GPTRST.
 
@@ -841,7 +806,6 @@ typedef union _hw_usbc_uog1_gptimer0ctrl
 //! @brief Set the GPTRST field to a new value.
 #define BW_USBC_UOG1_GPTIMER0CTRL_GPTRST(v)   (HW_USBC_UOG1_GPTIMER0CTRL_WR((HW_USBC_UOG1_GPTIMER0CTRL_RD() & ~BM_USBC_UOG1_GPTIMER0CTRL_GPTRST) | BF_USBC_UOG1_GPTIMER0CTRL_GPTRST(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_GPTIMER0CTRL, field GPTRUN[31] (RW)
@@ -853,7 +817,6 @@ typedef union _hw_usbc_uog1_gptimer0ctrl
  * - 1 - Run
  */
 //@{
-
 #define BP_USBC_UOG1_GPTIMER0CTRL_GPTRUN      (31)      //!< Bit position for USBC_UOG1_GPTIMER0CTRL_GPTRUN.
 #define BM_USBC_UOG1_GPTIMER0CTRL_GPTRUN      (0x80000000)  //!< Bit mask for USBC_UOG1_GPTIMER0CTRL_GPTRUN.
 
@@ -867,7 +830,6 @@ typedef union _hw_usbc_uog1_gptimer0ctrl
 //! @brief Set the GPTRUN field to a new value.
 #define BW_USBC_UOG1_GPTIMER0CTRL_GPTRUN(v)   (HW_USBC_UOG1_GPTIMER0CTRL_WR((HW_USBC_UOG1_GPTIMER0CTRL_RD() & ~BM_USBC_UOG1_GPTIMER0CTRL_GPTRUN) | BF_USBC_UOG1_GPTIMER0CTRL_GPTRUN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -921,7 +883,6 @@ typedef union _hw_usbc_uog1_gptimer1ld
  * seconds.
  */
 //@{
-
 #define BP_USBC_UOG1_GPTIMER1LD_GPTLD      (0)      //!< Bit position for USBC_UOG1_GPTIMER1LD_GPTLD.
 #define BM_USBC_UOG1_GPTIMER1LD_GPTLD      (0x00ffffff)  //!< Bit mask for USBC_UOG1_GPTIMER1LD_GPTLD.
 
@@ -935,7 +896,6 @@ typedef union _hw_usbc_uog1_gptimer1ld
 //! @brief Set the GPTLD field to a new value.
 #define BW_USBC_UOG1_GPTIMER1LD_GPTLD(v)   (HW_USBC_UOG1_GPTIMER1LD_WR((HW_USBC_UOG1_GPTIMER1LD_RD() & ~BM_USBC_UOG1_GPTIMER1LD_GPTLD) | BF_USBC_UOG1_GPTIMER1LD_GPTLD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -994,7 +954,6 @@ typedef union _hw_usbc_uog1_gptimer1ctrl
  * General Purpose Timer Counter. This field is the count value of the countdown timer.
  */
 //@{
-
 #define BP_USBC_UOG1_GPTIMER1CTRL_GPTCNT      (0)      //!< Bit position for USBC_UOG1_GPTIMER1CTRL_GPTCNT.
 #define BM_USBC_UOG1_GPTIMER1CTRL_GPTCNT      (0x00ffffff)  //!< Bit mask for USBC_UOG1_GPTIMER1CTRL_GPTCNT.
 
@@ -1008,7 +967,6 @@ typedef union _hw_usbc_uog1_gptimer1ctrl
 //! @brief Set the GPTCNT field to a new value.
 #define BW_USBC_UOG1_GPTIMER1CTRL_GPTCNT(v)   (HW_USBC_UOG1_GPTIMER1CTRL_WR((HW_USBC_UOG1_GPTIMER1CTRL_RD() & ~BM_USBC_UOG1_GPTIMER1CTRL_GPTCNT) | BF_USBC_UOG1_GPTIMER1CTRL_GPTCNT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_GPTIMER1CTRL, field GPTMODE[24] (RW)
@@ -1023,7 +981,6 @@ typedef union _hw_usbc_uog1_gptimer1ctrl
  * - 1 - Repeat Mode
  */
 //@{
-
 #define BP_USBC_UOG1_GPTIMER1CTRL_GPTMODE      (24)      //!< Bit position for USBC_UOG1_GPTIMER1CTRL_GPTMODE.
 #define BM_USBC_UOG1_GPTIMER1CTRL_GPTMODE      (0x01000000)  //!< Bit mask for USBC_UOG1_GPTIMER1CTRL_GPTMODE.
 
@@ -1037,7 +994,6 @@ typedef union _hw_usbc_uog1_gptimer1ctrl
 //! @brief Set the GPTMODE field to a new value.
 #define BW_USBC_UOG1_GPTIMER1CTRL_GPTMODE(v)   (HW_USBC_UOG1_GPTIMER1CTRL_WR((HW_USBC_UOG1_GPTIMER1CTRL_RD() & ~BM_USBC_UOG1_GPTIMER1CTRL_GPTMODE) | BF_USBC_UOG1_GPTIMER1CTRL_GPTMODE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_GPTIMER1CTRL, field GPTRST[30] (RW)
@@ -1049,7 +1005,6 @@ typedef union _hw_usbc_uog1_gptimer1ctrl
  * - 1 - Load counter value from GPTLD bits in USB_n_GPTIMER0LD
  */
 //@{
-
 #define BP_USBC_UOG1_GPTIMER1CTRL_GPTRST      (30)      //!< Bit position for USBC_UOG1_GPTIMER1CTRL_GPTRST.
 #define BM_USBC_UOG1_GPTIMER1CTRL_GPTRST      (0x40000000)  //!< Bit mask for USBC_UOG1_GPTIMER1CTRL_GPTRST.
 
@@ -1063,7 +1018,6 @@ typedef union _hw_usbc_uog1_gptimer1ctrl
 //! @brief Set the GPTRST field to a new value.
 #define BW_USBC_UOG1_GPTIMER1CTRL_GPTRST(v)   (HW_USBC_UOG1_GPTIMER1CTRL_WR((HW_USBC_UOG1_GPTIMER1CTRL_RD() & ~BM_USBC_UOG1_GPTIMER1CTRL_GPTRST) | BF_USBC_UOG1_GPTIMER1CTRL_GPTRST(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_GPTIMER1CTRL, field GPTRUN[31] (RW)
@@ -1075,7 +1029,6 @@ typedef union _hw_usbc_uog1_gptimer1ctrl
  * - 1 - Run
  */
 //@{
-
 #define BP_USBC_UOG1_GPTIMER1CTRL_GPTRUN      (31)      //!< Bit position for USBC_UOG1_GPTIMER1CTRL_GPTRUN.
 #define BM_USBC_UOG1_GPTIMER1CTRL_GPTRUN      (0x80000000)  //!< Bit mask for USBC_UOG1_GPTIMER1CTRL_GPTRUN.
 
@@ -1089,7 +1042,6 @@ typedef union _hw_usbc_uog1_gptimer1ctrl
 //! @brief Set the GPTRUN field to a new value.
 #define BW_USBC_UOG1_GPTIMER1CTRL_GPTRUN(v)   (HW_USBC_UOG1_GPTIMER1CTRL_WR((HW_USBC_UOG1_GPTIMER1CTRL_RD() & ~BM_USBC_UOG1_GPTIMER1CTRL_GPTRUN) | BF_USBC_UOG1_GPTIMER1CTRL_GPTRUN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1151,7 +1103,6 @@ typedef union _hw_usbc_uog1_sbuscfg
  * - 111 - INCR16 burst, INCR8 burst, INCR4 burst, then incremental burst of unspecified length
  */
 //@{
-
 #define BP_USBC_UOG1_SBUSCFG_AHBBRST      (0)      //!< Bit position for USBC_UOG1_SBUSCFG_AHBBRST.
 #define BM_USBC_UOG1_SBUSCFG_AHBBRST      (0x00000007)  //!< Bit mask for USBC_UOG1_SBUSCFG_AHBBRST.
 
@@ -1165,7 +1116,6 @@ typedef union _hw_usbc_uog1_sbuscfg
 //! @brief Set the AHBBRST field to a new value.
 #define BW_USBC_UOG1_SBUSCFG_AHBBRST(v)   (HW_USBC_UOG1_SBUSCFG_WR((HW_USBC_UOG1_SBUSCFG_RD() & ~BM_USBC_UOG1_SBUSCFG_AHBBRST) | BF_USBC_UOG1_SBUSCFG_AHBBRST(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1213,13 +1163,11 @@ typedef union _hw_usbc_uog1_caplength
  * Register. Default value is '40h'.
  */
 //@{
-
 #define BP_USBC_UOG1_CAPLENGTH_CAPLENGTH      (0)      //!< Bit position for USBC_UOG1_CAPLENGTH_CAPLENGTH.
 #define BM_USBC_UOG1_CAPLENGTH_CAPLENGTH      (0x000000ff)  //!< Bit mask for USBC_UOG1_CAPLENGTH_CAPLENGTH.
 
 //! @brief Get value of USBC_UOG1_CAPLENGTH_CAPLENGTH from a register value.
 #define BG_USBC_UOG1_CAPLENGTH_CAPLENGTH(r)   ((__REG_VALUE_TYPE((r), reg8_t) & BM_USBC_UOG1_CAPLENGTH_CAPLENGTH) >> BP_USBC_UOG1_CAPLENGTH_CAPLENGTH)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1267,13 +1215,11 @@ typedef union _hw_usbc_uog1_hciversion
  * Host Controller Interface Version Number Default value is '10h', which means EHCI rev1.0.
  */
 //@{
-
 #define BP_USBC_UOG1_HCIVERSION_HCIVERSION      (0)      //!< Bit position for USBC_UOG1_HCIVERSION_HCIVERSION.
 #define BM_USBC_UOG1_HCIVERSION_HCIVERSION      (0x0000ffff)  //!< Bit mask for USBC_UOG1_HCIVERSION_HCIVERSION.
 
 //! @brief Get value of USBC_UOG1_HCIVERSION_HCIVERSION from a register value.
 #define BG_USBC_UOG1_HCIVERSION_HCIVERSION(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_USBC_UOG1_HCIVERSION_HCIVERSION) >> BP_USBC_UOG1_HCIVERSION_HCIVERSION)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1333,13 +1279,11 @@ typedef union _hw_usbc_uog1_hcsparams
  * Single-Port Host.
  */
 //@{
-
 #define BP_USBC_UOG1_HCSPARAMS_N_PORTS      (0)      //!< Bit position for USBC_UOG1_HCSPARAMS_N_PORTS.
 #define BM_USBC_UOG1_HCSPARAMS_N_PORTS      (0x0000000f)  //!< Bit mask for USBC_UOG1_HCSPARAMS_N_PORTS.
 
 //! @brief Get value of USBC_UOG1_HCSPARAMS_N_PORTS from a register value.
 #define BG_USBC_UOG1_HCSPARAMS_N_PORTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_HCSPARAMS_N_PORTS) >> BP_USBC_UOG1_HCSPARAMS_N_PORTS)
-
 //@}
 
 /*! @name Register USBC_UOG1_HCSPARAMS, field PPC[4] (RO)
@@ -1350,13 +1294,11 @@ typedef union _hw_usbc_uog1_hcsparams
  * field in each port status and control register
  */
 //@{
-
 #define BP_USBC_UOG1_HCSPARAMS_PPC      (4)      //!< Bit position for USBC_UOG1_HCSPARAMS_PPC.
 #define BM_USBC_UOG1_HCSPARAMS_PPC      (0x00000010)  //!< Bit mask for USBC_UOG1_HCSPARAMS_PPC.
 
 //! @brief Get value of USBC_UOG1_HCSPARAMS_PPC from a register value.
 #define BG_USBC_UOG1_HCSPARAMS_PPC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_HCSPARAMS_PPC) >> BP_USBC_UOG1_HCSPARAMS_PPC)
-
 //@}
 
 /*! @name Register USBC_UOG1_HCSPARAMS, field N_PCC[11:8] (RO)
@@ -1371,13 +1313,11 @@ typedef union _hw_usbc_uog1_hcsparams
  * with N_PORTS and N_CC. These bits are '0000b' in all controller core.
  */
 //@{
-
 #define BP_USBC_UOG1_HCSPARAMS_N_PCC      (8)      //!< Bit position for USBC_UOG1_HCSPARAMS_N_PCC.
 #define BM_USBC_UOG1_HCSPARAMS_N_PCC      (0x00000f00)  //!< Bit mask for USBC_UOG1_HCSPARAMS_N_PCC.
 
 //! @brief Get value of USBC_UOG1_HCSPARAMS_N_PCC from a register value.
 #define BG_USBC_UOG1_HCSPARAMS_N_PCC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_HCSPARAMS_N_PCC) >> BP_USBC_UOG1_HCSPARAMS_N_PCC)
-
 //@}
 
 /*! @name Register USBC_UOG1_HCSPARAMS, field N_CC[15:12] (RO)
@@ -1390,13 +1330,11 @@ typedef union _hw_usbc_uog1_hcsparams
  * - 1 - There are internal companion controller(s) and port-ownership hand-offs is supported.
  */
 //@{
-
 #define BP_USBC_UOG1_HCSPARAMS_N_CC      (12)      //!< Bit position for USBC_UOG1_HCSPARAMS_N_CC.
 #define BM_USBC_UOG1_HCSPARAMS_N_CC      (0x0000f000)  //!< Bit mask for USBC_UOG1_HCSPARAMS_N_CC.
 
 //! @brief Get value of USBC_UOG1_HCSPARAMS_N_CC from a register value.
 #define BG_USBC_UOG1_HCSPARAMS_N_CC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_HCSPARAMS_N_CC) >> BP_USBC_UOG1_HCSPARAMS_N_CC)
-
 //@}
 
 /*! @name Register USBC_UOG1_HCSPARAMS, field PI[16] (RO)
@@ -1406,13 +1344,11 @@ typedef union _hw_usbc_uog1_hcsparams
  * for controlling the state of the port indicator This bit is "1b" in all controller core.
  */
 //@{
-
 #define BP_USBC_UOG1_HCSPARAMS_PI      (16)      //!< Bit position for USBC_UOG1_HCSPARAMS_PI.
 #define BM_USBC_UOG1_HCSPARAMS_PI      (0x00010000)  //!< Bit mask for USBC_UOG1_HCSPARAMS_PI.
 
 //! @brief Get value of USBC_UOG1_HCSPARAMS_PI from a register value.
 #define BG_USBC_UOG1_HCSPARAMS_PI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_HCSPARAMS_PI) >> BP_USBC_UOG1_HCSPARAMS_PI)
-
 //@}
 
 /*! @name Register USBC_UOG1_HCSPARAMS, field N_PTT[23:20] (RO)
@@ -1422,13 +1358,11 @@ typedef union _hw_usbc_uog1_hcsparams
  * These bits would be set to equal N_PORTS for Multi-Port Host, and '0000b' for Single-Port Host.
  */
 //@{
-
 #define BP_USBC_UOG1_HCSPARAMS_N_PTT      (20)      //!< Bit position for USBC_UOG1_HCSPARAMS_N_PTT.
 #define BM_USBC_UOG1_HCSPARAMS_N_PTT      (0x00f00000)  //!< Bit mask for USBC_UOG1_HCSPARAMS_N_PTT.
 
 //! @brief Get value of USBC_UOG1_HCSPARAMS_N_PTT from a register value.
 #define BG_USBC_UOG1_HCSPARAMS_N_PTT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_HCSPARAMS_N_PTT) >> BP_USBC_UOG1_HCSPARAMS_N_PTT)
-
 //@}
 
 /*! @name Register USBC_UOG1_HCSPARAMS, field N_TT[27:24] (RO)
@@ -1438,13 +1372,11 @@ typedef union _hw_usbc_uog1_hcsparams
  * be set to '0001b' for Multi-Port Host, and '0000b' for Single-Port Host.
  */
 //@{
-
 #define BP_USBC_UOG1_HCSPARAMS_N_TT      (24)      //!< Bit position for USBC_UOG1_HCSPARAMS_N_TT.
 #define BM_USBC_UOG1_HCSPARAMS_N_TT      (0x0f000000)  //!< Bit mask for USBC_UOG1_HCSPARAMS_N_TT.
 
 //! @brief Get value of USBC_UOG1_HCSPARAMS_N_TT from a register value.
 #define BG_USBC_UOG1_HCSPARAMS_N_TT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_HCSPARAMS_N_TT) >> BP_USBC_UOG1_HCSPARAMS_N_TT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1498,13 +1430,11 @@ typedef union _hw_usbc_uog1_hccparams
  * capability is supported.
  */
 //@{
-
 #define BP_USBC_UOG1_HCCPARAMS_ADC      (0)      //!< Bit position for USBC_UOG1_HCCPARAMS_ADC.
 #define BM_USBC_UOG1_HCCPARAMS_ADC      (0x00000001)  //!< Bit mask for USBC_UOG1_HCCPARAMS_ADC.
 
 //! @brief Get value of USBC_UOG1_HCCPARAMS_ADC from a register value.
 #define BG_USBC_UOG1_HCCPARAMS_ADC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_HCCPARAMS_ADC) >> BP_USBC_UOG1_HCCPARAMS_ADC)
-
 //@}
 
 /*! @name Register USBC_UOG1_HCCPARAMS, field PFL[1] (RO)
@@ -1518,13 +1448,11 @@ typedef union _hw_usbc_uog1_hccparams
  * all controller core.
  */
 //@{
-
 #define BP_USBC_UOG1_HCCPARAMS_PFL      (1)      //!< Bit position for USBC_UOG1_HCCPARAMS_PFL.
 #define BM_USBC_UOG1_HCCPARAMS_PFL      (0x00000002)  //!< Bit mask for USBC_UOG1_HCCPARAMS_PFL.
 
 //! @brief Get value of USBC_UOG1_HCCPARAMS_PFL from a register value.
 #define BG_USBC_UOG1_HCCPARAMS_PFL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_HCCPARAMS_PFL) >> BP_USBC_UOG1_HCCPARAMS_PFL)
-
 //@}
 
 /*! @name Register USBC_UOG1_HCCPARAMS, field ASP[2] (RO)
@@ -1536,13 +1464,11 @@ typedef union _hw_usbc_uog1_hccparams
  * reset value: '00b' for OTG controller core, '11b' for Host-only controller core.
  */
 //@{
-
 #define BP_USBC_UOG1_HCCPARAMS_ASP      (2)      //!< Bit position for USBC_UOG1_HCCPARAMS_ASP.
 #define BM_USBC_UOG1_HCCPARAMS_ASP      (0x00000004)  //!< Bit mask for USBC_UOG1_HCCPARAMS_ASP.
 
 //! @brief Get value of USBC_UOG1_HCCPARAMS_ASP from a register value.
 #define BG_USBC_UOG1_HCCPARAMS_ASP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_HCCPARAMS_ASP) >> BP_USBC_UOG1_HCCPARAMS_ASP)
-
 //@}
 
 /*! @name Register USBC_UOG1_HCCPARAMS, field IST[7:4] (RO)
@@ -1555,13 +1481,11 @@ typedef union _hw_usbc_uog1_hccparams
  * isochronous data structure for an entire frame. These bits are set '00h' in all controller core.
  */
 //@{
-
 #define BP_USBC_UOG1_HCCPARAMS_IST      (4)      //!< Bit position for USBC_UOG1_HCCPARAMS_IST.
 #define BM_USBC_UOG1_HCCPARAMS_IST      (0x000000f0)  //!< Bit mask for USBC_UOG1_HCCPARAMS_IST.
 
 //! @brief Get value of USBC_UOG1_HCCPARAMS_IST from a register value.
 #define BG_USBC_UOG1_HCCPARAMS_IST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_HCCPARAMS_IST) >> BP_USBC_UOG1_HCCPARAMS_IST)
-
 //@}
 
 /*! @name Register USBC_UOG1_HCCPARAMS, field EECP[15:8] (RO)
@@ -1573,13 +1497,11 @@ typedef union _hw_usbc_uog1_hccparams
  * header defined for this class of device. These bits are set '00h' in all controller core.
  */
 //@{
-
 #define BP_USBC_UOG1_HCCPARAMS_EECP      (8)      //!< Bit position for USBC_UOG1_HCCPARAMS_EECP.
 #define BM_USBC_UOG1_HCCPARAMS_EECP      (0x0000ff00)  //!< Bit mask for USBC_UOG1_HCCPARAMS_EECP.
 
 //! @brief Get value of USBC_UOG1_HCCPARAMS_EECP from a register value.
 #define BG_USBC_UOG1_HCCPARAMS_EECP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_HCCPARAMS_EECP) >> BP_USBC_UOG1_HCCPARAMS_EECP)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1626,13 +1548,11 @@ typedef union _hw_usbc_uog1_dciversion
  * Device Controller Interface Version Number Default value is '01h', which means rev0.1.
  */
 //@{
-
 #define BP_USBC_UOG1_DCIVERSION_DCIVERSION      (0)      //!< Bit position for USBC_UOG1_DCIVERSION_DCIVERSION.
 #define BM_USBC_UOG1_DCIVERSION_DCIVERSION      (0x0000ffff)  //!< Bit mask for USBC_UOG1_DCIVERSION_DCIVERSION.
 
 //! @brief Get value of USBC_UOG1_DCIVERSION_DCIVERSION from a register value.
 #define BG_USBC_UOG1_DCIVERSION_DCIVERSION(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_USBC_UOG1_DCIVERSION_DCIVERSION) >> BP_USBC_UOG1_DCIVERSION_DCIVERSION)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1685,13 +1605,11 @@ typedef union _hw_usbc_uog1_dccparams
  * are 0 - 15.
  */
 //@{
-
 #define BP_USBC_UOG1_DCCPARAMS_DEN      (0)      //!< Bit position for USBC_UOG1_DCCPARAMS_DEN.
 #define BM_USBC_UOG1_DCCPARAMS_DEN      (0x0000001f)  //!< Bit mask for USBC_UOG1_DCCPARAMS_DEN.
 
 //! @brief Get value of USBC_UOG1_DCCPARAMS_DEN from a register value.
 #define BG_USBC_UOG1_DCCPARAMS_DEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_DCCPARAMS_DEN) >> BP_USBC_UOG1_DCCPARAMS_DEN)
-
 //@}
 
 /*! @name Register USBC_UOG1_DCCPARAMS, field DC[7] (RO)
@@ -1699,13 +1617,11 @@ typedef union _hw_usbc_uog1_dccparams
  * Device Capable When this bit is 1, this controller is capable of operating as a USB 2.0 device.
  */
 //@{
-
 #define BP_USBC_UOG1_DCCPARAMS_DC      (7)      //!< Bit position for USBC_UOG1_DCCPARAMS_DC.
 #define BM_USBC_UOG1_DCCPARAMS_DC      (0x00000080)  //!< Bit mask for USBC_UOG1_DCCPARAMS_DC.
 
 //! @brief Get value of USBC_UOG1_DCCPARAMS_DC from a register value.
 #define BG_USBC_UOG1_DCCPARAMS_DC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_DCCPARAMS_DC) >> BP_USBC_UOG1_DCCPARAMS_DC)
-
 //@}
 
 /*! @name Register USBC_UOG1_DCCPARAMS, field HC[8] (RO)
@@ -1714,13 +1630,11 @@ typedef union _hw_usbc_uog1_dccparams
  * USB 2.0 host controller.
  */
 //@{
-
 #define BP_USBC_UOG1_DCCPARAMS_HC      (8)      //!< Bit position for USBC_UOG1_DCCPARAMS_HC.
 #define BM_USBC_UOG1_DCCPARAMS_HC      (0x00000100)  //!< Bit mask for USBC_UOG1_DCCPARAMS_HC.
 
 //! @brief Get value of USBC_UOG1_DCCPARAMS_HC from a register value.
 #define BG_USBC_UOG1_DCCPARAMS_HC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_DCCPARAMS_HC) >> BP_USBC_UOG1_DCCPARAMS_HC)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1797,7 +1711,6 @@ typedef union _hw_usbc_uog1_usbcmd
  * event.
  */
 //@{
-
 #define BP_USBC_UOG1_USBCMD_RS      (0)      //!< Bit position for USBC_UOG1_USBCMD_RS.
 #define BM_USBC_UOG1_USBCMD_RS      (0x00000001)  //!< Bit mask for USBC_UOG1_USBCMD_RS.
 
@@ -1811,7 +1724,6 @@ typedef union _hw_usbc_uog1_usbcmd
 //! @brief Set the RS field to a new value.
 #define BW_USBC_UOG1_USBCMD_RS(v)   (HW_USBC_UOG1_USBCMD_WR((HW_USBC_UOG1_USBCMD_RD() & ~BM_USBC_UOG1_USBCMD_RS) | BF_USBC_UOG1_USBCMD_RS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBCMD, field RST[1] (RW)
@@ -1832,7 +1744,6 @@ typedef union _hw_usbc_uog1_usbcmd
  * set to 0.
  */
 //@{
-
 #define BP_USBC_UOG1_USBCMD_RST      (1)      //!< Bit position for USBC_UOG1_USBCMD_RST.
 #define BM_USBC_UOG1_USBCMD_RST      (0x00000002)  //!< Bit mask for USBC_UOG1_USBCMD_RST.
 
@@ -1846,7 +1757,6 @@ typedef union _hw_usbc_uog1_usbcmd
 //! @brief Set the RST field to a new value.
 #define BW_USBC_UOG1_USBCMD_RST(v)   (HW_USBC_UOG1_USBCMD_WR((HW_USBC_UOG1_USBCMD_RD() & ~BM_USBC_UOG1_USBCMD_RST) | BF_USBC_UOG1_USBCMD_RST(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBCMD, field FS[3:2] (RW)
@@ -1854,7 +1764,6 @@ typedef union _hw_usbc_uog1_usbcmd
  * See description at bit 15
  */
 //@{
-
 #define BP_USBC_UOG1_USBCMD_FS      (2)      //!< Bit position for USBC_UOG1_USBCMD_FS.
 #define BM_USBC_UOG1_USBCMD_FS      (0x0000000c)  //!< Bit mask for USBC_UOG1_USBCMD_FS.
 
@@ -1868,7 +1777,6 @@ typedef union _hw_usbc_uog1_usbcmd
 //! @brief Set the FS field to a new value.
 #define BW_USBC_UOG1_USBCMD_FS(v)   (HW_USBC_UOG1_USBCMD_WR((HW_USBC_UOG1_USBCMD_RD() & ~BM_USBC_UOG1_USBCMD_FS) | BF_USBC_UOG1_USBCMD_FS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBCMD, field PSE[4] (RW)
@@ -1881,7 +1789,6 @@ typedef union _hw_usbc_uog1_usbcmd
  * - 1 - Use the PERIODICLISTBASE register to access the Periodic Schedule.
  */
 //@{
-
 #define BP_USBC_UOG1_USBCMD_PSE      (4)      //!< Bit position for USBC_UOG1_USBCMD_PSE.
 #define BM_USBC_UOG1_USBCMD_PSE      (0x00000010)  //!< Bit mask for USBC_UOG1_USBCMD_PSE.
 
@@ -1895,7 +1802,6 @@ typedef union _hw_usbc_uog1_usbcmd
 //! @brief Set the PSE field to a new value.
 #define BW_USBC_UOG1_USBCMD_PSE(v)   (HW_USBC_UOG1_USBCMD_WR((HW_USBC_UOG1_USBCMD_RD() & ~BM_USBC_UOG1_USBCMD_PSE) | BF_USBC_UOG1_USBCMD_PSE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBCMD, field ASE[5] (RW)
@@ -1909,7 +1815,6 @@ typedef union _hw_usbc_uog1_usbcmd
  * - 1 - Use the ASYNCLISTADDR register to access the Asynchronous Schedule.
  */
 //@{
-
 #define BP_USBC_UOG1_USBCMD_ASE      (5)      //!< Bit position for USBC_UOG1_USBCMD_ASE.
 #define BM_USBC_UOG1_USBCMD_ASE      (0x00000020)  //!< Bit mask for USBC_UOG1_USBCMD_ASE.
 
@@ -1923,7 +1828,6 @@ typedef union _hw_usbc_uog1_usbcmd
 //! @brief Set the ASE field to a new value.
 #define BW_USBC_UOG1_USBCMD_ASE(v)   (HW_USBC_UOG1_USBCMD_WR((HW_USBC_UOG1_USBCMD_RD() & ~BM_USBC_UOG1_USBCMD_ASE) | BF_USBC_UOG1_USBCMD_ASE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBCMD, field IAA[6] (RW)
@@ -1940,7 +1844,6 @@ typedef union _hw_usbc_uog1_usbcmd
  * one to this bit when device mode is selected will have undefined results.
  */
 //@{
-
 #define BP_USBC_UOG1_USBCMD_IAA      (6)      //!< Bit position for USBC_UOG1_USBCMD_IAA.
 #define BM_USBC_UOG1_USBCMD_IAA      (0x00000040)  //!< Bit mask for USBC_UOG1_USBCMD_IAA.
 
@@ -1954,7 +1857,6 @@ typedef union _hw_usbc_uog1_usbcmd
 //! @brief Set the IAA field to a new value.
 #define BW_USBC_UOG1_USBCMD_IAA(v)   (HW_USBC_UOG1_USBCMD_WR((HW_USBC_UOG1_USBCMD_RD() & ~BM_USBC_UOG1_USBCMD_IAA) | BF_USBC_UOG1_USBCMD_IAA(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBCMD, field ASP[9:8] (RW)
@@ -1968,7 +1870,6 @@ typedef union _hw_usbc_uog1_usbcmd
  * behavior. This field is set to 3h in all controller core.
  */
 //@{
-
 #define BP_USBC_UOG1_USBCMD_ASP      (8)      //!< Bit position for USBC_UOG1_USBCMD_ASP.
 #define BM_USBC_UOG1_USBCMD_ASP      (0x00000300)  //!< Bit mask for USBC_UOG1_USBCMD_ASP.
 
@@ -1982,7 +1883,6 @@ typedef union _hw_usbc_uog1_usbcmd
 //! @brief Set the ASP field to a new value.
 #define BW_USBC_UOG1_USBCMD_ASP(v)   (HW_USBC_UOG1_USBCMD_WR((HW_USBC_UOG1_USBCMD_RD() & ~BM_USBC_UOG1_USBCMD_ASP) | BF_USBC_UOG1_USBCMD_ASP(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBCMD, field ASPE[11] (RW)
@@ -1994,7 +1894,6 @@ typedef union _hw_usbc_uog1_usbcmd
  * '0b' for OTG controller core, '1b' for Host-only controller core.
  */
 //@{
-
 #define BP_USBC_UOG1_USBCMD_ASPE      (11)      //!< Bit position for USBC_UOG1_USBCMD_ASPE.
 #define BM_USBC_UOG1_USBCMD_ASPE      (0x00000800)  //!< Bit mask for USBC_UOG1_USBCMD_ASPE.
 
@@ -2008,7 +1907,6 @@ typedef union _hw_usbc_uog1_usbcmd
 //! @brief Set the ASPE field to a new value.
 #define BW_USBC_UOG1_USBCMD_ASPE(v)   (HW_USBC_UOG1_USBCMD_WR((HW_USBC_UOG1_USBCMD_RD() & ~BM_USBC_UOG1_USBCMD_ASPE) | BF_USBC_UOG1_USBCMD_ASPE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBCMD, field SUTW[13] (RW)
@@ -2021,7 +1919,6 @@ typedef union _hw_usbc_uog1_usbcmd
  * cleared by hardware when a hazard detected.
  */
 //@{
-
 #define BP_USBC_UOG1_USBCMD_SUTW      (13)      //!< Bit position for USBC_UOG1_USBCMD_SUTW.
 #define BM_USBC_UOG1_USBCMD_SUTW      (0x00002000)  //!< Bit mask for USBC_UOG1_USBCMD_SUTW.
 
@@ -2035,7 +1932,6 @@ typedef union _hw_usbc_uog1_usbcmd
 //! @brief Set the SUTW field to a new value.
 #define BW_USBC_UOG1_USBCMD_SUTW(v)   (HW_USBC_UOG1_USBCMD_WR((HW_USBC_UOG1_USBCMD_RD() & ~BM_USBC_UOG1_USBCMD_SUTW) | BF_USBC_UOG1_USBCMD_SUTW(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBCMD, field ATDTW[14] (RW)
@@ -2046,7 +1942,6 @@ typedef union _hw_usbc_uog1_usbcmd
  * region for which adding a dTD to a primed endpoint may go unrecognized.
  */
 //@{
-
 #define BP_USBC_UOG1_USBCMD_ATDTW      (14)      //!< Bit position for USBC_UOG1_USBCMD_ATDTW.
 #define BM_USBC_UOG1_USBCMD_ATDTW      (0x00004000)  //!< Bit mask for USBC_UOG1_USBCMD_ATDTW.
 
@@ -2060,7 +1955,6 @@ typedef union _hw_usbc_uog1_usbcmd
 //! @brief Set the ATDTW field to a new value.
 #define BW_USBC_UOG1_USBCMD_ATDTW(v)   (HW_USBC_UOG1_USBCMD_WR((HW_USBC_UOG1_USBCMD_RD() & ~BM_USBC_UOG1_USBCMD_ATDTW) | BF_USBC_UOG1_USBCMD_ATDTW(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBCMD, field FS1[15] (RW)
@@ -2082,7 +1976,6 @@ typedef union _hw_usbc_uog1_usbcmd
  * - 111 - 8 elements (32 bytes)
  */
 //@{
-
 #define BP_USBC_UOG1_USBCMD_FS1      (15)      //!< Bit position for USBC_UOG1_USBCMD_FS1.
 #define BM_USBC_UOG1_USBCMD_FS1      (0x00008000)  //!< Bit mask for USBC_UOG1_USBCMD_FS1.
 
@@ -2096,7 +1989,6 @@ typedef union _hw_usbc_uog1_usbcmd
 //! @brief Set the FS1 field to a new value.
 #define BW_USBC_UOG1_USBCMD_FS1(v)   (HW_USBC_UOG1_USBCMD_WR((HW_USBC_UOG1_USBCMD_RD() & ~BM_USBC_UOG1_USBCMD_FS1) | BF_USBC_UOG1_USBCMD_FS1(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBCMD, field ITC[23:16] (RW)
@@ -2117,7 +2009,6 @@ typedef union _hw_usbc_uog1_usbcmd
  * - 0x40 - 64 micro-frames
  */
 //@{
-
 #define BP_USBC_UOG1_USBCMD_ITC      (16)      //!< Bit position for USBC_UOG1_USBCMD_ITC.
 #define BM_USBC_UOG1_USBCMD_ITC      (0x00ff0000)  //!< Bit mask for USBC_UOG1_USBCMD_ITC.
 
@@ -2131,7 +2022,6 @@ typedef union _hw_usbc_uog1_usbcmd
 //! @brief Set the ITC field to a new value.
 #define BW_USBC_UOG1_USBCMD_ITC(v)   (HW_USBC_UOG1_USBCMD_WR((HW_USBC_UOG1_USBCMD_RD() & ~BM_USBC_UOG1_USBCMD_ITC) | BF_USBC_UOG1_USBCMD_ITC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2206,7 +2096,6 @@ typedef union _hw_usbc_uog1_usbsts
  * than the expected number of bytes.
  */
 //@{
-
 #define BP_USBC_UOG1_USBSTS_UI      (0)      //!< Bit position for USBC_UOG1_USBSTS_UI.
 #define BM_USBC_UOG1_USBSTS_UI      (0x00000001)  //!< Bit mask for USBC_UOG1_USBSTS_UI.
 
@@ -2220,7 +2109,6 @@ typedef union _hw_usbc_uog1_usbsts
 //! @brief Set the UI field to a new value.
 #define BW_USBC_UOG1_USBSTS_UI(v)   (HW_USBC_UOG1_USBSTS_WR((HW_USBC_UOG1_USBSTS_RD() & ~BM_USBC_UOG1_USBSTS_UI) | BF_USBC_UOG1_USBSTS_UI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBSTS, field UEI[1] (RW)
@@ -2231,7 +2119,6 @@ typedef union _hw_usbc_uog1_usbsts
  * set The device controller detects resume signaling only.
  */
 //@{
-
 #define BP_USBC_UOG1_USBSTS_UEI      (1)      //!< Bit position for USBC_UOG1_USBSTS_UEI.
 #define BM_USBC_UOG1_USBSTS_UEI      (0x00000002)  //!< Bit mask for USBC_UOG1_USBSTS_UEI.
 
@@ -2245,7 +2132,6 @@ typedef union _hw_usbc_uog1_usbsts
 //! @brief Set the UEI field to a new value.
 #define BW_USBC_UOG1_USBSTS_UEI(v)   (HW_USBC_UOG1_USBSTS_WR((HW_USBC_UOG1_USBSTS_RD() & ~BM_USBC_UOG1_USBSTS_UEI) | BF_USBC_UOG1_USBSTS_UEI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBSTS, field PCI[2] (RW)
@@ -2258,7 +2144,6 @@ typedef union _hw_usbc_uog1_usbsts
  * notification mechanisms are the USB Reset Received bit and the DCSuspend bits respectively.
  */
 //@{
-
 #define BP_USBC_UOG1_USBSTS_PCI      (2)      //!< Bit position for USBC_UOG1_USBSTS_PCI.
 #define BM_USBC_UOG1_USBSTS_PCI      (0x00000004)  //!< Bit mask for USBC_UOG1_USBSTS_PCI.
 
@@ -2272,7 +2157,6 @@ typedef union _hw_usbc_uog1_usbsts
 //! @brief Set the PCI field to a new value.
 #define BW_USBC_UOG1_USBSTS_PCI(v)   (HW_USBC_UOG1_USBSTS_WR((HW_USBC_UOG1_USBSTS_RD() & ~BM_USBC_UOG1_USBSTS_PCI) | BF_USBC_UOG1_USBSTS_PCI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBSTS, field FRI[3] (RW)
@@ -2285,7 +2169,6 @@ typedef union _hw_usbc_uog1_usbsts
  * every time FHINDEX [12] toggles. Only used in host operation mode.
  */
 //@{
-
 #define BP_USBC_UOG1_USBSTS_FRI      (3)      //!< Bit position for USBC_UOG1_USBSTS_FRI.
 #define BM_USBC_UOG1_USBSTS_FRI      (0x00000008)  //!< Bit mask for USBC_UOG1_USBSTS_FRI.
 
@@ -2299,7 +2182,6 @@ typedef union _hw_usbc_uog1_usbsts
 //! @brief Set the FRI field to a new value.
 #define BW_USBC_UOG1_USBSTS_FRI(v)   (HW_USBC_UOG1_USBSTS_WR((HW_USBC_UOG1_USBSTS_RD() & ~BM_USBC_UOG1_USBSTS_FRI) | BF_USBC_UOG1_USBSTS_FRI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBSTS, field SEI[4] (RW)
@@ -2308,7 +2190,6 @@ typedef union _hw_usbc_uog1_usbsts
  * the system interface.
  */
 //@{
-
 #define BP_USBC_UOG1_USBSTS_SEI      (4)      //!< Bit position for USBC_UOG1_USBSTS_SEI.
 #define BM_USBC_UOG1_USBSTS_SEI      (0x00000010)  //!< Bit mask for USBC_UOG1_USBSTS_SEI.
 
@@ -2322,7 +2203,6 @@ typedef union _hw_usbc_uog1_usbsts
 //! @brief Set the SEI field to a new value.
 #define BW_USBC_UOG1_USBSTS_SEI(v)   (HW_USBC_UOG1_USBSTS_WR((HW_USBC_UOG1_USBSTS_RD() & ~BM_USBC_UOG1_USBSTS_SEI) | BF_USBC_UOG1_USBSTS_SEI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBSTS, field AAI[5] (RW)
@@ -2333,7 +2213,6 @@ typedef union _hw_usbc_uog1_usbsts
  * indicates the assertion of that interrupt source. Only used in host operation mode.
  */
 //@{
-
 #define BP_USBC_UOG1_USBSTS_AAI      (5)      //!< Bit position for USBC_UOG1_USBSTS_AAI.
 #define BM_USBC_UOG1_USBSTS_AAI      (0x00000020)  //!< Bit mask for USBC_UOG1_USBSTS_AAI.
 
@@ -2347,7 +2226,6 @@ typedef union _hw_usbc_uog1_usbsts
 //! @brief Set the AAI field to a new value.
 #define BW_USBC_UOG1_USBSTS_AAI(v)   (HW_USBC_UOG1_USBSTS_WR((HW_USBC_UOG1_USBSTS_RD() & ~BM_USBC_UOG1_USBSTS_AAI) | BF_USBC_UOG1_USBSTS_AAI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBSTS, field URI[6] (RW)
@@ -2357,7 +2235,6 @@ typedef union _hw_usbc_uog1_usbsts
  * Received status bit. Only used in device operation mode.
  */
 //@{
-
 #define BP_USBC_UOG1_USBSTS_URI      (6)      //!< Bit position for USBC_UOG1_USBSTS_URI.
 #define BM_USBC_UOG1_USBSTS_URI      (0x00000040)  //!< Bit mask for USBC_UOG1_USBSTS_URI.
 
@@ -2371,7 +2248,6 @@ typedef union _hw_usbc_uog1_usbsts
 //! @brief Set the URI field to a new value.
 #define BW_USBC_UOG1_USBSTS_URI(v)   (HW_USBC_UOG1_USBSTS_WR((HW_USBC_UOG1_USBSTS_RD() & ~BM_USBC_UOG1_USBSTS_URI) | BF_USBC_UOG1_USBSTS_URI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBSTS, field SRI[7] (RW)
@@ -2386,7 +2262,6 @@ typedef union _hw_usbc_uog1_usbsts
  * bit to clear it.
  */
 //@{
-
 #define BP_USBC_UOG1_USBSTS_SRI      (7)      //!< Bit position for USBC_UOG1_USBSTS_SRI.
 #define BM_USBC_UOG1_USBSTS_SRI      (0x00000080)  //!< Bit mask for USBC_UOG1_USBSTS_SRI.
 
@@ -2400,7 +2275,6 @@ typedef union _hw_usbc_uog1_usbsts
 //! @brief Set the SRI field to a new value.
 #define BW_USBC_UOG1_USBSTS_SRI(v)   (HW_USBC_UOG1_USBSTS_WR((HW_USBC_UOG1_USBSTS_RD() & ~BM_USBC_UOG1_USBSTS_SRI) | BF_USBC_UOG1_USBSTS_SRI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBSTS, field SLI[8] (RW)
@@ -2410,7 +2284,6 @@ typedef union _hw_usbc_uog1_usbsts
  * in device operation mode.
  */
 //@{
-
 #define BP_USBC_UOG1_USBSTS_SLI      (8)      //!< Bit position for USBC_UOG1_USBSTS_SLI.
 #define BM_USBC_UOG1_USBSTS_SLI      (0x00000100)  //!< Bit mask for USBC_UOG1_USBSTS_SLI.
 
@@ -2424,7 +2297,6 @@ typedef union _hw_usbc_uog1_usbsts
 //! @brief Set the SLI field to a new value.
 #define BW_USBC_UOG1_USBSTS_SLI(v)   (HW_USBC_UOG1_USBSTS_WR((HW_USBC_UOG1_USBSTS_RD() & ~BM_USBC_UOG1_USBSTS_SLI) | BF_USBC_UOG1_USBSTS_SLI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBSTS, field ULPII[10] (RW)
@@ -2433,7 +2305,6 @@ typedef union _hw_usbc_uog1_usbsts
  * ULPI viewport. This bit is usable only if the controller support UPLI interface mode.
  */
 //@{
-
 #define BP_USBC_UOG1_USBSTS_ULPII      (10)      //!< Bit position for USBC_UOG1_USBSTS_ULPII.
 #define BM_USBC_UOG1_USBSTS_ULPII      (0x00000400)  //!< Bit mask for USBC_UOG1_USBSTS_ULPII.
 
@@ -2447,7 +2318,6 @@ typedef union _hw_usbc_uog1_usbsts
 //! @brief Set the ULPII field to a new value.
 #define BW_USBC_UOG1_USBSTS_ULPII(v)   (HW_USBC_UOG1_USBSTS_WR((HW_USBC_UOG1_USBSTS_RD() & ~BM_USBC_UOG1_USBSTS_ULPII) | BF_USBC_UOG1_USBSTS_ULPII(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBSTS, field HCH[12] (RW)
@@ -2460,7 +2330,6 @@ typedef union _hw_usbc_uog1_usbsts
  * register. HCH bit reset value: '0b' for OTG controller core, '1b' for Host-only controller core.
  */
 //@{
-
 #define BP_USBC_UOG1_USBSTS_HCH      (12)      //!< Bit position for USBC_UOG1_USBSTS_HCH.
 #define BM_USBC_UOG1_USBSTS_HCH      (0x00001000)  //!< Bit mask for USBC_UOG1_USBSTS_HCH.
 
@@ -2474,7 +2343,6 @@ typedef union _hw_usbc_uog1_usbsts
 //! @brief Set the HCH field to a new value.
 #define BW_USBC_UOG1_USBSTS_HCH(v)   (HW_USBC_UOG1_USBSTS_WR((HW_USBC_UOG1_USBSTS_RD() & ~BM_USBC_UOG1_USBSTS_HCH) | BF_USBC_UOG1_USBSTS_HCH(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBSTS, field RCL[13] (RW)
@@ -2483,7 +2351,6 @@ typedef union _hw_usbc_uog1_usbsts
  * schedule. Only used in the host operation mode.
  */
 //@{
-
 #define BP_USBC_UOG1_USBSTS_RCL      (13)      //!< Bit position for USBC_UOG1_USBSTS_RCL.
 #define BM_USBC_UOG1_USBSTS_RCL      (0x00002000)  //!< Bit mask for USBC_UOG1_USBSTS_RCL.
 
@@ -2497,7 +2364,6 @@ typedef union _hw_usbc_uog1_usbsts
 //! @brief Set the RCL field to a new value.
 #define BW_USBC_UOG1_USBSTS_RCL(v)   (HW_USBC_UOG1_USBSTS_WR((HW_USBC_UOG1_USBSTS_RD() & ~BM_USBC_UOG1_USBSTS_RCL) | BF_USBC_UOG1_USBSTS_RCL(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBSTS, field PS[14] (RW)
@@ -2510,7 +2376,6 @@ typedef union _hw_usbc_uog1_usbsts
  * enabled (1) or disabled (0). Only used in the host operation mode.
  */
 //@{
-
 #define BP_USBC_UOG1_USBSTS_PS      (14)      //!< Bit position for USBC_UOG1_USBSTS_PS.
 #define BM_USBC_UOG1_USBSTS_PS      (0x00004000)  //!< Bit mask for USBC_UOG1_USBSTS_PS.
 
@@ -2524,7 +2389,6 @@ typedef union _hw_usbc_uog1_usbsts
 //! @brief Set the PS field to a new value.
 #define BW_USBC_UOG1_USBSTS_PS(v)   (HW_USBC_UOG1_USBSTS_WR((HW_USBC_UOG1_USBSTS_RD() & ~BM_USBC_UOG1_USBSTS_PS) | BF_USBC_UOG1_USBSTS_PS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBSTS, field AS[15] (RW)
@@ -2538,7 +2402,6 @@ typedef union _hw_usbc_uog1_usbsts
  * operation mode.
  */
 //@{
-
 #define BP_USBC_UOG1_USBSTS_AS      (15)      //!< Bit position for USBC_UOG1_USBSTS_AS.
 #define BM_USBC_UOG1_USBSTS_AS      (0x00008000)  //!< Bit mask for USBC_UOG1_USBSTS_AS.
 
@@ -2552,7 +2415,6 @@ typedef union _hw_usbc_uog1_usbsts
 //! @brief Set the AS field to a new value.
 #define BW_USBC_UOG1_USBSTS_AS(v)   (HW_USBC_UOG1_USBSTS_WR((HW_USBC_UOG1_USBSTS_RD() & ~BM_USBC_UOG1_USBSTS_AS) | BF_USBC_UOG1_USBSTS_AS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBSTS, field NAKI[16] (RO)
@@ -2562,13 +2424,11 @@ typedef union _hw_usbc_uog1_usbsts
  * automatically cleared by hardware when all Enabled TX/RX Endpoint NAK bits are cleared.
  */
 //@{
-
 #define BP_USBC_UOG1_USBSTS_NAKI      (16)      //!< Bit position for USBC_UOG1_USBSTS_NAKI.
 #define BM_USBC_UOG1_USBSTS_NAKI      (0x00010000)  //!< Bit mask for USBC_UOG1_USBSTS_NAKI.
 
 //! @brief Get value of USBC_UOG1_USBSTS_NAKI from a register value.
 #define BG_USBC_UOG1_USBSTS_NAKI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_USBSTS_NAKI) >> BP_USBC_UOG1_USBSTS_NAKI)
-
 //@}
 
 /*! @name Register USBC_UOG1_USBSTS, field TI0[24] (RW)
@@ -2577,7 +2437,6 @@ typedef union _hw_usbc_uog1_usbsts
  * GPTIMER0CTRL register transitions to zero, writing a one to this bit clears it.
  */
 //@{
-
 #define BP_USBC_UOG1_USBSTS_TI0      (24)      //!< Bit position for USBC_UOG1_USBSTS_TI0.
 #define BM_USBC_UOG1_USBSTS_TI0      (0x01000000)  //!< Bit mask for USBC_UOG1_USBSTS_TI0.
 
@@ -2591,7 +2450,6 @@ typedef union _hw_usbc_uog1_usbsts
 //! @brief Set the TI0 field to a new value.
 #define BW_USBC_UOG1_USBSTS_TI0(v)   (HW_USBC_UOG1_USBSTS_WR((HW_USBC_UOG1_USBSTS_RD() & ~BM_USBC_UOG1_USBSTS_TI0) | BF_USBC_UOG1_USBSTS_TI0(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBSTS, field TI1[25] (RW)
@@ -2600,7 +2458,6 @@ typedef union _hw_usbc_uog1_usbsts
  * GPTIMER1CTRL register transitions to zero, writing a one to this bit will clear it.
  */
 //@{
-
 #define BP_USBC_UOG1_USBSTS_TI1      (25)      //!< Bit position for USBC_UOG1_USBSTS_TI1.
 #define BM_USBC_UOG1_USBSTS_TI1      (0x02000000)  //!< Bit mask for USBC_UOG1_USBSTS_TI1.
 
@@ -2614,7 +2471,6 @@ typedef union _hw_usbc_uog1_usbsts
 //! @brief Set the TI1 field to a new value.
 #define BW_USBC_UOG1_USBSTS_TI1(v)   (HW_USBC_UOG1_USBSTS_WR((HW_USBC_UOG1_USBSTS_RD() & ~BM_USBC_UOG1_USBSTS_TI1) | BF_USBC_UOG1_USBSTS_TI1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2687,7 +2543,6 @@ typedef union _hw_usbc_uog1_usbintr
  * controller will issue an interrupt.
  */
 //@{
-
 #define BP_USBC_UOG1_USBINTR_UE      (0)      //!< Bit position for USBC_UOG1_USBINTR_UE.
 #define BM_USBC_UOG1_USBINTR_UE      (0x00000001)  //!< Bit mask for USBC_UOG1_USBINTR_UE.
 
@@ -2701,7 +2556,6 @@ typedef union _hw_usbc_uog1_usbintr
 //! @brief Set the UE field to a new value.
 #define BW_USBC_UOG1_USBINTR_UE(v)   (HW_USBC_UOG1_USBINTR_WR((HW_USBC_UOG1_USBINTR_RD() & ~BM_USBC_UOG1_USBINTR_UE) | BF_USBC_UOG1_USBINTR_UE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBINTR, field UEE[1] (RW)
@@ -2710,7 +2564,6 @@ typedef union _hw_usbc_uog1_usbintr
  * controller will issue an interrupt.
  */
 //@{
-
 #define BP_USBC_UOG1_USBINTR_UEE      (1)      //!< Bit position for USBC_UOG1_USBINTR_UEE.
 #define BM_USBC_UOG1_USBINTR_UEE      (0x00000002)  //!< Bit mask for USBC_UOG1_USBINTR_UEE.
 
@@ -2724,7 +2577,6 @@ typedef union _hw_usbc_uog1_usbintr
 //! @brief Set the UEE field to a new value.
 #define BW_USBC_UOG1_USBINTR_UEE(v)   (HW_USBC_UOG1_USBINTR_WR((HW_USBC_UOG1_USBINTR_RD() & ~BM_USBC_UOG1_USBINTR_UEE) | BF_USBC_UOG1_USBINTR_UEE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBINTR, field PCE[2] (RW)
@@ -2733,7 +2585,6 @@ typedef union _hw_usbc_uog1_usbintr
  * a one the controller will issue an interrupt.
  */
 //@{
-
 #define BP_USBC_UOG1_USBINTR_PCE      (2)      //!< Bit position for USBC_UOG1_USBINTR_PCE.
 #define BM_USBC_UOG1_USBINTR_PCE      (0x00000004)  //!< Bit mask for USBC_UOG1_USBINTR_PCE.
 
@@ -2747,7 +2598,6 @@ typedef union _hw_usbc_uog1_usbintr
 //! @brief Set the PCE field to a new value.
 #define BW_USBC_UOG1_USBINTR_PCE(v)   (HW_USBC_UOG1_USBINTR_WR((HW_USBC_UOG1_USBINTR_RD() & ~BM_USBC_UOG1_USBINTR_PCE) | BF_USBC_UOG1_USBINTR_PCE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBINTR, field FRE[3] (RW)
@@ -2756,7 +2606,6 @@ typedef union _hw_usbc_uog1_usbintr
  * a one the controller will issue an interrupt. Only used in host operation mode.
  */
 //@{
-
 #define BP_USBC_UOG1_USBINTR_FRE      (3)      //!< Bit position for USBC_UOG1_USBINTR_FRE.
 #define BM_USBC_UOG1_USBINTR_FRE      (0x00000008)  //!< Bit mask for USBC_UOG1_USBINTR_FRE.
 
@@ -2770,7 +2619,6 @@ typedef union _hw_usbc_uog1_usbintr
 //! @brief Set the FRE field to a new value.
 #define BW_USBC_UOG1_USBINTR_FRE(v)   (HW_USBC_UOG1_USBINTR_WR((HW_USBC_UOG1_USBINTR_RD() & ~BM_USBC_UOG1_USBINTR_FRE) | BF_USBC_UOG1_USBINTR_FRE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBINTR, field SEE[4] (RW)
@@ -2779,7 +2627,6 @@ typedef union _hw_usbc_uog1_usbintr
  * the controller will issue an interrupt. Only used in host operation mode.
  */
 //@{
-
 #define BP_USBC_UOG1_USBINTR_SEE      (4)      //!< Bit position for USBC_UOG1_USBINTR_SEE.
 #define BM_USBC_UOG1_USBINTR_SEE      (0x00000010)  //!< Bit mask for USBC_UOG1_USBINTR_SEE.
 
@@ -2793,7 +2640,6 @@ typedef union _hw_usbc_uog1_usbintr
 //! @brief Set the SEE field to a new value.
 #define BW_USBC_UOG1_USBINTR_SEE(v)   (HW_USBC_UOG1_USBINTR_WR((HW_USBC_UOG1_USBINTR_RD() & ~BM_USBC_UOG1_USBINTR_SEE) | BF_USBC_UOG1_USBINTR_SEE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBINTR, field AAE[5] (RW)
@@ -2802,7 +2648,6 @@ typedef union _hw_usbc_uog1_usbintr
  * the controller will issue an interrupt. Only used in host operation mode.
  */
 //@{
-
 #define BP_USBC_UOG1_USBINTR_AAE      (5)      //!< Bit position for USBC_UOG1_USBINTR_AAE.
 #define BM_USBC_UOG1_USBINTR_AAE      (0x00000020)  //!< Bit mask for USBC_UOG1_USBINTR_AAE.
 
@@ -2816,7 +2661,6 @@ typedef union _hw_usbc_uog1_usbintr
 //! @brief Set the AAE field to a new value.
 #define BW_USBC_UOG1_USBINTR_AAE(v)   (HW_USBC_UOG1_USBINTR_WR((HW_USBC_UOG1_USBINTR_RD() & ~BM_USBC_UOG1_USBINTR_AAE) | BF_USBC_UOG1_USBINTR_AAE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBINTR, field URE[6] (RW)
@@ -2825,7 +2669,6 @@ typedef union _hw_usbc_uog1_usbintr
  * controller will issue an interrupt. Only used in device operation mode.
  */
 //@{
-
 #define BP_USBC_UOG1_USBINTR_URE      (6)      //!< Bit position for USBC_UOG1_USBINTR_URE.
 #define BM_USBC_UOG1_USBINTR_URE      (0x00000040)  //!< Bit mask for USBC_UOG1_USBINTR_URE.
 
@@ -2839,7 +2682,6 @@ typedef union _hw_usbc_uog1_usbintr
 //! @brief Set the URE field to a new value.
 #define BW_USBC_UOG1_USBINTR_URE(v)   (HW_USBC_UOG1_USBINTR_WR((HW_USBC_UOG1_USBINTR_RD() & ~BM_USBC_UOG1_USBINTR_URE) | BF_USBC_UOG1_USBINTR_URE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBINTR, field SRE[7] (RW)
@@ -2848,7 +2690,6 @@ typedef union _hw_usbc_uog1_usbintr
  * the controller will issue an interrupt.
  */
 //@{
-
 #define BP_USBC_UOG1_USBINTR_SRE      (7)      //!< Bit position for USBC_UOG1_USBINTR_SRE.
 #define BM_USBC_UOG1_USBINTR_SRE      (0x00000080)  //!< Bit mask for USBC_UOG1_USBINTR_SRE.
 
@@ -2862,7 +2703,6 @@ typedef union _hw_usbc_uog1_usbintr
 //! @brief Set the SRE field to a new value.
 #define BW_USBC_UOG1_USBINTR_SRE(v)   (HW_USBC_UOG1_USBINTR_WR((HW_USBC_UOG1_USBINTR_RD() & ~BM_USBC_UOG1_USBINTR_SRE) | BF_USBC_UOG1_USBINTR_SRE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBINTR, field SLE[8] (RW)
@@ -2871,7 +2711,6 @@ typedef union _hw_usbc_uog1_usbintr
  * controller will issue an interrupt. Only used in device operation mode.
  */
 //@{
-
 #define BP_USBC_UOG1_USBINTR_SLE      (8)      //!< Bit position for USBC_UOG1_USBINTR_SLE.
 #define BM_USBC_UOG1_USBINTR_SLE      (0x00000100)  //!< Bit mask for USBC_UOG1_USBINTR_SLE.
 
@@ -2885,7 +2724,6 @@ typedef union _hw_usbc_uog1_usbintr
 //! @brief Set the SLE field to a new value.
 #define BW_USBC_UOG1_USBINTR_SLE(v)   (HW_USBC_UOG1_USBINTR_WR((HW_USBC_UOG1_USBINTR_RD() & ~BM_USBC_UOG1_USBINTR_SLE) | BF_USBC_UOG1_USBINTR_SLE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBINTR, field ULPIE[10] (RW)
@@ -2895,7 +2733,6 @@ typedef union _hw_usbc_uog1_usbintr
  * interface mode.
  */
 //@{
-
 #define BP_USBC_UOG1_USBINTR_ULPIE      (10)      //!< Bit position for USBC_UOG1_USBINTR_ULPIE.
 #define BM_USBC_UOG1_USBINTR_ULPIE      (0x00000400)  //!< Bit mask for USBC_UOG1_USBINTR_ULPIE.
 
@@ -2909,7 +2746,6 @@ typedef union _hw_usbc_uog1_usbintr
 //! @brief Set the ULPIE field to a new value.
 #define BW_USBC_UOG1_USBINTR_ULPIE(v)   (HW_USBC_UOG1_USBINTR_WR((HW_USBC_UOG1_USBINTR_RD() & ~BM_USBC_UOG1_USBINTR_ULPIE) | BF_USBC_UOG1_USBINTR_ULPIE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBINTR, field NAKE[16] (RW)
@@ -2918,7 +2754,6 @@ typedef union _hw_usbc_uog1_usbintr
  * controller will issue an interrupt.
  */
 //@{
-
 #define BP_USBC_UOG1_USBINTR_NAKE      (16)      //!< Bit position for USBC_UOG1_USBINTR_NAKE.
 #define BM_USBC_UOG1_USBINTR_NAKE      (0x00010000)  //!< Bit mask for USBC_UOG1_USBINTR_NAKE.
 
@@ -2932,7 +2767,6 @@ typedef union _hw_usbc_uog1_usbintr
 //! @brief Set the NAKE field to a new value.
 #define BW_USBC_UOG1_USBINTR_NAKE(v)   (HW_USBC_UOG1_USBINTR_WR((HW_USBC_UOG1_USBINTR_RD() & ~BM_USBC_UOG1_USBINTR_NAKE) | BF_USBC_UOG1_USBINTR_NAKE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBINTR, field UAIE[18] (RW)
@@ -2941,7 +2775,6 @@ typedef union _hw_usbc_uog1_usbintr
  * register is one, host controller will issue an interrupt at the next interrupt threshold.
  */
 //@{
-
 #define BP_USBC_UOG1_USBINTR_UAIE      (18)      //!< Bit position for USBC_UOG1_USBINTR_UAIE.
 #define BM_USBC_UOG1_USBINTR_UAIE      (0x00040000)  //!< Bit mask for USBC_UOG1_USBINTR_UAIE.
 
@@ -2955,7 +2788,6 @@ typedef union _hw_usbc_uog1_usbintr
 //! @brief Set the UAIE field to a new value.
 #define BW_USBC_UOG1_USBINTR_UAIE(v)   (HW_USBC_UOG1_USBINTR_WR((HW_USBC_UOG1_USBINTR_RD() & ~BM_USBC_UOG1_USBINTR_UAIE) | BF_USBC_UOG1_USBINTR_UAIE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBINTR, field UPIE[19] (RW)
@@ -2964,7 +2796,6 @@ typedef union _hw_usbc_uog1_usbintr
  * is one, host controller will issue an interrupt at the next interrupt threshold.
  */
 //@{
-
 #define BP_USBC_UOG1_USBINTR_UPIE      (19)      //!< Bit position for USBC_UOG1_USBINTR_UPIE.
 #define BM_USBC_UOG1_USBINTR_UPIE      (0x00080000)  //!< Bit mask for USBC_UOG1_USBINTR_UPIE.
 
@@ -2978,7 +2809,6 @@ typedef union _hw_usbc_uog1_usbintr
 //! @brief Set the UPIE field to a new value.
 #define BW_USBC_UOG1_USBINTR_UPIE(v)   (HW_USBC_UOG1_USBINTR_WR((HW_USBC_UOG1_USBINTR_RD() & ~BM_USBC_UOG1_USBINTR_UPIE) | BF_USBC_UOG1_USBINTR_UPIE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBINTR, field TIE0[24] (RW)
@@ -2987,7 +2817,6 @@ typedef union _hw_usbc_uog1_usbintr
  * register is a one the controller will issue an interrupt.
  */
 //@{
-
 #define BP_USBC_UOG1_USBINTR_TIE0      (24)      //!< Bit position for USBC_UOG1_USBINTR_TIE0.
 #define BM_USBC_UOG1_USBINTR_TIE0      (0x01000000)  //!< Bit mask for USBC_UOG1_USBINTR_TIE0.
 
@@ -3001,7 +2830,6 @@ typedef union _hw_usbc_uog1_usbintr
 //! @brief Set the TIE0 field to a new value.
 #define BW_USBC_UOG1_USBINTR_TIE0(v)   (HW_USBC_UOG1_USBINTR_WR((HW_USBC_UOG1_USBINTR_RD() & ~BM_USBC_UOG1_USBINTR_TIE0) | BF_USBC_UOG1_USBINTR_TIE0(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBINTR, field TIE1[25] (RW)
@@ -3010,7 +2838,6 @@ typedef union _hw_usbc_uog1_usbintr
  * register is a one the controller will issue an interrupt.
  */
 //@{
-
 #define BP_USBC_UOG1_USBINTR_TIE1      (25)      //!< Bit position for USBC_UOG1_USBINTR_TIE1.
 #define BM_USBC_UOG1_USBINTR_TIE1      (0x02000000)  //!< Bit mask for USBC_UOG1_USBINTR_TIE1.
 
@@ -3024,7 +2851,6 @@ typedef union _hw_usbc_uog1_usbintr
 //! @brief Set the TIE1 field to a new value.
 #define BW_USBC_UOG1_USBINTR_TIE1(v)   (HW_USBC_UOG1_USBINTR_WR((HW_USBC_UOG1_USBINTR_RD() & ~BM_USBC_UOG1_USBINTR_TIE1) | BF_USBC_UOG1_USBINTR_TIE1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3104,7 +2930,6 @@ typedef union _hw_usbc_uog1_frindex
  * - 111 - (8) 5
  */
 //@{
-
 #define BP_USBC_UOG1_FRINDEX_FRINDEX      (0)      //!< Bit position for USBC_UOG1_FRINDEX_FRINDEX.
 #define BM_USBC_UOG1_FRINDEX_FRINDEX      (0x00003fff)  //!< Bit mask for USBC_UOG1_FRINDEX_FRINDEX.
 
@@ -3118,7 +2943,6 @@ typedef union _hw_usbc_uog1_frindex
 //! @brief Set the FRINDEX field to a new value.
 #define BW_USBC_UOG1_FRINDEX_FRINDEX(v)   (HW_USBC_UOG1_FRINDEX_WR((HW_USBC_UOG1_FRINDEX_RD() & ~BM_USBC_UOG1_FRINDEX_FRINDEX) | BF_USBC_UOG1_FRINDEX_FRINDEX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3175,7 +2999,6 @@ typedef union _hw_usbc_uog1_periodiclistbase
  * used by the host controller.
  */
 //@{
-
 #define BP_USBC_UOG1_PERIODICLISTBASE_BASEADR      (12)      //!< Bit position for USBC_UOG1_PERIODICLISTBASE_BASEADR.
 #define BM_USBC_UOG1_PERIODICLISTBASE_BASEADR      (0xfffff000)  //!< Bit mask for USBC_UOG1_PERIODICLISTBASE_BASEADR.
 
@@ -3189,7 +3012,6 @@ typedef union _hw_usbc_uog1_periodiclistbase
 //! @brief Set the BASEADR field to a new value.
 #define BW_USBC_UOG1_PERIODICLISTBASE_BASEADR(v)   (HW_USBC_UOG1_PERIODICLISTBASE_WR((HW_USBC_UOG1_PERIODICLISTBASE_RD() & ~BM_USBC_UOG1_PERIODICLISTBASE_BASEADR) | BF_USBC_UOG1_PERIODICLISTBASE_BASEADR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3255,7 +3077,6 @@ typedef union _hw_usbc_uog1_deviceaddr
  * requirement.
  */
 //@{
-
 #define BP_USBC_UOG1_DEVICEADDR_USBADRA      (24)      //!< Bit position for USBC_UOG1_DEVICEADDR_USBADRA.
 #define BM_USBC_UOG1_DEVICEADDR_USBADRA      (0x01000000)  //!< Bit mask for USBC_UOG1_DEVICEADDR_USBADRA.
 
@@ -3269,7 +3090,6 @@ typedef union _hw_usbc_uog1_deviceaddr
 //! @brief Set the USBADRA field to a new value.
 #define BW_USBC_UOG1_DEVICEADDR_USBADRA(v)   (HW_USBC_UOG1_DEVICEADDR_WR((HW_USBC_UOG1_DEVICEADDR_RD() & ~BM_USBC_UOG1_DEVICEADDR_USBADRA) | BF_USBC_UOG1_DEVICEADDR_USBADRA(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_DEVICEADDR, field USBADR[31:25] (RW)
@@ -3277,7 +3097,6 @@ typedef union _hw_usbc_uog1_deviceaddr
  * Device Address. These bits correspond to the USB device address
  */
 //@{
-
 #define BP_USBC_UOG1_DEVICEADDR_USBADR      (25)      //!< Bit position for USBC_UOG1_DEVICEADDR_USBADR.
 #define BM_USBC_UOG1_DEVICEADDR_USBADR      (0xfe000000)  //!< Bit mask for USBC_UOG1_DEVICEADDR_USBADR.
 
@@ -3291,7 +3110,6 @@ typedef union _hw_usbc_uog1_deviceaddr
 //! @brief Set the USBADR field to a new value.
 #define BW_USBC_UOG1_DEVICEADDR_USBADR(v)   (HW_USBC_UOG1_DEVICEADDR_WR((HW_USBC_UOG1_DEVICEADDR_RD() & ~BM_USBC_UOG1_DEVICEADDR_USBADR) | BF_USBC_UOG1_DEVICEADDR_USBADR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3345,7 +3163,6 @@ typedef union _hw_usbc_uog1_asynclistaddr
  * This field may only reference a Queue Head (QH). Only used by the host controller.
  */
 //@{
-
 #define BP_USBC_UOG1_ASYNCLISTADDR_ASYBASE      (5)      //!< Bit position for USBC_UOG1_ASYNCLISTADDR_ASYBASE.
 #define BM_USBC_UOG1_ASYNCLISTADDR_ASYBASE      (0xffffffe0)  //!< Bit mask for USBC_UOG1_ASYNCLISTADDR_ASYBASE.
 
@@ -3359,7 +3176,6 @@ typedef union _hw_usbc_uog1_asynclistaddr
 //! @brief Set the ASYBASE field to a new value.
 #define BW_USBC_UOG1_ASYNCLISTADDR_ASYBASE(v)   (HW_USBC_UOG1_ASYNCLISTADDR_WR((HW_USBC_UOG1_ASYNCLISTADDR_RD() & ~BM_USBC_UOG1_ASYNCLISTADDR_ASYBASE) | BF_USBC_UOG1_ASYNCLISTADDR_ASYBASE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3415,7 +3231,6 @@ typedef union _hw_usbc_uog1_endptlistaddr
  * head per endpoint & direction).
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTLISTADDR_EPBASE      (11)      //!< Bit position for USBC_UOG1_ENDPTLISTADDR_EPBASE.
 #define BM_USBC_UOG1_ENDPTLISTADDR_EPBASE      (0xfffff800)  //!< Bit mask for USBC_UOG1_ENDPTLISTADDR_EPBASE.
 
@@ -3429,7 +3244,6 @@ typedef union _hw_usbc_uog1_endptlistaddr
 //! @brief Set the EPBASE field to a new value.
 #define BW_USBC_UOG1_ENDPTLISTADDR_EPBASE(v)   (HW_USBC_UOG1_ENDPTLISTADDR_WR((HW_USBC_UOG1_ENDPTLISTADDR_RD() & ~BM_USBC_UOG1_ENDPTLISTADDR_EPBASE) | BF_USBC_UOG1_ENDPTLISTADDR_EPBASE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3484,7 +3298,6 @@ typedef union _hw_usbc_uog1_burstsize
  * USB bus to system memory.
  */
 //@{
-
 #define BP_USBC_UOG1_BURSTSIZE_RXPBURST      (0)      //!< Bit position for USBC_UOG1_BURSTSIZE_RXPBURST.
 #define BM_USBC_UOG1_BURSTSIZE_RXPBURST      (0x000000ff)  //!< Bit mask for USBC_UOG1_BURSTSIZE_RXPBURST.
 
@@ -3498,7 +3311,6 @@ typedef union _hw_usbc_uog1_burstsize
 //! @brief Set the RXPBURST field to a new value.
 #define BW_USBC_UOG1_BURSTSIZE_RXPBURST(v)   (HW_USBC_UOG1_BURSTSIZE_WR((HW_USBC_UOG1_BURSTSIZE_RD() & ~BM_USBC_UOG1_BURSTSIZE_RXPBURST) | BF_USBC_UOG1_BURSTSIZE_RXPBURST(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_BURSTSIZE, field TXPBURST[16:8] (RW)
@@ -3508,7 +3320,6 @@ typedef union _hw_usbc_uog1_burstsize
  * system memory to the USB bus.
  */
 //@{
-
 #define BP_USBC_UOG1_BURSTSIZE_TXPBURST      (8)      //!< Bit position for USBC_UOG1_BURSTSIZE_TXPBURST.
 #define BM_USBC_UOG1_BURSTSIZE_TXPBURST      (0x0001ff00)  //!< Bit mask for USBC_UOG1_BURSTSIZE_TXPBURST.
 
@@ -3522,7 +3333,6 @@ typedef union _hw_usbc_uog1_burstsize
 //! @brief Set the TXPBURST field to a new value.
 #define BW_USBC_UOG1_BURSTSIZE_TXPBURST(v)   (HW_USBC_UOG1_BURSTSIZE_WR((HW_USBC_UOG1_BURSTSIZE_RD() & ~BM_USBC_UOG1_BURSTSIZE_TXPBURST) | BF_USBC_UOG1_BURSTSIZE_TXPBURST(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3600,7 +3410,6 @@ typedef union _hw_usbc_uog1_txfilltuning
  * '08h' for OTG controller core, and '00h' for Host-only controller core.
  */
 //@{
-
 #define BP_USBC_UOG1_TXFILLTUNING_TXSCHOH      (0)      //!< Bit position for USBC_UOG1_TXFILLTUNING_TXSCHOH.
 #define BM_USBC_UOG1_TXFILLTUNING_TXSCHOH      (0x000000ff)  //!< Bit mask for USBC_UOG1_TXFILLTUNING_TXSCHOH.
 
@@ -3614,7 +3423,6 @@ typedef union _hw_usbc_uog1_txfilltuning
 //! @brief Set the TXSCHOH field to a new value.
 #define BW_USBC_UOG1_TXFILLTUNING_TXSCHOH(v)   (HW_USBC_UOG1_TXFILLTUNING_WR((HW_USBC_UOG1_TXFILLTUNING_RD() & ~BM_USBC_UOG1_TXFILLTUNING_TXSCHOH) | BF_USBC_UOG1_TXFILLTUNING_TXSCHOH(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_TXFILLTUNING, field TXSCHHEALTH[12:8] (RW)
@@ -3627,7 +3435,6 @@ typedef union _hw_usbc_uog1_txfilltuning
  * controller core, and '00h' for Host-only controller core.
  */
 //@{
-
 #define BP_USBC_UOG1_TXFILLTUNING_TXSCHHEALTH      (8)      //!< Bit position for USBC_UOG1_TXFILLTUNING_TXSCHHEALTH.
 #define BM_USBC_UOG1_TXFILLTUNING_TXSCHHEALTH      (0x00001f00)  //!< Bit mask for USBC_UOG1_TXFILLTUNING_TXSCHHEALTH.
 
@@ -3641,7 +3448,6 @@ typedef union _hw_usbc_uog1_txfilltuning
 //! @brief Set the TXSCHHEALTH field to a new value.
 #define BW_USBC_UOG1_TXFILLTUNING_TXSCHHEALTH(v)   (HW_USBC_UOG1_TXFILLTUNING_WR((HW_USBC_UOG1_TXFILLTUNING_RD() & ~BM_USBC_UOG1_TXFILLTUNING_TXSCHHEALTH) | BF_USBC_UOG1_TXFILLTUNING_TXSCHHEALTH(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_TXFILLTUNING, field TXFIFOTHRES[21:16] (RW)
@@ -3656,7 +3462,6 @@ typedef union _hw_usbc_uog1_txfilltuning
  * controller core.
  */
 //@{
-
 #define BP_USBC_UOG1_TXFILLTUNING_TXFIFOTHRES      (16)      //!< Bit position for USBC_UOG1_TXFILLTUNING_TXFIFOTHRES.
 #define BM_USBC_UOG1_TXFILLTUNING_TXFIFOTHRES      (0x003f0000)  //!< Bit mask for USBC_UOG1_TXFILLTUNING_TXFIFOTHRES.
 
@@ -3670,7 +3475,6 @@ typedef union _hw_usbc_uog1_txfilltuning
 //! @brief Set the TXFIFOTHRES field to a new value.
 #define BW_USBC_UOG1_TXFILLTUNING_TXFIFOTHRES(v)   (HW_USBC_UOG1_TXFILLTUNING_WR((HW_USBC_UOG1_TXFILLTUNING_RD() & ~BM_USBC_UOG1_TXFILLTUNING_TXFIFOTHRES) | BF_USBC_UOG1_TXFILLTUNING_TXFIFOTHRES(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3725,7 +3529,6 @@ typedef union _hw_usbc_uog1_endptnak
  * Endpoint #[N], N is 0-7
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTNAK_EPRN      (0)      //!< Bit position for USBC_UOG1_ENDPTNAK_EPRN.
 #define BM_USBC_UOG1_ENDPTNAK_EPRN      (0x000000ff)  //!< Bit mask for USBC_UOG1_ENDPTNAK_EPRN.
 
@@ -3739,7 +3542,6 @@ typedef union _hw_usbc_uog1_endptnak
 //! @brief Set the EPRN field to a new value.
 #define BW_USBC_UOG1_ENDPTNAK_EPRN(v)   (HW_USBC_UOG1_ENDPTNAK_WR((HW_USBC_UOG1_ENDPTNAK_RD() & ~BM_USBC_UOG1_ENDPTNAK_EPRN) | BF_USBC_UOG1_ENDPTNAK_EPRN(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTNAK, field EPTN[23:16] (RW)
@@ -3749,7 +3551,6 @@ typedef union _hw_usbc_uog1_endptnak
  * #[N], N is 0-7
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTNAK_EPTN      (16)      //!< Bit position for USBC_UOG1_ENDPTNAK_EPTN.
 #define BM_USBC_UOG1_ENDPTNAK_EPTN      (0x00ff0000)  //!< Bit mask for USBC_UOG1_ENDPTNAK_EPTN.
 
@@ -3763,7 +3564,6 @@ typedef union _hw_usbc_uog1_endptnak
 //! @brief Set the EPTN field to a new value.
 #define BW_USBC_UOG1_ENDPTNAK_EPTN(v)   (HW_USBC_UOG1_ENDPTNAK_WR((HW_USBC_UOG1_ENDPTNAK_RD() & ~BM_USBC_UOG1_ENDPTNAK_EPTN) | BF_USBC_UOG1_ENDPTNAK_EPTN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3818,7 +3618,6 @@ typedef union _hw_usbc_uog1_endptnaken
  * is set. Bit [N] - Endpoint #[N], N is 0-7
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTNAKEN_EPRNE      (0)      //!< Bit position for USBC_UOG1_ENDPTNAKEN_EPRNE.
 #define BM_USBC_UOG1_ENDPTNAKEN_EPRNE      (0x000000ff)  //!< Bit mask for USBC_UOG1_ENDPTNAKEN_EPRNE.
 
@@ -3832,7 +3631,6 @@ typedef union _hw_usbc_uog1_endptnaken
 //! @brief Set the EPRNE field to a new value.
 #define BW_USBC_UOG1_ENDPTNAKEN_EPRNE(v)   (HW_USBC_UOG1_ENDPTNAKEN_WR((HW_USBC_UOG1_ENDPTNAKEN_RD() & ~BM_USBC_UOG1_ENDPTNAKEN_EPRNE) | BF_USBC_UOG1_ENDPTNAKEN_EPRNE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTNAKEN, field EPTNE[23:16] (RW)
@@ -3842,7 +3640,6 @@ typedef union _hw_usbc_uog1_endptnaken
  * is set. Bit [N] - Endpoint #[N], N is 0-7
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTNAKEN_EPTNE      (16)      //!< Bit position for USBC_UOG1_ENDPTNAKEN_EPTNE.
 #define BM_USBC_UOG1_ENDPTNAKEN_EPTNE      (0x00ff0000)  //!< Bit mask for USBC_UOG1_ENDPTNAKEN_EPTNE.
 
@@ -3856,7 +3653,6 @@ typedef union _hw_usbc_uog1_endptnaken
 //! @brief Set the EPTNE field to a new value.
 #define BW_USBC_UOG1_ENDPTNAKEN_EPTNE(v)   (HW_USBC_UOG1_ENDPTNAKEN_WR((HW_USBC_UOG1_ENDPTNAKEN_RD() & ~BM_USBC_UOG1_ENDPTNAKEN_EPTNE) | BF_USBC_UOG1_ENDPTNAKEN_EPTNE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3913,13 +3709,11 @@ typedef union _hw_usbc_uog1_configflag
  * - 1 - Port routing control logic default-routes all ports to this host controller.
  */
 //@{
-
 #define BP_USBC_UOG1_CONFIGFLAG_CF      (0)      //!< Bit position for USBC_UOG1_CONFIGFLAG_CF.
 #define BM_USBC_UOG1_CONFIGFLAG_CF      (0x00000001)  //!< Bit mask for USBC_UOG1_CONFIGFLAG_CF.
 
 //! @brief Get value of USBC_UOG1_CONFIGFLAG_CF from a register value.
 #define BG_USBC_UOG1_CONFIGFLAG_CF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_CONFIGFLAG_CF) >> BP_USBC_UOG1_CONFIGFLAG_CF)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4011,13 +3805,11 @@ typedef union _hw_usbc_uog1_portsc1
  * suspended.
  */
 //@{
-
 #define BP_USBC_UOG1_PORTSC1_CCS      (0)      //!< Bit position for USBC_UOG1_PORTSC1_CCS.
 #define BM_USBC_UOG1_PORTSC1_CCS      (0x00000001)  //!< Bit mask for USBC_UOG1_PORTSC1_CCS.
 
 //! @brief Get value of USBC_UOG1_PORTSC1_CCS from a register value.
 #define BG_USBC_UOG1_PORTSC1_CCS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_PORTSC1_CCS) >> BP_USBC_UOG1_PORTSC1_CCS)
-
 //@}
 
 /*! @name Register USBC_UOG1_PORTSC1, field CSC[1] (RW)
@@ -4032,7 +3824,6 @@ typedef union _hw_usbc_uog1_portsc1
  * This bit is undefined in device controller mode.
  */
 //@{
-
 #define BP_USBC_UOG1_PORTSC1_CSC      (1)      //!< Bit position for USBC_UOG1_PORTSC1_CSC.
 #define BM_USBC_UOG1_PORTSC1_CSC      (0x00000002)  //!< Bit mask for USBC_UOG1_PORTSC1_CSC.
 
@@ -4046,7 +3837,6 @@ typedef union _hw_usbc_uog1_portsc1
 //! @brief Set the CSC field to a new value.
 #define BW_USBC_UOG1_PORTSC1_CSC(v)   (HW_USBC_UOG1_PORTSC1_WR((HW_USBC_UOG1_PORTSC1_RD() & ~BM_USBC_UOG1_PORTSC1_CSC) | BF_USBC_UOG1_PORTSC1_CSC(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_PORTSC1, field PE[2] (RW)
@@ -4061,7 +3851,6 @@ typedef union _hw_usbc_uog1_portsc1
  * Device Mode: The device port is always enabled, so this bit is always '1b'.
  */
 //@{
-
 #define BP_USBC_UOG1_PORTSC1_PE      (2)      //!< Bit position for USBC_UOG1_PORTSC1_PE.
 #define BM_USBC_UOG1_PORTSC1_PE      (0x00000004)  //!< Bit mask for USBC_UOG1_PORTSC1_PE.
 
@@ -4075,7 +3864,6 @@ typedef union _hw_usbc_uog1_portsc1
 //! @brief Set the PE field to a new value.
 #define BW_USBC_UOG1_PORTSC1_PE(v)   (HW_USBC_UOG1_PORTSC1_WR((HW_USBC_UOG1_PORTSC1_RD() & ~BM_USBC_UOG1_PORTSC1_PE) | BF_USBC_UOG1_PORTSC1_PE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_PORTSC1, field PEC[3] (RW)
@@ -4088,7 +3876,6 @@ typedef union _hw_usbc_uog1_portsc1
  * always '0b'.
  */
 //@{
-
 #define BP_USBC_UOG1_PORTSC1_PEC      (3)      //!< Bit position for USBC_UOG1_PORTSC1_PEC.
 #define BM_USBC_UOG1_PORTSC1_PEC      (0x00000008)  //!< Bit mask for USBC_UOG1_PORTSC1_PEC.
 
@@ -4102,7 +3889,6 @@ typedef union _hw_usbc_uog1_portsc1
 //! @brief Set the PEC field to a new value.
 #define BW_USBC_UOG1_PORTSC1_PEC(v)   (HW_USBC_UOG1_PORTSC1_WR((HW_USBC_UOG1_PORTSC1_RD() & ~BM_USBC_UOG1_PORTSC1_PEC) | BF_USBC_UOG1_PORTSC1_PEC(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_PORTSC1, field OCA[4] (RO)
@@ -4115,13 +3901,11 @@ typedef union _hw_usbc_uog1_portsc1
  * - 1 - This port currently has an over-current condition
  */
 //@{
-
 #define BP_USBC_UOG1_PORTSC1_OCA      (4)      //!< Bit position for USBC_UOG1_PORTSC1_OCA.
 #define BM_USBC_UOG1_PORTSC1_OCA      (0x00000010)  //!< Bit mask for USBC_UOG1_PORTSC1_OCA.
 
 //! @brief Get value of USBC_UOG1_PORTSC1_OCA from a register value.
 #define BG_USBC_UOG1_PORTSC1_OCA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_PORTSC1_OCA) >> BP_USBC_UOG1_PORTSC1_OCA)
-
 //@}
 
 /*! @name Register USBC_UOG1_PORTSC1, field OCC[5] (RW)
@@ -4130,7 +3914,6 @@ typedef union _hw_usbc_uog1_portsc1
  * Over-current Active. Software can clear this bit by writing a one to this bit position.
  */
 //@{
-
 #define BP_USBC_UOG1_PORTSC1_OCC      (5)      //!< Bit position for USBC_UOG1_PORTSC1_OCC.
 #define BM_USBC_UOG1_PORTSC1_OCC      (0x00000020)  //!< Bit mask for USBC_UOG1_PORTSC1_OCC.
 
@@ -4144,7 +3927,6 @@ typedef union _hw_usbc_uog1_portsc1
 //! @brief Set the OCC field to a new value.
 #define BW_USBC_UOG1_PORTSC1_OCC(v)   (HW_USBC_UOG1_PORTSC1_WR((HW_USBC_UOG1_PORTSC1_RD() & ~BM_USBC_UOG1_PORTSC1_OCC) | BF_USBC_UOG1_PORTSC1_OCC(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_PORTSC1, field FPR[6] (RW)
@@ -4170,7 +3952,6 @@ typedef union _hw_usbc_uog1_portsc1
  * USBSTS register is also set to one.
  */
 //@{
-
 #define BP_USBC_UOG1_PORTSC1_FPR      (6)      //!< Bit position for USBC_UOG1_PORTSC1_FPR.
 #define BM_USBC_UOG1_PORTSC1_FPR      (0x00000040)  //!< Bit mask for USBC_UOG1_PORTSC1_FPR.
 
@@ -4184,7 +3965,6 @@ typedef union _hw_usbc_uog1_portsc1
 //! @brief Set the FPR field to a new value.
 #define BW_USBC_UOG1_PORTSC1_FPR(v)   (HW_USBC_UOG1_PORTSC1_WR((HW_USBC_UOG1_PORTSC1_RD() & ~BM_USBC_UOG1_PORTSC1_FPR) | BF_USBC_UOG1_PORTSC1_FPR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_PORTSC1, field SUSP[7] (RW)
@@ -4204,7 +3984,6 @@ typedef union _hw_usbc_uog1_portsc1
  * In device mode this bit is a read only status bit.
  */
 //@{
-
 #define BP_USBC_UOG1_PORTSC1_SUSP      (7)      //!< Bit position for USBC_UOG1_PORTSC1_SUSP.
 #define BM_USBC_UOG1_PORTSC1_SUSP      (0x00000080)  //!< Bit mask for USBC_UOG1_PORTSC1_SUSP.
 
@@ -4218,7 +3997,6 @@ typedef union _hw_usbc_uog1_portsc1
 //! @brief Set the SUSP field to a new value.
 #define BW_USBC_UOG1_PORTSC1_SUSP(v)   (HW_USBC_UOG1_PORTSC1_WR((HW_USBC_UOG1_PORTSC1_RD() & ~BM_USBC_UOG1_PORTSC1_SUSP) | BF_USBC_UOG1_PORTSC1_SUSP(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_PORTSC1, field PR[8] (RW)
@@ -4232,7 +4010,6 @@ typedef union _hw_usbc_uog1_portsc1
  * indicated in the USBSTS register. This field is zero if Port Power( ) is zero.
  */
 //@{
-
 #define BP_USBC_UOG1_PORTSC1_PR      (8)      //!< Bit position for USBC_UOG1_PORTSC1_PR.
 #define BM_USBC_UOG1_PORTSC1_PR      (0x00000100)  //!< Bit mask for USBC_UOG1_PORTSC1_PR.
 
@@ -4246,7 +4023,6 @@ typedef union _hw_usbc_uog1_portsc1
 //! @brief Set the PR field to a new value.
 #define BW_USBC_UOG1_PORTSC1_PR(v)   (HW_USBC_UOG1_PORTSC1_WR((HW_USBC_UOG1_PORTSC1_RD() & ~BM_USBC_UOG1_PORTSC1_PR) | BF_USBC_UOG1_PORTSC1_PR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_PORTSC1, field HSP[9] (RO)
@@ -4256,13 +4032,11 @@ typedef union _hw_usbc_uog1_portsc1
  * high-speed mode. HSP is redundant with PSPD(bit 27, 26) but remained for compatibility.
  */
 //@{
-
 #define BP_USBC_UOG1_PORTSC1_HSP      (9)      //!< Bit position for USBC_UOG1_PORTSC1_HSP.
 #define BM_USBC_UOG1_PORTSC1_HSP      (0x00000200)  //!< Bit mask for USBC_UOG1_PORTSC1_HSP.
 
 //! @brief Get value of USBC_UOG1_PORTSC1_HSP from a register value.
 #define BG_USBC_UOG1_PORTSC1_HSP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_PORTSC1_HSP) >> BP_USBC_UOG1_PORTSC1_HSP)
-
 //@}
 
 /*! @name Register USBC_UOG1_PORTSC1, field LS[11:10] (RW)
@@ -4280,7 +4054,6 @@ typedef union _hw_usbc_uog1_portsc1
  * - 11 - Undefined
  */
 //@{
-
 #define BP_USBC_UOG1_PORTSC1_LS      (10)      //!< Bit position for USBC_UOG1_PORTSC1_LS.
 #define BM_USBC_UOG1_PORTSC1_LS      (0x00000c00)  //!< Bit mask for USBC_UOG1_PORTSC1_LS.
 
@@ -4294,7 +4067,6 @@ typedef union _hw_usbc_uog1_portsc1
 //! @brief Set the LS field to a new value.
 #define BW_USBC_UOG1_PORTSC1_LS(v)   (HW_USBC_UOG1_PORTSC1_WR((HW_USBC_UOG1_PORTSC1_RD() & ~BM_USBC_UOG1_PORTSC1_LS) | BF_USBC_UOG1_PORTSC1_LS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_PORTSC1, field PP[12] (RW)
@@ -4311,7 +4083,6 @@ typedef union _hw_usbc_uog1_portsc1
  * (PPC = 1).
  */
 //@{
-
 #define BP_USBC_UOG1_PORTSC1_PP      (12)      //!< Bit position for USBC_UOG1_PORTSC1_PP.
 #define BM_USBC_UOG1_PORTSC1_PP      (0x00001000)  //!< Bit mask for USBC_UOG1_PORTSC1_PP.
 
@@ -4325,7 +4096,6 @@ typedef union _hw_usbc_uog1_portsc1
 //! @brief Set the PP field to a new value.
 #define BW_USBC_UOG1_PORTSC1_PP(v)   (HW_USBC_UOG1_PORTSC1_WR((HW_USBC_UOG1_PORTSC1_RD() & ~BM_USBC_UOG1_PORTSC1_PP) | BF_USBC_UOG1_PORTSC1_PP(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_PORTSC1, field PO[13] (RW)
@@ -4339,7 +4109,6 @@ typedef union _hw_usbc_uog1_portsc1
  * handoff is not supported in all controller cores, therefore this bit will always be 0.
  */
 //@{
-
 #define BP_USBC_UOG1_PORTSC1_PO      (13)      //!< Bit position for USBC_UOG1_PORTSC1_PO.
 #define BM_USBC_UOG1_PORTSC1_PO      (0x00002000)  //!< Bit mask for USBC_UOG1_PORTSC1_PO.
 
@@ -4353,7 +4122,6 @@ typedef union _hw_usbc_uog1_portsc1
 //! @brief Set the PO field to a new value.
 #define BW_USBC_UOG1_PORTSC1_PO(v)   (HW_USBC_UOG1_PORTSC1_WR((HW_USBC_UOG1_PORTSC1_RD() & ~BM_USBC_UOG1_PORTSC1_PO) | BF_USBC_UOG1_PORTSC1_PO(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_PORTSC1, field PIC[15:14] (RW)
@@ -4370,7 +4138,6 @@ typedef union _hw_usbc_uog1_portsc1
  * - 11 - Undefined
  */
 //@{
-
 #define BP_USBC_UOG1_PORTSC1_PIC      (14)      //!< Bit position for USBC_UOG1_PORTSC1_PIC.
 #define BM_USBC_UOG1_PORTSC1_PIC      (0x0000c000)  //!< Bit mask for USBC_UOG1_PORTSC1_PIC.
 
@@ -4384,7 +4151,6 @@ typedef union _hw_usbc_uog1_portsc1
 //! @brief Set the PIC field to a new value.
 #define BW_USBC_UOG1_PORTSC1_PIC(v)   (HW_USBC_UOG1_PORTSC1_WR((HW_USBC_UOG1_PORTSC1_RD() & ~BM_USBC_UOG1_PORTSC1_PIC) | BF_USBC_UOG1_PORTSC1_PIC(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_PORTSC1, field PTC[19:16] (RW)
@@ -4410,7 +4176,6 @@ typedef union _hw_usbc_uog1_portsc1
  * - 1000-1111 - Reserved
  */
 //@{
-
 #define BP_USBC_UOG1_PORTSC1_PTC      (16)      //!< Bit position for USBC_UOG1_PORTSC1_PTC.
 #define BM_USBC_UOG1_PORTSC1_PTC      (0x000f0000)  //!< Bit mask for USBC_UOG1_PORTSC1_PTC.
 
@@ -4424,7 +4189,6 @@ typedef union _hw_usbc_uog1_portsc1
 //! @brief Set the PTC field to a new value.
 #define BW_USBC_UOG1_PORTSC1_PTC(v)   (HW_USBC_UOG1_PORTSC1_WR((HW_USBC_UOG1_PORTSC1_RD() & ~BM_USBC_UOG1_PORTSC1_PTC) | BF_USBC_UOG1_PORTSC1_PTC(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_PORTSC1, field WKCN[20] (RW)
@@ -4434,7 +4198,6 @@ typedef union _hw_usbc_uog1_portsc1
  * zero or in device mode.
  */
 //@{
-
 #define BP_USBC_UOG1_PORTSC1_WKCN      (20)      //!< Bit position for USBC_UOG1_PORTSC1_WKCN.
 #define BM_USBC_UOG1_PORTSC1_WKCN      (0x00100000)  //!< Bit mask for USBC_UOG1_PORTSC1_WKCN.
 
@@ -4448,7 +4211,6 @@ typedef union _hw_usbc_uog1_portsc1
 //! @brief Set the WKCN field to a new value.
 #define BW_USBC_UOG1_PORTSC1_WKCN(v)   (HW_USBC_UOG1_PORTSC1_WR((HW_USBC_UOG1_PORTSC1_RD() & ~BM_USBC_UOG1_PORTSC1_WKCN) | BF_USBC_UOG1_PORTSC1_WKCN(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_PORTSC1, field WKDC[21] (RW)
@@ -4458,7 +4220,6 @@ typedef union _hw_usbc_uog1_portsc1
  * Port Power( ) is zero or in device mode.
  */
 //@{
-
 #define BP_USBC_UOG1_PORTSC1_WKDC      (21)      //!< Bit position for USBC_UOG1_PORTSC1_WKDC.
 #define BM_USBC_UOG1_PORTSC1_WKDC      (0x00200000)  //!< Bit mask for USBC_UOG1_PORTSC1_WKDC.
 
@@ -4472,7 +4233,6 @@ typedef union _hw_usbc_uog1_portsc1
 //! @brief Set the WKDC field to a new value.
 #define BW_USBC_UOG1_PORTSC1_WKDC(v)   (HW_USBC_UOG1_PORTSC1_WR((HW_USBC_UOG1_PORTSC1_RD() & ~BM_USBC_UOG1_PORTSC1_WKDC) | BF_USBC_UOG1_PORTSC1_WKDC(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_PORTSC1, field WKOC[22] (RW)
@@ -4482,7 +4242,6 @@ typedef union _hw_usbc_uog1_portsc1
  * if Port Power( ) is zero.
  */
 //@{
-
 #define BP_USBC_UOG1_PORTSC1_WKOC      (22)      //!< Bit position for USBC_UOG1_PORTSC1_WKOC.
 #define BM_USBC_UOG1_PORTSC1_WKOC      (0x00400000)  //!< Bit mask for USBC_UOG1_PORTSC1_WKOC.
 
@@ -4496,7 +4255,6 @@ typedef union _hw_usbc_uog1_portsc1
 //! @brief Set the WKOC field to a new value.
 #define BW_USBC_UOG1_PORTSC1_WKOC(v)   (HW_USBC_UOG1_PORTSC1_WR((HW_USBC_UOG1_PORTSC1_RD() & ~BM_USBC_UOG1_PORTSC1_WKOC) | BF_USBC_UOG1_PORTSC1_WKOC(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_PORTSC1, field PHCD[23] (RW)
@@ -4516,7 +4274,6 @@ typedef union _hw_usbc_uog1_portsc1
  * - 1 - Disable PHY clock
  */
 //@{
-
 #define BP_USBC_UOG1_PORTSC1_PHCD      (23)      //!< Bit position for USBC_UOG1_PORTSC1_PHCD.
 #define BM_USBC_UOG1_PORTSC1_PHCD      (0x00800000)  //!< Bit mask for USBC_UOG1_PORTSC1_PHCD.
 
@@ -4530,7 +4287,6 @@ typedef union _hw_usbc_uog1_portsc1
 //! @brief Set the PHCD field to a new value.
 #define BW_USBC_UOG1_PORTSC1_PHCD(v)   (HW_USBC_UOG1_PORTSC1_WR((HW_USBC_UOG1_PORTSC1_RD() & ~BM_USBC_UOG1_PORTSC1_PHCD) | BF_USBC_UOG1_PORTSC1_PHCD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_PORTSC1, field PFSC[24] (RW)
@@ -4544,7 +4300,6 @@ typedef union _hw_usbc_uog1_portsc1
  * - 1 - Forced to full speed
  */
 //@{
-
 #define BP_USBC_UOG1_PORTSC1_PFSC      (24)      //!< Bit position for USBC_UOG1_PORTSC1_PFSC.
 #define BM_USBC_UOG1_PORTSC1_PFSC      (0x01000000)  //!< Bit mask for USBC_UOG1_PORTSC1_PFSC.
 
@@ -4558,7 +4313,6 @@ typedef union _hw_usbc_uog1_portsc1
 //! @brief Set the PFSC field to a new value.
 #define BW_USBC_UOG1_PORTSC1_PFSC(v)   (HW_USBC_UOG1_PORTSC1_WR((HW_USBC_UOG1_PORTSC1_RD() & ~BM_USBC_UOG1_PORTSC1_PFSC) | BF_USBC_UOG1_PORTSC1_PFSC(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_PORTSC1, field PTS[25] (RW)
@@ -4566,7 +4320,6 @@ typedef union _hw_usbc_uog1_portsc1
  * See description at bits 31-30
  */
 //@{
-
 #define BP_USBC_UOG1_PORTSC1_PTS      (25)      //!< Bit position for USBC_UOG1_PORTSC1_PTS.
 #define BM_USBC_UOG1_PORTSC1_PTS      (0x02000000)  //!< Bit mask for USBC_UOG1_PORTSC1_PTS.
 
@@ -4580,7 +4333,6 @@ typedef union _hw_usbc_uog1_portsc1
 //! @brief Set the PTS field to a new value.
 #define BW_USBC_UOG1_PORTSC1_PTS(v)   (HW_USBC_UOG1_PORTSC1_WR((HW_USBC_UOG1_PORTSC1_RD() & ~BM_USBC_UOG1_PORTSC1_PTS) | BF_USBC_UOG1_PORTSC1_PTS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_PORTSC1, field PSPD[27:26] (RW)
@@ -4594,7 +4346,6 @@ typedef union _hw_usbc_uog1_portsc1
  * - 11 - Undefined
  */
 //@{
-
 #define BP_USBC_UOG1_PORTSC1_PSPD      (26)      //!< Bit position for USBC_UOG1_PORTSC1_PSPD.
 #define BM_USBC_UOG1_PORTSC1_PSPD      (0x0c000000)  //!< Bit mask for USBC_UOG1_PORTSC1_PSPD.
 
@@ -4608,7 +4359,6 @@ typedef union _hw_usbc_uog1_portsc1
 //! @brief Set the PSPD field to a new value.
 #define BW_USBC_UOG1_PORTSC1_PSPD(v)   (HW_USBC_UOG1_PORTSC1_WR((HW_USBC_UOG1_PORTSC1_RD() & ~BM_USBC_UOG1_PORTSC1_PSPD) | BF_USBC_UOG1_PORTSC1_PSPD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_PORTSC1, field PTW[28] (RW)
@@ -4621,7 +4371,6 @@ typedef union _hw_usbc_uog1_portsc1
  * - 1 - Select the 16-bit UTMI interface [30MHz]
  */
 //@{
-
 #define BP_USBC_UOG1_PORTSC1_PTW      (28)      //!< Bit position for USBC_UOG1_PORTSC1_PTW.
 #define BM_USBC_UOG1_PORTSC1_PTW      (0x10000000)  //!< Bit mask for USBC_UOG1_PORTSC1_PTW.
 
@@ -4635,7 +4384,6 @@ typedef union _hw_usbc_uog1_portsc1
 //! @brief Set the PTW field to a new value.
 #define BW_USBC_UOG1_PORTSC1_PTW(v)   (HW_USBC_UOG1_PORTSC1_WR((HW_USBC_UOG1_PORTSC1_RD() & ~BM_USBC_UOG1_PORTSC1_PTW) | BF_USBC_UOG1_PORTSC1_PTW(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_PORTSC1, field STS[29] (RW)
@@ -4649,7 +4397,6 @@ typedef union _hw_usbc_uog1_portsc1
  * regardless of this bit value.
  */
 //@{
-
 #define BP_USBC_UOG1_PORTSC1_STS      (29)      //!< Bit position for USBC_UOG1_PORTSC1_STS.
 #define BM_USBC_UOG1_PORTSC1_STS      (0x20000000)  //!< Bit mask for USBC_UOG1_PORTSC1_STS.
 
@@ -4663,7 +4410,6 @@ typedef union _hw_usbc_uog1_portsc1
 //! @brief Set the STS field to a new value.
 #define BW_USBC_UOG1_PORTSC1_STS(v)   (HW_USBC_UOG1_PORTSC1_WR((HW_USBC_UOG1_PORTSC1_RD() & ~BM_USBC_UOG1_PORTSC1_STS) | BF_USBC_UOG1_PORTSC1_STS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_PORTSC1, field PTS1[31:30] (RW)
@@ -4674,7 +4420,6 @@ typedef union _hw_usbc_uog1_portsc1
  * The behaviour is unknown when unsupported interface mode is selected.
  */
 //@{
-
 #define BP_USBC_UOG1_PORTSC1_PTS1      (30)      //!< Bit position for USBC_UOG1_PORTSC1_PTS1.
 #define BM_USBC_UOG1_PORTSC1_PTS1      (0xc0000000)  //!< Bit mask for USBC_UOG1_PORTSC1_PTS1.
 
@@ -4688,7 +4433,6 @@ typedef union _hw_usbc_uog1_portsc1
 //! @brief Set the PTS1 field to a new value.
 #define BW_USBC_UOG1_PORTSC1_PTS1(v)   (HW_USBC_UOG1_PORTSC1_WR((HW_USBC_UOG1_PORTSC1_RD() & ~BM_USBC_UOG1_PORTSC1_PTS1) | BF_USBC_UOG1_PORTSC1_PTS1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4772,7 +4516,6 @@ typedef union _hw_usbc_uog1_otgsc
  * VBUS_Discharge - Read/Write. Setting this bit causes VBus to discharge through a resistor.
  */
 //@{
-
 #define BP_USBC_UOG1_OTGSC_VD      (0)      //!< Bit position for USBC_UOG1_OTGSC_VD.
 #define BM_USBC_UOG1_OTGSC_VD      (0x00000001)  //!< Bit mask for USBC_UOG1_OTGSC_VD.
 
@@ -4786,7 +4529,6 @@ typedef union _hw_usbc_uog1_otgsc
 //! @brief Set the VD field to a new value.
 #define BW_USBC_UOG1_OTGSC_VD(v)   (HW_USBC_UOG1_OTGSC_WR((HW_USBC_UOG1_OTGSC_RD() & ~BM_USBC_UOG1_OTGSC_VD) | BF_USBC_UOG1_OTGSC_VD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_OTGSC, field VC[1] (RW)
@@ -4795,7 +4537,6 @@ typedef union _hw_usbc_uog1_otgsc
  * VBus pulsing during SRP.
  */
 //@{
-
 #define BP_USBC_UOG1_OTGSC_VC      (1)      //!< Bit position for USBC_UOG1_OTGSC_VC.
 #define BM_USBC_UOG1_OTGSC_VC      (0x00000002)  //!< Bit mask for USBC_UOG1_OTGSC_VC.
 
@@ -4809,7 +4550,6 @@ typedef union _hw_usbc_uog1_otgsc
 //! @brief Set the VC field to a new value.
 #define BW_USBC_UOG1_OTGSC_VC(v)   (HW_USBC_UOG1_OTGSC_WR((HW_USBC_UOG1_OTGSC_RD() & ~BM_USBC_UOG1_OTGSC_VC) | BF_USBC_UOG1_OTGSC_VC(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_OTGSC, field OT[3] (RW)
@@ -4818,7 +4558,6 @@ typedef union _hw_usbc_uog1_otgsc
  * controls the pulldown on DM.
  */
 //@{
-
 #define BP_USBC_UOG1_OTGSC_OT      (3)      //!< Bit position for USBC_UOG1_OTGSC_OT.
 #define BM_USBC_UOG1_OTGSC_OT      (0x00000008)  //!< Bit mask for USBC_UOG1_OTGSC_OT.
 
@@ -4832,7 +4571,6 @@ typedef union _hw_usbc_uog1_otgsc
 //! @brief Set the OT field to a new value.
 #define BW_USBC_UOG1_OTGSC_OT(v)   (HW_USBC_UOG1_OTGSC_WR((HW_USBC_UOG1_OTGSC_RD() & ~BM_USBC_UOG1_OTGSC_OT) | BF_USBC_UOG1_OTGSC_OT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_OTGSC, field DP[4] (RW)
@@ -4841,7 +4579,6 @@ typedef union _hw_usbc_uog1_otgsc
  * pulsing during SRP.
  */
 //@{
-
 #define BP_USBC_UOG1_OTGSC_DP      (4)      //!< Bit position for USBC_UOG1_OTGSC_DP.
 #define BM_USBC_UOG1_OTGSC_DP      (0x00000010)  //!< Bit mask for USBC_UOG1_OTGSC_DP.
 
@@ -4855,7 +4592,6 @@ typedef union _hw_usbc_uog1_otgsc
 //! @brief Set the DP field to a new value.
 #define BW_USBC_UOG1_OTGSC_DP(v)   (HW_USBC_UOG1_OTGSC_WR((HW_USBC_UOG1_OTGSC_RD() & ~BM_USBC_UOG1_OTGSC_DP) | BF_USBC_UOG1_OTGSC_DP(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_OTGSC, field IDPU[5] (RW)
@@ -4864,7 +4600,6 @@ typedef union _hw_usbc_uog1_otgsc
  * [default]. When this bit is 0, the ID input will not be sampled.
  */
 //@{
-
 #define BP_USBC_UOG1_OTGSC_IDPU      (5)      //!< Bit position for USBC_UOG1_OTGSC_IDPU.
 #define BM_USBC_UOG1_OTGSC_IDPU      (0x00000020)  //!< Bit mask for USBC_UOG1_OTGSC_IDPU.
 
@@ -4878,7 +4613,6 @@ typedef union _hw_usbc_uog1_otgsc
 //! @brief Set the IDPU field to a new value.
 #define BW_USBC_UOG1_OTGSC_IDPU(v)   (HW_USBC_UOG1_OTGSC_WR((HW_USBC_UOG1_OTGSC_RD() & ~BM_USBC_UOG1_OTGSC_IDPU) | BF_USBC_UOG1_OTGSC_IDPU(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_OTGSC, field ID[8] (RO)
@@ -4886,13 +4620,11 @@ typedef union _hw_usbc_uog1_otgsc
  * USB ID - Read Only. 0 = A device, 1 = B device
  */
 //@{
-
 #define BP_USBC_UOG1_OTGSC_ID      (8)      //!< Bit position for USBC_UOG1_OTGSC_ID.
 #define BM_USBC_UOG1_OTGSC_ID      (0x00000100)  //!< Bit mask for USBC_UOG1_OTGSC_ID.
 
 //! @brief Get value of USBC_UOG1_OTGSC_ID from a register value.
 #define BG_USBC_UOG1_OTGSC_ID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_OTGSC_ID) >> BP_USBC_UOG1_OTGSC_ID)
-
 //@}
 
 /*! @name Register USBC_UOG1_OTGSC, field AVV[9] (RO)
@@ -4900,13 +4632,11 @@ typedef union _hw_usbc_uog1_otgsc
  * A VBus Valid - Read Only. Indicates VBus is above the A VBus valid threshold.
  */
 //@{
-
 #define BP_USBC_UOG1_OTGSC_AVV      (9)      //!< Bit position for USBC_UOG1_OTGSC_AVV.
 #define BM_USBC_UOG1_OTGSC_AVV      (0x00000200)  //!< Bit mask for USBC_UOG1_OTGSC_AVV.
 
 //! @brief Get value of USBC_UOG1_OTGSC_AVV from a register value.
 #define BG_USBC_UOG1_OTGSC_AVV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_OTGSC_AVV) >> BP_USBC_UOG1_OTGSC_AVV)
-
 //@}
 
 /*! @name Register USBC_UOG1_OTGSC, field ASV[10] (RO)
@@ -4914,13 +4644,11 @@ typedef union _hw_usbc_uog1_otgsc
  * A Session Valid - Read Only. Indicates VBus is above the A session valid threshold.
  */
 //@{
-
 #define BP_USBC_UOG1_OTGSC_ASV      (10)      //!< Bit position for USBC_UOG1_OTGSC_ASV.
 #define BM_USBC_UOG1_OTGSC_ASV      (0x00000400)  //!< Bit mask for USBC_UOG1_OTGSC_ASV.
 
 //! @brief Get value of USBC_UOG1_OTGSC_ASV from a register value.
 #define BG_USBC_UOG1_OTGSC_ASV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_OTGSC_ASV) >> BP_USBC_UOG1_OTGSC_ASV)
-
 //@}
 
 /*! @name Register USBC_UOG1_OTGSC, field BSV[11] (RO)
@@ -4928,13 +4656,11 @@ typedef union _hw_usbc_uog1_otgsc
  * B Session Valid - Read Only. Indicates VBus is above the B session valid threshold.
  */
 //@{
-
 #define BP_USBC_UOG1_OTGSC_BSV      (11)      //!< Bit position for USBC_UOG1_OTGSC_BSV.
 #define BM_USBC_UOG1_OTGSC_BSV      (0x00000800)  //!< Bit mask for USBC_UOG1_OTGSC_BSV.
 
 //! @brief Get value of USBC_UOG1_OTGSC_BSV from a register value.
 #define BG_USBC_UOG1_OTGSC_BSV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_OTGSC_BSV) >> BP_USBC_UOG1_OTGSC_BSV)
-
 //@}
 
 /*! @name Register USBC_UOG1_OTGSC, field BSE[12] (RO)
@@ -4942,13 +4668,11 @@ typedef union _hw_usbc_uog1_otgsc
  * B Session End - Read Only. Indicates VBus is below the B session end threshold.
  */
 //@{
-
 #define BP_USBC_UOG1_OTGSC_BSE      (12)      //!< Bit position for USBC_UOG1_OTGSC_BSE.
 #define BM_USBC_UOG1_OTGSC_BSE      (0x00001000)  //!< Bit mask for USBC_UOG1_OTGSC_BSE.
 
 //! @brief Get value of USBC_UOG1_OTGSC_BSE from a register value.
 #define BG_USBC_UOG1_OTGSC_BSE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_OTGSC_BSE) >> BP_USBC_UOG1_OTGSC_BSE)
-
 //@}
 
 /*! @name Register USBC_UOG1_OTGSC, field _1MST[13] (RO)
@@ -4956,13 +4680,11 @@ typedef union _hw_usbc_uog1_otgsc
  * 1 millisecond timer toggle - Read Only. This bit toggles once per millisecond.
  */
 //@{
-
 #define BP_USBC_UOG1_OTGSC__1MST      (13)      //!< Bit position for USBC_UOG1_OTGSC__1MST.
 #define BM_USBC_UOG1_OTGSC__1MST      (0x00002000)  //!< Bit mask for USBC_UOG1_OTGSC__1MST.
 
 //! @brief Get value of USBC_UOG1_OTGSC__1MST from a register value.
 #define BG_USBC_UOG1_OTGSC__1MST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_OTGSC__1MST) >> BP_USBC_UOG1_OTGSC__1MST)
-
 //@}
 
 /*! @name Register USBC_UOG1_OTGSC, field DPS[14] (RO)
@@ -4971,13 +4693,11 @@ typedef union _hw_usbc_uog1_otgsc
  * port.
  */
 //@{
-
 #define BP_USBC_UOG1_OTGSC_DPS      (14)      //!< Bit position for USBC_UOG1_OTGSC_DPS.
 #define BM_USBC_UOG1_OTGSC_DPS      (0x00004000)  //!< Bit mask for USBC_UOG1_OTGSC_DPS.
 
 //! @brief Get value of USBC_UOG1_OTGSC_DPS from a register value.
 #define BG_USBC_UOG1_OTGSC_DPS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_OTGSC_DPS) >> BP_USBC_UOG1_OTGSC_DPS)
-
 //@}
 
 /*! @name Register USBC_UOG1_OTGSC, field IDIS[16] (RW)
@@ -4986,7 +4706,6 @@ typedef union _hw_usbc_uog1_otgsc
  * detected. Software must write a one to clear this bit.
  */
 //@{
-
 #define BP_USBC_UOG1_OTGSC_IDIS      (16)      //!< Bit position for USBC_UOG1_OTGSC_IDIS.
 #define BM_USBC_UOG1_OTGSC_IDIS      (0x00010000)  //!< Bit mask for USBC_UOG1_OTGSC_IDIS.
 
@@ -5000,7 +4719,6 @@ typedef union _hw_usbc_uog1_otgsc
 //! @brief Set the IDIS field to a new value.
 #define BW_USBC_UOG1_OTGSC_IDIS(v)   (HW_USBC_UOG1_OTGSC_WR((HW_USBC_UOG1_OTGSC_RD() & ~BM_USBC_UOG1_OTGSC_IDIS) | BF_USBC_UOG1_OTGSC_IDIS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_OTGSC, field AVVIS[17] (RW)
@@ -5010,7 +4728,6 @@ typedef union _hw_usbc_uog1_otgsc
  * this bit.
  */
 //@{
-
 #define BP_USBC_UOG1_OTGSC_AVVIS      (17)      //!< Bit position for USBC_UOG1_OTGSC_AVVIS.
 #define BM_USBC_UOG1_OTGSC_AVVIS      (0x00020000)  //!< Bit mask for USBC_UOG1_OTGSC_AVVIS.
 
@@ -5024,7 +4741,6 @@ typedef union _hw_usbc_uog1_otgsc
 //! @brief Set the AVVIS field to a new value.
 #define BW_USBC_UOG1_OTGSC_AVVIS(v)   (HW_USBC_UOG1_OTGSC_WR((HW_USBC_UOG1_OTGSC_RD() & ~BM_USBC_UOG1_OTGSC_AVVIS) | BF_USBC_UOG1_OTGSC_AVVIS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_OTGSC, field ASVIS[18] (RW)
@@ -5034,7 +4750,6 @@ typedef union _hw_usbc_uog1_otgsc
  * this bit.
  */
 //@{
-
 #define BP_USBC_UOG1_OTGSC_ASVIS      (18)      //!< Bit position for USBC_UOG1_OTGSC_ASVIS.
 #define BM_USBC_UOG1_OTGSC_ASVIS      (0x00040000)  //!< Bit mask for USBC_UOG1_OTGSC_ASVIS.
 
@@ -5048,7 +4763,6 @@ typedef union _hw_usbc_uog1_otgsc
 //! @brief Set the ASVIS field to a new value.
 #define BW_USBC_UOG1_OTGSC_ASVIS(v)   (HW_USBC_UOG1_OTGSC_WR((HW_USBC_UOG1_OTGSC_RD() & ~BM_USBC_UOG1_OTGSC_ASVIS) | BF_USBC_UOG1_OTGSC_ASVIS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_OTGSC, field BSVIS[19] (RW)
@@ -5058,7 +4772,6 @@ typedef union _hw_usbc_uog1_otgsc
  * this bit.
  */
 //@{
-
 #define BP_USBC_UOG1_OTGSC_BSVIS      (19)      //!< Bit position for USBC_UOG1_OTGSC_BSVIS.
 #define BM_USBC_UOG1_OTGSC_BSVIS      (0x00080000)  //!< Bit mask for USBC_UOG1_OTGSC_BSVIS.
 
@@ -5072,7 +4785,6 @@ typedef union _hw_usbc_uog1_otgsc
 //! @brief Set the BSVIS field to a new value.
 #define BW_USBC_UOG1_OTGSC_BSVIS(v)   (HW_USBC_UOG1_OTGSC_WR((HW_USBC_UOG1_OTGSC_RD() & ~BM_USBC_UOG1_OTGSC_BSVIS) | BF_USBC_UOG1_OTGSC_BSVIS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_OTGSC, field BSEIS[20] (RW)
@@ -5081,7 +4793,6 @@ typedef union _hw_usbc_uog1_otgsc
  * the B session end threshold. Software must write a one to clear this bit
  */
 //@{
-
 #define BP_USBC_UOG1_OTGSC_BSEIS      (20)      //!< Bit position for USBC_UOG1_OTGSC_BSEIS.
 #define BM_USBC_UOG1_OTGSC_BSEIS      (0x00100000)  //!< Bit mask for USBC_UOG1_OTGSC_BSEIS.
 
@@ -5095,7 +4806,6 @@ typedef union _hw_usbc_uog1_otgsc
 //! @brief Set the BSEIS field to a new value.
 #define BW_USBC_UOG1_OTGSC_BSEIS(v)   (HW_USBC_UOG1_OTGSC_WR((HW_USBC_UOG1_OTGSC_RD() & ~BM_USBC_UOG1_OTGSC_BSEIS) | BF_USBC_UOG1_OTGSC_BSEIS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_OTGSC, field _1MSS[21] (RW)
@@ -5104,7 +4814,6 @@ typedef union _hw_usbc_uog1_otgsc
  * millisecond. Software must write a one to clear this bit.
  */
 //@{
-
 #define BP_USBC_UOG1_OTGSC__1MSS      (21)      //!< Bit position for USBC_UOG1_OTGSC__1MSS.
 #define BM_USBC_UOG1_OTGSC__1MSS      (0x00200000)  //!< Bit mask for USBC_UOG1_OTGSC__1MSS.
 
@@ -5118,7 +4827,6 @@ typedef union _hw_usbc_uog1_otgsc
 //! @brief Set the _1MSS field to a new value.
 #define BW_USBC_UOG1_OTGSC__1MSS(v)   (HW_USBC_UOG1_OTGSC_WR((HW_USBC_UOG1_OTGSC_RD() & ~BM_USBC_UOG1_OTGSC__1MSS) | BF_USBC_UOG1_OTGSC__1MSS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_OTGSC, field DPIS[22] (RW)
@@ -5128,7 +4836,6 @@ typedef union _hw_usbc_uog1_otgsc
  * 0. Software must write a one to clear this bit.
  */
 //@{
-
 #define BP_USBC_UOG1_OTGSC_DPIS      (22)      //!< Bit position for USBC_UOG1_OTGSC_DPIS.
 #define BM_USBC_UOG1_OTGSC_DPIS      (0x00400000)  //!< Bit mask for USBC_UOG1_OTGSC_DPIS.
 
@@ -5142,7 +4849,6 @@ typedef union _hw_usbc_uog1_otgsc
 //! @brief Set the DPIS field to a new value.
 #define BW_USBC_UOG1_OTGSC_DPIS(v)   (HW_USBC_UOG1_OTGSC_WR((HW_USBC_UOG1_OTGSC_RD() & ~BM_USBC_UOG1_OTGSC_DPIS) | BF_USBC_UOG1_OTGSC_DPIS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_OTGSC, field IDIE[24] (RW)
@@ -5150,7 +4856,6 @@ typedef union _hw_usbc_uog1_otgsc
  * USB ID Interrupt Enable - Read/Write. Setting this bit enables the USB ID interrupt.
  */
 //@{
-
 #define BP_USBC_UOG1_OTGSC_IDIE      (24)      //!< Bit position for USBC_UOG1_OTGSC_IDIE.
 #define BM_USBC_UOG1_OTGSC_IDIE      (0x01000000)  //!< Bit mask for USBC_UOG1_OTGSC_IDIE.
 
@@ -5164,7 +4869,6 @@ typedef union _hw_usbc_uog1_otgsc
 //! @brief Set the IDIE field to a new value.
 #define BW_USBC_UOG1_OTGSC_IDIE(v)   (HW_USBC_UOG1_OTGSC_WR((HW_USBC_UOG1_OTGSC_RD() & ~BM_USBC_UOG1_OTGSC_IDIE) | BF_USBC_UOG1_OTGSC_IDIE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_OTGSC, field AVVIE[25] (RW)
@@ -5172,7 +4876,6 @@ typedef union _hw_usbc_uog1_otgsc
  * A VBus Valid Interrupt Enable - Read/Write. Setting this bit enables the A VBus valid interrupt.
  */
 //@{
-
 #define BP_USBC_UOG1_OTGSC_AVVIE      (25)      //!< Bit position for USBC_UOG1_OTGSC_AVVIE.
 #define BM_USBC_UOG1_OTGSC_AVVIE      (0x02000000)  //!< Bit mask for USBC_UOG1_OTGSC_AVVIE.
 
@@ -5186,7 +4889,6 @@ typedef union _hw_usbc_uog1_otgsc
 //! @brief Set the AVVIE field to a new value.
 #define BW_USBC_UOG1_OTGSC_AVVIE(v)   (HW_USBC_UOG1_OTGSC_WR((HW_USBC_UOG1_OTGSC_RD() & ~BM_USBC_UOG1_OTGSC_AVVIE) | BF_USBC_UOG1_OTGSC_AVVIE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_OTGSC, field ASVIE[26] (RW)
@@ -5195,7 +4897,6 @@ typedef union _hw_usbc_uog1_otgsc
  * interrupt.
  */
 //@{
-
 #define BP_USBC_UOG1_OTGSC_ASVIE      (26)      //!< Bit position for USBC_UOG1_OTGSC_ASVIE.
 #define BM_USBC_UOG1_OTGSC_ASVIE      (0x04000000)  //!< Bit mask for USBC_UOG1_OTGSC_ASVIE.
 
@@ -5209,7 +4910,6 @@ typedef union _hw_usbc_uog1_otgsc
 //! @brief Set the ASVIE field to a new value.
 #define BW_USBC_UOG1_OTGSC_ASVIE(v)   (HW_USBC_UOG1_OTGSC_WR((HW_USBC_UOG1_OTGSC_RD() & ~BM_USBC_UOG1_OTGSC_ASVIE) | BF_USBC_UOG1_OTGSC_ASVIE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_OTGSC, field BSVIE[27] (RW)
@@ -5218,7 +4918,6 @@ typedef union _hw_usbc_uog1_otgsc
  * interrupt.
  */
 //@{
-
 #define BP_USBC_UOG1_OTGSC_BSVIE      (27)      //!< Bit position for USBC_UOG1_OTGSC_BSVIE.
 #define BM_USBC_UOG1_OTGSC_BSVIE      (0x08000000)  //!< Bit mask for USBC_UOG1_OTGSC_BSVIE.
 
@@ -5232,7 +4931,6 @@ typedef union _hw_usbc_uog1_otgsc
 //! @brief Set the BSVIE field to a new value.
 #define BW_USBC_UOG1_OTGSC_BSVIE(v)   (HW_USBC_UOG1_OTGSC_WR((HW_USBC_UOG1_OTGSC_RD() & ~BM_USBC_UOG1_OTGSC_BSVIE) | BF_USBC_UOG1_OTGSC_BSVIE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_OTGSC, field BSEIE[28] (RW)
@@ -5241,7 +4939,6 @@ typedef union _hw_usbc_uog1_otgsc
  * interrupt.
  */
 //@{
-
 #define BP_USBC_UOG1_OTGSC_BSEIE      (28)      //!< Bit position for USBC_UOG1_OTGSC_BSEIE.
 #define BM_USBC_UOG1_OTGSC_BSEIE      (0x10000000)  //!< Bit mask for USBC_UOG1_OTGSC_BSEIE.
 
@@ -5255,7 +4952,6 @@ typedef union _hw_usbc_uog1_otgsc
 //! @brief Set the BSEIE field to a new value.
 #define BW_USBC_UOG1_OTGSC_BSEIE(v)   (HW_USBC_UOG1_OTGSC_WR((HW_USBC_UOG1_OTGSC_RD() & ~BM_USBC_UOG1_OTGSC_BSEIE) | BF_USBC_UOG1_OTGSC_BSEIE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_OTGSC, field _1MSE[29] (RW)
@@ -5263,7 +4959,6 @@ typedef union _hw_usbc_uog1_otgsc
  * 1 millisecond timer Interrupt Enable - Read/Write
  */
 //@{
-
 #define BP_USBC_UOG1_OTGSC__1MSE      (29)      //!< Bit position for USBC_UOG1_OTGSC__1MSE.
 #define BM_USBC_UOG1_OTGSC__1MSE      (0x20000000)  //!< Bit mask for USBC_UOG1_OTGSC__1MSE.
 
@@ -5277,7 +4972,6 @@ typedef union _hw_usbc_uog1_otgsc
 //! @brief Set the _1MSE field to a new value.
 #define BW_USBC_UOG1_OTGSC__1MSE(v)   (HW_USBC_UOG1_OTGSC_WR((HW_USBC_UOG1_OTGSC_RD() & ~BM_USBC_UOG1_OTGSC__1MSE) | BF_USBC_UOG1_OTGSC__1MSE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_OTGSC, field DPIE[30] (RW)
@@ -5285,7 +4979,6 @@ typedef union _hw_usbc_uog1_otgsc
  * Data Pulse Interrupt Enable
  */
 //@{
-
 #define BP_USBC_UOG1_OTGSC_DPIE      (30)      //!< Bit position for USBC_UOG1_OTGSC_DPIE.
 #define BM_USBC_UOG1_OTGSC_DPIE      (0x40000000)  //!< Bit mask for USBC_UOG1_OTGSC_DPIE.
 
@@ -5299,7 +4992,6 @@ typedef union _hw_usbc_uog1_otgsc
 //! @brief Set the DPIE field to a new value.
 #define BW_USBC_UOG1_OTGSC_DPIE(v)   (HW_USBC_UOG1_OTGSC_WR((HW_USBC_UOG1_OTGSC_RD() & ~BM_USBC_UOG1_OTGSC_DPIE) | BF_USBC_UOG1_OTGSC_DPIE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5365,7 +5057,6 @@ typedef union _hw_usbc_uog1_usbmode
  * - 11 - Host Controller [Default for host only controller]
  */
 //@{
-
 #define BP_USBC_UOG1_USBMODE_CM      (0)      //!< Bit position for USBC_UOG1_USBMODE_CM.
 #define BM_USBC_UOG1_USBMODE_CM      (0x00000003)  //!< Bit mask for USBC_UOG1_USBMODE_CM.
 
@@ -5379,7 +5070,6 @@ typedef union _hw_usbc_uog1_usbmode
 //! @brief Set the CM field to a new value.
 #define BW_USBC_UOG1_USBMODE_CM(v)   (HW_USBC_UOG1_USBMODE_WR((HW_USBC_UOG1_USBMODE_RD() & ~BM_USBC_UOG1_USBMODE_CM) | BF_USBC_UOG1_USBMODE_CM(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBMODE, field ES[2] (RW)
@@ -5394,7 +5084,6 @@ typedef union _hw_usbc_uog1_usbmode
  * - 1 - Big Endian
  */
 //@{
-
 #define BP_USBC_UOG1_USBMODE_ES      (2)      //!< Bit position for USBC_UOG1_USBMODE_ES.
 #define BM_USBC_UOG1_USBMODE_ES      (0x00000004)  //!< Bit mask for USBC_UOG1_USBMODE_ES.
 
@@ -5408,7 +5097,6 @@ typedef union _hw_usbc_uog1_usbmode
 //! @brief Set the ES field to a new value.
 #define BW_USBC_UOG1_USBMODE_ES(v)   (HW_USBC_UOG1_USBMODE_WR((HW_USBC_UOG1_USBMODE_RD() & ~BM_USBC_UOG1_USBMODE_ES) | BF_USBC_UOG1_USBMODE_ES(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBMODE, field SLOM[3] (RW)
@@ -5420,7 +5108,6 @@ typedef union _hw_usbc_uog1_usbmode
  * - 1 - Setup Lockouts Off (DCD requires use of Setup Data Buffer Tripwire in .
  */
 //@{
-
 #define BP_USBC_UOG1_USBMODE_SLOM      (3)      //!< Bit position for USBC_UOG1_USBMODE_SLOM.
 #define BM_USBC_UOG1_USBMODE_SLOM      (0x00000008)  //!< Bit mask for USBC_UOG1_USBMODE_SLOM.
 
@@ -5434,7 +5121,6 @@ typedef union _hw_usbc_uog1_usbmode
 //! @brief Set the SLOM field to a new value.
 #define BW_USBC_UOG1_USBMODE_SLOM(v)   (HW_USBC_UOG1_USBMODE_WR((HW_USBC_UOG1_USBMODE_RD() & ~BM_USBC_UOG1_USBMODE_SLOM) | BF_USBC_UOG1_USBMODE_SLOM(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_USBMODE, field SDIS[4] (RW)
@@ -5453,7 +5139,6 @@ typedef union _hw_usbc_uog1_usbmode
  * feature substantially limits of the overall USB performance that can be achieved.
  */
 //@{
-
 #define BP_USBC_UOG1_USBMODE_SDIS      (4)      //!< Bit position for USBC_UOG1_USBMODE_SDIS.
 #define BM_USBC_UOG1_USBMODE_SDIS      (0x00000010)  //!< Bit mask for USBC_UOG1_USBMODE_SDIS.
 
@@ -5467,7 +5152,6 @@ typedef union _hw_usbc_uog1_usbmode
 //! @brief Set the SDIS field to a new value.
 #define BW_USBC_UOG1_USBMODE_SDIS(v)   (HW_USBC_UOG1_USBMODE_WR((HW_USBC_UOG1_USBMODE_RD() & ~BM_USBC_UOG1_USBMODE_SDIS) | BF_USBC_UOG1_USBMODE_SDIS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5523,7 +5207,6 @@ typedef union _hw_usbc_uog1_endptsetupstat
  * used in device mode.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTSETUPSTAT_ENDPTSETUPSTAT      (0)      //!< Bit position for USBC_UOG1_ENDPTSETUPSTAT_ENDPTSETUPSTAT.
 #define BM_USBC_UOG1_ENDPTSETUPSTAT_ENDPTSETUPSTAT      (0x0000ffff)  //!< Bit mask for USBC_UOG1_ENDPTSETUPSTAT_ENDPTSETUPSTAT.
 
@@ -5537,7 +5220,6 @@ typedef union _hw_usbc_uog1_endptsetupstat
 //! @brief Set the ENDPTSETUPSTAT field to a new value.
 #define BW_USBC_UOG1_ENDPTSETUPSTAT_ENDPTSETUPSTAT(v)   (HW_USBC_UOG1_ENDPTSETUPSTAT_WR((HW_USBC_UOG1_ENDPTSETUPSTAT_RD() & ~BM_USBC_UOG1_ENDPTSETUPSTAT_ENDPTSETUPSTAT) | BF_USBC_UOG1_ENDPTSETUPSTAT_ENDPTSETUPSTAT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5603,7 +5285,6 @@ typedef union _hw_usbc_uog1_endptprime
  * PERB[N] - Endpoint #N, N is in 0..7
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTPRIME_PERB      (0)      //!< Bit position for USBC_UOG1_ENDPTPRIME_PERB.
 #define BM_USBC_UOG1_ENDPTPRIME_PERB      (0x000000ff)  //!< Bit mask for USBC_UOG1_ENDPTPRIME_PERB.
 
@@ -5617,7 +5298,6 @@ typedef union _hw_usbc_uog1_endptprime
 //! @brief Set the PERB field to a new value.
 #define BW_USBC_UOG1_ENDPTPRIME_PERB(v)   (HW_USBC_UOG1_ENDPTPRIME_WR((HW_USBC_UOG1_ENDPTPRIME_RD() & ~BM_USBC_UOG1_ENDPTPRIME_PERB) | BF_USBC_UOG1_ENDPTPRIME_PERB(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTPRIME, field PETB[23:16] (RW)
@@ -5632,7 +5312,6 @@ typedef union _hw_usbc_uog1_endptprime
  * PETB[N] - Endpoint #N, N is in 0..7
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTPRIME_PETB      (16)      //!< Bit position for USBC_UOG1_ENDPTPRIME_PETB.
 #define BM_USBC_UOG1_ENDPTPRIME_PETB      (0x00ff0000)  //!< Bit mask for USBC_UOG1_ENDPTPRIME_PETB.
 
@@ -5646,7 +5325,6 @@ typedef union _hw_usbc_uog1_endptprime
 //! @brief Set the PETB field to a new value.
 #define BW_USBC_UOG1_ENDPTPRIME_PETB(v)   (HW_USBC_UOG1_ENDPTPRIME_WR((HW_USBC_UOG1_ENDPTPRIME_RD() & ~BM_USBC_UOG1_ENDPTPRIME_PETB) | BF_USBC_UOG1_ENDPTPRIME_PETB(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5702,7 +5380,6 @@ typedef union _hw_usbc_uog1_endptflush
  * endpoint flush operation is successful. FERB[N] - Endpoint #N, N is in 0..7
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTFLUSH_FERB      (0)      //!< Bit position for USBC_UOG1_ENDPTFLUSH_FERB.
 #define BM_USBC_UOG1_ENDPTFLUSH_FERB      (0x000000ff)  //!< Bit mask for USBC_UOG1_ENDPTFLUSH_FERB.
 
@@ -5716,7 +5393,6 @@ typedef union _hw_usbc_uog1_endptflush
 //! @brief Set the FERB field to a new value.
 #define BW_USBC_UOG1_ENDPTFLUSH_FERB(v)   (HW_USBC_UOG1_ENDPTFLUSH_WR((HW_USBC_UOG1_ENDPTFLUSH_RD() & ~BM_USBC_UOG1_ENDPTFLUSH_FERB) | BF_USBC_UOG1_ENDPTFLUSH_FERB(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTFLUSH, field FETB[23:16] (RW)
@@ -5727,7 +5403,6 @@ typedef union _hw_usbc_uog1_endptflush
  * register after the endpoint flush operation is successful. FETB[N] - Endpoint #N, N is in 0..7
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTFLUSH_FETB      (16)      //!< Bit position for USBC_UOG1_ENDPTFLUSH_FETB.
 #define BM_USBC_UOG1_ENDPTFLUSH_FETB      (0x00ff0000)  //!< Bit mask for USBC_UOG1_ENDPTFLUSH_FETB.
 
@@ -5741,7 +5416,6 @@ typedef union _hw_usbc_uog1_endptflush
 //! @brief Set the FETB field to a new value.
 #define BW_USBC_UOG1_ENDPTFLUSH_FETB(v)   (HW_USBC_UOG1_ENDPTFLUSH_WR((HW_USBC_UOG1_ENDPTFLUSH_RD() & ~BM_USBC_UOG1_ENDPTFLUSH_FETB) | BF_USBC_UOG1_ENDPTFLUSH_FETB(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5797,13 +5471,11 @@ typedef union _hw_usbc_uog1_endptstat
  * dTD is retired, and the dQH is updated. ERBR[N] - Endpoint #N, N is in 0..7
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTSTAT_ERBR      (0)      //!< Bit position for USBC_UOG1_ENDPTSTAT_ERBR.
 #define BM_USBC_UOG1_ENDPTSTAT_ERBR      (0x000000ff)  //!< Bit mask for USBC_UOG1_ENDPTSTAT_ERBR.
 
 //! @brief Get value of USBC_UOG1_ENDPTSTAT_ERBR from a register value.
 #define BG_USBC_UOG1_ENDPTSTAT_ERBR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_ENDPTSTAT_ERBR) >> BP_USBC_UOG1_ENDPTSTAT_ERBR)
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTSTAT, field ETBR[23:16] (RO)
@@ -5818,13 +5490,11 @@ typedef union _hw_usbc_uog1_endptstat
  * dTD is retired, and the dQH is updated. ETBR[N] - Endpoint #N, N is in 0..7
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTSTAT_ETBR      (16)      //!< Bit position for USBC_UOG1_ENDPTSTAT_ETBR.
 #define BM_USBC_UOG1_ENDPTSTAT_ETBR      (0x00ff0000)  //!< Bit mask for USBC_UOG1_ENDPTSTAT_ETBR.
 
 //! @brief Get value of USBC_UOG1_ENDPTSTAT_ETBR from a register value.
 #define BG_USBC_UOG1_ENDPTSTAT_ETBR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG1_ENDPTSTAT_ETBR) >> BP_USBC_UOG1_ENDPTSTAT_ETBR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5881,7 +5551,6 @@ typedef union _hw_usbc_uog1_endptcomplete
  * #N, N is in 0..7
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCOMPLETE_ERCE      (0)      //!< Bit position for USBC_UOG1_ENDPTCOMPLETE_ERCE.
 #define BM_USBC_UOG1_ENDPTCOMPLETE_ERCE      (0x000000ff)  //!< Bit mask for USBC_UOG1_ENDPTCOMPLETE_ERCE.
 
@@ -5895,7 +5564,6 @@ typedef union _hw_usbc_uog1_endptcomplete
 //! @brief Set the ERCE field to a new value.
 #define BW_USBC_UOG1_ENDPTCOMPLETE_ERCE(v)   (HW_USBC_UOG1_ENDPTCOMPLETE_WR((HW_USBC_UOG1_ENDPTCOMPLETE_RD() & ~BM_USBC_UOG1_ENDPTCOMPLETE_ERCE) | BF_USBC_UOG1_ENDPTCOMPLETE_ERCE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCOMPLETE, field ETCE[23:16] (RW)
@@ -5907,7 +5575,6 @@ typedef union _hw_usbc_uog1_endptcomplete
  * ETCE[N] - Endpoint #N, N is in 0..7
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCOMPLETE_ETCE      (16)      //!< Bit position for USBC_UOG1_ENDPTCOMPLETE_ETCE.
 #define BM_USBC_UOG1_ENDPTCOMPLETE_ETCE      (0x00ff0000)  //!< Bit mask for USBC_UOG1_ENDPTCOMPLETE_ETCE.
 
@@ -5921,7 +5588,6 @@ typedef union _hw_usbc_uog1_endptcomplete
 //! @brief Set the ETCE field to a new value.
 #define BW_USBC_UOG1_ENDPTCOMPLETE_ETCE(v)   (HW_USBC_UOG1_ENDPTCOMPLETE_WR((HW_USBC_UOG1_ENDPTCOMPLETE_RD() & ~BM_USBC_UOG1_ENDPTCOMPLETE_ETCE) | BF_USBC_UOG1_ENDPTCOMPLETE_ETCE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5985,7 +5651,6 @@ typedef union _hw_usbc_uog1_endptctrl0
  * of a new SETUP request.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL0_RXS      (0)      //!< Bit position for USBC_UOG1_ENDPTCTRL0_RXS.
 #define BM_USBC_UOG1_ENDPTCTRL0_RXS      (0x00000001)  //!< Bit mask for USBC_UOG1_ENDPTCTRL0_RXS.
 
@@ -5999,7 +5664,6 @@ typedef union _hw_usbc_uog1_endptctrl0
 //! @brief Set the RXS field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL0_RXS(v)   (HW_USBC_UOG1_ENDPTCTRL0_WR((HW_USBC_UOG1_ENDPTCTRL0_RD() & ~BM_USBC_UOG1_ENDPTCTRL0_RXS) | BF_USBC_UOG1_ENDPTCTRL0_RXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL0, field RXT[3:2] (RW)
@@ -6007,7 +5671,6 @@ typedef union _hw_usbc_uog1_endptctrl0
  * RX Endpoint Type - Read/Write 00 Control Endpoint0 is fixed as a Control End Point.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL0_RXT      (2)      //!< Bit position for USBC_UOG1_ENDPTCTRL0_RXT.
 #define BM_USBC_UOG1_ENDPTCTRL0_RXT      (0x0000000c)  //!< Bit mask for USBC_UOG1_ENDPTCTRL0_RXT.
 
@@ -6021,7 +5684,6 @@ typedef union _hw_usbc_uog1_endptctrl0
 //! @brief Set the RXT field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL0_RXT(v)   (HW_USBC_UOG1_ENDPTCTRL0_WR((HW_USBC_UOG1_ENDPTCTRL0_RD() & ~BM_USBC_UOG1_ENDPTCTRL0_RXT) | BF_USBC_UOG1_ENDPTCTRL0_RXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL0, field RXE[7] (RW)
@@ -6029,7 +5691,6 @@ typedef union _hw_usbc_uog1_endptctrl0
  * RX Endpoint Enable 1 Enabled Endpoint0 is always enabled.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL0_RXE      (7)      //!< Bit position for USBC_UOG1_ENDPTCTRL0_RXE.
 #define BM_USBC_UOG1_ENDPTCTRL0_RXE      (0x00000080)  //!< Bit mask for USBC_UOG1_ENDPTCTRL0_RXE.
 
@@ -6043,7 +5704,6 @@ typedef union _hw_usbc_uog1_endptctrl0
 //! @brief Set the RXE field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL0_RXE(v)   (HW_USBC_UOG1_ENDPTCTRL0_WR((HW_USBC_UOG1_ENDPTCTRL0_RD() & ~BM_USBC_UOG1_ENDPTCTRL0_RXE) | BF_USBC_UOG1_ENDPTCTRL0_RXE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL0, field TXS[16] (RW)
@@ -6054,7 +5714,6 @@ typedef union _hw_usbc_uog1_endptctrl0
  * of a new SETUP request.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL0_TXS      (16)      //!< Bit position for USBC_UOG1_ENDPTCTRL0_TXS.
 #define BM_USBC_UOG1_ENDPTCTRL0_TXS      (0x00010000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL0_TXS.
 
@@ -6068,7 +5727,6 @@ typedef union _hw_usbc_uog1_endptctrl0
 //! @brief Set the TXS field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL0_TXS(v)   (HW_USBC_UOG1_ENDPTCTRL0_WR((HW_USBC_UOG1_ENDPTCTRL0_RD() & ~BM_USBC_UOG1_ENDPTCTRL0_TXS) | BF_USBC_UOG1_ENDPTCTRL0_TXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL0, field TXT[19:18] (RW)
@@ -6076,7 +5734,6 @@ typedef union _hw_usbc_uog1_endptctrl0
  * TX Endpoint Type - Read/Write 00 - Control Endpoint0 is fixed as a Control End Point.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL0_TXT      (18)      //!< Bit position for USBC_UOG1_ENDPTCTRL0_TXT.
 #define BM_USBC_UOG1_ENDPTCTRL0_TXT      (0x000c0000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL0_TXT.
 
@@ -6090,7 +5747,6 @@ typedef union _hw_usbc_uog1_endptctrl0
 //! @brief Set the TXT field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL0_TXT(v)   (HW_USBC_UOG1_ENDPTCTRL0_WR((HW_USBC_UOG1_ENDPTCTRL0_RD() & ~BM_USBC_UOG1_ENDPTCTRL0_TXT) | BF_USBC_UOG1_ENDPTCTRL0_TXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL0, field TXE[23] (RW)
@@ -6098,7 +5754,6 @@ typedef union _hw_usbc_uog1_endptctrl0
  * TX Endpoint Enable 1 Enabled Endpoint0 is always enabled.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL0_TXE      (23)      //!< Bit position for USBC_UOG1_ENDPTCTRL0_TXE.
 #define BM_USBC_UOG1_ENDPTCTRL0_TXE      (0x00800000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL0_TXE.
 
@@ -6112,7 +5767,6 @@ typedef union _hw_usbc_uog1_endptctrl0
 //! @brief Set the TXE field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL0_TXE(v)   (HW_USBC_UOG1_ENDPTCTRL0_WR((HW_USBC_UOG1_ENDPTCTRL0_RD() & ~BM_USBC_UOG1_ENDPTCTRL0_TXE) | BF_USBC_UOG1_ENDPTCTRL0_TXE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6186,7 +5840,6 @@ typedef union _hw_usbc_uog1_endptctrl1
  * software or automatically cleared as above.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL1_RXS      (0)      //!< Bit position for USBC_UOG1_ENDPTCTRL1_RXS.
 #define BM_USBC_UOG1_ENDPTCTRL1_RXS      (0x00000001)  //!< Bit mask for USBC_UOG1_ENDPTCTRL1_RXS.
 
@@ -6200,7 +5853,6 @@ typedef union _hw_usbc_uog1_endptctrl1
 //! @brief Set the RXS field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL1_RXS(v)   (HW_USBC_UOG1_ENDPTCTRL1_WR((HW_USBC_UOG1_ENDPTCTRL1_RD() & ~BM_USBC_UOG1_ENDPTCTRL1_RXS) | BF_USBC_UOG1_ENDPTCTRL1_RXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL1, field RXD[1] (RW)
@@ -6209,7 +5861,6 @@ typedef union _hw_usbc_uog1_endptctrl1
  * always be written as zero.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL1_RXD      (1)      //!< Bit position for USBC_UOG1_ENDPTCTRL1_RXD.
 #define BM_USBC_UOG1_ENDPTCTRL1_RXD      (0x00000002)  //!< Bit mask for USBC_UOG1_ENDPTCTRL1_RXD.
 
@@ -6223,7 +5874,6 @@ typedef union _hw_usbc_uog1_endptctrl1
 //! @brief Set the RXD field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL1_RXD(v)   (HW_USBC_UOG1_ENDPTCTRL1_WR((HW_USBC_UOG1_ENDPTCTRL1_RD() & ~BM_USBC_UOG1_ENDPTCTRL1_RXD) | BF_USBC_UOG1_ENDPTCTRL1_RXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL1, field RXT[3:2] (RW)
@@ -6231,7 +5881,6 @@ typedef union _hw_usbc_uog1_endptctrl1
  * RX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Reserved
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL1_RXT      (2)      //!< Bit position for USBC_UOG1_ENDPTCTRL1_RXT.
 #define BM_USBC_UOG1_ENDPTCTRL1_RXT      (0x0000000c)  //!< Bit mask for USBC_UOG1_ENDPTCTRL1_RXT.
 
@@ -6245,7 +5894,6 @@ typedef union _hw_usbc_uog1_endptctrl1
 //! @brief Set the RXT field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL1_RXT(v)   (HW_USBC_UOG1_ENDPTCTRL1_WR((HW_USBC_UOG1_ENDPTCTRL1_RD() & ~BM_USBC_UOG1_ENDPTCTRL1_RXT) | BF_USBC_UOG1_ENDPTCTRL1_RXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL1, field RXI[5] (RW)
@@ -6255,7 +5903,6 @@ typedef union _hw_usbc_uog1_endptctrl1
  * toggle sequence and always accept data packet regardless of their data PID.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL1_RXI      (5)      //!< Bit position for USBC_UOG1_ENDPTCTRL1_RXI.
 #define BM_USBC_UOG1_ENDPTCTRL1_RXI      (0x00000020)  //!< Bit mask for USBC_UOG1_ENDPTCTRL1_RXI.
 
@@ -6269,7 +5916,6 @@ typedef union _hw_usbc_uog1_endptctrl1
 //! @brief Set the RXI field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL1_RXI(v)   (HW_USBC_UOG1_ENDPTCTRL1_WR((HW_USBC_UOG1_ENDPTCTRL1_RD() & ~BM_USBC_UOG1_ENDPTCTRL1_RXI) | BF_USBC_UOG1_ENDPTCTRL1_RXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL1, field RXR[6] (RW)
@@ -6279,7 +5925,6 @@ typedef union _hw_usbc_uog1_endptctrl1
  * between the host and device.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL1_RXR      (6)      //!< Bit position for USBC_UOG1_ENDPTCTRL1_RXR.
 #define BM_USBC_UOG1_ENDPTCTRL1_RXR      (0x00000040)  //!< Bit mask for USBC_UOG1_ENDPTCTRL1_RXR.
 
@@ -6293,7 +5938,6 @@ typedef union _hw_usbc_uog1_endptctrl1
 //! @brief Set the RXR field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL1_RXR(v)   (HW_USBC_UOG1_ENDPTCTRL1_WR((HW_USBC_UOG1_ENDPTCTRL1_RD() & ~BM_USBC_UOG1_ENDPTCTRL1_RXR) | BF_USBC_UOG1_ENDPTCTRL1_RXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL1, field RXE[7] (RW)
@@ -6302,7 +5946,6 @@ typedef union _hw_usbc_uog1_endptctrl1
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL1_RXE      (7)      //!< Bit position for USBC_UOG1_ENDPTCTRL1_RXE.
 #define BM_USBC_UOG1_ENDPTCTRL1_RXE      (0x00000080)  //!< Bit mask for USBC_UOG1_ENDPTCTRL1_RXE.
 
@@ -6316,7 +5959,6 @@ typedef union _hw_usbc_uog1_endptctrl1
 //! @brief Set the RXE field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL1_RXE(v)   (HW_USBC_UOG1_ENDPTCTRL1_WR((HW_USBC_UOG1_ENDPTCTRL1_RD() & ~BM_USBC_UOG1_ENDPTCTRL1_RXE) | BF_USBC_UOG1_ENDPTCTRL1_RXE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL1, field TXS[16] (RW)
@@ -6334,7 +5976,6 @@ typedef union _hw_usbc_uog1_endptctrl1
  * ENDPTSETUPSTAT bit.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL1_TXS      (16)      //!< Bit position for USBC_UOG1_ENDPTCTRL1_TXS.
 #define BM_USBC_UOG1_ENDPTCTRL1_TXS      (0x00010000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL1_TXS.
 
@@ -6348,7 +5989,6 @@ typedef union _hw_usbc_uog1_endptctrl1
 //! @brief Set the TXS field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL1_TXS(v)   (HW_USBC_UOG1_ENDPTCTRL1_WR((HW_USBC_UOG1_ENDPTCTRL1_RD() & ~BM_USBC_UOG1_ENDPTCTRL1_TXS) | BF_USBC_UOG1_ENDPTCTRL1_TXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL1, field TXD[17] (RW)
@@ -6357,7 +5997,6 @@ typedef union _hw_usbc_uog1_endptctrl1
  * be written as 0.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL1_TXD      (17)      //!< Bit position for USBC_UOG1_ENDPTCTRL1_TXD.
 #define BM_USBC_UOG1_ENDPTCTRL1_TXD      (0x00020000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL1_TXD.
 
@@ -6371,7 +6010,6 @@ typedef union _hw_usbc_uog1_endptctrl1
 //! @brief Set the TXD field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL1_TXD(v)   (HW_USBC_UOG1_ENDPTCTRL1_WR((HW_USBC_UOG1_ENDPTCTRL1_RD() & ~BM_USBC_UOG1_ENDPTCTRL1_TXD) | BF_USBC_UOG1_ENDPTCTRL1_TXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL1, field TXT[19:18] (RW)
@@ -6379,7 +6017,6 @@ typedef union _hw_usbc_uog1_endptctrl1
  * TX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Interrupt
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL1_TXT      (18)      //!< Bit position for USBC_UOG1_ENDPTCTRL1_TXT.
 #define BM_USBC_UOG1_ENDPTCTRL1_TXT      (0x000c0000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL1_TXT.
 
@@ -6393,7 +6030,6 @@ typedef union _hw_usbc_uog1_endptctrl1
 //! @brief Set the TXT field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL1_TXT(v)   (HW_USBC_UOG1_ENDPTCTRL1_WR((HW_USBC_UOG1_ENDPTCTRL1_RD() & ~BM_USBC_UOG1_ENDPTCTRL1_TXT) | BF_USBC_UOG1_ENDPTCTRL1_TXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL1, field TXI[21] (RW)
@@ -6403,7 +6039,6 @@ typedef union _hw_usbc_uog1_endptctrl1
  * endpoint to ignore the data toggle sequence and always transmit DATA0 for a data packet.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL1_TXI      (21)      //!< Bit position for USBC_UOG1_ENDPTCTRL1_TXI.
 #define BM_USBC_UOG1_ENDPTCTRL1_TXI      (0x00200000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL1_TXI.
 
@@ -6417,7 +6052,6 @@ typedef union _hw_usbc_uog1_endptctrl1
 //! @brief Set the TXI field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL1_TXI(v)   (HW_USBC_UOG1_ENDPTCTRL1_WR((HW_USBC_UOG1_ENDPTCTRL1_RD() & ~BM_USBC_UOG1_ENDPTCTRL1_TXI) | BF_USBC_UOG1_ENDPTCTRL1_TXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL1, field TXR[22] (RW)
@@ -6427,7 +6061,6 @@ typedef union _hw_usbc_uog1_endptctrl1
  * between the Host and device.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL1_TXR      (22)      //!< Bit position for USBC_UOG1_ENDPTCTRL1_TXR.
 #define BM_USBC_UOG1_ENDPTCTRL1_TXR      (0x00400000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL1_TXR.
 
@@ -6441,7 +6074,6 @@ typedef union _hw_usbc_uog1_endptctrl1
 //! @brief Set the TXR field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL1_TXR(v)   (HW_USBC_UOG1_ENDPTCTRL1_WR((HW_USBC_UOG1_ENDPTCTRL1_RD() & ~BM_USBC_UOG1_ENDPTCTRL1_TXR) | BF_USBC_UOG1_ENDPTCTRL1_TXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL1, field TXE[23] (RW)
@@ -6450,7 +6082,6 @@ typedef union _hw_usbc_uog1_endptctrl1
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL1_TXE      (23)      //!< Bit position for USBC_UOG1_ENDPTCTRL1_TXE.
 #define BM_USBC_UOG1_ENDPTCTRL1_TXE      (0x00800000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL1_TXE.
 
@@ -6464,7 +6095,6 @@ typedef union _hw_usbc_uog1_endptctrl1
 //! @brief Set the TXE field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL1_TXE(v)   (HW_USBC_UOG1_ENDPTCTRL1_WR((HW_USBC_UOG1_ENDPTCTRL1_RD() & ~BM_USBC_UOG1_ENDPTCTRL1_TXE) | BF_USBC_UOG1_ENDPTCTRL1_TXE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6538,7 +6168,6 @@ typedef union _hw_usbc_uog1_endptctrl2
  * software or automatically cleared as above.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL2_RXS      (0)      //!< Bit position for USBC_UOG1_ENDPTCTRL2_RXS.
 #define BM_USBC_UOG1_ENDPTCTRL2_RXS      (0x00000001)  //!< Bit mask for USBC_UOG1_ENDPTCTRL2_RXS.
 
@@ -6552,7 +6181,6 @@ typedef union _hw_usbc_uog1_endptctrl2
 //! @brief Set the RXS field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL2_RXS(v)   (HW_USBC_UOG1_ENDPTCTRL2_WR((HW_USBC_UOG1_ENDPTCTRL2_RD() & ~BM_USBC_UOG1_ENDPTCTRL2_RXS) | BF_USBC_UOG1_ENDPTCTRL2_RXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL2, field RXD[1] (RW)
@@ -6561,7 +6189,6 @@ typedef union _hw_usbc_uog1_endptctrl2
  * always be written as zero.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL2_RXD      (1)      //!< Bit position for USBC_UOG1_ENDPTCTRL2_RXD.
 #define BM_USBC_UOG1_ENDPTCTRL2_RXD      (0x00000002)  //!< Bit mask for USBC_UOG1_ENDPTCTRL2_RXD.
 
@@ -6575,7 +6202,6 @@ typedef union _hw_usbc_uog1_endptctrl2
 //! @brief Set the RXD field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL2_RXD(v)   (HW_USBC_UOG1_ENDPTCTRL2_WR((HW_USBC_UOG1_ENDPTCTRL2_RD() & ~BM_USBC_UOG1_ENDPTCTRL2_RXD) | BF_USBC_UOG1_ENDPTCTRL2_RXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL2, field RXT[3:2] (RW)
@@ -6583,7 +6209,6 @@ typedef union _hw_usbc_uog1_endptctrl2
  * RX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Reserved
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL2_RXT      (2)      //!< Bit position for USBC_UOG1_ENDPTCTRL2_RXT.
 #define BM_USBC_UOG1_ENDPTCTRL2_RXT      (0x0000000c)  //!< Bit mask for USBC_UOG1_ENDPTCTRL2_RXT.
 
@@ -6597,7 +6222,6 @@ typedef union _hw_usbc_uog1_endptctrl2
 //! @brief Set the RXT field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL2_RXT(v)   (HW_USBC_UOG1_ENDPTCTRL2_WR((HW_USBC_UOG1_ENDPTCTRL2_RD() & ~BM_USBC_UOG1_ENDPTCTRL2_RXT) | BF_USBC_UOG1_ENDPTCTRL2_RXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL2, field RXI[5] (RW)
@@ -6607,7 +6231,6 @@ typedef union _hw_usbc_uog1_endptctrl2
  * toggle sequence and always accept data packet regardless of their data PID.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL2_RXI      (5)      //!< Bit position for USBC_UOG1_ENDPTCTRL2_RXI.
 #define BM_USBC_UOG1_ENDPTCTRL2_RXI      (0x00000020)  //!< Bit mask for USBC_UOG1_ENDPTCTRL2_RXI.
 
@@ -6621,7 +6244,6 @@ typedef union _hw_usbc_uog1_endptctrl2
 //! @brief Set the RXI field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL2_RXI(v)   (HW_USBC_UOG1_ENDPTCTRL2_WR((HW_USBC_UOG1_ENDPTCTRL2_RD() & ~BM_USBC_UOG1_ENDPTCTRL2_RXI) | BF_USBC_UOG1_ENDPTCTRL2_RXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL2, field RXR[6] (RW)
@@ -6631,7 +6253,6 @@ typedef union _hw_usbc_uog1_endptctrl2
  * between the host and device.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL2_RXR      (6)      //!< Bit position for USBC_UOG1_ENDPTCTRL2_RXR.
 #define BM_USBC_UOG1_ENDPTCTRL2_RXR      (0x00000040)  //!< Bit mask for USBC_UOG1_ENDPTCTRL2_RXR.
 
@@ -6645,7 +6266,6 @@ typedef union _hw_usbc_uog1_endptctrl2
 //! @brief Set the RXR field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL2_RXR(v)   (HW_USBC_UOG1_ENDPTCTRL2_WR((HW_USBC_UOG1_ENDPTCTRL2_RD() & ~BM_USBC_UOG1_ENDPTCTRL2_RXR) | BF_USBC_UOG1_ENDPTCTRL2_RXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL2, field RXE[7] (RW)
@@ -6654,7 +6274,6 @@ typedef union _hw_usbc_uog1_endptctrl2
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL2_RXE      (7)      //!< Bit position for USBC_UOG1_ENDPTCTRL2_RXE.
 #define BM_USBC_UOG1_ENDPTCTRL2_RXE      (0x00000080)  //!< Bit mask for USBC_UOG1_ENDPTCTRL2_RXE.
 
@@ -6668,7 +6287,6 @@ typedef union _hw_usbc_uog1_endptctrl2
 //! @brief Set the RXE field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL2_RXE(v)   (HW_USBC_UOG1_ENDPTCTRL2_WR((HW_USBC_UOG1_ENDPTCTRL2_RD() & ~BM_USBC_UOG1_ENDPTCTRL2_RXE) | BF_USBC_UOG1_ENDPTCTRL2_RXE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL2, field TXS[16] (RW)
@@ -6686,7 +6304,6 @@ typedef union _hw_usbc_uog1_endptctrl2
  * ENDPTSETUPSTAT bit.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL2_TXS      (16)      //!< Bit position for USBC_UOG1_ENDPTCTRL2_TXS.
 #define BM_USBC_UOG1_ENDPTCTRL2_TXS      (0x00010000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL2_TXS.
 
@@ -6700,7 +6317,6 @@ typedef union _hw_usbc_uog1_endptctrl2
 //! @brief Set the TXS field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL2_TXS(v)   (HW_USBC_UOG1_ENDPTCTRL2_WR((HW_USBC_UOG1_ENDPTCTRL2_RD() & ~BM_USBC_UOG1_ENDPTCTRL2_TXS) | BF_USBC_UOG1_ENDPTCTRL2_TXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL2, field TXD[17] (RW)
@@ -6709,7 +6325,6 @@ typedef union _hw_usbc_uog1_endptctrl2
  * be written as 0.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL2_TXD      (17)      //!< Bit position for USBC_UOG1_ENDPTCTRL2_TXD.
 #define BM_USBC_UOG1_ENDPTCTRL2_TXD      (0x00020000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL2_TXD.
 
@@ -6723,7 +6338,6 @@ typedef union _hw_usbc_uog1_endptctrl2
 //! @brief Set the TXD field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL2_TXD(v)   (HW_USBC_UOG1_ENDPTCTRL2_WR((HW_USBC_UOG1_ENDPTCTRL2_RD() & ~BM_USBC_UOG1_ENDPTCTRL2_TXD) | BF_USBC_UOG1_ENDPTCTRL2_TXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL2, field TXT[19:18] (RW)
@@ -6731,7 +6345,6 @@ typedef union _hw_usbc_uog1_endptctrl2
  * TX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Interrupt
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL2_TXT      (18)      //!< Bit position for USBC_UOG1_ENDPTCTRL2_TXT.
 #define BM_USBC_UOG1_ENDPTCTRL2_TXT      (0x000c0000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL2_TXT.
 
@@ -6745,7 +6358,6 @@ typedef union _hw_usbc_uog1_endptctrl2
 //! @brief Set the TXT field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL2_TXT(v)   (HW_USBC_UOG1_ENDPTCTRL2_WR((HW_USBC_UOG1_ENDPTCTRL2_RD() & ~BM_USBC_UOG1_ENDPTCTRL2_TXT) | BF_USBC_UOG1_ENDPTCTRL2_TXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL2, field TXI[21] (RW)
@@ -6755,7 +6367,6 @@ typedef union _hw_usbc_uog1_endptctrl2
  * endpoint to ignore the data toggle sequence and always transmit DATA0 for a data packet.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL2_TXI      (21)      //!< Bit position for USBC_UOG1_ENDPTCTRL2_TXI.
 #define BM_USBC_UOG1_ENDPTCTRL2_TXI      (0x00200000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL2_TXI.
 
@@ -6769,7 +6380,6 @@ typedef union _hw_usbc_uog1_endptctrl2
 //! @brief Set the TXI field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL2_TXI(v)   (HW_USBC_UOG1_ENDPTCTRL2_WR((HW_USBC_UOG1_ENDPTCTRL2_RD() & ~BM_USBC_UOG1_ENDPTCTRL2_TXI) | BF_USBC_UOG1_ENDPTCTRL2_TXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL2, field TXR[22] (RW)
@@ -6779,7 +6389,6 @@ typedef union _hw_usbc_uog1_endptctrl2
  * between the Host and device.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL2_TXR      (22)      //!< Bit position for USBC_UOG1_ENDPTCTRL2_TXR.
 #define BM_USBC_UOG1_ENDPTCTRL2_TXR      (0x00400000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL2_TXR.
 
@@ -6793,7 +6402,6 @@ typedef union _hw_usbc_uog1_endptctrl2
 //! @brief Set the TXR field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL2_TXR(v)   (HW_USBC_UOG1_ENDPTCTRL2_WR((HW_USBC_UOG1_ENDPTCTRL2_RD() & ~BM_USBC_UOG1_ENDPTCTRL2_TXR) | BF_USBC_UOG1_ENDPTCTRL2_TXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL2, field TXE[23] (RW)
@@ -6802,7 +6410,6 @@ typedef union _hw_usbc_uog1_endptctrl2
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL2_TXE      (23)      //!< Bit position for USBC_UOG1_ENDPTCTRL2_TXE.
 #define BM_USBC_UOG1_ENDPTCTRL2_TXE      (0x00800000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL2_TXE.
 
@@ -6816,7 +6423,6 @@ typedef union _hw_usbc_uog1_endptctrl2
 //! @brief Set the TXE field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL2_TXE(v)   (HW_USBC_UOG1_ENDPTCTRL2_WR((HW_USBC_UOG1_ENDPTCTRL2_RD() & ~BM_USBC_UOG1_ENDPTCTRL2_TXE) | BF_USBC_UOG1_ENDPTCTRL2_TXE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6890,7 +6496,6 @@ typedef union _hw_usbc_uog1_endptctrl3
  * software or automatically cleared as above.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL3_RXS      (0)      //!< Bit position for USBC_UOG1_ENDPTCTRL3_RXS.
 #define BM_USBC_UOG1_ENDPTCTRL3_RXS      (0x00000001)  //!< Bit mask for USBC_UOG1_ENDPTCTRL3_RXS.
 
@@ -6904,7 +6509,6 @@ typedef union _hw_usbc_uog1_endptctrl3
 //! @brief Set the RXS field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL3_RXS(v)   (HW_USBC_UOG1_ENDPTCTRL3_WR((HW_USBC_UOG1_ENDPTCTRL3_RD() & ~BM_USBC_UOG1_ENDPTCTRL3_RXS) | BF_USBC_UOG1_ENDPTCTRL3_RXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL3, field RXD[1] (RW)
@@ -6913,7 +6517,6 @@ typedef union _hw_usbc_uog1_endptctrl3
  * always be written as zero.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL3_RXD      (1)      //!< Bit position for USBC_UOG1_ENDPTCTRL3_RXD.
 #define BM_USBC_UOG1_ENDPTCTRL3_RXD      (0x00000002)  //!< Bit mask for USBC_UOG1_ENDPTCTRL3_RXD.
 
@@ -6927,7 +6530,6 @@ typedef union _hw_usbc_uog1_endptctrl3
 //! @brief Set the RXD field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL3_RXD(v)   (HW_USBC_UOG1_ENDPTCTRL3_WR((HW_USBC_UOG1_ENDPTCTRL3_RD() & ~BM_USBC_UOG1_ENDPTCTRL3_RXD) | BF_USBC_UOG1_ENDPTCTRL3_RXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL3, field RXT[3:2] (RW)
@@ -6935,7 +6537,6 @@ typedef union _hw_usbc_uog1_endptctrl3
  * RX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Reserved
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL3_RXT      (2)      //!< Bit position for USBC_UOG1_ENDPTCTRL3_RXT.
 #define BM_USBC_UOG1_ENDPTCTRL3_RXT      (0x0000000c)  //!< Bit mask for USBC_UOG1_ENDPTCTRL3_RXT.
 
@@ -6949,7 +6550,6 @@ typedef union _hw_usbc_uog1_endptctrl3
 //! @brief Set the RXT field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL3_RXT(v)   (HW_USBC_UOG1_ENDPTCTRL3_WR((HW_USBC_UOG1_ENDPTCTRL3_RD() & ~BM_USBC_UOG1_ENDPTCTRL3_RXT) | BF_USBC_UOG1_ENDPTCTRL3_RXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL3, field RXI[5] (RW)
@@ -6959,7 +6559,6 @@ typedef union _hw_usbc_uog1_endptctrl3
  * toggle sequence and always accept data packet regardless of their data PID.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL3_RXI      (5)      //!< Bit position for USBC_UOG1_ENDPTCTRL3_RXI.
 #define BM_USBC_UOG1_ENDPTCTRL3_RXI      (0x00000020)  //!< Bit mask for USBC_UOG1_ENDPTCTRL3_RXI.
 
@@ -6973,7 +6572,6 @@ typedef union _hw_usbc_uog1_endptctrl3
 //! @brief Set the RXI field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL3_RXI(v)   (HW_USBC_UOG1_ENDPTCTRL3_WR((HW_USBC_UOG1_ENDPTCTRL3_RD() & ~BM_USBC_UOG1_ENDPTCTRL3_RXI) | BF_USBC_UOG1_ENDPTCTRL3_RXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL3, field RXR[6] (RW)
@@ -6983,7 +6581,6 @@ typedef union _hw_usbc_uog1_endptctrl3
  * between the host and device.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL3_RXR      (6)      //!< Bit position for USBC_UOG1_ENDPTCTRL3_RXR.
 #define BM_USBC_UOG1_ENDPTCTRL3_RXR      (0x00000040)  //!< Bit mask for USBC_UOG1_ENDPTCTRL3_RXR.
 
@@ -6997,7 +6594,6 @@ typedef union _hw_usbc_uog1_endptctrl3
 //! @brief Set the RXR field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL3_RXR(v)   (HW_USBC_UOG1_ENDPTCTRL3_WR((HW_USBC_UOG1_ENDPTCTRL3_RD() & ~BM_USBC_UOG1_ENDPTCTRL3_RXR) | BF_USBC_UOG1_ENDPTCTRL3_RXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL3, field RXE[7] (RW)
@@ -7006,7 +6602,6 @@ typedef union _hw_usbc_uog1_endptctrl3
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL3_RXE      (7)      //!< Bit position for USBC_UOG1_ENDPTCTRL3_RXE.
 #define BM_USBC_UOG1_ENDPTCTRL3_RXE      (0x00000080)  //!< Bit mask for USBC_UOG1_ENDPTCTRL3_RXE.
 
@@ -7020,7 +6615,6 @@ typedef union _hw_usbc_uog1_endptctrl3
 //! @brief Set the RXE field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL3_RXE(v)   (HW_USBC_UOG1_ENDPTCTRL3_WR((HW_USBC_UOG1_ENDPTCTRL3_RD() & ~BM_USBC_UOG1_ENDPTCTRL3_RXE) | BF_USBC_UOG1_ENDPTCTRL3_RXE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL3, field TXS[16] (RW)
@@ -7038,7 +6632,6 @@ typedef union _hw_usbc_uog1_endptctrl3
  * ENDPTSETUPSTAT bit.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL3_TXS      (16)      //!< Bit position for USBC_UOG1_ENDPTCTRL3_TXS.
 #define BM_USBC_UOG1_ENDPTCTRL3_TXS      (0x00010000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL3_TXS.
 
@@ -7052,7 +6645,6 @@ typedef union _hw_usbc_uog1_endptctrl3
 //! @brief Set the TXS field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL3_TXS(v)   (HW_USBC_UOG1_ENDPTCTRL3_WR((HW_USBC_UOG1_ENDPTCTRL3_RD() & ~BM_USBC_UOG1_ENDPTCTRL3_TXS) | BF_USBC_UOG1_ENDPTCTRL3_TXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL3, field TXD[17] (RW)
@@ -7061,7 +6653,6 @@ typedef union _hw_usbc_uog1_endptctrl3
  * be written as 0.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL3_TXD      (17)      //!< Bit position for USBC_UOG1_ENDPTCTRL3_TXD.
 #define BM_USBC_UOG1_ENDPTCTRL3_TXD      (0x00020000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL3_TXD.
 
@@ -7075,7 +6666,6 @@ typedef union _hw_usbc_uog1_endptctrl3
 //! @brief Set the TXD field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL3_TXD(v)   (HW_USBC_UOG1_ENDPTCTRL3_WR((HW_USBC_UOG1_ENDPTCTRL3_RD() & ~BM_USBC_UOG1_ENDPTCTRL3_TXD) | BF_USBC_UOG1_ENDPTCTRL3_TXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL3, field TXT[19:18] (RW)
@@ -7083,7 +6673,6 @@ typedef union _hw_usbc_uog1_endptctrl3
  * TX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Interrupt
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL3_TXT      (18)      //!< Bit position for USBC_UOG1_ENDPTCTRL3_TXT.
 #define BM_USBC_UOG1_ENDPTCTRL3_TXT      (0x000c0000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL3_TXT.
 
@@ -7097,7 +6686,6 @@ typedef union _hw_usbc_uog1_endptctrl3
 //! @brief Set the TXT field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL3_TXT(v)   (HW_USBC_UOG1_ENDPTCTRL3_WR((HW_USBC_UOG1_ENDPTCTRL3_RD() & ~BM_USBC_UOG1_ENDPTCTRL3_TXT) | BF_USBC_UOG1_ENDPTCTRL3_TXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL3, field TXI[21] (RW)
@@ -7107,7 +6695,6 @@ typedef union _hw_usbc_uog1_endptctrl3
  * endpoint to ignore the data toggle sequence and always transmit DATA0 for a data packet.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL3_TXI      (21)      //!< Bit position for USBC_UOG1_ENDPTCTRL3_TXI.
 #define BM_USBC_UOG1_ENDPTCTRL3_TXI      (0x00200000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL3_TXI.
 
@@ -7121,7 +6708,6 @@ typedef union _hw_usbc_uog1_endptctrl3
 //! @brief Set the TXI field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL3_TXI(v)   (HW_USBC_UOG1_ENDPTCTRL3_WR((HW_USBC_UOG1_ENDPTCTRL3_RD() & ~BM_USBC_UOG1_ENDPTCTRL3_TXI) | BF_USBC_UOG1_ENDPTCTRL3_TXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL3, field TXR[22] (RW)
@@ -7131,7 +6717,6 @@ typedef union _hw_usbc_uog1_endptctrl3
  * between the Host and device.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL3_TXR      (22)      //!< Bit position for USBC_UOG1_ENDPTCTRL3_TXR.
 #define BM_USBC_UOG1_ENDPTCTRL3_TXR      (0x00400000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL3_TXR.
 
@@ -7145,7 +6730,6 @@ typedef union _hw_usbc_uog1_endptctrl3
 //! @brief Set the TXR field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL3_TXR(v)   (HW_USBC_UOG1_ENDPTCTRL3_WR((HW_USBC_UOG1_ENDPTCTRL3_RD() & ~BM_USBC_UOG1_ENDPTCTRL3_TXR) | BF_USBC_UOG1_ENDPTCTRL3_TXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL3, field TXE[23] (RW)
@@ -7154,7 +6738,6 @@ typedef union _hw_usbc_uog1_endptctrl3
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL3_TXE      (23)      //!< Bit position for USBC_UOG1_ENDPTCTRL3_TXE.
 #define BM_USBC_UOG1_ENDPTCTRL3_TXE      (0x00800000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL3_TXE.
 
@@ -7168,7 +6751,6 @@ typedef union _hw_usbc_uog1_endptctrl3
 //! @brief Set the TXE field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL3_TXE(v)   (HW_USBC_UOG1_ENDPTCTRL3_WR((HW_USBC_UOG1_ENDPTCTRL3_RD() & ~BM_USBC_UOG1_ENDPTCTRL3_TXE) | BF_USBC_UOG1_ENDPTCTRL3_TXE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7242,7 +6824,6 @@ typedef union _hw_usbc_uog1_endptctrl4
  * software or automatically cleared as above.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL4_RXS      (0)      //!< Bit position for USBC_UOG1_ENDPTCTRL4_RXS.
 #define BM_USBC_UOG1_ENDPTCTRL4_RXS      (0x00000001)  //!< Bit mask for USBC_UOG1_ENDPTCTRL4_RXS.
 
@@ -7256,7 +6837,6 @@ typedef union _hw_usbc_uog1_endptctrl4
 //! @brief Set the RXS field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL4_RXS(v)   (HW_USBC_UOG1_ENDPTCTRL4_WR((HW_USBC_UOG1_ENDPTCTRL4_RD() & ~BM_USBC_UOG1_ENDPTCTRL4_RXS) | BF_USBC_UOG1_ENDPTCTRL4_RXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL4, field RXD[1] (RW)
@@ -7265,7 +6845,6 @@ typedef union _hw_usbc_uog1_endptctrl4
  * always be written as zero.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL4_RXD      (1)      //!< Bit position for USBC_UOG1_ENDPTCTRL4_RXD.
 #define BM_USBC_UOG1_ENDPTCTRL4_RXD      (0x00000002)  //!< Bit mask for USBC_UOG1_ENDPTCTRL4_RXD.
 
@@ -7279,7 +6858,6 @@ typedef union _hw_usbc_uog1_endptctrl4
 //! @brief Set the RXD field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL4_RXD(v)   (HW_USBC_UOG1_ENDPTCTRL4_WR((HW_USBC_UOG1_ENDPTCTRL4_RD() & ~BM_USBC_UOG1_ENDPTCTRL4_RXD) | BF_USBC_UOG1_ENDPTCTRL4_RXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL4, field RXT[3:2] (RW)
@@ -7287,7 +6865,6 @@ typedef union _hw_usbc_uog1_endptctrl4
  * RX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Reserved
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL4_RXT      (2)      //!< Bit position for USBC_UOG1_ENDPTCTRL4_RXT.
 #define BM_USBC_UOG1_ENDPTCTRL4_RXT      (0x0000000c)  //!< Bit mask for USBC_UOG1_ENDPTCTRL4_RXT.
 
@@ -7301,7 +6878,6 @@ typedef union _hw_usbc_uog1_endptctrl4
 //! @brief Set the RXT field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL4_RXT(v)   (HW_USBC_UOG1_ENDPTCTRL4_WR((HW_USBC_UOG1_ENDPTCTRL4_RD() & ~BM_USBC_UOG1_ENDPTCTRL4_RXT) | BF_USBC_UOG1_ENDPTCTRL4_RXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL4, field RXI[5] (RW)
@@ -7311,7 +6887,6 @@ typedef union _hw_usbc_uog1_endptctrl4
  * toggle sequence and always accept data packet regardless of their data PID.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL4_RXI      (5)      //!< Bit position for USBC_UOG1_ENDPTCTRL4_RXI.
 #define BM_USBC_UOG1_ENDPTCTRL4_RXI      (0x00000020)  //!< Bit mask for USBC_UOG1_ENDPTCTRL4_RXI.
 
@@ -7325,7 +6900,6 @@ typedef union _hw_usbc_uog1_endptctrl4
 //! @brief Set the RXI field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL4_RXI(v)   (HW_USBC_UOG1_ENDPTCTRL4_WR((HW_USBC_UOG1_ENDPTCTRL4_RD() & ~BM_USBC_UOG1_ENDPTCTRL4_RXI) | BF_USBC_UOG1_ENDPTCTRL4_RXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL4, field RXR[6] (RW)
@@ -7335,7 +6909,6 @@ typedef union _hw_usbc_uog1_endptctrl4
  * between the host and device.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL4_RXR      (6)      //!< Bit position for USBC_UOG1_ENDPTCTRL4_RXR.
 #define BM_USBC_UOG1_ENDPTCTRL4_RXR      (0x00000040)  //!< Bit mask for USBC_UOG1_ENDPTCTRL4_RXR.
 
@@ -7349,7 +6922,6 @@ typedef union _hw_usbc_uog1_endptctrl4
 //! @brief Set the RXR field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL4_RXR(v)   (HW_USBC_UOG1_ENDPTCTRL4_WR((HW_USBC_UOG1_ENDPTCTRL4_RD() & ~BM_USBC_UOG1_ENDPTCTRL4_RXR) | BF_USBC_UOG1_ENDPTCTRL4_RXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL4, field RXE[7] (RW)
@@ -7358,7 +6930,6 @@ typedef union _hw_usbc_uog1_endptctrl4
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL4_RXE      (7)      //!< Bit position for USBC_UOG1_ENDPTCTRL4_RXE.
 #define BM_USBC_UOG1_ENDPTCTRL4_RXE      (0x00000080)  //!< Bit mask for USBC_UOG1_ENDPTCTRL4_RXE.
 
@@ -7372,7 +6943,6 @@ typedef union _hw_usbc_uog1_endptctrl4
 //! @brief Set the RXE field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL4_RXE(v)   (HW_USBC_UOG1_ENDPTCTRL4_WR((HW_USBC_UOG1_ENDPTCTRL4_RD() & ~BM_USBC_UOG1_ENDPTCTRL4_RXE) | BF_USBC_UOG1_ENDPTCTRL4_RXE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL4, field TXS[16] (RW)
@@ -7390,7 +6960,6 @@ typedef union _hw_usbc_uog1_endptctrl4
  * ENDPTSETUPSTAT bit.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL4_TXS      (16)      //!< Bit position for USBC_UOG1_ENDPTCTRL4_TXS.
 #define BM_USBC_UOG1_ENDPTCTRL4_TXS      (0x00010000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL4_TXS.
 
@@ -7404,7 +6973,6 @@ typedef union _hw_usbc_uog1_endptctrl4
 //! @brief Set the TXS field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL4_TXS(v)   (HW_USBC_UOG1_ENDPTCTRL4_WR((HW_USBC_UOG1_ENDPTCTRL4_RD() & ~BM_USBC_UOG1_ENDPTCTRL4_TXS) | BF_USBC_UOG1_ENDPTCTRL4_TXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL4, field TXD[17] (RW)
@@ -7413,7 +6981,6 @@ typedef union _hw_usbc_uog1_endptctrl4
  * be written as 0.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL4_TXD      (17)      //!< Bit position for USBC_UOG1_ENDPTCTRL4_TXD.
 #define BM_USBC_UOG1_ENDPTCTRL4_TXD      (0x00020000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL4_TXD.
 
@@ -7427,7 +6994,6 @@ typedef union _hw_usbc_uog1_endptctrl4
 //! @brief Set the TXD field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL4_TXD(v)   (HW_USBC_UOG1_ENDPTCTRL4_WR((HW_USBC_UOG1_ENDPTCTRL4_RD() & ~BM_USBC_UOG1_ENDPTCTRL4_TXD) | BF_USBC_UOG1_ENDPTCTRL4_TXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL4, field TXT[19:18] (RW)
@@ -7435,7 +7001,6 @@ typedef union _hw_usbc_uog1_endptctrl4
  * TX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Interrupt
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL4_TXT      (18)      //!< Bit position for USBC_UOG1_ENDPTCTRL4_TXT.
 #define BM_USBC_UOG1_ENDPTCTRL4_TXT      (0x000c0000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL4_TXT.
 
@@ -7449,7 +7014,6 @@ typedef union _hw_usbc_uog1_endptctrl4
 //! @brief Set the TXT field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL4_TXT(v)   (HW_USBC_UOG1_ENDPTCTRL4_WR((HW_USBC_UOG1_ENDPTCTRL4_RD() & ~BM_USBC_UOG1_ENDPTCTRL4_TXT) | BF_USBC_UOG1_ENDPTCTRL4_TXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL4, field TXI[21] (RW)
@@ -7459,7 +7023,6 @@ typedef union _hw_usbc_uog1_endptctrl4
  * endpoint to ignore the data toggle sequence and always transmit DATA0 for a data packet.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL4_TXI      (21)      //!< Bit position for USBC_UOG1_ENDPTCTRL4_TXI.
 #define BM_USBC_UOG1_ENDPTCTRL4_TXI      (0x00200000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL4_TXI.
 
@@ -7473,7 +7036,6 @@ typedef union _hw_usbc_uog1_endptctrl4
 //! @brief Set the TXI field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL4_TXI(v)   (HW_USBC_UOG1_ENDPTCTRL4_WR((HW_USBC_UOG1_ENDPTCTRL4_RD() & ~BM_USBC_UOG1_ENDPTCTRL4_TXI) | BF_USBC_UOG1_ENDPTCTRL4_TXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL4, field TXR[22] (RW)
@@ -7483,7 +7045,6 @@ typedef union _hw_usbc_uog1_endptctrl4
  * between the Host and device.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL4_TXR      (22)      //!< Bit position for USBC_UOG1_ENDPTCTRL4_TXR.
 #define BM_USBC_UOG1_ENDPTCTRL4_TXR      (0x00400000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL4_TXR.
 
@@ -7497,7 +7058,6 @@ typedef union _hw_usbc_uog1_endptctrl4
 //! @brief Set the TXR field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL4_TXR(v)   (HW_USBC_UOG1_ENDPTCTRL4_WR((HW_USBC_UOG1_ENDPTCTRL4_RD() & ~BM_USBC_UOG1_ENDPTCTRL4_TXR) | BF_USBC_UOG1_ENDPTCTRL4_TXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL4, field TXE[23] (RW)
@@ -7506,7 +7066,6 @@ typedef union _hw_usbc_uog1_endptctrl4
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL4_TXE      (23)      //!< Bit position for USBC_UOG1_ENDPTCTRL4_TXE.
 #define BM_USBC_UOG1_ENDPTCTRL4_TXE      (0x00800000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL4_TXE.
 
@@ -7520,7 +7079,6 @@ typedef union _hw_usbc_uog1_endptctrl4
 //! @brief Set the TXE field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL4_TXE(v)   (HW_USBC_UOG1_ENDPTCTRL4_WR((HW_USBC_UOG1_ENDPTCTRL4_RD() & ~BM_USBC_UOG1_ENDPTCTRL4_TXE) | BF_USBC_UOG1_ENDPTCTRL4_TXE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7594,7 +7152,6 @@ typedef union _hw_usbc_uog1_endptctrl5
  * software or automatically cleared as above.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL5_RXS      (0)      //!< Bit position for USBC_UOG1_ENDPTCTRL5_RXS.
 #define BM_USBC_UOG1_ENDPTCTRL5_RXS      (0x00000001)  //!< Bit mask for USBC_UOG1_ENDPTCTRL5_RXS.
 
@@ -7608,7 +7165,6 @@ typedef union _hw_usbc_uog1_endptctrl5
 //! @brief Set the RXS field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL5_RXS(v)   (HW_USBC_UOG1_ENDPTCTRL5_WR((HW_USBC_UOG1_ENDPTCTRL5_RD() & ~BM_USBC_UOG1_ENDPTCTRL5_RXS) | BF_USBC_UOG1_ENDPTCTRL5_RXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL5, field RXD[1] (RW)
@@ -7617,7 +7173,6 @@ typedef union _hw_usbc_uog1_endptctrl5
  * always be written as zero.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL5_RXD      (1)      //!< Bit position for USBC_UOG1_ENDPTCTRL5_RXD.
 #define BM_USBC_UOG1_ENDPTCTRL5_RXD      (0x00000002)  //!< Bit mask for USBC_UOG1_ENDPTCTRL5_RXD.
 
@@ -7631,7 +7186,6 @@ typedef union _hw_usbc_uog1_endptctrl5
 //! @brief Set the RXD field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL5_RXD(v)   (HW_USBC_UOG1_ENDPTCTRL5_WR((HW_USBC_UOG1_ENDPTCTRL5_RD() & ~BM_USBC_UOG1_ENDPTCTRL5_RXD) | BF_USBC_UOG1_ENDPTCTRL5_RXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL5, field RXT[3:2] (RW)
@@ -7639,7 +7193,6 @@ typedef union _hw_usbc_uog1_endptctrl5
  * RX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Reserved
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL5_RXT      (2)      //!< Bit position for USBC_UOG1_ENDPTCTRL5_RXT.
 #define BM_USBC_UOG1_ENDPTCTRL5_RXT      (0x0000000c)  //!< Bit mask for USBC_UOG1_ENDPTCTRL5_RXT.
 
@@ -7653,7 +7206,6 @@ typedef union _hw_usbc_uog1_endptctrl5
 //! @brief Set the RXT field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL5_RXT(v)   (HW_USBC_UOG1_ENDPTCTRL5_WR((HW_USBC_UOG1_ENDPTCTRL5_RD() & ~BM_USBC_UOG1_ENDPTCTRL5_RXT) | BF_USBC_UOG1_ENDPTCTRL5_RXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL5, field RXI[5] (RW)
@@ -7663,7 +7215,6 @@ typedef union _hw_usbc_uog1_endptctrl5
  * toggle sequence and always accept data packet regardless of their data PID.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL5_RXI      (5)      //!< Bit position for USBC_UOG1_ENDPTCTRL5_RXI.
 #define BM_USBC_UOG1_ENDPTCTRL5_RXI      (0x00000020)  //!< Bit mask for USBC_UOG1_ENDPTCTRL5_RXI.
 
@@ -7677,7 +7228,6 @@ typedef union _hw_usbc_uog1_endptctrl5
 //! @brief Set the RXI field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL5_RXI(v)   (HW_USBC_UOG1_ENDPTCTRL5_WR((HW_USBC_UOG1_ENDPTCTRL5_RD() & ~BM_USBC_UOG1_ENDPTCTRL5_RXI) | BF_USBC_UOG1_ENDPTCTRL5_RXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL5, field RXR[6] (RW)
@@ -7687,7 +7237,6 @@ typedef union _hw_usbc_uog1_endptctrl5
  * between the host and device.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL5_RXR      (6)      //!< Bit position for USBC_UOG1_ENDPTCTRL5_RXR.
 #define BM_USBC_UOG1_ENDPTCTRL5_RXR      (0x00000040)  //!< Bit mask for USBC_UOG1_ENDPTCTRL5_RXR.
 
@@ -7701,7 +7250,6 @@ typedef union _hw_usbc_uog1_endptctrl5
 //! @brief Set the RXR field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL5_RXR(v)   (HW_USBC_UOG1_ENDPTCTRL5_WR((HW_USBC_UOG1_ENDPTCTRL5_RD() & ~BM_USBC_UOG1_ENDPTCTRL5_RXR) | BF_USBC_UOG1_ENDPTCTRL5_RXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL5, field RXE[7] (RW)
@@ -7710,7 +7258,6 @@ typedef union _hw_usbc_uog1_endptctrl5
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL5_RXE      (7)      //!< Bit position for USBC_UOG1_ENDPTCTRL5_RXE.
 #define BM_USBC_UOG1_ENDPTCTRL5_RXE      (0x00000080)  //!< Bit mask for USBC_UOG1_ENDPTCTRL5_RXE.
 
@@ -7724,7 +7271,6 @@ typedef union _hw_usbc_uog1_endptctrl5
 //! @brief Set the RXE field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL5_RXE(v)   (HW_USBC_UOG1_ENDPTCTRL5_WR((HW_USBC_UOG1_ENDPTCTRL5_RD() & ~BM_USBC_UOG1_ENDPTCTRL5_RXE) | BF_USBC_UOG1_ENDPTCTRL5_RXE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL5, field TXS[16] (RW)
@@ -7742,7 +7288,6 @@ typedef union _hw_usbc_uog1_endptctrl5
  * ENDPTSETUPSTAT bit.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL5_TXS      (16)      //!< Bit position for USBC_UOG1_ENDPTCTRL5_TXS.
 #define BM_USBC_UOG1_ENDPTCTRL5_TXS      (0x00010000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL5_TXS.
 
@@ -7756,7 +7301,6 @@ typedef union _hw_usbc_uog1_endptctrl5
 //! @brief Set the TXS field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL5_TXS(v)   (HW_USBC_UOG1_ENDPTCTRL5_WR((HW_USBC_UOG1_ENDPTCTRL5_RD() & ~BM_USBC_UOG1_ENDPTCTRL5_TXS) | BF_USBC_UOG1_ENDPTCTRL5_TXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL5, field TXD[17] (RW)
@@ -7765,7 +7309,6 @@ typedef union _hw_usbc_uog1_endptctrl5
  * be written as 0.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL5_TXD      (17)      //!< Bit position for USBC_UOG1_ENDPTCTRL5_TXD.
 #define BM_USBC_UOG1_ENDPTCTRL5_TXD      (0x00020000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL5_TXD.
 
@@ -7779,7 +7322,6 @@ typedef union _hw_usbc_uog1_endptctrl5
 //! @brief Set the TXD field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL5_TXD(v)   (HW_USBC_UOG1_ENDPTCTRL5_WR((HW_USBC_UOG1_ENDPTCTRL5_RD() & ~BM_USBC_UOG1_ENDPTCTRL5_TXD) | BF_USBC_UOG1_ENDPTCTRL5_TXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL5, field TXT[19:18] (RW)
@@ -7787,7 +7329,6 @@ typedef union _hw_usbc_uog1_endptctrl5
  * TX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Interrupt
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL5_TXT      (18)      //!< Bit position for USBC_UOG1_ENDPTCTRL5_TXT.
 #define BM_USBC_UOG1_ENDPTCTRL5_TXT      (0x000c0000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL5_TXT.
 
@@ -7801,7 +7342,6 @@ typedef union _hw_usbc_uog1_endptctrl5
 //! @brief Set the TXT field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL5_TXT(v)   (HW_USBC_UOG1_ENDPTCTRL5_WR((HW_USBC_UOG1_ENDPTCTRL5_RD() & ~BM_USBC_UOG1_ENDPTCTRL5_TXT) | BF_USBC_UOG1_ENDPTCTRL5_TXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL5, field TXI[21] (RW)
@@ -7811,7 +7351,6 @@ typedef union _hw_usbc_uog1_endptctrl5
  * endpoint to ignore the data toggle sequence and always transmit DATA0 for a data packet.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL5_TXI      (21)      //!< Bit position for USBC_UOG1_ENDPTCTRL5_TXI.
 #define BM_USBC_UOG1_ENDPTCTRL5_TXI      (0x00200000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL5_TXI.
 
@@ -7825,7 +7364,6 @@ typedef union _hw_usbc_uog1_endptctrl5
 //! @brief Set the TXI field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL5_TXI(v)   (HW_USBC_UOG1_ENDPTCTRL5_WR((HW_USBC_UOG1_ENDPTCTRL5_RD() & ~BM_USBC_UOG1_ENDPTCTRL5_TXI) | BF_USBC_UOG1_ENDPTCTRL5_TXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL5, field TXR[22] (RW)
@@ -7835,7 +7373,6 @@ typedef union _hw_usbc_uog1_endptctrl5
  * between the Host and device.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL5_TXR      (22)      //!< Bit position for USBC_UOG1_ENDPTCTRL5_TXR.
 #define BM_USBC_UOG1_ENDPTCTRL5_TXR      (0x00400000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL5_TXR.
 
@@ -7849,7 +7386,6 @@ typedef union _hw_usbc_uog1_endptctrl5
 //! @brief Set the TXR field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL5_TXR(v)   (HW_USBC_UOG1_ENDPTCTRL5_WR((HW_USBC_UOG1_ENDPTCTRL5_RD() & ~BM_USBC_UOG1_ENDPTCTRL5_TXR) | BF_USBC_UOG1_ENDPTCTRL5_TXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL5, field TXE[23] (RW)
@@ -7858,7 +7394,6 @@ typedef union _hw_usbc_uog1_endptctrl5
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL5_TXE      (23)      //!< Bit position for USBC_UOG1_ENDPTCTRL5_TXE.
 #define BM_USBC_UOG1_ENDPTCTRL5_TXE      (0x00800000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL5_TXE.
 
@@ -7872,7 +7407,6 @@ typedef union _hw_usbc_uog1_endptctrl5
 //! @brief Set the TXE field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL5_TXE(v)   (HW_USBC_UOG1_ENDPTCTRL5_WR((HW_USBC_UOG1_ENDPTCTRL5_RD() & ~BM_USBC_UOG1_ENDPTCTRL5_TXE) | BF_USBC_UOG1_ENDPTCTRL5_TXE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7946,7 +7480,6 @@ typedef union _hw_usbc_uog1_endptctrl6
  * software or automatically cleared as above.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL6_RXS      (0)      //!< Bit position for USBC_UOG1_ENDPTCTRL6_RXS.
 #define BM_USBC_UOG1_ENDPTCTRL6_RXS      (0x00000001)  //!< Bit mask for USBC_UOG1_ENDPTCTRL6_RXS.
 
@@ -7960,7 +7493,6 @@ typedef union _hw_usbc_uog1_endptctrl6
 //! @brief Set the RXS field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL6_RXS(v)   (HW_USBC_UOG1_ENDPTCTRL6_WR((HW_USBC_UOG1_ENDPTCTRL6_RD() & ~BM_USBC_UOG1_ENDPTCTRL6_RXS) | BF_USBC_UOG1_ENDPTCTRL6_RXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL6, field RXD[1] (RW)
@@ -7969,7 +7501,6 @@ typedef union _hw_usbc_uog1_endptctrl6
  * always be written as zero.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL6_RXD      (1)      //!< Bit position for USBC_UOG1_ENDPTCTRL6_RXD.
 #define BM_USBC_UOG1_ENDPTCTRL6_RXD      (0x00000002)  //!< Bit mask for USBC_UOG1_ENDPTCTRL6_RXD.
 
@@ -7983,7 +7514,6 @@ typedef union _hw_usbc_uog1_endptctrl6
 //! @brief Set the RXD field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL6_RXD(v)   (HW_USBC_UOG1_ENDPTCTRL6_WR((HW_USBC_UOG1_ENDPTCTRL6_RD() & ~BM_USBC_UOG1_ENDPTCTRL6_RXD) | BF_USBC_UOG1_ENDPTCTRL6_RXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL6, field RXT[3:2] (RW)
@@ -7991,7 +7521,6 @@ typedef union _hw_usbc_uog1_endptctrl6
  * RX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Reserved
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL6_RXT      (2)      //!< Bit position for USBC_UOG1_ENDPTCTRL6_RXT.
 #define BM_USBC_UOG1_ENDPTCTRL6_RXT      (0x0000000c)  //!< Bit mask for USBC_UOG1_ENDPTCTRL6_RXT.
 
@@ -8005,7 +7534,6 @@ typedef union _hw_usbc_uog1_endptctrl6
 //! @brief Set the RXT field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL6_RXT(v)   (HW_USBC_UOG1_ENDPTCTRL6_WR((HW_USBC_UOG1_ENDPTCTRL6_RD() & ~BM_USBC_UOG1_ENDPTCTRL6_RXT) | BF_USBC_UOG1_ENDPTCTRL6_RXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL6, field RXI[5] (RW)
@@ -8015,7 +7543,6 @@ typedef union _hw_usbc_uog1_endptctrl6
  * toggle sequence and always accept data packet regardless of their data PID.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL6_RXI      (5)      //!< Bit position for USBC_UOG1_ENDPTCTRL6_RXI.
 #define BM_USBC_UOG1_ENDPTCTRL6_RXI      (0x00000020)  //!< Bit mask for USBC_UOG1_ENDPTCTRL6_RXI.
 
@@ -8029,7 +7556,6 @@ typedef union _hw_usbc_uog1_endptctrl6
 //! @brief Set the RXI field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL6_RXI(v)   (HW_USBC_UOG1_ENDPTCTRL6_WR((HW_USBC_UOG1_ENDPTCTRL6_RD() & ~BM_USBC_UOG1_ENDPTCTRL6_RXI) | BF_USBC_UOG1_ENDPTCTRL6_RXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL6, field RXR[6] (RW)
@@ -8039,7 +7565,6 @@ typedef union _hw_usbc_uog1_endptctrl6
  * between the host and device.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL6_RXR      (6)      //!< Bit position for USBC_UOG1_ENDPTCTRL6_RXR.
 #define BM_USBC_UOG1_ENDPTCTRL6_RXR      (0x00000040)  //!< Bit mask for USBC_UOG1_ENDPTCTRL6_RXR.
 
@@ -8053,7 +7578,6 @@ typedef union _hw_usbc_uog1_endptctrl6
 //! @brief Set the RXR field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL6_RXR(v)   (HW_USBC_UOG1_ENDPTCTRL6_WR((HW_USBC_UOG1_ENDPTCTRL6_RD() & ~BM_USBC_UOG1_ENDPTCTRL6_RXR) | BF_USBC_UOG1_ENDPTCTRL6_RXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL6, field RXE[7] (RW)
@@ -8062,7 +7586,6 @@ typedef union _hw_usbc_uog1_endptctrl6
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL6_RXE      (7)      //!< Bit position for USBC_UOG1_ENDPTCTRL6_RXE.
 #define BM_USBC_UOG1_ENDPTCTRL6_RXE      (0x00000080)  //!< Bit mask for USBC_UOG1_ENDPTCTRL6_RXE.
 
@@ -8076,7 +7599,6 @@ typedef union _hw_usbc_uog1_endptctrl6
 //! @brief Set the RXE field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL6_RXE(v)   (HW_USBC_UOG1_ENDPTCTRL6_WR((HW_USBC_UOG1_ENDPTCTRL6_RD() & ~BM_USBC_UOG1_ENDPTCTRL6_RXE) | BF_USBC_UOG1_ENDPTCTRL6_RXE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL6, field TXS[16] (RW)
@@ -8094,7 +7616,6 @@ typedef union _hw_usbc_uog1_endptctrl6
  * ENDPTSETUPSTAT bit.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL6_TXS      (16)      //!< Bit position for USBC_UOG1_ENDPTCTRL6_TXS.
 #define BM_USBC_UOG1_ENDPTCTRL6_TXS      (0x00010000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL6_TXS.
 
@@ -8108,7 +7629,6 @@ typedef union _hw_usbc_uog1_endptctrl6
 //! @brief Set the TXS field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL6_TXS(v)   (HW_USBC_UOG1_ENDPTCTRL6_WR((HW_USBC_UOG1_ENDPTCTRL6_RD() & ~BM_USBC_UOG1_ENDPTCTRL6_TXS) | BF_USBC_UOG1_ENDPTCTRL6_TXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL6, field TXD[17] (RW)
@@ -8117,7 +7637,6 @@ typedef union _hw_usbc_uog1_endptctrl6
  * be written as 0.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL6_TXD      (17)      //!< Bit position for USBC_UOG1_ENDPTCTRL6_TXD.
 #define BM_USBC_UOG1_ENDPTCTRL6_TXD      (0x00020000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL6_TXD.
 
@@ -8131,7 +7650,6 @@ typedef union _hw_usbc_uog1_endptctrl6
 //! @brief Set the TXD field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL6_TXD(v)   (HW_USBC_UOG1_ENDPTCTRL6_WR((HW_USBC_UOG1_ENDPTCTRL6_RD() & ~BM_USBC_UOG1_ENDPTCTRL6_TXD) | BF_USBC_UOG1_ENDPTCTRL6_TXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL6, field TXT[19:18] (RW)
@@ -8139,7 +7657,6 @@ typedef union _hw_usbc_uog1_endptctrl6
  * TX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Interrupt
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL6_TXT      (18)      //!< Bit position for USBC_UOG1_ENDPTCTRL6_TXT.
 #define BM_USBC_UOG1_ENDPTCTRL6_TXT      (0x000c0000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL6_TXT.
 
@@ -8153,7 +7670,6 @@ typedef union _hw_usbc_uog1_endptctrl6
 //! @brief Set the TXT field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL6_TXT(v)   (HW_USBC_UOG1_ENDPTCTRL6_WR((HW_USBC_UOG1_ENDPTCTRL6_RD() & ~BM_USBC_UOG1_ENDPTCTRL6_TXT) | BF_USBC_UOG1_ENDPTCTRL6_TXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL6, field TXI[21] (RW)
@@ -8163,7 +7679,6 @@ typedef union _hw_usbc_uog1_endptctrl6
  * endpoint to ignore the data toggle sequence and always transmit DATA0 for a data packet.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL6_TXI      (21)      //!< Bit position for USBC_UOG1_ENDPTCTRL6_TXI.
 #define BM_USBC_UOG1_ENDPTCTRL6_TXI      (0x00200000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL6_TXI.
 
@@ -8177,7 +7692,6 @@ typedef union _hw_usbc_uog1_endptctrl6
 //! @brief Set the TXI field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL6_TXI(v)   (HW_USBC_UOG1_ENDPTCTRL6_WR((HW_USBC_UOG1_ENDPTCTRL6_RD() & ~BM_USBC_UOG1_ENDPTCTRL6_TXI) | BF_USBC_UOG1_ENDPTCTRL6_TXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL6, field TXR[22] (RW)
@@ -8187,7 +7701,6 @@ typedef union _hw_usbc_uog1_endptctrl6
  * between the Host and device.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL6_TXR      (22)      //!< Bit position for USBC_UOG1_ENDPTCTRL6_TXR.
 #define BM_USBC_UOG1_ENDPTCTRL6_TXR      (0x00400000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL6_TXR.
 
@@ -8201,7 +7714,6 @@ typedef union _hw_usbc_uog1_endptctrl6
 //! @brief Set the TXR field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL6_TXR(v)   (HW_USBC_UOG1_ENDPTCTRL6_WR((HW_USBC_UOG1_ENDPTCTRL6_RD() & ~BM_USBC_UOG1_ENDPTCTRL6_TXR) | BF_USBC_UOG1_ENDPTCTRL6_TXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL6, field TXE[23] (RW)
@@ -8210,7 +7722,6 @@ typedef union _hw_usbc_uog1_endptctrl6
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL6_TXE      (23)      //!< Bit position for USBC_UOG1_ENDPTCTRL6_TXE.
 #define BM_USBC_UOG1_ENDPTCTRL6_TXE      (0x00800000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL6_TXE.
 
@@ -8224,7 +7735,6 @@ typedef union _hw_usbc_uog1_endptctrl6
 //! @brief Set the TXE field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL6_TXE(v)   (HW_USBC_UOG1_ENDPTCTRL6_WR((HW_USBC_UOG1_ENDPTCTRL6_RD() & ~BM_USBC_UOG1_ENDPTCTRL6_TXE) | BF_USBC_UOG1_ENDPTCTRL6_TXE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8298,7 +7808,6 @@ typedef union _hw_usbc_uog1_endptctrl7
  * software or automatically cleared as above.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL7_RXS      (0)      //!< Bit position for USBC_UOG1_ENDPTCTRL7_RXS.
 #define BM_USBC_UOG1_ENDPTCTRL7_RXS      (0x00000001)  //!< Bit mask for USBC_UOG1_ENDPTCTRL7_RXS.
 
@@ -8312,7 +7821,6 @@ typedef union _hw_usbc_uog1_endptctrl7
 //! @brief Set the RXS field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL7_RXS(v)   (HW_USBC_UOG1_ENDPTCTRL7_WR((HW_USBC_UOG1_ENDPTCTRL7_RD() & ~BM_USBC_UOG1_ENDPTCTRL7_RXS) | BF_USBC_UOG1_ENDPTCTRL7_RXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL7, field RXD[1] (RW)
@@ -8321,7 +7829,6 @@ typedef union _hw_usbc_uog1_endptctrl7
  * always be written as zero.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL7_RXD      (1)      //!< Bit position for USBC_UOG1_ENDPTCTRL7_RXD.
 #define BM_USBC_UOG1_ENDPTCTRL7_RXD      (0x00000002)  //!< Bit mask for USBC_UOG1_ENDPTCTRL7_RXD.
 
@@ -8335,7 +7842,6 @@ typedef union _hw_usbc_uog1_endptctrl7
 //! @brief Set the RXD field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL7_RXD(v)   (HW_USBC_UOG1_ENDPTCTRL7_WR((HW_USBC_UOG1_ENDPTCTRL7_RD() & ~BM_USBC_UOG1_ENDPTCTRL7_RXD) | BF_USBC_UOG1_ENDPTCTRL7_RXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL7, field RXT[3:2] (RW)
@@ -8343,7 +7849,6 @@ typedef union _hw_usbc_uog1_endptctrl7
  * RX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Reserved
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL7_RXT      (2)      //!< Bit position for USBC_UOG1_ENDPTCTRL7_RXT.
 #define BM_USBC_UOG1_ENDPTCTRL7_RXT      (0x0000000c)  //!< Bit mask for USBC_UOG1_ENDPTCTRL7_RXT.
 
@@ -8357,7 +7862,6 @@ typedef union _hw_usbc_uog1_endptctrl7
 //! @brief Set the RXT field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL7_RXT(v)   (HW_USBC_UOG1_ENDPTCTRL7_WR((HW_USBC_UOG1_ENDPTCTRL7_RD() & ~BM_USBC_UOG1_ENDPTCTRL7_RXT) | BF_USBC_UOG1_ENDPTCTRL7_RXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL7, field RXI[5] (RW)
@@ -8367,7 +7871,6 @@ typedef union _hw_usbc_uog1_endptctrl7
  * toggle sequence and always accept data packet regardless of their data PID.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL7_RXI      (5)      //!< Bit position for USBC_UOG1_ENDPTCTRL7_RXI.
 #define BM_USBC_UOG1_ENDPTCTRL7_RXI      (0x00000020)  //!< Bit mask for USBC_UOG1_ENDPTCTRL7_RXI.
 
@@ -8381,7 +7884,6 @@ typedef union _hw_usbc_uog1_endptctrl7
 //! @brief Set the RXI field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL7_RXI(v)   (HW_USBC_UOG1_ENDPTCTRL7_WR((HW_USBC_UOG1_ENDPTCTRL7_RD() & ~BM_USBC_UOG1_ENDPTCTRL7_RXI) | BF_USBC_UOG1_ENDPTCTRL7_RXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL7, field RXR[6] (RW)
@@ -8391,7 +7893,6 @@ typedef union _hw_usbc_uog1_endptctrl7
  * between the host and device.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL7_RXR      (6)      //!< Bit position for USBC_UOG1_ENDPTCTRL7_RXR.
 #define BM_USBC_UOG1_ENDPTCTRL7_RXR      (0x00000040)  //!< Bit mask for USBC_UOG1_ENDPTCTRL7_RXR.
 
@@ -8405,7 +7906,6 @@ typedef union _hw_usbc_uog1_endptctrl7
 //! @brief Set the RXR field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL7_RXR(v)   (HW_USBC_UOG1_ENDPTCTRL7_WR((HW_USBC_UOG1_ENDPTCTRL7_RD() & ~BM_USBC_UOG1_ENDPTCTRL7_RXR) | BF_USBC_UOG1_ENDPTCTRL7_RXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL7, field RXE[7] (RW)
@@ -8414,7 +7914,6 @@ typedef union _hw_usbc_uog1_endptctrl7
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL7_RXE      (7)      //!< Bit position for USBC_UOG1_ENDPTCTRL7_RXE.
 #define BM_USBC_UOG1_ENDPTCTRL7_RXE      (0x00000080)  //!< Bit mask for USBC_UOG1_ENDPTCTRL7_RXE.
 
@@ -8428,7 +7927,6 @@ typedef union _hw_usbc_uog1_endptctrl7
 //! @brief Set the RXE field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL7_RXE(v)   (HW_USBC_UOG1_ENDPTCTRL7_WR((HW_USBC_UOG1_ENDPTCTRL7_RD() & ~BM_USBC_UOG1_ENDPTCTRL7_RXE) | BF_USBC_UOG1_ENDPTCTRL7_RXE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL7, field TXS[16] (RW)
@@ -8446,7 +7944,6 @@ typedef union _hw_usbc_uog1_endptctrl7
  * ENDPTSETUPSTAT bit.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL7_TXS      (16)      //!< Bit position for USBC_UOG1_ENDPTCTRL7_TXS.
 #define BM_USBC_UOG1_ENDPTCTRL7_TXS      (0x00010000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL7_TXS.
 
@@ -8460,7 +7957,6 @@ typedef union _hw_usbc_uog1_endptctrl7
 //! @brief Set the TXS field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL7_TXS(v)   (HW_USBC_UOG1_ENDPTCTRL7_WR((HW_USBC_UOG1_ENDPTCTRL7_RD() & ~BM_USBC_UOG1_ENDPTCTRL7_TXS) | BF_USBC_UOG1_ENDPTCTRL7_TXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL7, field TXD[17] (RW)
@@ -8469,7 +7965,6 @@ typedef union _hw_usbc_uog1_endptctrl7
  * be written as 0.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL7_TXD      (17)      //!< Bit position for USBC_UOG1_ENDPTCTRL7_TXD.
 #define BM_USBC_UOG1_ENDPTCTRL7_TXD      (0x00020000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL7_TXD.
 
@@ -8483,7 +7978,6 @@ typedef union _hw_usbc_uog1_endptctrl7
 //! @brief Set the TXD field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL7_TXD(v)   (HW_USBC_UOG1_ENDPTCTRL7_WR((HW_USBC_UOG1_ENDPTCTRL7_RD() & ~BM_USBC_UOG1_ENDPTCTRL7_TXD) | BF_USBC_UOG1_ENDPTCTRL7_TXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL7, field TXT[19:18] (RW)
@@ -8491,7 +7985,6 @@ typedef union _hw_usbc_uog1_endptctrl7
  * TX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Interrupt
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL7_TXT      (18)      //!< Bit position for USBC_UOG1_ENDPTCTRL7_TXT.
 #define BM_USBC_UOG1_ENDPTCTRL7_TXT      (0x000c0000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL7_TXT.
 
@@ -8505,7 +7998,6 @@ typedef union _hw_usbc_uog1_endptctrl7
 //! @brief Set the TXT field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL7_TXT(v)   (HW_USBC_UOG1_ENDPTCTRL7_WR((HW_USBC_UOG1_ENDPTCTRL7_RD() & ~BM_USBC_UOG1_ENDPTCTRL7_TXT) | BF_USBC_UOG1_ENDPTCTRL7_TXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL7, field TXI[21] (RW)
@@ -8515,7 +8007,6 @@ typedef union _hw_usbc_uog1_endptctrl7
  * endpoint to ignore the data toggle sequence and always transmit DATA0 for a data packet.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL7_TXI      (21)      //!< Bit position for USBC_UOG1_ENDPTCTRL7_TXI.
 #define BM_USBC_UOG1_ENDPTCTRL7_TXI      (0x00200000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL7_TXI.
 
@@ -8529,7 +8020,6 @@ typedef union _hw_usbc_uog1_endptctrl7
 //! @brief Set the TXI field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL7_TXI(v)   (HW_USBC_UOG1_ENDPTCTRL7_WR((HW_USBC_UOG1_ENDPTCTRL7_RD() & ~BM_USBC_UOG1_ENDPTCTRL7_TXI) | BF_USBC_UOG1_ENDPTCTRL7_TXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL7, field TXR[22] (RW)
@@ -8539,7 +8029,6 @@ typedef union _hw_usbc_uog1_endptctrl7
  * between the Host and device.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL7_TXR      (22)      //!< Bit position for USBC_UOG1_ENDPTCTRL7_TXR.
 #define BM_USBC_UOG1_ENDPTCTRL7_TXR      (0x00400000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL7_TXR.
 
@@ -8553,7 +8042,6 @@ typedef union _hw_usbc_uog1_endptctrl7
 //! @brief Set the TXR field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL7_TXR(v)   (HW_USBC_UOG1_ENDPTCTRL7_WR((HW_USBC_UOG1_ENDPTCTRL7_RD() & ~BM_USBC_UOG1_ENDPTCTRL7_TXR) | BF_USBC_UOG1_ENDPTCTRL7_TXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG1_ENDPTCTRL7, field TXE[23] (RW)
@@ -8562,7 +8050,6 @@ typedef union _hw_usbc_uog1_endptctrl7
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG1_ENDPTCTRL7_TXE      (23)      //!< Bit position for USBC_UOG1_ENDPTCTRL7_TXE.
 #define BM_USBC_UOG1_ENDPTCTRL7_TXE      (0x00800000)  //!< Bit mask for USBC_UOG1_ENDPTCTRL7_TXE.
 
@@ -8576,7 +8063,6 @@ typedef union _hw_usbc_uog1_endptctrl7
 //! @brief Set the TXE field to a new value.
 #define BW_USBC_UOG1_ENDPTCTRL7_TXE(v)   (HW_USBC_UOG1_ENDPTCTRL7_WR((HW_USBC_UOG1_ENDPTCTRL7_RD() & ~BM_USBC_UOG1_ENDPTCTRL7_TXE) | BF_USBC_UOG1_ENDPTCTRL7_TXE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8628,13 +8114,11 @@ typedef union _hw_usbc_uog2_id
  * High-Speed core.
  */
 //@{
-
 #define BP_USBC_UOG2_ID_ID      (0)      //!< Bit position for USBC_UOG2_ID_ID.
 #define BM_USBC_UOG2_ID_ID      (0x0000003f)  //!< Bit mask for USBC_UOG2_ID_ID.
 
 //! @brief Get value of USBC_UOG2_ID_ID from a register value.
 #define BG_USBC_UOG2_ID_ID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_ID_ID) >> BP_USBC_UOG2_ID_ID)
-
 //@}
 
 /*! @name Register USBC_UOG2_ID, field NID[13:8] (RO)
@@ -8642,13 +8126,11 @@ typedef union _hw_usbc_uog2_id
  * Complement version of ID
  */
 //@{
-
 #define BP_USBC_UOG2_ID_NID      (8)      //!< Bit position for USBC_UOG2_ID_NID.
 #define BM_USBC_UOG2_ID_NID      (0x00003f00)  //!< Bit mask for USBC_UOG2_ID_NID.
 
 //! @brief Get value of USBC_UOG2_ID_NID from a register value.
 #define BG_USBC_UOG2_ID_NID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_ID_NID) >> BP_USBC_UOG2_ID_NID)
-
 //@}
 
 /*! @name Register USBC_UOG2_ID, field REVISION[23:16] (RO)
@@ -8656,13 +8138,11 @@ typedef union _hw_usbc_uog2_id
  * Revision number of the controller core.
  */
 //@{
-
 #define BP_USBC_UOG2_ID_REVISION      (16)      //!< Bit position for USBC_UOG2_ID_REVISION.
 #define BM_USBC_UOG2_ID_REVISION      (0x00ff0000)  //!< Bit mask for USBC_UOG2_ID_REVISION.
 
 //! @brief Get value of USBC_UOG2_ID_REVISION from a register value.
 #define BG_USBC_UOG2_ID_REVISION(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_ID_REVISION) >> BP_USBC_UOG2_ID_REVISION)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8720,13 +8200,11 @@ typedef union _hw_usbc_uog2_hwgeneral
  * - 11 - Reset to 16 bit wide data bus  Software programmable
  */
 //@{
-
 #define BP_USBC_UOG2_HWGENERAL_PHYW      (4)      //!< Bit position for USBC_UOG2_HWGENERAL_PHYW.
 #define BM_USBC_UOG2_HWGENERAL_PHYW      (0x00000030)  //!< Bit mask for USBC_UOG2_HWGENERAL_PHYW.
 
 //! @brief Get value of USBC_UOG2_HWGENERAL_PHYW from a register value.
 #define BG_USBC_UOG2_HWGENERAL_PHYW(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_HWGENERAL_PHYW) >> BP_USBC_UOG2_HWGENERAL_PHYW)
-
 //@}
 
 /*! @name Register USBC_UOG2_HWGENERAL, field PHYM[8:6] (RO)
@@ -8749,13 +8227,11 @@ typedef union _hw_usbc_uog2_hwgeneral
  * - 1011 - Software programmable - reset to HSIC
  */
 //@{
-
 #define BP_USBC_UOG2_HWGENERAL_PHYM      (6)      //!< Bit position for USBC_UOG2_HWGENERAL_PHYM.
 #define BM_USBC_UOG2_HWGENERAL_PHYM      (0x000001c0)  //!< Bit mask for USBC_UOG2_HWGENERAL_PHYM.
 
 //! @brief Get value of USBC_UOG2_HWGENERAL_PHYM from a register value.
 #define BG_USBC_UOG2_HWGENERAL_PHYM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_HWGENERAL_PHYM) >> BP_USBC_UOG2_HWGENERAL_PHYM)
-
 //@}
 
 /*! @name Register USBC_UOG2_HWGENERAL, field SM[10:9] (RO)
@@ -8769,13 +8245,11 @@ typedef union _hw_usbc_uog2_hwgeneral
  * - 11 - Software programmable - Reset to use serial signalling for FS/LS
  */
 //@{
-
 #define BP_USBC_UOG2_HWGENERAL_SM      (9)      //!< Bit position for USBC_UOG2_HWGENERAL_SM.
 #define BM_USBC_UOG2_HWGENERAL_SM      (0x00000600)  //!< Bit mask for USBC_UOG2_HWGENERAL_SM.
 
 //! @brief Get value of USBC_UOG2_HWGENERAL_SM from a register value.
 #define BG_USBC_UOG2_HWGENERAL_SM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_HWGENERAL_SM) >> BP_USBC_UOG2_HWGENERAL_SM)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8827,13 +8301,11 @@ typedef union _hw_usbc_uog2_hwhost
  * - 1 - Supported
  */
 //@{
-
 #define BP_USBC_UOG2_HWHOST_HC      (0)      //!< Bit position for USBC_UOG2_HWHOST_HC.
 #define BM_USBC_UOG2_HWHOST_HC      (0x00000001)  //!< Bit mask for USBC_UOG2_HWHOST_HC.
 
 //! @brief Get value of USBC_UOG2_HWHOST_HC from a register value.
 #define BG_USBC_UOG2_HWHOST_HC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_HWHOST_HC) >> BP_USBC_UOG2_HWHOST_HC)
-
 //@}
 
 /*! @name Register USBC_UOG2_HWHOST, field NPORT[3:1] (RO)
@@ -8842,13 +8314,11 @@ typedef union _hw_usbc_uog2_hwhost
  * value is '000', it indicates a single-port host controller.
  */
 //@{
-
 #define BP_USBC_UOG2_HWHOST_NPORT      (1)      //!< Bit position for USBC_UOG2_HWHOST_NPORT.
 #define BM_USBC_UOG2_HWHOST_NPORT      (0x0000000e)  //!< Bit mask for USBC_UOG2_HWHOST_NPORT.
 
 //! @brief Get value of USBC_UOG2_HWHOST_NPORT from a register value.
 #define BG_USBC_UOG2_HWHOST_NPORT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_HWHOST_NPORT) >> BP_USBC_UOG2_HWHOST_NPORT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8900,13 +8370,11 @@ typedef union _hw_usbc_uog2_hwdevice
  * - 1 - Supported
  */
 //@{
-
 #define BP_USBC_UOG2_HWDEVICE_DC      (0)      //!< Bit position for USBC_UOG2_HWDEVICE_DC.
 #define BM_USBC_UOG2_HWDEVICE_DC      (0x00000001)  //!< Bit mask for USBC_UOG2_HWDEVICE_DC.
 
 //! @brief Get value of USBC_UOG2_HWDEVICE_DC from a register value.
 #define BG_USBC_UOG2_HWDEVICE_DC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_HWDEVICE_DC) >> BP_USBC_UOG2_HWDEVICE_DC)
-
 //@}
 
 /*! @name Register USBC_UOG2_HWDEVICE, field DEVEP[5:1] (RO)
@@ -8914,13 +8382,11 @@ typedef union _hw_usbc_uog2_hwdevice
  * Device Endpoint Number
  */
 //@{
-
 #define BP_USBC_UOG2_HWDEVICE_DEVEP      (1)      //!< Bit position for USBC_UOG2_HWDEVICE_DEVEP.
 #define BM_USBC_UOG2_HWDEVICE_DEVEP      (0x0000003e)  //!< Bit mask for USBC_UOG2_HWDEVICE_DEVEP.
 
 //! @brief Get value of USBC_UOG2_HWDEVICE_DEVEP from a register value.
 #define BG_USBC_UOG2_HWDEVICE_DEVEP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_HWDEVICE_DEVEP) >> BP_USBC_UOG2_HWDEVICE_DEVEP)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8970,13 +8436,11 @@ typedef union _hw_usbc_uog2_hwtxbuf
  * core regsiter USB_n_BURSTSIZE. Please see .
  */
 //@{
-
 #define BP_USBC_UOG2_HWTXBUF_TXBURST      (0)      //!< Bit position for USBC_UOG2_HWTXBUF_TXBURST.
 #define BM_USBC_UOG2_HWTXBUF_TXBURST      (0x000000ff)  //!< Bit mask for USBC_UOG2_HWTXBUF_TXBURST.
 
 //! @brief Get value of USBC_UOG2_HWTXBUF_TXBURST from a register value.
 #define BG_USBC_UOG2_HWTXBUF_TXBURST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_HWTXBUF_TXBURST) >> BP_USBC_UOG2_HWTXBUF_TXBURST)
-
 //@}
 
 /*! @name Register USBC_UOG2_HWTXBUF, field TXCHANADD[23:16] (RO)
@@ -8988,13 +8452,11 @@ typedef union _hw_usbc_uog2_hwtxbuf
  * as a single TX buffer. Therefore, there is only 1 of this buffer
  */
 //@{
-
 #define BP_USBC_UOG2_HWTXBUF_TXCHANADD      (16)      //!< Bit position for USBC_UOG2_HWTXBUF_TXCHANADD.
 #define BM_USBC_UOG2_HWTXBUF_TXCHANADD      (0x00ff0000)  //!< Bit mask for USBC_UOG2_HWTXBUF_TXCHANADD.
 
 //! @brief Get value of USBC_UOG2_HWTXBUF_TXCHANADD from a register value.
 #define BG_USBC_UOG2_HWTXBUF_TXCHANADD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_HWTXBUF_TXCHANADD) >> BP_USBC_UOG2_HWTXBUF_TXCHANADD)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9043,13 +8505,11 @@ typedef union _hw_usbc_uog2_hwrxbuf
  * core regsiter USB_n_BURSTSIZE. Please see .
  */
 //@{
-
 #define BP_USBC_UOG2_HWRXBUF_RXBURST      (0)      //!< Bit position for USBC_UOG2_HWRXBUF_RXBURST.
 #define BM_USBC_UOG2_HWRXBUF_RXBURST      (0x000000ff)  //!< Bit mask for USBC_UOG2_HWRXBUF_RXBURST.
 
 //! @brief Get value of USBC_UOG2_HWRXBUF_RXBURST from a register value.
 #define BG_USBC_UOG2_HWRXBUF_RXBURST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_HWRXBUF_RXBURST) >> BP_USBC_UOG2_HWRXBUF_RXBURST)
-
 //@}
 
 /*! @name Register USBC_UOG2_HWRXBUF, field RXADD[15:8] (RO)
@@ -9060,13 +8520,11 @@ typedef union _hw_usbc_uog2_hwrxbuf
  * mode.
  */
 //@{
-
 #define BP_USBC_UOG2_HWRXBUF_RXADD      (8)      //!< Bit position for USBC_UOG2_HWRXBUF_RXADD.
 #define BM_USBC_UOG2_HWRXBUF_RXADD      (0x0000ff00)  //!< Bit mask for USBC_UOG2_HWRXBUF_RXADD.
 
 //! @brief Get value of USBC_UOG2_HWRXBUF_RXADD from a register value.
 #define BG_USBC_UOG2_HWRXBUF_RXADD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_HWRXBUF_RXADD) >> BP_USBC_UOG2_HWRXBUF_RXADD)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9120,7 +8578,6 @@ typedef union _hw_usbc_uog2_gptimer0ld
  * seconds.
  */
 //@{
-
 #define BP_USBC_UOG2_GPTIMER0LD_GPTLD      (0)      //!< Bit position for USBC_UOG2_GPTIMER0LD_GPTLD.
 #define BM_USBC_UOG2_GPTIMER0LD_GPTLD      (0x00ffffff)  //!< Bit mask for USBC_UOG2_GPTIMER0LD_GPTLD.
 
@@ -9134,7 +8591,6 @@ typedef union _hw_usbc_uog2_gptimer0ld
 //! @brief Set the GPTLD field to a new value.
 #define BW_USBC_UOG2_GPTIMER0LD_GPTLD(v)   (HW_USBC_UOG2_GPTIMER0LD_WR((HW_USBC_UOG2_GPTIMER0LD_RD() & ~BM_USBC_UOG2_GPTIMER0LD_GPTLD) | BF_USBC_UOG2_GPTIMER0LD_GPTLD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9193,7 +8649,6 @@ typedef union _hw_usbc_uog2_gptimer0ctrl
  * General Purpose Timer Counter. This field is the count value of the countdown timer.
  */
 //@{
-
 #define BP_USBC_UOG2_GPTIMER0CTRL_GPTCNT      (0)      //!< Bit position for USBC_UOG2_GPTIMER0CTRL_GPTCNT.
 #define BM_USBC_UOG2_GPTIMER0CTRL_GPTCNT      (0x00ffffff)  //!< Bit mask for USBC_UOG2_GPTIMER0CTRL_GPTCNT.
 
@@ -9207,7 +8662,6 @@ typedef union _hw_usbc_uog2_gptimer0ctrl
 //! @brief Set the GPTCNT field to a new value.
 #define BW_USBC_UOG2_GPTIMER0CTRL_GPTCNT(v)   (HW_USBC_UOG2_GPTIMER0CTRL_WR((HW_USBC_UOG2_GPTIMER0CTRL_RD() & ~BM_USBC_UOG2_GPTIMER0CTRL_GPTCNT) | BF_USBC_UOG2_GPTIMER0CTRL_GPTCNT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_GPTIMER0CTRL, field GPTMODE[24] (RW)
@@ -9222,7 +8676,6 @@ typedef union _hw_usbc_uog2_gptimer0ctrl
  * - 1 - Repeat Mode
  */
 //@{
-
 #define BP_USBC_UOG2_GPTIMER0CTRL_GPTMODE      (24)      //!< Bit position for USBC_UOG2_GPTIMER0CTRL_GPTMODE.
 #define BM_USBC_UOG2_GPTIMER0CTRL_GPTMODE      (0x01000000)  //!< Bit mask for USBC_UOG2_GPTIMER0CTRL_GPTMODE.
 
@@ -9236,7 +8689,6 @@ typedef union _hw_usbc_uog2_gptimer0ctrl
 //! @brief Set the GPTMODE field to a new value.
 #define BW_USBC_UOG2_GPTIMER0CTRL_GPTMODE(v)   (HW_USBC_UOG2_GPTIMER0CTRL_WR((HW_USBC_UOG2_GPTIMER0CTRL_RD() & ~BM_USBC_UOG2_GPTIMER0CTRL_GPTMODE) | BF_USBC_UOG2_GPTIMER0CTRL_GPTMODE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_GPTIMER0CTRL, field GPTRST[30] (RW)
@@ -9248,7 +8700,6 @@ typedef union _hw_usbc_uog2_gptimer0ctrl
  * - 1 - Load counter value from GPTLD bits in n_GPTIMER0LD
  */
 //@{
-
 #define BP_USBC_UOG2_GPTIMER0CTRL_GPTRST      (30)      //!< Bit position for USBC_UOG2_GPTIMER0CTRL_GPTRST.
 #define BM_USBC_UOG2_GPTIMER0CTRL_GPTRST      (0x40000000)  //!< Bit mask for USBC_UOG2_GPTIMER0CTRL_GPTRST.
 
@@ -9262,7 +8713,6 @@ typedef union _hw_usbc_uog2_gptimer0ctrl
 //! @brief Set the GPTRST field to a new value.
 #define BW_USBC_UOG2_GPTIMER0CTRL_GPTRST(v)   (HW_USBC_UOG2_GPTIMER0CTRL_WR((HW_USBC_UOG2_GPTIMER0CTRL_RD() & ~BM_USBC_UOG2_GPTIMER0CTRL_GPTRST) | BF_USBC_UOG2_GPTIMER0CTRL_GPTRST(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_GPTIMER0CTRL, field GPTRUN[31] (RW)
@@ -9274,7 +8724,6 @@ typedef union _hw_usbc_uog2_gptimer0ctrl
  * - 1 - Run
  */
 //@{
-
 #define BP_USBC_UOG2_GPTIMER0CTRL_GPTRUN      (31)      //!< Bit position for USBC_UOG2_GPTIMER0CTRL_GPTRUN.
 #define BM_USBC_UOG2_GPTIMER0CTRL_GPTRUN      (0x80000000)  //!< Bit mask for USBC_UOG2_GPTIMER0CTRL_GPTRUN.
 
@@ -9288,7 +8737,6 @@ typedef union _hw_usbc_uog2_gptimer0ctrl
 //! @brief Set the GPTRUN field to a new value.
 #define BW_USBC_UOG2_GPTIMER0CTRL_GPTRUN(v)   (HW_USBC_UOG2_GPTIMER0CTRL_WR((HW_USBC_UOG2_GPTIMER0CTRL_RD() & ~BM_USBC_UOG2_GPTIMER0CTRL_GPTRUN) | BF_USBC_UOG2_GPTIMER0CTRL_GPTRUN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9342,7 +8790,6 @@ typedef union _hw_usbc_uog2_gptimer1ld
  * seconds.
  */
 //@{
-
 #define BP_USBC_UOG2_GPTIMER1LD_GPTLD      (0)      //!< Bit position for USBC_UOG2_GPTIMER1LD_GPTLD.
 #define BM_USBC_UOG2_GPTIMER1LD_GPTLD      (0x00ffffff)  //!< Bit mask for USBC_UOG2_GPTIMER1LD_GPTLD.
 
@@ -9356,7 +8803,6 @@ typedef union _hw_usbc_uog2_gptimer1ld
 //! @brief Set the GPTLD field to a new value.
 #define BW_USBC_UOG2_GPTIMER1LD_GPTLD(v)   (HW_USBC_UOG2_GPTIMER1LD_WR((HW_USBC_UOG2_GPTIMER1LD_RD() & ~BM_USBC_UOG2_GPTIMER1LD_GPTLD) | BF_USBC_UOG2_GPTIMER1LD_GPTLD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9415,7 +8861,6 @@ typedef union _hw_usbc_uog2_gptimer1ctrl
  * General Purpose Timer Counter. This field is the count value of the countdown timer.
  */
 //@{
-
 #define BP_USBC_UOG2_GPTIMER1CTRL_GPTCNT      (0)      //!< Bit position for USBC_UOG2_GPTIMER1CTRL_GPTCNT.
 #define BM_USBC_UOG2_GPTIMER1CTRL_GPTCNT      (0x00ffffff)  //!< Bit mask for USBC_UOG2_GPTIMER1CTRL_GPTCNT.
 
@@ -9429,7 +8874,6 @@ typedef union _hw_usbc_uog2_gptimer1ctrl
 //! @brief Set the GPTCNT field to a new value.
 #define BW_USBC_UOG2_GPTIMER1CTRL_GPTCNT(v)   (HW_USBC_UOG2_GPTIMER1CTRL_WR((HW_USBC_UOG2_GPTIMER1CTRL_RD() & ~BM_USBC_UOG2_GPTIMER1CTRL_GPTCNT) | BF_USBC_UOG2_GPTIMER1CTRL_GPTCNT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_GPTIMER1CTRL, field GPTMODE[24] (RW)
@@ -9444,7 +8888,6 @@ typedef union _hw_usbc_uog2_gptimer1ctrl
  * - 1 - Repeat Mode
  */
 //@{
-
 #define BP_USBC_UOG2_GPTIMER1CTRL_GPTMODE      (24)      //!< Bit position for USBC_UOG2_GPTIMER1CTRL_GPTMODE.
 #define BM_USBC_UOG2_GPTIMER1CTRL_GPTMODE      (0x01000000)  //!< Bit mask for USBC_UOG2_GPTIMER1CTRL_GPTMODE.
 
@@ -9458,7 +8901,6 @@ typedef union _hw_usbc_uog2_gptimer1ctrl
 //! @brief Set the GPTMODE field to a new value.
 #define BW_USBC_UOG2_GPTIMER1CTRL_GPTMODE(v)   (HW_USBC_UOG2_GPTIMER1CTRL_WR((HW_USBC_UOG2_GPTIMER1CTRL_RD() & ~BM_USBC_UOG2_GPTIMER1CTRL_GPTMODE) | BF_USBC_UOG2_GPTIMER1CTRL_GPTMODE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_GPTIMER1CTRL, field GPTRST[30] (RW)
@@ -9470,7 +8912,6 @@ typedef union _hw_usbc_uog2_gptimer1ctrl
  * - 1 - Load counter value from GPTLD bits in USB_n_GPTIMER0LD
  */
 //@{
-
 #define BP_USBC_UOG2_GPTIMER1CTRL_GPTRST      (30)      //!< Bit position for USBC_UOG2_GPTIMER1CTRL_GPTRST.
 #define BM_USBC_UOG2_GPTIMER1CTRL_GPTRST      (0x40000000)  //!< Bit mask for USBC_UOG2_GPTIMER1CTRL_GPTRST.
 
@@ -9484,7 +8925,6 @@ typedef union _hw_usbc_uog2_gptimer1ctrl
 //! @brief Set the GPTRST field to a new value.
 #define BW_USBC_UOG2_GPTIMER1CTRL_GPTRST(v)   (HW_USBC_UOG2_GPTIMER1CTRL_WR((HW_USBC_UOG2_GPTIMER1CTRL_RD() & ~BM_USBC_UOG2_GPTIMER1CTRL_GPTRST) | BF_USBC_UOG2_GPTIMER1CTRL_GPTRST(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_GPTIMER1CTRL, field GPTRUN[31] (RW)
@@ -9496,7 +8936,6 @@ typedef union _hw_usbc_uog2_gptimer1ctrl
  * - 1 - Run
  */
 //@{
-
 #define BP_USBC_UOG2_GPTIMER1CTRL_GPTRUN      (31)      //!< Bit position for USBC_UOG2_GPTIMER1CTRL_GPTRUN.
 #define BM_USBC_UOG2_GPTIMER1CTRL_GPTRUN      (0x80000000)  //!< Bit mask for USBC_UOG2_GPTIMER1CTRL_GPTRUN.
 
@@ -9510,7 +8949,6 @@ typedef union _hw_usbc_uog2_gptimer1ctrl
 //! @brief Set the GPTRUN field to a new value.
 #define BW_USBC_UOG2_GPTIMER1CTRL_GPTRUN(v)   (HW_USBC_UOG2_GPTIMER1CTRL_WR((HW_USBC_UOG2_GPTIMER1CTRL_RD() & ~BM_USBC_UOG2_GPTIMER1CTRL_GPTRUN) | BF_USBC_UOG2_GPTIMER1CTRL_GPTRUN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9572,7 +9010,6 @@ typedef union _hw_usbc_uog2_sbuscfg
  * - 111 - INCR16 burst, INCR8 burst, INCR4 burst, then incremental burst of unspecified length
  */
 //@{
-
 #define BP_USBC_UOG2_SBUSCFG_AHBBRST      (0)      //!< Bit position for USBC_UOG2_SBUSCFG_AHBBRST.
 #define BM_USBC_UOG2_SBUSCFG_AHBBRST      (0x00000007)  //!< Bit mask for USBC_UOG2_SBUSCFG_AHBBRST.
 
@@ -9586,7 +9023,6 @@ typedef union _hw_usbc_uog2_sbuscfg
 //! @brief Set the AHBBRST field to a new value.
 #define BW_USBC_UOG2_SBUSCFG_AHBBRST(v)   (HW_USBC_UOG2_SBUSCFG_WR((HW_USBC_UOG2_SBUSCFG_RD() & ~BM_USBC_UOG2_SBUSCFG_AHBBRST) | BF_USBC_UOG2_SBUSCFG_AHBBRST(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9634,13 +9070,11 @@ typedef union _hw_usbc_uog2_caplength
  * Register. Default value is '40h'.
  */
 //@{
-
 #define BP_USBC_UOG2_CAPLENGTH_CAPLENGTH      (0)      //!< Bit position for USBC_UOG2_CAPLENGTH_CAPLENGTH.
 #define BM_USBC_UOG2_CAPLENGTH_CAPLENGTH      (0x000000ff)  //!< Bit mask for USBC_UOG2_CAPLENGTH_CAPLENGTH.
 
 //! @brief Get value of USBC_UOG2_CAPLENGTH_CAPLENGTH from a register value.
 #define BG_USBC_UOG2_CAPLENGTH_CAPLENGTH(r)   ((__REG_VALUE_TYPE((r), reg8_t) & BM_USBC_UOG2_CAPLENGTH_CAPLENGTH) >> BP_USBC_UOG2_CAPLENGTH_CAPLENGTH)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9688,13 +9122,11 @@ typedef union _hw_usbc_uog2_hciversion
  * Host Controller Interface Version Number Default value is '10h', which means EHCI rev1.0.
  */
 //@{
-
 #define BP_USBC_UOG2_HCIVERSION_HCIVERSION      (0)      //!< Bit position for USBC_UOG2_HCIVERSION_HCIVERSION.
 #define BM_USBC_UOG2_HCIVERSION_HCIVERSION      (0x0000ffff)  //!< Bit mask for USBC_UOG2_HCIVERSION_HCIVERSION.
 
 //! @brief Get value of USBC_UOG2_HCIVERSION_HCIVERSION from a register value.
 #define BG_USBC_UOG2_HCIVERSION_HCIVERSION(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_USBC_UOG2_HCIVERSION_HCIVERSION) >> BP_USBC_UOG2_HCIVERSION_HCIVERSION)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9754,13 +9186,11 @@ typedef union _hw_usbc_uog2_hcsparams
  * Single-Port Host.
  */
 //@{
-
 #define BP_USBC_UOG2_HCSPARAMS_N_PORTS      (0)      //!< Bit position for USBC_UOG2_HCSPARAMS_N_PORTS.
 #define BM_USBC_UOG2_HCSPARAMS_N_PORTS      (0x0000000f)  //!< Bit mask for USBC_UOG2_HCSPARAMS_N_PORTS.
 
 //! @brief Get value of USBC_UOG2_HCSPARAMS_N_PORTS from a register value.
 #define BG_USBC_UOG2_HCSPARAMS_N_PORTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_HCSPARAMS_N_PORTS) >> BP_USBC_UOG2_HCSPARAMS_N_PORTS)
-
 //@}
 
 /*! @name Register USBC_UOG2_HCSPARAMS, field PPC[4] (RO)
@@ -9771,13 +9201,11 @@ typedef union _hw_usbc_uog2_hcsparams
  * field in each port status and control register
  */
 //@{
-
 #define BP_USBC_UOG2_HCSPARAMS_PPC      (4)      //!< Bit position for USBC_UOG2_HCSPARAMS_PPC.
 #define BM_USBC_UOG2_HCSPARAMS_PPC      (0x00000010)  //!< Bit mask for USBC_UOG2_HCSPARAMS_PPC.
 
 //! @brief Get value of USBC_UOG2_HCSPARAMS_PPC from a register value.
 #define BG_USBC_UOG2_HCSPARAMS_PPC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_HCSPARAMS_PPC) >> BP_USBC_UOG2_HCSPARAMS_PPC)
-
 //@}
 
 /*! @name Register USBC_UOG2_HCSPARAMS, field N_PCC[11:8] (RO)
@@ -9792,13 +9220,11 @@ typedef union _hw_usbc_uog2_hcsparams
  * with N_PORTS and N_CC. These bits are '0000b' in all controller core.
  */
 //@{
-
 #define BP_USBC_UOG2_HCSPARAMS_N_PCC      (8)      //!< Bit position for USBC_UOG2_HCSPARAMS_N_PCC.
 #define BM_USBC_UOG2_HCSPARAMS_N_PCC      (0x00000f00)  //!< Bit mask for USBC_UOG2_HCSPARAMS_N_PCC.
 
 //! @brief Get value of USBC_UOG2_HCSPARAMS_N_PCC from a register value.
 #define BG_USBC_UOG2_HCSPARAMS_N_PCC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_HCSPARAMS_N_PCC) >> BP_USBC_UOG2_HCSPARAMS_N_PCC)
-
 //@}
 
 /*! @name Register USBC_UOG2_HCSPARAMS, field N_CC[15:12] (RO)
@@ -9811,13 +9237,11 @@ typedef union _hw_usbc_uog2_hcsparams
  * - 1 - There are internal companion controller(s) and port-ownership hand-offs is supported.
  */
 //@{
-
 #define BP_USBC_UOG2_HCSPARAMS_N_CC      (12)      //!< Bit position for USBC_UOG2_HCSPARAMS_N_CC.
 #define BM_USBC_UOG2_HCSPARAMS_N_CC      (0x0000f000)  //!< Bit mask for USBC_UOG2_HCSPARAMS_N_CC.
 
 //! @brief Get value of USBC_UOG2_HCSPARAMS_N_CC from a register value.
 #define BG_USBC_UOG2_HCSPARAMS_N_CC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_HCSPARAMS_N_CC) >> BP_USBC_UOG2_HCSPARAMS_N_CC)
-
 //@}
 
 /*! @name Register USBC_UOG2_HCSPARAMS, field PI[16] (RO)
@@ -9827,13 +9251,11 @@ typedef union _hw_usbc_uog2_hcsparams
  * for controlling the state of the port indicator This bit is "1b" in all controller core.
  */
 //@{
-
 #define BP_USBC_UOG2_HCSPARAMS_PI      (16)      //!< Bit position for USBC_UOG2_HCSPARAMS_PI.
 #define BM_USBC_UOG2_HCSPARAMS_PI      (0x00010000)  //!< Bit mask for USBC_UOG2_HCSPARAMS_PI.
 
 //! @brief Get value of USBC_UOG2_HCSPARAMS_PI from a register value.
 #define BG_USBC_UOG2_HCSPARAMS_PI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_HCSPARAMS_PI) >> BP_USBC_UOG2_HCSPARAMS_PI)
-
 //@}
 
 /*! @name Register USBC_UOG2_HCSPARAMS, field N_PTT[23:20] (RO)
@@ -9843,13 +9265,11 @@ typedef union _hw_usbc_uog2_hcsparams
  * These bits would be set to equal N_PORTS for Multi-Port Host, and '0000b' for Single-Port Host.
  */
 //@{
-
 #define BP_USBC_UOG2_HCSPARAMS_N_PTT      (20)      //!< Bit position for USBC_UOG2_HCSPARAMS_N_PTT.
 #define BM_USBC_UOG2_HCSPARAMS_N_PTT      (0x00f00000)  //!< Bit mask for USBC_UOG2_HCSPARAMS_N_PTT.
 
 //! @brief Get value of USBC_UOG2_HCSPARAMS_N_PTT from a register value.
 #define BG_USBC_UOG2_HCSPARAMS_N_PTT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_HCSPARAMS_N_PTT) >> BP_USBC_UOG2_HCSPARAMS_N_PTT)
-
 //@}
 
 /*! @name Register USBC_UOG2_HCSPARAMS, field N_TT[27:24] (RO)
@@ -9859,13 +9279,11 @@ typedef union _hw_usbc_uog2_hcsparams
  * be set to '0001b' for Multi-Port Host, and '0000b' for Single-Port Host.
  */
 //@{
-
 #define BP_USBC_UOG2_HCSPARAMS_N_TT      (24)      //!< Bit position for USBC_UOG2_HCSPARAMS_N_TT.
 #define BM_USBC_UOG2_HCSPARAMS_N_TT      (0x0f000000)  //!< Bit mask for USBC_UOG2_HCSPARAMS_N_TT.
 
 //! @brief Get value of USBC_UOG2_HCSPARAMS_N_TT from a register value.
 #define BG_USBC_UOG2_HCSPARAMS_N_TT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_HCSPARAMS_N_TT) >> BP_USBC_UOG2_HCSPARAMS_N_TT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9919,13 +9337,11 @@ typedef union _hw_usbc_uog2_hccparams
  * capability is supported.
  */
 //@{
-
 #define BP_USBC_UOG2_HCCPARAMS_ADC      (0)      //!< Bit position for USBC_UOG2_HCCPARAMS_ADC.
 #define BM_USBC_UOG2_HCCPARAMS_ADC      (0x00000001)  //!< Bit mask for USBC_UOG2_HCCPARAMS_ADC.
 
 //! @brief Get value of USBC_UOG2_HCCPARAMS_ADC from a register value.
 #define BG_USBC_UOG2_HCCPARAMS_ADC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_HCCPARAMS_ADC) >> BP_USBC_UOG2_HCCPARAMS_ADC)
-
 //@}
 
 /*! @name Register USBC_UOG2_HCCPARAMS, field PFL[1] (RO)
@@ -9939,13 +9355,11 @@ typedef union _hw_usbc_uog2_hccparams
  * all controller core.
  */
 //@{
-
 #define BP_USBC_UOG2_HCCPARAMS_PFL      (1)      //!< Bit position for USBC_UOG2_HCCPARAMS_PFL.
 #define BM_USBC_UOG2_HCCPARAMS_PFL      (0x00000002)  //!< Bit mask for USBC_UOG2_HCCPARAMS_PFL.
 
 //! @brief Get value of USBC_UOG2_HCCPARAMS_PFL from a register value.
 #define BG_USBC_UOG2_HCCPARAMS_PFL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_HCCPARAMS_PFL) >> BP_USBC_UOG2_HCCPARAMS_PFL)
-
 //@}
 
 /*! @name Register USBC_UOG2_HCCPARAMS, field ASP[2] (RO)
@@ -9957,13 +9371,11 @@ typedef union _hw_usbc_uog2_hccparams
  * reset value: '00b' for OTG controller core, '11b' for Host-only controller core.
  */
 //@{
-
 #define BP_USBC_UOG2_HCCPARAMS_ASP      (2)      //!< Bit position for USBC_UOG2_HCCPARAMS_ASP.
 #define BM_USBC_UOG2_HCCPARAMS_ASP      (0x00000004)  //!< Bit mask for USBC_UOG2_HCCPARAMS_ASP.
 
 //! @brief Get value of USBC_UOG2_HCCPARAMS_ASP from a register value.
 #define BG_USBC_UOG2_HCCPARAMS_ASP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_HCCPARAMS_ASP) >> BP_USBC_UOG2_HCCPARAMS_ASP)
-
 //@}
 
 /*! @name Register USBC_UOG2_HCCPARAMS, field IST[7:4] (RO)
@@ -9976,13 +9388,11 @@ typedef union _hw_usbc_uog2_hccparams
  * isochronous data structure for an entire frame. These bits are set '00h' in all controller core.
  */
 //@{
-
 #define BP_USBC_UOG2_HCCPARAMS_IST      (4)      //!< Bit position for USBC_UOG2_HCCPARAMS_IST.
 #define BM_USBC_UOG2_HCCPARAMS_IST      (0x000000f0)  //!< Bit mask for USBC_UOG2_HCCPARAMS_IST.
 
 //! @brief Get value of USBC_UOG2_HCCPARAMS_IST from a register value.
 #define BG_USBC_UOG2_HCCPARAMS_IST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_HCCPARAMS_IST) >> BP_USBC_UOG2_HCCPARAMS_IST)
-
 //@}
 
 /*! @name Register USBC_UOG2_HCCPARAMS, field EECP[15:8] (RO)
@@ -9994,13 +9404,11 @@ typedef union _hw_usbc_uog2_hccparams
  * header defined for this class of device. These bits are set '00h' in all controller core.
  */
 //@{
-
 #define BP_USBC_UOG2_HCCPARAMS_EECP      (8)      //!< Bit position for USBC_UOG2_HCCPARAMS_EECP.
 #define BM_USBC_UOG2_HCCPARAMS_EECP      (0x0000ff00)  //!< Bit mask for USBC_UOG2_HCCPARAMS_EECP.
 
 //! @brief Get value of USBC_UOG2_HCCPARAMS_EECP from a register value.
 #define BG_USBC_UOG2_HCCPARAMS_EECP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_HCCPARAMS_EECP) >> BP_USBC_UOG2_HCCPARAMS_EECP)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10047,13 +9455,11 @@ typedef union _hw_usbc_uog2_dciversion
  * Device Controller Interface Version Number Default value is '01h', which means rev0.1.
  */
 //@{
-
 #define BP_USBC_UOG2_DCIVERSION_DCIVERSION      (0)      //!< Bit position for USBC_UOG2_DCIVERSION_DCIVERSION.
 #define BM_USBC_UOG2_DCIVERSION_DCIVERSION      (0x0000ffff)  //!< Bit mask for USBC_UOG2_DCIVERSION_DCIVERSION.
 
 //! @brief Get value of USBC_UOG2_DCIVERSION_DCIVERSION from a register value.
 #define BG_USBC_UOG2_DCIVERSION_DCIVERSION(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_USBC_UOG2_DCIVERSION_DCIVERSION) >> BP_USBC_UOG2_DCIVERSION_DCIVERSION)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10106,13 +9512,11 @@ typedef union _hw_usbc_uog2_dccparams
  * are 0 - 15.
  */
 //@{
-
 #define BP_USBC_UOG2_DCCPARAMS_DEN      (0)      //!< Bit position for USBC_UOG2_DCCPARAMS_DEN.
 #define BM_USBC_UOG2_DCCPARAMS_DEN      (0x0000001f)  //!< Bit mask for USBC_UOG2_DCCPARAMS_DEN.
 
 //! @brief Get value of USBC_UOG2_DCCPARAMS_DEN from a register value.
 #define BG_USBC_UOG2_DCCPARAMS_DEN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_DCCPARAMS_DEN) >> BP_USBC_UOG2_DCCPARAMS_DEN)
-
 //@}
 
 /*! @name Register USBC_UOG2_DCCPARAMS, field DC[7] (RO)
@@ -10120,13 +9524,11 @@ typedef union _hw_usbc_uog2_dccparams
  * Device Capable When this bit is 1, this controller is capable of operating as a USB 2.0 device.
  */
 //@{
-
 #define BP_USBC_UOG2_DCCPARAMS_DC      (7)      //!< Bit position for USBC_UOG2_DCCPARAMS_DC.
 #define BM_USBC_UOG2_DCCPARAMS_DC      (0x00000080)  //!< Bit mask for USBC_UOG2_DCCPARAMS_DC.
 
 //! @brief Get value of USBC_UOG2_DCCPARAMS_DC from a register value.
 #define BG_USBC_UOG2_DCCPARAMS_DC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_DCCPARAMS_DC) >> BP_USBC_UOG2_DCCPARAMS_DC)
-
 //@}
 
 /*! @name Register USBC_UOG2_DCCPARAMS, field HC[8] (RO)
@@ -10135,13 +9537,11 @@ typedef union _hw_usbc_uog2_dccparams
  * USB 2.0 host controller.
  */
 //@{
-
 #define BP_USBC_UOG2_DCCPARAMS_HC      (8)      //!< Bit position for USBC_UOG2_DCCPARAMS_HC.
 #define BM_USBC_UOG2_DCCPARAMS_HC      (0x00000100)  //!< Bit mask for USBC_UOG2_DCCPARAMS_HC.
 
 //! @brief Get value of USBC_UOG2_DCCPARAMS_HC from a register value.
 #define BG_USBC_UOG2_DCCPARAMS_HC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_DCCPARAMS_HC) >> BP_USBC_UOG2_DCCPARAMS_HC)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10218,7 +9618,6 @@ typedef union _hw_usbc_uog2_usbcmd
  * event.
  */
 //@{
-
 #define BP_USBC_UOG2_USBCMD_RS      (0)      //!< Bit position for USBC_UOG2_USBCMD_RS.
 #define BM_USBC_UOG2_USBCMD_RS      (0x00000001)  //!< Bit mask for USBC_UOG2_USBCMD_RS.
 
@@ -10232,7 +9631,6 @@ typedef union _hw_usbc_uog2_usbcmd
 //! @brief Set the RS field to a new value.
 #define BW_USBC_UOG2_USBCMD_RS(v)   (HW_USBC_UOG2_USBCMD_WR((HW_USBC_UOG2_USBCMD_RD() & ~BM_USBC_UOG2_USBCMD_RS) | BF_USBC_UOG2_USBCMD_RS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBCMD, field RST[1] (RW)
@@ -10253,7 +9651,6 @@ typedef union _hw_usbc_uog2_usbcmd
  * set to 0.
  */
 //@{
-
 #define BP_USBC_UOG2_USBCMD_RST      (1)      //!< Bit position for USBC_UOG2_USBCMD_RST.
 #define BM_USBC_UOG2_USBCMD_RST      (0x00000002)  //!< Bit mask for USBC_UOG2_USBCMD_RST.
 
@@ -10267,7 +9664,6 @@ typedef union _hw_usbc_uog2_usbcmd
 //! @brief Set the RST field to a new value.
 #define BW_USBC_UOG2_USBCMD_RST(v)   (HW_USBC_UOG2_USBCMD_WR((HW_USBC_UOG2_USBCMD_RD() & ~BM_USBC_UOG2_USBCMD_RST) | BF_USBC_UOG2_USBCMD_RST(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBCMD, field FS[3:2] (RW)
@@ -10275,7 +9671,6 @@ typedef union _hw_usbc_uog2_usbcmd
  * See description at bit 15
  */
 //@{
-
 #define BP_USBC_UOG2_USBCMD_FS      (2)      //!< Bit position for USBC_UOG2_USBCMD_FS.
 #define BM_USBC_UOG2_USBCMD_FS      (0x0000000c)  //!< Bit mask for USBC_UOG2_USBCMD_FS.
 
@@ -10289,7 +9684,6 @@ typedef union _hw_usbc_uog2_usbcmd
 //! @brief Set the FS field to a new value.
 #define BW_USBC_UOG2_USBCMD_FS(v)   (HW_USBC_UOG2_USBCMD_WR((HW_USBC_UOG2_USBCMD_RD() & ~BM_USBC_UOG2_USBCMD_FS) | BF_USBC_UOG2_USBCMD_FS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBCMD, field PSE[4] (RW)
@@ -10302,7 +9696,6 @@ typedef union _hw_usbc_uog2_usbcmd
  * - 1 - Use the PERIODICLISTBASE register to access the Periodic Schedule.
  */
 //@{
-
 #define BP_USBC_UOG2_USBCMD_PSE      (4)      //!< Bit position for USBC_UOG2_USBCMD_PSE.
 #define BM_USBC_UOG2_USBCMD_PSE      (0x00000010)  //!< Bit mask for USBC_UOG2_USBCMD_PSE.
 
@@ -10316,7 +9709,6 @@ typedef union _hw_usbc_uog2_usbcmd
 //! @brief Set the PSE field to a new value.
 #define BW_USBC_UOG2_USBCMD_PSE(v)   (HW_USBC_UOG2_USBCMD_WR((HW_USBC_UOG2_USBCMD_RD() & ~BM_USBC_UOG2_USBCMD_PSE) | BF_USBC_UOG2_USBCMD_PSE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBCMD, field ASE[5] (RW)
@@ -10330,7 +9722,6 @@ typedef union _hw_usbc_uog2_usbcmd
  * - 1 - Use the ASYNCLISTADDR register to access the Asynchronous Schedule.
  */
 //@{
-
 #define BP_USBC_UOG2_USBCMD_ASE      (5)      //!< Bit position for USBC_UOG2_USBCMD_ASE.
 #define BM_USBC_UOG2_USBCMD_ASE      (0x00000020)  //!< Bit mask for USBC_UOG2_USBCMD_ASE.
 
@@ -10344,7 +9735,6 @@ typedef union _hw_usbc_uog2_usbcmd
 //! @brief Set the ASE field to a new value.
 #define BW_USBC_UOG2_USBCMD_ASE(v)   (HW_USBC_UOG2_USBCMD_WR((HW_USBC_UOG2_USBCMD_RD() & ~BM_USBC_UOG2_USBCMD_ASE) | BF_USBC_UOG2_USBCMD_ASE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBCMD, field IAA[6] (RW)
@@ -10361,7 +9751,6 @@ typedef union _hw_usbc_uog2_usbcmd
  * one to this bit when device mode is selected will have undefined results.
  */
 //@{
-
 #define BP_USBC_UOG2_USBCMD_IAA      (6)      //!< Bit position for USBC_UOG2_USBCMD_IAA.
 #define BM_USBC_UOG2_USBCMD_IAA      (0x00000040)  //!< Bit mask for USBC_UOG2_USBCMD_IAA.
 
@@ -10375,7 +9764,6 @@ typedef union _hw_usbc_uog2_usbcmd
 //! @brief Set the IAA field to a new value.
 #define BW_USBC_UOG2_USBCMD_IAA(v)   (HW_USBC_UOG2_USBCMD_WR((HW_USBC_UOG2_USBCMD_RD() & ~BM_USBC_UOG2_USBCMD_IAA) | BF_USBC_UOG2_USBCMD_IAA(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBCMD, field ASP[9:8] (RW)
@@ -10389,7 +9777,6 @@ typedef union _hw_usbc_uog2_usbcmd
  * behavior. This field is set to 3h in all controller core.
  */
 //@{
-
 #define BP_USBC_UOG2_USBCMD_ASP      (8)      //!< Bit position for USBC_UOG2_USBCMD_ASP.
 #define BM_USBC_UOG2_USBCMD_ASP      (0x00000300)  //!< Bit mask for USBC_UOG2_USBCMD_ASP.
 
@@ -10403,7 +9790,6 @@ typedef union _hw_usbc_uog2_usbcmd
 //! @brief Set the ASP field to a new value.
 #define BW_USBC_UOG2_USBCMD_ASP(v)   (HW_USBC_UOG2_USBCMD_WR((HW_USBC_UOG2_USBCMD_RD() & ~BM_USBC_UOG2_USBCMD_ASP) | BF_USBC_UOG2_USBCMD_ASP(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBCMD, field ASPE[11] (RW)
@@ -10415,7 +9801,6 @@ typedef union _hw_usbc_uog2_usbcmd
  * '0b' for OTG controller core, '1b' for Host-only controller core.
  */
 //@{
-
 #define BP_USBC_UOG2_USBCMD_ASPE      (11)      //!< Bit position for USBC_UOG2_USBCMD_ASPE.
 #define BM_USBC_UOG2_USBCMD_ASPE      (0x00000800)  //!< Bit mask for USBC_UOG2_USBCMD_ASPE.
 
@@ -10429,7 +9814,6 @@ typedef union _hw_usbc_uog2_usbcmd
 //! @brief Set the ASPE field to a new value.
 #define BW_USBC_UOG2_USBCMD_ASPE(v)   (HW_USBC_UOG2_USBCMD_WR((HW_USBC_UOG2_USBCMD_RD() & ~BM_USBC_UOG2_USBCMD_ASPE) | BF_USBC_UOG2_USBCMD_ASPE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBCMD, field SUTW[13] (RW)
@@ -10442,7 +9826,6 @@ typedef union _hw_usbc_uog2_usbcmd
  * cleared by hardware when a hazard detected.
  */
 //@{
-
 #define BP_USBC_UOG2_USBCMD_SUTW      (13)      //!< Bit position for USBC_UOG2_USBCMD_SUTW.
 #define BM_USBC_UOG2_USBCMD_SUTW      (0x00002000)  //!< Bit mask for USBC_UOG2_USBCMD_SUTW.
 
@@ -10456,7 +9839,6 @@ typedef union _hw_usbc_uog2_usbcmd
 //! @brief Set the SUTW field to a new value.
 #define BW_USBC_UOG2_USBCMD_SUTW(v)   (HW_USBC_UOG2_USBCMD_WR((HW_USBC_UOG2_USBCMD_RD() & ~BM_USBC_UOG2_USBCMD_SUTW) | BF_USBC_UOG2_USBCMD_SUTW(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBCMD, field ATDTW[14] (RW)
@@ -10467,7 +9849,6 @@ typedef union _hw_usbc_uog2_usbcmd
  * region for which adding a dTD to a primed endpoint may go unrecognized.
  */
 //@{
-
 #define BP_USBC_UOG2_USBCMD_ATDTW      (14)      //!< Bit position for USBC_UOG2_USBCMD_ATDTW.
 #define BM_USBC_UOG2_USBCMD_ATDTW      (0x00004000)  //!< Bit mask for USBC_UOG2_USBCMD_ATDTW.
 
@@ -10481,7 +9862,6 @@ typedef union _hw_usbc_uog2_usbcmd
 //! @brief Set the ATDTW field to a new value.
 #define BW_USBC_UOG2_USBCMD_ATDTW(v)   (HW_USBC_UOG2_USBCMD_WR((HW_USBC_UOG2_USBCMD_RD() & ~BM_USBC_UOG2_USBCMD_ATDTW) | BF_USBC_UOG2_USBCMD_ATDTW(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBCMD, field FS1[15] (RW)
@@ -10503,7 +9883,6 @@ typedef union _hw_usbc_uog2_usbcmd
  * - 111 - 8 elements (32 bytes)
  */
 //@{
-
 #define BP_USBC_UOG2_USBCMD_FS1      (15)      //!< Bit position for USBC_UOG2_USBCMD_FS1.
 #define BM_USBC_UOG2_USBCMD_FS1      (0x00008000)  //!< Bit mask for USBC_UOG2_USBCMD_FS1.
 
@@ -10517,7 +9896,6 @@ typedef union _hw_usbc_uog2_usbcmd
 //! @brief Set the FS1 field to a new value.
 #define BW_USBC_UOG2_USBCMD_FS1(v)   (HW_USBC_UOG2_USBCMD_WR((HW_USBC_UOG2_USBCMD_RD() & ~BM_USBC_UOG2_USBCMD_FS1) | BF_USBC_UOG2_USBCMD_FS1(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBCMD, field ITC[23:16] (RW)
@@ -10538,7 +9916,6 @@ typedef union _hw_usbc_uog2_usbcmd
  * - 0x40 - 64 micro-frames
  */
 //@{
-
 #define BP_USBC_UOG2_USBCMD_ITC      (16)      //!< Bit position for USBC_UOG2_USBCMD_ITC.
 #define BM_USBC_UOG2_USBCMD_ITC      (0x00ff0000)  //!< Bit mask for USBC_UOG2_USBCMD_ITC.
 
@@ -10552,7 +9929,6 @@ typedef union _hw_usbc_uog2_usbcmd
 //! @brief Set the ITC field to a new value.
 #define BW_USBC_UOG2_USBCMD_ITC(v)   (HW_USBC_UOG2_USBCMD_WR((HW_USBC_UOG2_USBCMD_RD() & ~BM_USBC_UOG2_USBCMD_ITC) | BF_USBC_UOG2_USBCMD_ITC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10627,7 +10003,6 @@ typedef union _hw_usbc_uog2_usbsts
  * than the expected number of bytes.
  */
 //@{
-
 #define BP_USBC_UOG2_USBSTS_UI      (0)      //!< Bit position for USBC_UOG2_USBSTS_UI.
 #define BM_USBC_UOG2_USBSTS_UI      (0x00000001)  //!< Bit mask for USBC_UOG2_USBSTS_UI.
 
@@ -10641,7 +10016,6 @@ typedef union _hw_usbc_uog2_usbsts
 //! @brief Set the UI field to a new value.
 #define BW_USBC_UOG2_USBSTS_UI(v)   (HW_USBC_UOG2_USBSTS_WR((HW_USBC_UOG2_USBSTS_RD() & ~BM_USBC_UOG2_USBSTS_UI) | BF_USBC_UOG2_USBSTS_UI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBSTS, field UEI[1] (RW)
@@ -10652,7 +10026,6 @@ typedef union _hw_usbc_uog2_usbsts
  * set The device controller detects resume signaling only.
  */
 //@{
-
 #define BP_USBC_UOG2_USBSTS_UEI      (1)      //!< Bit position for USBC_UOG2_USBSTS_UEI.
 #define BM_USBC_UOG2_USBSTS_UEI      (0x00000002)  //!< Bit mask for USBC_UOG2_USBSTS_UEI.
 
@@ -10666,7 +10039,6 @@ typedef union _hw_usbc_uog2_usbsts
 //! @brief Set the UEI field to a new value.
 #define BW_USBC_UOG2_USBSTS_UEI(v)   (HW_USBC_UOG2_USBSTS_WR((HW_USBC_UOG2_USBSTS_RD() & ~BM_USBC_UOG2_USBSTS_UEI) | BF_USBC_UOG2_USBSTS_UEI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBSTS, field PCI[2] (RW)
@@ -10679,7 +10051,6 @@ typedef union _hw_usbc_uog2_usbsts
  * notification mechanisms are the USB Reset Received bit and the DCSuspend bits respectively.
  */
 //@{
-
 #define BP_USBC_UOG2_USBSTS_PCI      (2)      //!< Bit position for USBC_UOG2_USBSTS_PCI.
 #define BM_USBC_UOG2_USBSTS_PCI      (0x00000004)  //!< Bit mask for USBC_UOG2_USBSTS_PCI.
 
@@ -10693,7 +10064,6 @@ typedef union _hw_usbc_uog2_usbsts
 //! @brief Set the PCI field to a new value.
 #define BW_USBC_UOG2_USBSTS_PCI(v)   (HW_USBC_UOG2_USBSTS_WR((HW_USBC_UOG2_USBSTS_RD() & ~BM_USBC_UOG2_USBSTS_PCI) | BF_USBC_UOG2_USBSTS_PCI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBSTS, field FRI[3] (RW)
@@ -10706,7 +10076,6 @@ typedef union _hw_usbc_uog2_usbsts
  * every time FHINDEX [12] toggles. Only used in host operation mode.
  */
 //@{
-
 #define BP_USBC_UOG2_USBSTS_FRI      (3)      //!< Bit position for USBC_UOG2_USBSTS_FRI.
 #define BM_USBC_UOG2_USBSTS_FRI      (0x00000008)  //!< Bit mask for USBC_UOG2_USBSTS_FRI.
 
@@ -10720,7 +10089,6 @@ typedef union _hw_usbc_uog2_usbsts
 //! @brief Set the FRI field to a new value.
 #define BW_USBC_UOG2_USBSTS_FRI(v)   (HW_USBC_UOG2_USBSTS_WR((HW_USBC_UOG2_USBSTS_RD() & ~BM_USBC_UOG2_USBSTS_FRI) | BF_USBC_UOG2_USBSTS_FRI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBSTS, field SEI[4] (RW)
@@ -10729,7 +10097,6 @@ typedef union _hw_usbc_uog2_usbsts
  * the system interface.
  */
 //@{
-
 #define BP_USBC_UOG2_USBSTS_SEI      (4)      //!< Bit position for USBC_UOG2_USBSTS_SEI.
 #define BM_USBC_UOG2_USBSTS_SEI      (0x00000010)  //!< Bit mask for USBC_UOG2_USBSTS_SEI.
 
@@ -10743,7 +10110,6 @@ typedef union _hw_usbc_uog2_usbsts
 //! @brief Set the SEI field to a new value.
 #define BW_USBC_UOG2_USBSTS_SEI(v)   (HW_USBC_UOG2_USBSTS_WR((HW_USBC_UOG2_USBSTS_RD() & ~BM_USBC_UOG2_USBSTS_SEI) | BF_USBC_UOG2_USBSTS_SEI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBSTS, field AAI[5] (RW)
@@ -10754,7 +10120,6 @@ typedef union _hw_usbc_uog2_usbsts
  * indicates the assertion of that interrupt source. Only used in host operation mode.
  */
 //@{
-
 #define BP_USBC_UOG2_USBSTS_AAI      (5)      //!< Bit position for USBC_UOG2_USBSTS_AAI.
 #define BM_USBC_UOG2_USBSTS_AAI      (0x00000020)  //!< Bit mask for USBC_UOG2_USBSTS_AAI.
 
@@ -10768,7 +10133,6 @@ typedef union _hw_usbc_uog2_usbsts
 //! @brief Set the AAI field to a new value.
 #define BW_USBC_UOG2_USBSTS_AAI(v)   (HW_USBC_UOG2_USBSTS_WR((HW_USBC_UOG2_USBSTS_RD() & ~BM_USBC_UOG2_USBSTS_AAI) | BF_USBC_UOG2_USBSTS_AAI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBSTS, field URI[6] (RW)
@@ -10778,7 +10142,6 @@ typedef union _hw_usbc_uog2_usbsts
  * Received status bit. Only used in device operation mode.
  */
 //@{
-
 #define BP_USBC_UOG2_USBSTS_URI      (6)      //!< Bit position for USBC_UOG2_USBSTS_URI.
 #define BM_USBC_UOG2_USBSTS_URI      (0x00000040)  //!< Bit mask for USBC_UOG2_USBSTS_URI.
 
@@ -10792,7 +10155,6 @@ typedef union _hw_usbc_uog2_usbsts
 //! @brief Set the URI field to a new value.
 #define BW_USBC_UOG2_USBSTS_URI(v)   (HW_USBC_UOG2_USBSTS_WR((HW_USBC_UOG2_USBSTS_RD() & ~BM_USBC_UOG2_USBSTS_URI) | BF_USBC_UOG2_USBSTS_URI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBSTS, field SRI[7] (RW)
@@ -10807,7 +10169,6 @@ typedef union _hw_usbc_uog2_usbsts
  * bit to clear it.
  */
 //@{
-
 #define BP_USBC_UOG2_USBSTS_SRI      (7)      //!< Bit position for USBC_UOG2_USBSTS_SRI.
 #define BM_USBC_UOG2_USBSTS_SRI      (0x00000080)  //!< Bit mask for USBC_UOG2_USBSTS_SRI.
 
@@ -10821,7 +10182,6 @@ typedef union _hw_usbc_uog2_usbsts
 //! @brief Set the SRI field to a new value.
 #define BW_USBC_UOG2_USBSTS_SRI(v)   (HW_USBC_UOG2_USBSTS_WR((HW_USBC_UOG2_USBSTS_RD() & ~BM_USBC_UOG2_USBSTS_SRI) | BF_USBC_UOG2_USBSTS_SRI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBSTS, field SLI[8] (RW)
@@ -10831,7 +10191,6 @@ typedef union _hw_usbc_uog2_usbsts
  * in device operation mode.
  */
 //@{
-
 #define BP_USBC_UOG2_USBSTS_SLI      (8)      //!< Bit position for USBC_UOG2_USBSTS_SLI.
 #define BM_USBC_UOG2_USBSTS_SLI      (0x00000100)  //!< Bit mask for USBC_UOG2_USBSTS_SLI.
 
@@ -10845,7 +10204,6 @@ typedef union _hw_usbc_uog2_usbsts
 //! @brief Set the SLI field to a new value.
 #define BW_USBC_UOG2_USBSTS_SLI(v)   (HW_USBC_UOG2_USBSTS_WR((HW_USBC_UOG2_USBSTS_RD() & ~BM_USBC_UOG2_USBSTS_SLI) | BF_USBC_UOG2_USBSTS_SLI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBSTS, field ULPII[10] (RW)
@@ -10854,7 +10212,6 @@ typedef union _hw_usbc_uog2_usbsts
  * ULPI viewport. This bit is usable only if the controller support UPLI interface mode.
  */
 //@{
-
 #define BP_USBC_UOG2_USBSTS_ULPII      (10)      //!< Bit position for USBC_UOG2_USBSTS_ULPII.
 #define BM_USBC_UOG2_USBSTS_ULPII      (0x00000400)  //!< Bit mask for USBC_UOG2_USBSTS_ULPII.
 
@@ -10868,7 +10225,6 @@ typedef union _hw_usbc_uog2_usbsts
 //! @brief Set the ULPII field to a new value.
 #define BW_USBC_UOG2_USBSTS_ULPII(v)   (HW_USBC_UOG2_USBSTS_WR((HW_USBC_UOG2_USBSTS_RD() & ~BM_USBC_UOG2_USBSTS_ULPII) | BF_USBC_UOG2_USBSTS_ULPII(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBSTS, field HCH[12] (RW)
@@ -10881,7 +10237,6 @@ typedef union _hw_usbc_uog2_usbsts
  * register. HCH bit reset value: '0b' for OTG controller core, '1b' for Host-only controller core.
  */
 //@{
-
 #define BP_USBC_UOG2_USBSTS_HCH      (12)      //!< Bit position for USBC_UOG2_USBSTS_HCH.
 #define BM_USBC_UOG2_USBSTS_HCH      (0x00001000)  //!< Bit mask for USBC_UOG2_USBSTS_HCH.
 
@@ -10895,7 +10250,6 @@ typedef union _hw_usbc_uog2_usbsts
 //! @brief Set the HCH field to a new value.
 #define BW_USBC_UOG2_USBSTS_HCH(v)   (HW_USBC_UOG2_USBSTS_WR((HW_USBC_UOG2_USBSTS_RD() & ~BM_USBC_UOG2_USBSTS_HCH) | BF_USBC_UOG2_USBSTS_HCH(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBSTS, field RCL[13] (RW)
@@ -10904,7 +10258,6 @@ typedef union _hw_usbc_uog2_usbsts
  * schedule. Only used in the host operation mode.
  */
 //@{
-
 #define BP_USBC_UOG2_USBSTS_RCL      (13)      //!< Bit position for USBC_UOG2_USBSTS_RCL.
 #define BM_USBC_UOG2_USBSTS_RCL      (0x00002000)  //!< Bit mask for USBC_UOG2_USBSTS_RCL.
 
@@ -10918,7 +10271,6 @@ typedef union _hw_usbc_uog2_usbsts
 //! @brief Set the RCL field to a new value.
 #define BW_USBC_UOG2_USBSTS_RCL(v)   (HW_USBC_UOG2_USBSTS_WR((HW_USBC_UOG2_USBSTS_RD() & ~BM_USBC_UOG2_USBSTS_RCL) | BF_USBC_UOG2_USBSTS_RCL(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBSTS, field PS[14] (RW)
@@ -10931,7 +10283,6 @@ typedef union _hw_usbc_uog2_usbsts
  * enabled (1) or disabled (0). Only used in the host operation mode.
  */
 //@{
-
 #define BP_USBC_UOG2_USBSTS_PS      (14)      //!< Bit position for USBC_UOG2_USBSTS_PS.
 #define BM_USBC_UOG2_USBSTS_PS      (0x00004000)  //!< Bit mask for USBC_UOG2_USBSTS_PS.
 
@@ -10945,7 +10296,6 @@ typedef union _hw_usbc_uog2_usbsts
 //! @brief Set the PS field to a new value.
 #define BW_USBC_UOG2_USBSTS_PS(v)   (HW_USBC_UOG2_USBSTS_WR((HW_USBC_UOG2_USBSTS_RD() & ~BM_USBC_UOG2_USBSTS_PS) | BF_USBC_UOG2_USBSTS_PS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBSTS, field AS[15] (RW)
@@ -10959,7 +10309,6 @@ typedef union _hw_usbc_uog2_usbsts
  * operation mode.
  */
 //@{
-
 #define BP_USBC_UOG2_USBSTS_AS      (15)      //!< Bit position for USBC_UOG2_USBSTS_AS.
 #define BM_USBC_UOG2_USBSTS_AS      (0x00008000)  //!< Bit mask for USBC_UOG2_USBSTS_AS.
 
@@ -10973,7 +10322,6 @@ typedef union _hw_usbc_uog2_usbsts
 //! @brief Set the AS field to a new value.
 #define BW_USBC_UOG2_USBSTS_AS(v)   (HW_USBC_UOG2_USBSTS_WR((HW_USBC_UOG2_USBSTS_RD() & ~BM_USBC_UOG2_USBSTS_AS) | BF_USBC_UOG2_USBSTS_AS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBSTS, field NAKI[16] (RO)
@@ -10983,13 +10331,11 @@ typedef union _hw_usbc_uog2_usbsts
  * automatically cleared by hardware when all Enabled TX/RX Endpoint NAK bits are cleared.
  */
 //@{
-
 #define BP_USBC_UOG2_USBSTS_NAKI      (16)      //!< Bit position for USBC_UOG2_USBSTS_NAKI.
 #define BM_USBC_UOG2_USBSTS_NAKI      (0x00010000)  //!< Bit mask for USBC_UOG2_USBSTS_NAKI.
 
 //! @brief Get value of USBC_UOG2_USBSTS_NAKI from a register value.
 #define BG_USBC_UOG2_USBSTS_NAKI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_USBSTS_NAKI) >> BP_USBC_UOG2_USBSTS_NAKI)
-
 //@}
 
 /*! @name Register USBC_UOG2_USBSTS, field TI0[24] (RW)
@@ -10998,7 +10344,6 @@ typedef union _hw_usbc_uog2_usbsts
  * GPTIMER0CTRL register transitions to zero, writing a one to this bit clears it.
  */
 //@{
-
 #define BP_USBC_UOG2_USBSTS_TI0      (24)      //!< Bit position for USBC_UOG2_USBSTS_TI0.
 #define BM_USBC_UOG2_USBSTS_TI0      (0x01000000)  //!< Bit mask for USBC_UOG2_USBSTS_TI0.
 
@@ -11012,7 +10357,6 @@ typedef union _hw_usbc_uog2_usbsts
 //! @brief Set the TI0 field to a new value.
 #define BW_USBC_UOG2_USBSTS_TI0(v)   (HW_USBC_UOG2_USBSTS_WR((HW_USBC_UOG2_USBSTS_RD() & ~BM_USBC_UOG2_USBSTS_TI0) | BF_USBC_UOG2_USBSTS_TI0(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBSTS, field TI1[25] (RW)
@@ -11021,7 +10365,6 @@ typedef union _hw_usbc_uog2_usbsts
  * GPTIMER1CTRL register transitions to zero, writing a one to this bit will clear it.
  */
 //@{
-
 #define BP_USBC_UOG2_USBSTS_TI1      (25)      //!< Bit position for USBC_UOG2_USBSTS_TI1.
 #define BM_USBC_UOG2_USBSTS_TI1      (0x02000000)  //!< Bit mask for USBC_UOG2_USBSTS_TI1.
 
@@ -11035,7 +10378,6 @@ typedef union _hw_usbc_uog2_usbsts
 //! @brief Set the TI1 field to a new value.
 #define BW_USBC_UOG2_USBSTS_TI1(v)   (HW_USBC_UOG2_USBSTS_WR((HW_USBC_UOG2_USBSTS_RD() & ~BM_USBC_UOG2_USBSTS_TI1) | BF_USBC_UOG2_USBSTS_TI1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11108,7 +10450,6 @@ typedef union _hw_usbc_uog2_usbintr
  * controller will issue an interrupt.
  */
 //@{
-
 #define BP_USBC_UOG2_USBINTR_UE      (0)      //!< Bit position for USBC_UOG2_USBINTR_UE.
 #define BM_USBC_UOG2_USBINTR_UE      (0x00000001)  //!< Bit mask for USBC_UOG2_USBINTR_UE.
 
@@ -11122,7 +10463,6 @@ typedef union _hw_usbc_uog2_usbintr
 //! @brief Set the UE field to a new value.
 #define BW_USBC_UOG2_USBINTR_UE(v)   (HW_USBC_UOG2_USBINTR_WR((HW_USBC_UOG2_USBINTR_RD() & ~BM_USBC_UOG2_USBINTR_UE) | BF_USBC_UOG2_USBINTR_UE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBINTR, field UEE[1] (RW)
@@ -11131,7 +10471,6 @@ typedef union _hw_usbc_uog2_usbintr
  * controller will issue an interrupt.
  */
 //@{
-
 #define BP_USBC_UOG2_USBINTR_UEE      (1)      //!< Bit position for USBC_UOG2_USBINTR_UEE.
 #define BM_USBC_UOG2_USBINTR_UEE      (0x00000002)  //!< Bit mask for USBC_UOG2_USBINTR_UEE.
 
@@ -11145,7 +10484,6 @@ typedef union _hw_usbc_uog2_usbintr
 //! @brief Set the UEE field to a new value.
 #define BW_USBC_UOG2_USBINTR_UEE(v)   (HW_USBC_UOG2_USBINTR_WR((HW_USBC_UOG2_USBINTR_RD() & ~BM_USBC_UOG2_USBINTR_UEE) | BF_USBC_UOG2_USBINTR_UEE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBINTR, field PCE[2] (RW)
@@ -11154,7 +10492,6 @@ typedef union _hw_usbc_uog2_usbintr
  * a one the controller will issue an interrupt.
  */
 //@{
-
 #define BP_USBC_UOG2_USBINTR_PCE      (2)      //!< Bit position for USBC_UOG2_USBINTR_PCE.
 #define BM_USBC_UOG2_USBINTR_PCE      (0x00000004)  //!< Bit mask for USBC_UOG2_USBINTR_PCE.
 
@@ -11168,7 +10505,6 @@ typedef union _hw_usbc_uog2_usbintr
 //! @brief Set the PCE field to a new value.
 #define BW_USBC_UOG2_USBINTR_PCE(v)   (HW_USBC_UOG2_USBINTR_WR((HW_USBC_UOG2_USBINTR_RD() & ~BM_USBC_UOG2_USBINTR_PCE) | BF_USBC_UOG2_USBINTR_PCE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBINTR, field FRE[3] (RW)
@@ -11177,7 +10513,6 @@ typedef union _hw_usbc_uog2_usbintr
  * a one the controller will issue an interrupt. Only used in host operation mode.
  */
 //@{
-
 #define BP_USBC_UOG2_USBINTR_FRE      (3)      //!< Bit position for USBC_UOG2_USBINTR_FRE.
 #define BM_USBC_UOG2_USBINTR_FRE      (0x00000008)  //!< Bit mask for USBC_UOG2_USBINTR_FRE.
 
@@ -11191,7 +10526,6 @@ typedef union _hw_usbc_uog2_usbintr
 //! @brief Set the FRE field to a new value.
 #define BW_USBC_UOG2_USBINTR_FRE(v)   (HW_USBC_UOG2_USBINTR_WR((HW_USBC_UOG2_USBINTR_RD() & ~BM_USBC_UOG2_USBINTR_FRE) | BF_USBC_UOG2_USBINTR_FRE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBINTR, field SEE[4] (RW)
@@ -11200,7 +10534,6 @@ typedef union _hw_usbc_uog2_usbintr
  * the controller will issue an interrupt. Only used in host operation mode.
  */
 //@{
-
 #define BP_USBC_UOG2_USBINTR_SEE      (4)      //!< Bit position for USBC_UOG2_USBINTR_SEE.
 #define BM_USBC_UOG2_USBINTR_SEE      (0x00000010)  //!< Bit mask for USBC_UOG2_USBINTR_SEE.
 
@@ -11214,7 +10547,6 @@ typedef union _hw_usbc_uog2_usbintr
 //! @brief Set the SEE field to a new value.
 #define BW_USBC_UOG2_USBINTR_SEE(v)   (HW_USBC_UOG2_USBINTR_WR((HW_USBC_UOG2_USBINTR_RD() & ~BM_USBC_UOG2_USBINTR_SEE) | BF_USBC_UOG2_USBINTR_SEE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBINTR, field AAE[5] (RW)
@@ -11223,7 +10555,6 @@ typedef union _hw_usbc_uog2_usbintr
  * the controller will issue an interrupt. Only used in host operation mode.
  */
 //@{
-
 #define BP_USBC_UOG2_USBINTR_AAE      (5)      //!< Bit position for USBC_UOG2_USBINTR_AAE.
 #define BM_USBC_UOG2_USBINTR_AAE      (0x00000020)  //!< Bit mask for USBC_UOG2_USBINTR_AAE.
 
@@ -11237,7 +10568,6 @@ typedef union _hw_usbc_uog2_usbintr
 //! @brief Set the AAE field to a new value.
 #define BW_USBC_UOG2_USBINTR_AAE(v)   (HW_USBC_UOG2_USBINTR_WR((HW_USBC_UOG2_USBINTR_RD() & ~BM_USBC_UOG2_USBINTR_AAE) | BF_USBC_UOG2_USBINTR_AAE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBINTR, field URE[6] (RW)
@@ -11246,7 +10576,6 @@ typedef union _hw_usbc_uog2_usbintr
  * controller will issue an interrupt. Only used in device operation mode.
  */
 //@{
-
 #define BP_USBC_UOG2_USBINTR_URE      (6)      //!< Bit position for USBC_UOG2_USBINTR_URE.
 #define BM_USBC_UOG2_USBINTR_URE      (0x00000040)  //!< Bit mask for USBC_UOG2_USBINTR_URE.
 
@@ -11260,7 +10589,6 @@ typedef union _hw_usbc_uog2_usbintr
 //! @brief Set the URE field to a new value.
 #define BW_USBC_UOG2_USBINTR_URE(v)   (HW_USBC_UOG2_USBINTR_WR((HW_USBC_UOG2_USBINTR_RD() & ~BM_USBC_UOG2_USBINTR_URE) | BF_USBC_UOG2_USBINTR_URE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBINTR, field SRE[7] (RW)
@@ -11269,7 +10597,6 @@ typedef union _hw_usbc_uog2_usbintr
  * the controller will issue an interrupt.
  */
 //@{
-
 #define BP_USBC_UOG2_USBINTR_SRE      (7)      //!< Bit position for USBC_UOG2_USBINTR_SRE.
 #define BM_USBC_UOG2_USBINTR_SRE      (0x00000080)  //!< Bit mask for USBC_UOG2_USBINTR_SRE.
 
@@ -11283,7 +10610,6 @@ typedef union _hw_usbc_uog2_usbintr
 //! @brief Set the SRE field to a new value.
 #define BW_USBC_UOG2_USBINTR_SRE(v)   (HW_USBC_UOG2_USBINTR_WR((HW_USBC_UOG2_USBINTR_RD() & ~BM_USBC_UOG2_USBINTR_SRE) | BF_USBC_UOG2_USBINTR_SRE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBINTR, field SLE[8] (RW)
@@ -11292,7 +10618,6 @@ typedef union _hw_usbc_uog2_usbintr
  * controller will issue an interrupt. Only used in device operation mode.
  */
 //@{
-
 #define BP_USBC_UOG2_USBINTR_SLE      (8)      //!< Bit position for USBC_UOG2_USBINTR_SLE.
 #define BM_USBC_UOG2_USBINTR_SLE      (0x00000100)  //!< Bit mask for USBC_UOG2_USBINTR_SLE.
 
@@ -11306,7 +10631,6 @@ typedef union _hw_usbc_uog2_usbintr
 //! @brief Set the SLE field to a new value.
 #define BW_USBC_UOG2_USBINTR_SLE(v)   (HW_USBC_UOG2_USBINTR_WR((HW_USBC_UOG2_USBINTR_RD() & ~BM_USBC_UOG2_USBINTR_SLE) | BF_USBC_UOG2_USBINTR_SLE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBINTR, field ULPIE[10] (RW)
@@ -11316,7 +10640,6 @@ typedef union _hw_usbc_uog2_usbintr
  * interface mode.
  */
 //@{
-
 #define BP_USBC_UOG2_USBINTR_ULPIE      (10)      //!< Bit position for USBC_UOG2_USBINTR_ULPIE.
 #define BM_USBC_UOG2_USBINTR_ULPIE      (0x00000400)  //!< Bit mask for USBC_UOG2_USBINTR_ULPIE.
 
@@ -11330,7 +10653,6 @@ typedef union _hw_usbc_uog2_usbintr
 //! @brief Set the ULPIE field to a new value.
 #define BW_USBC_UOG2_USBINTR_ULPIE(v)   (HW_USBC_UOG2_USBINTR_WR((HW_USBC_UOG2_USBINTR_RD() & ~BM_USBC_UOG2_USBINTR_ULPIE) | BF_USBC_UOG2_USBINTR_ULPIE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBINTR, field NAKE[16] (RW)
@@ -11339,7 +10661,6 @@ typedef union _hw_usbc_uog2_usbintr
  * controller will issue an interrupt.
  */
 //@{
-
 #define BP_USBC_UOG2_USBINTR_NAKE      (16)      //!< Bit position for USBC_UOG2_USBINTR_NAKE.
 #define BM_USBC_UOG2_USBINTR_NAKE      (0x00010000)  //!< Bit mask for USBC_UOG2_USBINTR_NAKE.
 
@@ -11353,7 +10674,6 @@ typedef union _hw_usbc_uog2_usbintr
 //! @brief Set the NAKE field to a new value.
 #define BW_USBC_UOG2_USBINTR_NAKE(v)   (HW_USBC_UOG2_USBINTR_WR((HW_USBC_UOG2_USBINTR_RD() & ~BM_USBC_UOG2_USBINTR_NAKE) | BF_USBC_UOG2_USBINTR_NAKE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBINTR, field UAIE[18] (RW)
@@ -11362,7 +10682,6 @@ typedef union _hw_usbc_uog2_usbintr
  * register is one, host controller will issue an interrupt at the next interrupt threshold.
  */
 //@{
-
 #define BP_USBC_UOG2_USBINTR_UAIE      (18)      //!< Bit position for USBC_UOG2_USBINTR_UAIE.
 #define BM_USBC_UOG2_USBINTR_UAIE      (0x00040000)  //!< Bit mask for USBC_UOG2_USBINTR_UAIE.
 
@@ -11376,7 +10695,6 @@ typedef union _hw_usbc_uog2_usbintr
 //! @brief Set the UAIE field to a new value.
 #define BW_USBC_UOG2_USBINTR_UAIE(v)   (HW_USBC_UOG2_USBINTR_WR((HW_USBC_UOG2_USBINTR_RD() & ~BM_USBC_UOG2_USBINTR_UAIE) | BF_USBC_UOG2_USBINTR_UAIE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBINTR, field UPIE[19] (RW)
@@ -11385,7 +10703,6 @@ typedef union _hw_usbc_uog2_usbintr
  * is one, host controller will issue an interrupt at the next interrupt threshold.
  */
 //@{
-
 #define BP_USBC_UOG2_USBINTR_UPIE      (19)      //!< Bit position for USBC_UOG2_USBINTR_UPIE.
 #define BM_USBC_UOG2_USBINTR_UPIE      (0x00080000)  //!< Bit mask for USBC_UOG2_USBINTR_UPIE.
 
@@ -11399,7 +10716,6 @@ typedef union _hw_usbc_uog2_usbintr
 //! @brief Set the UPIE field to a new value.
 #define BW_USBC_UOG2_USBINTR_UPIE(v)   (HW_USBC_UOG2_USBINTR_WR((HW_USBC_UOG2_USBINTR_RD() & ~BM_USBC_UOG2_USBINTR_UPIE) | BF_USBC_UOG2_USBINTR_UPIE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBINTR, field TIE0[24] (RW)
@@ -11408,7 +10724,6 @@ typedef union _hw_usbc_uog2_usbintr
  * register is a one the controller will issue an interrupt.
  */
 //@{
-
 #define BP_USBC_UOG2_USBINTR_TIE0      (24)      //!< Bit position for USBC_UOG2_USBINTR_TIE0.
 #define BM_USBC_UOG2_USBINTR_TIE0      (0x01000000)  //!< Bit mask for USBC_UOG2_USBINTR_TIE0.
 
@@ -11422,7 +10737,6 @@ typedef union _hw_usbc_uog2_usbintr
 //! @brief Set the TIE0 field to a new value.
 #define BW_USBC_UOG2_USBINTR_TIE0(v)   (HW_USBC_UOG2_USBINTR_WR((HW_USBC_UOG2_USBINTR_RD() & ~BM_USBC_UOG2_USBINTR_TIE0) | BF_USBC_UOG2_USBINTR_TIE0(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBINTR, field TIE1[25] (RW)
@@ -11431,7 +10745,6 @@ typedef union _hw_usbc_uog2_usbintr
  * register is a one the controller will issue an interrupt.
  */
 //@{
-
 #define BP_USBC_UOG2_USBINTR_TIE1      (25)      //!< Bit position for USBC_UOG2_USBINTR_TIE1.
 #define BM_USBC_UOG2_USBINTR_TIE1      (0x02000000)  //!< Bit mask for USBC_UOG2_USBINTR_TIE1.
 
@@ -11445,7 +10758,6 @@ typedef union _hw_usbc_uog2_usbintr
 //! @brief Set the TIE1 field to a new value.
 #define BW_USBC_UOG2_USBINTR_TIE1(v)   (HW_USBC_UOG2_USBINTR_WR((HW_USBC_UOG2_USBINTR_RD() & ~BM_USBC_UOG2_USBINTR_TIE1) | BF_USBC_UOG2_USBINTR_TIE1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11525,7 +10837,6 @@ typedef union _hw_usbc_uog2_frindex
  * - 111 - (8) 5
  */
 //@{
-
 #define BP_USBC_UOG2_FRINDEX_FRINDEX      (0)      //!< Bit position for USBC_UOG2_FRINDEX_FRINDEX.
 #define BM_USBC_UOG2_FRINDEX_FRINDEX      (0x00003fff)  //!< Bit mask for USBC_UOG2_FRINDEX_FRINDEX.
 
@@ -11539,7 +10850,6 @@ typedef union _hw_usbc_uog2_frindex
 //! @brief Set the FRINDEX field to a new value.
 #define BW_USBC_UOG2_FRINDEX_FRINDEX(v)   (HW_USBC_UOG2_FRINDEX_WR((HW_USBC_UOG2_FRINDEX_RD() & ~BM_USBC_UOG2_FRINDEX_FRINDEX) | BF_USBC_UOG2_FRINDEX_FRINDEX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11596,7 +10906,6 @@ typedef union _hw_usbc_uog2_periodiclistbase
  * used by the host controller.
  */
 //@{
-
 #define BP_USBC_UOG2_PERIODICLISTBASE_BASEADR      (12)      //!< Bit position for USBC_UOG2_PERIODICLISTBASE_BASEADR.
 #define BM_USBC_UOG2_PERIODICLISTBASE_BASEADR      (0xfffff000)  //!< Bit mask for USBC_UOG2_PERIODICLISTBASE_BASEADR.
 
@@ -11610,7 +10919,6 @@ typedef union _hw_usbc_uog2_periodiclistbase
 //! @brief Set the BASEADR field to a new value.
 #define BW_USBC_UOG2_PERIODICLISTBASE_BASEADR(v)   (HW_USBC_UOG2_PERIODICLISTBASE_WR((HW_USBC_UOG2_PERIODICLISTBASE_RD() & ~BM_USBC_UOG2_PERIODICLISTBASE_BASEADR) | BF_USBC_UOG2_PERIODICLISTBASE_BASEADR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11676,7 +10984,6 @@ typedef union _hw_usbc_uog2_deviceaddr
  * requirement.
  */
 //@{
-
 #define BP_USBC_UOG2_DEVICEADDR_USBADRA      (24)      //!< Bit position for USBC_UOG2_DEVICEADDR_USBADRA.
 #define BM_USBC_UOG2_DEVICEADDR_USBADRA      (0x01000000)  //!< Bit mask for USBC_UOG2_DEVICEADDR_USBADRA.
 
@@ -11690,7 +10997,6 @@ typedef union _hw_usbc_uog2_deviceaddr
 //! @brief Set the USBADRA field to a new value.
 #define BW_USBC_UOG2_DEVICEADDR_USBADRA(v)   (HW_USBC_UOG2_DEVICEADDR_WR((HW_USBC_UOG2_DEVICEADDR_RD() & ~BM_USBC_UOG2_DEVICEADDR_USBADRA) | BF_USBC_UOG2_DEVICEADDR_USBADRA(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_DEVICEADDR, field USBADR[31:25] (RW)
@@ -11698,7 +11004,6 @@ typedef union _hw_usbc_uog2_deviceaddr
  * Device Address. These bits correspond to the USB device address
  */
 //@{
-
 #define BP_USBC_UOG2_DEVICEADDR_USBADR      (25)      //!< Bit position for USBC_UOG2_DEVICEADDR_USBADR.
 #define BM_USBC_UOG2_DEVICEADDR_USBADR      (0xfe000000)  //!< Bit mask for USBC_UOG2_DEVICEADDR_USBADR.
 
@@ -11712,7 +11017,6 @@ typedef union _hw_usbc_uog2_deviceaddr
 //! @brief Set the USBADR field to a new value.
 #define BW_USBC_UOG2_DEVICEADDR_USBADR(v)   (HW_USBC_UOG2_DEVICEADDR_WR((HW_USBC_UOG2_DEVICEADDR_RD() & ~BM_USBC_UOG2_DEVICEADDR_USBADR) | BF_USBC_UOG2_DEVICEADDR_USBADR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11766,7 +11070,6 @@ typedef union _hw_usbc_uog2_asynclistaddr
  * This field may only reference a Queue Head (QH). Only used by the host controller.
  */
 //@{
-
 #define BP_USBC_UOG2_ASYNCLISTADDR_ASYBASE      (5)      //!< Bit position for USBC_UOG2_ASYNCLISTADDR_ASYBASE.
 #define BM_USBC_UOG2_ASYNCLISTADDR_ASYBASE      (0xffffffe0)  //!< Bit mask for USBC_UOG2_ASYNCLISTADDR_ASYBASE.
 
@@ -11780,7 +11083,6 @@ typedef union _hw_usbc_uog2_asynclistaddr
 //! @brief Set the ASYBASE field to a new value.
 #define BW_USBC_UOG2_ASYNCLISTADDR_ASYBASE(v)   (HW_USBC_UOG2_ASYNCLISTADDR_WR((HW_USBC_UOG2_ASYNCLISTADDR_RD() & ~BM_USBC_UOG2_ASYNCLISTADDR_ASYBASE) | BF_USBC_UOG2_ASYNCLISTADDR_ASYBASE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11836,7 +11138,6 @@ typedef union _hw_usbc_uog2_endptlistaddr
  * head per endpoint & direction).
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTLISTADDR_EPBASE      (11)      //!< Bit position for USBC_UOG2_ENDPTLISTADDR_EPBASE.
 #define BM_USBC_UOG2_ENDPTLISTADDR_EPBASE      (0xfffff800)  //!< Bit mask for USBC_UOG2_ENDPTLISTADDR_EPBASE.
 
@@ -11850,7 +11151,6 @@ typedef union _hw_usbc_uog2_endptlistaddr
 //! @brief Set the EPBASE field to a new value.
 #define BW_USBC_UOG2_ENDPTLISTADDR_EPBASE(v)   (HW_USBC_UOG2_ENDPTLISTADDR_WR((HW_USBC_UOG2_ENDPTLISTADDR_RD() & ~BM_USBC_UOG2_ENDPTLISTADDR_EPBASE) | BF_USBC_UOG2_ENDPTLISTADDR_EPBASE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11905,7 +11205,6 @@ typedef union _hw_usbc_uog2_burstsize
  * USB bus to system memory.
  */
 //@{
-
 #define BP_USBC_UOG2_BURSTSIZE_RXPBURST      (0)      //!< Bit position for USBC_UOG2_BURSTSIZE_RXPBURST.
 #define BM_USBC_UOG2_BURSTSIZE_RXPBURST      (0x000000ff)  //!< Bit mask for USBC_UOG2_BURSTSIZE_RXPBURST.
 
@@ -11919,7 +11218,6 @@ typedef union _hw_usbc_uog2_burstsize
 //! @brief Set the RXPBURST field to a new value.
 #define BW_USBC_UOG2_BURSTSIZE_RXPBURST(v)   (HW_USBC_UOG2_BURSTSIZE_WR((HW_USBC_UOG2_BURSTSIZE_RD() & ~BM_USBC_UOG2_BURSTSIZE_RXPBURST) | BF_USBC_UOG2_BURSTSIZE_RXPBURST(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_BURSTSIZE, field TXPBURST[16:8] (RW)
@@ -11929,7 +11227,6 @@ typedef union _hw_usbc_uog2_burstsize
  * system memory to the USB bus.
  */
 //@{
-
 #define BP_USBC_UOG2_BURSTSIZE_TXPBURST      (8)      //!< Bit position for USBC_UOG2_BURSTSIZE_TXPBURST.
 #define BM_USBC_UOG2_BURSTSIZE_TXPBURST      (0x0001ff00)  //!< Bit mask for USBC_UOG2_BURSTSIZE_TXPBURST.
 
@@ -11943,7 +11240,6 @@ typedef union _hw_usbc_uog2_burstsize
 //! @brief Set the TXPBURST field to a new value.
 #define BW_USBC_UOG2_BURSTSIZE_TXPBURST(v)   (HW_USBC_UOG2_BURSTSIZE_WR((HW_USBC_UOG2_BURSTSIZE_RD() & ~BM_USBC_UOG2_BURSTSIZE_TXPBURST) | BF_USBC_UOG2_BURSTSIZE_TXPBURST(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12021,7 +11317,6 @@ typedef union _hw_usbc_uog2_txfilltuning
  * '08h' for OTG controller core, and '00h' for Host-only controller core.
  */
 //@{
-
 #define BP_USBC_UOG2_TXFILLTUNING_TXSCHOH      (0)      //!< Bit position for USBC_UOG2_TXFILLTUNING_TXSCHOH.
 #define BM_USBC_UOG2_TXFILLTUNING_TXSCHOH      (0x000000ff)  //!< Bit mask for USBC_UOG2_TXFILLTUNING_TXSCHOH.
 
@@ -12035,7 +11330,6 @@ typedef union _hw_usbc_uog2_txfilltuning
 //! @brief Set the TXSCHOH field to a new value.
 #define BW_USBC_UOG2_TXFILLTUNING_TXSCHOH(v)   (HW_USBC_UOG2_TXFILLTUNING_WR((HW_USBC_UOG2_TXFILLTUNING_RD() & ~BM_USBC_UOG2_TXFILLTUNING_TXSCHOH) | BF_USBC_UOG2_TXFILLTUNING_TXSCHOH(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_TXFILLTUNING, field TXSCHHEALTH[12:8] (RW)
@@ -12048,7 +11342,6 @@ typedef union _hw_usbc_uog2_txfilltuning
  * controller core, and '00h' for Host-only controller core.
  */
 //@{
-
 #define BP_USBC_UOG2_TXFILLTUNING_TXSCHHEALTH      (8)      //!< Bit position for USBC_UOG2_TXFILLTUNING_TXSCHHEALTH.
 #define BM_USBC_UOG2_TXFILLTUNING_TXSCHHEALTH      (0x00001f00)  //!< Bit mask for USBC_UOG2_TXFILLTUNING_TXSCHHEALTH.
 
@@ -12062,7 +11355,6 @@ typedef union _hw_usbc_uog2_txfilltuning
 //! @brief Set the TXSCHHEALTH field to a new value.
 #define BW_USBC_UOG2_TXFILLTUNING_TXSCHHEALTH(v)   (HW_USBC_UOG2_TXFILLTUNING_WR((HW_USBC_UOG2_TXFILLTUNING_RD() & ~BM_USBC_UOG2_TXFILLTUNING_TXSCHHEALTH) | BF_USBC_UOG2_TXFILLTUNING_TXSCHHEALTH(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_TXFILLTUNING, field TXFIFOTHRES[21:16] (RW)
@@ -12077,7 +11369,6 @@ typedef union _hw_usbc_uog2_txfilltuning
  * controller core.
  */
 //@{
-
 #define BP_USBC_UOG2_TXFILLTUNING_TXFIFOTHRES      (16)      //!< Bit position for USBC_UOG2_TXFILLTUNING_TXFIFOTHRES.
 #define BM_USBC_UOG2_TXFILLTUNING_TXFIFOTHRES      (0x003f0000)  //!< Bit mask for USBC_UOG2_TXFILLTUNING_TXFIFOTHRES.
 
@@ -12091,7 +11382,6 @@ typedef union _hw_usbc_uog2_txfilltuning
 //! @brief Set the TXFIFOTHRES field to a new value.
 #define BW_USBC_UOG2_TXFILLTUNING_TXFIFOTHRES(v)   (HW_USBC_UOG2_TXFILLTUNING_WR((HW_USBC_UOG2_TXFILLTUNING_RD() & ~BM_USBC_UOG2_TXFILLTUNING_TXFIFOTHRES) | BF_USBC_UOG2_TXFILLTUNING_TXFIFOTHRES(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12146,7 +11436,6 @@ typedef union _hw_usbc_uog2_endptnak
  * Endpoint #[N], N is 0-7
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTNAK_EPRN      (0)      //!< Bit position for USBC_UOG2_ENDPTNAK_EPRN.
 #define BM_USBC_UOG2_ENDPTNAK_EPRN      (0x000000ff)  //!< Bit mask for USBC_UOG2_ENDPTNAK_EPRN.
 
@@ -12160,7 +11449,6 @@ typedef union _hw_usbc_uog2_endptnak
 //! @brief Set the EPRN field to a new value.
 #define BW_USBC_UOG2_ENDPTNAK_EPRN(v)   (HW_USBC_UOG2_ENDPTNAK_WR((HW_USBC_UOG2_ENDPTNAK_RD() & ~BM_USBC_UOG2_ENDPTNAK_EPRN) | BF_USBC_UOG2_ENDPTNAK_EPRN(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTNAK, field EPTN[23:16] (RW)
@@ -12170,7 +11458,6 @@ typedef union _hw_usbc_uog2_endptnak
  * #[N], N is 0-7
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTNAK_EPTN      (16)      //!< Bit position for USBC_UOG2_ENDPTNAK_EPTN.
 #define BM_USBC_UOG2_ENDPTNAK_EPTN      (0x00ff0000)  //!< Bit mask for USBC_UOG2_ENDPTNAK_EPTN.
 
@@ -12184,7 +11471,6 @@ typedef union _hw_usbc_uog2_endptnak
 //! @brief Set the EPTN field to a new value.
 #define BW_USBC_UOG2_ENDPTNAK_EPTN(v)   (HW_USBC_UOG2_ENDPTNAK_WR((HW_USBC_UOG2_ENDPTNAK_RD() & ~BM_USBC_UOG2_ENDPTNAK_EPTN) | BF_USBC_UOG2_ENDPTNAK_EPTN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12239,7 +11525,6 @@ typedef union _hw_usbc_uog2_endptnaken
  * is set. Bit [N] - Endpoint #[N], N is 0-7
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTNAKEN_EPRNE      (0)      //!< Bit position for USBC_UOG2_ENDPTNAKEN_EPRNE.
 #define BM_USBC_UOG2_ENDPTNAKEN_EPRNE      (0x000000ff)  //!< Bit mask for USBC_UOG2_ENDPTNAKEN_EPRNE.
 
@@ -12253,7 +11538,6 @@ typedef union _hw_usbc_uog2_endptnaken
 //! @brief Set the EPRNE field to a new value.
 #define BW_USBC_UOG2_ENDPTNAKEN_EPRNE(v)   (HW_USBC_UOG2_ENDPTNAKEN_WR((HW_USBC_UOG2_ENDPTNAKEN_RD() & ~BM_USBC_UOG2_ENDPTNAKEN_EPRNE) | BF_USBC_UOG2_ENDPTNAKEN_EPRNE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTNAKEN, field EPTNE[23:16] (RW)
@@ -12263,7 +11547,6 @@ typedef union _hw_usbc_uog2_endptnaken
  * is set. Bit [N] - Endpoint #[N], N is 0-7
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTNAKEN_EPTNE      (16)      //!< Bit position for USBC_UOG2_ENDPTNAKEN_EPTNE.
 #define BM_USBC_UOG2_ENDPTNAKEN_EPTNE      (0x00ff0000)  //!< Bit mask for USBC_UOG2_ENDPTNAKEN_EPTNE.
 
@@ -12277,7 +11560,6 @@ typedef union _hw_usbc_uog2_endptnaken
 //! @brief Set the EPTNE field to a new value.
 #define BW_USBC_UOG2_ENDPTNAKEN_EPTNE(v)   (HW_USBC_UOG2_ENDPTNAKEN_WR((HW_USBC_UOG2_ENDPTNAKEN_RD() & ~BM_USBC_UOG2_ENDPTNAKEN_EPTNE) | BF_USBC_UOG2_ENDPTNAKEN_EPTNE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12334,13 +11616,11 @@ typedef union _hw_usbc_uog2_configflag
  * - 1 - Port routing control logic default-routes all ports to this host controller.
  */
 //@{
-
 #define BP_USBC_UOG2_CONFIGFLAG_CF      (0)      //!< Bit position for USBC_UOG2_CONFIGFLAG_CF.
 #define BM_USBC_UOG2_CONFIGFLAG_CF      (0x00000001)  //!< Bit mask for USBC_UOG2_CONFIGFLAG_CF.
 
 //! @brief Get value of USBC_UOG2_CONFIGFLAG_CF from a register value.
 #define BG_USBC_UOG2_CONFIGFLAG_CF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_CONFIGFLAG_CF) >> BP_USBC_UOG2_CONFIGFLAG_CF)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12432,13 +11712,11 @@ typedef union _hw_usbc_uog2_portsc1
  * suspended.
  */
 //@{
-
 #define BP_USBC_UOG2_PORTSC1_CCS      (0)      //!< Bit position for USBC_UOG2_PORTSC1_CCS.
 #define BM_USBC_UOG2_PORTSC1_CCS      (0x00000001)  //!< Bit mask for USBC_UOG2_PORTSC1_CCS.
 
 //! @brief Get value of USBC_UOG2_PORTSC1_CCS from a register value.
 #define BG_USBC_UOG2_PORTSC1_CCS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_PORTSC1_CCS) >> BP_USBC_UOG2_PORTSC1_CCS)
-
 //@}
 
 /*! @name Register USBC_UOG2_PORTSC1, field CSC[1] (RW)
@@ -12453,7 +11731,6 @@ typedef union _hw_usbc_uog2_portsc1
  * This bit is undefined in device controller mode.
  */
 //@{
-
 #define BP_USBC_UOG2_PORTSC1_CSC      (1)      //!< Bit position for USBC_UOG2_PORTSC1_CSC.
 #define BM_USBC_UOG2_PORTSC1_CSC      (0x00000002)  //!< Bit mask for USBC_UOG2_PORTSC1_CSC.
 
@@ -12467,7 +11744,6 @@ typedef union _hw_usbc_uog2_portsc1
 //! @brief Set the CSC field to a new value.
 #define BW_USBC_UOG2_PORTSC1_CSC(v)   (HW_USBC_UOG2_PORTSC1_WR((HW_USBC_UOG2_PORTSC1_RD() & ~BM_USBC_UOG2_PORTSC1_CSC) | BF_USBC_UOG2_PORTSC1_CSC(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_PORTSC1, field PE[2] (RW)
@@ -12482,7 +11758,6 @@ typedef union _hw_usbc_uog2_portsc1
  * Device Mode: The device port is always enabled, so this bit is always '1b'.
  */
 //@{
-
 #define BP_USBC_UOG2_PORTSC1_PE      (2)      //!< Bit position for USBC_UOG2_PORTSC1_PE.
 #define BM_USBC_UOG2_PORTSC1_PE      (0x00000004)  //!< Bit mask for USBC_UOG2_PORTSC1_PE.
 
@@ -12496,7 +11771,6 @@ typedef union _hw_usbc_uog2_portsc1
 //! @brief Set the PE field to a new value.
 #define BW_USBC_UOG2_PORTSC1_PE(v)   (HW_USBC_UOG2_PORTSC1_WR((HW_USBC_UOG2_PORTSC1_RD() & ~BM_USBC_UOG2_PORTSC1_PE) | BF_USBC_UOG2_PORTSC1_PE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_PORTSC1, field PEC[3] (RW)
@@ -12509,7 +11783,6 @@ typedef union _hw_usbc_uog2_portsc1
  * always '0b'.
  */
 //@{
-
 #define BP_USBC_UOG2_PORTSC1_PEC      (3)      //!< Bit position for USBC_UOG2_PORTSC1_PEC.
 #define BM_USBC_UOG2_PORTSC1_PEC      (0x00000008)  //!< Bit mask for USBC_UOG2_PORTSC1_PEC.
 
@@ -12523,7 +11796,6 @@ typedef union _hw_usbc_uog2_portsc1
 //! @brief Set the PEC field to a new value.
 #define BW_USBC_UOG2_PORTSC1_PEC(v)   (HW_USBC_UOG2_PORTSC1_WR((HW_USBC_UOG2_PORTSC1_RD() & ~BM_USBC_UOG2_PORTSC1_PEC) | BF_USBC_UOG2_PORTSC1_PEC(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_PORTSC1, field OCA[4] (RO)
@@ -12536,13 +11808,11 @@ typedef union _hw_usbc_uog2_portsc1
  * - 1 - This port currently has an over-current condition
  */
 //@{
-
 #define BP_USBC_UOG2_PORTSC1_OCA      (4)      //!< Bit position for USBC_UOG2_PORTSC1_OCA.
 #define BM_USBC_UOG2_PORTSC1_OCA      (0x00000010)  //!< Bit mask for USBC_UOG2_PORTSC1_OCA.
 
 //! @brief Get value of USBC_UOG2_PORTSC1_OCA from a register value.
 #define BG_USBC_UOG2_PORTSC1_OCA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_PORTSC1_OCA) >> BP_USBC_UOG2_PORTSC1_OCA)
-
 //@}
 
 /*! @name Register USBC_UOG2_PORTSC1, field OCC[5] (RW)
@@ -12551,7 +11821,6 @@ typedef union _hw_usbc_uog2_portsc1
  * Over-current Active. Software can clear this bit by writing a one to this bit position.
  */
 //@{
-
 #define BP_USBC_UOG2_PORTSC1_OCC      (5)      //!< Bit position for USBC_UOG2_PORTSC1_OCC.
 #define BM_USBC_UOG2_PORTSC1_OCC      (0x00000020)  //!< Bit mask for USBC_UOG2_PORTSC1_OCC.
 
@@ -12565,7 +11834,6 @@ typedef union _hw_usbc_uog2_portsc1
 //! @brief Set the OCC field to a new value.
 #define BW_USBC_UOG2_PORTSC1_OCC(v)   (HW_USBC_UOG2_PORTSC1_WR((HW_USBC_UOG2_PORTSC1_RD() & ~BM_USBC_UOG2_PORTSC1_OCC) | BF_USBC_UOG2_PORTSC1_OCC(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_PORTSC1, field FPR[6] (RW)
@@ -12591,7 +11859,6 @@ typedef union _hw_usbc_uog2_portsc1
  * USBSTS register is also set to one.
  */
 //@{
-
 #define BP_USBC_UOG2_PORTSC1_FPR      (6)      //!< Bit position for USBC_UOG2_PORTSC1_FPR.
 #define BM_USBC_UOG2_PORTSC1_FPR      (0x00000040)  //!< Bit mask for USBC_UOG2_PORTSC1_FPR.
 
@@ -12605,7 +11872,6 @@ typedef union _hw_usbc_uog2_portsc1
 //! @brief Set the FPR field to a new value.
 #define BW_USBC_UOG2_PORTSC1_FPR(v)   (HW_USBC_UOG2_PORTSC1_WR((HW_USBC_UOG2_PORTSC1_RD() & ~BM_USBC_UOG2_PORTSC1_FPR) | BF_USBC_UOG2_PORTSC1_FPR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_PORTSC1, field SUSP[7] (RW)
@@ -12625,7 +11891,6 @@ typedef union _hw_usbc_uog2_portsc1
  * In device mode this bit is a read only status bit.
  */
 //@{
-
 #define BP_USBC_UOG2_PORTSC1_SUSP      (7)      //!< Bit position for USBC_UOG2_PORTSC1_SUSP.
 #define BM_USBC_UOG2_PORTSC1_SUSP      (0x00000080)  //!< Bit mask for USBC_UOG2_PORTSC1_SUSP.
 
@@ -12639,7 +11904,6 @@ typedef union _hw_usbc_uog2_portsc1
 //! @brief Set the SUSP field to a new value.
 #define BW_USBC_UOG2_PORTSC1_SUSP(v)   (HW_USBC_UOG2_PORTSC1_WR((HW_USBC_UOG2_PORTSC1_RD() & ~BM_USBC_UOG2_PORTSC1_SUSP) | BF_USBC_UOG2_PORTSC1_SUSP(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_PORTSC1, field PR[8] (RW)
@@ -12653,7 +11917,6 @@ typedef union _hw_usbc_uog2_portsc1
  * indicated in the USBSTS register. This field is zero if Port Power( ) is zero.
  */
 //@{
-
 #define BP_USBC_UOG2_PORTSC1_PR      (8)      //!< Bit position for USBC_UOG2_PORTSC1_PR.
 #define BM_USBC_UOG2_PORTSC1_PR      (0x00000100)  //!< Bit mask for USBC_UOG2_PORTSC1_PR.
 
@@ -12667,7 +11930,6 @@ typedef union _hw_usbc_uog2_portsc1
 //! @brief Set the PR field to a new value.
 #define BW_USBC_UOG2_PORTSC1_PR(v)   (HW_USBC_UOG2_PORTSC1_WR((HW_USBC_UOG2_PORTSC1_RD() & ~BM_USBC_UOG2_PORTSC1_PR) | BF_USBC_UOG2_PORTSC1_PR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_PORTSC1, field HSP[9] (RO)
@@ -12677,13 +11939,11 @@ typedef union _hw_usbc_uog2_portsc1
  * high-speed mode. HSP is redundant with PSPD(bit 27, 26) but remained for compatibility.
  */
 //@{
-
 #define BP_USBC_UOG2_PORTSC1_HSP      (9)      //!< Bit position for USBC_UOG2_PORTSC1_HSP.
 #define BM_USBC_UOG2_PORTSC1_HSP      (0x00000200)  //!< Bit mask for USBC_UOG2_PORTSC1_HSP.
 
 //! @brief Get value of USBC_UOG2_PORTSC1_HSP from a register value.
 #define BG_USBC_UOG2_PORTSC1_HSP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_PORTSC1_HSP) >> BP_USBC_UOG2_PORTSC1_HSP)
-
 //@}
 
 /*! @name Register USBC_UOG2_PORTSC1, field LS[11:10] (RW)
@@ -12701,7 +11961,6 @@ typedef union _hw_usbc_uog2_portsc1
  * - 11 - Undefined
  */
 //@{
-
 #define BP_USBC_UOG2_PORTSC1_LS      (10)      //!< Bit position for USBC_UOG2_PORTSC1_LS.
 #define BM_USBC_UOG2_PORTSC1_LS      (0x00000c00)  //!< Bit mask for USBC_UOG2_PORTSC1_LS.
 
@@ -12715,7 +11974,6 @@ typedef union _hw_usbc_uog2_portsc1
 //! @brief Set the LS field to a new value.
 #define BW_USBC_UOG2_PORTSC1_LS(v)   (HW_USBC_UOG2_PORTSC1_WR((HW_USBC_UOG2_PORTSC1_RD() & ~BM_USBC_UOG2_PORTSC1_LS) | BF_USBC_UOG2_PORTSC1_LS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_PORTSC1, field PP[12] (RW)
@@ -12732,7 +11990,6 @@ typedef union _hw_usbc_uog2_portsc1
  * (PPC = 1).
  */
 //@{
-
 #define BP_USBC_UOG2_PORTSC1_PP      (12)      //!< Bit position for USBC_UOG2_PORTSC1_PP.
 #define BM_USBC_UOG2_PORTSC1_PP      (0x00001000)  //!< Bit mask for USBC_UOG2_PORTSC1_PP.
 
@@ -12746,7 +12003,6 @@ typedef union _hw_usbc_uog2_portsc1
 //! @brief Set the PP field to a new value.
 #define BW_USBC_UOG2_PORTSC1_PP(v)   (HW_USBC_UOG2_PORTSC1_WR((HW_USBC_UOG2_PORTSC1_RD() & ~BM_USBC_UOG2_PORTSC1_PP) | BF_USBC_UOG2_PORTSC1_PP(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_PORTSC1, field PO[13] (RW)
@@ -12760,7 +12016,6 @@ typedef union _hw_usbc_uog2_portsc1
  * handoff is not supported in all controller cores, therefore this bit will always be 0.
  */
 //@{
-
 #define BP_USBC_UOG2_PORTSC1_PO      (13)      //!< Bit position for USBC_UOG2_PORTSC1_PO.
 #define BM_USBC_UOG2_PORTSC1_PO      (0x00002000)  //!< Bit mask for USBC_UOG2_PORTSC1_PO.
 
@@ -12774,7 +12029,6 @@ typedef union _hw_usbc_uog2_portsc1
 //! @brief Set the PO field to a new value.
 #define BW_USBC_UOG2_PORTSC1_PO(v)   (HW_USBC_UOG2_PORTSC1_WR((HW_USBC_UOG2_PORTSC1_RD() & ~BM_USBC_UOG2_PORTSC1_PO) | BF_USBC_UOG2_PORTSC1_PO(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_PORTSC1, field PIC[15:14] (RW)
@@ -12791,7 +12045,6 @@ typedef union _hw_usbc_uog2_portsc1
  * - 11 - Undefined
  */
 //@{
-
 #define BP_USBC_UOG2_PORTSC1_PIC      (14)      //!< Bit position for USBC_UOG2_PORTSC1_PIC.
 #define BM_USBC_UOG2_PORTSC1_PIC      (0x0000c000)  //!< Bit mask for USBC_UOG2_PORTSC1_PIC.
 
@@ -12805,7 +12058,6 @@ typedef union _hw_usbc_uog2_portsc1
 //! @brief Set the PIC field to a new value.
 #define BW_USBC_UOG2_PORTSC1_PIC(v)   (HW_USBC_UOG2_PORTSC1_WR((HW_USBC_UOG2_PORTSC1_RD() & ~BM_USBC_UOG2_PORTSC1_PIC) | BF_USBC_UOG2_PORTSC1_PIC(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_PORTSC1, field PTC[19:16] (RW)
@@ -12831,7 +12083,6 @@ typedef union _hw_usbc_uog2_portsc1
  * - 1000-1111 - Reserved
  */
 //@{
-
 #define BP_USBC_UOG2_PORTSC1_PTC      (16)      //!< Bit position for USBC_UOG2_PORTSC1_PTC.
 #define BM_USBC_UOG2_PORTSC1_PTC      (0x000f0000)  //!< Bit mask for USBC_UOG2_PORTSC1_PTC.
 
@@ -12845,7 +12096,6 @@ typedef union _hw_usbc_uog2_portsc1
 //! @brief Set the PTC field to a new value.
 #define BW_USBC_UOG2_PORTSC1_PTC(v)   (HW_USBC_UOG2_PORTSC1_WR((HW_USBC_UOG2_PORTSC1_RD() & ~BM_USBC_UOG2_PORTSC1_PTC) | BF_USBC_UOG2_PORTSC1_PTC(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_PORTSC1, field WKCN[20] (RW)
@@ -12855,7 +12105,6 @@ typedef union _hw_usbc_uog2_portsc1
  * zero or in device mode.
  */
 //@{
-
 #define BP_USBC_UOG2_PORTSC1_WKCN      (20)      //!< Bit position for USBC_UOG2_PORTSC1_WKCN.
 #define BM_USBC_UOG2_PORTSC1_WKCN      (0x00100000)  //!< Bit mask for USBC_UOG2_PORTSC1_WKCN.
 
@@ -12869,7 +12118,6 @@ typedef union _hw_usbc_uog2_portsc1
 //! @brief Set the WKCN field to a new value.
 #define BW_USBC_UOG2_PORTSC1_WKCN(v)   (HW_USBC_UOG2_PORTSC1_WR((HW_USBC_UOG2_PORTSC1_RD() & ~BM_USBC_UOG2_PORTSC1_WKCN) | BF_USBC_UOG2_PORTSC1_WKCN(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_PORTSC1, field WKDC[21] (RW)
@@ -12879,7 +12127,6 @@ typedef union _hw_usbc_uog2_portsc1
  * Port Power( ) is zero or in device mode.
  */
 //@{
-
 #define BP_USBC_UOG2_PORTSC1_WKDC      (21)      //!< Bit position for USBC_UOG2_PORTSC1_WKDC.
 #define BM_USBC_UOG2_PORTSC1_WKDC      (0x00200000)  //!< Bit mask for USBC_UOG2_PORTSC1_WKDC.
 
@@ -12893,7 +12140,6 @@ typedef union _hw_usbc_uog2_portsc1
 //! @brief Set the WKDC field to a new value.
 #define BW_USBC_UOG2_PORTSC1_WKDC(v)   (HW_USBC_UOG2_PORTSC1_WR((HW_USBC_UOG2_PORTSC1_RD() & ~BM_USBC_UOG2_PORTSC1_WKDC) | BF_USBC_UOG2_PORTSC1_WKDC(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_PORTSC1, field WKOC[22] (RW)
@@ -12903,7 +12149,6 @@ typedef union _hw_usbc_uog2_portsc1
  * if Port Power( ) is zero.
  */
 //@{
-
 #define BP_USBC_UOG2_PORTSC1_WKOC      (22)      //!< Bit position for USBC_UOG2_PORTSC1_WKOC.
 #define BM_USBC_UOG2_PORTSC1_WKOC      (0x00400000)  //!< Bit mask for USBC_UOG2_PORTSC1_WKOC.
 
@@ -12917,7 +12162,6 @@ typedef union _hw_usbc_uog2_portsc1
 //! @brief Set the WKOC field to a new value.
 #define BW_USBC_UOG2_PORTSC1_WKOC(v)   (HW_USBC_UOG2_PORTSC1_WR((HW_USBC_UOG2_PORTSC1_RD() & ~BM_USBC_UOG2_PORTSC1_WKOC) | BF_USBC_UOG2_PORTSC1_WKOC(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_PORTSC1, field PHCD[23] (RW)
@@ -12937,7 +12181,6 @@ typedef union _hw_usbc_uog2_portsc1
  * - 1 - Disable PHY clock
  */
 //@{
-
 #define BP_USBC_UOG2_PORTSC1_PHCD      (23)      //!< Bit position for USBC_UOG2_PORTSC1_PHCD.
 #define BM_USBC_UOG2_PORTSC1_PHCD      (0x00800000)  //!< Bit mask for USBC_UOG2_PORTSC1_PHCD.
 
@@ -12951,7 +12194,6 @@ typedef union _hw_usbc_uog2_portsc1
 //! @brief Set the PHCD field to a new value.
 #define BW_USBC_UOG2_PORTSC1_PHCD(v)   (HW_USBC_UOG2_PORTSC1_WR((HW_USBC_UOG2_PORTSC1_RD() & ~BM_USBC_UOG2_PORTSC1_PHCD) | BF_USBC_UOG2_PORTSC1_PHCD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_PORTSC1, field PFSC[24] (RW)
@@ -12965,7 +12207,6 @@ typedef union _hw_usbc_uog2_portsc1
  * - 1 - Forced to full speed
  */
 //@{
-
 #define BP_USBC_UOG2_PORTSC1_PFSC      (24)      //!< Bit position for USBC_UOG2_PORTSC1_PFSC.
 #define BM_USBC_UOG2_PORTSC1_PFSC      (0x01000000)  //!< Bit mask for USBC_UOG2_PORTSC1_PFSC.
 
@@ -12979,7 +12220,6 @@ typedef union _hw_usbc_uog2_portsc1
 //! @brief Set the PFSC field to a new value.
 #define BW_USBC_UOG2_PORTSC1_PFSC(v)   (HW_USBC_UOG2_PORTSC1_WR((HW_USBC_UOG2_PORTSC1_RD() & ~BM_USBC_UOG2_PORTSC1_PFSC) | BF_USBC_UOG2_PORTSC1_PFSC(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_PORTSC1, field PTS[25] (RW)
@@ -12987,7 +12227,6 @@ typedef union _hw_usbc_uog2_portsc1
  * See description at bits 31-30
  */
 //@{
-
 #define BP_USBC_UOG2_PORTSC1_PTS      (25)      //!< Bit position for USBC_UOG2_PORTSC1_PTS.
 #define BM_USBC_UOG2_PORTSC1_PTS      (0x02000000)  //!< Bit mask for USBC_UOG2_PORTSC1_PTS.
 
@@ -13001,7 +12240,6 @@ typedef union _hw_usbc_uog2_portsc1
 //! @brief Set the PTS field to a new value.
 #define BW_USBC_UOG2_PORTSC1_PTS(v)   (HW_USBC_UOG2_PORTSC1_WR((HW_USBC_UOG2_PORTSC1_RD() & ~BM_USBC_UOG2_PORTSC1_PTS) | BF_USBC_UOG2_PORTSC1_PTS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_PORTSC1, field PSPD[27:26] (RW)
@@ -13015,7 +12253,6 @@ typedef union _hw_usbc_uog2_portsc1
  * - 11 - Undefined
  */
 //@{
-
 #define BP_USBC_UOG2_PORTSC1_PSPD      (26)      //!< Bit position for USBC_UOG2_PORTSC1_PSPD.
 #define BM_USBC_UOG2_PORTSC1_PSPD      (0x0c000000)  //!< Bit mask for USBC_UOG2_PORTSC1_PSPD.
 
@@ -13029,7 +12266,6 @@ typedef union _hw_usbc_uog2_portsc1
 //! @brief Set the PSPD field to a new value.
 #define BW_USBC_UOG2_PORTSC1_PSPD(v)   (HW_USBC_UOG2_PORTSC1_WR((HW_USBC_UOG2_PORTSC1_RD() & ~BM_USBC_UOG2_PORTSC1_PSPD) | BF_USBC_UOG2_PORTSC1_PSPD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_PORTSC1, field PTW[28] (RW)
@@ -13042,7 +12278,6 @@ typedef union _hw_usbc_uog2_portsc1
  * - 1 - Select the 16-bit UTMI interface [30MHz]
  */
 //@{
-
 #define BP_USBC_UOG2_PORTSC1_PTW      (28)      //!< Bit position for USBC_UOG2_PORTSC1_PTW.
 #define BM_USBC_UOG2_PORTSC1_PTW      (0x10000000)  //!< Bit mask for USBC_UOG2_PORTSC1_PTW.
 
@@ -13056,7 +12291,6 @@ typedef union _hw_usbc_uog2_portsc1
 //! @brief Set the PTW field to a new value.
 #define BW_USBC_UOG2_PORTSC1_PTW(v)   (HW_USBC_UOG2_PORTSC1_WR((HW_USBC_UOG2_PORTSC1_RD() & ~BM_USBC_UOG2_PORTSC1_PTW) | BF_USBC_UOG2_PORTSC1_PTW(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_PORTSC1, field STS[29] (RW)
@@ -13070,7 +12304,6 @@ typedef union _hw_usbc_uog2_portsc1
  * regardless of this bit value.
  */
 //@{
-
 #define BP_USBC_UOG2_PORTSC1_STS      (29)      //!< Bit position for USBC_UOG2_PORTSC1_STS.
 #define BM_USBC_UOG2_PORTSC1_STS      (0x20000000)  //!< Bit mask for USBC_UOG2_PORTSC1_STS.
 
@@ -13084,7 +12317,6 @@ typedef union _hw_usbc_uog2_portsc1
 //! @brief Set the STS field to a new value.
 #define BW_USBC_UOG2_PORTSC1_STS(v)   (HW_USBC_UOG2_PORTSC1_WR((HW_USBC_UOG2_PORTSC1_RD() & ~BM_USBC_UOG2_PORTSC1_STS) | BF_USBC_UOG2_PORTSC1_STS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_PORTSC1, field PTS1[31:30] (RW)
@@ -13095,7 +12327,6 @@ typedef union _hw_usbc_uog2_portsc1
  * The behaviour is unknown when unsupported interface mode is selected.
  */
 //@{
-
 #define BP_USBC_UOG2_PORTSC1_PTS1      (30)      //!< Bit position for USBC_UOG2_PORTSC1_PTS1.
 #define BM_USBC_UOG2_PORTSC1_PTS1      (0xc0000000)  //!< Bit mask for USBC_UOG2_PORTSC1_PTS1.
 
@@ -13109,7 +12340,6 @@ typedef union _hw_usbc_uog2_portsc1
 //! @brief Set the PTS1 field to a new value.
 #define BW_USBC_UOG2_PORTSC1_PTS1(v)   (HW_USBC_UOG2_PORTSC1_WR((HW_USBC_UOG2_PORTSC1_RD() & ~BM_USBC_UOG2_PORTSC1_PTS1) | BF_USBC_UOG2_PORTSC1_PTS1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -13193,7 +12423,6 @@ typedef union _hw_usbc_uog2_otgsc
  * VBUS_Discharge - Read/Write. Setting this bit causes VBus to discharge through a resistor.
  */
 //@{
-
 #define BP_USBC_UOG2_OTGSC_VD      (0)      //!< Bit position for USBC_UOG2_OTGSC_VD.
 #define BM_USBC_UOG2_OTGSC_VD      (0x00000001)  //!< Bit mask for USBC_UOG2_OTGSC_VD.
 
@@ -13207,7 +12436,6 @@ typedef union _hw_usbc_uog2_otgsc
 //! @brief Set the VD field to a new value.
 #define BW_USBC_UOG2_OTGSC_VD(v)   (HW_USBC_UOG2_OTGSC_WR((HW_USBC_UOG2_OTGSC_RD() & ~BM_USBC_UOG2_OTGSC_VD) | BF_USBC_UOG2_OTGSC_VD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_OTGSC, field VC[1] (RW)
@@ -13216,7 +12444,6 @@ typedef union _hw_usbc_uog2_otgsc
  * VBus pulsing during SRP.
  */
 //@{
-
 #define BP_USBC_UOG2_OTGSC_VC      (1)      //!< Bit position for USBC_UOG2_OTGSC_VC.
 #define BM_USBC_UOG2_OTGSC_VC      (0x00000002)  //!< Bit mask for USBC_UOG2_OTGSC_VC.
 
@@ -13230,7 +12457,6 @@ typedef union _hw_usbc_uog2_otgsc
 //! @brief Set the VC field to a new value.
 #define BW_USBC_UOG2_OTGSC_VC(v)   (HW_USBC_UOG2_OTGSC_WR((HW_USBC_UOG2_OTGSC_RD() & ~BM_USBC_UOG2_OTGSC_VC) | BF_USBC_UOG2_OTGSC_VC(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_OTGSC, field OT[3] (RW)
@@ -13239,7 +12465,6 @@ typedef union _hw_usbc_uog2_otgsc
  * controls the pulldown on DM.
  */
 //@{
-
 #define BP_USBC_UOG2_OTGSC_OT      (3)      //!< Bit position for USBC_UOG2_OTGSC_OT.
 #define BM_USBC_UOG2_OTGSC_OT      (0x00000008)  //!< Bit mask for USBC_UOG2_OTGSC_OT.
 
@@ -13253,7 +12478,6 @@ typedef union _hw_usbc_uog2_otgsc
 //! @brief Set the OT field to a new value.
 #define BW_USBC_UOG2_OTGSC_OT(v)   (HW_USBC_UOG2_OTGSC_WR((HW_USBC_UOG2_OTGSC_RD() & ~BM_USBC_UOG2_OTGSC_OT) | BF_USBC_UOG2_OTGSC_OT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_OTGSC, field DP[4] (RW)
@@ -13262,7 +12486,6 @@ typedef union _hw_usbc_uog2_otgsc
  * pulsing during SRP.
  */
 //@{
-
 #define BP_USBC_UOG2_OTGSC_DP      (4)      //!< Bit position for USBC_UOG2_OTGSC_DP.
 #define BM_USBC_UOG2_OTGSC_DP      (0x00000010)  //!< Bit mask for USBC_UOG2_OTGSC_DP.
 
@@ -13276,7 +12499,6 @@ typedef union _hw_usbc_uog2_otgsc
 //! @brief Set the DP field to a new value.
 #define BW_USBC_UOG2_OTGSC_DP(v)   (HW_USBC_UOG2_OTGSC_WR((HW_USBC_UOG2_OTGSC_RD() & ~BM_USBC_UOG2_OTGSC_DP) | BF_USBC_UOG2_OTGSC_DP(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_OTGSC, field IDPU[5] (RW)
@@ -13285,7 +12507,6 @@ typedef union _hw_usbc_uog2_otgsc
  * [default]. When this bit is 0, the ID input will not be sampled.
  */
 //@{
-
 #define BP_USBC_UOG2_OTGSC_IDPU      (5)      //!< Bit position for USBC_UOG2_OTGSC_IDPU.
 #define BM_USBC_UOG2_OTGSC_IDPU      (0x00000020)  //!< Bit mask for USBC_UOG2_OTGSC_IDPU.
 
@@ -13299,7 +12520,6 @@ typedef union _hw_usbc_uog2_otgsc
 //! @brief Set the IDPU field to a new value.
 #define BW_USBC_UOG2_OTGSC_IDPU(v)   (HW_USBC_UOG2_OTGSC_WR((HW_USBC_UOG2_OTGSC_RD() & ~BM_USBC_UOG2_OTGSC_IDPU) | BF_USBC_UOG2_OTGSC_IDPU(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_OTGSC, field ID[8] (RO)
@@ -13307,13 +12527,11 @@ typedef union _hw_usbc_uog2_otgsc
  * USB ID - Read Only. 0 = A device, 1 = B device
  */
 //@{
-
 #define BP_USBC_UOG2_OTGSC_ID      (8)      //!< Bit position for USBC_UOG2_OTGSC_ID.
 #define BM_USBC_UOG2_OTGSC_ID      (0x00000100)  //!< Bit mask for USBC_UOG2_OTGSC_ID.
 
 //! @brief Get value of USBC_UOG2_OTGSC_ID from a register value.
 #define BG_USBC_UOG2_OTGSC_ID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_OTGSC_ID) >> BP_USBC_UOG2_OTGSC_ID)
-
 //@}
 
 /*! @name Register USBC_UOG2_OTGSC, field AVV[9] (RO)
@@ -13321,13 +12539,11 @@ typedef union _hw_usbc_uog2_otgsc
  * A VBus Valid - Read Only. Indicates VBus is above the A VBus valid threshold.
  */
 //@{
-
 #define BP_USBC_UOG2_OTGSC_AVV      (9)      //!< Bit position for USBC_UOG2_OTGSC_AVV.
 #define BM_USBC_UOG2_OTGSC_AVV      (0x00000200)  //!< Bit mask for USBC_UOG2_OTGSC_AVV.
 
 //! @brief Get value of USBC_UOG2_OTGSC_AVV from a register value.
 #define BG_USBC_UOG2_OTGSC_AVV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_OTGSC_AVV) >> BP_USBC_UOG2_OTGSC_AVV)
-
 //@}
 
 /*! @name Register USBC_UOG2_OTGSC, field ASV[10] (RO)
@@ -13335,13 +12551,11 @@ typedef union _hw_usbc_uog2_otgsc
  * A Session Valid - Read Only. Indicates VBus is above the A session valid threshold.
  */
 //@{
-
 #define BP_USBC_UOG2_OTGSC_ASV      (10)      //!< Bit position for USBC_UOG2_OTGSC_ASV.
 #define BM_USBC_UOG2_OTGSC_ASV      (0x00000400)  //!< Bit mask for USBC_UOG2_OTGSC_ASV.
 
 //! @brief Get value of USBC_UOG2_OTGSC_ASV from a register value.
 #define BG_USBC_UOG2_OTGSC_ASV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_OTGSC_ASV) >> BP_USBC_UOG2_OTGSC_ASV)
-
 //@}
 
 /*! @name Register USBC_UOG2_OTGSC, field BSV[11] (RO)
@@ -13349,13 +12563,11 @@ typedef union _hw_usbc_uog2_otgsc
  * B Session Valid - Read Only. Indicates VBus is above the B session valid threshold.
  */
 //@{
-
 #define BP_USBC_UOG2_OTGSC_BSV      (11)      //!< Bit position for USBC_UOG2_OTGSC_BSV.
 #define BM_USBC_UOG2_OTGSC_BSV      (0x00000800)  //!< Bit mask for USBC_UOG2_OTGSC_BSV.
 
 //! @brief Get value of USBC_UOG2_OTGSC_BSV from a register value.
 #define BG_USBC_UOG2_OTGSC_BSV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_OTGSC_BSV) >> BP_USBC_UOG2_OTGSC_BSV)
-
 //@}
 
 /*! @name Register USBC_UOG2_OTGSC, field BSE[12] (RO)
@@ -13363,13 +12575,11 @@ typedef union _hw_usbc_uog2_otgsc
  * B Session End - Read Only. Indicates VBus is below the B session end threshold.
  */
 //@{
-
 #define BP_USBC_UOG2_OTGSC_BSE      (12)      //!< Bit position for USBC_UOG2_OTGSC_BSE.
 #define BM_USBC_UOG2_OTGSC_BSE      (0x00001000)  //!< Bit mask for USBC_UOG2_OTGSC_BSE.
 
 //! @brief Get value of USBC_UOG2_OTGSC_BSE from a register value.
 #define BG_USBC_UOG2_OTGSC_BSE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_OTGSC_BSE) >> BP_USBC_UOG2_OTGSC_BSE)
-
 //@}
 
 /*! @name Register USBC_UOG2_OTGSC, field _1MST[13] (RO)
@@ -13377,13 +12587,11 @@ typedef union _hw_usbc_uog2_otgsc
  * 1 millisecond timer toggle - Read Only. This bit toggles once per millisecond.
  */
 //@{
-
 #define BP_USBC_UOG2_OTGSC__1MST      (13)      //!< Bit position for USBC_UOG2_OTGSC__1MST.
 #define BM_USBC_UOG2_OTGSC__1MST      (0x00002000)  //!< Bit mask for USBC_UOG2_OTGSC__1MST.
 
 //! @brief Get value of USBC_UOG2_OTGSC__1MST from a register value.
 #define BG_USBC_UOG2_OTGSC__1MST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_OTGSC__1MST) >> BP_USBC_UOG2_OTGSC__1MST)
-
 //@}
 
 /*! @name Register USBC_UOG2_OTGSC, field DPS[14] (RO)
@@ -13392,13 +12600,11 @@ typedef union _hw_usbc_uog2_otgsc
  * port.
  */
 //@{
-
 #define BP_USBC_UOG2_OTGSC_DPS      (14)      //!< Bit position for USBC_UOG2_OTGSC_DPS.
 #define BM_USBC_UOG2_OTGSC_DPS      (0x00004000)  //!< Bit mask for USBC_UOG2_OTGSC_DPS.
 
 //! @brief Get value of USBC_UOG2_OTGSC_DPS from a register value.
 #define BG_USBC_UOG2_OTGSC_DPS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_OTGSC_DPS) >> BP_USBC_UOG2_OTGSC_DPS)
-
 //@}
 
 /*! @name Register USBC_UOG2_OTGSC, field IDIS[16] (RW)
@@ -13407,7 +12613,6 @@ typedef union _hw_usbc_uog2_otgsc
  * detected. Software must write a one to clear this bit.
  */
 //@{
-
 #define BP_USBC_UOG2_OTGSC_IDIS      (16)      //!< Bit position for USBC_UOG2_OTGSC_IDIS.
 #define BM_USBC_UOG2_OTGSC_IDIS      (0x00010000)  //!< Bit mask for USBC_UOG2_OTGSC_IDIS.
 
@@ -13421,7 +12626,6 @@ typedef union _hw_usbc_uog2_otgsc
 //! @brief Set the IDIS field to a new value.
 #define BW_USBC_UOG2_OTGSC_IDIS(v)   (HW_USBC_UOG2_OTGSC_WR((HW_USBC_UOG2_OTGSC_RD() & ~BM_USBC_UOG2_OTGSC_IDIS) | BF_USBC_UOG2_OTGSC_IDIS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_OTGSC, field AVVIS[17] (RW)
@@ -13431,7 +12635,6 @@ typedef union _hw_usbc_uog2_otgsc
  * this bit.
  */
 //@{
-
 #define BP_USBC_UOG2_OTGSC_AVVIS      (17)      //!< Bit position for USBC_UOG2_OTGSC_AVVIS.
 #define BM_USBC_UOG2_OTGSC_AVVIS      (0x00020000)  //!< Bit mask for USBC_UOG2_OTGSC_AVVIS.
 
@@ -13445,7 +12648,6 @@ typedef union _hw_usbc_uog2_otgsc
 //! @brief Set the AVVIS field to a new value.
 #define BW_USBC_UOG2_OTGSC_AVVIS(v)   (HW_USBC_UOG2_OTGSC_WR((HW_USBC_UOG2_OTGSC_RD() & ~BM_USBC_UOG2_OTGSC_AVVIS) | BF_USBC_UOG2_OTGSC_AVVIS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_OTGSC, field ASVIS[18] (RW)
@@ -13455,7 +12657,6 @@ typedef union _hw_usbc_uog2_otgsc
  * this bit.
  */
 //@{
-
 #define BP_USBC_UOG2_OTGSC_ASVIS      (18)      //!< Bit position for USBC_UOG2_OTGSC_ASVIS.
 #define BM_USBC_UOG2_OTGSC_ASVIS      (0x00040000)  //!< Bit mask for USBC_UOG2_OTGSC_ASVIS.
 
@@ -13469,7 +12670,6 @@ typedef union _hw_usbc_uog2_otgsc
 //! @brief Set the ASVIS field to a new value.
 #define BW_USBC_UOG2_OTGSC_ASVIS(v)   (HW_USBC_UOG2_OTGSC_WR((HW_USBC_UOG2_OTGSC_RD() & ~BM_USBC_UOG2_OTGSC_ASVIS) | BF_USBC_UOG2_OTGSC_ASVIS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_OTGSC, field BSVIS[19] (RW)
@@ -13479,7 +12679,6 @@ typedef union _hw_usbc_uog2_otgsc
  * this bit.
  */
 //@{
-
 #define BP_USBC_UOG2_OTGSC_BSVIS      (19)      //!< Bit position for USBC_UOG2_OTGSC_BSVIS.
 #define BM_USBC_UOG2_OTGSC_BSVIS      (0x00080000)  //!< Bit mask for USBC_UOG2_OTGSC_BSVIS.
 
@@ -13493,7 +12692,6 @@ typedef union _hw_usbc_uog2_otgsc
 //! @brief Set the BSVIS field to a new value.
 #define BW_USBC_UOG2_OTGSC_BSVIS(v)   (HW_USBC_UOG2_OTGSC_WR((HW_USBC_UOG2_OTGSC_RD() & ~BM_USBC_UOG2_OTGSC_BSVIS) | BF_USBC_UOG2_OTGSC_BSVIS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_OTGSC, field BSEIS[20] (RW)
@@ -13502,7 +12700,6 @@ typedef union _hw_usbc_uog2_otgsc
  * the B session end threshold. Software must write a one to clear this bit
  */
 //@{
-
 #define BP_USBC_UOG2_OTGSC_BSEIS      (20)      //!< Bit position for USBC_UOG2_OTGSC_BSEIS.
 #define BM_USBC_UOG2_OTGSC_BSEIS      (0x00100000)  //!< Bit mask for USBC_UOG2_OTGSC_BSEIS.
 
@@ -13516,7 +12713,6 @@ typedef union _hw_usbc_uog2_otgsc
 //! @brief Set the BSEIS field to a new value.
 #define BW_USBC_UOG2_OTGSC_BSEIS(v)   (HW_USBC_UOG2_OTGSC_WR((HW_USBC_UOG2_OTGSC_RD() & ~BM_USBC_UOG2_OTGSC_BSEIS) | BF_USBC_UOG2_OTGSC_BSEIS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_OTGSC, field _1MSS[21] (RW)
@@ -13525,7 +12721,6 @@ typedef union _hw_usbc_uog2_otgsc
  * millisecond. Software must write a one to clear this bit.
  */
 //@{
-
 #define BP_USBC_UOG2_OTGSC__1MSS      (21)      //!< Bit position for USBC_UOG2_OTGSC__1MSS.
 #define BM_USBC_UOG2_OTGSC__1MSS      (0x00200000)  //!< Bit mask for USBC_UOG2_OTGSC__1MSS.
 
@@ -13539,7 +12734,6 @@ typedef union _hw_usbc_uog2_otgsc
 //! @brief Set the _1MSS field to a new value.
 #define BW_USBC_UOG2_OTGSC__1MSS(v)   (HW_USBC_UOG2_OTGSC_WR((HW_USBC_UOG2_OTGSC_RD() & ~BM_USBC_UOG2_OTGSC__1MSS) | BF_USBC_UOG2_OTGSC__1MSS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_OTGSC, field DPIS[22] (RW)
@@ -13549,7 +12743,6 @@ typedef union _hw_usbc_uog2_otgsc
  * 0. Software must write a one to clear this bit.
  */
 //@{
-
 #define BP_USBC_UOG2_OTGSC_DPIS      (22)      //!< Bit position for USBC_UOG2_OTGSC_DPIS.
 #define BM_USBC_UOG2_OTGSC_DPIS      (0x00400000)  //!< Bit mask for USBC_UOG2_OTGSC_DPIS.
 
@@ -13563,7 +12756,6 @@ typedef union _hw_usbc_uog2_otgsc
 //! @brief Set the DPIS field to a new value.
 #define BW_USBC_UOG2_OTGSC_DPIS(v)   (HW_USBC_UOG2_OTGSC_WR((HW_USBC_UOG2_OTGSC_RD() & ~BM_USBC_UOG2_OTGSC_DPIS) | BF_USBC_UOG2_OTGSC_DPIS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_OTGSC, field IDIE[24] (RW)
@@ -13571,7 +12763,6 @@ typedef union _hw_usbc_uog2_otgsc
  * USB ID Interrupt Enable - Read/Write. Setting this bit enables the USB ID interrupt.
  */
 //@{
-
 #define BP_USBC_UOG2_OTGSC_IDIE      (24)      //!< Bit position for USBC_UOG2_OTGSC_IDIE.
 #define BM_USBC_UOG2_OTGSC_IDIE      (0x01000000)  //!< Bit mask for USBC_UOG2_OTGSC_IDIE.
 
@@ -13585,7 +12776,6 @@ typedef union _hw_usbc_uog2_otgsc
 //! @brief Set the IDIE field to a new value.
 #define BW_USBC_UOG2_OTGSC_IDIE(v)   (HW_USBC_UOG2_OTGSC_WR((HW_USBC_UOG2_OTGSC_RD() & ~BM_USBC_UOG2_OTGSC_IDIE) | BF_USBC_UOG2_OTGSC_IDIE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_OTGSC, field AVVIE[25] (RW)
@@ -13593,7 +12783,6 @@ typedef union _hw_usbc_uog2_otgsc
  * A VBus Valid Interrupt Enable - Read/Write. Setting this bit enables the A VBus valid interrupt.
  */
 //@{
-
 #define BP_USBC_UOG2_OTGSC_AVVIE      (25)      //!< Bit position for USBC_UOG2_OTGSC_AVVIE.
 #define BM_USBC_UOG2_OTGSC_AVVIE      (0x02000000)  //!< Bit mask for USBC_UOG2_OTGSC_AVVIE.
 
@@ -13607,7 +12796,6 @@ typedef union _hw_usbc_uog2_otgsc
 //! @brief Set the AVVIE field to a new value.
 #define BW_USBC_UOG2_OTGSC_AVVIE(v)   (HW_USBC_UOG2_OTGSC_WR((HW_USBC_UOG2_OTGSC_RD() & ~BM_USBC_UOG2_OTGSC_AVVIE) | BF_USBC_UOG2_OTGSC_AVVIE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_OTGSC, field ASVIE[26] (RW)
@@ -13616,7 +12804,6 @@ typedef union _hw_usbc_uog2_otgsc
  * interrupt.
  */
 //@{
-
 #define BP_USBC_UOG2_OTGSC_ASVIE      (26)      //!< Bit position for USBC_UOG2_OTGSC_ASVIE.
 #define BM_USBC_UOG2_OTGSC_ASVIE      (0x04000000)  //!< Bit mask for USBC_UOG2_OTGSC_ASVIE.
 
@@ -13630,7 +12817,6 @@ typedef union _hw_usbc_uog2_otgsc
 //! @brief Set the ASVIE field to a new value.
 #define BW_USBC_UOG2_OTGSC_ASVIE(v)   (HW_USBC_UOG2_OTGSC_WR((HW_USBC_UOG2_OTGSC_RD() & ~BM_USBC_UOG2_OTGSC_ASVIE) | BF_USBC_UOG2_OTGSC_ASVIE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_OTGSC, field BSVIE[27] (RW)
@@ -13639,7 +12825,6 @@ typedef union _hw_usbc_uog2_otgsc
  * interrupt.
  */
 //@{
-
 #define BP_USBC_UOG2_OTGSC_BSVIE      (27)      //!< Bit position for USBC_UOG2_OTGSC_BSVIE.
 #define BM_USBC_UOG2_OTGSC_BSVIE      (0x08000000)  //!< Bit mask for USBC_UOG2_OTGSC_BSVIE.
 
@@ -13653,7 +12838,6 @@ typedef union _hw_usbc_uog2_otgsc
 //! @brief Set the BSVIE field to a new value.
 #define BW_USBC_UOG2_OTGSC_BSVIE(v)   (HW_USBC_UOG2_OTGSC_WR((HW_USBC_UOG2_OTGSC_RD() & ~BM_USBC_UOG2_OTGSC_BSVIE) | BF_USBC_UOG2_OTGSC_BSVIE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_OTGSC, field BSEIE[28] (RW)
@@ -13662,7 +12846,6 @@ typedef union _hw_usbc_uog2_otgsc
  * interrupt.
  */
 //@{
-
 #define BP_USBC_UOG2_OTGSC_BSEIE      (28)      //!< Bit position for USBC_UOG2_OTGSC_BSEIE.
 #define BM_USBC_UOG2_OTGSC_BSEIE      (0x10000000)  //!< Bit mask for USBC_UOG2_OTGSC_BSEIE.
 
@@ -13676,7 +12859,6 @@ typedef union _hw_usbc_uog2_otgsc
 //! @brief Set the BSEIE field to a new value.
 #define BW_USBC_UOG2_OTGSC_BSEIE(v)   (HW_USBC_UOG2_OTGSC_WR((HW_USBC_UOG2_OTGSC_RD() & ~BM_USBC_UOG2_OTGSC_BSEIE) | BF_USBC_UOG2_OTGSC_BSEIE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_OTGSC, field _1MSE[29] (RW)
@@ -13684,7 +12866,6 @@ typedef union _hw_usbc_uog2_otgsc
  * 1 millisecond timer Interrupt Enable - Read/Write
  */
 //@{
-
 #define BP_USBC_UOG2_OTGSC__1MSE      (29)      //!< Bit position for USBC_UOG2_OTGSC__1MSE.
 #define BM_USBC_UOG2_OTGSC__1MSE      (0x20000000)  //!< Bit mask for USBC_UOG2_OTGSC__1MSE.
 
@@ -13698,7 +12879,6 @@ typedef union _hw_usbc_uog2_otgsc
 //! @brief Set the _1MSE field to a new value.
 #define BW_USBC_UOG2_OTGSC__1MSE(v)   (HW_USBC_UOG2_OTGSC_WR((HW_USBC_UOG2_OTGSC_RD() & ~BM_USBC_UOG2_OTGSC__1MSE) | BF_USBC_UOG2_OTGSC__1MSE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_OTGSC, field DPIE[30] (RW)
@@ -13706,7 +12886,6 @@ typedef union _hw_usbc_uog2_otgsc
  * Data Pulse Interrupt Enable
  */
 //@{
-
 #define BP_USBC_UOG2_OTGSC_DPIE      (30)      //!< Bit position for USBC_UOG2_OTGSC_DPIE.
 #define BM_USBC_UOG2_OTGSC_DPIE      (0x40000000)  //!< Bit mask for USBC_UOG2_OTGSC_DPIE.
 
@@ -13720,7 +12899,6 @@ typedef union _hw_usbc_uog2_otgsc
 //! @brief Set the DPIE field to a new value.
 #define BW_USBC_UOG2_OTGSC_DPIE(v)   (HW_USBC_UOG2_OTGSC_WR((HW_USBC_UOG2_OTGSC_RD() & ~BM_USBC_UOG2_OTGSC_DPIE) | BF_USBC_UOG2_OTGSC_DPIE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -13786,7 +12964,6 @@ typedef union _hw_usbc_uog2_usbmode
  * - 11 - Host Controller [Default for host only controller]
  */
 //@{
-
 #define BP_USBC_UOG2_USBMODE_CM      (0)      //!< Bit position for USBC_UOG2_USBMODE_CM.
 #define BM_USBC_UOG2_USBMODE_CM      (0x00000003)  //!< Bit mask for USBC_UOG2_USBMODE_CM.
 
@@ -13800,7 +12977,6 @@ typedef union _hw_usbc_uog2_usbmode
 //! @brief Set the CM field to a new value.
 #define BW_USBC_UOG2_USBMODE_CM(v)   (HW_USBC_UOG2_USBMODE_WR((HW_USBC_UOG2_USBMODE_RD() & ~BM_USBC_UOG2_USBMODE_CM) | BF_USBC_UOG2_USBMODE_CM(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBMODE, field ES[2] (RW)
@@ -13815,7 +12991,6 @@ typedef union _hw_usbc_uog2_usbmode
  * - 1 - Big Endian
  */
 //@{
-
 #define BP_USBC_UOG2_USBMODE_ES      (2)      //!< Bit position for USBC_UOG2_USBMODE_ES.
 #define BM_USBC_UOG2_USBMODE_ES      (0x00000004)  //!< Bit mask for USBC_UOG2_USBMODE_ES.
 
@@ -13829,7 +13004,6 @@ typedef union _hw_usbc_uog2_usbmode
 //! @brief Set the ES field to a new value.
 #define BW_USBC_UOG2_USBMODE_ES(v)   (HW_USBC_UOG2_USBMODE_WR((HW_USBC_UOG2_USBMODE_RD() & ~BM_USBC_UOG2_USBMODE_ES) | BF_USBC_UOG2_USBMODE_ES(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBMODE, field SLOM[3] (RW)
@@ -13841,7 +13015,6 @@ typedef union _hw_usbc_uog2_usbmode
  * - 1 - Setup Lockouts Off (DCD requires use of Setup Data Buffer Tripwire in .
  */
 //@{
-
 #define BP_USBC_UOG2_USBMODE_SLOM      (3)      //!< Bit position for USBC_UOG2_USBMODE_SLOM.
 #define BM_USBC_UOG2_USBMODE_SLOM      (0x00000008)  //!< Bit mask for USBC_UOG2_USBMODE_SLOM.
 
@@ -13855,7 +13028,6 @@ typedef union _hw_usbc_uog2_usbmode
 //! @brief Set the SLOM field to a new value.
 #define BW_USBC_UOG2_USBMODE_SLOM(v)   (HW_USBC_UOG2_USBMODE_WR((HW_USBC_UOG2_USBMODE_RD() & ~BM_USBC_UOG2_USBMODE_SLOM) | BF_USBC_UOG2_USBMODE_SLOM(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_USBMODE, field SDIS[4] (RW)
@@ -13874,7 +13046,6 @@ typedef union _hw_usbc_uog2_usbmode
  * feature substantially limits of the overall USB performance that can be achieved.
  */
 //@{
-
 #define BP_USBC_UOG2_USBMODE_SDIS      (4)      //!< Bit position for USBC_UOG2_USBMODE_SDIS.
 #define BM_USBC_UOG2_USBMODE_SDIS      (0x00000010)  //!< Bit mask for USBC_UOG2_USBMODE_SDIS.
 
@@ -13888,7 +13059,6 @@ typedef union _hw_usbc_uog2_usbmode
 //! @brief Set the SDIS field to a new value.
 #define BW_USBC_UOG2_USBMODE_SDIS(v)   (HW_USBC_UOG2_USBMODE_WR((HW_USBC_UOG2_USBMODE_RD() & ~BM_USBC_UOG2_USBMODE_SDIS) | BF_USBC_UOG2_USBMODE_SDIS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -13944,7 +13114,6 @@ typedef union _hw_usbc_uog2_endptsetupstat
  * used in device mode.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTSETUPSTAT_ENDPTSETUPSTAT      (0)      //!< Bit position for USBC_UOG2_ENDPTSETUPSTAT_ENDPTSETUPSTAT.
 #define BM_USBC_UOG2_ENDPTSETUPSTAT_ENDPTSETUPSTAT      (0x0000ffff)  //!< Bit mask for USBC_UOG2_ENDPTSETUPSTAT_ENDPTSETUPSTAT.
 
@@ -13958,7 +13127,6 @@ typedef union _hw_usbc_uog2_endptsetupstat
 //! @brief Set the ENDPTSETUPSTAT field to a new value.
 #define BW_USBC_UOG2_ENDPTSETUPSTAT_ENDPTSETUPSTAT(v)   (HW_USBC_UOG2_ENDPTSETUPSTAT_WR((HW_USBC_UOG2_ENDPTSETUPSTAT_RD() & ~BM_USBC_UOG2_ENDPTSETUPSTAT_ENDPTSETUPSTAT) | BF_USBC_UOG2_ENDPTSETUPSTAT_ENDPTSETUPSTAT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -14024,7 +13192,6 @@ typedef union _hw_usbc_uog2_endptprime
  * PERB[N] - Endpoint #N, N is in 0..7
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTPRIME_PERB      (0)      //!< Bit position for USBC_UOG2_ENDPTPRIME_PERB.
 #define BM_USBC_UOG2_ENDPTPRIME_PERB      (0x000000ff)  //!< Bit mask for USBC_UOG2_ENDPTPRIME_PERB.
 
@@ -14038,7 +13205,6 @@ typedef union _hw_usbc_uog2_endptprime
 //! @brief Set the PERB field to a new value.
 #define BW_USBC_UOG2_ENDPTPRIME_PERB(v)   (HW_USBC_UOG2_ENDPTPRIME_WR((HW_USBC_UOG2_ENDPTPRIME_RD() & ~BM_USBC_UOG2_ENDPTPRIME_PERB) | BF_USBC_UOG2_ENDPTPRIME_PERB(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTPRIME, field PETB[23:16] (RW)
@@ -14053,7 +13219,6 @@ typedef union _hw_usbc_uog2_endptprime
  * PETB[N] - Endpoint #N, N is in 0..7
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTPRIME_PETB      (16)      //!< Bit position for USBC_UOG2_ENDPTPRIME_PETB.
 #define BM_USBC_UOG2_ENDPTPRIME_PETB      (0x00ff0000)  //!< Bit mask for USBC_UOG2_ENDPTPRIME_PETB.
 
@@ -14067,7 +13232,6 @@ typedef union _hw_usbc_uog2_endptprime
 //! @brief Set the PETB field to a new value.
 #define BW_USBC_UOG2_ENDPTPRIME_PETB(v)   (HW_USBC_UOG2_ENDPTPRIME_WR((HW_USBC_UOG2_ENDPTPRIME_RD() & ~BM_USBC_UOG2_ENDPTPRIME_PETB) | BF_USBC_UOG2_ENDPTPRIME_PETB(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -14123,7 +13287,6 @@ typedef union _hw_usbc_uog2_endptflush
  * endpoint flush operation is successful. FERB[N] - Endpoint #N, N is in 0..7
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTFLUSH_FERB      (0)      //!< Bit position for USBC_UOG2_ENDPTFLUSH_FERB.
 #define BM_USBC_UOG2_ENDPTFLUSH_FERB      (0x000000ff)  //!< Bit mask for USBC_UOG2_ENDPTFLUSH_FERB.
 
@@ -14137,7 +13300,6 @@ typedef union _hw_usbc_uog2_endptflush
 //! @brief Set the FERB field to a new value.
 #define BW_USBC_UOG2_ENDPTFLUSH_FERB(v)   (HW_USBC_UOG2_ENDPTFLUSH_WR((HW_USBC_UOG2_ENDPTFLUSH_RD() & ~BM_USBC_UOG2_ENDPTFLUSH_FERB) | BF_USBC_UOG2_ENDPTFLUSH_FERB(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTFLUSH, field FETB[23:16] (RW)
@@ -14148,7 +13310,6 @@ typedef union _hw_usbc_uog2_endptflush
  * register after the endpoint flush operation is successful. FETB[N] - Endpoint #N, N is in 0..7
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTFLUSH_FETB      (16)      //!< Bit position for USBC_UOG2_ENDPTFLUSH_FETB.
 #define BM_USBC_UOG2_ENDPTFLUSH_FETB      (0x00ff0000)  //!< Bit mask for USBC_UOG2_ENDPTFLUSH_FETB.
 
@@ -14162,7 +13323,6 @@ typedef union _hw_usbc_uog2_endptflush
 //! @brief Set the FETB field to a new value.
 #define BW_USBC_UOG2_ENDPTFLUSH_FETB(v)   (HW_USBC_UOG2_ENDPTFLUSH_WR((HW_USBC_UOG2_ENDPTFLUSH_RD() & ~BM_USBC_UOG2_ENDPTFLUSH_FETB) | BF_USBC_UOG2_ENDPTFLUSH_FETB(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -14218,13 +13378,11 @@ typedef union _hw_usbc_uog2_endptstat
  * dTD is retired, and the dQH is updated. ERBR[N] - Endpoint #N, N is in 0..7
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTSTAT_ERBR      (0)      //!< Bit position for USBC_UOG2_ENDPTSTAT_ERBR.
 #define BM_USBC_UOG2_ENDPTSTAT_ERBR      (0x000000ff)  //!< Bit mask for USBC_UOG2_ENDPTSTAT_ERBR.
 
 //! @brief Get value of USBC_UOG2_ENDPTSTAT_ERBR from a register value.
 #define BG_USBC_UOG2_ENDPTSTAT_ERBR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_ENDPTSTAT_ERBR) >> BP_USBC_UOG2_ENDPTSTAT_ERBR)
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTSTAT, field ETBR[23:16] (RO)
@@ -14239,13 +13397,11 @@ typedef union _hw_usbc_uog2_endptstat
  * dTD is retired, and the dQH is updated. ETBR[N] - Endpoint #N, N is in 0..7
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTSTAT_ETBR      (16)      //!< Bit position for USBC_UOG2_ENDPTSTAT_ETBR.
 #define BM_USBC_UOG2_ENDPTSTAT_ETBR      (0x00ff0000)  //!< Bit mask for USBC_UOG2_ENDPTSTAT_ETBR.
 
 //! @brief Get value of USBC_UOG2_ENDPTSTAT_ETBR from a register value.
 #define BG_USBC_UOG2_ENDPTSTAT_ETBR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG2_ENDPTSTAT_ETBR) >> BP_USBC_UOG2_ENDPTSTAT_ETBR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -14302,7 +13458,6 @@ typedef union _hw_usbc_uog2_endptcomplete
  * #N, N is in 0..7
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCOMPLETE_ERCE      (0)      //!< Bit position for USBC_UOG2_ENDPTCOMPLETE_ERCE.
 #define BM_USBC_UOG2_ENDPTCOMPLETE_ERCE      (0x000000ff)  //!< Bit mask for USBC_UOG2_ENDPTCOMPLETE_ERCE.
 
@@ -14316,7 +13471,6 @@ typedef union _hw_usbc_uog2_endptcomplete
 //! @brief Set the ERCE field to a new value.
 #define BW_USBC_UOG2_ENDPTCOMPLETE_ERCE(v)   (HW_USBC_UOG2_ENDPTCOMPLETE_WR((HW_USBC_UOG2_ENDPTCOMPLETE_RD() & ~BM_USBC_UOG2_ENDPTCOMPLETE_ERCE) | BF_USBC_UOG2_ENDPTCOMPLETE_ERCE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCOMPLETE, field ETCE[23:16] (RW)
@@ -14328,7 +13482,6 @@ typedef union _hw_usbc_uog2_endptcomplete
  * ETCE[N] - Endpoint #N, N is in 0..7
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCOMPLETE_ETCE      (16)      //!< Bit position for USBC_UOG2_ENDPTCOMPLETE_ETCE.
 #define BM_USBC_UOG2_ENDPTCOMPLETE_ETCE      (0x00ff0000)  //!< Bit mask for USBC_UOG2_ENDPTCOMPLETE_ETCE.
 
@@ -14342,7 +13495,6 @@ typedef union _hw_usbc_uog2_endptcomplete
 //! @brief Set the ETCE field to a new value.
 #define BW_USBC_UOG2_ENDPTCOMPLETE_ETCE(v)   (HW_USBC_UOG2_ENDPTCOMPLETE_WR((HW_USBC_UOG2_ENDPTCOMPLETE_RD() & ~BM_USBC_UOG2_ENDPTCOMPLETE_ETCE) | BF_USBC_UOG2_ENDPTCOMPLETE_ETCE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -14406,7 +13558,6 @@ typedef union _hw_usbc_uog2_endptctrl0
  * of a new SETUP request.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL0_RXS      (0)      //!< Bit position for USBC_UOG2_ENDPTCTRL0_RXS.
 #define BM_USBC_UOG2_ENDPTCTRL0_RXS      (0x00000001)  //!< Bit mask for USBC_UOG2_ENDPTCTRL0_RXS.
 
@@ -14420,7 +13571,6 @@ typedef union _hw_usbc_uog2_endptctrl0
 //! @brief Set the RXS field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL0_RXS(v)   (HW_USBC_UOG2_ENDPTCTRL0_WR((HW_USBC_UOG2_ENDPTCTRL0_RD() & ~BM_USBC_UOG2_ENDPTCTRL0_RXS) | BF_USBC_UOG2_ENDPTCTRL0_RXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL0, field RXT[3:2] (RW)
@@ -14428,7 +13578,6 @@ typedef union _hw_usbc_uog2_endptctrl0
  * RX Endpoint Type - Read/Write 00 Control Endpoint0 is fixed as a Control End Point.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL0_RXT      (2)      //!< Bit position for USBC_UOG2_ENDPTCTRL0_RXT.
 #define BM_USBC_UOG2_ENDPTCTRL0_RXT      (0x0000000c)  //!< Bit mask for USBC_UOG2_ENDPTCTRL0_RXT.
 
@@ -14442,7 +13591,6 @@ typedef union _hw_usbc_uog2_endptctrl0
 //! @brief Set the RXT field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL0_RXT(v)   (HW_USBC_UOG2_ENDPTCTRL0_WR((HW_USBC_UOG2_ENDPTCTRL0_RD() & ~BM_USBC_UOG2_ENDPTCTRL0_RXT) | BF_USBC_UOG2_ENDPTCTRL0_RXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL0, field RXE[7] (RW)
@@ -14450,7 +13598,6 @@ typedef union _hw_usbc_uog2_endptctrl0
  * RX Endpoint Enable 1 Enabled Endpoint0 is always enabled.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL0_RXE      (7)      //!< Bit position for USBC_UOG2_ENDPTCTRL0_RXE.
 #define BM_USBC_UOG2_ENDPTCTRL0_RXE      (0x00000080)  //!< Bit mask for USBC_UOG2_ENDPTCTRL0_RXE.
 
@@ -14464,7 +13611,6 @@ typedef union _hw_usbc_uog2_endptctrl0
 //! @brief Set the RXE field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL0_RXE(v)   (HW_USBC_UOG2_ENDPTCTRL0_WR((HW_USBC_UOG2_ENDPTCTRL0_RD() & ~BM_USBC_UOG2_ENDPTCTRL0_RXE) | BF_USBC_UOG2_ENDPTCTRL0_RXE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL0, field TXS[16] (RW)
@@ -14475,7 +13621,6 @@ typedef union _hw_usbc_uog2_endptctrl0
  * of a new SETUP request.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL0_TXS      (16)      //!< Bit position for USBC_UOG2_ENDPTCTRL0_TXS.
 #define BM_USBC_UOG2_ENDPTCTRL0_TXS      (0x00010000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL0_TXS.
 
@@ -14489,7 +13634,6 @@ typedef union _hw_usbc_uog2_endptctrl0
 //! @brief Set the TXS field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL0_TXS(v)   (HW_USBC_UOG2_ENDPTCTRL0_WR((HW_USBC_UOG2_ENDPTCTRL0_RD() & ~BM_USBC_UOG2_ENDPTCTRL0_TXS) | BF_USBC_UOG2_ENDPTCTRL0_TXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL0, field TXT[19:18] (RW)
@@ -14497,7 +13641,6 @@ typedef union _hw_usbc_uog2_endptctrl0
  * TX Endpoint Type - Read/Write 00 - Control Endpoint0 is fixed as a Control End Point.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL0_TXT      (18)      //!< Bit position for USBC_UOG2_ENDPTCTRL0_TXT.
 #define BM_USBC_UOG2_ENDPTCTRL0_TXT      (0x000c0000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL0_TXT.
 
@@ -14511,7 +13654,6 @@ typedef union _hw_usbc_uog2_endptctrl0
 //! @brief Set the TXT field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL0_TXT(v)   (HW_USBC_UOG2_ENDPTCTRL0_WR((HW_USBC_UOG2_ENDPTCTRL0_RD() & ~BM_USBC_UOG2_ENDPTCTRL0_TXT) | BF_USBC_UOG2_ENDPTCTRL0_TXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL0, field TXE[23] (RW)
@@ -14519,7 +13661,6 @@ typedef union _hw_usbc_uog2_endptctrl0
  * TX Endpoint Enable 1 Enabled Endpoint0 is always enabled.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL0_TXE      (23)      //!< Bit position for USBC_UOG2_ENDPTCTRL0_TXE.
 #define BM_USBC_UOG2_ENDPTCTRL0_TXE      (0x00800000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL0_TXE.
 
@@ -14533,7 +13674,6 @@ typedef union _hw_usbc_uog2_endptctrl0
 //! @brief Set the TXE field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL0_TXE(v)   (HW_USBC_UOG2_ENDPTCTRL0_WR((HW_USBC_UOG2_ENDPTCTRL0_RD() & ~BM_USBC_UOG2_ENDPTCTRL0_TXE) | BF_USBC_UOG2_ENDPTCTRL0_TXE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -14607,7 +13747,6 @@ typedef union _hw_usbc_uog2_endptctrl1
  * software or automatically cleared as above.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL1_RXS      (0)      //!< Bit position for USBC_UOG2_ENDPTCTRL1_RXS.
 #define BM_USBC_UOG2_ENDPTCTRL1_RXS      (0x00000001)  //!< Bit mask for USBC_UOG2_ENDPTCTRL1_RXS.
 
@@ -14621,7 +13760,6 @@ typedef union _hw_usbc_uog2_endptctrl1
 //! @brief Set the RXS field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL1_RXS(v)   (HW_USBC_UOG2_ENDPTCTRL1_WR((HW_USBC_UOG2_ENDPTCTRL1_RD() & ~BM_USBC_UOG2_ENDPTCTRL1_RXS) | BF_USBC_UOG2_ENDPTCTRL1_RXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL1, field RXD[1] (RW)
@@ -14630,7 +13768,6 @@ typedef union _hw_usbc_uog2_endptctrl1
  * always be written as zero.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL1_RXD      (1)      //!< Bit position for USBC_UOG2_ENDPTCTRL1_RXD.
 #define BM_USBC_UOG2_ENDPTCTRL1_RXD      (0x00000002)  //!< Bit mask for USBC_UOG2_ENDPTCTRL1_RXD.
 
@@ -14644,7 +13781,6 @@ typedef union _hw_usbc_uog2_endptctrl1
 //! @brief Set the RXD field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL1_RXD(v)   (HW_USBC_UOG2_ENDPTCTRL1_WR((HW_USBC_UOG2_ENDPTCTRL1_RD() & ~BM_USBC_UOG2_ENDPTCTRL1_RXD) | BF_USBC_UOG2_ENDPTCTRL1_RXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL1, field RXT[3:2] (RW)
@@ -14652,7 +13788,6 @@ typedef union _hw_usbc_uog2_endptctrl1
  * RX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Reserved
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL1_RXT      (2)      //!< Bit position for USBC_UOG2_ENDPTCTRL1_RXT.
 #define BM_USBC_UOG2_ENDPTCTRL1_RXT      (0x0000000c)  //!< Bit mask for USBC_UOG2_ENDPTCTRL1_RXT.
 
@@ -14666,7 +13801,6 @@ typedef union _hw_usbc_uog2_endptctrl1
 //! @brief Set the RXT field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL1_RXT(v)   (HW_USBC_UOG2_ENDPTCTRL1_WR((HW_USBC_UOG2_ENDPTCTRL1_RD() & ~BM_USBC_UOG2_ENDPTCTRL1_RXT) | BF_USBC_UOG2_ENDPTCTRL1_RXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL1, field RXI[5] (RW)
@@ -14676,7 +13810,6 @@ typedef union _hw_usbc_uog2_endptctrl1
  * toggle sequence and always accept data packet regardless of their data PID.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL1_RXI      (5)      //!< Bit position for USBC_UOG2_ENDPTCTRL1_RXI.
 #define BM_USBC_UOG2_ENDPTCTRL1_RXI      (0x00000020)  //!< Bit mask for USBC_UOG2_ENDPTCTRL1_RXI.
 
@@ -14690,7 +13823,6 @@ typedef union _hw_usbc_uog2_endptctrl1
 //! @brief Set the RXI field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL1_RXI(v)   (HW_USBC_UOG2_ENDPTCTRL1_WR((HW_USBC_UOG2_ENDPTCTRL1_RD() & ~BM_USBC_UOG2_ENDPTCTRL1_RXI) | BF_USBC_UOG2_ENDPTCTRL1_RXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL1, field RXR[6] (RW)
@@ -14700,7 +13832,6 @@ typedef union _hw_usbc_uog2_endptctrl1
  * between the host and device.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL1_RXR      (6)      //!< Bit position for USBC_UOG2_ENDPTCTRL1_RXR.
 #define BM_USBC_UOG2_ENDPTCTRL1_RXR      (0x00000040)  //!< Bit mask for USBC_UOG2_ENDPTCTRL1_RXR.
 
@@ -14714,7 +13845,6 @@ typedef union _hw_usbc_uog2_endptctrl1
 //! @brief Set the RXR field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL1_RXR(v)   (HW_USBC_UOG2_ENDPTCTRL1_WR((HW_USBC_UOG2_ENDPTCTRL1_RD() & ~BM_USBC_UOG2_ENDPTCTRL1_RXR) | BF_USBC_UOG2_ENDPTCTRL1_RXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL1, field RXE[7] (RW)
@@ -14723,7 +13853,6 @@ typedef union _hw_usbc_uog2_endptctrl1
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL1_RXE      (7)      //!< Bit position for USBC_UOG2_ENDPTCTRL1_RXE.
 #define BM_USBC_UOG2_ENDPTCTRL1_RXE      (0x00000080)  //!< Bit mask for USBC_UOG2_ENDPTCTRL1_RXE.
 
@@ -14737,7 +13866,6 @@ typedef union _hw_usbc_uog2_endptctrl1
 //! @brief Set the RXE field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL1_RXE(v)   (HW_USBC_UOG2_ENDPTCTRL1_WR((HW_USBC_UOG2_ENDPTCTRL1_RD() & ~BM_USBC_UOG2_ENDPTCTRL1_RXE) | BF_USBC_UOG2_ENDPTCTRL1_RXE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL1, field TXS[16] (RW)
@@ -14755,7 +13883,6 @@ typedef union _hw_usbc_uog2_endptctrl1
  * ENDPTSETUPSTAT bit.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL1_TXS      (16)      //!< Bit position for USBC_UOG2_ENDPTCTRL1_TXS.
 #define BM_USBC_UOG2_ENDPTCTRL1_TXS      (0x00010000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL1_TXS.
 
@@ -14769,7 +13896,6 @@ typedef union _hw_usbc_uog2_endptctrl1
 //! @brief Set the TXS field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL1_TXS(v)   (HW_USBC_UOG2_ENDPTCTRL1_WR((HW_USBC_UOG2_ENDPTCTRL1_RD() & ~BM_USBC_UOG2_ENDPTCTRL1_TXS) | BF_USBC_UOG2_ENDPTCTRL1_TXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL1, field TXD[17] (RW)
@@ -14778,7 +13904,6 @@ typedef union _hw_usbc_uog2_endptctrl1
  * be written as 0.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL1_TXD      (17)      //!< Bit position for USBC_UOG2_ENDPTCTRL1_TXD.
 #define BM_USBC_UOG2_ENDPTCTRL1_TXD      (0x00020000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL1_TXD.
 
@@ -14792,7 +13917,6 @@ typedef union _hw_usbc_uog2_endptctrl1
 //! @brief Set the TXD field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL1_TXD(v)   (HW_USBC_UOG2_ENDPTCTRL1_WR((HW_USBC_UOG2_ENDPTCTRL1_RD() & ~BM_USBC_UOG2_ENDPTCTRL1_TXD) | BF_USBC_UOG2_ENDPTCTRL1_TXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL1, field TXT[19:18] (RW)
@@ -14800,7 +13924,6 @@ typedef union _hw_usbc_uog2_endptctrl1
  * TX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Interrupt
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL1_TXT      (18)      //!< Bit position for USBC_UOG2_ENDPTCTRL1_TXT.
 #define BM_USBC_UOG2_ENDPTCTRL1_TXT      (0x000c0000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL1_TXT.
 
@@ -14814,7 +13937,6 @@ typedef union _hw_usbc_uog2_endptctrl1
 //! @brief Set the TXT field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL1_TXT(v)   (HW_USBC_UOG2_ENDPTCTRL1_WR((HW_USBC_UOG2_ENDPTCTRL1_RD() & ~BM_USBC_UOG2_ENDPTCTRL1_TXT) | BF_USBC_UOG2_ENDPTCTRL1_TXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL1, field TXI[21] (RW)
@@ -14824,7 +13946,6 @@ typedef union _hw_usbc_uog2_endptctrl1
  * endpoint to ignore the data toggle sequence and always transmit DATA0 for a data packet.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL1_TXI      (21)      //!< Bit position for USBC_UOG2_ENDPTCTRL1_TXI.
 #define BM_USBC_UOG2_ENDPTCTRL1_TXI      (0x00200000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL1_TXI.
 
@@ -14838,7 +13959,6 @@ typedef union _hw_usbc_uog2_endptctrl1
 //! @brief Set the TXI field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL1_TXI(v)   (HW_USBC_UOG2_ENDPTCTRL1_WR((HW_USBC_UOG2_ENDPTCTRL1_RD() & ~BM_USBC_UOG2_ENDPTCTRL1_TXI) | BF_USBC_UOG2_ENDPTCTRL1_TXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL1, field TXR[22] (RW)
@@ -14848,7 +13968,6 @@ typedef union _hw_usbc_uog2_endptctrl1
  * between the Host and device.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL1_TXR      (22)      //!< Bit position for USBC_UOG2_ENDPTCTRL1_TXR.
 #define BM_USBC_UOG2_ENDPTCTRL1_TXR      (0x00400000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL1_TXR.
 
@@ -14862,7 +13981,6 @@ typedef union _hw_usbc_uog2_endptctrl1
 //! @brief Set the TXR field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL1_TXR(v)   (HW_USBC_UOG2_ENDPTCTRL1_WR((HW_USBC_UOG2_ENDPTCTRL1_RD() & ~BM_USBC_UOG2_ENDPTCTRL1_TXR) | BF_USBC_UOG2_ENDPTCTRL1_TXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL1, field TXE[23] (RW)
@@ -14871,7 +13989,6 @@ typedef union _hw_usbc_uog2_endptctrl1
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL1_TXE      (23)      //!< Bit position for USBC_UOG2_ENDPTCTRL1_TXE.
 #define BM_USBC_UOG2_ENDPTCTRL1_TXE      (0x00800000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL1_TXE.
 
@@ -14885,7 +14002,6 @@ typedef union _hw_usbc_uog2_endptctrl1
 //! @brief Set the TXE field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL1_TXE(v)   (HW_USBC_UOG2_ENDPTCTRL1_WR((HW_USBC_UOG2_ENDPTCTRL1_RD() & ~BM_USBC_UOG2_ENDPTCTRL1_TXE) | BF_USBC_UOG2_ENDPTCTRL1_TXE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -14959,7 +14075,6 @@ typedef union _hw_usbc_uog2_endptctrl2
  * software or automatically cleared as above.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL2_RXS      (0)      //!< Bit position for USBC_UOG2_ENDPTCTRL2_RXS.
 #define BM_USBC_UOG2_ENDPTCTRL2_RXS      (0x00000001)  //!< Bit mask for USBC_UOG2_ENDPTCTRL2_RXS.
 
@@ -14973,7 +14088,6 @@ typedef union _hw_usbc_uog2_endptctrl2
 //! @brief Set the RXS field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL2_RXS(v)   (HW_USBC_UOG2_ENDPTCTRL2_WR((HW_USBC_UOG2_ENDPTCTRL2_RD() & ~BM_USBC_UOG2_ENDPTCTRL2_RXS) | BF_USBC_UOG2_ENDPTCTRL2_RXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL2, field RXD[1] (RW)
@@ -14982,7 +14096,6 @@ typedef union _hw_usbc_uog2_endptctrl2
  * always be written as zero.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL2_RXD      (1)      //!< Bit position for USBC_UOG2_ENDPTCTRL2_RXD.
 #define BM_USBC_UOG2_ENDPTCTRL2_RXD      (0x00000002)  //!< Bit mask for USBC_UOG2_ENDPTCTRL2_RXD.
 
@@ -14996,7 +14109,6 @@ typedef union _hw_usbc_uog2_endptctrl2
 //! @brief Set the RXD field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL2_RXD(v)   (HW_USBC_UOG2_ENDPTCTRL2_WR((HW_USBC_UOG2_ENDPTCTRL2_RD() & ~BM_USBC_UOG2_ENDPTCTRL2_RXD) | BF_USBC_UOG2_ENDPTCTRL2_RXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL2, field RXT[3:2] (RW)
@@ -15004,7 +14116,6 @@ typedef union _hw_usbc_uog2_endptctrl2
  * RX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Reserved
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL2_RXT      (2)      //!< Bit position for USBC_UOG2_ENDPTCTRL2_RXT.
 #define BM_USBC_UOG2_ENDPTCTRL2_RXT      (0x0000000c)  //!< Bit mask for USBC_UOG2_ENDPTCTRL2_RXT.
 
@@ -15018,7 +14129,6 @@ typedef union _hw_usbc_uog2_endptctrl2
 //! @brief Set the RXT field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL2_RXT(v)   (HW_USBC_UOG2_ENDPTCTRL2_WR((HW_USBC_UOG2_ENDPTCTRL2_RD() & ~BM_USBC_UOG2_ENDPTCTRL2_RXT) | BF_USBC_UOG2_ENDPTCTRL2_RXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL2, field RXI[5] (RW)
@@ -15028,7 +14138,6 @@ typedef union _hw_usbc_uog2_endptctrl2
  * toggle sequence and always accept data packet regardless of their data PID.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL2_RXI      (5)      //!< Bit position for USBC_UOG2_ENDPTCTRL2_RXI.
 #define BM_USBC_UOG2_ENDPTCTRL2_RXI      (0x00000020)  //!< Bit mask for USBC_UOG2_ENDPTCTRL2_RXI.
 
@@ -15042,7 +14151,6 @@ typedef union _hw_usbc_uog2_endptctrl2
 //! @brief Set the RXI field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL2_RXI(v)   (HW_USBC_UOG2_ENDPTCTRL2_WR((HW_USBC_UOG2_ENDPTCTRL2_RD() & ~BM_USBC_UOG2_ENDPTCTRL2_RXI) | BF_USBC_UOG2_ENDPTCTRL2_RXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL2, field RXR[6] (RW)
@@ -15052,7 +14160,6 @@ typedef union _hw_usbc_uog2_endptctrl2
  * between the host and device.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL2_RXR      (6)      //!< Bit position for USBC_UOG2_ENDPTCTRL2_RXR.
 #define BM_USBC_UOG2_ENDPTCTRL2_RXR      (0x00000040)  //!< Bit mask for USBC_UOG2_ENDPTCTRL2_RXR.
 
@@ -15066,7 +14173,6 @@ typedef union _hw_usbc_uog2_endptctrl2
 //! @brief Set the RXR field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL2_RXR(v)   (HW_USBC_UOG2_ENDPTCTRL2_WR((HW_USBC_UOG2_ENDPTCTRL2_RD() & ~BM_USBC_UOG2_ENDPTCTRL2_RXR) | BF_USBC_UOG2_ENDPTCTRL2_RXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL2, field RXE[7] (RW)
@@ -15075,7 +14181,6 @@ typedef union _hw_usbc_uog2_endptctrl2
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL2_RXE      (7)      //!< Bit position for USBC_UOG2_ENDPTCTRL2_RXE.
 #define BM_USBC_UOG2_ENDPTCTRL2_RXE      (0x00000080)  //!< Bit mask for USBC_UOG2_ENDPTCTRL2_RXE.
 
@@ -15089,7 +14194,6 @@ typedef union _hw_usbc_uog2_endptctrl2
 //! @brief Set the RXE field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL2_RXE(v)   (HW_USBC_UOG2_ENDPTCTRL2_WR((HW_USBC_UOG2_ENDPTCTRL2_RD() & ~BM_USBC_UOG2_ENDPTCTRL2_RXE) | BF_USBC_UOG2_ENDPTCTRL2_RXE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL2, field TXS[16] (RW)
@@ -15107,7 +14211,6 @@ typedef union _hw_usbc_uog2_endptctrl2
  * ENDPTSETUPSTAT bit.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL2_TXS      (16)      //!< Bit position for USBC_UOG2_ENDPTCTRL2_TXS.
 #define BM_USBC_UOG2_ENDPTCTRL2_TXS      (0x00010000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL2_TXS.
 
@@ -15121,7 +14224,6 @@ typedef union _hw_usbc_uog2_endptctrl2
 //! @brief Set the TXS field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL2_TXS(v)   (HW_USBC_UOG2_ENDPTCTRL2_WR((HW_USBC_UOG2_ENDPTCTRL2_RD() & ~BM_USBC_UOG2_ENDPTCTRL2_TXS) | BF_USBC_UOG2_ENDPTCTRL2_TXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL2, field TXD[17] (RW)
@@ -15130,7 +14232,6 @@ typedef union _hw_usbc_uog2_endptctrl2
  * be written as 0.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL2_TXD      (17)      //!< Bit position for USBC_UOG2_ENDPTCTRL2_TXD.
 #define BM_USBC_UOG2_ENDPTCTRL2_TXD      (0x00020000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL2_TXD.
 
@@ -15144,7 +14245,6 @@ typedef union _hw_usbc_uog2_endptctrl2
 //! @brief Set the TXD field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL2_TXD(v)   (HW_USBC_UOG2_ENDPTCTRL2_WR((HW_USBC_UOG2_ENDPTCTRL2_RD() & ~BM_USBC_UOG2_ENDPTCTRL2_TXD) | BF_USBC_UOG2_ENDPTCTRL2_TXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL2, field TXT[19:18] (RW)
@@ -15152,7 +14252,6 @@ typedef union _hw_usbc_uog2_endptctrl2
  * TX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Interrupt
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL2_TXT      (18)      //!< Bit position for USBC_UOG2_ENDPTCTRL2_TXT.
 #define BM_USBC_UOG2_ENDPTCTRL2_TXT      (0x000c0000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL2_TXT.
 
@@ -15166,7 +14265,6 @@ typedef union _hw_usbc_uog2_endptctrl2
 //! @brief Set the TXT field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL2_TXT(v)   (HW_USBC_UOG2_ENDPTCTRL2_WR((HW_USBC_UOG2_ENDPTCTRL2_RD() & ~BM_USBC_UOG2_ENDPTCTRL2_TXT) | BF_USBC_UOG2_ENDPTCTRL2_TXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL2, field TXI[21] (RW)
@@ -15176,7 +14274,6 @@ typedef union _hw_usbc_uog2_endptctrl2
  * endpoint to ignore the data toggle sequence and always transmit DATA0 for a data packet.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL2_TXI      (21)      //!< Bit position for USBC_UOG2_ENDPTCTRL2_TXI.
 #define BM_USBC_UOG2_ENDPTCTRL2_TXI      (0x00200000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL2_TXI.
 
@@ -15190,7 +14287,6 @@ typedef union _hw_usbc_uog2_endptctrl2
 //! @brief Set the TXI field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL2_TXI(v)   (HW_USBC_UOG2_ENDPTCTRL2_WR((HW_USBC_UOG2_ENDPTCTRL2_RD() & ~BM_USBC_UOG2_ENDPTCTRL2_TXI) | BF_USBC_UOG2_ENDPTCTRL2_TXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL2, field TXR[22] (RW)
@@ -15200,7 +14296,6 @@ typedef union _hw_usbc_uog2_endptctrl2
  * between the Host and device.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL2_TXR      (22)      //!< Bit position for USBC_UOG2_ENDPTCTRL2_TXR.
 #define BM_USBC_UOG2_ENDPTCTRL2_TXR      (0x00400000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL2_TXR.
 
@@ -15214,7 +14309,6 @@ typedef union _hw_usbc_uog2_endptctrl2
 //! @brief Set the TXR field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL2_TXR(v)   (HW_USBC_UOG2_ENDPTCTRL2_WR((HW_USBC_UOG2_ENDPTCTRL2_RD() & ~BM_USBC_UOG2_ENDPTCTRL2_TXR) | BF_USBC_UOG2_ENDPTCTRL2_TXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL2, field TXE[23] (RW)
@@ -15223,7 +14317,6 @@ typedef union _hw_usbc_uog2_endptctrl2
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL2_TXE      (23)      //!< Bit position for USBC_UOG2_ENDPTCTRL2_TXE.
 #define BM_USBC_UOG2_ENDPTCTRL2_TXE      (0x00800000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL2_TXE.
 
@@ -15237,7 +14330,6 @@ typedef union _hw_usbc_uog2_endptctrl2
 //! @brief Set the TXE field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL2_TXE(v)   (HW_USBC_UOG2_ENDPTCTRL2_WR((HW_USBC_UOG2_ENDPTCTRL2_RD() & ~BM_USBC_UOG2_ENDPTCTRL2_TXE) | BF_USBC_UOG2_ENDPTCTRL2_TXE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -15311,7 +14403,6 @@ typedef union _hw_usbc_uog2_endptctrl3
  * software or automatically cleared as above.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL3_RXS      (0)      //!< Bit position for USBC_UOG2_ENDPTCTRL3_RXS.
 #define BM_USBC_UOG2_ENDPTCTRL3_RXS      (0x00000001)  //!< Bit mask for USBC_UOG2_ENDPTCTRL3_RXS.
 
@@ -15325,7 +14416,6 @@ typedef union _hw_usbc_uog2_endptctrl3
 //! @brief Set the RXS field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL3_RXS(v)   (HW_USBC_UOG2_ENDPTCTRL3_WR((HW_USBC_UOG2_ENDPTCTRL3_RD() & ~BM_USBC_UOG2_ENDPTCTRL3_RXS) | BF_USBC_UOG2_ENDPTCTRL3_RXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL3, field RXD[1] (RW)
@@ -15334,7 +14424,6 @@ typedef union _hw_usbc_uog2_endptctrl3
  * always be written as zero.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL3_RXD      (1)      //!< Bit position for USBC_UOG2_ENDPTCTRL3_RXD.
 #define BM_USBC_UOG2_ENDPTCTRL3_RXD      (0x00000002)  //!< Bit mask for USBC_UOG2_ENDPTCTRL3_RXD.
 
@@ -15348,7 +14437,6 @@ typedef union _hw_usbc_uog2_endptctrl3
 //! @brief Set the RXD field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL3_RXD(v)   (HW_USBC_UOG2_ENDPTCTRL3_WR((HW_USBC_UOG2_ENDPTCTRL3_RD() & ~BM_USBC_UOG2_ENDPTCTRL3_RXD) | BF_USBC_UOG2_ENDPTCTRL3_RXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL3, field RXT[3:2] (RW)
@@ -15356,7 +14444,6 @@ typedef union _hw_usbc_uog2_endptctrl3
  * RX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Reserved
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL3_RXT      (2)      //!< Bit position for USBC_UOG2_ENDPTCTRL3_RXT.
 #define BM_USBC_UOG2_ENDPTCTRL3_RXT      (0x0000000c)  //!< Bit mask for USBC_UOG2_ENDPTCTRL3_RXT.
 
@@ -15370,7 +14457,6 @@ typedef union _hw_usbc_uog2_endptctrl3
 //! @brief Set the RXT field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL3_RXT(v)   (HW_USBC_UOG2_ENDPTCTRL3_WR((HW_USBC_UOG2_ENDPTCTRL3_RD() & ~BM_USBC_UOG2_ENDPTCTRL3_RXT) | BF_USBC_UOG2_ENDPTCTRL3_RXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL3, field RXI[5] (RW)
@@ -15380,7 +14466,6 @@ typedef union _hw_usbc_uog2_endptctrl3
  * toggle sequence and always accept data packet regardless of their data PID.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL3_RXI      (5)      //!< Bit position for USBC_UOG2_ENDPTCTRL3_RXI.
 #define BM_USBC_UOG2_ENDPTCTRL3_RXI      (0x00000020)  //!< Bit mask for USBC_UOG2_ENDPTCTRL3_RXI.
 
@@ -15394,7 +14479,6 @@ typedef union _hw_usbc_uog2_endptctrl3
 //! @brief Set the RXI field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL3_RXI(v)   (HW_USBC_UOG2_ENDPTCTRL3_WR((HW_USBC_UOG2_ENDPTCTRL3_RD() & ~BM_USBC_UOG2_ENDPTCTRL3_RXI) | BF_USBC_UOG2_ENDPTCTRL3_RXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL3, field RXR[6] (RW)
@@ -15404,7 +14488,6 @@ typedef union _hw_usbc_uog2_endptctrl3
  * between the host and device.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL3_RXR      (6)      //!< Bit position for USBC_UOG2_ENDPTCTRL3_RXR.
 #define BM_USBC_UOG2_ENDPTCTRL3_RXR      (0x00000040)  //!< Bit mask for USBC_UOG2_ENDPTCTRL3_RXR.
 
@@ -15418,7 +14501,6 @@ typedef union _hw_usbc_uog2_endptctrl3
 //! @brief Set the RXR field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL3_RXR(v)   (HW_USBC_UOG2_ENDPTCTRL3_WR((HW_USBC_UOG2_ENDPTCTRL3_RD() & ~BM_USBC_UOG2_ENDPTCTRL3_RXR) | BF_USBC_UOG2_ENDPTCTRL3_RXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL3, field RXE[7] (RW)
@@ -15427,7 +14509,6 @@ typedef union _hw_usbc_uog2_endptctrl3
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL3_RXE      (7)      //!< Bit position for USBC_UOG2_ENDPTCTRL3_RXE.
 #define BM_USBC_UOG2_ENDPTCTRL3_RXE      (0x00000080)  //!< Bit mask for USBC_UOG2_ENDPTCTRL3_RXE.
 
@@ -15441,7 +14522,6 @@ typedef union _hw_usbc_uog2_endptctrl3
 //! @brief Set the RXE field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL3_RXE(v)   (HW_USBC_UOG2_ENDPTCTRL3_WR((HW_USBC_UOG2_ENDPTCTRL3_RD() & ~BM_USBC_UOG2_ENDPTCTRL3_RXE) | BF_USBC_UOG2_ENDPTCTRL3_RXE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL3, field TXS[16] (RW)
@@ -15459,7 +14539,6 @@ typedef union _hw_usbc_uog2_endptctrl3
  * ENDPTSETUPSTAT bit.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL3_TXS      (16)      //!< Bit position for USBC_UOG2_ENDPTCTRL3_TXS.
 #define BM_USBC_UOG2_ENDPTCTRL3_TXS      (0x00010000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL3_TXS.
 
@@ -15473,7 +14552,6 @@ typedef union _hw_usbc_uog2_endptctrl3
 //! @brief Set the TXS field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL3_TXS(v)   (HW_USBC_UOG2_ENDPTCTRL3_WR((HW_USBC_UOG2_ENDPTCTRL3_RD() & ~BM_USBC_UOG2_ENDPTCTRL3_TXS) | BF_USBC_UOG2_ENDPTCTRL3_TXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL3, field TXD[17] (RW)
@@ -15482,7 +14560,6 @@ typedef union _hw_usbc_uog2_endptctrl3
  * be written as 0.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL3_TXD      (17)      //!< Bit position for USBC_UOG2_ENDPTCTRL3_TXD.
 #define BM_USBC_UOG2_ENDPTCTRL3_TXD      (0x00020000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL3_TXD.
 
@@ -15496,7 +14573,6 @@ typedef union _hw_usbc_uog2_endptctrl3
 //! @brief Set the TXD field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL3_TXD(v)   (HW_USBC_UOG2_ENDPTCTRL3_WR((HW_USBC_UOG2_ENDPTCTRL3_RD() & ~BM_USBC_UOG2_ENDPTCTRL3_TXD) | BF_USBC_UOG2_ENDPTCTRL3_TXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL3, field TXT[19:18] (RW)
@@ -15504,7 +14580,6 @@ typedef union _hw_usbc_uog2_endptctrl3
  * TX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Interrupt
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL3_TXT      (18)      //!< Bit position for USBC_UOG2_ENDPTCTRL3_TXT.
 #define BM_USBC_UOG2_ENDPTCTRL3_TXT      (0x000c0000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL3_TXT.
 
@@ -15518,7 +14593,6 @@ typedef union _hw_usbc_uog2_endptctrl3
 //! @brief Set the TXT field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL3_TXT(v)   (HW_USBC_UOG2_ENDPTCTRL3_WR((HW_USBC_UOG2_ENDPTCTRL3_RD() & ~BM_USBC_UOG2_ENDPTCTRL3_TXT) | BF_USBC_UOG2_ENDPTCTRL3_TXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL3, field TXI[21] (RW)
@@ -15528,7 +14602,6 @@ typedef union _hw_usbc_uog2_endptctrl3
  * endpoint to ignore the data toggle sequence and always transmit DATA0 for a data packet.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL3_TXI      (21)      //!< Bit position for USBC_UOG2_ENDPTCTRL3_TXI.
 #define BM_USBC_UOG2_ENDPTCTRL3_TXI      (0x00200000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL3_TXI.
 
@@ -15542,7 +14615,6 @@ typedef union _hw_usbc_uog2_endptctrl3
 //! @brief Set the TXI field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL3_TXI(v)   (HW_USBC_UOG2_ENDPTCTRL3_WR((HW_USBC_UOG2_ENDPTCTRL3_RD() & ~BM_USBC_UOG2_ENDPTCTRL3_TXI) | BF_USBC_UOG2_ENDPTCTRL3_TXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL3, field TXR[22] (RW)
@@ -15552,7 +14624,6 @@ typedef union _hw_usbc_uog2_endptctrl3
  * between the Host and device.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL3_TXR      (22)      //!< Bit position for USBC_UOG2_ENDPTCTRL3_TXR.
 #define BM_USBC_UOG2_ENDPTCTRL3_TXR      (0x00400000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL3_TXR.
 
@@ -15566,7 +14637,6 @@ typedef union _hw_usbc_uog2_endptctrl3
 //! @brief Set the TXR field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL3_TXR(v)   (HW_USBC_UOG2_ENDPTCTRL3_WR((HW_USBC_UOG2_ENDPTCTRL3_RD() & ~BM_USBC_UOG2_ENDPTCTRL3_TXR) | BF_USBC_UOG2_ENDPTCTRL3_TXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL3, field TXE[23] (RW)
@@ -15575,7 +14645,6 @@ typedef union _hw_usbc_uog2_endptctrl3
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL3_TXE      (23)      //!< Bit position for USBC_UOG2_ENDPTCTRL3_TXE.
 #define BM_USBC_UOG2_ENDPTCTRL3_TXE      (0x00800000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL3_TXE.
 
@@ -15589,7 +14658,6 @@ typedef union _hw_usbc_uog2_endptctrl3
 //! @brief Set the TXE field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL3_TXE(v)   (HW_USBC_UOG2_ENDPTCTRL3_WR((HW_USBC_UOG2_ENDPTCTRL3_RD() & ~BM_USBC_UOG2_ENDPTCTRL3_TXE) | BF_USBC_UOG2_ENDPTCTRL3_TXE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -15663,7 +14731,6 @@ typedef union _hw_usbc_uog2_endptctrl4
  * software or automatically cleared as above.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL4_RXS      (0)      //!< Bit position for USBC_UOG2_ENDPTCTRL4_RXS.
 #define BM_USBC_UOG2_ENDPTCTRL4_RXS      (0x00000001)  //!< Bit mask for USBC_UOG2_ENDPTCTRL4_RXS.
 
@@ -15677,7 +14744,6 @@ typedef union _hw_usbc_uog2_endptctrl4
 //! @brief Set the RXS field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL4_RXS(v)   (HW_USBC_UOG2_ENDPTCTRL4_WR((HW_USBC_UOG2_ENDPTCTRL4_RD() & ~BM_USBC_UOG2_ENDPTCTRL4_RXS) | BF_USBC_UOG2_ENDPTCTRL4_RXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL4, field RXD[1] (RW)
@@ -15686,7 +14752,6 @@ typedef union _hw_usbc_uog2_endptctrl4
  * always be written as zero.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL4_RXD      (1)      //!< Bit position for USBC_UOG2_ENDPTCTRL4_RXD.
 #define BM_USBC_UOG2_ENDPTCTRL4_RXD      (0x00000002)  //!< Bit mask for USBC_UOG2_ENDPTCTRL4_RXD.
 
@@ -15700,7 +14765,6 @@ typedef union _hw_usbc_uog2_endptctrl4
 //! @brief Set the RXD field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL4_RXD(v)   (HW_USBC_UOG2_ENDPTCTRL4_WR((HW_USBC_UOG2_ENDPTCTRL4_RD() & ~BM_USBC_UOG2_ENDPTCTRL4_RXD) | BF_USBC_UOG2_ENDPTCTRL4_RXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL4, field RXT[3:2] (RW)
@@ -15708,7 +14772,6 @@ typedef union _hw_usbc_uog2_endptctrl4
  * RX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Reserved
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL4_RXT      (2)      //!< Bit position for USBC_UOG2_ENDPTCTRL4_RXT.
 #define BM_USBC_UOG2_ENDPTCTRL4_RXT      (0x0000000c)  //!< Bit mask for USBC_UOG2_ENDPTCTRL4_RXT.
 
@@ -15722,7 +14785,6 @@ typedef union _hw_usbc_uog2_endptctrl4
 //! @brief Set the RXT field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL4_RXT(v)   (HW_USBC_UOG2_ENDPTCTRL4_WR((HW_USBC_UOG2_ENDPTCTRL4_RD() & ~BM_USBC_UOG2_ENDPTCTRL4_RXT) | BF_USBC_UOG2_ENDPTCTRL4_RXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL4, field RXI[5] (RW)
@@ -15732,7 +14794,6 @@ typedef union _hw_usbc_uog2_endptctrl4
  * toggle sequence and always accept data packet regardless of their data PID.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL4_RXI      (5)      //!< Bit position for USBC_UOG2_ENDPTCTRL4_RXI.
 #define BM_USBC_UOG2_ENDPTCTRL4_RXI      (0x00000020)  //!< Bit mask for USBC_UOG2_ENDPTCTRL4_RXI.
 
@@ -15746,7 +14807,6 @@ typedef union _hw_usbc_uog2_endptctrl4
 //! @brief Set the RXI field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL4_RXI(v)   (HW_USBC_UOG2_ENDPTCTRL4_WR((HW_USBC_UOG2_ENDPTCTRL4_RD() & ~BM_USBC_UOG2_ENDPTCTRL4_RXI) | BF_USBC_UOG2_ENDPTCTRL4_RXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL4, field RXR[6] (RW)
@@ -15756,7 +14816,6 @@ typedef union _hw_usbc_uog2_endptctrl4
  * between the host and device.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL4_RXR      (6)      //!< Bit position for USBC_UOG2_ENDPTCTRL4_RXR.
 #define BM_USBC_UOG2_ENDPTCTRL4_RXR      (0x00000040)  //!< Bit mask for USBC_UOG2_ENDPTCTRL4_RXR.
 
@@ -15770,7 +14829,6 @@ typedef union _hw_usbc_uog2_endptctrl4
 //! @brief Set the RXR field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL4_RXR(v)   (HW_USBC_UOG2_ENDPTCTRL4_WR((HW_USBC_UOG2_ENDPTCTRL4_RD() & ~BM_USBC_UOG2_ENDPTCTRL4_RXR) | BF_USBC_UOG2_ENDPTCTRL4_RXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL4, field RXE[7] (RW)
@@ -15779,7 +14837,6 @@ typedef union _hw_usbc_uog2_endptctrl4
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL4_RXE      (7)      //!< Bit position for USBC_UOG2_ENDPTCTRL4_RXE.
 #define BM_USBC_UOG2_ENDPTCTRL4_RXE      (0x00000080)  //!< Bit mask for USBC_UOG2_ENDPTCTRL4_RXE.
 
@@ -15793,7 +14850,6 @@ typedef union _hw_usbc_uog2_endptctrl4
 //! @brief Set the RXE field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL4_RXE(v)   (HW_USBC_UOG2_ENDPTCTRL4_WR((HW_USBC_UOG2_ENDPTCTRL4_RD() & ~BM_USBC_UOG2_ENDPTCTRL4_RXE) | BF_USBC_UOG2_ENDPTCTRL4_RXE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL4, field TXS[16] (RW)
@@ -15811,7 +14867,6 @@ typedef union _hw_usbc_uog2_endptctrl4
  * ENDPTSETUPSTAT bit.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL4_TXS      (16)      //!< Bit position for USBC_UOG2_ENDPTCTRL4_TXS.
 #define BM_USBC_UOG2_ENDPTCTRL4_TXS      (0x00010000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL4_TXS.
 
@@ -15825,7 +14880,6 @@ typedef union _hw_usbc_uog2_endptctrl4
 //! @brief Set the TXS field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL4_TXS(v)   (HW_USBC_UOG2_ENDPTCTRL4_WR((HW_USBC_UOG2_ENDPTCTRL4_RD() & ~BM_USBC_UOG2_ENDPTCTRL4_TXS) | BF_USBC_UOG2_ENDPTCTRL4_TXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL4, field TXD[17] (RW)
@@ -15834,7 +14888,6 @@ typedef union _hw_usbc_uog2_endptctrl4
  * be written as 0.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL4_TXD      (17)      //!< Bit position for USBC_UOG2_ENDPTCTRL4_TXD.
 #define BM_USBC_UOG2_ENDPTCTRL4_TXD      (0x00020000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL4_TXD.
 
@@ -15848,7 +14901,6 @@ typedef union _hw_usbc_uog2_endptctrl4
 //! @brief Set the TXD field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL4_TXD(v)   (HW_USBC_UOG2_ENDPTCTRL4_WR((HW_USBC_UOG2_ENDPTCTRL4_RD() & ~BM_USBC_UOG2_ENDPTCTRL4_TXD) | BF_USBC_UOG2_ENDPTCTRL4_TXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL4, field TXT[19:18] (RW)
@@ -15856,7 +14908,6 @@ typedef union _hw_usbc_uog2_endptctrl4
  * TX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Interrupt
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL4_TXT      (18)      //!< Bit position for USBC_UOG2_ENDPTCTRL4_TXT.
 #define BM_USBC_UOG2_ENDPTCTRL4_TXT      (0x000c0000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL4_TXT.
 
@@ -15870,7 +14921,6 @@ typedef union _hw_usbc_uog2_endptctrl4
 //! @brief Set the TXT field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL4_TXT(v)   (HW_USBC_UOG2_ENDPTCTRL4_WR((HW_USBC_UOG2_ENDPTCTRL4_RD() & ~BM_USBC_UOG2_ENDPTCTRL4_TXT) | BF_USBC_UOG2_ENDPTCTRL4_TXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL4, field TXI[21] (RW)
@@ -15880,7 +14930,6 @@ typedef union _hw_usbc_uog2_endptctrl4
  * endpoint to ignore the data toggle sequence and always transmit DATA0 for a data packet.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL4_TXI      (21)      //!< Bit position for USBC_UOG2_ENDPTCTRL4_TXI.
 #define BM_USBC_UOG2_ENDPTCTRL4_TXI      (0x00200000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL4_TXI.
 
@@ -15894,7 +14943,6 @@ typedef union _hw_usbc_uog2_endptctrl4
 //! @brief Set the TXI field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL4_TXI(v)   (HW_USBC_UOG2_ENDPTCTRL4_WR((HW_USBC_UOG2_ENDPTCTRL4_RD() & ~BM_USBC_UOG2_ENDPTCTRL4_TXI) | BF_USBC_UOG2_ENDPTCTRL4_TXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL4, field TXR[22] (RW)
@@ -15904,7 +14952,6 @@ typedef union _hw_usbc_uog2_endptctrl4
  * between the Host and device.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL4_TXR      (22)      //!< Bit position for USBC_UOG2_ENDPTCTRL4_TXR.
 #define BM_USBC_UOG2_ENDPTCTRL4_TXR      (0x00400000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL4_TXR.
 
@@ -15918,7 +14965,6 @@ typedef union _hw_usbc_uog2_endptctrl4
 //! @brief Set the TXR field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL4_TXR(v)   (HW_USBC_UOG2_ENDPTCTRL4_WR((HW_USBC_UOG2_ENDPTCTRL4_RD() & ~BM_USBC_UOG2_ENDPTCTRL4_TXR) | BF_USBC_UOG2_ENDPTCTRL4_TXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL4, field TXE[23] (RW)
@@ -15927,7 +14973,6 @@ typedef union _hw_usbc_uog2_endptctrl4
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL4_TXE      (23)      //!< Bit position for USBC_UOG2_ENDPTCTRL4_TXE.
 #define BM_USBC_UOG2_ENDPTCTRL4_TXE      (0x00800000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL4_TXE.
 
@@ -15941,7 +14986,6 @@ typedef union _hw_usbc_uog2_endptctrl4
 //! @brief Set the TXE field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL4_TXE(v)   (HW_USBC_UOG2_ENDPTCTRL4_WR((HW_USBC_UOG2_ENDPTCTRL4_RD() & ~BM_USBC_UOG2_ENDPTCTRL4_TXE) | BF_USBC_UOG2_ENDPTCTRL4_TXE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -16015,7 +15059,6 @@ typedef union _hw_usbc_uog2_endptctrl5
  * software or automatically cleared as above.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL5_RXS      (0)      //!< Bit position for USBC_UOG2_ENDPTCTRL5_RXS.
 #define BM_USBC_UOG2_ENDPTCTRL5_RXS      (0x00000001)  //!< Bit mask for USBC_UOG2_ENDPTCTRL5_RXS.
 
@@ -16029,7 +15072,6 @@ typedef union _hw_usbc_uog2_endptctrl5
 //! @brief Set the RXS field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL5_RXS(v)   (HW_USBC_UOG2_ENDPTCTRL5_WR((HW_USBC_UOG2_ENDPTCTRL5_RD() & ~BM_USBC_UOG2_ENDPTCTRL5_RXS) | BF_USBC_UOG2_ENDPTCTRL5_RXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL5, field RXD[1] (RW)
@@ -16038,7 +15080,6 @@ typedef union _hw_usbc_uog2_endptctrl5
  * always be written as zero.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL5_RXD      (1)      //!< Bit position for USBC_UOG2_ENDPTCTRL5_RXD.
 #define BM_USBC_UOG2_ENDPTCTRL5_RXD      (0x00000002)  //!< Bit mask for USBC_UOG2_ENDPTCTRL5_RXD.
 
@@ -16052,7 +15093,6 @@ typedef union _hw_usbc_uog2_endptctrl5
 //! @brief Set the RXD field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL5_RXD(v)   (HW_USBC_UOG2_ENDPTCTRL5_WR((HW_USBC_UOG2_ENDPTCTRL5_RD() & ~BM_USBC_UOG2_ENDPTCTRL5_RXD) | BF_USBC_UOG2_ENDPTCTRL5_RXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL5, field RXT[3:2] (RW)
@@ -16060,7 +15100,6 @@ typedef union _hw_usbc_uog2_endptctrl5
  * RX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Reserved
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL5_RXT      (2)      //!< Bit position for USBC_UOG2_ENDPTCTRL5_RXT.
 #define BM_USBC_UOG2_ENDPTCTRL5_RXT      (0x0000000c)  //!< Bit mask for USBC_UOG2_ENDPTCTRL5_RXT.
 
@@ -16074,7 +15113,6 @@ typedef union _hw_usbc_uog2_endptctrl5
 //! @brief Set the RXT field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL5_RXT(v)   (HW_USBC_UOG2_ENDPTCTRL5_WR((HW_USBC_UOG2_ENDPTCTRL5_RD() & ~BM_USBC_UOG2_ENDPTCTRL5_RXT) | BF_USBC_UOG2_ENDPTCTRL5_RXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL5, field RXI[5] (RW)
@@ -16084,7 +15122,6 @@ typedef union _hw_usbc_uog2_endptctrl5
  * toggle sequence and always accept data packet regardless of their data PID.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL5_RXI      (5)      //!< Bit position for USBC_UOG2_ENDPTCTRL5_RXI.
 #define BM_USBC_UOG2_ENDPTCTRL5_RXI      (0x00000020)  //!< Bit mask for USBC_UOG2_ENDPTCTRL5_RXI.
 
@@ -16098,7 +15135,6 @@ typedef union _hw_usbc_uog2_endptctrl5
 //! @brief Set the RXI field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL5_RXI(v)   (HW_USBC_UOG2_ENDPTCTRL5_WR((HW_USBC_UOG2_ENDPTCTRL5_RD() & ~BM_USBC_UOG2_ENDPTCTRL5_RXI) | BF_USBC_UOG2_ENDPTCTRL5_RXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL5, field RXR[6] (RW)
@@ -16108,7 +15144,6 @@ typedef union _hw_usbc_uog2_endptctrl5
  * between the host and device.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL5_RXR      (6)      //!< Bit position for USBC_UOG2_ENDPTCTRL5_RXR.
 #define BM_USBC_UOG2_ENDPTCTRL5_RXR      (0x00000040)  //!< Bit mask for USBC_UOG2_ENDPTCTRL5_RXR.
 
@@ -16122,7 +15157,6 @@ typedef union _hw_usbc_uog2_endptctrl5
 //! @brief Set the RXR field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL5_RXR(v)   (HW_USBC_UOG2_ENDPTCTRL5_WR((HW_USBC_UOG2_ENDPTCTRL5_RD() & ~BM_USBC_UOG2_ENDPTCTRL5_RXR) | BF_USBC_UOG2_ENDPTCTRL5_RXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL5, field RXE[7] (RW)
@@ -16131,7 +15165,6 @@ typedef union _hw_usbc_uog2_endptctrl5
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL5_RXE      (7)      //!< Bit position for USBC_UOG2_ENDPTCTRL5_RXE.
 #define BM_USBC_UOG2_ENDPTCTRL5_RXE      (0x00000080)  //!< Bit mask for USBC_UOG2_ENDPTCTRL5_RXE.
 
@@ -16145,7 +15178,6 @@ typedef union _hw_usbc_uog2_endptctrl5
 //! @brief Set the RXE field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL5_RXE(v)   (HW_USBC_UOG2_ENDPTCTRL5_WR((HW_USBC_UOG2_ENDPTCTRL5_RD() & ~BM_USBC_UOG2_ENDPTCTRL5_RXE) | BF_USBC_UOG2_ENDPTCTRL5_RXE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL5, field TXS[16] (RW)
@@ -16163,7 +15195,6 @@ typedef union _hw_usbc_uog2_endptctrl5
  * ENDPTSETUPSTAT bit.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL5_TXS      (16)      //!< Bit position for USBC_UOG2_ENDPTCTRL5_TXS.
 #define BM_USBC_UOG2_ENDPTCTRL5_TXS      (0x00010000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL5_TXS.
 
@@ -16177,7 +15208,6 @@ typedef union _hw_usbc_uog2_endptctrl5
 //! @brief Set the TXS field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL5_TXS(v)   (HW_USBC_UOG2_ENDPTCTRL5_WR((HW_USBC_UOG2_ENDPTCTRL5_RD() & ~BM_USBC_UOG2_ENDPTCTRL5_TXS) | BF_USBC_UOG2_ENDPTCTRL5_TXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL5, field TXD[17] (RW)
@@ -16186,7 +15216,6 @@ typedef union _hw_usbc_uog2_endptctrl5
  * be written as 0.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL5_TXD      (17)      //!< Bit position for USBC_UOG2_ENDPTCTRL5_TXD.
 #define BM_USBC_UOG2_ENDPTCTRL5_TXD      (0x00020000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL5_TXD.
 
@@ -16200,7 +15229,6 @@ typedef union _hw_usbc_uog2_endptctrl5
 //! @brief Set the TXD field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL5_TXD(v)   (HW_USBC_UOG2_ENDPTCTRL5_WR((HW_USBC_UOG2_ENDPTCTRL5_RD() & ~BM_USBC_UOG2_ENDPTCTRL5_TXD) | BF_USBC_UOG2_ENDPTCTRL5_TXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL5, field TXT[19:18] (RW)
@@ -16208,7 +15236,6 @@ typedef union _hw_usbc_uog2_endptctrl5
  * TX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Interrupt
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL5_TXT      (18)      //!< Bit position for USBC_UOG2_ENDPTCTRL5_TXT.
 #define BM_USBC_UOG2_ENDPTCTRL5_TXT      (0x000c0000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL5_TXT.
 
@@ -16222,7 +15249,6 @@ typedef union _hw_usbc_uog2_endptctrl5
 //! @brief Set the TXT field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL5_TXT(v)   (HW_USBC_UOG2_ENDPTCTRL5_WR((HW_USBC_UOG2_ENDPTCTRL5_RD() & ~BM_USBC_UOG2_ENDPTCTRL5_TXT) | BF_USBC_UOG2_ENDPTCTRL5_TXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL5, field TXI[21] (RW)
@@ -16232,7 +15258,6 @@ typedef union _hw_usbc_uog2_endptctrl5
  * endpoint to ignore the data toggle sequence and always transmit DATA0 for a data packet.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL5_TXI      (21)      //!< Bit position for USBC_UOG2_ENDPTCTRL5_TXI.
 #define BM_USBC_UOG2_ENDPTCTRL5_TXI      (0x00200000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL5_TXI.
 
@@ -16246,7 +15271,6 @@ typedef union _hw_usbc_uog2_endptctrl5
 //! @brief Set the TXI field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL5_TXI(v)   (HW_USBC_UOG2_ENDPTCTRL5_WR((HW_USBC_UOG2_ENDPTCTRL5_RD() & ~BM_USBC_UOG2_ENDPTCTRL5_TXI) | BF_USBC_UOG2_ENDPTCTRL5_TXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL5, field TXR[22] (RW)
@@ -16256,7 +15280,6 @@ typedef union _hw_usbc_uog2_endptctrl5
  * between the Host and device.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL5_TXR      (22)      //!< Bit position for USBC_UOG2_ENDPTCTRL5_TXR.
 #define BM_USBC_UOG2_ENDPTCTRL5_TXR      (0x00400000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL5_TXR.
 
@@ -16270,7 +15293,6 @@ typedef union _hw_usbc_uog2_endptctrl5
 //! @brief Set the TXR field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL5_TXR(v)   (HW_USBC_UOG2_ENDPTCTRL5_WR((HW_USBC_UOG2_ENDPTCTRL5_RD() & ~BM_USBC_UOG2_ENDPTCTRL5_TXR) | BF_USBC_UOG2_ENDPTCTRL5_TXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL5, field TXE[23] (RW)
@@ -16279,7 +15301,6 @@ typedef union _hw_usbc_uog2_endptctrl5
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL5_TXE      (23)      //!< Bit position for USBC_UOG2_ENDPTCTRL5_TXE.
 #define BM_USBC_UOG2_ENDPTCTRL5_TXE      (0x00800000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL5_TXE.
 
@@ -16293,7 +15314,6 @@ typedef union _hw_usbc_uog2_endptctrl5
 //! @brief Set the TXE field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL5_TXE(v)   (HW_USBC_UOG2_ENDPTCTRL5_WR((HW_USBC_UOG2_ENDPTCTRL5_RD() & ~BM_USBC_UOG2_ENDPTCTRL5_TXE) | BF_USBC_UOG2_ENDPTCTRL5_TXE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -16367,7 +15387,6 @@ typedef union _hw_usbc_uog2_endptctrl6
  * software or automatically cleared as above.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL6_RXS      (0)      //!< Bit position for USBC_UOG2_ENDPTCTRL6_RXS.
 #define BM_USBC_UOG2_ENDPTCTRL6_RXS      (0x00000001)  //!< Bit mask for USBC_UOG2_ENDPTCTRL6_RXS.
 
@@ -16381,7 +15400,6 @@ typedef union _hw_usbc_uog2_endptctrl6
 //! @brief Set the RXS field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL6_RXS(v)   (HW_USBC_UOG2_ENDPTCTRL6_WR((HW_USBC_UOG2_ENDPTCTRL6_RD() & ~BM_USBC_UOG2_ENDPTCTRL6_RXS) | BF_USBC_UOG2_ENDPTCTRL6_RXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL6, field RXD[1] (RW)
@@ -16390,7 +15408,6 @@ typedef union _hw_usbc_uog2_endptctrl6
  * always be written as zero.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL6_RXD      (1)      //!< Bit position for USBC_UOG2_ENDPTCTRL6_RXD.
 #define BM_USBC_UOG2_ENDPTCTRL6_RXD      (0x00000002)  //!< Bit mask for USBC_UOG2_ENDPTCTRL6_RXD.
 
@@ -16404,7 +15421,6 @@ typedef union _hw_usbc_uog2_endptctrl6
 //! @brief Set the RXD field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL6_RXD(v)   (HW_USBC_UOG2_ENDPTCTRL6_WR((HW_USBC_UOG2_ENDPTCTRL6_RD() & ~BM_USBC_UOG2_ENDPTCTRL6_RXD) | BF_USBC_UOG2_ENDPTCTRL6_RXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL6, field RXT[3:2] (RW)
@@ -16412,7 +15428,6 @@ typedef union _hw_usbc_uog2_endptctrl6
  * RX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Reserved
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL6_RXT      (2)      //!< Bit position for USBC_UOG2_ENDPTCTRL6_RXT.
 #define BM_USBC_UOG2_ENDPTCTRL6_RXT      (0x0000000c)  //!< Bit mask for USBC_UOG2_ENDPTCTRL6_RXT.
 
@@ -16426,7 +15441,6 @@ typedef union _hw_usbc_uog2_endptctrl6
 //! @brief Set the RXT field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL6_RXT(v)   (HW_USBC_UOG2_ENDPTCTRL6_WR((HW_USBC_UOG2_ENDPTCTRL6_RD() & ~BM_USBC_UOG2_ENDPTCTRL6_RXT) | BF_USBC_UOG2_ENDPTCTRL6_RXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL6, field RXI[5] (RW)
@@ -16436,7 +15450,6 @@ typedef union _hw_usbc_uog2_endptctrl6
  * toggle sequence and always accept data packet regardless of their data PID.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL6_RXI      (5)      //!< Bit position for USBC_UOG2_ENDPTCTRL6_RXI.
 #define BM_USBC_UOG2_ENDPTCTRL6_RXI      (0x00000020)  //!< Bit mask for USBC_UOG2_ENDPTCTRL6_RXI.
 
@@ -16450,7 +15463,6 @@ typedef union _hw_usbc_uog2_endptctrl6
 //! @brief Set the RXI field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL6_RXI(v)   (HW_USBC_UOG2_ENDPTCTRL6_WR((HW_USBC_UOG2_ENDPTCTRL6_RD() & ~BM_USBC_UOG2_ENDPTCTRL6_RXI) | BF_USBC_UOG2_ENDPTCTRL6_RXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL6, field RXR[6] (RW)
@@ -16460,7 +15472,6 @@ typedef union _hw_usbc_uog2_endptctrl6
  * between the host and device.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL6_RXR      (6)      //!< Bit position for USBC_UOG2_ENDPTCTRL6_RXR.
 #define BM_USBC_UOG2_ENDPTCTRL6_RXR      (0x00000040)  //!< Bit mask for USBC_UOG2_ENDPTCTRL6_RXR.
 
@@ -16474,7 +15485,6 @@ typedef union _hw_usbc_uog2_endptctrl6
 //! @brief Set the RXR field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL6_RXR(v)   (HW_USBC_UOG2_ENDPTCTRL6_WR((HW_USBC_UOG2_ENDPTCTRL6_RD() & ~BM_USBC_UOG2_ENDPTCTRL6_RXR) | BF_USBC_UOG2_ENDPTCTRL6_RXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL6, field RXE[7] (RW)
@@ -16483,7 +15493,6 @@ typedef union _hw_usbc_uog2_endptctrl6
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL6_RXE      (7)      //!< Bit position for USBC_UOG2_ENDPTCTRL6_RXE.
 #define BM_USBC_UOG2_ENDPTCTRL6_RXE      (0x00000080)  //!< Bit mask for USBC_UOG2_ENDPTCTRL6_RXE.
 
@@ -16497,7 +15506,6 @@ typedef union _hw_usbc_uog2_endptctrl6
 //! @brief Set the RXE field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL6_RXE(v)   (HW_USBC_UOG2_ENDPTCTRL6_WR((HW_USBC_UOG2_ENDPTCTRL6_RD() & ~BM_USBC_UOG2_ENDPTCTRL6_RXE) | BF_USBC_UOG2_ENDPTCTRL6_RXE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL6, field TXS[16] (RW)
@@ -16515,7 +15523,6 @@ typedef union _hw_usbc_uog2_endptctrl6
  * ENDPTSETUPSTAT bit.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL6_TXS      (16)      //!< Bit position for USBC_UOG2_ENDPTCTRL6_TXS.
 #define BM_USBC_UOG2_ENDPTCTRL6_TXS      (0x00010000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL6_TXS.
 
@@ -16529,7 +15536,6 @@ typedef union _hw_usbc_uog2_endptctrl6
 //! @brief Set the TXS field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL6_TXS(v)   (HW_USBC_UOG2_ENDPTCTRL6_WR((HW_USBC_UOG2_ENDPTCTRL6_RD() & ~BM_USBC_UOG2_ENDPTCTRL6_TXS) | BF_USBC_UOG2_ENDPTCTRL6_TXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL6, field TXD[17] (RW)
@@ -16538,7 +15544,6 @@ typedef union _hw_usbc_uog2_endptctrl6
  * be written as 0.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL6_TXD      (17)      //!< Bit position for USBC_UOG2_ENDPTCTRL6_TXD.
 #define BM_USBC_UOG2_ENDPTCTRL6_TXD      (0x00020000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL6_TXD.
 
@@ -16552,7 +15557,6 @@ typedef union _hw_usbc_uog2_endptctrl6
 //! @brief Set the TXD field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL6_TXD(v)   (HW_USBC_UOG2_ENDPTCTRL6_WR((HW_USBC_UOG2_ENDPTCTRL6_RD() & ~BM_USBC_UOG2_ENDPTCTRL6_TXD) | BF_USBC_UOG2_ENDPTCTRL6_TXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL6, field TXT[19:18] (RW)
@@ -16560,7 +15564,6 @@ typedef union _hw_usbc_uog2_endptctrl6
  * TX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Interrupt
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL6_TXT      (18)      //!< Bit position for USBC_UOG2_ENDPTCTRL6_TXT.
 #define BM_USBC_UOG2_ENDPTCTRL6_TXT      (0x000c0000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL6_TXT.
 
@@ -16574,7 +15577,6 @@ typedef union _hw_usbc_uog2_endptctrl6
 //! @brief Set the TXT field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL6_TXT(v)   (HW_USBC_UOG2_ENDPTCTRL6_WR((HW_USBC_UOG2_ENDPTCTRL6_RD() & ~BM_USBC_UOG2_ENDPTCTRL6_TXT) | BF_USBC_UOG2_ENDPTCTRL6_TXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL6, field TXI[21] (RW)
@@ -16584,7 +15586,6 @@ typedef union _hw_usbc_uog2_endptctrl6
  * endpoint to ignore the data toggle sequence and always transmit DATA0 for a data packet.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL6_TXI      (21)      //!< Bit position for USBC_UOG2_ENDPTCTRL6_TXI.
 #define BM_USBC_UOG2_ENDPTCTRL6_TXI      (0x00200000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL6_TXI.
 
@@ -16598,7 +15599,6 @@ typedef union _hw_usbc_uog2_endptctrl6
 //! @brief Set the TXI field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL6_TXI(v)   (HW_USBC_UOG2_ENDPTCTRL6_WR((HW_USBC_UOG2_ENDPTCTRL6_RD() & ~BM_USBC_UOG2_ENDPTCTRL6_TXI) | BF_USBC_UOG2_ENDPTCTRL6_TXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL6, field TXR[22] (RW)
@@ -16608,7 +15608,6 @@ typedef union _hw_usbc_uog2_endptctrl6
  * between the Host and device.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL6_TXR      (22)      //!< Bit position for USBC_UOG2_ENDPTCTRL6_TXR.
 #define BM_USBC_UOG2_ENDPTCTRL6_TXR      (0x00400000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL6_TXR.
 
@@ -16622,7 +15621,6 @@ typedef union _hw_usbc_uog2_endptctrl6
 //! @brief Set the TXR field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL6_TXR(v)   (HW_USBC_UOG2_ENDPTCTRL6_WR((HW_USBC_UOG2_ENDPTCTRL6_RD() & ~BM_USBC_UOG2_ENDPTCTRL6_TXR) | BF_USBC_UOG2_ENDPTCTRL6_TXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL6, field TXE[23] (RW)
@@ -16631,7 +15629,6 @@ typedef union _hw_usbc_uog2_endptctrl6
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL6_TXE      (23)      //!< Bit position for USBC_UOG2_ENDPTCTRL6_TXE.
 #define BM_USBC_UOG2_ENDPTCTRL6_TXE      (0x00800000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL6_TXE.
 
@@ -16645,7 +15642,6 @@ typedef union _hw_usbc_uog2_endptctrl6
 //! @brief Set the TXE field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL6_TXE(v)   (HW_USBC_UOG2_ENDPTCTRL6_WR((HW_USBC_UOG2_ENDPTCTRL6_RD() & ~BM_USBC_UOG2_ENDPTCTRL6_TXE) | BF_USBC_UOG2_ENDPTCTRL6_TXE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -16719,7 +15715,6 @@ typedef union _hw_usbc_uog2_endptctrl7
  * software or automatically cleared as above.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL7_RXS      (0)      //!< Bit position for USBC_UOG2_ENDPTCTRL7_RXS.
 #define BM_USBC_UOG2_ENDPTCTRL7_RXS      (0x00000001)  //!< Bit mask for USBC_UOG2_ENDPTCTRL7_RXS.
 
@@ -16733,7 +15728,6 @@ typedef union _hw_usbc_uog2_endptctrl7
 //! @brief Set the RXS field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL7_RXS(v)   (HW_USBC_UOG2_ENDPTCTRL7_WR((HW_USBC_UOG2_ENDPTCTRL7_RD() & ~BM_USBC_UOG2_ENDPTCTRL7_RXS) | BF_USBC_UOG2_ENDPTCTRL7_RXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL7, field RXD[1] (RW)
@@ -16742,7 +15736,6 @@ typedef union _hw_usbc_uog2_endptctrl7
  * always be written as zero.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL7_RXD      (1)      //!< Bit position for USBC_UOG2_ENDPTCTRL7_RXD.
 #define BM_USBC_UOG2_ENDPTCTRL7_RXD      (0x00000002)  //!< Bit mask for USBC_UOG2_ENDPTCTRL7_RXD.
 
@@ -16756,7 +15749,6 @@ typedef union _hw_usbc_uog2_endptctrl7
 //! @brief Set the RXD field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL7_RXD(v)   (HW_USBC_UOG2_ENDPTCTRL7_WR((HW_USBC_UOG2_ENDPTCTRL7_RD() & ~BM_USBC_UOG2_ENDPTCTRL7_RXD) | BF_USBC_UOG2_ENDPTCTRL7_RXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL7, field RXT[3:2] (RW)
@@ -16764,7 +15756,6 @@ typedef union _hw_usbc_uog2_endptctrl7
  * RX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Reserved
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL7_RXT      (2)      //!< Bit position for USBC_UOG2_ENDPTCTRL7_RXT.
 #define BM_USBC_UOG2_ENDPTCTRL7_RXT      (0x0000000c)  //!< Bit mask for USBC_UOG2_ENDPTCTRL7_RXT.
 
@@ -16778,7 +15769,6 @@ typedef union _hw_usbc_uog2_endptctrl7
 //! @brief Set the RXT field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL7_RXT(v)   (HW_USBC_UOG2_ENDPTCTRL7_WR((HW_USBC_UOG2_ENDPTCTRL7_RD() & ~BM_USBC_UOG2_ENDPTCTRL7_RXT) | BF_USBC_UOG2_ENDPTCTRL7_RXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL7, field RXI[5] (RW)
@@ -16788,7 +15778,6 @@ typedef union _hw_usbc_uog2_endptctrl7
  * toggle sequence and always accept data packet regardless of their data PID.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL7_RXI      (5)      //!< Bit position for USBC_UOG2_ENDPTCTRL7_RXI.
 #define BM_USBC_UOG2_ENDPTCTRL7_RXI      (0x00000020)  //!< Bit mask for USBC_UOG2_ENDPTCTRL7_RXI.
 
@@ -16802,7 +15791,6 @@ typedef union _hw_usbc_uog2_endptctrl7
 //! @brief Set the RXI field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL7_RXI(v)   (HW_USBC_UOG2_ENDPTCTRL7_WR((HW_USBC_UOG2_ENDPTCTRL7_RD() & ~BM_USBC_UOG2_ENDPTCTRL7_RXI) | BF_USBC_UOG2_ENDPTCTRL7_RXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL7, field RXR[6] (RW)
@@ -16812,7 +15800,6 @@ typedef union _hw_usbc_uog2_endptctrl7
  * between the host and device.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL7_RXR      (6)      //!< Bit position for USBC_UOG2_ENDPTCTRL7_RXR.
 #define BM_USBC_UOG2_ENDPTCTRL7_RXR      (0x00000040)  //!< Bit mask for USBC_UOG2_ENDPTCTRL7_RXR.
 
@@ -16826,7 +15813,6 @@ typedef union _hw_usbc_uog2_endptctrl7
 //! @brief Set the RXR field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL7_RXR(v)   (HW_USBC_UOG2_ENDPTCTRL7_WR((HW_USBC_UOG2_ENDPTCTRL7_RD() & ~BM_USBC_UOG2_ENDPTCTRL7_RXR) | BF_USBC_UOG2_ENDPTCTRL7_RXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL7, field RXE[7] (RW)
@@ -16835,7 +15821,6 @@ typedef union _hw_usbc_uog2_endptctrl7
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL7_RXE      (7)      //!< Bit position for USBC_UOG2_ENDPTCTRL7_RXE.
 #define BM_USBC_UOG2_ENDPTCTRL7_RXE      (0x00000080)  //!< Bit mask for USBC_UOG2_ENDPTCTRL7_RXE.
 
@@ -16849,7 +15834,6 @@ typedef union _hw_usbc_uog2_endptctrl7
 //! @brief Set the RXE field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL7_RXE(v)   (HW_USBC_UOG2_ENDPTCTRL7_WR((HW_USBC_UOG2_ENDPTCTRL7_RD() & ~BM_USBC_UOG2_ENDPTCTRL7_RXE) | BF_USBC_UOG2_ENDPTCTRL7_RXE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL7, field TXS[16] (RW)
@@ -16867,7 +15851,6 @@ typedef union _hw_usbc_uog2_endptctrl7
  * ENDPTSETUPSTAT bit.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL7_TXS      (16)      //!< Bit position for USBC_UOG2_ENDPTCTRL7_TXS.
 #define BM_USBC_UOG2_ENDPTCTRL7_TXS      (0x00010000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL7_TXS.
 
@@ -16881,7 +15864,6 @@ typedef union _hw_usbc_uog2_endptctrl7
 //! @brief Set the TXS field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL7_TXS(v)   (HW_USBC_UOG2_ENDPTCTRL7_WR((HW_USBC_UOG2_ENDPTCTRL7_RD() & ~BM_USBC_UOG2_ENDPTCTRL7_TXS) | BF_USBC_UOG2_ENDPTCTRL7_TXS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL7, field TXD[17] (RW)
@@ -16890,7 +15872,6 @@ typedef union _hw_usbc_uog2_endptctrl7
  * be written as 0.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL7_TXD      (17)      //!< Bit position for USBC_UOG2_ENDPTCTRL7_TXD.
 #define BM_USBC_UOG2_ENDPTCTRL7_TXD      (0x00020000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL7_TXD.
 
@@ -16904,7 +15885,6 @@ typedef union _hw_usbc_uog2_endptctrl7
 //! @brief Set the TXD field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL7_TXD(v)   (HW_USBC_UOG2_ENDPTCTRL7_WR((HW_USBC_UOG2_ENDPTCTRL7_RD() & ~BM_USBC_UOG2_ENDPTCTRL7_TXD) | BF_USBC_UOG2_ENDPTCTRL7_TXD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL7, field TXT[19:18] (RW)
@@ -16912,7 +15892,6 @@ typedef union _hw_usbc_uog2_endptctrl7
  * TX Endpoint Type - Read/Write 00 Control 01 Isochronous 10 Bulk 11 Interrupt
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL7_TXT      (18)      //!< Bit position for USBC_UOG2_ENDPTCTRL7_TXT.
 #define BM_USBC_UOG2_ENDPTCTRL7_TXT      (0x000c0000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL7_TXT.
 
@@ -16926,7 +15905,6 @@ typedef union _hw_usbc_uog2_endptctrl7
 //! @brief Set the TXT field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL7_TXT(v)   (HW_USBC_UOG2_ENDPTCTRL7_WR((HW_USBC_UOG2_ENDPTCTRL7_RD() & ~BM_USBC_UOG2_ENDPTCTRL7_TXT) | BF_USBC_UOG2_ENDPTCTRL7_TXT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL7, field TXI[21] (RW)
@@ -16936,7 +15914,6 @@ typedef union _hw_usbc_uog2_endptctrl7
  * endpoint to ignore the data toggle sequence and always transmit DATA0 for a data packet.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL7_TXI      (21)      //!< Bit position for USBC_UOG2_ENDPTCTRL7_TXI.
 #define BM_USBC_UOG2_ENDPTCTRL7_TXI      (0x00200000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL7_TXI.
 
@@ -16950,7 +15927,6 @@ typedef union _hw_usbc_uog2_endptctrl7
 //! @brief Set the TXI field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL7_TXI(v)   (HW_USBC_UOG2_ENDPTCTRL7_WR((HW_USBC_UOG2_ENDPTCTRL7_RD() & ~BM_USBC_UOG2_ENDPTCTRL7_TXI) | BF_USBC_UOG2_ENDPTCTRL7_TXI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL7, field TXR[22] (RW)
@@ -16960,7 +15936,6 @@ typedef union _hw_usbc_uog2_endptctrl7
  * between the Host and device.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL7_TXR      (22)      //!< Bit position for USBC_UOG2_ENDPTCTRL7_TXR.
 #define BM_USBC_UOG2_ENDPTCTRL7_TXR      (0x00400000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL7_TXR.
 
@@ -16974,7 +15949,6 @@ typedef union _hw_usbc_uog2_endptctrl7
 //! @brief Set the TXR field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL7_TXR(v)   (HW_USBC_UOG2_ENDPTCTRL7_WR((HW_USBC_UOG2_ENDPTCTRL7_RD() & ~BM_USBC_UOG2_ENDPTCTRL7_TXR) | BF_USBC_UOG2_ENDPTCTRL7_TXR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UOG2_ENDPTCTRL7, field TXE[23] (RW)
@@ -16983,7 +15957,6 @@ typedef union _hw_usbc_uog2_endptctrl7
  * been configured.
  */
 //@{
-
 #define BP_USBC_UOG2_ENDPTCTRL7_TXE      (23)      //!< Bit position for USBC_UOG2_ENDPTCTRL7_TXE.
 #define BM_USBC_UOG2_ENDPTCTRL7_TXE      (0x00800000)  //!< Bit mask for USBC_UOG2_ENDPTCTRL7_TXE.
 
@@ -16997,7 +15970,6 @@ typedef union _hw_usbc_uog2_endptctrl7
 //! @brief Set the TXE field to a new value.
 #define BW_USBC_UOG2_ENDPTCTRL7_TXE(v)   (HW_USBC_UOG2_ENDPTCTRL7_WR((HW_USBC_UOG2_ENDPTCTRL7_RD() & ~BM_USBC_UOG2_ENDPTCTRL7_TXE) | BF_USBC_UOG2_ENDPTCTRL7_TXE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -17049,13 +16021,11 @@ typedef union _hw_usbc_uh1_id
  * High-Speed core.
  */
 //@{
-
 #define BP_USBC_UH1_ID_ID      (0)      //!< Bit position for USBC_UH1_ID_ID.
 #define BM_USBC_UH1_ID_ID      (0x0000003f)  //!< Bit mask for USBC_UH1_ID_ID.
 
 //! @brief Get value of USBC_UH1_ID_ID from a register value.
 #define BG_USBC_UH1_ID_ID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_ID_ID) >> BP_USBC_UH1_ID_ID)
-
 //@}
 
 /*! @name Register USBC_UH1_ID, field NID[13:8] (RO)
@@ -17063,13 +16033,11 @@ typedef union _hw_usbc_uh1_id
  * Complement version of ID
  */
 //@{
-
 #define BP_USBC_UH1_ID_NID      (8)      //!< Bit position for USBC_UH1_ID_NID.
 #define BM_USBC_UH1_ID_NID      (0x00003f00)  //!< Bit mask for USBC_UH1_ID_NID.
 
 //! @brief Get value of USBC_UH1_ID_NID from a register value.
 #define BG_USBC_UH1_ID_NID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_ID_NID) >> BP_USBC_UH1_ID_NID)
-
 //@}
 
 /*! @name Register USBC_UH1_ID, field REVISION[23:16] (RO)
@@ -17077,13 +16045,11 @@ typedef union _hw_usbc_uh1_id
  * Revision number of the controller core.
  */
 //@{
-
 #define BP_USBC_UH1_ID_REVISION      (16)      //!< Bit position for USBC_UH1_ID_REVISION.
 #define BM_USBC_UH1_ID_REVISION      (0x00ff0000)  //!< Bit mask for USBC_UH1_ID_REVISION.
 
 //! @brief Get value of USBC_UH1_ID_REVISION from a register value.
 #define BG_USBC_UH1_ID_REVISION(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_ID_REVISION) >> BP_USBC_UH1_ID_REVISION)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -17141,13 +16107,11 @@ typedef union _hw_usbc_uh1_hwgeneral
  * - 11 - Reset to 16 bit wide data bus  Software programmable
  */
 //@{
-
 #define BP_USBC_UH1_HWGENERAL_PHYW      (4)      //!< Bit position for USBC_UH1_HWGENERAL_PHYW.
 #define BM_USBC_UH1_HWGENERAL_PHYW      (0x00000030)  //!< Bit mask for USBC_UH1_HWGENERAL_PHYW.
 
 //! @brief Get value of USBC_UH1_HWGENERAL_PHYW from a register value.
 #define BG_USBC_UH1_HWGENERAL_PHYW(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_HWGENERAL_PHYW) >> BP_USBC_UH1_HWGENERAL_PHYW)
-
 //@}
 
 /*! @name Register USBC_UH1_HWGENERAL, field PHYM[8:6] (RO)
@@ -17170,13 +16134,11 @@ typedef union _hw_usbc_uh1_hwgeneral
  * - 1011 - Software programmable - reset to HSIC
  */
 //@{
-
 #define BP_USBC_UH1_HWGENERAL_PHYM      (6)      //!< Bit position for USBC_UH1_HWGENERAL_PHYM.
 #define BM_USBC_UH1_HWGENERAL_PHYM      (0x000001c0)  //!< Bit mask for USBC_UH1_HWGENERAL_PHYM.
 
 //! @brief Get value of USBC_UH1_HWGENERAL_PHYM from a register value.
 #define BG_USBC_UH1_HWGENERAL_PHYM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_HWGENERAL_PHYM) >> BP_USBC_UH1_HWGENERAL_PHYM)
-
 //@}
 
 /*! @name Register USBC_UH1_HWGENERAL, field SM[10:9] (RO)
@@ -17190,13 +16152,11 @@ typedef union _hw_usbc_uh1_hwgeneral
  * - 11 - Software programmable - Reset to use serial signalling for FS/LS
  */
 //@{
-
 #define BP_USBC_UH1_HWGENERAL_SM      (9)      //!< Bit position for USBC_UH1_HWGENERAL_SM.
 #define BM_USBC_UH1_HWGENERAL_SM      (0x00000600)  //!< Bit mask for USBC_UH1_HWGENERAL_SM.
 
 //! @brief Get value of USBC_UH1_HWGENERAL_SM from a register value.
 #define BG_USBC_UH1_HWGENERAL_SM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_HWGENERAL_SM) >> BP_USBC_UH1_HWGENERAL_SM)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -17248,13 +16208,11 @@ typedef union _hw_usbc_uh1_hwhost
  * - 1 - Supported
  */
 //@{
-
 #define BP_USBC_UH1_HWHOST_HC      (0)      //!< Bit position for USBC_UH1_HWHOST_HC.
 #define BM_USBC_UH1_HWHOST_HC      (0x00000001)  //!< Bit mask for USBC_UH1_HWHOST_HC.
 
 //! @brief Get value of USBC_UH1_HWHOST_HC from a register value.
 #define BG_USBC_UH1_HWHOST_HC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_HWHOST_HC) >> BP_USBC_UH1_HWHOST_HC)
-
 //@}
 
 /*! @name Register USBC_UH1_HWHOST, field NPORT[3:1] (RO)
@@ -17263,13 +16221,11 @@ typedef union _hw_usbc_uh1_hwhost
  * value is '000', it indicates a single-port host controller.
  */
 //@{
-
 #define BP_USBC_UH1_HWHOST_NPORT      (1)      //!< Bit position for USBC_UH1_HWHOST_NPORT.
 #define BM_USBC_UH1_HWHOST_NPORT      (0x0000000e)  //!< Bit mask for USBC_UH1_HWHOST_NPORT.
 
 //! @brief Get value of USBC_UH1_HWHOST_NPORT from a register value.
 #define BG_USBC_UH1_HWHOST_NPORT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_HWHOST_NPORT) >> BP_USBC_UH1_HWHOST_NPORT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -17319,13 +16275,11 @@ typedef union _hw_usbc_uh1_hwtxbuf
  * core regsiter USB_n_BURSTSIZE. Please see .
  */
 //@{
-
 #define BP_USBC_UH1_HWTXBUF_TXBURST      (0)      //!< Bit position for USBC_UH1_HWTXBUF_TXBURST.
 #define BM_USBC_UH1_HWTXBUF_TXBURST      (0x000000ff)  //!< Bit mask for USBC_UH1_HWTXBUF_TXBURST.
 
 //! @brief Get value of USBC_UH1_HWTXBUF_TXBURST from a register value.
 #define BG_USBC_UH1_HWTXBUF_TXBURST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_HWTXBUF_TXBURST) >> BP_USBC_UH1_HWTXBUF_TXBURST)
-
 //@}
 
 /*! @name Register USBC_UH1_HWTXBUF, field TXCHANADD[23:16] (RO)
@@ -17337,13 +16291,11 @@ typedef union _hw_usbc_uh1_hwtxbuf
  * as a single TX buffer. Therefore, there is only 1 of this buffer
  */
 //@{
-
 #define BP_USBC_UH1_HWTXBUF_TXCHANADD      (16)      //!< Bit position for USBC_UH1_HWTXBUF_TXCHANADD.
 #define BM_USBC_UH1_HWTXBUF_TXCHANADD      (0x00ff0000)  //!< Bit mask for USBC_UH1_HWTXBUF_TXCHANADD.
 
 //! @brief Get value of USBC_UH1_HWTXBUF_TXCHANADD from a register value.
 #define BG_USBC_UH1_HWTXBUF_TXCHANADD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_HWTXBUF_TXCHANADD) >> BP_USBC_UH1_HWTXBUF_TXCHANADD)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -17392,13 +16344,11 @@ typedef union _hw_usbc_uh1_hwrxbuf
  * core regsiter USB_n_BURSTSIZE. Please see .
  */
 //@{
-
 #define BP_USBC_UH1_HWRXBUF_RXBURST      (0)      //!< Bit position for USBC_UH1_HWRXBUF_RXBURST.
 #define BM_USBC_UH1_HWRXBUF_RXBURST      (0x000000ff)  //!< Bit mask for USBC_UH1_HWRXBUF_RXBURST.
 
 //! @brief Get value of USBC_UH1_HWRXBUF_RXBURST from a register value.
 #define BG_USBC_UH1_HWRXBUF_RXBURST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_HWRXBUF_RXBURST) >> BP_USBC_UH1_HWRXBUF_RXBURST)
-
 //@}
 
 /*! @name Register USBC_UH1_HWRXBUF, field RXADD[15:8] (RO)
@@ -17409,13 +16359,11 @@ typedef union _hw_usbc_uh1_hwrxbuf
  * mode.
  */
 //@{
-
 #define BP_USBC_UH1_HWRXBUF_RXADD      (8)      //!< Bit position for USBC_UH1_HWRXBUF_RXADD.
 #define BM_USBC_UH1_HWRXBUF_RXADD      (0x0000ff00)  //!< Bit mask for USBC_UH1_HWRXBUF_RXADD.
 
 //! @brief Get value of USBC_UH1_HWRXBUF_RXADD from a register value.
 #define BG_USBC_UH1_HWRXBUF_RXADD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_HWRXBUF_RXADD) >> BP_USBC_UH1_HWRXBUF_RXADD)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -17469,7 +16417,6 @@ typedef union _hw_usbc_uh1_gptimer0ld
  * seconds.
  */
 //@{
-
 #define BP_USBC_UH1_GPTIMER0LD_GPTLD      (0)      //!< Bit position for USBC_UH1_GPTIMER0LD_GPTLD.
 #define BM_USBC_UH1_GPTIMER0LD_GPTLD      (0x00ffffff)  //!< Bit mask for USBC_UH1_GPTIMER0LD_GPTLD.
 
@@ -17483,7 +16430,6 @@ typedef union _hw_usbc_uh1_gptimer0ld
 //! @brief Set the GPTLD field to a new value.
 #define BW_USBC_UH1_GPTIMER0LD_GPTLD(v)   (HW_USBC_UH1_GPTIMER0LD_WR((HW_USBC_UH1_GPTIMER0LD_RD() & ~BM_USBC_UH1_GPTIMER0LD_GPTLD) | BF_USBC_UH1_GPTIMER0LD_GPTLD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -17542,7 +16488,6 @@ typedef union _hw_usbc_uh1_gptimer0ctrl
  * General Purpose Timer Counter. This field is the count value of the countdown timer.
  */
 //@{
-
 #define BP_USBC_UH1_GPTIMER0CTRL_GPTCNT      (0)      //!< Bit position for USBC_UH1_GPTIMER0CTRL_GPTCNT.
 #define BM_USBC_UH1_GPTIMER0CTRL_GPTCNT      (0x00ffffff)  //!< Bit mask for USBC_UH1_GPTIMER0CTRL_GPTCNT.
 
@@ -17556,7 +16501,6 @@ typedef union _hw_usbc_uh1_gptimer0ctrl
 //! @brief Set the GPTCNT field to a new value.
 #define BW_USBC_UH1_GPTIMER0CTRL_GPTCNT(v)   (HW_USBC_UH1_GPTIMER0CTRL_WR((HW_USBC_UH1_GPTIMER0CTRL_RD() & ~BM_USBC_UH1_GPTIMER0CTRL_GPTCNT) | BF_USBC_UH1_GPTIMER0CTRL_GPTCNT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_GPTIMER0CTRL, field GPTMODE[24] (RW)
@@ -17571,7 +16515,6 @@ typedef union _hw_usbc_uh1_gptimer0ctrl
  * - 1 - Repeat Mode
  */
 //@{
-
 #define BP_USBC_UH1_GPTIMER0CTRL_GPTMODE      (24)      //!< Bit position for USBC_UH1_GPTIMER0CTRL_GPTMODE.
 #define BM_USBC_UH1_GPTIMER0CTRL_GPTMODE      (0x01000000)  //!< Bit mask for USBC_UH1_GPTIMER0CTRL_GPTMODE.
 
@@ -17585,7 +16528,6 @@ typedef union _hw_usbc_uh1_gptimer0ctrl
 //! @brief Set the GPTMODE field to a new value.
 #define BW_USBC_UH1_GPTIMER0CTRL_GPTMODE(v)   (HW_USBC_UH1_GPTIMER0CTRL_WR((HW_USBC_UH1_GPTIMER0CTRL_RD() & ~BM_USBC_UH1_GPTIMER0CTRL_GPTMODE) | BF_USBC_UH1_GPTIMER0CTRL_GPTMODE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_GPTIMER0CTRL, field GPTRST[30] (RW)
@@ -17597,7 +16539,6 @@ typedef union _hw_usbc_uh1_gptimer0ctrl
  * - 1 - Load counter value from GPTLD bits in n_GPTIMER0LD
  */
 //@{
-
 #define BP_USBC_UH1_GPTIMER0CTRL_GPTRST      (30)      //!< Bit position for USBC_UH1_GPTIMER0CTRL_GPTRST.
 #define BM_USBC_UH1_GPTIMER0CTRL_GPTRST      (0x40000000)  //!< Bit mask for USBC_UH1_GPTIMER0CTRL_GPTRST.
 
@@ -17611,7 +16552,6 @@ typedef union _hw_usbc_uh1_gptimer0ctrl
 //! @brief Set the GPTRST field to a new value.
 #define BW_USBC_UH1_GPTIMER0CTRL_GPTRST(v)   (HW_USBC_UH1_GPTIMER0CTRL_WR((HW_USBC_UH1_GPTIMER0CTRL_RD() & ~BM_USBC_UH1_GPTIMER0CTRL_GPTRST) | BF_USBC_UH1_GPTIMER0CTRL_GPTRST(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_GPTIMER0CTRL, field GPTRUN[31] (RW)
@@ -17623,7 +16563,6 @@ typedef union _hw_usbc_uh1_gptimer0ctrl
  * - 1 - Run
  */
 //@{
-
 #define BP_USBC_UH1_GPTIMER0CTRL_GPTRUN      (31)      //!< Bit position for USBC_UH1_GPTIMER0CTRL_GPTRUN.
 #define BM_USBC_UH1_GPTIMER0CTRL_GPTRUN      (0x80000000)  //!< Bit mask for USBC_UH1_GPTIMER0CTRL_GPTRUN.
 
@@ -17637,7 +16576,6 @@ typedef union _hw_usbc_uh1_gptimer0ctrl
 //! @brief Set the GPTRUN field to a new value.
 #define BW_USBC_UH1_GPTIMER0CTRL_GPTRUN(v)   (HW_USBC_UH1_GPTIMER0CTRL_WR((HW_USBC_UH1_GPTIMER0CTRL_RD() & ~BM_USBC_UH1_GPTIMER0CTRL_GPTRUN) | BF_USBC_UH1_GPTIMER0CTRL_GPTRUN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -17691,7 +16629,6 @@ typedef union _hw_usbc_uh1_gptimer1ld
  * seconds.
  */
 //@{
-
 #define BP_USBC_UH1_GPTIMER1LD_GPTLD      (0)      //!< Bit position for USBC_UH1_GPTIMER1LD_GPTLD.
 #define BM_USBC_UH1_GPTIMER1LD_GPTLD      (0x00ffffff)  //!< Bit mask for USBC_UH1_GPTIMER1LD_GPTLD.
 
@@ -17705,7 +16642,6 @@ typedef union _hw_usbc_uh1_gptimer1ld
 //! @brief Set the GPTLD field to a new value.
 #define BW_USBC_UH1_GPTIMER1LD_GPTLD(v)   (HW_USBC_UH1_GPTIMER1LD_WR((HW_USBC_UH1_GPTIMER1LD_RD() & ~BM_USBC_UH1_GPTIMER1LD_GPTLD) | BF_USBC_UH1_GPTIMER1LD_GPTLD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -17764,7 +16700,6 @@ typedef union _hw_usbc_uh1_gptimer1ctrl
  * General Purpose Timer Counter. This field is the count value of the countdown timer.
  */
 //@{
-
 #define BP_USBC_UH1_GPTIMER1CTRL_GPTCNT      (0)      //!< Bit position for USBC_UH1_GPTIMER1CTRL_GPTCNT.
 #define BM_USBC_UH1_GPTIMER1CTRL_GPTCNT      (0x00ffffff)  //!< Bit mask for USBC_UH1_GPTIMER1CTRL_GPTCNT.
 
@@ -17778,7 +16713,6 @@ typedef union _hw_usbc_uh1_gptimer1ctrl
 //! @brief Set the GPTCNT field to a new value.
 #define BW_USBC_UH1_GPTIMER1CTRL_GPTCNT(v)   (HW_USBC_UH1_GPTIMER1CTRL_WR((HW_USBC_UH1_GPTIMER1CTRL_RD() & ~BM_USBC_UH1_GPTIMER1CTRL_GPTCNT) | BF_USBC_UH1_GPTIMER1CTRL_GPTCNT(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_GPTIMER1CTRL, field GPTMODE[24] (RW)
@@ -17793,7 +16727,6 @@ typedef union _hw_usbc_uh1_gptimer1ctrl
  * - 1 - Repeat Mode
  */
 //@{
-
 #define BP_USBC_UH1_GPTIMER1CTRL_GPTMODE      (24)      //!< Bit position for USBC_UH1_GPTIMER1CTRL_GPTMODE.
 #define BM_USBC_UH1_GPTIMER1CTRL_GPTMODE      (0x01000000)  //!< Bit mask for USBC_UH1_GPTIMER1CTRL_GPTMODE.
 
@@ -17807,7 +16740,6 @@ typedef union _hw_usbc_uh1_gptimer1ctrl
 //! @brief Set the GPTMODE field to a new value.
 #define BW_USBC_UH1_GPTIMER1CTRL_GPTMODE(v)   (HW_USBC_UH1_GPTIMER1CTRL_WR((HW_USBC_UH1_GPTIMER1CTRL_RD() & ~BM_USBC_UH1_GPTIMER1CTRL_GPTMODE) | BF_USBC_UH1_GPTIMER1CTRL_GPTMODE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_GPTIMER1CTRL, field GPTRST[30] (RW)
@@ -17819,7 +16751,6 @@ typedef union _hw_usbc_uh1_gptimer1ctrl
  * - 1 - Load counter value from GPTLD bits in USB_n_GPTIMER0LD
  */
 //@{
-
 #define BP_USBC_UH1_GPTIMER1CTRL_GPTRST      (30)      //!< Bit position for USBC_UH1_GPTIMER1CTRL_GPTRST.
 #define BM_USBC_UH1_GPTIMER1CTRL_GPTRST      (0x40000000)  //!< Bit mask for USBC_UH1_GPTIMER1CTRL_GPTRST.
 
@@ -17833,7 +16764,6 @@ typedef union _hw_usbc_uh1_gptimer1ctrl
 //! @brief Set the GPTRST field to a new value.
 #define BW_USBC_UH1_GPTIMER1CTRL_GPTRST(v)   (HW_USBC_UH1_GPTIMER1CTRL_WR((HW_USBC_UH1_GPTIMER1CTRL_RD() & ~BM_USBC_UH1_GPTIMER1CTRL_GPTRST) | BF_USBC_UH1_GPTIMER1CTRL_GPTRST(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_GPTIMER1CTRL, field GPTRUN[31] (RW)
@@ -17845,7 +16775,6 @@ typedef union _hw_usbc_uh1_gptimer1ctrl
  * - 1 - Run
  */
 //@{
-
 #define BP_USBC_UH1_GPTIMER1CTRL_GPTRUN      (31)      //!< Bit position for USBC_UH1_GPTIMER1CTRL_GPTRUN.
 #define BM_USBC_UH1_GPTIMER1CTRL_GPTRUN      (0x80000000)  //!< Bit mask for USBC_UH1_GPTIMER1CTRL_GPTRUN.
 
@@ -17859,7 +16788,6 @@ typedef union _hw_usbc_uh1_gptimer1ctrl
 //! @brief Set the GPTRUN field to a new value.
 #define BW_USBC_UH1_GPTIMER1CTRL_GPTRUN(v)   (HW_USBC_UH1_GPTIMER1CTRL_WR((HW_USBC_UH1_GPTIMER1CTRL_RD() & ~BM_USBC_UH1_GPTIMER1CTRL_GPTRUN) | BF_USBC_UH1_GPTIMER1CTRL_GPTRUN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -17921,7 +16849,6 @@ typedef union _hw_usbc_uh1_sbuscfg
  * - 111 - INCR16 burst, INCR8 burst, INCR4 burst, then incremental burst of unspecified length
  */
 //@{
-
 #define BP_USBC_UH1_SBUSCFG_AHBBRST      (0)      //!< Bit position for USBC_UH1_SBUSCFG_AHBBRST.
 #define BM_USBC_UH1_SBUSCFG_AHBBRST      (0x00000007)  //!< Bit mask for USBC_UH1_SBUSCFG_AHBBRST.
 
@@ -17935,7 +16862,6 @@ typedef union _hw_usbc_uh1_sbuscfg
 //! @brief Set the AHBBRST field to a new value.
 #define BW_USBC_UH1_SBUSCFG_AHBBRST(v)   (HW_USBC_UH1_SBUSCFG_WR((HW_USBC_UH1_SBUSCFG_RD() & ~BM_USBC_UH1_SBUSCFG_AHBBRST) | BF_USBC_UH1_SBUSCFG_AHBBRST(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -17983,13 +16909,11 @@ typedef union _hw_usbc_uh1_caplength
  * Register. Default value is '40h'.
  */
 //@{
-
 #define BP_USBC_UH1_CAPLENGTH_CAPLENGTH      (0)      //!< Bit position for USBC_UH1_CAPLENGTH_CAPLENGTH.
 #define BM_USBC_UH1_CAPLENGTH_CAPLENGTH      (0x000000ff)  //!< Bit mask for USBC_UH1_CAPLENGTH_CAPLENGTH.
 
 //! @brief Get value of USBC_UH1_CAPLENGTH_CAPLENGTH from a register value.
 #define BG_USBC_UH1_CAPLENGTH_CAPLENGTH(r)   ((__REG_VALUE_TYPE((r), reg8_t) & BM_USBC_UH1_CAPLENGTH_CAPLENGTH) >> BP_USBC_UH1_CAPLENGTH_CAPLENGTH)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -18037,13 +16961,11 @@ typedef union _hw_usbc_uh1_hciversion
  * Host Controller Interface Version Number Default value is '10h', which means EHCI rev1.0.
  */
 //@{
-
 #define BP_USBC_UH1_HCIVERSION_HCIVERSION      (0)      //!< Bit position for USBC_UH1_HCIVERSION_HCIVERSION.
 #define BM_USBC_UH1_HCIVERSION_HCIVERSION      (0x0000ffff)  //!< Bit mask for USBC_UH1_HCIVERSION_HCIVERSION.
 
 //! @brief Get value of USBC_UH1_HCIVERSION_HCIVERSION from a register value.
 #define BG_USBC_UH1_HCIVERSION_HCIVERSION(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_USBC_UH1_HCIVERSION_HCIVERSION) >> BP_USBC_UH1_HCIVERSION_HCIVERSION)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -18103,13 +17025,11 @@ typedef union _hw_usbc_uh1_hcsparams
  * Single-Port Host.
  */
 //@{
-
 #define BP_USBC_UH1_HCSPARAMS_N_PORTS      (0)      //!< Bit position for USBC_UH1_HCSPARAMS_N_PORTS.
 #define BM_USBC_UH1_HCSPARAMS_N_PORTS      (0x0000000f)  //!< Bit mask for USBC_UH1_HCSPARAMS_N_PORTS.
 
 //! @brief Get value of USBC_UH1_HCSPARAMS_N_PORTS from a register value.
 #define BG_USBC_UH1_HCSPARAMS_N_PORTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_HCSPARAMS_N_PORTS) >> BP_USBC_UH1_HCSPARAMS_N_PORTS)
-
 //@}
 
 /*! @name Register USBC_UH1_HCSPARAMS, field PPC[4] (RO)
@@ -18120,13 +17040,11 @@ typedef union _hw_usbc_uh1_hcsparams
  * field in each port status and control register
  */
 //@{
-
 #define BP_USBC_UH1_HCSPARAMS_PPC      (4)      //!< Bit position for USBC_UH1_HCSPARAMS_PPC.
 #define BM_USBC_UH1_HCSPARAMS_PPC      (0x00000010)  //!< Bit mask for USBC_UH1_HCSPARAMS_PPC.
 
 //! @brief Get value of USBC_UH1_HCSPARAMS_PPC from a register value.
 #define BG_USBC_UH1_HCSPARAMS_PPC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_HCSPARAMS_PPC) >> BP_USBC_UH1_HCSPARAMS_PPC)
-
 //@}
 
 /*! @name Register USBC_UH1_HCSPARAMS, field N_PCC[11:8] (RO)
@@ -18141,13 +17059,11 @@ typedef union _hw_usbc_uh1_hcsparams
  * with N_PORTS and N_CC. These bits are '0000b' in all controller core.
  */
 //@{
-
 #define BP_USBC_UH1_HCSPARAMS_N_PCC      (8)      //!< Bit position for USBC_UH1_HCSPARAMS_N_PCC.
 #define BM_USBC_UH1_HCSPARAMS_N_PCC      (0x00000f00)  //!< Bit mask for USBC_UH1_HCSPARAMS_N_PCC.
 
 //! @brief Get value of USBC_UH1_HCSPARAMS_N_PCC from a register value.
 #define BG_USBC_UH1_HCSPARAMS_N_PCC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_HCSPARAMS_N_PCC) >> BP_USBC_UH1_HCSPARAMS_N_PCC)
-
 //@}
 
 /*! @name Register USBC_UH1_HCSPARAMS, field N_CC[15:12] (RO)
@@ -18160,13 +17076,11 @@ typedef union _hw_usbc_uh1_hcsparams
  * - 1 - There are internal companion controller(s) and port-ownership hand-offs is supported.
  */
 //@{
-
 #define BP_USBC_UH1_HCSPARAMS_N_CC      (12)      //!< Bit position for USBC_UH1_HCSPARAMS_N_CC.
 #define BM_USBC_UH1_HCSPARAMS_N_CC      (0x0000f000)  //!< Bit mask for USBC_UH1_HCSPARAMS_N_CC.
 
 //! @brief Get value of USBC_UH1_HCSPARAMS_N_CC from a register value.
 #define BG_USBC_UH1_HCSPARAMS_N_CC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_HCSPARAMS_N_CC) >> BP_USBC_UH1_HCSPARAMS_N_CC)
-
 //@}
 
 /*! @name Register USBC_UH1_HCSPARAMS, field PI[16] (RO)
@@ -18176,13 +17090,11 @@ typedef union _hw_usbc_uh1_hcsparams
  * for controlling the state of the port indicator This bit is "1b" in all controller core.
  */
 //@{
-
 #define BP_USBC_UH1_HCSPARAMS_PI      (16)      //!< Bit position for USBC_UH1_HCSPARAMS_PI.
 #define BM_USBC_UH1_HCSPARAMS_PI      (0x00010000)  //!< Bit mask for USBC_UH1_HCSPARAMS_PI.
 
 //! @brief Get value of USBC_UH1_HCSPARAMS_PI from a register value.
 #define BG_USBC_UH1_HCSPARAMS_PI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_HCSPARAMS_PI) >> BP_USBC_UH1_HCSPARAMS_PI)
-
 //@}
 
 /*! @name Register USBC_UH1_HCSPARAMS, field N_PTT[23:20] (RO)
@@ -18192,13 +17104,11 @@ typedef union _hw_usbc_uh1_hcsparams
  * These bits would be set to equal N_PORTS for Multi-Port Host, and '0000b' for Single-Port Host.
  */
 //@{
-
 #define BP_USBC_UH1_HCSPARAMS_N_PTT      (20)      //!< Bit position for USBC_UH1_HCSPARAMS_N_PTT.
 #define BM_USBC_UH1_HCSPARAMS_N_PTT      (0x00f00000)  //!< Bit mask for USBC_UH1_HCSPARAMS_N_PTT.
 
 //! @brief Get value of USBC_UH1_HCSPARAMS_N_PTT from a register value.
 #define BG_USBC_UH1_HCSPARAMS_N_PTT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_HCSPARAMS_N_PTT) >> BP_USBC_UH1_HCSPARAMS_N_PTT)
-
 //@}
 
 /*! @name Register USBC_UH1_HCSPARAMS, field N_TT[27:24] (RO)
@@ -18208,13 +17118,11 @@ typedef union _hw_usbc_uh1_hcsparams
  * be set to '0001b' for Multi-Port Host, and '0000b' for Single-Port Host.
  */
 //@{
-
 #define BP_USBC_UH1_HCSPARAMS_N_TT      (24)      //!< Bit position for USBC_UH1_HCSPARAMS_N_TT.
 #define BM_USBC_UH1_HCSPARAMS_N_TT      (0x0f000000)  //!< Bit mask for USBC_UH1_HCSPARAMS_N_TT.
 
 //! @brief Get value of USBC_UH1_HCSPARAMS_N_TT from a register value.
 #define BG_USBC_UH1_HCSPARAMS_N_TT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_HCSPARAMS_N_TT) >> BP_USBC_UH1_HCSPARAMS_N_TT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -18268,13 +17176,11 @@ typedef union _hw_usbc_uh1_hccparams
  * capability is supported.
  */
 //@{
-
 #define BP_USBC_UH1_HCCPARAMS_ADC      (0)      //!< Bit position for USBC_UH1_HCCPARAMS_ADC.
 #define BM_USBC_UH1_HCCPARAMS_ADC      (0x00000001)  //!< Bit mask for USBC_UH1_HCCPARAMS_ADC.
 
 //! @brief Get value of USBC_UH1_HCCPARAMS_ADC from a register value.
 #define BG_USBC_UH1_HCCPARAMS_ADC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_HCCPARAMS_ADC) >> BP_USBC_UH1_HCCPARAMS_ADC)
-
 //@}
 
 /*! @name Register USBC_UH1_HCCPARAMS, field PFL[1] (RO)
@@ -18288,13 +17194,11 @@ typedef union _hw_usbc_uh1_hccparams
  * all controller core.
  */
 //@{
-
 #define BP_USBC_UH1_HCCPARAMS_PFL      (1)      //!< Bit position for USBC_UH1_HCCPARAMS_PFL.
 #define BM_USBC_UH1_HCCPARAMS_PFL      (0x00000002)  //!< Bit mask for USBC_UH1_HCCPARAMS_PFL.
 
 //! @brief Get value of USBC_UH1_HCCPARAMS_PFL from a register value.
 #define BG_USBC_UH1_HCCPARAMS_PFL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_HCCPARAMS_PFL) >> BP_USBC_UH1_HCCPARAMS_PFL)
-
 //@}
 
 /*! @name Register USBC_UH1_HCCPARAMS, field ASP[2] (RO)
@@ -18306,13 +17210,11 @@ typedef union _hw_usbc_uh1_hccparams
  * reset value: '00b' for OTG controller core, '11b' for Host-only controller core.
  */
 //@{
-
 #define BP_USBC_UH1_HCCPARAMS_ASP      (2)      //!< Bit position for USBC_UH1_HCCPARAMS_ASP.
 #define BM_USBC_UH1_HCCPARAMS_ASP      (0x00000004)  //!< Bit mask for USBC_UH1_HCCPARAMS_ASP.
 
 //! @brief Get value of USBC_UH1_HCCPARAMS_ASP from a register value.
 #define BG_USBC_UH1_HCCPARAMS_ASP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_HCCPARAMS_ASP) >> BP_USBC_UH1_HCCPARAMS_ASP)
-
 //@}
 
 /*! @name Register USBC_UH1_HCCPARAMS, field IST[7:4] (RO)
@@ -18325,13 +17227,11 @@ typedef union _hw_usbc_uh1_hccparams
  * isochronous data structure for an entire frame. These bits are set '00h' in all controller core.
  */
 //@{
-
 #define BP_USBC_UH1_HCCPARAMS_IST      (4)      //!< Bit position for USBC_UH1_HCCPARAMS_IST.
 #define BM_USBC_UH1_HCCPARAMS_IST      (0x000000f0)  //!< Bit mask for USBC_UH1_HCCPARAMS_IST.
 
 //! @brief Get value of USBC_UH1_HCCPARAMS_IST from a register value.
 #define BG_USBC_UH1_HCCPARAMS_IST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_HCCPARAMS_IST) >> BP_USBC_UH1_HCCPARAMS_IST)
-
 //@}
 
 /*! @name Register USBC_UH1_HCCPARAMS, field EECP[15:8] (RO)
@@ -18343,13 +17243,11 @@ typedef union _hw_usbc_uh1_hccparams
  * header defined for this class of device. These bits are set '00h' in all controller core.
  */
 //@{
-
 #define BP_USBC_UH1_HCCPARAMS_EECP      (8)      //!< Bit position for USBC_UH1_HCCPARAMS_EECP.
 #define BM_USBC_UH1_HCCPARAMS_EECP      (0x0000ff00)  //!< Bit mask for USBC_UH1_HCCPARAMS_EECP.
 
 //! @brief Get value of USBC_UH1_HCCPARAMS_EECP from a register value.
 #define BG_USBC_UH1_HCCPARAMS_EECP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_HCCPARAMS_EECP) >> BP_USBC_UH1_HCCPARAMS_EECP)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -18426,7 +17324,6 @@ typedef union _hw_usbc_uh1_usbcmd
  * event.
  */
 //@{
-
 #define BP_USBC_UH1_USBCMD_RS      (0)      //!< Bit position for USBC_UH1_USBCMD_RS.
 #define BM_USBC_UH1_USBCMD_RS      (0x00000001)  //!< Bit mask for USBC_UH1_USBCMD_RS.
 
@@ -18440,7 +17337,6 @@ typedef union _hw_usbc_uh1_usbcmd
 //! @brief Set the RS field to a new value.
 #define BW_USBC_UH1_USBCMD_RS(v)   (HW_USBC_UH1_USBCMD_WR((HW_USBC_UH1_USBCMD_RD() & ~BM_USBC_UH1_USBCMD_RS) | BF_USBC_UH1_USBCMD_RS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBCMD, field RST[1] (RW)
@@ -18461,7 +17357,6 @@ typedef union _hw_usbc_uh1_usbcmd
  * set to 0.
  */
 //@{
-
 #define BP_USBC_UH1_USBCMD_RST      (1)      //!< Bit position for USBC_UH1_USBCMD_RST.
 #define BM_USBC_UH1_USBCMD_RST      (0x00000002)  //!< Bit mask for USBC_UH1_USBCMD_RST.
 
@@ -18475,7 +17370,6 @@ typedef union _hw_usbc_uh1_usbcmd
 //! @brief Set the RST field to a new value.
 #define BW_USBC_UH1_USBCMD_RST(v)   (HW_USBC_UH1_USBCMD_WR((HW_USBC_UH1_USBCMD_RD() & ~BM_USBC_UH1_USBCMD_RST) | BF_USBC_UH1_USBCMD_RST(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBCMD, field FS[3:2] (RW)
@@ -18483,7 +17377,6 @@ typedef union _hw_usbc_uh1_usbcmd
  * See description at bit 15
  */
 //@{
-
 #define BP_USBC_UH1_USBCMD_FS      (2)      //!< Bit position for USBC_UH1_USBCMD_FS.
 #define BM_USBC_UH1_USBCMD_FS      (0x0000000c)  //!< Bit mask for USBC_UH1_USBCMD_FS.
 
@@ -18497,7 +17390,6 @@ typedef union _hw_usbc_uh1_usbcmd
 //! @brief Set the FS field to a new value.
 #define BW_USBC_UH1_USBCMD_FS(v)   (HW_USBC_UH1_USBCMD_WR((HW_USBC_UH1_USBCMD_RD() & ~BM_USBC_UH1_USBCMD_FS) | BF_USBC_UH1_USBCMD_FS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBCMD, field PSE[4] (RW)
@@ -18510,7 +17402,6 @@ typedef union _hw_usbc_uh1_usbcmd
  * - 1 - Use the PERIODICLISTBASE register to access the Periodic Schedule.
  */
 //@{
-
 #define BP_USBC_UH1_USBCMD_PSE      (4)      //!< Bit position for USBC_UH1_USBCMD_PSE.
 #define BM_USBC_UH1_USBCMD_PSE      (0x00000010)  //!< Bit mask for USBC_UH1_USBCMD_PSE.
 
@@ -18524,7 +17415,6 @@ typedef union _hw_usbc_uh1_usbcmd
 //! @brief Set the PSE field to a new value.
 #define BW_USBC_UH1_USBCMD_PSE(v)   (HW_USBC_UH1_USBCMD_WR((HW_USBC_UH1_USBCMD_RD() & ~BM_USBC_UH1_USBCMD_PSE) | BF_USBC_UH1_USBCMD_PSE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBCMD, field ASE[5] (RW)
@@ -18538,7 +17428,6 @@ typedef union _hw_usbc_uh1_usbcmd
  * - 1 - Use the ASYNCLISTADDR register to access the Asynchronous Schedule.
  */
 //@{
-
 #define BP_USBC_UH1_USBCMD_ASE      (5)      //!< Bit position for USBC_UH1_USBCMD_ASE.
 #define BM_USBC_UH1_USBCMD_ASE      (0x00000020)  //!< Bit mask for USBC_UH1_USBCMD_ASE.
 
@@ -18552,7 +17441,6 @@ typedef union _hw_usbc_uh1_usbcmd
 //! @brief Set the ASE field to a new value.
 #define BW_USBC_UH1_USBCMD_ASE(v)   (HW_USBC_UH1_USBCMD_WR((HW_USBC_UH1_USBCMD_RD() & ~BM_USBC_UH1_USBCMD_ASE) | BF_USBC_UH1_USBCMD_ASE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBCMD, field IAA[6] (RW)
@@ -18569,7 +17457,6 @@ typedef union _hw_usbc_uh1_usbcmd
  * one to this bit when device mode is selected will have undefined results.
  */
 //@{
-
 #define BP_USBC_UH1_USBCMD_IAA      (6)      //!< Bit position for USBC_UH1_USBCMD_IAA.
 #define BM_USBC_UH1_USBCMD_IAA      (0x00000040)  //!< Bit mask for USBC_UH1_USBCMD_IAA.
 
@@ -18583,7 +17470,6 @@ typedef union _hw_usbc_uh1_usbcmd
 //! @brief Set the IAA field to a new value.
 #define BW_USBC_UH1_USBCMD_IAA(v)   (HW_USBC_UH1_USBCMD_WR((HW_USBC_UH1_USBCMD_RD() & ~BM_USBC_UH1_USBCMD_IAA) | BF_USBC_UH1_USBCMD_IAA(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBCMD, field ASP[9:8] (RW)
@@ -18597,7 +17483,6 @@ typedef union _hw_usbc_uh1_usbcmd
  * behavior. This field is set to 3h in all controller core.
  */
 //@{
-
 #define BP_USBC_UH1_USBCMD_ASP      (8)      //!< Bit position for USBC_UH1_USBCMD_ASP.
 #define BM_USBC_UH1_USBCMD_ASP      (0x00000300)  //!< Bit mask for USBC_UH1_USBCMD_ASP.
 
@@ -18611,7 +17496,6 @@ typedef union _hw_usbc_uh1_usbcmd
 //! @brief Set the ASP field to a new value.
 #define BW_USBC_UH1_USBCMD_ASP(v)   (HW_USBC_UH1_USBCMD_WR((HW_USBC_UH1_USBCMD_RD() & ~BM_USBC_UH1_USBCMD_ASP) | BF_USBC_UH1_USBCMD_ASP(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBCMD, field ASPE[11] (RW)
@@ -18623,7 +17507,6 @@ typedef union _hw_usbc_uh1_usbcmd
  * '0b' for OTG controller core, '1b' for Host-only controller core.
  */
 //@{
-
 #define BP_USBC_UH1_USBCMD_ASPE      (11)      //!< Bit position for USBC_UH1_USBCMD_ASPE.
 #define BM_USBC_UH1_USBCMD_ASPE      (0x00000800)  //!< Bit mask for USBC_UH1_USBCMD_ASPE.
 
@@ -18637,7 +17520,6 @@ typedef union _hw_usbc_uh1_usbcmd
 //! @brief Set the ASPE field to a new value.
 #define BW_USBC_UH1_USBCMD_ASPE(v)   (HW_USBC_UH1_USBCMD_WR((HW_USBC_UH1_USBCMD_RD() & ~BM_USBC_UH1_USBCMD_ASPE) | BF_USBC_UH1_USBCMD_ASPE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBCMD, field SUTW[13] (RW)
@@ -18650,7 +17532,6 @@ typedef union _hw_usbc_uh1_usbcmd
  * cleared by hardware when a hazard detected.
  */
 //@{
-
 #define BP_USBC_UH1_USBCMD_SUTW      (13)      //!< Bit position for USBC_UH1_USBCMD_SUTW.
 #define BM_USBC_UH1_USBCMD_SUTW      (0x00002000)  //!< Bit mask for USBC_UH1_USBCMD_SUTW.
 
@@ -18664,7 +17545,6 @@ typedef union _hw_usbc_uh1_usbcmd
 //! @brief Set the SUTW field to a new value.
 #define BW_USBC_UH1_USBCMD_SUTW(v)   (HW_USBC_UH1_USBCMD_WR((HW_USBC_UH1_USBCMD_RD() & ~BM_USBC_UH1_USBCMD_SUTW) | BF_USBC_UH1_USBCMD_SUTW(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBCMD, field ATDTW[14] (RW)
@@ -18675,7 +17555,6 @@ typedef union _hw_usbc_uh1_usbcmd
  * region for which adding a dTD to a primed endpoint may go unrecognized.
  */
 //@{
-
 #define BP_USBC_UH1_USBCMD_ATDTW      (14)      //!< Bit position for USBC_UH1_USBCMD_ATDTW.
 #define BM_USBC_UH1_USBCMD_ATDTW      (0x00004000)  //!< Bit mask for USBC_UH1_USBCMD_ATDTW.
 
@@ -18689,7 +17568,6 @@ typedef union _hw_usbc_uh1_usbcmd
 //! @brief Set the ATDTW field to a new value.
 #define BW_USBC_UH1_USBCMD_ATDTW(v)   (HW_USBC_UH1_USBCMD_WR((HW_USBC_UH1_USBCMD_RD() & ~BM_USBC_UH1_USBCMD_ATDTW) | BF_USBC_UH1_USBCMD_ATDTW(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBCMD, field FS1[15] (RW)
@@ -18711,7 +17589,6 @@ typedef union _hw_usbc_uh1_usbcmd
  * - 111 - 8 elements (32 bytes)
  */
 //@{
-
 #define BP_USBC_UH1_USBCMD_FS1      (15)      //!< Bit position for USBC_UH1_USBCMD_FS1.
 #define BM_USBC_UH1_USBCMD_FS1      (0x00008000)  //!< Bit mask for USBC_UH1_USBCMD_FS1.
 
@@ -18725,7 +17602,6 @@ typedef union _hw_usbc_uh1_usbcmd
 //! @brief Set the FS1 field to a new value.
 #define BW_USBC_UH1_USBCMD_FS1(v)   (HW_USBC_UH1_USBCMD_WR((HW_USBC_UH1_USBCMD_RD() & ~BM_USBC_UH1_USBCMD_FS1) | BF_USBC_UH1_USBCMD_FS1(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBCMD, field ITC[23:16] (RW)
@@ -18746,7 +17622,6 @@ typedef union _hw_usbc_uh1_usbcmd
  * - 0x40 - 64 micro-frames
  */
 //@{
-
 #define BP_USBC_UH1_USBCMD_ITC      (16)      //!< Bit position for USBC_UH1_USBCMD_ITC.
 #define BM_USBC_UH1_USBCMD_ITC      (0x00ff0000)  //!< Bit mask for USBC_UH1_USBCMD_ITC.
 
@@ -18760,7 +17635,6 @@ typedef union _hw_usbc_uh1_usbcmd
 //! @brief Set the ITC field to a new value.
 #define BW_USBC_UH1_USBCMD_ITC(v)   (HW_USBC_UH1_USBCMD_WR((HW_USBC_UH1_USBCMD_RD() & ~BM_USBC_UH1_USBCMD_ITC) | BF_USBC_UH1_USBCMD_ITC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -18835,7 +17709,6 @@ typedef union _hw_usbc_uh1_usbsts
  * than the expected number of bytes.
  */
 //@{
-
 #define BP_USBC_UH1_USBSTS_UI      (0)      //!< Bit position for USBC_UH1_USBSTS_UI.
 #define BM_USBC_UH1_USBSTS_UI      (0x00000001)  //!< Bit mask for USBC_UH1_USBSTS_UI.
 
@@ -18849,7 +17722,6 @@ typedef union _hw_usbc_uh1_usbsts
 //! @brief Set the UI field to a new value.
 #define BW_USBC_UH1_USBSTS_UI(v)   (HW_USBC_UH1_USBSTS_WR((HW_USBC_UH1_USBSTS_RD() & ~BM_USBC_UH1_USBSTS_UI) | BF_USBC_UH1_USBSTS_UI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBSTS, field UEI[1] (RW)
@@ -18860,7 +17732,6 @@ typedef union _hw_usbc_uh1_usbsts
  * set The device controller detects resume signaling only.
  */
 //@{
-
 #define BP_USBC_UH1_USBSTS_UEI      (1)      //!< Bit position for USBC_UH1_USBSTS_UEI.
 #define BM_USBC_UH1_USBSTS_UEI      (0x00000002)  //!< Bit mask for USBC_UH1_USBSTS_UEI.
 
@@ -18874,7 +17745,6 @@ typedef union _hw_usbc_uh1_usbsts
 //! @brief Set the UEI field to a new value.
 #define BW_USBC_UH1_USBSTS_UEI(v)   (HW_USBC_UH1_USBSTS_WR((HW_USBC_UH1_USBSTS_RD() & ~BM_USBC_UH1_USBSTS_UEI) | BF_USBC_UH1_USBSTS_UEI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBSTS, field PCI[2] (RW)
@@ -18887,7 +17757,6 @@ typedef union _hw_usbc_uh1_usbsts
  * notification mechanisms are the USB Reset Received bit and the DCSuspend bits respectively.
  */
 //@{
-
 #define BP_USBC_UH1_USBSTS_PCI      (2)      //!< Bit position for USBC_UH1_USBSTS_PCI.
 #define BM_USBC_UH1_USBSTS_PCI      (0x00000004)  //!< Bit mask for USBC_UH1_USBSTS_PCI.
 
@@ -18901,7 +17770,6 @@ typedef union _hw_usbc_uh1_usbsts
 //! @brief Set the PCI field to a new value.
 #define BW_USBC_UH1_USBSTS_PCI(v)   (HW_USBC_UH1_USBSTS_WR((HW_USBC_UH1_USBSTS_RD() & ~BM_USBC_UH1_USBSTS_PCI) | BF_USBC_UH1_USBSTS_PCI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBSTS, field FRI[3] (RW)
@@ -18914,7 +17782,6 @@ typedef union _hw_usbc_uh1_usbsts
  * every time FHINDEX [12] toggles. Only used in host operation mode.
  */
 //@{
-
 #define BP_USBC_UH1_USBSTS_FRI      (3)      //!< Bit position for USBC_UH1_USBSTS_FRI.
 #define BM_USBC_UH1_USBSTS_FRI      (0x00000008)  //!< Bit mask for USBC_UH1_USBSTS_FRI.
 
@@ -18928,7 +17795,6 @@ typedef union _hw_usbc_uh1_usbsts
 //! @brief Set the FRI field to a new value.
 #define BW_USBC_UH1_USBSTS_FRI(v)   (HW_USBC_UH1_USBSTS_WR((HW_USBC_UH1_USBSTS_RD() & ~BM_USBC_UH1_USBSTS_FRI) | BF_USBC_UH1_USBSTS_FRI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBSTS, field SEI[4] (RW)
@@ -18937,7 +17803,6 @@ typedef union _hw_usbc_uh1_usbsts
  * the system interface.
  */
 //@{
-
 #define BP_USBC_UH1_USBSTS_SEI      (4)      //!< Bit position for USBC_UH1_USBSTS_SEI.
 #define BM_USBC_UH1_USBSTS_SEI      (0x00000010)  //!< Bit mask for USBC_UH1_USBSTS_SEI.
 
@@ -18951,7 +17816,6 @@ typedef union _hw_usbc_uh1_usbsts
 //! @brief Set the SEI field to a new value.
 #define BW_USBC_UH1_USBSTS_SEI(v)   (HW_USBC_UH1_USBSTS_WR((HW_USBC_UH1_USBSTS_RD() & ~BM_USBC_UH1_USBSTS_SEI) | BF_USBC_UH1_USBSTS_SEI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBSTS, field AAI[5] (RW)
@@ -18962,7 +17826,6 @@ typedef union _hw_usbc_uh1_usbsts
  * indicates the assertion of that interrupt source. Only used in host operation mode.
  */
 //@{
-
 #define BP_USBC_UH1_USBSTS_AAI      (5)      //!< Bit position for USBC_UH1_USBSTS_AAI.
 #define BM_USBC_UH1_USBSTS_AAI      (0x00000020)  //!< Bit mask for USBC_UH1_USBSTS_AAI.
 
@@ -18976,7 +17839,6 @@ typedef union _hw_usbc_uh1_usbsts
 //! @brief Set the AAI field to a new value.
 #define BW_USBC_UH1_USBSTS_AAI(v)   (HW_USBC_UH1_USBSTS_WR((HW_USBC_UH1_USBSTS_RD() & ~BM_USBC_UH1_USBSTS_AAI) | BF_USBC_UH1_USBSTS_AAI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBSTS, field URI[6] (RW)
@@ -18986,7 +17848,6 @@ typedef union _hw_usbc_uh1_usbsts
  * Received status bit. Only used in device operation mode.
  */
 //@{
-
 #define BP_USBC_UH1_USBSTS_URI      (6)      //!< Bit position for USBC_UH1_USBSTS_URI.
 #define BM_USBC_UH1_USBSTS_URI      (0x00000040)  //!< Bit mask for USBC_UH1_USBSTS_URI.
 
@@ -19000,7 +17861,6 @@ typedef union _hw_usbc_uh1_usbsts
 //! @brief Set the URI field to a new value.
 #define BW_USBC_UH1_USBSTS_URI(v)   (HW_USBC_UH1_USBSTS_WR((HW_USBC_UH1_USBSTS_RD() & ~BM_USBC_UH1_USBSTS_URI) | BF_USBC_UH1_USBSTS_URI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBSTS, field SRI[7] (RW)
@@ -19015,7 +17875,6 @@ typedef union _hw_usbc_uh1_usbsts
  * bit to clear it.
  */
 //@{
-
 #define BP_USBC_UH1_USBSTS_SRI      (7)      //!< Bit position for USBC_UH1_USBSTS_SRI.
 #define BM_USBC_UH1_USBSTS_SRI      (0x00000080)  //!< Bit mask for USBC_UH1_USBSTS_SRI.
 
@@ -19029,7 +17888,6 @@ typedef union _hw_usbc_uh1_usbsts
 //! @brief Set the SRI field to a new value.
 #define BW_USBC_UH1_USBSTS_SRI(v)   (HW_USBC_UH1_USBSTS_WR((HW_USBC_UH1_USBSTS_RD() & ~BM_USBC_UH1_USBSTS_SRI) | BF_USBC_UH1_USBSTS_SRI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBSTS, field SLI[8] (RW)
@@ -19039,7 +17897,6 @@ typedef union _hw_usbc_uh1_usbsts
  * in device operation mode.
  */
 //@{
-
 #define BP_USBC_UH1_USBSTS_SLI      (8)      //!< Bit position for USBC_UH1_USBSTS_SLI.
 #define BM_USBC_UH1_USBSTS_SLI      (0x00000100)  //!< Bit mask for USBC_UH1_USBSTS_SLI.
 
@@ -19053,7 +17910,6 @@ typedef union _hw_usbc_uh1_usbsts
 //! @brief Set the SLI field to a new value.
 #define BW_USBC_UH1_USBSTS_SLI(v)   (HW_USBC_UH1_USBSTS_WR((HW_USBC_UH1_USBSTS_RD() & ~BM_USBC_UH1_USBSTS_SLI) | BF_USBC_UH1_USBSTS_SLI(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBSTS, field ULPII[10] (RW)
@@ -19062,7 +17918,6 @@ typedef union _hw_usbc_uh1_usbsts
  * ULPI viewport. This bit is usable only if the controller support UPLI interface mode.
  */
 //@{
-
 #define BP_USBC_UH1_USBSTS_ULPII      (10)      //!< Bit position for USBC_UH1_USBSTS_ULPII.
 #define BM_USBC_UH1_USBSTS_ULPII      (0x00000400)  //!< Bit mask for USBC_UH1_USBSTS_ULPII.
 
@@ -19076,7 +17931,6 @@ typedef union _hw_usbc_uh1_usbsts
 //! @brief Set the ULPII field to a new value.
 #define BW_USBC_UH1_USBSTS_ULPII(v)   (HW_USBC_UH1_USBSTS_WR((HW_USBC_UH1_USBSTS_RD() & ~BM_USBC_UH1_USBSTS_ULPII) | BF_USBC_UH1_USBSTS_ULPII(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBSTS, field HCH[12] (RW)
@@ -19089,7 +17943,6 @@ typedef union _hw_usbc_uh1_usbsts
  * register. HCH bit reset value: '0b' for OTG controller core, '1b' for Host-only controller core.
  */
 //@{
-
 #define BP_USBC_UH1_USBSTS_HCH      (12)      //!< Bit position for USBC_UH1_USBSTS_HCH.
 #define BM_USBC_UH1_USBSTS_HCH      (0x00001000)  //!< Bit mask for USBC_UH1_USBSTS_HCH.
 
@@ -19103,7 +17956,6 @@ typedef union _hw_usbc_uh1_usbsts
 //! @brief Set the HCH field to a new value.
 #define BW_USBC_UH1_USBSTS_HCH(v)   (HW_USBC_UH1_USBSTS_WR((HW_USBC_UH1_USBSTS_RD() & ~BM_USBC_UH1_USBSTS_HCH) | BF_USBC_UH1_USBSTS_HCH(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBSTS, field RCL[13] (RW)
@@ -19112,7 +17964,6 @@ typedef union _hw_usbc_uh1_usbsts
  * schedule. Only used in the host operation mode.
  */
 //@{
-
 #define BP_USBC_UH1_USBSTS_RCL      (13)      //!< Bit position for USBC_UH1_USBSTS_RCL.
 #define BM_USBC_UH1_USBSTS_RCL      (0x00002000)  //!< Bit mask for USBC_UH1_USBSTS_RCL.
 
@@ -19126,7 +17977,6 @@ typedef union _hw_usbc_uh1_usbsts
 //! @brief Set the RCL field to a new value.
 #define BW_USBC_UH1_USBSTS_RCL(v)   (HW_USBC_UH1_USBSTS_WR((HW_USBC_UH1_USBSTS_RD() & ~BM_USBC_UH1_USBSTS_RCL) | BF_USBC_UH1_USBSTS_RCL(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBSTS, field PS[14] (RW)
@@ -19139,7 +17989,6 @@ typedef union _hw_usbc_uh1_usbsts
  * enabled (1) or disabled (0). Only used in the host operation mode.
  */
 //@{
-
 #define BP_USBC_UH1_USBSTS_PS      (14)      //!< Bit position for USBC_UH1_USBSTS_PS.
 #define BM_USBC_UH1_USBSTS_PS      (0x00004000)  //!< Bit mask for USBC_UH1_USBSTS_PS.
 
@@ -19153,7 +18002,6 @@ typedef union _hw_usbc_uh1_usbsts
 //! @brief Set the PS field to a new value.
 #define BW_USBC_UH1_USBSTS_PS(v)   (HW_USBC_UH1_USBSTS_WR((HW_USBC_UH1_USBSTS_RD() & ~BM_USBC_UH1_USBSTS_PS) | BF_USBC_UH1_USBSTS_PS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBSTS, field AS[15] (RW)
@@ -19167,7 +18015,6 @@ typedef union _hw_usbc_uh1_usbsts
  * operation mode.
  */
 //@{
-
 #define BP_USBC_UH1_USBSTS_AS      (15)      //!< Bit position for USBC_UH1_USBSTS_AS.
 #define BM_USBC_UH1_USBSTS_AS      (0x00008000)  //!< Bit mask for USBC_UH1_USBSTS_AS.
 
@@ -19181,7 +18028,6 @@ typedef union _hw_usbc_uh1_usbsts
 //! @brief Set the AS field to a new value.
 #define BW_USBC_UH1_USBSTS_AS(v)   (HW_USBC_UH1_USBSTS_WR((HW_USBC_UH1_USBSTS_RD() & ~BM_USBC_UH1_USBSTS_AS) | BF_USBC_UH1_USBSTS_AS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBSTS, field NAKI[16] (RO)
@@ -19191,13 +18037,11 @@ typedef union _hw_usbc_uh1_usbsts
  * automatically cleared by hardware when all Enabled TX/RX Endpoint NAK bits are cleared.
  */
 //@{
-
 #define BP_USBC_UH1_USBSTS_NAKI      (16)      //!< Bit position for USBC_UH1_USBSTS_NAKI.
 #define BM_USBC_UH1_USBSTS_NAKI      (0x00010000)  //!< Bit mask for USBC_UH1_USBSTS_NAKI.
 
 //! @brief Get value of USBC_UH1_USBSTS_NAKI from a register value.
 #define BG_USBC_UH1_USBSTS_NAKI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_USBSTS_NAKI) >> BP_USBC_UH1_USBSTS_NAKI)
-
 //@}
 
 /*! @name Register USBC_UH1_USBSTS, field TI0[24] (RW)
@@ -19206,7 +18050,6 @@ typedef union _hw_usbc_uh1_usbsts
  * GPTIMER0CTRL register transitions to zero, writing a one to this bit clears it.
  */
 //@{
-
 #define BP_USBC_UH1_USBSTS_TI0      (24)      //!< Bit position for USBC_UH1_USBSTS_TI0.
 #define BM_USBC_UH1_USBSTS_TI0      (0x01000000)  //!< Bit mask for USBC_UH1_USBSTS_TI0.
 
@@ -19220,7 +18063,6 @@ typedef union _hw_usbc_uh1_usbsts
 //! @brief Set the TI0 field to a new value.
 #define BW_USBC_UH1_USBSTS_TI0(v)   (HW_USBC_UH1_USBSTS_WR((HW_USBC_UH1_USBSTS_RD() & ~BM_USBC_UH1_USBSTS_TI0) | BF_USBC_UH1_USBSTS_TI0(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBSTS, field TI1[25] (RW)
@@ -19229,7 +18071,6 @@ typedef union _hw_usbc_uh1_usbsts
  * GPTIMER1CTRL register transitions to zero, writing a one to this bit will clear it.
  */
 //@{
-
 #define BP_USBC_UH1_USBSTS_TI1      (25)      //!< Bit position for USBC_UH1_USBSTS_TI1.
 #define BM_USBC_UH1_USBSTS_TI1      (0x02000000)  //!< Bit mask for USBC_UH1_USBSTS_TI1.
 
@@ -19243,7 +18084,6 @@ typedef union _hw_usbc_uh1_usbsts
 //! @brief Set the TI1 field to a new value.
 #define BW_USBC_UH1_USBSTS_TI1(v)   (HW_USBC_UH1_USBSTS_WR((HW_USBC_UH1_USBSTS_RD() & ~BM_USBC_UH1_USBSTS_TI1) | BF_USBC_UH1_USBSTS_TI1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -19316,7 +18156,6 @@ typedef union _hw_usbc_uh1_usbintr
  * controller will issue an interrupt.
  */
 //@{
-
 #define BP_USBC_UH1_USBINTR_UE      (0)      //!< Bit position for USBC_UH1_USBINTR_UE.
 #define BM_USBC_UH1_USBINTR_UE      (0x00000001)  //!< Bit mask for USBC_UH1_USBINTR_UE.
 
@@ -19330,7 +18169,6 @@ typedef union _hw_usbc_uh1_usbintr
 //! @brief Set the UE field to a new value.
 #define BW_USBC_UH1_USBINTR_UE(v)   (HW_USBC_UH1_USBINTR_WR((HW_USBC_UH1_USBINTR_RD() & ~BM_USBC_UH1_USBINTR_UE) | BF_USBC_UH1_USBINTR_UE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBINTR, field UEE[1] (RW)
@@ -19339,7 +18177,6 @@ typedef union _hw_usbc_uh1_usbintr
  * controller will issue an interrupt.
  */
 //@{
-
 #define BP_USBC_UH1_USBINTR_UEE      (1)      //!< Bit position for USBC_UH1_USBINTR_UEE.
 #define BM_USBC_UH1_USBINTR_UEE      (0x00000002)  //!< Bit mask for USBC_UH1_USBINTR_UEE.
 
@@ -19353,7 +18190,6 @@ typedef union _hw_usbc_uh1_usbintr
 //! @brief Set the UEE field to a new value.
 #define BW_USBC_UH1_USBINTR_UEE(v)   (HW_USBC_UH1_USBINTR_WR((HW_USBC_UH1_USBINTR_RD() & ~BM_USBC_UH1_USBINTR_UEE) | BF_USBC_UH1_USBINTR_UEE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBINTR, field PCE[2] (RW)
@@ -19362,7 +18198,6 @@ typedef union _hw_usbc_uh1_usbintr
  * a one the controller will issue an interrupt.
  */
 //@{
-
 #define BP_USBC_UH1_USBINTR_PCE      (2)      //!< Bit position for USBC_UH1_USBINTR_PCE.
 #define BM_USBC_UH1_USBINTR_PCE      (0x00000004)  //!< Bit mask for USBC_UH1_USBINTR_PCE.
 
@@ -19376,7 +18211,6 @@ typedef union _hw_usbc_uh1_usbintr
 //! @brief Set the PCE field to a new value.
 #define BW_USBC_UH1_USBINTR_PCE(v)   (HW_USBC_UH1_USBINTR_WR((HW_USBC_UH1_USBINTR_RD() & ~BM_USBC_UH1_USBINTR_PCE) | BF_USBC_UH1_USBINTR_PCE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBINTR, field FRE[3] (RW)
@@ -19385,7 +18219,6 @@ typedef union _hw_usbc_uh1_usbintr
  * a one the controller will issue an interrupt. Only used in host operation mode.
  */
 //@{
-
 #define BP_USBC_UH1_USBINTR_FRE      (3)      //!< Bit position for USBC_UH1_USBINTR_FRE.
 #define BM_USBC_UH1_USBINTR_FRE      (0x00000008)  //!< Bit mask for USBC_UH1_USBINTR_FRE.
 
@@ -19399,7 +18232,6 @@ typedef union _hw_usbc_uh1_usbintr
 //! @brief Set the FRE field to a new value.
 #define BW_USBC_UH1_USBINTR_FRE(v)   (HW_USBC_UH1_USBINTR_WR((HW_USBC_UH1_USBINTR_RD() & ~BM_USBC_UH1_USBINTR_FRE) | BF_USBC_UH1_USBINTR_FRE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBINTR, field SEE[4] (RW)
@@ -19408,7 +18240,6 @@ typedef union _hw_usbc_uh1_usbintr
  * the controller will issue an interrupt. Only used in host operation mode.
  */
 //@{
-
 #define BP_USBC_UH1_USBINTR_SEE      (4)      //!< Bit position for USBC_UH1_USBINTR_SEE.
 #define BM_USBC_UH1_USBINTR_SEE      (0x00000010)  //!< Bit mask for USBC_UH1_USBINTR_SEE.
 
@@ -19422,7 +18253,6 @@ typedef union _hw_usbc_uh1_usbintr
 //! @brief Set the SEE field to a new value.
 #define BW_USBC_UH1_USBINTR_SEE(v)   (HW_USBC_UH1_USBINTR_WR((HW_USBC_UH1_USBINTR_RD() & ~BM_USBC_UH1_USBINTR_SEE) | BF_USBC_UH1_USBINTR_SEE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBINTR, field AAE[5] (RW)
@@ -19431,7 +18261,6 @@ typedef union _hw_usbc_uh1_usbintr
  * the controller will issue an interrupt. Only used in host operation mode.
  */
 //@{
-
 #define BP_USBC_UH1_USBINTR_AAE      (5)      //!< Bit position for USBC_UH1_USBINTR_AAE.
 #define BM_USBC_UH1_USBINTR_AAE      (0x00000020)  //!< Bit mask for USBC_UH1_USBINTR_AAE.
 
@@ -19445,7 +18274,6 @@ typedef union _hw_usbc_uh1_usbintr
 //! @brief Set the AAE field to a new value.
 #define BW_USBC_UH1_USBINTR_AAE(v)   (HW_USBC_UH1_USBINTR_WR((HW_USBC_UH1_USBINTR_RD() & ~BM_USBC_UH1_USBINTR_AAE) | BF_USBC_UH1_USBINTR_AAE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBINTR, field URE[6] (RW)
@@ -19454,7 +18282,6 @@ typedef union _hw_usbc_uh1_usbintr
  * controller will issue an interrupt. Only used in device operation mode.
  */
 //@{
-
 #define BP_USBC_UH1_USBINTR_URE      (6)      //!< Bit position for USBC_UH1_USBINTR_URE.
 #define BM_USBC_UH1_USBINTR_URE      (0x00000040)  //!< Bit mask for USBC_UH1_USBINTR_URE.
 
@@ -19468,7 +18295,6 @@ typedef union _hw_usbc_uh1_usbintr
 //! @brief Set the URE field to a new value.
 #define BW_USBC_UH1_USBINTR_URE(v)   (HW_USBC_UH1_USBINTR_WR((HW_USBC_UH1_USBINTR_RD() & ~BM_USBC_UH1_USBINTR_URE) | BF_USBC_UH1_USBINTR_URE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBINTR, field SRE[7] (RW)
@@ -19477,7 +18303,6 @@ typedef union _hw_usbc_uh1_usbintr
  * the controller will issue an interrupt.
  */
 //@{
-
 #define BP_USBC_UH1_USBINTR_SRE      (7)      //!< Bit position for USBC_UH1_USBINTR_SRE.
 #define BM_USBC_UH1_USBINTR_SRE      (0x00000080)  //!< Bit mask for USBC_UH1_USBINTR_SRE.
 
@@ -19491,7 +18316,6 @@ typedef union _hw_usbc_uh1_usbintr
 //! @brief Set the SRE field to a new value.
 #define BW_USBC_UH1_USBINTR_SRE(v)   (HW_USBC_UH1_USBINTR_WR((HW_USBC_UH1_USBINTR_RD() & ~BM_USBC_UH1_USBINTR_SRE) | BF_USBC_UH1_USBINTR_SRE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBINTR, field SLE[8] (RW)
@@ -19500,7 +18324,6 @@ typedef union _hw_usbc_uh1_usbintr
  * controller will issue an interrupt. Only used in device operation mode.
  */
 //@{
-
 #define BP_USBC_UH1_USBINTR_SLE      (8)      //!< Bit position for USBC_UH1_USBINTR_SLE.
 #define BM_USBC_UH1_USBINTR_SLE      (0x00000100)  //!< Bit mask for USBC_UH1_USBINTR_SLE.
 
@@ -19514,7 +18337,6 @@ typedef union _hw_usbc_uh1_usbintr
 //! @brief Set the SLE field to a new value.
 #define BW_USBC_UH1_USBINTR_SLE(v)   (HW_USBC_UH1_USBINTR_WR((HW_USBC_UH1_USBINTR_RD() & ~BM_USBC_UH1_USBINTR_SLE) | BF_USBC_UH1_USBINTR_SLE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBINTR, field ULPIE[10] (RW)
@@ -19524,7 +18346,6 @@ typedef union _hw_usbc_uh1_usbintr
  * interface mode.
  */
 //@{
-
 #define BP_USBC_UH1_USBINTR_ULPIE      (10)      //!< Bit position for USBC_UH1_USBINTR_ULPIE.
 #define BM_USBC_UH1_USBINTR_ULPIE      (0x00000400)  //!< Bit mask for USBC_UH1_USBINTR_ULPIE.
 
@@ -19538,7 +18359,6 @@ typedef union _hw_usbc_uh1_usbintr
 //! @brief Set the ULPIE field to a new value.
 #define BW_USBC_UH1_USBINTR_ULPIE(v)   (HW_USBC_UH1_USBINTR_WR((HW_USBC_UH1_USBINTR_RD() & ~BM_USBC_UH1_USBINTR_ULPIE) | BF_USBC_UH1_USBINTR_ULPIE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBINTR, field NAKE[16] (RW)
@@ -19547,7 +18367,6 @@ typedef union _hw_usbc_uh1_usbintr
  * controller will issue an interrupt.
  */
 //@{
-
 #define BP_USBC_UH1_USBINTR_NAKE      (16)      //!< Bit position for USBC_UH1_USBINTR_NAKE.
 #define BM_USBC_UH1_USBINTR_NAKE      (0x00010000)  //!< Bit mask for USBC_UH1_USBINTR_NAKE.
 
@@ -19561,7 +18380,6 @@ typedef union _hw_usbc_uh1_usbintr
 //! @brief Set the NAKE field to a new value.
 #define BW_USBC_UH1_USBINTR_NAKE(v)   (HW_USBC_UH1_USBINTR_WR((HW_USBC_UH1_USBINTR_RD() & ~BM_USBC_UH1_USBINTR_NAKE) | BF_USBC_UH1_USBINTR_NAKE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBINTR, field UAIE[18] (RW)
@@ -19570,7 +18388,6 @@ typedef union _hw_usbc_uh1_usbintr
  * register is one, host controller will issue an interrupt at the next interrupt threshold.
  */
 //@{
-
 #define BP_USBC_UH1_USBINTR_UAIE      (18)      //!< Bit position for USBC_UH1_USBINTR_UAIE.
 #define BM_USBC_UH1_USBINTR_UAIE      (0x00040000)  //!< Bit mask for USBC_UH1_USBINTR_UAIE.
 
@@ -19584,7 +18401,6 @@ typedef union _hw_usbc_uh1_usbintr
 //! @brief Set the UAIE field to a new value.
 #define BW_USBC_UH1_USBINTR_UAIE(v)   (HW_USBC_UH1_USBINTR_WR((HW_USBC_UH1_USBINTR_RD() & ~BM_USBC_UH1_USBINTR_UAIE) | BF_USBC_UH1_USBINTR_UAIE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBINTR, field UPIE[19] (RW)
@@ -19593,7 +18409,6 @@ typedef union _hw_usbc_uh1_usbintr
  * is one, host controller will issue an interrupt at the next interrupt threshold.
  */
 //@{
-
 #define BP_USBC_UH1_USBINTR_UPIE      (19)      //!< Bit position for USBC_UH1_USBINTR_UPIE.
 #define BM_USBC_UH1_USBINTR_UPIE      (0x00080000)  //!< Bit mask for USBC_UH1_USBINTR_UPIE.
 
@@ -19607,7 +18422,6 @@ typedef union _hw_usbc_uh1_usbintr
 //! @brief Set the UPIE field to a new value.
 #define BW_USBC_UH1_USBINTR_UPIE(v)   (HW_USBC_UH1_USBINTR_WR((HW_USBC_UH1_USBINTR_RD() & ~BM_USBC_UH1_USBINTR_UPIE) | BF_USBC_UH1_USBINTR_UPIE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBINTR, field TIE0[24] (RW)
@@ -19616,7 +18430,6 @@ typedef union _hw_usbc_uh1_usbintr
  * register is a one the controller will issue an interrupt.
  */
 //@{
-
 #define BP_USBC_UH1_USBINTR_TIE0      (24)      //!< Bit position for USBC_UH1_USBINTR_TIE0.
 #define BM_USBC_UH1_USBINTR_TIE0      (0x01000000)  //!< Bit mask for USBC_UH1_USBINTR_TIE0.
 
@@ -19630,7 +18443,6 @@ typedef union _hw_usbc_uh1_usbintr
 //! @brief Set the TIE0 field to a new value.
 #define BW_USBC_UH1_USBINTR_TIE0(v)   (HW_USBC_UH1_USBINTR_WR((HW_USBC_UH1_USBINTR_RD() & ~BM_USBC_UH1_USBINTR_TIE0) | BF_USBC_UH1_USBINTR_TIE0(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBINTR, field TIE1[25] (RW)
@@ -19639,7 +18451,6 @@ typedef union _hw_usbc_uh1_usbintr
  * register is a one the controller will issue an interrupt.
  */
 //@{
-
 #define BP_USBC_UH1_USBINTR_TIE1      (25)      //!< Bit position for USBC_UH1_USBINTR_TIE1.
 #define BM_USBC_UH1_USBINTR_TIE1      (0x02000000)  //!< Bit mask for USBC_UH1_USBINTR_TIE1.
 
@@ -19653,7 +18464,6 @@ typedef union _hw_usbc_uh1_usbintr
 //! @brief Set the TIE1 field to a new value.
 #define BW_USBC_UH1_USBINTR_TIE1(v)   (HW_USBC_UH1_USBINTR_WR((HW_USBC_UH1_USBINTR_RD() & ~BM_USBC_UH1_USBINTR_TIE1) | BF_USBC_UH1_USBINTR_TIE1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -19733,7 +18543,6 @@ typedef union _hw_usbc_uh1_frindex
  * - 111 - (8) 5
  */
 //@{
-
 #define BP_USBC_UH1_FRINDEX_FRINDEX      (0)      //!< Bit position for USBC_UH1_FRINDEX_FRINDEX.
 #define BM_USBC_UH1_FRINDEX_FRINDEX      (0x00003fff)  //!< Bit mask for USBC_UH1_FRINDEX_FRINDEX.
 
@@ -19747,7 +18556,6 @@ typedef union _hw_usbc_uh1_frindex
 //! @brief Set the FRINDEX field to a new value.
 #define BW_USBC_UH1_FRINDEX_FRINDEX(v)   (HW_USBC_UH1_FRINDEX_WR((HW_USBC_UH1_FRINDEX_RD() & ~BM_USBC_UH1_FRINDEX_FRINDEX) | BF_USBC_UH1_FRINDEX_FRINDEX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -19804,7 +18612,6 @@ typedef union _hw_usbc_uh1_periodiclistbase
  * used by the host controller.
  */
 //@{
-
 #define BP_USBC_UH1_PERIODICLISTBASE_BASEADR      (12)      //!< Bit position for USBC_UH1_PERIODICLISTBASE_BASEADR.
 #define BM_USBC_UH1_PERIODICLISTBASE_BASEADR      (0xfffff000)  //!< Bit mask for USBC_UH1_PERIODICLISTBASE_BASEADR.
 
@@ -19818,7 +18625,6 @@ typedef union _hw_usbc_uh1_periodiclistbase
 //! @brief Set the BASEADR field to a new value.
 #define BW_USBC_UH1_PERIODICLISTBASE_BASEADR(v)   (HW_USBC_UH1_PERIODICLISTBASE_WR((HW_USBC_UH1_PERIODICLISTBASE_RD() & ~BM_USBC_UH1_PERIODICLISTBASE_BASEADR) | BF_USBC_UH1_PERIODICLISTBASE_BASEADR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -19872,7 +18678,6 @@ typedef union _hw_usbc_uh1_asynclistaddr
  * This field may only reference a Queue Head (QH). Only used by the host controller.
  */
 //@{
-
 #define BP_USBC_UH1_ASYNCLISTADDR_ASYBASE      (5)      //!< Bit position for USBC_UH1_ASYNCLISTADDR_ASYBASE.
 #define BM_USBC_UH1_ASYNCLISTADDR_ASYBASE      (0xffffffe0)  //!< Bit mask for USBC_UH1_ASYNCLISTADDR_ASYBASE.
 
@@ -19886,7 +18691,6 @@ typedef union _hw_usbc_uh1_asynclistaddr
 //! @brief Set the ASYBASE field to a new value.
 #define BW_USBC_UH1_ASYNCLISTADDR_ASYBASE(v)   (HW_USBC_UH1_ASYNCLISTADDR_WR((HW_USBC_UH1_ASYNCLISTADDR_RD() & ~BM_USBC_UH1_ASYNCLISTADDR_ASYBASE) | BF_USBC_UH1_ASYNCLISTADDR_ASYBASE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -19941,7 +18745,6 @@ typedef union _hw_usbc_uh1_burstsize
  * USB bus to system memory.
  */
 //@{
-
 #define BP_USBC_UH1_BURSTSIZE_RXPBURST      (0)      //!< Bit position for USBC_UH1_BURSTSIZE_RXPBURST.
 #define BM_USBC_UH1_BURSTSIZE_RXPBURST      (0x000000ff)  //!< Bit mask for USBC_UH1_BURSTSIZE_RXPBURST.
 
@@ -19955,7 +18758,6 @@ typedef union _hw_usbc_uh1_burstsize
 //! @brief Set the RXPBURST field to a new value.
 #define BW_USBC_UH1_BURSTSIZE_RXPBURST(v)   (HW_USBC_UH1_BURSTSIZE_WR((HW_USBC_UH1_BURSTSIZE_RD() & ~BM_USBC_UH1_BURSTSIZE_RXPBURST) | BF_USBC_UH1_BURSTSIZE_RXPBURST(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_BURSTSIZE, field TXPBURST[16:8] (RW)
@@ -19965,7 +18767,6 @@ typedef union _hw_usbc_uh1_burstsize
  * system memory to the USB bus.
  */
 //@{
-
 #define BP_USBC_UH1_BURSTSIZE_TXPBURST      (8)      //!< Bit position for USBC_UH1_BURSTSIZE_TXPBURST.
 #define BM_USBC_UH1_BURSTSIZE_TXPBURST      (0x0001ff00)  //!< Bit mask for USBC_UH1_BURSTSIZE_TXPBURST.
 
@@ -19979,7 +18780,6 @@ typedef union _hw_usbc_uh1_burstsize
 //! @brief Set the TXPBURST field to a new value.
 #define BW_USBC_UH1_BURSTSIZE_TXPBURST(v)   (HW_USBC_UH1_BURSTSIZE_WR((HW_USBC_UH1_BURSTSIZE_RD() & ~BM_USBC_UH1_BURSTSIZE_TXPBURST) | BF_USBC_UH1_BURSTSIZE_TXPBURST(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -20057,7 +18857,6 @@ typedef union _hw_usbc_uh1_txfilltuning
  * '08h' for OTG controller core, and '00h' for Host-only controller core.
  */
 //@{
-
 #define BP_USBC_UH1_TXFILLTUNING_TXSCHOH      (0)      //!< Bit position for USBC_UH1_TXFILLTUNING_TXSCHOH.
 #define BM_USBC_UH1_TXFILLTUNING_TXSCHOH      (0x000000ff)  //!< Bit mask for USBC_UH1_TXFILLTUNING_TXSCHOH.
 
@@ -20071,7 +18870,6 @@ typedef union _hw_usbc_uh1_txfilltuning
 //! @brief Set the TXSCHOH field to a new value.
 #define BW_USBC_UH1_TXFILLTUNING_TXSCHOH(v)   (HW_USBC_UH1_TXFILLTUNING_WR((HW_USBC_UH1_TXFILLTUNING_RD() & ~BM_USBC_UH1_TXFILLTUNING_TXSCHOH) | BF_USBC_UH1_TXFILLTUNING_TXSCHOH(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_TXFILLTUNING, field TXSCHHEALTH[12:8] (RW)
@@ -20084,7 +18882,6 @@ typedef union _hw_usbc_uh1_txfilltuning
  * controller core, and '00h' for Host-only controller core.
  */
 //@{
-
 #define BP_USBC_UH1_TXFILLTUNING_TXSCHHEALTH      (8)      //!< Bit position for USBC_UH1_TXFILLTUNING_TXSCHHEALTH.
 #define BM_USBC_UH1_TXFILLTUNING_TXSCHHEALTH      (0x00001f00)  //!< Bit mask for USBC_UH1_TXFILLTUNING_TXSCHHEALTH.
 
@@ -20098,7 +18895,6 @@ typedef union _hw_usbc_uh1_txfilltuning
 //! @brief Set the TXSCHHEALTH field to a new value.
 #define BW_USBC_UH1_TXFILLTUNING_TXSCHHEALTH(v)   (HW_USBC_UH1_TXFILLTUNING_WR((HW_USBC_UH1_TXFILLTUNING_RD() & ~BM_USBC_UH1_TXFILLTUNING_TXSCHHEALTH) | BF_USBC_UH1_TXFILLTUNING_TXSCHHEALTH(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_TXFILLTUNING, field TXFIFOTHRES[21:16] (RW)
@@ -20113,7 +18909,6 @@ typedef union _hw_usbc_uh1_txfilltuning
  * controller core.
  */
 //@{
-
 #define BP_USBC_UH1_TXFILLTUNING_TXFIFOTHRES      (16)      //!< Bit position for USBC_UH1_TXFILLTUNING_TXFIFOTHRES.
 #define BM_USBC_UH1_TXFILLTUNING_TXFIFOTHRES      (0x003f0000)  //!< Bit mask for USBC_UH1_TXFILLTUNING_TXFIFOTHRES.
 
@@ -20127,7 +18922,6 @@ typedef union _hw_usbc_uh1_txfilltuning
 //! @brief Set the TXFIFOTHRES field to a new value.
 #define BW_USBC_UH1_TXFILLTUNING_TXFIFOTHRES(v)   (HW_USBC_UH1_TXFILLTUNING_WR((HW_USBC_UH1_TXFILLTUNING_RD() & ~BM_USBC_UH1_TXFILLTUNING_TXFIFOTHRES) | BF_USBC_UH1_TXFILLTUNING_TXFIFOTHRES(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -20184,13 +18978,11 @@ typedef union _hw_usbc_uh1_configflag
  * - 1 - Port routing control logic default-routes all ports to this host controller.
  */
 //@{
-
 #define BP_USBC_UH1_CONFIGFLAG_CF      (0)      //!< Bit position for USBC_UH1_CONFIGFLAG_CF.
 #define BM_USBC_UH1_CONFIGFLAG_CF      (0x00000001)  //!< Bit mask for USBC_UH1_CONFIGFLAG_CF.
 
 //! @brief Get value of USBC_UH1_CONFIGFLAG_CF from a register value.
 #define BG_USBC_UH1_CONFIGFLAG_CF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_CONFIGFLAG_CF) >> BP_USBC_UH1_CONFIGFLAG_CF)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -20282,13 +19074,11 @@ typedef union _hw_usbc_uh1_portsc1
  * suspended.
  */
 //@{
-
 #define BP_USBC_UH1_PORTSC1_CCS      (0)      //!< Bit position for USBC_UH1_PORTSC1_CCS.
 #define BM_USBC_UH1_PORTSC1_CCS      (0x00000001)  //!< Bit mask for USBC_UH1_PORTSC1_CCS.
 
 //! @brief Get value of USBC_UH1_PORTSC1_CCS from a register value.
 #define BG_USBC_UH1_PORTSC1_CCS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_PORTSC1_CCS) >> BP_USBC_UH1_PORTSC1_CCS)
-
 //@}
 
 /*! @name Register USBC_UH1_PORTSC1, field CSC[1] (RW)
@@ -20303,7 +19093,6 @@ typedef union _hw_usbc_uh1_portsc1
  * This bit is undefined in device controller mode.
  */
 //@{
-
 #define BP_USBC_UH1_PORTSC1_CSC      (1)      //!< Bit position for USBC_UH1_PORTSC1_CSC.
 #define BM_USBC_UH1_PORTSC1_CSC      (0x00000002)  //!< Bit mask for USBC_UH1_PORTSC1_CSC.
 
@@ -20317,7 +19106,6 @@ typedef union _hw_usbc_uh1_portsc1
 //! @brief Set the CSC field to a new value.
 #define BW_USBC_UH1_PORTSC1_CSC(v)   (HW_USBC_UH1_PORTSC1_WR((HW_USBC_UH1_PORTSC1_RD() & ~BM_USBC_UH1_PORTSC1_CSC) | BF_USBC_UH1_PORTSC1_CSC(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_PORTSC1, field PE[2] (RW)
@@ -20332,7 +19120,6 @@ typedef union _hw_usbc_uh1_portsc1
  * Device Mode: The device port is always enabled, so this bit is always '1b'.
  */
 //@{
-
 #define BP_USBC_UH1_PORTSC1_PE      (2)      //!< Bit position for USBC_UH1_PORTSC1_PE.
 #define BM_USBC_UH1_PORTSC1_PE      (0x00000004)  //!< Bit mask for USBC_UH1_PORTSC1_PE.
 
@@ -20346,7 +19133,6 @@ typedef union _hw_usbc_uh1_portsc1
 //! @brief Set the PE field to a new value.
 #define BW_USBC_UH1_PORTSC1_PE(v)   (HW_USBC_UH1_PORTSC1_WR((HW_USBC_UH1_PORTSC1_RD() & ~BM_USBC_UH1_PORTSC1_PE) | BF_USBC_UH1_PORTSC1_PE(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_PORTSC1, field PEC[3] (RW)
@@ -20359,7 +19145,6 @@ typedef union _hw_usbc_uh1_portsc1
  * always '0b'.
  */
 //@{
-
 #define BP_USBC_UH1_PORTSC1_PEC      (3)      //!< Bit position for USBC_UH1_PORTSC1_PEC.
 #define BM_USBC_UH1_PORTSC1_PEC      (0x00000008)  //!< Bit mask for USBC_UH1_PORTSC1_PEC.
 
@@ -20373,7 +19158,6 @@ typedef union _hw_usbc_uh1_portsc1
 //! @brief Set the PEC field to a new value.
 #define BW_USBC_UH1_PORTSC1_PEC(v)   (HW_USBC_UH1_PORTSC1_WR((HW_USBC_UH1_PORTSC1_RD() & ~BM_USBC_UH1_PORTSC1_PEC) | BF_USBC_UH1_PORTSC1_PEC(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_PORTSC1, field OCA[4] (RO)
@@ -20386,13 +19170,11 @@ typedef union _hw_usbc_uh1_portsc1
  * - 1 - This port currently has an over-current condition
  */
 //@{
-
 #define BP_USBC_UH1_PORTSC1_OCA      (4)      //!< Bit position for USBC_UH1_PORTSC1_OCA.
 #define BM_USBC_UH1_PORTSC1_OCA      (0x00000010)  //!< Bit mask for USBC_UH1_PORTSC1_OCA.
 
 //! @brief Get value of USBC_UH1_PORTSC1_OCA from a register value.
 #define BG_USBC_UH1_PORTSC1_OCA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_PORTSC1_OCA) >> BP_USBC_UH1_PORTSC1_OCA)
-
 //@}
 
 /*! @name Register USBC_UH1_PORTSC1, field OCC[5] (RW)
@@ -20401,7 +19183,6 @@ typedef union _hw_usbc_uh1_portsc1
  * Over-current Active. Software can clear this bit by writing a one to this bit position.
  */
 //@{
-
 #define BP_USBC_UH1_PORTSC1_OCC      (5)      //!< Bit position for USBC_UH1_PORTSC1_OCC.
 #define BM_USBC_UH1_PORTSC1_OCC      (0x00000020)  //!< Bit mask for USBC_UH1_PORTSC1_OCC.
 
@@ -20415,7 +19196,6 @@ typedef union _hw_usbc_uh1_portsc1
 //! @brief Set the OCC field to a new value.
 #define BW_USBC_UH1_PORTSC1_OCC(v)   (HW_USBC_UH1_PORTSC1_WR((HW_USBC_UH1_PORTSC1_RD() & ~BM_USBC_UH1_PORTSC1_OCC) | BF_USBC_UH1_PORTSC1_OCC(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_PORTSC1, field FPR[6] (RW)
@@ -20441,7 +19221,6 @@ typedef union _hw_usbc_uh1_portsc1
  * USBSTS register is also set to one.
  */
 //@{
-
 #define BP_USBC_UH1_PORTSC1_FPR      (6)      //!< Bit position for USBC_UH1_PORTSC1_FPR.
 #define BM_USBC_UH1_PORTSC1_FPR      (0x00000040)  //!< Bit mask for USBC_UH1_PORTSC1_FPR.
 
@@ -20455,7 +19234,6 @@ typedef union _hw_usbc_uh1_portsc1
 //! @brief Set the FPR field to a new value.
 #define BW_USBC_UH1_PORTSC1_FPR(v)   (HW_USBC_UH1_PORTSC1_WR((HW_USBC_UH1_PORTSC1_RD() & ~BM_USBC_UH1_PORTSC1_FPR) | BF_USBC_UH1_PORTSC1_FPR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_PORTSC1, field SUSP[7] (RW)
@@ -20475,7 +19253,6 @@ typedef union _hw_usbc_uh1_portsc1
  * In device mode this bit is a read only status bit.
  */
 //@{
-
 #define BP_USBC_UH1_PORTSC1_SUSP      (7)      //!< Bit position for USBC_UH1_PORTSC1_SUSP.
 #define BM_USBC_UH1_PORTSC1_SUSP      (0x00000080)  //!< Bit mask for USBC_UH1_PORTSC1_SUSP.
 
@@ -20489,7 +19266,6 @@ typedef union _hw_usbc_uh1_portsc1
 //! @brief Set the SUSP field to a new value.
 #define BW_USBC_UH1_PORTSC1_SUSP(v)   (HW_USBC_UH1_PORTSC1_WR((HW_USBC_UH1_PORTSC1_RD() & ~BM_USBC_UH1_PORTSC1_SUSP) | BF_USBC_UH1_PORTSC1_SUSP(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_PORTSC1, field PR[8] (RW)
@@ -20503,7 +19279,6 @@ typedef union _hw_usbc_uh1_portsc1
  * indicated in the USBSTS register. This field is zero if Port Power( ) is zero.
  */
 //@{
-
 #define BP_USBC_UH1_PORTSC1_PR      (8)      //!< Bit position for USBC_UH1_PORTSC1_PR.
 #define BM_USBC_UH1_PORTSC1_PR      (0x00000100)  //!< Bit mask for USBC_UH1_PORTSC1_PR.
 
@@ -20517,7 +19292,6 @@ typedef union _hw_usbc_uh1_portsc1
 //! @brief Set the PR field to a new value.
 #define BW_USBC_UH1_PORTSC1_PR(v)   (HW_USBC_UH1_PORTSC1_WR((HW_USBC_UH1_PORTSC1_RD() & ~BM_USBC_UH1_PORTSC1_PR) | BF_USBC_UH1_PORTSC1_PR(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_PORTSC1, field HSP[9] (RO)
@@ -20527,13 +19301,11 @@ typedef union _hw_usbc_uh1_portsc1
  * high-speed mode. HSP is redundant with PSPD(bit 27, 26) but remained for compatibility.
  */
 //@{
-
 #define BP_USBC_UH1_PORTSC1_HSP      (9)      //!< Bit position for USBC_UH1_PORTSC1_HSP.
 #define BM_USBC_UH1_PORTSC1_HSP      (0x00000200)  //!< Bit mask for USBC_UH1_PORTSC1_HSP.
 
 //! @brief Get value of USBC_UH1_PORTSC1_HSP from a register value.
 #define BG_USBC_UH1_PORTSC1_HSP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_PORTSC1_HSP) >> BP_USBC_UH1_PORTSC1_HSP)
-
 //@}
 
 /*! @name Register USBC_UH1_PORTSC1, field LS[11:10] (RW)
@@ -20551,7 +19323,6 @@ typedef union _hw_usbc_uh1_portsc1
  * - 11 - Undefined
  */
 //@{
-
 #define BP_USBC_UH1_PORTSC1_LS      (10)      //!< Bit position for USBC_UH1_PORTSC1_LS.
 #define BM_USBC_UH1_PORTSC1_LS      (0x00000c00)  //!< Bit mask for USBC_UH1_PORTSC1_LS.
 
@@ -20565,7 +19336,6 @@ typedef union _hw_usbc_uh1_portsc1
 //! @brief Set the LS field to a new value.
 #define BW_USBC_UH1_PORTSC1_LS(v)   (HW_USBC_UH1_PORTSC1_WR((HW_USBC_UH1_PORTSC1_RD() & ~BM_USBC_UH1_PORTSC1_LS) | BF_USBC_UH1_PORTSC1_LS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_PORTSC1, field PP[12] (RW)
@@ -20582,7 +19352,6 @@ typedef union _hw_usbc_uh1_portsc1
  * (PPC = 1).
  */
 //@{
-
 #define BP_USBC_UH1_PORTSC1_PP      (12)      //!< Bit position for USBC_UH1_PORTSC1_PP.
 #define BM_USBC_UH1_PORTSC1_PP      (0x00001000)  //!< Bit mask for USBC_UH1_PORTSC1_PP.
 
@@ -20596,7 +19365,6 @@ typedef union _hw_usbc_uh1_portsc1
 //! @brief Set the PP field to a new value.
 #define BW_USBC_UH1_PORTSC1_PP(v)   (HW_USBC_UH1_PORTSC1_WR((HW_USBC_UH1_PORTSC1_RD() & ~BM_USBC_UH1_PORTSC1_PP) | BF_USBC_UH1_PORTSC1_PP(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_PORTSC1, field PO[13] (RW)
@@ -20610,7 +19378,6 @@ typedef union _hw_usbc_uh1_portsc1
  * handoff is not supported in all controller cores, therefore this bit will always be 0.
  */
 //@{
-
 #define BP_USBC_UH1_PORTSC1_PO      (13)      //!< Bit position for USBC_UH1_PORTSC1_PO.
 #define BM_USBC_UH1_PORTSC1_PO      (0x00002000)  //!< Bit mask for USBC_UH1_PORTSC1_PO.
 
@@ -20624,7 +19391,6 @@ typedef union _hw_usbc_uh1_portsc1
 //! @brief Set the PO field to a new value.
 #define BW_USBC_UH1_PORTSC1_PO(v)   (HW_USBC_UH1_PORTSC1_WR((HW_USBC_UH1_PORTSC1_RD() & ~BM_USBC_UH1_PORTSC1_PO) | BF_USBC_UH1_PORTSC1_PO(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_PORTSC1, field PIC[15:14] (RW)
@@ -20641,7 +19407,6 @@ typedef union _hw_usbc_uh1_portsc1
  * - 11 - Undefined
  */
 //@{
-
 #define BP_USBC_UH1_PORTSC1_PIC      (14)      //!< Bit position for USBC_UH1_PORTSC1_PIC.
 #define BM_USBC_UH1_PORTSC1_PIC      (0x0000c000)  //!< Bit mask for USBC_UH1_PORTSC1_PIC.
 
@@ -20655,7 +19420,6 @@ typedef union _hw_usbc_uh1_portsc1
 //! @brief Set the PIC field to a new value.
 #define BW_USBC_UH1_PORTSC1_PIC(v)   (HW_USBC_UH1_PORTSC1_WR((HW_USBC_UH1_PORTSC1_RD() & ~BM_USBC_UH1_PORTSC1_PIC) | BF_USBC_UH1_PORTSC1_PIC(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_PORTSC1, field PTC[19:16] (RW)
@@ -20681,7 +19445,6 @@ typedef union _hw_usbc_uh1_portsc1
  * - 1000-1111 - Reserved
  */
 //@{
-
 #define BP_USBC_UH1_PORTSC1_PTC      (16)      //!< Bit position for USBC_UH1_PORTSC1_PTC.
 #define BM_USBC_UH1_PORTSC1_PTC      (0x000f0000)  //!< Bit mask for USBC_UH1_PORTSC1_PTC.
 
@@ -20695,7 +19458,6 @@ typedef union _hw_usbc_uh1_portsc1
 //! @brief Set the PTC field to a new value.
 #define BW_USBC_UH1_PORTSC1_PTC(v)   (HW_USBC_UH1_PORTSC1_WR((HW_USBC_UH1_PORTSC1_RD() & ~BM_USBC_UH1_PORTSC1_PTC) | BF_USBC_UH1_PORTSC1_PTC(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_PORTSC1, field WKCN[20] (RW)
@@ -20705,7 +19467,6 @@ typedef union _hw_usbc_uh1_portsc1
  * zero or in device mode.
  */
 //@{
-
 #define BP_USBC_UH1_PORTSC1_WKCN      (20)      //!< Bit position for USBC_UH1_PORTSC1_WKCN.
 #define BM_USBC_UH1_PORTSC1_WKCN      (0x00100000)  //!< Bit mask for USBC_UH1_PORTSC1_WKCN.
 
@@ -20719,7 +19480,6 @@ typedef union _hw_usbc_uh1_portsc1
 //! @brief Set the WKCN field to a new value.
 #define BW_USBC_UH1_PORTSC1_WKCN(v)   (HW_USBC_UH1_PORTSC1_WR((HW_USBC_UH1_PORTSC1_RD() & ~BM_USBC_UH1_PORTSC1_WKCN) | BF_USBC_UH1_PORTSC1_WKCN(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_PORTSC1, field WKDC[21] (RW)
@@ -20729,7 +19489,6 @@ typedef union _hw_usbc_uh1_portsc1
  * Port Power( ) is zero or in device mode.
  */
 //@{
-
 #define BP_USBC_UH1_PORTSC1_WKDC      (21)      //!< Bit position for USBC_UH1_PORTSC1_WKDC.
 #define BM_USBC_UH1_PORTSC1_WKDC      (0x00200000)  //!< Bit mask for USBC_UH1_PORTSC1_WKDC.
 
@@ -20743,7 +19502,6 @@ typedef union _hw_usbc_uh1_portsc1
 //! @brief Set the WKDC field to a new value.
 #define BW_USBC_UH1_PORTSC1_WKDC(v)   (HW_USBC_UH1_PORTSC1_WR((HW_USBC_UH1_PORTSC1_RD() & ~BM_USBC_UH1_PORTSC1_WKDC) | BF_USBC_UH1_PORTSC1_WKDC(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_PORTSC1, field WKOC[22] (RW)
@@ -20753,7 +19511,6 @@ typedef union _hw_usbc_uh1_portsc1
  * if Port Power( ) is zero.
  */
 //@{
-
 #define BP_USBC_UH1_PORTSC1_WKOC      (22)      //!< Bit position for USBC_UH1_PORTSC1_WKOC.
 #define BM_USBC_UH1_PORTSC1_WKOC      (0x00400000)  //!< Bit mask for USBC_UH1_PORTSC1_WKOC.
 
@@ -20767,7 +19524,6 @@ typedef union _hw_usbc_uh1_portsc1
 //! @brief Set the WKOC field to a new value.
 #define BW_USBC_UH1_PORTSC1_WKOC(v)   (HW_USBC_UH1_PORTSC1_WR((HW_USBC_UH1_PORTSC1_RD() & ~BM_USBC_UH1_PORTSC1_WKOC) | BF_USBC_UH1_PORTSC1_WKOC(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_PORTSC1, field PHCD[23] (RW)
@@ -20787,7 +19543,6 @@ typedef union _hw_usbc_uh1_portsc1
  * - 1 - Disable PHY clock
  */
 //@{
-
 #define BP_USBC_UH1_PORTSC1_PHCD      (23)      //!< Bit position for USBC_UH1_PORTSC1_PHCD.
 #define BM_USBC_UH1_PORTSC1_PHCD      (0x00800000)  //!< Bit mask for USBC_UH1_PORTSC1_PHCD.
 
@@ -20801,7 +19556,6 @@ typedef union _hw_usbc_uh1_portsc1
 //! @brief Set the PHCD field to a new value.
 #define BW_USBC_UH1_PORTSC1_PHCD(v)   (HW_USBC_UH1_PORTSC1_WR((HW_USBC_UH1_PORTSC1_RD() & ~BM_USBC_UH1_PORTSC1_PHCD) | BF_USBC_UH1_PORTSC1_PHCD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_PORTSC1, field PFSC[24] (RW)
@@ -20815,7 +19569,6 @@ typedef union _hw_usbc_uh1_portsc1
  * - 1 - Forced to full speed
  */
 //@{
-
 #define BP_USBC_UH1_PORTSC1_PFSC      (24)      //!< Bit position for USBC_UH1_PORTSC1_PFSC.
 #define BM_USBC_UH1_PORTSC1_PFSC      (0x01000000)  //!< Bit mask for USBC_UH1_PORTSC1_PFSC.
 
@@ -20829,7 +19582,6 @@ typedef union _hw_usbc_uh1_portsc1
 //! @brief Set the PFSC field to a new value.
 #define BW_USBC_UH1_PORTSC1_PFSC(v)   (HW_USBC_UH1_PORTSC1_WR((HW_USBC_UH1_PORTSC1_RD() & ~BM_USBC_UH1_PORTSC1_PFSC) | BF_USBC_UH1_PORTSC1_PFSC(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_PORTSC1, field PTS[25] (RW)
@@ -20837,7 +19589,6 @@ typedef union _hw_usbc_uh1_portsc1
  * See description at bits 31-30
  */
 //@{
-
 #define BP_USBC_UH1_PORTSC1_PTS      (25)      //!< Bit position for USBC_UH1_PORTSC1_PTS.
 #define BM_USBC_UH1_PORTSC1_PTS      (0x02000000)  //!< Bit mask for USBC_UH1_PORTSC1_PTS.
 
@@ -20851,7 +19602,6 @@ typedef union _hw_usbc_uh1_portsc1
 //! @brief Set the PTS field to a new value.
 #define BW_USBC_UH1_PORTSC1_PTS(v)   (HW_USBC_UH1_PORTSC1_WR((HW_USBC_UH1_PORTSC1_RD() & ~BM_USBC_UH1_PORTSC1_PTS) | BF_USBC_UH1_PORTSC1_PTS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_PORTSC1, field PSPD[27:26] (RW)
@@ -20865,7 +19615,6 @@ typedef union _hw_usbc_uh1_portsc1
  * - 11 - Undefined
  */
 //@{
-
 #define BP_USBC_UH1_PORTSC1_PSPD      (26)      //!< Bit position for USBC_UH1_PORTSC1_PSPD.
 #define BM_USBC_UH1_PORTSC1_PSPD      (0x0c000000)  //!< Bit mask for USBC_UH1_PORTSC1_PSPD.
 
@@ -20879,7 +19628,6 @@ typedef union _hw_usbc_uh1_portsc1
 //! @brief Set the PSPD field to a new value.
 #define BW_USBC_UH1_PORTSC1_PSPD(v)   (HW_USBC_UH1_PORTSC1_WR((HW_USBC_UH1_PORTSC1_RD() & ~BM_USBC_UH1_PORTSC1_PSPD) | BF_USBC_UH1_PORTSC1_PSPD(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_PORTSC1, field PTW[28] (RW)
@@ -20892,7 +19640,6 @@ typedef union _hw_usbc_uh1_portsc1
  * - 1 - Select the 16-bit UTMI interface [30MHz]
  */
 //@{
-
 #define BP_USBC_UH1_PORTSC1_PTW      (28)      //!< Bit position for USBC_UH1_PORTSC1_PTW.
 #define BM_USBC_UH1_PORTSC1_PTW      (0x10000000)  //!< Bit mask for USBC_UH1_PORTSC1_PTW.
 
@@ -20906,7 +19653,6 @@ typedef union _hw_usbc_uh1_portsc1
 //! @brief Set the PTW field to a new value.
 #define BW_USBC_UH1_PORTSC1_PTW(v)   (HW_USBC_UH1_PORTSC1_WR((HW_USBC_UH1_PORTSC1_RD() & ~BM_USBC_UH1_PORTSC1_PTW) | BF_USBC_UH1_PORTSC1_PTW(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_PORTSC1, field STS[29] (RW)
@@ -20920,7 +19666,6 @@ typedef union _hw_usbc_uh1_portsc1
  * regardless of this bit value.
  */
 //@{
-
 #define BP_USBC_UH1_PORTSC1_STS      (29)      //!< Bit position for USBC_UH1_PORTSC1_STS.
 #define BM_USBC_UH1_PORTSC1_STS      (0x20000000)  //!< Bit mask for USBC_UH1_PORTSC1_STS.
 
@@ -20934,7 +19679,6 @@ typedef union _hw_usbc_uh1_portsc1
 //! @brief Set the STS field to a new value.
 #define BW_USBC_UH1_PORTSC1_STS(v)   (HW_USBC_UH1_PORTSC1_WR((HW_USBC_UH1_PORTSC1_RD() & ~BM_USBC_UH1_PORTSC1_STS) | BF_USBC_UH1_PORTSC1_STS(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_PORTSC1, field PTS1[31:30] (RW)
@@ -20945,7 +19689,6 @@ typedef union _hw_usbc_uh1_portsc1
  * The behaviour is unknown when unsupported interface mode is selected.
  */
 //@{
-
 #define BP_USBC_UH1_PORTSC1_PTS1      (30)      //!< Bit position for USBC_UH1_PORTSC1_PTS1.
 #define BM_USBC_UH1_PORTSC1_PTS1      (0xc0000000)  //!< Bit mask for USBC_UH1_PORTSC1_PTS1.
 
@@ -20959,7 +19702,6 @@ typedef union _hw_usbc_uh1_portsc1
 //! @brief Set the PTS1 field to a new value.
 #define BW_USBC_UH1_PORTSC1_PTS1(v)   (HW_USBC_UH1_PORTSC1_WR((HW_USBC_UH1_PORTSC1_RD() & ~BM_USBC_UH1_PORTSC1_PTS1) | BF_USBC_UH1_PORTSC1_PTS1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -21025,7 +19767,6 @@ typedef union _hw_usbc_uh1_usbmode
  * - 11 - Host Controller [Default for host only controller]
  */
 //@{
-
 #define BP_USBC_UH1_USBMODE_CM      (0)      //!< Bit position for USBC_UH1_USBMODE_CM.
 #define BM_USBC_UH1_USBMODE_CM      (0x00000003)  //!< Bit mask for USBC_UH1_USBMODE_CM.
 
@@ -21039,7 +19780,6 @@ typedef union _hw_usbc_uh1_usbmode
 //! @brief Set the CM field to a new value.
 #define BW_USBC_UH1_USBMODE_CM(v)   (HW_USBC_UH1_USBMODE_WR((HW_USBC_UH1_USBMODE_RD() & ~BM_USBC_UH1_USBMODE_CM) | BF_USBC_UH1_USBMODE_CM(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBMODE, field ES[2] (RW)
@@ -21054,7 +19794,6 @@ typedef union _hw_usbc_uh1_usbmode
  * - 1 - Big Endian
  */
 //@{
-
 #define BP_USBC_UH1_USBMODE_ES      (2)      //!< Bit position for USBC_UH1_USBMODE_ES.
 #define BM_USBC_UH1_USBMODE_ES      (0x00000004)  //!< Bit mask for USBC_UH1_USBMODE_ES.
 
@@ -21068,7 +19807,6 @@ typedef union _hw_usbc_uh1_usbmode
 //! @brief Set the ES field to a new value.
 #define BW_USBC_UH1_USBMODE_ES(v)   (HW_USBC_UH1_USBMODE_WR((HW_USBC_UH1_USBMODE_RD() & ~BM_USBC_UH1_USBMODE_ES) | BF_USBC_UH1_USBMODE_ES(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBMODE, field SLOM[3] (RW)
@@ -21080,7 +19818,6 @@ typedef union _hw_usbc_uh1_usbmode
  * - 1 - Setup Lockouts Off (DCD requires use of Setup Data Buffer Tripwire in .
  */
 //@{
-
 #define BP_USBC_UH1_USBMODE_SLOM      (3)      //!< Bit position for USBC_UH1_USBMODE_SLOM.
 #define BM_USBC_UH1_USBMODE_SLOM      (0x00000008)  //!< Bit mask for USBC_UH1_USBMODE_SLOM.
 
@@ -21094,7 +19831,6 @@ typedef union _hw_usbc_uh1_usbmode
 //! @brief Set the SLOM field to a new value.
 #define BW_USBC_UH1_USBMODE_SLOM(v)   (HW_USBC_UH1_USBMODE_WR((HW_USBC_UH1_USBMODE_RD() & ~BM_USBC_UH1_USBMODE_SLOM) | BF_USBC_UH1_USBMODE_SLOM(v)))
 #endif
-
 //@}
 
 /*! @name Register USBC_UH1_USBMODE, field SDIS[4] (RW)
@@ -21113,7 +19849,6 @@ typedef union _hw_usbc_uh1_usbmode
  * feature substantially limits of the overall USB performance that can be achieved.
  */
 //@{
-
 #define BP_USBC_UH1_USBMODE_SDIS      (4)      //!< Bit position for USBC_UH1_USBMODE_SDIS.
 #define BM_USBC_UH1_USBMODE_SDIS      (0x00000010)  //!< Bit mask for USBC_UH1_USBMODE_SDIS.
 
@@ -21127,7 +19862,6 @@ typedef union _hw_usbc_uh1_usbmode
 //! @brief Set the SDIS field to a new value.
 #define BW_USBC_UH1_USBMODE_SDIS(v)   (HW_USBC_UH1_USBMODE_WR((HW_USBC_UH1_USBMODE_RD() & ~BM_USBC_UH1_USBMODE_SDIS) | BF_USBC_UH1_USBMODE_SDIS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -21296,3 +20030,5 @@ typedef struct _hw_usbc
 #endif
 
 #endif // __HW_USBC_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

@@ -178,7 +178,6 @@ typedef union _hw_csu_csl0
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL0_SUR_S2      (0)      //!< Bit position for CSU_CSL0_SUR_S2.
 #define BM_CSU_CSL0_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL0_SUR_S2.
 
@@ -192,7 +191,6 @@ typedef union _hw_csu_csl0
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL0_SUR_S2(v)   (HW_CSU_CSL0_WR((HW_CSU_CSL0_RD() & ~BM_CSU_CSL0_SUR_S2) | BF_CSU_CSL0_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL0, field SSR_S2[1] (RW)
@@ -204,7 +202,6 @@ typedef union _hw_csu_csl0
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL0_SSR_S2      (1)      //!< Bit position for CSU_CSL0_SSR_S2.
 #define BM_CSU_CSL0_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL0_SSR_S2.
 
@@ -218,7 +215,6 @@ typedef union _hw_csu_csl0
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL0_SSR_S2(v)   (HW_CSU_CSL0_WR((HW_CSU_CSL0_RD() & ~BM_CSU_CSL0_SSR_S2) | BF_CSU_CSL0_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL0, field NUR_S2[2] (RW)
@@ -230,7 +226,6 @@ typedef union _hw_csu_csl0
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL0_NUR_S2      (2)      //!< Bit position for CSU_CSL0_NUR_S2.
 #define BM_CSU_CSL0_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL0_NUR_S2.
 
@@ -244,7 +239,6 @@ typedef union _hw_csu_csl0
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL0_NUR_S2(v)   (HW_CSU_CSL0_WR((HW_CSU_CSL0_RD() & ~BM_CSU_CSL0_NUR_S2) | BF_CSU_CSL0_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL0, field NSR_S2[3] (RW)
@@ -256,7 +250,6 @@ typedef union _hw_csu_csl0
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL0_NSR_S2      (3)      //!< Bit position for CSU_CSL0_NSR_S2.
 #define BM_CSU_CSL0_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL0_NSR_S2.
 
@@ -270,7 +263,6 @@ typedef union _hw_csu_csl0
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL0_NSR_S2(v)   (HW_CSU_CSL0_WR((HW_CSU_CSL0_RD() & ~BM_CSU_CSL0_NSR_S2) | BF_CSU_CSL0_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL0, field SUW_S2[4] (RW)
@@ -282,7 +274,6 @@ typedef union _hw_csu_csl0
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL0_SUW_S2      (4)      //!< Bit position for CSU_CSL0_SUW_S2.
 #define BM_CSU_CSL0_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL0_SUW_S2.
 
@@ -296,7 +287,6 @@ typedef union _hw_csu_csl0
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL0_SUW_S2(v)   (HW_CSU_CSL0_WR((HW_CSU_CSL0_RD() & ~BM_CSU_CSL0_SUW_S2) | BF_CSU_CSL0_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL0, field SSW_S2[5] (RW)
@@ -308,7 +298,6 @@ typedef union _hw_csu_csl0
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL0_SSW_S2      (5)      //!< Bit position for CSU_CSL0_SSW_S2.
 #define BM_CSU_CSL0_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL0_SSW_S2.
 
@@ -322,7 +311,6 @@ typedef union _hw_csu_csl0
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL0_SSW_S2(v)   (HW_CSU_CSL0_WR((HW_CSU_CSL0_RD() & ~BM_CSU_CSL0_SSW_S2) | BF_CSU_CSL0_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL0, field NUW_S2[6] (RW)
@@ -334,7 +322,6 @@ typedef union _hw_csu_csl0
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL0_NUW_S2      (6)      //!< Bit position for CSU_CSL0_NUW_S2.
 #define BM_CSU_CSL0_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL0_NUW_S2.
 
@@ -348,7 +335,6 @@ typedef union _hw_csu_csl0
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL0_NUW_S2(v)   (HW_CSU_CSL0_WR((HW_CSU_CSL0_RD() & ~BM_CSU_CSL0_NUW_S2) | BF_CSU_CSL0_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL0, field NSW_S2[7] (RW)
@@ -360,7 +346,6 @@ typedef union _hw_csu_csl0
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL0_NSW_S2      (7)      //!< Bit position for CSU_CSL0_NSW_S2.
 #define BM_CSU_CSL0_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL0_NSW_S2.
 
@@ -374,7 +359,6 @@ typedef union _hw_csu_csl0
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL0_NSW_S2(v)   (HW_CSU_CSL0_WR((HW_CSU_CSL0_RD() & ~BM_CSU_CSL0_NSW_S2) | BF_CSU_CSL0_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL0, field LOCK_S2[8] (RW)
@@ -386,7 +370,6 @@ typedef union _hw_csu_csl0
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL0_LOCK_S2      (8)      //!< Bit position for CSU_CSL0_LOCK_S2.
 #define BM_CSU_CSL0_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL0_LOCK_S2.
 
@@ -400,7 +383,6 @@ typedef union _hw_csu_csl0
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL0_LOCK_S2(v)   (HW_CSU_CSL0_WR((HW_CSU_CSL0_RD() & ~BM_CSU_CSL0_LOCK_S2) | BF_CSU_CSL0_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL0, field SUR_S1[16] (RW)
@@ -412,7 +394,6 @@ typedef union _hw_csu_csl0
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL0_SUR_S1      (16)      //!< Bit position for CSU_CSL0_SUR_S1.
 #define BM_CSU_CSL0_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL0_SUR_S1.
 
@@ -426,7 +407,6 @@ typedef union _hw_csu_csl0
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL0_SUR_S1(v)   (HW_CSU_CSL0_WR((HW_CSU_CSL0_RD() & ~BM_CSU_CSL0_SUR_S1) | BF_CSU_CSL0_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL0, field SSR_S1[17] (RW)
@@ -438,7 +418,6 @@ typedef union _hw_csu_csl0
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL0_SSR_S1      (17)      //!< Bit position for CSU_CSL0_SSR_S1.
 #define BM_CSU_CSL0_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL0_SSR_S1.
 
@@ -452,7 +431,6 @@ typedef union _hw_csu_csl0
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL0_SSR_S1(v)   (HW_CSU_CSL0_WR((HW_CSU_CSL0_RD() & ~BM_CSU_CSL0_SSR_S1) | BF_CSU_CSL0_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL0, field NUR_S1[18] (RW)
@@ -464,7 +442,6 @@ typedef union _hw_csu_csl0
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL0_NUR_S1      (18)      //!< Bit position for CSU_CSL0_NUR_S1.
 #define BM_CSU_CSL0_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL0_NUR_S1.
 
@@ -478,7 +455,6 @@ typedef union _hw_csu_csl0
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL0_NUR_S1(v)   (HW_CSU_CSL0_WR((HW_CSU_CSL0_RD() & ~BM_CSU_CSL0_NUR_S1) | BF_CSU_CSL0_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL0, field NSR_S1[19] (RW)
@@ -490,7 +466,6 @@ typedef union _hw_csu_csl0
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL0_NSR_S1      (19)      //!< Bit position for CSU_CSL0_NSR_S1.
 #define BM_CSU_CSL0_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL0_NSR_S1.
 
@@ -504,7 +479,6 @@ typedef union _hw_csu_csl0
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL0_NSR_S1(v)   (HW_CSU_CSL0_WR((HW_CSU_CSL0_RD() & ~BM_CSU_CSL0_NSR_S1) | BF_CSU_CSL0_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL0, field SUW_S1[20] (RW)
@@ -516,7 +490,6 @@ typedef union _hw_csu_csl0
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL0_SUW_S1      (20)      //!< Bit position for CSU_CSL0_SUW_S1.
 #define BM_CSU_CSL0_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL0_SUW_S1.
 
@@ -530,7 +503,6 @@ typedef union _hw_csu_csl0
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL0_SUW_S1(v)   (HW_CSU_CSL0_WR((HW_CSU_CSL0_RD() & ~BM_CSU_CSL0_SUW_S1) | BF_CSU_CSL0_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL0, field SSW_S1[21] (RW)
@@ -542,7 +514,6 @@ typedef union _hw_csu_csl0
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL0_SSW_S1      (21)      //!< Bit position for CSU_CSL0_SSW_S1.
 #define BM_CSU_CSL0_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL0_SSW_S1.
 
@@ -556,7 +527,6 @@ typedef union _hw_csu_csl0
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL0_SSW_S1(v)   (HW_CSU_CSL0_WR((HW_CSU_CSL0_RD() & ~BM_CSU_CSL0_SSW_S1) | BF_CSU_CSL0_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL0, field NUW_S1[22] (RW)
@@ -568,7 +538,6 @@ typedef union _hw_csu_csl0
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL0_NUW_S1      (22)      //!< Bit position for CSU_CSL0_NUW_S1.
 #define BM_CSU_CSL0_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL0_NUW_S1.
 
@@ -582,7 +551,6 @@ typedef union _hw_csu_csl0
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL0_NUW_S1(v)   (HW_CSU_CSL0_WR((HW_CSU_CSL0_RD() & ~BM_CSU_CSL0_NUW_S1) | BF_CSU_CSL0_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL0, field NSW_S1[23] (RW)
@@ -594,7 +562,6 @@ typedef union _hw_csu_csl0
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL0_NSW_S1      (23)      //!< Bit position for CSU_CSL0_NSW_S1.
 #define BM_CSU_CSL0_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL0_NSW_S1.
 
@@ -608,7 +575,6 @@ typedef union _hw_csu_csl0
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL0_NSW_S1(v)   (HW_CSU_CSL0_WR((HW_CSU_CSL0_RD() & ~BM_CSU_CSL0_NSW_S1) | BF_CSU_CSL0_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL0, field LOCK_S1[24] (RW)
@@ -620,7 +586,6 @@ typedef union _hw_csu_csl0
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL0_LOCK_S1      (24)      //!< Bit position for CSU_CSL0_LOCK_S1.
 #define BM_CSU_CSL0_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL0_LOCK_S1.
 
@@ -634,7 +599,6 @@ typedef union _hw_csu_csl0
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL0_LOCK_S1(v)   (HW_CSU_CSL0_WR((HW_CSU_CSL0_RD() & ~BM_CSU_CSL0_LOCK_S1) | BF_CSU_CSL0_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -731,7 +695,6 @@ typedef union _hw_csu_csl1
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL1_SUR_S2      (0)      //!< Bit position for CSU_CSL1_SUR_S2.
 #define BM_CSU_CSL1_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL1_SUR_S2.
 
@@ -745,7 +708,6 @@ typedef union _hw_csu_csl1
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL1_SUR_S2(v)   (HW_CSU_CSL1_WR((HW_CSU_CSL1_RD() & ~BM_CSU_CSL1_SUR_S2) | BF_CSU_CSL1_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL1, field SSR_S2[1] (RW)
@@ -757,7 +719,6 @@ typedef union _hw_csu_csl1
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL1_SSR_S2      (1)      //!< Bit position for CSU_CSL1_SSR_S2.
 #define BM_CSU_CSL1_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL1_SSR_S2.
 
@@ -771,7 +732,6 @@ typedef union _hw_csu_csl1
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL1_SSR_S2(v)   (HW_CSU_CSL1_WR((HW_CSU_CSL1_RD() & ~BM_CSU_CSL1_SSR_S2) | BF_CSU_CSL1_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL1, field NUR_S2[2] (RW)
@@ -783,7 +743,6 @@ typedef union _hw_csu_csl1
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL1_NUR_S2      (2)      //!< Bit position for CSU_CSL1_NUR_S2.
 #define BM_CSU_CSL1_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL1_NUR_S2.
 
@@ -797,7 +756,6 @@ typedef union _hw_csu_csl1
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL1_NUR_S2(v)   (HW_CSU_CSL1_WR((HW_CSU_CSL1_RD() & ~BM_CSU_CSL1_NUR_S2) | BF_CSU_CSL1_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL1, field NSR_S2[3] (RW)
@@ -809,7 +767,6 @@ typedef union _hw_csu_csl1
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL1_NSR_S2      (3)      //!< Bit position for CSU_CSL1_NSR_S2.
 #define BM_CSU_CSL1_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL1_NSR_S2.
 
@@ -823,7 +780,6 @@ typedef union _hw_csu_csl1
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL1_NSR_S2(v)   (HW_CSU_CSL1_WR((HW_CSU_CSL1_RD() & ~BM_CSU_CSL1_NSR_S2) | BF_CSU_CSL1_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL1, field SUW_S2[4] (RW)
@@ -835,7 +791,6 @@ typedef union _hw_csu_csl1
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL1_SUW_S2      (4)      //!< Bit position for CSU_CSL1_SUW_S2.
 #define BM_CSU_CSL1_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL1_SUW_S2.
 
@@ -849,7 +804,6 @@ typedef union _hw_csu_csl1
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL1_SUW_S2(v)   (HW_CSU_CSL1_WR((HW_CSU_CSL1_RD() & ~BM_CSU_CSL1_SUW_S2) | BF_CSU_CSL1_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL1, field SSW_S2[5] (RW)
@@ -861,7 +815,6 @@ typedef union _hw_csu_csl1
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL1_SSW_S2      (5)      //!< Bit position for CSU_CSL1_SSW_S2.
 #define BM_CSU_CSL1_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL1_SSW_S2.
 
@@ -875,7 +828,6 @@ typedef union _hw_csu_csl1
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL1_SSW_S2(v)   (HW_CSU_CSL1_WR((HW_CSU_CSL1_RD() & ~BM_CSU_CSL1_SSW_S2) | BF_CSU_CSL1_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL1, field NUW_S2[6] (RW)
@@ -887,7 +839,6 @@ typedef union _hw_csu_csl1
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL1_NUW_S2      (6)      //!< Bit position for CSU_CSL1_NUW_S2.
 #define BM_CSU_CSL1_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL1_NUW_S2.
 
@@ -901,7 +852,6 @@ typedef union _hw_csu_csl1
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL1_NUW_S2(v)   (HW_CSU_CSL1_WR((HW_CSU_CSL1_RD() & ~BM_CSU_CSL1_NUW_S2) | BF_CSU_CSL1_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL1, field NSW_S2[7] (RW)
@@ -913,7 +863,6 @@ typedef union _hw_csu_csl1
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL1_NSW_S2      (7)      //!< Bit position for CSU_CSL1_NSW_S2.
 #define BM_CSU_CSL1_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL1_NSW_S2.
 
@@ -927,7 +876,6 @@ typedef union _hw_csu_csl1
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL1_NSW_S2(v)   (HW_CSU_CSL1_WR((HW_CSU_CSL1_RD() & ~BM_CSU_CSL1_NSW_S2) | BF_CSU_CSL1_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL1, field LOCK_S2[8] (RW)
@@ -939,7 +887,6 @@ typedef union _hw_csu_csl1
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL1_LOCK_S2      (8)      //!< Bit position for CSU_CSL1_LOCK_S2.
 #define BM_CSU_CSL1_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL1_LOCK_S2.
 
@@ -953,7 +900,6 @@ typedef union _hw_csu_csl1
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL1_LOCK_S2(v)   (HW_CSU_CSL1_WR((HW_CSU_CSL1_RD() & ~BM_CSU_CSL1_LOCK_S2) | BF_CSU_CSL1_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL1, field SUR_S1[16] (RW)
@@ -965,7 +911,6 @@ typedef union _hw_csu_csl1
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL1_SUR_S1      (16)      //!< Bit position for CSU_CSL1_SUR_S1.
 #define BM_CSU_CSL1_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL1_SUR_S1.
 
@@ -979,7 +924,6 @@ typedef union _hw_csu_csl1
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL1_SUR_S1(v)   (HW_CSU_CSL1_WR((HW_CSU_CSL1_RD() & ~BM_CSU_CSL1_SUR_S1) | BF_CSU_CSL1_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL1, field SSR_S1[17] (RW)
@@ -991,7 +935,6 @@ typedef union _hw_csu_csl1
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL1_SSR_S1      (17)      //!< Bit position for CSU_CSL1_SSR_S1.
 #define BM_CSU_CSL1_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL1_SSR_S1.
 
@@ -1005,7 +948,6 @@ typedef union _hw_csu_csl1
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL1_SSR_S1(v)   (HW_CSU_CSL1_WR((HW_CSU_CSL1_RD() & ~BM_CSU_CSL1_SSR_S1) | BF_CSU_CSL1_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL1, field NUR_S1[18] (RW)
@@ -1017,7 +959,6 @@ typedef union _hw_csu_csl1
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL1_NUR_S1      (18)      //!< Bit position for CSU_CSL1_NUR_S1.
 #define BM_CSU_CSL1_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL1_NUR_S1.
 
@@ -1031,7 +972,6 @@ typedef union _hw_csu_csl1
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL1_NUR_S1(v)   (HW_CSU_CSL1_WR((HW_CSU_CSL1_RD() & ~BM_CSU_CSL1_NUR_S1) | BF_CSU_CSL1_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL1, field NSR_S1[19] (RW)
@@ -1043,7 +983,6 @@ typedef union _hw_csu_csl1
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL1_NSR_S1      (19)      //!< Bit position for CSU_CSL1_NSR_S1.
 #define BM_CSU_CSL1_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL1_NSR_S1.
 
@@ -1057,7 +996,6 @@ typedef union _hw_csu_csl1
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL1_NSR_S1(v)   (HW_CSU_CSL1_WR((HW_CSU_CSL1_RD() & ~BM_CSU_CSL1_NSR_S1) | BF_CSU_CSL1_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL1, field SUW_S1[20] (RW)
@@ -1069,7 +1007,6 @@ typedef union _hw_csu_csl1
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL1_SUW_S1      (20)      //!< Bit position for CSU_CSL1_SUW_S1.
 #define BM_CSU_CSL1_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL1_SUW_S1.
 
@@ -1083,7 +1020,6 @@ typedef union _hw_csu_csl1
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL1_SUW_S1(v)   (HW_CSU_CSL1_WR((HW_CSU_CSL1_RD() & ~BM_CSU_CSL1_SUW_S1) | BF_CSU_CSL1_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL1, field SSW_S1[21] (RW)
@@ -1095,7 +1031,6 @@ typedef union _hw_csu_csl1
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL1_SSW_S1      (21)      //!< Bit position for CSU_CSL1_SSW_S1.
 #define BM_CSU_CSL1_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL1_SSW_S1.
 
@@ -1109,7 +1044,6 @@ typedef union _hw_csu_csl1
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL1_SSW_S1(v)   (HW_CSU_CSL1_WR((HW_CSU_CSL1_RD() & ~BM_CSU_CSL1_SSW_S1) | BF_CSU_CSL1_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL1, field NUW_S1[22] (RW)
@@ -1121,7 +1055,6 @@ typedef union _hw_csu_csl1
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL1_NUW_S1      (22)      //!< Bit position for CSU_CSL1_NUW_S1.
 #define BM_CSU_CSL1_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL1_NUW_S1.
 
@@ -1135,7 +1068,6 @@ typedef union _hw_csu_csl1
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL1_NUW_S1(v)   (HW_CSU_CSL1_WR((HW_CSU_CSL1_RD() & ~BM_CSU_CSL1_NUW_S1) | BF_CSU_CSL1_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL1, field NSW_S1[23] (RW)
@@ -1147,7 +1079,6 @@ typedef union _hw_csu_csl1
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL1_NSW_S1      (23)      //!< Bit position for CSU_CSL1_NSW_S1.
 #define BM_CSU_CSL1_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL1_NSW_S1.
 
@@ -1161,7 +1092,6 @@ typedef union _hw_csu_csl1
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL1_NSW_S1(v)   (HW_CSU_CSL1_WR((HW_CSU_CSL1_RD() & ~BM_CSU_CSL1_NSW_S1) | BF_CSU_CSL1_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL1, field LOCK_S1[24] (RW)
@@ -1173,7 +1103,6 @@ typedef union _hw_csu_csl1
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL1_LOCK_S1      (24)      //!< Bit position for CSU_CSL1_LOCK_S1.
 #define BM_CSU_CSL1_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL1_LOCK_S1.
 
@@ -1187,7 +1116,6 @@ typedef union _hw_csu_csl1
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL1_LOCK_S1(v)   (HW_CSU_CSL1_WR((HW_CSU_CSL1_RD() & ~BM_CSU_CSL1_LOCK_S1) | BF_CSU_CSL1_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1284,7 +1212,6 @@ typedef union _hw_csu_csl2
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL2_SUR_S2      (0)      //!< Bit position for CSU_CSL2_SUR_S2.
 #define BM_CSU_CSL2_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL2_SUR_S2.
 
@@ -1298,7 +1225,6 @@ typedef union _hw_csu_csl2
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL2_SUR_S2(v)   (HW_CSU_CSL2_WR((HW_CSU_CSL2_RD() & ~BM_CSU_CSL2_SUR_S2) | BF_CSU_CSL2_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL2, field SSR_S2[1] (RW)
@@ -1310,7 +1236,6 @@ typedef union _hw_csu_csl2
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL2_SSR_S2      (1)      //!< Bit position for CSU_CSL2_SSR_S2.
 #define BM_CSU_CSL2_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL2_SSR_S2.
 
@@ -1324,7 +1249,6 @@ typedef union _hw_csu_csl2
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL2_SSR_S2(v)   (HW_CSU_CSL2_WR((HW_CSU_CSL2_RD() & ~BM_CSU_CSL2_SSR_S2) | BF_CSU_CSL2_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL2, field NUR_S2[2] (RW)
@@ -1336,7 +1260,6 @@ typedef union _hw_csu_csl2
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL2_NUR_S2      (2)      //!< Bit position for CSU_CSL2_NUR_S2.
 #define BM_CSU_CSL2_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL2_NUR_S2.
 
@@ -1350,7 +1273,6 @@ typedef union _hw_csu_csl2
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL2_NUR_S2(v)   (HW_CSU_CSL2_WR((HW_CSU_CSL2_RD() & ~BM_CSU_CSL2_NUR_S2) | BF_CSU_CSL2_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL2, field NSR_S2[3] (RW)
@@ -1362,7 +1284,6 @@ typedef union _hw_csu_csl2
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL2_NSR_S2      (3)      //!< Bit position for CSU_CSL2_NSR_S2.
 #define BM_CSU_CSL2_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL2_NSR_S2.
 
@@ -1376,7 +1297,6 @@ typedef union _hw_csu_csl2
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL2_NSR_S2(v)   (HW_CSU_CSL2_WR((HW_CSU_CSL2_RD() & ~BM_CSU_CSL2_NSR_S2) | BF_CSU_CSL2_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL2, field SUW_S2[4] (RW)
@@ -1388,7 +1308,6 @@ typedef union _hw_csu_csl2
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL2_SUW_S2      (4)      //!< Bit position for CSU_CSL2_SUW_S2.
 #define BM_CSU_CSL2_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL2_SUW_S2.
 
@@ -1402,7 +1321,6 @@ typedef union _hw_csu_csl2
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL2_SUW_S2(v)   (HW_CSU_CSL2_WR((HW_CSU_CSL2_RD() & ~BM_CSU_CSL2_SUW_S2) | BF_CSU_CSL2_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL2, field SSW_S2[5] (RW)
@@ -1414,7 +1332,6 @@ typedef union _hw_csu_csl2
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL2_SSW_S2      (5)      //!< Bit position for CSU_CSL2_SSW_S2.
 #define BM_CSU_CSL2_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL2_SSW_S2.
 
@@ -1428,7 +1345,6 @@ typedef union _hw_csu_csl2
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL2_SSW_S2(v)   (HW_CSU_CSL2_WR((HW_CSU_CSL2_RD() & ~BM_CSU_CSL2_SSW_S2) | BF_CSU_CSL2_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL2, field NUW_S2[6] (RW)
@@ -1440,7 +1356,6 @@ typedef union _hw_csu_csl2
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL2_NUW_S2      (6)      //!< Bit position for CSU_CSL2_NUW_S2.
 #define BM_CSU_CSL2_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL2_NUW_S2.
 
@@ -1454,7 +1369,6 @@ typedef union _hw_csu_csl2
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL2_NUW_S2(v)   (HW_CSU_CSL2_WR((HW_CSU_CSL2_RD() & ~BM_CSU_CSL2_NUW_S2) | BF_CSU_CSL2_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL2, field NSW_S2[7] (RW)
@@ -1466,7 +1380,6 @@ typedef union _hw_csu_csl2
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL2_NSW_S2      (7)      //!< Bit position for CSU_CSL2_NSW_S2.
 #define BM_CSU_CSL2_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL2_NSW_S2.
 
@@ -1480,7 +1393,6 @@ typedef union _hw_csu_csl2
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL2_NSW_S2(v)   (HW_CSU_CSL2_WR((HW_CSU_CSL2_RD() & ~BM_CSU_CSL2_NSW_S2) | BF_CSU_CSL2_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL2, field LOCK_S2[8] (RW)
@@ -1492,7 +1404,6 @@ typedef union _hw_csu_csl2
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL2_LOCK_S2      (8)      //!< Bit position for CSU_CSL2_LOCK_S2.
 #define BM_CSU_CSL2_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL2_LOCK_S2.
 
@@ -1506,7 +1417,6 @@ typedef union _hw_csu_csl2
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL2_LOCK_S2(v)   (HW_CSU_CSL2_WR((HW_CSU_CSL2_RD() & ~BM_CSU_CSL2_LOCK_S2) | BF_CSU_CSL2_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL2, field SUR_S1[16] (RW)
@@ -1518,7 +1428,6 @@ typedef union _hw_csu_csl2
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL2_SUR_S1      (16)      //!< Bit position for CSU_CSL2_SUR_S1.
 #define BM_CSU_CSL2_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL2_SUR_S1.
 
@@ -1532,7 +1441,6 @@ typedef union _hw_csu_csl2
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL2_SUR_S1(v)   (HW_CSU_CSL2_WR((HW_CSU_CSL2_RD() & ~BM_CSU_CSL2_SUR_S1) | BF_CSU_CSL2_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL2, field SSR_S1[17] (RW)
@@ -1544,7 +1452,6 @@ typedef union _hw_csu_csl2
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL2_SSR_S1      (17)      //!< Bit position for CSU_CSL2_SSR_S1.
 #define BM_CSU_CSL2_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL2_SSR_S1.
 
@@ -1558,7 +1465,6 @@ typedef union _hw_csu_csl2
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL2_SSR_S1(v)   (HW_CSU_CSL2_WR((HW_CSU_CSL2_RD() & ~BM_CSU_CSL2_SSR_S1) | BF_CSU_CSL2_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL2, field NUR_S1[18] (RW)
@@ -1570,7 +1476,6 @@ typedef union _hw_csu_csl2
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL2_NUR_S1      (18)      //!< Bit position for CSU_CSL2_NUR_S1.
 #define BM_CSU_CSL2_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL2_NUR_S1.
 
@@ -1584,7 +1489,6 @@ typedef union _hw_csu_csl2
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL2_NUR_S1(v)   (HW_CSU_CSL2_WR((HW_CSU_CSL2_RD() & ~BM_CSU_CSL2_NUR_S1) | BF_CSU_CSL2_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL2, field NSR_S1[19] (RW)
@@ -1596,7 +1500,6 @@ typedef union _hw_csu_csl2
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL2_NSR_S1      (19)      //!< Bit position for CSU_CSL2_NSR_S1.
 #define BM_CSU_CSL2_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL2_NSR_S1.
 
@@ -1610,7 +1513,6 @@ typedef union _hw_csu_csl2
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL2_NSR_S1(v)   (HW_CSU_CSL2_WR((HW_CSU_CSL2_RD() & ~BM_CSU_CSL2_NSR_S1) | BF_CSU_CSL2_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL2, field SUW_S1[20] (RW)
@@ -1622,7 +1524,6 @@ typedef union _hw_csu_csl2
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL2_SUW_S1      (20)      //!< Bit position for CSU_CSL2_SUW_S1.
 #define BM_CSU_CSL2_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL2_SUW_S1.
 
@@ -1636,7 +1537,6 @@ typedef union _hw_csu_csl2
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL2_SUW_S1(v)   (HW_CSU_CSL2_WR((HW_CSU_CSL2_RD() & ~BM_CSU_CSL2_SUW_S1) | BF_CSU_CSL2_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL2, field SSW_S1[21] (RW)
@@ -1648,7 +1548,6 @@ typedef union _hw_csu_csl2
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL2_SSW_S1      (21)      //!< Bit position for CSU_CSL2_SSW_S1.
 #define BM_CSU_CSL2_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL2_SSW_S1.
 
@@ -1662,7 +1561,6 @@ typedef union _hw_csu_csl2
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL2_SSW_S1(v)   (HW_CSU_CSL2_WR((HW_CSU_CSL2_RD() & ~BM_CSU_CSL2_SSW_S1) | BF_CSU_CSL2_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL2, field NUW_S1[22] (RW)
@@ -1674,7 +1572,6 @@ typedef union _hw_csu_csl2
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL2_NUW_S1      (22)      //!< Bit position for CSU_CSL2_NUW_S1.
 #define BM_CSU_CSL2_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL2_NUW_S1.
 
@@ -1688,7 +1585,6 @@ typedef union _hw_csu_csl2
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL2_NUW_S1(v)   (HW_CSU_CSL2_WR((HW_CSU_CSL2_RD() & ~BM_CSU_CSL2_NUW_S1) | BF_CSU_CSL2_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL2, field NSW_S1[23] (RW)
@@ -1700,7 +1596,6 @@ typedef union _hw_csu_csl2
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL2_NSW_S1      (23)      //!< Bit position for CSU_CSL2_NSW_S1.
 #define BM_CSU_CSL2_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL2_NSW_S1.
 
@@ -1714,7 +1609,6 @@ typedef union _hw_csu_csl2
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL2_NSW_S1(v)   (HW_CSU_CSL2_WR((HW_CSU_CSL2_RD() & ~BM_CSU_CSL2_NSW_S1) | BF_CSU_CSL2_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL2, field LOCK_S1[24] (RW)
@@ -1726,7 +1620,6 @@ typedef union _hw_csu_csl2
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL2_LOCK_S1      (24)      //!< Bit position for CSU_CSL2_LOCK_S1.
 #define BM_CSU_CSL2_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL2_LOCK_S1.
 
@@ -1740,7 +1633,6 @@ typedef union _hw_csu_csl2
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL2_LOCK_S1(v)   (HW_CSU_CSL2_WR((HW_CSU_CSL2_RD() & ~BM_CSU_CSL2_LOCK_S1) | BF_CSU_CSL2_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1837,7 +1729,6 @@ typedef union _hw_csu_csl3
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL3_SUR_S2      (0)      //!< Bit position for CSU_CSL3_SUR_S2.
 #define BM_CSU_CSL3_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL3_SUR_S2.
 
@@ -1851,7 +1742,6 @@ typedef union _hw_csu_csl3
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL3_SUR_S2(v)   (HW_CSU_CSL3_WR((HW_CSU_CSL3_RD() & ~BM_CSU_CSL3_SUR_S2) | BF_CSU_CSL3_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL3, field SSR_S2[1] (RW)
@@ -1863,7 +1753,6 @@ typedef union _hw_csu_csl3
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL3_SSR_S2      (1)      //!< Bit position for CSU_CSL3_SSR_S2.
 #define BM_CSU_CSL3_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL3_SSR_S2.
 
@@ -1877,7 +1766,6 @@ typedef union _hw_csu_csl3
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL3_SSR_S2(v)   (HW_CSU_CSL3_WR((HW_CSU_CSL3_RD() & ~BM_CSU_CSL3_SSR_S2) | BF_CSU_CSL3_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL3, field NUR_S2[2] (RW)
@@ -1889,7 +1777,6 @@ typedef union _hw_csu_csl3
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL3_NUR_S2      (2)      //!< Bit position for CSU_CSL3_NUR_S2.
 #define BM_CSU_CSL3_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL3_NUR_S2.
 
@@ -1903,7 +1790,6 @@ typedef union _hw_csu_csl3
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL3_NUR_S2(v)   (HW_CSU_CSL3_WR((HW_CSU_CSL3_RD() & ~BM_CSU_CSL3_NUR_S2) | BF_CSU_CSL3_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL3, field NSR_S2[3] (RW)
@@ -1915,7 +1801,6 @@ typedef union _hw_csu_csl3
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL3_NSR_S2      (3)      //!< Bit position for CSU_CSL3_NSR_S2.
 #define BM_CSU_CSL3_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL3_NSR_S2.
 
@@ -1929,7 +1814,6 @@ typedef union _hw_csu_csl3
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL3_NSR_S2(v)   (HW_CSU_CSL3_WR((HW_CSU_CSL3_RD() & ~BM_CSU_CSL3_NSR_S2) | BF_CSU_CSL3_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL3, field SUW_S2[4] (RW)
@@ -1941,7 +1825,6 @@ typedef union _hw_csu_csl3
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL3_SUW_S2      (4)      //!< Bit position for CSU_CSL3_SUW_S2.
 #define BM_CSU_CSL3_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL3_SUW_S2.
 
@@ -1955,7 +1838,6 @@ typedef union _hw_csu_csl3
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL3_SUW_S2(v)   (HW_CSU_CSL3_WR((HW_CSU_CSL3_RD() & ~BM_CSU_CSL3_SUW_S2) | BF_CSU_CSL3_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL3, field SSW_S2[5] (RW)
@@ -1967,7 +1849,6 @@ typedef union _hw_csu_csl3
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL3_SSW_S2      (5)      //!< Bit position for CSU_CSL3_SSW_S2.
 #define BM_CSU_CSL3_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL3_SSW_S2.
 
@@ -1981,7 +1862,6 @@ typedef union _hw_csu_csl3
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL3_SSW_S2(v)   (HW_CSU_CSL3_WR((HW_CSU_CSL3_RD() & ~BM_CSU_CSL3_SSW_S2) | BF_CSU_CSL3_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL3, field NUW_S2[6] (RW)
@@ -1993,7 +1873,6 @@ typedef union _hw_csu_csl3
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL3_NUW_S2      (6)      //!< Bit position for CSU_CSL3_NUW_S2.
 #define BM_CSU_CSL3_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL3_NUW_S2.
 
@@ -2007,7 +1886,6 @@ typedef union _hw_csu_csl3
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL3_NUW_S2(v)   (HW_CSU_CSL3_WR((HW_CSU_CSL3_RD() & ~BM_CSU_CSL3_NUW_S2) | BF_CSU_CSL3_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL3, field NSW_S2[7] (RW)
@@ -2019,7 +1897,6 @@ typedef union _hw_csu_csl3
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL3_NSW_S2      (7)      //!< Bit position for CSU_CSL3_NSW_S2.
 #define BM_CSU_CSL3_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL3_NSW_S2.
 
@@ -2033,7 +1910,6 @@ typedef union _hw_csu_csl3
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL3_NSW_S2(v)   (HW_CSU_CSL3_WR((HW_CSU_CSL3_RD() & ~BM_CSU_CSL3_NSW_S2) | BF_CSU_CSL3_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL3, field LOCK_S2[8] (RW)
@@ -2045,7 +1921,6 @@ typedef union _hw_csu_csl3
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL3_LOCK_S2      (8)      //!< Bit position for CSU_CSL3_LOCK_S2.
 #define BM_CSU_CSL3_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL3_LOCK_S2.
 
@@ -2059,7 +1934,6 @@ typedef union _hw_csu_csl3
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL3_LOCK_S2(v)   (HW_CSU_CSL3_WR((HW_CSU_CSL3_RD() & ~BM_CSU_CSL3_LOCK_S2) | BF_CSU_CSL3_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL3, field SUR_S1[16] (RW)
@@ -2071,7 +1945,6 @@ typedef union _hw_csu_csl3
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL3_SUR_S1      (16)      //!< Bit position for CSU_CSL3_SUR_S1.
 #define BM_CSU_CSL3_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL3_SUR_S1.
 
@@ -2085,7 +1958,6 @@ typedef union _hw_csu_csl3
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL3_SUR_S1(v)   (HW_CSU_CSL3_WR((HW_CSU_CSL3_RD() & ~BM_CSU_CSL3_SUR_S1) | BF_CSU_CSL3_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL3, field SSR_S1[17] (RW)
@@ -2097,7 +1969,6 @@ typedef union _hw_csu_csl3
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL3_SSR_S1      (17)      //!< Bit position for CSU_CSL3_SSR_S1.
 #define BM_CSU_CSL3_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL3_SSR_S1.
 
@@ -2111,7 +1982,6 @@ typedef union _hw_csu_csl3
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL3_SSR_S1(v)   (HW_CSU_CSL3_WR((HW_CSU_CSL3_RD() & ~BM_CSU_CSL3_SSR_S1) | BF_CSU_CSL3_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL3, field NUR_S1[18] (RW)
@@ -2123,7 +1993,6 @@ typedef union _hw_csu_csl3
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL3_NUR_S1      (18)      //!< Bit position for CSU_CSL3_NUR_S1.
 #define BM_CSU_CSL3_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL3_NUR_S1.
 
@@ -2137,7 +2006,6 @@ typedef union _hw_csu_csl3
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL3_NUR_S1(v)   (HW_CSU_CSL3_WR((HW_CSU_CSL3_RD() & ~BM_CSU_CSL3_NUR_S1) | BF_CSU_CSL3_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL3, field NSR_S1[19] (RW)
@@ -2149,7 +2017,6 @@ typedef union _hw_csu_csl3
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL3_NSR_S1      (19)      //!< Bit position for CSU_CSL3_NSR_S1.
 #define BM_CSU_CSL3_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL3_NSR_S1.
 
@@ -2163,7 +2030,6 @@ typedef union _hw_csu_csl3
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL3_NSR_S1(v)   (HW_CSU_CSL3_WR((HW_CSU_CSL3_RD() & ~BM_CSU_CSL3_NSR_S1) | BF_CSU_CSL3_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL3, field SUW_S1[20] (RW)
@@ -2175,7 +2041,6 @@ typedef union _hw_csu_csl3
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL3_SUW_S1      (20)      //!< Bit position for CSU_CSL3_SUW_S1.
 #define BM_CSU_CSL3_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL3_SUW_S1.
 
@@ -2189,7 +2054,6 @@ typedef union _hw_csu_csl3
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL3_SUW_S1(v)   (HW_CSU_CSL3_WR((HW_CSU_CSL3_RD() & ~BM_CSU_CSL3_SUW_S1) | BF_CSU_CSL3_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL3, field SSW_S1[21] (RW)
@@ -2201,7 +2065,6 @@ typedef union _hw_csu_csl3
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL3_SSW_S1      (21)      //!< Bit position for CSU_CSL3_SSW_S1.
 #define BM_CSU_CSL3_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL3_SSW_S1.
 
@@ -2215,7 +2078,6 @@ typedef union _hw_csu_csl3
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL3_SSW_S1(v)   (HW_CSU_CSL3_WR((HW_CSU_CSL3_RD() & ~BM_CSU_CSL3_SSW_S1) | BF_CSU_CSL3_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL3, field NUW_S1[22] (RW)
@@ -2227,7 +2089,6 @@ typedef union _hw_csu_csl3
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL3_NUW_S1      (22)      //!< Bit position for CSU_CSL3_NUW_S1.
 #define BM_CSU_CSL3_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL3_NUW_S1.
 
@@ -2241,7 +2102,6 @@ typedef union _hw_csu_csl3
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL3_NUW_S1(v)   (HW_CSU_CSL3_WR((HW_CSU_CSL3_RD() & ~BM_CSU_CSL3_NUW_S1) | BF_CSU_CSL3_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL3, field NSW_S1[23] (RW)
@@ -2253,7 +2113,6 @@ typedef union _hw_csu_csl3
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL3_NSW_S1      (23)      //!< Bit position for CSU_CSL3_NSW_S1.
 #define BM_CSU_CSL3_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL3_NSW_S1.
 
@@ -2267,7 +2126,6 @@ typedef union _hw_csu_csl3
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL3_NSW_S1(v)   (HW_CSU_CSL3_WR((HW_CSU_CSL3_RD() & ~BM_CSU_CSL3_NSW_S1) | BF_CSU_CSL3_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL3, field LOCK_S1[24] (RW)
@@ -2279,7 +2137,6 @@ typedef union _hw_csu_csl3
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL3_LOCK_S1      (24)      //!< Bit position for CSU_CSL3_LOCK_S1.
 #define BM_CSU_CSL3_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL3_LOCK_S1.
 
@@ -2293,7 +2150,6 @@ typedef union _hw_csu_csl3
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL3_LOCK_S1(v)   (HW_CSU_CSL3_WR((HW_CSU_CSL3_RD() & ~BM_CSU_CSL3_LOCK_S1) | BF_CSU_CSL3_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2390,7 +2246,6 @@ typedef union _hw_csu_csl4
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL4_SUR_S2      (0)      //!< Bit position for CSU_CSL4_SUR_S2.
 #define BM_CSU_CSL4_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL4_SUR_S2.
 
@@ -2404,7 +2259,6 @@ typedef union _hw_csu_csl4
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL4_SUR_S2(v)   (HW_CSU_CSL4_WR((HW_CSU_CSL4_RD() & ~BM_CSU_CSL4_SUR_S2) | BF_CSU_CSL4_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL4, field SSR_S2[1] (RW)
@@ -2416,7 +2270,6 @@ typedef union _hw_csu_csl4
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL4_SSR_S2      (1)      //!< Bit position for CSU_CSL4_SSR_S2.
 #define BM_CSU_CSL4_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL4_SSR_S2.
 
@@ -2430,7 +2283,6 @@ typedef union _hw_csu_csl4
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL4_SSR_S2(v)   (HW_CSU_CSL4_WR((HW_CSU_CSL4_RD() & ~BM_CSU_CSL4_SSR_S2) | BF_CSU_CSL4_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL4, field NUR_S2[2] (RW)
@@ -2442,7 +2294,6 @@ typedef union _hw_csu_csl4
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL4_NUR_S2      (2)      //!< Bit position for CSU_CSL4_NUR_S2.
 #define BM_CSU_CSL4_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL4_NUR_S2.
 
@@ -2456,7 +2307,6 @@ typedef union _hw_csu_csl4
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL4_NUR_S2(v)   (HW_CSU_CSL4_WR((HW_CSU_CSL4_RD() & ~BM_CSU_CSL4_NUR_S2) | BF_CSU_CSL4_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL4, field NSR_S2[3] (RW)
@@ -2468,7 +2318,6 @@ typedef union _hw_csu_csl4
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL4_NSR_S2      (3)      //!< Bit position for CSU_CSL4_NSR_S2.
 #define BM_CSU_CSL4_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL4_NSR_S2.
 
@@ -2482,7 +2331,6 @@ typedef union _hw_csu_csl4
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL4_NSR_S2(v)   (HW_CSU_CSL4_WR((HW_CSU_CSL4_RD() & ~BM_CSU_CSL4_NSR_S2) | BF_CSU_CSL4_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL4, field SUW_S2[4] (RW)
@@ -2494,7 +2342,6 @@ typedef union _hw_csu_csl4
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL4_SUW_S2      (4)      //!< Bit position for CSU_CSL4_SUW_S2.
 #define BM_CSU_CSL4_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL4_SUW_S2.
 
@@ -2508,7 +2355,6 @@ typedef union _hw_csu_csl4
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL4_SUW_S2(v)   (HW_CSU_CSL4_WR((HW_CSU_CSL4_RD() & ~BM_CSU_CSL4_SUW_S2) | BF_CSU_CSL4_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL4, field SSW_S2[5] (RW)
@@ -2520,7 +2366,6 @@ typedef union _hw_csu_csl4
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL4_SSW_S2      (5)      //!< Bit position for CSU_CSL4_SSW_S2.
 #define BM_CSU_CSL4_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL4_SSW_S2.
 
@@ -2534,7 +2379,6 @@ typedef union _hw_csu_csl4
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL4_SSW_S2(v)   (HW_CSU_CSL4_WR((HW_CSU_CSL4_RD() & ~BM_CSU_CSL4_SSW_S2) | BF_CSU_CSL4_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL4, field NUW_S2[6] (RW)
@@ -2546,7 +2390,6 @@ typedef union _hw_csu_csl4
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL4_NUW_S2      (6)      //!< Bit position for CSU_CSL4_NUW_S2.
 #define BM_CSU_CSL4_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL4_NUW_S2.
 
@@ -2560,7 +2403,6 @@ typedef union _hw_csu_csl4
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL4_NUW_S2(v)   (HW_CSU_CSL4_WR((HW_CSU_CSL4_RD() & ~BM_CSU_CSL4_NUW_S2) | BF_CSU_CSL4_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL4, field NSW_S2[7] (RW)
@@ -2572,7 +2414,6 @@ typedef union _hw_csu_csl4
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL4_NSW_S2      (7)      //!< Bit position for CSU_CSL4_NSW_S2.
 #define BM_CSU_CSL4_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL4_NSW_S2.
 
@@ -2586,7 +2427,6 @@ typedef union _hw_csu_csl4
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL4_NSW_S2(v)   (HW_CSU_CSL4_WR((HW_CSU_CSL4_RD() & ~BM_CSU_CSL4_NSW_S2) | BF_CSU_CSL4_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL4, field LOCK_S2[8] (RW)
@@ -2598,7 +2438,6 @@ typedef union _hw_csu_csl4
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL4_LOCK_S2      (8)      //!< Bit position for CSU_CSL4_LOCK_S2.
 #define BM_CSU_CSL4_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL4_LOCK_S2.
 
@@ -2612,7 +2451,6 @@ typedef union _hw_csu_csl4
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL4_LOCK_S2(v)   (HW_CSU_CSL4_WR((HW_CSU_CSL4_RD() & ~BM_CSU_CSL4_LOCK_S2) | BF_CSU_CSL4_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL4, field SUR_S1[16] (RW)
@@ -2624,7 +2462,6 @@ typedef union _hw_csu_csl4
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL4_SUR_S1      (16)      //!< Bit position for CSU_CSL4_SUR_S1.
 #define BM_CSU_CSL4_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL4_SUR_S1.
 
@@ -2638,7 +2475,6 @@ typedef union _hw_csu_csl4
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL4_SUR_S1(v)   (HW_CSU_CSL4_WR((HW_CSU_CSL4_RD() & ~BM_CSU_CSL4_SUR_S1) | BF_CSU_CSL4_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL4, field SSR_S1[17] (RW)
@@ -2650,7 +2486,6 @@ typedef union _hw_csu_csl4
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL4_SSR_S1      (17)      //!< Bit position for CSU_CSL4_SSR_S1.
 #define BM_CSU_CSL4_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL4_SSR_S1.
 
@@ -2664,7 +2499,6 @@ typedef union _hw_csu_csl4
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL4_SSR_S1(v)   (HW_CSU_CSL4_WR((HW_CSU_CSL4_RD() & ~BM_CSU_CSL4_SSR_S1) | BF_CSU_CSL4_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL4, field NUR_S1[18] (RW)
@@ -2676,7 +2510,6 @@ typedef union _hw_csu_csl4
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL4_NUR_S1      (18)      //!< Bit position for CSU_CSL4_NUR_S1.
 #define BM_CSU_CSL4_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL4_NUR_S1.
 
@@ -2690,7 +2523,6 @@ typedef union _hw_csu_csl4
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL4_NUR_S1(v)   (HW_CSU_CSL4_WR((HW_CSU_CSL4_RD() & ~BM_CSU_CSL4_NUR_S1) | BF_CSU_CSL4_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL4, field NSR_S1[19] (RW)
@@ -2702,7 +2534,6 @@ typedef union _hw_csu_csl4
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL4_NSR_S1      (19)      //!< Bit position for CSU_CSL4_NSR_S1.
 #define BM_CSU_CSL4_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL4_NSR_S1.
 
@@ -2716,7 +2547,6 @@ typedef union _hw_csu_csl4
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL4_NSR_S1(v)   (HW_CSU_CSL4_WR((HW_CSU_CSL4_RD() & ~BM_CSU_CSL4_NSR_S1) | BF_CSU_CSL4_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL4, field SUW_S1[20] (RW)
@@ -2728,7 +2558,6 @@ typedef union _hw_csu_csl4
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL4_SUW_S1      (20)      //!< Bit position for CSU_CSL4_SUW_S1.
 #define BM_CSU_CSL4_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL4_SUW_S1.
 
@@ -2742,7 +2571,6 @@ typedef union _hw_csu_csl4
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL4_SUW_S1(v)   (HW_CSU_CSL4_WR((HW_CSU_CSL4_RD() & ~BM_CSU_CSL4_SUW_S1) | BF_CSU_CSL4_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL4, field SSW_S1[21] (RW)
@@ -2754,7 +2582,6 @@ typedef union _hw_csu_csl4
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL4_SSW_S1      (21)      //!< Bit position for CSU_CSL4_SSW_S1.
 #define BM_CSU_CSL4_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL4_SSW_S1.
 
@@ -2768,7 +2595,6 @@ typedef union _hw_csu_csl4
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL4_SSW_S1(v)   (HW_CSU_CSL4_WR((HW_CSU_CSL4_RD() & ~BM_CSU_CSL4_SSW_S1) | BF_CSU_CSL4_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL4, field NUW_S1[22] (RW)
@@ -2780,7 +2606,6 @@ typedef union _hw_csu_csl4
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL4_NUW_S1      (22)      //!< Bit position for CSU_CSL4_NUW_S1.
 #define BM_CSU_CSL4_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL4_NUW_S1.
 
@@ -2794,7 +2619,6 @@ typedef union _hw_csu_csl4
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL4_NUW_S1(v)   (HW_CSU_CSL4_WR((HW_CSU_CSL4_RD() & ~BM_CSU_CSL4_NUW_S1) | BF_CSU_CSL4_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL4, field NSW_S1[23] (RW)
@@ -2806,7 +2630,6 @@ typedef union _hw_csu_csl4
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL4_NSW_S1      (23)      //!< Bit position for CSU_CSL4_NSW_S1.
 #define BM_CSU_CSL4_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL4_NSW_S1.
 
@@ -2820,7 +2643,6 @@ typedef union _hw_csu_csl4
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL4_NSW_S1(v)   (HW_CSU_CSL4_WR((HW_CSU_CSL4_RD() & ~BM_CSU_CSL4_NSW_S1) | BF_CSU_CSL4_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL4, field LOCK_S1[24] (RW)
@@ -2832,7 +2654,6 @@ typedef union _hw_csu_csl4
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL4_LOCK_S1      (24)      //!< Bit position for CSU_CSL4_LOCK_S1.
 #define BM_CSU_CSL4_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL4_LOCK_S1.
 
@@ -2846,7 +2667,6 @@ typedef union _hw_csu_csl4
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL4_LOCK_S1(v)   (HW_CSU_CSL4_WR((HW_CSU_CSL4_RD() & ~BM_CSU_CSL4_LOCK_S1) | BF_CSU_CSL4_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2943,7 +2763,6 @@ typedef union _hw_csu_csl5
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL5_SUR_S2      (0)      //!< Bit position for CSU_CSL5_SUR_S2.
 #define BM_CSU_CSL5_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL5_SUR_S2.
 
@@ -2957,7 +2776,6 @@ typedef union _hw_csu_csl5
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL5_SUR_S2(v)   (HW_CSU_CSL5_WR((HW_CSU_CSL5_RD() & ~BM_CSU_CSL5_SUR_S2) | BF_CSU_CSL5_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL5, field SSR_S2[1] (RW)
@@ -2969,7 +2787,6 @@ typedef union _hw_csu_csl5
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL5_SSR_S2      (1)      //!< Bit position for CSU_CSL5_SSR_S2.
 #define BM_CSU_CSL5_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL5_SSR_S2.
 
@@ -2983,7 +2800,6 @@ typedef union _hw_csu_csl5
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL5_SSR_S2(v)   (HW_CSU_CSL5_WR((HW_CSU_CSL5_RD() & ~BM_CSU_CSL5_SSR_S2) | BF_CSU_CSL5_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL5, field NUR_S2[2] (RW)
@@ -2995,7 +2811,6 @@ typedef union _hw_csu_csl5
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL5_NUR_S2      (2)      //!< Bit position for CSU_CSL5_NUR_S2.
 #define BM_CSU_CSL5_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL5_NUR_S2.
 
@@ -3009,7 +2824,6 @@ typedef union _hw_csu_csl5
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL5_NUR_S2(v)   (HW_CSU_CSL5_WR((HW_CSU_CSL5_RD() & ~BM_CSU_CSL5_NUR_S2) | BF_CSU_CSL5_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL5, field NSR_S2[3] (RW)
@@ -3021,7 +2835,6 @@ typedef union _hw_csu_csl5
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL5_NSR_S2      (3)      //!< Bit position for CSU_CSL5_NSR_S2.
 #define BM_CSU_CSL5_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL5_NSR_S2.
 
@@ -3035,7 +2848,6 @@ typedef union _hw_csu_csl5
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL5_NSR_S2(v)   (HW_CSU_CSL5_WR((HW_CSU_CSL5_RD() & ~BM_CSU_CSL5_NSR_S2) | BF_CSU_CSL5_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL5, field SUW_S2[4] (RW)
@@ -3047,7 +2859,6 @@ typedef union _hw_csu_csl5
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL5_SUW_S2      (4)      //!< Bit position for CSU_CSL5_SUW_S2.
 #define BM_CSU_CSL5_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL5_SUW_S2.
 
@@ -3061,7 +2872,6 @@ typedef union _hw_csu_csl5
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL5_SUW_S2(v)   (HW_CSU_CSL5_WR((HW_CSU_CSL5_RD() & ~BM_CSU_CSL5_SUW_S2) | BF_CSU_CSL5_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL5, field SSW_S2[5] (RW)
@@ -3073,7 +2883,6 @@ typedef union _hw_csu_csl5
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL5_SSW_S2      (5)      //!< Bit position for CSU_CSL5_SSW_S2.
 #define BM_CSU_CSL5_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL5_SSW_S2.
 
@@ -3087,7 +2896,6 @@ typedef union _hw_csu_csl5
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL5_SSW_S2(v)   (HW_CSU_CSL5_WR((HW_CSU_CSL5_RD() & ~BM_CSU_CSL5_SSW_S2) | BF_CSU_CSL5_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL5, field NUW_S2[6] (RW)
@@ -3099,7 +2907,6 @@ typedef union _hw_csu_csl5
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL5_NUW_S2      (6)      //!< Bit position for CSU_CSL5_NUW_S2.
 #define BM_CSU_CSL5_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL5_NUW_S2.
 
@@ -3113,7 +2920,6 @@ typedef union _hw_csu_csl5
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL5_NUW_S2(v)   (HW_CSU_CSL5_WR((HW_CSU_CSL5_RD() & ~BM_CSU_CSL5_NUW_S2) | BF_CSU_CSL5_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL5, field NSW_S2[7] (RW)
@@ -3125,7 +2931,6 @@ typedef union _hw_csu_csl5
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL5_NSW_S2      (7)      //!< Bit position for CSU_CSL5_NSW_S2.
 #define BM_CSU_CSL5_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL5_NSW_S2.
 
@@ -3139,7 +2944,6 @@ typedef union _hw_csu_csl5
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL5_NSW_S2(v)   (HW_CSU_CSL5_WR((HW_CSU_CSL5_RD() & ~BM_CSU_CSL5_NSW_S2) | BF_CSU_CSL5_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL5, field LOCK_S2[8] (RW)
@@ -3151,7 +2955,6 @@ typedef union _hw_csu_csl5
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL5_LOCK_S2      (8)      //!< Bit position for CSU_CSL5_LOCK_S2.
 #define BM_CSU_CSL5_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL5_LOCK_S2.
 
@@ -3165,7 +2968,6 @@ typedef union _hw_csu_csl5
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL5_LOCK_S2(v)   (HW_CSU_CSL5_WR((HW_CSU_CSL5_RD() & ~BM_CSU_CSL5_LOCK_S2) | BF_CSU_CSL5_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL5, field SUR_S1[16] (RW)
@@ -3177,7 +2979,6 @@ typedef union _hw_csu_csl5
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL5_SUR_S1      (16)      //!< Bit position for CSU_CSL5_SUR_S1.
 #define BM_CSU_CSL5_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL5_SUR_S1.
 
@@ -3191,7 +2992,6 @@ typedef union _hw_csu_csl5
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL5_SUR_S1(v)   (HW_CSU_CSL5_WR((HW_CSU_CSL5_RD() & ~BM_CSU_CSL5_SUR_S1) | BF_CSU_CSL5_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL5, field SSR_S1[17] (RW)
@@ -3203,7 +3003,6 @@ typedef union _hw_csu_csl5
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL5_SSR_S1      (17)      //!< Bit position for CSU_CSL5_SSR_S1.
 #define BM_CSU_CSL5_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL5_SSR_S1.
 
@@ -3217,7 +3016,6 @@ typedef union _hw_csu_csl5
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL5_SSR_S1(v)   (HW_CSU_CSL5_WR((HW_CSU_CSL5_RD() & ~BM_CSU_CSL5_SSR_S1) | BF_CSU_CSL5_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL5, field NUR_S1[18] (RW)
@@ -3229,7 +3027,6 @@ typedef union _hw_csu_csl5
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL5_NUR_S1      (18)      //!< Bit position for CSU_CSL5_NUR_S1.
 #define BM_CSU_CSL5_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL5_NUR_S1.
 
@@ -3243,7 +3040,6 @@ typedef union _hw_csu_csl5
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL5_NUR_S1(v)   (HW_CSU_CSL5_WR((HW_CSU_CSL5_RD() & ~BM_CSU_CSL5_NUR_S1) | BF_CSU_CSL5_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL5, field NSR_S1[19] (RW)
@@ -3255,7 +3051,6 @@ typedef union _hw_csu_csl5
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL5_NSR_S1      (19)      //!< Bit position for CSU_CSL5_NSR_S1.
 #define BM_CSU_CSL5_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL5_NSR_S1.
 
@@ -3269,7 +3064,6 @@ typedef union _hw_csu_csl5
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL5_NSR_S1(v)   (HW_CSU_CSL5_WR((HW_CSU_CSL5_RD() & ~BM_CSU_CSL5_NSR_S1) | BF_CSU_CSL5_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL5, field SUW_S1[20] (RW)
@@ -3281,7 +3075,6 @@ typedef union _hw_csu_csl5
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL5_SUW_S1      (20)      //!< Bit position for CSU_CSL5_SUW_S1.
 #define BM_CSU_CSL5_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL5_SUW_S1.
 
@@ -3295,7 +3088,6 @@ typedef union _hw_csu_csl5
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL5_SUW_S1(v)   (HW_CSU_CSL5_WR((HW_CSU_CSL5_RD() & ~BM_CSU_CSL5_SUW_S1) | BF_CSU_CSL5_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL5, field SSW_S1[21] (RW)
@@ -3307,7 +3099,6 @@ typedef union _hw_csu_csl5
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL5_SSW_S1      (21)      //!< Bit position for CSU_CSL5_SSW_S1.
 #define BM_CSU_CSL5_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL5_SSW_S1.
 
@@ -3321,7 +3112,6 @@ typedef union _hw_csu_csl5
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL5_SSW_S1(v)   (HW_CSU_CSL5_WR((HW_CSU_CSL5_RD() & ~BM_CSU_CSL5_SSW_S1) | BF_CSU_CSL5_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL5, field NUW_S1[22] (RW)
@@ -3333,7 +3123,6 @@ typedef union _hw_csu_csl5
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL5_NUW_S1      (22)      //!< Bit position for CSU_CSL5_NUW_S1.
 #define BM_CSU_CSL5_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL5_NUW_S1.
 
@@ -3347,7 +3136,6 @@ typedef union _hw_csu_csl5
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL5_NUW_S1(v)   (HW_CSU_CSL5_WR((HW_CSU_CSL5_RD() & ~BM_CSU_CSL5_NUW_S1) | BF_CSU_CSL5_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL5, field NSW_S1[23] (RW)
@@ -3359,7 +3147,6 @@ typedef union _hw_csu_csl5
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL5_NSW_S1      (23)      //!< Bit position for CSU_CSL5_NSW_S1.
 #define BM_CSU_CSL5_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL5_NSW_S1.
 
@@ -3373,7 +3160,6 @@ typedef union _hw_csu_csl5
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL5_NSW_S1(v)   (HW_CSU_CSL5_WR((HW_CSU_CSL5_RD() & ~BM_CSU_CSL5_NSW_S1) | BF_CSU_CSL5_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL5, field LOCK_S1[24] (RW)
@@ -3385,7 +3171,6 @@ typedef union _hw_csu_csl5
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL5_LOCK_S1      (24)      //!< Bit position for CSU_CSL5_LOCK_S1.
 #define BM_CSU_CSL5_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL5_LOCK_S1.
 
@@ -3399,7 +3184,6 @@ typedef union _hw_csu_csl5
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL5_LOCK_S1(v)   (HW_CSU_CSL5_WR((HW_CSU_CSL5_RD() & ~BM_CSU_CSL5_LOCK_S1) | BF_CSU_CSL5_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3496,7 +3280,6 @@ typedef union _hw_csu_csl6
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL6_SUR_S2      (0)      //!< Bit position for CSU_CSL6_SUR_S2.
 #define BM_CSU_CSL6_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL6_SUR_S2.
 
@@ -3510,7 +3293,6 @@ typedef union _hw_csu_csl6
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL6_SUR_S2(v)   (HW_CSU_CSL6_WR((HW_CSU_CSL6_RD() & ~BM_CSU_CSL6_SUR_S2) | BF_CSU_CSL6_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL6, field SSR_S2[1] (RW)
@@ -3522,7 +3304,6 @@ typedef union _hw_csu_csl6
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL6_SSR_S2      (1)      //!< Bit position for CSU_CSL6_SSR_S2.
 #define BM_CSU_CSL6_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL6_SSR_S2.
 
@@ -3536,7 +3317,6 @@ typedef union _hw_csu_csl6
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL6_SSR_S2(v)   (HW_CSU_CSL6_WR((HW_CSU_CSL6_RD() & ~BM_CSU_CSL6_SSR_S2) | BF_CSU_CSL6_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL6, field NUR_S2[2] (RW)
@@ -3548,7 +3328,6 @@ typedef union _hw_csu_csl6
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL6_NUR_S2      (2)      //!< Bit position for CSU_CSL6_NUR_S2.
 #define BM_CSU_CSL6_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL6_NUR_S2.
 
@@ -3562,7 +3341,6 @@ typedef union _hw_csu_csl6
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL6_NUR_S2(v)   (HW_CSU_CSL6_WR((HW_CSU_CSL6_RD() & ~BM_CSU_CSL6_NUR_S2) | BF_CSU_CSL6_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL6, field NSR_S2[3] (RW)
@@ -3574,7 +3352,6 @@ typedef union _hw_csu_csl6
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL6_NSR_S2      (3)      //!< Bit position for CSU_CSL6_NSR_S2.
 #define BM_CSU_CSL6_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL6_NSR_S2.
 
@@ -3588,7 +3365,6 @@ typedef union _hw_csu_csl6
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL6_NSR_S2(v)   (HW_CSU_CSL6_WR((HW_CSU_CSL6_RD() & ~BM_CSU_CSL6_NSR_S2) | BF_CSU_CSL6_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL6, field SUW_S2[4] (RW)
@@ -3600,7 +3376,6 @@ typedef union _hw_csu_csl6
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL6_SUW_S2      (4)      //!< Bit position for CSU_CSL6_SUW_S2.
 #define BM_CSU_CSL6_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL6_SUW_S2.
 
@@ -3614,7 +3389,6 @@ typedef union _hw_csu_csl6
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL6_SUW_S2(v)   (HW_CSU_CSL6_WR((HW_CSU_CSL6_RD() & ~BM_CSU_CSL6_SUW_S2) | BF_CSU_CSL6_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL6, field SSW_S2[5] (RW)
@@ -3626,7 +3400,6 @@ typedef union _hw_csu_csl6
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL6_SSW_S2      (5)      //!< Bit position for CSU_CSL6_SSW_S2.
 #define BM_CSU_CSL6_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL6_SSW_S2.
 
@@ -3640,7 +3413,6 @@ typedef union _hw_csu_csl6
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL6_SSW_S2(v)   (HW_CSU_CSL6_WR((HW_CSU_CSL6_RD() & ~BM_CSU_CSL6_SSW_S2) | BF_CSU_CSL6_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL6, field NUW_S2[6] (RW)
@@ -3652,7 +3424,6 @@ typedef union _hw_csu_csl6
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL6_NUW_S2      (6)      //!< Bit position for CSU_CSL6_NUW_S2.
 #define BM_CSU_CSL6_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL6_NUW_S2.
 
@@ -3666,7 +3437,6 @@ typedef union _hw_csu_csl6
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL6_NUW_S2(v)   (HW_CSU_CSL6_WR((HW_CSU_CSL6_RD() & ~BM_CSU_CSL6_NUW_S2) | BF_CSU_CSL6_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL6, field NSW_S2[7] (RW)
@@ -3678,7 +3448,6 @@ typedef union _hw_csu_csl6
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL6_NSW_S2      (7)      //!< Bit position for CSU_CSL6_NSW_S2.
 #define BM_CSU_CSL6_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL6_NSW_S2.
 
@@ -3692,7 +3461,6 @@ typedef union _hw_csu_csl6
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL6_NSW_S2(v)   (HW_CSU_CSL6_WR((HW_CSU_CSL6_RD() & ~BM_CSU_CSL6_NSW_S2) | BF_CSU_CSL6_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL6, field LOCK_S2[8] (RW)
@@ -3704,7 +3472,6 @@ typedef union _hw_csu_csl6
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL6_LOCK_S2      (8)      //!< Bit position for CSU_CSL6_LOCK_S2.
 #define BM_CSU_CSL6_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL6_LOCK_S2.
 
@@ -3718,7 +3485,6 @@ typedef union _hw_csu_csl6
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL6_LOCK_S2(v)   (HW_CSU_CSL6_WR((HW_CSU_CSL6_RD() & ~BM_CSU_CSL6_LOCK_S2) | BF_CSU_CSL6_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL6, field SUR_S1[16] (RW)
@@ -3730,7 +3496,6 @@ typedef union _hw_csu_csl6
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL6_SUR_S1      (16)      //!< Bit position for CSU_CSL6_SUR_S1.
 #define BM_CSU_CSL6_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL6_SUR_S1.
 
@@ -3744,7 +3509,6 @@ typedef union _hw_csu_csl6
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL6_SUR_S1(v)   (HW_CSU_CSL6_WR((HW_CSU_CSL6_RD() & ~BM_CSU_CSL6_SUR_S1) | BF_CSU_CSL6_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL6, field SSR_S1[17] (RW)
@@ -3756,7 +3520,6 @@ typedef union _hw_csu_csl6
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL6_SSR_S1      (17)      //!< Bit position for CSU_CSL6_SSR_S1.
 #define BM_CSU_CSL6_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL6_SSR_S1.
 
@@ -3770,7 +3533,6 @@ typedef union _hw_csu_csl6
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL6_SSR_S1(v)   (HW_CSU_CSL6_WR((HW_CSU_CSL6_RD() & ~BM_CSU_CSL6_SSR_S1) | BF_CSU_CSL6_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL6, field NUR_S1[18] (RW)
@@ -3782,7 +3544,6 @@ typedef union _hw_csu_csl6
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL6_NUR_S1      (18)      //!< Bit position for CSU_CSL6_NUR_S1.
 #define BM_CSU_CSL6_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL6_NUR_S1.
 
@@ -3796,7 +3557,6 @@ typedef union _hw_csu_csl6
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL6_NUR_S1(v)   (HW_CSU_CSL6_WR((HW_CSU_CSL6_RD() & ~BM_CSU_CSL6_NUR_S1) | BF_CSU_CSL6_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL6, field NSR_S1[19] (RW)
@@ -3808,7 +3568,6 @@ typedef union _hw_csu_csl6
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL6_NSR_S1      (19)      //!< Bit position for CSU_CSL6_NSR_S1.
 #define BM_CSU_CSL6_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL6_NSR_S1.
 
@@ -3822,7 +3581,6 @@ typedef union _hw_csu_csl6
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL6_NSR_S1(v)   (HW_CSU_CSL6_WR((HW_CSU_CSL6_RD() & ~BM_CSU_CSL6_NSR_S1) | BF_CSU_CSL6_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL6, field SUW_S1[20] (RW)
@@ -3834,7 +3592,6 @@ typedef union _hw_csu_csl6
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL6_SUW_S1      (20)      //!< Bit position for CSU_CSL6_SUW_S1.
 #define BM_CSU_CSL6_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL6_SUW_S1.
 
@@ -3848,7 +3605,6 @@ typedef union _hw_csu_csl6
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL6_SUW_S1(v)   (HW_CSU_CSL6_WR((HW_CSU_CSL6_RD() & ~BM_CSU_CSL6_SUW_S1) | BF_CSU_CSL6_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL6, field SSW_S1[21] (RW)
@@ -3860,7 +3616,6 @@ typedef union _hw_csu_csl6
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL6_SSW_S1      (21)      //!< Bit position for CSU_CSL6_SSW_S1.
 #define BM_CSU_CSL6_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL6_SSW_S1.
 
@@ -3874,7 +3629,6 @@ typedef union _hw_csu_csl6
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL6_SSW_S1(v)   (HW_CSU_CSL6_WR((HW_CSU_CSL6_RD() & ~BM_CSU_CSL6_SSW_S1) | BF_CSU_CSL6_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL6, field NUW_S1[22] (RW)
@@ -3886,7 +3640,6 @@ typedef union _hw_csu_csl6
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL6_NUW_S1      (22)      //!< Bit position for CSU_CSL6_NUW_S1.
 #define BM_CSU_CSL6_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL6_NUW_S1.
 
@@ -3900,7 +3653,6 @@ typedef union _hw_csu_csl6
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL6_NUW_S1(v)   (HW_CSU_CSL6_WR((HW_CSU_CSL6_RD() & ~BM_CSU_CSL6_NUW_S1) | BF_CSU_CSL6_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL6, field NSW_S1[23] (RW)
@@ -3912,7 +3664,6 @@ typedef union _hw_csu_csl6
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL6_NSW_S1      (23)      //!< Bit position for CSU_CSL6_NSW_S1.
 #define BM_CSU_CSL6_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL6_NSW_S1.
 
@@ -3926,7 +3677,6 @@ typedef union _hw_csu_csl6
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL6_NSW_S1(v)   (HW_CSU_CSL6_WR((HW_CSU_CSL6_RD() & ~BM_CSU_CSL6_NSW_S1) | BF_CSU_CSL6_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL6, field LOCK_S1[24] (RW)
@@ -3938,7 +3688,6 @@ typedef union _hw_csu_csl6
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL6_LOCK_S1      (24)      //!< Bit position for CSU_CSL6_LOCK_S1.
 #define BM_CSU_CSL6_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL6_LOCK_S1.
 
@@ -3952,7 +3701,6 @@ typedef union _hw_csu_csl6
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL6_LOCK_S1(v)   (HW_CSU_CSL6_WR((HW_CSU_CSL6_RD() & ~BM_CSU_CSL6_LOCK_S1) | BF_CSU_CSL6_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4049,7 +3797,6 @@ typedef union _hw_csu_csl7
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL7_SUR_S2      (0)      //!< Bit position for CSU_CSL7_SUR_S2.
 #define BM_CSU_CSL7_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL7_SUR_S2.
 
@@ -4063,7 +3810,6 @@ typedef union _hw_csu_csl7
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL7_SUR_S2(v)   (HW_CSU_CSL7_WR((HW_CSU_CSL7_RD() & ~BM_CSU_CSL7_SUR_S2) | BF_CSU_CSL7_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL7, field SSR_S2[1] (RW)
@@ -4075,7 +3821,6 @@ typedef union _hw_csu_csl7
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL7_SSR_S2      (1)      //!< Bit position for CSU_CSL7_SSR_S2.
 #define BM_CSU_CSL7_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL7_SSR_S2.
 
@@ -4089,7 +3834,6 @@ typedef union _hw_csu_csl7
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL7_SSR_S2(v)   (HW_CSU_CSL7_WR((HW_CSU_CSL7_RD() & ~BM_CSU_CSL7_SSR_S2) | BF_CSU_CSL7_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL7, field NUR_S2[2] (RW)
@@ -4101,7 +3845,6 @@ typedef union _hw_csu_csl7
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL7_NUR_S2      (2)      //!< Bit position for CSU_CSL7_NUR_S2.
 #define BM_CSU_CSL7_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL7_NUR_S2.
 
@@ -4115,7 +3858,6 @@ typedef union _hw_csu_csl7
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL7_NUR_S2(v)   (HW_CSU_CSL7_WR((HW_CSU_CSL7_RD() & ~BM_CSU_CSL7_NUR_S2) | BF_CSU_CSL7_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL7, field NSR_S2[3] (RW)
@@ -4127,7 +3869,6 @@ typedef union _hw_csu_csl7
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL7_NSR_S2      (3)      //!< Bit position for CSU_CSL7_NSR_S2.
 #define BM_CSU_CSL7_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL7_NSR_S2.
 
@@ -4141,7 +3882,6 @@ typedef union _hw_csu_csl7
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL7_NSR_S2(v)   (HW_CSU_CSL7_WR((HW_CSU_CSL7_RD() & ~BM_CSU_CSL7_NSR_S2) | BF_CSU_CSL7_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL7, field SUW_S2[4] (RW)
@@ -4153,7 +3893,6 @@ typedef union _hw_csu_csl7
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL7_SUW_S2      (4)      //!< Bit position for CSU_CSL7_SUW_S2.
 #define BM_CSU_CSL7_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL7_SUW_S2.
 
@@ -4167,7 +3906,6 @@ typedef union _hw_csu_csl7
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL7_SUW_S2(v)   (HW_CSU_CSL7_WR((HW_CSU_CSL7_RD() & ~BM_CSU_CSL7_SUW_S2) | BF_CSU_CSL7_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL7, field SSW_S2[5] (RW)
@@ -4179,7 +3917,6 @@ typedef union _hw_csu_csl7
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL7_SSW_S2      (5)      //!< Bit position for CSU_CSL7_SSW_S2.
 #define BM_CSU_CSL7_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL7_SSW_S2.
 
@@ -4193,7 +3930,6 @@ typedef union _hw_csu_csl7
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL7_SSW_S2(v)   (HW_CSU_CSL7_WR((HW_CSU_CSL7_RD() & ~BM_CSU_CSL7_SSW_S2) | BF_CSU_CSL7_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL7, field NUW_S2[6] (RW)
@@ -4205,7 +3941,6 @@ typedef union _hw_csu_csl7
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL7_NUW_S2      (6)      //!< Bit position for CSU_CSL7_NUW_S2.
 #define BM_CSU_CSL7_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL7_NUW_S2.
 
@@ -4219,7 +3954,6 @@ typedef union _hw_csu_csl7
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL7_NUW_S2(v)   (HW_CSU_CSL7_WR((HW_CSU_CSL7_RD() & ~BM_CSU_CSL7_NUW_S2) | BF_CSU_CSL7_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL7, field NSW_S2[7] (RW)
@@ -4231,7 +3965,6 @@ typedef union _hw_csu_csl7
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL7_NSW_S2      (7)      //!< Bit position for CSU_CSL7_NSW_S2.
 #define BM_CSU_CSL7_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL7_NSW_S2.
 
@@ -4245,7 +3978,6 @@ typedef union _hw_csu_csl7
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL7_NSW_S2(v)   (HW_CSU_CSL7_WR((HW_CSU_CSL7_RD() & ~BM_CSU_CSL7_NSW_S2) | BF_CSU_CSL7_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL7, field LOCK_S2[8] (RW)
@@ -4257,7 +3989,6 @@ typedef union _hw_csu_csl7
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL7_LOCK_S2      (8)      //!< Bit position for CSU_CSL7_LOCK_S2.
 #define BM_CSU_CSL7_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL7_LOCK_S2.
 
@@ -4271,7 +4002,6 @@ typedef union _hw_csu_csl7
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL7_LOCK_S2(v)   (HW_CSU_CSL7_WR((HW_CSU_CSL7_RD() & ~BM_CSU_CSL7_LOCK_S2) | BF_CSU_CSL7_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL7, field SUR_S1[16] (RW)
@@ -4283,7 +4013,6 @@ typedef union _hw_csu_csl7
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL7_SUR_S1      (16)      //!< Bit position for CSU_CSL7_SUR_S1.
 #define BM_CSU_CSL7_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL7_SUR_S1.
 
@@ -4297,7 +4026,6 @@ typedef union _hw_csu_csl7
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL7_SUR_S1(v)   (HW_CSU_CSL7_WR((HW_CSU_CSL7_RD() & ~BM_CSU_CSL7_SUR_S1) | BF_CSU_CSL7_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL7, field SSR_S1[17] (RW)
@@ -4309,7 +4037,6 @@ typedef union _hw_csu_csl7
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL7_SSR_S1      (17)      //!< Bit position for CSU_CSL7_SSR_S1.
 #define BM_CSU_CSL7_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL7_SSR_S1.
 
@@ -4323,7 +4050,6 @@ typedef union _hw_csu_csl7
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL7_SSR_S1(v)   (HW_CSU_CSL7_WR((HW_CSU_CSL7_RD() & ~BM_CSU_CSL7_SSR_S1) | BF_CSU_CSL7_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL7, field NUR_S1[18] (RW)
@@ -4335,7 +4061,6 @@ typedef union _hw_csu_csl7
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL7_NUR_S1      (18)      //!< Bit position for CSU_CSL7_NUR_S1.
 #define BM_CSU_CSL7_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL7_NUR_S1.
 
@@ -4349,7 +4074,6 @@ typedef union _hw_csu_csl7
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL7_NUR_S1(v)   (HW_CSU_CSL7_WR((HW_CSU_CSL7_RD() & ~BM_CSU_CSL7_NUR_S1) | BF_CSU_CSL7_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL7, field NSR_S1[19] (RW)
@@ -4361,7 +4085,6 @@ typedef union _hw_csu_csl7
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL7_NSR_S1      (19)      //!< Bit position for CSU_CSL7_NSR_S1.
 #define BM_CSU_CSL7_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL7_NSR_S1.
 
@@ -4375,7 +4098,6 @@ typedef union _hw_csu_csl7
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL7_NSR_S1(v)   (HW_CSU_CSL7_WR((HW_CSU_CSL7_RD() & ~BM_CSU_CSL7_NSR_S1) | BF_CSU_CSL7_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL7, field SUW_S1[20] (RW)
@@ -4387,7 +4109,6 @@ typedef union _hw_csu_csl7
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL7_SUW_S1      (20)      //!< Bit position for CSU_CSL7_SUW_S1.
 #define BM_CSU_CSL7_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL7_SUW_S1.
 
@@ -4401,7 +4122,6 @@ typedef union _hw_csu_csl7
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL7_SUW_S1(v)   (HW_CSU_CSL7_WR((HW_CSU_CSL7_RD() & ~BM_CSU_CSL7_SUW_S1) | BF_CSU_CSL7_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL7, field SSW_S1[21] (RW)
@@ -4413,7 +4133,6 @@ typedef union _hw_csu_csl7
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL7_SSW_S1      (21)      //!< Bit position for CSU_CSL7_SSW_S1.
 #define BM_CSU_CSL7_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL7_SSW_S1.
 
@@ -4427,7 +4146,6 @@ typedef union _hw_csu_csl7
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL7_SSW_S1(v)   (HW_CSU_CSL7_WR((HW_CSU_CSL7_RD() & ~BM_CSU_CSL7_SSW_S1) | BF_CSU_CSL7_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL7, field NUW_S1[22] (RW)
@@ -4439,7 +4157,6 @@ typedef union _hw_csu_csl7
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL7_NUW_S1      (22)      //!< Bit position for CSU_CSL7_NUW_S1.
 #define BM_CSU_CSL7_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL7_NUW_S1.
 
@@ -4453,7 +4170,6 @@ typedef union _hw_csu_csl7
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL7_NUW_S1(v)   (HW_CSU_CSL7_WR((HW_CSU_CSL7_RD() & ~BM_CSU_CSL7_NUW_S1) | BF_CSU_CSL7_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL7, field NSW_S1[23] (RW)
@@ -4465,7 +4181,6 @@ typedef union _hw_csu_csl7
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL7_NSW_S1      (23)      //!< Bit position for CSU_CSL7_NSW_S1.
 #define BM_CSU_CSL7_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL7_NSW_S1.
 
@@ -4479,7 +4194,6 @@ typedef union _hw_csu_csl7
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL7_NSW_S1(v)   (HW_CSU_CSL7_WR((HW_CSU_CSL7_RD() & ~BM_CSU_CSL7_NSW_S1) | BF_CSU_CSL7_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL7, field LOCK_S1[24] (RW)
@@ -4491,7 +4205,6 @@ typedef union _hw_csu_csl7
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL7_LOCK_S1      (24)      //!< Bit position for CSU_CSL7_LOCK_S1.
 #define BM_CSU_CSL7_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL7_LOCK_S1.
 
@@ -4505,7 +4218,6 @@ typedef union _hw_csu_csl7
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL7_LOCK_S1(v)   (HW_CSU_CSL7_WR((HW_CSU_CSL7_RD() & ~BM_CSU_CSL7_LOCK_S1) | BF_CSU_CSL7_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4602,7 +4314,6 @@ typedef union _hw_csu_csl8
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL8_SUR_S2      (0)      //!< Bit position for CSU_CSL8_SUR_S2.
 #define BM_CSU_CSL8_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL8_SUR_S2.
 
@@ -4616,7 +4327,6 @@ typedef union _hw_csu_csl8
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL8_SUR_S2(v)   (HW_CSU_CSL8_WR((HW_CSU_CSL8_RD() & ~BM_CSU_CSL8_SUR_S2) | BF_CSU_CSL8_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL8, field SSR_S2[1] (RW)
@@ -4628,7 +4338,6 @@ typedef union _hw_csu_csl8
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL8_SSR_S2      (1)      //!< Bit position for CSU_CSL8_SSR_S2.
 #define BM_CSU_CSL8_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL8_SSR_S2.
 
@@ -4642,7 +4351,6 @@ typedef union _hw_csu_csl8
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL8_SSR_S2(v)   (HW_CSU_CSL8_WR((HW_CSU_CSL8_RD() & ~BM_CSU_CSL8_SSR_S2) | BF_CSU_CSL8_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL8, field NUR_S2[2] (RW)
@@ -4654,7 +4362,6 @@ typedef union _hw_csu_csl8
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL8_NUR_S2      (2)      //!< Bit position for CSU_CSL8_NUR_S2.
 #define BM_CSU_CSL8_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL8_NUR_S2.
 
@@ -4668,7 +4375,6 @@ typedef union _hw_csu_csl8
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL8_NUR_S2(v)   (HW_CSU_CSL8_WR((HW_CSU_CSL8_RD() & ~BM_CSU_CSL8_NUR_S2) | BF_CSU_CSL8_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL8, field NSR_S2[3] (RW)
@@ -4680,7 +4386,6 @@ typedef union _hw_csu_csl8
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL8_NSR_S2      (3)      //!< Bit position for CSU_CSL8_NSR_S2.
 #define BM_CSU_CSL8_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL8_NSR_S2.
 
@@ -4694,7 +4399,6 @@ typedef union _hw_csu_csl8
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL8_NSR_S2(v)   (HW_CSU_CSL8_WR((HW_CSU_CSL8_RD() & ~BM_CSU_CSL8_NSR_S2) | BF_CSU_CSL8_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL8, field SUW_S2[4] (RW)
@@ -4706,7 +4410,6 @@ typedef union _hw_csu_csl8
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL8_SUW_S2      (4)      //!< Bit position for CSU_CSL8_SUW_S2.
 #define BM_CSU_CSL8_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL8_SUW_S2.
 
@@ -4720,7 +4423,6 @@ typedef union _hw_csu_csl8
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL8_SUW_S2(v)   (HW_CSU_CSL8_WR((HW_CSU_CSL8_RD() & ~BM_CSU_CSL8_SUW_S2) | BF_CSU_CSL8_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL8, field SSW_S2[5] (RW)
@@ -4732,7 +4434,6 @@ typedef union _hw_csu_csl8
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL8_SSW_S2      (5)      //!< Bit position for CSU_CSL8_SSW_S2.
 #define BM_CSU_CSL8_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL8_SSW_S2.
 
@@ -4746,7 +4447,6 @@ typedef union _hw_csu_csl8
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL8_SSW_S2(v)   (HW_CSU_CSL8_WR((HW_CSU_CSL8_RD() & ~BM_CSU_CSL8_SSW_S2) | BF_CSU_CSL8_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL8, field NUW_S2[6] (RW)
@@ -4758,7 +4458,6 @@ typedef union _hw_csu_csl8
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL8_NUW_S2      (6)      //!< Bit position for CSU_CSL8_NUW_S2.
 #define BM_CSU_CSL8_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL8_NUW_S2.
 
@@ -4772,7 +4471,6 @@ typedef union _hw_csu_csl8
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL8_NUW_S2(v)   (HW_CSU_CSL8_WR((HW_CSU_CSL8_RD() & ~BM_CSU_CSL8_NUW_S2) | BF_CSU_CSL8_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL8, field NSW_S2[7] (RW)
@@ -4784,7 +4482,6 @@ typedef union _hw_csu_csl8
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL8_NSW_S2      (7)      //!< Bit position for CSU_CSL8_NSW_S2.
 #define BM_CSU_CSL8_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL8_NSW_S2.
 
@@ -4798,7 +4495,6 @@ typedef union _hw_csu_csl8
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL8_NSW_S2(v)   (HW_CSU_CSL8_WR((HW_CSU_CSL8_RD() & ~BM_CSU_CSL8_NSW_S2) | BF_CSU_CSL8_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL8, field LOCK_S2[8] (RW)
@@ -4810,7 +4506,6 @@ typedef union _hw_csu_csl8
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL8_LOCK_S2      (8)      //!< Bit position for CSU_CSL8_LOCK_S2.
 #define BM_CSU_CSL8_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL8_LOCK_S2.
 
@@ -4824,7 +4519,6 @@ typedef union _hw_csu_csl8
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL8_LOCK_S2(v)   (HW_CSU_CSL8_WR((HW_CSU_CSL8_RD() & ~BM_CSU_CSL8_LOCK_S2) | BF_CSU_CSL8_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL8, field SUR_S1[16] (RW)
@@ -4836,7 +4530,6 @@ typedef union _hw_csu_csl8
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL8_SUR_S1      (16)      //!< Bit position for CSU_CSL8_SUR_S1.
 #define BM_CSU_CSL8_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL8_SUR_S1.
 
@@ -4850,7 +4543,6 @@ typedef union _hw_csu_csl8
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL8_SUR_S1(v)   (HW_CSU_CSL8_WR((HW_CSU_CSL8_RD() & ~BM_CSU_CSL8_SUR_S1) | BF_CSU_CSL8_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL8, field SSR_S1[17] (RW)
@@ -4862,7 +4554,6 @@ typedef union _hw_csu_csl8
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL8_SSR_S1      (17)      //!< Bit position for CSU_CSL8_SSR_S1.
 #define BM_CSU_CSL8_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL8_SSR_S1.
 
@@ -4876,7 +4567,6 @@ typedef union _hw_csu_csl8
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL8_SSR_S1(v)   (HW_CSU_CSL8_WR((HW_CSU_CSL8_RD() & ~BM_CSU_CSL8_SSR_S1) | BF_CSU_CSL8_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL8, field NUR_S1[18] (RW)
@@ -4888,7 +4578,6 @@ typedef union _hw_csu_csl8
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL8_NUR_S1      (18)      //!< Bit position for CSU_CSL8_NUR_S1.
 #define BM_CSU_CSL8_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL8_NUR_S1.
 
@@ -4902,7 +4591,6 @@ typedef union _hw_csu_csl8
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL8_NUR_S1(v)   (HW_CSU_CSL8_WR((HW_CSU_CSL8_RD() & ~BM_CSU_CSL8_NUR_S1) | BF_CSU_CSL8_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL8, field NSR_S1[19] (RW)
@@ -4914,7 +4602,6 @@ typedef union _hw_csu_csl8
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL8_NSR_S1      (19)      //!< Bit position for CSU_CSL8_NSR_S1.
 #define BM_CSU_CSL8_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL8_NSR_S1.
 
@@ -4928,7 +4615,6 @@ typedef union _hw_csu_csl8
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL8_NSR_S1(v)   (HW_CSU_CSL8_WR((HW_CSU_CSL8_RD() & ~BM_CSU_CSL8_NSR_S1) | BF_CSU_CSL8_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL8, field SUW_S1[20] (RW)
@@ -4940,7 +4626,6 @@ typedef union _hw_csu_csl8
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL8_SUW_S1      (20)      //!< Bit position for CSU_CSL8_SUW_S1.
 #define BM_CSU_CSL8_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL8_SUW_S1.
 
@@ -4954,7 +4639,6 @@ typedef union _hw_csu_csl8
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL8_SUW_S1(v)   (HW_CSU_CSL8_WR((HW_CSU_CSL8_RD() & ~BM_CSU_CSL8_SUW_S1) | BF_CSU_CSL8_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL8, field SSW_S1[21] (RW)
@@ -4966,7 +4650,6 @@ typedef union _hw_csu_csl8
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL8_SSW_S1      (21)      //!< Bit position for CSU_CSL8_SSW_S1.
 #define BM_CSU_CSL8_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL8_SSW_S1.
 
@@ -4980,7 +4663,6 @@ typedef union _hw_csu_csl8
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL8_SSW_S1(v)   (HW_CSU_CSL8_WR((HW_CSU_CSL8_RD() & ~BM_CSU_CSL8_SSW_S1) | BF_CSU_CSL8_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL8, field NUW_S1[22] (RW)
@@ -4992,7 +4674,6 @@ typedef union _hw_csu_csl8
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL8_NUW_S1      (22)      //!< Bit position for CSU_CSL8_NUW_S1.
 #define BM_CSU_CSL8_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL8_NUW_S1.
 
@@ -5006,7 +4687,6 @@ typedef union _hw_csu_csl8
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL8_NUW_S1(v)   (HW_CSU_CSL8_WR((HW_CSU_CSL8_RD() & ~BM_CSU_CSL8_NUW_S1) | BF_CSU_CSL8_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL8, field NSW_S1[23] (RW)
@@ -5018,7 +4698,6 @@ typedef union _hw_csu_csl8
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL8_NSW_S1      (23)      //!< Bit position for CSU_CSL8_NSW_S1.
 #define BM_CSU_CSL8_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL8_NSW_S1.
 
@@ -5032,7 +4711,6 @@ typedef union _hw_csu_csl8
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL8_NSW_S1(v)   (HW_CSU_CSL8_WR((HW_CSU_CSL8_RD() & ~BM_CSU_CSL8_NSW_S1) | BF_CSU_CSL8_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL8, field LOCK_S1[24] (RW)
@@ -5044,7 +4722,6 @@ typedef union _hw_csu_csl8
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL8_LOCK_S1      (24)      //!< Bit position for CSU_CSL8_LOCK_S1.
 #define BM_CSU_CSL8_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL8_LOCK_S1.
 
@@ -5058,7 +4735,6 @@ typedef union _hw_csu_csl8
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL8_LOCK_S1(v)   (HW_CSU_CSL8_WR((HW_CSU_CSL8_RD() & ~BM_CSU_CSL8_LOCK_S1) | BF_CSU_CSL8_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5155,7 +4831,6 @@ typedef union _hw_csu_csl9
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL9_SUR_S2      (0)      //!< Bit position for CSU_CSL9_SUR_S2.
 #define BM_CSU_CSL9_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL9_SUR_S2.
 
@@ -5169,7 +4844,6 @@ typedef union _hw_csu_csl9
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL9_SUR_S2(v)   (HW_CSU_CSL9_WR((HW_CSU_CSL9_RD() & ~BM_CSU_CSL9_SUR_S2) | BF_CSU_CSL9_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL9, field SSR_S2[1] (RW)
@@ -5181,7 +4855,6 @@ typedef union _hw_csu_csl9
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL9_SSR_S2      (1)      //!< Bit position for CSU_CSL9_SSR_S2.
 #define BM_CSU_CSL9_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL9_SSR_S2.
 
@@ -5195,7 +4868,6 @@ typedef union _hw_csu_csl9
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL9_SSR_S2(v)   (HW_CSU_CSL9_WR((HW_CSU_CSL9_RD() & ~BM_CSU_CSL9_SSR_S2) | BF_CSU_CSL9_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL9, field NUR_S2[2] (RW)
@@ -5207,7 +4879,6 @@ typedef union _hw_csu_csl9
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL9_NUR_S2      (2)      //!< Bit position for CSU_CSL9_NUR_S2.
 #define BM_CSU_CSL9_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL9_NUR_S2.
 
@@ -5221,7 +4892,6 @@ typedef union _hw_csu_csl9
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL9_NUR_S2(v)   (HW_CSU_CSL9_WR((HW_CSU_CSL9_RD() & ~BM_CSU_CSL9_NUR_S2) | BF_CSU_CSL9_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL9, field NSR_S2[3] (RW)
@@ -5233,7 +4903,6 @@ typedef union _hw_csu_csl9
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL9_NSR_S2      (3)      //!< Bit position for CSU_CSL9_NSR_S2.
 #define BM_CSU_CSL9_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL9_NSR_S2.
 
@@ -5247,7 +4916,6 @@ typedef union _hw_csu_csl9
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL9_NSR_S2(v)   (HW_CSU_CSL9_WR((HW_CSU_CSL9_RD() & ~BM_CSU_CSL9_NSR_S2) | BF_CSU_CSL9_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL9, field SUW_S2[4] (RW)
@@ -5259,7 +4927,6 @@ typedef union _hw_csu_csl9
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL9_SUW_S2      (4)      //!< Bit position for CSU_CSL9_SUW_S2.
 #define BM_CSU_CSL9_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL9_SUW_S2.
 
@@ -5273,7 +4940,6 @@ typedef union _hw_csu_csl9
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL9_SUW_S2(v)   (HW_CSU_CSL9_WR((HW_CSU_CSL9_RD() & ~BM_CSU_CSL9_SUW_S2) | BF_CSU_CSL9_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL9, field SSW_S2[5] (RW)
@@ -5285,7 +4951,6 @@ typedef union _hw_csu_csl9
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL9_SSW_S2      (5)      //!< Bit position for CSU_CSL9_SSW_S2.
 #define BM_CSU_CSL9_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL9_SSW_S2.
 
@@ -5299,7 +4964,6 @@ typedef union _hw_csu_csl9
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL9_SSW_S2(v)   (HW_CSU_CSL9_WR((HW_CSU_CSL9_RD() & ~BM_CSU_CSL9_SSW_S2) | BF_CSU_CSL9_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL9, field NUW_S2[6] (RW)
@@ -5311,7 +4975,6 @@ typedef union _hw_csu_csl9
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL9_NUW_S2      (6)      //!< Bit position for CSU_CSL9_NUW_S2.
 #define BM_CSU_CSL9_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL9_NUW_S2.
 
@@ -5325,7 +4988,6 @@ typedef union _hw_csu_csl9
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL9_NUW_S2(v)   (HW_CSU_CSL9_WR((HW_CSU_CSL9_RD() & ~BM_CSU_CSL9_NUW_S2) | BF_CSU_CSL9_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL9, field NSW_S2[7] (RW)
@@ -5337,7 +4999,6 @@ typedef union _hw_csu_csl9
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL9_NSW_S2      (7)      //!< Bit position for CSU_CSL9_NSW_S2.
 #define BM_CSU_CSL9_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL9_NSW_S2.
 
@@ -5351,7 +5012,6 @@ typedef union _hw_csu_csl9
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL9_NSW_S2(v)   (HW_CSU_CSL9_WR((HW_CSU_CSL9_RD() & ~BM_CSU_CSL9_NSW_S2) | BF_CSU_CSL9_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL9, field LOCK_S2[8] (RW)
@@ -5363,7 +5023,6 @@ typedef union _hw_csu_csl9
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL9_LOCK_S2      (8)      //!< Bit position for CSU_CSL9_LOCK_S2.
 #define BM_CSU_CSL9_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL9_LOCK_S2.
 
@@ -5377,7 +5036,6 @@ typedef union _hw_csu_csl9
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL9_LOCK_S2(v)   (HW_CSU_CSL9_WR((HW_CSU_CSL9_RD() & ~BM_CSU_CSL9_LOCK_S2) | BF_CSU_CSL9_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL9, field SUR_S1[16] (RW)
@@ -5389,7 +5047,6 @@ typedef union _hw_csu_csl9
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL9_SUR_S1      (16)      //!< Bit position for CSU_CSL9_SUR_S1.
 #define BM_CSU_CSL9_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL9_SUR_S1.
 
@@ -5403,7 +5060,6 @@ typedef union _hw_csu_csl9
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL9_SUR_S1(v)   (HW_CSU_CSL9_WR((HW_CSU_CSL9_RD() & ~BM_CSU_CSL9_SUR_S1) | BF_CSU_CSL9_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL9, field SSR_S1[17] (RW)
@@ -5415,7 +5071,6 @@ typedef union _hw_csu_csl9
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL9_SSR_S1      (17)      //!< Bit position for CSU_CSL9_SSR_S1.
 #define BM_CSU_CSL9_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL9_SSR_S1.
 
@@ -5429,7 +5084,6 @@ typedef union _hw_csu_csl9
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL9_SSR_S1(v)   (HW_CSU_CSL9_WR((HW_CSU_CSL9_RD() & ~BM_CSU_CSL9_SSR_S1) | BF_CSU_CSL9_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL9, field NUR_S1[18] (RW)
@@ -5441,7 +5095,6 @@ typedef union _hw_csu_csl9
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL9_NUR_S1      (18)      //!< Bit position for CSU_CSL9_NUR_S1.
 #define BM_CSU_CSL9_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL9_NUR_S1.
 
@@ -5455,7 +5108,6 @@ typedef union _hw_csu_csl9
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL9_NUR_S1(v)   (HW_CSU_CSL9_WR((HW_CSU_CSL9_RD() & ~BM_CSU_CSL9_NUR_S1) | BF_CSU_CSL9_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL9, field NSR_S1[19] (RW)
@@ -5467,7 +5119,6 @@ typedef union _hw_csu_csl9
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL9_NSR_S1      (19)      //!< Bit position for CSU_CSL9_NSR_S1.
 #define BM_CSU_CSL9_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL9_NSR_S1.
 
@@ -5481,7 +5132,6 @@ typedef union _hw_csu_csl9
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL9_NSR_S1(v)   (HW_CSU_CSL9_WR((HW_CSU_CSL9_RD() & ~BM_CSU_CSL9_NSR_S1) | BF_CSU_CSL9_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL9, field SUW_S1[20] (RW)
@@ -5493,7 +5143,6 @@ typedef union _hw_csu_csl9
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL9_SUW_S1      (20)      //!< Bit position for CSU_CSL9_SUW_S1.
 #define BM_CSU_CSL9_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL9_SUW_S1.
 
@@ -5507,7 +5156,6 @@ typedef union _hw_csu_csl9
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL9_SUW_S1(v)   (HW_CSU_CSL9_WR((HW_CSU_CSL9_RD() & ~BM_CSU_CSL9_SUW_S1) | BF_CSU_CSL9_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL9, field SSW_S1[21] (RW)
@@ -5519,7 +5167,6 @@ typedef union _hw_csu_csl9
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL9_SSW_S1      (21)      //!< Bit position for CSU_CSL9_SSW_S1.
 #define BM_CSU_CSL9_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL9_SSW_S1.
 
@@ -5533,7 +5180,6 @@ typedef union _hw_csu_csl9
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL9_SSW_S1(v)   (HW_CSU_CSL9_WR((HW_CSU_CSL9_RD() & ~BM_CSU_CSL9_SSW_S1) | BF_CSU_CSL9_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL9, field NUW_S1[22] (RW)
@@ -5545,7 +5191,6 @@ typedef union _hw_csu_csl9
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL9_NUW_S1      (22)      //!< Bit position for CSU_CSL9_NUW_S1.
 #define BM_CSU_CSL9_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL9_NUW_S1.
 
@@ -5559,7 +5204,6 @@ typedef union _hw_csu_csl9
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL9_NUW_S1(v)   (HW_CSU_CSL9_WR((HW_CSU_CSL9_RD() & ~BM_CSU_CSL9_NUW_S1) | BF_CSU_CSL9_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL9, field NSW_S1[23] (RW)
@@ -5571,7 +5215,6 @@ typedef union _hw_csu_csl9
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL9_NSW_S1      (23)      //!< Bit position for CSU_CSL9_NSW_S1.
 #define BM_CSU_CSL9_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL9_NSW_S1.
 
@@ -5585,7 +5228,6 @@ typedef union _hw_csu_csl9
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL9_NSW_S1(v)   (HW_CSU_CSL9_WR((HW_CSU_CSL9_RD() & ~BM_CSU_CSL9_NSW_S1) | BF_CSU_CSL9_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL9, field LOCK_S1[24] (RW)
@@ -5597,7 +5239,6 @@ typedef union _hw_csu_csl9
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL9_LOCK_S1      (24)      //!< Bit position for CSU_CSL9_LOCK_S1.
 #define BM_CSU_CSL9_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL9_LOCK_S1.
 
@@ -5611,7 +5252,6 @@ typedef union _hw_csu_csl9
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL9_LOCK_S1(v)   (HW_CSU_CSL9_WR((HW_CSU_CSL9_RD() & ~BM_CSU_CSL9_LOCK_S1) | BF_CSU_CSL9_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5708,7 +5348,6 @@ typedef union _hw_csu_csl10
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL10_SUR_S2      (0)      //!< Bit position for CSU_CSL10_SUR_S2.
 #define BM_CSU_CSL10_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL10_SUR_S2.
 
@@ -5722,7 +5361,6 @@ typedef union _hw_csu_csl10
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL10_SUR_S2(v)   (HW_CSU_CSL10_WR((HW_CSU_CSL10_RD() & ~BM_CSU_CSL10_SUR_S2) | BF_CSU_CSL10_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL10, field SSR_S2[1] (RW)
@@ -5734,7 +5372,6 @@ typedef union _hw_csu_csl10
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL10_SSR_S2      (1)      //!< Bit position for CSU_CSL10_SSR_S2.
 #define BM_CSU_CSL10_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL10_SSR_S2.
 
@@ -5748,7 +5385,6 @@ typedef union _hw_csu_csl10
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL10_SSR_S2(v)   (HW_CSU_CSL10_WR((HW_CSU_CSL10_RD() & ~BM_CSU_CSL10_SSR_S2) | BF_CSU_CSL10_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL10, field NUR_S2[2] (RW)
@@ -5760,7 +5396,6 @@ typedef union _hw_csu_csl10
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL10_NUR_S2      (2)      //!< Bit position for CSU_CSL10_NUR_S2.
 #define BM_CSU_CSL10_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL10_NUR_S2.
 
@@ -5774,7 +5409,6 @@ typedef union _hw_csu_csl10
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL10_NUR_S2(v)   (HW_CSU_CSL10_WR((HW_CSU_CSL10_RD() & ~BM_CSU_CSL10_NUR_S2) | BF_CSU_CSL10_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL10, field NSR_S2[3] (RW)
@@ -5786,7 +5420,6 @@ typedef union _hw_csu_csl10
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL10_NSR_S2      (3)      //!< Bit position for CSU_CSL10_NSR_S2.
 #define BM_CSU_CSL10_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL10_NSR_S2.
 
@@ -5800,7 +5433,6 @@ typedef union _hw_csu_csl10
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL10_NSR_S2(v)   (HW_CSU_CSL10_WR((HW_CSU_CSL10_RD() & ~BM_CSU_CSL10_NSR_S2) | BF_CSU_CSL10_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL10, field SUW_S2[4] (RW)
@@ -5812,7 +5444,6 @@ typedef union _hw_csu_csl10
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL10_SUW_S2      (4)      //!< Bit position for CSU_CSL10_SUW_S2.
 #define BM_CSU_CSL10_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL10_SUW_S2.
 
@@ -5826,7 +5457,6 @@ typedef union _hw_csu_csl10
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL10_SUW_S2(v)   (HW_CSU_CSL10_WR((HW_CSU_CSL10_RD() & ~BM_CSU_CSL10_SUW_S2) | BF_CSU_CSL10_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL10, field SSW_S2[5] (RW)
@@ -5838,7 +5468,6 @@ typedef union _hw_csu_csl10
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL10_SSW_S2      (5)      //!< Bit position for CSU_CSL10_SSW_S2.
 #define BM_CSU_CSL10_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL10_SSW_S2.
 
@@ -5852,7 +5481,6 @@ typedef union _hw_csu_csl10
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL10_SSW_S2(v)   (HW_CSU_CSL10_WR((HW_CSU_CSL10_RD() & ~BM_CSU_CSL10_SSW_S2) | BF_CSU_CSL10_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL10, field NUW_S2[6] (RW)
@@ -5864,7 +5492,6 @@ typedef union _hw_csu_csl10
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL10_NUW_S2      (6)      //!< Bit position for CSU_CSL10_NUW_S2.
 #define BM_CSU_CSL10_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL10_NUW_S2.
 
@@ -5878,7 +5505,6 @@ typedef union _hw_csu_csl10
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL10_NUW_S2(v)   (HW_CSU_CSL10_WR((HW_CSU_CSL10_RD() & ~BM_CSU_CSL10_NUW_S2) | BF_CSU_CSL10_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL10, field NSW_S2[7] (RW)
@@ -5890,7 +5516,6 @@ typedef union _hw_csu_csl10
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL10_NSW_S2      (7)      //!< Bit position for CSU_CSL10_NSW_S2.
 #define BM_CSU_CSL10_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL10_NSW_S2.
 
@@ -5904,7 +5529,6 @@ typedef union _hw_csu_csl10
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL10_NSW_S2(v)   (HW_CSU_CSL10_WR((HW_CSU_CSL10_RD() & ~BM_CSU_CSL10_NSW_S2) | BF_CSU_CSL10_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL10, field LOCK_S2[8] (RW)
@@ -5916,7 +5540,6 @@ typedef union _hw_csu_csl10
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL10_LOCK_S2      (8)      //!< Bit position for CSU_CSL10_LOCK_S2.
 #define BM_CSU_CSL10_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL10_LOCK_S2.
 
@@ -5930,7 +5553,6 @@ typedef union _hw_csu_csl10
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL10_LOCK_S2(v)   (HW_CSU_CSL10_WR((HW_CSU_CSL10_RD() & ~BM_CSU_CSL10_LOCK_S2) | BF_CSU_CSL10_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL10, field SUR_S1[16] (RW)
@@ -5942,7 +5564,6 @@ typedef union _hw_csu_csl10
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL10_SUR_S1      (16)      //!< Bit position for CSU_CSL10_SUR_S1.
 #define BM_CSU_CSL10_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL10_SUR_S1.
 
@@ -5956,7 +5577,6 @@ typedef union _hw_csu_csl10
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL10_SUR_S1(v)   (HW_CSU_CSL10_WR((HW_CSU_CSL10_RD() & ~BM_CSU_CSL10_SUR_S1) | BF_CSU_CSL10_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL10, field SSR_S1[17] (RW)
@@ -5968,7 +5588,6 @@ typedef union _hw_csu_csl10
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL10_SSR_S1      (17)      //!< Bit position for CSU_CSL10_SSR_S1.
 #define BM_CSU_CSL10_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL10_SSR_S1.
 
@@ -5982,7 +5601,6 @@ typedef union _hw_csu_csl10
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL10_SSR_S1(v)   (HW_CSU_CSL10_WR((HW_CSU_CSL10_RD() & ~BM_CSU_CSL10_SSR_S1) | BF_CSU_CSL10_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL10, field NUR_S1[18] (RW)
@@ -5994,7 +5612,6 @@ typedef union _hw_csu_csl10
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL10_NUR_S1      (18)      //!< Bit position for CSU_CSL10_NUR_S1.
 #define BM_CSU_CSL10_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL10_NUR_S1.
 
@@ -6008,7 +5625,6 @@ typedef union _hw_csu_csl10
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL10_NUR_S1(v)   (HW_CSU_CSL10_WR((HW_CSU_CSL10_RD() & ~BM_CSU_CSL10_NUR_S1) | BF_CSU_CSL10_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL10, field NSR_S1[19] (RW)
@@ -6020,7 +5636,6 @@ typedef union _hw_csu_csl10
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL10_NSR_S1      (19)      //!< Bit position for CSU_CSL10_NSR_S1.
 #define BM_CSU_CSL10_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL10_NSR_S1.
 
@@ -6034,7 +5649,6 @@ typedef union _hw_csu_csl10
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL10_NSR_S1(v)   (HW_CSU_CSL10_WR((HW_CSU_CSL10_RD() & ~BM_CSU_CSL10_NSR_S1) | BF_CSU_CSL10_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL10, field SUW_S1[20] (RW)
@@ -6046,7 +5660,6 @@ typedef union _hw_csu_csl10
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL10_SUW_S1      (20)      //!< Bit position for CSU_CSL10_SUW_S1.
 #define BM_CSU_CSL10_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL10_SUW_S1.
 
@@ -6060,7 +5673,6 @@ typedef union _hw_csu_csl10
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL10_SUW_S1(v)   (HW_CSU_CSL10_WR((HW_CSU_CSL10_RD() & ~BM_CSU_CSL10_SUW_S1) | BF_CSU_CSL10_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL10, field SSW_S1[21] (RW)
@@ -6072,7 +5684,6 @@ typedef union _hw_csu_csl10
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL10_SSW_S1      (21)      //!< Bit position for CSU_CSL10_SSW_S1.
 #define BM_CSU_CSL10_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL10_SSW_S1.
 
@@ -6086,7 +5697,6 @@ typedef union _hw_csu_csl10
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL10_SSW_S1(v)   (HW_CSU_CSL10_WR((HW_CSU_CSL10_RD() & ~BM_CSU_CSL10_SSW_S1) | BF_CSU_CSL10_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL10, field NUW_S1[22] (RW)
@@ -6098,7 +5708,6 @@ typedef union _hw_csu_csl10
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL10_NUW_S1      (22)      //!< Bit position for CSU_CSL10_NUW_S1.
 #define BM_CSU_CSL10_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL10_NUW_S1.
 
@@ -6112,7 +5721,6 @@ typedef union _hw_csu_csl10
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL10_NUW_S1(v)   (HW_CSU_CSL10_WR((HW_CSU_CSL10_RD() & ~BM_CSU_CSL10_NUW_S1) | BF_CSU_CSL10_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL10, field NSW_S1[23] (RW)
@@ -6124,7 +5732,6 @@ typedef union _hw_csu_csl10
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL10_NSW_S1      (23)      //!< Bit position for CSU_CSL10_NSW_S1.
 #define BM_CSU_CSL10_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL10_NSW_S1.
 
@@ -6138,7 +5745,6 @@ typedef union _hw_csu_csl10
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL10_NSW_S1(v)   (HW_CSU_CSL10_WR((HW_CSU_CSL10_RD() & ~BM_CSU_CSL10_NSW_S1) | BF_CSU_CSL10_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL10, field LOCK_S1[24] (RW)
@@ -6150,7 +5756,6 @@ typedef union _hw_csu_csl10
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL10_LOCK_S1      (24)      //!< Bit position for CSU_CSL10_LOCK_S1.
 #define BM_CSU_CSL10_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL10_LOCK_S1.
 
@@ -6164,7 +5769,6 @@ typedef union _hw_csu_csl10
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL10_LOCK_S1(v)   (HW_CSU_CSL10_WR((HW_CSU_CSL10_RD() & ~BM_CSU_CSL10_LOCK_S1) | BF_CSU_CSL10_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6261,7 +5865,6 @@ typedef union _hw_csu_csl11
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL11_SUR_S2      (0)      //!< Bit position for CSU_CSL11_SUR_S2.
 #define BM_CSU_CSL11_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL11_SUR_S2.
 
@@ -6275,7 +5878,6 @@ typedef union _hw_csu_csl11
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL11_SUR_S2(v)   (HW_CSU_CSL11_WR((HW_CSU_CSL11_RD() & ~BM_CSU_CSL11_SUR_S2) | BF_CSU_CSL11_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL11, field SSR_S2[1] (RW)
@@ -6287,7 +5889,6 @@ typedef union _hw_csu_csl11
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL11_SSR_S2      (1)      //!< Bit position for CSU_CSL11_SSR_S2.
 #define BM_CSU_CSL11_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL11_SSR_S2.
 
@@ -6301,7 +5902,6 @@ typedef union _hw_csu_csl11
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL11_SSR_S2(v)   (HW_CSU_CSL11_WR((HW_CSU_CSL11_RD() & ~BM_CSU_CSL11_SSR_S2) | BF_CSU_CSL11_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL11, field NUR_S2[2] (RW)
@@ -6313,7 +5913,6 @@ typedef union _hw_csu_csl11
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL11_NUR_S2      (2)      //!< Bit position for CSU_CSL11_NUR_S2.
 #define BM_CSU_CSL11_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL11_NUR_S2.
 
@@ -6327,7 +5926,6 @@ typedef union _hw_csu_csl11
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL11_NUR_S2(v)   (HW_CSU_CSL11_WR((HW_CSU_CSL11_RD() & ~BM_CSU_CSL11_NUR_S2) | BF_CSU_CSL11_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL11, field NSR_S2[3] (RW)
@@ -6339,7 +5937,6 @@ typedef union _hw_csu_csl11
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL11_NSR_S2      (3)      //!< Bit position for CSU_CSL11_NSR_S2.
 #define BM_CSU_CSL11_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL11_NSR_S2.
 
@@ -6353,7 +5950,6 @@ typedef union _hw_csu_csl11
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL11_NSR_S2(v)   (HW_CSU_CSL11_WR((HW_CSU_CSL11_RD() & ~BM_CSU_CSL11_NSR_S2) | BF_CSU_CSL11_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL11, field SUW_S2[4] (RW)
@@ -6365,7 +5961,6 @@ typedef union _hw_csu_csl11
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL11_SUW_S2      (4)      //!< Bit position for CSU_CSL11_SUW_S2.
 #define BM_CSU_CSL11_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL11_SUW_S2.
 
@@ -6379,7 +5974,6 @@ typedef union _hw_csu_csl11
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL11_SUW_S2(v)   (HW_CSU_CSL11_WR((HW_CSU_CSL11_RD() & ~BM_CSU_CSL11_SUW_S2) | BF_CSU_CSL11_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL11, field SSW_S2[5] (RW)
@@ -6391,7 +5985,6 @@ typedef union _hw_csu_csl11
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL11_SSW_S2      (5)      //!< Bit position for CSU_CSL11_SSW_S2.
 #define BM_CSU_CSL11_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL11_SSW_S2.
 
@@ -6405,7 +5998,6 @@ typedef union _hw_csu_csl11
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL11_SSW_S2(v)   (HW_CSU_CSL11_WR((HW_CSU_CSL11_RD() & ~BM_CSU_CSL11_SSW_S2) | BF_CSU_CSL11_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL11, field NUW_S2[6] (RW)
@@ -6417,7 +6009,6 @@ typedef union _hw_csu_csl11
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL11_NUW_S2      (6)      //!< Bit position for CSU_CSL11_NUW_S2.
 #define BM_CSU_CSL11_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL11_NUW_S2.
 
@@ -6431,7 +6022,6 @@ typedef union _hw_csu_csl11
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL11_NUW_S2(v)   (HW_CSU_CSL11_WR((HW_CSU_CSL11_RD() & ~BM_CSU_CSL11_NUW_S2) | BF_CSU_CSL11_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL11, field NSW_S2[7] (RW)
@@ -6443,7 +6033,6 @@ typedef union _hw_csu_csl11
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL11_NSW_S2      (7)      //!< Bit position for CSU_CSL11_NSW_S2.
 #define BM_CSU_CSL11_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL11_NSW_S2.
 
@@ -6457,7 +6046,6 @@ typedef union _hw_csu_csl11
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL11_NSW_S2(v)   (HW_CSU_CSL11_WR((HW_CSU_CSL11_RD() & ~BM_CSU_CSL11_NSW_S2) | BF_CSU_CSL11_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL11, field LOCK_S2[8] (RW)
@@ -6469,7 +6057,6 @@ typedef union _hw_csu_csl11
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL11_LOCK_S2      (8)      //!< Bit position for CSU_CSL11_LOCK_S2.
 #define BM_CSU_CSL11_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL11_LOCK_S2.
 
@@ -6483,7 +6070,6 @@ typedef union _hw_csu_csl11
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL11_LOCK_S2(v)   (HW_CSU_CSL11_WR((HW_CSU_CSL11_RD() & ~BM_CSU_CSL11_LOCK_S2) | BF_CSU_CSL11_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL11, field SUR_S1[16] (RW)
@@ -6495,7 +6081,6 @@ typedef union _hw_csu_csl11
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL11_SUR_S1      (16)      //!< Bit position for CSU_CSL11_SUR_S1.
 #define BM_CSU_CSL11_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL11_SUR_S1.
 
@@ -6509,7 +6094,6 @@ typedef union _hw_csu_csl11
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL11_SUR_S1(v)   (HW_CSU_CSL11_WR((HW_CSU_CSL11_RD() & ~BM_CSU_CSL11_SUR_S1) | BF_CSU_CSL11_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL11, field SSR_S1[17] (RW)
@@ -6521,7 +6105,6 @@ typedef union _hw_csu_csl11
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL11_SSR_S1      (17)      //!< Bit position for CSU_CSL11_SSR_S1.
 #define BM_CSU_CSL11_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL11_SSR_S1.
 
@@ -6535,7 +6118,6 @@ typedef union _hw_csu_csl11
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL11_SSR_S1(v)   (HW_CSU_CSL11_WR((HW_CSU_CSL11_RD() & ~BM_CSU_CSL11_SSR_S1) | BF_CSU_CSL11_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL11, field NUR_S1[18] (RW)
@@ -6547,7 +6129,6 @@ typedef union _hw_csu_csl11
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL11_NUR_S1      (18)      //!< Bit position for CSU_CSL11_NUR_S1.
 #define BM_CSU_CSL11_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL11_NUR_S1.
 
@@ -6561,7 +6142,6 @@ typedef union _hw_csu_csl11
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL11_NUR_S1(v)   (HW_CSU_CSL11_WR((HW_CSU_CSL11_RD() & ~BM_CSU_CSL11_NUR_S1) | BF_CSU_CSL11_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL11, field NSR_S1[19] (RW)
@@ -6573,7 +6153,6 @@ typedef union _hw_csu_csl11
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL11_NSR_S1      (19)      //!< Bit position for CSU_CSL11_NSR_S1.
 #define BM_CSU_CSL11_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL11_NSR_S1.
 
@@ -6587,7 +6166,6 @@ typedef union _hw_csu_csl11
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL11_NSR_S1(v)   (HW_CSU_CSL11_WR((HW_CSU_CSL11_RD() & ~BM_CSU_CSL11_NSR_S1) | BF_CSU_CSL11_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL11, field SUW_S1[20] (RW)
@@ -6599,7 +6177,6 @@ typedef union _hw_csu_csl11
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL11_SUW_S1      (20)      //!< Bit position for CSU_CSL11_SUW_S1.
 #define BM_CSU_CSL11_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL11_SUW_S1.
 
@@ -6613,7 +6190,6 @@ typedef union _hw_csu_csl11
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL11_SUW_S1(v)   (HW_CSU_CSL11_WR((HW_CSU_CSL11_RD() & ~BM_CSU_CSL11_SUW_S1) | BF_CSU_CSL11_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL11, field SSW_S1[21] (RW)
@@ -6625,7 +6201,6 @@ typedef union _hw_csu_csl11
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL11_SSW_S1      (21)      //!< Bit position for CSU_CSL11_SSW_S1.
 #define BM_CSU_CSL11_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL11_SSW_S1.
 
@@ -6639,7 +6214,6 @@ typedef union _hw_csu_csl11
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL11_SSW_S1(v)   (HW_CSU_CSL11_WR((HW_CSU_CSL11_RD() & ~BM_CSU_CSL11_SSW_S1) | BF_CSU_CSL11_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL11, field NUW_S1[22] (RW)
@@ -6651,7 +6225,6 @@ typedef union _hw_csu_csl11
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL11_NUW_S1      (22)      //!< Bit position for CSU_CSL11_NUW_S1.
 #define BM_CSU_CSL11_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL11_NUW_S1.
 
@@ -6665,7 +6238,6 @@ typedef union _hw_csu_csl11
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL11_NUW_S1(v)   (HW_CSU_CSL11_WR((HW_CSU_CSL11_RD() & ~BM_CSU_CSL11_NUW_S1) | BF_CSU_CSL11_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL11, field NSW_S1[23] (RW)
@@ -6677,7 +6249,6 @@ typedef union _hw_csu_csl11
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL11_NSW_S1      (23)      //!< Bit position for CSU_CSL11_NSW_S1.
 #define BM_CSU_CSL11_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL11_NSW_S1.
 
@@ -6691,7 +6262,6 @@ typedef union _hw_csu_csl11
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL11_NSW_S1(v)   (HW_CSU_CSL11_WR((HW_CSU_CSL11_RD() & ~BM_CSU_CSL11_NSW_S1) | BF_CSU_CSL11_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL11, field LOCK_S1[24] (RW)
@@ -6703,7 +6273,6 @@ typedef union _hw_csu_csl11
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL11_LOCK_S1      (24)      //!< Bit position for CSU_CSL11_LOCK_S1.
 #define BM_CSU_CSL11_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL11_LOCK_S1.
 
@@ -6717,7 +6286,6 @@ typedef union _hw_csu_csl11
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL11_LOCK_S1(v)   (HW_CSU_CSL11_WR((HW_CSU_CSL11_RD() & ~BM_CSU_CSL11_LOCK_S1) | BF_CSU_CSL11_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6814,7 +6382,6 @@ typedef union _hw_csu_csl12
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL12_SUR_S2      (0)      //!< Bit position for CSU_CSL12_SUR_S2.
 #define BM_CSU_CSL12_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL12_SUR_S2.
 
@@ -6828,7 +6395,6 @@ typedef union _hw_csu_csl12
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL12_SUR_S2(v)   (HW_CSU_CSL12_WR((HW_CSU_CSL12_RD() & ~BM_CSU_CSL12_SUR_S2) | BF_CSU_CSL12_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL12, field SSR_S2[1] (RW)
@@ -6840,7 +6406,6 @@ typedef union _hw_csu_csl12
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL12_SSR_S2      (1)      //!< Bit position for CSU_CSL12_SSR_S2.
 #define BM_CSU_CSL12_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL12_SSR_S2.
 
@@ -6854,7 +6419,6 @@ typedef union _hw_csu_csl12
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL12_SSR_S2(v)   (HW_CSU_CSL12_WR((HW_CSU_CSL12_RD() & ~BM_CSU_CSL12_SSR_S2) | BF_CSU_CSL12_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL12, field NUR_S2[2] (RW)
@@ -6866,7 +6430,6 @@ typedef union _hw_csu_csl12
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL12_NUR_S2      (2)      //!< Bit position for CSU_CSL12_NUR_S2.
 #define BM_CSU_CSL12_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL12_NUR_S2.
 
@@ -6880,7 +6443,6 @@ typedef union _hw_csu_csl12
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL12_NUR_S2(v)   (HW_CSU_CSL12_WR((HW_CSU_CSL12_RD() & ~BM_CSU_CSL12_NUR_S2) | BF_CSU_CSL12_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL12, field NSR_S2[3] (RW)
@@ -6892,7 +6454,6 @@ typedef union _hw_csu_csl12
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL12_NSR_S2      (3)      //!< Bit position for CSU_CSL12_NSR_S2.
 #define BM_CSU_CSL12_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL12_NSR_S2.
 
@@ -6906,7 +6467,6 @@ typedef union _hw_csu_csl12
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL12_NSR_S2(v)   (HW_CSU_CSL12_WR((HW_CSU_CSL12_RD() & ~BM_CSU_CSL12_NSR_S2) | BF_CSU_CSL12_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL12, field SUW_S2[4] (RW)
@@ -6918,7 +6478,6 @@ typedef union _hw_csu_csl12
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL12_SUW_S2      (4)      //!< Bit position for CSU_CSL12_SUW_S2.
 #define BM_CSU_CSL12_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL12_SUW_S2.
 
@@ -6932,7 +6491,6 @@ typedef union _hw_csu_csl12
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL12_SUW_S2(v)   (HW_CSU_CSL12_WR((HW_CSU_CSL12_RD() & ~BM_CSU_CSL12_SUW_S2) | BF_CSU_CSL12_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL12, field SSW_S2[5] (RW)
@@ -6944,7 +6502,6 @@ typedef union _hw_csu_csl12
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL12_SSW_S2      (5)      //!< Bit position for CSU_CSL12_SSW_S2.
 #define BM_CSU_CSL12_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL12_SSW_S2.
 
@@ -6958,7 +6515,6 @@ typedef union _hw_csu_csl12
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL12_SSW_S2(v)   (HW_CSU_CSL12_WR((HW_CSU_CSL12_RD() & ~BM_CSU_CSL12_SSW_S2) | BF_CSU_CSL12_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL12, field NUW_S2[6] (RW)
@@ -6970,7 +6526,6 @@ typedef union _hw_csu_csl12
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL12_NUW_S2      (6)      //!< Bit position for CSU_CSL12_NUW_S2.
 #define BM_CSU_CSL12_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL12_NUW_S2.
 
@@ -6984,7 +6539,6 @@ typedef union _hw_csu_csl12
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL12_NUW_S2(v)   (HW_CSU_CSL12_WR((HW_CSU_CSL12_RD() & ~BM_CSU_CSL12_NUW_S2) | BF_CSU_CSL12_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL12, field NSW_S2[7] (RW)
@@ -6996,7 +6550,6 @@ typedef union _hw_csu_csl12
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL12_NSW_S2      (7)      //!< Bit position for CSU_CSL12_NSW_S2.
 #define BM_CSU_CSL12_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL12_NSW_S2.
 
@@ -7010,7 +6563,6 @@ typedef union _hw_csu_csl12
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL12_NSW_S2(v)   (HW_CSU_CSL12_WR((HW_CSU_CSL12_RD() & ~BM_CSU_CSL12_NSW_S2) | BF_CSU_CSL12_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL12, field LOCK_S2[8] (RW)
@@ -7022,7 +6574,6 @@ typedef union _hw_csu_csl12
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL12_LOCK_S2      (8)      //!< Bit position for CSU_CSL12_LOCK_S2.
 #define BM_CSU_CSL12_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL12_LOCK_S2.
 
@@ -7036,7 +6587,6 @@ typedef union _hw_csu_csl12
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL12_LOCK_S2(v)   (HW_CSU_CSL12_WR((HW_CSU_CSL12_RD() & ~BM_CSU_CSL12_LOCK_S2) | BF_CSU_CSL12_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL12, field SUR_S1[16] (RW)
@@ -7048,7 +6598,6 @@ typedef union _hw_csu_csl12
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL12_SUR_S1      (16)      //!< Bit position for CSU_CSL12_SUR_S1.
 #define BM_CSU_CSL12_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL12_SUR_S1.
 
@@ -7062,7 +6611,6 @@ typedef union _hw_csu_csl12
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL12_SUR_S1(v)   (HW_CSU_CSL12_WR((HW_CSU_CSL12_RD() & ~BM_CSU_CSL12_SUR_S1) | BF_CSU_CSL12_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL12, field SSR_S1[17] (RW)
@@ -7074,7 +6622,6 @@ typedef union _hw_csu_csl12
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL12_SSR_S1      (17)      //!< Bit position for CSU_CSL12_SSR_S1.
 #define BM_CSU_CSL12_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL12_SSR_S1.
 
@@ -7088,7 +6635,6 @@ typedef union _hw_csu_csl12
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL12_SSR_S1(v)   (HW_CSU_CSL12_WR((HW_CSU_CSL12_RD() & ~BM_CSU_CSL12_SSR_S1) | BF_CSU_CSL12_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL12, field NUR_S1[18] (RW)
@@ -7100,7 +6646,6 @@ typedef union _hw_csu_csl12
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL12_NUR_S1      (18)      //!< Bit position for CSU_CSL12_NUR_S1.
 #define BM_CSU_CSL12_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL12_NUR_S1.
 
@@ -7114,7 +6659,6 @@ typedef union _hw_csu_csl12
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL12_NUR_S1(v)   (HW_CSU_CSL12_WR((HW_CSU_CSL12_RD() & ~BM_CSU_CSL12_NUR_S1) | BF_CSU_CSL12_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL12, field NSR_S1[19] (RW)
@@ -7126,7 +6670,6 @@ typedef union _hw_csu_csl12
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL12_NSR_S1      (19)      //!< Bit position for CSU_CSL12_NSR_S1.
 #define BM_CSU_CSL12_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL12_NSR_S1.
 
@@ -7140,7 +6683,6 @@ typedef union _hw_csu_csl12
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL12_NSR_S1(v)   (HW_CSU_CSL12_WR((HW_CSU_CSL12_RD() & ~BM_CSU_CSL12_NSR_S1) | BF_CSU_CSL12_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL12, field SUW_S1[20] (RW)
@@ -7152,7 +6694,6 @@ typedef union _hw_csu_csl12
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL12_SUW_S1      (20)      //!< Bit position for CSU_CSL12_SUW_S1.
 #define BM_CSU_CSL12_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL12_SUW_S1.
 
@@ -7166,7 +6707,6 @@ typedef union _hw_csu_csl12
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL12_SUW_S1(v)   (HW_CSU_CSL12_WR((HW_CSU_CSL12_RD() & ~BM_CSU_CSL12_SUW_S1) | BF_CSU_CSL12_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL12, field SSW_S1[21] (RW)
@@ -7178,7 +6718,6 @@ typedef union _hw_csu_csl12
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL12_SSW_S1      (21)      //!< Bit position for CSU_CSL12_SSW_S1.
 #define BM_CSU_CSL12_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL12_SSW_S1.
 
@@ -7192,7 +6731,6 @@ typedef union _hw_csu_csl12
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL12_SSW_S1(v)   (HW_CSU_CSL12_WR((HW_CSU_CSL12_RD() & ~BM_CSU_CSL12_SSW_S1) | BF_CSU_CSL12_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL12, field NUW_S1[22] (RW)
@@ -7204,7 +6742,6 @@ typedef union _hw_csu_csl12
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL12_NUW_S1      (22)      //!< Bit position for CSU_CSL12_NUW_S1.
 #define BM_CSU_CSL12_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL12_NUW_S1.
 
@@ -7218,7 +6755,6 @@ typedef union _hw_csu_csl12
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL12_NUW_S1(v)   (HW_CSU_CSL12_WR((HW_CSU_CSL12_RD() & ~BM_CSU_CSL12_NUW_S1) | BF_CSU_CSL12_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL12, field NSW_S1[23] (RW)
@@ -7230,7 +6766,6 @@ typedef union _hw_csu_csl12
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL12_NSW_S1      (23)      //!< Bit position for CSU_CSL12_NSW_S1.
 #define BM_CSU_CSL12_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL12_NSW_S1.
 
@@ -7244,7 +6779,6 @@ typedef union _hw_csu_csl12
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL12_NSW_S1(v)   (HW_CSU_CSL12_WR((HW_CSU_CSL12_RD() & ~BM_CSU_CSL12_NSW_S1) | BF_CSU_CSL12_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL12, field LOCK_S1[24] (RW)
@@ -7256,7 +6790,6 @@ typedef union _hw_csu_csl12
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL12_LOCK_S1      (24)      //!< Bit position for CSU_CSL12_LOCK_S1.
 #define BM_CSU_CSL12_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL12_LOCK_S1.
 
@@ -7270,7 +6803,6 @@ typedef union _hw_csu_csl12
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL12_LOCK_S1(v)   (HW_CSU_CSL12_WR((HW_CSU_CSL12_RD() & ~BM_CSU_CSL12_LOCK_S1) | BF_CSU_CSL12_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7367,7 +6899,6 @@ typedef union _hw_csu_csl13
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL13_SUR_S2      (0)      //!< Bit position for CSU_CSL13_SUR_S2.
 #define BM_CSU_CSL13_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL13_SUR_S2.
 
@@ -7381,7 +6912,6 @@ typedef union _hw_csu_csl13
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL13_SUR_S2(v)   (HW_CSU_CSL13_WR((HW_CSU_CSL13_RD() & ~BM_CSU_CSL13_SUR_S2) | BF_CSU_CSL13_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL13, field SSR_S2[1] (RW)
@@ -7393,7 +6923,6 @@ typedef union _hw_csu_csl13
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL13_SSR_S2      (1)      //!< Bit position for CSU_CSL13_SSR_S2.
 #define BM_CSU_CSL13_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL13_SSR_S2.
 
@@ -7407,7 +6936,6 @@ typedef union _hw_csu_csl13
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL13_SSR_S2(v)   (HW_CSU_CSL13_WR((HW_CSU_CSL13_RD() & ~BM_CSU_CSL13_SSR_S2) | BF_CSU_CSL13_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL13, field NUR_S2[2] (RW)
@@ -7419,7 +6947,6 @@ typedef union _hw_csu_csl13
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL13_NUR_S2      (2)      //!< Bit position for CSU_CSL13_NUR_S2.
 #define BM_CSU_CSL13_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL13_NUR_S2.
 
@@ -7433,7 +6960,6 @@ typedef union _hw_csu_csl13
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL13_NUR_S2(v)   (HW_CSU_CSL13_WR((HW_CSU_CSL13_RD() & ~BM_CSU_CSL13_NUR_S2) | BF_CSU_CSL13_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL13, field NSR_S2[3] (RW)
@@ -7445,7 +6971,6 @@ typedef union _hw_csu_csl13
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL13_NSR_S2      (3)      //!< Bit position for CSU_CSL13_NSR_S2.
 #define BM_CSU_CSL13_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL13_NSR_S2.
 
@@ -7459,7 +6984,6 @@ typedef union _hw_csu_csl13
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL13_NSR_S2(v)   (HW_CSU_CSL13_WR((HW_CSU_CSL13_RD() & ~BM_CSU_CSL13_NSR_S2) | BF_CSU_CSL13_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL13, field SUW_S2[4] (RW)
@@ -7471,7 +6995,6 @@ typedef union _hw_csu_csl13
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL13_SUW_S2      (4)      //!< Bit position for CSU_CSL13_SUW_S2.
 #define BM_CSU_CSL13_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL13_SUW_S2.
 
@@ -7485,7 +7008,6 @@ typedef union _hw_csu_csl13
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL13_SUW_S2(v)   (HW_CSU_CSL13_WR((HW_CSU_CSL13_RD() & ~BM_CSU_CSL13_SUW_S2) | BF_CSU_CSL13_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL13, field SSW_S2[5] (RW)
@@ -7497,7 +7019,6 @@ typedef union _hw_csu_csl13
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL13_SSW_S2      (5)      //!< Bit position for CSU_CSL13_SSW_S2.
 #define BM_CSU_CSL13_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL13_SSW_S2.
 
@@ -7511,7 +7032,6 @@ typedef union _hw_csu_csl13
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL13_SSW_S2(v)   (HW_CSU_CSL13_WR((HW_CSU_CSL13_RD() & ~BM_CSU_CSL13_SSW_S2) | BF_CSU_CSL13_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL13, field NUW_S2[6] (RW)
@@ -7523,7 +7043,6 @@ typedef union _hw_csu_csl13
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL13_NUW_S2      (6)      //!< Bit position for CSU_CSL13_NUW_S2.
 #define BM_CSU_CSL13_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL13_NUW_S2.
 
@@ -7537,7 +7056,6 @@ typedef union _hw_csu_csl13
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL13_NUW_S2(v)   (HW_CSU_CSL13_WR((HW_CSU_CSL13_RD() & ~BM_CSU_CSL13_NUW_S2) | BF_CSU_CSL13_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL13, field NSW_S2[7] (RW)
@@ -7549,7 +7067,6 @@ typedef union _hw_csu_csl13
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL13_NSW_S2      (7)      //!< Bit position for CSU_CSL13_NSW_S2.
 #define BM_CSU_CSL13_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL13_NSW_S2.
 
@@ -7563,7 +7080,6 @@ typedef union _hw_csu_csl13
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL13_NSW_S2(v)   (HW_CSU_CSL13_WR((HW_CSU_CSL13_RD() & ~BM_CSU_CSL13_NSW_S2) | BF_CSU_CSL13_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL13, field LOCK_S2[8] (RW)
@@ -7575,7 +7091,6 @@ typedef union _hw_csu_csl13
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL13_LOCK_S2      (8)      //!< Bit position for CSU_CSL13_LOCK_S2.
 #define BM_CSU_CSL13_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL13_LOCK_S2.
 
@@ -7589,7 +7104,6 @@ typedef union _hw_csu_csl13
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL13_LOCK_S2(v)   (HW_CSU_CSL13_WR((HW_CSU_CSL13_RD() & ~BM_CSU_CSL13_LOCK_S2) | BF_CSU_CSL13_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL13, field SUR_S1[16] (RW)
@@ -7601,7 +7115,6 @@ typedef union _hw_csu_csl13
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL13_SUR_S1      (16)      //!< Bit position for CSU_CSL13_SUR_S1.
 #define BM_CSU_CSL13_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL13_SUR_S1.
 
@@ -7615,7 +7128,6 @@ typedef union _hw_csu_csl13
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL13_SUR_S1(v)   (HW_CSU_CSL13_WR((HW_CSU_CSL13_RD() & ~BM_CSU_CSL13_SUR_S1) | BF_CSU_CSL13_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL13, field SSR_S1[17] (RW)
@@ -7627,7 +7139,6 @@ typedef union _hw_csu_csl13
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL13_SSR_S1      (17)      //!< Bit position for CSU_CSL13_SSR_S1.
 #define BM_CSU_CSL13_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL13_SSR_S1.
 
@@ -7641,7 +7152,6 @@ typedef union _hw_csu_csl13
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL13_SSR_S1(v)   (HW_CSU_CSL13_WR((HW_CSU_CSL13_RD() & ~BM_CSU_CSL13_SSR_S1) | BF_CSU_CSL13_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL13, field NUR_S1[18] (RW)
@@ -7653,7 +7163,6 @@ typedef union _hw_csu_csl13
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL13_NUR_S1      (18)      //!< Bit position for CSU_CSL13_NUR_S1.
 #define BM_CSU_CSL13_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL13_NUR_S1.
 
@@ -7667,7 +7176,6 @@ typedef union _hw_csu_csl13
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL13_NUR_S1(v)   (HW_CSU_CSL13_WR((HW_CSU_CSL13_RD() & ~BM_CSU_CSL13_NUR_S1) | BF_CSU_CSL13_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL13, field NSR_S1[19] (RW)
@@ -7679,7 +7187,6 @@ typedef union _hw_csu_csl13
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL13_NSR_S1      (19)      //!< Bit position for CSU_CSL13_NSR_S1.
 #define BM_CSU_CSL13_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL13_NSR_S1.
 
@@ -7693,7 +7200,6 @@ typedef union _hw_csu_csl13
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL13_NSR_S1(v)   (HW_CSU_CSL13_WR((HW_CSU_CSL13_RD() & ~BM_CSU_CSL13_NSR_S1) | BF_CSU_CSL13_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL13, field SUW_S1[20] (RW)
@@ -7705,7 +7211,6 @@ typedef union _hw_csu_csl13
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL13_SUW_S1      (20)      //!< Bit position for CSU_CSL13_SUW_S1.
 #define BM_CSU_CSL13_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL13_SUW_S1.
 
@@ -7719,7 +7224,6 @@ typedef union _hw_csu_csl13
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL13_SUW_S1(v)   (HW_CSU_CSL13_WR((HW_CSU_CSL13_RD() & ~BM_CSU_CSL13_SUW_S1) | BF_CSU_CSL13_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL13, field SSW_S1[21] (RW)
@@ -7731,7 +7235,6 @@ typedef union _hw_csu_csl13
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL13_SSW_S1      (21)      //!< Bit position for CSU_CSL13_SSW_S1.
 #define BM_CSU_CSL13_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL13_SSW_S1.
 
@@ -7745,7 +7248,6 @@ typedef union _hw_csu_csl13
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL13_SSW_S1(v)   (HW_CSU_CSL13_WR((HW_CSU_CSL13_RD() & ~BM_CSU_CSL13_SSW_S1) | BF_CSU_CSL13_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL13, field NUW_S1[22] (RW)
@@ -7757,7 +7259,6 @@ typedef union _hw_csu_csl13
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL13_NUW_S1      (22)      //!< Bit position for CSU_CSL13_NUW_S1.
 #define BM_CSU_CSL13_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL13_NUW_S1.
 
@@ -7771,7 +7272,6 @@ typedef union _hw_csu_csl13
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL13_NUW_S1(v)   (HW_CSU_CSL13_WR((HW_CSU_CSL13_RD() & ~BM_CSU_CSL13_NUW_S1) | BF_CSU_CSL13_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL13, field NSW_S1[23] (RW)
@@ -7783,7 +7283,6 @@ typedef union _hw_csu_csl13
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL13_NSW_S1      (23)      //!< Bit position for CSU_CSL13_NSW_S1.
 #define BM_CSU_CSL13_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL13_NSW_S1.
 
@@ -7797,7 +7296,6 @@ typedef union _hw_csu_csl13
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL13_NSW_S1(v)   (HW_CSU_CSL13_WR((HW_CSU_CSL13_RD() & ~BM_CSU_CSL13_NSW_S1) | BF_CSU_CSL13_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL13, field LOCK_S1[24] (RW)
@@ -7809,7 +7307,6 @@ typedef union _hw_csu_csl13
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL13_LOCK_S1      (24)      //!< Bit position for CSU_CSL13_LOCK_S1.
 #define BM_CSU_CSL13_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL13_LOCK_S1.
 
@@ -7823,7 +7320,6 @@ typedef union _hw_csu_csl13
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL13_LOCK_S1(v)   (HW_CSU_CSL13_WR((HW_CSU_CSL13_RD() & ~BM_CSU_CSL13_LOCK_S1) | BF_CSU_CSL13_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7920,7 +7416,6 @@ typedef union _hw_csu_csl14
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL14_SUR_S2      (0)      //!< Bit position for CSU_CSL14_SUR_S2.
 #define BM_CSU_CSL14_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL14_SUR_S2.
 
@@ -7934,7 +7429,6 @@ typedef union _hw_csu_csl14
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL14_SUR_S2(v)   (HW_CSU_CSL14_WR((HW_CSU_CSL14_RD() & ~BM_CSU_CSL14_SUR_S2) | BF_CSU_CSL14_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL14, field SSR_S2[1] (RW)
@@ -7946,7 +7440,6 @@ typedef union _hw_csu_csl14
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL14_SSR_S2      (1)      //!< Bit position for CSU_CSL14_SSR_S2.
 #define BM_CSU_CSL14_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL14_SSR_S2.
 
@@ -7960,7 +7453,6 @@ typedef union _hw_csu_csl14
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL14_SSR_S2(v)   (HW_CSU_CSL14_WR((HW_CSU_CSL14_RD() & ~BM_CSU_CSL14_SSR_S2) | BF_CSU_CSL14_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL14, field NUR_S2[2] (RW)
@@ -7972,7 +7464,6 @@ typedef union _hw_csu_csl14
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL14_NUR_S2      (2)      //!< Bit position for CSU_CSL14_NUR_S2.
 #define BM_CSU_CSL14_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL14_NUR_S2.
 
@@ -7986,7 +7477,6 @@ typedef union _hw_csu_csl14
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL14_NUR_S2(v)   (HW_CSU_CSL14_WR((HW_CSU_CSL14_RD() & ~BM_CSU_CSL14_NUR_S2) | BF_CSU_CSL14_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL14, field NSR_S2[3] (RW)
@@ -7998,7 +7488,6 @@ typedef union _hw_csu_csl14
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL14_NSR_S2      (3)      //!< Bit position for CSU_CSL14_NSR_S2.
 #define BM_CSU_CSL14_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL14_NSR_S2.
 
@@ -8012,7 +7501,6 @@ typedef union _hw_csu_csl14
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL14_NSR_S2(v)   (HW_CSU_CSL14_WR((HW_CSU_CSL14_RD() & ~BM_CSU_CSL14_NSR_S2) | BF_CSU_CSL14_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL14, field SUW_S2[4] (RW)
@@ -8024,7 +7512,6 @@ typedef union _hw_csu_csl14
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL14_SUW_S2      (4)      //!< Bit position for CSU_CSL14_SUW_S2.
 #define BM_CSU_CSL14_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL14_SUW_S2.
 
@@ -8038,7 +7525,6 @@ typedef union _hw_csu_csl14
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL14_SUW_S2(v)   (HW_CSU_CSL14_WR((HW_CSU_CSL14_RD() & ~BM_CSU_CSL14_SUW_S2) | BF_CSU_CSL14_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL14, field SSW_S2[5] (RW)
@@ -8050,7 +7536,6 @@ typedef union _hw_csu_csl14
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL14_SSW_S2      (5)      //!< Bit position for CSU_CSL14_SSW_S2.
 #define BM_CSU_CSL14_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL14_SSW_S2.
 
@@ -8064,7 +7549,6 @@ typedef union _hw_csu_csl14
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL14_SSW_S2(v)   (HW_CSU_CSL14_WR((HW_CSU_CSL14_RD() & ~BM_CSU_CSL14_SSW_S2) | BF_CSU_CSL14_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL14, field NUW_S2[6] (RW)
@@ -8076,7 +7560,6 @@ typedef union _hw_csu_csl14
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL14_NUW_S2      (6)      //!< Bit position for CSU_CSL14_NUW_S2.
 #define BM_CSU_CSL14_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL14_NUW_S2.
 
@@ -8090,7 +7573,6 @@ typedef union _hw_csu_csl14
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL14_NUW_S2(v)   (HW_CSU_CSL14_WR((HW_CSU_CSL14_RD() & ~BM_CSU_CSL14_NUW_S2) | BF_CSU_CSL14_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL14, field NSW_S2[7] (RW)
@@ -8102,7 +7584,6 @@ typedef union _hw_csu_csl14
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL14_NSW_S2      (7)      //!< Bit position for CSU_CSL14_NSW_S2.
 #define BM_CSU_CSL14_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL14_NSW_S2.
 
@@ -8116,7 +7597,6 @@ typedef union _hw_csu_csl14
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL14_NSW_S2(v)   (HW_CSU_CSL14_WR((HW_CSU_CSL14_RD() & ~BM_CSU_CSL14_NSW_S2) | BF_CSU_CSL14_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL14, field LOCK_S2[8] (RW)
@@ -8128,7 +7608,6 @@ typedef union _hw_csu_csl14
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL14_LOCK_S2      (8)      //!< Bit position for CSU_CSL14_LOCK_S2.
 #define BM_CSU_CSL14_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL14_LOCK_S2.
 
@@ -8142,7 +7621,6 @@ typedef union _hw_csu_csl14
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL14_LOCK_S2(v)   (HW_CSU_CSL14_WR((HW_CSU_CSL14_RD() & ~BM_CSU_CSL14_LOCK_S2) | BF_CSU_CSL14_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL14, field SUR_S1[16] (RW)
@@ -8154,7 +7632,6 @@ typedef union _hw_csu_csl14
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL14_SUR_S1      (16)      //!< Bit position for CSU_CSL14_SUR_S1.
 #define BM_CSU_CSL14_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL14_SUR_S1.
 
@@ -8168,7 +7645,6 @@ typedef union _hw_csu_csl14
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL14_SUR_S1(v)   (HW_CSU_CSL14_WR((HW_CSU_CSL14_RD() & ~BM_CSU_CSL14_SUR_S1) | BF_CSU_CSL14_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL14, field SSR_S1[17] (RW)
@@ -8180,7 +7656,6 @@ typedef union _hw_csu_csl14
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL14_SSR_S1      (17)      //!< Bit position for CSU_CSL14_SSR_S1.
 #define BM_CSU_CSL14_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL14_SSR_S1.
 
@@ -8194,7 +7669,6 @@ typedef union _hw_csu_csl14
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL14_SSR_S1(v)   (HW_CSU_CSL14_WR((HW_CSU_CSL14_RD() & ~BM_CSU_CSL14_SSR_S1) | BF_CSU_CSL14_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL14, field NUR_S1[18] (RW)
@@ -8206,7 +7680,6 @@ typedef union _hw_csu_csl14
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL14_NUR_S1      (18)      //!< Bit position for CSU_CSL14_NUR_S1.
 #define BM_CSU_CSL14_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL14_NUR_S1.
 
@@ -8220,7 +7693,6 @@ typedef union _hw_csu_csl14
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL14_NUR_S1(v)   (HW_CSU_CSL14_WR((HW_CSU_CSL14_RD() & ~BM_CSU_CSL14_NUR_S1) | BF_CSU_CSL14_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL14, field NSR_S1[19] (RW)
@@ -8232,7 +7704,6 @@ typedef union _hw_csu_csl14
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL14_NSR_S1      (19)      //!< Bit position for CSU_CSL14_NSR_S1.
 #define BM_CSU_CSL14_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL14_NSR_S1.
 
@@ -8246,7 +7717,6 @@ typedef union _hw_csu_csl14
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL14_NSR_S1(v)   (HW_CSU_CSL14_WR((HW_CSU_CSL14_RD() & ~BM_CSU_CSL14_NSR_S1) | BF_CSU_CSL14_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL14, field SUW_S1[20] (RW)
@@ -8258,7 +7728,6 @@ typedef union _hw_csu_csl14
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL14_SUW_S1      (20)      //!< Bit position for CSU_CSL14_SUW_S1.
 #define BM_CSU_CSL14_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL14_SUW_S1.
 
@@ -8272,7 +7741,6 @@ typedef union _hw_csu_csl14
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL14_SUW_S1(v)   (HW_CSU_CSL14_WR((HW_CSU_CSL14_RD() & ~BM_CSU_CSL14_SUW_S1) | BF_CSU_CSL14_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL14, field SSW_S1[21] (RW)
@@ -8284,7 +7752,6 @@ typedef union _hw_csu_csl14
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL14_SSW_S1      (21)      //!< Bit position for CSU_CSL14_SSW_S1.
 #define BM_CSU_CSL14_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL14_SSW_S1.
 
@@ -8298,7 +7765,6 @@ typedef union _hw_csu_csl14
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL14_SSW_S1(v)   (HW_CSU_CSL14_WR((HW_CSU_CSL14_RD() & ~BM_CSU_CSL14_SSW_S1) | BF_CSU_CSL14_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL14, field NUW_S1[22] (RW)
@@ -8310,7 +7776,6 @@ typedef union _hw_csu_csl14
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL14_NUW_S1      (22)      //!< Bit position for CSU_CSL14_NUW_S1.
 #define BM_CSU_CSL14_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL14_NUW_S1.
 
@@ -8324,7 +7789,6 @@ typedef union _hw_csu_csl14
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL14_NUW_S1(v)   (HW_CSU_CSL14_WR((HW_CSU_CSL14_RD() & ~BM_CSU_CSL14_NUW_S1) | BF_CSU_CSL14_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL14, field NSW_S1[23] (RW)
@@ -8336,7 +7800,6 @@ typedef union _hw_csu_csl14
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL14_NSW_S1      (23)      //!< Bit position for CSU_CSL14_NSW_S1.
 #define BM_CSU_CSL14_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL14_NSW_S1.
 
@@ -8350,7 +7813,6 @@ typedef union _hw_csu_csl14
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL14_NSW_S1(v)   (HW_CSU_CSL14_WR((HW_CSU_CSL14_RD() & ~BM_CSU_CSL14_NSW_S1) | BF_CSU_CSL14_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL14, field LOCK_S1[24] (RW)
@@ -8362,7 +7824,6 @@ typedef union _hw_csu_csl14
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL14_LOCK_S1      (24)      //!< Bit position for CSU_CSL14_LOCK_S1.
 #define BM_CSU_CSL14_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL14_LOCK_S1.
 
@@ -8376,7 +7837,6 @@ typedef union _hw_csu_csl14
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL14_LOCK_S1(v)   (HW_CSU_CSL14_WR((HW_CSU_CSL14_RD() & ~BM_CSU_CSL14_LOCK_S1) | BF_CSU_CSL14_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8473,7 +7933,6 @@ typedef union _hw_csu_csl15
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL15_SUR_S2      (0)      //!< Bit position for CSU_CSL15_SUR_S2.
 #define BM_CSU_CSL15_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL15_SUR_S2.
 
@@ -8487,7 +7946,6 @@ typedef union _hw_csu_csl15
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL15_SUR_S2(v)   (HW_CSU_CSL15_WR((HW_CSU_CSL15_RD() & ~BM_CSU_CSL15_SUR_S2) | BF_CSU_CSL15_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL15, field SSR_S2[1] (RW)
@@ -8499,7 +7957,6 @@ typedef union _hw_csu_csl15
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL15_SSR_S2      (1)      //!< Bit position for CSU_CSL15_SSR_S2.
 #define BM_CSU_CSL15_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL15_SSR_S2.
 
@@ -8513,7 +7970,6 @@ typedef union _hw_csu_csl15
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL15_SSR_S2(v)   (HW_CSU_CSL15_WR((HW_CSU_CSL15_RD() & ~BM_CSU_CSL15_SSR_S2) | BF_CSU_CSL15_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL15, field NUR_S2[2] (RW)
@@ -8525,7 +7981,6 @@ typedef union _hw_csu_csl15
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL15_NUR_S2      (2)      //!< Bit position for CSU_CSL15_NUR_S2.
 #define BM_CSU_CSL15_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL15_NUR_S2.
 
@@ -8539,7 +7994,6 @@ typedef union _hw_csu_csl15
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL15_NUR_S2(v)   (HW_CSU_CSL15_WR((HW_CSU_CSL15_RD() & ~BM_CSU_CSL15_NUR_S2) | BF_CSU_CSL15_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL15, field NSR_S2[3] (RW)
@@ -8551,7 +8005,6 @@ typedef union _hw_csu_csl15
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL15_NSR_S2      (3)      //!< Bit position for CSU_CSL15_NSR_S2.
 #define BM_CSU_CSL15_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL15_NSR_S2.
 
@@ -8565,7 +8018,6 @@ typedef union _hw_csu_csl15
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL15_NSR_S2(v)   (HW_CSU_CSL15_WR((HW_CSU_CSL15_RD() & ~BM_CSU_CSL15_NSR_S2) | BF_CSU_CSL15_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL15, field SUW_S2[4] (RW)
@@ -8577,7 +8029,6 @@ typedef union _hw_csu_csl15
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL15_SUW_S2      (4)      //!< Bit position for CSU_CSL15_SUW_S2.
 #define BM_CSU_CSL15_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL15_SUW_S2.
 
@@ -8591,7 +8042,6 @@ typedef union _hw_csu_csl15
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL15_SUW_S2(v)   (HW_CSU_CSL15_WR((HW_CSU_CSL15_RD() & ~BM_CSU_CSL15_SUW_S2) | BF_CSU_CSL15_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL15, field SSW_S2[5] (RW)
@@ -8603,7 +8053,6 @@ typedef union _hw_csu_csl15
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL15_SSW_S2      (5)      //!< Bit position for CSU_CSL15_SSW_S2.
 #define BM_CSU_CSL15_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL15_SSW_S2.
 
@@ -8617,7 +8066,6 @@ typedef union _hw_csu_csl15
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL15_SSW_S2(v)   (HW_CSU_CSL15_WR((HW_CSU_CSL15_RD() & ~BM_CSU_CSL15_SSW_S2) | BF_CSU_CSL15_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL15, field NUW_S2[6] (RW)
@@ -8629,7 +8077,6 @@ typedef union _hw_csu_csl15
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL15_NUW_S2      (6)      //!< Bit position for CSU_CSL15_NUW_S2.
 #define BM_CSU_CSL15_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL15_NUW_S2.
 
@@ -8643,7 +8090,6 @@ typedef union _hw_csu_csl15
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL15_NUW_S2(v)   (HW_CSU_CSL15_WR((HW_CSU_CSL15_RD() & ~BM_CSU_CSL15_NUW_S2) | BF_CSU_CSL15_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL15, field NSW_S2[7] (RW)
@@ -8655,7 +8101,6 @@ typedef union _hw_csu_csl15
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL15_NSW_S2      (7)      //!< Bit position for CSU_CSL15_NSW_S2.
 #define BM_CSU_CSL15_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL15_NSW_S2.
 
@@ -8669,7 +8114,6 @@ typedef union _hw_csu_csl15
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL15_NSW_S2(v)   (HW_CSU_CSL15_WR((HW_CSU_CSL15_RD() & ~BM_CSU_CSL15_NSW_S2) | BF_CSU_CSL15_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL15, field LOCK_S2[8] (RW)
@@ -8681,7 +8125,6 @@ typedef union _hw_csu_csl15
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL15_LOCK_S2      (8)      //!< Bit position for CSU_CSL15_LOCK_S2.
 #define BM_CSU_CSL15_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL15_LOCK_S2.
 
@@ -8695,7 +8138,6 @@ typedef union _hw_csu_csl15
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL15_LOCK_S2(v)   (HW_CSU_CSL15_WR((HW_CSU_CSL15_RD() & ~BM_CSU_CSL15_LOCK_S2) | BF_CSU_CSL15_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL15, field SUR_S1[16] (RW)
@@ -8707,7 +8149,6 @@ typedef union _hw_csu_csl15
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL15_SUR_S1      (16)      //!< Bit position for CSU_CSL15_SUR_S1.
 #define BM_CSU_CSL15_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL15_SUR_S1.
 
@@ -8721,7 +8162,6 @@ typedef union _hw_csu_csl15
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL15_SUR_S1(v)   (HW_CSU_CSL15_WR((HW_CSU_CSL15_RD() & ~BM_CSU_CSL15_SUR_S1) | BF_CSU_CSL15_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL15, field SSR_S1[17] (RW)
@@ -8733,7 +8173,6 @@ typedef union _hw_csu_csl15
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL15_SSR_S1      (17)      //!< Bit position for CSU_CSL15_SSR_S1.
 #define BM_CSU_CSL15_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL15_SSR_S1.
 
@@ -8747,7 +8186,6 @@ typedef union _hw_csu_csl15
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL15_SSR_S1(v)   (HW_CSU_CSL15_WR((HW_CSU_CSL15_RD() & ~BM_CSU_CSL15_SSR_S1) | BF_CSU_CSL15_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL15, field NUR_S1[18] (RW)
@@ -8759,7 +8197,6 @@ typedef union _hw_csu_csl15
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL15_NUR_S1      (18)      //!< Bit position for CSU_CSL15_NUR_S1.
 #define BM_CSU_CSL15_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL15_NUR_S1.
 
@@ -8773,7 +8210,6 @@ typedef union _hw_csu_csl15
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL15_NUR_S1(v)   (HW_CSU_CSL15_WR((HW_CSU_CSL15_RD() & ~BM_CSU_CSL15_NUR_S1) | BF_CSU_CSL15_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL15, field NSR_S1[19] (RW)
@@ -8785,7 +8221,6 @@ typedef union _hw_csu_csl15
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL15_NSR_S1      (19)      //!< Bit position for CSU_CSL15_NSR_S1.
 #define BM_CSU_CSL15_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL15_NSR_S1.
 
@@ -8799,7 +8234,6 @@ typedef union _hw_csu_csl15
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL15_NSR_S1(v)   (HW_CSU_CSL15_WR((HW_CSU_CSL15_RD() & ~BM_CSU_CSL15_NSR_S1) | BF_CSU_CSL15_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL15, field SUW_S1[20] (RW)
@@ -8811,7 +8245,6 @@ typedef union _hw_csu_csl15
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL15_SUW_S1      (20)      //!< Bit position for CSU_CSL15_SUW_S1.
 #define BM_CSU_CSL15_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL15_SUW_S1.
 
@@ -8825,7 +8258,6 @@ typedef union _hw_csu_csl15
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL15_SUW_S1(v)   (HW_CSU_CSL15_WR((HW_CSU_CSL15_RD() & ~BM_CSU_CSL15_SUW_S1) | BF_CSU_CSL15_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL15, field SSW_S1[21] (RW)
@@ -8837,7 +8269,6 @@ typedef union _hw_csu_csl15
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL15_SSW_S1      (21)      //!< Bit position for CSU_CSL15_SSW_S1.
 #define BM_CSU_CSL15_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL15_SSW_S1.
 
@@ -8851,7 +8282,6 @@ typedef union _hw_csu_csl15
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL15_SSW_S1(v)   (HW_CSU_CSL15_WR((HW_CSU_CSL15_RD() & ~BM_CSU_CSL15_SSW_S1) | BF_CSU_CSL15_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL15, field NUW_S1[22] (RW)
@@ -8863,7 +8293,6 @@ typedef union _hw_csu_csl15
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL15_NUW_S1      (22)      //!< Bit position for CSU_CSL15_NUW_S1.
 #define BM_CSU_CSL15_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL15_NUW_S1.
 
@@ -8877,7 +8306,6 @@ typedef union _hw_csu_csl15
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL15_NUW_S1(v)   (HW_CSU_CSL15_WR((HW_CSU_CSL15_RD() & ~BM_CSU_CSL15_NUW_S1) | BF_CSU_CSL15_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL15, field NSW_S1[23] (RW)
@@ -8889,7 +8317,6 @@ typedef union _hw_csu_csl15
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL15_NSW_S1      (23)      //!< Bit position for CSU_CSL15_NSW_S1.
 #define BM_CSU_CSL15_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL15_NSW_S1.
 
@@ -8903,7 +8330,6 @@ typedef union _hw_csu_csl15
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL15_NSW_S1(v)   (HW_CSU_CSL15_WR((HW_CSU_CSL15_RD() & ~BM_CSU_CSL15_NSW_S1) | BF_CSU_CSL15_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL15, field LOCK_S1[24] (RW)
@@ -8915,7 +8341,6 @@ typedef union _hw_csu_csl15
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL15_LOCK_S1      (24)      //!< Bit position for CSU_CSL15_LOCK_S1.
 #define BM_CSU_CSL15_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL15_LOCK_S1.
 
@@ -8929,7 +8354,6 @@ typedef union _hw_csu_csl15
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL15_LOCK_S1(v)   (HW_CSU_CSL15_WR((HW_CSU_CSL15_RD() & ~BM_CSU_CSL15_LOCK_S1) | BF_CSU_CSL15_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9026,7 +8450,6 @@ typedef union _hw_csu_csl16
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL16_SUR_S2      (0)      //!< Bit position for CSU_CSL16_SUR_S2.
 #define BM_CSU_CSL16_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL16_SUR_S2.
 
@@ -9040,7 +8463,6 @@ typedef union _hw_csu_csl16
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL16_SUR_S2(v)   (HW_CSU_CSL16_WR((HW_CSU_CSL16_RD() & ~BM_CSU_CSL16_SUR_S2) | BF_CSU_CSL16_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL16, field SSR_S2[1] (RW)
@@ -9052,7 +8474,6 @@ typedef union _hw_csu_csl16
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL16_SSR_S2      (1)      //!< Bit position for CSU_CSL16_SSR_S2.
 #define BM_CSU_CSL16_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL16_SSR_S2.
 
@@ -9066,7 +8487,6 @@ typedef union _hw_csu_csl16
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL16_SSR_S2(v)   (HW_CSU_CSL16_WR((HW_CSU_CSL16_RD() & ~BM_CSU_CSL16_SSR_S2) | BF_CSU_CSL16_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL16, field NUR_S2[2] (RW)
@@ -9078,7 +8498,6 @@ typedef union _hw_csu_csl16
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL16_NUR_S2      (2)      //!< Bit position for CSU_CSL16_NUR_S2.
 #define BM_CSU_CSL16_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL16_NUR_S2.
 
@@ -9092,7 +8511,6 @@ typedef union _hw_csu_csl16
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL16_NUR_S2(v)   (HW_CSU_CSL16_WR((HW_CSU_CSL16_RD() & ~BM_CSU_CSL16_NUR_S2) | BF_CSU_CSL16_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL16, field NSR_S2[3] (RW)
@@ -9104,7 +8522,6 @@ typedef union _hw_csu_csl16
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL16_NSR_S2      (3)      //!< Bit position for CSU_CSL16_NSR_S2.
 #define BM_CSU_CSL16_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL16_NSR_S2.
 
@@ -9118,7 +8535,6 @@ typedef union _hw_csu_csl16
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL16_NSR_S2(v)   (HW_CSU_CSL16_WR((HW_CSU_CSL16_RD() & ~BM_CSU_CSL16_NSR_S2) | BF_CSU_CSL16_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL16, field SUW_S2[4] (RW)
@@ -9130,7 +8546,6 @@ typedef union _hw_csu_csl16
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL16_SUW_S2      (4)      //!< Bit position for CSU_CSL16_SUW_S2.
 #define BM_CSU_CSL16_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL16_SUW_S2.
 
@@ -9144,7 +8559,6 @@ typedef union _hw_csu_csl16
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL16_SUW_S2(v)   (HW_CSU_CSL16_WR((HW_CSU_CSL16_RD() & ~BM_CSU_CSL16_SUW_S2) | BF_CSU_CSL16_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL16, field SSW_S2[5] (RW)
@@ -9156,7 +8570,6 @@ typedef union _hw_csu_csl16
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL16_SSW_S2      (5)      //!< Bit position for CSU_CSL16_SSW_S2.
 #define BM_CSU_CSL16_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL16_SSW_S2.
 
@@ -9170,7 +8583,6 @@ typedef union _hw_csu_csl16
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL16_SSW_S2(v)   (HW_CSU_CSL16_WR((HW_CSU_CSL16_RD() & ~BM_CSU_CSL16_SSW_S2) | BF_CSU_CSL16_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL16, field NUW_S2[6] (RW)
@@ -9182,7 +8594,6 @@ typedef union _hw_csu_csl16
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL16_NUW_S2      (6)      //!< Bit position for CSU_CSL16_NUW_S2.
 #define BM_CSU_CSL16_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL16_NUW_S2.
 
@@ -9196,7 +8607,6 @@ typedef union _hw_csu_csl16
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL16_NUW_S2(v)   (HW_CSU_CSL16_WR((HW_CSU_CSL16_RD() & ~BM_CSU_CSL16_NUW_S2) | BF_CSU_CSL16_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL16, field NSW_S2[7] (RW)
@@ -9208,7 +8618,6 @@ typedef union _hw_csu_csl16
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL16_NSW_S2      (7)      //!< Bit position for CSU_CSL16_NSW_S2.
 #define BM_CSU_CSL16_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL16_NSW_S2.
 
@@ -9222,7 +8631,6 @@ typedef union _hw_csu_csl16
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL16_NSW_S2(v)   (HW_CSU_CSL16_WR((HW_CSU_CSL16_RD() & ~BM_CSU_CSL16_NSW_S2) | BF_CSU_CSL16_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL16, field LOCK_S2[8] (RW)
@@ -9234,7 +8642,6 @@ typedef union _hw_csu_csl16
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL16_LOCK_S2      (8)      //!< Bit position for CSU_CSL16_LOCK_S2.
 #define BM_CSU_CSL16_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL16_LOCK_S2.
 
@@ -9248,7 +8655,6 @@ typedef union _hw_csu_csl16
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL16_LOCK_S2(v)   (HW_CSU_CSL16_WR((HW_CSU_CSL16_RD() & ~BM_CSU_CSL16_LOCK_S2) | BF_CSU_CSL16_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL16, field SUR_S1[16] (RW)
@@ -9260,7 +8666,6 @@ typedef union _hw_csu_csl16
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL16_SUR_S1      (16)      //!< Bit position for CSU_CSL16_SUR_S1.
 #define BM_CSU_CSL16_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL16_SUR_S1.
 
@@ -9274,7 +8679,6 @@ typedef union _hw_csu_csl16
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL16_SUR_S1(v)   (HW_CSU_CSL16_WR((HW_CSU_CSL16_RD() & ~BM_CSU_CSL16_SUR_S1) | BF_CSU_CSL16_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL16, field SSR_S1[17] (RW)
@@ -9286,7 +8690,6 @@ typedef union _hw_csu_csl16
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL16_SSR_S1      (17)      //!< Bit position for CSU_CSL16_SSR_S1.
 #define BM_CSU_CSL16_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL16_SSR_S1.
 
@@ -9300,7 +8703,6 @@ typedef union _hw_csu_csl16
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL16_SSR_S1(v)   (HW_CSU_CSL16_WR((HW_CSU_CSL16_RD() & ~BM_CSU_CSL16_SSR_S1) | BF_CSU_CSL16_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL16, field NUR_S1[18] (RW)
@@ -9312,7 +8714,6 @@ typedef union _hw_csu_csl16
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL16_NUR_S1      (18)      //!< Bit position for CSU_CSL16_NUR_S1.
 #define BM_CSU_CSL16_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL16_NUR_S1.
 
@@ -9326,7 +8727,6 @@ typedef union _hw_csu_csl16
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL16_NUR_S1(v)   (HW_CSU_CSL16_WR((HW_CSU_CSL16_RD() & ~BM_CSU_CSL16_NUR_S1) | BF_CSU_CSL16_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL16, field NSR_S1[19] (RW)
@@ -9338,7 +8738,6 @@ typedef union _hw_csu_csl16
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL16_NSR_S1      (19)      //!< Bit position for CSU_CSL16_NSR_S1.
 #define BM_CSU_CSL16_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL16_NSR_S1.
 
@@ -9352,7 +8751,6 @@ typedef union _hw_csu_csl16
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL16_NSR_S1(v)   (HW_CSU_CSL16_WR((HW_CSU_CSL16_RD() & ~BM_CSU_CSL16_NSR_S1) | BF_CSU_CSL16_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL16, field SUW_S1[20] (RW)
@@ -9364,7 +8762,6 @@ typedef union _hw_csu_csl16
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL16_SUW_S1      (20)      //!< Bit position for CSU_CSL16_SUW_S1.
 #define BM_CSU_CSL16_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL16_SUW_S1.
 
@@ -9378,7 +8775,6 @@ typedef union _hw_csu_csl16
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL16_SUW_S1(v)   (HW_CSU_CSL16_WR((HW_CSU_CSL16_RD() & ~BM_CSU_CSL16_SUW_S1) | BF_CSU_CSL16_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL16, field SSW_S1[21] (RW)
@@ -9390,7 +8786,6 @@ typedef union _hw_csu_csl16
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL16_SSW_S1      (21)      //!< Bit position for CSU_CSL16_SSW_S1.
 #define BM_CSU_CSL16_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL16_SSW_S1.
 
@@ -9404,7 +8799,6 @@ typedef union _hw_csu_csl16
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL16_SSW_S1(v)   (HW_CSU_CSL16_WR((HW_CSU_CSL16_RD() & ~BM_CSU_CSL16_SSW_S1) | BF_CSU_CSL16_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL16, field NUW_S1[22] (RW)
@@ -9416,7 +8810,6 @@ typedef union _hw_csu_csl16
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL16_NUW_S1      (22)      //!< Bit position for CSU_CSL16_NUW_S1.
 #define BM_CSU_CSL16_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL16_NUW_S1.
 
@@ -9430,7 +8823,6 @@ typedef union _hw_csu_csl16
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL16_NUW_S1(v)   (HW_CSU_CSL16_WR((HW_CSU_CSL16_RD() & ~BM_CSU_CSL16_NUW_S1) | BF_CSU_CSL16_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL16, field NSW_S1[23] (RW)
@@ -9442,7 +8834,6 @@ typedef union _hw_csu_csl16
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL16_NSW_S1      (23)      //!< Bit position for CSU_CSL16_NSW_S1.
 #define BM_CSU_CSL16_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL16_NSW_S1.
 
@@ -9456,7 +8847,6 @@ typedef union _hw_csu_csl16
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL16_NSW_S1(v)   (HW_CSU_CSL16_WR((HW_CSU_CSL16_RD() & ~BM_CSU_CSL16_NSW_S1) | BF_CSU_CSL16_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL16, field LOCK_S1[24] (RW)
@@ -9468,7 +8858,6 @@ typedef union _hw_csu_csl16
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL16_LOCK_S1      (24)      //!< Bit position for CSU_CSL16_LOCK_S1.
 #define BM_CSU_CSL16_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL16_LOCK_S1.
 
@@ -9482,7 +8871,6 @@ typedef union _hw_csu_csl16
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL16_LOCK_S1(v)   (HW_CSU_CSL16_WR((HW_CSU_CSL16_RD() & ~BM_CSU_CSL16_LOCK_S1) | BF_CSU_CSL16_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9579,7 +8967,6 @@ typedef union _hw_csu_csl17
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL17_SUR_S2      (0)      //!< Bit position for CSU_CSL17_SUR_S2.
 #define BM_CSU_CSL17_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL17_SUR_S2.
 
@@ -9593,7 +8980,6 @@ typedef union _hw_csu_csl17
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL17_SUR_S2(v)   (HW_CSU_CSL17_WR((HW_CSU_CSL17_RD() & ~BM_CSU_CSL17_SUR_S2) | BF_CSU_CSL17_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL17, field SSR_S2[1] (RW)
@@ -9605,7 +8991,6 @@ typedef union _hw_csu_csl17
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL17_SSR_S2      (1)      //!< Bit position for CSU_CSL17_SSR_S2.
 #define BM_CSU_CSL17_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL17_SSR_S2.
 
@@ -9619,7 +9004,6 @@ typedef union _hw_csu_csl17
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL17_SSR_S2(v)   (HW_CSU_CSL17_WR((HW_CSU_CSL17_RD() & ~BM_CSU_CSL17_SSR_S2) | BF_CSU_CSL17_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL17, field NUR_S2[2] (RW)
@@ -9631,7 +9015,6 @@ typedef union _hw_csu_csl17
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL17_NUR_S2      (2)      //!< Bit position for CSU_CSL17_NUR_S2.
 #define BM_CSU_CSL17_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL17_NUR_S2.
 
@@ -9645,7 +9028,6 @@ typedef union _hw_csu_csl17
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL17_NUR_S2(v)   (HW_CSU_CSL17_WR((HW_CSU_CSL17_RD() & ~BM_CSU_CSL17_NUR_S2) | BF_CSU_CSL17_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL17, field NSR_S2[3] (RW)
@@ -9657,7 +9039,6 @@ typedef union _hw_csu_csl17
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL17_NSR_S2      (3)      //!< Bit position for CSU_CSL17_NSR_S2.
 #define BM_CSU_CSL17_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL17_NSR_S2.
 
@@ -9671,7 +9052,6 @@ typedef union _hw_csu_csl17
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL17_NSR_S2(v)   (HW_CSU_CSL17_WR((HW_CSU_CSL17_RD() & ~BM_CSU_CSL17_NSR_S2) | BF_CSU_CSL17_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL17, field SUW_S2[4] (RW)
@@ -9683,7 +9063,6 @@ typedef union _hw_csu_csl17
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL17_SUW_S2      (4)      //!< Bit position for CSU_CSL17_SUW_S2.
 #define BM_CSU_CSL17_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL17_SUW_S2.
 
@@ -9697,7 +9076,6 @@ typedef union _hw_csu_csl17
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL17_SUW_S2(v)   (HW_CSU_CSL17_WR((HW_CSU_CSL17_RD() & ~BM_CSU_CSL17_SUW_S2) | BF_CSU_CSL17_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL17, field SSW_S2[5] (RW)
@@ -9709,7 +9087,6 @@ typedef union _hw_csu_csl17
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL17_SSW_S2      (5)      //!< Bit position for CSU_CSL17_SSW_S2.
 #define BM_CSU_CSL17_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL17_SSW_S2.
 
@@ -9723,7 +9100,6 @@ typedef union _hw_csu_csl17
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL17_SSW_S2(v)   (HW_CSU_CSL17_WR((HW_CSU_CSL17_RD() & ~BM_CSU_CSL17_SSW_S2) | BF_CSU_CSL17_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL17, field NUW_S2[6] (RW)
@@ -9735,7 +9111,6 @@ typedef union _hw_csu_csl17
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL17_NUW_S2      (6)      //!< Bit position for CSU_CSL17_NUW_S2.
 #define BM_CSU_CSL17_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL17_NUW_S2.
 
@@ -9749,7 +9124,6 @@ typedef union _hw_csu_csl17
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL17_NUW_S2(v)   (HW_CSU_CSL17_WR((HW_CSU_CSL17_RD() & ~BM_CSU_CSL17_NUW_S2) | BF_CSU_CSL17_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL17, field NSW_S2[7] (RW)
@@ -9761,7 +9135,6 @@ typedef union _hw_csu_csl17
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL17_NSW_S2      (7)      //!< Bit position for CSU_CSL17_NSW_S2.
 #define BM_CSU_CSL17_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL17_NSW_S2.
 
@@ -9775,7 +9148,6 @@ typedef union _hw_csu_csl17
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL17_NSW_S2(v)   (HW_CSU_CSL17_WR((HW_CSU_CSL17_RD() & ~BM_CSU_CSL17_NSW_S2) | BF_CSU_CSL17_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL17, field LOCK_S2[8] (RW)
@@ -9787,7 +9159,6 @@ typedef union _hw_csu_csl17
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL17_LOCK_S2      (8)      //!< Bit position for CSU_CSL17_LOCK_S2.
 #define BM_CSU_CSL17_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL17_LOCK_S2.
 
@@ -9801,7 +9172,6 @@ typedef union _hw_csu_csl17
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL17_LOCK_S2(v)   (HW_CSU_CSL17_WR((HW_CSU_CSL17_RD() & ~BM_CSU_CSL17_LOCK_S2) | BF_CSU_CSL17_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL17, field SUR_S1[16] (RW)
@@ -9813,7 +9183,6 @@ typedef union _hw_csu_csl17
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL17_SUR_S1      (16)      //!< Bit position for CSU_CSL17_SUR_S1.
 #define BM_CSU_CSL17_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL17_SUR_S1.
 
@@ -9827,7 +9196,6 @@ typedef union _hw_csu_csl17
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL17_SUR_S1(v)   (HW_CSU_CSL17_WR((HW_CSU_CSL17_RD() & ~BM_CSU_CSL17_SUR_S1) | BF_CSU_CSL17_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL17, field SSR_S1[17] (RW)
@@ -9839,7 +9207,6 @@ typedef union _hw_csu_csl17
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL17_SSR_S1      (17)      //!< Bit position for CSU_CSL17_SSR_S1.
 #define BM_CSU_CSL17_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL17_SSR_S1.
 
@@ -9853,7 +9220,6 @@ typedef union _hw_csu_csl17
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL17_SSR_S1(v)   (HW_CSU_CSL17_WR((HW_CSU_CSL17_RD() & ~BM_CSU_CSL17_SSR_S1) | BF_CSU_CSL17_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL17, field NUR_S1[18] (RW)
@@ -9865,7 +9231,6 @@ typedef union _hw_csu_csl17
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL17_NUR_S1      (18)      //!< Bit position for CSU_CSL17_NUR_S1.
 #define BM_CSU_CSL17_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL17_NUR_S1.
 
@@ -9879,7 +9244,6 @@ typedef union _hw_csu_csl17
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL17_NUR_S1(v)   (HW_CSU_CSL17_WR((HW_CSU_CSL17_RD() & ~BM_CSU_CSL17_NUR_S1) | BF_CSU_CSL17_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL17, field NSR_S1[19] (RW)
@@ -9891,7 +9255,6 @@ typedef union _hw_csu_csl17
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL17_NSR_S1      (19)      //!< Bit position for CSU_CSL17_NSR_S1.
 #define BM_CSU_CSL17_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL17_NSR_S1.
 
@@ -9905,7 +9268,6 @@ typedef union _hw_csu_csl17
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL17_NSR_S1(v)   (HW_CSU_CSL17_WR((HW_CSU_CSL17_RD() & ~BM_CSU_CSL17_NSR_S1) | BF_CSU_CSL17_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL17, field SUW_S1[20] (RW)
@@ -9917,7 +9279,6 @@ typedef union _hw_csu_csl17
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL17_SUW_S1      (20)      //!< Bit position for CSU_CSL17_SUW_S1.
 #define BM_CSU_CSL17_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL17_SUW_S1.
 
@@ -9931,7 +9292,6 @@ typedef union _hw_csu_csl17
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL17_SUW_S1(v)   (HW_CSU_CSL17_WR((HW_CSU_CSL17_RD() & ~BM_CSU_CSL17_SUW_S1) | BF_CSU_CSL17_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL17, field SSW_S1[21] (RW)
@@ -9943,7 +9303,6 @@ typedef union _hw_csu_csl17
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL17_SSW_S1      (21)      //!< Bit position for CSU_CSL17_SSW_S1.
 #define BM_CSU_CSL17_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL17_SSW_S1.
 
@@ -9957,7 +9316,6 @@ typedef union _hw_csu_csl17
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL17_SSW_S1(v)   (HW_CSU_CSL17_WR((HW_CSU_CSL17_RD() & ~BM_CSU_CSL17_SSW_S1) | BF_CSU_CSL17_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL17, field NUW_S1[22] (RW)
@@ -9969,7 +9327,6 @@ typedef union _hw_csu_csl17
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL17_NUW_S1      (22)      //!< Bit position for CSU_CSL17_NUW_S1.
 #define BM_CSU_CSL17_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL17_NUW_S1.
 
@@ -9983,7 +9340,6 @@ typedef union _hw_csu_csl17
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL17_NUW_S1(v)   (HW_CSU_CSL17_WR((HW_CSU_CSL17_RD() & ~BM_CSU_CSL17_NUW_S1) | BF_CSU_CSL17_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL17, field NSW_S1[23] (RW)
@@ -9995,7 +9351,6 @@ typedef union _hw_csu_csl17
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL17_NSW_S1      (23)      //!< Bit position for CSU_CSL17_NSW_S1.
 #define BM_CSU_CSL17_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL17_NSW_S1.
 
@@ -10009,7 +9364,6 @@ typedef union _hw_csu_csl17
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL17_NSW_S1(v)   (HW_CSU_CSL17_WR((HW_CSU_CSL17_RD() & ~BM_CSU_CSL17_NSW_S1) | BF_CSU_CSL17_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL17, field LOCK_S1[24] (RW)
@@ -10021,7 +9375,6 @@ typedef union _hw_csu_csl17
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL17_LOCK_S1      (24)      //!< Bit position for CSU_CSL17_LOCK_S1.
 #define BM_CSU_CSL17_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL17_LOCK_S1.
 
@@ -10035,7 +9388,6 @@ typedef union _hw_csu_csl17
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL17_LOCK_S1(v)   (HW_CSU_CSL17_WR((HW_CSU_CSL17_RD() & ~BM_CSU_CSL17_LOCK_S1) | BF_CSU_CSL17_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10132,7 +9484,6 @@ typedef union _hw_csu_csl18
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL18_SUR_S2      (0)      //!< Bit position for CSU_CSL18_SUR_S2.
 #define BM_CSU_CSL18_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL18_SUR_S2.
 
@@ -10146,7 +9497,6 @@ typedef union _hw_csu_csl18
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL18_SUR_S2(v)   (HW_CSU_CSL18_WR((HW_CSU_CSL18_RD() & ~BM_CSU_CSL18_SUR_S2) | BF_CSU_CSL18_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL18, field SSR_S2[1] (RW)
@@ -10158,7 +9508,6 @@ typedef union _hw_csu_csl18
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL18_SSR_S2      (1)      //!< Bit position for CSU_CSL18_SSR_S2.
 #define BM_CSU_CSL18_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL18_SSR_S2.
 
@@ -10172,7 +9521,6 @@ typedef union _hw_csu_csl18
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL18_SSR_S2(v)   (HW_CSU_CSL18_WR((HW_CSU_CSL18_RD() & ~BM_CSU_CSL18_SSR_S2) | BF_CSU_CSL18_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL18, field NUR_S2[2] (RW)
@@ -10184,7 +9532,6 @@ typedef union _hw_csu_csl18
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL18_NUR_S2      (2)      //!< Bit position for CSU_CSL18_NUR_S2.
 #define BM_CSU_CSL18_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL18_NUR_S2.
 
@@ -10198,7 +9545,6 @@ typedef union _hw_csu_csl18
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL18_NUR_S2(v)   (HW_CSU_CSL18_WR((HW_CSU_CSL18_RD() & ~BM_CSU_CSL18_NUR_S2) | BF_CSU_CSL18_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL18, field NSR_S2[3] (RW)
@@ -10210,7 +9556,6 @@ typedef union _hw_csu_csl18
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL18_NSR_S2      (3)      //!< Bit position for CSU_CSL18_NSR_S2.
 #define BM_CSU_CSL18_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL18_NSR_S2.
 
@@ -10224,7 +9569,6 @@ typedef union _hw_csu_csl18
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL18_NSR_S2(v)   (HW_CSU_CSL18_WR((HW_CSU_CSL18_RD() & ~BM_CSU_CSL18_NSR_S2) | BF_CSU_CSL18_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL18, field SUW_S2[4] (RW)
@@ -10236,7 +9580,6 @@ typedef union _hw_csu_csl18
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL18_SUW_S2      (4)      //!< Bit position for CSU_CSL18_SUW_S2.
 #define BM_CSU_CSL18_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL18_SUW_S2.
 
@@ -10250,7 +9593,6 @@ typedef union _hw_csu_csl18
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL18_SUW_S2(v)   (HW_CSU_CSL18_WR((HW_CSU_CSL18_RD() & ~BM_CSU_CSL18_SUW_S2) | BF_CSU_CSL18_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL18, field SSW_S2[5] (RW)
@@ -10262,7 +9604,6 @@ typedef union _hw_csu_csl18
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL18_SSW_S2      (5)      //!< Bit position for CSU_CSL18_SSW_S2.
 #define BM_CSU_CSL18_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL18_SSW_S2.
 
@@ -10276,7 +9617,6 @@ typedef union _hw_csu_csl18
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL18_SSW_S2(v)   (HW_CSU_CSL18_WR((HW_CSU_CSL18_RD() & ~BM_CSU_CSL18_SSW_S2) | BF_CSU_CSL18_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL18, field NUW_S2[6] (RW)
@@ -10288,7 +9628,6 @@ typedef union _hw_csu_csl18
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL18_NUW_S2      (6)      //!< Bit position for CSU_CSL18_NUW_S2.
 #define BM_CSU_CSL18_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL18_NUW_S2.
 
@@ -10302,7 +9641,6 @@ typedef union _hw_csu_csl18
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL18_NUW_S2(v)   (HW_CSU_CSL18_WR((HW_CSU_CSL18_RD() & ~BM_CSU_CSL18_NUW_S2) | BF_CSU_CSL18_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL18, field NSW_S2[7] (RW)
@@ -10314,7 +9652,6 @@ typedef union _hw_csu_csl18
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL18_NSW_S2      (7)      //!< Bit position for CSU_CSL18_NSW_S2.
 #define BM_CSU_CSL18_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL18_NSW_S2.
 
@@ -10328,7 +9665,6 @@ typedef union _hw_csu_csl18
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL18_NSW_S2(v)   (HW_CSU_CSL18_WR((HW_CSU_CSL18_RD() & ~BM_CSU_CSL18_NSW_S2) | BF_CSU_CSL18_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL18, field LOCK_S2[8] (RW)
@@ -10340,7 +9676,6 @@ typedef union _hw_csu_csl18
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL18_LOCK_S2      (8)      //!< Bit position for CSU_CSL18_LOCK_S2.
 #define BM_CSU_CSL18_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL18_LOCK_S2.
 
@@ -10354,7 +9689,6 @@ typedef union _hw_csu_csl18
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL18_LOCK_S2(v)   (HW_CSU_CSL18_WR((HW_CSU_CSL18_RD() & ~BM_CSU_CSL18_LOCK_S2) | BF_CSU_CSL18_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL18, field SUR_S1[16] (RW)
@@ -10366,7 +9700,6 @@ typedef union _hw_csu_csl18
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL18_SUR_S1      (16)      //!< Bit position for CSU_CSL18_SUR_S1.
 #define BM_CSU_CSL18_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL18_SUR_S1.
 
@@ -10380,7 +9713,6 @@ typedef union _hw_csu_csl18
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL18_SUR_S1(v)   (HW_CSU_CSL18_WR((HW_CSU_CSL18_RD() & ~BM_CSU_CSL18_SUR_S1) | BF_CSU_CSL18_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL18, field SSR_S1[17] (RW)
@@ -10392,7 +9724,6 @@ typedef union _hw_csu_csl18
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL18_SSR_S1      (17)      //!< Bit position for CSU_CSL18_SSR_S1.
 #define BM_CSU_CSL18_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL18_SSR_S1.
 
@@ -10406,7 +9737,6 @@ typedef union _hw_csu_csl18
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL18_SSR_S1(v)   (HW_CSU_CSL18_WR((HW_CSU_CSL18_RD() & ~BM_CSU_CSL18_SSR_S1) | BF_CSU_CSL18_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL18, field NUR_S1[18] (RW)
@@ -10418,7 +9748,6 @@ typedef union _hw_csu_csl18
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL18_NUR_S1      (18)      //!< Bit position for CSU_CSL18_NUR_S1.
 #define BM_CSU_CSL18_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL18_NUR_S1.
 
@@ -10432,7 +9761,6 @@ typedef union _hw_csu_csl18
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL18_NUR_S1(v)   (HW_CSU_CSL18_WR((HW_CSU_CSL18_RD() & ~BM_CSU_CSL18_NUR_S1) | BF_CSU_CSL18_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL18, field NSR_S1[19] (RW)
@@ -10444,7 +9772,6 @@ typedef union _hw_csu_csl18
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL18_NSR_S1      (19)      //!< Bit position for CSU_CSL18_NSR_S1.
 #define BM_CSU_CSL18_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL18_NSR_S1.
 
@@ -10458,7 +9785,6 @@ typedef union _hw_csu_csl18
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL18_NSR_S1(v)   (HW_CSU_CSL18_WR((HW_CSU_CSL18_RD() & ~BM_CSU_CSL18_NSR_S1) | BF_CSU_CSL18_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL18, field SUW_S1[20] (RW)
@@ -10470,7 +9796,6 @@ typedef union _hw_csu_csl18
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL18_SUW_S1      (20)      //!< Bit position for CSU_CSL18_SUW_S1.
 #define BM_CSU_CSL18_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL18_SUW_S1.
 
@@ -10484,7 +9809,6 @@ typedef union _hw_csu_csl18
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL18_SUW_S1(v)   (HW_CSU_CSL18_WR((HW_CSU_CSL18_RD() & ~BM_CSU_CSL18_SUW_S1) | BF_CSU_CSL18_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL18, field SSW_S1[21] (RW)
@@ -10496,7 +9820,6 @@ typedef union _hw_csu_csl18
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL18_SSW_S1      (21)      //!< Bit position for CSU_CSL18_SSW_S1.
 #define BM_CSU_CSL18_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL18_SSW_S1.
 
@@ -10510,7 +9833,6 @@ typedef union _hw_csu_csl18
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL18_SSW_S1(v)   (HW_CSU_CSL18_WR((HW_CSU_CSL18_RD() & ~BM_CSU_CSL18_SSW_S1) | BF_CSU_CSL18_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL18, field NUW_S1[22] (RW)
@@ -10522,7 +9844,6 @@ typedef union _hw_csu_csl18
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL18_NUW_S1      (22)      //!< Bit position for CSU_CSL18_NUW_S1.
 #define BM_CSU_CSL18_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL18_NUW_S1.
 
@@ -10536,7 +9857,6 @@ typedef union _hw_csu_csl18
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL18_NUW_S1(v)   (HW_CSU_CSL18_WR((HW_CSU_CSL18_RD() & ~BM_CSU_CSL18_NUW_S1) | BF_CSU_CSL18_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL18, field NSW_S1[23] (RW)
@@ -10548,7 +9868,6 @@ typedef union _hw_csu_csl18
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL18_NSW_S1      (23)      //!< Bit position for CSU_CSL18_NSW_S1.
 #define BM_CSU_CSL18_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL18_NSW_S1.
 
@@ -10562,7 +9881,6 @@ typedef union _hw_csu_csl18
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL18_NSW_S1(v)   (HW_CSU_CSL18_WR((HW_CSU_CSL18_RD() & ~BM_CSU_CSL18_NSW_S1) | BF_CSU_CSL18_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL18, field LOCK_S1[24] (RW)
@@ -10574,7 +9892,6 @@ typedef union _hw_csu_csl18
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL18_LOCK_S1      (24)      //!< Bit position for CSU_CSL18_LOCK_S1.
 #define BM_CSU_CSL18_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL18_LOCK_S1.
 
@@ -10588,7 +9905,6 @@ typedef union _hw_csu_csl18
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL18_LOCK_S1(v)   (HW_CSU_CSL18_WR((HW_CSU_CSL18_RD() & ~BM_CSU_CSL18_LOCK_S1) | BF_CSU_CSL18_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10685,7 +10001,6 @@ typedef union _hw_csu_csl19
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL19_SUR_S2      (0)      //!< Bit position for CSU_CSL19_SUR_S2.
 #define BM_CSU_CSL19_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL19_SUR_S2.
 
@@ -10699,7 +10014,6 @@ typedef union _hw_csu_csl19
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL19_SUR_S2(v)   (HW_CSU_CSL19_WR((HW_CSU_CSL19_RD() & ~BM_CSU_CSL19_SUR_S2) | BF_CSU_CSL19_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL19, field SSR_S2[1] (RW)
@@ -10711,7 +10025,6 @@ typedef union _hw_csu_csl19
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL19_SSR_S2      (1)      //!< Bit position for CSU_CSL19_SSR_S2.
 #define BM_CSU_CSL19_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL19_SSR_S2.
 
@@ -10725,7 +10038,6 @@ typedef union _hw_csu_csl19
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL19_SSR_S2(v)   (HW_CSU_CSL19_WR((HW_CSU_CSL19_RD() & ~BM_CSU_CSL19_SSR_S2) | BF_CSU_CSL19_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL19, field NUR_S2[2] (RW)
@@ -10737,7 +10049,6 @@ typedef union _hw_csu_csl19
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL19_NUR_S2      (2)      //!< Bit position for CSU_CSL19_NUR_S2.
 #define BM_CSU_CSL19_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL19_NUR_S2.
 
@@ -10751,7 +10062,6 @@ typedef union _hw_csu_csl19
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL19_NUR_S2(v)   (HW_CSU_CSL19_WR((HW_CSU_CSL19_RD() & ~BM_CSU_CSL19_NUR_S2) | BF_CSU_CSL19_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL19, field NSR_S2[3] (RW)
@@ -10763,7 +10073,6 @@ typedef union _hw_csu_csl19
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL19_NSR_S2      (3)      //!< Bit position for CSU_CSL19_NSR_S2.
 #define BM_CSU_CSL19_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL19_NSR_S2.
 
@@ -10777,7 +10086,6 @@ typedef union _hw_csu_csl19
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL19_NSR_S2(v)   (HW_CSU_CSL19_WR((HW_CSU_CSL19_RD() & ~BM_CSU_CSL19_NSR_S2) | BF_CSU_CSL19_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL19, field SUW_S2[4] (RW)
@@ -10789,7 +10097,6 @@ typedef union _hw_csu_csl19
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL19_SUW_S2      (4)      //!< Bit position for CSU_CSL19_SUW_S2.
 #define BM_CSU_CSL19_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL19_SUW_S2.
 
@@ -10803,7 +10110,6 @@ typedef union _hw_csu_csl19
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL19_SUW_S2(v)   (HW_CSU_CSL19_WR((HW_CSU_CSL19_RD() & ~BM_CSU_CSL19_SUW_S2) | BF_CSU_CSL19_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL19, field SSW_S2[5] (RW)
@@ -10815,7 +10121,6 @@ typedef union _hw_csu_csl19
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL19_SSW_S2      (5)      //!< Bit position for CSU_CSL19_SSW_S2.
 #define BM_CSU_CSL19_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL19_SSW_S2.
 
@@ -10829,7 +10134,6 @@ typedef union _hw_csu_csl19
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL19_SSW_S2(v)   (HW_CSU_CSL19_WR((HW_CSU_CSL19_RD() & ~BM_CSU_CSL19_SSW_S2) | BF_CSU_CSL19_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL19, field NUW_S2[6] (RW)
@@ -10841,7 +10145,6 @@ typedef union _hw_csu_csl19
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL19_NUW_S2      (6)      //!< Bit position for CSU_CSL19_NUW_S2.
 #define BM_CSU_CSL19_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL19_NUW_S2.
 
@@ -10855,7 +10158,6 @@ typedef union _hw_csu_csl19
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL19_NUW_S2(v)   (HW_CSU_CSL19_WR((HW_CSU_CSL19_RD() & ~BM_CSU_CSL19_NUW_S2) | BF_CSU_CSL19_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL19, field NSW_S2[7] (RW)
@@ -10867,7 +10169,6 @@ typedef union _hw_csu_csl19
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL19_NSW_S2      (7)      //!< Bit position for CSU_CSL19_NSW_S2.
 #define BM_CSU_CSL19_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL19_NSW_S2.
 
@@ -10881,7 +10182,6 @@ typedef union _hw_csu_csl19
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL19_NSW_S2(v)   (HW_CSU_CSL19_WR((HW_CSU_CSL19_RD() & ~BM_CSU_CSL19_NSW_S2) | BF_CSU_CSL19_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL19, field LOCK_S2[8] (RW)
@@ -10893,7 +10193,6 @@ typedef union _hw_csu_csl19
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL19_LOCK_S2      (8)      //!< Bit position for CSU_CSL19_LOCK_S2.
 #define BM_CSU_CSL19_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL19_LOCK_S2.
 
@@ -10907,7 +10206,6 @@ typedef union _hw_csu_csl19
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL19_LOCK_S2(v)   (HW_CSU_CSL19_WR((HW_CSU_CSL19_RD() & ~BM_CSU_CSL19_LOCK_S2) | BF_CSU_CSL19_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL19, field SUR_S1[16] (RW)
@@ -10919,7 +10217,6 @@ typedef union _hw_csu_csl19
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL19_SUR_S1      (16)      //!< Bit position for CSU_CSL19_SUR_S1.
 #define BM_CSU_CSL19_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL19_SUR_S1.
 
@@ -10933,7 +10230,6 @@ typedef union _hw_csu_csl19
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL19_SUR_S1(v)   (HW_CSU_CSL19_WR((HW_CSU_CSL19_RD() & ~BM_CSU_CSL19_SUR_S1) | BF_CSU_CSL19_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL19, field SSR_S1[17] (RW)
@@ -10945,7 +10241,6 @@ typedef union _hw_csu_csl19
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL19_SSR_S1      (17)      //!< Bit position for CSU_CSL19_SSR_S1.
 #define BM_CSU_CSL19_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL19_SSR_S1.
 
@@ -10959,7 +10254,6 @@ typedef union _hw_csu_csl19
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL19_SSR_S1(v)   (HW_CSU_CSL19_WR((HW_CSU_CSL19_RD() & ~BM_CSU_CSL19_SSR_S1) | BF_CSU_CSL19_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL19, field NUR_S1[18] (RW)
@@ -10971,7 +10265,6 @@ typedef union _hw_csu_csl19
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL19_NUR_S1      (18)      //!< Bit position for CSU_CSL19_NUR_S1.
 #define BM_CSU_CSL19_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL19_NUR_S1.
 
@@ -10985,7 +10278,6 @@ typedef union _hw_csu_csl19
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL19_NUR_S1(v)   (HW_CSU_CSL19_WR((HW_CSU_CSL19_RD() & ~BM_CSU_CSL19_NUR_S1) | BF_CSU_CSL19_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL19, field NSR_S1[19] (RW)
@@ -10997,7 +10289,6 @@ typedef union _hw_csu_csl19
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL19_NSR_S1      (19)      //!< Bit position for CSU_CSL19_NSR_S1.
 #define BM_CSU_CSL19_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL19_NSR_S1.
 
@@ -11011,7 +10302,6 @@ typedef union _hw_csu_csl19
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL19_NSR_S1(v)   (HW_CSU_CSL19_WR((HW_CSU_CSL19_RD() & ~BM_CSU_CSL19_NSR_S1) | BF_CSU_CSL19_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL19, field SUW_S1[20] (RW)
@@ -11023,7 +10313,6 @@ typedef union _hw_csu_csl19
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL19_SUW_S1      (20)      //!< Bit position for CSU_CSL19_SUW_S1.
 #define BM_CSU_CSL19_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL19_SUW_S1.
 
@@ -11037,7 +10326,6 @@ typedef union _hw_csu_csl19
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL19_SUW_S1(v)   (HW_CSU_CSL19_WR((HW_CSU_CSL19_RD() & ~BM_CSU_CSL19_SUW_S1) | BF_CSU_CSL19_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL19, field SSW_S1[21] (RW)
@@ -11049,7 +10337,6 @@ typedef union _hw_csu_csl19
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL19_SSW_S1      (21)      //!< Bit position for CSU_CSL19_SSW_S1.
 #define BM_CSU_CSL19_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL19_SSW_S1.
 
@@ -11063,7 +10350,6 @@ typedef union _hw_csu_csl19
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL19_SSW_S1(v)   (HW_CSU_CSL19_WR((HW_CSU_CSL19_RD() & ~BM_CSU_CSL19_SSW_S1) | BF_CSU_CSL19_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL19, field NUW_S1[22] (RW)
@@ -11075,7 +10361,6 @@ typedef union _hw_csu_csl19
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL19_NUW_S1      (22)      //!< Bit position for CSU_CSL19_NUW_S1.
 #define BM_CSU_CSL19_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL19_NUW_S1.
 
@@ -11089,7 +10374,6 @@ typedef union _hw_csu_csl19
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL19_NUW_S1(v)   (HW_CSU_CSL19_WR((HW_CSU_CSL19_RD() & ~BM_CSU_CSL19_NUW_S1) | BF_CSU_CSL19_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL19, field NSW_S1[23] (RW)
@@ -11101,7 +10385,6 @@ typedef union _hw_csu_csl19
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL19_NSW_S1      (23)      //!< Bit position for CSU_CSL19_NSW_S1.
 #define BM_CSU_CSL19_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL19_NSW_S1.
 
@@ -11115,7 +10398,6 @@ typedef union _hw_csu_csl19
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL19_NSW_S1(v)   (HW_CSU_CSL19_WR((HW_CSU_CSL19_RD() & ~BM_CSU_CSL19_NSW_S1) | BF_CSU_CSL19_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL19, field LOCK_S1[24] (RW)
@@ -11127,7 +10409,6 @@ typedef union _hw_csu_csl19
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL19_LOCK_S1      (24)      //!< Bit position for CSU_CSL19_LOCK_S1.
 #define BM_CSU_CSL19_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL19_LOCK_S1.
 
@@ -11141,7 +10422,6 @@ typedef union _hw_csu_csl19
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL19_LOCK_S1(v)   (HW_CSU_CSL19_WR((HW_CSU_CSL19_RD() & ~BM_CSU_CSL19_LOCK_S1) | BF_CSU_CSL19_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11238,7 +10518,6 @@ typedef union _hw_csu_csl20
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL20_SUR_S2      (0)      //!< Bit position for CSU_CSL20_SUR_S2.
 #define BM_CSU_CSL20_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL20_SUR_S2.
 
@@ -11252,7 +10531,6 @@ typedef union _hw_csu_csl20
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL20_SUR_S2(v)   (HW_CSU_CSL20_WR((HW_CSU_CSL20_RD() & ~BM_CSU_CSL20_SUR_S2) | BF_CSU_CSL20_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL20, field SSR_S2[1] (RW)
@@ -11264,7 +10542,6 @@ typedef union _hw_csu_csl20
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL20_SSR_S2      (1)      //!< Bit position for CSU_CSL20_SSR_S2.
 #define BM_CSU_CSL20_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL20_SSR_S2.
 
@@ -11278,7 +10555,6 @@ typedef union _hw_csu_csl20
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL20_SSR_S2(v)   (HW_CSU_CSL20_WR((HW_CSU_CSL20_RD() & ~BM_CSU_CSL20_SSR_S2) | BF_CSU_CSL20_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL20, field NUR_S2[2] (RW)
@@ -11290,7 +10566,6 @@ typedef union _hw_csu_csl20
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL20_NUR_S2      (2)      //!< Bit position for CSU_CSL20_NUR_S2.
 #define BM_CSU_CSL20_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL20_NUR_S2.
 
@@ -11304,7 +10579,6 @@ typedef union _hw_csu_csl20
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL20_NUR_S2(v)   (HW_CSU_CSL20_WR((HW_CSU_CSL20_RD() & ~BM_CSU_CSL20_NUR_S2) | BF_CSU_CSL20_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL20, field NSR_S2[3] (RW)
@@ -11316,7 +10590,6 @@ typedef union _hw_csu_csl20
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL20_NSR_S2      (3)      //!< Bit position for CSU_CSL20_NSR_S2.
 #define BM_CSU_CSL20_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL20_NSR_S2.
 
@@ -11330,7 +10603,6 @@ typedef union _hw_csu_csl20
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL20_NSR_S2(v)   (HW_CSU_CSL20_WR((HW_CSU_CSL20_RD() & ~BM_CSU_CSL20_NSR_S2) | BF_CSU_CSL20_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL20, field SUW_S2[4] (RW)
@@ -11342,7 +10614,6 @@ typedef union _hw_csu_csl20
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL20_SUW_S2      (4)      //!< Bit position for CSU_CSL20_SUW_S2.
 #define BM_CSU_CSL20_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL20_SUW_S2.
 
@@ -11356,7 +10627,6 @@ typedef union _hw_csu_csl20
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL20_SUW_S2(v)   (HW_CSU_CSL20_WR((HW_CSU_CSL20_RD() & ~BM_CSU_CSL20_SUW_S2) | BF_CSU_CSL20_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL20, field SSW_S2[5] (RW)
@@ -11368,7 +10638,6 @@ typedef union _hw_csu_csl20
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL20_SSW_S2      (5)      //!< Bit position for CSU_CSL20_SSW_S2.
 #define BM_CSU_CSL20_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL20_SSW_S2.
 
@@ -11382,7 +10651,6 @@ typedef union _hw_csu_csl20
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL20_SSW_S2(v)   (HW_CSU_CSL20_WR((HW_CSU_CSL20_RD() & ~BM_CSU_CSL20_SSW_S2) | BF_CSU_CSL20_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL20, field NUW_S2[6] (RW)
@@ -11394,7 +10662,6 @@ typedef union _hw_csu_csl20
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL20_NUW_S2      (6)      //!< Bit position for CSU_CSL20_NUW_S2.
 #define BM_CSU_CSL20_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL20_NUW_S2.
 
@@ -11408,7 +10675,6 @@ typedef union _hw_csu_csl20
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL20_NUW_S2(v)   (HW_CSU_CSL20_WR((HW_CSU_CSL20_RD() & ~BM_CSU_CSL20_NUW_S2) | BF_CSU_CSL20_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL20, field NSW_S2[7] (RW)
@@ -11420,7 +10686,6 @@ typedef union _hw_csu_csl20
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL20_NSW_S2      (7)      //!< Bit position for CSU_CSL20_NSW_S2.
 #define BM_CSU_CSL20_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL20_NSW_S2.
 
@@ -11434,7 +10699,6 @@ typedef union _hw_csu_csl20
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL20_NSW_S2(v)   (HW_CSU_CSL20_WR((HW_CSU_CSL20_RD() & ~BM_CSU_CSL20_NSW_S2) | BF_CSU_CSL20_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL20, field LOCK_S2[8] (RW)
@@ -11446,7 +10710,6 @@ typedef union _hw_csu_csl20
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL20_LOCK_S2      (8)      //!< Bit position for CSU_CSL20_LOCK_S2.
 #define BM_CSU_CSL20_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL20_LOCK_S2.
 
@@ -11460,7 +10723,6 @@ typedef union _hw_csu_csl20
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL20_LOCK_S2(v)   (HW_CSU_CSL20_WR((HW_CSU_CSL20_RD() & ~BM_CSU_CSL20_LOCK_S2) | BF_CSU_CSL20_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL20, field SUR_S1[16] (RW)
@@ -11472,7 +10734,6 @@ typedef union _hw_csu_csl20
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL20_SUR_S1      (16)      //!< Bit position for CSU_CSL20_SUR_S1.
 #define BM_CSU_CSL20_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL20_SUR_S1.
 
@@ -11486,7 +10747,6 @@ typedef union _hw_csu_csl20
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL20_SUR_S1(v)   (HW_CSU_CSL20_WR((HW_CSU_CSL20_RD() & ~BM_CSU_CSL20_SUR_S1) | BF_CSU_CSL20_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL20, field SSR_S1[17] (RW)
@@ -11498,7 +10758,6 @@ typedef union _hw_csu_csl20
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL20_SSR_S1      (17)      //!< Bit position for CSU_CSL20_SSR_S1.
 #define BM_CSU_CSL20_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL20_SSR_S1.
 
@@ -11512,7 +10771,6 @@ typedef union _hw_csu_csl20
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL20_SSR_S1(v)   (HW_CSU_CSL20_WR((HW_CSU_CSL20_RD() & ~BM_CSU_CSL20_SSR_S1) | BF_CSU_CSL20_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL20, field NUR_S1[18] (RW)
@@ -11524,7 +10782,6 @@ typedef union _hw_csu_csl20
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL20_NUR_S1      (18)      //!< Bit position for CSU_CSL20_NUR_S1.
 #define BM_CSU_CSL20_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL20_NUR_S1.
 
@@ -11538,7 +10795,6 @@ typedef union _hw_csu_csl20
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL20_NUR_S1(v)   (HW_CSU_CSL20_WR((HW_CSU_CSL20_RD() & ~BM_CSU_CSL20_NUR_S1) | BF_CSU_CSL20_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL20, field NSR_S1[19] (RW)
@@ -11550,7 +10806,6 @@ typedef union _hw_csu_csl20
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL20_NSR_S1      (19)      //!< Bit position for CSU_CSL20_NSR_S1.
 #define BM_CSU_CSL20_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL20_NSR_S1.
 
@@ -11564,7 +10819,6 @@ typedef union _hw_csu_csl20
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL20_NSR_S1(v)   (HW_CSU_CSL20_WR((HW_CSU_CSL20_RD() & ~BM_CSU_CSL20_NSR_S1) | BF_CSU_CSL20_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL20, field SUW_S1[20] (RW)
@@ -11576,7 +10830,6 @@ typedef union _hw_csu_csl20
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL20_SUW_S1      (20)      //!< Bit position for CSU_CSL20_SUW_S1.
 #define BM_CSU_CSL20_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL20_SUW_S1.
 
@@ -11590,7 +10843,6 @@ typedef union _hw_csu_csl20
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL20_SUW_S1(v)   (HW_CSU_CSL20_WR((HW_CSU_CSL20_RD() & ~BM_CSU_CSL20_SUW_S1) | BF_CSU_CSL20_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL20, field SSW_S1[21] (RW)
@@ -11602,7 +10854,6 @@ typedef union _hw_csu_csl20
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL20_SSW_S1      (21)      //!< Bit position for CSU_CSL20_SSW_S1.
 #define BM_CSU_CSL20_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL20_SSW_S1.
 
@@ -11616,7 +10867,6 @@ typedef union _hw_csu_csl20
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL20_SSW_S1(v)   (HW_CSU_CSL20_WR((HW_CSU_CSL20_RD() & ~BM_CSU_CSL20_SSW_S1) | BF_CSU_CSL20_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL20, field NUW_S1[22] (RW)
@@ -11628,7 +10878,6 @@ typedef union _hw_csu_csl20
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL20_NUW_S1      (22)      //!< Bit position for CSU_CSL20_NUW_S1.
 #define BM_CSU_CSL20_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL20_NUW_S1.
 
@@ -11642,7 +10891,6 @@ typedef union _hw_csu_csl20
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL20_NUW_S1(v)   (HW_CSU_CSL20_WR((HW_CSU_CSL20_RD() & ~BM_CSU_CSL20_NUW_S1) | BF_CSU_CSL20_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL20, field NSW_S1[23] (RW)
@@ -11654,7 +10902,6 @@ typedef union _hw_csu_csl20
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL20_NSW_S1      (23)      //!< Bit position for CSU_CSL20_NSW_S1.
 #define BM_CSU_CSL20_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL20_NSW_S1.
 
@@ -11668,7 +10915,6 @@ typedef union _hw_csu_csl20
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL20_NSW_S1(v)   (HW_CSU_CSL20_WR((HW_CSU_CSL20_RD() & ~BM_CSU_CSL20_NSW_S1) | BF_CSU_CSL20_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL20, field LOCK_S1[24] (RW)
@@ -11680,7 +10926,6 @@ typedef union _hw_csu_csl20
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL20_LOCK_S1      (24)      //!< Bit position for CSU_CSL20_LOCK_S1.
 #define BM_CSU_CSL20_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL20_LOCK_S1.
 
@@ -11694,7 +10939,6 @@ typedef union _hw_csu_csl20
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL20_LOCK_S1(v)   (HW_CSU_CSL20_WR((HW_CSU_CSL20_RD() & ~BM_CSU_CSL20_LOCK_S1) | BF_CSU_CSL20_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11791,7 +11035,6 @@ typedef union _hw_csu_csl21
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL21_SUR_S2      (0)      //!< Bit position for CSU_CSL21_SUR_S2.
 #define BM_CSU_CSL21_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL21_SUR_S2.
 
@@ -11805,7 +11048,6 @@ typedef union _hw_csu_csl21
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL21_SUR_S2(v)   (HW_CSU_CSL21_WR((HW_CSU_CSL21_RD() & ~BM_CSU_CSL21_SUR_S2) | BF_CSU_CSL21_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL21, field SSR_S2[1] (RW)
@@ -11817,7 +11059,6 @@ typedef union _hw_csu_csl21
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL21_SSR_S2      (1)      //!< Bit position for CSU_CSL21_SSR_S2.
 #define BM_CSU_CSL21_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL21_SSR_S2.
 
@@ -11831,7 +11072,6 @@ typedef union _hw_csu_csl21
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL21_SSR_S2(v)   (HW_CSU_CSL21_WR((HW_CSU_CSL21_RD() & ~BM_CSU_CSL21_SSR_S2) | BF_CSU_CSL21_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL21, field NUR_S2[2] (RW)
@@ -11843,7 +11083,6 @@ typedef union _hw_csu_csl21
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL21_NUR_S2      (2)      //!< Bit position for CSU_CSL21_NUR_S2.
 #define BM_CSU_CSL21_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL21_NUR_S2.
 
@@ -11857,7 +11096,6 @@ typedef union _hw_csu_csl21
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL21_NUR_S2(v)   (HW_CSU_CSL21_WR((HW_CSU_CSL21_RD() & ~BM_CSU_CSL21_NUR_S2) | BF_CSU_CSL21_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL21, field NSR_S2[3] (RW)
@@ -11869,7 +11107,6 @@ typedef union _hw_csu_csl21
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL21_NSR_S2      (3)      //!< Bit position for CSU_CSL21_NSR_S2.
 #define BM_CSU_CSL21_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL21_NSR_S2.
 
@@ -11883,7 +11120,6 @@ typedef union _hw_csu_csl21
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL21_NSR_S2(v)   (HW_CSU_CSL21_WR((HW_CSU_CSL21_RD() & ~BM_CSU_CSL21_NSR_S2) | BF_CSU_CSL21_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL21, field SUW_S2[4] (RW)
@@ -11895,7 +11131,6 @@ typedef union _hw_csu_csl21
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL21_SUW_S2      (4)      //!< Bit position for CSU_CSL21_SUW_S2.
 #define BM_CSU_CSL21_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL21_SUW_S2.
 
@@ -11909,7 +11144,6 @@ typedef union _hw_csu_csl21
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL21_SUW_S2(v)   (HW_CSU_CSL21_WR((HW_CSU_CSL21_RD() & ~BM_CSU_CSL21_SUW_S2) | BF_CSU_CSL21_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL21, field SSW_S2[5] (RW)
@@ -11921,7 +11155,6 @@ typedef union _hw_csu_csl21
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL21_SSW_S2      (5)      //!< Bit position for CSU_CSL21_SSW_S2.
 #define BM_CSU_CSL21_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL21_SSW_S2.
 
@@ -11935,7 +11168,6 @@ typedef union _hw_csu_csl21
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL21_SSW_S2(v)   (HW_CSU_CSL21_WR((HW_CSU_CSL21_RD() & ~BM_CSU_CSL21_SSW_S2) | BF_CSU_CSL21_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL21, field NUW_S2[6] (RW)
@@ -11947,7 +11179,6 @@ typedef union _hw_csu_csl21
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL21_NUW_S2      (6)      //!< Bit position for CSU_CSL21_NUW_S2.
 #define BM_CSU_CSL21_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL21_NUW_S2.
 
@@ -11961,7 +11192,6 @@ typedef union _hw_csu_csl21
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL21_NUW_S2(v)   (HW_CSU_CSL21_WR((HW_CSU_CSL21_RD() & ~BM_CSU_CSL21_NUW_S2) | BF_CSU_CSL21_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL21, field NSW_S2[7] (RW)
@@ -11973,7 +11203,6 @@ typedef union _hw_csu_csl21
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL21_NSW_S2      (7)      //!< Bit position for CSU_CSL21_NSW_S2.
 #define BM_CSU_CSL21_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL21_NSW_S2.
 
@@ -11987,7 +11216,6 @@ typedef union _hw_csu_csl21
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL21_NSW_S2(v)   (HW_CSU_CSL21_WR((HW_CSU_CSL21_RD() & ~BM_CSU_CSL21_NSW_S2) | BF_CSU_CSL21_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL21, field LOCK_S2[8] (RW)
@@ -11999,7 +11227,6 @@ typedef union _hw_csu_csl21
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL21_LOCK_S2      (8)      //!< Bit position for CSU_CSL21_LOCK_S2.
 #define BM_CSU_CSL21_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL21_LOCK_S2.
 
@@ -12013,7 +11240,6 @@ typedef union _hw_csu_csl21
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL21_LOCK_S2(v)   (HW_CSU_CSL21_WR((HW_CSU_CSL21_RD() & ~BM_CSU_CSL21_LOCK_S2) | BF_CSU_CSL21_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL21, field SUR_S1[16] (RW)
@@ -12025,7 +11251,6 @@ typedef union _hw_csu_csl21
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL21_SUR_S1      (16)      //!< Bit position for CSU_CSL21_SUR_S1.
 #define BM_CSU_CSL21_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL21_SUR_S1.
 
@@ -12039,7 +11264,6 @@ typedef union _hw_csu_csl21
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL21_SUR_S1(v)   (HW_CSU_CSL21_WR((HW_CSU_CSL21_RD() & ~BM_CSU_CSL21_SUR_S1) | BF_CSU_CSL21_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL21, field SSR_S1[17] (RW)
@@ -12051,7 +11275,6 @@ typedef union _hw_csu_csl21
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL21_SSR_S1      (17)      //!< Bit position for CSU_CSL21_SSR_S1.
 #define BM_CSU_CSL21_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL21_SSR_S1.
 
@@ -12065,7 +11288,6 @@ typedef union _hw_csu_csl21
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL21_SSR_S1(v)   (HW_CSU_CSL21_WR((HW_CSU_CSL21_RD() & ~BM_CSU_CSL21_SSR_S1) | BF_CSU_CSL21_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL21, field NUR_S1[18] (RW)
@@ -12077,7 +11299,6 @@ typedef union _hw_csu_csl21
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL21_NUR_S1      (18)      //!< Bit position for CSU_CSL21_NUR_S1.
 #define BM_CSU_CSL21_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL21_NUR_S1.
 
@@ -12091,7 +11312,6 @@ typedef union _hw_csu_csl21
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL21_NUR_S1(v)   (HW_CSU_CSL21_WR((HW_CSU_CSL21_RD() & ~BM_CSU_CSL21_NUR_S1) | BF_CSU_CSL21_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL21, field NSR_S1[19] (RW)
@@ -12103,7 +11323,6 @@ typedef union _hw_csu_csl21
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL21_NSR_S1      (19)      //!< Bit position for CSU_CSL21_NSR_S1.
 #define BM_CSU_CSL21_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL21_NSR_S1.
 
@@ -12117,7 +11336,6 @@ typedef union _hw_csu_csl21
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL21_NSR_S1(v)   (HW_CSU_CSL21_WR((HW_CSU_CSL21_RD() & ~BM_CSU_CSL21_NSR_S1) | BF_CSU_CSL21_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL21, field SUW_S1[20] (RW)
@@ -12129,7 +11347,6 @@ typedef union _hw_csu_csl21
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL21_SUW_S1      (20)      //!< Bit position for CSU_CSL21_SUW_S1.
 #define BM_CSU_CSL21_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL21_SUW_S1.
 
@@ -12143,7 +11360,6 @@ typedef union _hw_csu_csl21
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL21_SUW_S1(v)   (HW_CSU_CSL21_WR((HW_CSU_CSL21_RD() & ~BM_CSU_CSL21_SUW_S1) | BF_CSU_CSL21_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL21, field SSW_S1[21] (RW)
@@ -12155,7 +11371,6 @@ typedef union _hw_csu_csl21
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL21_SSW_S1      (21)      //!< Bit position for CSU_CSL21_SSW_S1.
 #define BM_CSU_CSL21_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL21_SSW_S1.
 
@@ -12169,7 +11384,6 @@ typedef union _hw_csu_csl21
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL21_SSW_S1(v)   (HW_CSU_CSL21_WR((HW_CSU_CSL21_RD() & ~BM_CSU_CSL21_SSW_S1) | BF_CSU_CSL21_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL21, field NUW_S1[22] (RW)
@@ -12181,7 +11395,6 @@ typedef union _hw_csu_csl21
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL21_NUW_S1      (22)      //!< Bit position for CSU_CSL21_NUW_S1.
 #define BM_CSU_CSL21_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL21_NUW_S1.
 
@@ -12195,7 +11408,6 @@ typedef union _hw_csu_csl21
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL21_NUW_S1(v)   (HW_CSU_CSL21_WR((HW_CSU_CSL21_RD() & ~BM_CSU_CSL21_NUW_S1) | BF_CSU_CSL21_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL21, field NSW_S1[23] (RW)
@@ -12207,7 +11419,6 @@ typedef union _hw_csu_csl21
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL21_NSW_S1      (23)      //!< Bit position for CSU_CSL21_NSW_S1.
 #define BM_CSU_CSL21_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL21_NSW_S1.
 
@@ -12221,7 +11432,6 @@ typedef union _hw_csu_csl21
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL21_NSW_S1(v)   (HW_CSU_CSL21_WR((HW_CSU_CSL21_RD() & ~BM_CSU_CSL21_NSW_S1) | BF_CSU_CSL21_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL21, field LOCK_S1[24] (RW)
@@ -12233,7 +11443,6 @@ typedef union _hw_csu_csl21
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL21_LOCK_S1      (24)      //!< Bit position for CSU_CSL21_LOCK_S1.
 #define BM_CSU_CSL21_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL21_LOCK_S1.
 
@@ -12247,7 +11456,6 @@ typedef union _hw_csu_csl21
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL21_LOCK_S1(v)   (HW_CSU_CSL21_WR((HW_CSU_CSL21_RD() & ~BM_CSU_CSL21_LOCK_S1) | BF_CSU_CSL21_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12344,7 +11552,6 @@ typedef union _hw_csu_csl22
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL22_SUR_S2      (0)      //!< Bit position for CSU_CSL22_SUR_S2.
 #define BM_CSU_CSL22_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL22_SUR_S2.
 
@@ -12358,7 +11565,6 @@ typedef union _hw_csu_csl22
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL22_SUR_S2(v)   (HW_CSU_CSL22_WR((HW_CSU_CSL22_RD() & ~BM_CSU_CSL22_SUR_S2) | BF_CSU_CSL22_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL22, field SSR_S2[1] (RW)
@@ -12370,7 +11576,6 @@ typedef union _hw_csu_csl22
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL22_SSR_S2      (1)      //!< Bit position for CSU_CSL22_SSR_S2.
 #define BM_CSU_CSL22_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL22_SSR_S2.
 
@@ -12384,7 +11589,6 @@ typedef union _hw_csu_csl22
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL22_SSR_S2(v)   (HW_CSU_CSL22_WR((HW_CSU_CSL22_RD() & ~BM_CSU_CSL22_SSR_S2) | BF_CSU_CSL22_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL22, field NUR_S2[2] (RW)
@@ -12396,7 +11600,6 @@ typedef union _hw_csu_csl22
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL22_NUR_S2      (2)      //!< Bit position for CSU_CSL22_NUR_S2.
 #define BM_CSU_CSL22_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL22_NUR_S2.
 
@@ -12410,7 +11613,6 @@ typedef union _hw_csu_csl22
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL22_NUR_S2(v)   (HW_CSU_CSL22_WR((HW_CSU_CSL22_RD() & ~BM_CSU_CSL22_NUR_S2) | BF_CSU_CSL22_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL22, field NSR_S2[3] (RW)
@@ -12422,7 +11624,6 @@ typedef union _hw_csu_csl22
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL22_NSR_S2      (3)      //!< Bit position for CSU_CSL22_NSR_S2.
 #define BM_CSU_CSL22_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL22_NSR_S2.
 
@@ -12436,7 +11637,6 @@ typedef union _hw_csu_csl22
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL22_NSR_S2(v)   (HW_CSU_CSL22_WR((HW_CSU_CSL22_RD() & ~BM_CSU_CSL22_NSR_S2) | BF_CSU_CSL22_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL22, field SUW_S2[4] (RW)
@@ -12448,7 +11648,6 @@ typedef union _hw_csu_csl22
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL22_SUW_S2      (4)      //!< Bit position for CSU_CSL22_SUW_S2.
 #define BM_CSU_CSL22_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL22_SUW_S2.
 
@@ -12462,7 +11661,6 @@ typedef union _hw_csu_csl22
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL22_SUW_S2(v)   (HW_CSU_CSL22_WR((HW_CSU_CSL22_RD() & ~BM_CSU_CSL22_SUW_S2) | BF_CSU_CSL22_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL22, field SSW_S2[5] (RW)
@@ -12474,7 +11672,6 @@ typedef union _hw_csu_csl22
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL22_SSW_S2      (5)      //!< Bit position for CSU_CSL22_SSW_S2.
 #define BM_CSU_CSL22_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL22_SSW_S2.
 
@@ -12488,7 +11685,6 @@ typedef union _hw_csu_csl22
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL22_SSW_S2(v)   (HW_CSU_CSL22_WR((HW_CSU_CSL22_RD() & ~BM_CSU_CSL22_SSW_S2) | BF_CSU_CSL22_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL22, field NUW_S2[6] (RW)
@@ -12500,7 +11696,6 @@ typedef union _hw_csu_csl22
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL22_NUW_S2      (6)      //!< Bit position for CSU_CSL22_NUW_S2.
 #define BM_CSU_CSL22_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL22_NUW_S2.
 
@@ -12514,7 +11709,6 @@ typedef union _hw_csu_csl22
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL22_NUW_S2(v)   (HW_CSU_CSL22_WR((HW_CSU_CSL22_RD() & ~BM_CSU_CSL22_NUW_S2) | BF_CSU_CSL22_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL22, field NSW_S2[7] (RW)
@@ -12526,7 +11720,6 @@ typedef union _hw_csu_csl22
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL22_NSW_S2      (7)      //!< Bit position for CSU_CSL22_NSW_S2.
 #define BM_CSU_CSL22_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL22_NSW_S2.
 
@@ -12540,7 +11733,6 @@ typedef union _hw_csu_csl22
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL22_NSW_S2(v)   (HW_CSU_CSL22_WR((HW_CSU_CSL22_RD() & ~BM_CSU_CSL22_NSW_S2) | BF_CSU_CSL22_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL22, field LOCK_S2[8] (RW)
@@ -12552,7 +11744,6 @@ typedef union _hw_csu_csl22
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL22_LOCK_S2      (8)      //!< Bit position for CSU_CSL22_LOCK_S2.
 #define BM_CSU_CSL22_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL22_LOCK_S2.
 
@@ -12566,7 +11757,6 @@ typedef union _hw_csu_csl22
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL22_LOCK_S2(v)   (HW_CSU_CSL22_WR((HW_CSU_CSL22_RD() & ~BM_CSU_CSL22_LOCK_S2) | BF_CSU_CSL22_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL22, field SUR_S1[16] (RW)
@@ -12578,7 +11768,6 @@ typedef union _hw_csu_csl22
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL22_SUR_S1      (16)      //!< Bit position for CSU_CSL22_SUR_S1.
 #define BM_CSU_CSL22_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL22_SUR_S1.
 
@@ -12592,7 +11781,6 @@ typedef union _hw_csu_csl22
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL22_SUR_S1(v)   (HW_CSU_CSL22_WR((HW_CSU_CSL22_RD() & ~BM_CSU_CSL22_SUR_S1) | BF_CSU_CSL22_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL22, field SSR_S1[17] (RW)
@@ -12604,7 +11792,6 @@ typedef union _hw_csu_csl22
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL22_SSR_S1      (17)      //!< Bit position for CSU_CSL22_SSR_S1.
 #define BM_CSU_CSL22_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL22_SSR_S1.
 
@@ -12618,7 +11805,6 @@ typedef union _hw_csu_csl22
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL22_SSR_S1(v)   (HW_CSU_CSL22_WR((HW_CSU_CSL22_RD() & ~BM_CSU_CSL22_SSR_S1) | BF_CSU_CSL22_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL22, field NUR_S1[18] (RW)
@@ -12630,7 +11816,6 @@ typedef union _hw_csu_csl22
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL22_NUR_S1      (18)      //!< Bit position for CSU_CSL22_NUR_S1.
 #define BM_CSU_CSL22_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL22_NUR_S1.
 
@@ -12644,7 +11829,6 @@ typedef union _hw_csu_csl22
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL22_NUR_S1(v)   (HW_CSU_CSL22_WR((HW_CSU_CSL22_RD() & ~BM_CSU_CSL22_NUR_S1) | BF_CSU_CSL22_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL22, field NSR_S1[19] (RW)
@@ -12656,7 +11840,6 @@ typedef union _hw_csu_csl22
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL22_NSR_S1      (19)      //!< Bit position for CSU_CSL22_NSR_S1.
 #define BM_CSU_CSL22_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL22_NSR_S1.
 
@@ -12670,7 +11853,6 @@ typedef union _hw_csu_csl22
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL22_NSR_S1(v)   (HW_CSU_CSL22_WR((HW_CSU_CSL22_RD() & ~BM_CSU_CSL22_NSR_S1) | BF_CSU_CSL22_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL22, field SUW_S1[20] (RW)
@@ -12682,7 +11864,6 @@ typedef union _hw_csu_csl22
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL22_SUW_S1      (20)      //!< Bit position for CSU_CSL22_SUW_S1.
 #define BM_CSU_CSL22_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL22_SUW_S1.
 
@@ -12696,7 +11877,6 @@ typedef union _hw_csu_csl22
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL22_SUW_S1(v)   (HW_CSU_CSL22_WR((HW_CSU_CSL22_RD() & ~BM_CSU_CSL22_SUW_S1) | BF_CSU_CSL22_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL22, field SSW_S1[21] (RW)
@@ -12708,7 +11888,6 @@ typedef union _hw_csu_csl22
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL22_SSW_S1      (21)      //!< Bit position for CSU_CSL22_SSW_S1.
 #define BM_CSU_CSL22_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL22_SSW_S1.
 
@@ -12722,7 +11901,6 @@ typedef union _hw_csu_csl22
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL22_SSW_S1(v)   (HW_CSU_CSL22_WR((HW_CSU_CSL22_RD() & ~BM_CSU_CSL22_SSW_S1) | BF_CSU_CSL22_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL22, field NUW_S1[22] (RW)
@@ -12734,7 +11912,6 @@ typedef union _hw_csu_csl22
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL22_NUW_S1      (22)      //!< Bit position for CSU_CSL22_NUW_S1.
 #define BM_CSU_CSL22_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL22_NUW_S1.
 
@@ -12748,7 +11925,6 @@ typedef union _hw_csu_csl22
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL22_NUW_S1(v)   (HW_CSU_CSL22_WR((HW_CSU_CSL22_RD() & ~BM_CSU_CSL22_NUW_S1) | BF_CSU_CSL22_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL22, field NSW_S1[23] (RW)
@@ -12760,7 +11936,6 @@ typedef union _hw_csu_csl22
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL22_NSW_S1      (23)      //!< Bit position for CSU_CSL22_NSW_S1.
 #define BM_CSU_CSL22_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL22_NSW_S1.
 
@@ -12774,7 +11949,6 @@ typedef union _hw_csu_csl22
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL22_NSW_S1(v)   (HW_CSU_CSL22_WR((HW_CSU_CSL22_RD() & ~BM_CSU_CSL22_NSW_S1) | BF_CSU_CSL22_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL22, field LOCK_S1[24] (RW)
@@ -12786,7 +11960,6 @@ typedef union _hw_csu_csl22
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL22_LOCK_S1      (24)      //!< Bit position for CSU_CSL22_LOCK_S1.
 #define BM_CSU_CSL22_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL22_LOCK_S1.
 
@@ -12800,7 +11973,6 @@ typedef union _hw_csu_csl22
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL22_LOCK_S1(v)   (HW_CSU_CSL22_WR((HW_CSU_CSL22_RD() & ~BM_CSU_CSL22_LOCK_S1) | BF_CSU_CSL22_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12897,7 +12069,6 @@ typedef union _hw_csu_csl23
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL23_SUR_S2      (0)      //!< Bit position for CSU_CSL23_SUR_S2.
 #define BM_CSU_CSL23_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL23_SUR_S2.
 
@@ -12911,7 +12082,6 @@ typedef union _hw_csu_csl23
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL23_SUR_S2(v)   (HW_CSU_CSL23_WR((HW_CSU_CSL23_RD() & ~BM_CSU_CSL23_SUR_S2) | BF_CSU_CSL23_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL23, field SSR_S2[1] (RW)
@@ -12923,7 +12093,6 @@ typedef union _hw_csu_csl23
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL23_SSR_S2      (1)      //!< Bit position for CSU_CSL23_SSR_S2.
 #define BM_CSU_CSL23_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL23_SSR_S2.
 
@@ -12937,7 +12106,6 @@ typedef union _hw_csu_csl23
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL23_SSR_S2(v)   (HW_CSU_CSL23_WR((HW_CSU_CSL23_RD() & ~BM_CSU_CSL23_SSR_S2) | BF_CSU_CSL23_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL23, field NUR_S2[2] (RW)
@@ -12949,7 +12117,6 @@ typedef union _hw_csu_csl23
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL23_NUR_S2      (2)      //!< Bit position for CSU_CSL23_NUR_S2.
 #define BM_CSU_CSL23_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL23_NUR_S2.
 
@@ -12963,7 +12130,6 @@ typedef union _hw_csu_csl23
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL23_NUR_S2(v)   (HW_CSU_CSL23_WR((HW_CSU_CSL23_RD() & ~BM_CSU_CSL23_NUR_S2) | BF_CSU_CSL23_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL23, field NSR_S2[3] (RW)
@@ -12975,7 +12141,6 @@ typedef union _hw_csu_csl23
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL23_NSR_S2      (3)      //!< Bit position for CSU_CSL23_NSR_S2.
 #define BM_CSU_CSL23_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL23_NSR_S2.
 
@@ -12989,7 +12154,6 @@ typedef union _hw_csu_csl23
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL23_NSR_S2(v)   (HW_CSU_CSL23_WR((HW_CSU_CSL23_RD() & ~BM_CSU_CSL23_NSR_S2) | BF_CSU_CSL23_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL23, field SUW_S2[4] (RW)
@@ -13001,7 +12165,6 @@ typedef union _hw_csu_csl23
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL23_SUW_S2      (4)      //!< Bit position for CSU_CSL23_SUW_S2.
 #define BM_CSU_CSL23_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL23_SUW_S2.
 
@@ -13015,7 +12178,6 @@ typedef union _hw_csu_csl23
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL23_SUW_S2(v)   (HW_CSU_CSL23_WR((HW_CSU_CSL23_RD() & ~BM_CSU_CSL23_SUW_S2) | BF_CSU_CSL23_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL23, field SSW_S2[5] (RW)
@@ -13027,7 +12189,6 @@ typedef union _hw_csu_csl23
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL23_SSW_S2      (5)      //!< Bit position for CSU_CSL23_SSW_S2.
 #define BM_CSU_CSL23_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL23_SSW_S2.
 
@@ -13041,7 +12202,6 @@ typedef union _hw_csu_csl23
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL23_SSW_S2(v)   (HW_CSU_CSL23_WR((HW_CSU_CSL23_RD() & ~BM_CSU_CSL23_SSW_S2) | BF_CSU_CSL23_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL23, field NUW_S2[6] (RW)
@@ -13053,7 +12213,6 @@ typedef union _hw_csu_csl23
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL23_NUW_S2      (6)      //!< Bit position for CSU_CSL23_NUW_S2.
 #define BM_CSU_CSL23_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL23_NUW_S2.
 
@@ -13067,7 +12226,6 @@ typedef union _hw_csu_csl23
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL23_NUW_S2(v)   (HW_CSU_CSL23_WR((HW_CSU_CSL23_RD() & ~BM_CSU_CSL23_NUW_S2) | BF_CSU_CSL23_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL23, field NSW_S2[7] (RW)
@@ -13079,7 +12237,6 @@ typedef union _hw_csu_csl23
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL23_NSW_S2      (7)      //!< Bit position for CSU_CSL23_NSW_S2.
 #define BM_CSU_CSL23_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL23_NSW_S2.
 
@@ -13093,7 +12250,6 @@ typedef union _hw_csu_csl23
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL23_NSW_S2(v)   (HW_CSU_CSL23_WR((HW_CSU_CSL23_RD() & ~BM_CSU_CSL23_NSW_S2) | BF_CSU_CSL23_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL23, field LOCK_S2[8] (RW)
@@ -13105,7 +12261,6 @@ typedef union _hw_csu_csl23
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL23_LOCK_S2      (8)      //!< Bit position for CSU_CSL23_LOCK_S2.
 #define BM_CSU_CSL23_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL23_LOCK_S2.
 
@@ -13119,7 +12274,6 @@ typedef union _hw_csu_csl23
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL23_LOCK_S2(v)   (HW_CSU_CSL23_WR((HW_CSU_CSL23_RD() & ~BM_CSU_CSL23_LOCK_S2) | BF_CSU_CSL23_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL23, field SUR_S1[16] (RW)
@@ -13131,7 +12285,6 @@ typedef union _hw_csu_csl23
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL23_SUR_S1      (16)      //!< Bit position for CSU_CSL23_SUR_S1.
 #define BM_CSU_CSL23_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL23_SUR_S1.
 
@@ -13145,7 +12298,6 @@ typedef union _hw_csu_csl23
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL23_SUR_S1(v)   (HW_CSU_CSL23_WR((HW_CSU_CSL23_RD() & ~BM_CSU_CSL23_SUR_S1) | BF_CSU_CSL23_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL23, field SSR_S1[17] (RW)
@@ -13157,7 +12309,6 @@ typedef union _hw_csu_csl23
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL23_SSR_S1      (17)      //!< Bit position for CSU_CSL23_SSR_S1.
 #define BM_CSU_CSL23_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL23_SSR_S1.
 
@@ -13171,7 +12322,6 @@ typedef union _hw_csu_csl23
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL23_SSR_S1(v)   (HW_CSU_CSL23_WR((HW_CSU_CSL23_RD() & ~BM_CSU_CSL23_SSR_S1) | BF_CSU_CSL23_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL23, field NUR_S1[18] (RW)
@@ -13183,7 +12333,6 @@ typedef union _hw_csu_csl23
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL23_NUR_S1      (18)      //!< Bit position for CSU_CSL23_NUR_S1.
 #define BM_CSU_CSL23_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL23_NUR_S1.
 
@@ -13197,7 +12346,6 @@ typedef union _hw_csu_csl23
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL23_NUR_S1(v)   (HW_CSU_CSL23_WR((HW_CSU_CSL23_RD() & ~BM_CSU_CSL23_NUR_S1) | BF_CSU_CSL23_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL23, field NSR_S1[19] (RW)
@@ -13209,7 +12357,6 @@ typedef union _hw_csu_csl23
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL23_NSR_S1      (19)      //!< Bit position for CSU_CSL23_NSR_S1.
 #define BM_CSU_CSL23_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL23_NSR_S1.
 
@@ -13223,7 +12370,6 @@ typedef union _hw_csu_csl23
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL23_NSR_S1(v)   (HW_CSU_CSL23_WR((HW_CSU_CSL23_RD() & ~BM_CSU_CSL23_NSR_S1) | BF_CSU_CSL23_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL23, field SUW_S1[20] (RW)
@@ -13235,7 +12381,6 @@ typedef union _hw_csu_csl23
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL23_SUW_S1      (20)      //!< Bit position for CSU_CSL23_SUW_S1.
 #define BM_CSU_CSL23_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL23_SUW_S1.
 
@@ -13249,7 +12394,6 @@ typedef union _hw_csu_csl23
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL23_SUW_S1(v)   (HW_CSU_CSL23_WR((HW_CSU_CSL23_RD() & ~BM_CSU_CSL23_SUW_S1) | BF_CSU_CSL23_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL23, field SSW_S1[21] (RW)
@@ -13261,7 +12405,6 @@ typedef union _hw_csu_csl23
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL23_SSW_S1      (21)      //!< Bit position for CSU_CSL23_SSW_S1.
 #define BM_CSU_CSL23_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL23_SSW_S1.
 
@@ -13275,7 +12418,6 @@ typedef union _hw_csu_csl23
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL23_SSW_S1(v)   (HW_CSU_CSL23_WR((HW_CSU_CSL23_RD() & ~BM_CSU_CSL23_SSW_S1) | BF_CSU_CSL23_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL23, field NUW_S1[22] (RW)
@@ -13287,7 +12429,6 @@ typedef union _hw_csu_csl23
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL23_NUW_S1      (22)      //!< Bit position for CSU_CSL23_NUW_S1.
 #define BM_CSU_CSL23_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL23_NUW_S1.
 
@@ -13301,7 +12442,6 @@ typedef union _hw_csu_csl23
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL23_NUW_S1(v)   (HW_CSU_CSL23_WR((HW_CSU_CSL23_RD() & ~BM_CSU_CSL23_NUW_S1) | BF_CSU_CSL23_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL23, field NSW_S1[23] (RW)
@@ -13313,7 +12453,6 @@ typedef union _hw_csu_csl23
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL23_NSW_S1      (23)      //!< Bit position for CSU_CSL23_NSW_S1.
 #define BM_CSU_CSL23_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL23_NSW_S1.
 
@@ -13327,7 +12466,6 @@ typedef union _hw_csu_csl23
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL23_NSW_S1(v)   (HW_CSU_CSL23_WR((HW_CSU_CSL23_RD() & ~BM_CSU_CSL23_NSW_S1) | BF_CSU_CSL23_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL23, field LOCK_S1[24] (RW)
@@ -13339,7 +12477,6 @@ typedef union _hw_csu_csl23
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL23_LOCK_S1      (24)      //!< Bit position for CSU_CSL23_LOCK_S1.
 #define BM_CSU_CSL23_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL23_LOCK_S1.
 
@@ -13353,7 +12490,6 @@ typedef union _hw_csu_csl23
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL23_LOCK_S1(v)   (HW_CSU_CSL23_WR((HW_CSU_CSL23_RD() & ~BM_CSU_CSL23_LOCK_S1) | BF_CSU_CSL23_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -13450,7 +12586,6 @@ typedef union _hw_csu_csl24
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL24_SUR_S2      (0)      //!< Bit position for CSU_CSL24_SUR_S2.
 #define BM_CSU_CSL24_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL24_SUR_S2.
 
@@ -13464,7 +12599,6 @@ typedef union _hw_csu_csl24
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL24_SUR_S2(v)   (HW_CSU_CSL24_WR((HW_CSU_CSL24_RD() & ~BM_CSU_CSL24_SUR_S2) | BF_CSU_CSL24_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL24, field SSR_S2[1] (RW)
@@ -13476,7 +12610,6 @@ typedef union _hw_csu_csl24
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL24_SSR_S2      (1)      //!< Bit position for CSU_CSL24_SSR_S2.
 #define BM_CSU_CSL24_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL24_SSR_S2.
 
@@ -13490,7 +12623,6 @@ typedef union _hw_csu_csl24
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL24_SSR_S2(v)   (HW_CSU_CSL24_WR((HW_CSU_CSL24_RD() & ~BM_CSU_CSL24_SSR_S2) | BF_CSU_CSL24_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL24, field NUR_S2[2] (RW)
@@ -13502,7 +12634,6 @@ typedef union _hw_csu_csl24
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL24_NUR_S2      (2)      //!< Bit position for CSU_CSL24_NUR_S2.
 #define BM_CSU_CSL24_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL24_NUR_S2.
 
@@ -13516,7 +12647,6 @@ typedef union _hw_csu_csl24
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL24_NUR_S2(v)   (HW_CSU_CSL24_WR((HW_CSU_CSL24_RD() & ~BM_CSU_CSL24_NUR_S2) | BF_CSU_CSL24_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL24, field NSR_S2[3] (RW)
@@ -13528,7 +12658,6 @@ typedef union _hw_csu_csl24
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL24_NSR_S2      (3)      //!< Bit position for CSU_CSL24_NSR_S2.
 #define BM_CSU_CSL24_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL24_NSR_S2.
 
@@ -13542,7 +12671,6 @@ typedef union _hw_csu_csl24
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL24_NSR_S2(v)   (HW_CSU_CSL24_WR((HW_CSU_CSL24_RD() & ~BM_CSU_CSL24_NSR_S2) | BF_CSU_CSL24_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL24, field SUW_S2[4] (RW)
@@ -13554,7 +12682,6 @@ typedef union _hw_csu_csl24
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL24_SUW_S2      (4)      //!< Bit position for CSU_CSL24_SUW_S2.
 #define BM_CSU_CSL24_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL24_SUW_S2.
 
@@ -13568,7 +12695,6 @@ typedef union _hw_csu_csl24
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL24_SUW_S2(v)   (HW_CSU_CSL24_WR((HW_CSU_CSL24_RD() & ~BM_CSU_CSL24_SUW_S2) | BF_CSU_CSL24_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL24, field SSW_S2[5] (RW)
@@ -13580,7 +12706,6 @@ typedef union _hw_csu_csl24
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL24_SSW_S2      (5)      //!< Bit position for CSU_CSL24_SSW_S2.
 #define BM_CSU_CSL24_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL24_SSW_S2.
 
@@ -13594,7 +12719,6 @@ typedef union _hw_csu_csl24
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL24_SSW_S2(v)   (HW_CSU_CSL24_WR((HW_CSU_CSL24_RD() & ~BM_CSU_CSL24_SSW_S2) | BF_CSU_CSL24_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL24, field NUW_S2[6] (RW)
@@ -13606,7 +12730,6 @@ typedef union _hw_csu_csl24
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL24_NUW_S2      (6)      //!< Bit position for CSU_CSL24_NUW_S2.
 #define BM_CSU_CSL24_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL24_NUW_S2.
 
@@ -13620,7 +12743,6 @@ typedef union _hw_csu_csl24
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL24_NUW_S2(v)   (HW_CSU_CSL24_WR((HW_CSU_CSL24_RD() & ~BM_CSU_CSL24_NUW_S2) | BF_CSU_CSL24_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL24, field NSW_S2[7] (RW)
@@ -13632,7 +12754,6 @@ typedef union _hw_csu_csl24
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL24_NSW_S2      (7)      //!< Bit position for CSU_CSL24_NSW_S2.
 #define BM_CSU_CSL24_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL24_NSW_S2.
 
@@ -13646,7 +12767,6 @@ typedef union _hw_csu_csl24
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL24_NSW_S2(v)   (HW_CSU_CSL24_WR((HW_CSU_CSL24_RD() & ~BM_CSU_CSL24_NSW_S2) | BF_CSU_CSL24_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL24, field LOCK_S2[8] (RW)
@@ -13658,7 +12778,6 @@ typedef union _hw_csu_csl24
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL24_LOCK_S2      (8)      //!< Bit position for CSU_CSL24_LOCK_S2.
 #define BM_CSU_CSL24_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL24_LOCK_S2.
 
@@ -13672,7 +12791,6 @@ typedef union _hw_csu_csl24
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL24_LOCK_S2(v)   (HW_CSU_CSL24_WR((HW_CSU_CSL24_RD() & ~BM_CSU_CSL24_LOCK_S2) | BF_CSU_CSL24_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL24, field SUR_S1[16] (RW)
@@ -13684,7 +12802,6 @@ typedef union _hw_csu_csl24
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL24_SUR_S1      (16)      //!< Bit position for CSU_CSL24_SUR_S1.
 #define BM_CSU_CSL24_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL24_SUR_S1.
 
@@ -13698,7 +12815,6 @@ typedef union _hw_csu_csl24
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL24_SUR_S1(v)   (HW_CSU_CSL24_WR((HW_CSU_CSL24_RD() & ~BM_CSU_CSL24_SUR_S1) | BF_CSU_CSL24_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL24, field SSR_S1[17] (RW)
@@ -13710,7 +12826,6 @@ typedef union _hw_csu_csl24
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL24_SSR_S1      (17)      //!< Bit position for CSU_CSL24_SSR_S1.
 #define BM_CSU_CSL24_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL24_SSR_S1.
 
@@ -13724,7 +12839,6 @@ typedef union _hw_csu_csl24
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL24_SSR_S1(v)   (HW_CSU_CSL24_WR((HW_CSU_CSL24_RD() & ~BM_CSU_CSL24_SSR_S1) | BF_CSU_CSL24_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL24, field NUR_S1[18] (RW)
@@ -13736,7 +12850,6 @@ typedef union _hw_csu_csl24
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL24_NUR_S1      (18)      //!< Bit position for CSU_CSL24_NUR_S1.
 #define BM_CSU_CSL24_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL24_NUR_S1.
 
@@ -13750,7 +12863,6 @@ typedef union _hw_csu_csl24
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL24_NUR_S1(v)   (HW_CSU_CSL24_WR((HW_CSU_CSL24_RD() & ~BM_CSU_CSL24_NUR_S1) | BF_CSU_CSL24_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL24, field NSR_S1[19] (RW)
@@ -13762,7 +12874,6 @@ typedef union _hw_csu_csl24
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL24_NSR_S1      (19)      //!< Bit position for CSU_CSL24_NSR_S1.
 #define BM_CSU_CSL24_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL24_NSR_S1.
 
@@ -13776,7 +12887,6 @@ typedef union _hw_csu_csl24
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL24_NSR_S1(v)   (HW_CSU_CSL24_WR((HW_CSU_CSL24_RD() & ~BM_CSU_CSL24_NSR_S1) | BF_CSU_CSL24_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL24, field SUW_S1[20] (RW)
@@ -13788,7 +12898,6 @@ typedef union _hw_csu_csl24
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL24_SUW_S1      (20)      //!< Bit position for CSU_CSL24_SUW_S1.
 #define BM_CSU_CSL24_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL24_SUW_S1.
 
@@ -13802,7 +12911,6 @@ typedef union _hw_csu_csl24
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL24_SUW_S1(v)   (HW_CSU_CSL24_WR((HW_CSU_CSL24_RD() & ~BM_CSU_CSL24_SUW_S1) | BF_CSU_CSL24_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL24, field SSW_S1[21] (RW)
@@ -13814,7 +12922,6 @@ typedef union _hw_csu_csl24
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL24_SSW_S1      (21)      //!< Bit position for CSU_CSL24_SSW_S1.
 #define BM_CSU_CSL24_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL24_SSW_S1.
 
@@ -13828,7 +12935,6 @@ typedef union _hw_csu_csl24
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL24_SSW_S1(v)   (HW_CSU_CSL24_WR((HW_CSU_CSL24_RD() & ~BM_CSU_CSL24_SSW_S1) | BF_CSU_CSL24_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL24, field NUW_S1[22] (RW)
@@ -13840,7 +12946,6 @@ typedef union _hw_csu_csl24
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL24_NUW_S1      (22)      //!< Bit position for CSU_CSL24_NUW_S1.
 #define BM_CSU_CSL24_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL24_NUW_S1.
 
@@ -13854,7 +12959,6 @@ typedef union _hw_csu_csl24
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL24_NUW_S1(v)   (HW_CSU_CSL24_WR((HW_CSU_CSL24_RD() & ~BM_CSU_CSL24_NUW_S1) | BF_CSU_CSL24_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL24, field NSW_S1[23] (RW)
@@ -13866,7 +12970,6 @@ typedef union _hw_csu_csl24
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL24_NSW_S1      (23)      //!< Bit position for CSU_CSL24_NSW_S1.
 #define BM_CSU_CSL24_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL24_NSW_S1.
 
@@ -13880,7 +12983,6 @@ typedef union _hw_csu_csl24
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL24_NSW_S1(v)   (HW_CSU_CSL24_WR((HW_CSU_CSL24_RD() & ~BM_CSU_CSL24_NSW_S1) | BF_CSU_CSL24_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL24, field LOCK_S1[24] (RW)
@@ -13892,7 +12994,6 @@ typedef union _hw_csu_csl24
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL24_LOCK_S1      (24)      //!< Bit position for CSU_CSL24_LOCK_S1.
 #define BM_CSU_CSL24_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL24_LOCK_S1.
 
@@ -13906,7 +13007,6 @@ typedef union _hw_csu_csl24
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL24_LOCK_S1(v)   (HW_CSU_CSL24_WR((HW_CSU_CSL24_RD() & ~BM_CSU_CSL24_LOCK_S1) | BF_CSU_CSL24_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -14003,7 +13103,6 @@ typedef union _hw_csu_csl25
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL25_SUR_S2      (0)      //!< Bit position for CSU_CSL25_SUR_S2.
 #define BM_CSU_CSL25_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL25_SUR_S2.
 
@@ -14017,7 +13116,6 @@ typedef union _hw_csu_csl25
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL25_SUR_S2(v)   (HW_CSU_CSL25_WR((HW_CSU_CSL25_RD() & ~BM_CSU_CSL25_SUR_S2) | BF_CSU_CSL25_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL25, field SSR_S2[1] (RW)
@@ -14029,7 +13127,6 @@ typedef union _hw_csu_csl25
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL25_SSR_S2      (1)      //!< Bit position for CSU_CSL25_SSR_S2.
 #define BM_CSU_CSL25_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL25_SSR_S2.
 
@@ -14043,7 +13140,6 @@ typedef union _hw_csu_csl25
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL25_SSR_S2(v)   (HW_CSU_CSL25_WR((HW_CSU_CSL25_RD() & ~BM_CSU_CSL25_SSR_S2) | BF_CSU_CSL25_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL25, field NUR_S2[2] (RW)
@@ -14055,7 +13151,6 @@ typedef union _hw_csu_csl25
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL25_NUR_S2      (2)      //!< Bit position for CSU_CSL25_NUR_S2.
 #define BM_CSU_CSL25_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL25_NUR_S2.
 
@@ -14069,7 +13164,6 @@ typedef union _hw_csu_csl25
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL25_NUR_S2(v)   (HW_CSU_CSL25_WR((HW_CSU_CSL25_RD() & ~BM_CSU_CSL25_NUR_S2) | BF_CSU_CSL25_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL25, field NSR_S2[3] (RW)
@@ -14081,7 +13175,6 @@ typedef union _hw_csu_csl25
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL25_NSR_S2      (3)      //!< Bit position for CSU_CSL25_NSR_S2.
 #define BM_CSU_CSL25_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL25_NSR_S2.
 
@@ -14095,7 +13188,6 @@ typedef union _hw_csu_csl25
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL25_NSR_S2(v)   (HW_CSU_CSL25_WR((HW_CSU_CSL25_RD() & ~BM_CSU_CSL25_NSR_S2) | BF_CSU_CSL25_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL25, field SUW_S2[4] (RW)
@@ -14107,7 +13199,6 @@ typedef union _hw_csu_csl25
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL25_SUW_S2      (4)      //!< Bit position for CSU_CSL25_SUW_S2.
 #define BM_CSU_CSL25_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL25_SUW_S2.
 
@@ -14121,7 +13212,6 @@ typedef union _hw_csu_csl25
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL25_SUW_S2(v)   (HW_CSU_CSL25_WR((HW_CSU_CSL25_RD() & ~BM_CSU_CSL25_SUW_S2) | BF_CSU_CSL25_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL25, field SSW_S2[5] (RW)
@@ -14133,7 +13223,6 @@ typedef union _hw_csu_csl25
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL25_SSW_S2      (5)      //!< Bit position for CSU_CSL25_SSW_S2.
 #define BM_CSU_CSL25_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL25_SSW_S2.
 
@@ -14147,7 +13236,6 @@ typedef union _hw_csu_csl25
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL25_SSW_S2(v)   (HW_CSU_CSL25_WR((HW_CSU_CSL25_RD() & ~BM_CSU_CSL25_SSW_S2) | BF_CSU_CSL25_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL25, field NUW_S2[6] (RW)
@@ -14159,7 +13247,6 @@ typedef union _hw_csu_csl25
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL25_NUW_S2      (6)      //!< Bit position for CSU_CSL25_NUW_S2.
 #define BM_CSU_CSL25_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL25_NUW_S2.
 
@@ -14173,7 +13260,6 @@ typedef union _hw_csu_csl25
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL25_NUW_S2(v)   (HW_CSU_CSL25_WR((HW_CSU_CSL25_RD() & ~BM_CSU_CSL25_NUW_S2) | BF_CSU_CSL25_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL25, field NSW_S2[7] (RW)
@@ -14185,7 +13271,6 @@ typedef union _hw_csu_csl25
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL25_NSW_S2      (7)      //!< Bit position for CSU_CSL25_NSW_S2.
 #define BM_CSU_CSL25_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL25_NSW_S2.
 
@@ -14199,7 +13284,6 @@ typedef union _hw_csu_csl25
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL25_NSW_S2(v)   (HW_CSU_CSL25_WR((HW_CSU_CSL25_RD() & ~BM_CSU_CSL25_NSW_S2) | BF_CSU_CSL25_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL25, field LOCK_S2[8] (RW)
@@ -14211,7 +13295,6 @@ typedef union _hw_csu_csl25
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL25_LOCK_S2      (8)      //!< Bit position for CSU_CSL25_LOCK_S2.
 #define BM_CSU_CSL25_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL25_LOCK_S2.
 
@@ -14225,7 +13308,6 @@ typedef union _hw_csu_csl25
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL25_LOCK_S2(v)   (HW_CSU_CSL25_WR((HW_CSU_CSL25_RD() & ~BM_CSU_CSL25_LOCK_S2) | BF_CSU_CSL25_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL25, field SUR_S1[16] (RW)
@@ -14237,7 +13319,6 @@ typedef union _hw_csu_csl25
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL25_SUR_S1      (16)      //!< Bit position for CSU_CSL25_SUR_S1.
 #define BM_CSU_CSL25_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL25_SUR_S1.
 
@@ -14251,7 +13332,6 @@ typedef union _hw_csu_csl25
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL25_SUR_S1(v)   (HW_CSU_CSL25_WR((HW_CSU_CSL25_RD() & ~BM_CSU_CSL25_SUR_S1) | BF_CSU_CSL25_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL25, field SSR_S1[17] (RW)
@@ -14263,7 +13343,6 @@ typedef union _hw_csu_csl25
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL25_SSR_S1      (17)      //!< Bit position for CSU_CSL25_SSR_S1.
 #define BM_CSU_CSL25_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL25_SSR_S1.
 
@@ -14277,7 +13356,6 @@ typedef union _hw_csu_csl25
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL25_SSR_S1(v)   (HW_CSU_CSL25_WR((HW_CSU_CSL25_RD() & ~BM_CSU_CSL25_SSR_S1) | BF_CSU_CSL25_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL25, field NUR_S1[18] (RW)
@@ -14289,7 +13367,6 @@ typedef union _hw_csu_csl25
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL25_NUR_S1      (18)      //!< Bit position for CSU_CSL25_NUR_S1.
 #define BM_CSU_CSL25_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL25_NUR_S1.
 
@@ -14303,7 +13380,6 @@ typedef union _hw_csu_csl25
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL25_NUR_S1(v)   (HW_CSU_CSL25_WR((HW_CSU_CSL25_RD() & ~BM_CSU_CSL25_NUR_S1) | BF_CSU_CSL25_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL25, field NSR_S1[19] (RW)
@@ -14315,7 +13391,6 @@ typedef union _hw_csu_csl25
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL25_NSR_S1      (19)      //!< Bit position for CSU_CSL25_NSR_S1.
 #define BM_CSU_CSL25_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL25_NSR_S1.
 
@@ -14329,7 +13404,6 @@ typedef union _hw_csu_csl25
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL25_NSR_S1(v)   (HW_CSU_CSL25_WR((HW_CSU_CSL25_RD() & ~BM_CSU_CSL25_NSR_S1) | BF_CSU_CSL25_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL25, field SUW_S1[20] (RW)
@@ -14341,7 +13415,6 @@ typedef union _hw_csu_csl25
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL25_SUW_S1      (20)      //!< Bit position for CSU_CSL25_SUW_S1.
 #define BM_CSU_CSL25_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL25_SUW_S1.
 
@@ -14355,7 +13428,6 @@ typedef union _hw_csu_csl25
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL25_SUW_S1(v)   (HW_CSU_CSL25_WR((HW_CSU_CSL25_RD() & ~BM_CSU_CSL25_SUW_S1) | BF_CSU_CSL25_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL25, field SSW_S1[21] (RW)
@@ -14367,7 +13439,6 @@ typedef union _hw_csu_csl25
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL25_SSW_S1      (21)      //!< Bit position for CSU_CSL25_SSW_S1.
 #define BM_CSU_CSL25_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL25_SSW_S1.
 
@@ -14381,7 +13452,6 @@ typedef union _hw_csu_csl25
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL25_SSW_S1(v)   (HW_CSU_CSL25_WR((HW_CSU_CSL25_RD() & ~BM_CSU_CSL25_SSW_S1) | BF_CSU_CSL25_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL25, field NUW_S1[22] (RW)
@@ -14393,7 +13463,6 @@ typedef union _hw_csu_csl25
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL25_NUW_S1      (22)      //!< Bit position for CSU_CSL25_NUW_S1.
 #define BM_CSU_CSL25_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL25_NUW_S1.
 
@@ -14407,7 +13476,6 @@ typedef union _hw_csu_csl25
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL25_NUW_S1(v)   (HW_CSU_CSL25_WR((HW_CSU_CSL25_RD() & ~BM_CSU_CSL25_NUW_S1) | BF_CSU_CSL25_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL25, field NSW_S1[23] (RW)
@@ -14419,7 +13487,6 @@ typedef union _hw_csu_csl25
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL25_NSW_S1      (23)      //!< Bit position for CSU_CSL25_NSW_S1.
 #define BM_CSU_CSL25_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL25_NSW_S1.
 
@@ -14433,7 +13500,6 @@ typedef union _hw_csu_csl25
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL25_NSW_S1(v)   (HW_CSU_CSL25_WR((HW_CSU_CSL25_RD() & ~BM_CSU_CSL25_NSW_S1) | BF_CSU_CSL25_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL25, field LOCK_S1[24] (RW)
@@ -14445,7 +13511,6 @@ typedef union _hw_csu_csl25
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL25_LOCK_S1      (24)      //!< Bit position for CSU_CSL25_LOCK_S1.
 #define BM_CSU_CSL25_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL25_LOCK_S1.
 
@@ -14459,7 +13524,6 @@ typedef union _hw_csu_csl25
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL25_LOCK_S1(v)   (HW_CSU_CSL25_WR((HW_CSU_CSL25_RD() & ~BM_CSU_CSL25_LOCK_S1) | BF_CSU_CSL25_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -14556,7 +13620,6 @@ typedef union _hw_csu_csl26
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL26_SUR_S2      (0)      //!< Bit position for CSU_CSL26_SUR_S2.
 #define BM_CSU_CSL26_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL26_SUR_S2.
 
@@ -14570,7 +13633,6 @@ typedef union _hw_csu_csl26
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL26_SUR_S2(v)   (HW_CSU_CSL26_WR((HW_CSU_CSL26_RD() & ~BM_CSU_CSL26_SUR_S2) | BF_CSU_CSL26_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL26, field SSR_S2[1] (RW)
@@ -14582,7 +13644,6 @@ typedef union _hw_csu_csl26
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL26_SSR_S2      (1)      //!< Bit position for CSU_CSL26_SSR_S2.
 #define BM_CSU_CSL26_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL26_SSR_S2.
 
@@ -14596,7 +13657,6 @@ typedef union _hw_csu_csl26
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL26_SSR_S2(v)   (HW_CSU_CSL26_WR((HW_CSU_CSL26_RD() & ~BM_CSU_CSL26_SSR_S2) | BF_CSU_CSL26_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL26, field NUR_S2[2] (RW)
@@ -14608,7 +13668,6 @@ typedef union _hw_csu_csl26
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL26_NUR_S2      (2)      //!< Bit position for CSU_CSL26_NUR_S2.
 #define BM_CSU_CSL26_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL26_NUR_S2.
 
@@ -14622,7 +13681,6 @@ typedef union _hw_csu_csl26
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL26_NUR_S2(v)   (HW_CSU_CSL26_WR((HW_CSU_CSL26_RD() & ~BM_CSU_CSL26_NUR_S2) | BF_CSU_CSL26_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL26, field NSR_S2[3] (RW)
@@ -14634,7 +13692,6 @@ typedef union _hw_csu_csl26
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL26_NSR_S2      (3)      //!< Bit position for CSU_CSL26_NSR_S2.
 #define BM_CSU_CSL26_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL26_NSR_S2.
 
@@ -14648,7 +13705,6 @@ typedef union _hw_csu_csl26
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL26_NSR_S2(v)   (HW_CSU_CSL26_WR((HW_CSU_CSL26_RD() & ~BM_CSU_CSL26_NSR_S2) | BF_CSU_CSL26_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL26, field SUW_S2[4] (RW)
@@ -14660,7 +13716,6 @@ typedef union _hw_csu_csl26
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL26_SUW_S2      (4)      //!< Bit position for CSU_CSL26_SUW_S2.
 #define BM_CSU_CSL26_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL26_SUW_S2.
 
@@ -14674,7 +13729,6 @@ typedef union _hw_csu_csl26
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL26_SUW_S2(v)   (HW_CSU_CSL26_WR((HW_CSU_CSL26_RD() & ~BM_CSU_CSL26_SUW_S2) | BF_CSU_CSL26_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL26, field SSW_S2[5] (RW)
@@ -14686,7 +13740,6 @@ typedef union _hw_csu_csl26
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL26_SSW_S2      (5)      //!< Bit position for CSU_CSL26_SSW_S2.
 #define BM_CSU_CSL26_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL26_SSW_S2.
 
@@ -14700,7 +13753,6 @@ typedef union _hw_csu_csl26
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL26_SSW_S2(v)   (HW_CSU_CSL26_WR((HW_CSU_CSL26_RD() & ~BM_CSU_CSL26_SSW_S2) | BF_CSU_CSL26_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL26, field NUW_S2[6] (RW)
@@ -14712,7 +13764,6 @@ typedef union _hw_csu_csl26
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL26_NUW_S2      (6)      //!< Bit position for CSU_CSL26_NUW_S2.
 #define BM_CSU_CSL26_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL26_NUW_S2.
 
@@ -14726,7 +13777,6 @@ typedef union _hw_csu_csl26
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL26_NUW_S2(v)   (HW_CSU_CSL26_WR((HW_CSU_CSL26_RD() & ~BM_CSU_CSL26_NUW_S2) | BF_CSU_CSL26_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL26, field NSW_S2[7] (RW)
@@ -14738,7 +13788,6 @@ typedef union _hw_csu_csl26
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL26_NSW_S2      (7)      //!< Bit position for CSU_CSL26_NSW_S2.
 #define BM_CSU_CSL26_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL26_NSW_S2.
 
@@ -14752,7 +13801,6 @@ typedef union _hw_csu_csl26
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL26_NSW_S2(v)   (HW_CSU_CSL26_WR((HW_CSU_CSL26_RD() & ~BM_CSU_CSL26_NSW_S2) | BF_CSU_CSL26_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL26, field LOCK_S2[8] (RW)
@@ -14764,7 +13812,6 @@ typedef union _hw_csu_csl26
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL26_LOCK_S2      (8)      //!< Bit position for CSU_CSL26_LOCK_S2.
 #define BM_CSU_CSL26_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL26_LOCK_S2.
 
@@ -14778,7 +13825,6 @@ typedef union _hw_csu_csl26
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL26_LOCK_S2(v)   (HW_CSU_CSL26_WR((HW_CSU_CSL26_RD() & ~BM_CSU_CSL26_LOCK_S2) | BF_CSU_CSL26_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL26, field SUR_S1[16] (RW)
@@ -14790,7 +13836,6 @@ typedef union _hw_csu_csl26
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL26_SUR_S1      (16)      //!< Bit position for CSU_CSL26_SUR_S1.
 #define BM_CSU_CSL26_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL26_SUR_S1.
 
@@ -14804,7 +13849,6 @@ typedef union _hw_csu_csl26
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL26_SUR_S1(v)   (HW_CSU_CSL26_WR((HW_CSU_CSL26_RD() & ~BM_CSU_CSL26_SUR_S1) | BF_CSU_CSL26_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL26, field SSR_S1[17] (RW)
@@ -14816,7 +13860,6 @@ typedef union _hw_csu_csl26
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL26_SSR_S1      (17)      //!< Bit position for CSU_CSL26_SSR_S1.
 #define BM_CSU_CSL26_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL26_SSR_S1.
 
@@ -14830,7 +13873,6 @@ typedef union _hw_csu_csl26
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL26_SSR_S1(v)   (HW_CSU_CSL26_WR((HW_CSU_CSL26_RD() & ~BM_CSU_CSL26_SSR_S1) | BF_CSU_CSL26_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL26, field NUR_S1[18] (RW)
@@ -14842,7 +13884,6 @@ typedef union _hw_csu_csl26
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL26_NUR_S1      (18)      //!< Bit position for CSU_CSL26_NUR_S1.
 #define BM_CSU_CSL26_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL26_NUR_S1.
 
@@ -14856,7 +13897,6 @@ typedef union _hw_csu_csl26
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL26_NUR_S1(v)   (HW_CSU_CSL26_WR((HW_CSU_CSL26_RD() & ~BM_CSU_CSL26_NUR_S1) | BF_CSU_CSL26_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL26, field NSR_S1[19] (RW)
@@ -14868,7 +13908,6 @@ typedef union _hw_csu_csl26
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL26_NSR_S1      (19)      //!< Bit position for CSU_CSL26_NSR_S1.
 #define BM_CSU_CSL26_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL26_NSR_S1.
 
@@ -14882,7 +13921,6 @@ typedef union _hw_csu_csl26
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL26_NSR_S1(v)   (HW_CSU_CSL26_WR((HW_CSU_CSL26_RD() & ~BM_CSU_CSL26_NSR_S1) | BF_CSU_CSL26_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL26, field SUW_S1[20] (RW)
@@ -14894,7 +13932,6 @@ typedef union _hw_csu_csl26
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL26_SUW_S1      (20)      //!< Bit position for CSU_CSL26_SUW_S1.
 #define BM_CSU_CSL26_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL26_SUW_S1.
 
@@ -14908,7 +13945,6 @@ typedef union _hw_csu_csl26
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL26_SUW_S1(v)   (HW_CSU_CSL26_WR((HW_CSU_CSL26_RD() & ~BM_CSU_CSL26_SUW_S1) | BF_CSU_CSL26_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL26, field SSW_S1[21] (RW)
@@ -14920,7 +13956,6 @@ typedef union _hw_csu_csl26
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL26_SSW_S1      (21)      //!< Bit position for CSU_CSL26_SSW_S1.
 #define BM_CSU_CSL26_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL26_SSW_S1.
 
@@ -14934,7 +13969,6 @@ typedef union _hw_csu_csl26
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL26_SSW_S1(v)   (HW_CSU_CSL26_WR((HW_CSU_CSL26_RD() & ~BM_CSU_CSL26_SSW_S1) | BF_CSU_CSL26_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL26, field NUW_S1[22] (RW)
@@ -14946,7 +13980,6 @@ typedef union _hw_csu_csl26
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL26_NUW_S1      (22)      //!< Bit position for CSU_CSL26_NUW_S1.
 #define BM_CSU_CSL26_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL26_NUW_S1.
 
@@ -14960,7 +13993,6 @@ typedef union _hw_csu_csl26
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL26_NUW_S1(v)   (HW_CSU_CSL26_WR((HW_CSU_CSL26_RD() & ~BM_CSU_CSL26_NUW_S1) | BF_CSU_CSL26_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL26, field NSW_S1[23] (RW)
@@ -14972,7 +14004,6 @@ typedef union _hw_csu_csl26
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL26_NSW_S1      (23)      //!< Bit position for CSU_CSL26_NSW_S1.
 #define BM_CSU_CSL26_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL26_NSW_S1.
 
@@ -14986,7 +14017,6 @@ typedef union _hw_csu_csl26
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL26_NSW_S1(v)   (HW_CSU_CSL26_WR((HW_CSU_CSL26_RD() & ~BM_CSU_CSL26_NSW_S1) | BF_CSU_CSL26_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL26, field LOCK_S1[24] (RW)
@@ -14998,7 +14028,6 @@ typedef union _hw_csu_csl26
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL26_LOCK_S1      (24)      //!< Bit position for CSU_CSL26_LOCK_S1.
 #define BM_CSU_CSL26_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL26_LOCK_S1.
 
@@ -15012,7 +14041,6 @@ typedef union _hw_csu_csl26
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL26_LOCK_S1(v)   (HW_CSU_CSL26_WR((HW_CSU_CSL26_RD() & ~BM_CSU_CSL26_LOCK_S1) | BF_CSU_CSL26_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -15109,7 +14137,6 @@ typedef union _hw_csu_csl27
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL27_SUR_S2      (0)      //!< Bit position for CSU_CSL27_SUR_S2.
 #define BM_CSU_CSL27_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL27_SUR_S2.
 
@@ -15123,7 +14150,6 @@ typedef union _hw_csu_csl27
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL27_SUR_S2(v)   (HW_CSU_CSL27_WR((HW_CSU_CSL27_RD() & ~BM_CSU_CSL27_SUR_S2) | BF_CSU_CSL27_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL27, field SSR_S2[1] (RW)
@@ -15135,7 +14161,6 @@ typedef union _hw_csu_csl27
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL27_SSR_S2      (1)      //!< Bit position for CSU_CSL27_SSR_S2.
 #define BM_CSU_CSL27_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL27_SSR_S2.
 
@@ -15149,7 +14174,6 @@ typedef union _hw_csu_csl27
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL27_SSR_S2(v)   (HW_CSU_CSL27_WR((HW_CSU_CSL27_RD() & ~BM_CSU_CSL27_SSR_S2) | BF_CSU_CSL27_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL27, field NUR_S2[2] (RW)
@@ -15161,7 +14185,6 @@ typedef union _hw_csu_csl27
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL27_NUR_S2      (2)      //!< Bit position for CSU_CSL27_NUR_S2.
 #define BM_CSU_CSL27_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL27_NUR_S2.
 
@@ -15175,7 +14198,6 @@ typedef union _hw_csu_csl27
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL27_NUR_S2(v)   (HW_CSU_CSL27_WR((HW_CSU_CSL27_RD() & ~BM_CSU_CSL27_NUR_S2) | BF_CSU_CSL27_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL27, field NSR_S2[3] (RW)
@@ -15187,7 +14209,6 @@ typedef union _hw_csu_csl27
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL27_NSR_S2      (3)      //!< Bit position for CSU_CSL27_NSR_S2.
 #define BM_CSU_CSL27_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL27_NSR_S2.
 
@@ -15201,7 +14222,6 @@ typedef union _hw_csu_csl27
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL27_NSR_S2(v)   (HW_CSU_CSL27_WR((HW_CSU_CSL27_RD() & ~BM_CSU_CSL27_NSR_S2) | BF_CSU_CSL27_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL27, field SUW_S2[4] (RW)
@@ -15213,7 +14233,6 @@ typedef union _hw_csu_csl27
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL27_SUW_S2      (4)      //!< Bit position for CSU_CSL27_SUW_S2.
 #define BM_CSU_CSL27_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL27_SUW_S2.
 
@@ -15227,7 +14246,6 @@ typedef union _hw_csu_csl27
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL27_SUW_S2(v)   (HW_CSU_CSL27_WR((HW_CSU_CSL27_RD() & ~BM_CSU_CSL27_SUW_S2) | BF_CSU_CSL27_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL27, field SSW_S2[5] (RW)
@@ -15239,7 +14257,6 @@ typedef union _hw_csu_csl27
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL27_SSW_S2      (5)      //!< Bit position for CSU_CSL27_SSW_S2.
 #define BM_CSU_CSL27_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL27_SSW_S2.
 
@@ -15253,7 +14270,6 @@ typedef union _hw_csu_csl27
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL27_SSW_S2(v)   (HW_CSU_CSL27_WR((HW_CSU_CSL27_RD() & ~BM_CSU_CSL27_SSW_S2) | BF_CSU_CSL27_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL27, field NUW_S2[6] (RW)
@@ -15265,7 +14281,6 @@ typedef union _hw_csu_csl27
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL27_NUW_S2      (6)      //!< Bit position for CSU_CSL27_NUW_S2.
 #define BM_CSU_CSL27_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL27_NUW_S2.
 
@@ -15279,7 +14294,6 @@ typedef union _hw_csu_csl27
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL27_NUW_S2(v)   (HW_CSU_CSL27_WR((HW_CSU_CSL27_RD() & ~BM_CSU_CSL27_NUW_S2) | BF_CSU_CSL27_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL27, field NSW_S2[7] (RW)
@@ -15291,7 +14305,6 @@ typedef union _hw_csu_csl27
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL27_NSW_S2      (7)      //!< Bit position for CSU_CSL27_NSW_S2.
 #define BM_CSU_CSL27_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL27_NSW_S2.
 
@@ -15305,7 +14318,6 @@ typedef union _hw_csu_csl27
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL27_NSW_S2(v)   (HW_CSU_CSL27_WR((HW_CSU_CSL27_RD() & ~BM_CSU_CSL27_NSW_S2) | BF_CSU_CSL27_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL27, field LOCK_S2[8] (RW)
@@ -15317,7 +14329,6 @@ typedef union _hw_csu_csl27
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL27_LOCK_S2      (8)      //!< Bit position for CSU_CSL27_LOCK_S2.
 #define BM_CSU_CSL27_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL27_LOCK_S2.
 
@@ -15331,7 +14342,6 @@ typedef union _hw_csu_csl27
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL27_LOCK_S2(v)   (HW_CSU_CSL27_WR((HW_CSU_CSL27_RD() & ~BM_CSU_CSL27_LOCK_S2) | BF_CSU_CSL27_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL27, field SUR_S1[16] (RW)
@@ -15343,7 +14353,6 @@ typedef union _hw_csu_csl27
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL27_SUR_S1      (16)      //!< Bit position for CSU_CSL27_SUR_S1.
 #define BM_CSU_CSL27_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL27_SUR_S1.
 
@@ -15357,7 +14366,6 @@ typedef union _hw_csu_csl27
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL27_SUR_S1(v)   (HW_CSU_CSL27_WR((HW_CSU_CSL27_RD() & ~BM_CSU_CSL27_SUR_S1) | BF_CSU_CSL27_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL27, field SSR_S1[17] (RW)
@@ -15369,7 +14377,6 @@ typedef union _hw_csu_csl27
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL27_SSR_S1      (17)      //!< Bit position for CSU_CSL27_SSR_S1.
 #define BM_CSU_CSL27_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL27_SSR_S1.
 
@@ -15383,7 +14390,6 @@ typedef union _hw_csu_csl27
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL27_SSR_S1(v)   (HW_CSU_CSL27_WR((HW_CSU_CSL27_RD() & ~BM_CSU_CSL27_SSR_S1) | BF_CSU_CSL27_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL27, field NUR_S1[18] (RW)
@@ -15395,7 +14401,6 @@ typedef union _hw_csu_csl27
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL27_NUR_S1      (18)      //!< Bit position for CSU_CSL27_NUR_S1.
 #define BM_CSU_CSL27_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL27_NUR_S1.
 
@@ -15409,7 +14414,6 @@ typedef union _hw_csu_csl27
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL27_NUR_S1(v)   (HW_CSU_CSL27_WR((HW_CSU_CSL27_RD() & ~BM_CSU_CSL27_NUR_S1) | BF_CSU_CSL27_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL27, field NSR_S1[19] (RW)
@@ -15421,7 +14425,6 @@ typedef union _hw_csu_csl27
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL27_NSR_S1      (19)      //!< Bit position for CSU_CSL27_NSR_S1.
 #define BM_CSU_CSL27_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL27_NSR_S1.
 
@@ -15435,7 +14438,6 @@ typedef union _hw_csu_csl27
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL27_NSR_S1(v)   (HW_CSU_CSL27_WR((HW_CSU_CSL27_RD() & ~BM_CSU_CSL27_NSR_S1) | BF_CSU_CSL27_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL27, field SUW_S1[20] (RW)
@@ -15447,7 +14449,6 @@ typedef union _hw_csu_csl27
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL27_SUW_S1      (20)      //!< Bit position for CSU_CSL27_SUW_S1.
 #define BM_CSU_CSL27_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL27_SUW_S1.
 
@@ -15461,7 +14462,6 @@ typedef union _hw_csu_csl27
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL27_SUW_S1(v)   (HW_CSU_CSL27_WR((HW_CSU_CSL27_RD() & ~BM_CSU_CSL27_SUW_S1) | BF_CSU_CSL27_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL27, field SSW_S1[21] (RW)
@@ -15473,7 +14473,6 @@ typedef union _hw_csu_csl27
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL27_SSW_S1      (21)      //!< Bit position for CSU_CSL27_SSW_S1.
 #define BM_CSU_CSL27_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL27_SSW_S1.
 
@@ -15487,7 +14486,6 @@ typedef union _hw_csu_csl27
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL27_SSW_S1(v)   (HW_CSU_CSL27_WR((HW_CSU_CSL27_RD() & ~BM_CSU_CSL27_SSW_S1) | BF_CSU_CSL27_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL27, field NUW_S1[22] (RW)
@@ -15499,7 +14497,6 @@ typedef union _hw_csu_csl27
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL27_NUW_S1      (22)      //!< Bit position for CSU_CSL27_NUW_S1.
 #define BM_CSU_CSL27_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL27_NUW_S1.
 
@@ -15513,7 +14510,6 @@ typedef union _hw_csu_csl27
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL27_NUW_S1(v)   (HW_CSU_CSL27_WR((HW_CSU_CSL27_RD() & ~BM_CSU_CSL27_NUW_S1) | BF_CSU_CSL27_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL27, field NSW_S1[23] (RW)
@@ -15525,7 +14521,6 @@ typedef union _hw_csu_csl27
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL27_NSW_S1      (23)      //!< Bit position for CSU_CSL27_NSW_S1.
 #define BM_CSU_CSL27_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL27_NSW_S1.
 
@@ -15539,7 +14534,6 @@ typedef union _hw_csu_csl27
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL27_NSW_S1(v)   (HW_CSU_CSL27_WR((HW_CSU_CSL27_RD() & ~BM_CSU_CSL27_NSW_S1) | BF_CSU_CSL27_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL27, field LOCK_S1[24] (RW)
@@ -15551,7 +14545,6 @@ typedef union _hw_csu_csl27
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL27_LOCK_S1      (24)      //!< Bit position for CSU_CSL27_LOCK_S1.
 #define BM_CSU_CSL27_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL27_LOCK_S1.
 
@@ -15565,7 +14558,6 @@ typedef union _hw_csu_csl27
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL27_LOCK_S1(v)   (HW_CSU_CSL27_WR((HW_CSU_CSL27_RD() & ~BM_CSU_CSL27_LOCK_S1) | BF_CSU_CSL27_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -15662,7 +14654,6 @@ typedef union _hw_csu_csl28
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL28_SUR_S2      (0)      //!< Bit position for CSU_CSL28_SUR_S2.
 #define BM_CSU_CSL28_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL28_SUR_S2.
 
@@ -15676,7 +14667,6 @@ typedef union _hw_csu_csl28
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL28_SUR_S2(v)   (HW_CSU_CSL28_WR((HW_CSU_CSL28_RD() & ~BM_CSU_CSL28_SUR_S2) | BF_CSU_CSL28_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL28, field SSR_S2[1] (RW)
@@ -15688,7 +14678,6 @@ typedef union _hw_csu_csl28
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL28_SSR_S2      (1)      //!< Bit position for CSU_CSL28_SSR_S2.
 #define BM_CSU_CSL28_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL28_SSR_S2.
 
@@ -15702,7 +14691,6 @@ typedef union _hw_csu_csl28
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL28_SSR_S2(v)   (HW_CSU_CSL28_WR((HW_CSU_CSL28_RD() & ~BM_CSU_CSL28_SSR_S2) | BF_CSU_CSL28_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL28, field NUR_S2[2] (RW)
@@ -15714,7 +14702,6 @@ typedef union _hw_csu_csl28
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL28_NUR_S2      (2)      //!< Bit position for CSU_CSL28_NUR_S2.
 #define BM_CSU_CSL28_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL28_NUR_S2.
 
@@ -15728,7 +14715,6 @@ typedef union _hw_csu_csl28
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL28_NUR_S2(v)   (HW_CSU_CSL28_WR((HW_CSU_CSL28_RD() & ~BM_CSU_CSL28_NUR_S2) | BF_CSU_CSL28_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL28, field NSR_S2[3] (RW)
@@ -15740,7 +14726,6 @@ typedef union _hw_csu_csl28
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL28_NSR_S2      (3)      //!< Bit position for CSU_CSL28_NSR_S2.
 #define BM_CSU_CSL28_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL28_NSR_S2.
 
@@ -15754,7 +14739,6 @@ typedef union _hw_csu_csl28
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL28_NSR_S2(v)   (HW_CSU_CSL28_WR((HW_CSU_CSL28_RD() & ~BM_CSU_CSL28_NSR_S2) | BF_CSU_CSL28_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL28, field SUW_S2[4] (RW)
@@ -15766,7 +14750,6 @@ typedef union _hw_csu_csl28
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL28_SUW_S2      (4)      //!< Bit position for CSU_CSL28_SUW_S2.
 #define BM_CSU_CSL28_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL28_SUW_S2.
 
@@ -15780,7 +14763,6 @@ typedef union _hw_csu_csl28
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL28_SUW_S2(v)   (HW_CSU_CSL28_WR((HW_CSU_CSL28_RD() & ~BM_CSU_CSL28_SUW_S2) | BF_CSU_CSL28_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL28, field SSW_S2[5] (RW)
@@ -15792,7 +14774,6 @@ typedef union _hw_csu_csl28
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL28_SSW_S2      (5)      //!< Bit position for CSU_CSL28_SSW_S2.
 #define BM_CSU_CSL28_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL28_SSW_S2.
 
@@ -15806,7 +14787,6 @@ typedef union _hw_csu_csl28
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL28_SSW_S2(v)   (HW_CSU_CSL28_WR((HW_CSU_CSL28_RD() & ~BM_CSU_CSL28_SSW_S2) | BF_CSU_CSL28_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL28, field NUW_S2[6] (RW)
@@ -15818,7 +14798,6 @@ typedef union _hw_csu_csl28
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL28_NUW_S2      (6)      //!< Bit position for CSU_CSL28_NUW_S2.
 #define BM_CSU_CSL28_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL28_NUW_S2.
 
@@ -15832,7 +14811,6 @@ typedef union _hw_csu_csl28
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL28_NUW_S2(v)   (HW_CSU_CSL28_WR((HW_CSU_CSL28_RD() & ~BM_CSU_CSL28_NUW_S2) | BF_CSU_CSL28_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL28, field NSW_S2[7] (RW)
@@ -15844,7 +14822,6 @@ typedef union _hw_csu_csl28
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL28_NSW_S2      (7)      //!< Bit position for CSU_CSL28_NSW_S2.
 #define BM_CSU_CSL28_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL28_NSW_S2.
 
@@ -15858,7 +14835,6 @@ typedef union _hw_csu_csl28
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL28_NSW_S2(v)   (HW_CSU_CSL28_WR((HW_CSU_CSL28_RD() & ~BM_CSU_CSL28_NSW_S2) | BF_CSU_CSL28_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL28, field LOCK_S2[8] (RW)
@@ -15870,7 +14846,6 @@ typedef union _hw_csu_csl28
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL28_LOCK_S2      (8)      //!< Bit position for CSU_CSL28_LOCK_S2.
 #define BM_CSU_CSL28_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL28_LOCK_S2.
 
@@ -15884,7 +14859,6 @@ typedef union _hw_csu_csl28
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL28_LOCK_S2(v)   (HW_CSU_CSL28_WR((HW_CSU_CSL28_RD() & ~BM_CSU_CSL28_LOCK_S2) | BF_CSU_CSL28_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL28, field SUR_S1[16] (RW)
@@ -15896,7 +14870,6 @@ typedef union _hw_csu_csl28
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL28_SUR_S1      (16)      //!< Bit position for CSU_CSL28_SUR_S1.
 #define BM_CSU_CSL28_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL28_SUR_S1.
 
@@ -15910,7 +14883,6 @@ typedef union _hw_csu_csl28
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL28_SUR_S1(v)   (HW_CSU_CSL28_WR((HW_CSU_CSL28_RD() & ~BM_CSU_CSL28_SUR_S1) | BF_CSU_CSL28_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL28, field SSR_S1[17] (RW)
@@ -15922,7 +14894,6 @@ typedef union _hw_csu_csl28
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL28_SSR_S1      (17)      //!< Bit position for CSU_CSL28_SSR_S1.
 #define BM_CSU_CSL28_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL28_SSR_S1.
 
@@ -15936,7 +14907,6 @@ typedef union _hw_csu_csl28
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL28_SSR_S1(v)   (HW_CSU_CSL28_WR((HW_CSU_CSL28_RD() & ~BM_CSU_CSL28_SSR_S1) | BF_CSU_CSL28_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL28, field NUR_S1[18] (RW)
@@ -15948,7 +14918,6 @@ typedef union _hw_csu_csl28
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL28_NUR_S1      (18)      //!< Bit position for CSU_CSL28_NUR_S1.
 #define BM_CSU_CSL28_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL28_NUR_S1.
 
@@ -15962,7 +14931,6 @@ typedef union _hw_csu_csl28
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL28_NUR_S1(v)   (HW_CSU_CSL28_WR((HW_CSU_CSL28_RD() & ~BM_CSU_CSL28_NUR_S1) | BF_CSU_CSL28_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL28, field NSR_S1[19] (RW)
@@ -15974,7 +14942,6 @@ typedef union _hw_csu_csl28
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL28_NSR_S1      (19)      //!< Bit position for CSU_CSL28_NSR_S1.
 #define BM_CSU_CSL28_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL28_NSR_S1.
 
@@ -15988,7 +14955,6 @@ typedef union _hw_csu_csl28
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL28_NSR_S1(v)   (HW_CSU_CSL28_WR((HW_CSU_CSL28_RD() & ~BM_CSU_CSL28_NSR_S1) | BF_CSU_CSL28_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL28, field SUW_S1[20] (RW)
@@ -16000,7 +14966,6 @@ typedef union _hw_csu_csl28
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL28_SUW_S1      (20)      //!< Bit position for CSU_CSL28_SUW_S1.
 #define BM_CSU_CSL28_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL28_SUW_S1.
 
@@ -16014,7 +14979,6 @@ typedef union _hw_csu_csl28
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL28_SUW_S1(v)   (HW_CSU_CSL28_WR((HW_CSU_CSL28_RD() & ~BM_CSU_CSL28_SUW_S1) | BF_CSU_CSL28_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL28, field SSW_S1[21] (RW)
@@ -16026,7 +14990,6 @@ typedef union _hw_csu_csl28
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL28_SSW_S1      (21)      //!< Bit position for CSU_CSL28_SSW_S1.
 #define BM_CSU_CSL28_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL28_SSW_S1.
 
@@ -16040,7 +15003,6 @@ typedef union _hw_csu_csl28
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL28_SSW_S1(v)   (HW_CSU_CSL28_WR((HW_CSU_CSL28_RD() & ~BM_CSU_CSL28_SSW_S1) | BF_CSU_CSL28_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL28, field NUW_S1[22] (RW)
@@ -16052,7 +15014,6 @@ typedef union _hw_csu_csl28
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL28_NUW_S1      (22)      //!< Bit position for CSU_CSL28_NUW_S1.
 #define BM_CSU_CSL28_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL28_NUW_S1.
 
@@ -16066,7 +15027,6 @@ typedef union _hw_csu_csl28
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL28_NUW_S1(v)   (HW_CSU_CSL28_WR((HW_CSU_CSL28_RD() & ~BM_CSU_CSL28_NUW_S1) | BF_CSU_CSL28_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL28, field NSW_S1[23] (RW)
@@ -16078,7 +15038,6 @@ typedef union _hw_csu_csl28
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL28_NSW_S1      (23)      //!< Bit position for CSU_CSL28_NSW_S1.
 #define BM_CSU_CSL28_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL28_NSW_S1.
 
@@ -16092,7 +15051,6 @@ typedef union _hw_csu_csl28
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL28_NSW_S1(v)   (HW_CSU_CSL28_WR((HW_CSU_CSL28_RD() & ~BM_CSU_CSL28_NSW_S1) | BF_CSU_CSL28_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL28, field LOCK_S1[24] (RW)
@@ -16104,7 +15062,6 @@ typedef union _hw_csu_csl28
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL28_LOCK_S1      (24)      //!< Bit position for CSU_CSL28_LOCK_S1.
 #define BM_CSU_CSL28_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL28_LOCK_S1.
 
@@ -16118,7 +15075,6 @@ typedef union _hw_csu_csl28
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL28_LOCK_S1(v)   (HW_CSU_CSL28_WR((HW_CSU_CSL28_RD() & ~BM_CSU_CSL28_LOCK_S1) | BF_CSU_CSL28_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -16215,7 +15171,6 @@ typedef union _hw_csu_csl29
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL29_SUR_S2      (0)      //!< Bit position for CSU_CSL29_SUR_S2.
 #define BM_CSU_CSL29_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL29_SUR_S2.
 
@@ -16229,7 +15184,6 @@ typedef union _hw_csu_csl29
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL29_SUR_S2(v)   (HW_CSU_CSL29_WR((HW_CSU_CSL29_RD() & ~BM_CSU_CSL29_SUR_S2) | BF_CSU_CSL29_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL29, field SSR_S2[1] (RW)
@@ -16241,7 +15195,6 @@ typedef union _hw_csu_csl29
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL29_SSR_S2      (1)      //!< Bit position for CSU_CSL29_SSR_S2.
 #define BM_CSU_CSL29_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL29_SSR_S2.
 
@@ -16255,7 +15208,6 @@ typedef union _hw_csu_csl29
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL29_SSR_S2(v)   (HW_CSU_CSL29_WR((HW_CSU_CSL29_RD() & ~BM_CSU_CSL29_SSR_S2) | BF_CSU_CSL29_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL29, field NUR_S2[2] (RW)
@@ -16267,7 +15219,6 @@ typedef union _hw_csu_csl29
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL29_NUR_S2      (2)      //!< Bit position for CSU_CSL29_NUR_S2.
 #define BM_CSU_CSL29_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL29_NUR_S2.
 
@@ -16281,7 +15232,6 @@ typedef union _hw_csu_csl29
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL29_NUR_S2(v)   (HW_CSU_CSL29_WR((HW_CSU_CSL29_RD() & ~BM_CSU_CSL29_NUR_S2) | BF_CSU_CSL29_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL29, field NSR_S2[3] (RW)
@@ -16293,7 +15243,6 @@ typedef union _hw_csu_csl29
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL29_NSR_S2      (3)      //!< Bit position for CSU_CSL29_NSR_S2.
 #define BM_CSU_CSL29_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL29_NSR_S2.
 
@@ -16307,7 +15256,6 @@ typedef union _hw_csu_csl29
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL29_NSR_S2(v)   (HW_CSU_CSL29_WR((HW_CSU_CSL29_RD() & ~BM_CSU_CSL29_NSR_S2) | BF_CSU_CSL29_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL29, field SUW_S2[4] (RW)
@@ -16319,7 +15267,6 @@ typedef union _hw_csu_csl29
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL29_SUW_S2      (4)      //!< Bit position for CSU_CSL29_SUW_S2.
 #define BM_CSU_CSL29_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL29_SUW_S2.
 
@@ -16333,7 +15280,6 @@ typedef union _hw_csu_csl29
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL29_SUW_S2(v)   (HW_CSU_CSL29_WR((HW_CSU_CSL29_RD() & ~BM_CSU_CSL29_SUW_S2) | BF_CSU_CSL29_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL29, field SSW_S2[5] (RW)
@@ -16345,7 +15291,6 @@ typedef union _hw_csu_csl29
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL29_SSW_S2      (5)      //!< Bit position for CSU_CSL29_SSW_S2.
 #define BM_CSU_CSL29_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL29_SSW_S2.
 
@@ -16359,7 +15304,6 @@ typedef union _hw_csu_csl29
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL29_SSW_S2(v)   (HW_CSU_CSL29_WR((HW_CSU_CSL29_RD() & ~BM_CSU_CSL29_SSW_S2) | BF_CSU_CSL29_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL29, field NUW_S2[6] (RW)
@@ -16371,7 +15315,6 @@ typedef union _hw_csu_csl29
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL29_NUW_S2      (6)      //!< Bit position for CSU_CSL29_NUW_S2.
 #define BM_CSU_CSL29_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL29_NUW_S2.
 
@@ -16385,7 +15328,6 @@ typedef union _hw_csu_csl29
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL29_NUW_S2(v)   (HW_CSU_CSL29_WR((HW_CSU_CSL29_RD() & ~BM_CSU_CSL29_NUW_S2) | BF_CSU_CSL29_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL29, field NSW_S2[7] (RW)
@@ -16397,7 +15339,6 @@ typedef union _hw_csu_csl29
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL29_NSW_S2      (7)      //!< Bit position for CSU_CSL29_NSW_S2.
 #define BM_CSU_CSL29_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL29_NSW_S2.
 
@@ -16411,7 +15352,6 @@ typedef union _hw_csu_csl29
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL29_NSW_S2(v)   (HW_CSU_CSL29_WR((HW_CSU_CSL29_RD() & ~BM_CSU_CSL29_NSW_S2) | BF_CSU_CSL29_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL29, field LOCK_S2[8] (RW)
@@ -16423,7 +15363,6 @@ typedef union _hw_csu_csl29
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL29_LOCK_S2      (8)      //!< Bit position for CSU_CSL29_LOCK_S2.
 #define BM_CSU_CSL29_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL29_LOCK_S2.
 
@@ -16437,7 +15376,6 @@ typedef union _hw_csu_csl29
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL29_LOCK_S2(v)   (HW_CSU_CSL29_WR((HW_CSU_CSL29_RD() & ~BM_CSU_CSL29_LOCK_S2) | BF_CSU_CSL29_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL29, field SUR_S1[16] (RW)
@@ -16449,7 +15387,6 @@ typedef union _hw_csu_csl29
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL29_SUR_S1      (16)      //!< Bit position for CSU_CSL29_SUR_S1.
 #define BM_CSU_CSL29_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL29_SUR_S1.
 
@@ -16463,7 +15400,6 @@ typedef union _hw_csu_csl29
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL29_SUR_S1(v)   (HW_CSU_CSL29_WR((HW_CSU_CSL29_RD() & ~BM_CSU_CSL29_SUR_S1) | BF_CSU_CSL29_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL29, field SSR_S1[17] (RW)
@@ -16475,7 +15411,6 @@ typedef union _hw_csu_csl29
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL29_SSR_S1      (17)      //!< Bit position for CSU_CSL29_SSR_S1.
 #define BM_CSU_CSL29_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL29_SSR_S1.
 
@@ -16489,7 +15424,6 @@ typedef union _hw_csu_csl29
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL29_SSR_S1(v)   (HW_CSU_CSL29_WR((HW_CSU_CSL29_RD() & ~BM_CSU_CSL29_SSR_S1) | BF_CSU_CSL29_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL29, field NUR_S1[18] (RW)
@@ -16501,7 +15435,6 @@ typedef union _hw_csu_csl29
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL29_NUR_S1      (18)      //!< Bit position for CSU_CSL29_NUR_S1.
 #define BM_CSU_CSL29_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL29_NUR_S1.
 
@@ -16515,7 +15448,6 @@ typedef union _hw_csu_csl29
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL29_NUR_S1(v)   (HW_CSU_CSL29_WR((HW_CSU_CSL29_RD() & ~BM_CSU_CSL29_NUR_S1) | BF_CSU_CSL29_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL29, field NSR_S1[19] (RW)
@@ -16527,7 +15459,6 @@ typedef union _hw_csu_csl29
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL29_NSR_S1      (19)      //!< Bit position for CSU_CSL29_NSR_S1.
 #define BM_CSU_CSL29_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL29_NSR_S1.
 
@@ -16541,7 +15472,6 @@ typedef union _hw_csu_csl29
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL29_NSR_S1(v)   (HW_CSU_CSL29_WR((HW_CSU_CSL29_RD() & ~BM_CSU_CSL29_NSR_S1) | BF_CSU_CSL29_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL29, field SUW_S1[20] (RW)
@@ -16553,7 +15483,6 @@ typedef union _hw_csu_csl29
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL29_SUW_S1      (20)      //!< Bit position for CSU_CSL29_SUW_S1.
 #define BM_CSU_CSL29_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL29_SUW_S1.
 
@@ -16567,7 +15496,6 @@ typedef union _hw_csu_csl29
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL29_SUW_S1(v)   (HW_CSU_CSL29_WR((HW_CSU_CSL29_RD() & ~BM_CSU_CSL29_SUW_S1) | BF_CSU_CSL29_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL29, field SSW_S1[21] (RW)
@@ -16579,7 +15507,6 @@ typedef union _hw_csu_csl29
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL29_SSW_S1      (21)      //!< Bit position for CSU_CSL29_SSW_S1.
 #define BM_CSU_CSL29_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL29_SSW_S1.
 
@@ -16593,7 +15520,6 @@ typedef union _hw_csu_csl29
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL29_SSW_S1(v)   (HW_CSU_CSL29_WR((HW_CSU_CSL29_RD() & ~BM_CSU_CSL29_SSW_S1) | BF_CSU_CSL29_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL29, field NUW_S1[22] (RW)
@@ -16605,7 +15531,6 @@ typedef union _hw_csu_csl29
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL29_NUW_S1      (22)      //!< Bit position for CSU_CSL29_NUW_S1.
 #define BM_CSU_CSL29_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL29_NUW_S1.
 
@@ -16619,7 +15544,6 @@ typedef union _hw_csu_csl29
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL29_NUW_S1(v)   (HW_CSU_CSL29_WR((HW_CSU_CSL29_RD() & ~BM_CSU_CSL29_NUW_S1) | BF_CSU_CSL29_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL29, field NSW_S1[23] (RW)
@@ -16631,7 +15555,6 @@ typedef union _hw_csu_csl29
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL29_NSW_S1      (23)      //!< Bit position for CSU_CSL29_NSW_S1.
 #define BM_CSU_CSL29_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL29_NSW_S1.
 
@@ -16645,7 +15568,6 @@ typedef union _hw_csu_csl29
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL29_NSW_S1(v)   (HW_CSU_CSL29_WR((HW_CSU_CSL29_RD() & ~BM_CSU_CSL29_NSW_S1) | BF_CSU_CSL29_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL29, field LOCK_S1[24] (RW)
@@ -16657,7 +15579,6 @@ typedef union _hw_csu_csl29
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL29_LOCK_S1      (24)      //!< Bit position for CSU_CSL29_LOCK_S1.
 #define BM_CSU_CSL29_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL29_LOCK_S1.
 
@@ -16671,7 +15592,6 @@ typedef union _hw_csu_csl29
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL29_LOCK_S1(v)   (HW_CSU_CSL29_WR((HW_CSU_CSL29_RD() & ~BM_CSU_CSL29_LOCK_S1) | BF_CSU_CSL29_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -16768,7 +15688,6 @@ typedef union _hw_csu_csl30
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL30_SUR_S2      (0)      //!< Bit position for CSU_CSL30_SUR_S2.
 #define BM_CSU_CSL30_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL30_SUR_S2.
 
@@ -16782,7 +15701,6 @@ typedef union _hw_csu_csl30
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL30_SUR_S2(v)   (HW_CSU_CSL30_WR((HW_CSU_CSL30_RD() & ~BM_CSU_CSL30_SUR_S2) | BF_CSU_CSL30_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL30, field SSR_S2[1] (RW)
@@ -16794,7 +15712,6 @@ typedef union _hw_csu_csl30
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL30_SSR_S2      (1)      //!< Bit position for CSU_CSL30_SSR_S2.
 #define BM_CSU_CSL30_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL30_SSR_S2.
 
@@ -16808,7 +15725,6 @@ typedef union _hw_csu_csl30
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL30_SSR_S2(v)   (HW_CSU_CSL30_WR((HW_CSU_CSL30_RD() & ~BM_CSU_CSL30_SSR_S2) | BF_CSU_CSL30_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL30, field NUR_S2[2] (RW)
@@ -16820,7 +15736,6 @@ typedef union _hw_csu_csl30
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL30_NUR_S2      (2)      //!< Bit position for CSU_CSL30_NUR_S2.
 #define BM_CSU_CSL30_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL30_NUR_S2.
 
@@ -16834,7 +15749,6 @@ typedef union _hw_csu_csl30
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL30_NUR_S2(v)   (HW_CSU_CSL30_WR((HW_CSU_CSL30_RD() & ~BM_CSU_CSL30_NUR_S2) | BF_CSU_CSL30_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL30, field NSR_S2[3] (RW)
@@ -16846,7 +15760,6 @@ typedef union _hw_csu_csl30
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL30_NSR_S2      (3)      //!< Bit position for CSU_CSL30_NSR_S2.
 #define BM_CSU_CSL30_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL30_NSR_S2.
 
@@ -16860,7 +15773,6 @@ typedef union _hw_csu_csl30
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL30_NSR_S2(v)   (HW_CSU_CSL30_WR((HW_CSU_CSL30_RD() & ~BM_CSU_CSL30_NSR_S2) | BF_CSU_CSL30_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL30, field SUW_S2[4] (RW)
@@ -16872,7 +15784,6 @@ typedef union _hw_csu_csl30
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL30_SUW_S2      (4)      //!< Bit position for CSU_CSL30_SUW_S2.
 #define BM_CSU_CSL30_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL30_SUW_S2.
 
@@ -16886,7 +15797,6 @@ typedef union _hw_csu_csl30
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL30_SUW_S2(v)   (HW_CSU_CSL30_WR((HW_CSU_CSL30_RD() & ~BM_CSU_CSL30_SUW_S2) | BF_CSU_CSL30_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL30, field SSW_S2[5] (RW)
@@ -16898,7 +15808,6 @@ typedef union _hw_csu_csl30
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL30_SSW_S2      (5)      //!< Bit position for CSU_CSL30_SSW_S2.
 #define BM_CSU_CSL30_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL30_SSW_S2.
 
@@ -16912,7 +15821,6 @@ typedef union _hw_csu_csl30
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL30_SSW_S2(v)   (HW_CSU_CSL30_WR((HW_CSU_CSL30_RD() & ~BM_CSU_CSL30_SSW_S2) | BF_CSU_CSL30_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL30, field NUW_S2[6] (RW)
@@ -16924,7 +15832,6 @@ typedef union _hw_csu_csl30
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL30_NUW_S2      (6)      //!< Bit position for CSU_CSL30_NUW_S2.
 #define BM_CSU_CSL30_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL30_NUW_S2.
 
@@ -16938,7 +15845,6 @@ typedef union _hw_csu_csl30
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL30_NUW_S2(v)   (HW_CSU_CSL30_WR((HW_CSU_CSL30_RD() & ~BM_CSU_CSL30_NUW_S2) | BF_CSU_CSL30_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL30, field NSW_S2[7] (RW)
@@ -16950,7 +15856,6 @@ typedef union _hw_csu_csl30
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL30_NSW_S2      (7)      //!< Bit position for CSU_CSL30_NSW_S2.
 #define BM_CSU_CSL30_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL30_NSW_S2.
 
@@ -16964,7 +15869,6 @@ typedef union _hw_csu_csl30
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL30_NSW_S2(v)   (HW_CSU_CSL30_WR((HW_CSU_CSL30_RD() & ~BM_CSU_CSL30_NSW_S2) | BF_CSU_CSL30_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL30, field LOCK_S2[8] (RW)
@@ -16976,7 +15880,6 @@ typedef union _hw_csu_csl30
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL30_LOCK_S2      (8)      //!< Bit position for CSU_CSL30_LOCK_S2.
 #define BM_CSU_CSL30_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL30_LOCK_S2.
 
@@ -16990,7 +15893,6 @@ typedef union _hw_csu_csl30
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL30_LOCK_S2(v)   (HW_CSU_CSL30_WR((HW_CSU_CSL30_RD() & ~BM_CSU_CSL30_LOCK_S2) | BF_CSU_CSL30_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL30, field SUR_S1[16] (RW)
@@ -17002,7 +15904,6 @@ typedef union _hw_csu_csl30
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL30_SUR_S1      (16)      //!< Bit position for CSU_CSL30_SUR_S1.
 #define BM_CSU_CSL30_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL30_SUR_S1.
 
@@ -17016,7 +15917,6 @@ typedef union _hw_csu_csl30
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL30_SUR_S1(v)   (HW_CSU_CSL30_WR((HW_CSU_CSL30_RD() & ~BM_CSU_CSL30_SUR_S1) | BF_CSU_CSL30_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL30, field SSR_S1[17] (RW)
@@ -17028,7 +15928,6 @@ typedef union _hw_csu_csl30
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL30_SSR_S1      (17)      //!< Bit position for CSU_CSL30_SSR_S1.
 #define BM_CSU_CSL30_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL30_SSR_S1.
 
@@ -17042,7 +15941,6 @@ typedef union _hw_csu_csl30
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL30_SSR_S1(v)   (HW_CSU_CSL30_WR((HW_CSU_CSL30_RD() & ~BM_CSU_CSL30_SSR_S1) | BF_CSU_CSL30_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL30, field NUR_S1[18] (RW)
@@ -17054,7 +15952,6 @@ typedef union _hw_csu_csl30
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL30_NUR_S1      (18)      //!< Bit position for CSU_CSL30_NUR_S1.
 #define BM_CSU_CSL30_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL30_NUR_S1.
 
@@ -17068,7 +15965,6 @@ typedef union _hw_csu_csl30
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL30_NUR_S1(v)   (HW_CSU_CSL30_WR((HW_CSU_CSL30_RD() & ~BM_CSU_CSL30_NUR_S1) | BF_CSU_CSL30_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL30, field NSR_S1[19] (RW)
@@ -17080,7 +15976,6 @@ typedef union _hw_csu_csl30
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL30_NSR_S1      (19)      //!< Bit position for CSU_CSL30_NSR_S1.
 #define BM_CSU_CSL30_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL30_NSR_S1.
 
@@ -17094,7 +15989,6 @@ typedef union _hw_csu_csl30
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL30_NSR_S1(v)   (HW_CSU_CSL30_WR((HW_CSU_CSL30_RD() & ~BM_CSU_CSL30_NSR_S1) | BF_CSU_CSL30_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL30, field SUW_S1[20] (RW)
@@ -17106,7 +16000,6 @@ typedef union _hw_csu_csl30
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL30_SUW_S1      (20)      //!< Bit position for CSU_CSL30_SUW_S1.
 #define BM_CSU_CSL30_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL30_SUW_S1.
 
@@ -17120,7 +16013,6 @@ typedef union _hw_csu_csl30
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL30_SUW_S1(v)   (HW_CSU_CSL30_WR((HW_CSU_CSL30_RD() & ~BM_CSU_CSL30_SUW_S1) | BF_CSU_CSL30_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL30, field SSW_S1[21] (RW)
@@ -17132,7 +16024,6 @@ typedef union _hw_csu_csl30
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL30_SSW_S1      (21)      //!< Bit position for CSU_CSL30_SSW_S1.
 #define BM_CSU_CSL30_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL30_SSW_S1.
 
@@ -17146,7 +16037,6 @@ typedef union _hw_csu_csl30
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL30_SSW_S1(v)   (HW_CSU_CSL30_WR((HW_CSU_CSL30_RD() & ~BM_CSU_CSL30_SSW_S1) | BF_CSU_CSL30_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL30, field NUW_S1[22] (RW)
@@ -17158,7 +16048,6 @@ typedef union _hw_csu_csl30
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL30_NUW_S1      (22)      //!< Bit position for CSU_CSL30_NUW_S1.
 #define BM_CSU_CSL30_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL30_NUW_S1.
 
@@ -17172,7 +16061,6 @@ typedef union _hw_csu_csl30
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL30_NUW_S1(v)   (HW_CSU_CSL30_WR((HW_CSU_CSL30_RD() & ~BM_CSU_CSL30_NUW_S1) | BF_CSU_CSL30_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL30, field NSW_S1[23] (RW)
@@ -17184,7 +16072,6 @@ typedef union _hw_csu_csl30
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL30_NSW_S1      (23)      //!< Bit position for CSU_CSL30_NSW_S1.
 #define BM_CSU_CSL30_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL30_NSW_S1.
 
@@ -17198,7 +16085,6 @@ typedef union _hw_csu_csl30
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL30_NSW_S1(v)   (HW_CSU_CSL30_WR((HW_CSU_CSL30_RD() & ~BM_CSU_CSL30_NSW_S1) | BF_CSU_CSL30_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL30, field LOCK_S1[24] (RW)
@@ -17210,7 +16096,6 @@ typedef union _hw_csu_csl30
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL30_LOCK_S1      (24)      //!< Bit position for CSU_CSL30_LOCK_S1.
 #define BM_CSU_CSL30_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL30_LOCK_S1.
 
@@ -17224,7 +16109,6 @@ typedef union _hw_csu_csl30
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL30_LOCK_S1(v)   (HW_CSU_CSL30_WR((HW_CSU_CSL30_RD() & ~BM_CSU_CSL30_LOCK_S1) | BF_CSU_CSL30_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -17321,7 +16205,6 @@ typedef union _hw_csu_csl31
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL31_SUR_S2      (0)      //!< Bit position for CSU_CSL31_SUR_S2.
 #define BM_CSU_CSL31_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL31_SUR_S2.
 
@@ -17335,7 +16218,6 @@ typedef union _hw_csu_csl31
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL31_SUR_S2(v)   (HW_CSU_CSL31_WR((HW_CSU_CSL31_RD() & ~BM_CSU_CSL31_SUR_S2) | BF_CSU_CSL31_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL31, field SSR_S2[1] (RW)
@@ -17347,7 +16229,6 @@ typedef union _hw_csu_csl31
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL31_SSR_S2      (1)      //!< Bit position for CSU_CSL31_SSR_S2.
 #define BM_CSU_CSL31_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL31_SSR_S2.
 
@@ -17361,7 +16242,6 @@ typedef union _hw_csu_csl31
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL31_SSR_S2(v)   (HW_CSU_CSL31_WR((HW_CSU_CSL31_RD() & ~BM_CSU_CSL31_SSR_S2) | BF_CSU_CSL31_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL31, field NUR_S2[2] (RW)
@@ -17373,7 +16253,6 @@ typedef union _hw_csu_csl31
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL31_NUR_S2      (2)      //!< Bit position for CSU_CSL31_NUR_S2.
 #define BM_CSU_CSL31_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL31_NUR_S2.
 
@@ -17387,7 +16266,6 @@ typedef union _hw_csu_csl31
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL31_NUR_S2(v)   (HW_CSU_CSL31_WR((HW_CSU_CSL31_RD() & ~BM_CSU_CSL31_NUR_S2) | BF_CSU_CSL31_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL31, field NSR_S2[3] (RW)
@@ -17399,7 +16277,6 @@ typedef union _hw_csu_csl31
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL31_NSR_S2      (3)      //!< Bit position for CSU_CSL31_NSR_S2.
 #define BM_CSU_CSL31_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL31_NSR_S2.
 
@@ -17413,7 +16290,6 @@ typedef union _hw_csu_csl31
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL31_NSR_S2(v)   (HW_CSU_CSL31_WR((HW_CSU_CSL31_RD() & ~BM_CSU_CSL31_NSR_S2) | BF_CSU_CSL31_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL31, field SUW_S2[4] (RW)
@@ -17425,7 +16301,6 @@ typedef union _hw_csu_csl31
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL31_SUW_S2      (4)      //!< Bit position for CSU_CSL31_SUW_S2.
 #define BM_CSU_CSL31_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL31_SUW_S2.
 
@@ -17439,7 +16314,6 @@ typedef union _hw_csu_csl31
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL31_SUW_S2(v)   (HW_CSU_CSL31_WR((HW_CSU_CSL31_RD() & ~BM_CSU_CSL31_SUW_S2) | BF_CSU_CSL31_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL31, field SSW_S2[5] (RW)
@@ -17451,7 +16325,6 @@ typedef union _hw_csu_csl31
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL31_SSW_S2      (5)      //!< Bit position for CSU_CSL31_SSW_S2.
 #define BM_CSU_CSL31_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL31_SSW_S2.
 
@@ -17465,7 +16338,6 @@ typedef union _hw_csu_csl31
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL31_SSW_S2(v)   (HW_CSU_CSL31_WR((HW_CSU_CSL31_RD() & ~BM_CSU_CSL31_SSW_S2) | BF_CSU_CSL31_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL31, field NUW_S2[6] (RW)
@@ -17477,7 +16349,6 @@ typedef union _hw_csu_csl31
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL31_NUW_S2      (6)      //!< Bit position for CSU_CSL31_NUW_S2.
 #define BM_CSU_CSL31_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL31_NUW_S2.
 
@@ -17491,7 +16362,6 @@ typedef union _hw_csu_csl31
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL31_NUW_S2(v)   (HW_CSU_CSL31_WR((HW_CSU_CSL31_RD() & ~BM_CSU_CSL31_NUW_S2) | BF_CSU_CSL31_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL31, field NSW_S2[7] (RW)
@@ -17503,7 +16373,6 @@ typedef union _hw_csu_csl31
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL31_NSW_S2      (7)      //!< Bit position for CSU_CSL31_NSW_S2.
 #define BM_CSU_CSL31_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL31_NSW_S2.
 
@@ -17517,7 +16386,6 @@ typedef union _hw_csu_csl31
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL31_NSW_S2(v)   (HW_CSU_CSL31_WR((HW_CSU_CSL31_RD() & ~BM_CSU_CSL31_NSW_S2) | BF_CSU_CSL31_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL31, field LOCK_S2[8] (RW)
@@ -17529,7 +16397,6 @@ typedef union _hw_csu_csl31
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL31_LOCK_S2      (8)      //!< Bit position for CSU_CSL31_LOCK_S2.
 #define BM_CSU_CSL31_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL31_LOCK_S2.
 
@@ -17543,7 +16410,6 @@ typedef union _hw_csu_csl31
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL31_LOCK_S2(v)   (HW_CSU_CSL31_WR((HW_CSU_CSL31_RD() & ~BM_CSU_CSL31_LOCK_S2) | BF_CSU_CSL31_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL31, field SUR_S1[16] (RW)
@@ -17555,7 +16421,6 @@ typedef union _hw_csu_csl31
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL31_SUR_S1      (16)      //!< Bit position for CSU_CSL31_SUR_S1.
 #define BM_CSU_CSL31_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL31_SUR_S1.
 
@@ -17569,7 +16434,6 @@ typedef union _hw_csu_csl31
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL31_SUR_S1(v)   (HW_CSU_CSL31_WR((HW_CSU_CSL31_RD() & ~BM_CSU_CSL31_SUR_S1) | BF_CSU_CSL31_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL31, field SSR_S1[17] (RW)
@@ -17581,7 +16445,6 @@ typedef union _hw_csu_csl31
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL31_SSR_S1      (17)      //!< Bit position for CSU_CSL31_SSR_S1.
 #define BM_CSU_CSL31_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL31_SSR_S1.
 
@@ -17595,7 +16458,6 @@ typedef union _hw_csu_csl31
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL31_SSR_S1(v)   (HW_CSU_CSL31_WR((HW_CSU_CSL31_RD() & ~BM_CSU_CSL31_SSR_S1) | BF_CSU_CSL31_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL31, field NUR_S1[18] (RW)
@@ -17607,7 +16469,6 @@ typedef union _hw_csu_csl31
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL31_NUR_S1      (18)      //!< Bit position for CSU_CSL31_NUR_S1.
 #define BM_CSU_CSL31_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL31_NUR_S1.
 
@@ -17621,7 +16482,6 @@ typedef union _hw_csu_csl31
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL31_NUR_S1(v)   (HW_CSU_CSL31_WR((HW_CSU_CSL31_RD() & ~BM_CSU_CSL31_NUR_S1) | BF_CSU_CSL31_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL31, field NSR_S1[19] (RW)
@@ -17633,7 +16493,6 @@ typedef union _hw_csu_csl31
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL31_NSR_S1      (19)      //!< Bit position for CSU_CSL31_NSR_S1.
 #define BM_CSU_CSL31_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL31_NSR_S1.
 
@@ -17647,7 +16506,6 @@ typedef union _hw_csu_csl31
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL31_NSR_S1(v)   (HW_CSU_CSL31_WR((HW_CSU_CSL31_RD() & ~BM_CSU_CSL31_NSR_S1) | BF_CSU_CSL31_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL31, field SUW_S1[20] (RW)
@@ -17659,7 +16517,6 @@ typedef union _hw_csu_csl31
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL31_SUW_S1      (20)      //!< Bit position for CSU_CSL31_SUW_S1.
 #define BM_CSU_CSL31_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL31_SUW_S1.
 
@@ -17673,7 +16530,6 @@ typedef union _hw_csu_csl31
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL31_SUW_S1(v)   (HW_CSU_CSL31_WR((HW_CSU_CSL31_RD() & ~BM_CSU_CSL31_SUW_S1) | BF_CSU_CSL31_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL31, field SSW_S1[21] (RW)
@@ -17685,7 +16541,6 @@ typedef union _hw_csu_csl31
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL31_SSW_S1      (21)      //!< Bit position for CSU_CSL31_SSW_S1.
 #define BM_CSU_CSL31_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL31_SSW_S1.
 
@@ -17699,7 +16554,6 @@ typedef union _hw_csu_csl31
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL31_SSW_S1(v)   (HW_CSU_CSL31_WR((HW_CSU_CSL31_RD() & ~BM_CSU_CSL31_SSW_S1) | BF_CSU_CSL31_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL31, field NUW_S1[22] (RW)
@@ -17711,7 +16565,6 @@ typedef union _hw_csu_csl31
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL31_NUW_S1      (22)      //!< Bit position for CSU_CSL31_NUW_S1.
 #define BM_CSU_CSL31_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL31_NUW_S1.
 
@@ -17725,7 +16578,6 @@ typedef union _hw_csu_csl31
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL31_NUW_S1(v)   (HW_CSU_CSL31_WR((HW_CSU_CSL31_RD() & ~BM_CSU_CSL31_NUW_S1) | BF_CSU_CSL31_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL31, field NSW_S1[23] (RW)
@@ -17737,7 +16589,6 @@ typedef union _hw_csu_csl31
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL31_NSW_S1      (23)      //!< Bit position for CSU_CSL31_NSW_S1.
 #define BM_CSU_CSL31_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL31_NSW_S1.
 
@@ -17751,7 +16602,6 @@ typedef union _hw_csu_csl31
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL31_NSW_S1(v)   (HW_CSU_CSL31_WR((HW_CSU_CSL31_RD() & ~BM_CSU_CSL31_NSW_S1) | BF_CSU_CSL31_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL31, field LOCK_S1[24] (RW)
@@ -17763,7 +16613,6 @@ typedef union _hw_csu_csl31
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL31_LOCK_S1      (24)      //!< Bit position for CSU_CSL31_LOCK_S1.
 #define BM_CSU_CSL31_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL31_LOCK_S1.
 
@@ -17777,7 +16626,6 @@ typedef union _hw_csu_csl31
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL31_LOCK_S1(v)   (HW_CSU_CSL31_WR((HW_CSU_CSL31_RD() & ~BM_CSU_CSL31_LOCK_S1) | BF_CSU_CSL31_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -17874,7 +16722,6 @@ typedef union _hw_csu_csl32
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL32_SUR_S2      (0)      //!< Bit position for CSU_CSL32_SUR_S2.
 #define BM_CSU_CSL32_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL32_SUR_S2.
 
@@ -17888,7 +16735,6 @@ typedef union _hw_csu_csl32
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL32_SUR_S2(v)   (HW_CSU_CSL32_WR((HW_CSU_CSL32_RD() & ~BM_CSU_CSL32_SUR_S2) | BF_CSU_CSL32_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL32, field SSR_S2[1] (RW)
@@ -17900,7 +16746,6 @@ typedef union _hw_csu_csl32
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL32_SSR_S2      (1)      //!< Bit position for CSU_CSL32_SSR_S2.
 #define BM_CSU_CSL32_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL32_SSR_S2.
 
@@ -17914,7 +16759,6 @@ typedef union _hw_csu_csl32
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL32_SSR_S2(v)   (HW_CSU_CSL32_WR((HW_CSU_CSL32_RD() & ~BM_CSU_CSL32_SSR_S2) | BF_CSU_CSL32_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL32, field NUR_S2[2] (RW)
@@ -17926,7 +16770,6 @@ typedef union _hw_csu_csl32
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL32_NUR_S2      (2)      //!< Bit position for CSU_CSL32_NUR_S2.
 #define BM_CSU_CSL32_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL32_NUR_S2.
 
@@ -17940,7 +16783,6 @@ typedef union _hw_csu_csl32
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL32_NUR_S2(v)   (HW_CSU_CSL32_WR((HW_CSU_CSL32_RD() & ~BM_CSU_CSL32_NUR_S2) | BF_CSU_CSL32_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL32, field NSR_S2[3] (RW)
@@ -17952,7 +16794,6 @@ typedef union _hw_csu_csl32
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL32_NSR_S2      (3)      //!< Bit position for CSU_CSL32_NSR_S2.
 #define BM_CSU_CSL32_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL32_NSR_S2.
 
@@ -17966,7 +16807,6 @@ typedef union _hw_csu_csl32
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL32_NSR_S2(v)   (HW_CSU_CSL32_WR((HW_CSU_CSL32_RD() & ~BM_CSU_CSL32_NSR_S2) | BF_CSU_CSL32_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL32, field SUW_S2[4] (RW)
@@ -17978,7 +16818,6 @@ typedef union _hw_csu_csl32
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL32_SUW_S2      (4)      //!< Bit position for CSU_CSL32_SUW_S2.
 #define BM_CSU_CSL32_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL32_SUW_S2.
 
@@ -17992,7 +16831,6 @@ typedef union _hw_csu_csl32
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL32_SUW_S2(v)   (HW_CSU_CSL32_WR((HW_CSU_CSL32_RD() & ~BM_CSU_CSL32_SUW_S2) | BF_CSU_CSL32_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL32, field SSW_S2[5] (RW)
@@ -18004,7 +16842,6 @@ typedef union _hw_csu_csl32
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL32_SSW_S2      (5)      //!< Bit position for CSU_CSL32_SSW_S2.
 #define BM_CSU_CSL32_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL32_SSW_S2.
 
@@ -18018,7 +16855,6 @@ typedef union _hw_csu_csl32
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL32_SSW_S2(v)   (HW_CSU_CSL32_WR((HW_CSU_CSL32_RD() & ~BM_CSU_CSL32_SSW_S2) | BF_CSU_CSL32_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL32, field NUW_S2[6] (RW)
@@ -18030,7 +16866,6 @@ typedef union _hw_csu_csl32
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL32_NUW_S2      (6)      //!< Bit position for CSU_CSL32_NUW_S2.
 #define BM_CSU_CSL32_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL32_NUW_S2.
 
@@ -18044,7 +16879,6 @@ typedef union _hw_csu_csl32
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL32_NUW_S2(v)   (HW_CSU_CSL32_WR((HW_CSU_CSL32_RD() & ~BM_CSU_CSL32_NUW_S2) | BF_CSU_CSL32_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL32, field NSW_S2[7] (RW)
@@ -18056,7 +16890,6 @@ typedef union _hw_csu_csl32
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL32_NSW_S2      (7)      //!< Bit position for CSU_CSL32_NSW_S2.
 #define BM_CSU_CSL32_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL32_NSW_S2.
 
@@ -18070,7 +16903,6 @@ typedef union _hw_csu_csl32
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL32_NSW_S2(v)   (HW_CSU_CSL32_WR((HW_CSU_CSL32_RD() & ~BM_CSU_CSL32_NSW_S2) | BF_CSU_CSL32_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL32, field LOCK_S2[8] (RW)
@@ -18082,7 +16914,6 @@ typedef union _hw_csu_csl32
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL32_LOCK_S2      (8)      //!< Bit position for CSU_CSL32_LOCK_S2.
 #define BM_CSU_CSL32_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL32_LOCK_S2.
 
@@ -18096,7 +16927,6 @@ typedef union _hw_csu_csl32
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL32_LOCK_S2(v)   (HW_CSU_CSL32_WR((HW_CSU_CSL32_RD() & ~BM_CSU_CSL32_LOCK_S2) | BF_CSU_CSL32_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL32, field SUR_S1[16] (RW)
@@ -18108,7 +16938,6 @@ typedef union _hw_csu_csl32
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL32_SUR_S1      (16)      //!< Bit position for CSU_CSL32_SUR_S1.
 #define BM_CSU_CSL32_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL32_SUR_S1.
 
@@ -18122,7 +16951,6 @@ typedef union _hw_csu_csl32
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL32_SUR_S1(v)   (HW_CSU_CSL32_WR((HW_CSU_CSL32_RD() & ~BM_CSU_CSL32_SUR_S1) | BF_CSU_CSL32_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL32, field SSR_S1[17] (RW)
@@ -18134,7 +16962,6 @@ typedef union _hw_csu_csl32
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL32_SSR_S1      (17)      //!< Bit position for CSU_CSL32_SSR_S1.
 #define BM_CSU_CSL32_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL32_SSR_S1.
 
@@ -18148,7 +16975,6 @@ typedef union _hw_csu_csl32
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL32_SSR_S1(v)   (HW_CSU_CSL32_WR((HW_CSU_CSL32_RD() & ~BM_CSU_CSL32_SSR_S1) | BF_CSU_CSL32_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL32, field NUR_S1[18] (RW)
@@ -18160,7 +16986,6 @@ typedef union _hw_csu_csl32
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL32_NUR_S1      (18)      //!< Bit position for CSU_CSL32_NUR_S1.
 #define BM_CSU_CSL32_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL32_NUR_S1.
 
@@ -18174,7 +16999,6 @@ typedef union _hw_csu_csl32
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL32_NUR_S1(v)   (HW_CSU_CSL32_WR((HW_CSU_CSL32_RD() & ~BM_CSU_CSL32_NUR_S1) | BF_CSU_CSL32_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL32, field NSR_S1[19] (RW)
@@ -18186,7 +17010,6 @@ typedef union _hw_csu_csl32
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL32_NSR_S1      (19)      //!< Bit position for CSU_CSL32_NSR_S1.
 #define BM_CSU_CSL32_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL32_NSR_S1.
 
@@ -18200,7 +17023,6 @@ typedef union _hw_csu_csl32
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL32_NSR_S1(v)   (HW_CSU_CSL32_WR((HW_CSU_CSL32_RD() & ~BM_CSU_CSL32_NSR_S1) | BF_CSU_CSL32_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL32, field SUW_S1[20] (RW)
@@ -18212,7 +17034,6 @@ typedef union _hw_csu_csl32
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL32_SUW_S1      (20)      //!< Bit position for CSU_CSL32_SUW_S1.
 #define BM_CSU_CSL32_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL32_SUW_S1.
 
@@ -18226,7 +17047,6 @@ typedef union _hw_csu_csl32
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL32_SUW_S1(v)   (HW_CSU_CSL32_WR((HW_CSU_CSL32_RD() & ~BM_CSU_CSL32_SUW_S1) | BF_CSU_CSL32_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL32, field SSW_S1[21] (RW)
@@ -18238,7 +17058,6 @@ typedef union _hw_csu_csl32
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL32_SSW_S1      (21)      //!< Bit position for CSU_CSL32_SSW_S1.
 #define BM_CSU_CSL32_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL32_SSW_S1.
 
@@ -18252,7 +17071,6 @@ typedef union _hw_csu_csl32
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL32_SSW_S1(v)   (HW_CSU_CSL32_WR((HW_CSU_CSL32_RD() & ~BM_CSU_CSL32_SSW_S1) | BF_CSU_CSL32_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL32, field NUW_S1[22] (RW)
@@ -18264,7 +17082,6 @@ typedef union _hw_csu_csl32
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL32_NUW_S1      (22)      //!< Bit position for CSU_CSL32_NUW_S1.
 #define BM_CSU_CSL32_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL32_NUW_S1.
 
@@ -18278,7 +17095,6 @@ typedef union _hw_csu_csl32
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL32_NUW_S1(v)   (HW_CSU_CSL32_WR((HW_CSU_CSL32_RD() & ~BM_CSU_CSL32_NUW_S1) | BF_CSU_CSL32_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL32, field NSW_S1[23] (RW)
@@ -18290,7 +17106,6 @@ typedef union _hw_csu_csl32
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL32_NSW_S1      (23)      //!< Bit position for CSU_CSL32_NSW_S1.
 #define BM_CSU_CSL32_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL32_NSW_S1.
 
@@ -18304,7 +17119,6 @@ typedef union _hw_csu_csl32
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL32_NSW_S1(v)   (HW_CSU_CSL32_WR((HW_CSU_CSL32_RD() & ~BM_CSU_CSL32_NSW_S1) | BF_CSU_CSL32_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL32, field LOCK_S1[24] (RW)
@@ -18316,7 +17130,6 @@ typedef union _hw_csu_csl32
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL32_LOCK_S1      (24)      //!< Bit position for CSU_CSL32_LOCK_S1.
 #define BM_CSU_CSL32_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL32_LOCK_S1.
 
@@ -18330,7 +17143,6 @@ typedef union _hw_csu_csl32
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL32_LOCK_S1(v)   (HW_CSU_CSL32_WR((HW_CSU_CSL32_RD() & ~BM_CSU_CSL32_LOCK_S1) | BF_CSU_CSL32_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -18427,7 +17239,6 @@ typedef union _hw_csu_csl33
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL33_SUR_S2      (0)      //!< Bit position for CSU_CSL33_SUR_S2.
 #define BM_CSU_CSL33_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL33_SUR_S2.
 
@@ -18441,7 +17252,6 @@ typedef union _hw_csu_csl33
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL33_SUR_S2(v)   (HW_CSU_CSL33_WR((HW_CSU_CSL33_RD() & ~BM_CSU_CSL33_SUR_S2) | BF_CSU_CSL33_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL33, field SSR_S2[1] (RW)
@@ -18453,7 +17263,6 @@ typedef union _hw_csu_csl33
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL33_SSR_S2      (1)      //!< Bit position for CSU_CSL33_SSR_S2.
 #define BM_CSU_CSL33_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL33_SSR_S2.
 
@@ -18467,7 +17276,6 @@ typedef union _hw_csu_csl33
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL33_SSR_S2(v)   (HW_CSU_CSL33_WR((HW_CSU_CSL33_RD() & ~BM_CSU_CSL33_SSR_S2) | BF_CSU_CSL33_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL33, field NUR_S2[2] (RW)
@@ -18479,7 +17287,6 @@ typedef union _hw_csu_csl33
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL33_NUR_S2      (2)      //!< Bit position for CSU_CSL33_NUR_S2.
 #define BM_CSU_CSL33_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL33_NUR_S2.
 
@@ -18493,7 +17300,6 @@ typedef union _hw_csu_csl33
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL33_NUR_S2(v)   (HW_CSU_CSL33_WR((HW_CSU_CSL33_RD() & ~BM_CSU_CSL33_NUR_S2) | BF_CSU_CSL33_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL33, field NSR_S2[3] (RW)
@@ -18505,7 +17311,6 @@ typedef union _hw_csu_csl33
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL33_NSR_S2      (3)      //!< Bit position for CSU_CSL33_NSR_S2.
 #define BM_CSU_CSL33_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL33_NSR_S2.
 
@@ -18519,7 +17324,6 @@ typedef union _hw_csu_csl33
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL33_NSR_S2(v)   (HW_CSU_CSL33_WR((HW_CSU_CSL33_RD() & ~BM_CSU_CSL33_NSR_S2) | BF_CSU_CSL33_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL33, field SUW_S2[4] (RW)
@@ -18531,7 +17335,6 @@ typedef union _hw_csu_csl33
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL33_SUW_S2      (4)      //!< Bit position for CSU_CSL33_SUW_S2.
 #define BM_CSU_CSL33_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL33_SUW_S2.
 
@@ -18545,7 +17348,6 @@ typedef union _hw_csu_csl33
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL33_SUW_S2(v)   (HW_CSU_CSL33_WR((HW_CSU_CSL33_RD() & ~BM_CSU_CSL33_SUW_S2) | BF_CSU_CSL33_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL33, field SSW_S2[5] (RW)
@@ -18557,7 +17359,6 @@ typedef union _hw_csu_csl33
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL33_SSW_S2      (5)      //!< Bit position for CSU_CSL33_SSW_S2.
 #define BM_CSU_CSL33_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL33_SSW_S2.
 
@@ -18571,7 +17372,6 @@ typedef union _hw_csu_csl33
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL33_SSW_S2(v)   (HW_CSU_CSL33_WR((HW_CSU_CSL33_RD() & ~BM_CSU_CSL33_SSW_S2) | BF_CSU_CSL33_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL33, field NUW_S2[6] (RW)
@@ -18583,7 +17383,6 @@ typedef union _hw_csu_csl33
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL33_NUW_S2      (6)      //!< Bit position for CSU_CSL33_NUW_S2.
 #define BM_CSU_CSL33_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL33_NUW_S2.
 
@@ -18597,7 +17396,6 @@ typedef union _hw_csu_csl33
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL33_NUW_S2(v)   (HW_CSU_CSL33_WR((HW_CSU_CSL33_RD() & ~BM_CSU_CSL33_NUW_S2) | BF_CSU_CSL33_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL33, field NSW_S2[7] (RW)
@@ -18609,7 +17407,6 @@ typedef union _hw_csu_csl33
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL33_NSW_S2      (7)      //!< Bit position for CSU_CSL33_NSW_S2.
 #define BM_CSU_CSL33_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL33_NSW_S2.
 
@@ -18623,7 +17420,6 @@ typedef union _hw_csu_csl33
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL33_NSW_S2(v)   (HW_CSU_CSL33_WR((HW_CSU_CSL33_RD() & ~BM_CSU_CSL33_NSW_S2) | BF_CSU_CSL33_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL33, field LOCK_S2[8] (RW)
@@ -18635,7 +17431,6 @@ typedef union _hw_csu_csl33
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL33_LOCK_S2      (8)      //!< Bit position for CSU_CSL33_LOCK_S2.
 #define BM_CSU_CSL33_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL33_LOCK_S2.
 
@@ -18649,7 +17444,6 @@ typedef union _hw_csu_csl33
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL33_LOCK_S2(v)   (HW_CSU_CSL33_WR((HW_CSU_CSL33_RD() & ~BM_CSU_CSL33_LOCK_S2) | BF_CSU_CSL33_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL33, field SUR_S1[16] (RW)
@@ -18661,7 +17455,6 @@ typedef union _hw_csu_csl33
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL33_SUR_S1      (16)      //!< Bit position for CSU_CSL33_SUR_S1.
 #define BM_CSU_CSL33_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL33_SUR_S1.
 
@@ -18675,7 +17468,6 @@ typedef union _hw_csu_csl33
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL33_SUR_S1(v)   (HW_CSU_CSL33_WR((HW_CSU_CSL33_RD() & ~BM_CSU_CSL33_SUR_S1) | BF_CSU_CSL33_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL33, field SSR_S1[17] (RW)
@@ -18687,7 +17479,6 @@ typedef union _hw_csu_csl33
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL33_SSR_S1      (17)      //!< Bit position for CSU_CSL33_SSR_S1.
 #define BM_CSU_CSL33_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL33_SSR_S1.
 
@@ -18701,7 +17492,6 @@ typedef union _hw_csu_csl33
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL33_SSR_S1(v)   (HW_CSU_CSL33_WR((HW_CSU_CSL33_RD() & ~BM_CSU_CSL33_SSR_S1) | BF_CSU_CSL33_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL33, field NUR_S1[18] (RW)
@@ -18713,7 +17503,6 @@ typedef union _hw_csu_csl33
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL33_NUR_S1      (18)      //!< Bit position for CSU_CSL33_NUR_S1.
 #define BM_CSU_CSL33_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL33_NUR_S1.
 
@@ -18727,7 +17516,6 @@ typedef union _hw_csu_csl33
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL33_NUR_S1(v)   (HW_CSU_CSL33_WR((HW_CSU_CSL33_RD() & ~BM_CSU_CSL33_NUR_S1) | BF_CSU_CSL33_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL33, field NSR_S1[19] (RW)
@@ -18739,7 +17527,6 @@ typedef union _hw_csu_csl33
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL33_NSR_S1      (19)      //!< Bit position for CSU_CSL33_NSR_S1.
 #define BM_CSU_CSL33_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL33_NSR_S1.
 
@@ -18753,7 +17540,6 @@ typedef union _hw_csu_csl33
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL33_NSR_S1(v)   (HW_CSU_CSL33_WR((HW_CSU_CSL33_RD() & ~BM_CSU_CSL33_NSR_S1) | BF_CSU_CSL33_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL33, field SUW_S1[20] (RW)
@@ -18765,7 +17551,6 @@ typedef union _hw_csu_csl33
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL33_SUW_S1      (20)      //!< Bit position for CSU_CSL33_SUW_S1.
 #define BM_CSU_CSL33_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL33_SUW_S1.
 
@@ -18779,7 +17564,6 @@ typedef union _hw_csu_csl33
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL33_SUW_S1(v)   (HW_CSU_CSL33_WR((HW_CSU_CSL33_RD() & ~BM_CSU_CSL33_SUW_S1) | BF_CSU_CSL33_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL33, field SSW_S1[21] (RW)
@@ -18791,7 +17575,6 @@ typedef union _hw_csu_csl33
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL33_SSW_S1      (21)      //!< Bit position for CSU_CSL33_SSW_S1.
 #define BM_CSU_CSL33_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL33_SSW_S1.
 
@@ -18805,7 +17588,6 @@ typedef union _hw_csu_csl33
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL33_SSW_S1(v)   (HW_CSU_CSL33_WR((HW_CSU_CSL33_RD() & ~BM_CSU_CSL33_SSW_S1) | BF_CSU_CSL33_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL33, field NUW_S1[22] (RW)
@@ -18817,7 +17599,6 @@ typedef union _hw_csu_csl33
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL33_NUW_S1      (22)      //!< Bit position for CSU_CSL33_NUW_S1.
 #define BM_CSU_CSL33_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL33_NUW_S1.
 
@@ -18831,7 +17612,6 @@ typedef union _hw_csu_csl33
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL33_NUW_S1(v)   (HW_CSU_CSL33_WR((HW_CSU_CSL33_RD() & ~BM_CSU_CSL33_NUW_S1) | BF_CSU_CSL33_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL33, field NSW_S1[23] (RW)
@@ -18843,7 +17623,6 @@ typedef union _hw_csu_csl33
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL33_NSW_S1      (23)      //!< Bit position for CSU_CSL33_NSW_S1.
 #define BM_CSU_CSL33_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL33_NSW_S1.
 
@@ -18857,7 +17636,6 @@ typedef union _hw_csu_csl33
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL33_NSW_S1(v)   (HW_CSU_CSL33_WR((HW_CSU_CSL33_RD() & ~BM_CSU_CSL33_NSW_S1) | BF_CSU_CSL33_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL33, field LOCK_S1[24] (RW)
@@ -18869,7 +17647,6 @@ typedef union _hw_csu_csl33
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL33_LOCK_S1      (24)      //!< Bit position for CSU_CSL33_LOCK_S1.
 #define BM_CSU_CSL33_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL33_LOCK_S1.
 
@@ -18883,7 +17660,6 @@ typedef union _hw_csu_csl33
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL33_LOCK_S1(v)   (HW_CSU_CSL33_WR((HW_CSU_CSL33_RD() & ~BM_CSU_CSL33_LOCK_S1) | BF_CSU_CSL33_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -18980,7 +17756,6 @@ typedef union _hw_csu_csl34
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL34_SUR_S2      (0)      //!< Bit position for CSU_CSL34_SUR_S2.
 #define BM_CSU_CSL34_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL34_SUR_S2.
 
@@ -18994,7 +17769,6 @@ typedef union _hw_csu_csl34
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL34_SUR_S2(v)   (HW_CSU_CSL34_WR((HW_CSU_CSL34_RD() & ~BM_CSU_CSL34_SUR_S2) | BF_CSU_CSL34_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL34, field SSR_S2[1] (RW)
@@ -19006,7 +17780,6 @@ typedef union _hw_csu_csl34
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL34_SSR_S2      (1)      //!< Bit position for CSU_CSL34_SSR_S2.
 #define BM_CSU_CSL34_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL34_SSR_S2.
 
@@ -19020,7 +17793,6 @@ typedef union _hw_csu_csl34
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL34_SSR_S2(v)   (HW_CSU_CSL34_WR((HW_CSU_CSL34_RD() & ~BM_CSU_CSL34_SSR_S2) | BF_CSU_CSL34_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL34, field NUR_S2[2] (RW)
@@ -19032,7 +17804,6 @@ typedef union _hw_csu_csl34
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL34_NUR_S2      (2)      //!< Bit position for CSU_CSL34_NUR_S2.
 #define BM_CSU_CSL34_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL34_NUR_S2.
 
@@ -19046,7 +17817,6 @@ typedef union _hw_csu_csl34
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL34_NUR_S2(v)   (HW_CSU_CSL34_WR((HW_CSU_CSL34_RD() & ~BM_CSU_CSL34_NUR_S2) | BF_CSU_CSL34_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL34, field NSR_S2[3] (RW)
@@ -19058,7 +17828,6 @@ typedef union _hw_csu_csl34
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL34_NSR_S2      (3)      //!< Bit position for CSU_CSL34_NSR_S2.
 #define BM_CSU_CSL34_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL34_NSR_S2.
 
@@ -19072,7 +17841,6 @@ typedef union _hw_csu_csl34
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL34_NSR_S2(v)   (HW_CSU_CSL34_WR((HW_CSU_CSL34_RD() & ~BM_CSU_CSL34_NSR_S2) | BF_CSU_CSL34_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL34, field SUW_S2[4] (RW)
@@ -19084,7 +17852,6 @@ typedef union _hw_csu_csl34
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL34_SUW_S2      (4)      //!< Bit position for CSU_CSL34_SUW_S2.
 #define BM_CSU_CSL34_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL34_SUW_S2.
 
@@ -19098,7 +17865,6 @@ typedef union _hw_csu_csl34
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL34_SUW_S2(v)   (HW_CSU_CSL34_WR((HW_CSU_CSL34_RD() & ~BM_CSU_CSL34_SUW_S2) | BF_CSU_CSL34_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL34, field SSW_S2[5] (RW)
@@ -19110,7 +17876,6 @@ typedef union _hw_csu_csl34
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL34_SSW_S2      (5)      //!< Bit position for CSU_CSL34_SSW_S2.
 #define BM_CSU_CSL34_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL34_SSW_S2.
 
@@ -19124,7 +17889,6 @@ typedef union _hw_csu_csl34
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL34_SSW_S2(v)   (HW_CSU_CSL34_WR((HW_CSU_CSL34_RD() & ~BM_CSU_CSL34_SSW_S2) | BF_CSU_CSL34_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL34, field NUW_S2[6] (RW)
@@ -19136,7 +17900,6 @@ typedef union _hw_csu_csl34
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL34_NUW_S2      (6)      //!< Bit position for CSU_CSL34_NUW_S2.
 #define BM_CSU_CSL34_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL34_NUW_S2.
 
@@ -19150,7 +17913,6 @@ typedef union _hw_csu_csl34
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL34_NUW_S2(v)   (HW_CSU_CSL34_WR((HW_CSU_CSL34_RD() & ~BM_CSU_CSL34_NUW_S2) | BF_CSU_CSL34_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL34, field NSW_S2[7] (RW)
@@ -19162,7 +17924,6 @@ typedef union _hw_csu_csl34
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL34_NSW_S2      (7)      //!< Bit position for CSU_CSL34_NSW_S2.
 #define BM_CSU_CSL34_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL34_NSW_S2.
 
@@ -19176,7 +17937,6 @@ typedef union _hw_csu_csl34
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL34_NSW_S2(v)   (HW_CSU_CSL34_WR((HW_CSU_CSL34_RD() & ~BM_CSU_CSL34_NSW_S2) | BF_CSU_CSL34_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL34, field LOCK_S2[8] (RW)
@@ -19188,7 +17948,6 @@ typedef union _hw_csu_csl34
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL34_LOCK_S2      (8)      //!< Bit position for CSU_CSL34_LOCK_S2.
 #define BM_CSU_CSL34_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL34_LOCK_S2.
 
@@ -19202,7 +17961,6 @@ typedef union _hw_csu_csl34
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL34_LOCK_S2(v)   (HW_CSU_CSL34_WR((HW_CSU_CSL34_RD() & ~BM_CSU_CSL34_LOCK_S2) | BF_CSU_CSL34_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL34, field SUR_S1[16] (RW)
@@ -19214,7 +17972,6 @@ typedef union _hw_csu_csl34
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL34_SUR_S1      (16)      //!< Bit position for CSU_CSL34_SUR_S1.
 #define BM_CSU_CSL34_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL34_SUR_S1.
 
@@ -19228,7 +17985,6 @@ typedef union _hw_csu_csl34
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL34_SUR_S1(v)   (HW_CSU_CSL34_WR((HW_CSU_CSL34_RD() & ~BM_CSU_CSL34_SUR_S1) | BF_CSU_CSL34_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL34, field SSR_S1[17] (RW)
@@ -19240,7 +17996,6 @@ typedef union _hw_csu_csl34
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL34_SSR_S1      (17)      //!< Bit position for CSU_CSL34_SSR_S1.
 #define BM_CSU_CSL34_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL34_SSR_S1.
 
@@ -19254,7 +18009,6 @@ typedef union _hw_csu_csl34
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL34_SSR_S1(v)   (HW_CSU_CSL34_WR((HW_CSU_CSL34_RD() & ~BM_CSU_CSL34_SSR_S1) | BF_CSU_CSL34_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL34, field NUR_S1[18] (RW)
@@ -19266,7 +18020,6 @@ typedef union _hw_csu_csl34
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL34_NUR_S1      (18)      //!< Bit position for CSU_CSL34_NUR_S1.
 #define BM_CSU_CSL34_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL34_NUR_S1.
 
@@ -19280,7 +18033,6 @@ typedef union _hw_csu_csl34
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL34_NUR_S1(v)   (HW_CSU_CSL34_WR((HW_CSU_CSL34_RD() & ~BM_CSU_CSL34_NUR_S1) | BF_CSU_CSL34_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL34, field NSR_S1[19] (RW)
@@ -19292,7 +18044,6 @@ typedef union _hw_csu_csl34
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL34_NSR_S1      (19)      //!< Bit position for CSU_CSL34_NSR_S1.
 #define BM_CSU_CSL34_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL34_NSR_S1.
 
@@ -19306,7 +18057,6 @@ typedef union _hw_csu_csl34
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL34_NSR_S1(v)   (HW_CSU_CSL34_WR((HW_CSU_CSL34_RD() & ~BM_CSU_CSL34_NSR_S1) | BF_CSU_CSL34_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL34, field SUW_S1[20] (RW)
@@ -19318,7 +18068,6 @@ typedef union _hw_csu_csl34
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL34_SUW_S1      (20)      //!< Bit position for CSU_CSL34_SUW_S1.
 #define BM_CSU_CSL34_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL34_SUW_S1.
 
@@ -19332,7 +18081,6 @@ typedef union _hw_csu_csl34
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL34_SUW_S1(v)   (HW_CSU_CSL34_WR((HW_CSU_CSL34_RD() & ~BM_CSU_CSL34_SUW_S1) | BF_CSU_CSL34_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL34, field SSW_S1[21] (RW)
@@ -19344,7 +18092,6 @@ typedef union _hw_csu_csl34
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL34_SSW_S1      (21)      //!< Bit position for CSU_CSL34_SSW_S1.
 #define BM_CSU_CSL34_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL34_SSW_S1.
 
@@ -19358,7 +18105,6 @@ typedef union _hw_csu_csl34
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL34_SSW_S1(v)   (HW_CSU_CSL34_WR((HW_CSU_CSL34_RD() & ~BM_CSU_CSL34_SSW_S1) | BF_CSU_CSL34_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL34, field NUW_S1[22] (RW)
@@ -19370,7 +18116,6 @@ typedef union _hw_csu_csl34
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL34_NUW_S1      (22)      //!< Bit position for CSU_CSL34_NUW_S1.
 #define BM_CSU_CSL34_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL34_NUW_S1.
 
@@ -19384,7 +18129,6 @@ typedef union _hw_csu_csl34
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL34_NUW_S1(v)   (HW_CSU_CSL34_WR((HW_CSU_CSL34_RD() & ~BM_CSU_CSL34_NUW_S1) | BF_CSU_CSL34_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL34, field NSW_S1[23] (RW)
@@ -19396,7 +18140,6 @@ typedef union _hw_csu_csl34
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL34_NSW_S1      (23)      //!< Bit position for CSU_CSL34_NSW_S1.
 #define BM_CSU_CSL34_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL34_NSW_S1.
 
@@ -19410,7 +18153,6 @@ typedef union _hw_csu_csl34
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL34_NSW_S1(v)   (HW_CSU_CSL34_WR((HW_CSU_CSL34_RD() & ~BM_CSU_CSL34_NSW_S1) | BF_CSU_CSL34_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL34, field LOCK_S1[24] (RW)
@@ -19422,7 +18164,6 @@ typedef union _hw_csu_csl34
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL34_LOCK_S1      (24)      //!< Bit position for CSU_CSL34_LOCK_S1.
 #define BM_CSU_CSL34_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL34_LOCK_S1.
 
@@ -19436,7 +18177,6 @@ typedef union _hw_csu_csl34
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL34_LOCK_S1(v)   (HW_CSU_CSL34_WR((HW_CSU_CSL34_RD() & ~BM_CSU_CSL34_LOCK_S1) | BF_CSU_CSL34_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -19533,7 +18273,6 @@ typedef union _hw_csu_csl35
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL35_SUR_S2      (0)      //!< Bit position for CSU_CSL35_SUR_S2.
 #define BM_CSU_CSL35_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL35_SUR_S2.
 
@@ -19547,7 +18286,6 @@ typedef union _hw_csu_csl35
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL35_SUR_S2(v)   (HW_CSU_CSL35_WR((HW_CSU_CSL35_RD() & ~BM_CSU_CSL35_SUR_S2) | BF_CSU_CSL35_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL35, field SSR_S2[1] (RW)
@@ -19559,7 +18297,6 @@ typedef union _hw_csu_csl35
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL35_SSR_S2      (1)      //!< Bit position for CSU_CSL35_SSR_S2.
 #define BM_CSU_CSL35_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL35_SSR_S2.
 
@@ -19573,7 +18310,6 @@ typedef union _hw_csu_csl35
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL35_SSR_S2(v)   (HW_CSU_CSL35_WR((HW_CSU_CSL35_RD() & ~BM_CSU_CSL35_SSR_S2) | BF_CSU_CSL35_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL35, field NUR_S2[2] (RW)
@@ -19585,7 +18321,6 @@ typedef union _hw_csu_csl35
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL35_NUR_S2      (2)      //!< Bit position for CSU_CSL35_NUR_S2.
 #define BM_CSU_CSL35_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL35_NUR_S2.
 
@@ -19599,7 +18334,6 @@ typedef union _hw_csu_csl35
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL35_NUR_S2(v)   (HW_CSU_CSL35_WR((HW_CSU_CSL35_RD() & ~BM_CSU_CSL35_NUR_S2) | BF_CSU_CSL35_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL35, field NSR_S2[3] (RW)
@@ -19611,7 +18345,6 @@ typedef union _hw_csu_csl35
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL35_NSR_S2      (3)      //!< Bit position for CSU_CSL35_NSR_S2.
 #define BM_CSU_CSL35_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL35_NSR_S2.
 
@@ -19625,7 +18358,6 @@ typedef union _hw_csu_csl35
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL35_NSR_S2(v)   (HW_CSU_CSL35_WR((HW_CSU_CSL35_RD() & ~BM_CSU_CSL35_NSR_S2) | BF_CSU_CSL35_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL35, field SUW_S2[4] (RW)
@@ -19637,7 +18369,6 @@ typedef union _hw_csu_csl35
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL35_SUW_S2      (4)      //!< Bit position for CSU_CSL35_SUW_S2.
 #define BM_CSU_CSL35_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL35_SUW_S2.
 
@@ -19651,7 +18382,6 @@ typedef union _hw_csu_csl35
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL35_SUW_S2(v)   (HW_CSU_CSL35_WR((HW_CSU_CSL35_RD() & ~BM_CSU_CSL35_SUW_S2) | BF_CSU_CSL35_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL35, field SSW_S2[5] (RW)
@@ -19663,7 +18393,6 @@ typedef union _hw_csu_csl35
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL35_SSW_S2      (5)      //!< Bit position for CSU_CSL35_SSW_S2.
 #define BM_CSU_CSL35_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL35_SSW_S2.
 
@@ -19677,7 +18406,6 @@ typedef union _hw_csu_csl35
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL35_SSW_S2(v)   (HW_CSU_CSL35_WR((HW_CSU_CSL35_RD() & ~BM_CSU_CSL35_SSW_S2) | BF_CSU_CSL35_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL35, field NUW_S2[6] (RW)
@@ -19689,7 +18417,6 @@ typedef union _hw_csu_csl35
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL35_NUW_S2      (6)      //!< Bit position for CSU_CSL35_NUW_S2.
 #define BM_CSU_CSL35_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL35_NUW_S2.
 
@@ -19703,7 +18430,6 @@ typedef union _hw_csu_csl35
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL35_NUW_S2(v)   (HW_CSU_CSL35_WR((HW_CSU_CSL35_RD() & ~BM_CSU_CSL35_NUW_S2) | BF_CSU_CSL35_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL35, field NSW_S2[7] (RW)
@@ -19715,7 +18441,6 @@ typedef union _hw_csu_csl35
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL35_NSW_S2      (7)      //!< Bit position for CSU_CSL35_NSW_S2.
 #define BM_CSU_CSL35_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL35_NSW_S2.
 
@@ -19729,7 +18454,6 @@ typedef union _hw_csu_csl35
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL35_NSW_S2(v)   (HW_CSU_CSL35_WR((HW_CSU_CSL35_RD() & ~BM_CSU_CSL35_NSW_S2) | BF_CSU_CSL35_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL35, field LOCK_S2[8] (RW)
@@ -19741,7 +18465,6 @@ typedef union _hw_csu_csl35
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL35_LOCK_S2      (8)      //!< Bit position for CSU_CSL35_LOCK_S2.
 #define BM_CSU_CSL35_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL35_LOCK_S2.
 
@@ -19755,7 +18478,6 @@ typedef union _hw_csu_csl35
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL35_LOCK_S2(v)   (HW_CSU_CSL35_WR((HW_CSU_CSL35_RD() & ~BM_CSU_CSL35_LOCK_S2) | BF_CSU_CSL35_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL35, field SUR_S1[16] (RW)
@@ -19767,7 +18489,6 @@ typedef union _hw_csu_csl35
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL35_SUR_S1      (16)      //!< Bit position for CSU_CSL35_SUR_S1.
 #define BM_CSU_CSL35_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL35_SUR_S1.
 
@@ -19781,7 +18502,6 @@ typedef union _hw_csu_csl35
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL35_SUR_S1(v)   (HW_CSU_CSL35_WR((HW_CSU_CSL35_RD() & ~BM_CSU_CSL35_SUR_S1) | BF_CSU_CSL35_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL35, field SSR_S1[17] (RW)
@@ -19793,7 +18513,6 @@ typedef union _hw_csu_csl35
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL35_SSR_S1      (17)      //!< Bit position for CSU_CSL35_SSR_S1.
 #define BM_CSU_CSL35_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL35_SSR_S1.
 
@@ -19807,7 +18526,6 @@ typedef union _hw_csu_csl35
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL35_SSR_S1(v)   (HW_CSU_CSL35_WR((HW_CSU_CSL35_RD() & ~BM_CSU_CSL35_SSR_S1) | BF_CSU_CSL35_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL35, field NUR_S1[18] (RW)
@@ -19819,7 +18537,6 @@ typedef union _hw_csu_csl35
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL35_NUR_S1      (18)      //!< Bit position for CSU_CSL35_NUR_S1.
 #define BM_CSU_CSL35_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL35_NUR_S1.
 
@@ -19833,7 +18550,6 @@ typedef union _hw_csu_csl35
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL35_NUR_S1(v)   (HW_CSU_CSL35_WR((HW_CSU_CSL35_RD() & ~BM_CSU_CSL35_NUR_S1) | BF_CSU_CSL35_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL35, field NSR_S1[19] (RW)
@@ -19845,7 +18561,6 @@ typedef union _hw_csu_csl35
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL35_NSR_S1      (19)      //!< Bit position for CSU_CSL35_NSR_S1.
 #define BM_CSU_CSL35_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL35_NSR_S1.
 
@@ -19859,7 +18574,6 @@ typedef union _hw_csu_csl35
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL35_NSR_S1(v)   (HW_CSU_CSL35_WR((HW_CSU_CSL35_RD() & ~BM_CSU_CSL35_NSR_S1) | BF_CSU_CSL35_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL35, field SUW_S1[20] (RW)
@@ -19871,7 +18585,6 @@ typedef union _hw_csu_csl35
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL35_SUW_S1      (20)      //!< Bit position for CSU_CSL35_SUW_S1.
 #define BM_CSU_CSL35_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL35_SUW_S1.
 
@@ -19885,7 +18598,6 @@ typedef union _hw_csu_csl35
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL35_SUW_S1(v)   (HW_CSU_CSL35_WR((HW_CSU_CSL35_RD() & ~BM_CSU_CSL35_SUW_S1) | BF_CSU_CSL35_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL35, field SSW_S1[21] (RW)
@@ -19897,7 +18609,6 @@ typedef union _hw_csu_csl35
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL35_SSW_S1      (21)      //!< Bit position for CSU_CSL35_SSW_S1.
 #define BM_CSU_CSL35_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL35_SSW_S1.
 
@@ -19911,7 +18622,6 @@ typedef union _hw_csu_csl35
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL35_SSW_S1(v)   (HW_CSU_CSL35_WR((HW_CSU_CSL35_RD() & ~BM_CSU_CSL35_SSW_S1) | BF_CSU_CSL35_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL35, field NUW_S1[22] (RW)
@@ -19923,7 +18633,6 @@ typedef union _hw_csu_csl35
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL35_NUW_S1      (22)      //!< Bit position for CSU_CSL35_NUW_S1.
 #define BM_CSU_CSL35_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL35_NUW_S1.
 
@@ -19937,7 +18646,6 @@ typedef union _hw_csu_csl35
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL35_NUW_S1(v)   (HW_CSU_CSL35_WR((HW_CSU_CSL35_RD() & ~BM_CSU_CSL35_NUW_S1) | BF_CSU_CSL35_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL35, field NSW_S1[23] (RW)
@@ -19949,7 +18657,6 @@ typedef union _hw_csu_csl35
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL35_NSW_S1      (23)      //!< Bit position for CSU_CSL35_NSW_S1.
 #define BM_CSU_CSL35_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL35_NSW_S1.
 
@@ -19963,7 +18670,6 @@ typedef union _hw_csu_csl35
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL35_NSW_S1(v)   (HW_CSU_CSL35_WR((HW_CSU_CSL35_RD() & ~BM_CSU_CSL35_NSW_S1) | BF_CSU_CSL35_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL35, field LOCK_S1[24] (RW)
@@ -19975,7 +18681,6 @@ typedef union _hw_csu_csl35
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL35_LOCK_S1      (24)      //!< Bit position for CSU_CSL35_LOCK_S1.
 #define BM_CSU_CSL35_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL35_LOCK_S1.
 
@@ -19989,7 +18694,6 @@ typedef union _hw_csu_csl35
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL35_LOCK_S1(v)   (HW_CSU_CSL35_WR((HW_CSU_CSL35_RD() & ~BM_CSU_CSL35_LOCK_S1) | BF_CSU_CSL35_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -20086,7 +18790,6 @@ typedef union _hw_csu_csl36
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL36_SUR_S2      (0)      //!< Bit position for CSU_CSL36_SUR_S2.
 #define BM_CSU_CSL36_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL36_SUR_S2.
 
@@ -20100,7 +18803,6 @@ typedef union _hw_csu_csl36
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL36_SUR_S2(v)   (HW_CSU_CSL36_WR((HW_CSU_CSL36_RD() & ~BM_CSU_CSL36_SUR_S2) | BF_CSU_CSL36_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL36, field SSR_S2[1] (RW)
@@ -20112,7 +18814,6 @@ typedef union _hw_csu_csl36
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL36_SSR_S2      (1)      //!< Bit position for CSU_CSL36_SSR_S2.
 #define BM_CSU_CSL36_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL36_SSR_S2.
 
@@ -20126,7 +18827,6 @@ typedef union _hw_csu_csl36
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL36_SSR_S2(v)   (HW_CSU_CSL36_WR((HW_CSU_CSL36_RD() & ~BM_CSU_CSL36_SSR_S2) | BF_CSU_CSL36_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL36, field NUR_S2[2] (RW)
@@ -20138,7 +18838,6 @@ typedef union _hw_csu_csl36
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL36_NUR_S2      (2)      //!< Bit position for CSU_CSL36_NUR_S2.
 #define BM_CSU_CSL36_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL36_NUR_S2.
 
@@ -20152,7 +18851,6 @@ typedef union _hw_csu_csl36
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL36_NUR_S2(v)   (HW_CSU_CSL36_WR((HW_CSU_CSL36_RD() & ~BM_CSU_CSL36_NUR_S2) | BF_CSU_CSL36_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL36, field NSR_S2[3] (RW)
@@ -20164,7 +18862,6 @@ typedef union _hw_csu_csl36
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL36_NSR_S2      (3)      //!< Bit position for CSU_CSL36_NSR_S2.
 #define BM_CSU_CSL36_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL36_NSR_S2.
 
@@ -20178,7 +18875,6 @@ typedef union _hw_csu_csl36
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL36_NSR_S2(v)   (HW_CSU_CSL36_WR((HW_CSU_CSL36_RD() & ~BM_CSU_CSL36_NSR_S2) | BF_CSU_CSL36_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL36, field SUW_S2[4] (RW)
@@ -20190,7 +18886,6 @@ typedef union _hw_csu_csl36
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL36_SUW_S2      (4)      //!< Bit position for CSU_CSL36_SUW_S2.
 #define BM_CSU_CSL36_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL36_SUW_S2.
 
@@ -20204,7 +18899,6 @@ typedef union _hw_csu_csl36
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL36_SUW_S2(v)   (HW_CSU_CSL36_WR((HW_CSU_CSL36_RD() & ~BM_CSU_CSL36_SUW_S2) | BF_CSU_CSL36_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL36, field SSW_S2[5] (RW)
@@ -20216,7 +18910,6 @@ typedef union _hw_csu_csl36
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL36_SSW_S2      (5)      //!< Bit position for CSU_CSL36_SSW_S2.
 #define BM_CSU_CSL36_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL36_SSW_S2.
 
@@ -20230,7 +18923,6 @@ typedef union _hw_csu_csl36
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL36_SSW_S2(v)   (HW_CSU_CSL36_WR((HW_CSU_CSL36_RD() & ~BM_CSU_CSL36_SSW_S2) | BF_CSU_CSL36_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL36, field NUW_S2[6] (RW)
@@ -20242,7 +18934,6 @@ typedef union _hw_csu_csl36
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL36_NUW_S2      (6)      //!< Bit position for CSU_CSL36_NUW_S2.
 #define BM_CSU_CSL36_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL36_NUW_S2.
 
@@ -20256,7 +18947,6 @@ typedef union _hw_csu_csl36
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL36_NUW_S2(v)   (HW_CSU_CSL36_WR((HW_CSU_CSL36_RD() & ~BM_CSU_CSL36_NUW_S2) | BF_CSU_CSL36_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL36, field NSW_S2[7] (RW)
@@ -20268,7 +18958,6 @@ typedef union _hw_csu_csl36
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL36_NSW_S2      (7)      //!< Bit position for CSU_CSL36_NSW_S2.
 #define BM_CSU_CSL36_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL36_NSW_S2.
 
@@ -20282,7 +18971,6 @@ typedef union _hw_csu_csl36
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL36_NSW_S2(v)   (HW_CSU_CSL36_WR((HW_CSU_CSL36_RD() & ~BM_CSU_CSL36_NSW_S2) | BF_CSU_CSL36_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL36, field LOCK_S2[8] (RW)
@@ -20294,7 +18982,6 @@ typedef union _hw_csu_csl36
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL36_LOCK_S2      (8)      //!< Bit position for CSU_CSL36_LOCK_S2.
 #define BM_CSU_CSL36_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL36_LOCK_S2.
 
@@ -20308,7 +18995,6 @@ typedef union _hw_csu_csl36
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL36_LOCK_S2(v)   (HW_CSU_CSL36_WR((HW_CSU_CSL36_RD() & ~BM_CSU_CSL36_LOCK_S2) | BF_CSU_CSL36_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL36, field SUR_S1[16] (RW)
@@ -20320,7 +19006,6 @@ typedef union _hw_csu_csl36
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL36_SUR_S1      (16)      //!< Bit position for CSU_CSL36_SUR_S1.
 #define BM_CSU_CSL36_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL36_SUR_S1.
 
@@ -20334,7 +19019,6 @@ typedef union _hw_csu_csl36
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL36_SUR_S1(v)   (HW_CSU_CSL36_WR((HW_CSU_CSL36_RD() & ~BM_CSU_CSL36_SUR_S1) | BF_CSU_CSL36_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL36, field SSR_S1[17] (RW)
@@ -20346,7 +19030,6 @@ typedef union _hw_csu_csl36
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL36_SSR_S1      (17)      //!< Bit position for CSU_CSL36_SSR_S1.
 #define BM_CSU_CSL36_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL36_SSR_S1.
 
@@ -20360,7 +19043,6 @@ typedef union _hw_csu_csl36
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL36_SSR_S1(v)   (HW_CSU_CSL36_WR((HW_CSU_CSL36_RD() & ~BM_CSU_CSL36_SSR_S1) | BF_CSU_CSL36_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL36, field NUR_S1[18] (RW)
@@ -20372,7 +19054,6 @@ typedef union _hw_csu_csl36
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL36_NUR_S1      (18)      //!< Bit position for CSU_CSL36_NUR_S1.
 #define BM_CSU_CSL36_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL36_NUR_S1.
 
@@ -20386,7 +19067,6 @@ typedef union _hw_csu_csl36
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL36_NUR_S1(v)   (HW_CSU_CSL36_WR((HW_CSU_CSL36_RD() & ~BM_CSU_CSL36_NUR_S1) | BF_CSU_CSL36_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL36, field NSR_S1[19] (RW)
@@ -20398,7 +19078,6 @@ typedef union _hw_csu_csl36
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL36_NSR_S1      (19)      //!< Bit position for CSU_CSL36_NSR_S1.
 #define BM_CSU_CSL36_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL36_NSR_S1.
 
@@ -20412,7 +19091,6 @@ typedef union _hw_csu_csl36
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL36_NSR_S1(v)   (HW_CSU_CSL36_WR((HW_CSU_CSL36_RD() & ~BM_CSU_CSL36_NSR_S1) | BF_CSU_CSL36_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL36, field SUW_S1[20] (RW)
@@ -20424,7 +19102,6 @@ typedef union _hw_csu_csl36
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL36_SUW_S1      (20)      //!< Bit position for CSU_CSL36_SUW_S1.
 #define BM_CSU_CSL36_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL36_SUW_S1.
 
@@ -20438,7 +19115,6 @@ typedef union _hw_csu_csl36
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL36_SUW_S1(v)   (HW_CSU_CSL36_WR((HW_CSU_CSL36_RD() & ~BM_CSU_CSL36_SUW_S1) | BF_CSU_CSL36_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL36, field SSW_S1[21] (RW)
@@ -20450,7 +19126,6 @@ typedef union _hw_csu_csl36
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL36_SSW_S1      (21)      //!< Bit position for CSU_CSL36_SSW_S1.
 #define BM_CSU_CSL36_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL36_SSW_S1.
 
@@ -20464,7 +19139,6 @@ typedef union _hw_csu_csl36
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL36_SSW_S1(v)   (HW_CSU_CSL36_WR((HW_CSU_CSL36_RD() & ~BM_CSU_CSL36_SSW_S1) | BF_CSU_CSL36_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL36, field NUW_S1[22] (RW)
@@ -20476,7 +19150,6 @@ typedef union _hw_csu_csl36
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL36_NUW_S1      (22)      //!< Bit position for CSU_CSL36_NUW_S1.
 #define BM_CSU_CSL36_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL36_NUW_S1.
 
@@ -20490,7 +19163,6 @@ typedef union _hw_csu_csl36
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL36_NUW_S1(v)   (HW_CSU_CSL36_WR((HW_CSU_CSL36_RD() & ~BM_CSU_CSL36_NUW_S1) | BF_CSU_CSL36_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL36, field NSW_S1[23] (RW)
@@ -20502,7 +19174,6 @@ typedef union _hw_csu_csl36
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL36_NSW_S1      (23)      //!< Bit position for CSU_CSL36_NSW_S1.
 #define BM_CSU_CSL36_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL36_NSW_S1.
 
@@ -20516,7 +19187,6 @@ typedef union _hw_csu_csl36
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL36_NSW_S1(v)   (HW_CSU_CSL36_WR((HW_CSU_CSL36_RD() & ~BM_CSU_CSL36_NSW_S1) | BF_CSU_CSL36_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL36, field LOCK_S1[24] (RW)
@@ -20528,7 +19198,6 @@ typedef union _hw_csu_csl36
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL36_LOCK_S1      (24)      //!< Bit position for CSU_CSL36_LOCK_S1.
 #define BM_CSU_CSL36_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL36_LOCK_S1.
 
@@ -20542,7 +19211,6 @@ typedef union _hw_csu_csl36
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL36_LOCK_S1(v)   (HW_CSU_CSL36_WR((HW_CSU_CSL36_RD() & ~BM_CSU_CSL36_LOCK_S1) | BF_CSU_CSL36_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -20639,7 +19307,6 @@ typedef union _hw_csu_csl37
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL37_SUR_S2      (0)      //!< Bit position for CSU_CSL37_SUR_S2.
 #define BM_CSU_CSL37_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL37_SUR_S2.
 
@@ -20653,7 +19320,6 @@ typedef union _hw_csu_csl37
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL37_SUR_S2(v)   (HW_CSU_CSL37_WR((HW_CSU_CSL37_RD() & ~BM_CSU_CSL37_SUR_S2) | BF_CSU_CSL37_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL37, field SSR_S2[1] (RW)
@@ -20665,7 +19331,6 @@ typedef union _hw_csu_csl37
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL37_SSR_S2      (1)      //!< Bit position for CSU_CSL37_SSR_S2.
 #define BM_CSU_CSL37_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL37_SSR_S2.
 
@@ -20679,7 +19344,6 @@ typedef union _hw_csu_csl37
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL37_SSR_S2(v)   (HW_CSU_CSL37_WR((HW_CSU_CSL37_RD() & ~BM_CSU_CSL37_SSR_S2) | BF_CSU_CSL37_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL37, field NUR_S2[2] (RW)
@@ -20691,7 +19355,6 @@ typedef union _hw_csu_csl37
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL37_NUR_S2      (2)      //!< Bit position for CSU_CSL37_NUR_S2.
 #define BM_CSU_CSL37_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL37_NUR_S2.
 
@@ -20705,7 +19368,6 @@ typedef union _hw_csu_csl37
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL37_NUR_S2(v)   (HW_CSU_CSL37_WR((HW_CSU_CSL37_RD() & ~BM_CSU_CSL37_NUR_S2) | BF_CSU_CSL37_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL37, field NSR_S2[3] (RW)
@@ -20717,7 +19379,6 @@ typedef union _hw_csu_csl37
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL37_NSR_S2      (3)      //!< Bit position for CSU_CSL37_NSR_S2.
 #define BM_CSU_CSL37_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL37_NSR_S2.
 
@@ -20731,7 +19392,6 @@ typedef union _hw_csu_csl37
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL37_NSR_S2(v)   (HW_CSU_CSL37_WR((HW_CSU_CSL37_RD() & ~BM_CSU_CSL37_NSR_S2) | BF_CSU_CSL37_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL37, field SUW_S2[4] (RW)
@@ -20743,7 +19403,6 @@ typedef union _hw_csu_csl37
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL37_SUW_S2      (4)      //!< Bit position for CSU_CSL37_SUW_S2.
 #define BM_CSU_CSL37_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL37_SUW_S2.
 
@@ -20757,7 +19416,6 @@ typedef union _hw_csu_csl37
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL37_SUW_S2(v)   (HW_CSU_CSL37_WR((HW_CSU_CSL37_RD() & ~BM_CSU_CSL37_SUW_S2) | BF_CSU_CSL37_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL37, field SSW_S2[5] (RW)
@@ -20769,7 +19427,6 @@ typedef union _hw_csu_csl37
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL37_SSW_S2      (5)      //!< Bit position for CSU_CSL37_SSW_S2.
 #define BM_CSU_CSL37_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL37_SSW_S2.
 
@@ -20783,7 +19440,6 @@ typedef union _hw_csu_csl37
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL37_SSW_S2(v)   (HW_CSU_CSL37_WR((HW_CSU_CSL37_RD() & ~BM_CSU_CSL37_SSW_S2) | BF_CSU_CSL37_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL37, field NUW_S2[6] (RW)
@@ -20795,7 +19451,6 @@ typedef union _hw_csu_csl37
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL37_NUW_S2      (6)      //!< Bit position for CSU_CSL37_NUW_S2.
 #define BM_CSU_CSL37_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL37_NUW_S2.
 
@@ -20809,7 +19464,6 @@ typedef union _hw_csu_csl37
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL37_NUW_S2(v)   (HW_CSU_CSL37_WR((HW_CSU_CSL37_RD() & ~BM_CSU_CSL37_NUW_S2) | BF_CSU_CSL37_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL37, field NSW_S2[7] (RW)
@@ -20821,7 +19475,6 @@ typedef union _hw_csu_csl37
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL37_NSW_S2      (7)      //!< Bit position for CSU_CSL37_NSW_S2.
 #define BM_CSU_CSL37_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL37_NSW_S2.
 
@@ -20835,7 +19488,6 @@ typedef union _hw_csu_csl37
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL37_NSW_S2(v)   (HW_CSU_CSL37_WR((HW_CSU_CSL37_RD() & ~BM_CSU_CSL37_NSW_S2) | BF_CSU_CSL37_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL37, field LOCK_S2[8] (RW)
@@ -20847,7 +19499,6 @@ typedef union _hw_csu_csl37
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL37_LOCK_S2      (8)      //!< Bit position for CSU_CSL37_LOCK_S2.
 #define BM_CSU_CSL37_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL37_LOCK_S2.
 
@@ -20861,7 +19512,6 @@ typedef union _hw_csu_csl37
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL37_LOCK_S2(v)   (HW_CSU_CSL37_WR((HW_CSU_CSL37_RD() & ~BM_CSU_CSL37_LOCK_S2) | BF_CSU_CSL37_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL37, field SUR_S1[16] (RW)
@@ -20873,7 +19523,6 @@ typedef union _hw_csu_csl37
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL37_SUR_S1      (16)      //!< Bit position for CSU_CSL37_SUR_S1.
 #define BM_CSU_CSL37_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL37_SUR_S1.
 
@@ -20887,7 +19536,6 @@ typedef union _hw_csu_csl37
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL37_SUR_S1(v)   (HW_CSU_CSL37_WR((HW_CSU_CSL37_RD() & ~BM_CSU_CSL37_SUR_S1) | BF_CSU_CSL37_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL37, field SSR_S1[17] (RW)
@@ -20899,7 +19547,6 @@ typedef union _hw_csu_csl37
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL37_SSR_S1      (17)      //!< Bit position for CSU_CSL37_SSR_S1.
 #define BM_CSU_CSL37_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL37_SSR_S1.
 
@@ -20913,7 +19560,6 @@ typedef union _hw_csu_csl37
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL37_SSR_S1(v)   (HW_CSU_CSL37_WR((HW_CSU_CSL37_RD() & ~BM_CSU_CSL37_SSR_S1) | BF_CSU_CSL37_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL37, field NUR_S1[18] (RW)
@@ -20925,7 +19571,6 @@ typedef union _hw_csu_csl37
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL37_NUR_S1      (18)      //!< Bit position for CSU_CSL37_NUR_S1.
 #define BM_CSU_CSL37_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL37_NUR_S1.
 
@@ -20939,7 +19584,6 @@ typedef union _hw_csu_csl37
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL37_NUR_S1(v)   (HW_CSU_CSL37_WR((HW_CSU_CSL37_RD() & ~BM_CSU_CSL37_NUR_S1) | BF_CSU_CSL37_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL37, field NSR_S1[19] (RW)
@@ -20951,7 +19595,6 @@ typedef union _hw_csu_csl37
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL37_NSR_S1      (19)      //!< Bit position for CSU_CSL37_NSR_S1.
 #define BM_CSU_CSL37_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL37_NSR_S1.
 
@@ -20965,7 +19608,6 @@ typedef union _hw_csu_csl37
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL37_NSR_S1(v)   (HW_CSU_CSL37_WR((HW_CSU_CSL37_RD() & ~BM_CSU_CSL37_NSR_S1) | BF_CSU_CSL37_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL37, field SUW_S1[20] (RW)
@@ -20977,7 +19619,6 @@ typedef union _hw_csu_csl37
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL37_SUW_S1      (20)      //!< Bit position for CSU_CSL37_SUW_S1.
 #define BM_CSU_CSL37_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL37_SUW_S1.
 
@@ -20991,7 +19632,6 @@ typedef union _hw_csu_csl37
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL37_SUW_S1(v)   (HW_CSU_CSL37_WR((HW_CSU_CSL37_RD() & ~BM_CSU_CSL37_SUW_S1) | BF_CSU_CSL37_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL37, field SSW_S1[21] (RW)
@@ -21003,7 +19643,6 @@ typedef union _hw_csu_csl37
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL37_SSW_S1      (21)      //!< Bit position for CSU_CSL37_SSW_S1.
 #define BM_CSU_CSL37_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL37_SSW_S1.
 
@@ -21017,7 +19656,6 @@ typedef union _hw_csu_csl37
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL37_SSW_S1(v)   (HW_CSU_CSL37_WR((HW_CSU_CSL37_RD() & ~BM_CSU_CSL37_SSW_S1) | BF_CSU_CSL37_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL37, field NUW_S1[22] (RW)
@@ -21029,7 +19667,6 @@ typedef union _hw_csu_csl37
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL37_NUW_S1      (22)      //!< Bit position for CSU_CSL37_NUW_S1.
 #define BM_CSU_CSL37_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL37_NUW_S1.
 
@@ -21043,7 +19680,6 @@ typedef union _hw_csu_csl37
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL37_NUW_S1(v)   (HW_CSU_CSL37_WR((HW_CSU_CSL37_RD() & ~BM_CSU_CSL37_NUW_S1) | BF_CSU_CSL37_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL37, field NSW_S1[23] (RW)
@@ -21055,7 +19691,6 @@ typedef union _hw_csu_csl37
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL37_NSW_S1      (23)      //!< Bit position for CSU_CSL37_NSW_S1.
 #define BM_CSU_CSL37_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL37_NSW_S1.
 
@@ -21069,7 +19704,6 @@ typedef union _hw_csu_csl37
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL37_NSW_S1(v)   (HW_CSU_CSL37_WR((HW_CSU_CSL37_RD() & ~BM_CSU_CSL37_NSW_S1) | BF_CSU_CSL37_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL37, field LOCK_S1[24] (RW)
@@ -21081,7 +19715,6 @@ typedef union _hw_csu_csl37
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL37_LOCK_S1      (24)      //!< Bit position for CSU_CSL37_LOCK_S1.
 #define BM_CSU_CSL37_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL37_LOCK_S1.
 
@@ -21095,7 +19728,6 @@ typedef union _hw_csu_csl37
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL37_LOCK_S1(v)   (HW_CSU_CSL37_WR((HW_CSU_CSL37_RD() & ~BM_CSU_CSL37_LOCK_S1) | BF_CSU_CSL37_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -21192,7 +19824,6 @@ typedef union _hw_csu_csl38
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL38_SUR_S2      (0)      //!< Bit position for CSU_CSL38_SUR_S2.
 #define BM_CSU_CSL38_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL38_SUR_S2.
 
@@ -21206,7 +19837,6 @@ typedef union _hw_csu_csl38
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL38_SUR_S2(v)   (HW_CSU_CSL38_WR((HW_CSU_CSL38_RD() & ~BM_CSU_CSL38_SUR_S2) | BF_CSU_CSL38_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL38, field SSR_S2[1] (RW)
@@ -21218,7 +19848,6 @@ typedef union _hw_csu_csl38
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL38_SSR_S2      (1)      //!< Bit position for CSU_CSL38_SSR_S2.
 #define BM_CSU_CSL38_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL38_SSR_S2.
 
@@ -21232,7 +19861,6 @@ typedef union _hw_csu_csl38
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL38_SSR_S2(v)   (HW_CSU_CSL38_WR((HW_CSU_CSL38_RD() & ~BM_CSU_CSL38_SSR_S2) | BF_CSU_CSL38_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL38, field NUR_S2[2] (RW)
@@ -21244,7 +19872,6 @@ typedef union _hw_csu_csl38
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL38_NUR_S2      (2)      //!< Bit position for CSU_CSL38_NUR_S2.
 #define BM_CSU_CSL38_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL38_NUR_S2.
 
@@ -21258,7 +19885,6 @@ typedef union _hw_csu_csl38
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL38_NUR_S2(v)   (HW_CSU_CSL38_WR((HW_CSU_CSL38_RD() & ~BM_CSU_CSL38_NUR_S2) | BF_CSU_CSL38_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL38, field NSR_S2[3] (RW)
@@ -21270,7 +19896,6 @@ typedef union _hw_csu_csl38
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL38_NSR_S2      (3)      //!< Bit position for CSU_CSL38_NSR_S2.
 #define BM_CSU_CSL38_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL38_NSR_S2.
 
@@ -21284,7 +19909,6 @@ typedef union _hw_csu_csl38
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL38_NSR_S2(v)   (HW_CSU_CSL38_WR((HW_CSU_CSL38_RD() & ~BM_CSU_CSL38_NSR_S2) | BF_CSU_CSL38_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL38, field SUW_S2[4] (RW)
@@ -21296,7 +19920,6 @@ typedef union _hw_csu_csl38
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL38_SUW_S2      (4)      //!< Bit position for CSU_CSL38_SUW_S2.
 #define BM_CSU_CSL38_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL38_SUW_S2.
 
@@ -21310,7 +19933,6 @@ typedef union _hw_csu_csl38
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL38_SUW_S2(v)   (HW_CSU_CSL38_WR((HW_CSU_CSL38_RD() & ~BM_CSU_CSL38_SUW_S2) | BF_CSU_CSL38_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL38, field SSW_S2[5] (RW)
@@ -21322,7 +19944,6 @@ typedef union _hw_csu_csl38
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL38_SSW_S2      (5)      //!< Bit position for CSU_CSL38_SSW_S2.
 #define BM_CSU_CSL38_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL38_SSW_S2.
 
@@ -21336,7 +19957,6 @@ typedef union _hw_csu_csl38
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL38_SSW_S2(v)   (HW_CSU_CSL38_WR((HW_CSU_CSL38_RD() & ~BM_CSU_CSL38_SSW_S2) | BF_CSU_CSL38_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL38, field NUW_S2[6] (RW)
@@ -21348,7 +19968,6 @@ typedef union _hw_csu_csl38
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL38_NUW_S2      (6)      //!< Bit position for CSU_CSL38_NUW_S2.
 #define BM_CSU_CSL38_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL38_NUW_S2.
 
@@ -21362,7 +19981,6 @@ typedef union _hw_csu_csl38
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL38_NUW_S2(v)   (HW_CSU_CSL38_WR((HW_CSU_CSL38_RD() & ~BM_CSU_CSL38_NUW_S2) | BF_CSU_CSL38_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL38, field NSW_S2[7] (RW)
@@ -21374,7 +19992,6 @@ typedef union _hw_csu_csl38
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL38_NSW_S2      (7)      //!< Bit position for CSU_CSL38_NSW_S2.
 #define BM_CSU_CSL38_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL38_NSW_S2.
 
@@ -21388,7 +20005,6 @@ typedef union _hw_csu_csl38
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL38_NSW_S2(v)   (HW_CSU_CSL38_WR((HW_CSU_CSL38_RD() & ~BM_CSU_CSL38_NSW_S2) | BF_CSU_CSL38_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL38, field LOCK_S2[8] (RW)
@@ -21400,7 +20016,6 @@ typedef union _hw_csu_csl38
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL38_LOCK_S2      (8)      //!< Bit position for CSU_CSL38_LOCK_S2.
 #define BM_CSU_CSL38_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL38_LOCK_S2.
 
@@ -21414,7 +20029,6 @@ typedef union _hw_csu_csl38
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL38_LOCK_S2(v)   (HW_CSU_CSL38_WR((HW_CSU_CSL38_RD() & ~BM_CSU_CSL38_LOCK_S2) | BF_CSU_CSL38_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL38, field SUR_S1[16] (RW)
@@ -21426,7 +20040,6 @@ typedef union _hw_csu_csl38
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL38_SUR_S1      (16)      //!< Bit position for CSU_CSL38_SUR_S1.
 #define BM_CSU_CSL38_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL38_SUR_S1.
 
@@ -21440,7 +20053,6 @@ typedef union _hw_csu_csl38
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL38_SUR_S1(v)   (HW_CSU_CSL38_WR((HW_CSU_CSL38_RD() & ~BM_CSU_CSL38_SUR_S1) | BF_CSU_CSL38_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL38, field SSR_S1[17] (RW)
@@ -21452,7 +20064,6 @@ typedef union _hw_csu_csl38
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL38_SSR_S1      (17)      //!< Bit position for CSU_CSL38_SSR_S1.
 #define BM_CSU_CSL38_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL38_SSR_S1.
 
@@ -21466,7 +20077,6 @@ typedef union _hw_csu_csl38
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL38_SSR_S1(v)   (HW_CSU_CSL38_WR((HW_CSU_CSL38_RD() & ~BM_CSU_CSL38_SSR_S1) | BF_CSU_CSL38_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL38, field NUR_S1[18] (RW)
@@ -21478,7 +20088,6 @@ typedef union _hw_csu_csl38
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL38_NUR_S1      (18)      //!< Bit position for CSU_CSL38_NUR_S1.
 #define BM_CSU_CSL38_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL38_NUR_S1.
 
@@ -21492,7 +20101,6 @@ typedef union _hw_csu_csl38
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL38_NUR_S1(v)   (HW_CSU_CSL38_WR((HW_CSU_CSL38_RD() & ~BM_CSU_CSL38_NUR_S1) | BF_CSU_CSL38_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL38, field NSR_S1[19] (RW)
@@ -21504,7 +20112,6 @@ typedef union _hw_csu_csl38
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL38_NSR_S1      (19)      //!< Bit position for CSU_CSL38_NSR_S1.
 #define BM_CSU_CSL38_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL38_NSR_S1.
 
@@ -21518,7 +20125,6 @@ typedef union _hw_csu_csl38
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL38_NSR_S1(v)   (HW_CSU_CSL38_WR((HW_CSU_CSL38_RD() & ~BM_CSU_CSL38_NSR_S1) | BF_CSU_CSL38_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL38, field SUW_S1[20] (RW)
@@ -21530,7 +20136,6 @@ typedef union _hw_csu_csl38
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL38_SUW_S1      (20)      //!< Bit position for CSU_CSL38_SUW_S1.
 #define BM_CSU_CSL38_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL38_SUW_S1.
 
@@ -21544,7 +20149,6 @@ typedef union _hw_csu_csl38
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL38_SUW_S1(v)   (HW_CSU_CSL38_WR((HW_CSU_CSL38_RD() & ~BM_CSU_CSL38_SUW_S1) | BF_CSU_CSL38_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL38, field SSW_S1[21] (RW)
@@ -21556,7 +20160,6 @@ typedef union _hw_csu_csl38
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL38_SSW_S1      (21)      //!< Bit position for CSU_CSL38_SSW_S1.
 #define BM_CSU_CSL38_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL38_SSW_S1.
 
@@ -21570,7 +20173,6 @@ typedef union _hw_csu_csl38
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL38_SSW_S1(v)   (HW_CSU_CSL38_WR((HW_CSU_CSL38_RD() & ~BM_CSU_CSL38_SSW_S1) | BF_CSU_CSL38_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL38, field NUW_S1[22] (RW)
@@ -21582,7 +20184,6 @@ typedef union _hw_csu_csl38
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL38_NUW_S1      (22)      //!< Bit position for CSU_CSL38_NUW_S1.
 #define BM_CSU_CSL38_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL38_NUW_S1.
 
@@ -21596,7 +20197,6 @@ typedef union _hw_csu_csl38
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL38_NUW_S1(v)   (HW_CSU_CSL38_WR((HW_CSU_CSL38_RD() & ~BM_CSU_CSL38_NUW_S1) | BF_CSU_CSL38_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL38, field NSW_S1[23] (RW)
@@ -21608,7 +20208,6 @@ typedef union _hw_csu_csl38
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL38_NSW_S1      (23)      //!< Bit position for CSU_CSL38_NSW_S1.
 #define BM_CSU_CSL38_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL38_NSW_S1.
 
@@ -21622,7 +20221,6 @@ typedef union _hw_csu_csl38
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL38_NSW_S1(v)   (HW_CSU_CSL38_WR((HW_CSU_CSL38_RD() & ~BM_CSU_CSL38_NSW_S1) | BF_CSU_CSL38_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL38, field LOCK_S1[24] (RW)
@@ -21634,7 +20232,6 @@ typedef union _hw_csu_csl38
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL38_LOCK_S1      (24)      //!< Bit position for CSU_CSL38_LOCK_S1.
 #define BM_CSU_CSL38_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL38_LOCK_S1.
 
@@ -21648,7 +20245,6 @@ typedef union _hw_csu_csl38
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL38_LOCK_S1(v)   (HW_CSU_CSL38_WR((HW_CSU_CSL38_RD() & ~BM_CSU_CSL38_LOCK_S1) | BF_CSU_CSL38_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -21745,7 +20341,6 @@ typedef union _hw_csu_csl39
  * - 1 - Secure user read access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL39_SUR_S2      (0)      //!< Bit position for CSU_CSL39_SUR_S2.
 #define BM_CSU_CSL39_SUR_S2      (0x00000001)  //!< Bit mask for CSU_CSL39_SUR_S2.
 
@@ -21759,7 +20354,6 @@ typedef union _hw_csu_csl39
 //! @brief Set the SUR_S2 field to a new value.
 #define BW_CSU_CSL39_SUR_S2(v)   (HW_CSU_CSL39_WR((HW_CSU_CSL39_RD() & ~BM_CSU_CSL39_SUR_S2) | BF_CSU_CSL39_SUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL39, field SSR_S2[1] (RW)
@@ -21771,7 +20365,6 @@ typedef union _hw_csu_csl39
  * - 1 - Secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL39_SSR_S2      (1)      //!< Bit position for CSU_CSL39_SSR_S2.
 #define BM_CSU_CSL39_SSR_S2      (0x00000002)  //!< Bit mask for CSU_CSL39_SSR_S2.
 
@@ -21785,7 +20378,6 @@ typedef union _hw_csu_csl39
 //! @brief Set the SSR_S2 field to a new value.
 #define BW_CSU_CSL39_SSR_S2(v)   (HW_CSU_CSL39_WR((HW_CSU_CSL39_RD() & ~BM_CSU_CSL39_SSR_S2) | BF_CSU_CSL39_SSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL39, field NUR_S2[2] (RW)
@@ -21797,7 +20389,6 @@ typedef union _hw_csu_csl39
  * - 1 - Non-secure user read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL39_NUR_S2      (2)      //!< Bit position for CSU_CSL39_NUR_S2.
 #define BM_CSU_CSL39_NUR_S2      (0x00000004)  //!< Bit mask for CSU_CSL39_NUR_S2.
 
@@ -21811,7 +20402,6 @@ typedef union _hw_csu_csl39
 //! @brief Set the NUR_S2 field to a new value.
 #define BW_CSU_CSL39_NUR_S2(v)   (HW_CSU_CSL39_WR((HW_CSU_CSL39_RD() & ~BM_CSU_CSL39_NUR_S2) | BF_CSU_CSL39_NUR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL39, field NSR_S2[3] (RW)
@@ -21823,7 +20413,6 @@ typedef union _hw_csu_csl39
  * - 1 - Non-secure supervisor read access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL39_NSR_S2      (3)      //!< Bit position for CSU_CSL39_NSR_S2.
 #define BM_CSU_CSL39_NSR_S2      (0x00000008)  //!< Bit mask for CSU_CSL39_NSR_S2.
 
@@ -21837,7 +20426,6 @@ typedef union _hw_csu_csl39
 //! @brief Set the NSR_S2 field to a new value.
 #define BW_CSU_CSL39_NSR_S2(v)   (HW_CSU_CSL39_WR((HW_CSU_CSL39_RD() & ~BM_CSU_CSL39_NSR_S2) | BF_CSU_CSL39_NSR_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL39, field SUW_S2[4] (RW)
@@ -21849,7 +20437,6 @@ typedef union _hw_csu_csl39
  * - 1 - Secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL39_SUW_S2      (4)      //!< Bit position for CSU_CSL39_SUW_S2.
 #define BM_CSU_CSL39_SUW_S2      (0x00000010)  //!< Bit mask for CSU_CSL39_SUW_S2.
 
@@ -21863,7 +20450,6 @@ typedef union _hw_csu_csl39
 //! @brief Set the SUW_S2 field to a new value.
 #define BW_CSU_CSL39_SUW_S2(v)   (HW_CSU_CSL39_WR((HW_CSU_CSL39_RD() & ~BM_CSU_CSL39_SUW_S2) | BF_CSU_CSL39_SUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL39, field SSW_S2[5] (RW)
@@ -21875,7 +20461,6 @@ typedef union _hw_csu_csl39
  * - 1 - Secure supervisor write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL39_SSW_S2      (5)      //!< Bit position for CSU_CSL39_SSW_S2.
 #define BM_CSU_CSL39_SSW_S2      (0x00000020)  //!< Bit mask for CSU_CSL39_SSW_S2.
 
@@ -21889,7 +20474,6 @@ typedef union _hw_csu_csl39
 //! @brief Set the SSW_S2 field to a new value.
 #define BW_CSU_CSL39_SSW_S2(v)   (HW_CSU_CSL39_WR((HW_CSU_CSL39_RD() & ~BM_CSU_CSL39_SSW_S2) | BF_CSU_CSL39_SSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL39, field NUW_S2[6] (RW)
@@ -21901,7 +20485,6 @@ typedef union _hw_csu_csl39
  * - 1 - Non-secure user write access enabled for the second slave.
  */
 //@{
-
 #define BP_CSU_CSL39_NUW_S2      (6)      //!< Bit position for CSU_CSL39_NUW_S2.
 #define BM_CSU_CSL39_NUW_S2      (0x00000040)  //!< Bit mask for CSU_CSL39_NUW_S2.
 
@@ -21915,7 +20498,6 @@ typedef union _hw_csu_csl39
 //! @brief Set the NUW_S2 field to a new value.
 #define BW_CSU_CSL39_NUW_S2(v)   (HW_CSU_CSL39_WR((HW_CSU_CSL39_RD() & ~BM_CSU_CSL39_NUW_S2) | BF_CSU_CSL39_NUW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL39, field NSW_S2[7] (RW)
@@ -21927,7 +20509,6 @@ typedef union _hw_csu_csl39
  * - 1 - Non-secure supervisor write access enabled for the second slave
  */
 //@{
-
 #define BP_CSU_CSL39_NSW_S2      (7)      //!< Bit position for CSU_CSL39_NSW_S2.
 #define BM_CSU_CSL39_NSW_S2      (0x00000080)  //!< Bit mask for CSU_CSL39_NSW_S2.
 
@@ -21941,7 +20522,6 @@ typedef union _hw_csu_csl39
 //! @brief Set the NSW_S2 field to a new value.
 #define BW_CSU_CSL39_NSW_S2(v)   (HW_CSU_CSL39_WR((HW_CSU_CSL39_RD() & ~BM_CSU_CSL39_NSW_S2) | BF_CSU_CSL39_NSW_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL39, field LOCK_S2[8] (RW)
@@ -21953,7 +20533,6 @@ typedef union _hw_csu_csl39
  * - 1 - Bits 7-0 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL39_LOCK_S2      (8)      //!< Bit position for CSU_CSL39_LOCK_S2.
 #define BM_CSU_CSL39_LOCK_S2      (0x00000100)  //!< Bit mask for CSU_CSL39_LOCK_S2.
 
@@ -21967,7 +20546,6 @@ typedef union _hw_csu_csl39
 //! @brief Set the LOCK_S2 field to a new value.
 #define BW_CSU_CSL39_LOCK_S2(v)   (HW_CSU_CSL39_WR((HW_CSU_CSL39_RD() & ~BM_CSU_CSL39_LOCK_S2) | BF_CSU_CSL39_LOCK_S2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL39, field SUR_S1[16] (RW)
@@ -21979,7 +20557,6 @@ typedef union _hw_csu_csl39
  * - 1 - Secure user read access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL39_SUR_S1      (16)      //!< Bit position for CSU_CSL39_SUR_S1.
 #define BM_CSU_CSL39_SUR_S1      (0x00010000)  //!< Bit mask for CSU_CSL39_SUR_S1.
 
@@ -21993,7 +20570,6 @@ typedef union _hw_csu_csl39
 //! @brief Set the SUR_S1 field to a new value.
 #define BW_CSU_CSL39_SUR_S1(v)   (HW_CSU_CSL39_WR((HW_CSU_CSL39_RD() & ~BM_CSU_CSL39_SUR_S1) | BF_CSU_CSL39_SUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL39, field SSR_S1[17] (RW)
@@ -22005,7 +20581,6 @@ typedef union _hw_csu_csl39
  * - 1 - Secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL39_SSR_S1      (17)      //!< Bit position for CSU_CSL39_SSR_S1.
 #define BM_CSU_CSL39_SSR_S1      (0x00020000)  //!< Bit mask for CSU_CSL39_SSR_S1.
 
@@ -22019,7 +20594,6 @@ typedef union _hw_csu_csl39
 //! @brief Set the SSR_S1 field to a new value.
 #define BW_CSU_CSL39_SSR_S1(v)   (HW_CSU_CSL39_WR((HW_CSU_CSL39_RD() & ~BM_CSU_CSL39_SSR_S1) | BF_CSU_CSL39_SSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL39, field NUR_S1[18] (RW)
@@ -22031,7 +20605,6 @@ typedef union _hw_csu_csl39
  * - 1 - Non-secure user read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL39_NUR_S1      (18)      //!< Bit position for CSU_CSL39_NUR_S1.
 #define BM_CSU_CSL39_NUR_S1      (0x00040000)  //!< Bit mask for CSU_CSL39_NUR_S1.
 
@@ -22045,7 +20618,6 @@ typedef union _hw_csu_csl39
 //! @brief Set the NUR_S1 field to a new value.
 #define BW_CSU_CSL39_NUR_S1(v)   (HW_CSU_CSL39_WR((HW_CSU_CSL39_RD() & ~BM_CSU_CSL39_NUR_S1) | BF_CSU_CSL39_NUR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL39, field NSR_S1[19] (RW)
@@ -22057,7 +20629,6 @@ typedef union _hw_csu_csl39
  * - 1 - Non-secure supervisor read access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL39_NSR_S1      (19)      //!< Bit position for CSU_CSL39_NSR_S1.
 #define BM_CSU_CSL39_NSR_S1      (0x00080000)  //!< Bit mask for CSU_CSL39_NSR_S1.
 
@@ -22071,7 +20642,6 @@ typedef union _hw_csu_csl39
 //! @brief Set the NSR_S1 field to a new value.
 #define BW_CSU_CSL39_NSR_S1(v)   (HW_CSU_CSL39_WR((HW_CSU_CSL39_RD() & ~BM_CSU_CSL39_NSR_S1) | BF_CSU_CSL39_NSR_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL39, field SUW_S1[20] (RW)
@@ -22083,7 +20653,6 @@ typedef union _hw_csu_csl39
  * - 1 - Secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL39_SUW_S1      (20)      //!< Bit position for CSU_CSL39_SUW_S1.
 #define BM_CSU_CSL39_SUW_S1      (0x00100000)  //!< Bit mask for CSU_CSL39_SUW_S1.
 
@@ -22097,7 +20666,6 @@ typedef union _hw_csu_csl39
 //! @brief Set the SUW_S1 field to a new value.
 #define BW_CSU_CSL39_SUW_S1(v)   (HW_CSU_CSL39_WR((HW_CSU_CSL39_RD() & ~BM_CSU_CSL39_SUW_S1) | BF_CSU_CSL39_SUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL39, field SSW_S1[21] (RW)
@@ -22109,7 +20677,6 @@ typedef union _hw_csu_csl39
  * - 1 - Secure supervisor write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL39_SSW_S1      (21)      //!< Bit position for CSU_CSL39_SSW_S1.
 #define BM_CSU_CSL39_SSW_S1      (0x00200000)  //!< Bit mask for CSU_CSL39_SSW_S1.
 
@@ -22123,7 +20690,6 @@ typedef union _hw_csu_csl39
 //! @brief Set the SSW_S1 field to a new value.
 #define BW_CSU_CSL39_SSW_S1(v)   (HW_CSU_CSL39_WR((HW_CSU_CSL39_RD() & ~BM_CSU_CSL39_SSW_S1) | BF_CSU_CSL39_SSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL39, field NUW_S1[22] (RW)
@@ -22135,7 +20701,6 @@ typedef union _hw_csu_csl39
  * - 1 - Non-secure user write access enabled for the first slave.
  */
 //@{
-
 #define BP_CSU_CSL39_NUW_S1      (22)      //!< Bit position for CSU_CSL39_NUW_S1.
 #define BM_CSU_CSL39_NUW_S1      (0x00400000)  //!< Bit mask for CSU_CSL39_NUW_S1.
 
@@ -22149,7 +20714,6 @@ typedef union _hw_csu_csl39
 //! @brief Set the NUW_S1 field to a new value.
 #define BW_CSU_CSL39_NUW_S1(v)   (HW_CSU_CSL39_WR((HW_CSU_CSL39_RD() & ~BM_CSU_CSL39_NUW_S1) | BF_CSU_CSL39_NUW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL39, field NSW_S1[23] (RW)
@@ -22161,7 +20725,6 @@ typedef union _hw_csu_csl39
  * - 1 - Non-secure supervisor write access enabled for the first slave
  */
 //@{
-
 #define BP_CSU_CSL39_NSW_S1      (23)      //!< Bit position for CSU_CSL39_NSW_S1.
 #define BM_CSU_CSL39_NSW_S1      (0x00800000)  //!< Bit mask for CSU_CSL39_NSW_S1.
 
@@ -22175,7 +20738,6 @@ typedef union _hw_csu_csl39
 //! @brief Set the NSW_S1 field to a new value.
 #define BW_CSU_CSL39_NSW_S1(v)   (HW_CSU_CSL39_WR((HW_CSU_CSL39_RD() & ~BM_CSU_CSL39_NSW_S1) | BF_CSU_CSL39_NSW_S1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_CSL39, field LOCK_S1[24] (RW)
@@ -22187,7 +20749,6 @@ typedef union _hw_csu_csl39
  * - 1 - Bits 16-23 locked and cannot be written by software
  */
 //@{
-
 #define BP_CSU_CSL39_LOCK_S1      (24)      //!< Bit position for CSU_CSL39_LOCK_S1.
 #define BM_CSU_CSL39_LOCK_S1      (0x01000000)  //!< Bit mask for CSU_CSL39_LOCK_S1.
 
@@ -22201,7 +20762,6 @@ typedef union _hw_csu_csl39
 //! @brief Set the LOCK_S1 field to a new value.
 #define BW_CSU_CSL39_LOCK_S1(v)   (HW_CSU_CSL39_WR((HW_CSU_CSL39_RD() & ~BM_CSU_CSL39_LOCK_S1) | BF_CSU_CSL39_LOCK_S1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -22295,7 +20855,6 @@ typedef union _hw_csu_hp0
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP0_HP      (0)      //!< Bit position for CSU_HP0_HP.
 #define BM_CSU_HP0_HP      (0x00000001)  //!< Bit mask for CSU_HP0_HP.
 
@@ -22309,7 +20868,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the HP field to a new value.
 #define BW_CSU_HP0_HP(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_HP) | BF_CSU_HP0_HP(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field L[1] (RW)
@@ -22321,7 +20879,6 @@ typedef union _hw_csu_hp0
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP0_L      (1)      //!< Bit position for CSU_HP0_L.
 #define BM_CSU_HP0_L      (0x00000002)  //!< Bit mask for CSU_HP0_L.
 
@@ -22335,7 +20892,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the L field to a new value.
 #define BW_CSU_HP0_L(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_L) | BF_CSU_HP0_L(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field HP1[2] (RW)
@@ -22347,7 +20903,6 @@ typedef union _hw_csu_hp0
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP0_HP1      (2)      //!< Bit position for CSU_HP0_HP1.
 #define BM_CSU_HP0_HP1      (0x00000004)  //!< Bit mask for CSU_HP0_HP1.
 
@@ -22361,7 +20916,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the HP1 field to a new value.
 #define BW_CSU_HP0_HP1(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_HP1) | BF_CSU_HP0_HP1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field L1[3] (RW)
@@ -22373,7 +20927,6 @@ typedef union _hw_csu_hp0
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP0_L1      (3)      //!< Bit position for CSU_HP0_L1.
 #define BM_CSU_HP0_L1      (0x00000008)  //!< Bit mask for CSU_HP0_L1.
 
@@ -22387,7 +20940,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the L1 field to a new value.
 #define BW_CSU_HP0_L1(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_L1) | BF_CSU_HP0_L1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field HP2[4] (RW)
@@ -22399,7 +20951,6 @@ typedef union _hw_csu_hp0
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP0_HP2      (4)      //!< Bit position for CSU_HP0_HP2.
 #define BM_CSU_HP0_HP2      (0x00000010)  //!< Bit mask for CSU_HP0_HP2.
 
@@ -22413,7 +20964,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the HP2 field to a new value.
 #define BW_CSU_HP0_HP2(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_HP2) | BF_CSU_HP0_HP2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field L2[5] (RW)
@@ -22425,7 +20975,6 @@ typedef union _hw_csu_hp0
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP0_L2      (5)      //!< Bit position for CSU_HP0_L2.
 #define BM_CSU_HP0_L2      (0x00000020)  //!< Bit mask for CSU_HP0_L2.
 
@@ -22439,7 +20988,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the L2 field to a new value.
 #define BW_CSU_HP0_L2(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_L2) | BF_CSU_HP0_L2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field HP3[6] (RW)
@@ -22451,7 +20999,6 @@ typedef union _hw_csu_hp0
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP0_HP3      (6)      //!< Bit position for CSU_HP0_HP3.
 #define BM_CSU_HP0_HP3      (0x00000040)  //!< Bit mask for CSU_HP0_HP3.
 
@@ -22465,7 +21012,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the HP3 field to a new value.
 #define BW_CSU_HP0_HP3(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_HP3) | BF_CSU_HP0_HP3(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field L3[7] (RW)
@@ -22477,7 +21023,6 @@ typedef union _hw_csu_hp0
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP0_L3      (7)      //!< Bit position for CSU_HP0_L3.
 #define BM_CSU_HP0_L3      (0x00000080)  //!< Bit mask for CSU_HP0_L3.
 
@@ -22491,7 +21036,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the L3 field to a new value.
 #define BW_CSU_HP0_L3(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_L3) | BF_CSU_HP0_L3(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field HP4[8] (RW)
@@ -22503,7 +21047,6 @@ typedef union _hw_csu_hp0
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP0_HP4      (8)      //!< Bit position for CSU_HP0_HP4.
 #define BM_CSU_HP0_HP4      (0x00000100)  //!< Bit mask for CSU_HP0_HP4.
 
@@ -22517,7 +21060,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the HP4 field to a new value.
 #define BW_CSU_HP0_HP4(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_HP4) | BF_CSU_HP0_HP4(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field L4[9] (RW)
@@ -22529,7 +21071,6 @@ typedef union _hw_csu_hp0
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP0_L4      (9)      //!< Bit position for CSU_HP0_L4.
 #define BM_CSU_HP0_L4      (0x00000200)  //!< Bit mask for CSU_HP0_L4.
 
@@ -22543,7 +21084,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the L4 field to a new value.
 #define BW_CSU_HP0_L4(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_L4) | BF_CSU_HP0_L4(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field HP5[10] (RW)
@@ -22555,7 +21095,6 @@ typedef union _hw_csu_hp0
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP0_HP5      (10)      //!< Bit position for CSU_HP0_HP5.
 #define BM_CSU_HP0_HP5      (0x00000400)  //!< Bit mask for CSU_HP0_HP5.
 
@@ -22569,7 +21108,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the HP5 field to a new value.
 #define BW_CSU_HP0_HP5(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_HP5) | BF_CSU_HP0_HP5(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field L5[11] (RW)
@@ -22581,7 +21119,6 @@ typedef union _hw_csu_hp0
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP0_L5      (11)      //!< Bit position for CSU_HP0_L5.
 #define BM_CSU_HP0_L5      (0x00000800)  //!< Bit mask for CSU_HP0_L5.
 
@@ -22595,7 +21132,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the L5 field to a new value.
 #define BW_CSU_HP0_L5(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_L5) | BF_CSU_HP0_L5(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field HP6[12] (RW)
@@ -22607,7 +21143,6 @@ typedef union _hw_csu_hp0
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP0_HP6      (12)      //!< Bit position for CSU_HP0_HP6.
 #define BM_CSU_HP0_HP6      (0x00001000)  //!< Bit mask for CSU_HP0_HP6.
 
@@ -22621,7 +21156,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the HP6 field to a new value.
 #define BW_CSU_HP0_HP6(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_HP6) | BF_CSU_HP0_HP6(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field L6[13] (RW)
@@ -22633,7 +21167,6 @@ typedef union _hw_csu_hp0
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP0_L6      (13)      //!< Bit position for CSU_HP0_L6.
 #define BM_CSU_HP0_L6      (0x00002000)  //!< Bit mask for CSU_HP0_L6.
 
@@ -22647,7 +21180,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the L6 field to a new value.
 #define BW_CSU_HP0_L6(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_L6) | BF_CSU_HP0_L6(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field HP7[14] (RW)
@@ -22659,7 +21191,6 @@ typedef union _hw_csu_hp0
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP0_HP7      (14)      //!< Bit position for CSU_HP0_HP7.
 #define BM_CSU_HP0_HP7      (0x00004000)  //!< Bit mask for CSU_HP0_HP7.
 
@@ -22673,7 +21204,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the HP7 field to a new value.
 #define BW_CSU_HP0_HP7(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_HP7) | BF_CSU_HP0_HP7(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field L7[15] (RW)
@@ -22685,7 +21215,6 @@ typedef union _hw_csu_hp0
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP0_L7      (15)      //!< Bit position for CSU_HP0_L7.
 #define BM_CSU_HP0_L7      (0x00008000)  //!< Bit mask for CSU_HP0_L7.
 
@@ -22699,7 +21228,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the L7 field to a new value.
 #define BW_CSU_HP0_L7(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_L7) | BF_CSU_HP0_L7(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field HP8[16] (RW)
@@ -22711,7 +21239,6 @@ typedef union _hw_csu_hp0
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP0_HP8      (16)      //!< Bit position for CSU_HP0_HP8.
 #define BM_CSU_HP0_HP8      (0x00010000)  //!< Bit mask for CSU_HP0_HP8.
 
@@ -22725,7 +21252,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the HP8 field to a new value.
 #define BW_CSU_HP0_HP8(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_HP8) | BF_CSU_HP0_HP8(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field L8[17] (RW)
@@ -22737,7 +21263,6 @@ typedef union _hw_csu_hp0
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP0_L8      (17)      //!< Bit position for CSU_HP0_L8.
 #define BM_CSU_HP0_L8      (0x00020000)  //!< Bit mask for CSU_HP0_L8.
 
@@ -22751,7 +21276,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the L8 field to a new value.
 #define BW_CSU_HP0_L8(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_L8) | BF_CSU_HP0_L8(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field HP9[18] (RW)
@@ -22763,7 +21287,6 @@ typedef union _hw_csu_hp0
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP0_HP9      (18)      //!< Bit position for CSU_HP0_HP9.
 #define BM_CSU_HP0_HP9      (0x00040000)  //!< Bit mask for CSU_HP0_HP9.
 
@@ -22777,7 +21300,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the HP9 field to a new value.
 #define BW_CSU_HP0_HP9(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_HP9) | BF_CSU_HP0_HP9(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field L9[19] (RW)
@@ -22789,7 +21311,6 @@ typedef union _hw_csu_hp0
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP0_L9      (19)      //!< Bit position for CSU_HP0_L9.
 #define BM_CSU_HP0_L9      (0x00080000)  //!< Bit mask for CSU_HP0_L9.
 
@@ -22803,7 +21324,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the L9 field to a new value.
 #define BW_CSU_HP0_L9(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_L9) | BF_CSU_HP0_L9(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field HP10[20] (RW)
@@ -22815,7 +21335,6 @@ typedef union _hw_csu_hp0
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP0_HP10      (20)      //!< Bit position for CSU_HP0_HP10.
 #define BM_CSU_HP0_HP10      (0x00100000)  //!< Bit mask for CSU_HP0_HP10.
 
@@ -22829,7 +21348,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the HP10 field to a new value.
 #define BW_CSU_HP0_HP10(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_HP10) | BF_CSU_HP0_HP10(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field L10[21] (RW)
@@ -22841,7 +21359,6 @@ typedef union _hw_csu_hp0
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP0_L10      (21)      //!< Bit position for CSU_HP0_L10.
 #define BM_CSU_HP0_L10      (0x00200000)  //!< Bit mask for CSU_HP0_L10.
 
@@ -22855,7 +21372,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the L10 field to a new value.
 #define BW_CSU_HP0_L10(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_L10) | BF_CSU_HP0_L10(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field HP11[22] (RW)
@@ -22867,7 +21383,6 @@ typedef union _hw_csu_hp0
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP0_HP11      (22)      //!< Bit position for CSU_HP0_HP11.
 #define BM_CSU_HP0_HP11      (0x00400000)  //!< Bit mask for CSU_HP0_HP11.
 
@@ -22881,7 +21396,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the HP11 field to a new value.
 #define BW_CSU_HP0_HP11(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_HP11) | BF_CSU_HP0_HP11(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field L11[23] (RW)
@@ -22893,7 +21407,6 @@ typedef union _hw_csu_hp0
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP0_L11      (23)      //!< Bit position for CSU_HP0_L11.
 #define BM_CSU_HP0_L11      (0x00800000)  //!< Bit mask for CSU_HP0_L11.
 
@@ -22907,7 +21420,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the L11 field to a new value.
 #define BW_CSU_HP0_L11(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_L11) | BF_CSU_HP0_L11(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field HP12[24] (RW)
@@ -22919,7 +21431,6 @@ typedef union _hw_csu_hp0
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP0_HP12      (24)      //!< Bit position for CSU_HP0_HP12.
 #define BM_CSU_HP0_HP12      (0x01000000)  //!< Bit mask for CSU_HP0_HP12.
 
@@ -22933,7 +21444,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the HP12 field to a new value.
 #define BW_CSU_HP0_HP12(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_HP12) | BF_CSU_HP0_HP12(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field L12[25] (RW)
@@ -22945,7 +21455,6 @@ typedef union _hw_csu_hp0
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP0_L12      (25)      //!< Bit position for CSU_HP0_L12.
 #define BM_CSU_HP0_L12      (0x02000000)  //!< Bit mask for CSU_HP0_L12.
 
@@ -22959,7 +21468,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the L12 field to a new value.
 #define BW_CSU_HP0_L12(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_L12) | BF_CSU_HP0_L12(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field HP13[26] (RW)
@@ -22971,7 +21479,6 @@ typedef union _hw_csu_hp0
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP0_HP13      (26)      //!< Bit position for CSU_HP0_HP13.
 #define BM_CSU_HP0_HP13      (0x04000000)  //!< Bit mask for CSU_HP0_HP13.
 
@@ -22985,7 +21492,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the HP13 field to a new value.
 #define BW_CSU_HP0_HP13(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_HP13) | BF_CSU_HP0_HP13(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field L13[27] (RW)
@@ -22997,7 +21503,6 @@ typedef union _hw_csu_hp0
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP0_L13      (27)      //!< Bit position for CSU_HP0_L13.
 #define BM_CSU_HP0_L13      (0x08000000)  //!< Bit mask for CSU_HP0_L13.
 
@@ -23011,7 +21516,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the L13 field to a new value.
 #define BW_CSU_HP0_L13(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_L13) | BF_CSU_HP0_L13(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field HP14[28] (RW)
@@ -23023,7 +21527,6 @@ typedef union _hw_csu_hp0
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP0_HP14      (28)      //!< Bit position for CSU_HP0_HP14.
 #define BM_CSU_HP0_HP14      (0x10000000)  //!< Bit mask for CSU_HP0_HP14.
 
@@ -23037,7 +21540,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the HP14 field to a new value.
 #define BW_CSU_HP0_HP14(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_HP14) | BF_CSU_HP0_HP14(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field L14[29] (RW)
@@ -23049,7 +21551,6 @@ typedef union _hw_csu_hp0
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP0_L14      (29)      //!< Bit position for CSU_HP0_L14.
 #define BM_CSU_HP0_L14      (0x20000000)  //!< Bit mask for CSU_HP0_L14.
 
@@ -23063,7 +21564,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the L14 field to a new value.
 #define BW_CSU_HP0_L14(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_L14) | BF_CSU_HP0_L14(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field HP15[30] (RW)
@@ -23075,7 +21575,6 @@ typedef union _hw_csu_hp0
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP0_HP15      (30)      //!< Bit position for CSU_HP0_HP15.
 #define BM_CSU_HP0_HP15      (0x40000000)  //!< Bit mask for CSU_HP0_HP15.
 
@@ -23089,7 +21588,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the HP15 field to a new value.
 #define BW_CSU_HP0_HP15(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_HP15) | BF_CSU_HP0_HP15(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP0, field L15[31] (RW)
@@ -23101,7 +21599,6 @@ typedef union _hw_csu_hp0
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP0_L15      (31)      //!< Bit position for CSU_HP0_L15.
 #define BM_CSU_HP0_L15      (0x80000000)  //!< Bit mask for CSU_HP0_L15.
 
@@ -23115,7 +21612,6 @@ typedef union _hw_csu_hp0
 //! @brief Set the L15 field to a new value.
 #define BW_CSU_HP0_L15(v)   (HW_CSU_HP0_WR((HW_CSU_HP0_RD() & ~BM_CSU_HP0_L15) | BF_CSU_HP0_L15(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -23209,7 +21705,6 @@ typedef union _hw_csu_hp1
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP1_HP      (0)      //!< Bit position for CSU_HP1_HP.
 #define BM_CSU_HP1_HP      (0x00000001)  //!< Bit mask for CSU_HP1_HP.
 
@@ -23223,7 +21718,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the HP field to a new value.
 #define BW_CSU_HP1_HP(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_HP) | BF_CSU_HP1_HP(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field L[1] (RW)
@@ -23235,7 +21729,6 @@ typedef union _hw_csu_hp1
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP1_L      (1)      //!< Bit position for CSU_HP1_L.
 #define BM_CSU_HP1_L      (0x00000002)  //!< Bit mask for CSU_HP1_L.
 
@@ -23249,7 +21742,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the L field to a new value.
 #define BW_CSU_HP1_L(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_L) | BF_CSU_HP1_L(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field HP1[2] (RW)
@@ -23261,7 +21753,6 @@ typedef union _hw_csu_hp1
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP1_HP1      (2)      //!< Bit position for CSU_HP1_HP1.
 #define BM_CSU_HP1_HP1      (0x00000004)  //!< Bit mask for CSU_HP1_HP1.
 
@@ -23275,7 +21766,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the HP1 field to a new value.
 #define BW_CSU_HP1_HP1(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_HP1) | BF_CSU_HP1_HP1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field L1[3] (RW)
@@ -23287,7 +21777,6 @@ typedef union _hw_csu_hp1
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP1_L1      (3)      //!< Bit position for CSU_HP1_L1.
 #define BM_CSU_HP1_L1      (0x00000008)  //!< Bit mask for CSU_HP1_L1.
 
@@ -23301,7 +21790,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the L1 field to a new value.
 #define BW_CSU_HP1_L1(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_L1) | BF_CSU_HP1_L1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field HP2[4] (RW)
@@ -23313,7 +21801,6 @@ typedef union _hw_csu_hp1
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP1_HP2      (4)      //!< Bit position for CSU_HP1_HP2.
 #define BM_CSU_HP1_HP2      (0x00000010)  //!< Bit mask for CSU_HP1_HP2.
 
@@ -23327,7 +21814,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the HP2 field to a new value.
 #define BW_CSU_HP1_HP2(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_HP2) | BF_CSU_HP1_HP2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field L2[5] (RW)
@@ -23339,7 +21825,6 @@ typedef union _hw_csu_hp1
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP1_L2      (5)      //!< Bit position for CSU_HP1_L2.
 #define BM_CSU_HP1_L2      (0x00000020)  //!< Bit mask for CSU_HP1_L2.
 
@@ -23353,7 +21838,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the L2 field to a new value.
 #define BW_CSU_HP1_L2(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_L2) | BF_CSU_HP1_L2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field HP3[6] (RW)
@@ -23365,7 +21849,6 @@ typedef union _hw_csu_hp1
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP1_HP3      (6)      //!< Bit position for CSU_HP1_HP3.
 #define BM_CSU_HP1_HP3      (0x00000040)  //!< Bit mask for CSU_HP1_HP3.
 
@@ -23379,7 +21862,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the HP3 field to a new value.
 #define BW_CSU_HP1_HP3(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_HP3) | BF_CSU_HP1_HP3(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field L3[7] (RW)
@@ -23391,7 +21873,6 @@ typedef union _hw_csu_hp1
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP1_L3      (7)      //!< Bit position for CSU_HP1_L3.
 #define BM_CSU_HP1_L3      (0x00000080)  //!< Bit mask for CSU_HP1_L3.
 
@@ -23405,7 +21886,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the L3 field to a new value.
 #define BW_CSU_HP1_L3(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_L3) | BF_CSU_HP1_L3(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field HP4[8] (RW)
@@ -23417,7 +21897,6 @@ typedef union _hw_csu_hp1
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP1_HP4      (8)      //!< Bit position for CSU_HP1_HP4.
 #define BM_CSU_HP1_HP4      (0x00000100)  //!< Bit mask for CSU_HP1_HP4.
 
@@ -23431,7 +21910,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the HP4 field to a new value.
 #define BW_CSU_HP1_HP4(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_HP4) | BF_CSU_HP1_HP4(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field L4[9] (RW)
@@ -23443,7 +21921,6 @@ typedef union _hw_csu_hp1
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP1_L4      (9)      //!< Bit position for CSU_HP1_L4.
 #define BM_CSU_HP1_L4      (0x00000200)  //!< Bit mask for CSU_HP1_L4.
 
@@ -23457,7 +21934,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the L4 field to a new value.
 #define BW_CSU_HP1_L4(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_L4) | BF_CSU_HP1_L4(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field HP5[10] (RW)
@@ -23469,7 +21945,6 @@ typedef union _hw_csu_hp1
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP1_HP5      (10)      //!< Bit position for CSU_HP1_HP5.
 #define BM_CSU_HP1_HP5      (0x00000400)  //!< Bit mask for CSU_HP1_HP5.
 
@@ -23483,7 +21958,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the HP5 field to a new value.
 #define BW_CSU_HP1_HP5(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_HP5) | BF_CSU_HP1_HP5(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field L5[11] (RW)
@@ -23495,7 +21969,6 @@ typedef union _hw_csu_hp1
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP1_L5      (11)      //!< Bit position for CSU_HP1_L5.
 #define BM_CSU_HP1_L5      (0x00000800)  //!< Bit mask for CSU_HP1_L5.
 
@@ -23509,7 +21982,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the L5 field to a new value.
 #define BW_CSU_HP1_L5(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_L5) | BF_CSU_HP1_L5(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field HP6[12] (RW)
@@ -23521,7 +21993,6 @@ typedef union _hw_csu_hp1
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP1_HP6      (12)      //!< Bit position for CSU_HP1_HP6.
 #define BM_CSU_HP1_HP6      (0x00001000)  //!< Bit mask for CSU_HP1_HP6.
 
@@ -23535,7 +22006,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the HP6 field to a new value.
 #define BW_CSU_HP1_HP6(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_HP6) | BF_CSU_HP1_HP6(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field L6[13] (RW)
@@ -23547,7 +22017,6 @@ typedef union _hw_csu_hp1
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP1_L6      (13)      //!< Bit position for CSU_HP1_L6.
 #define BM_CSU_HP1_L6      (0x00002000)  //!< Bit mask for CSU_HP1_L6.
 
@@ -23561,7 +22030,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the L6 field to a new value.
 #define BW_CSU_HP1_L6(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_L6) | BF_CSU_HP1_L6(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field HP7[14] (RW)
@@ -23573,7 +22041,6 @@ typedef union _hw_csu_hp1
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP1_HP7      (14)      //!< Bit position for CSU_HP1_HP7.
 #define BM_CSU_HP1_HP7      (0x00004000)  //!< Bit mask for CSU_HP1_HP7.
 
@@ -23587,7 +22054,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the HP7 field to a new value.
 #define BW_CSU_HP1_HP7(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_HP7) | BF_CSU_HP1_HP7(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field L7[15] (RW)
@@ -23599,7 +22065,6 @@ typedef union _hw_csu_hp1
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP1_L7      (15)      //!< Bit position for CSU_HP1_L7.
 #define BM_CSU_HP1_L7      (0x00008000)  //!< Bit mask for CSU_HP1_L7.
 
@@ -23613,7 +22078,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the L7 field to a new value.
 #define BW_CSU_HP1_L7(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_L7) | BF_CSU_HP1_L7(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field HP8[16] (RW)
@@ -23625,7 +22089,6 @@ typedef union _hw_csu_hp1
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP1_HP8      (16)      //!< Bit position for CSU_HP1_HP8.
 #define BM_CSU_HP1_HP8      (0x00010000)  //!< Bit mask for CSU_HP1_HP8.
 
@@ -23639,7 +22102,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the HP8 field to a new value.
 #define BW_CSU_HP1_HP8(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_HP8) | BF_CSU_HP1_HP8(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field L8[17] (RW)
@@ -23651,7 +22113,6 @@ typedef union _hw_csu_hp1
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP1_L8      (17)      //!< Bit position for CSU_HP1_L8.
 #define BM_CSU_HP1_L8      (0x00020000)  //!< Bit mask for CSU_HP1_L8.
 
@@ -23665,7 +22126,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the L8 field to a new value.
 #define BW_CSU_HP1_L8(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_L8) | BF_CSU_HP1_L8(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field HP9[18] (RW)
@@ -23677,7 +22137,6 @@ typedef union _hw_csu_hp1
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP1_HP9      (18)      //!< Bit position for CSU_HP1_HP9.
 #define BM_CSU_HP1_HP9      (0x00040000)  //!< Bit mask for CSU_HP1_HP9.
 
@@ -23691,7 +22150,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the HP9 field to a new value.
 #define BW_CSU_HP1_HP9(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_HP9) | BF_CSU_HP1_HP9(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field L9[19] (RW)
@@ -23703,7 +22161,6 @@ typedef union _hw_csu_hp1
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP1_L9      (19)      //!< Bit position for CSU_HP1_L9.
 #define BM_CSU_HP1_L9      (0x00080000)  //!< Bit mask for CSU_HP1_L9.
 
@@ -23717,7 +22174,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the L9 field to a new value.
 #define BW_CSU_HP1_L9(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_L9) | BF_CSU_HP1_L9(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field HP10[20] (RW)
@@ -23729,7 +22185,6 @@ typedef union _hw_csu_hp1
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP1_HP10      (20)      //!< Bit position for CSU_HP1_HP10.
 #define BM_CSU_HP1_HP10      (0x00100000)  //!< Bit mask for CSU_HP1_HP10.
 
@@ -23743,7 +22198,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the HP10 field to a new value.
 #define BW_CSU_HP1_HP10(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_HP10) | BF_CSU_HP1_HP10(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field L10[21] (RW)
@@ -23755,7 +22209,6 @@ typedef union _hw_csu_hp1
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP1_L10      (21)      //!< Bit position for CSU_HP1_L10.
 #define BM_CSU_HP1_L10      (0x00200000)  //!< Bit mask for CSU_HP1_L10.
 
@@ -23769,7 +22222,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the L10 field to a new value.
 #define BW_CSU_HP1_L10(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_L10) | BF_CSU_HP1_L10(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field HP11[22] (RW)
@@ -23781,7 +22233,6 @@ typedef union _hw_csu_hp1
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP1_HP11      (22)      //!< Bit position for CSU_HP1_HP11.
 #define BM_CSU_HP1_HP11      (0x00400000)  //!< Bit mask for CSU_HP1_HP11.
 
@@ -23795,7 +22246,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the HP11 field to a new value.
 #define BW_CSU_HP1_HP11(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_HP11) | BF_CSU_HP1_HP11(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field L11[23] (RW)
@@ -23807,7 +22257,6 @@ typedef union _hw_csu_hp1
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP1_L11      (23)      //!< Bit position for CSU_HP1_L11.
 #define BM_CSU_HP1_L11      (0x00800000)  //!< Bit mask for CSU_HP1_L11.
 
@@ -23821,7 +22270,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the L11 field to a new value.
 #define BW_CSU_HP1_L11(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_L11) | BF_CSU_HP1_L11(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field HP12[24] (RW)
@@ -23833,7 +22281,6 @@ typedef union _hw_csu_hp1
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP1_HP12      (24)      //!< Bit position for CSU_HP1_HP12.
 #define BM_CSU_HP1_HP12      (0x01000000)  //!< Bit mask for CSU_HP1_HP12.
 
@@ -23847,7 +22294,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the HP12 field to a new value.
 #define BW_CSU_HP1_HP12(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_HP12) | BF_CSU_HP1_HP12(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field L12[25] (RW)
@@ -23859,7 +22305,6 @@ typedef union _hw_csu_hp1
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP1_L12      (25)      //!< Bit position for CSU_HP1_L12.
 #define BM_CSU_HP1_L12      (0x02000000)  //!< Bit mask for CSU_HP1_L12.
 
@@ -23873,7 +22318,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the L12 field to a new value.
 #define BW_CSU_HP1_L12(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_L12) | BF_CSU_HP1_L12(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field HP13[26] (RW)
@@ -23885,7 +22329,6 @@ typedef union _hw_csu_hp1
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP1_HP13      (26)      //!< Bit position for CSU_HP1_HP13.
 #define BM_CSU_HP1_HP13      (0x04000000)  //!< Bit mask for CSU_HP1_HP13.
 
@@ -23899,7 +22342,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the HP13 field to a new value.
 #define BW_CSU_HP1_HP13(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_HP13) | BF_CSU_HP1_HP13(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field L13[27] (RW)
@@ -23911,7 +22353,6 @@ typedef union _hw_csu_hp1
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP1_L13      (27)      //!< Bit position for CSU_HP1_L13.
 #define BM_CSU_HP1_L13      (0x08000000)  //!< Bit mask for CSU_HP1_L13.
 
@@ -23925,7 +22366,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the L13 field to a new value.
 #define BW_CSU_HP1_L13(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_L13) | BF_CSU_HP1_L13(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field HP14[28] (RW)
@@ -23937,7 +22377,6 @@ typedef union _hw_csu_hp1
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP1_HP14      (28)      //!< Bit position for CSU_HP1_HP14.
 #define BM_CSU_HP1_HP14      (0x10000000)  //!< Bit mask for CSU_HP1_HP14.
 
@@ -23951,7 +22390,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the HP14 field to a new value.
 #define BW_CSU_HP1_HP14(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_HP14) | BF_CSU_HP1_HP14(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field L14[29] (RW)
@@ -23963,7 +22401,6 @@ typedef union _hw_csu_hp1
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP1_L14      (29)      //!< Bit position for CSU_HP1_L14.
 #define BM_CSU_HP1_L14      (0x20000000)  //!< Bit mask for CSU_HP1_L14.
 
@@ -23977,7 +22414,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the L14 field to a new value.
 #define BW_CSU_HP1_L14(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_L14) | BF_CSU_HP1_L14(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field HP15[30] (RW)
@@ -23989,7 +22425,6 @@ typedef union _hw_csu_hp1
  * - 1 - Supervisor Mode for the corresponding master
  */
 //@{
-
 #define BP_CSU_HP1_HP15      (30)      //!< Bit position for CSU_HP1_HP15.
 #define BM_CSU_HP1_HP15      (0x40000000)  //!< Bit mask for CSU_HP1_HP15.
 
@@ -24003,7 +22438,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the HP15 field to a new value.
 #define BW_CSU_HP1_HP15(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_HP15) | BF_CSU_HP1_HP15(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_HP1, field L15[31] (RW)
@@ -24015,7 +22449,6 @@ typedef union _hw_csu_hp1
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_HP1_L15      (31)      //!< Bit position for CSU_HP1_L15.
 #define BM_CSU_HP1_L15      (0x80000000)  //!< Bit mask for CSU_HP1_L15.
 
@@ -24029,7 +22462,6 @@ typedef union _hw_csu_hp1
 //! @brief Set the L15 field to a new value.
 #define BW_CSU_HP1_L15(v)   (HW_CSU_HP1_WR((HW_CSU_HP1_RD() & ~BM_CSU_HP1_L15) | BF_CSU_HP1_L15(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -24122,7 +22554,6 @@ typedef union _hw_csu_sa
  * - 1 - Non-secure access for the corresponding Type 1 master
  */
 //@{
-
 #define BP_CSU_SA_NSA      (0)      //!< Bit position for CSU_SA_NSA.
 #define BM_CSU_SA_NSA      (0x00000001)  //!< Bit mask for CSU_SA_NSA.
 
@@ -24136,7 +22567,6 @@ typedef union _hw_csu_sa
 //! @brief Set the NSA field to a new value.
 #define BW_CSU_SA_NSA(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_NSA) | BF_CSU_SA_NSA(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field L[1] (RW)
@@ -24148,7 +22578,6 @@ typedef union _hw_csu_sa
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_SA_L      (1)      //!< Bit position for CSU_SA_L.
 #define BM_CSU_SA_L      (0x00000002)  //!< Bit mask for CSU_SA_L.
 
@@ -24162,7 +22591,6 @@ typedef union _hw_csu_sa
 //! @brief Set the L field to a new value.
 #define BW_CSU_SA_L(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_L) | BF_CSU_SA_L(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field NSA1[2] (RW)
@@ -24174,7 +22602,6 @@ typedef union _hw_csu_sa
  * - 1 - Non-secure access for the corresponding Type 1 master
  */
 //@{
-
 #define BP_CSU_SA_NSA1      (2)      //!< Bit position for CSU_SA_NSA1.
 #define BM_CSU_SA_NSA1      (0x00000004)  //!< Bit mask for CSU_SA_NSA1.
 
@@ -24188,7 +22615,6 @@ typedef union _hw_csu_sa
 //! @brief Set the NSA1 field to a new value.
 #define BW_CSU_SA_NSA1(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_NSA1) | BF_CSU_SA_NSA1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field L1[3] (RW)
@@ -24200,7 +22626,6 @@ typedef union _hw_csu_sa
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_SA_L1      (3)      //!< Bit position for CSU_SA_L1.
 #define BM_CSU_SA_L1      (0x00000008)  //!< Bit mask for CSU_SA_L1.
 
@@ -24214,7 +22639,6 @@ typedef union _hw_csu_sa
 //! @brief Set the L1 field to a new value.
 #define BW_CSU_SA_L1(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_L1) | BF_CSU_SA_L1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field NSA2[4] (RW)
@@ -24226,7 +22650,6 @@ typedef union _hw_csu_sa
  * - 1 - Non-secure access for the corresponding Type 1 master
  */
 //@{
-
 #define BP_CSU_SA_NSA2      (4)      //!< Bit position for CSU_SA_NSA2.
 #define BM_CSU_SA_NSA2      (0x00000010)  //!< Bit mask for CSU_SA_NSA2.
 
@@ -24240,7 +22663,6 @@ typedef union _hw_csu_sa
 //! @brief Set the NSA2 field to a new value.
 #define BW_CSU_SA_NSA2(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_NSA2) | BF_CSU_SA_NSA2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field L2[5] (RW)
@@ -24252,7 +22674,6 @@ typedef union _hw_csu_sa
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_SA_L2      (5)      //!< Bit position for CSU_SA_L2.
 #define BM_CSU_SA_L2      (0x00000020)  //!< Bit mask for CSU_SA_L2.
 
@@ -24266,7 +22687,6 @@ typedef union _hw_csu_sa
 //! @brief Set the L2 field to a new value.
 #define BW_CSU_SA_L2(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_L2) | BF_CSU_SA_L2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field NSA3[6] (RW)
@@ -24278,7 +22698,6 @@ typedef union _hw_csu_sa
  * - 1 - Non-secure access for the corresponding Type 1 master
  */
 //@{
-
 #define BP_CSU_SA_NSA3      (6)      //!< Bit position for CSU_SA_NSA3.
 #define BM_CSU_SA_NSA3      (0x00000040)  //!< Bit mask for CSU_SA_NSA3.
 
@@ -24292,7 +22711,6 @@ typedef union _hw_csu_sa
 //! @brief Set the NSA3 field to a new value.
 #define BW_CSU_SA_NSA3(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_NSA3) | BF_CSU_SA_NSA3(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field L3[7] (RW)
@@ -24304,7 +22722,6 @@ typedef union _hw_csu_sa
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_SA_L3      (7)      //!< Bit position for CSU_SA_L3.
 #define BM_CSU_SA_L3      (0x00000080)  //!< Bit mask for CSU_SA_L3.
 
@@ -24318,7 +22735,6 @@ typedef union _hw_csu_sa
 //! @brief Set the L3 field to a new value.
 #define BW_CSU_SA_L3(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_L3) | BF_CSU_SA_L3(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field NSA4[8] (RW)
@@ -24330,7 +22746,6 @@ typedef union _hw_csu_sa
  * - 1 - Non-secure access for the corresponding Type 1 master
  */
 //@{
-
 #define BP_CSU_SA_NSA4      (8)      //!< Bit position for CSU_SA_NSA4.
 #define BM_CSU_SA_NSA4      (0x00000100)  //!< Bit mask for CSU_SA_NSA4.
 
@@ -24344,7 +22759,6 @@ typedef union _hw_csu_sa
 //! @brief Set the NSA4 field to a new value.
 #define BW_CSU_SA_NSA4(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_NSA4) | BF_CSU_SA_NSA4(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field L4[9] (RW)
@@ -24356,7 +22770,6 @@ typedef union _hw_csu_sa
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_SA_L4      (9)      //!< Bit position for CSU_SA_L4.
 #define BM_CSU_SA_L4      (0x00000200)  //!< Bit mask for CSU_SA_L4.
 
@@ -24370,7 +22783,6 @@ typedef union _hw_csu_sa
 //! @brief Set the L4 field to a new value.
 #define BW_CSU_SA_L4(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_L4) | BF_CSU_SA_L4(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field NSA5[10] (RW)
@@ -24382,7 +22794,6 @@ typedef union _hw_csu_sa
  * - 1 - Non-secure access for the corresponding Type 1 master
  */
 //@{
-
 #define BP_CSU_SA_NSA5      (10)      //!< Bit position for CSU_SA_NSA5.
 #define BM_CSU_SA_NSA5      (0x00000400)  //!< Bit mask for CSU_SA_NSA5.
 
@@ -24396,7 +22807,6 @@ typedef union _hw_csu_sa
 //! @brief Set the NSA5 field to a new value.
 #define BW_CSU_SA_NSA5(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_NSA5) | BF_CSU_SA_NSA5(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field L5[11] (RW)
@@ -24408,7 +22818,6 @@ typedef union _hw_csu_sa
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_SA_L5      (11)      //!< Bit position for CSU_SA_L5.
 #define BM_CSU_SA_L5      (0x00000800)  //!< Bit mask for CSU_SA_L5.
 
@@ -24422,7 +22831,6 @@ typedef union _hw_csu_sa
 //! @brief Set the L5 field to a new value.
 #define BW_CSU_SA_L5(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_L5) | BF_CSU_SA_L5(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field NSA6[12] (RW)
@@ -24434,7 +22842,6 @@ typedef union _hw_csu_sa
  * - 1 - Non-secure access for the corresponding Type 1 master
  */
 //@{
-
 #define BP_CSU_SA_NSA6      (12)      //!< Bit position for CSU_SA_NSA6.
 #define BM_CSU_SA_NSA6      (0x00001000)  //!< Bit mask for CSU_SA_NSA6.
 
@@ -24448,7 +22855,6 @@ typedef union _hw_csu_sa
 //! @brief Set the NSA6 field to a new value.
 #define BW_CSU_SA_NSA6(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_NSA6) | BF_CSU_SA_NSA6(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field L6[13] (RW)
@@ -24460,7 +22866,6 @@ typedef union _hw_csu_sa
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_SA_L6      (13)      //!< Bit position for CSU_SA_L6.
 #define BM_CSU_SA_L6      (0x00002000)  //!< Bit mask for CSU_SA_L6.
 
@@ -24474,7 +22879,6 @@ typedef union _hw_csu_sa
 //! @brief Set the L6 field to a new value.
 #define BW_CSU_SA_L6(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_L6) | BF_CSU_SA_L6(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field NSA7[14] (RW)
@@ -24486,7 +22890,6 @@ typedef union _hw_csu_sa
  * - 1 - Non-secure access for the corresponding Type 1 master
  */
 //@{
-
 #define BP_CSU_SA_NSA7      (14)      //!< Bit position for CSU_SA_NSA7.
 #define BM_CSU_SA_NSA7      (0x00004000)  //!< Bit mask for CSU_SA_NSA7.
 
@@ -24500,7 +22903,6 @@ typedef union _hw_csu_sa
 //! @brief Set the NSA7 field to a new value.
 #define BW_CSU_SA_NSA7(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_NSA7) | BF_CSU_SA_NSA7(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field L7[15] (RW)
@@ -24512,7 +22914,6 @@ typedef union _hw_csu_sa
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_SA_L7      (15)      //!< Bit position for CSU_SA_L7.
 #define BM_CSU_SA_L7      (0x00008000)  //!< Bit mask for CSU_SA_L7.
 
@@ -24526,7 +22927,6 @@ typedef union _hw_csu_sa
 //! @brief Set the L7 field to a new value.
 #define BW_CSU_SA_L7(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_L7) | BF_CSU_SA_L7(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field NSA8[16] (RW)
@@ -24538,7 +22938,6 @@ typedef union _hw_csu_sa
  * - 1 - Non-secure access for the corresponding Type 1 master
  */
 //@{
-
 #define BP_CSU_SA_NSA8      (16)      //!< Bit position for CSU_SA_NSA8.
 #define BM_CSU_SA_NSA8      (0x00010000)  //!< Bit mask for CSU_SA_NSA8.
 
@@ -24552,7 +22951,6 @@ typedef union _hw_csu_sa
 //! @brief Set the NSA8 field to a new value.
 #define BW_CSU_SA_NSA8(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_NSA8) | BF_CSU_SA_NSA8(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field L8[17] (RW)
@@ -24564,7 +22962,6 @@ typedef union _hw_csu_sa
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_SA_L8      (17)      //!< Bit position for CSU_SA_L8.
 #define BM_CSU_SA_L8      (0x00020000)  //!< Bit mask for CSU_SA_L8.
 
@@ -24578,7 +22975,6 @@ typedef union _hw_csu_sa
 //! @brief Set the L8 field to a new value.
 #define BW_CSU_SA_L8(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_L8) | BF_CSU_SA_L8(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field NSA9[18] (RW)
@@ -24590,7 +22986,6 @@ typedef union _hw_csu_sa
  * - 1 - Non-secure access for the corresponding Type 1 master
  */
 //@{
-
 #define BP_CSU_SA_NSA9      (18)      //!< Bit position for CSU_SA_NSA9.
 #define BM_CSU_SA_NSA9      (0x00040000)  //!< Bit mask for CSU_SA_NSA9.
 
@@ -24604,7 +22999,6 @@ typedef union _hw_csu_sa
 //! @brief Set the NSA9 field to a new value.
 #define BW_CSU_SA_NSA9(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_NSA9) | BF_CSU_SA_NSA9(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field L9[19] (RW)
@@ -24616,7 +23010,6 @@ typedef union _hw_csu_sa
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_SA_L9      (19)      //!< Bit position for CSU_SA_L9.
 #define BM_CSU_SA_L9      (0x00080000)  //!< Bit mask for CSU_SA_L9.
 
@@ -24630,7 +23023,6 @@ typedef union _hw_csu_sa
 //! @brief Set the L9 field to a new value.
 #define BW_CSU_SA_L9(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_L9) | BF_CSU_SA_L9(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field NSA10[20] (RW)
@@ -24642,7 +23034,6 @@ typedef union _hw_csu_sa
  * - 1 - Non-secure access for the corresponding Type 1 master
  */
 //@{
-
 #define BP_CSU_SA_NSA10      (20)      //!< Bit position for CSU_SA_NSA10.
 #define BM_CSU_SA_NSA10      (0x00100000)  //!< Bit mask for CSU_SA_NSA10.
 
@@ -24656,7 +23047,6 @@ typedef union _hw_csu_sa
 //! @brief Set the NSA10 field to a new value.
 #define BW_CSU_SA_NSA10(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_NSA10) | BF_CSU_SA_NSA10(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field L10[21] (RW)
@@ -24668,7 +23058,6 @@ typedef union _hw_csu_sa
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_SA_L10      (21)      //!< Bit position for CSU_SA_L10.
 #define BM_CSU_SA_L10      (0x00200000)  //!< Bit mask for CSU_SA_L10.
 
@@ -24682,7 +23071,6 @@ typedef union _hw_csu_sa
 //! @brief Set the L10 field to a new value.
 #define BW_CSU_SA_L10(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_L10) | BF_CSU_SA_L10(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field NSA11[22] (RW)
@@ -24694,7 +23082,6 @@ typedef union _hw_csu_sa
  * - 1 - Non-secure access for the corresponding Type 1 master
  */
 //@{
-
 #define BP_CSU_SA_NSA11      (22)      //!< Bit position for CSU_SA_NSA11.
 #define BM_CSU_SA_NSA11      (0x00400000)  //!< Bit mask for CSU_SA_NSA11.
 
@@ -24708,7 +23095,6 @@ typedef union _hw_csu_sa
 //! @brief Set the NSA11 field to a new value.
 #define BW_CSU_SA_NSA11(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_NSA11) | BF_CSU_SA_NSA11(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field L11[23] (RW)
@@ -24720,7 +23106,6 @@ typedef union _hw_csu_sa
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_SA_L11      (23)      //!< Bit position for CSU_SA_L11.
 #define BM_CSU_SA_L11      (0x00800000)  //!< Bit mask for CSU_SA_L11.
 
@@ -24734,7 +23119,6 @@ typedef union _hw_csu_sa
 //! @brief Set the L11 field to a new value.
 #define BW_CSU_SA_L11(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_L11) | BF_CSU_SA_L11(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field NSA12[24] (RW)
@@ -24746,7 +23130,6 @@ typedef union _hw_csu_sa
  * - 1 - Non-secure access for the corresponding Type 1 master
  */
 //@{
-
 #define BP_CSU_SA_NSA12      (24)      //!< Bit position for CSU_SA_NSA12.
 #define BM_CSU_SA_NSA12      (0x01000000)  //!< Bit mask for CSU_SA_NSA12.
 
@@ -24760,7 +23143,6 @@ typedef union _hw_csu_sa
 //! @brief Set the NSA12 field to a new value.
 #define BW_CSU_SA_NSA12(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_NSA12) | BF_CSU_SA_NSA12(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field L12[25] (RW)
@@ -24772,7 +23154,6 @@ typedef union _hw_csu_sa
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_SA_L12      (25)      //!< Bit position for CSU_SA_L12.
 #define BM_CSU_SA_L12      (0x02000000)  //!< Bit mask for CSU_SA_L12.
 
@@ -24786,7 +23167,6 @@ typedef union _hw_csu_sa
 //! @brief Set the L12 field to a new value.
 #define BW_CSU_SA_L12(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_L12) | BF_CSU_SA_L12(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field NSA13[26] (RW)
@@ -24798,7 +23178,6 @@ typedef union _hw_csu_sa
  * - 1 - Non-secure access for the corresponding Type 1 master
  */
 //@{
-
 #define BP_CSU_SA_NSA13      (26)      //!< Bit position for CSU_SA_NSA13.
 #define BM_CSU_SA_NSA13      (0x04000000)  //!< Bit mask for CSU_SA_NSA13.
 
@@ -24812,7 +23191,6 @@ typedef union _hw_csu_sa
 //! @brief Set the NSA13 field to a new value.
 #define BW_CSU_SA_NSA13(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_NSA13) | BF_CSU_SA_NSA13(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field L13[27] (RW)
@@ -24824,7 +23202,6 @@ typedef union _hw_csu_sa
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_SA_L13      (27)      //!< Bit position for CSU_SA_L13.
 #define BM_CSU_SA_L13      (0x08000000)  //!< Bit mask for CSU_SA_L13.
 
@@ -24838,7 +23215,6 @@ typedef union _hw_csu_sa
 //! @brief Set the L13 field to a new value.
 #define BW_CSU_SA_L13(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_L13) | BF_CSU_SA_L13(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field NSA14[28] (RW)
@@ -24850,7 +23226,6 @@ typedef union _hw_csu_sa
  * - 1 - Non-secure access for the corresponding Type 1 master
  */
 //@{
-
 #define BP_CSU_SA_NSA14      (28)      //!< Bit position for CSU_SA_NSA14.
 #define BM_CSU_SA_NSA14      (0x10000000)  //!< Bit mask for CSU_SA_NSA14.
 
@@ -24864,7 +23239,6 @@ typedef union _hw_csu_sa
 //! @brief Set the NSA14 field to a new value.
 #define BW_CSU_SA_NSA14(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_NSA14) | BF_CSU_SA_NSA14(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field L14[29] (RW)
@@ -24876,7 +23250,6 @@ typedef union _hw_csu_sa
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_SA_L14      (29)      //!< Bit position for CSU_SA_L14.
 #define BM_CSU_SA_L14      (0x20000000)  //!< Bit mask for CSU_SA_L14.
 
@@ -24890,7 +23263,6 @@ typedef union _hw_csu_sa
 //! @brief Set the L14 field to a new value.
 #define BW_CSU_SA_L14(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_L14) | BF_CSU_SA_L14(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field NSA15[30] (RW)
@@ -24902,7 +23274,6 @@ typedef union _hw_csu_sa
  * - 1 - Non-secure access for the corresponding Type 1 master
  */
 //@{
-
 #define BP_CSU_SA_NSA15      (30)      //!< Bit position for CSU_SA_NSA15.
 #define BM_CSU_SA_NSA15      (0x40000000)  //!< Bit mask for CSU_SA_NSA15.
 
@@ -24916,7 +23287,6 @@ typedef union _hw_csu_sa
 //! @brief Set the NSA15 field to a new value.
 #define BW_CSU_SA_NSA15(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_NSA15) | BF_CSU_SA_NSA15(v)))
 #endif
-
 //@}
 
 /*! @name Register CSU_SA, field L15[31] (RW)
@@ -24928,7 +23298,6 @@ typedef union _hw_csu_sa
  * - 1 - Lock -- adjacent (next lower) bit cannot be written by software
  */
 //@{
-
 #define BP_CSU_SA_L15      (31)      //!< Bit position for CSU_SA_L15.
 #define BM_CSU_SA_L15      (0x80000000)  //!< Bit mask for CSU_SA_L15.
 
@@ -24942,7 +23311,6 @@ typedef union _hw_csu_sa
 //! @brief Set the L15 field to a new value.
 #define BW_CSU_SA_L15(v)   (HW_CSU_SA_WR((HW_CSU_SA_RD() & ~BM_CSU_SA_L15) | BF_CSU_SA_L15(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -25010,3 +23378,5 @@ typedef struct _hw_csu
 #endif
 
 #endif // __HW_CSU_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

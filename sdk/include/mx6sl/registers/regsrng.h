@@ -94,13 +94,11 @@ typedef union _hw_rng_ver
  * Subjiect to change.
  */
 //@{
-
 #define BP_RNG_VER_MINOR      (0)      //!< Bit position for RNG_VER_MINOR.
 #define BM_RNG_VER_MINOR      (0x000000ff)  //!< Bit mask for RNG_VER_MINOR.
 
 //! @brief Get value of RNG_VER_MINOR from a register value.
 #define BG_RNG_VER_MINOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNG_VER_MINOR) >> BP_RNG_VER_MINOR)
-
 //@}
 
 /*! @name Register RNG_VER, field MAJOR[15:8] (RO)
@@ -108,13 +106,11 @@ typedef union _hw_rng_ver
  * This field is always set to 0x02.
  */
 //@{
-
 #define BP_RNG_VER_MAJOR      (8)      //!< Bit position for RNG_VER_MAJOR.
 #define BM_RNG_VER_MAJOR      (0x0000ff00)  //!< Bit mask for RNG_VER_MAJOR.
 
 //! @brief Get value of RNG_VER_MAJOR from a register value.
 #define BG_RNG_VER_MAJOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNG_VER_MAJOR) >> BP_RNG_VER_MAJOR)
-
 //@}
 
 /*! @name Register RNG_VER, field TYPE[31:28] (RO)
@@ -128,13 +124,11 @@ typedef union _hw_rng_ver
  * - Else - Reserved
  */
 //@{
-
 #define BP_RNG_VER_TYPE      (28)      //!< Bit position for RNG_VER_TYPE.
 #define BM_RNG_VER_TYPE      (0xf0000000)  //!< Bit mask for RNG_VER_TYPE.
 
 //! @brief Get value of RNG_VER_TYPE from a register value.
 #define BG_RNG_VER_TYPE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNG_VER_TYPE) >> BP_RNG_VER_TYPE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -197,7 +191,6 @@ typedef union _hw_rng_cmd
  * - 1 - Self test mode.
  */
 //@{
-
 #define BP_RNG_CMD_ST      (0)      //!< Bit position for RNG_CMD_ST.
 #define BM_RNG_CMD_ST      (0x00000001)  //!< Bit mask for RNG_CMD_ST.
 
@@ -211,7 +204,6 @@ typedef union _hw_rng_cmd
 //! @brief Set the ST field to a new value.
 #define BW_RNG_CMD_ST(v)   (HW_RNG_CMD_WR((HW_RNG_CMD_RD() & ~BM_RNG_CMD_ST) | BF_RNG_CMD_ST(v)))
 #endif
-
 //@}
 
 /*! @name Register RNG_CMD, field GS[1] (RW)
@@ -225,7 +217,6 @@ typedef union _hw_rng_cmd
  * - 1 - Generate seed mode.
  */
 //@{
-
 #define BP_RNG_CMD_GS      (1)      //!< Bit position for RNG_CMD_GS.
 #define BM_RNG_CMD_GS      (0x00000002)  //!< Bit mask for RNG_CMD_GS.
 
@@ -239,7 +230,6 @@ typedef union _hw_rng_cmd
 //! @brief Set the GS field to a new value.
 #define BW_RNG_CMD_GS(v)   (HW_RNG_CMD_WR((HW_RNG_CMD_RD() & ~BM_RNG_CMD_GS) | BF_RNG_CMD_GS(v)))
 #endif
-
 //@}
 
 /*! @name Register RNG_CMD, field CI[4] (WORZ)
@@ -251,7 +241,6 @@ typedef union _hw_rng_cmd
  * - 1 - Clear interrupt.
  */
 //@{
-
 #define BP_RNG_CMD_CI      (4)      //!< Bit position for RNG_CMD_CI.
 #define BM_RNG_CMD_CI      (0x00000010)  //!< Bit mask for RNG_CMD_CI.
 
@@ -260,7 +249,6 @@ typedef union _hw_rng_cmd
 
 //! @brief Format value for bitfield RNG_CMD_CI.
 #define BF_RNG_CMD_CI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_RNG_CMD_CI) & BM_RNG_CMD_CI)
-
 //@}
 
 /*! @name Register RNG_CMD, field CE[5] (WORZ)
@@ -272,7 +260,6 @@ typedef union _hw_rng_cmd
  * - 1 - Clear errors and interrupt.
  */
 //@{
-
 #define BP_RNG_CMD_CE      (5)      //!< Bit position for RNG_CMD_CE.
 #define BM_RNG_CMD_CE      (0x00000020)  //!< Bit mask for RNG_CMD_CE.
 
@@ -281,7 +268,6 @@ typedef union _hw_rng_cmd
 
 //! @brief Format value for bitfield RNG_CMD_CE.
 #define BF_RNG_CMD_CE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_RNG_CMD_CE) & BM_RNG_CMD_CE)
-
 //@}
 
 /*! @name Register RNG_CMD, field SR[6] (WORZ)
@@ -293,7 +279,6 @@ typedef union _hw_rng_cmd
  * - 1 - Software reset.
  */
 //@{
-
 #define BP_RNG_CMD_SR      (6)      //!< Bit position for RNG_CMD_SR.
 #define BM_RNG_CMD_SR      (0x00000040)  //!< Bit mask for RNG_CMD_SR.
 
@@ -302,7 +287,6 @@ typedef union _hw_rng_cmd
 
 //! @brief Format value for bitfield RNG_CMD_SR.
 #define BF_RNG_CMD_SR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_RNG_CMD_SR) & BM_RNG_CMD_SR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -364,7 +348,6 @@ typedef union _hw_rng_cr
  * - 11 - Generate interrupt and return all zeros (Overrides RNG_CR[MASKERR])
  */
 //@{
-
 #define BP_RNG_CR_FUFMOD      (0)      //!< Bit position for RNG_CR_FUFMOD.
 #define BM_RNG_CR_FUFMOD      (0x00000003)  //!< Bit mask for RNG_CR_FUFMOD.
 
@@ -378,7 +361,6 @@ typedef union _hw_rng_cr
 //! @brief Set the FUFMOD field to a new value.
 #define BW_RNG_CR_FUFMOD(v)   (HW_RNG_CR_WR((HW_RNG_CR_RD() & ~BM_RNG_CR_FUFMOD) | BF_RNG_CR_FUFMOD(v)))
 #endif
-
 //@}
 
 /*! @name Register RNG_CR, field AR[4] (RW)
@@ -392,7 +374,6 @@ typedef union _hw_rng_cr
  * - 1 - Enable automatic reseeding.
  */
 //@{
-
 #define BP_RNG_CR_AR      (4)      //!< Bit position for RNG_CR_AR.
 #define BM_RNG_CR_AR      (0x00000010)  //!< Bit mask for RNG_CR_AR.
 
@@ -406,7 +387,6 @@ typedef union _hw_rng_cr
 //! @brief Set the AR field to a new value.
 #define BW_RNG_CR_AR(v)   (HW_RNG_CR_WR((HW_RNG_CR_RD() & ~BM_RNG_CR_AR) | BF_RNG_CR_AR(v)))
 #endif
-
 //@}
 
 /*! @name Register RNG_CR, field MASKDONE[5] (RW)
@@ -421,7 +401,6 @@ typedef union _hw_rng_cr
  * - 1 - Mask applied.
  */
 //@{
-
 #define BP_RNG_CR_MASKDONE      (5)      //!< Bit position for RNG_CR_MASKDONE.
 #define BM_RNG_CR_MASKDONE      (0x00000020)  //!< Bit mask for RNG_CR_MASKDONE.
 
@@ -435,7 +414,6 @@ typedef union _hw_rng_cr
 //! @brief Set the MASKDONE field to a new value.
 #define BW_RNG_CR_MASKDONE(v)   (HW_RNG_CR_WR((HW_RNG_CR_RD() & ~BM_RNG_CR_MASKDONE) | BF_RNG_CR_MASKDONE(v)))
 #endif
-
 //@}
 
 /*! @name Register RNG_CR, field MASKERR[6] (RW)
@@ -451,7 +429,6 @@ typedef union _hw_rng_cr
  * - 1 - Mask applied to the error interrupt.
  */
 //@{
-
 #define BP_RNG_CR_MASKERR      (6)      //!< Bit position for RNG_CR_MASKERR.
 #define BM_RNG_CR_MASKERR      (0x00000040)  //!< Bit mask for RNG_CR_MASKERR.
 
@@ -465,7 +442,6 @@ typedef union _hw_rng_cr
 //! @brief Set the MASKERR field to a new value.
 #define BW_RNG_CR_MASKERR(v)   (HW_RNG_CR_WR((HW_RNG_CR_RD() & ~BM_RNG_CR_MASKERR) | BF_RNG_CR_MASKERR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -529,13 +505,11 @@ typedef union _hw_rng_sr
  * - 1 - Busy.
  */
 //@{
-
 #define BP_RNG_SR_BUSY      (1)      //!< Bit position for RNG_SR_BUSY.
 #define BM_RNG_SR_BUSY      (0x00000002)  //!< Bit mask for RNG_SR_BUSY.
 
 //! @brief Get value of RNG_SR_BUSY from a register value.
 #define BG_RNG_SR_BUSY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNG_SR_BUSY) >> BP_RNG_SR_BUSY)
-
 //@}
 
 /*! @name Register RNG_SR, field SLP[2] (RO)
@@ -549,13 +523,11 @@ typedef union _hw_rng_sr
  * - 1 - RNGB is in sleep mode.
  */
 //@{
-
 #define BP_RNG_SR_SLP      (2)      //!< Bit position for RNG_SR_SLP.
 #define BM_RNG_SR_SLP      (0x00000004)  //!< Bit mask for RNG_SR_SLP.
 
 //! @brief Get value of RNG_SR_SLP from a register value.
 #define BG_RNG_SR_SLP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNG_SR_SLP) >> BP_RNG_SR_SLP)
-
 //@}
 
 /*! @name Register RNG_SR, field RS[3] (RO)
@@ -568,13 +540,11 @@ typedef union _hw_rng_sr
  * - 1 - RNGB needs to be reseeded.
  */
 //@{
-
 #define BP_RNG_SR_RS      (3)      //!< Bit position for RNG_SR_RS.
 #define BM_RNG_SR_RS      (0x00000008)  //!< Bit mask for RNG_SR_RS.
 
 //! @brief Get value of RNG_SR_RS from a register value.
 #define BG_RNG_SR_RS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNG_SR_RS) >> BP_RNG_SR_RS)
-
 //@}
 
 /*! @name Register RNG_SR, field STDN[4] (RO)
@@ -587,13 +557,11 @@ typedef union _hw_rng_sr
  * - 1 - Completed a self test since the last reset.
  */
 //@{
-
 #define BP_RNG_SR_STDN      (4)      //!< Bit position for RNG_SR_STDN.
 #define BM_RNG_SR_STDN      (0x00000010)  //!< Bit mask for RNG_SR_STDN.
 
 //! @brief Get value of RNG_SR_STDN from a register value.
 #define BG_RNG_SR_STDN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNG_SR_STDN) >> BP_RNG_SR_STDN)
-
 //@}
 
 /*! @name Register RNG_SR, field SDN[5] (RO)
@@ -605,13 +573,11 @@ typedef union _hw_rng_sr
  * - 1 - Completed seed generation since the last reset.
  */
 //@{
-
 #define BP_RNG_SR_SDN      (5)      //!< Bit position for RNG_SR_SDN.
 #define BM_RNG_SR_SDN      (0x00000020)  //!< Bit mask for RNG_SR_SDN.
 
 //! @brief Get value of RNG_SR_SDN from a register value.
 #define BG_RNG_SR_SDN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNG_SR_SDN) >> BP_RNG_SR_SDN)
-
 //@}
 
 /*! @name Register RNG_SR, field NSDN[6] (RO)
@@ -619,13 +585,11 @@ typedef union _hw_rng_sr
  * Indicates that a new seed is ready for use during the next seed generation process.
  */
 //@{
-
 #define BP_RNG_SR_NSDN      (6)      //!< Bit position for RNG_SR_NSDN.
 #define BM_RNG_SR_NSDN      (0x00000040)  //!< Bit mask for RNG_SR_NSDN.
 
 //! @brief Get value of RNG_SR_NSDN from a register value.
 #define BG_RNG_SR_NSDN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNG_SR_NSDN) >> BP_RNG_SR_NSDN)
-
 //@}
 
 /*! @name Register RNG_SR, field FIFO_LVL[11:8] (RO)
@@ -634,13 +598,11 @@ typedef union _hw_rng_sr
  * as an integer.
  */
 //@{
-
 #define BP_RNG_SR_FIFO_LVL      (8)      //!< Bit position for RNG_SR_FIFO_LVL.
 #define BM_RNG_SR_FIFO_LVL      (0x00000f00)  //!< Bit mask for RNG_SR_FIFO_LVL.
 
 //! @brief Get value of RNG_SR_FIFO_LVL from a register value.
 #define BG_RNG_SR_FIFO_LVL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNG_SR_FIFO_LVL) >> BP_RNG_SR_FIFO_LVL)
-
 //@}
 
 /*! @name Register RNG_SR, field FIFO_SIZE[15:12] (RO)
@@ -649,13 +611,11 @@ typedef union _hw_rng_sr
  * This value is set to five on the default version of RNGB .
  */
 //@{
-
 #define BP_RNG_SR_FIFO_SIZE      (12)      //!< Bit position for RNG_SR_FIFO_SIZE.
 #define BM_RNG_SR_FIFO_SIZE      (0x0000f000)  //!< Bit mask for RNG_SR_FIFO_SIZE.
 
 //! @brief Get value of RNG_SR_FIFO_SIZE from a register value.
 #define BG_RNG_SR_FIFO_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNG_SR_FIFO_SIZE) >> BP_RNG_SR_FIFO_SIZE)
-
 //@}
 
 /*! @name Register RNG_SR, field ERR[16] (RO)
@@ -667,13 +627,11 @@ typedef union _hw_rng_sr
  * - 1 - Error detected.
  */
 //@{
-
 #define BP_RNG_SR_ERR      (16)      //!< Bit position for RNG_SR_ERR.
 #define BM_RNG_SR_ERR      (0x00010000)  //!< Bit mask for RNG_SR_ERR.
 
 //! @brief Get value of RNG_SR_ERR from a register value.
 #define BG_RNG_SR_ERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNG_SR_ERR) >> BP_RNG_SR_ERR)
-
 //@}
 
 /*! @name Register RNG_SR, field ST_PF[23:21] (RO)
@@ -686,13 +644,11 @@ typedef union _hw_rng_sr
  * - 1 - Fail.
  */
 //@{
-
 #define BP_RNG_SR_ST_PF      (21)      //!< Bit position for RNG_SR_ST_PF.
 #define BM_RNG_SR_ST_PF      (0x00e00000)  //!< Bit mask for RNG_SR_ST_PF.
 
 //! @brief Get value of RNG_SR_ST_PF from a register value.
 #define BG_RNG_SR_ST_PF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNG_SR_ST_PF) >> BP_RNG_SR_ST_PF)
-
 //@}
 
 /*! @name Register RNG_SR, field STATPF[31:24] (RO)
@@ -707,13 +663,11 @@ typedef union _hw_rng_sr
  * - 1 - Fail.
  */
 //@{
-
 #define BP_RNG_SR_STATPF      (24)      //!< Bit position for RNG_SR_STATPF.
 #define BM_RNG_SR_STATPF      (0xff000000)  //!< Bit mask for RNG_SR_STATPF.
 
 //! @brief Get value of RNG_SR_STATPF from a register value.
 #define BG_RNG_SR_STATPF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNG_SR_STATPF) >> BP_RNG_SR_STATPF)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -770,13 +724,11 @@ typedef union _hw_rng_esr
  * - 1 - LFSR failure has occurred.
  */
 //@{
-
 #define BP_RNG_ESR_LFE      (0)      //!< Bit position for RNG_ESR_LFE.
 #define BM_RNG_ESR_LFE      (0x00000001)  //!< Bit mask for RNG_ESR_LFE.
 
 //! @brief Get value of RNG_ESR_LFE from a register value.
 #define BG_RNG_ESR_LFE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNG_ESR_LFE) >> BP_RNG_ESR_LFE)
-
 //@}
 
 /*! @name Register RNG_ESR, field OSCE[1] (RO)
@@ -789,13 +741,11 @@ typedef union _hw_rng_esr
  * - 1 - Problem detected with the RNG oscillator.
  */
 //@{
-
 #define BP_RNG_ESR_OSCE      (1)      //!< Bit position for RNG_ESR_OSCE.
 #define BM_RNG_ESR_OSCE      (0x00000002)  //!< Bit mask for RNG_ESR_OSCE.
 
 //! @brief Get value of RNG_ESR_OSCE from a register value.
 #define BG_RNG_ESR_OSCE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNG_ESR_OSCE) >> BP_RNG_ESR_OSCE)
-
 //@}
 
 /*! @name Register RNG_ESR, field STE[2] (RO)
@@ -808,13 +758,11 @@ typedef union _hw_rng_esr
  * - 1 - RNGB has failed self test.
  */
 //@{
-
 #define BP_RNG_ESR_STE      (2)      //!< Bit position for RNG_ESR_STE.
 #define BM_RNG_ESR_STE      (0x00000004)  //!< Bit mask for RNG_ESR_STE.
 
 //! @brief Get value of RNG_ESR_STE from a register value.
 #define BG_RNG_ESR_STE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNG_ESR_STE) >> BP_RNG_ESR_STE)
-
 //@}
 
 /*! @name Register RNG_ESR, field SATE[3] (RO)
@@ -827,13 +775,11 @@ typedef union _hw_rng_esr
  * - 1 - RNGB has failed the statistical tests during initialization.
  */
 //@{
-
 #define BP_RNG_ESR_SATE      (3)      //!< Bit position for RNG_ESR_SATE.
 #define BM_RNG_ESR_SATE      (0x00000008)  //!< Bit mask for RNG_ESR_SATE.
 
 //! @brief Get value of RNG_ESR_SATE from a register value.
 #define BG_RNG_ESR_SATE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNG_ESR_SATE) >> BP_RNG_ESR_SATE)
-
 //@}
 
 /*! @name Register RNG_ESR, field FUFE[4] (RO)
@@ -847,13 +793,11 @@ typedef union _hw_rng_esr
  * - 1 - FIFO underflow has occurred
  */
 //@{
-
 #define BP_RNG_ESR_FUFE      (4)      //!< Bit position for RNG_ESR_FUFE.
 #define BM_RNG_ESR_FUFE      (0x00000010)  //!< Bit mask for RNG_ESR_FUFE.
 
 //! @brief Get value of RNG_ESR_FUFE from a register value.
 #define BG_RNG_ESR_FUFE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNG_ESR_FUFE) >> BP_RNG_ESR_FUFE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -903,13 +847,11 @@ typedef union _hw_rng_out
 
  */
 //@{
-
 #define BP_RNG_OUT_RANDOUT      (0)      //!< Bit position for RNG_OUT_RANDOUT.
 #define BM_RNG_OUT_RANDOUT      (0xffffffff)  //!< Bit mask for RNG_OUT_RANDOUT.
 
 //! @brief Get value of RNG_OUT_RANDOUT from a register value.
 #define BG_RNG_OUT_RANDOUT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_RNG_OUT_RANDOUT) >> BP_RNG_OUT_RANDOUT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -938,3 +880,5 @@ typedef struct _hw_rng
 #endif
 
 #endif // __HW_RNG_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

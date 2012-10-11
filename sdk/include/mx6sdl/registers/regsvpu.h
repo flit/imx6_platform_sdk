@@ -97,7 +97,6 @@ typedef union _hw_vpu_coderun
  * - 1 - BIT Processor start execution.
  */
 //@{
-
 #define BP_VPU_CODERUN_VPU_CODERUN      (0)      //!< Bit position for VPU_CODERUN_VPU_CODERUN.
 #define BM_VPU_CODERUN_VPU_CODERUN      (0x00000001)  //!< Bit mask for VPU_CODERUN_VPU_CODERUN.
 
@@ -106,7 +105,6 @@ typedef union _hw_vpu_coderun
 
 //! @brief Format value for bitfield VPU_CODERUN_VPU_CODERUN.
 #define BF_VPU_CODERUN_VPU_CODERUN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VPU_CODERUN_VPU_CODERUN) & BM_VPU_CODERUN_VPU_CODERUN)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -155,7 +153,6 @@ typedef union _hw_vpu_codedown
  * CodeData[15:0] Download data of VPU BIT boot code.
  */
 //@{
-
 #define BP_VPU_CODEDOWN_CODEDATA      (0)      //!< Bit position for VPU_CODEDOWN_CODEDATA.
 #define BM_VPU_CODEDOWN_CODEDATA      (0x0000ffff)  //!< Bit mask for VPU_CODEDOWN_CODEDATA.
 
@@ -164,7 +161,6 @@ typedef union _hw_vpu_codedown
 
 //! @brief Format value for bitfield VPU_CODEDOWN_CODEDATA.
 #define BF_VPU_CODEDOWN_CODEDATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VPU_CODEDOWN_CODEDATA) & BM_VPU_CODEDOWN_CODEDATA)
-
 //@}
 
 /*! @name Register VPU_CODEDOWN, field CODEADDR[28:16] (WO)
@@ -173,7 +169,6 @@ typedef union _hw_vpu_codedown
  * processor.
  */
 //@{
-
 #define BP_VPU_CODEDOWN_CODEADDR      (16)      //!< Bit position for VPU_CODEDOWN_CODEADDR.
 #define BM_VPU_CODEDOWN_CODEADDR      (0x1fff0000)  //!< Bit mask for VPU_CODEDOWN_CODEADDR.
 
@@ -182,7 +177,6 @@ typedef union _hw_vpu_codedown
 
 //! @brief Format value for bitfield VPU_CODEDOWN_CODEADDR.
 #define BF_VPU_CODEDOWN_CODEADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VPU_CODEDOWN_CODEADDR) & BM_VPU_CODEDOWN_CODEADDR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -234,7 +228,6 @@ typedef union _hw_vpu_hostintreq
  * - 1 - The host processor request interrupt to the BIT processor.
  */
 //@{
-
 #define BP_VPU_HOSTINTREQ_INTREQ      (0)      //!< Bit position for VPU_HOSTINTREQ_INTREQ.
 #define BM_VPU_HOSTINTREQ_INTREQ      (0x00000001)  //!< Bit mask for VPU_HOSTINTREQ_INTREQ.
 
@@ -243,7 +236,6 @@ typedef union _hw_vpu_hostintreq
 
 //! @brief Format value for bitfield VPU_HOSTINTREQ_INTREQ.
 #define BF_VPU_HOSTINTREQ_INTREQ(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VPU_HOSTINTREQ_INTREQ) & BM_VPU_HOSTINTREQ_INTREQ)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -295,7 +287,6 @@ typedef union _hw_vpu_bitintclear
  * - 1 - Clear the BIT interrupt to the host.
  */
 //@{
-
 #define BP_VPU_BITINTCLEAR_INTCLEAR      (0)      //!< Bit position for VPU_BITINTCLEAR_INTCLEAR.
 #define BM_VPU_BITINTCLEAR_INTCLEAR      (0x00000001)  //!< Bit mask for VPU_BITINTCLEAR_INTCLEAR.
 
@@ -304,7 +295,6 @@ typedef union _hw_vpu_bitintclear
 
 //! @brief Format value for bitfield VPU_BITINTCLEAR_INTCLEAR.
 #define BF_VPU_BITINTCLEAR_INTCLEAR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VPU_BITINTCLEAR_INTCLEAR) & BM_VPU_BITINTCLEAR_INTCLEAR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -357,13 +347,11 @@ typedef union _hw_vpu_bitintsts
  *     VPU_BitIntClear register.
  */
 //@{
-
 #define BP_VPU_BITINTSTS_INTSTS      (0)      //!< Bit position for VPU_BITINTSTS_INTSTS.
 #define BM_VPU_BITINTSTS_INTSTS      (0x00000001)  //!< Bit mask for VPU_BITINTSTS_INTSTS.
 
 //! @brief Get value of VPU_BITINTSTS_INTSTS from a register value.
 #define BG_VPU_BITINTSTS_INTSTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VPU_BITINTSTS_INTSTS) >> BP_VPU_BITINTSTS_INTSTS)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -412,13 +400,11 @@ typedef union _hw_vpu_bitcurpc
  * reading this register.
  */
 //@{
-
 #define BP_VPU_BITCURPC_CURPC      (0)      //!< Bit position for VPU_BITCURPC_CURPC.
 #define BM_VPU_BITCURPC_CURPC      (0x00003fff)  //!< Bit mask for VPU_BITCURPC_CURPC.
 
 //! @brief Get value of VPU_BITCURPC_CURPC from a register value.
 #define BG_VPU_BITCURPC_CURPC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VPU_BITCURPC_CURPC) >> BP_VPU_BITCURPC_CURPC)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -467,13 +453,11 @@ typedef union _hw_vpu_bitcodecbusy
  * running."0"means processor is waiting for a command.This value is connected to the o_vpu_idle.
  */
 //@{
-
 #define BP_VPU_BITCODECBUSY_CODECBUSY      (0)      //!< Bit position for VPU_BITCODECBUSY_CODECBUSY.
 #define BM_VPU_BITCODECBUSY_CODECBUSY      (0x00000001)  //!< Bit mask for VPU_BITCODECBUSY_CODECBUSY.
 
 //! @brief Get value of VPU_BITCODECBUSY_CODECBUSY from a register value.
 #define BG_VPU_BITCODECBUSY_CODECBUSY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VPU_BITCODECBUSY_CODECBUSY) >> BP_VPU_BITCODECBUSY_CODECBUSY)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -505,3 +489,5 @@ typedef struct _hw_vpu
 #endif
 
 #endif // __HW_VPU_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

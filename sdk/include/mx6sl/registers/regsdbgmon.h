@@ -118,7 +118,6 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
  * - 1 - RUN, DBGMON is in working status
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_CTRL_RUN      (0)      //!< Bit position for DBGMON_HW_DBGMON_CTRL_RUN.
 #define BM_DBGMON_HW_DBGMON_CTRL_RUN      (0x00000001)  //!< Bit mask for DBGMON_HW_DBGMON_CTRL_RUN.
 
@@ -132,7 +131,6 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
 //! @brief Set the RUN field to a new value.
 #define BW_DBGMON_HW_DBGMON_CTRL_RUN(v)   (HW_DBGMON_HW_DBGMON_CTRL_WR((HW_DBGMON_HW_DBGMON_CTRL_RD() & ~BM_DBGMON_HW_DBGMON_CTRL_RUN) | BF_DBGMON_HW_DBGMON_CTRL_RUN(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_CTRL, field SNAP[1] (RW)
@@ -140,7 +138,6 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
  * Set this bit to snapshot the registers selected by REQSEL to SNVS domain registers
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_CTRL_SNAP      (1)      //!< Bit position for DBGMON_HW_DBGMON_CTRL_SNAP.
 #define BM_DBGMON_HW_DBGMON_CTRL_SNAP      (0x00000002)  //!< Bit mask for DBGMON_HW_DBGMON_CTRL_SNAP.
 
@@ -154,7 +151,6 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
 //! @brief Set the SNAP field to a new value.
 #define BW_DBGMON_HW_DBGMON_CTRL_SNAP(v)   (HW_DBGMON_HW_DBGMON_CTRL_WR((HW_DBGMON_HW_DBGMON_CTRL_RD() & ~BM_DBGMON_HW_DBGMON_CTRL_SNAP) | BF_DBGMON_HW_DBGMON_CTRL_SNAP(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_CTRL, field CLR[2] (RW)
@@ -163,7 +159,6 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
  * the clear process is done
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_CTRL_CLR      (2)      //!< Bit position for DBGMON_HW_DBGMON_CTRL_CLR.
 #define BM_DBGMON_HW_DBGMON_CTRL_CLR      (0x00000004)  //!< Bit mask for DBGMON_HW_DBGMON_CTRL_CLR.
 
@@ -177,7 +172,6 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
 //! @brief Set the CLR field to a new value.
 #define BW_DBGMON_HW_DBGMON_CTRL_CLR(v)   (HW_DBGMON_HW_DBGMON_CTRL_WR((HW_DBGMON_HW_DBGMON_CTRL_RD() & ~BM_DBGMON_HW_DBGMON_CTRL_CLR) | BF_DBGMON_HW_DBGMON_CTRL_CLR(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_CTRL, field CLR_SNVS[3] (RW)
@@ -185,7 +179,6 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
  * Set this bit to clear the registers in SNVS domain
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_CTRL_CLR_SNVS      (3)      //!< Bit position for DBGMON_HW_DBGMON_CTRL_CLR_SNVS.
 #define BM_DBGMON_HW_DBGMON_CTRL_CLR_SNVS      (0x00000008)  //!< Bit mask for DBGMON_HW_DBGMON_CTRL_CLR_SNVS.
 
@@ -199,7 +192,6 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
 //! @brief Set the CLR_SNVS field to a new value.
 #define BW_DBGMON_HW_DBGMON_CTRL_CLR_SNVS(v)   (HW_DBGMON_HW_DBGMON_CTRL_WR((HW_DBGMON_HW_DBGMON_CTRL_RD() & ~BM_DBGMON_HW_DBGMON_CTRL_CLR_SNVS) | BF_DBGMON_HW_DBGMON_CTRL_CLR_SNVS(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_CTRL, field ADDR_TRAPMODE[4] (RW)
@@ -211,7 +203,6 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
  * - 1 - Address trap function is enabled
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_CTRL_ADDR_TRAPMODE      (4)      //!< Bit position for DBGMON_HW_DBGMON_CTRL_ADDR_TRAPMODE.
 #define BM_DBGMON_HW_DBGMON_CTRL_ADDR_TRAPMODE      (0x00000010)  //!< Bit mask for DBGMON_HW_DBGMON_CTRL_ADDR_TRAPMODE.
 
@@ -225,7 +216,6 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
 //! @brief Set the ADDR_TRAPMODE field to a new value.
 #define BW_DBGMON_HW_DBGMON_CTRL_ADDR_TRAPMODE(v)   (HW_DBGMON_HW_DBGMON_CTRL_WR((HW_DBGMON_HW_DBGMON_CTRL_RD() & ~BM_DBGMON_HW_DBGMON_CTRL_ADDR_TRAPMODE) | BF_DBGMON_HW_DBGMON_CTRL_ADDR_TRAPMODE(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_CTRL, field ID_TRAPMODE[5] (RW)
@@ -237,7 +227,6 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
  * - 1 - ID trap function is enabled
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_CTRL_ID_TRAPMODE      (5)      //!< Bit position for DBGMON_HW_DBGMON_CTRL_ID_TRAPMODE.
 #define BM_DBGMON_HW_DBGMON_CTRL_ID_TRAPMODE      (0x00000020)  //!< Bit mask for DBGMON_HW_DBGMON_CTRL_ID_TRAPMODE.
 
@@ -251,7 +240,6 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
 //! @brief Set the ID_TRAPMODE field to a new value.
 #define BW_DBGMON_HW_DBGMON_CTRL_ID_TRAPMODE(v)   (HW_DBGMON_HW_DBGMON_CTRL_WR((HW_DBGMON_HW_DBGMON_CTRL_RD() & ~BM_DBGMON_HW_DBGMON_CTRL_ID_TRAPMODE) | BF_DBGMON_HW_DBGMON_CTRL_ID_TRAPMODE(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_CTRL, field REQSEL[9:8] (RW)
@@ -267,7 +255,6 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
  * - 11 - (N-3) transaction will be snapped to SNVS domain registers
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_CTRL_REQSEL      (8)      //!< Bit position for DBGMON_HW_DBGMON_CTRL_REQSEL.
 #define BM_DBGMON_HW_DBGMON_CTRL_REQSEL      (0x00000300)  //!< Bit mask for DBGMON_HW_DBGMON_CTRL_REQSEL.
 
@@ -281,7 +268,6 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
 //! @brief Set the REQSEL field to a new value.
 #define BW_DBGMON_HW_DBGMON_CTRL_REQSEL(v)   (HW_DBGMON_HW_DBGMON_CTRL_WR((HW_DBGMON_HW_DBGMON_CTRL_RD() & ~BM_DBGMON_HW_DBGMON_CTRL_REQSEL) | BF_DBGMON_HW_DBGMON_CTRL_REQSEL(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_CTRL, field WORKMODE[16] (RW)
@@ -293,7 +279,6 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
  * - 1 - The axi transaction in interrupt status will be ignored
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_CTRL_WORKMODE      (16)      //!< Bit position for DBGMON_HW_DBGMON_CTRL_WORKMODE.
 #define BM_DBGMON_HW_DBGMON_CTRL_WORKMODE      (0x00010000)  //!< Bit mask for DBGMON_HW_DBGMON_CTRL_WORKMODE.
 
@@ -307,7 +292,6 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
 //! @brief Set the WORKMODE field to a new value.
 #define BW_DBGMON_HW_DBGMON_CTRL_WORKMODE(v)   (HW_DBGMON_HW_DBGMON_CTRL_WR((HW_DBGMON_HW_DBGMON_CTRL_RD() & ~BM_DBGMON_HW_DBGMON_CTRL_WORKMODE) | BF_DBGMON_HW_DBGMON_CTRL_WORKMODE(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_CTRL, field ADDR_MASKEN[20] (RW)
@@ -319,7 +303,6 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
  * - 1 - Address mask is enabled, address within the range defined by ADDR_HIGH, ADDR_LOW will be monitored
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_CTRL_ADDR_MASKEN      (20)      //!< Bit position for DBGMON_HW_DBGMON_CTRL_ADDR_MASKEN.
 #define BM_DBGMON_HW_DBGMON_CTRL_ADDR_MASKEN      (0x00100000)  //!< Bit mask for DBGMON_HW_DBGMON_CTRL_ADDR_MASKEN.
 
@@ -333,7 +316,6 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
 //! @brief Set the ADDR_MASKEN field to a new value.
 #define BW_DBGMON_HW_DBGMON_CTRL_ADDR_MASKEN(v)   (HW_DBGMON_HW_DBGMON_CTRL_WR((HW_DBGMON_HW_DBGMON_CTRL_RD() & ~BM_DBGMON_HW_DBGMON_CTRL_ADDR_MASKEN) | BF_DBGMON_HW_DBGMON_CTRL_ADDR_MASKEN(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_CTRL, field WDOG_IRQ_SEL[24] (RW)
@@ -345,7 +327,6 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
  * - 1 - Select WDOG2 as WDOG IRQ source
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_CTRL_WDOG_IRQ_SEL      (24)      //!< Bit position for DBGMON_HW_DBGMON_CTRL_WDOG_IRQ_SEL.
 #define BM_DBGMON_HW_DBGMON_CTRL_WDOG_IRQ_SEL      (0x01000000)  //!< Bit mask for DBGMON_HW_DBGMON_CTRL_WDOG_IRQ_SEL.
 
@@ -359,7 +340,6 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
 //! @brief Set the WDOG_IRQ_SEL field to a new value.
 #define BW_DBGMON_HW_DBGMON_CTRL_WDOG_IRQ_SEL(v)   (HW_DBGMON_HW_DBGMON_CTRL_WR((HW_DBGMON_HW_DBGMON_CTRL_RD() & ~BM_DBGMON_HW_DBGMON_CTRL_WDOG_IRQ_SEL) | BF_DBGMON_HW_DBGMON_CTRL_WDOG_IRQ_SEL(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_CTRL, field CLKGATE[30] (RW)
@@ -372,7 +352,6 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
  * - 1 - Gating off the clock of DBGMON in order to minimize the power consumption.
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_CTRL_CLKGATE      (30)      //!< Bit position for DBGMON_HW_DBGMON_CTRL_CLKGATE.
 #define BM_DBGMON_HW_DBGMON_CTRL_CLKGATE      (0x40000000)  //!< Bit mask for DBGMON_HW_DBGMON_CTRL_CLKGATE.
 
@@ -386,7 +365,6 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
 //! @brief Set the CLKGATE field to a new value.
 #define BW_DBGMON_HW_DBGMON_CTRL_CLKGATE(v)   (HW_DBGMON_HW_DBGMON_CTRL_WR((HW_DBGMON_HW_DBGMON_CTRL_RD() & ~BM_DBGMON_HW_DBGMON_CTRL_CLKGATE) | BF_DBGMON_HW_DBGMON_CTRL_CLKGATE(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_CTRL, field SFTRST[31] (RW)
@@ -399,7 +377,6 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
  * - 1 - Hold DBGMON in reset
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_CTRL_SFTRST      (31)      //!< Bit position for DBGMON_HW_DBGMON_CTRL_SFTRST.
 #define BM_DBGMON_HW_DBGMON_CTRL_SFTRST      (0x80000000)  //!< Bit mask for DBGMON_HW_DBGMON_CTRL_SFTRST.
 
@@ -413,7 +390,6 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
 //! @brief Set the SFTRST field to a new value.
 #define BW_DBGMON_HW_DBGMON_CTRL_SFTRST(v)   (HW_DBGMON_HW_DBGMON_CTRL_WR((HW_DBGMON_HW_DBGMON_CTRL_RD() & ~BM_DBGMON_HW_DBGMON_CTRL_SFTRST) | BF_DBGMON_HW_DBGMON_CTRL_SFTRST(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -479,7 +455,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
  * Set to 1 to enable monitoring on MasterID 0.
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_MASTER_EN_MID0      (0)      //!< Bit position for DBGMON_HW_DBGMON_MASTER_EN_MID0.
 #define BM_DBGMON_HW_DBGMON_MASTER_EN_MID0      (0x00000001)  //!< Bit mask for DBGMON_HW_DBGMON_MASTER_EN_MID0.
 
@@ -493,7 +468,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
 //! @brief Set the MID0 field to a new value.
 #define BW_DBGMON_HW_DBGMON_MASTER_EN_MID0(v)   (HW_DBGMON_HW_DBGMON_MASTER_EN_WR((HW_DBGMON_HW_DBGMON_MASTER_EN_RD() & ~BM_DBGMON_HW_DBGMON_MASTER_EN_MID0) | BF_DBGMON_HW_DBGMON_MASTER_EN_MID0(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_MASTER_EN, field MID1[1] (RW)
@@ -501,7 +475,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
  * Set to 1 to enable monitoring on MasterID 1.
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_MASTER_EN_MID1      (1)      //!< Bit position for DBGMON_HW_DBGMON_MASTER_EN_MID1.
 #define BM_DBGMON_HW_DBGMON_MASTER_EN_MID1      (0x00000002)  //!< Bit mask for DBGMON_HW_DBGMON_MASTER_EN_MID1.
 
@@ -515,7 +488,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
 //! @brief Set the MID1 field to a new value.
 #define BW_DBGMON_HW_DBGMON_MASTER_EN_MID1(v)   (HW_DBGMON_HW_DBGMON_MASTER_EN_WR((HW_DBGMON_HW_DBGMON_MASTER_EN_RD() & ~BM_DBGMON_HW_DBGMON_MASTER_EN_MID1) | BF_DBGMON_HW_DBGMON_MASTER_EN_MID1(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_MASTER_EN, field MID2[2] (RW)
@@ -523,7 +495,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
  * Set to 1 to enable monitoring on MasterID 2.
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_MASTER_EN_MID2      (2)      //!< Bit position for DBGMON_HW_DBGMON_MASTER_EN_MID2.
 #define BM_DBGMON_HW_DBGMON_MASTER_EN_MID2      (0x00000004)  //!< Bit mask for DBGMON_HW_DBGMON_MASTER_EN_MID2.
 
@@ -537,7 +508,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
 //! @brief Set the MID2 field to a new value.
 #define BW_DBGMON_HW_DBGMON_MASTER_EN_MID2(v)   (HW_DBGMON_HW_DBGMON_MASTER_EN_WR((HW_DBGMON_HW_DBGMON_MASTER_EN_RD() & ~BM_DBGMON_HW_DBGMON_MASTER_EN_MID2) | BF_DBGMON_HW_DBGMON_MASTER_EN_MID2(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_MASTER_EN, field MID3[3] (RW)
@@ -545,7 +515,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
  * Set to 1 to enable monitoring on MasterID 3.
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_MASTER_EN_MID3      (3)      //!< Bit position for DBGMON_HW_DBGMON_MASTER_EN_MID3.
 #define BM_DBGMON_HW_DBGMON_MASTER_EN_MID3      (0x00000008)  //!< Bit mask for DBGMON_HW_DBGMON_MASTER_EN_MID3.
 
@@ -559,7 +528,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
 //! @brief Set the MID3 field to a new value.
 #define BW_DBGMON_HW_DBGMON_MASTER_EN_MID3(v)   (HW_DBGMON_HW_DBGMON_MASTER_EN_WR((HW_DBGMON_HW_DBGMON_MASTER_EN_RD() & ~BM_DBGMON_HW_DBGMON_MASTER_EN_MID3) | BF_DBGMON_HW_DBGMON_MASTER_EN_MID3(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_MASTER_EN, field MID4[4] (RW)
@@ -567,7 +535,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
  * Set to 1 to enable monitoring on MasterID 4.
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_MASTER_EN_MID4      (4)      //!< Bit position for DBGMON_HW_DBGMON_MASTER_EN_MID4.
 #define BM_DBGMON_HW_DBGMON_MASTER_EN_MID4      (0x00000010)  //!< Bit mask for DBGMON_HW_DBGMON_MASTER_EN_MID4.
 
@@ -581,7 +548,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
 //! @brief Set the MID4 field to a new value.
 #define BW_DBGMON_HW_DBGMON_MASTER_EN_MID4(v)   (HW_DBGMON_HW_DBGMON_MASTER_EN_WR((HW_DBGMON_HW_DBGMON_MASTER_EN_RD() & ~BM_DBGMON_HW_DBGMON_MASTER_EN_MID4) | BF_DBGMON_HW_DBGMON_MASTER_EN_MID4(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_MASTER_EN, field MID5[5] (RW)
@@ -589,7 +555,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
  * Set to 1 to enable monitoring on MasterID 5
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_MASTER_EN_MID5      (5)      //!< Bit position for DBGMON_HW_DBGMON_MASTER_EN_MID5.
 #define BM_DBGMON_HW_DBGMON_MASTER_EN_MID5      (0x00000020)  //!< Bit mask for DBGMON_HW_DBGMON_MASTER_EN_MID5.
 
@@ -603,7 +568,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
 //! @brief Set the MID5 field to a new value.
 #define BW_DBGMON_HW_DBGMON_MASTER_EN_MID5(v)   (HW_DBGMON_HW_DBGMON_MASTER_EN_WR((HW_DBGMON_HW_DBGMON_MASTER_EN_RD() & ~BM_DBGMON_HW_DBGMON_MASTER_EN_MID5) | BF_DBGMON_HW_DBGMON_MASTER_EN_MID5(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_MASTER_EN, field MID6[6] (RW)
@@ -611,7 +575,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
  * Set to 1 to enable monitoring on MasterID 6.
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_MASTER_EN_MID6      (6)      //!< Bit position for DBGMON_HW_DBGMON_MASTER_EN_MID6.
 #define BM_DBGMON_HW_DBGMON_MASTER_EN_MID6      (0x00000040)  //!< Bit mask for DBGMON_HW_DBGMON_MASTER_EN_MID6.
 
@@ -625,7 +588,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
 //! @brief Set the MID6 field to a new value.
 #define BW_DBGMON_HW_DBGMON_MASTER_EN_MID6(v)   (HW_DBGMON_HW_DBGMON_MASTER_EN_WR((HW_DBGMON_HW_DBGMON_MASTER_EN_RD() & ~BM_DBGMON_HW_DBGMON_MASTER_EN_MID6) | BF_DBGMON_HW_DBGMON_MASTER_EN_MID6(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_MASTER_EN, field MID7[7] (RW)
@@ -633,7 +595,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
  * Set to 1 to enable monitoring on MasterID 7.
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_MASTER_EN_MID7      (7)      //!< Bit position for DBGMON_HW_DBGMON_MASTER_EN_MID7.
 #define BM_DBGMON_HW_DBGMON_MASTER_EN_MID7      (0x00000080)  //!< Bit mask for DBGMON_HW_DBGMON_MASTER_EN_MID7.
 
@@ -647,7 +608,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
 //! @brief Set the MID7 field to a new value.
 #define BW_DBGMON_HW_DBGMON_MASTER_EN_MID7(v)   (HW_DBGMON_HW_DBGMON_MASTER_EN_WR((HW_DBGMON_HW_DBGMON_MASTER_EN_RD() & ~BM_DBGMON_HW_DBGMON_MASTER_EN_MID7) | BF_DBGMON_HW_DBGMON_MASTER_EN_MID7(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_MASTER_EN, field MID8[8] (RW)
@@ -655,7 +615,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
  * Set to 1 to enable monitoring on MasterID 8.
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_MASTER_EN_MID8      (8)      //!< Bit position for DBGMON_HW_DBGMON_MASTER_EN_MID8.
 #define BM_DBGMON_HW_DBGMON_MASTER_EN_MID8      (0x00000100)  //!< Bit mask for DBGMON_HW_DBGMON_MASTER_EN_MID8.
 
@@ -669,7 +628,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
 //! @brief Set the MID8 field to a new value.
 #define BW_DBGMON_HW_DBGMON_MASTER_EN_MID8(v)   (HW_DBGMON_HW_DBGMON_MASTER_EN_WR((HW_DBGMON_HW_DBGMON_MASTER_EN_RD() & ~BM_DBGMON_HW_DBGMON_MASTER_EN_MID8) | BF_DBGMON_HW_DBGMON_MASTER_EN_MID8(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_MASTER_EN, field MID9[9] (RW)
@@ -677,7 +635,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
  * Set to 1 to enable monitoring on MasterID 9.
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_MASTER_EN_MID9      (9)      //!< Bit position for DBGMON_HW_DBGMON_MASTER_EN_MID9.
 #define BM_DBGMON_HW_DBGMON_MASTER_EN_MID9      (0x00000200)  //!< Bit mask for DBGMON_HW_DBGMON_MASTER_EN_MID9.
 
@@ -691,7 +648,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
 //! @brief Set the MID9 field to a new value.
 #define BW_DBGMON_HW_DBGMON_MASTER_EN_MID9(v)   (HW_DBGMON_HW_DBGMON_MASTER_EN_WR((HW_DBGMON_HW_DBGMON_MASTER_EN_RD() & ~BM_DBGMON_HW_DBGMON_MASTER_EN_MID9) | BF_DBGMON_HW_DBGMON_MASTER_EN_MID9(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_MASTER_EN, field MID10[10] (RW)
@@ -699,7 +655,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
  * Set to 1 to enable monitoring on MasterID 10.
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_MASTER_EN_MID10      (10)      //!< Bit position for DBGMON_HW_DBGMON_MASTER_EN_MID10.
 #define BM_DBGMON_HW_DBGMON_MASTER_EN_MID10      (0x00000400)  //!< Bit mask for DBGMON_HW_DBGMON_MASTER_EN_MID10.
 
@@ -713,7 +668,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
 //! @brief Set the MID10 field to a new value.
 #define BW_DBGMON_HW_DBGMON_MASTER_EN_MID10(v)   (HW_DBGMON_HW_DBGMON_MASTER_EN_WR((HW_DBGMON_HW_DBGMON_MASTER_EN_RD() & ~BM_DBGMON_HW_DBGMON_MASTER_EN_MID10) | BF_DBGMON_HW_DBGMON_MASTER_EN_MID10(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_MASTER_EN, field MID11[11] (RW)
@@ -721,7 +675,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
  * Set to 1 to enable monitoring on MasterID 11.
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_MASTER_EN_MID11      (11)      //!< Bit position for DBGMON_HW_DBGMON_MASTER_EN_MID11.
 #define BM_DBGMON_HW_DBGMON_MASTER_EN_MID11      (0x00000800)  //!< Bit mask for DBGMON_HW_DBGMON_MASTER_EN_MID11.
 
@@ -735,7 +688,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
 //! @brief Set the MID11 field to a new value.
 #define BW_DBGMON_HW_DBGMON_MASTER_EN_MID11(v)   (HW_DBGMON_HW_DBGMON_MASTER_EN_WR((HW_DBGMON_HW_DBGMON_MASTER_EN_RD() & ~BM_DBGMON_HW_DBGMON_MASTER_EN_MID11) | BF_DBGMON_HW_DBGMON_MASTER_EN_MID11(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_MASTER_EN, field MID12[12] (RW)
@@ -743,7 +695,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
  * Set to 1 to enable monitoring on MasterID 12.
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_MASTER_EN_MID12      (12)      //!< Bit position for DBGMON_HW_DBGMON_MASTER_EN_MID12.
 #define BM_DBGMON_HW_DBGMON_MASTER_EN_MID12      (0x00001000)  //!< Bit mask for DBGMON_HW_DBGMON_MASTER_EN_MID12.
 
@@ -757,7 +708,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
 //! @brief Set the MID12 field to a new value.
 #define BW_DBGMON_HW_DBGMON_MASTER_EN_MID12(v)   (HW_DBGMON_HW_DBGMON_MASTER_EN_WR((HW_DBGMON_HW_DBGMON_MASTER_EN_RD() & ~BM_DBGMON_HW_DBGMON_MASTER_EN_MID12) | BF_DBGMON_HW_DBGMON_MASTER_EN_MID12(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_MASTER_EN, field MID13[13] (RW)
@@ -765,7 +715,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
  * Set to 1 to enable monitoring on MasterID 13.
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_MASTER_EN_MID13      (13)      //!< Bit position for DBGMON_HW_DBGMON_MASTER_EN_MID13.
 #define BM_DBGMON_HW_DBGMON_MASTER_EN_MID13      (0x00002000)  //!< Bit mask for DBGMON_HW_DBGMON_MASTER_EN_MID13.
 
@@ -779,7 +728,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
 //! @brief Set the MID13 field to a new value.
 #define BW_DBGMON_HW_DBGMON_MASTER_EN_MID13(v)   (HW_DBGMON_HW_DBGMON_MASTER_EN_WR((HW_DBGMON_HW_DBGMON_MASTER_EN_RD() & ~BM_DBGMON_HW_DBGMON_MASTER_EN_MID13) | BF_DBGMON_HW_DBGMON_MASTER_EN_MID13(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_MASTER_EN, field MID14[14] (RW)
@@ -787,7 +735,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
  * Set to 1 to enable monitoring on MasterID 14.
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_MASTER_EN_MID14      (14)      //!< Bit position for DBGMON_HW_DBGMON_MASTER_EN_MID14.
 #define BM_DBGMON_HW_DBGMON_MASTER_EN_MID14      (0x00004000)  //!< Bit mask for DBGMON_HW_DBGMON_MASTER_EN_MID14.
 
@@ -801,7 +748,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
 //! @brief Set the MID14 field to a new value.
 #define BW_DBGMON_HW_DBGMON_MASTER_EN_MID14(v)   (HW_DBGMON_HW_DBGMON_MASTER_EN_WR((HW_DBGMON_HW_DBGMON_MASTER_EN_RD() & ~BM_DBGMON_HW_DBGMON_MASTER_EN_MID14) | BF_DBGMON_HW_DBGMON_MASTER_EN_MID14(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_MASTER_EN, field MID15[15] (RW)
@@ -809,7 +755,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
  * Set to 1 to enable monitoring on MasterID 15.
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_MASTER_EN_MID15      (15)      //!< Bit position for DBGMON_HW_DBGMON_MASTER_EN_MID15.
 #define BM_DBGMON_HW_DBGMON_MASTER_EN_MID15      (0x00008000)  //!< Bit mask for DBGMON_HW_DBGMON_MASTER_EN_MID15.
 
@@ -823,7 +768,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
 //! @brief Set the MID15 field to a new value.
 #define BW_DBGMON_HW_DBGMON_MASTER_EN_MID15(v)   (HW_DBGMON_HW_DBGMON_MASTER_EN_WR((HW_DBGMON_HW_DBGMON_MASTER_EN_RD() & ~BM_DBGMON_HW_DBGMON_MASTER_EN_MID15) | BF_DBGMON_HW_DBGMON_MASTER_EN_MID15(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -882,7 +826,6 @@ typedef union _hw_dbgmon_hw_dbgmon_irq
  * - 1 - Address trap interrupt is enabled
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_IRQ_ADDR_TRAP_IRQEN      (0)      //!< Bit position for DBGMON_HW_DBGMON_IRQ_ADDR_TRAP_IRQEN.
 #define BM_DBGMON_HW_DBGMON_IRQ_ADDR_TRAP_IRQEN      (0x00000001)  //!< Bit mask for DBGMON_HW_DBGMON_IRQ_ADDR_TRAP_IRQEN.
 
@@ -896,7 +839,6 @@ typedef union _hw_dbgmon_hw_dbgmon_irq
 //! @brief Set the ADDR_TRAP_IRQEN field to a new value.
 #define BW_DBGMON_HW_DBGMON_IRQ_ADDR_TRAP_IRQEN(v)   (HW_DBGMON_HW_DBGMON_IRQ_WR((HW_DBGMON_HW_DBGMON_IRQ_RD() & ~BM_DBGMON_HW_DBGMON_IRQ_ADDR_TRAP_IRQEN) | BF_DBGMON_HW_DBGMON_IRQ_ADDR_TRAP_IRQEN(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_IRQ, field ID_TRAP_IRQEN[1] (RW)
@@ -908,7 +850,6 @@ typedef union _hw_dbgmon_hw_dbgmon_irq
  * - 1 - ID trap interrupt is enabled
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_IRQ_ID_TRAP_IRQEN      (1)      //!< Bit position for DBGMON_HW_DBGMON_IRQ_ID_TRAP_IRQEN.
 #define BM_DBGMON_HW_DBGMON_IRQ_ID_TRAP_IRQEN      (0x00000002)  //!< Bit mask for DBGMON_HW_DBGMON_IRQ_ID_TRAP_IRQEN.
 
@@ -922,7 +863,6 @@ typedef union _hw_dbgmon_hw_dbgmon_irq
 //! @brief Set the ID_TRAP_IRQEN field to a new value.
 #define BW_DBGMON_HW_DBGMON_IRQ_ID_TRAP_IRQEN(v)   (HW_DBGMON_HW_DBGMON_IRQ_WR((HW_DBGMON_HW_DBGMON_IRQ_RD() & ~BM_DBGMON_HW_DBGMON_IRQ_ID_TRAP_IRQEN) | BF_DBGMON_HW_DBGMON_IRQ_ID_TRAP_IRQEN(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_IRQ, field ADDR_TRAP_IRQ[2] (RW)
@@ -931,7 +871,6 @@ typedef union _hw_dbgmon_hw_dbgmon_irq
  * 0x28) to clear it.
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_IRQ_ADDR_TRAP_IRQ      (2)      //!< Bit position for DBGMON_HW_DBGMON_IRQ_ADDR_TRAP_IRQ.
 #define BM_DBGMON_HW_DBGMON_IRQ_ADDR_TRAP_IRQ      (0x00000004)  //!< Bit mask for DBGMON_HW_DBGMON_IRQ_ADDR_TRAP_IRQ.
 
@@ -945,7 +884,6 @@ typedef union _hw_dbgmon_hw_dbgmon_irq
 //! @brief Set the ADDR_TRAP_IRQ field to a new value.
 #define BW_DBGMON_HW_DBGMON_IRQ_ADDR_TRAP_IRQ(v)   (HW_DBGMON_HW_DBGMON_IRQ_WR((HW_DBGMON_HW_DBGMON_IRQ_RD() & ~BM_DBGMON_HW_DBGMON_IRQ_ADDR_TRAP_IRQ) | BF_DBGMON_HW_DBGMON_IRQ_ADDR_TRAP_IRQ(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_IRQ, field ID_TRAP_IRQ[3] (RW)
@@ -954,7 +892,6 @@ typedef union _hw_dbgmon_hw_dbgmon_irq
  * to clear it.
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_IRQ_ID_TRAP_IRQ      (3)      //!< Bit position for DBGMON_HW_DBGMON_IRQ_ID_TRAP_IRQ.
 #define BM_DBGMON_HW_DBGMON_IRQ_ID_TRAP_IRQ      (0x00000008)  //!< Bit mask for DBGMON_HW_DBGMON_IRQ_ID_TRAP_IRQ.
 
@@ -968,7 +905,6 @@ typedef union _hw_dbgmon_hw_dbgmon_irq
 //! @brief Set the ID_TRAP_IRQ field to a new value.
 #define BW_DBGMON_HW_DBGMON_IRQ_ID_TRAP_IRQ(v)   (HW_DBGMON_HW_DBGMON_IRQ_WR((HW_DBGMON_HW_DBGMON_IRQ_RD() & ~BM_DBGMON_HW_DBGMON_IRQ_ID_TRAP_IRQ) | BF_DBGMON_HW_DBGMON_IRQ_ID_TRAP_IRQ(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_IRQ, field IRQ_MID[31:16] (RW)
@@ -978,7 +914,6 @@ typedef union _hw_dbgmon_hw_dbgmon_irq
  * Master 1, and so on
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_IRQ_IRQ_MID      (16)      //!< Bit position for DBGMON_HW_DBGMON_IRQ_IRQ_MID.
 #define BM_DBGMON_HW_DBGMON_IRQ_IRQ_MID      (0xffff0000)  //!< Bit mask for DBGMON_HW_DBGMON_IRQ_IRQ_MID.
 
@@ -992,7 +927,6 @@ typedef union _hw_dbgmon_hw_dbgmon_irq
 //! @brief Set the IRQ_MID field to a new value.
 #define BW_DBGMON_HW_DBGMON_IRQ_IRQ_MID(v)   (HW_DBGMON_HW_DBGMON_IRQ_WR((HW_DBGMON_HW_DBGMON_IRQ_RD() & ~BM_DBGMON_HW_DBGMON_IRQ_IRQ_MID) | BF_DBGMON_HW_DBGMON_IRQ_IRQ_MID(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1042,7 +976,6 @@ typedef union _hw_dbgmon_hw_dbgmon_trap_addr_low
  * This field contains 32-bit low address for the address trap range
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_TRAP_ADDR_LOW_ADDRESS      (0)      //!< Bit position for DBGMON_HW_DBGMON_TRAP_ADDR_LOW_ADDRESS.
 #define BM_DBGMON_HW_DBGMON_TRAP_ADDR_LOW_ADDRESS      (0xffffffff)  //!< Bit mask for DBGMON_HW_DBGMON_TRAP_ADDR_LOW_ADDRESS.
 
@@ -1056,7 +989,6 @@ typedef union _hw_dbgmon_hw_dbgmon_trap_addr_low
 //! @brief Set the ADDRESS field to a new value.
 #define BW_DBGMON_HW_DBGMON_TRAP_ADDR_LOW_ADDRESS(v)   (HW_DBGMON_HW_DBGMON_TRAP_ADDR_LOW_WR((HW_DBGMON_HW_DBGMON_TRAP_ADDR_LOW_RD() & ~BM_DBGMON_HW_DBGMON_TRAP_ADDR_LOW_ADDRESS) | BF_DBGMON_HW_DBGMON_TRAP_ADDR_LOW_ADDRESS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1106,7 +1038,6 @@ typedef union _hw_dbgmon_hw_dbgmon_trap_addr_high
  * This field contains 32-bit high address for the address trap range
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_TRAP_ADDR_HIGH_ADDRESS      (0)      //!< Bit position for DBGMON_HW_DBGMON_TRAP_ADDR_HIGH_ADDRESS.
 #define BM_DBGMON_HW_DBGMON_TRAP_ADDR_HIGH_ADDRESS      (0xffffffff)  //!< Bit mask for DBGMON_HW_DBGMON_TRAP_ADDR_HIGH_ADDRESS.
 
@@ -1120,7 +1051,6 @@ typedef union _hw_dbgmon_hw_dbgmon_trap_addr_high
 //! @brief Set the ADDRESS field to a new value.
 #define BW_DBGMON_HW_DBGMON_TRAP_ADDR_HIGH_ADDRESS(v)   (HW_DBGMON_HW_DBGMON_TRAP_ADDR_HIGH_WR((HW_DBGMON_HW_DBGMON_TRAP_ADDR_HIGH_RD() & ~BM_DBGMON_HW_DBGMON_TRAP_ADDR_HIGH_ADDRESS) | BF_DBGMON_HW_DBGMON_TRAP_ADDR_HIGH_ADDRESS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1171,7 +1101,6 @@ typedef union _hw_dbgmon_hw_dbgmon_trap_id
  * This field contains 16-bit low ID for ID trap range
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_TRAP_ID_TRAP_ID_LOW      (0)      //!< Bit position for DBGMON_HW_DBGMON_TRAP_ID_TRAP_ID_LOW.
 #define BM_DBGMON_HW_DBGMON_TRAP_ID_TRAP_ID_LOW      (0x0000ffff)  //!< Bit mask for DBGMON_HW_DBGMON_TRAP_ID_TRAP_ID_LOW.
 
@@ -1185,7 +1114,6 @@ typedef union _hw_dbgmon_hw_dbgmon_trap_id
 //! @brief Set the TRAP_ID_LOW field to a new value.
 #define BW_DBGMON_HW_DBGMON_TRAP_ID_TRAP_ID_LOW(v)   (HW_DBGMON_HW_DBGMON_TRAP_ID_WR((HW_DBGMON_HW_DBGMON_TRAP_ID_RD() & ~BM_DBGMON_HW_DBGMON_TRAP_ID_TRAP_ID_LOW) | BF_DBGMON_HW_DBGMON_TRAP_ID_TRAP_ID_LOW(v)))
 #endif
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_TRAP_ID, field TRAP_ID_HIGH[31:16] (RW)
@@ -1193,7 +1121,6 @@ typedef union _hw_dbgmon_hw_dbgmon_trap_id
  * This field contains 16-bit high ID for ID trap range
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_TRAP_ID_TRAP_ID_HIGH      (16)      //!< Bit position for DBGMON_HW_DBGMON_TRAP_ID_TRAP_ID_HIGH.
 #define BM_DBGMON_HW_DBGMON_TRAP_ID_TRAP_ID_HIGH      (0xffff0000)  //!< Bit mask for DBGMON_HW_DBGMON_TRAP_ID_TRAP_ID_HIGH.
 
@@ -1207,7 +1134,6 @@ typedef union _hw_dbgmon_hw_dbgmon_trap_id
 //! @brief Set the TRAP_ID_HIGH field to a new value.
 #define BW_DBGMON_HW_DBGMON_TRAP_ID_TRAP_ID_HIGH(v)   (HW_DBGMON_HW_DBGMON_TRAP_ID_WR((HW_DBGMON_HW_DBGMON_TRAP_ID_RD() & ~BM_DBGMON_HW_DBGMON_TRAP_ID_TRAP_ID_HIGH) | BF_DBGMON_HW_DBGMON_TRAP_ID_TRAP_ID_HIGH(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1253,13 +1179,11 @@ typedef union _hw_dbgmon_hw_dbgmon_snvs_addr
  * This field contains 32-bit Address in SNVS domain register
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_SNVS_ADDR_ADDR      (0)      //!< Bit position for DBGMON_HW_DBGMON_SNVS_ADDR_ADDR.
 #define BM_DBGMON_HW_DBGMON_SNVS_ADDR_ADDR      (0xffffffff)  //!< Bit mask for DBGMON_HW_DBGMON_SNVS_ADDR_ADDR.
 
 //! @brief Get value of DBGMON_HW_DBGMON_SNVS_ADDR_ADDR from a register value.
 #define BG_DBGMON_HW_DBGMON_SNVS_ADDR_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DBGMON_HW_DBGMON_SNVS_ADDR_ADDR) >> BP_DBGMON_HW_DBGMON_SNVS_ADDR_ADDR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1305,13 +1229,11 @@ typedef union _hw_dbgmon_hw_dbgmon_snvs_data
  * This field contains 32-bit Data of AXI transaction in SNVS domain register
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_SNVS_DATA_DATA      (0)      //!< Bit position for DBGMON_HW_DBGMON_SNVS_DATA_DATA.
 #define BM_DBGMON_HW_DBGMON_SNVS_DATA_DATA      (0xffffffff)  //!< Bit mask for DBGMON_HW_DBGMON_SNVS_DATA_DATA.
 
 //! @brief Get value of DBGMON_HW_DBGMON_SNVS_DATA_DATA from a register value.
 #define BG_DBGMON_HW_DBGMON_SNVS_DATA_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DBGMON_HW_DBGMON_SNVS_DATA_DATA) >> BP_DBGMON_HW_DBGMON_SNVS_DATA_DATA)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1361,13 +1283,11 @@ typedef union _hw_dbgmon_hw_dbgmon_snvs_info
  * Complete
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_SNVS_INFO_COMPLETE      (0)      //!< Bit position for DBGMON_HW_DBGMON_SNVS_INFO_COMPLETE.
 #define BM_DBGMON_HW_DBGMON_SNVS_INFO_COMPLETE      (0x00000001)  //!< Bit mask for DBGMON_HW_DBGMON_SNVS_INFO_COMPLETE.
 
 //! @brief Get value of DBGMON_HW_DBGMON_SNVS_INFO_COMPLETE from a register value.
 #define BG_DBGMON_HW_DBGMON_SNVS_INFO_COMPLETE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DBGMON_HW_DBGMON_SNVS_INFO_COMPLETE) >> BP_DBGMON_HW_DBGMON_SNVS_INFO_COMPLETE)
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_SNVS_INFO, field RDWR[1] (RO)
@@ -1375,13 +1295,11 @@ typedef union _hw_dbgmon_hw_dbgmon_snvs_info
  * The field indicates the read/write attribute of AXI transaction in SNVS domain. 0: read, 1: Write
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_SNVS_INFO_RDWR      (1)      //!< Bit position for DBGMON_HW_DBGMON_SNVS_INFO_RDWR.
 #define BM_DBGMON_HW_DBGMON_SNVS_INFO_RDWR      (0x00000002)  //!< Bit mask for DBGMON_HW_DBGMON_SNVS_INFO_RDWR.
 
 //! @brief Get value of DBGMON_HW_DBGMON_SNVS_INFO_RDWR from a register value.
 #define BG_DBGMON_HW_DBGMON_SNVS_INFO_RDWR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DBGMON_HW_DBGMON_SNVS_INFO_RDWR) >> BP_DBGMON_HW_DBGMON_SNVS_INFO_RDWR)
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_SNVS_INFO, field ID[31:16] (RO)
@@ -1389,13 +1307,11 @@ typedef union _hw_dbgmon_hw_dbgmon_snvs_info
  * The field contain the ID of the AXI transaction in SNVS domain
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_SNVS_INFO_ID      (16)      //!< Bit position for DBGMON_HW_DBGMON_SNVS_INFO_ID.
 #define BM_DBGMON_HW_DBGMON_SNVS_INFO_ID      (0xffff0000)  //!< Bit mask for DBGMON_HW_DBGMON_SNVS_INFO_ID.
 
 //! @brief Get value of DBGMON_HW_DBGMON_SNVS_INFO_ID from a register value.
 #define BG_DBGMON_HW_DBGMON_SNVS_INFO_ID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DBGMON_HW_DBGMON_SNVS_INFO_ID) >> BP_DBGMON_HW_DBGMON_SNVS_INFO_ID)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1443,13 +1359,11 @@ typedef union _hw_dbgmon_hw_dbgmon_version
  * Fixed read-only value reflecting the stepping of the RTL version
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_VERSION_STEP      (0)      //!< Bit position for DBGMON_HW_DBGMON_VERSION_STEP.
 #define BM_DBGMON_HW_DBGMON_VERSION_STEP      (0x0000ffff)  //!< Bit mask for DBGMON_HW_DBGMON_VERSION_STEP.
 
 //! @brief Get value of DBGMON_HW_DBGMON_VERSION_STEP from a register value.
 #define BG_DBGMON_HW_DBGMON_VERSION_STEP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DBGMON_HW_DBGMON_VERSION_STEP) >> BP_DBGMON_HW_DBGMON_VERSION_STEP)
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_VERSION, field MINOR[23:16] (RO)
@@ -1457,13 +1371,11 @@ typedef union _hw_dbgmon_hw_dbgmon_version
  * Fixed read-only value reflecting the MINOR field of the RTL version
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_VERSION_MINOR      (16)      //!< Bit position for DBGMON_HW_DBGMON_VERSION_MINOR.
 #define BM_DBGMON_HW_DBGMON_VERSION_MINOR      (0x00ff0000)  //!< Bit mask for DBGMON_HW_DBGMON_VERSION_MINOR.
 
 //! @brief Get value of DBGMON_HW_DBGMON_VERSION_MINOR from a register value.
 #define BG_DBGMON_HW_DBGMON_VERSION_MINOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DBGMON_HW_DBGMON_VERSION_MINOR) >> BP_DBGMON_HW_DBGMON_VERSION_MINOR)
-
 //@}
 
 /*! @name Register DBGMON_HW_DBGMON_VERSION, field MAJOR[31:24] (RO)
@@ -1471,13 +1383,11 @@ typedef union _hw_dbgmon_hw_dbgmon_version
  * Fixed read-only value reflecting the MAJOR field of the RTL version
  */
 //@{
-
 #define BP_DBGMON_HW_DBGMON_VERSION_MAJOR      (24)      //!< Bit position for DBGMON_HW_DBGMON_VERSION_MAJOR.
 #define BM_DBGMON_HW_DBGMON_VERSION_MAJOR      (0xff000000)  //!< Bit mask for DBGMON_HW_DBGMON_VERSION_MAJOR.
 
 //! @brief Get value of DBGMON_HW_DBGMON_VERSION_MAJOR from a register value.
 #define BG_DBGMON_HW_DBGMON_VERSION_MAJOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_DBGMON_HW_DBGMON_VERSION_MAJOR) >> BP_DBGMON_HW_DBGMON_VERSION_MAJOR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1519,3 +1429,5 @@ typedef struct _hw_dbgmon
 #endif
 
 #endif // __HW_DBGMON_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

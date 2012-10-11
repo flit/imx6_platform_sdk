@@ -136,7 +136,6 @@ typedef union _hw_csi_csicr1
  * - 1 - 10-bit data for each pixel
  */
 //@{
-
 #define BP_CSI_CSICR1_PIXEL_BIT      (0)      //!< Bit position for CSI_CSICR1_PIXEL_BIT.
 #define BM_CSI_CSICR1_PIXEL_BIT      (0x00000001)  //!< Bit mask for CSI_CSICR1_PIXEL_BIT.
 
@@ -150,7 +149,6 @@ typedef union _hw_csi_csicr1
 //! @brief Set the PIXEL_BIT field to a new value.
 #define BW_CSI_CSICR1_PIXEL_BIT(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_PIXEL_BIT) | BF_CSI_CSICR1_PIXEL_BIT(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR1, field REDGE[1] (RW)
@@ -163,7 +161,6 @@ typedef union _hw_csi_csicr1
  * - 1 - Pixel data is latched at the rising edge of CSI_PIXCLK
  */
 //@{
-
 #define BP_CSI_CSICR1_REDGE      (1)      //!< Bit position for CSI_CSICR1_REDGE.
 #define BM_CSI_CSICR1_REDGE      (0x00000002)  //!< Bit mask for CSI_CSICR1_REDGE.
 
@@ -177,7 +174,6 @@ typedef union _hw_csi_csicr1
 //! @brief Set the REDGE field to a new value.
 #define BW_CSI_CSICR1_REDGE(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_REDGE) | BF_CSI_CSICR1_REDGE(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR1, field INV_PCLK[2] (RW)
@@ -190,7 +186,6 @@ typedef union _hw_csi_csicr1
  * - 1 - CSI_PIXCLK is inverted before applied to internal circuitry
  */
 //@{
-
 #define BP_CSI_CSICR1_INV_PCLK      (2)      //!< Bit position for CSI_CSICR1_INV_PCLK.
 #define BM_CSI_CSICR1_INV_PCLK      (0x00000004)  //!< Bit mask for CSI_CSICR1_INV_PCLK.
 
@@ -204,7 +199,6 @@ typedef union _hw_csi_csicr1
 //! @brief Set the INV_PCLK field to a new value.
 #define BW_CSI_CSICR1_INV_PCLK(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_INV_PCLK) | BF_CSI_CSICR1_INV_PCLK(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR1, field INV_DATA[3] (RW)
@@ -216,7 +210,6 @@ typedef union _hw_csi_csicr1
  * - 1 - CSI_D[7:0] data lines are inverted before applied to internal circuitry
  */
 //@{
-
 #define BP_CSI_CSICR1_INV_DATA      (3)      //!< Bit position for CSI_CSICR1_INV_DATA.
 #define BM_CSI_CSICR1_INV_DATA      (0x00000008)  //!< Bit mask for CSI_CSICR1_INV_DATA.
 
@@ -230,7 +223,6 @@ typedef union _hw_csi_csicr1
 //! @brief Set the INV_DATA field to a new value.
 #define BW_CSI_CSICR1_INV_DATA(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_INV_DATA) | BF_CSI_CSICR1_INV_DATA(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR1, field GCLK_MODE[4] (RW)
@@ -243,7 +235,6 @@ typedef union _hw_csi_csicr1
  * - 1 - Gated clock mode. Pixel clock signal is valid only when HSYNC is active.
  */
 //@{
-
 #define BP_CSI_CSICR1_GCLK_MODE      (4)      //!< Bit position for CSI_CSICR1_GCLK_MODE.
 #define BM_CSI_CSICR1_GCLK_MODE      (0x00000010)  //!< Bit mask for CSI_CSICR1_GCLK_MODE.
 
@@ -257,7 +248,6 @@ typedef union _hw_csi_csicr1
 //! @brief Set the GCLK_MODE field to a new value.
 #define BW_CSI_CSICR1_GCLK_MODE(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_GCLK_MODE) | BF_CSI_CSICR1_GCLK_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR1, field CLR_RXFIFO[5] (RW)
@@ -268,7 +258,6 @@ typedef union _hw_csi_csicr1
  * Normally reads 0.
  */
 //@{
-
 #define BP_CSI_CSICR1_CLR_RXFIFO      (5)      //!< Bit position for CSI_CSICR1_CLR_RXFIFO.
 #define BM_CSI_CSICR1_CLR_RXFIFO      (0x00000020)  //!< Bit mask for CSI_CSICR1_CLR_RXFIFO.
 
@@ -282,7 +271,6 @@ typedef union _hw_csi_csicr1
 //! @brief Set the CLR_RXFIFO field to a new value.
 #define BW_CSI_CSICR1_CLR_RXFIFO(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_CLR_RXFIFO) | BF_CSI_CSICR1_CLR_RXFIFO(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR1, field CLR_STATFIFO[6] (RW)
@@ -294,7 +282,6 @@ typedef union _hw_csi_csicr1
  * reads 0.
  */
 //@{
-
 #define BP_CSI_CSICR1_CLR_STATFIFO      (6)      //!< Bit position for CSI_CSICR1_CLR_STATFIFO.
 #define BM_CSI_CSICR1_CLR_STATFIFO      (0x00000040)  //!< Bit mask for CSI_CSICR1_CLR_STATFIFO.
 
@@ -308,7 +295,6 @@ typedef union _hw_csi_csicr1
 //! @brief Set the CLR_STATFIFO field to a new value.
 #define BW_CSI_CSICR1_CLR_STATFIFO(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_CLR_STATFIFO) | BF_CSI_CSICR1_CLR_STATFIFO(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR1, field PACK_DIR[7] (RW)
@@ -323,7 +309,6 @@ typedef union _hw_csi_csicr1
  *     FIFO. For stat data, 0xAAAA, 0xBBBB, it will appear as 0xAAAABBBB in STAT FIFO.
  */
 //@{
-
 #define BP_CSI_CSICR1_PACK_DIR      (7)      //!< Bit position for CSI_CSICR1_PACK_DIR.
 #define BM_CSI_CSICR1_PACK_DIR      (0x00000080)  //!< Bit mask for CSI_CSICR1_PACK_DIR.
 
@@ -337,7 +322,6 @@ typedef union _hw_csi_csicr1
 //! @brief Set the PACK_DIR field to a new value.
 #define BW_CSI_CSICR1_PACK_DIR(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_PACK_DIR) | BF_CSI_CSICR1_PACK_DIR(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR1, field FCC[8] (RW)
@@ -353,7 +337,6 @@ typedef union _hw_csi_csicr1
  * - 1 - Synchronous FIFO clear is selected.
  */
 //@{
-
 #define BP_CSI_CSICR1_FCC      (8)      //!< Bit position for CSI_CSICR1_FCC.
 #define BM_CSI_CSICR1_FCC      (0x00000100)  //!< Bit mask for CSI_CSICR1_FCC.
 
@@ -367,7 +350,6 @@ typedef union _hw_csi_csicr1
 //! @brief Set the FCC field to a new value.
 #define BW_CSI_CSICR1_FCC(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_FCC) | BF_CSI_CSICR1_FCC(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR1, field CCIR_EN[10] (RW)
@@ -380,7 +362,6 @@ typedef union _hw_csi_csicr1
  * - 1 - CCIR656 interface is selected.
  */
 //@{
-
 #define BP_CSI_CSICR1_CCIR_EN      (10)      //!< Bit position for CSI_CSICR1_CCIR_EN.
 #define BM_CSI_CSICR1_CCIR_EN      (0x00000400)  //!< Bit mask for CSI_CSICR1_CCIR_EN.
 
@@ -394,7 +375,6 @@ typedef union _hw_csi_csicr1
 //! @brief Set the CCIR_EN field to a new value.
 #define BW_CSI_CSICR1_CCIR_EN(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_CCIR_EN) | BF_CSI_CSICR1_CCIR_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR1, field HSYNC_POL[11] (RW)
@@ -407,7 +387,6 @@ typedef union _hw_csi_csicr1
  * - 1 - HSYNC is active high
  */
 //@{
-
 #define BP_CSI_CSICR1_HSYNC_POL      (11)      //!< Bit position for CSI_CSICR1_HSYNC_POL.
 #define BM_CSI_CSICR1_HSYNC_POL      (0x00000800)  //!< Bit mask for CSI_CSICR1_HSYNC_POL.
 
@@ -421,7 +400,6 @@ typedef union _hw_csi_csicr1
 //! @brief Set the HSYNC_POL field to a new value.
 #define BW_CSI_CSICR1_HSYNC_POL(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_HSYNC_POL) | BF_CSI_CSICR1_HSYNC_POL(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR1, field SOF_INTEN[16] (RW)
@@ -433,7 +411,6 @@ typedef union _hw_csi_csicr1
  * - 1 - SOF interrupt enable
  */
 //@{
-
 #define BP_CSI_CSICR1_SOF_INTEN      (16)      //!< Bit position for CSI_CSICR1_SOF_INTEN.
 #define BM_CSI_CSICR1_SOF_INTEN      (0x00010000)  //!< Bit mask for CSI_CSICR1_SOF_INTEN.
 
@@ -447,7 +424,6 @@ typedef union _hw_csi_csicr1
 //! @brief Set the SOF_INTEN field to a new value.
 #define BW_CSI_CSICR1_SOF_INTEN(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_SOF_INTEN) | BF_CSI_CSICR1_SOF_INTEN(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR1, field SOF_POL[17] (RW)
@@ -459,7 +435,6 @@ typedef union _hw_csi_csicr1
  * - 1 - SOF interrupt is generated on SOF rising edge
  */
 //@{
-
 #define BP_CSI_CSICR1_SOF_POL      (17)      //!< Bit position for CSI_CSICR1_SOF_POL.
 #define BM_CSI_CSICR1_SOF_POL      (0x00020000)  //!< Bit mask for CSI_CSICR1_SOF_POL.
 
@@ -473,7 +448,6 @@ typedef union _hw_csi_csicr1
 //! @brief Set the SOF_POL field to a new value.
 #define BW_CSI_CSICR1_SOF_POL(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_SOF_POL) | BF_CSI_CSICR1_SOF_POL(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR1, field RXFF_INTEN[18] (RW)
@@ -485,7 +459,6 @@ typedef union _hw_csi_csicr1
  * - 1 - RxFIFO full interrupt enable
  */
 //@{
-
 #define BP_CSI_CSICR1_RXFF_INTEN      (18)      //!< Bit position for CSI_CSICR1_RXFF_INTEN.
 #define BM_CSI_CSICR1_RXFF_INTEN      (0x00040000)  //!< Bit mask for CSI_CSICR1_RXFF_INTEN.
 
@@ -499,7 +472,6 @@ typedef union _hw_csi_csicr1
 //! @brief Set the RXFF_INTEN field to a new value.
 #define BW_CSI_CSICR1_RXFF_INTEN(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_RXFF_INTEN) | BF_CSI_CSICR1_RXFF_INTEN(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR1, field FB1_DMA_DONE_INTEN[19] (RW)
@@ -512,7 +484,6 @@ typedef union _hw_csi_csicr1
  * - 1 - Frame Buffer1 DMA Transfer Done interrupt enable
  */
 //@{
-
 #define BP_CSI_CSICR1_FB1_DMA_DONE_INTEN      (19)      //!< Bit position for CSI_CSICR1_FB1_DMA_DONE_INTEN.
 #define BM_CSI_CSICR1_FB1_DMA_DONE_INTEN      (0x00080000)  //!< Bit mask for CSI_CSICR1_FB1_DMA_DONE_INTEN.
 
@@ -526,7 +497,6 @@ typedef union _hw_csi_csicr1
 //! @brief Set the FB1_DMA_DONE_INTEN field to a new value.
 #define BW_CSI_CSICR1_FB1_DMA_DONE_INTEN(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_FB1_DMA_DONE_INTEN) | BF_CSI_CSICR1_FB1_DMA_DONE_INTEN(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR1, field FB2_DMA_DONE_INTEN[20] (RW)
@@ -539,7 +509,6 @@ typedef union _hw_csi_csicr1
  * - 1 - Frame Buffer2 DMA Transfer Done interrupt enable
  */
 //@{
-
 #define BP_CSI_CSICR1_FB2_DMA_DONE_INTEN      (20)      //!< Bit position for CSI_CSICR1_FB2_DMA_DONE_INTEN.
 #define BM_CSI_CSICR1_FB2_DMA_DONE_INTEN      (0x00100000)  //!< Bit mask for CSI_CSICR1_FB2_DMA_DONE_INTEN.
 
@@ -553,7 +522,6 @@ typedef union _hw_csi_csicr1
 //! @brief Set the FB2_DMA_DONE_INTEN field to a new value.
 #define BW_CSI_CSICR1_FB2_DMA_DONE_INTEN(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_FB2_DMA_DONE_INTEN) | BF_CSI_CSICR1_FB2_DMA_DONE_INTEN(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR1, field STATFF_INTEN[21] (RW)
@@ -565,7 +533,6 @@ typedef union _hw_csi_csicr1
  * - 1 - STATFIFO full interrupt enable
  */
 //@{
-
 #define BP_CSI_CSICR1_STATFF_INTEN      (21)      //!< Bit position for CSI_CSICR1_STATFF_INTEN.
 #define BM_CSI_CSICR1_STATFF_INTEN      (0x00200000)  //!< Bit mask for CSI_CSICR1_STATFF_INTEN.
 
@@ -579,7 +546,6 @@ typedef union _hw_csi_csicr1
 //! @brief Set the STATFF_INTEN field to a new value.
 #define BW_CSI_CSICR1_STATFF_INTEN(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_STATFF_INTEN) | BF_CSI_CSICR1_STATFF_INTEN(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR1, field SFF_DMA_DONE_INTEN[22] (RW)
@@ -592,7 +558,6 @@ typedef union _hw_csi_csicr1
  * - 1 - STATFIFO DMA Transfer Done interrupt enable
  */
 //@{
-
 #define BP_CSI_CSICR1_SFF_DMA_DONE_INTEN      (22)      //!< Bit position for CSI_CSICR1_SFF_DMA_DONE_INTEN.
 #define BM_CSI_CSICR1_SFF_DMA_DONE_INTEN      (0x00400000)  //!< Bit mask for CSI_CSICR1_SFF_DMA_DONE_INTEN.
 
@@ -606,7 +571,6 @@ typedef union _hw_csi_csicr1
 //! @brief Set the SFF_DMA_DONE_INTEN field to a new value.
 #define BW_CSI_CSICR1_SFF_DMA_DONE_INTEN(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_SFF_DMA_DONE_INTEN) | BF_CSI_CSICR1_SFF_DMA_DONE_INTEN(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR1, field RF_OR_INTEN[24] (RW)
@@ -618,7 +582,6 @@ typedef union _hw_csi_csicr1
  * - 1 - RxFIFO overrun interrupt is enabled
  */
 //@{
-
 #define BP_CSI_CSICR1_RF_OR_INTEN      (24)      //!< Bit position for CSI_CSICR1_RF_OR_INTEN.
 #define BM_CSI_CSICR1_RF_OR_INTEN      (0x01000000)  //!< Bit mask for CSI_CSICR1_RF_OR_INTEN.
 
@@ -632,7 +595,6 @@ typedef union _hw_csi_csicr1
 //! @brief Set the RF_OR_INTEN field to a new value.
 #define BW_CSI_CSICR1_RF_OR_INTEN(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_RF_OR_INTEN) | BF_CSI_CSICR1_RF_OR_INTEN(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR1, field SF_OR_INTEN[25] (RW)
@@ -644,7 +606,6 @@ typedef union _hw_csi_csicr1
  * - 1 - STATFIFO overrun interrupt is enabled
  */
 //@{
-
 #define BP_CSI_CSICR1_SF_OR_INTEN      (25)      //!< Bit position for CSI_CSICR1_SF_OR_INTEN.
 #define BM_CSI_CSICR1_SF_OR_INTEN      (0x02000000)  //!< Bit mask for CSI_CSICR1_SF_OR_INTEN.
 
@@ -658,7 +619,6 @@ typedef union _hw_csi_csicr1
 //! @brief Set the SF_OR_INTEN field to a new value.
 #define BW_CSI_CSICR1_SF_OR_INTEN(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_SF_OR_INTEN) | BF_CSI_CSICR1_SF_OR_INTEN(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR1, field COF_INT_EN[26] (RW)
@@ -671,7 +631,6 @@ typedef union _hw_csi_csicr1
  * - 1 - COF interrupt is enabled
  */
 //@{
-
 #define BP_CSI_CSICR1_COF_INT_EN      (26)      //!< Bit position for CSI_CSICR1_COF_INT_EN.
 #define BM_CSI_CSICR1_COF_INT_EN      (0x04000000)  //!< Bit mask for CSI_CSICR1_COF_INT_EN.
 
@@ -685,7 +644,6 @@ typedef union _hw_csi_csicr1
 //! @brief Set the COF_INT_EN field to a new value.
 #define BW_CSI_CSICR1_COF_INT_EN(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_COF_INT_EN) | BF_CSI_CSICR1_COF_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR1, field CCIR_MODE[27] (RW)
@@ -698,7 +656,6 @@ typedef union _hw_csi_csicr1
  * - 1 - Interlace mode is selected
  */
 //@{
-
 #define BP_CSI_CSICR1_CCIR_MODE      (27)      //!< Bit position for CSI_CSICR1_CCIR_MODE.
 #define BM_CSI_CSICR1_CCIR_MODE      (0x08000000)  //!< Bit mask for CSI_CSICR1_CCIR_MODE.
 
@@ -712,7 +669,6 @@ typedef union _hw_csi_csicr1
 //! @brief Set the CCIR_MODE field to a new value.
 #define BW_CSI_CSICR1_CCIR_MODE(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_CCIR_MODE) | BF_CSI_CSICR1_CCIR_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR1, field PRP_IF_EN[28] (RW)
@@ -726,7 +682,6 @@ typedef union _hw_csi_csicr1
  * - 1 - CSI to PrP bus is enabled
  */
 //@{
-
 #define BP_CSI_CSICR1_PRP_IF_EN      (28)      //!< Bit position for CSI_CSICR1_PRP_IF_EN.
 #define BM_CSI_CSICR1_PRP_IF_EN      (0x10000000)  //!< Bit mask for CSI_CSICR1_PRP_IF_EN.
 
@@ -740,7 +695,6 @@ typedef union _hw_csi_csicr1
 //! @brief Set the PRP_IF_EN field to a new value.
 #define BW_CSI_CSICR1_PRP_IF_EN(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_PRP_IF_EN) | BF_CSI_CSICR1_PRP_IF_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR1, field EOF_INT_EN[29] (RW)
@@ -752,7 +706,6 @@ typedef union _hw_csi_csicr1
  * - 1 - EOF interrupt is generated when RX count value is reached.
  */
 //@{
-
 #define BP_CSI_CSICR1_EOF_INT_EN      (29)      //!< Bit position for CSI_CSICR1_EOF_INT_EN.
 #define BM_CSI_CSICR1_EOF_INT_EN      (0x20000000)  //!< Bit mask for CSI_CSICR1_EOF_INT_EN.
 
@@ -766,7 +719,6 @@ typedef union _hw_csi_csicr1
 //! @brief Set the EOF_INT_EN field to a new value.
 #define BW_CSI_CSICR1_EOF_INT_EN(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_EOF_INT_EN) | BF_CSI_CSICR1_EOF_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR1, field EXT_VSYNC[30] (RW)
@@ -779,7 +731,6 @@ typedef union _hw_csi_csicr1
  * - 1 - External VSYNC mode
  */
 //@{
-
 #define BP_CSI_CSICR1_EXT_VSYNC      (30)      //!< Bit position for CSI_CSICR1_EXT_VSYNC.
 #define BM_CSI_CSICR1_EXT_VSYNC      (0x40000000)  //!< Bit mask for CSI_CSICR1_EXT_VSYNC.
 
@@ -793,7 +744,6 @@ typedef union _hw_csi_csicr1
 //! @brief Set the EXT_VSYNC field to a new value.
 #define BW_CSI_CSICR1_EXT_VSYNC(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_EXT_VSYNC) | BF_CSI_CSICR1_EXT_VSYNC(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR1, field SWAP16_EN[31] (RW)
@@ -810,7 +760,6 @@ typedef union _hw_csi_csicr1
  * - 1 - Enable swapping
  */
 //@{
-
 #define BP_CSI_CSICR1_SWAP16_EN      (31)      //!< Bit position for CSI_CSICR1_SWAP16_EN.
 #define BM_CSI_CSICR1_SWAP16_EN      (0x80000000)  //!< Bit mask for CSI_CSICR1_SWAP16_EN.
 
@@ -824,7 +773,6 @@ typedef union _hw_csi_csicr1
 //! @brief Set the SWAP16_EN field to a new value.
 #define BW_CSI_CSICR1_SWAP16_EN(v)   (HW_CSI_CSICR1_WR((HW_CSI_CSICR1_RD() & ~BM_CSI_CSICR1_SWAP16_EN) | BF_CSI_CSICR1_SWAP16_EN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -891,7 +839,6 @@ typedef union _hw_csi_csicr2
  * - 0-255 - Number of pixels to skip minus 1
  */
 //@{
-
 #define BP_CSI_CSICR2_HSC      (0)      //!< Bit position for CSI_CSICR2_HSC.
 #define BM_CSI_CSICR2_HSC      (0x000000ff)  //!< Bit mask for CSI_CSICR2_HSC.
 
@@ -905,7 +852,6 @@ typedef union _hw_csi_csicr2
 //! @brief Set the HSC field to a new value.
 #define BW_CSI_CSICR2_HSC(v)   (HW_CSI_CSICR2_WR((HW_CSI_CSICR2_RD() & ~BM_CSI_CSICR2_HSC) | BF_CSI_CSICR2_HSC(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR2, field VSC[15:8] (RW)
@@ -917,7 +863,6 @@ typedef union _hw_csi_csicr2
  * - 0-255 - Number of rows to skip minus 1
  */
 //@{
-
 #define BP_CSI_CSICR2_VSC      (8)      //!< Bit position for CSI_CSICR2_VSC.
 #define BM_CSI_CSICR2_VSC      (0x0000ff00)  //!< Bit mask for CSI_CSICR2_VSC.
 
@@ -931,7 +876,6 @@ typedef union _hw_csi_csicr2
 //! @brief Set the VSC field to a new value.
 #define BW_CSI_CSICR2_VSC(v)   (HW_CSI_CSICR2_WR((HW_CSI_CSICR2_RD() & ~BM_CSI_CSICR2_VSC) | BF_CSI_CSICR2_VSC(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR2, field LVRM[18:16] (RW)
@@ -948,7 +892,6 @@ typedef union _hw_csi_csicr2
  * - 6 - 400 x 300
  */
 //@{
-
 #define BP_CSI_CSICR2_LVRM      (16)      //!< Bit position for CSI_CSICR2_LVRM.
 #define BM_CSI_CSICR2_LVRM      (0x00070000)  //!< Bit mask for CSI_CSICR2_LVRM.
 
@@ -962,7 +905,6 @@ typedef union _hw_csi_csicr2
 //! @brief Set the LVRM field to a new value.
 #define BW_CSI_CSICR2_LVRM(v)   (HW_CSI_CSICR2_WR((HW_CSI_CSICR2_RD() & ~BM_CSI_CSICR2_LVRM) | BF_CSI_CSICR2_LVRM(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR2, field BTS[20:19] (RW)
@@ -976,7 +918,6 @@ typedef union _hw_csi_csicr2
  * - 11 - GB
  */
 //@{
-
 #define BP_CSI_CSICR2_BTS      (19)      //!< Bit position for CSI_CSICR2_BTS.
 #define BM_CSI_CSICR2_BTS      (0x00180000)  //!< Bit mask for CSI_CSICR2_BTS.
 
@@ -990,7 +931,6 @@ typedef union _hw_csi_csicr2
 //! @brief Set the BTS field to a new value.
 #define BW_CSI_CSICR2_BTS(v)   (HW_CSI_CSICR2_WR((HW_CSI_CSICR2_RD() & ~BM_CSI_CSICR2_BTS) | BF_CSI_CSICR2_BTS(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR2, field SCE[23] (RW)
@@ -1002,7 +942,6 @@ typedef union _hw_csi_csicr2
  * - 1 - Skip count enable
  */
 //@{
-
 #define BP_CSI_CSICR2_SCE      (23)      //!< Bit position for CSI_CSICR2_SCE.
 #define BM_CSI_CSICR2_SCE      (0x00800000)  //!< Bit mask for CSI_CSICR2_SCE.
 
@@ -1016,7 +955,6 @@ typedef union _hw_csi_csicr2
 //! @brief Set the SCE field to a new value.
 #define BW_CSI_CSICR2_SCE(v)   (HW_CSI_CSICR2_WR((HW_CSI_CSICR2_RD() & ~BM_CSI_CSICR2_SCE) | BF_CSI_CSICR2_SCE(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR2, field AFS[25:24] (RW)
@@ -1029,7 +967,6 @@ typedef union _hw_csi_csicr2
  * - 1x - Abs Diff on every four green pixels
  */
 //@{
-
 #define BP_CSI_CSICR2_AFS      (24)      //!< Bit position for CSI_CSICR2_AFS.
 #define BM_CSI_CSICR2_AFS      (0x03000000)  //!< Bit mask for CSI_CSICR2_AFS.
 
@@ -1043,7 +980,6 @@ typedef union _hw_csi_csicr2
 //! @brief Set the AFS field to a new value.
 #define BW_CSI_CSICR2_AFS(v)   (HW_CSI_CSICR2_WR((HW_CSI_CSICR2_RD() & ~BM_CSI_CSICR2_AFS) | BF_CSI_CSICR2_AFS(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR2, field DRM[26] (RW)
@@ -1055,7 +991,6 @@ typedef union _hw_csi_csicr2
  * - 1 - Stats grid of 8 x 12
  */
 //@{
-
 #define BP_CSI_CSICR2_DRM      (26)      //!< Bit position for CSI_CSICR2_DRM.
 #define BM_CSI_CSICR2_DRM      (0x04000000)  //!< Bit mask for CSI_CSICR2_DRM.
 
@@ -1069,7 +1004,6 @@ typedef union _hw_csi_csicr2
 //! @brief Set the DRM field to a new value.
 #define BW_CSI_CSICR2_DRM(v)   (HW_CSI_CSICR2_WR((HW_CSI_CSICR2_RD() & ~BM_CSI_CSICR2_DRM) | BF_CSI_CSICR2_DRM(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR2, field DMA_BURST_TYPE_SFF[29:28] (RW)
@@ -1082,7 +1016,6 @@ typedef union _hw_csi_csicr2
  * - 11 - INCR16
  */
 //@{
-
 #define BP_CSI_CSICR2_DMA_BURST_TYPE_SFF      (28)      //!< Bit position for CSI_CSICR2_DMA_BURST_TYPE_SFF.
 #define BM_CSI_CSICR2_DMA_BURST_TYPE_SFF      (0x30000000)  //!< Bit mask for CSI_CSICR2_DMA_BURST_TYPE_SFF.
 
@@ -1096,7 +1029,6 @@ typedef union _hw_csi_csicr2
 //! @brief Set the DMA_BURST_TYPE_SFF field to a new value.
 #define BW_CSI_CSICR2_DMA_BURST_TYPE_SFF(v)   (HW_CSI_CSICR2_WR((HW_CSI_CSICR2_RD() & ~BM_CSI_CSICR2_DMA_BURST_TYPE_SFF) | BF_CSI_CSICR2_DMA_BURST_TYPE_SFF(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR2, field DMA_BURST_TYPE_RFF[31:30] (RW)
@@ -1109,7 +1041,6 @@ typedef union _hw_csi_csicr2
  * - 11 - INCR16
  */
 //@{
-
 #define BP_CSI_CSICR2_DMA_BURST_TYPE_RFF      (30)      //!< Bit position for CSI_CSICR2_DMA_BURST_TYPE_RFF.
 #define BM_CSI_CSICR2_DMA_BURST_TYPE_RFF      (0xc0000000)  //!< Bit mask for CSI_CSICR2_DMA_BURST_TYPE_RFF.
 
@@ -1123,7 +1054,6 @@ typedef union _hw_csi_csicr2
 //! @brief Set the DMA_BURST_TYPE_RFF field to a new value.
 #define BW_CSI_CSICR2_DMA_BURST_TYPE_RFF(v)   (HW_CSI_CSICR2_WR((HW_CSI_CSICR2_RD() & ~BM_CSI_CSICR2_DMA_BURST_TYPE_RFF) | BF_CSI_CSICR2_DMA_BURST_TYPE_RFF(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1192,7 +1122,6 @@ typedef union _hw_csi_csicr3
  * - 1 - Auto Error correction is enabled.
  */
 //@{
-
 #define BP_CSI_CSICR3_ECC_AUTO_EN      (0)      //!< Bit position for CSI_CSICR3_ECC_AUTO_EN.
 #define BM_CSI_CSICR3_ECC_AUTO_EN      (0x00000001)  //!< Bit mask for CSI_CSICR3_ECC_AUTO_EN.
 
@@ -1206,7 +1135,6 @@ typedef union _hw_csi_csicr3
 //! @brief Set the ECC_AUTO_EN field to a new value.
 #define BW_CSI_CSICR3_ECC_AUTO_EN(v)   (HW_CSI_CSICR3_WR((HW_CSI_CSICR3_RD() & ~BM_CSI_CSICR3_ECC_AUTO_EN) | BF_CSI_CSICR3_ECC_AUTO_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR3, field ECC_INT_EN[1] (RW)
@@ -1219,7 +1147,6 @@ typedef union _hw_csi_csicr3
  * - 1 - Interrupt is generated when error is detected.
  */
 //@{
-
 #define BP_CSI_CSICR3_ECC_INT_EN      (1)      //!< Bit position for CSI_CSICR3_ECC_INT_EN.
 #define BM_CSI_CSICR3_ECC_INT_EN      (0x00000002)  //!< Bit mask for CSI_CSICR3_ECC_INT_EN.
 
@@ -1233,7 +1160,6 @@ typedef union _hw_csi_csicr3
 //! @brief Set the ECC_INT_EN field to a new value.
 #define BW_CSI_CSICR3_ECC_INT_EN(v)   (HW_CSI_CSICR3_WR((HW_CSI_CSICR3_RD() & ~BM_CSI_CSICR3_ECC_INT_EN) | BF_CSI_CSICR3_ECC_INT_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR3, field ZERO_PACK_EN[2] (RW)
@@ -1247,7 +1173,6 @@ typedef union _hw_csi_csicr3
  * - 1 - Zero packing enabled
  */
 //@{
-
 #define BP_CSI_CSICR3_ZERO_PACK_EN      (2)      //!< Bit position for CSI_CSICR3_ZERO_PACK_EN.
 #define BM_CSI_CSICR3_ZERO_PACK_EN      (0x00000004)  //!< Bit mask for CSI_CSICR3_ZERO_PACK_EN.
 
@@ -1261,7 +1186,6 @@ typedef union _hw_csi_csicr3
 //! @brief Set the ZERO_PACK_EN field to a new value.
 #define BW_CSI_CSICR3_ZERO_PACK_EN(v)   (HW_CSI_CSICR3_WR((HW_CSI_CSICR3_RD() & ~BM_CSI_CSICR3_ZERO_PACK_EN) | BF_CSI_CSICR3_ZERO_PACK_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR3, field TWO_8BIT_SENSOR[3] (RW)
@@ -1276,7 +1200,6 @@ typedef union _hw_csi_csicr3
  * - 1 - Two 8-bit sensors are connected or one 16-bit sensor is connected.
  */
 //@{
-
 #define BP_CSI_CSICR3_TWO_8BIT_SENSOR      (3)      //!< Bit position for CSI_CSICR3_TWO_8BIT_SENSOR.
 #define BM_CSI_CSICR3_TWO_8BIT_SENSOR      (0x00000008)  //!< Bit mask for CSI_CSICR3_TWO_8BIT_SENSOR.
 
@@ -1290,7 +1213,6 @@ typedef union _hw_csi_csicr3
 //! @brief Set the TWO_8BIT_SENSOR field to a new value.
 #define BW_CSI_CSICR3_TWO_8BIT_SENSOR(v)   (HW_CSI_CSICR3_WR((HW_CSI_CSICR3_RD() & ~BM_CSI_CSICR3_TWO_8BIT_SENSOR) | BF_CSI_CSICR3_TWO_8BIT_SENSOR(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR3, field RXFF_LEVEL[6:4] (RW)
@@ -1309,7 +1231,6 @@ typedef union _hw_csi_csicr3
  * - 111 - 96 Words
  */
 //@{
-
 #define BP_CSI_CSICR3_RXFF_LEVEL      (4)      //!< Bit position for CSI_CSICR3_RXFF_LEVEL.
 #define BM_CSI_CSICR3_RXFF_LEVEL      (0x00000070)  //!< Bit mask for CSI_CSICR3_RXFF_LEVEL.
 
@@ -1323,7 +1244,6 @@ typedef union _hw_csi_csicr3
 //! @brief Set the RXFF_LEVEL field to a new value.
 #define BW_CSI_CSICR3_RXFF_LEVEL(v)   (HW_CSI_CSICR3_WR((HW_CSI_CSICR3_RD() & ~BM_CSI_CSICR3_RXFF_LEVEL) | BF_CSI_CSICR3_RXFF_LEVEL(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR3, field HRESP_ERR_EN[7] (RW)
@@ -1335,7 +1255,6 @@ typedef union _hw_csi_csicr3
  * - 1 - Enable hresponse error interrupt
  */
 //@{
-
 #define BP_CSI_CSICR3_HRESP_ERR_EN      (7)      //!< Bit position for CSI_CSICR3_HRESP_ERR_EN.
 #define BM_CSI_CSICR3_HRESP_ERR_EN      (0x00000080)  //!< Bit mask for CSI_CSICR3_HRESP_ERR_EN.
 
@@ -1349,7 +1268,6 @@ typedef union _hw_csi_csicr3
 //! @brief Set the HRESP_ERR_EN field to a new value.
 #define BW_CSI_CSICR3_HRESP_ERR_EN(v)   (HW_CSI_CSICR3_WR((HW_CSI_CSICR3_RD() & ~BM_CSI_CSICR3_HRESP_ERR_EN) | BF_CSI_CSICR3_HRESP_ERR_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR3, field STATFF_LEVEL[10:8] (RW)
@@ -1368,7 +1286,6 @@ typedef union _hw_csi_csicr3
  * - 111 - 64 Words
  */
 //@{
-
 #define BP_CSI_CSICR3_STATFF_LEVEL      (8)      //!< Bit position for CSI_CSICR3_STATFF_LEVEL.
 #define BM_CSI_CSICR3_STATFF_LEVEL      (0x00000700)  //!< Bit mask for CSI_CSICR3_STATFF_LEVEL.
 
@@ -1382,7 +1299,6 @@ typedef union _hw_csi_csicr3
 //! @brief Set the STATFF_LEVEL field to a new value.
 #define BW_CSI_CSICR3_STATFF_LEVEL(v)   (HW_CSI_CSICR3_WR((HW_CSI_CSICR3_RD() & ~BM_CSI_CSICR3_STATFF_LEVEL) | BF_CSI_CSICR3_STATFF_LEVEL(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR3, field DMA_REQ_EN_SFF[11] (RW)
@@ -1395,7 +1311,6 @@ typedef union _hw_csi_csicr3
  * - 1 - Enable the dma request
  */
 //@{
-
 #define BP_CSI_CSICR3_DMA_REQ_EN_SFF      (11)      //!< Bit position for CSI_CSICR3_DMA_REQ_EN_SFF.
 #define BM_CSI_CSICR3_DMA_REQ_EN_SFF      (0x00000800)  //!< Bit mask for CSI_CSICR3_DMA_REQ_EN_SFF.
 
@@ -1409,7 +1324,6 @@ typedef union _hw_csi_csicr3
 //! @brief Set the DMA_REQ_EN_SFF field to a new value.
 #define BW_CSI_CSICR3_DMA_REQ_EN_SFF(v)   (HW_CSI_CSICR3_WR((HW_CSI_CSICR3_RD() & ~BM_CSI_CSICR3_DMA_REQ_EN_SFF) | BF_CSI_CSICR3_DMA_REQ_EN_SFF(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR3, field DMA_REQ_EN_RFF[12] (RW)
@@ -1422,7 +1336,6 @@ typedef union _hw_csi_csicr3
  * - 1 - Enable the dma request
  */
 //@{
-
 #define BP_CSI_CSICR3_DMA_REQ_EN_RFF      (12)      //!< Bit position for CSI_CSICR3_DMA_REQ_EN_RFF.
 #define BM_CSI_CSICR3_DMA_REQ_EN_RFF      (0x00001000)  //!< Bit mask for CSI_CSICR3_DMA_REQ_EN_RFF.
 
@@ -1436,7 +1349,6 @@ typedef union _hw_csi_csicr3
 //! @brief Set the DMA_REQ_EN_RFF field to a new value.
 #define BW_CSI_CSICR3_DMA_REQ_EN_RFF(v)   (HW_CSI_CSICR3_WR((HW_CSI_CSICR3_RD() & ~BM_CSI_CSICR3_DMA_REQ_EN_RFF) | BF_CSI_CSICR3_DMA_REQ_EN_RFF(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR3, field DMA_REFLASH_SFF[13] (RW)
@@ -1450,7 +1362,6 @@ typedef union _hw_csi_csicr3
  * - 1 - Reflash the embedded DMA controller
  */
 //@{
-
 #define BP_CSI_CSICR3_DMA_REFLASH_SFF      (13)      //!< Bit position for CSI_CSICR3_DMA_REFLASH_SFF.
 #define BM_CSI_CSICR3_DMA_REFLASH_SFF      (0x00002000)  //!< Bit mask for CSI_CSICR3_DMA_REFLASH_SFF.
 
@@ -1464,7 +1375,6 @@ typedef union _hw_csi_csicr3
 //! @brief Set the DMA_REFLASH_SFF field to a new value.
 #define BW_CSI_CSICR3_DMA_REFLASH_SFF(v)   (HW_CSI_CSICR3_WR((HW_CSI_CSICR3_RD() & ~BM_CSI_CSICR3_DMA_REFLASH_SFF) | BF_CSI_CSICR3_DMA_REFLASH_SFF(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR3, field DMA_REFLASH_RFF[14] (RW)
@@ -1478,7 +1388,6 @@ typedef union _hw_csi_csicr3
  * - 1 - Reflash the embedded DMA controller
  */
 //@{
-
 #define BP_CSI_CSICR3_DMA_REFLASH_RFF      (14)      //!< Bit position for CSI_CSICR3_DMA_REFLASH_RFF.
 #define BM_CSI_CSICR3_DMA_REFLASH_RFF      (0x00004000)  //!< Bit mask for CSI_CSICR3_DMA_REFLASH_RFF.
 
@@ -1492,7 +1401,6 @@ typedef union _hw_csi_csicr3
 //! @brief Set the DMA_REFLASH_RFF field to a new value.
 #define BW_CSI_CSICR3_DMA_REFLASH_RFF(v)   (HW_CSI_CSICR3_WR((HW_CSI_CSICR3_RD() & ~BM_CSI_CSICR3_DMA_REFLASH_RFF) | BF_CSI_CSICR3_DMA_REFLASH_RFF(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR3, field FRMCNT_RST[15] (RW)
@@ -1504,7 +1412,6 @@ typedef union _hw_csi_csicr3
  * - 1 - Reset frame counter immediately
  */
 //@{
-
 #define BP_CSI_CSICR3_FRMCNT_RST      (15)      //!< Bit position for CSI_CSICR3_FRMCNT_RST.
 #define BM_CSI_CSICR3_FRMCNT_RST      (0x00008000)  //!< Bit mask for CSI_CSICR3_FRMCNT_RST.
 
@@ -1518,7 +1425,6 @@ typedef union _hw_csi_csicr3
 //! @brief Set the FRMCNT_RST field to a new value.
 #define BW_CSI_CSICR3_FRMCNT_RST(v)   (HW_CSI_CSICR3_WR((HW_CSI_CSICR3_RD() & ~BM_CSI_CSICR3_FRMCNT_RST) | BF_CSI_CSICR3_FRMCNT_RST(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSICR3, field FRMCNT[31:16] (RW)
@@ -1527,7 +1433,6 @@ typedef union _hw_csi_csicr3
  * maximum)
  */
 //@{
-
 #define BP_CSI_CSICR3_FRMCNT      (16)      //!< Bit position for CSI_CSICR3_FRMCNT.
 #define BM_CSI_CSICR3_FRMCNT      (0xffff0000)  //!< Bit mask for CSI_CSICR3_FRMCNT.
 
@@ -1541,7 +1446,6 @@ typedef union _hw_csi_csicr3
 //! @brief Set the FRMCNT field to a new value.
 #define BW_CSI_CSICR3_FRMCNT(v)   (HW_CSI_CSICR3_WR((HW_CSI_CSICR3_RD() & ~BM_CSI_CSICR3_FRMCNT) | BF_CSI_CSICR3_FRMCNT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1588,13 +1492,11 @@ typedef union _hw_csi_csistatfifo
  * Static data from sensor
  */
 //@{
-
 #define BP_CSI_CSISTATFIFO_STAT      (0)      //!< Bit position for CSI_CSISTATFIFO_STAT.
 #define BM_CSI_CSISTATFIFO_STAT      (0xffffffff)  //!< Bit mask for CSI_CSISTATFIFO_STAT.
 
 //! @brief Get value of CSI_CSISTATFIFO_STAT from a register value.
 #define BG_CSI_CSISTATFIFO_STAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSISTATFIFO_STAT) >> BP_CSI_CSISTATFIFO_STAT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1640,13 +1542,11 @@ typedef union _hw_csi_csirfifo
  * Received image data
  */
 //@{
-
 #define BP_CSI_CSIRFIFO_IMAGE      (0)      //!< Bit position for CSI_CSIRFIFO_IMAGE.
 #define BM_CSI_CSIRFIFO_IMAGE      (0xffffffff)  //!< Bit mask for CSI_CSIRFIFO_IMAGE.
 
 //! @brief Get value of CSI_CSIRFIFO_IMAGE from a register value.
 #define BG_CSI_CSIRFIFO_IMAGE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CSI_CSIRFIFO_IMAGE) >> BP_CSI_CSIRFIFO_IMAGE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1703,7 +1603,6 @@ typedef union _hw_csi_csirxcnt
  * EOF interrupt.
  */
 //@{
-
 #define BP_CSI_CSIRXCNT_RXCNT      (0)      //!< Bit position for CSI_CSIRXCNT_RXCNT.
 #define BM_CSI_CSIRXCNT_RXCNT      (0x003fffff)  //!< Bit mask for CSI_CSIRXCNT_RXCNT.
 
@@ -1717,7 +1616,6 @@ typedef union _hw_csi_csirxcnt
 //! @brief Set the RXCNT field to a new value.
 #define BW_CSI_CSIRXCNT_RXCNT(v)   (HW_CSI_CSIRXCNT_WR((HW_CSI_CSIRXCNT_RD() & ~BM_CSI_CSIRXCNT_RXCNT) | BF_CSI_CSIRXCNT_RXCNT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1792,7 +1690,6 @@ typedef union _hw_csi_csisr
  * - 1 - At least 1 datum (word) is ready in RXFIFO.
  */
 //@{
-
 #define BP_CSI_CSISR_DRDY      (0)      //!< Bit position for CSI_CSISR_DRDY.
 #define BM_CSI_CSISR_DRDY      (0x00000001)  //!< Bit mask for CSI_CSISR_DRDY.
 
@@ -1806,7 +1703,6 @@ typedef union _hw_csi_csisr
 //! @brief Set the DRDY field to a new value.
 #define BW_CSI_CSISR_DRDY(v)   (HW_CSI_CSISR_WR((HW_CSI_CSISR_RD() & ~BM_CSI_CSISR_DRDY) | BF_CSI_CSISR_DRDY(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSISR, field ECC_INT[1] (RW)
@@ -1819,7 +1715,6 @@ typedef union _hw_csi_csisr
  * - 1 - Error is detected in CCIR coding
  */
 //@{
-
 #define BP_CSI_CSISR_ECC_INT      (1)      //!< Bit position for CSI_CSISR_ECC_INT.
 #define BM_CSI_CSISR_ECC_INT      (0x00000002)  //!< Bit mask for CSI_CSISR_ECC_INT.
 
@@ -1833,7 +1728,6 @@ typedef union _hw_csi_csisr
 //! @brief Set the ECC_INT field to a new value.
 #define BW_CSI_CSISR_ECC_INT(v)   (HW_CSI_CSISR_WR((HW_CSI_CSISR_RD() & ~BM_CSI_CSISR_ECC_INT) | BF_CSI_CSISR_ECC_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSISR, field HRESP_ERR_INT[7] (RW)
@@ -1846,7 +1740,6 @@ typedef union _hw_csi_csisr
  * - 1 - Hresponse error is detected.
  */
 //@{
-
 #define BP_CSI_CSISR_HRESP_ERR_INT      (7)      //!< Bit position for CSI_CSISR_HRESP_ERR_INT.
 #define BM_CSI_CSISR_HRESP_ERR_INT      (0x00000080)  //!< Bit mask for CSI_CSISR_HRESP_ERR_INT.
 
@@ -1860,7 +1753,6 @@ typedef union _hw_csi_csisr
 //! @brief Set the HRESP_ERR_INT field to a new value.
 #define BW_CSI_CSISR_HRESP_ERR_INT(v)   (HW_CSI_CSISR_WR((HW_CSI_CSISR_RD() & ~BM_CSI_CSISR_HRESP_ERR_INT) | BF_CSI_CSISR_HRESP_ERR_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSISR, field COF_INT[13] (RW)
@@ -1874,7 +1766,6 @@ typedef union _hw_csi_csisr
  * - 1 - Change of video field is detected.
  */
 //@{
-
 #define BP_CSI_CSISR_COF_INT      (13)      //!< Bit position for CSI_CSISR_COF_INT.
 #define BM_CSI_CSISR_COF_INT      (0x00002000)  //!< Bit mask for CSI_CSISR_COF_INT.
 
@@ -1888,7 +1779,6 @@ typedef union _hw_csi_csisr
 //! @brief Set the COF_INT field to a new value.
 #define BW_CSI_CSISR_COF_INT(v)   (HW_CSI_CSISR_WR((HW_CSI_CSISR_RD() & ~BM_CSI_CSISR_COF_INT) | BF_CSI_CSISR_COF_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSISR, field F1_INT[14] (RW)
@@ -1901,7 +1791,6 @@ typedef union _hw_csi_csisr
  * - 1 - Field 1 of video is about to start.
  */
 //@{
-
 #define BP_CSI_CSISR_F1_INT      (14)      //!< Bit position for CSI_CSISR_F1_INT.
 #define BM_CSI_CSISR_F1_INT      (0x00004000)  //!< Bit mask for CSI_CSISR_F1_INT.
 
@@ -1915,7 +1804,6 @@ typedef union _hw_csi_csisr
 //! @brief Set the F1_INT field to a new value.
 #define BW_CSI_CSISR_F1_INT(v)   (HW_CSI_CSISR_WR((HW_CSI_CSISR_RD() & ~BM_CSI_CSISR_F1_INT) | BF_CSI_CSISR_F1_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSISR, field F2_INT[15] (RW)
@@ -1928,7 +1816,6 @@ typedef union _hw_csi_csisr
  * - 1 - Field 2 of video is about to start
  */
 //@{
-
 #define BP_CSI_CSISR_F2_INT      (15)      //!< Bit position for CSI_CSISR_F2_INT.
 #define BM_CSI_CSISR_F2_INT      (0x00008000)  //!< Bit mask for CSI_CSISR_F2_INT.
 
@@ -1942,7 +1829,6 @@ typedef union _hw_csi_csisr
 //! @brief Set the F2_INT field to a new value.
 #define BW_CSI_CSISR_F2_INT(v)   (HW_CSI_CSISR_WR((HW_CSI_CSISR_RD() & ~BM_CSI_CSISR_F2_INT) | BF_CSI_CSISR_F2_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSISR, field SOF_INT[16] (RW)
@@ -1954,7 +1840,6 @@ typedef union _hw_csi_csisr
  * - 1 - SOF is detected.
  */
 //@{
-
 #define BP_CSI_CSISR_SOF_INT      (16)      //!< Bit position for CSI_CSISR_SOF_INT.
 #define BM_CSI_CSISR_SOF_INT      (0x00010000)  //!< Bit mask for CSI_CSISR_SOF_INT.
 
@@ -1968,7 +1853,6 @@ typedef union _hw_csi_csisr
 //! @brief Set the SOF_INT field to a new value.
 #define BW_CSI_CSISR_SOF_INT(v)   (HW_CSI_CSISR_WR((HW_CSI_CSISR_RD() & ~BM_CSI_CSISR_SOF_INT) | BF_CSI_CSISR_SOF_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSISR, field EOF_INT[17] (RW)
@@ -1980,7 +1864,6 @@ typedef union _hw_csi_csisr
  * - 1 - EOF is detected.
  */
 //@{
-
 #define BP_CSI_CSISR_EOF_INT      (17)      //!< Bit position for CSI_CSISR_EOF_INT.
 #define BM_CSI_CSISR_EOF_INT      (0x00020000)  //!< Bit mask for CSI_CSISR_EOF_INT.
 
@@ -1994,7 +1877,6 @@ typedef union _hw_csi_csisr
 //! @brief Set the EOF_INT field to a new value.
 #define BW_CSI_CSISR_EOF_INT(v)   (HW_CSI_CSISR_WR((HW_CSI_CSISR_RD() & ~BM_CSI_CSISR_EOF_INT) | BF_CSI_CSISR_EOF_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSISR, field RXFF_INT[18] (RW)
@@ -2007,7 +1889,6 @@ typedef union _hw_csi_csisr
  * - 1 - RxFIFO is full.
  */
 //@{
-
 #define BP_CSI_CSISR_RXFF_INT      (18)      //!< Bit position for CSI_CSISR_RXFF_INT.
 #define BM_CSI_CSISR_RXFF_INT      (0x00040000)  //!< Bit mask for CSI_CSISR_RXFF_INT.
 
@@ -2021,7 +1902,6 @@ typedef union _hw_csi_csisr
 //! @brief Set the RXFF_INT field to a new value.
 #define BW_CSI_CSISR_RXFF_INT(v)   (HW_CSI_CSISR_WR((HW_CSI_CSISR_RD() & ~BM_CSI_CSISR_RXFF_INT) | BF_CSI_CSISR_RXFF_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSISR, field DMA_TSF_DONE_FB1[19] (RW)
@@ -2036,7 +1916,6 @@ typedef union _hw_csi_csisr
  * - 1 - DMA transfer is completed.
  */
 //@{
-
 #define BP_CSI_CSISR_DMA_TSF_DONE_FB1      (19)      //!< Bit position for CSI_CSISR_DMA_TSF_DONE_FB1.
 #define BM_CSI_CSISR_DMA_TSF_DONE_FB1      (0x00080000)  //!< Bit mask for CSI_CSISR_DMA_TSF_DONE_FB1.
 
@@ -2050,7 +1929,6 @@ typedef union _hw_csi_csisr
 //! @brief Set the DMA_TSF_DONE_FB1 field to a new value.
 #define BW_CSI_CSISR_DMA_TSF_DONE_FB1(v)   (HW_CSI_CSISR_WR((HW_CSI_CSISR_RD() & ~BM_CSI_CSISR_DMA_TSF_DONE_FB1) | BF_CSI_CSISR_DMA_TSF_DONE_FB1(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSISR, field DMA_TSF_DONE_FB2[20] (RW)
@@ -2065,7 +1943,6 @@ typedef union _hw_csi_csisr
  * - 1 - DMA transfer is completed.
  */
 //@{
-
 #define BP_CSI_CSISR_DMA_TSF_DONE_FB2      (20)      //!< Bit position for CSI_CSISR_DMA_TSF_DONE_FB2.
 #define BM_CSI_CSISR_DMA_TSF_DONE_FB2      (0x00100000)  //!< Bit mask for CSI_CSISR_DMA_TSF_DONE_FB2.
 
@@ -2079,7 +1956,6 @@ typedef union _hw_csi_csisr
 //! @brief Set the DMA_TSF_DONE_FB2 field to a new value.
 #define BW_CSI_CSISR_DMA_TSF_DONE_FB2(v)   (HW_CSI_CSISR_WR((HW_CSI_CSISR_RD() & ~BM_CSI_CSISR_DMA_TSF_DONE_FB2) | BF_CSI_CSISR_DMA_TSF_DONE_FB2(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSISR, field STATFF_INT[21] (RW)
@@ -2092,7 +1968,6 @@ typedef union _hw_csi_csisr
  * - 1 - STATFIFO is full.
  */
 //@{
-
 #define BP_CSI_CSISR_STATFF_INT      (21)      //!< Bit position for CSI_CSISR_STATFF_INT.
 #define BM_CSI_CSISR_STATFF_INT      (0x00200000)  //!< Bit mask for CSI_CSISR_STATFF_INT.
 
@@ -2106,7 +1981,6 @@ typedef union _hw_csi_csisr
 //! @brief Set the STATFF_INT field to a new value.
 #define BW_CSI_CSISR_STATFF_INT(v)   (HW_CSI_CSISR_WR((HW_CSI_CSISR_RD() & ~BM_CSI_CSISR_STATFF_INT) | BF_CSI_CSISR_STATFF_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSISR, field DMA_TSF_DONE_SFF[22] (RW)
@@ -2120,7 +1994,6 @@ typedef union _hw_csi_csisr
  * - 1 - DMA transfer is completed.
  */
 //@{
-
 #define BP_CSI_CSISR_DMA_TSF_DONE_SFF      (22)      //!< Bit position for CSI_CSISR_DMA_TSF_DONE_SFF.
 #define BM_CSI_CSISR_DMA_TSF_DONE_SFF      (0x00400000)  //!< Bit mask for CSI_CSISR_DMA_TSF_DONE_SFF.
 
@@ -2134,7 +2007,6 @@ typedef union _hw_csi_csisr
 //! @brief Set the DMA_TSF_DONE_SFF field to a new value.
 #define BW_CSI_CSISR_DMA_TSF_DONE_SFF(v)   (HW_CSI_CSISR_WR((HW_CSI_CSISR_RD() & ~BM_CSI_CSISR_DMA_TSF_DONE_SFF) | BF_CSI_CSISR_DMA_TSF_DONE_SFF(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSISR, field RF_OR_INT[24] (RW)
@@ -2147,7 +2019,6 @@ typedef union _hw_csi_csisr
  * - 1 - RXFIFO has overflowed.
  */
 //@{
-
 #define BP_CSI_CSISR_RF_OR_INT      (24)      //!< Bit position for CSI_CSISR_RF_OR_INT.
 #define BM_CSI_CSISR_RF_OR_INT      (0x01000000)  //!< Bit mask for CSI_CSISR_RF_OR_INT.
 
@@ -2161,7 +2032,6 @@ typedef union _hw_csi_csisr
 //! @brief Set the RF_OR_INT field to a new value.
 #define BW_CSI_CSISR_RF_OR_INT(v)   (HW_CSI_CSISR_WR((HW_CSI_CSISR_RD() & ~BM_CSI_CSISR_RF_OR_INT) | BF_CSI_CSISR_RF_OR_INT(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSISR, field SF_OR_INT[25] (RW)
@@ -2174,7 +2044,6 @@ typedef union _hw_csi_csisr
  * - 1 - STATFIFO has overflowed.
  */
 //@{
-
 #define BP_CSI_CSISR_SF_OR_INT      (25)      //!< Bit position for CSI_CSISR_SF_OR_INT.
 #define BM_CSI_CSISR_SF_OR_INT      (0x02000000)  //!< Bit mask for CSI_CSISR_SF_OR_INT.
 
@@ -2188,7 +2057,6 @@ typedef union _hw_csi_csisr
 //! @brief Set the SF_OR_INT field to a new value.
 #define BW_CSI_CSISR_SF_OR_INT(v)   (HW_CSI_CSISR_WR((HW_CSI_CSISR_RD() & ~BM_CSI_CSISR_SF_OR_INT) | BF_CSI_CSISR_SF_OR_INT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2244,7 +2112,6 @@ typedef union _hw_csi_csidmasa_statfifo
  * address should be word aligned.
  */
 //@{
-
 #define BP_CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF      (2)      //!< Bit position for CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF.
 #define BM_CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF      (0xfffffffc)  //!< Bit mask for CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF.
 
@@ -2258,7 +2125,6 @@ typedef union _hw_csi_csidmasa_statfifo
 //! @brief Set the DMA_START_ADDR_SFF field to a new value.
 #define BW_CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF(v)   (HW_CSI_CSIDMASA_STATFIFO_WR((HW_CSI_CSIDMASA_STATFIFO_RD() & ~BM_CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF) | BF_CSI_CSIDMASA_STATFIFO_DMA_START_ADDR_SFF(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2310,7 +2176,6 @@ typedef union _hw_csi_csidmats_statfifo
  * controller. The size should be word aligned.
  */
 //@{
-
 #define BP_CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF      (0)      //!< Bit position for CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF.
 #define BM_CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF      (0xffffffff)  //!< Bit mask for CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF.
 
@@ -2324,7 +2189,6 @@ typedef union _hw_csi_csidmats_statfifo
 //! @brief Set the DMA_TSF_SIZE_SFF field to a new value.
 #define BW_CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF(v)   (HW_CSI_CSIDMATS_STATFIFO_WR((HW_CSI_CSIDMATS_STATFIFO_RD() & ~BM_CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF) | BF_CSI_CSIDMATS_STATFIFO_DMA_TSF_SIZE_SFF(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2380,7 +2244,6 @@ typedef union _hw_csi_csidmasa_fb1
  * should be word aligned.
  */
 //@{
-
 #define BP_CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1      (2)      //!< Bit position for CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1.
 #define BM_CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1      (0xfffffffc)  //!< Bit mask for CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1.
 
@@ -2394,7 +2257,6 @@ typedef union _hw_csi_csidmasa_fb1
 //! @brief Set the DMA_START_ADDR_FB1 field to a new value.
 #define BW_CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1(v)   (HW_CSI_CSIDMASA_FB1_WR((HW_CSI_CSIDMASA_FB1_RD() & ~BM_CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1) | BF_CSI_CSIDMASA_FB1_DMA_START_ADDR_FB1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2450,7 +2312,6 @@ typedef union _hw_csi_csidmasa_fb2
  * should be word aligned.
  */
 //@{
-
 #define BP_CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2      (2)      //!< Bit position for CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2.
 #define BM_CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2      (0xfffffffc)  //!< Bit mask for CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2.
 
@@ -2464,7 +2325,6 @@ typedef union _hw_csi_csidmasa_fb2
 //! @brief Set the DMA_START_ADDR_FB2 field to a new value.
 #define BW_CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2(v)   (HW_CSI_CSIDMASA_FB2_WR((HW_CSI_CSIDMASA_FB2_RD() & ~BM_CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2) | BF_CSI_CSIDMASA_FB2_DMA_START_ADDR_FB2(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2521,7 +2381,6 @@ typedef union _hw_csi_csifbuf_para
  * of the image.
  */
 //@{
-
 #define BP_CSI_CSIFBUF_PARA_FBUF_STRIDE      (0)      //!< Bit position for CSI_CSIFBUF_PARA_FBUF_STRIDE.
 #define BM_CSI_CSIFBUF_PARA_FBUF_STRIDE      (0x0000ffff)  //!< Bit mask for CSI_CSIFBUF_PARA_FBUF_STRIDE.
 
@@ -2535,7 +2394,6 @@ typedef union _hw_csi_csifbuf_para
 //! @brief Set the FBUF_STRIDE field to a new value.
 #define BW_CSI_CSIFBUF_PARA_FBUF_STRIDE(v)   (HW_CSI_CSIFBUF_PARA_WR((HW_CSI_CSIFBUF_PARA_RD() & ~BM_CSI_CSIFBUF_PARA_FBUF_STRIDE) | BF_CSI_CSIFBUF_PARA_FBUF_STRIDE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2589,7 +2447,6 @@ typedef union _hw_csi_csiimag_para
  * Image Height. Indicates how many pixels in a column of the image from the sensor.
  */
 //@{
-
 #define BP_CSI_CSIIMAG_PARA_IMAGE_HEIGHT      (0)      //!< Bit position for CSI_CSIIMAG_PARA_IMAGE_HEIGHT.
 #define BM_CSI_CSIIMAG_PARA_IMAGE_HEIGHT      (0x0000ffff)  //!< Bit mask for CSI_CSIIMAG_PARA_IMAGE_HEIGHT.
 
@@ -2603,7 +2460,6 @@ typedef union _hw_csi_csiimag_para
 //! @brief Set the IMAGE_HEIGHT field to a new value.
 #define BW_CSI_CSIIMAG_PARA_IMAGE_HEIGHT(v)   (HW_CSI_CSIIMAG_PARA_WR((HW_CSI_CSIIMAG_PARA_RD() & ~BM_CSI_CSIIMAG_PARA_IMAGE_HEIGHT) | BF_CSI_CSIIMAG_PARA_IMAGE_HEIGHT(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI_CSIIMAG_PARA, field IMAGE_WIDTH[31:16] (RW)
@@ -2614,7 +2470,6 @@ typedef union _hw_csi_csiimag_para
  * multiple of 2 pixels.
  */
 //@{
-
 #define BP_CSI_CSIIMAG_PARA_IMAGE_WIDTH      (16)      //!< Bit position for CSI_CSIIMAG_PARA_IMAGE_WIDTH.
 #define BM_CSI_CSIIMAG_PARA_IMAGE_WIDTH      (0xffff0000)  //!< Bit mask for CSI_CSIIMAG_PARA_IMAGE_WIDTH.
 
@@ -2628,7 +2483,6 @@ typedef union _hw_csi_csiimag_para
 //! @brief Set the IMAGE_WIDTH field to a new value.
 #define BW_CSI_CSIIMAG_PARA_IMAGE_WIDTH(v)   (HW_CSI_CSIIMAG_PARA_WR((HW_CSI_CSIIMAG_PARA_RD() & ~BM_CSI_CSIIMAG_PARA_IMAGE_WIDTH) | BF_CSI_CSIIMAG_PARA_IMAGE_WIDTH(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2665,3 +2519,5 @@ typedef struct _hw_csi
 #endif
 
 #endif // __HW_CSI_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

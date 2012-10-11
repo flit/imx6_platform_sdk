@@ -128,7 +128,6 @@ typedef union _hw_romc_rompatch0d
  * the entire word. The word is word address aligned.
  */
 //@{
-
 #define BP_ROMC_ROMPATCH0D_DATAX      (0)      //!< Bit position for ROMC_ROMPATCH0D_DATAX.
 #define BM_ROMC_ROMPATCH0D_DATAX      (0xffffffff)  //!< Bit mask for ROMC_ROMPATCH0D_DATAX.
 
@@ -142,7 +141,6 @@ typedef union _hw_romc_rompatch0d
 //! @brief Set the DATAX field to a new value.
 #define BW_ROMC_ROMPATCH0D_DATAX(v)   (HW_ROMC_ROMPATCH0D_WR((HW_ROMC_ROMPATCH0D_RD() & ~BM_ROMC_ROMPATCH0D_DATAX) | BF_ROMC_ROMPATCH0D_DATAX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -204,7 +202,6 @@ typedef union _hw_romc_rompatch1d
  * the entire word. The word is word address aligned.
  */
 //@{
-
 #define BP_ROMC_ROMPATCH1D_DATAX      (0)      //!< Bit position for ROMC_ROMPATCH1D_DATAX.
 #define BM_ROMC_ROMPATCH1D_DATAX      (0xffffffff)  //!< Bit mask for ROMC_ROMPATCH1D_DATAX.
 
@@ -218,7 +215,6 @@ typedef union _hw_romc_rompatch1d
 //! @brief Set the DATAX field to a new value.
 #define BW_ROMC_ROMPATCH1D_DATAX(v)   (HW_ROMC_ROMPATCH1D_WR((HW_ROMC_ROMPATCH1D_RD() & ~BM_ROMC_ROMPATCH1D_DATAX) | BF_ROMC_ROMPATCH1D_DATAX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -280,7 +276,6 @@ typedef union _hw_romc_rompatch2d
  * the entire word. The word is word address aligned.
  */
 //@{
-
 #define BP_ROMC_ROMPATCH2D_DATAX      (0)      //!< Bit position for ROMC_ROMPATCH2D_DATAX.
 #define BM_ROMC_ROMPATCH2D_DATAX      (0xffffffff)  //!< Bit mask for ROMC_ROMPATCH2D_DATAX.
 
@@ -294,7 +289,6 @@ typedef union _hw_romc_rompatch2d
 //! @brief Set the DATAX field to a new value.
 #define BW_ROMC_ROMPATCH2D_DATAX(v)   (HW_ROMC_ROMPATCH2D_WR((HW_ROMC_ROMPATCH2D_RD() & ~BM_ROMC_ROMPATCH2D_DATAX) | BF_ROMC_ROMPATCH2D_DATAX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -356,7 +350,6 @@ typedef union _hw_romc_rompatch3d
  * the entire word. The word is word address aligned.
  */
 //@{
-
 #define BP_ROMC_ROMPATCH3D_DATAX      (0)      //!< Bit position for ROMC_ROMPATCH3D_DATAX.
 #define BM_ROMC_ROMPATCH3D_DATAX      (0xffffffff)  //!< Bit mask for ROMC_ROMPATCH3D_DATAX.
 
@@ -370,7 +363,6 @@ typedef union _hw_romc_rompatch3d
 //! @brief Set the DATAX field to a new value.
 #define BW_ROMC_ROMPATCH3D_DATAX(v)   (HW_ROMC_ROMPATCH3D_WR((HW_ROMC_ROMPATCH3D_RD() & ~BM_ROMC_ROMPATCH3D_DATAX) | BF_ROMC_ROMPATCH3D_DATAX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -432,7 +424,6 @@ typedef union _hw_romc_rompatch4d
  * the entire word. The word is word address aligned.
  */
 //@{
-
 #define BP_ROMC_ROMPATCH4D_DATAX      (0)      //!< Bit position for ROMC_ROMPATCH4D_DATAX.
 #define BM_ROMC_ROMPATCH4D_DATAX      (0xffffffff)  //!< Bit mask for ROMC_ROMPATCH4D_DATAX.
 
@@ -446,7 +437,6 @@ typedef union _hw_romc_rompatch4d
 //! @brief Set the DATAX field to a new value.
 #define BW_ROMC_ROMPATCH4D_DATAX(v)   (HW_ROMC_ROMPATCH4D_WR((HW_ROMC_ROMPATCH4D_RD() & ~BM_ROMC_ROMPATCH4D_DATAX) | BF_ROMC_ROMPATCH4D_DATAX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -508,7 +498,6 @@ typedef union _hw_romc_rompatch5d
  * the entire word. The word is word address aligned.
  */
 //@{
-
 #define BP_ROMC_ROMPATCH5D_DATAX      (0)      //!< Bit position for ROMC_ROMPATCH5D_DATAX.
 #define BM_ROMC_ROMPATCH5D_DATAX      (0xffffffff)  //!< Bit mask for ROMC_ROMPATCH5D_DATAX.
 
@@ -522,7 +511,6 @@ typedef union _hw_romc_rompatch5d
 //! @brief Set the DATAX field to a new value.
 #define BW_ROMC_ROMPATCH5D_DATAX(v)   (HW_ROMC_ROMPATCH5D_WR((HW_ROMC_ROMPATCH5D_RD() & ~BM_ROMC_ROMPATCH5D_DATAX) | BF_ROMC_ROMPATCH5D_DATAX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -584,7 +572,6 @@ typedef union _hw_romc_rompatch6d
  * the entire word. The word is word address aligned.
  */
 //@{
-
 #define BP_ROMC_ROMPATCH6D_DATAX      (0)      //!< Bit position for ROMC_ROMPATCH6D_DATAX.
 #define BM_ROMC_ROMPATCH6D_DATAX      (0xffffffff)  //!< Bit mask for ROMC_ROMPATCH6D_DATAX.
 
@@ -598,7 +585,6 @@ typedef union _hw_romc_rompatch6d
 //! @brief Set the DATAX field to a new value.
 #define BW_ROMC_ROMPATCH6D_DATAX(v)   (HW_ROMC_ROMPATCH6D_WR((HW_ROMC_ROMPATCH6D_RD() & ~BM_ROMC_ROMPATCH6D_DATAX) | BF_ROMC_ROMPATCH6D_DATAX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -660,7 +646,6 @@ typedef union _hw_romc_rompatch7d
  * the entire word. The word is word address aligned.
  */
 //@{
-
 #define BP_ROMC_ROMPATCH7D_DATAX      (0)      //!< Bit position for ROMC_ROMPATCH7D_DATAX.
 #define BM_ROMC_ROMPATCH7D_DATAX      (0xffffffff)  //!< Bit mask for ROMC_ROMPATCH7D_DATAX.
 
@@ -674,7 +659,6 @@ typedef union _hw_romc_rompatch7d
 //! @brief Set the DATAX field to a new value.
 #define BW_ROMC_ROMPATCH7D_DATAX(v)   (HW_ROMC_ROMPATCH7D_WR((HW_ROMC_ROMPATCH7D_RD() & ~BM_ROMC_ROMPATCH7D_DATAX) | BF_ROMC_ROMPATCH7D_DATAX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -736,7 +720,6 @@ typedef union _hw_romc_rompatchcntl
  * - 1 - Address comparator triggers a data fix
  */
 //@{
-
 #define BP_ROMC_ROMPATCHCNTL_DATAFIX      (0)      //!< Bit position for ROMC_ROMPATCHCNTL_DATAFIX.
 #define BM_ROMC_ROMPATCHCNTL_DATAFIX      (0x000000ff)  //!< Bit mask for ROMC_ROMPATCHCNTL_DATAFIX.
 
@@ -750,7 +733,6 @@ typedef union _hw_romc_rompatchcntl
 //! @brief Set the DATAFIX field to a new value.
 #define BW_ROMC_ROMPATCHCNTL_DATAFIX(v)   (HW_ROMC_ROMPATCHCNTL_WR((HW_ROMC_ROMPATCHCNTL_RD() & ~BM_ROMC_ROMPATCHCNTL_DATAFIX) | BF_ROMC_ROMPATCHCNTL_DATAFIX(v)))
 #endif
-
 //@}
 
 /*! @name Register ROMC_ROMPATCHCNTL, field DIS[29] (RW)
@@ -763,7 +745,6 @@ typedef union _hw_romc_rompatchcntl
  * - 1 - Disable all ROMC functions: data fixing, and opcode patching
  */
 //@{
-
 #define BP_ROMC_ROMPATCHCNTL_DIS      (29)      //!< Bit position for ROMC_ROMPATCHCNTL_DIS.
 #define BM_ROMC_ROMPATCHCNTL_DIS      (0x20000000)  //!< Bit mask for ROMC_ROMPATCHCNTL_DIS.
 
@@ -777,7 +758,6 @@ typedef union _hw_romc_rompatchcntl
 //! @brief Set the DIS field to a new value.
 #define BW_ROMC_ROMPATCHCNTL_DIS(v)   (HW_ROMC_ROMPATCHCNTL_WR((HW_ROMC_ROMPATCHCNTL_RD() & ~BM_ROMC_ROMPATCHCNTL_DIS) | BF_ROMC_ROMPATCHCNTL_DIS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -882,7 +862,6 @@ typedef union _hw_romc_rompatchenl
  *     associated address
  */
 //@{
-
 #define BP_ROMC_ROMPATCHENL_ENABLE      (0)      //!< Bit position for ROMC_ROMPATCHENL_ENABLE.
 #define BM_ROMC_ROMPATCHENL_ENABLE      (0x0000ffff)  //!< Bit mask for ROMC_ROMPATCHENL_ENABLE.
 
@@ -896,7 +875,6 @@ typedef union _hw_romc_rompatchenl
 //! @brief Set the ENABLE field to a new value.
 #define BW_ROMC_ROMPATCHENL_ENABLE(v)   (HW_ROMC_ROMPATCHENL_WR((HW_ROMC_ROMPATCHENL_RD() & ~BM_ROMC_ROMPATCHENL_ENABLE) | BF_ROMC_ROMPATCHENL_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -960,7 +938,6 @@ typedef union _hw_romc_rompatch0a
  * - 1 - THUMB patch (ignore if data fix)
  */
 //@{
-
 #define BP_ROMC_ROMPATCH0A_THUMBX      (0)      //!< Bit position for ROMC_ROMPATCH0A_THUMBX.
 #define BM_ROMC_ROMPATCH0A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH0A_THUMBX.
 
@@ -974,7 +951,6 @@ typedef union _hw_romc_rompatch0a
 //! @brief Set the THUMBX field to a new value.
 #define BW_ROMC_ROMPATCH0A_THUMBX(v)   (HW_ROMC_ROMPATCH0A_WR((HW_ROMC_ROMPATCH0A_RD() & ~BM_ROMC_ROMPATCH0A_THUMBX) | BF_ROMC_ROMPATCH0A_THUMBX(v)))
 #endif
-
 //@}
 
 /*! @name Register ROMC_ROMPATCH0A, field ADDRX[22:1] (RW)
@@ -984,7 +960,6 @@ typedef union _hw_romc_rompatch0a
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 //@{
-
 #define BP_ROMC_ROMPATCH0A_ADDRX      (1)      //!< Bit position for ROMC_ROMPATCH0A_ADDRX.
 #define BM_ROMC_ROMPATCH0A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH0A_ADDRX.
 
@@ -998,7 +973,6 @@ typedef union _hw_romc_rompatch0a
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH0A_ADDRX(v)   (HW_ROMC_ROMPATCH0A_WR((HW_ROMC_ROMPATCH0A_RD() & ~BM_ROMC_ROMPATCH0A_ADDRX) | BF_ROMC_ROMPATCH0A_ADDRX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1062,7 +1036,6 @@ typedef union _hw_romc_rompatch1a
  * - 1 - THUMB patch (ignore if data fix)
  */
 //@{
-
 #define BP_ROMC_ROMPATCH1A_THUMBX      (0)      //!< Bit position for ROMC_ROMPATCH1A_THUMBX.
 #define BM_ROMC_ROMPATCH1A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH1A_THUMBX.
 
@@ -1076,7 +1049,6 @@ typedef union _hw_romc_rompatch1a
 //! @brief Set the THUMBX field to a new value.
 #define BW_ROMC_ROMPATCH1A_THUMBX(v)   (HW_ROMC_ROMPATCH1A_WR((HW_ROMC_ROMPATCH1A_RD() & ~BM_ROMC_ROMPATCH1A_THUMBX) | BF_ROMC_ROMPATCH1A_THUMBX(v)))
 #endif
-
 //@}
 
 /*! @name Register ROMC_ROMPATCH1A, field ADDRX[22:1] (RW)
@@ -1086,7 +1058,6 @@ typedef union _hw_romc_rompatch1a
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 //@{
-
 #define BP_ROMC_ROMPATCH1A_ADDRX      (1)      //!< Bit position for ROMC_ROMPATCH1A_ADDRX.
 #define BM_ROMC_ROMPATCH1A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH1A_ADDRX.
 
@@ -1100,7 +1071,6 @@ typedef union _hw_romc_rompatch1a
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH1A_ADDRX(v)   (HW_ROMC_ROMPATCH1A_WR((HW_ROMC_ROMPATCH1A_RD() & ~BM_ROMC_ROMPATCH1A_ADDRX) | BF_ROMC_ROMPATCH1A_ADDRX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1164,7 +1134,6 @@ typedef union _hw_romc_rompatch2a
  * - 1 - THUMB patch (ignore if data fix)
  */
 //@{
-
 #define BP_ROMC_ROMPATCH2A_THUMBX      (0)      //!< Bit position for ROMC_ROMPATCH2A_THUMBX.
 #define BM_ROMC_ROMPATCH2A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH2A_THUMBX.
 
@@ -1178,7 +1147,6 @@ typedef union _hw_romc_rompatch2a
 //! @brief Set the THUMBX field to a new value.
 #define BW_ROMC_ROMPATCH2A_THUMBX(v)   (HW_ROMC_ROMPATCH2A_WR((HW_ROMC_ROMPATCH2A_RD() & ~BM_ROMC_ROMPATCH2A_THUMBX) | BF_ROMC_ROMPATCH2A_THUMBX(v)))
 #endif
-
 //@}
 
 /*! @name Register ROMC_ROMPATCH2A, field ADDRX[22:1] (RW)
@@ -1188,7 +1156,6 @@ typedef union _hw_romc_rompatch2a
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 //@{
-
 #define BP_ROMC_ROMPATCH2A_ADDRX      (1)      //!< Bit position for ROMC_ROMPATCH2A_ADDRX.
 #define BM_ROMC_ROMPATCH2A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH2A_ADDRX.
 
@@ -1202,7 +1169,6 @@ typedef union _hw_romc_rompatch2a
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH2A_ADDRX(v)   (HW_ROMC_ROMPATCH2A_WR((HW_ROMC_ROMPATCH2A_RD() & ~BM_ROMC_ROMPATCH2A_ADDRX) | BF_ROMC_ROMPATCH2A_ADDRX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1266,7 +1232,6 @@ typedef union _hw_romc_rompatch3a
  * - 1 - THUMB patch (ignore if data fix)
  */
 //@{
-
 #define BP_ROMC_ROMPATCH3A_THUMBX      (0)      //!< Bit position for ROMC_ROMPATCH3A_THUMBX.
 #define BM_ROMC_ROMPATCH3A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH3A_THUMBX.
 
@@ -1280,7 +1245,6 @@ typedef union _hw_romc_rompatch3a
 //! @brief Set the THUMBX field to a new value.
 #define BW_ROMC_ROMPATCH3A_THUMBX(v)   (HW_ROMC_ROMPATCH3A_WR((HW_ROMC_ROMPATCH3A_RD() & ~BM_ROMC_ROMPATCH3A_THUMBX) | BF_ROMC_ROMPATCH3A_THUMBX(v)))
 #endif
-
 //@}
 
 /*! @name Register ROMC_ROMPATCH3A, field ADDRX[22:1] (RW)
@@ -1290,7 +1254,6 @@ typedef union _hw_romc_rompatch3a
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 //@{
-
 #define BP_ROMC_ROMPATCH3A_ADDRX      (1)      //!< Bit position for ROMC_ROMPATCH3A_ADDRX.
 #define BM_ROMC_ROMPATCH3A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH3A_ADDRX.
 
@@ -1304,7 +1267,6 @@ typedef union _hw_romc_rompatch3a
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH3A_ADDRX(v)   (HW_ROMC_ROMPATCH3A_WR((HW_ROMC_ROMPATCH3A_RD() & ~BM_ROMC_ROMPATCH3A_ADDRX) | BF_ROMC_ROMPATCH3A_ADDRX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1368,7 +1330,6 @@ typedef union _hw_romc_rompatch4a
  * - 1 - THUMB patch (ignore if data fix)
  */
 //@{
-
 #define BP_ROMC_ROMPATCH4A_THUMBX      (0)      //!< Bit position for ROMC_ROMPATCH4A_THUMBX.
 #define BM_ROMC_ROMPATCH4A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH4A_THUMBX.
 
@@ -1382,7 +1343,6 @@ typedef union _hw_romc_rompatch4a
 //! @brief Set the THUMBX field to a new value.
 #define BW_ROMC_ROMPATCH4A_THUMBX(v)   (HW_ROMC_ROMPATCH4A_WR((HW_ROMC_ROMPATCH4A_RD() & ~BM_ROMC_ROMPATCH4A_THUMBX) | BF_ROMC_ROMPATCH4A_THUMBX(v)))
 #endif
-
 //@}
 
 /*! @name Register ROMC_ROMPATCH4A, field ADDRX[22:1] (RW)
@@ -1392,7 +1352,6 @@ typedef union _hw_romc_rompatch4a
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 //@{
-
 #define BP_ROMC_ROMPATCH4A_ADDRX      (1)      //!< Bit position for ROMC_ROMPATCH4A_ADDRX.
 #define BM_ROMC_ROMPATCH4A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH4A_ADDRX.
 
@@ -1406,7 +1365,6 @@ typedef union _hw_romc_rompatch4a
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH4A_ADDRX(v)   (HW_ROMC_ROMPATCH4A_WR((HW_ROMC_ROMPATCH4A_RD() & ~BM_ROMC_ROMPATCH4A_ADDRX) | BF_ROMC_ROMPATCH4A_ADDRX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1470,7 +1428,6 @@ typedef union _hw_romc_rompatch5a
  * - 1 - THUMB patch (ignore if data fix)
  */
 //@{
-
 #define BP_ROMC_ROMPATCH5A_THUMBX      (0)      //!< Bit position for ROMC_ROMPATCH5A_THUMBX.
 #define BM_ROMC_ROMPATCH5A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH5A_THUMBX.
 
@@ -1484,7 +1441,6 @@ typedef union _hw_romc_rompatch5a
 //! @brief Set the THUMBX field to a new value.
 #define BW_ROMC_ROMPATCH5A_THUMBX(v)   (HW_ROMC_ROMPATCH5A_WR((HW_ROMC_ROMPATCH5A_RD() & ~BM_ROMC_ROMPATCH5A_THUMBX) | BF_ROMC_ROMPATCH5A_THUMBX(v)))
 #endif
-
 //@}
 
 /*! @name Register ROMC_ROMPATCH5A, field ADDRX[22:1] (RW)
@@ -1494,7 +1450,6 @@ typedef union _hw_romc_rompatch5a
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 //@{
-
 #define BP_ROMC_ROMPATCH5A_ADDRX      (1)      //!< Bit position for ROMC_ROMPATCH5A_ADDRX.
 #define BM_ROMC_ROMPATCH5A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH5A_ADDRX.
 
@@ -1508,7 +1463,6 @@ typedef union _hw_romc_rompatch5a
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH5A_ADDRX(v)   (HW_ROMC_ROMPATCH5A_WR((HW_ROMC_ROMPATCH5A_RD() & ~BM_ROMC_ROMPATCH5A_ADDRX) | BF_ROMC_ROMPATCH5A_ADDRX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1572,7 +1526,6 @@ typedef union _hw_romc_rompatch6a
  * - 1 - THUMB patch (ignore if data fix)
  */
 //@{
-
 #define BP_ROMC_ROMPATCH6A_THUMBX      (0)      //!< Bit position for ROMC_ROMPATCH6A_THUMBX.
 #define BM_ROMC_ROMPATCH6A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH6A_THUMBX.
 
@@ -1586,7 +1539,6 @@ typedef union _hw_romc_rompatch6a
 //! @brief Set the THUMBX field to a new value.
 #define BW_ROMC_ROMPATCH6A_THUMBX(v)   (HW_ROMC_ROMPATCH6A_WR((HW_ROMC_ROMPATCH6A_RD() & ~BM_ROMC_ROMPATCH6A_THUMBX) | BF_ROMC_ROMPATCH6A_THUMBX(v)))
 #endif
-
 //@}
 
 /*! @name Register ROMC_ROMPATCH6A, field ADDRX[22:1] (RW)
@@ -1596,7 +1548,6 @@ typedef union _hw_romc_rompatch6a
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 //@{
-
 #define BP_ROMC_ROMPATCH6A_ADDRX      (1)      //!< Bit position for ROMC_ROMPATCH6A_ADDRX.
 #define BM_ROMC_ROMPATCH6A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH6A_ADDRX.
 
@@ -1610,7 +1561,6 @@ typedef union _hw_romc_rompatch6a
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH6A_ADDRX(v)   (HW_ROMC_ROMPATCH6A_WR((HW_ROMC_ROMPATCH6A_RD() & ~BM_ROMC_ROMPATCH6A_ADDRX) | BF_ROMC_ROMPATCH6A_ADDRX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1674,7 +1624,6 @@ typedef union _hw_romc_rompatch7a
  * - 1 - THUMB patch (ignore if data fix)
  */
 //@{
-
 #define BP_ROMC_ROMPATCH7A_THUMBX      (0)      //!< Bit position for ROMC_ROMPATCH7A_THUMBX.
 #define BM_ROMC_ROMPATCH7A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH7A_THUMBX.
 
@@ -1688,7 +1637,6 @@ typedef union _hw_romc_rompatch7a
 //! @brief Set the THUMBX field to a new value.
 #define BW_ROMC_ROMPATCH7A_THUMBX(v)   (HW_ROMC_ROMPATCH7A_WR((HW_ROMC_ROMPATCH7A_RD() & ~BM_ROMC_ROMPATCH7A_THUMBX) | BF_ROMC_ROMPATCH7A_THUMBX(v)))
 #endif
-
 //@}
 
 /*! @name Register ROMC_ROMPATCH7A, field ADDRX[22:1] (RW)
@@ -1698,7 +1646,6 @@ typedef union _hw_romc_rompatch7a
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 //@{
-
 #define BP_ROMC_ROMPATCH7A_ADDRX      (1)      //!< Bit position for ROMC_ROMPATCH7A_ADDRX.
 #define BM_ROMC_ROMPATCH7A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH7A_ADDRX.
 
@@ -1712,7 +1659,6 @@ typedef union _hw_romc_rompatch7a
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH7A_ADDRX(v)   (HW_ROMC_ROMPATCH7A_WR((HW_ROMC_ROMPATCH7A_RD() & ~BM_ROMC_ROMPATCH7A_ADDRX) | BF_ROMC_ROMPATCH7A_ADDRX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1776,7 +1722,6 @@ typedef union _hw_romc_rompatch8a
  * - 1 - THUMB patch (ignore if data fix)
  */
 //@{
-
 #define BP_ROMC_ROMPATCH8A_THUMBX      (0)      //!< Bit position for ROMC_ROMPATCH8A_THUMBX.
 #define BM_ROMC_ROMPATCH8A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH8A_THUMBX.
 
@@ -1790,7 +1735,6 @@ typedef union _hw_romc_rompatch8a
 //! @brief Set the THUMBX field to a new value.
 #define BW_ROMC_ROMPATCH8A_THUMBX(v)   (HW_ROMC_ROMPATCH8A_WR((HW_ROMC_ROMPATCH8A_RD() & ~BM_ROMC_ROMPATCH8A_THUMBX) | BF_ROMC_ROMPATCH8A_THUMBX(v)))
 #endif
-
 //@}
 
 /*! @name Register ROMC_ROMPATCH8A, field ADDRX[22:1] (RW)
@@ -1800,7 +1744,6 @@ typedef union _hw_romc_rompatch8a
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 //@{
-
 #define BP_ROMC_ROMPATCH8A_ADDRX      (1)      //!< Bit position for ROMC_ROMPATCH8A_ADDRX.
 #define BM_ROMC_ROMPATCH8A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH8A_ADDRX.
 
@@ -1814,7 +1757,6 @@ typedef union _hw_romc_rompatch8a
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH8A_ADDRX(v)   (HW_ROMC_ROMPATCH8A_WR((HW_ROMC_ROMPATCH8A_RD() & ~BM_ROMC_ROMPATCH8A_ADDRX) | BF_ROMC_ROMPATCH8A_ADDRX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1878,7 +1820,6 @@ typedef union _hw_romc_rompatch9a
  * - 1 - THUMB patch (ignore if data fix)
  */
 //@{
-
 #define BP_ROMC_ROMPATCH9A_THUMBX      (0)      //!< Bit position for ROMC_ROMPATCH9A_THUMBX.
 #define BM_ROMC_ROMPATCH9A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH9A_THUMBX.
 
@@ -1892,7 +1833,6 @@ typedef union _hw_romc_rompatch9a
 //! @brief Set the THUMBX field to a new value.
 #define BW_ROMC_ROMPATCH9A_THUMBX(v)   (HW_ROMC_ROMPATCH9A_WR((HW_ROMC_ROMPATCH9A_RD() & ~BM_ROMC_ROMPATCH9A_THUMBX) | BF_ROMC_ROMPATCH9A_THUMBX(v)))
 #endif
-
 //@}
 
 /*! @name Register ROMC_ROMPATCH9A, field ADDRX[22:1] (RW)
@@ -1902,7 +1842,6 @@ typedef union _hw_romc_rompatch9a
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 //@{
-
 #define BP_ROMC_ROMPATCH9A_ADDRX      (1)      //!< Bit position for ROMC_ROMPATCH9A_ADDRX.
 #define BM_ROMC_ROMPATCH9A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH9A_ADDRX.
 
@@ -1916,7 +1855,6 @@ typedef union _hw_romc_rompatch9a
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH9A_ADDRX(v)   (HW_ROMC_ROMPATCH9A_WR((HW_ROMC_ROMPATCH9A_RD() & ~BM_ROMC_ROMPATCH9A_ADDRX) | BF_ROMC_ROMPATCH9A_ADDRX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1980,7 +1918,6 @@ typedef union _hw_romc_rompatch10a
  * - 1 - THUMB patch (ignore if data fix)
  */
 //@{
-
 #define BP_ROMC_ROMPATCH10A_THUMBX      (0)      //!< Bit position for ROMC_ROMPATCH10A_THUMBX.
 #define BM_ROMC_ROMPATCH10A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH10A_THUMBX.
 
@@ -1994,7 +1931,6 @@ typedef union _hw_romc_rompatch10a
 //! @brief Set the THUMBX field to a new value.
 #define BW_ROMC_ROMPATCH10A_THUMBX(v)   (HW_ROMC_ROMPATCH10A_WR((HW_ROMC_ROMPATCH10A_RD() & ~BM_ROMC_ROMPATCH10A_THUMBX) | BF_ROMC_ROMPATCH10A_THUMBX(v)))
 #endif
-
 //@}
 
 /*! @name Register ROMC_ROMPATCH10A, field ADDRX[22:1] (RW)
@@ -2004,7 +1940,6 @@ typedef union _hw_romc_rompatch10a
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 //@{
-
 #define BP_ROMC_ROMPATCH10A_ADDRX      (1)      //!< Bit position for ROMC_ROMPATCH10A_ADDRX.
 #define BM_ROMC_ROMPATCH10A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH10A_ADDRX.
 
@@ -2018,7 +1953,6 @@ typedef union _hw_romc_rompatch10a
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH10A_ADDRX(v)   (HW_ROMC_ROMPATCH10A_WR((HW_ROMC_ROMPATCH10A_RD() & ~BM_ROMC_ROMPATCH10A_ADDRX) | BF_ROMC_ROMPATCH10A_ADDRX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2082,7 +2016,6 @@ typedef union _hw_romc_rompatch11a
  * - 1 - THUMB patch (ignore if data fix)
  */
 //@{
-
 #define BP_ROMC_ROMPATCH11A_THUMBX      (0)      //!< Bit position for ROMC_ROMPATCH11A_THUMBX.
 #define BM_ROMC_ROMPATCH11A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH11A_THUMBX.
 
@@ -2096,7 +2029,6 @@ typedef union _hw_romc_rompatch11a
 //! @brief Set the THUMBX field to a new value.
 #define BW_ROMC_ROMPATCH11A_THUMBX(v)   (HW_ROMC_ROMPATCH11A_WR((HW_ROMC_ROMPATCH11A_RD() & ~BM_ROMC_ROMPATCH11A_THUMBX) | BF_ROMC_ROMPATCH11A_THUMBX(v)))
 #endif
-
 //@}
 
 /*! @name Register ROMC_ROMPATCH11A, field ADDRX[22:1] (RW)
@@ -2106,7 +2038,6 @@ typedef union _hw_romc_rompatch11a
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 //@{
-
 #define BP_ROMC_ROMPATCH11A_ADDRX      (1)      //!< Bit position for ROMC_ROMPATCH11A_ADDRX.
 #define BM_ROMC_ROMPATCH11A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH11A_ADDRX.
 
@@ -2120,7 +2051,6 @@ typedef union _hw_romc_rompatch11a
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH11A_ADDRX(v)   (HW_ROMC_ROMPATCH11A_WR((HW_ROMC_ROMPATCH11A_RD() & ~BM_ROMC_ROMPATCH11A_ADDRX) | BF_ROMC_ROMPATCH11A_ADDRX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2184,7 +2114,6 @@ typedef union _hw_romc_rompatch12a
  * - 1 - THUMB patch (ignore if data fix)
  */
 //@{
-
 #define BP_ROMC_ROMPATCH12A_THUMBX      (0)      //!< Bit position for ROMC_ROMPATCH12A_THUMBX.
 #define BM_ROMC_ROMPATCH12A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH12A_THUMBX.
 
@@ -2198,7 +2127,6 @@ typedef union _hw_romc_rompatch12a
 //! @brief Set the THUMBX field to a new value.
 #define BW_ROMC_ROMPATCH12A_THUMBX(v)   (HW_ROMC_ROMPATCH12A_WR((HW_ROMC_ROMPATCH12A_RD() & ~BM_ROMC_ROMPATCH12A_THUMBX) | BF_ROMC_ROMPATCH12A_THUMBX(v)))
 #endif
-
 //@}
 
 /*! @name Register ROMC_ROMPATCH12A, field ADDRX[22:1] (RW)
@@ -2208,7 +2136,6 @@ typedef union _hw_romc_rompatch12a
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 //@{
-
 #define BP_ROMC_ROMPATCH12A_ADDRX      (1)      //!< Bit position for ROMC_ROMPATCH12A_ADDRX.
 #define BM_ROMC_ROMPATCH12A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH12A_ADDRX.
 
@@ -2222,7 +2149,6 @@ typedef union _hw_romc_rompatch12a
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH12A_ADDRX(v)   (HW_ROMC_ROMPATCH12A_WR((HW_ROMC_ROMPATCH12A_RD() & ~BM_ROMC_ROMPATCH12A_ADDRX) | BF_ROMC_ROMPATCH12A_ADDRX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2286,7 +2212,6 @@ typedef union _hw_romc_rompatch13a
  * - 1 - THUMB patch (ignore if data fix)
  */
 //@{
-
 #define BP_ROMC_ROMPATCH13A_THUMBX      (0)      //!< Bit position for ROMC_ROMPATCH13A_THUMBX.
 #define BM_ROMC_ROMPATCH13A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH13A_THUMBX.
 
@@ -2300,7 +2225,6 @@ typedef union _hw_romc_rompatch13a
 //! @brief Set the THUMBX field to a new value.
 #define BW_ROMC_ROMPATCH13A_THUMBX(v)   (HW_ROMC_ROMPATCH13A_WR((HW_ROMC_ROMPATCH13A_RD() & ~BM_ROMC_ROMPATCH13A_THUMBX) | BF_ROMC_ROMPATCH13A_THUMBX(v)))
 #endif
-
 //@}
 
 /*! @name Register ROMC_ROMPATCH13A, field ADDRX[22:1] (RW)
@@ -2310,7 +2234,6 @@ typedef union _hw_romc_rompatch13a
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 //@{
-
 #define BP_ROMC_ROMPATCH13A_ADDRX      (1)      //!< Bit position for ROMC_ROMPATCH13A_ADDRX.
 #define BM_ROMC_ROMPATCH13A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH13A_ADDRX.
 
@@ -2324,7 +2247,6 @@ typedef union _hw_romc_rompatch13a
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH13A_ADDRX(v)   (HW_ROMC_ROMPATCH13A_WR((HW_ROMC_ROMPATCH13A_RD() & ~BM_ROMC_ROMPATCH13A_ADDRX) | BF_ROMC_ROMPATCH13A_ADDRX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2388,7 +2310,6 @@ typedef union _hw_romc_rompatch14a
  * - 1 - THUMB patch (ignore if data fix)
  */
 //@{
-
 #define BP_ROMC_ROMPATCH14A_THUMBX      (0)      //!< Bit position for ROMC_ROMPATCH14A_THUMBX.
 #define BM_ROMC_ROMPATCH14A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH14A_THUMBX.
 
@@ -2402,7 +2323,6 @@ typedef union _hw_romc_rompatch14a
 //! @brief Set the THUMBX field to a new value.
 #define BW_ROMC_ROMPATCH14A_THUMBX(v)   (HW_ROMC_ROMPATCH14A_WR((HW_ROMC_ROMPATCH14A_RD() & ~BM_ROMC_ROMPATCH14A_THUMBX) | BF_ROMC_ROMPATCH14A_THUMBX(v)))
 #endif
-
 //@}
 
 /*! @name Register ROMC_ROMPATCH14A, field ADDRX[22:1] (RW)
@@ -2412,7 +2332,6 @@ typedef union _hw_romc_rompatch14a
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 //@{
-
 #define BP_ROMC_ROMPATCH14A_ADDRX      (1)      //!< Bit position for ROMC_ROMPATCH14A_ADDRX.
 #define BM_ROMC_ROMPATCH14A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH14A_ADDRX.
 
@@ -2426,7 +2345,6 @@ typedef union _hw_romc_rompatch14a
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH14A_ADDRX(v)   (HW_ROMC_ROMPATCH14A_WR((HW_ROMC_ROMPATCH14A_RD() & ~BM_ROMC_ROMPATCH14A_ADDRX) | BF_ROMC_ROMPATCH14A_ADDRX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2490,7 +2408,6 @@ typedef union _hw_romc_rompatch15a
  * - 1 - THUMB patch (ignore if data fix)
  */
 //@{
-
 #define BP_ROMC_ROMPATCH15A_THUMBX      (0)      //!< Bit position for ROMC_ROMPATCH15A_THUMBX.
 #define BM_ROMC_ROMPATCH15A_THUMBX      (0x00000001)  //!< Bit mask for ROMC_ROMPATCH15A_THUMBX.
 
@@ -2504,7 +2421,6 @@ typedef union _hw_romc_rompatch15a
 //! @brief Set the THUMBX field to a new value.
 #define BW_ROMC_ROMPATCH15A_THUMBX(v)   (HW_ROMC_ROMPATCH15A_WR((HW_ROMC_ROMPATCH15A_RD() & ~BM_ROMC_ROMPATCH15A_THUMBX) | BF_ROMC_ROMPATCH15A_THUMBX(v)))
 #endif
-
 //@}
 
 /*! @name Register ROMC_ROMPATCH15A, field ADDRX[22:1] (RW)
@@ -2514,7 +2430,6 @@ typedef union _hw_romc_rompatch15a
  * data fix address comparison. Bit 1 is ignored if data fix. Only used in code patch
  */
 //@{
-
 #define BP_ROMC_ROMPATCH15A_ADDRX      (1)      //!< Bit position for ROMC_ROMPATCH15A_ADDRX.
 #define BM_ROMC_ROMPATCH15A_ADDRX      (0x007ffffe)  //!< Bit mask for ROMC_ROMPATCH15A_ADDRX.
 
@@ -2528,7 +2443,6 @@ typedef union _hw_romc_rompatch15a
 //! @brief Set the ADDRX field to a new value.
 #define BW_ROMC_ROMPATCH15A_ADDRX(v)   (HW_ROMC_ROMPATCH15A_WR((HW_ROMC_ROMPATCH15A_RD() & ~BM_ROMC_ROMPATCH15A_ADDRX) | BF_ROMC_ROMPATCH15A_ADDRX(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2589,13 +2503,11 @@ typedef union _hw_romc_rompatchsr
  * - 15 - Address Comparator 15 matched
  */
 //@{
-
 #define BP_ROMC_ROMPATCHSR_SOURCE      (0)      //!< Bit position for ROMC_ROMPATCHSR_SOURCE.
 #define BM_ROMC_ROMPATCHSR_SOURCE      (0x0000003f)  //!< Bit mask for ROMC_ROMPATCHSR_SOURCE.
 
 //! @brief Get value of ROMC_ROMPATCHSR_SOURCE from a register value.
 #define BG_ROMC_ROMPATCHSR_SOURCE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ROMC_ROMPATCHSR_SOURCE) >> BP_ROMC_ROMPATCHSR_SOURCE)
-
 //@}
 
 /*! @name Register ROMC_ROMPATCHSR, field SW[17] (W1C)
@@ -2608,7 +2520,6 @@ typedef union _hw_romc_rompatchsr
  * - 1 - a collision has occurred
  */
 //@{
-
 #define BP_ROMC_ROMPATCHSR_SW      (17)      //!< Bit position for ROMC_ROMPATCHSR_SW.
 #define BM_ROMC_ROMPATCHSR_SW      (0x00020000)  //!< Bit mask for ROMC_ROMPATCHSR_SW.
 
@@ -2622,7 +2533,6 @@ typedef union _hw_romc_rompatchsr
 //! @brief Set the SW field to a new value.
 #define BW_ROMC_ROMPATCHSR_SW(v)   (HW_ROMC_ROMPATCHSR_WR((HW_ROMC_ROMPATCHSR_RD() & ~BM_ROMC_ROMPATCHSR_SW) | BF_ROMC_ROMPATCHSR_SW(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2675,3 +2585,5 @@ typedef struct _hw_romc
 #endif
 
 #endif // __HW_ROMC_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

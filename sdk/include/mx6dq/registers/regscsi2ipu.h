@@ -97,7 +97,6 @@ typedef union _hw_csi2ipu_sw_rst
  * - 1 - Software Reset Enable
  */
 //@{
-
 #define BP_CSI2IPU_SW_RST_SW_RST      (0)      //!< Bit position for CSI2IPU_SW_RST_SW_RST.
 #define BM_CSI2IPU_SW_RST_SW_RST      (0x00000001)  //!< Bit mask for CSI2IPU_SW_RST_SW_RST.
 
@@ -111,7 +110,6 @@ typedef union _hw_csi2ipu_sw_rst
 //! @brief Set the SW_RST field to a new value.
 #define BW_CSI2IPU_SW_RST_SW_RST(v)   (HW_CSI2IPU_SW_RST_WR((HW_CSI2IPU_SW_RST_RD() & ~BM_CSI2IPU_SW_RST_SW_RST) | BF_CSI2IPU_SW_RST_SW_RST(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI2IPU_SW_RST, field CLK_SEL[1] (RW)
@@ -123,7 +121,6 @@ typedef union _hw_csi2ipu_sw_rst
  * - 1 - Non-Gated Mode
  */
 //@{
-
 #define BP_CSI2IPU_SW_RST_CLK_SEL      (1)      //!< Bit position for CSI2IPU_SW_RST_CLK_SEL.
 #define BM_CSI2IPU_SW_RST_CLK_SEL      (0x00000002)  //!< Bit mask for CSI2IPU_SW_RST_CLK_SEL.
 
@@ -137,7 +134,6 @@ typedef union _hw_csi2ipu_sw_rst
 //! @brief Set the CLK_SEL field to a new value.
 #define BW_CSI2IPU_SW_RST_CLK_SEL(v)   (HW_CSI2IPU_SW_RST_WR((HW_CSI2IPU_SW_RST_RD() & ~BM_CSI2IPU_SW_RST_CLK_SEL) | BF_CSI2IPU_SW_RST_CLK_SEL(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI2IPU_SW_RST, field YUV422_8BIT_FM[2] (RW)
@@ -149,7 +145,6 @@ typedef union _hw_csi2ipu_sw_rst
  * - 1 - UYVY
  */
 //@{
-
 #define BP_CSI2IPU_SW_RST_YUV422_8BIT_FM      (2)      //!< Bit position for CSI2IPU_SW_RST_YUV422_8BIT_FM.
 #define BM_CSI2IPU_SW_RST_YUV422_8BIT_FM      (0x00000004)  //!< Bit mask for CSI2IPU_SW_RST_YUV422_8BIT_FM.
 
@@ -163,7 +158,6 @@ typedef union _hw_csi2ipu_sw_rst
 //! @brief Set the YUV422_8BIT_FM field to a new value.
 #define BW_CSI2IPU_SW_RST_YUV422_8BIT_FM(v)   (HW_CSI2IPU_SW_RST_WR((HW_CSI2IPU_SW_RST_RD() & ~BM_CSI2IPU_SW_RST_YUV422_8BIT_FM) | BF_CSI2IPU_SW_RST_YUV422_8BIT_FM(v)))
 #endif
-
 //@}
 
 /*! @name Register CSI2IPU_SW_RST, field RGB444_FM[3] (RW)
@@ -175,7 +169,6 @@ typedef union _hw_csi2ipu_sw_rst
  * - 1 - {r4,1’b0,g4,2’b00,b4,1’b0}
  */
 //@{
-
 #define BP_CSI2IPU_SW_RST_RGB444_FM      (3)      //!< Bit position for CSI2IPU_SW_RST_RGB444_FM.
 #define BM_CSI2IPU_SW_RST_RGB444_FM      (0x00000008)  //!< Bit mask for CSI2IPU_SW_RST_RGB444_FM.
 
@@ -189,7 +182,6 @@ typedef union _hw_csi2ipu_sw_rst
 //! @brief Set the RGB444_FM field to a new value.
 #define BW_CSI2IPU_SW_RST_RGB444_FM(v)   (HW_CSI2IPU_SW_RST_WR((HW_CSI2IPU_SW_RST_RD() & ~BM_CSI2IPU_SW_RST_RGB444_FM) | BF_CSI2IPU_SW_RST_RGB444_FM(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -214,3 +206,5 @@ typedef struct _hw_csi2ipu
 #endif
 
 #endif // __HW_CSI2IPU_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

@@ -133,7 +133,6 @@ typedef union _hw_spba_prr0
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR0_RARA      (0)      //!< Bit position for SPBA_PRR0_RARA.
 #define BM_SPBA_PRR0_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR0_RARA.
 
@@ -153,7 +152,6 @@ typedef union _hw_spba_prr0
 
 #define BV_SPBA_PRR0_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR0_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR0, field RARB[1] (RW)
@@ -168,7 +166,6 @@ typedef union _hw_spba_prr0
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR0_RARB      (1)      //!< Bit position for SPBA_PRR0_RARB.
 #define BM_SPBA_PRR0_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR0_RARB.
 
@@ -188,7 +185,6 @@ typedef union _hw_spba_prr0
 
 #define BV_SPBA_PRR0_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR0_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR0, field RARC[2] (RW)
@@ -203,7 +199,6 @@ typedef union _hw_spba_prr0
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR0_RARC      (2)      //!< Bit position for SPBA_PRR0_RARC.
 #define BM_SPBA_PRR0_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR0_RARC.
 
@@ -223,7 +218,6 @@ typedef union _hw_spba_prr0
 
 #define BV_SPBA_PRR0_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR0_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR0, field ROI[17:16] (RO)
@@ -244,7 +238,6 @@ typedef union _hw_spba_prr0
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR0_ROI      (16)      //!< Bit position for SPBA_PRR0_ROI.
 #define BM_SPBA_PRR0_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR0_ROI.
 
@@ -258,7 +251,6 @@ typedef union _hw_spba_prr0
 #define BV_SPBA_PRR0_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR0_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR0_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR0, field RMO[31:30] (RO)
@@ -273,7 +265,6 @@ typedef union _hw_spba_prr0
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR0_RMO      (30)      //!< Bit position for SPBA_PRR0_RMO.
 #define BM_SPBA_PRR0_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR0_RMO.
 
@@ -286,7 +277,6 @@ typedef union _hw_spba_prr0
 #define BV_SPBA_PRR0_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR0_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR0_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -349,7 +339,6 @@ typedef union _hw_spba_prr1
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR1_RARA      (0)      //!< Bit position for SPBA_PRR1_RARA.
 #define BM_SPBA_PRR1_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR1_RARA.
 
@@ -369,7 +358,6 @@ typedef union _hw_spba_prr1
 
 #define BV_SPBA_PRR1_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR1_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR1, field RARB[1] (RW)
@@ -384,7 +372,6 @@ typedef union _hw_spba_prr1
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR1_RARB      (1)      //!< Bit position for SPBA_PRR1_RARB.
 #define BM_SPBA_PRR1_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR1_RARB.
 
@@ -404,7 +391,6 @@ typedef union _hw_spba_prr1
 
 #define BV_SPBA_PRR1_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR1_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR1, field RARC[2] (RW)
@@ -419,7 +405,6 @@ typedef union _hw_spba_prr1
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR1_RARC      (2)      //!< Bit position for SPBA_PRR1_RARC.
 #define BM_SPBA_PRR1_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR1_RARC.
 
@@ -439,7 +424,6 @@ typedef union _hw_spba_prr1
 
 #define BV_SPBA_PRR1_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR1_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR1, field ROI[17:16] (RO)
@@ -460,7 +444,6 @@ typedef union _hw_spba_prr1
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR1_ROI      (16)      //!< Bit position for SPBA_PRR1_ROI.
 #define BM_SPBA_PRR1_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR1_ROI.
 
@@ -474,7 +457,6 @@ typedef union _hw_spba_prr1
 #define BV_SPBA_PRR1_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR1_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR1_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR1, field RMO[31:30] (RO)
@@ -489,7 +471,6 @@ typedef union _hw_spba_prr1
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR1_RMO      (30)      //!< Bit position for SPBA_PRR1_RMO.
 #define BM_SPBA_PRR1_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR1_RMO.
 
@@ -502,7 +483,6 @@ typedef union _hw_spba_prr1
 #define BV_SPBA_PRR1_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR1_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR1_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -565,7 +545,6 @@ typedef union _hw_spba_prr2
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR2_RARA      (0)      //!< Bit position for SPBA_PRR2_RARA.
 #define BM_SPBA_PRR2_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR2_RARA.
 
@@ -585,7 +564,6 @@ typedef union _hw_spba_prr2
 
 #define BV_SPBA_PRR2_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR2_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR2, field RARB[1] (RW)
@@ -600,7 +578,6 @@ typedef union _hw_spba_prr2
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR2_RARB      (1)      //!< Bit position for SPBA_PRR2_RARB.
 #define BM_SPBA_PRR2_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR2_RARB.
 
@@ -620,7 +597,6 @@ typedef union _hw_spba_prr2
 
 #define BV_SPBA_PRR2_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR2_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR2, field RARC[2] (RW)
@@ -635,7 +611,6 @@ typedef union _hw_spba_prr2
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR2_RARC      (2)      //!< Bit position for SPBA_PRR2_RARC.
 #define BM_SPBA_PRR2_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR2_RARC.
 
@@ -655,7 +630,6 @@ typedef union _hw_spba_prr2
 
 #define BV_SPBA_PRR2_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR2_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR2, field ROI[17:16] (RO)
@@ -676,7 +650,6 @@ typedef union _hw_spba_prr2
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR2_ROI      (16)      //!< Bit position for SPBA_PRR2_ROI.
 #define BM_SPBA_PRR2_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR2_ROI.
 
@@ -690,7 +663,6 @@ typedef union _hw_spba_prr2
 #define BV_SPBA_PRR2_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR2_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR2_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR2, field RMO[31:30] (RO)
@@ -705,7 +677,6 @@ typedef union _hw_spba_prr2
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR2_RMO      (30)      //!< Bit position for SPBA_PRR2_RMO.
 #define BM_SPBA_PRR2_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR2_RMO.
 
@@ -718,7 +689,6 @@ typedef union _hw_spba_prr2
 #define BV_SPBA_PRR2_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR2_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR2_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -781,7 +751,6 @@ typedef union _hw_spba_prr3
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR3_RARA      (0)      //!< Bit position for SPBA_PRR3_RARA.
 #define BM_SPBA_PRR3_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR3_RARA.
 
@@ -801,7 +770,6 @@ typedef union _hw_spba_prr3
 
 #define BV_SPBA_PRR3_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR3_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR3, field RARB[1] (RW)
@@ -816,7 +784,6 @@ typedef union _hw_spba_prr3
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR3_RARB      (1)      //!< Bit position for SPBA_PRR3_RARB.
 #define BM_SPBA_PRR3_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR3_RARB.
 
@@ -836,7 +803,6 @@ typedef union _hw_spba_prr3
 
 #define BV_SPBA_PRR3_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR3_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR3, field RARC[2] (RW)
@@ -851,7 +817,6 @@ typedef union _hw_spba_prr3
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR3_RARC      (2)      //!< Bit position for SPBA_PRR3_RARC.
 #define BM_SPBA_PRR3_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR3_RARC.
 
@@ -871,7 +836,6 @@ typedef union _hw_spba_prr3
 
 #define BV_SPBA_PRR3_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR3_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR3, field ROI[17:16] (RO)
@@ -892,7 +856,6 @@ typedef union _hw_spba_prr3
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR3_ROI      (16)      //!< Bit position for SPBA_PRR3_ROI.
 #define BM_SPBA_PRR3_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR3_ROI.
 
@@ -906,7 +869,6 @@ typedef union _hw_spba_prr3
 #define BV_SPBA_PRR3_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR3_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR3_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR3, field RMO[31:30] (RO)
@@ -921,7 +883,6 @@ typedef union _hw_spba_prr3
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR3_RMO      (30)      //!< Bit position for SPBA_PRR3_RMO.
 #define BM_SPBA_PRR3_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR3_RMO.
 
@@ -934,7 +895,6 @@ typedef union _hw_spba_prr3
 #define BV_SPBA_PRR3_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR3_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR3_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -997,7 +957,6 @@ typedef union _hw_spba_prr4
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR4_RARA      (0)      //!< Bit position for SPBA_PRR4_RARA.
 #define BM_SPBA_PRR4_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR4_RARA.
 
@@ -1017,7 +976,6 @@ typedef union _hw_spba_prr4
 
 #define BV_SPBA_PRR4_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR4_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR4, field RARB[1] (RW)
@@ -1032,7 +990,6 @@ typedef union _hw_spba_prr4
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR4_RARB      (1)      //!< Bit position for SPBA_PRR4_RARB.
 #define BM_SPBA_PRR4_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR4_RARB.
 
@@ -1052,7 +1009,6 @@ typedef union _hw_spba_prr4
 
 #define BV_SPBA_PRR4_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR4_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR4, field RARC[2] (RW)
@@ -1067,7 +1023,6 @@ typedef union _hw_spba_prr4
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR4_RARC      (2)      //!< Bit position for SPBA_PRR4_RARC.
 #define BM_SPBA_PRR4_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR4_RARC.
 
@@ -1087,7 +1042,6 @@ typedef union _hw_spba_prr4
 
 #define BV_SPBA_PRR4_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR4_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR4, field ROI[17:16] (RO)
@@ -1108,7 +1062,6 @@ typedef union _hw_spba_prr4
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR4_ROI      (16)      //!< Bit position for SPBA_PRR4_ROI.
 #define BM_SPBA_PRR4_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR4_ROI.
 
@@ -1122,7 +1075,6 @@ typedef union _hw_spba_prr4
 #define BV_SPBA_PRR4_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR4_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR4_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR4, field RMO[31:30] (RO)
@@ -1137,7 +1089,6 @@ typedef union _hw_spba_prr4
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR4_RMO      (30)      //!< Bit position for SPBA_PRR4_RMO.
 #define BM_SPBA_PRR4_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR4_RMO.
 
@@ -1150,7 +1101,6 @@ typedef union _hw_spba_prr4
 #define BV_SPBA_PRR4_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR4_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR4_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1213,7 +1163,6 @@ typedef union _hw_spba_prr5
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR5_RARA      (0)      //!< Bit position for SPBA_PRR5_RARA.
 #define BM_SPBA_PRR5_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR5_RARA.
 
@@ -1233,7 +1182,6 @@ typedef union _hw_spba_prr5
 
 #define BV_SPBA_PRR5_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR5_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR5, field RARB[1] (RW)
@@ -1248,7 +1196,6 @@ typedef union _hw_spba_prr5
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR5_RARB      (1)      //!< Bit position for SPBA_PRR5_RARB.
 #define BM_SPBA_PRR5_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR5_RARB.
 
@@ -1268,7 +1215,6 @@ typedef union _hw_spba_prr5
 
 #define BV_SPBA_PRR5_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR5_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR5, field RARC[2] (RW)
@@ -1283,7 +1229,6 @@ typedef union _hw_spba_prr5
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR5_RARC      (2)      //!< Bit position for SPBA_PRR5_RARC.
 #define BM_SPBA_PRR5_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR5_RARC.
 
@@ -1303,7 +1248,6 @@ typedef union _hw_spba_prr5
 
 #define BV_SPBA_PRR5_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR5_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR5, field ROI[17:16] (RO)
@@ -1324,7 +1268,6 @@ typedef union _hw_spba_prr5
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR5_ROI      (16)      //!< Bit position for SPBA_PRR5_ROI.
 #define BM_SPBA_PRR5_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR5_ROI.
 
@@ -1338,7 +1281,6 @@ typedef union _hw_spba_prr5
 #define BV_SPBA_PRR5_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR5_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR5_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR5, field RMO[31:30] (RO)
@@ -1353,7 +1295,6 @@ typedef union _hw_spba_prr5
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR5_RMO      (30)      //!< Bit position for SPBA_PRR5_RMO.
 #define BM_SPBA_PRR5_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR5_RMO.
 
@@ -1366,7 +1307,6 @@ typedef union _hw_spba_prr5
 #define BV_SPBA_PRR5_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR5_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR5_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1429,7 +1369,6 @@ typedef union _hw_spba_prr6
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR6_RARA      (0)      //!< Bit position for SPBA_PRR6_RARA.
 #define BM_SPBA_PRR6_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR6_RARA.
 
@@ -1449,7 +1388,6 @@ typedef union _hw_spba_prr6
 
 #define BV_SPBA_PRR6_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR6_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR6, field RARB[1] (RW)
@@ -1464,7 +1402,6 @@ typedef union _hw_spba_prr6
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR6_RARB      (1)      //!< Bit position for SPBA_PRR6_RARB.
 #define BM_SPBA_PRR6_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR6_RARB.
 
@@ -1484,7 +1421,6 @@ typedef union _hw_spba_prr6
 
 #define BV_SPBA_PRR6_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR6_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR6, field RARC[2] (RW)
@@ -1499,7 +1435,6 @@ typedef union _hw_spba_prr6
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR6_RARC      (2)      //!< Bit position for SPBA_PRR6_RARC.
 #define BM_SPBA_PRR6_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR6_RARC.
 
@@ -1519,7 +1454,6 @@ typedef union _hw_spba_prr6
 
 #define BV_SPBA_PRR6_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR6_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR6, field ROI[17:16] (RO)
@@ -1540,7 +1474,6 @@ typedef union _hw_spba_prr6
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR6_ROI      (16)      //!< Bit position for SPBA_PRR6_ROI.
 #define BM_SPBA_PRR6_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR6_ROI.
 
@@ -1554,7 +1487,6 @@ typedef union _hw_spba_prr6
 #define BV_SPBA_PRR6_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR6_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR6_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR6, field RMO[31:30] (RO)
@@ -1569,7 +1501,6 @@ typedef union _hw_spba_prr6
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR6_RMO      (30)      //!< Bit position for SPBA_PRR6_RMO.
 #define BM_SPBA_PRR6_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR6_RMO.
 
@@ -1582,7 +1513,6 @@ typedef union _hw_spba_prr6
 #define BV_SPBA_PRR6_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR6_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR6_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1645,7 +1575,6 @@ typedef union _hw_spba_prr7
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR7_RARA      (0)      //!< Bit position for SPBA_PRR7_RARA.
 #define BM_SPBA_PRR7_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR7_RARA.
 
@@ -1665,7 +1594,6 @@ typedef union _hw_spba_prr7
 
 #define BV_SPBA_PRR7_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR7_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR7, field RARB[1] (RW)
@@ -1680,7 +1608,6 @@ typedef union _hw_spba_prr7
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR7_RARB      (1)      //!< Bit position for SPBA_PRR7_RARB.
 #define BM_SPBA_PRR7_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR7_RARB.
 
@@ -1700,7 +1627,6 @@ typedef union _hw_spba_prr7
 
 #define BV_SPBA_PRR7_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR7_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR7, field RARC[2] (RW)
@@ -1715,7 +1641,6 @@ typedef union _hw_spba_prr7
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR7_RARC      (2)      //!< Bit position for SPBA_PRR7_RARC.
 #define BM_SPBA_PRR7_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR7_RARC.
 
@@ -1735,7 +1660,6 @@ typedef union _hw_spba_prr7
 
 #define BV_SPBA_PRR7_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR7_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR7, field ROI[17:16] (RO)
@@ -1756,7 +1680,6 @@ typedef union _hw_spba_prr7
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR7_ROI      (16)      //!< Bit position for SPBA_PRR7_ROI.
 #define BM_SPBA_PRR7_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR7_ROI.
 
@@ -1770,7 +1693,6 @@ typedef union _hw_spba_prr7
 #define BV_SPBA_PRR7_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR7_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR7_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR7, field RMO[31:30] (RO)
@@ -1785,7 +1707,6 @@ typedef union _hw_spba_prr7
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR7_RMO      (30)      //!< Bit position for SPBA_PRR7_RMO.
 #define BM_SPBA_PRR7_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR7_RMO.
 
@@ -1798,7 +1719,6 @@ typedef union _hw_spba_prr7
 #define BV_SPBA_PRR7_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR7_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR7_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1861,7 +1781,6 @@ typedef union _hw_spba_prr8
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR8_RARA      (0)      //!< Bit position for SPBA_PRR8_RARA.
 #define BM_SPBA_PRR8_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR8_RARA.
 
@@ -1881,7 +1800,6 @@ typedef union _hw_spba_prr8
 
 #define BV_SPBA_PRR8_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR8_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR8, field RARB[1] (RW)
@@ -1896,7 +1814,6 @@ typedef union _hw_spba_prr8
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR8_RARB      (1)      //!< Bit position for SPBA_PRR8_RARB.
 #define BM_SPBA_PRR8_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR8_RARB.
 
@@ -1916,7 +1833,6 @@ typedef union _hw_spba_prr8
 
 #define BV_SPBA_PRR8_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR8_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR8, field RARC[2] (RW)
@@ -1931,7 +1847,6 @@ typedef union _hw_spba_prr8
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR8_RARC      (2)      //!< Bit position for SPBA_PRR8_RARC.
 #define BM_SPBA_PRR8_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR8_RARC.
 
@@ -1951,7 +1866,6 @@ typedef union _hw_spba_prr8
 
 #define BV_SPBA_PRR8_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR8_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR8, field ROI[17:16] (RO)
@@ -1972,7 +1886,6 @@ typedef union _hw_spba_prr8
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR8_ROI      (16)      //!< Bit position for SPBA_PRR8_ROI.
 #define BM_SPBA_PRR8_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR8_ROI.
 
@@ -1986,7 +1899,6 @@ typedef union _hw_spba_prr8
 #define BV_SPBA_PRR8_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR8_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR8_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR8, field RMO[31:30] (RO)
@@ -2001,7 +1913,6 @@ typedef union _hw_spba_prr8
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR8_RMO      (30)      //!< Bit position for SPBA_PRR8_RMO.
 #define BM_SPBA_PRR8_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR8_RMO.
 
@@ -2014,7 +1925,6 @@ typedef union _hw_spba_prr8
 #define BV_SPBA_PRR8_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR8_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR8_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2077,7 +1987,6 @@ typedef union _hw_spba_prr9
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR9_RARA      (0)      //!< Bit position for SPBA_PRR9_RARA.
 #define BM_SPBA_PRR9_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR9_RARA.
 
@@ -2097,7 +2006,6 @@ typedef union _hw_spba_prr9
 
 #define BV_SPBA_PRR9_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR9_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR9, field RARB[1] (RW)
@@ -2112,7 +2020,6 @@ typedef union _hw_spba_prr9
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR9_RARB      (1)      //!< Bit position for SPBA_PRR9_RARB.
 #define BM_SPBA_PRR9_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR9_RARB.
 
@@ -2132,7 +2039,6 @@ typedef union _hw_spba_prr9
 
 #define BV_SPBA_PRR9_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR9_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR9, field RARC[2] (RW)
@@ -2147,7 +2053,6 @@ typedef union _hw_spba_prr9
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR9_RARC      (2)      //!< Bit position for SPBA_PRR9_RARC.
 #define BM_SPBA_PRR9_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR9_RARC.
 
@@ -2167,7 +2072,6 @@ typedef union _hw_spba_prr9
 
 #define BV_SPBA_PRR9_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR9_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR9, field ROI[17:16] (RO)
@@ -2188,7 +2092,6 @@ typedef union _hw_spba_prr9
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR9_ROI      (16)      //!< Bit position for SPBA_PRR9_ROI.
 #define BM_SPBA_PRR9_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR9_ROI.
 
@@ -2202,7 +2105,6 @@ typedef union _hw_spba_prr9
 #define BV_SPBA_PRR9_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR9_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR9_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR9, field RMO[31:30] (RO)
@@ -2217,7 +2119,6 @@ typedef union _hw_spba_prr9
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR9_RMO      (30)      //!< Bit position for SPBA_PRR9_RMO.
 #define BM_SPBA_PRR9_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR9_RMO.
 
@@ -2230,7 +2131,6 @@ typedef union _hw_spba_prr9
 #define BV_SPBA_PRR9_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR9_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR9_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2293,7 +2193,6 @@ typedef union _hw_spba_prr10
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR10_RARA      (0)      //!< Bit position for SPBA_PRR10_RARA.
 #define BM_SPBA_PRR10_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR10_RARA.
 
@@ -2313,7 +2212,6 @@ typedef union _hw_spba_prr10
 
 #define BV_SPBA_PRR10_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR10_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR10, field RARB[1] (RW)
@@ -2328,7 +2226,6 @@ typedef union _hw_spba_prr10
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR10_RARB      (1)      //!< Bit position for SPBA_PRR10_RARB.
 #define BM_SPBA_PRR10_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR10_RARB.
 
@@ -2348,7 +2245,6 @@ typedef union _hw_spba_prr10
 
 #define BV_SPBA_PRR10_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR10_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR10, field RARC[2] (RW)
@@ -2363,7 +2259,6 @@ typedef union _hw_spba_prr10
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR10_RARC      (2)      //!< Bit position for SPBA_PRR10_RARC.
 #define BM_SPBA_PRR10_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR10_RARC.
 
@@ -2383,7 +2278,6 @@ typedef union _hw_spba_prr10
 
 #define BV_SPBA_PRR10_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR10_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR10, field ROI[17:16] (RO)
@@ -2404,7 +2298,6 @@ typedef union _hw_spba_prr10
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR10_ROI      (16)      //!< Bit position for SPBA_PRR10_ROI.
 #define BM_SPBA_PRR10_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR10_ROI.
 
@@ -2418,7 +2311,6 @@ typedef union _hw_spba_prr10
 #define BV_SPBA_PRR10_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR10_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR10_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR10, field RMO[31:30] (RO)
@@ -2433,7 +2325,6 @@ typedef union _hw_spba_prr10
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR10_RMO      (30)      //!< Bit position for SPBA_PRR10_RMO.
 #define BM_SPBA_PRR10_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR10_RMO.
 
@@ -2446,7 +2337,6 @@ typedef union _hw_spba_prr10
 #define BV_SPBA_PRR10_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR10_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR10_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2509,7 +2399,6 @@ typedef union _hw_spba_prr11
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR11_RARA      (0)      //!< Bit position for SPBA_PRR11_RARA.
 #define BM_SPBA_PRR11_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR11_RARA.
 
@@ -2529,7 +2418,6 @@ typedef union _hw_spba_prr11
 
 #define BV_SPBA_PRR11_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR11_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR11, field RARB[1] (RW)
@@ -2544,7 +2432,6 @@ typedef union _hw_spba_prr11
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR11_RARB      (1)      //!< Bit position for SPBA_PRR11_RARB.
 #define BM_SPBA_PRR11_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR11_RARB.
 
@@ -2564,7 +2451,6 @@ typedef union _hw_spba_prr11
 
 #define BV_SPBA_PRR11_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR11_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR11, field RARC[2] (RW)
@@ -2579,7 +2465,6 @@ typedef union _hw_spba_prr11
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR11_RARC      (2)      //!< Bit position for SPBA_PRR11_RARC.
 #define BM_SPBA_PRR11_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR11_RARC.
 
@@ -2599,7 +2484,6 @@ typedef union _hw_spba_prr11
 
 #define BV_SPBA_PRR11_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR11_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR11, field ROI[17:16] (RO)
@@ -2620,7 +2504,6 @@ typedef union _hw_spba_prr11
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR11_ROI      (16)      //!< Bit position for SPBA_PRR11_ROI.
 #define BM_SPBA_PRR11_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR11_ROI.
 
@@ -2634,7 +2517,6 @@ typedef union _hw_spba_prr11
 #define BV_SPBA_PRR11_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR11_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR11_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR11, field RMO[31:30] (RO)
@@ -2649,7 +2531,6 @@ typedef union _hw_spba_prr11
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR11_RMO      (30)      //!< Bit position for SPBA_PRR11_RMO.
 #define BM_SPBA_PRR11_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR11_RMO.
 
@@ -2662,7 +2543,6 @@ typedef union _hw_spba_prr11
 #define BV_SPBA_PRR11_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR11_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR11_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2725,7 +2605,6 @@ typedef union _hw_spba_prr12
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR12_RARA      (0)      //!< Bit position for SPBA_PRR12_RARA.
 #define BM_SPBA_PRR12_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR12_RARA.
 
@@ -2745,7 +2624,6 @@ typedef union _hw_spba_prr12
 
 #define BV_SPBA_PRR12_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR12_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR12, field RARB[1] (RW)
@@ -2760,7 +2638,6 @@ typedef union _hw_spba_prr12
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR12_RARB      (1)      //!< Bit position for SPBA_PRR12_RARB.
 #define BM_SPBA_PRR12_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR12_RARB.
 
@@ -2780,7 +2657,6 @@ typedef union _hw_spba_prr12
 
 #define BV_SPBA_PRR12_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR12_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR12, field RARC[2] (RW)
@@ -2795,7 +2671,6 @@ typedef union _hw_spba_prr12
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR12_RARC      (2)      //!< Bit position for SPBA_PRR12_RARC.
 #define BM_SPBA_PRR12_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR12_RARC.
 
@@ -2815,7 +2690,6 @@ typedef union _hw_spba_prr12
 
 #define BV_SPBA_PRR12_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR12_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR12, field ROI[17:16] (RO)
@@ -2836,7 +2710,6 @@ typedef union _hw_spba_prr12
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR12_ROI      (16)      //!< Bit position for SPBA_PRR12_ROI.
 #define BM_SPBA_PRR12_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR12_ROI.
 
@@ -2850,7 +2723,6 @@ typedef union _hw_spba_prr12
 #define BV_SPBA_PRR12_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR12_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR12_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR12, field RMO[31:30] (RO)
@@ -2865,7 +2737,6 @@ typedef union _hw_spba_prr12
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR12_RMO      (30)      //!< Bit position for SPBA_PRR12_RMO.
 #define BM_SPBA_PRR12_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR12_RMO.
 
@@ -2878,7 +2749,6 @@ typedef union _hw_spba_prr12
 #define BV_SPBA_PRR12_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR12_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR12_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2941,7 +2811,6 @@ typedef union _hw_spba_prr13
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR13_RARA      (0)      //!< Bit position for SPBA_PRR13_RARA.
 #define BM_SPBA_PRR13_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR13_RARA.
 
@@ -2961,7 +2830,6 @@ typedef union _hw_spba_prr13
 
 #define BV_SPBA_PRR13_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR13_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR13, field RARB[1] (RW)
@@ -2976,7 +2844,6 @@ typedef union _hw_spba_prr13
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR13_RARB      (1)      //!< Bit position for SPBA_PRR13_RARB.
 #define BM_SPBA_PRR13_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR13_RARB.
 
@@ -2996,7 +2863,6 @@ typedef union _hw_spba_prr13
 
 #define BV_SPBA_PRR13_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR13_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR13, field RARC[2] (RW)
@@ -3011,7 +2877,6 @@ typedef union _hw_spba_prr13
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR13_RARC      (2)      //!< Bit position for SPBA_PRR13_RARC.
 #define BM_SPBA_PRR13_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR13_RARC.
 
@@ -3031,7 +2896,6 @@ typedef union _hw_spba_prr13
 
 #define BV_SPBA_PRR13_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR13_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR13, field ROI[17:16] (RO)
@@ -3052,7 +2916,6 @@ typedef union _hw_spba_prr13
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR13_ROI      (16)      //!< Bit position for SPBA_PRR13_ROI.
 #define BM_SPBA_PRR13_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR13_ROI.
 
@@ -3066,7 +2929,6 @@ typedef union _hw_spba_prr13
 #define BV_SPBA_PRR13_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR13_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR13_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR13, field RMO[31:30] (RO)
@@ -3081,7 +2943,6 @@ typedef union _hw_spba_prr13
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR13_RMO      (30)      //!< Bit position for SPBA_PRR13_RMO.
 #define BM_SPBA_PRR13_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR13_RMO.
 
@@ -3094,7 +2955,6 @@ typedef union _hw_spba_prr13
 #define BV_SPBA_PRR13_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR13_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR13_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3157,7 +3017,6 @@ typedef union _hw_spba_prr14
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR14_RARA      (0)      //!< Bit position for SPBA_PRR14_RARA.
 #define BM_SPBA_PRR14_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR14_RARA.
 
@@ -3177,7 +3036,6 @@ typedef union _hw_spba_prr14
 
 #define BV_SPBA_PRR14_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR14_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR14, field RARB[1] (RW)
@@ -3192,7 +3050,6 @@ typedef union _hw_spba_prr14
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR14_RARB      (1)      //!< Bit position for SPBA_PRR14_RARB.
 #define BM_SPBA_PRR14_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR14_RARB.
 
@@ -3212,7 +3069,6 @@ typedef union _hw_spba_prr14
 
 #define BV_SPBA_PRR14_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR14_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR14, field RARC[2] (RW)
@@ -3227,7 +3083,6 @@ typedef union _hw_spba_prr14
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR14_RARC      (2)      //!< Bit position for SPBA_PRR14_RARC.
 #define BM_SPBA_PRR14_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR14_RARC.
 
@@ -3247,7 +3102,6 @@ typedef union _hw_spba_prr14
 
 #define BV_SPBA_PRR14_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR14_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR14, field ROI[17:16] (RO)
@@ -3268,7 +3122,6 @@ typedef union _hw_spba_prr14
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR14_ROI      (16)      //!< Bit position for SPBA_PRR14_ROI.
 #define BM_SPBA_PRR14_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR14_ROI.
 
@@ -3282,7 +3135,6 @@ typedef union _hw_spba_prr14
 #define BV_SPBA_PRR14_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR14_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR14_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR14, field RMO[31:30] (RO)
@@ -3297,7 +3149,6 @@ typedef union _hw_spba_prr14
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR14_RMO      (30)      //!< Bit position for SPBA_PRR14_RMO.
 #define BM_SPBA_PRR14_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR14_RMO.
 
@@ -3310,7 +3161,6 @@ typedef union _hw_spba_prr14
 #define BV_SPBA_PRR14_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR14_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR14_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3373,7 +3223,6 @@ typedef union _hw_spba_prr15
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR15_RARA      (0)      //!< Bit position for SPBA_PRR15_RARA.
 #define BM_SPBA_PRR15_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR15_RARA.
 
@@ -3393,7 +3242,6 @@ typedef union _hw_spba_prr15
 
 #define BV_SPBA_PRR15_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR15_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR15, field RARB[1] (RW)
@@ -3408,7 +3256,6 @@ typedef union _hw_spba_prr15
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR15_RARB      (1)      //!< Bit position for SPBA_PRR15_RARB.
 #define BM_SPBA_PRR15_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR15_RARB.
 
@@ -3428,7 +3275,6 @@ typedef union _hw_spba_prr15
 
 #define BV_SPBA_PRR15_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR15_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR15, field RARC[2] (RW)
@@ -3443,7 +3289,6 @@ typedef union _hw_spba_prr15
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR15_RARC      (2)      //!< Bit position for SPBA_PRR15_RARC.
 #define BM_SPBA_PRR15_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR15_RARC.
 
@@ -3463,7 +3308,6 @@ typedef union _hw_spba_prr15
 
 #define BV_SPBA_PRR15_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR15_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR15, field ROI[17:16] (RO)
@@ -3484,7 +3328,6 @@ typedef union _hw_spba_prr15
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR15_ROI      (16)      //!< Bit position for SPBA_PRR15_ROI.
 #define BM_SPBA_PRR15_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR15_ROI.
 
@@ -3498,7 +3341,6 @@ typedef union _hw_spba_prr15
 #define BV_SPBA_PRR15_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR15_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR15_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR15, field RMO[31:30] (RO)
@@ -3513,7 +3355,6 @@ typedef union _hw_spba_prr15
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR15_RMO      (30)      //!< Bit position for SPBA_PRR15_RMO.
 #define BM_SPBA_PRR15_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR15_RMO.
 
@@ -3526,7 +3367,6 @@ typedef union _hw_spba_prr15
 #define BV_SPBA_PRR15_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR15_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR15_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3589,7 +3429,6 @@ typedef union _hw_spba_prr16
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR16_RARA      (0)      //!< Bit position for SPBA_PRR16_RARA.
 #define BM_SPBA_PRR16_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR16_RARA.
 
@@ -3609,7 +3448,6 @@ typedef union _hw_spba_prr16
 
 #define BV_SPBA_PRR16_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR16_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR16, field RARB[1] (RW)
@@ -3624,7 +3462,6 @@ typedef union _hw_spba_prr16
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR16_RARB      (1)      //!< Bit position for SPBA_PRR16_RARB.
 #define BM_SPBA_PRR16_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR16_RARB.
 
@@ -3644,7 +3481,6 @@ typedef union _hw_spba_prr16
 
 #define BV_SPBA_PRR16_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR16_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR16, field RARC[2] (RW)
@@ -3659,7 +3495,6 @@ typedef union _hw_spba_prr16
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR16_RARC      (2)      //!< Bit position for SPBA_PRR16_RARC.
 #define BM_SPBA_PRR16_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR16_RARC.
 
@@ -3679,7 +3514,6 @@ typedef union _hw_spba_prr16
 
 #define BV_SPBA_PRR16_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR16_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR16, field ROI[17:16] (RO)
@@ -3700,7 +3534,6 @@ typedef union _hw_spba_prr16
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR16_ROI      (16)      //!< Bit position for SPBA_PRR16_ROI.
 #define BM_SPBA_PRR16_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR16_ROI.
 
@@ -3714,7 +3547,6 @@ typedef union _hw_spba_prr16
 #define BV_SPBA_PRR16_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR16_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR16_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR16, field RMO[31:30] (RO)
@@ -3729,7 +3561,6 @@ typedef union _hw_spba_prr16
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR16_RMO      (30)      //!< Bit position for SPBA_PRR16_RMO.
 #define BM_SPBA_PRR16_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR16_RMO.
 
@@ -3742,7 +3573,6 @@ typedef union _hw_spba_prr16
 #define BV_SPBA_PRR16_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR16_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR16_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3805,7 +3635,6 @@ typedef union _hw_spba_prr17
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR17_RARA      (0)      //!< Bit position for SPBA_PRR17_RARA.
 #define BM_SPBA_PRR17_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR17_RARA.
 
@@ -3825,7 +3654,6 @@ typedef union _hw_spba_prr17
 
 #define BV_SPBA_PRR17_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR17_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR17, field RARB[1] (RW)
@@ -3840,7 +3668,6 @@ typedef union _hw_spba_prr17
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR17_RARB      (1)      //!< Bit position for SPBA_PRR17_RARB.
 #define BM_SPBA_PRR17_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR17_RARB.
 
@@ -3860,7 +3687,6 @@ typedef union _hw_spba_prr17
 
 #define BV_SPBA_PRR17_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR17_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR17, field RARC[2] (RW)
@@ -3875,7 +3701,6 @@ typedef union _hw_spba_prr17
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR17_RARC      (2)      //!< Bit position for SPBA_PRR17_RARC.
 #define BM_SPBA_PRR17_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR17_RARC.
 
@@ -3895,7 +3720,6 @@ typedef union _hw_spba_prr17
 
 #define BV_SPBA_PRR17_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR17_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR17, field ROI[17:16] (RO)
@@ -3916,7 +3740,6 @@ typedef union _hw_spba_prr17
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR17_ROI      (16)      //!< Bit position for SPBA_PRR17_ROI.
 #define BM_SPBA_PRR17_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR17_ROI.
 
@@ -3930,7 +3753,6 @@ typedef union _hw_spba_prr17
 #define BV_SPBA_PRR17_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR17_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR17_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR17, field RMO[31:30] (RO)
@@ -3945,7 +3767,6 @@ typedef union _hw_spba_prr17
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR17_RMO      (30)      //!< Bit position for SPBA_PRR17_RMO.
 #define BM_SPBA_PRR17_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR17_RMO.
 
@@ -3958,7 +3779,6 @@ typedef union _hw_spba_prr17
 #define BV_SPBA_PRR17_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR17_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR17_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4021,7 +3841,6 @@ typedef union _hw_spba_prr18
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR18_RARA      (0)      //!< Bit position for SPBA_PRR18_RARA.
 #define BM_SPBA_PRR18_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR18_RARA.
 
@@ -4041,7 +3860,6 @@ typedef union _hw_spba_prr18
 
 #define BV_SPBA_PRR18_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR18_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR18, field RARB[1] (RW)
@@ -4056,7 +3874,6 @@ typedef union _hw_spba_prr18
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR18_RARB      (1)      //!< Bit position for SPBA_PRR18_RARB.
 #define BM_SPBA_PRR18_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR18_RARB.
 
@@ -4076,7 +3893,6 @@ typedef union _hw_spba_prr18
 
 #define BV_SPBA_PRR18_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR18_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR18, field RARC[2] (RW)
@@ -4091,7 +3907,6 @@ typedef union _hw_spba_prr18
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR18_RARC      (2)      //!< Bit position for SPBA_PRR18_RARC.
 #define BM_SPBA_PRR18_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR18_RARC.
 
@@ -4111,7 +3926,6 @@ typedef union _hw_spba_prr18
 
 #define BV_SPBA_PRR18_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR18_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR18, field ROI[17:16] (RO)
@@ -4132,7 +3946,6 @@ typedef union _hw_spba_prr18
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR18_ROI      (16)      //!< Bit position for SPBA_PRR18_ROI.
 #define BM_SPBA_PRR18_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR18_ROI.
 
@@ -4146,7 +3959,6 @@ typedef union _hw_spba_prr18
 #define BV_SPBA_PRR18_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR18_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR18_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR18, field RMO[31:30] (RO)
@@ -4161,7 +3973,6 @@ typedef union _hw_spba_prr18
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR18_RMO      (30)      //!< Bit position for SPBA_PRR18_RMO.
 #define BM_SPBA_PRR18_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR18_RMO.
 
@@ -4174,7 +3985,6 @@ typedef union _hw_spba_prr18
 #define BV_SPBA_PRR18_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR18_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR18_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4237,7 +4047,6 @@ typedef union _hw_spba_prr19
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR19_RARA      (0)      //!< Bit position for SPBA_PRR19_RARA.
 #define BM_SPBA_PRR19_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR19_RARA.
 
@@ -4257,7 +4066,6 @@ typedef union _hw_spba_prr19
 
 #define BV_SPBA_PRR19_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR19_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR19, field RARB[1] (RW)
@@ -4272,7 +4080,6 @@ typedef union _hw_spba_prr19
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR19_RARB      (1)      //!< Bit position for SPBA_PRR19_RARB.
 #define BM_SPBA_PRR19_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR19_RARB.
 
@@ -4292,7 +4099,6 @@ typedef union _hw_spba_prr19
 
 #define BV_SPBA_PRR19_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR19_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR19, field RARC[2] (RW)
@@ -4307,7 +4113,6 @@ typedef union _hw_spba_prr19
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR19_RARC      (2)      //!< Bit position for SPBA_PRR19_RARC.
 #define BM_SPBA_PRR19_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR19_RARC.
 
@@ -4327,7 +4132,6 @@ typedef union _hw_spba_prr19
 
 #define BV_SPBA_PRR19_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR19_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR19, field ROI[17:16] (RO)
@@ -4348,7 +4152,6 @@ typedef union _hw_spba_prr19
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR19_ROI      (16)      //!< Bit position for SPBA_PRR19_ROI.
 #define BM_SPBA_PRR19_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR19_ROI.
 
@@ -4362,7 +4165,6 @@ typedef union _hw_spba_prr19
 #define BV_SPBA_PRR19_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR19_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR19_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR19, field RMO[31:30] (RO)
@@ -4377,7 +4179,6 @@ typedef union _hw_spba_prr19
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR19_RMO      (30)      //!< Bit position for SPBA_PRR19_RMO.
 #define BM_SPBA_PRR19_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR19_RMO.
 
@@ -4390,7 +4191,6 @@ typedef union _hw_spba_prr19
 #define BV_SPBA_PRR19_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR19_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR19_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4453,7 +4253,6 @@ typedef union _hw_spba_prr20
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR20_RARA      (0)      //!< Bit position for SPBA_PRR20_RARA.
 #define BM_SPBA_PRR20_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR20_RARA.
 
@@ -4473,7 +4272,6 @@ typedef union _hw_spba_prr20
 
 #define BV_SPBA_PRR20_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR20_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR20, field RARB[1] (RW)
@@ -4488,7 +4286,6 @@ typedef union _hw_spba_prr20
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR20_RARB      (1)      //!< Bit position for SPBA_PRR20_RARB.
 #define BM_SPBA_PRR20_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR20_RARB.
 
@@ -4508,7 +4305,6 @@ typedef union _hw_spba_prr20
 
 #define BV_SPBA_PRR20_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR20_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR20, field RARC[2] (RW)
@@ -4523,7 +4319,6 @@ typedef union _hw_spba_prr20
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR20_RARC      (2)      //!< Bit position for SPBA_PRR20_RARC.
 #define BM_SPBA_PRR20_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR20_RARC.
 
@@ -4543,7 +4338,6 @@ typedef union _hw_spba_prr20
 
 #define BV_SPBA_PRR20_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR20_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR20, field ROI[17:16] (RO)
@@ -4564,7 +4358,6 @@ typedef union _hw_spba_prr20
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR20_ROI      (16)      //!< Bit position for SPBA_PRR20_ROI.
 #define BM_SPBA_PRR20_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR20_ROI.
 
@@ -4578,7 +4371,6 @@ typedef union _hw_spba_prr20
 #define BV_SPBA_PRR20_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR20_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR20_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR20, field RMO[31:30] (RO)
@@ -4593,7 +4385,6 @@ typedef union _hw_spba_prr20
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR20_RMO      (30)      //!< Bit position for SPBA_PRR20_RMO.
 #define BM_SPBA_PRR20_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR20_RMO.
 
@@ -4606,7 +4397,6 @@ typedef union _hw_spba_prr20
 #define BV_SPBA_PRR20_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR20_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR20_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4669,7 +4459,6 @@ typedef union _hw_spba_prr21
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR21_RARA      (0)      //!< Bit position for SPBA_PRR21_RARA.
 #define BM_SPBA_PRR21_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR21_RARA.
 
@@ -4689,7 +4478,6 @@ typedef union _hw_spba_prr21
 
 #define BV_SPBA_PRR21_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR21_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR21, field RARB[1] (RW)
@@ -4704,7 +4492,6 @@ typedef union _hw_spba_prr21
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR21_RARB      (1)      //!< Bit position for SPBA_PRR21_RARB.
 #define BM_SPBA_PRR21_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR21_RARB.
 
@@ -4724,7 +4511,6 @@ typedef union _hw_spba_prr21
 
 #define BV_SPBA_PRR21_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR21_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR21, field RARC[2] (RW)
@@ -4739,7 +4525,6 @@ typedef union _hw_spba_prr21
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR21_RARC      (2)      //!< Bit position for SPBA_PRR21_RARC.
 #define BM_SPBA_PRR21_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR21_RARC.
 
@@ -4759,7 +4544,6 @@ typedef union _hw_spba_prr21
 
 #define BV_SPBA_PRR21_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR21_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR21, field ROI[17:16] (RO)
@@ -4780,7 +4564,6 @@ typedef union _hw_spba_prr21
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR21_ROI      (16)      //!< Bit position for SPBA_PRR21_ROI.
 #define BM_SPBA_PRR21_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR21_ROI.
 
@@ -4794,7 +4577,6 @@ typedef union _hw_spba_prr21
 #define BV_SPBA_PRR21_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR21_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR21_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR21, field RMO[31:30] (RO)
@@ -4809,7 +4591,6 @@ typedef union _hw_spba_prr21
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR21_RMO      (30)      //!< Bit position for SPBA_PRR21_RMO.
 #define BM_SPBA_PRR21_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR21_RMO.
 
@@ -4822,7 +4603,6 @@ typedef union _hw_spba_prr21
 #define BV_SPBA_PRR21_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR21_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR21_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4885,7 +4665,6 @@ typedef union _hw_spba_prr22
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR22_RARA      (0)      //!< Bit position for SPBA_PRR22_RARA.
 #define BM_SPBA_PRR22_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR22_RARA.
 
@@ -4905,7 +4684,6 @@ typedef union _hw_spba_prr22
 
 #define BV_SPBA_PRR22_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR22_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR22, field RARB[1] (RW)
@@ -4920,7 +4698,6 @@ typedef union _hw_spba_prr22
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR22_RARB      (1)      //!< Bit position for SPBA_PRR22_RARB.
 #define BM_SPBA_PRR22_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR22_RARB.
 
@@ -4940,7 +4717,6 @@ typedef union _hw_spba_prr22
 
 #define BV_SPBA_PRR22_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR22_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR22, field RARC[2] (RW)
@@ -4955,7 +4731,6 @@ typedef union _hw_spba_prr22
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR22_RARC      (2)      //!< Bit position for SPBA_PRR22_RARC.
 #define BM_SPBA_PRR22_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR22_RARC.
 
@@ -4975,7 +4750,6 @@ typedef union _hw_spba_prr22
 
 #define BV_SPBA_PRR22_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR22_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR22, field ROI[17:16] (RO)
@@ -4996,7 +4770,6 @@ typedef union _hw_spba_prr22
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR22_ROI      (16)      //!< Bit position for SPBA_PRR22_ROI.
 #define BM_SPBA_PRR22_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR22_ROI.
 
@@ -5010,7 +4783,6 @@ typedef union _hw_spba_prr22
 #define BV_SPBA_PRR22_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR22_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR22_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR22, field RMO[31:30] (RO)
@@ -5025,7 +4797,6 @@ typedef union _hw_spba_prr22
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR22_RMO      (30)      //!< Bit position for SPBA_PRR22_RMO.
 #define BM_SPBA_PRR22_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR22_RMO.
 
@@ -5038,7 +4809,6 @@ typedef union _hw_spba_prr22
 #define BV_SPBA_PRR22_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR22_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR22_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5101,7 +4871,6 @@ typedef union _hw_spba_prr23
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR23_RARA      (0)      //!< Bit position for SPBA_PRR23_RARA.
 #define BM_SPBA_PRR23_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR23_RARA.
 
@@ -5121,7 +4890,6 @@ typedef union _hw_spba_prr23
 
 #define BV_SPBA_PRR23_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR23_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR23, field RARB[1] (RW)
@@ -5136,7 +4904,6 @@ typedef union _hw_spba_prr23
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR23_RARB      (1)      //!< Bit position for SPBA_PRR23_RARB.
 #define BM_SPBA_PRR23_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR23_RARB.
 
@@ -5156,7 +4923,6 @@ typedef union _hw_spba_prr23
 
 #define BV_SPBA_PRR23_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR23_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR23, field RARC[2] (RW)
@@ -5171,7 +4937,6 @@ typedef union _hw_spba_prr23
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR23_RARC      (2)      //!< Bit position for SPBA_PRR23_RARC.
 #define BM_SPBA_PRR23_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR23_RARC.
 
@@ -5191,7 +4956,6 @@ typedef union _hw_spba_prr23
 
 #define BV_SPBA_PRR23_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR23_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR23, field ROI[17:16] (RO)
@@ -5212,7 +4976,6 @@ typedef union _hw_spba_prr23
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR23_ROI      (16)      //!< Bit position for SPBA_PRR23_ROI.
 #define BM_SPBA_PRR23_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR23_ROI.
 
@@ -5226,7 +4989,6 @@ typedef union _hw_spba_prr23
 #define BV_SPBA_PRR23_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR23_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR23_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR23, field RMO[31:30] (RO)
@@ -5241,7 +5003,6 @@ typedef union _hw_spba_prr23
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR23_RMO      (30)      //!< Bit position for SPBA_PRR23_RMO.
 #define BM_SPBA_PRR23_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR23_RMO.
 
@@ -5254,7 +5015,6 @@ typedef union _hw_spba_prr23
 #define BV_SPBA_PRR23_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR23_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR23_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5317,7 +5077,6 @@ typedef union _hw_spba_prr24
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR24_RARA      (0)      //!< Bit position for SPBA_PRR24_RARA.
 #define BM_SPBA_PRR24_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR24_RARA.
 
@@ -5337,7 +5096,6 @@ typedef union _hw_spba_prr24
 
 #define BV_SPBA_PRR24_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR24_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR24, field RARB[1] (RW)
@@ -5352,7 +5110,6 @@ typedef union _hw_spba_prr24
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR24_RARB      (1)      //!< Bit position for SPBA_PRR24_RARB.
 #define BM_SPBA_PRR24_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR24_RARB.
 
@@ -5372,7 +5129,6 @@ typedef union _hw_spba_prr24
 
 #define BV_SPBA_PRR24_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR24_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR24, field RARC[2] (RW)
@@ -5387,7 +5143,6 @@ typedef union _hw_spba_prr24
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR24_RARC      (2)      //!< Bit position for SPBA_PRR24_RARC.
 #define BM_SPBA_PRR24_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR24_RARC.
 
@@ -5407,7 +5162,6 @@ typedef union _hw_spba_prr24
 
 #define BV_SPBA_PRR24_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR24_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR24, field ROI[17:16] (RO)
@@ -5428,7 +5182,6 @@ typedef union _hw_spba_prr24
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR24_ROI      (16)      //!< Bit position for SPBA_PRR24_ROI.
 #define BM_SPBA_PRR24_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR24_ROI.
 
@@ -5442,7 +5195,6 @@ typedef union _hw_spba_prr24
 #define BV_SPBA_PRR24_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR24_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR24_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR24, field RMO[31:30] (RO)
@@ -5457,7 +5209,6 @@ typedef union _hw_spba_prr24
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR24_RMO      (30)      //!< Bit position for SPBA_PRR24_RMO.
 #define BM_SPBA_PRR24_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR24_RMO.
 
@@ -5470,7 +5221,6 @@ typedef union _hw_spba_prr24
 #define BV_SPBA_PRR24_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR24_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR24_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5533,7 +5283,6 @@ typedef union _hw_spba_prr25
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR25_RARA      (0)      //!< Bit position for SPBA_PRR25_RARA.
 #define BM_SPBA_PRR25_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR25_RARA.
 
@@ -5553,7 +5302,6 @@ typedef union _hw_spba_prr25
 
 #define BV_SPBA_PRR25_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR25_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR25, field RARB[1] (RW)
@@ -5568,7 +5316,6 @@ typedef union _hw_spba_prr25
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR25_RARB      (1)      //!< Bit position for SPBA_PRR25_RARB.
 #define BM_SPBA_PRR25_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR25_RARB.
 
@@ -5588,7 +5335,6 @@ typedef union _hw_spba_prr25
 
 #define BV_SPBA_PRR25_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR25_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR25, field RARC[2] (RW)
@@ -5603,7 +5349,6 @@ typedef union _hw_spba_prr25
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR25_RARC      (2)      //!< Bit position for SPBA_PRR25_RARC.
 #define BM_SPBA_PRR25_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR25_RARC.
 
@@ -5623,7 +5368,6 @@ typedef union _hw_spba_prr25
 
 #define BV_SPBA_PRR25_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR25_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR25, field ROI[17:16] (RO)
@@ -5644,7 +5388,6 @@ typedef union _hw_spba_prr25
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR25_ROI      (16)      //!< Bit position for SPBA_PRR25_ROI.
 #define BM_SPBA_PRR25_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR25_ROI.
 
@@ -5658,7 +5401,6 @@ typedef union _hw_spba_prr25
 #define BV_SPBA_PRR25_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR25_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR25_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR25, field RMO[31:30] (RO)
@@ -5673,7 +5415,6 @@ typedef union _hw_spba_prr25
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR25_RMO      (30)      //!< Bit position for SPBA_PRR25_RMO.
 #define BM_SPBA_PRR25_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR25_RMO.
 
@@ -5686,7 +5427,6 @@ typedef union _hw_spba_prr25
 #define BV_SPBA_PRR25_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR25_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR25_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5749,7 +5489,6 @@ typedef union _hw_spba_prr26
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR26_RARA      (0)      //!< Bit position for SPBA_PRR26_RARA.
 #define BM_SPBA_PRR26_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR26_RARA.
 
@@ -5769,7 +5508,6 @@ typedef union _hw_spba_prr26
 
 #define BV_SPBA_PRR26_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR26_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR26, field RARB[1] (RW)
@@ -5784,7 +5522,6 @@ typedef union _hw_spba_prr26
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR26_RARB      (1)      //!< Bit position for SPBA_PRR26_RARB.
 #define BM_SPBA_PRR26_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR26_RARB.
 
@@ -5804,7 +5541,6 @@ typedef union _hw_spba_prr26
 
 #define BV_SPBA_PRR26_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR26_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR26, field RARC[2] (RW)
@@ -5819,7 +5555,6 @@ typedef union _hw_spba_prr26
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR26_RARC      (2)      //!< Bit position for SPBA_PRR26_RARC.
 #define BM_SPBA_PRR26_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR26_RARC.
 
@@ -5839,7 +5574,6 @@ typedef union _hw_spba_prr26
 
 #define BV_SPBA_PRR26_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR26_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR26, field ROI[17:16] (RO)
@@ -5860,7 +5594,6 @@ typedef union _hw_spba_prr26
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR26_ROI      (16)      //!< Bit position for SPBA_PRR26_ROI.
 #define BM_SPBA_PRR26_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR26_ROI.
 
@@ -5874,7 +5607,6 @@ typedef union _hw_spba_prr26
 #define BV_SPBA_PRR26_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR26_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR26_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR26, field RMO[31:30] (RO)
@@ -5889,7 +5621,6 @@ typedef union _hw_spba_prr26
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR26_RMO      (30)      //!< Bit position for SPBA_PRR26_RMO.
 #define BM_SPBA_PRR26_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR26_RMO.
 
@@ -5902,7 +5633,6 @@ typedef union _hw_spba_prr26
 #define BV_SPBA_PRR26_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR26_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR26_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5965,7 +5695,6 @@ typedef union _hw_spba_prr27
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR27_RARA      (0)      //!< Bit position for SPBA_PRR27_RARA.
 #define BM_SPBA_PRR27_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR27_RARA.
 
@@ -5985,7 +5714,6 @@ typedef union _hw_spba_prr27
 
 #define BV_SPBA_PRR27_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR27_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR27, field RARB[1] (RW)
@@ -6000,7 +5728,6 @@ typedef union _hw_spba_prr27
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR27_RARB      (1)      //!< Bit position for SPBA_PRR27_RARB.
 #define BM_SPBA_PRR27_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR27_RARB.
 
@@ -6020,7 +5747,6 @@ typedef union _hw_spba_prr27
 
 #define BV_SPBA_PRR27_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR27_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR27, field RARC[2] (RW)
@@ -6035,7 +5761,6 @@ typedef union _hw_spba_prr27
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR27_RARC      (2)      //!< Bit position for SPBA_PRR27_RARC.
 #define BM_SPBA_PRR27_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR27_RARC.
 
@@ -6055,7 +5780,6 @@ typedef union _hw_spba_prr27
 
 #define BV_SPBA_PRR27_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR27_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR27, field ROI[17:16] (RO)
@@ -6076,7 +5800,6 @@ typedef union _hw_spba_prr27
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR27_ROI      (16)      //!< Bit position for SPBA_PRR27_ROI.
 #define BM_SPBA_PRR27_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR27_ROI.
 
@@ -6090,7 +5813,6 @@ typedef union _hw_spba_prr27
 #define BV_SPBA_PRR27_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR27_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR27_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR27, field RMO[31:30] (RO)
@@ -6105,7 +5827,6 @@ typedef union _hw_spba_prr27
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR27_RMO      (30)      //!< Bit position for SPBA_PRR27_RMO.
 #define BM_SPBA_PRR27_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR27_RMO.
 
@@ -6118,7 +5839,6 @@ typedef union _hw_spba_prr27
 #define BV_SPBA_PRR27_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR27_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR27_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6181,7 +5901,6 @@ typedef union _hw_spba_prr28
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR28_RARA      (0)      //!< Bit position for SPBA_PRR28_RARA.
 #define BM_SPBA_PRR28_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR28_RARA.
 
@@ -6201,7 +5920,6 @@ typedef union _hw_spba_prr28
 
 #define BV_SPBA_PRR28_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR28_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR28, field RARB[1] (RW)
@@ -6216,7 +5934,6 @@ typedef union _hw_spba_prr28
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR28_RARB      (1)      //!< Bit position for SPBA_PRR28_RARB.
 #define BM_SPBA_PRR28_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR28_RARB.
 
@@ -6236,7 +5953,6 @@ typedef union _hw_spba_prr28
 
 #define BV_SPBA_PRR28_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR28_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR28, field RARC[2] (RW)
@@ -6251,7 +5967,6 @@ typedef union _hw_spba_prr28
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR28_RARC      (2)      //!< Bit position for SPBA_PRR28_RARC.
 #define BM_SPBA_PRR28_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR28_RARC.
 
@@ -6271,7 +5986,6 @@ typedef union _hw_spba_prr28
 
 #define BV_SPBA_PRR28_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR28_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR28, field ROI[17:16] (RO)
@@ -6292,7 +6006,6 @@ typedef union _hw_spba_prr28
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR28_ROI      (16)      //!< Bit position for SPBA_PRR28_ROI.
 #define BM_SPBA_PRR28_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR28_ROI.
 
@@ -6306,7 +6019,6 @@ typedef union _hw_spba_prr28
 #define BV_SPBA_PRR28_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR28_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR28_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR28, field RMO[31:30] (RO)
@@ -6321,7 +6033,6 @@ typedef union _hw_spba_prr28
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR28_RMO      (30)      //!< Bit position for SPBA_PRR28_RMO.
 #define BM_SPBA_PRR28_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR28_RMO.
 
@@ -6334,7 +6045,6 @@ typedef union _hw_spba_prr28
 #define BV_SPBA_PRR28_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR28_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR28_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6397,7 +6107,6 @@ typedef union _hw_spba_prr29
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR29_RARA      (0)      //!< Bit position for SPBA_PRR29_RARA.
 #define BM_SPBA_PRR29_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR29_RARA.
 
@@ -6417,7 +6126,6 @@ typedef union _hw_spba_prr29
 
 #define BV_SPBA_PRR29_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR29_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR29, field RARB[1] (RW)
@@ -6432,7 +6140,6 @@ typedef union _hw_spba_prr29
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR29_RARB      (1)      //!< Bit position for SPBA_PRR29_RARB.
 #define BM_SPBA_PRR29_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR29_RARB.
 
@@ -6452,7 +6159,6 @@ typedef union _hw_spba_prr29
 
 #define BV_SPBA_PRR29_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR29_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR29, field RARC[2] (RW)
@@ -6467,7 +6173,6 @@ typedef union _hw_spba_prr29
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR29_RARC      (2)      //!< Bit position for SPBA_PRR29_RARC.
 #define BM_SPBA_PRR29_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR29_RARC.
 
@@ -6487,7 +6192,6 @@ typedef union _hw_spba_prr29
 
 #define BV_SPBA_PRR29_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR29_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR29, field ROI[17:16] (RO)
@@ -6508,7 +6212,6 @@ typedef union _hw_spba_prr29
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR29_ROI      (16)      //!< Bit position for SPBA_PRR29_ROI.
 #define BM_SPBA_PRR29_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR29_ROI.
 
@@ -6522,7 +6225,6 @@ typedef union _hw_spba_prr29
 #define BV_SPBA_PRR29_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR29_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR29_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR29, field RMO[31:30] (RO)
@@ -6537,7 +6239,6 @@ typedef union _hw_spba_prr29
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR29_RMO      (30)      //!< Bit position for SPBA_PRR29_RMO.
 #define BM_SPBA_PRR29_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR29_RMO.
 
@@ -6550,7 +6251,6 @@ typedef union _hw_spba_prr29
 #define BV_SPBA_PRR29_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR29_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR29_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6613,7 +6313,6 @@ typedef union _hw_spba_prr30
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR30_RARA      (0)      //!< Bit position for SPBA_PRR30_RARA.
 #define BM_SPBA_PRR30_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR30_RARA.
 
@@ -6633,7 +6332,6 @@ typedef union _hw_spba_prr30
 
 #define BV_SPBA_PRR30_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR30_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR30, field RARB[1] (RW)
@@ -6648,7 +6346,6 @@ typedef union _hw_spba_prr30
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR30_RARB      (1)      //!< Bit position for SPBA_PRR30_RARB.
 #define BM_SPBA_PRR30_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR30_RARB.
 
@@ -6668,7 +6365,6 @@ typedef union _hw_spba_prr30
 
 #define BV_SPBA_PRR30_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR30_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR30, field RARC[2] (RW)
@@ -6683,7 +6379,6 @@ typedef union _hw_spba_prr30
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR30_RARC      (2)      //!< Bit position for SPBA_PRR30_RARC.
 #define BM_SPBA_PRR30_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR30_RARC.
 
@@ -6703,7 +6398,6 @@ typedef union _hw_spba_prr30
 
 #define BV_SPBA_PRR30_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR30_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR30, field ROI[17:16] (RO)
@@ -6724,7 +6418,6 @@ typedef union _hw_spba_prr30
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR30_ROI      (16)      //!< Bit position for SPBA_PRR30_ROI.
 #define BM_SPBA_PRR30_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR30_ROI.
 
@@ -6738,7 +6431,6 @@ typedef union _hw_spba_prr30
 #define BV_SPBA_PRR30_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR30_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR30_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR30, field RMO[31:30] (RO)
@@ -6753,7 +6445,6 @@ typedef union _hw_spba_prr30
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR30_RMO      (30)      //!< Bit position for SPBA_PRR30_RMO.
 #define BM_SPBA_PRR30_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR30_RMO.
 
@@ -6766,7 +6457,6 @@ typedef union _hw_spba_prr30
 #define BV_SPBA_PRR30_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR30_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR30_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6829,7 +6519,6 @@ typedef union _hw_spba_prr31
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR31_RARA      (0)      //!< Bit position for SPBA_PRR31_RARA.
 #define BM_SPBA_PRR31_RARA      (0x00000001)  //!< Bit mask for SPBA_PRR31_RARA.
 
@@ -6849,7 +6538,6 @@ typedef union _hw_spba_prr31
 
 #define BV_SPBA_PRR31_RARA__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR31_RARA__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR31, field RARB[1] (RW)
@@ -6864,7 +6552,6 @@ typedef union _hw_spba_prr31
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR31_RARB      (1)      //!< Bit position for SPBA_PRR31_RARB.
 #define BM_SPBA_PRR31_RARB      (0x00000002)  //!< Bit mask for SPBA_PRR31_RARB.
 
@@ -6884,7 +6571,6 @@ typedef union _hw_spba_prr31
 
 #define BV_SPBA_PRR31_RARB__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR31_RARB__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR31, field RARC[2] (RW)
@@ -6899,7 +6585,6 @@ typedef union _hw_spba_prr31
  * - ALLOWED = 1 - Access to peripheral is granted.
  */
 //@{
-
 #define BP_SPBA_PRR31_RARC      (2)      //!< Bit position for SPBA_PRR31_RARC.
 #define BM_SPBA_PRR31_RARC      (0x00000004)  //!< Bit mask for SPBA_PRR31_RARC.
 
@@ -6919,7 +6604,6 @@ typedef union _hw_spba_prr31
 
 #define BV_SPBA_PRR31_RARC__PROHIBITED (0x0) //!< Access to peripheral is not allowed.
 #define BV_SPBA_PRR31_RARC__ALLOWED (0x1) //!< Access to peripheral is granted.
-
 //@}
 
 /*! @name Register SPBA_PRR31, field ROI[17:16] (RO)
@@ -6940,7 +6624,6 @@ typedef union _hw_spba_prr31
  * - MASTER_C = 11 - The resource is owned by master C port.
  */
 //@{
-
 #define BP_SPBA_PRR31_ROI      (16)      //!< Bit position for SPBA_PRR31_ROI.
 #define BM_SPBA_PRR31_ROI      (0x00030000)  //!< Bit mask for SPBA_PRR31_ROI.
 
@@ -6954,7 +6637,6 @@ typedef union _hw_spba_prr31
 #define BV_SPBA_PRR31_ROI__MASTER_A (0x1) //!< The resource is owned by master A port.
 #define BV_SPBA_PRR31_ROI__MASTER_B (0x2) //!< The resource is owned by master B port.
 #define BV_SPBA_PRR31_ROI__MASTER_C (0x3) //!< The resource is owned by master C port.
-
 //@}
 
 /*! @name Register SPBA_PRR31, field RMO[31:30] (RO)
@@ -6969,7 +6651,6 @@ typedef union _hw_spba_prr31
  * - REQUESTING_MASTER = 11 - The resource is owned by the requesting master.
  */
 //@{
-
 #define BP_SPBA_PRR31_RMO      (30)      //!< Bit position for SPBA_PRR31_RMO.
 #define BM_SPBA_PRR31_RMO      (0xc0000000)  //!< Bit mask for SPBA_PRR31_RMO.
 
@@ -6982,7 +6663,6 @@ typedef union _hw_spba_prr31
 #define BV_SPBA_PRR31_RMO__UNOWNED (0x0) //!< The resource is unowned.
 #define BV_SPBA_PRR31_RMO__ANOTHER_MASTER (0x2) //!< The resource is owned by another master.
 #define BV_SPBA_PRR31_RMO__REQUESTING_MASTER (0x3) //!< The resource is owned by the requesting master.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7037,3 +6717,5 @@ typedef struct _hw_spba
 #endif
 
 #endif // __HW_SPBA_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

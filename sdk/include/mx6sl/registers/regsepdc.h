@@ -199,7 +199,6 @@ typedef union _hw_epdc_ctrl
  * issue bursts of length 8.
  */
 //@{
-
 #define BP_EPDC_CTRL_BURST_LEN_8      (0)      //!< Bit position for EPDC_CTRL_BURST_LEN_8.
 #define BM_EPDC_CTRL_BURST_LEN_8      (0x00000001)  //!< Bit mask for EPDC_CTRL_BURST_LEN_8.
 
@@ -213,7 +212,6 @@ typedef union _hw_epdc_ctrl
 //! @brief Set the BURST_LEN_8 field to a new value.
 #define BW_EPDC_CTRL_BURST_LEN_8(v)   BF_CS1(EPDC_CTRL, BURST_LEN_8, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_CTRL, field LUT_DATA_SWIZZLE[5:4] (RW)
@@ -228,7 +226,6 @@ typedef union _hw_epdc_ctrl
  * - HWD_BYTE_SWAP = 0x3 - Swap bytes within each half-word.
  */
 //@{
-
 #define BP_EPDC_CTRL_LUT_DATA_SWIZZLE      (4)      //!< Bit position for EPDC_CTRL_LUT_DATA_SWIZZLE.
 #define BM_EPDC_CTRL_LUT_DATA_SWIZZLE      (0x00000030)  //!< Bit mask for EPDC_CTRL_LUT_DATA_SWIZZLE.
 
@@ -250,7 +247,6 @@ typedef union _hw_epdc_ctrl
 #define BV_EPDC_CTRL_LUT_DATA_SWIZZLE__ALL_BYTES_SWAP (0x1) //!< Swizzle all bytes, swap bytes 0,3 and 1,2 (aka Big Endian).
 #define BV_EPDC_CTRL_LUT_DATA_SWIZZLE__HWD_SWAP (0x2) //!< Swap half-words.
 #define BV_EPDC_CTRL_LUT_DATA_SWIZZLE__HWD_BYTE_SWAP (0x3) //!< Swap bytes within each half-word.
-
 //@}
 
 /*! @name Register EPDC_CTRL, field UPD_DATA_SWIZZLE[7:6] (RW)
@@ -266,7 +262,6 @@ typedef union _hw_epdc_ctrl
  * - HWD_BYTE_SWAP = 0x3 - Swap bytes within each half-word.
  */
 //@{
-
 #define BP_EPDC_CTRL_UPD_DATA_SWIZZLE      (6)      //!< Bit position for EPDC_CTRL_UPD_DATA_SWIZZLE.
 #define BM_EPDC_CTRL_UPD_DATA_SWIZZLE      (0x000000c0)  //!< Bit mask for EPDC_CTRL_UPD_DATA_SWIZZLE.
 
@@ -288,7 +283,6 @@ typedef union _hw_epdc_ctrl
 #define BV_EPDC_CTRL_UPD_DATA_SWIZZLE__ALL_BYTES_SWAP (0x1) //!< Swizzle all bytes, swap bytes 0,3 and 1,2 (aka Big Endian).
 #define BV_EPDC_CTRL_UPD_DATA_SWIZZLE__HWD_SWAP (0x2) //!< Swap half-words.
 #define BV_EPDC_CTRL_UPD_DATA_SWIZZLE__HWD_BYTE_SWAP (0x3) //!< Swap bytes within each half-word.
-
 //@}
 
 /*! @name Register EPDC_CTRL, field CLKGATE[30] (RW)
@@ -297,7 +291,6 @@ typedef union _hw_epdc_ctrl
  * block.
  */
 //@{
-
 #define BP_EPDC_CTRL_CLKGATE      (30)      //!< Bit position for EPDC_CTRL_CLKGATE.
 #define BM_EPDC_CTRL_CLKGATE      (0x40000000)  //!< Bit mask for EPDC_CTRL_CLKGATE.
 
@@ -311,7 +304,6 @@ typedef union _hw_epdc_ctrl
 //! @brief Set the CLKGATE field to a new value.
 #define BW_EPDC_CTRL_CLKGATE(v)   BF_CS1(EPDC_CTRL, CLKGATE, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_CTRL, field SFTRST[31] (RW)
@@ -321,7 +313,6 @@ typedef union _hw_epdc_ctrl
  * and then off to reset the EPDC block to its default state.
  */
 //@{
-
 #define BP_EPDC_CTRL_SFTRST      (31)      //!< Bit position for EPDC_CTRL_SFTRST.
 #define BM_EPDC_CTRL_SFTRST      (0x80000000)  //!< Bit mask for EPDC_CTRL_SFTRST.
 
@@ -335,7 +326,6 @@ typedef union _hw_epdc_ctrl
 //! @brief Set the SFTRST field to a new value.
 #define BW_EPDC_CTRL_SFTRST(v)   BF_CS1(EPDC_CTRL, SFTRST, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -385,7 +375,6 @@ typedef union _hw_epdc_wvaddr
  * Start address of waveform tables. This address needs to be aligned to a 64-bit word boundary.
  */
 //@{
-
 #define BP_EPDC_WVADDR_ADDR      (0)      //!< Bit position for EPDC_WVADDR_ADDR.
 #define BM_EPDC_WVADDR_ADDR      (0xffffffff)  //!< Bit mask for EPDC_WVADDR_ADDR.
 
@@ -399,7 +388,6 @@ typedef union _hw_epdc_wvaddr
 //! @brief Set the ADDR field to a new value.
 #define BW_EPDC_WVADDR_ADDR(v)   (HW_EPDC_WVADDR_WR((HW_EPDC_WVADDR_RD() & ~BM_EPDC_WVADDR_ADDR) | BF_EPDC_WVADDR_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -450,7 +438,6 @@ typedef union _hw_epdc_wb_addr
  * Address for EPDC working buffer. This address must be a aligned to a 64-bit double-word boundary.
  */
 //@{
-
 #define BP_EPDC_WB_ADDR_ADDR      (0)      //!< Bit position for EPDC_WB_ADDR_ADDR.
 #define BM_EPDC_WB_ADDR_ADDR      (0xffffffff)  //!< Bit mask for EPDC_WB_ADDR_ADDR.
 
@@ -464,7 +451,6 @@ typedef union _hw_epdc_wb_addr
 //! @brief Set the ADDR field to a new value.
 #define BW_EPDC_WB_ADDR_ADDR(v)   (HW_EPDC_WB_ADDR_WR((HW_EPDC_WB_ADDR_RD() & ~BM_EPDC_WB_ADDR_ADDR) | BF_EPDC_WB_ADDR_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -518,7 +504,6 @@ typedef union _hw_epdc_res
  * Horizontal Resolution (in pixels)
  */
 //@{
-
 #define BP_EPDC_RES_HORIZONTAL      (0)      //!< Bit position for EPDC_RES_HORIZONTAL.
 #define BM_EPDC_RES_HORIZONTAL      (0x00001fff)  //!< Bit mask for EPDC_RES_HORIZONTAL.
 
@@ -532,7 +517,6 @@ typedef union _hw_epdc_res
 //! @brief Set the HORIZONTAL field to a new value.
 #define BW_EPDC_RES_HORIZONTAL(v)   (HW_EPDC_RES_WR((HW_EPDC_RES_RD() & ~BM_EPDC_RES_HORIZONTAL) | BF_EPDC_RES_HORIZONTAL(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_RES, field VERTICAL[28:16] (RW)
@@ -540,7 +524,6 @@ typedef union _hw_epdc_res
  * Vertical Resoltion (in pixels)
  */
 //@{
-
 #define BP_EPDC_RES_VERTICAL      (16)      //!< Bit position for EPDC_RES_VERTICAL.
 #define BM_EPDC_RES_VERTICAL      (0x1fff0000)  //!< Bit mask for EPDC_RES_VERTICAL.
 
@@ -554,7 +537,6 @@ typedef union _hw_epdc_res
 //! @brief Set the VERTICAL field to a new value.
 #define BW_EPDC_RES_VERTICAL(v)   (HW_EPDC_RES_WR((HW_EPDC_RES_RD() & ~BM_EPDC_RES_VERTICAL) | BF_EPDC_RES_VERTICAL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -621,7 +603,6 @@ typedef union _hw_epdc_format
  * - 4BV = 0x3 - 4-bit and VCOM
  */
 //@{
-
 #define BP_EPDC_FORMAT_TFT_PIXEL_FORMAT      (0)      //!< Bit position for EPDC_FORMAT_TFT_PIXEL_FORMAT.
 #define BM_EPDC_FORMAT_TFT_PIXEL_FORMAT      (0x00000003)  //!< Bit mask for EPDC_FORMAT_TFT_PIXEL_FORMAT.
 
@@ -643,7 +624,6 @@ typedef union _hw_epdc_format
 #define BV_EPDC_FORMAT_TFT_PIXEL_FORMAT__2BV (0x1) //!< 2-bit and VCOM
 #define BV_EPDC_FORMAT_TFT_PIXEL_FORMAT__4B (0x2) //!< 4-bit
 #define BV_EPDC_FORMAT_TFT_PIXEL_FORMAT__4BV (0x3) //!< 4-bit and VCOM
-
 //@}
 
 /*! @name Register EPDC_FORMAT, field BUF_PIXEL_FORMAT[10:8] (RW)
@@ -659,7 +639,6 @@ typedef union _hw_epdc_format
  * - P5N = 0x5 - 5-bit pixel
  */
 //@{
-
 #define BP_EPDC_FORMAT_BUF_PIXEL_FORMAT      (8)      //!< Bit position for EPDC_FORMAT_BUF_PIXEL_FORMAT.
 #define BM_EPDC_FORMAT_BUF_PIXEL_FORMAT      (0x00000700)  //!< Bit mask for EPDC_FORMAT_BUF_PIXEL_FORMAT.
 
@@ -681,7 +660,6 @@ typedef union _hw_epdc_format
 #define BV_EPDC_FORMAT_BUF_PIXEL_FORMAT__P3N (0x3) //!< 3-bit pixel
 #define BV_EPDC_FORMAT_BUF_PIXEL_FORMAT__P4N (0x4) //!< 4-bit pixel
 #define BV_EPDC_FORMAT_BUF_PIXEL_FORMAT__P5N (0x5) //!< 5-bit pixel
-
 //@}
 
 /*! @name Register EPDC_FORMAT, field DEFAULT_TFT_PIXEL[23:16] (RW)
@@ -691,7 +669,6 @@ typedef union _hw_epdc_format
  * being updated during active frame scans.
  */
 //@{
-
 #define BP_EPDC_FORMAT_DEFAULT_TFT_PIXEL      (16)      //!< Bit position for EPDC_FORMAT_DEFAULT_TFT_PIXEL.
 #define BM_EPDC_FORMAT_DEFAULT_TFT_PIXEL      (0x00ff0000)  //!< Bit mask for EPDC_FORMAT_DEFAULT_TFT_PIXEL.
 
@@ -705,7 +682,6 @@ typedef union _hw_epdc_format
 //! @brief Set the DEFAULT_TFT_PIXEL field to a new value.
 #define BW_EPDC_FORMAT_DEFAULT_TFT_PIXEL(v)   BF_CS1(EPDC_FORMAT, DEFAULT_TFT_PIXEL, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_FORMAT, field BUF_PIXEL_SCALE[24] (RW)
@@ -717,7 +693,6 @@ typedef union _hw_epdc_format
  * - ROUND = 0x1 - Use rounding method (with saturation)
  */
 //@{
-
 #define BP_EPDC_FORMAT_BUF_PIXEL_SCALE      (24)      //!< Bit position for EPDC_FORMAT_BUF_PIXEL_SCALE.
 #define BM_EPDC_FORMAT_BUF_PIXEL_SCALE      (0x01000000)  //!< Bit mask for EPDC_FORMAT_BUF_PIXEL_SCALE.
 
@@ -737,7 +712,6 @@ typedef union _hw_epdc_format
 
 #define BV_EPDC_FORMAT_BUF_PIXEL_SCALE__TRUNCATE (0x0) //!< Use Truncate method (LSB)
 #define BV_EPDC_FORMAT_BUF_PIXEL_SCALE__ROUND (0x1) //!< Use rounding method (with saturation)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -796,7 +770,6 @@ typedef union _hw_epdc_fifoctrl
  * priority elevation request is asserted.
  */
 //@{
-
 #define BP_EPDC_FIFOCTRL_FIFO_L_LEVEL      (0)      //!< Bit position for EPDC_FIFOCTRL_FIFO_L_LEVEL.
 #define BM_EPDC_FIFOCTRL_FIFO_L_LEVEL      (0x000000ff)  //!< Bit mask for EPDC_FIFOCTRL_FIFO_L_LEVEL.
 
@@ -810,7 +783,6 @@ typedef union _hw_epdc_fifoctrl
 //! @brief Set the FIFO_L_LEVEL field to a new value.
 #define BW_EPDC_FIFOCTRL_FIFO_L_LEVEL(v)   BF_CS1(EPDC_FIFOCTRL, FIFO_L_LEVEL, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_FIFOCTRL, field FIFO_H_LEVEL[15:8] (RW)
@@ -819,7 +791,6 @@ typedef union _hw_epdc_fifoctrl
  * reaches this level or above, the priority elevation request is negated
  */
 //@{
-
 #define BP_EPDC_FIFOCTRL_FIFO_H_LEVEL      (8)      //!< Bit position for EPDC_FIFOCTRL_FIFO_H_LEVEL.
 #define BM_EPDC_FIFOCTRL_FIFO_H_LEVEL      (0x0000ff00)  //!< Bit mask for EPDC_FIFOCTRL_FIFO_H_LEVEL.
 
@@ -833,7 +804,6 @@ typedef union _hw_epdc_fifoctrl
 //! @brief Set the FIFO_H_LEVEL field to a new value.
 #define BW_EPDC_FIFOCTRL_FIFO_H_LEVEL(v)   BF_CS1(EPDC_FIFOCTRL, FIFO_H_LEVEL, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_FIFOCTRL, field FIFO_INIT_LEVEL[23:16] (RW)
@@ -841,7 +811,6 @@ typedef union _hw_epdc_fifoctrl
  * This register sets the watermark for the pixel-fifo.
  */
 //@{
-
 #define BP_EPDC_FIFOCTRL_FIFO_INIT_LEVEL      (16)      //!< Bit position for EPDC_FIFOCTRL_FIFO_INIT_LEVEL.
 #define BM_EPDC_FIFOCTRL_FIFO_INIT_LEVEL      (0x00ff0000)  //!< Bit mask for EPDC_FIFOCTRL_FIFO_INIT_LEVEL.
 
@@ -855,7 +824,6 @@ typedef union _hw_epdc_fifoctrl
 //! @brief Set the FIFO_INIT_LEVEL field to a new value.
 #define BW_EPDC_FIFOCTRL_FIFO_INIT_LEVEL(v)   BF_CS1(EPDC_FIFOCTRL, FIFO_INIT_LEVEL, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_FIFOCTRL, field ENABLE_PRIORITY[31] (RW)
@@ -864,7 +832,6 @@ typedef union _hw_epdc_fifoctrl
  * FIFO_H_LEVEL and FIFO_L_LEVEL)
  */
 //@{
-
 #define BP_EPDC_FIFOCTRL_ENABLE_PRIORITY      (31)      //!< Bit position for EPDC_FIFOCTRL_ENABLE_PRIORITY.
 #define BM_EPDC_FIFOCTRL_ENABLE_PRIORITY      (0x80000000)  //!< Bit mask for EPDC_FIFOCTRL_ENABLE_PRIORITY.
 
@@ -878,7 +845,6 @@ typedef union _hw_epdc_fifoctrl
 //! @brief Set the ENABLE_PRIORITY field to a new value.
 #define BW_EPDC_FIFOCTRL_ENABLE_PRIORITY(v)   BF_CS1(EPDC_FIFOCTRL, ENABLE_PRIORITY, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -932,7 +898,6 @@ typedef union _hw_epdc_upd_addr
  * into the working buffer.
  */
 //@{
-
 #define BP_EPDC_UPD_ADDR_ADDR      (0)      //!< Bit position for EPDC_UPD_ADDR_ADDR.
 #define BM_EPDC_UPD_ADDR_ADDR      (0xffffffff)  //!< Bit mask for EPDC_UPD_ADDR_ADDR.
 
@@ -946,7 +911,6 @@ typedef union _hw_epdc_upd_addr
 //! @brief Set the ADDR field to a new value.
 #define BW_EPDC_UPD_ADDR_ADDR(v)   (HW_EPDC_UPD_ADDR_WR((HW_EPDC_UPD_ADDR_RD() & ~BM_EPDC_UPD_ADDR_ADDR) | BF_EPDC_UPD_ADDR_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1000,7 +964,6 @@ typedef union _hw_epdc_upd_stride
  * line stride for incoming region update
  */
 //@{
-
 #define BP_EPDC_UPD_STRIDE_STRIDE      (0)      //!< Bit position for EPDC_UPD_STRIDE_STRIDE.
 #define BM_EPDC_UPD_STRIDE_STRIDE      (0xffffffff)  //!< Bit mask for EPDC_UPD_STRIDE_STRIDE.
 
@@ -1014,7 +977,6 @@ typedef union _hw_epdc_upd_stride
 //! @brief Set the STRIDE field to a new value.
 #define BW_EPDC_UPD_STRIDE_STRIDE(v)   (HW_EPDC_UPD_STRIDE_WR((HW_EPDC_UPD_STRIDE_RD() & ~BM_EPDC_UPD_STRIDE_STRIDE) | BF_EPDC_UPD_STRIDE_STRIDE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1067,7 +1029,6 @@ typedef union _hw_epdc_upd_cord
  * X co-ordinate for incoming region update
  */
 //@{
-
 #define BP_EPDC_UPD_CORD_XCORD      (0)      //!< Bit position for EPDC_UPD_CORD_XCORD.
 #define BM_EPDC_UPD_CORD_XCORD      (0x00001fff)  //!< Bit mask for EPDC_UPD_CORD_XCORD.
 
@@ -1081,7 +1042,6 @@ typedef union _hw_epdc_upd_cord
 //! @brief Set the XCORD field to a new value.
 #define BW_EPDC_UPD_CORD_XCORD(v)   (HW_EPDC_UPD_CORD_WR((HW_EPDC_UPD_CORD_RD() & ~BM_EPDC_UPD_CORD_XCORD) | BF_EPDC_UPD_CORD_XCORD(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_UPD_CORD, field YCORD[28:16] (RW)
@@ -1089,7 +1049,6 @@ typedef union _hw_epdc_upd_cord
  * Y co-ordinate for incoming region update
  */
 //@{
-
 #define BP_EPDC_UPD_CORD_YCORD      (16)      //!< Bit position for EPDC_UPD_CORD_YCORD.
 #define BM_EPDC_UPD_CORD_YCORD      (0x1fff0000)  //!< Bit mask for EPDC_UPD_CORD_YCORD.
 
@@ -1103,7 +1062,6 @@ typedef union _hw_epdc_upd_cord
 //! @brief Set the YCORD field to a new value.
 #define BW_EPDC_UPD_CORD_YCORD(v)   (HW_EPDC_UPD_CORD_WR((HW_EPDC_UPD_CORD_RD() & ~BM_EPDC_UPD_CORD_YCORD) | BF_EPDC_UPD_CORD_YCORD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1160,7 +1118,6 @@ typedef union _hw_epdc_upd_size
  * -  - 
  */
 //@{
-
 #define BP_EPDC_UPD_SIZE_WIDTH      (0)      //!< Bit position for EPDC_UPD_SIZE_WIDTH.
 #define BM_EPDC_UPD_SIZE_WIDTH      (0x00001fff)  //!< Bit mask for EPDC_UPD_SIZE_WIDTH.
 
@@ -1174,7 +1131,6 @@ typedef union _hw_epdc_upd_size
 //! @brief Set the WIDTH field to a new value.
 #define BW_EPDC_UPD_SIZE_WIDTH(v)   (HW_EPDC_UPD_SIZE_WR((HW_EPDC_UPD_SIZE_RD() & ~BM_EPDC_UPD_SIZE_WIDTH) | BF_EPDC_UPD_SIZE_WIDTH(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_UPD_SIZE, field HEIGHT[28:16] (RW)
@@ -1182,7 +1138,6 @@ typedef union _hw_epdc_upd_size
  * Height (in pixels)
  */
 //@{
-
 #define BP_EPDC_UPD_SIZE_HEIGHT      (16)      //!< Bit position for EPDC_UPD_SIZE_HEIGHT.
 #define BM_EPDC_UPD_SIZE_HEIGHT      (0x1fff0000)  //!< Bit mask for EPDC_UPD_SIZE_HEIGHT.
 
@@ -1196,7 +1151,6 @@ typedef union _hw_epdc_upd_size
 //! @brief Set the HEIGHT field to a new value.
 #define BW_EPDC_UPD_SIZE_HEIGHT(v)   (HW_EPDC_UPD_SIZE_WR((HW_EPDC_UPD_SIZE_RD() & ~BM_EPDC_UPD_SIZE_HEIGHT) | BF_EPDC_UPD_SIZE_HEIGHT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1262,7 +1216,6 @@ typedef union _hw_epdc_upd_ctrl
  * - FULL = 0x1 - Full Update : process all pixels in region
  */
 //@{
-
 #define BP_EPDC_UPD_CTRL_UPDATE_MODE      (0)      //!< Bit position for EPDC_UPD_CTRL_UPDATE_MODE.
 #define BM_EPDC_UPD_CTRL_UPDATE_MODE      (0x00000001)  //!< Bit mask for EPDC_UPD_CTRL_UPDATE_MODE.
 
@@ -1282,7 +1235,6 @@ typedef union _hw_epdc_upd_ctrl
 
 #define BV_EPDC_UPD_CTRL_UPDATE_MODE__PARTIAL (0x0) //!< Partial Update : only process changed pixels in region
 #define BV_EPDC_UPD_CTRL_UPDATE_MODE__FULL (0x1) //!< Full Update : process all pixels in region
-
 //@}
 
 /*! @name Register EPDC_UPD_CTRL, field DRY_RUN[1] (RW)
@@ -1291,7 +1243,6 @@ typedef union _hw_epdc_upd_ctrl
  * actually you don't need to wait for LUT available to use this feature
  */
 //@{
-
 #define BP_EPDC_UPD_CTRL_DRY_RUN      (1)      //!< Bit position for EPDC_UPD_CTRL_DRY_RUN.
 #define BM_EPDC_UPD_CTRL_DRY_RUN      (0x00000002)  //!< Bit mask for EPDC_UPD_CTRL_DRY_RUN.
 
@@ -1305,7 +1256,6 @@ typedef union _hw_epdc_upd_ctrl
 //! @brief Set the DRY_RUN field to a new value.
 #define BW_EPDC_UPD_CTRL_DRY_RUN(v)   BF_CS1(EPDC_UPD_CTRL, DRY_RUN, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_UPD_CTRL, field AUTOWV[2] (RW)
@@ -1313,7 +1263,6 @@ typedef union _hw_epdc_upd_ctrl
  * enable automatical waveform mode selection
  */
 //@{
-
 #define BP_EPDC_UPD_CTRL_AUTOWV      (2)      //!< Bit position for EPDC_UPD_CTRL_AUTOWV.
 #define BM_EPDC_UPD_CTRL_AUTOWV      (0x00000004)  //!< Bit mask for EPDC_UPD_CTRL_AUTOWV.
 
@@ -1327,7 +1276,6 @@ typedef union _hw_epdc_upd_ctrl
 //! @brief Set the AUTOWV field to a new value.
 #define BW_EPDC_UPD_CTRL_AUTOWV(v)   BF_CS1(EPDC_UPD_CTRL, AUTOWV, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_UPD_CTRL, field AUTOWV_PAUSE[3] (RW)
@@ -1341,7 +1289,6 @@ typedef union _hw_epdc_upd_ctrl
  *     with selected waveform mode to start lut loading
  */
 //@{
-
 #define BP_EPDC_UPD_CTRL_AUTOWV_PAUSE      (3)      //!< Bit position for EPDC_UPD_CTRL_AUTOWV_PAUSE.
 #define BM_EPDC_UPD_CTRL_AUTOWV_PAUSE      (0x00000008)  //!< Bit mask for EPDC_UPD_CTRL_AUTOWV_PAUSE.
 
@@ -1361,7 +1308,6 @@ typedef union _hw_epdc_upd_ctrl
 
 #define BV_EPDC_UPD_CTRL_AUTOWV_PAUSE__AUTO (0x0) //!< epdc will analyze update buffer, report histogram, then update waveform mode using the programmed mode mapping in AUTOWV_LUT and start LUT loading
 #define BV_EPDC_UPD_CTRL_AUTOWV_PAUSE__MANUAL (0x1) //!< epdc will analyze update buffer, report histogram, then pause and waiting software to write again with selected waveform mode to start lut loading
-
 //@}
 
 /*! @name Register EPDC_UPD_CTRL, field NO_LUT_CANCEL[4] (RW)
@@ -1370,7 +1316,6 @@ typedef union _hw_epdc_upd_ctrl
  * collision), set this bit to 1 to disable this feature
  */
 //@{
-
 #define BP_EPDC_UPD_CTRL_NO_LUT_CANCEL      (4)      //!< Bit position for EPDC_UPD_CTRL_NO_LUT_CANCEL.
 #define BM_EPDC_UPD_CTRL_NO_LUT_CANCEL      (0x00000010)  //!< Bit mask for EPDC_UPD_CTRL_NO_LUT_CANCEL.
 
@@ -1384,7 +1329,6 @@ typedef union _hw_epdc_upd_ctrl
 //! @brief Set the NO_LUT_CANCEL field to a new value.
 #define BW_EPDC_UPD_CTRL_NO_LUT_CANCEL(v)   BF_CS1(EPDC_UPD_CTRL, NO_LUT_CANCEL, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_UPD_CTRL, field WAVEFORM_MODE[15:8] (RW)
@@ -1395,7 +1339,6 @@ typedef union _hw_epdc_upd_ctrl
  * -  - 
  */
 //@{
-
 #define BP_EPDC_UPD_CTRL_WAVEFORM_MODE      (8)      //!< Bit position for EPDC_UPD_CTRL_WAVEFORM_MODE.
 #define BM_EPDC_UPD_CTRL_WAVEFORM_MODE      (0x0000ff00)  //!< Bit mask for EPDC_UPD_CTRL_WAVEFORM_MODE.
 
@@ -1409,7 +1352,6 @@ typedef union _hw_epdc_upd_ctrl
 //! @brief Set the WAVEFORM_MODE field to a new value.
 #define BW_EPDC_UPD_CTRL_WAVEFORM_MODE(v)   BF_CS1(EPDC_UPD_CTRL, WAVEFORM_MODE, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_UPD_CTRL, field LUT_SEL[21:16] (RW)
@@ -1417,7 +1359,6 @@ typedef union _hw_epdc_upd_ctrl
  * LUT select 0-63
  */
 //@{
-
 #define BP_EPDC_UPD_CTRL_LUT_SEL      (16)      //!< Bit position for EPDC_UPD_CTRL_LUT_SEL.
 #define BM_EPDC_UPD_CTRL_LUT_SEL      (0x003f0000)  //!< Bit mask for EPDC_UPD_CTRL_LUT_SEL.
 
@@ -1431,7 +1372,6 @@ typedef union _hw_epdc_upd_ctrl
 //! @brief Set the LUT_SEL field to a new value.
 #define BW_EPDC_UPD_CTRL_LUT_SEL(v)   BF_CS1(EPDC_UPD_CTRL, LUT_SEL, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_UPD_CTRL, field USE_FIXED[31] (RW)
@@ -1439,7 +1379,6 @@ typedef union _hw_epdc_upd_ctrl
  * Use fixed pixel values (requires programming of EPDC_UPD_FIXED)
  */
 //@{
-
 #define BP_EPDC_UPD_CTRL_USE_FIXED      (31)      //!< Bit position for EPDC_UPD_CTRL_USE_FIXED.
 #define BM_EPDC_UPD_CTRL_USE_FIXED      (0x80000000)  //!< Bit mask for EPDC_UPD_CTRL_USE_FIXED.
 
@@ -1453,7 +1392,6 @@ typedef union _hw_epdc_upd_ctrl
 //! @brief Set the USE_FIXED field to a new value.
 #define BW_EPDC_UPD_CTRL_USE_FIXED(v)   BF_CS1(EPDC_UPD_CTRL, USE_FIXED, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1510,7 +1448,6 @@ typedef union _hw_epdc_upd_fixed
  * CP value if fixecp_en is set to 1. Data in Y8 format.
  */
 //@{
-
 #define BP_EPDC_UPD_FIXED_FIXCP      (0)      //!< Bit position for EPDC_UPD_FIXED_FIXCP.
 #define BM_EPDC_UPD_FIXED_FIXCP      (0x000000ff)  //!< Bit mask for EPDC_UPD_FIXED_FIXCP.
 
@@ -1524,7 +1461,6 @@ typedef union _hw_epdc_upd_fixed
 //! @brief Set the FIXCP field to a new value.
 #define BW_EPDC_UPD_FIXED_FIXCP(v)   BF_CS1(EPDC_UPD_FIXED, FIXCP, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_UPD_FIXED, field FIXNP[15:8] (RW)
@@ -1532,7 +1468,6 @@ typedef union _hw_epdc_upd_fixed
  * NP value if fixenp_en is set to 1. Data in Y8 format.
  */
 //@{
-
 #define BP_EPDC_UPD_FIXED_FIXNP      (8)      //!< Bit position for EPDC_UPD_FIXED_FIXNP.
 #define BM_EPDC_UPD_FIXED_FIXNP      (0x0000ff00)  //!< Bit mask for EPDC_UPD_FIXED_FIXNP.
 
@@ -1546,7 +1481,6 @@ typedef union _hw_epdc_upd_fixed
 //! @brief Set the FIXNP field to a new value.
 #define BW_EPDC_UPD_FIXED_FIXNP(v)   BF_CS1(EPDC_UPD_FIXED, FIXNP, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_UPD_FIXED, field FIXCP_EN[30] (RW)
@@ -1554,7 +1488,6 @@ typedef union _hw_epdc_upd_fixed
  * If set to 1, current updated region has the CP value defined by FIXCP
  */
 //@{
-
 #define BP_EPDC_UPD_FIXED_FIXCP_EN      (30)      //!< Bit position for EPDC_UPD_FIXED_FIXCP_EN.
 #define BM_EPDC_UPD_FIXED_FIXCP_EN      (0x40000000)  //!< Bit mask for EPDC_UPD_FIXED_FIXCP_EN.
 
@@ -1568,7 +1501,6 @@ typedef union _hw_epdc_upd_fixed
 //! @brief Set the FIXCP_EN field to a new value.
 #define BW_EPDC_UPD_FIXED_FIXCP_EN(v)   BF_CS1(EPDC_UPD_FIXED, FIXCP_EN, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_UPD_FIXED, field FIXNP_EN[31] (RW)
@@ -1576,7 +1508,6 @@ typedef union _hw_epdc_upd_fixed
  * If set to 1, current updated region has the NP value defined by FIXNP
  */
 //@{
-
 #define BP_EPDC_UPD_FIXED_FIXNP_EN      (31)      //!< Bit position for EPDC_UPD_FIXED_FIXNP_EN.
 #define BM_EPDC_UPD_FIXED_FIXNP_EN      (0x80000000)  //!< Bit mask for EPDC_UPD_FIXED_FIXNP_EN.
 
@@ -1590,7 +1521,6 @@ typedef union _hw_epdc_upd_fixed
 //! @brief Set the FIXNP_EN field to a new value.
 #define BW_EPDC_UPD_FIXED_FIXNP_EN(v)   BF_CS1(EPDC_UPD_FIXED, FIXNP_EN, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1641,7 +1571,6 @@ typedef union _hw_epdc_temp
  * the EPDC to access the correct temperature compensated waveform.
  */
 //@{
-
 #define BP_EPDC_TEMP_TEMPERATURE      (0)      //!< Bit position for EPDC_TEMP_TEMPERATURE.
 #define BM_EPDC_TEMP_TEMPERATURE      (0xffffffff)  //!< Bit mask for EPDC_TEMP_TEMPERATURE.
 
@@ -1655,7 +1584,6 @@ typedef union _hw_epdc_temp
 //! @brief Set the TEMPERATURE field to a new value.
 #define BW_EPDC_TEMP_TEMPERATURE(v)   (HW_EPDC_TEMP_WR((HW_EPDC_TEMP_RD() & ~BM_EPDC_TEMP_TEMPERATURE) | BF_EPDC_TEMP_TEMPERATURE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1710,7 +1638,6 @@ typedef union _hw_epdc_autowv_lut
  * ADDR
  */
 //@{
-
 #define BP_EPDC_AUTOWV_LUT_ADDR      (0)      //!< Bit position for EPDC_AUTOWV_LUT_ADDR.
 #define BM_EPDC_AUTOWV_LUT_ADDR      (0x00000007)  //!< Bit mask for EPDC_AUTOWV_LUT_ADDR.
 
@@ -1724,7 +1651,6 @@ typedef union _hw_epdc_autowv_lut
 //! @brief Set the ADDR field to a new value.
 #define BW_EPDC_AUTOWV_LUT_ADDR(v)   (HW_EPDC_AUTOWV_LUT_WR((HW_EPDC_AUTOWV_LUT_RD() & ~BM_EPDC_AUTOWV_LUT_ADDR) | BF_EPDC_AUTOWV_LUT_ADDR(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_AUTOWV_LUT, field DATA[23:16] (RW)
@@ -1732,7 +1658,6 @@ typedef union _hw_epdc_autowv_lut
  * DATA
  */
 //@{
-
 #define BP_EPDC_AUTOWV_LUT_DATA      (16)      //!< Bit position for EPDC_AUTOWV_LUT_DATA.
 #define BM_EPDC_AUTOWV_LUT_DATA      (0x00ff0000)  //!< Bit mask for EPDC_AUTOWV_LUT_DATA.
 
@@ -1746,7 +1671,6 @@ typedef union _hw_epdc_autowv_lut
 //! @brief Set the DATA field to a new value.
 #define BW_EPDC_AUTOWV_LUT_DATA(v)   (HW_EPDC_AUTOWV_LUT_WR((HW_EPDC_AUTOWV_LUT_RD() & ~BM_EPDC_AUTOWV_LUT_DATA) | BF_EPDC_AUTOWV_LUT_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1823,7 +1747,6 @@ typedef union _hw_epdc_tce_ctrl
  * - EIGHT = 0x3 - Eight TFT-pixels per SDCLK
  */
 //@{
-
 #define BP_EPDC_TCE_CTRL_PIXELS_PER_SDCLK      (0)      //!< Bit position for EPDC_TCE_CTRL_PIXELS_PER_SDCLK.
 #define BM_EPDC_TCE_CTRL_PIXELS_PER_SDCLK      (0x00000003)  //!< Bit mask for EPDC_TCE_CTRL_PIXELS_PER_SDCLK.
 
@@ -1845,7 +1768,6 @@ typedef union _hw_epdc_tce_ctrl
 #define BV_EPDC_TCE_CTRL_PIXELS_PER_SDCLK__TWO (0x1) //!< Two TFT-pixels per SDCLK
 #define BV_EPDC_TCE_CTRL_PIXELS_PER_SDCLK__FOUR (0x2) //!< Four TFT-pixels per SDCLK
 #define BV_EPDC_TCE_CTRL_PIXELS_PER_SDCLK__EIGHT (0x3) //!< Eight TFT-pixels per SDCLK
-
 //@}
 
 /*! @name Register EPDC_TCE_CTRL, field SDDO_WIDTH[2] (RW)
@@ -1857,7 +1779,6 @@ typedef union _hw_epdc_tce_ctrl
  * - 16BIT = 0x1 - Connct to 16-bit source driver
  */
 //@{
-
 #define BP_EPDC_TCE_CTRL_SDDO_WIDTH      (2)      //!< Bit position for EPDC_TCE_CTRL_SDDO_WIDTH.
 #define BM_EPDC_TCE_CTRL_SDDO_WIDTH      (0x00000004)  //!< Bit mask for EPDC_TCE_CTRL_SDDO_WIDTH.
 
@@ -1877,7 +1798,6 @@ typedef union _hw_epdc_tce_ctrl
 
 #define BV_EPDC_TCE_CTRL_SDDO_WIDTH__8BIT (0x0) //!< Connect to 8-bit source driver
 #define BV_EPDC_TCE_CTRL_SDDO_WIDTH__16BIT (0x1) //!< Connct to 16-bit source driver
-
 //@}
 
 /*! @name Register EPDC_TCE_CTRL, field DUAL_SCAN[3] (RW)
@@ -1886,7 +1806,6 @@ typedef union _hw_epdc_tce_ctrl
  * PIXELS_PER_CLK applies to each 8-bit segment of the SDDO bus.
  */
 //@{
-
 #define BP_EPDC_TCE_CTRL_DUAL_SCAN      (3)      //!< Bit position for EPDC_TCE_CTRL_DUAL_SCAN.
 #define BM_EPDC_TCE_CTRL_DUAL_SCAN      (0x00000008)  //!< Bit mask for EPDC_TCE_CTRL_DUAL_SCAN.
 
@@ -1900,7 +1819,6 @@ typedef union _hw_epdc_tce_ctrl
 //! @brief Set the DUAL_SCAN field to a new value.
 #define BW_EPDC_TCE_CTRL_DUAL_SCAN(v)   BF_CS1(EPDC_TCE_CTRL, DUAL_SCAN, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_TCE_CTRL, field SCAN_DIR_0[4] (RW)
@@ -1912,7 +1830,6 @@ typedef union _hw_epdc_tce_ctrl
  * - UP = 0x1 - Scan this region from bottom to top
  */
 //@{
-
 #define BP_EPDC_TCE_CTRL_SCAN_DIR_0      (4)      //!< Bit position for EPDC_TCE_CTRL_SCAN_DIR_0.
 #define BM_EPDC_TCE_CTRL_SCAN_DIR_0      (0x00000010)  //!< Bit mask for EPDC_TCE_CTRL_SCAN_DIR_0.
 
@@ -1932,7 +1849,6 @@ typedef union _hw_epdc_tce_ctrl
 
 #define BV_EPDC_TCE_CTRL_SCAN_DIR_0__DOWN (0x0) //!< Scan this region from top to bottom
 #define BV_EPDC_TCE_CTRL_SCAN_DIR_0__UP (0x1) //!< Scan this region from bottom to top
-
 //@}
 
 /*! @name Register EPDC_TCE_CTRL, field SCAN_DIR_1[5] (RW)
@@ -1944,7 +1860,6 @@ typedef union _hw_epdc_tce_ctrl
  * - UP = 0x1 - Scan this region from bottom to top
  */
 //@{
-
 #define BP_EPDC_TCE_CTRL_SCAN_DIR_1      (5)      //!< Bit position for EPDC_TCE_CTRL_SCAN_DIR_1.
 #define BM_EPDC_TCE_CTRL_SCAN_DIR_1      (0x00000020)  //!< Bit mask for EPDC_TCE_CTRL_SCAN_DIR_1.
 
@@ -1964,7 +1879,6 @@ typedef union _hw_epdc_tce_ctrl
 
 #define BV_EPDC_TCE_CTRL_SCAN_DIR_1__DOWN (0x0) //!< Scan this region from top to bottom
 #define BV_EPDC_TCE_CTRL_SCAN_DIR_1__UP (0x1) //!< Scan this region from bottom to top
-
 //@}
 
 /*! @name Register EPDC_TCE_CTRL, field LVDS_MODE[6] (RW)
@@ -1974,7 +1888,6 @@ typedef union _hw_epdc_tce_ctrl
  * an 8-bit SDDO interface. Note that for LVDS_MODE, DDR_MODE must also be set.
  */
 //@{
-
 #define BP_EPDC_TCE_CTRL_LVDS_MODE      (6)      //!< Bit position for EPDC_TCE_CTRL_LVDS_MODE.
 #define BM_EPDC_TCE_CTRL_LVDS_MODE      (0x00000040)  //!< Bit mask for EPDC_TCE_CTRL_LVDS_MODE.
 
@@ -1988,7 +1901,6 @@ typedef union _hw_epdc_tce_ctrl
 //! @brief Set the LVDS_MODE field to a new value.
 #define BW_EPDC_TCE_CTRL_LVDS_MODE(v)   BF_CS1(EPDC_TCE_CTRL, LVDS_MODE, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_TCE_CTRL, field LVDS_MODE_CE[7] (RW)
@@ -1997,7 +1909,6 @@ typedef union _hw_epdc_tce_ctrl
  * SDCE[4:0]. In this mode the EPDC only supports 5 CE lines.
  */
 //@{
-
 #define BP_EPDC_TCE_CTRL_LVDS_MODE_CE      (7)      //!< Bit position for EPDC_TCE_CTRL_LVDS_MODE_CE.
 #define BM_EPDC_TCE_CTRL_LVDS_MODE_CE      (0x00000080)  //!< Bit mask for EPDC_TCE_CTRL_LVDS_MODE_CE.
 
@@ -2011,7 +1922,6 @@ typedef union _hw_epdc_tce_ctrl
 //! @brief Set the LVDS_MODE_CE field to a new value.
 #define BW_EPDC_TCE_CTRL_LVDS_MODE_CE(v)   BF_CS1(EPDC_TCE_CTRL, LVDS_MODE_CE, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_TCE_CTRL, field DDR_MODE[8] (RW)
@@ -2021,7 +1931,6 @@ typedef union _hw_epdc_tce_ctrl
  * LVDS_MODE is set.
  */
 //@{
-
 #define BP_EPDC_TCE_CTRL_DDR_MODE      (8)      //!< Bit position for EPDC_TCE_CTRL_DDR_MODE.
 #define BM_EPDC_TCE_CTRL_DDR_MODE      (0x00000100)  //!< Bit mask for EPDC_TCE_CTRL_DDR_MODE.
 
@@ -2035,7 +1944,6 @@ typedef union _hw_epdc_tce_ctrl
 //! @brief Set the DDR_MODE field to a new value.
 #define BW_EPDC_TCE_CTRL_DDR_MODE(v)   BF_CS1(EPDC_TCE_CTRL, DDR_MODE, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_TCE_CTRL, field VCOM_MODE[9] (RW)
@@ -2047,7 +1955,6 @@ typedef union _hw_epdc_tce_ctrl
  * - AUTO = 0x1 - VCOM Value is used from waveform
  */
 //@{
-
 #define BP_EPDC_TCE_CTRL_VCOM_MODE      (9)      //!< Bit position for EPDC_TCE_CTRL_VCOM_MODE.
 #define BM_EPDC_TCE_CTRL_VCOM_MODE      (0x00000200)  //!< Bit mask for EPDC_TCE_CTRL_VCOM_MODE.
 
@@ -2067,7 +1974,6 @@ typedef union _hw_epdc_tce_ctrl
 
 #define BV_EPDC_TCE_CTRL_VCOM_MODE__MANUAL (0x0) //!< VCOM Value is set manually using VCOM_VAL field
 #define BV_EPDC_TCE_CTRL_VCOM_MODE__AUTO (0x1) //!< VCOM Value is used from waveform
-
 //@}
 
 /*! @name Register EPDC_TCE_CTRL, field VCOM_VAL[11:10] (RW)
@@ -2075,7 +1981,6 @@ typedef union _hw_epdc_tce_ctrl
  * When VCOM_MODE = MANUAL, this value is used to manually set the VCOM value for the VCOM[1:0] pins
  */
 //@{
-
 #define BP_EPDC_TCE_CTRL_VCOM_VAL      (10)      //!< Bit position for EPDC_TCE_CTRL_VCOM_VAL.
 #define BM_EPDC_TCE_CTRL_VCOM_VAL      (0x00000c00)  //!< Bit mask for EPDC_TCE_CTRL_VCOM_VAL.
 
@@ -2089,7 +1994,6 @@ typedef union _hw_epdc_tce_ctrl
 //! @brief Set the VCOM_VAL field to a new value.
 #define BW_EPDC_TCE_CTRL_VCOM_VAL(v)   BF_CS1(EPDC_TCE_CTRL, VCOM_VAL, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_TCE_CTRL, field VSCAN_HOLDOFF[24:16] (RW)
@@ -2102,7 +2006,6 @@ typedef union _hw_epdc_tce_ctrl
  * available frame-scan. Excessive values can result in TCE FIFO under-runs.
  */
 //@{
-
 #define BP_EPDC_TCE_CTRL_VSCAN_HOLDOFF      (16)      //!< Bit position for EPDC_TCE_CTRL_VSCAN_HOLDOFF.
 #define BM_EPDC_TCE_CTRL_VSCAN_HOLDOFF      (0x01ff0000)  //!< Bit mask for EPDC_TCE_CTRL_VSCAN_HOLDOFF.
 
@@ -2116,7 +2019,6 @@ typedef union _hw_epdc_tce_ctrl
 //! @brief Set the VSCAN_HOLDOFF field to a new value.
 #define BW_EPDC_TCE_CTRL_VSCAN_HOLDOFF(v)   BF_CS1(EPDC_TCE_CTRL, VSCAN_HOLDOFF, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2176,7 +2078,6 @@ typedef union _hw_epdc_tce_sdcfg
  * integer multiple of PINS_PER_CE.
  */
 //@{
-
 #define BP_EPDC_TCE_SDCFG_PIXELS_PER_CE      (0)      //!< Bit position for EPDC_TCE_SDCFG_PIXELS_PER_CE.
 #define BM_EPDC_TCE_SDCFG_PIXELS_PER_CE      (0x00001fff)  //!< Bit mask for EPDC_TCE_SDCFG_PIXELS_PER_CE.
 
@@ -2190,7 +2091,6 @@ typedef union _hw_epdc_tce_sdcfg
 //! @brief Set the PIXELS_PER_CE field to a new value.
 #define BW_EPDC_TCE_SDCFG_PIXELS_PER_CE(v)   BF_CS1(EPDC_TCE_SDCFG, PIXELS_PER_CE, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_TCE_SDCFG, field SDDO_INVERT[13] (RW)
@@ -2199,7 +2099,6 @@ typedef union _hw_epdc_tce_sdcfg
  * becomes 0x5555. This setting can be made in addition to the SDDO_REFORMAT register setting.
  */
 //@{
-
 #define BP_EPDC_TCE_SDCFG_SDDO_INVERT      (13)      //!< Bit position for EPDC_TCE_SDCFG_SDDO_INVERT.
 #define BM_EPDC_TCE_SDCFG_SDDO_INVERT      (0x00002000)  //!< Bit mask for EPDC_TCE_SDCFG_SDDO_INVERT.
 
@@ -2213,7 +2112,6 @@ typedef union _hw_epdc_tce_sdcfg
 //! @brief Set the SDDO_INVERT field to a new value.
 #define BW_EPDC_TCE_SDCFG_SDDO_INVERT(v)   BF_CS1(EPDC_TCE_SDCFG, SDDO_INVERT, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_TCE_SDCFG, field SDDO_REFORMAT[15:14] (RW)
@@ -2228,7 +2126,6 @@ typedef union _hw_epdc_tce_sdcfg
  *     P0,P1,P2,P3, whereas with TFT_PIXEL_FORMAT=4B, on an 8-bit bus, P1,P0 becomes P0,P1
  */
 //@{
-
 #define BP_EPDC_TCE_SDCFG_SDDO_REFORMAT      (14)      //!< Bit position for EPDC_TCE_SDCFG_SDDO_REFORMAT.
 #define BM_EPDC_TCE_SDCFG_SDDO_REFORMAT      (0x0000c000)  //!< Bit mask for EPDC_TCE_SDCFG_SDDO_REFORMAT.
 
@@ -2248,7 +2145,6 @@ typedef union _hw_epdc_tce_sdcfg
 
 #define BV_EPDC_TCE_SDCFG_SDDO_REFORMAT__STANDARD (0x0) //!< No change.
 #define BV_EPDC_TCE_SDCFG_SDDO_REFORMAT__FLIP_PIXELS (0x1) //!< Reverses the order of the pixels on SDDO. This register setting is sensitive to the TFT pixel width (TFT_PIXEL_FORMAT), e.g. for TFT_PIXEL_FORMAT=2B on an 8-bit bus P3,P2,P1,P0 becomes P0,P1,P2,P3, whereas with TFT_PIXEL_FORMAT=4B, on an 8-bit bus, P1,P0 becomes P0,P1
-
 //@}
 
 /*! @name Register EPDC_TCE_SDCFG, field NUM_CE[19:16] (RW)
@@ -2256,7 +2152,6 @@ typedef union _hw_epdc_tce_sdcfg
  * Number of source driver IC chip-enables. Must be 1-10
  */
 //@{
-
 #define BP_EPDC_TCE_SDCFG_NUM_CE      (16)      //!< Bit position for EPDC_TCE_SDCFG_NUM_CE.
 #define BM_EPDC_TCE_SDCFG_NUM_CE      (0x000f0000)  //!< Bit mask for EPDC_TCE_SDCFG_NUM_CE.
 
@@ -2270,7 +2165,6 @@ typedef union _hw_epdc_tce_sdcfg
 //! @brief Set the NUM_CE field to a new value.
 #define BW_EPDC_TCE_SDCFG_NUM_CE(v)   BF_CS1(EPDC_TCE_SDCFG, NUM_CE, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_TCE_SDCFG, field SDSHR[20] (RW)
@@ -2278,7 +2172,6 @@ typedef union _hw_epdc_tce_sdcfg
  * Value for source-driver shift direction output port
  */
 //@{
-
 #define BP_EPDC_TCE_SDCFG_SDSHR      (20)      //!< Bit position for EPDC_TCE_SDCFG_SDSHR.
 #define BM_EPDC_TCE_SDCFG_SDSHR      (0x00100000)  //!< Bit mask for EPDC_TCE_SDCFG_SDSHR.
 
@@ -2292,7 +2185,6 @@ typedef union _hw_epdc_tce_sdcfg
 //! @brief Set the SDSHR field to a new value.
 #define BW_EPDC_TCE_SDCFG_SDSHR(v)   BF_CS1(EPDC_TCE_SDCFG, SDSHR, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_TCE_SDCFG, field SDCLK_HOLD[21] (RW)
@@ -2300,7 +2192,6 @@ typedef union _hw_epdc_tce_sdcfg
  * Setting this bit to 1 holds the SDCLK low during LINE_BEGIN
  */
 //@{
-
 #define BP_EPDC_TCE_SDCFG_SDCLK_HOLD      (21)      //!< Bit position for EPDC_TCE_SDCFG_SDCLK_HOLD.
 #define BM_EPDC_TCE_SDCFG_SDCLK_HOLD      (0x00200000)  //!< Bit mask for EPDC_TCE_SDCFG_SDCLK_HOLD.
 
@@ -2314,7 +2205,6 @@ typedef union _hw_epdc_tce_sdcfg
 //! @brief Set the SDCLK_HOLD field to a new value.
 #define BW_EPDC_TCE_SDCFG_SDCLK_HOLD(v)   BF_CS1(EPDC_TCE_SDCFG, SDCLK_HOLD, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2374,7 +2264,6 @@ typedef union _hw_epdc_tce_gdcfg
  * setting. Note that GDSP_MODE=1 is not compatible with the GDSP_OFFSET function
  */
 //@{
-
 #define BP_EPDC_TCE_GDCFG_GDSP_MODE      (0)      //!< Bit position for EPDC_TCE_GDCFG_GDSP_MODE.
 #define BM_EPDC_TCE_GDCFG_GDSP_MODE      (0x00000001)  //!< Bit mask for EPDC_TCE_GDCFG_GDSP_MODE.
 
@@ -2388,7 +2277,6 @@ typedef union _hw_epdc_tce_gdcfg
 //! @brief Set the GDSP_MODE field to a new value.
 #define BW_EPDC_TCE_GDCFG_GDSP_MODE(v)   BF_CS1(EPDC_TCE_GDCFG, GDSP_MODE, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_TCE_GDCFG, field GDOE_MODE[1] (RW)
@@ -2398,7 +2286,6 @@ typedef union _hw_epdc_tce_gdcfg
  * by EPDC_TCE_TIMING3[GDOE_OFFSET].
  */
 //@{
-
 #define BP_EPDC_TCE_GDCFG_GDOE_MODE      (1)      //!< Bit position for EPDC_TCE_GDCFG_GDOE_MODE.
 #define BM_EPDC_TCE_GDCFG_GDOE_MODE      (0x00000002)  //!< Bit mask for EPDC_TCE_GDCFG_GDOE_MODE.
 
@@ -2412,7 +2299,6 @@ typedef union _hw_epdc_tce_gdcfg
 //! @brief Set the GDOE_MODE field to a new value.
 #define BW_EPDC_TCE_GDCFG_GDOE_MODE(v)   BF_CS1(EPDC_TCE_GDCFG, GDOE_MODE, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_TCE_GDCFG, field GDRL[4] (RW)
@@ -2420,7 +2306,6 @@ typedef union _hw_epdc_tce_gdcfg
  * Value for gate-driver right/left shift output port
  */
 //@{
-
 #define BP_EPDC_TCE_GDCFG_GDRL      (4)      //!< Bit position for EPDC_TCE_GDCFG_GDRL.
 #define BM_EPDC_TCE_GDCFG_GDRL      (0x00000010)  //!< Bit mask for EPDC_TCE_GDCFG_GDRL.
 
@@ -2434,7 +2319,6 @@ typedef union _hw_epdc_tce_gdcfg
 //! @brief Set the GDRL field to a new value.
 #define BW_EPDC_TCE_GDCFG_GDRL(v)   BF_CS1(EPDC_TCE_GDCFG, GDRL, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_TCE_GDCFG, field PERIOD_VSCAN[31:16] (RW)
@@ -2442,7 +2326,6 @@ typedef union _hw_epdc_tce_gdcfg
  * when vscan state is splited, this reg defines the counter period
  */
 //@{
-
 #define BP_EPDC_TCE_GDCFG_PERIOD_VSCAN      (16)      //!< Bit position for EPDC_TCE_GDCFG_PERIOD_VSCAN.
 #define BM_EPDC_TCE_GDCFG_PERIOD_VSCAN      (0xffff0000)  //!< Bit mask for EPDC_TCE_GDCFG_PERIOD_VSCAN.
 
@@ -2456,7 +2339,6 @@ typedef union _hw_epdc_tce_gdcfg
 //! @brief Set the PERIOD_VSCAN field to a new value.
 #define BW_EPDC_TCE_GDCFG_PERIOD_VSCAN(v)   BF_CS1(EPDC_TCE_GDCFG, PERIOD_VSCAN, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2516,7 +2398,6 @@ typedef union _hw_epdc_tce_hscan1
  * LINE_SYNC_WIDTH duration. This value must be programmed to a multiple of SDCLK cycles
  */
 //@{
-
 #define BP_EPDC_TCE_HSCAN1_LINE_SYNC      (0)      //!< Bit position for EPDC_TCE_HSCAN1_LINE_SYNC.
 #define BM_EPDC_TCE_HSCAN1_LINE_SYNC      (0x00000fff)  //!< Bit mask for EPDC_TCE_HSCAN1_LINE_SYNC.
 
@@ -2530,7 +2411,6 @@ typedef union _hw_epdc_tce_hscan1
 //! @brief Set the LINE_SYNC field to a new value.
 #define BW_EPDC_TCE_HSCAN1_LINE_SYNC(v)   BF_CS1(EPDC_TCE_HSCAN1, LINE_SYNC, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_TCE_HSCAN1, field LINE_SYNC_WIDTH[27:16] (RW)
@@ -2540,7 +2420,6 @@ typedef union _hw_epdc_tce_hscan1
  * same as LINE_SYNC
  */
 //@{
-
 #define BP_EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH      (16)      //!< Bit position for EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH.
 #define BM_EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH      (0x0fff0000)  //!< Bit mask for EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH.
 
@@ -2554,7 +2433,6 @@ typedef union _hw_epdc_tce_hscan1
 //! @brief Set the LINE_SYNC_WIDTH field to a new value.
 #define BW_EPDC_TCE_HSCAN1_LINE_SYNC_WIDTH(v)   BF_CS1(EPDC_TCE_HSCAN1, LINE_SYNC_WIDTH, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2615,7 +2493,6 @@ typedef union _hw_epdc_tce_hscan2
  * cycles
  */
 //@{
-
 #define BP_EPDC_TCE_HSCAN2_LINE_BEGIN      (0)      //!< Bit position for EPDC_TCE_HSCAN2_LINE_BEGIN.
 #define BM_EPDC_TCE_HSCAN2_LINE_BEGIN      (0x00000fff)  //!< Bit mask for EPDC_TCE_HSCAN2_LINE_BEGIN.
 
@@ -2629,7 +2506,6 @@ typedef union _hw_epdc_tce_hscan2
 //! @brief Set the LINE_BEGIN field to a new value.
 #define BW_EPDC_TCE_HSCAN2_LINE_BEGIN(v)   BF_CS1(EPDC_TCE_HSCAN2, LINE_BEGIN, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_TCE_HSCAN2, field LINE_END[27:16] (RW)
@@ -2638,7 +2514,6 @@ typedef union _hw_epdc_tce_hscan2
  * SDCE and assertion of the next SDLE.
  */
 //@{
-
 #define BP_EPDC_TCE_HSCAN2_LINE_END      (16)      //!< Bit position for EPDC_TCE_HSCAN2_LINE_END.
 #define BM_EPDC_TCE_HSCAN2_LINE_END      (0x0fff0000)  //!< Bit mask for EPDC_TCE_HSCAN2_LINE_END.
 
@@ -2652,7 +2527,6 @@ typedef union _hw_epdc_tce_hscan2
 //! @brief Set the LINE_END field to a new value.
 #define BW_EPDC_TCE_HSCAN2_LINE_END(v)   BF_CS1(EPDC_TCE_HSCAN2, LINE_END, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2709,7 +2583,6 @@ typedef union _hw_epdc_tce_vscan
  * Number of lines for frame sync duration.
  */
 //@{
-
 #define BP_EPDC_TCE_VSCAN_FRAME_SYNC      (0)      //!< Bit position for EPDC_TCE_VSCAN_FRAME_SYNC.
 #define BM_EPDC_TCE_VSCAN_FRAME_SYNC      (0x000000ff)  //!< Bit mask for EPDC_TCE_VSCAN_FRAME_SYNC.
 
@@ -2723,7 +2596,6 @@ typedef union _hw_epdc_tce_vscan
 //! @brief Set the FRAME_SYNC field to a new value.
 #define BW_EPDC_TCE_VSCAN_FRAME_SYNC(v)   BF_CS1(EPDC_TCE_VSCAN, FRAME_SYNC, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_TCE_VSCAN, field FRAME_BEGIN[15:8] (RW)
@@ -2731,7 +2603,6 @@ typedef union _hw_epdc_tce_vscan
  * Number of lines for frame begin duration.
  */
 //@{
-
 #define BP_EPDC_TCE_VSCAN_FRAME_BEGIN      (8)      //!< Bit position for EPDC_TCE_VSCAN_FRAME_BEGIN.
 #define BM_EPDC_TCE_VSCAN_FRAME_BEGIN      (0x0000ff00)  //!< Bit mask for EPDC_TCE_VSCAN_FRAME_BEGIN.
 
@@ -2745,7 +2616,6 @@ typedef union _hw_epdc_tce_vscan
 //! @brief Set the FRAME_BEGIN field to a new value.
 #define BW_EPDC_TCE_VSCAN_FRAME_BEGIN(v)   BF_CS1(EPDC_TCE_VSCAN, FRAME_BEGIN, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_TCE_VSCAN, field FRAME_END[23:16] (RW)
@@ -2753,7 +2623,6 @@ typedef union _hw_epdc_tce_vscan
  * Number of lines for frame end duration.
  */
 //@{
-
 #define BP_EPDC_TCE_VSCAN_FRAME_END      (16)      //!< Bit position for EPDC_TCE_VSCAN_FRAME_END.
 #define BM_EPDC_TCE_VSCAN_FRAME_END      (0x00ff0000)  //!< Bit mask for EPDC_TCE_VSCAN_FRAME_END.
 
@@ -2767,7 +2636,6 @@ typedef union _hw_epdc_tce_vscan
 //! @brief Set the FRAME_END field to a new value.
 #define BW_EPDC_TCE_VSCAN_FRAME_END(v)   BF_CS1(EPDC_TCE_VSCAN, FRAME_END, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2825,7 +2693,6 @@ typedef union _hw_epdc_tce_oe
  * Number of PIXCLK cycles from SDLE falling edge to SDOEZ rising (Must be greater than 0)
  */
 //@{
-
 #define BP_EPDC_TCE_OE_SDOEZ_DLY      (0)      //!< Bit position for EPDC_TCE_OE_SDOEZ_DLY.
 #define BM_EPDC_TCE_OE_SDOEZ_DLY      (0x000000ff)  //!< Bit mask for EPDC_TCE_OE_SDOEZ_DLY.
 
@@ -2839,7 +2706,6 @@ typedef union _hw_epdc_tce_oe
 //! @brief Set the SDOEZ_DLY field to a new value.
 #define BW_EPDC_TCE_OE_SDOEZ_DLY(v)   BF_CS1(EPDC_TCE_OE, SDOEZ_DLY, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_TCE_OE, field SDOEZ_WIDTH[15:8] (RW)
@@ -2847,7 +2713,6 @@ typedef union _hw_epdc_tce_oe
  * Number of PIXCLK cycles from SDOEZ high to SDOEZ falling (Must be greater than 0)
  */
 //@{
-
 #define BP_EPDC_TCE_OE_SDOEZ_WIDTH      (8)      //!< Bit position for EPDC_TCE_OE_SDOEZ_WIDTH.
 #define BM_EPDC_TCE_OE_SDOEZ_WIDTH      (0x0000ff00)  //!< Bit mask for EPDC_TCE_OE_SDOEZ_WIDTH.
 
@@ -2861,7 +2726,6 @@ typedef union _hw_epdc_tce_oe
 //! @brief Set the SDOEZ_WIDTH field to a new value.
 #define BW_EPDC_TCE_OE_SDOEZ_WIDTH(v)   BF_CS1(EPDC_TCE_OE, SDOEZ_WIDTH, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_TCE_OE, field SDOED_DLY[23:16] (RW)
@@ -2869,7 +2733,6 @@ typedef union _hw_epdc_tce_oe
  * Number of PIXCLK cycles from SDOEZ low to SDOED rising (Must be greater than 0)
  */
 //@{
-
 #define BP_EPDC_TCE_OE_SDOED_DLY      (16)      //!< Bit position for EPDC_TCE_OE_SDOED_DLY.
 #define BM_EPDC_TCE_OE_SDOED_DLY      (0x00ff0000)  //!< Bit mask for EPDC_TCE_OE_SDOED_DLY.
 
@@ -2883,7 +2746,6 @@ typedef union _hw_epdc_tce_oe
 //! @brief Set the SDOED_DLY field to a new value.
 #define BW_EPDC_TCE_OE_SDOED_DLY(v)   BF_CS1(EPDC_TCE_OE, SDOED_DLY, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_TCE_OE, field SDOED_WIDTH[31:24] (RW)
@@ -2891,7 +2753,6 @@ typedef union _hw_epdc_tce_oe
  * Number of PIXCLK cycles from SDOED high to SDOED falling (Must be greater than 0)
  */
 //@{
-
 #define BP_EPDC_TCE_OE_SDOED_WIDTH      (24)      //!< Bit position for EPDC_TCE_OE_SDOED_WIDTH.
 #define BM_EPDC_TCE_OE_SDOED_WIDTH      (0xff000000)  //!< Bit mask for EPDC_TCE_OE_SDOED_WIDTH.
 
@@ -2905,7 +2766,6 @@ typedef union _hw_epdc_tce_oe
 //! @brief Set the SDOED_WIDTH field to a new value.
 #define BW_EPDC_TCE_OE_SDOED_WIDTH(v)   BF_CS1(EPDC_TCE_OE, SDOED_WIDTH, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2964,7 +2824,6 @@ typedef union _hw_epdc_tce_polarity
  * 0 = Active Low, 1 = Active High. Applies to all 10 SDCE outputs
  */
 //@{
-
 #define BP_EPDC_TCE_POLARITY_SDCE_POL      (0)      //!< Bit position for EPDC_TCE_POLARITY_SDCE_POL.
 #define BM_EPDC_TCE_POLARITY_SDCE_POL      (0x00000001)  //!< Bit mask for EPDC_TCE_POLARITY_SDCE_POL.
 
@@ -2978,7 +2837,6 @@ typedef union _hw_epdc_tce_polarity
 //! @brief Set the SDCE_POL field to a new value.
 #define BW_EPDC_TCE_POLARITY_SDCE_POL(v)   BF_CS1(EPDC_TCE_POLARITY, SDCE_POL, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_TCE_POLARITY, field SDLE_POL[1] (RW)
@@ -2986,7 +2844,6 @@ typedef union _hw_epdc_tce_polarity
  * 0 = Active Low, 1 = Active High. Applies to the SDLE output
  */
 //@{
-
 #define BP_EPDC_TCE_POLARITY_SDLE_POL      (1)      //!< Bit position for EPDC_TCE_POLARITY_SDLE_POL.
 #define BM_EPDC_TCE_POLARITY_SDLE_POL      (0x00000002)  //!< Bit mask for EPDC_TCE_POLARITY_SDLE_POL.
 
@@ -3000,7 +2857,6 @@ typedef union _hw_epdc_tce_polarity
 //! @brief Set the SDLE_POL field to a new value.
 #define BW_EPDC_TCE_POLARITY_SDLE_POL(v)   BF_CS1(EPDC_TCE_POLARITY, SDLE_POL, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_TCE_POLARITY, field SDOE_POL[2] (RW)
@@ -3008,7 +2864,6 @@ typedef union _hw_epdc_tce_polarity
  * 0 = Active Low, 1 = Active High. Applies to the SDOE. Does not apply to SDOEZ and SDOED outputs
  */
 //@{
-
 #define BP_EPDC_TCE_POLARITY_SDOE_POL      (2)      //!< Bit position for EPDC_TCE_POLARITY_SDOE_POL.
 #define BM_EPDC_TCE_POLARITY_SDOE_POL      (0x00000004)  //!< Bit mask for EPDC_TCE_POLARITY_SDOE_POL.
 
@@ -3022,7 +2877,6 @@ typedef union _hw_epdc_tce_polarity
 //! @brief Set the SDOE_POL field to a new value.
 #define BW_EPDC_TCE_POLARITY_SDOE_POL(v)   BF_CS1(EPDC_TCE_POLARITY, SDOE_POL, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_TCE_POLARITY, field GDOE_POL[3] (RW)
@@ -3030,7 +2884,6 @@ typedef union _hw_epdc_tce_polarity
  * 0 = Active Low, 1 = Active High. Applies to the GDOE output
  */
 //@{
-
 #define BP_EPDC_TCE_POLARITY_GDOE_POL      (3)      //!< Bit position for EPDC_TCE_POLARITY_GDOE_POL.
 #define BM_EPDC_TCE_POLARITY_GDOE_POL      (0x00000008)  //!< Bit mask for EPDC_TCE_POLARITY_GDOE_POL.
 
@@ -3044,7 +2897,6 @@ typedef union _hw_epdc_tce_polarity
 //! @brief Set the GDOE_POL field to a new value.
 #define BW_EPDC_TCE_POLARITY_GDOE_POL(v)   BF_CS1(EPDC_TCE_POLARITY, GDOE_POL, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_TCE_POLARITY, field GDSP_POL[4] (RW)
@@ -3052,7 +2904,6 @@ typedef union _hw_epdc_tce_polarity
  * 0 = Active Low, 1 = Active High. Applies to the GDSP output
  */
 //@{
-
 #define BP_EPDC_TCE_POLARITY_GDSP_POL      (4)      //!< Bit position for EPDC_TCE_POLARITY_GDSP_POL.
 #define BM_EPDC_TCE_POLARITY_GDSP_POL      (0x00000010)  //!< Bit mask for EPDC_TCE_POLARITY_GDSP_POL.
 
@@ -3066,7 +2917,6 @@ typedef union _hw_epdc_tce_polarity
 //! @brief Set the GDSP_POL field to a new value.
 #define BW_EPDC_TCE_POLARITY_GDSP_POL(v)   BF_CS1(EPDC_TCE_POLARITY, GDSP_POL, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3131,7 +2981,6 @@ typedef union _hw_epdc_tce_timing1
  * - THREE = 0x3 - Shift SDCLK 3 pixclk cycles
  */
 //@{
-
 #define BP_EPDC_TCE_TIMING1_SDCLK_SHIFT      (0)      //!< Bit position for EPDC_TCE_TIMING1_SDCLK_SHIFT.
 #define BM_EPDC_TCE_TIMING1_SDCLK_SHIFT      (0x00000003)  //!< Bit mask for EPDC_TCE_TIMING1_SDCLK_SHIFT.
 
@@ -3153,7 +3002,6 @@ typedef union _hw_epdc_tce_timing1
 #define BV_EPDC_TCE_TIMING1_SDCLK_SHIFT__ONE (0x1) //!< Shift SDCLK 1 pixclk cycle
 #define BV_EPDC_TCE_TIMING1_SDCLK_SHIFT__TWO (0x2) //!< Shift SDCLK 2 pixclk cycles
 #define BV_EPDC_TCE_TIMING1_SDCLK_SHIFT__THREE (0x3) //!< Shift SDCLK 3 pixclk cycles
-
 //@}
 
 /*! @name Register EPDC_TCE_TIMING1, field SDCLK_INVERT[3] (RW)
@@ -3161,7 +3009,6 @@ typedef union _hw_epdc_tce_timing1
  * Invert phase of SDCLK
  */
 //@{
-
 #define BP_EPDC_TCE_TIMING1_SDCLK_INVERT      (3)      //!< Bit position for EPDC_TCE_TIMING1_SDCLK_INVERT.
 #define BM_EPDC_TCE_TIMING1_SDCLK_INVERT      (0x00000008)  //!< Bit mask for EPDC_TCE_TIMING1_SDCLK_INVERT.
 
@@ -3175,7 +3022,6 @@ typedef union _hw_epdc_tce_timing1
 //! @brief Set the SDCLK_INVERT field to a new value.
 #define BW_EPDC_TCE_TIMING1_SDCLK_INVERT(v)   BF_CS1(EPDC_TCE_TIMING1, SDCLK_INVERT, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_TCE_TIMING1, field SDLE_SHIFT[5:4] (RW)
@@ -3190,7 +3036,6 @@ typedef union _hw_epdc_tce_timing1
  * - THREE = 0x3 - Shift SDLE 3 pixclk cycles
  */
 //@{
-
 #define BP_EPDC_TCE_TIMING1_SDLE_SHIFT      (4)      //!< Bit position for EPDC_TCE_TIMING1_SDLE_SHIFT.
 #define BM_EPDC_TCE_TIMING1_SDLE_SHIFT      (0x00000030)  //!< Bit mask for EPDC_TCE_TIMING1_SDLE_SHIFT.
 
@@ -3212,7 +3057,6 @@ typedef union _hw_epdc_tce_timing1
 #define BV_EPDC_TCE_TIMING1_SDLE_SHIFT__ONE (0x1) //!< Shift SDLE 1 pixclk cycle
 #define BV_EPDC_TCE_TIMING1_SDLE_SHIFT__TWO (0x2) //!< Shift SDLE 2 pixclk cycles
 #define BV_EPDC_TCE_TIMING1_SDLE_SHIFT__THREE (0x3) //!< Shift SDLE 3 pixclk cycles
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3269,7 +3113,6 @@ typedef union _hw_epdc_tce_timing2
  * supported.
  */
 //@{
-
 #define BP_EPDC_TCE_TIMING2_GDSP_OFFSET      (0)      //!< Bit position for EPDC_TCE_TIMING2_GDSP_OFFSET.
 #define BM_EPDC_TCE_TIMING2_GDSP_OFFSET      (0x0000ffff)  //!< Bit mask for EPDC_TCE_TIMING2_GDSP_OFFSET.
 
@@ -3283,7 +3126,6 @@ typedef union _hw_epdc_tce_timing2
 //! @brief Set the GDSP_OFFSET field to a new value.
 #define BW_EPDC_TCE_TIMING2_GDSP_OFFSET(v)   BF_CS1(EPDC_TCE_TIMING2, GDSP_OFFSET, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_TCE_TIMING2, field GDCLK_HP[31:16] (RW)
@@ -3295,7 +3137,6 @@ typedef union _hw_epdc_tce_timing2
  * of the line timing
  */
 //@{
-
 #define BP_EPDC_TCE_TIMING2_GDCLK_HP      (16)      //!< Bit position for EPDC_TCE_TIMING2_GDCLK_HP.
 #define BM_EPDC_TCE_TIMING2_GDCLK_HP      (0xffff0000)  //!< Bit mask for EPDC_TCE_TIMING2_GDCLK_HP.
 
@@ -3309,7 +3150,6 @@ typedef union _hw_epdc_tce_timing2
 //! @brief Set the GDCLK_HP field to a new value.
 #define BW_EPDC_TCE_TIMING2_GDCLK_HP(v)   BF_CS1(EPDC_TCE_TIMING2, GDCLK_HP, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3364,7 +3204,6 @@ typedef union _hw_epdc_tce_timing3
  * This register allows the user to shift the GDCLK from the line time by N PIXCLK cycles.
  */
 //@{
-
 #define BP_EPDC_TCE_TIMING3_GDCLK_OFFSET      (0)      //!< Bit position for EPDC_TCE_TIMING3_GDCLK_OFFSET.
 #define BM_EPDC_TCE_TIMING3_GDCLK_OFFSET      (0x0000ffff)  //!< Bit mask for EPDC_TCE_TIMING3_GDCLK_OFFSET.
 
@@ -3378,7 +3217,6 @@ typedef union _hw_epdc_tce_timing3
 //! @brief Set the GDCLK_OFFSET field to a new value.
 #define BW_EPDC_TCE_TIMING3_GDCLK_OFFSET(v)   BF_CS1(EPDC_TCE_TIMING3, GDCLK_OFFSET, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_TCE_TIMING3, field GDOE_OFFSET[31:16] (RW)
@@ -3387,7 +3225,6 @@ typedef union _hw_epdc_tce_timing3
  * cycles
  */
 //@{
-
 #define BP_EPDC_TCE_TIMING3_GDOE_OFFSET      (16)      //!< Bit position for EPDC_TCE_TIMING3_GDOE_OFFSET.
 #define BM_EPDC_TCE_TIMING3_GDOE_OFFSET      (0xffff0000)  //!< Bit mask for EPDC_TCE_TIMING3_GDOE_OFFSET.
 
@@ -3401,7 +3238,6 @@ typedef union _hw_epdc_tce_timing3
 //! @brief Set the GDOE_OFFSET field to a new value.
 #define BW_EPDC_TCE_TIMING3_GDOE_OFFSET(v)   BF_CS1(EPDC_TCE_TIMING3, GDOE_OFFSET, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3458,7 +3294,6 @@ typedef union _hw_epdc_pigeon_ctrl0
  * period of line counter during FD phase
  */
 //@{
-
 #define BP_EPDC_PIGEON_CTRL0_FD_PERIOD      (0)      //!< Bit position for EPDC_PIGEON_CTRL0_FD_PERIOD.
 #define BM_EPDC_PIGEON_CTRL0_FD_PERIOD      (0x00000fff)  //!< Bit mask for EPDC_PIGEON_CTRL0_FD_PERIOD.
 
@@ -3472,7 +3307,6 @@ typedef union _hw_epdc_pigeon_ctrl0
 //! @brief Set the FD_PERIOD field to a new value.
 #define BW_EPDC_PIGEON_CTRL0_FD_PERIOD(v)   BF_CS1(EPDC_PIGEON_CTRL0, FD_PERIOD, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_CTRL0, field LD_PERIOD[27:16] (RW)
@@ -3480,7 +3314,6 @@ typedef union _hw_epdc_pigeon_ctrl0
  * period of pclk counter during LD phase
  */
 //@{
-
 #define BP_EPDC_PIGEON_CTRL0_LD_PERIOD      (16)      //!< Bit position for EPDC_PIGEON_CTRL0_LD_PERIOD.
 #define BM_EPDC_PIGEON_CTRL0_LD_PERIOD      (0x0fff0000)  //!< Bit mask for EPDC_PIGEON_CTRL0_LD_PERIOD.
 
@@ -3494,7 +3327,6 @@ typedef union _hw_epdc_pigeon_ctrl0
 //! @brief Set the LD_PERIOD field to a new value.
 #define BW_EPDC_PIGEON_CTRL0_LD_PERIOD(v)   BF_CS1(EPDC_PIGEON_CTRL0, LD_PERIOD, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3551,7 +3383,6 @@ typedef union _hw_epdc_pigeon_ctrl1
  * period of frame counter
  */
 //@{
-
 #define BP_EPDC_PIGEON_CTRL1_FRAME_CNT_PERIOD      (0)      //!< Bit position for EPDC_PIGEON_CTRL1_FRAME_CNT_PERIOD.
 #define BM_EPDC_PIGEON_CTRL1_FRAME_CNT_PERIOD      (0x00000fff)  //!< Bit mask for EPDC_PIGEON_CTRL1_FRAME_CNT_PERIOD.
 
@@ -3565,7 +3396,6 @@ typedef union _hw_epdc_pigeon_ctrl1
 //! @brief Set the FRAME_CNT_PERIOD field to a new value.
 #define BW_EPDC_PIGEON_CTRL1_FRAME_CNT_PERIOD(v)   BF_CS1(EPDC_PIGEON_CTRL1, FRAME_CNT_PERIOD, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_CTRL1, field FRAME_CNT_CYCLES[27:16] (RW)
@@ -3573,7 +3403,6 @@ typedef union _hw_epdc_pigeon_ctrl1
  * max cycles of frame counter
  */
 //@{
-
 #define BP_EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES      (16)      //!< Bit position for EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES.
 #define BM_EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES      (0x0fff0000)  //!< Bit mask for EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES.
 
@@ -3587,7 +3416,6 @@ typedef union _hw_epdc_pigeon_ctrl1
 //! @brief Set the FRAME_CNT_CYCLES field to a new value.
 #define BW_EPDC_PIGEON_CTRL1_FRAME_CNT_CYCLES(v)   BF_CS1(EPDC_PIGEON_CTRL1, FRAME_CNT_CYCLES, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3641,7 +3469,6 @@ typedef union _hw_epdc_irq_mask1
  * LUT0~31 Complete Interrupt Enable
  */
 //@{
-
 #define BP_EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN      (0)      //!< Bit position for EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN.
 #define BM_EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN      (0xffffffff)  //!< Bit mask for EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN.
 
@@ -3655,7 +3482,6 @@ typedef union _hw_epdc_irq_mask1
 //! @brief Set the LUTN_CMPLT_IRQ_EN field to a new value.
 #define BW_EPDC_IRQ_MASK1_LUTN_CMPLT_IRQ_EN(v)   BF_CS1(EPDC_IRQ_MASK1, LUTN_CMPLT_IRQ_EN, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3709,7 +3535,6 @@ typedef union _hw_epdc_irq_mask2
  * LUT32~64 Complete Interrupt Enable
  */
 //@{
-
 #define BP_EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN      (0)      //!< Bit position for EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN.
 #define BM_EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN      (0xffffffff)  //!< Bit mask for EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN.
 
@@ -3723,7 +3548,6 @@ typedef union _hw_epdc_irq_mask2
 //! @brief Set the LUTN_CMPLT_IRQ_EN field to a new value.
 #define BW_EPDC_IRQ_MASK2_LUTN_CMPLT_IRQ_EN(v)   BF_CS1(EPDC_IRQ_MASK2, LUTN_CMPLT_IRQ_EN, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3778,7 +3602,6 @@ typedef union _hw_epdc_irq1
  * LUT 0~31 Complete Interrupt
  */
 //@{
-
 #define BP_EPDC_IRQ1_LUTN_CMPLT_IRQ      (0)      //!< Bit position for EPDC_IRQ1_LUTN_CMPLT_IRQ.
 #define BM_EPDC_IRQ1_LUTN_CMPLT_IRQ      (0xffffffff)  //!< Bit mask for EPDC_IRQ1_LUTN_CMPLT_IRQ.
 
@@ -3792,7 +3615,6 @@ typedef union _hw_epdc_irq1
 //! @brief Set the LUTN_CMPLT_IRQ field to a new value.
 #define BW_EPDC_IRQ1_LUTN_CMPLT_IRQ(v)   BF_CS1(EPDC_IRQ1, LUTN_CMPLT_IRQ, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3847,7 +3669,6 @@ typedef union _hw_epdc_irq2
  * LUT 32~64 Complete Interrupt
  */
 //@{
-
 #define BP_EPDC_IRQ2_LUTN_CMPLT_IRQ      (0)      //!< Bit position for EPDC_IRQ2_LUTN_CMPLT_IRQ.
 #define BM_EPDC_IRQ2_LUTN_CMPLT_IRQ      (0xffffffff)  //!< Bit mask for EPDC_IRQ2_LUTN_CMPLT_IRQ.
 
@@ -3861,7 +3682,6 @@ typedef union _hw_epdc_irq2
 //! @brief Set the LUTN_CMPLT_IRQ field to a new value.
 #define BW_EPDC_IRQ2_LUTN_CMPLT_IRQ(v)   BF_CS1(EPDC_IRQ2, LUTN_CMPLT_IRQ, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3923,7 +3743,6 @@ typedef union _hw_epdc_irq_mask
  * Enable WB complete interrupt
  */
 //@{
-
 #define BP_EPDC_IRQ_MASK_WB_CMPLT_IRQ_EN      (16)      //!< Bit position for EPDC_IRQ_MASK_WB_CMPLT_IRQ_EN.
 #define BM_EPDC_IRQ_MASK_WB_CMPLT_IRQ_EN      (0x00010000)  //!< Bit mask for EPDC_IRQ_MASK_WB_CMPLT_IRQ_EN.
 
@@ -3937,7 +3756,6 @@ typedef union _hw_epdc_irq_mask
 //! @brief Set the WB_CMPLT_IRQ_EN field to a new value.
 #define BW_EPDC_IRQ_MASK_WB_CMPLT_IRQ_EN(v)   BF_CS1(EPDC_IRQ_MASK, WB_CMPLT_IRQ_EN, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_IRQ_MASK, field COL_IRQ_EN[17] (RW)
@@ -3945,7 +3763,6 @@ typedef union _hw_epdc_irq_mask
  * Enable collision detection interrupts for all LUTs
  */
 //@{
-
 #define BP_EPDC_IRQ_MASK_COL_IRQ_EN      (17)      //!< Bit position for EPDC_IRQ_MASK_COL_IRQ_EN.
 #define BM_EPDC_IRQ_MASK_COL_IRQ_EN      (0x00020000)  //!< Bit mask for EPDC_IRQ_MASK_COL_IRQ_EN.
 
@@ -3959,7 +3776,6 @@ typedef union _hw_epdc_irq_mask
 //! @brief Set the COL_IRQ_EN field to a new value.
 #define BW_EPDC_IRQ_MASK_COL_IRQ_EN(v)   BF_CS1(EPDC_IRQ_MASK, COL_IRQ_EN, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_IRQ_MASK, field TCE_UNDERRUN_IRQ_EN[18] (RW)
@@ -3967,7 +3783,6 @@ typedef union _hw_epdc_irq_mask
  * Enable pixel FIFO under-run condition detection.
  */
 //@{
-
 #define BP_EPDC_IRQ_MASK_TCE_UNDERRUN_IRQ_EN      (18)      //!< Bit position for EPDC_IRQ_MASK_TCE_UNDERRUN_IRQ_EN.
 #define BM_EPDC_IRQ_MASK_TCE_UNDERRUN_IRQ_EN      (0x00040000)  //!< Bit mask for EPDC_IRQ_MASK_TCE_UNDERRUN_IRQ_EN.
 
@@ -3981,7 +3796,6 @@ typedef union _hw_epdc_irq_mask
 //! @brief Set the TCE_UNDERRUN_IRQ_EN field to a new value.
 #define BW_EPDC_IRQ_MASK_TCE_UNDERRUN_IRQ_EN(v)   BF_CS1(EPDC_IRQ_MASK, TCE_UNDERRUN_IRQ_EN, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_IRQ_MASK, field FRAME_END_IRQ_EN[19] (RW)
@@ -3990,7 +3804,6 @@ typedef union _hw_epdc_irq_mask
  * during updating period.
  */
 //@{
-
 #define BP_EPDC_IRQ_MASK_FRAME_END_IRQ_EN      (19)      //!< Bit position for EPDC_IRQ_MASK_FRAME_END_IRQ_EN.
 #define BM_EPDC_IRQ_MASK_FRAME_END_IRQ_EN      (0x00080000)  //!< Bit mask for EPDC_IRQ_MASK_FRAME_END_IRQ_EN.
 
@@ -4004,7 +3817,6 @@ typedef union _hw_epdc_irq_mask
 //! @brief Set the FRAME_END_IRQ_EN field to a new value.
 #define BW_EPDC_IRQ_MASK_FRAME_END_IRQ_EN(v)   BF_CS1(EPDC_IRQ_MASK, FRAME_END_IRQ_EN, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_IRQ_MASK, field BUS_ERROR_IRQ_EN[20] (RW)
@@ -4012,7 +3824,6 @@ typedef union _hw_epdc_irq_mask
  * Enable AXI BUS ERROR interrupt detection.
  */
 //@{
-
 #define BP_EPDC_IRQ_MASK_BUS_ERROR_IRQ_EN      (20)      //!< Bit position for EPDC_IRQ_MASK_BUS_ERROR_IRQ_EN.
 #define BM_EPDC_IRQ_MASK_BUS_ERROR_IRQ_EN      (0x00100000)  //!< Bit mask for EPDC_IRQ_MASK_BUS_ERROR_IRQ_EN.
 
@@ -4026,7 +3837,6 @@ typedef union _hw_epdc_irq_mask
 //! @brief Set the BUS_ERROR_IRQ_EN field to a new value.
 #define BW_EPDC_IRQ_MASK_BUS_ERROR_IRQ_EN(v)   BF_CS1(EPDC_IRQ_MASK, BUS_ERROR_IRQ_EN, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_IRQ_MASK, field TCE_IDLE_IRQ_EN[21] (RW)
@@ -4034,7 +3844,6 @@ typedef union _hw_epdc_irq_mask
  * Enable TCE Idle interrupt detection.
  */
 //@{
-
 #define BP_EPDC_IRQ_MASK_TCE_IDLE_IRQ_EN      (21)      //!< Bit position for EPDC_IRQ_MASK_TCE_IDLE_IRQ_EN.
 #define BM_EPDC_IRQ_MASK_TCE_IDLE_IRQ_EN      (0x00200000)  //!< Bit mask for EPDC_IRQ_MASK_TCE_IDLE_IRQ_EN.
 
@@ -4048,7 +3857,6 @@ typedef union _hw_epdc_irq_mask
 //! @brief Set the TCE_IDLE_IRQ_EN field to a new value.
 #define BW_EPDC_IRQ_MASK_TCE_IDLE_IRQ_EN(v)   BF_CS1(EPDC_IRQ_MASK, TCE_IDLE_IRQ_EN, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_IRQ_MASK, field UPD_DONE_IRQ_EN[22] (RW)
@@ -4056,7 +3864,6 @@ typedef union _hw_epdc_irq_mask
  * Enable UPD complete interrupt
  */
 //@{
-
 #define BP_EPDC_IRQ_MASK_UPD_DONE_IRQ_EN      (22)      //!< Bit position for EPDC_IRQ_MASK_UPD_DONE_IRQ_EN.
 #define BM_EPDC_IRQ_MASK_UPD_DONE_IRQ_EN      (0x00400000)  //!< Bit mask for EPDC_IRQ_MASK_UPD_DONE_IRQ_EN.
 
@@ -4070,7 +3877,6 @@ typedef union _hw_epdc_irq_mask
 //! @brief Set the UPD_DONE_IRQ_EN field to a new value.
 #define BW_EPDC_IRQ_MASK_UPD_DONE_IRQ_EN(v)   BF_CS1(EPDC_IRQ_MASK, UPD_DONE_IRQ_EN, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_IRQ_MASK, field PWR_IRQ_EN[23] (RW)
@@ -4078,7 +3884,6 @@ typedef union _hw_epdc_irq_mask
  * Enable power interrupt
  */
 //@{
-
 #define BP_EPDC_IRQ_MASK_PWR_IRQ_EN      (23)      //!< Bit position for EPDC_IRQ_MASK_PWR_IRQ_EN.
 #define BM_EPDC_IRQ_MASK_PWR_IRQ_EN      (0x00800000)  //!< Bit mask for EPDC_IRQ_MASK_PWR_IRQ_EN.
 
@@ -4092,7 +3897,6 @@ typedef union _hw_epdc_irq_mask
 //! @brief Set the PWR_IRQ_EN field to a new value.
 #define BW_EPDC_IRQ_MASK_PWR_IRQ_EN(v)   BF_CS1(EPDC_IRQ_MASK, PWR_IRQ_EN, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4156,7 +3960,6 @@ typedef union _hw_epdc_irq
  * Working buffer process complete Interrupt
  */
 //@{
-
 #define BP_EPDC_IRQ_WB_CMPLT_IRQ      (16)      //!< Bit position for EPDC_IRQ_WB_CMPLT_IRQ.
 #define BM_EPDC_IRQ_WB_CMPLT_IRQ      (0x00010000)  //!< Bit mask for EPDC_IRQ_WB_CMPLT_IRQ.
 
@@ -4170,7 +3973,6 @@ typedef union _hw_epdc_irq
 //! @brief Set the WB_CMPLT_IRQ field to a new value.
 #define BW_EPDC_IRQ_WB_CMPLT_IRQ(v)   BF_CS1(EPDC_IRQ, WB_CMPLT_IRQ, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_IRQ, field LUT_COL_IRQ[17] (RW)
@@ -4178,7 +3980,6 @@ typedef union _hw_epdc_irq
  * Collision detection interrupt. Check EPDC_STATUS_COL.
  */
 //@{
-
 #define BP_EPDC_IRQ_LUT_COL_IRQ      (17)      //!< Bit position for EPDC_IRQ_LUT_COL_IRQ.
 #define BM_EPDC_IRQ_LUT_COL_IRQ      (0x00020000)  //!< Bit mask for EPDC_IRQ_LUT_COL_IRQ.
 
@@ -4192,7 +3993,6 @@ typedef union _hw_epdc_irq
 //! @brief Set the LUT_COL_IRQ field to a new value.
 #define BW_EPDC_IRQ_LUT_COL_IRQ(v)   BF_CS1(EPDC_IRQ, LUT_COL_IRQ, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_IRQ, field TCE_UNDERRUN_IRQ[18] (RW)
@@ -4200,7 +4000,6 @@ typedef union _hw_epdc_irq
  * Interrupt to indicate that a pixel FIFO under-run has occured.
  */
 //@{
-
 #define BP_EPDC_IRQ_TCE_UNDERRUN_IRQ      (18)      //!< Bit position for EPDC_IRQ_TCE_UNDERRUN_IRQ.
 #define BM_EPDC_IRQ_TCE_UNDERRUN_IRQ      (0x00040000)  //!< Bit mask for EPDC_IRQ_TCE_UNDERRUN_IRQ.
 
@@ -4214,7 +4013,6 @@ typedef union _hw_epdc_irq
 //! @brief Set the TCE_UNDERRUN_IRQ field to a new value.
 #define BW_EPDC_IRQ_TCE_UNDERRUN_IRQ(v)   BF_CS1(EPDC_IRQ, TCE_UNDERRUN_IRQ, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_IRQ, field FRAME_END_IRQ[19] (RW)
@@ -4223,7 +4021,6 @@ typedef union _hw_epdc_irq
  * period.
  */
 //@{
-
 #define BP_EPDC_IRQ_FRAME_END_IRQ      (19)      //!< Bit position for EPDC_IRQ_FRAME_END_IRQ.
 #define BM_EPDC_IRQ_FRAME_END_IRQ      (0x00080000)  //!< Bit mask for EPDC_IRQ_FRAME_END_IRQ.
 
@@ -4237,7 +4034,6 @@ typedef union _hw_epdc_irq
 //! @brief Set the FRAME_END_IRQ field to a new value.
 #define BW_EPDC_IRQ_FRAME_END_IRQ(v)   BF_CS1(EPDC_IRQ, FRAME_END_IRQ, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_IRQ, field BUS_ERROR_IRQ[20] (RW)
@@ -4245,7 +4041,6 @@ typedef union _hw_epdc_irq
  * Interrupt to indicate AXI BUS error occurs.
  */
 //@{
-
 #define BP_EPDC_IRQ_BUS_ERROR_IRQ      (20)      //!< Bit position for EPDC_IRQ_BUS_ERROR_IRQ.
 #define BM_EPDC_IRQ_BUS_ERROR_IRQ      (0x00100000)  //!< Bit mask for EPDC_IRQ_BUS_ERROR_IRQ.
 
@@ -4259,7 +4054,6 @@ typedef union _hw_epdc_irq
 //! @brief Set the BUS_ERROR_IRQ field to a new value.
 #define BW_EPDC_IRQ_BUS_ERROR_IRQ(v)   BF_CS1(EPDC_IRQ, BUS_ERROR_IRQ, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_IRQ, field TCE_IDLE_IRQ[21] (RW)
@@ -4267,7 +4061,6 @@ typedef union _hw_epdc_irq
  * Interrupt to indicate that the TCE has completed TFT frame scans and is in an idle state.
  */
 //@{
-
 #define BP_EPDC_IRQ_TCE_IDLE_IRQ      (21)      //!< Bit position for EPDC_IRQ_TCE_IDLE_IRQ.
 #define BM_EPDC_IRQ_TCE_IDLE_IRQ      (0x00200000)  //!< Bit mask for EPDC_IRQ_TCE_IDLE_IRQ.
 
@@ -4281,7 +4074,6 @@ typedef union _hw_epdc_irq
 //! @brief Set the TCE_IDLE_IRQ field to a new value.
 #define BW_EPDC_IRQ_TCE_IDLE_IRQ(v)   BF_CS1(EPDC_IRQ, TCE_IDLE_IRQ, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_IRQ, field UPD_DONE_IRQ[22] (RW)
@@ -4289,7 +4081,6 @@ typedef union _hw_epdc_irq
  * Working buffer process complete Interrupt
  */
 //@{
-
 #define BP_EPDC_IRQ_UPD_DONE_IRQ      (22)      //!< Bit position for EPDC_IRQ_UPD_DONE_IRQ.
 #define BM_EPDC_IRQ_UPD_DONE_IRQ      (0x00400000)  //!< Bit mask for EPDC_IRQ_UPD_DONE_IRQ.
 
@@ -4303,7 +4094,6 @@ typedef union _hw_epdc_irq
 //! @brief Set the UPD_DONE_IRQ field to a new value.
 #define BW_EPDC_IRQ_UPD_DONE_IRQ(v)   BF_CS1(EPDC_IRQ, UPD_DONE_IRQ, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_IRQ, field PWR_IRQ[23] (RW)
@@ -4311,7 +4101,6 @@ typedef union _hw_epdc_irq
  * Power Interrupt
  */
 //@{
-
 #define BP_EPDC_IRQ_PWR_IRQ      (23)      //!< Bit position for EPDC_IRQ_PWR_IRQ.
 #define BM_EPDC_IRQ_PWR_IRQ      (0x00800000)  //!< Bit mask for EPDC_IRQ_PWR_IRQ.
 
@@ -4325,7 +4114,6 @@ typedef union _hw_epdc_irq
 //! @brief Set the PWR_IRQ field to a new value.
 #define BW_EPDC_IRQ_PWR_IRQ(v)   BF_CS1(EPDC_IRQ, PWR_IRQ, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4378,13 +4166,11 @@ typedef union _hw_epdc_status_luts1
  * LUT 0~31 Status : 1=ACTIVE, 0=IDLE
  */
 //@{
-
 #define BP_EPDC_STATUS_LUTS1_LUTN_STS      (0)      //!< Bit position for EPDC_STATUS_LUTS1_LUTN_STS.
 #define BM_EPDC_STATUS_LUTS1_LUTN_STS      (0xffffffff)  //!< Bit mask for EPDC_STATUS_LUTS1_LUTN_STS.
 
 //! @brief Get value of EPDC_STATUS_LUTS1_LUTN_STS from a register value.
 #define BG_EPDC_STATUS_LUTS1_LUTN_STS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_STATUS_LUTS1_LUTN_STS) >> BP_EPDC_STATUS_LUTS1_LUTN_STS)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4437,13 +4223,11 @@ typedef union _hw_epdc_status_luts2
  * LUT 32~63 Status : 1=ACTIVE, 0=IDLE
  */
 //@{
-
 #define BP_EPDC_STATUS_LUTS2_LUTN_STS      (0)      //!< Bit position for EPDC_STATUS_LUTS2_LUTN_STS.
 #define BM_EPDC_STATUS_LUTS2_LUTN_STS      (0xffffffff)  //!< Bit mask for EPDC_STATUS_LUTS2_LUTN_STS.
 
 //! @brief Get value of EPDC_STATUS_LUTS2_LUTN_STS from a register value.
 #define BG_EPDC_STATUS_LUTS2_LUTN_STS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_STATUS_LUTS2_LUTN_STS) >> BP_EPDC_STATUS_LUTS2_LUTN_STS)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4498,13 +4282,11 @@ typedef union _hw_epdc_status_nextlut
  * Next available LUT value
  */
 //@{
-
 #define BP_EPDC_STATUS_NEXTLUT_NEXT_LUT      (0)      //!< Bit position for EPDC_STATUS_NEXTLUT_NEXT_LUT.
 #define BM_EPDC_STATUS_NEXTLUT_NEXT_LUT      (0x0000003f)  //!< Bit mask for EPDC_STATUS_NEXTLUT_NEXT_LUT.
 
 //! @brief Get value of EPDC_STATUS_NEXTLUT_NEXT_LUT from a register value.
 #define BG_EPDC_STATUS_NEXTLUT_NEXT_LUT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_STATUS_NEXTLUT_NEXT_LUT) >> BP_EPDC_STATUS_NEXTLUT_NEXT_LUT)
-
 //@}
 
 /*! @name Register EPDC_STATUS_NEXTLUT, field NEXT_LUT_VALID[8] (RO)
@@ -4512,13 +4294,11 @@ typedef union _hw_epdc_status_nextlut
  * This bitfield can be used to check against a LUTs full condition
  */
 //@{
-
 #define BP_EPDC_STATUS_NEXTLUT_NEXT_LUT_VALID      (8)      //!< Bit position for EPDC_STATUS_NEXTLUT_NEXT_LUT_VALID.
 #define BM_EPDC_STATUS_NEXTLUT_NEXT_LUT_VALID      (0x00000100)  //!< Bit mask for EPDC_STATUS_NEXTLUT_NEXT_LUT_VALID.
 
 //! @brief Get value of EPDC_STATUS_NEXTLUT_NEXT_LUT_VALID from a register value.
 #define BG_EPDC_STATUS_NEXTLUT_NEXT_LUT_VALID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_STATUS_NEXTLUT_NEXT_LUT_VALID) >> BP_EPDC_STATUS_NEXTLUT_NEXT_LUT_VALID)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4577,13 +4357,11 @@ typedef union _hw_epdc_status_col1
  * LUTn Collision Status
  */
 //@{
-
 #define BP_EPDC_STATUS_COL1_LUTN_COL_STS      (0)      //!< Bit position for EPDC_STATUS_COL1_LUTN_COL_STS.
 #define BM_EPDC_STATUS_COL1_LUTN_COL_STS      (0xffffffff)  //!< Bit mask for EPDC_STATUS_COL1_LUTN_COL_STS.
 
 //! @brief Get value of EPDC_STATUS_COL1_LUTN_COL_STS from a register value.
 #define BG_EPDC_STATUS_COL1_LUTN_COL_STS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_STATUS_COL1_LUTN_COL_STS) >> BP_EPDC_STATUS_COL1_LUTN_COL_STS)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4642,13 +4420,11 @@ typedef union _hw_epdc_status_col2
  * LUTn Collision Status
  */
 //@{
-
 #define BP_EPDC_STATUS_COL2_LUTN_COL_STS      (0)      //!< Bit position for EPDC_STATUS_COL2_LUTN_COL_STS.
 #define BM_EPDC_STATUS_COL2_LUTN_COL_STS      (0xffffffff)  //!< Bit mask for EPDC_STATUS_COL2_LUTN_COL_STS.
 
 //! @brief Get value of EPDC_STATUS_COL2_LUTN_COL_STS from a register value.
 #define BG_EPDC_STATUS_COL2_LUTN_COL_STS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_STATUS_COL2_LUTN_COL_STS) >> BP_EPDC_STATUS_COL2_LUTN_COL_STS)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4711,13 +4487,11 @@ typedef union _hw_epdc_status
  * immediately. This is a real-time status of the process.
  */
 //@{
-
 #define BP_EPDC_STATUS_WB_BUSY      (0)      //!< Bit position for EPDC_STATUS_WB_BUSY.
 #define BM_EPDC_STATUS_WB_BUSY      (0x00000001)  //!< Bit mask for EPDC_STATUS_WB_BUSY.
 
 //! @brief Get value of EPDC_STATUS_WB_BUSY from a register value.
 #define BG_EPDC_STATUS_WB_BUSY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_STATUS_WB_BUSY) >> BP_EPDC_STATUS_WB_BUSY)
-
 //@}
 
 /*! @name Register EPDC_STATUS, field LUTS_BUSY[1] (RO)
@@ -4725,13 +4499,11 @@ typedef union _hw_epdc_status
  * Provides a summary status of LUTs. 1= All LUTs are busy, 0= LUTs are available
  */
 //@{
-
 #define BP_EPDC_STATUS_LUTS_BUSY      (1)      //!< Bit position for EPDC_STATUS_LUTS_BUSY.
 #define BM_EPDC_STATUS_LUTS_BUSY      (0x00000002)  //!< Bit mask for EPDC_STATUS_LUTS_BUSY.
 
 //! @brief Get value of EPDC_STATUS_LUTS_BUSY from a register value.
 #define BG_EPDC_STATUS_LUTS_BUSY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_STATUS_LUTS_BUSY) >> BP_EPDC_STATUS_LUTS_BUSY)
-
 //@}
 
 /*! @name Register EPDC_STATUS, field LUTS_UNDERRUN[2] (RO)
@@ -4741,13 +4513,11 @@ typedef union _hw_epdc_status
  * VSCAN_HOLDOFF.
  */
 //@{
-
 #define BP_EPDC_STATUS_LUTS_UNDERRUN      (2)      //!< Bit position for EPDC_STATUS_LUTS_UNDERRUN.
 #define BM_EPDC_STATUS_LUTS_UNDERRUN      (0x00000004)  //!< Bit mask for EPDC_STATUS_LUTS_UNDERRUN.
 
 //! @brief Get value of EPDC_STATUS_LUTS_UNDERRUN from a register value.
 #define BG_EPDC_STATUS_LUTS_UNDERRUN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_STATUS_LUTS_UNDERRUN) >> BP_EPDC_STATUS_LUTS_UNDERRUN)
-
 //@}
 
 /*! @name Register EPDC_STATUS, field UPD_VOID[3] (RO)
@@ -4755,13 +4525,11 @@ typedef union _hw_epdc_status
  * shows the update buffer is void (don't need any real pixel update)
  */
 //@{
-
 #define BP_EPDC_STATUS_UPD_VOID      (3)      //!< Bit position for EPDC_STATUS_UPD_VOID.
 #define BM_EPDC_STATUS_UPD_VOID      (0x00000008)  //!< Bit mask for EPDC_STATUS_UPD_VOID.
 
 //! @brief Get value of EPDC_STATUS_UPD_VOID from a register value.
 #define BG_EPDC_STATUS_UPD_VOID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_STATUS_UPD_VOID) >> BP_EPDC_STATUS_UPD_VOID)
-
 //@}
 
 /*! @name Register EPDC_STATUS, field HISTOGRAM_NP[12:8] (RW)
@@ -4775,7 +4543,6 @@ typedef union _hw_epdc_status
  * grayscale) histogram.
  */
 //@{
-
 #define BP_EPDC_STATUS_HISTOGRAM_NP      (8)      //!< Bit position for EPDC_STATUS_HISTOGRAM_NP.
 #define BM_EPDC_STATUS_HISTOGRAM_NP      (0x00001f00)  //!< Bit mask for EPDC_STATUS_HISTOGRAM_NP.
 
@@ -4789,7 +4556,6 @@ typedef union _hw_epdc_status
 //! @brief Set the HISTOGRAM_NP field to a new value.
 #define BW_EPDC_STATUS_HISTOGRAM_NP(v)   BF_CS1(EPDC_STATUS, HISTOGRAM_NP, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_STATUS, field HISTOGRAM_CP[20:16] (RW)
@@ -4803,7 +4569,6 @@ typedef union _hw_epdc_status
  * grayscale) histogram.
  */
 //@{
-
 #define BP_EPDC_STATUS_HISTOGRAM_CP      (16)      //!< Bit position for EPDC_STATUS_HISTOGRAM_CP.
 #define BM_EPDC_STATUS_HISTOGRAM_CP      (0x001f0000)  //!< Bit mask for EPDC_STATUS_HISTOGRAM_CP.
 
@@ -4817,7 +4582,6 @@ typedef union _hw_epdc_status
 //! @brief Set the HISTOGRAM_CP field to a new value.
 #define BW_EPDC_STATUS_HISTOGRAM_CP(v)   BF_CS1(EPDC_STATUS, HISTOGRAM_CP, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4871,13 +4635,11 @@ typedef union _hw_epdc_upd_col_cord
  * X co-ordinate for collision region of the latest completed update
  */
 //@{
-
 #define BP_EPDC_UPD_COL_CORD_XCORD      (0)      //!< Bit position for EPDC_UPD_COL_CORD_XCORD.
 #define BM_EPDC_UPD_COL_CORD_XCORD      (0x00001fff)  //!< Bit mask for EPDC_UPD_COL_CORD_XCORD.
 
 //! @brief Get value of EPDC_UPD_COL_CORD_XCORD from a register value.
 #define BG_EPDC_UPD_COL_CORD_XCORD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_UPD_COL_CORD_XCORD) >> BP_EPDC_UPD_COL_CORD_XCORD)
-
 //@}
 
 /*! @name Register EPDC_UPD_COL_CORD, field YCORD[28:16] (RO)
@@ -4885,13 +4647,11 @@ typedef union _hw_epdc_upd_col_cord
  * Y co-ordinate for collision region of the latest completed update
  */
 //@{
-
 #define BP_EPDC_UPD_COL_CORD_YCORD      (16)      //!< Bit position for EPDC_UPD_COL_CORD_YCORD.
 #define BM_EPDC_UPD_COL_CORD_YCORD      (0x1fff0000)  //!< Bit mask for EPDC_UPD_COL_CORD_YCORD.
 
 //! @brief Get value of EPDC_UPD_COL_CORD_YCORD from a register value.
 #define BG_EPDC_UPD_COL_CORD_YCORD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_UPD_COL_CORD_YCORD) >> BP_EPDC_UPD_COL_CORD_YCORD)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4945,13 +4705,11 @@ typedef union _hw_epdc_upd_col_size
  * Width (in pixels)
  */
 //@{
-
 #define BP_EPDC_UPD_COL_SIZE_WIDTH      (0)      //!< Bit position for EPDC_UPD_COL_SIZE_WIDTH.
 #define BM_EPDC_UPD_COL_SIZE_WIDTH      (0x00001fff)  //!< Bit mask for EPDC_UPD_COL_SIZE_WIDTH.
 
 //! @brief Get value of EPDC_UPD_COL_SIZE_WIDTH from a register value.
 #define BG_EPDC_UPD_COL_SIZE_WIDTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_UPD_COL_SIZE_WIDTH) >> BP_EPDC_UPD_COL_SIZE_WIDTH)
-
 //@}
 
 /*! @name Register EPDC_UPD_COL_SIZE, field HEIGHT[28:16] (RO)
@@ -4959,13 +4717,11 @@ typedef union _hw_epdc_upd_col_size
  * Height (in pixels)
  */
 //@{
-
 #define BP_EPDC_UPD_COL_SIZE_HEIGHT      (16)      //!< Bit position for EPDC_UPD_COL_SIZE_HEIGHT.
 #define BM_EPDC_UPD_COL_SIZE_HEIGHT      (0x1fff0000)  //!< Bit mask for EPDC_UPD_COL_SIZE_HEIGHT.
 
 //! @brief Get value of EPDC_UPD_COL_SIZE_HEIGHT from a register value.
 #define BG_EPDC_UPD_COL_SIZE_HEIGHT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_UPD_COL_SIZE_HEIGHT) >> BP_EPDC_UPD_COL_SIZE_HEIGHT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5019,7 +4775,6 @@ typedef union _hw_epdc_hist1_param
  * value for 1-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST1_PARAM_VALUE0      (0)      //!< Bit position for EPDC_HIST1_PARAM_VALUE0.
 #define BM_EPDC_HIST1_PARAM_VALUE0      (0x0000001f)  //!< Bit mask for EPDC_HIST1_PARAM_VALUE0.
 
@@ -5033,7 +4788,6 @@ typedef union _hw_epdc_hist1_param
 //! @brief Set the VALUE0 field to a new value.
 #define BW_EPDC_HIST1_PARAM_VALUE0(v)   (HW_EPDC_HIST1_PARAM_WR((HW_EPDC_HIST1_PARAM_RD() & ~BM_EPDC_HIST1_PARAM_VALUE0) | BF_EPDC_HIST1_PARAM_VALUE0(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5088,7 +4842,6 @@ typedef union _hw_epdc_hist2_param
  * Black value for 2-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST2_PARAM_VALUE0      (0)      //!< Bit position for EPDC_HIST2_PARAM_VALUE0.
 #define BM_EPDC_HIST2_PARAM_VALUE0      (0x0000001f)  //!< Bit mask for EPDC_HIST2_PARAM_VALUE0.
 
@@ -5102,7 +4855,6 @@ typedef union _hw_epdc_hist2_param
 //! @brief Set the VALUE0 field to a new value.
 #define BW_EPDC_HIST2_PARAM_VALUE0(v)   (HW_EPDC_HIST2_PARAM_WR((HW_EPDC_HIST2_PARAM_RD() & ~BM_EPDC_HIST2_PARAM_VALUE0) | BF_EPDC_HIST2_PARAM_VALUE0(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_HIST2_PARAM, field VALUE1[12:8] (RW)
@@ -5110,7 +4862,6 @@ typedef union _hw_epdc_hist2_param
  * White value for 2-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST2_PARAM_VALUE1      (8)      //!< Bit position for EPDC_HIST2_PARAM_VALUE1.
 #define BM_EPDC_HIST2_PARAM_VALUE1      (0x00001f00)  //!< Bit mask for EPDC_HIST2_PARAM_VALUE1.
 
@@ -5124,7 +4875,6 @@ typedef union _hw_epdc_hist2_param
 //! @brief Set the VALUE1 field to a new value.
 #define BW_EPDC_HIST2_PARAM_VALUE1(v)   (HW_EPDC_HIST2_PARAM_WR((HW_EPDC_HIST2_PARAM_RD() & ~BM_EPDC_HIST2_PARAM_VALUE1) | BF_EPDC_HIST2_PARAM_VALUE1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5183,7 +4933,6 @@ typedef union _hw_epdc_hist4_param
  * GRAY0 (Black) value for 4-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST4_PARAM_VALUE0      (0)      //!< Bit position for EPDC_HIST4_PARAM_VALUE0.
 #define BM_EPDC_HIST4_PARAM_VALUE0      (0x0000001f)  //!< Bit mask for EPDC_HIST4_PARAM_VALUE0.
 
@@ -5197,7 +4946,6 @@ typedef union _hw_epdc_hist4_param
 //! @brief Set the VALUE0 field to a new value.
 #define BW_EPDC_HIST4_PARAM_VALUE0(v)   (HW_EPDC_HIST4_PARAM_WR((HW_EPDC_HIST4_PARAM_RD() & ~BM_EPDC_HIST4_PARAM_VALUE0) | BF_EPDC_HIST4_PARAM_VALUE0(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_HIST4_PARAM, field VALUE1[12:8] (RW)
@@ -5205,7 +4953,6 @@ typedef union _hw_epdc_hist4_param
  * GRAY1 value for 4-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST4_PARAM_VALUE1      (8)      //!< Bit position for EPDC_HIST4_PARAM_VALUE1.
 #define BM_EPDC_HIST4_PARAM_VALUE1      (0x00001f00)  //!< Bit mask for EPDC_HIST4_PARAM_VALUE1.
 
@@ -5219,7 +4966,6 @@ typedef union _hw_epdc_hist4_param
 //! @brief Set the VALUE1 field to a new value.
 #define BW_EPDC_HIST4_PARAM_VALUE1(v)   (HW_EPDC_HIST4_PARAM_WR((HW_EPDC_HIST4_PARAM_RD() & ~BM_EPDC_HIST4_PARAM_VALUE1) | BF_EPDC_HIST4_PARAM_VALUE1(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_HIST4_PARAM, field VALUE2[20:16] (RW)
@@ -5227,7 +4973,6 @@ typedef union _hw_epdc_hist4_param
  * GRAY2 value for 4-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST4_PARAM_VALUE2      (16)      //!< Bit position for EPDC_HIST4_PARAM_VALUE2.
 #define BM_EPDC_HIST4_PARAM_VALUE2      (0x001f0000)  //!< Bit mask for EPDC_HIST4_PARAM_VALUE2.
 
@@ -5241,7 +4986,6 @@ typedef union _hw_epdc_hist4_param
 //! @brief Set the VALUE2 field to a new value.
 #define BW_EPDC_HIST4_PARAM_VALUE2(v)   (HW_EPDC_HIST4_PARAM_WR((HW_EPDC_HIST4_PARAM_RD() & ~BM_EPDC_HIST4_PARAM_VALUE2) | BF_EPDC_HIST4_PARAM_VALUE2(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_HIST4_PARAM, field VALUE3[28:24] (RW)
@@ -5249,7 +4993,6 @@ typedef union _hw_epdc_hist4_param
  * GRAY3 (White) value for 4-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST4_PARAM_VALUE3      (24)      //!< Bit position for EPDC_HIST4_PARAM_VALUE3.
 #define BM_EPDC_HIST4_PARAM_VALUE3      (0x1f000000)  //!< Bit mask for EPDC_HIST4_PARAM_VALUE3.
 
@@ -5263,7 +5006,6 @@ typedef union _hw_epdc_hist4_param
 //! @brief Set the VALUE3 field to a new value.
 #define BW_EPDC_HIST4_PARAM_VALUE3(v)   (HW_EPDC_HIST4_PARAM_WR((HW_EPDC_HIST4_PARAM_RD() & ~BM_EPDC_HIST4_PARAM_VALUE3) | BF_EPDC_HIST4_PARAM_VALUE3(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5323,7 +5065,6 @@ typedef union _hw_epdc_hist8_param0
  * GRAY0 (Black) value for 8-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST8_PARAM0_VALUE0      (0)      //!< Bit position for EPDC_HIST8_PARAM0_VALUE0.
 #define BM_EPDC_HIST8_PARAM0_VALUE0      (0x0000001f)  //!< Bit mask for EPDC_HIST8_PARAM0_VALUE0.
 
@@ -5337,7 +5078,6 @@ typedef union _hw_epdc_hist8_param0
 //! @brief Set the VALUE0 field to a new value.
 #define BW_EPDC_HIST8_PARAM0_VALUE0(v)   (HW_EPDC_HIST8_PARAM0_WR((HW_EPDC_HIST8_PARAM0_RD() & ~BM_EPDC_HIST8_PARAM0_VALUE0) | BF_EPDC_HIST8_PARAM0_VALUE0(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_HIST8_PARAM0, field VALUE1[12:8] (RW)
@@ -5345,7 +5085,6 @@ typedef union _hw_epdc_hist8_param0
  * GRAY1 value for 8-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST8_PARAM0_VALUE1      (8)      //!< Bit position for EPDC_HIST8_PARAM0_VALUE1.
 #define BM_EPDC_HIST8_PARAM0_VALUE1      (0x00001f00)  //!< Bit mask for EPDC_HIST8_PARAM0_VALUE1.
 
@@ -5359,7 +5098,6 @@ typedef union _hw_epdc_hist8_param0
 //! @brief Set the VALUE1 field to a new value.
 #define BW_EPDC_HIST8_PARAM0_VALUE1(v)   (HW_EPDC_HIST8_PARAM0_WR((HW_EPDC_HIST8_PARAM0_RD() & ~BM_EPDC_HIST8_PARAM0_VALUE1) | BF_EPDC_HIST8_PARAM0_VALUE1(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_HIST8_PARAM0, field VALUE2[20:16] (RW)
@@ -5367,7 +5105,6 @@ typedef union _hw_epdc_hist8_param0
  * GRAY2 value for 8-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST8_PARAM0_VALUE2      (16)      //!< Bit position for EPDC_HIST8_PARAM0_VALUE2.
 #define BM_EPDC_HIST8_PARAM0_VALUE2      (0x001f0000)  //!< Bit mask for EPDC_HIST8_PARAM0_VALUE2.
 
@@ -5381,7 +5118,6 @@ typedef union _hw_epdc_hist8_param0
 //! @brief Set the VALUE2 field to a new value.
 #define BW_EPDC_HIST8_PARAM0_VALUE2(v)   (HW_EPDC_HIST8_PARAM0_WR((HW_EPDC_HIST8_PARAM0_RD() & ~BM_EPDC_HIST8_PARAM0_VALUE2) | BF_EPDC_HIST8_PARAM0_VALUE2(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_HIST8_PARAM0, field VALUE3[28:24] (RW)
@@ -5389,7 +5125,6 @@ typedef union _hw_epdc_hist8_param0
  * GRAY3 value for 8-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST8_PARAM0_VALUE3      (24)      //!< Bit position for EPDC_HIST8_PARAM0_VALUE3.
 #define BM_EPDC_HIST8_PARAM0_VALUE3      (0x1f000000)  //!< Bit mask for EPDC_HIST8_PARAM0_VALUE3.
 
@@ -5403,7 +5138,6 @@ typedef union _hw_epdc_hist8_param0
 //! @brief Set the VALUE3 field to a new value.
 #define BW_EPDC_HIST8_PARAM0_VALUE3(v)   (HW_EPDC_HIST8_PARAM0_WR((HW_EPDC_HIST8_PARAM0_RD() & ~BM_EPDC_HIST8_PARAM0_VALUE3) | BF_EPDC_HIST8_PARAM0_VALUE3(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5463,7 +5197,6 @@ typedef union _hw_epdc_hist8_param1
  * GRAY4 value for 8-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST8_PARAM1_VALUE4      (0)      //!< Bit position for EPDC_HIST8_PARAM1_VALUE4.
 #define BM_EPDC_HIST8_PARAM1_VALUE4      (0x0000001f)  //!< Bit mask for EPDC_HIST8_PARAM1_VALUE4.
 
@@ -5477,7 +5210,6 @@ typedef union _hw_epdc_hist8_param1
 //! @brief Set the VALUE4 field to a new value.
 #define BW_EPDC_HIST8_PARAM1_VALUE4(v)   (HW_EPDC_HIST8_PARAM1_WR((HW_EPDC_HIST8_PARAM1_RD() & ~BM_EPDC_HIST8_PARAM1_VALUE4) | BF_EPDC_HIST8_PARAM1_VALUE4(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_HIST8_PARAM1, field VALUE5[12:8] (RW)
@@ -5485,7 +5217,6 @@ typedef union _hw_epdc_hist8_param1
  * GRAY5 value for 8-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST8_PARAM1_VALUE5      (8)      //!< Bit position for EPDC_HIST8_PARAM1_VALUE5.
 #define BM_EPDC_HIST8_PARAM1_VALUE5      (0x00001f00)  //!< Bit mask for EPDC_HIST8_PARAM1_VALUE5.
 
@@ -5499,7 +5230,6 @@ typedef union _hw_epdc_hist8_param1
 //! @brief Set the VALUE5 field to a new value.
 #define BW_EPDC_HIST8_PARAM1_VALUE5(v)   (HW_EPDC_HIST8_PARAM1_WR((HW_EPDC_HIST8_PARAM1_RD() & ~BM_EPDC_HIST8_PARAM1_VALUE5) | BF_EPDC_HIST8_PARAM1_VALUE5(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_HIST8_PARAM1, field VALUE6[20:16] (RW)
@@ -5507,7 +5237,6 @@ typedef union _hw_epdc_hist8_param1
  * GRAY6 value for 8-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST8_PARAM1_VALUE6      (16)      //!< Bit position for EPDC_HIST8_PARAM1_VALUE6.
 #define BM_EPDC_HIST8_PARAM1_VALUE6      (0x001f0000)  //!< Bit mask for EPDC_HIST8_PARAM1_VALUE6.
 
@@ -5521,7 +5250,6 @@ typedef union _hw_epdc_hist8_param1
 //! @brief Set the VALUE6 field to a new value.
 #define BW_EPDC_HIST8_PARAM1_VALUE6(v)   (HW_EPDC_HIST8_PARAM1_WR((HW_EPDC_HIST8_PARAM1_RD() & ~BM_EPDC_HIST8_PARAM1_VALUE6) | BF_EPDC_HIST8_PARAM1_VALUE6(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_HIST8_PARAM1, field VALUE7[28:24] (RW)
@@ -5529,7 +5257,6 @@ typedef union _hw_epdc_hist8_param1
  * GRAY7 (White) value for 8-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST8_PARAM1_VALUE7      (24)      //!< Bit position for EPDC_HIST8_PARAM1_VALUE7.
 #define BM_EPDC_HIST8_PARAM1_VALUE7      (0x1f000000)  //!< Bit mask for EPDC_HIST8_PARAM1_VALUE7.
 
@@ -5543,7 +5270,6 @@ typedef union _hw_epdc_hist8_param1
 //! @brief Set the VALUE7 field to a new value.
 #define BW_EPDC_HIST8_PARAM1_VALUE7(v)   (HW_EPDC_HIST8_PARAM1_WR((HW_EPDC_HIST8_PARAM1_RD() & ~BM_EPDC_HIST8_PARAM1_VALUE7) | BF_EPDC_HIST8_PARAM1_VALUE7(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5603,7 +5329,6 @@ typedef union _hw_epdc_hist16_param0
  * GRAY0 (Black) value for 16-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST16_PARAM0_VALUE0      (0)      //!< Bit position for EPDC_HIST16_PARAM0_VALUE0.
 #define BM_EPDC_HIST16_PARAM0_VALUE0      (0x0000001f)  //!< Bit mask for EPDC_HIST16_PARAM0_VALUE0.
 
@@ -5617,7 +5342,6 @@ typedef union _hw_epdc_hist16_param0
 //! @brief Set the VALUE0 field to a new value.
 #define BW_EPDC_HIST16_PARAM0_VALUE0(v)   (HW_EPDC_HIST16_PARAM0_WR((HW_EPDC_HIST16_PARAM0_RD() & ~BM_EPDC_HIST16_PARAM0_VALUE0) | BF_EPDC_HIST16_PARAM0_VALUE0(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_HIST16_PARAM0, field VALUE1[12:8] (RW)
@@ -5625,7 +5349,6 @@ typedef union _hw_epdc_hist16_param0
  * GRAY1 value for 16-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST16_PARAM0_VALUE1      (8)      //!< Bit position for EPDC_HIST16_PARAM0_VALUE1.
 #define BM_EPDC_HIST16_PARAM0_VALUE1      (0x00001f00)  //!< Bit mask for EPDC_HIST16_PARAM0_VALUE1.
 
@@ -5639,7 +5362,6 @@ typedef union _hw_epdc_hist16_param0
 //! @brief Set the VALUE1 field to a new value.
 #define BW_EPDC_HIST16_PARAM0_VALUE1(v)   (HW_EPDC_HIST16_PARAM0_WR((HW_EPDC_HIST16_PARAM0_RD() & ~BM_EPDC_HIST16_PARAM0_VALUE1) | BF_EPDC_HIST16_PARAM0_VALUE1(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_HIST16_PARAM0, field VALUE2[20:16] (RW)
@@ -5647,7 +5369,6 @@ typedef union _hw_epdc_hist16_param0
  * GRAY2 value for 16-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST16_PARAM0_VALUE2      (16)      //!< Bit position for EPDC_HIST16_PARAM0_VALUE2.
 #define BM_EPDC_HIST16_PARAM0_VALUE2      (0x001f0000)  //!< Bit mask for EPDC_HIST16_PARAM0_VALUE2.
 
@@ -5661,7 +5382,6 @@ typedef union _hw_epdc_hist16_param0
 //! @brief Set the VALUE2 field to a new value.
 #define BW_EPDC_HIST16_PARAM0_VALUE2(v)   (HW_EPDC_HIST16_PARAM0_WR((HW_EPDC_HIST16_PARAM0_RD() & ~BM_EPDC_HIST16_PARAM0_VALUE2) | BF_EPDC_HIST16_PARAM0_VALUE2(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_HIST16_PARAM0, field VALUE3[28:24] (RW)
@@ -5669,7 +5389,6 @@ typedef union _hw_epdc_hist16_param0
  * GRAY3 value for 16-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST16_PARAM0_VALUE3      (24)      //!< Bit position for EPDC_HIST16_PARAM0_VALUE3.
 #define BM_EPDC_HIST16_PARAM0_VALUE3      (0x1f000000)  //!< Bit mask for EPDC_HIST16_PARAM0_VALUE3.
 
@@ -5683,7 +5402,6 @@ typedef union _hw_epdc_hist16_param0
 //! @brief Set the VALUE3 field to a new value.
 #define BW_EPDC_HIST16_PARAM0_VALUE3(v)   (HW_EPDC_HIST16_PARAM0_WR((HW_EPDC_HIST16_PARAM0_RD() & ~BM_EPDC_HIST16_PARAM0_VALUE3) | BF_EPDC_HIST16_PARAM0_VALUE3(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5743,7 +5461,6 @@ typedef union _hw_epdc_hist16_param1
  * GRAY4 value for 16-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST16_PARAM1_VALUE4      (0)      //!< Bit position for EPDC_HIST16_PARAM1_VALUE4.
 #define BM_EPDC_HIST16_PARAM1_VALUE4      (0x0000001f)  //!< Bit mask for EPDC_HIST16_PARAM1_VALUE4.
 
@@ -5757,7 +5474,6 @@ typedef union _hw_epdc_hist16_param1
 //! @brief Set the VALUE4 field to a new value.
 #define BW_EPDC_HIST16_PARAM1_VALUE4(v)   (HW_EPDC_HIST16_PARAM1_WR((HW_EPDC_HIST16_PARAM1_RD() & ~BM_EPDC_HIST16_PARAM1_VALUE4) | BF_EPDC_HIST16_PARAM1_VALUE4(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_HIST16_PARAM1, field VALUE5[12:8] (RW)
@@ -5765,7 +5481,6 @@ typedef union _hw_epdc_hist16_param1
  * GRAY5 value for 16-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST16_PARAM1_VALUE5      (8)      //!< Bit position for EPDC_HIST16_PARAM1_VALUE5.
 #define BM_EPDC_HIST16_PARAM1_VALUE5      (0x00001f00)  //!< Bit mask for EPDC_HIST16_PARAM1_VALUE5.
 
@@ -5779,7 +5494,6 @@ typedef union _hw_epdc_hist16_param1
 //! @brief Set the VALUE5 field to a new value.
 #define BW_EPDC_HIST16_PARAM1_VALUE5(v)   (HW_EPDC_HIST16_PARAM1_WR((HW_EPDC_HIST16_PARAM1_RD() & ~BM_EPDC_HIST16_PARAM1_VALUE5) | BF_EPDC_HIST16_PARAM1_VALUE5(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_HIST16_PARAM1, field VALUE6[20:16] (RW)
@@ -5787,7 +5501,6 @@ typedef union _hw_epdc_hist16_param1
  * GRAY6 value for 16-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST16_PARAM1_VALUE6      (16)      //!< Bit position for EPDC_HIST16_PARAM1_VALUE6.
 #define BM_EPDC_HIST16_PARAM1_VALUE6      (0x001f0000)  //!< Bit mask for EPDC_HIST16_PARAM1_VALUE6.
 
@@ -5801,7 +5514,6 @@ typedef union _hw_epdc_hist16_param1
 //! @brief Set the VALUE6 field to a new value.
 #define BW_EPDC_HIST16_PARAM1_VALUE6(v)   (HW_EPDC_HIST16_PARAM1_WR((HW_EPDC_HIST16_PARAM1_RD() & ~BM_EPDC_HIST16_PARAM1_VALUE6) | BF_EPDC_HIST16_PARAM1_VALUE6(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_HIST16_PARAM1, field VALUE7[28:24] (RW)
@@ -5809,7 +5521,6 @@ typedef union _hw_epdc_hist16_param1
  * GRAY7 value for 16-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST16_PARAM1_VALUE7      (24)      //!< Bit position for EPDC_HIST16_PARAM1_VALUE7.
 #define BM_EPDC_HIST16_PARAM1_VALUE7      (0x1f000000)  //!< Bit mask for EPDC_HIST16_PARAM1_VALUE7.
 
@@ -5823,7 +5534,6 @@ typedef union _hw_epdc_hist16_param1
 //! @brief Set the VALUE7 field to a new value.
 #define BW_EPDC_HIST16_PARAM1_VALUE7(v)   (HW_EPDC_HIST16_PARAM1_WR((HW_EPDC_HIST16_PARAM1_RD() & ~BM_EPDC_HIST16_PARAM1_VALUE7) | BF_EPDC_HIST16_PARAM1_VALUE7(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5883,7 +5593,6 @@ typedef union _hw_epdc_hist16_param2
  * GRAY8 value for 16-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST16_PARAM2_VALUE8      (0)      //!< Bit position for EPDC_HIST16_PARAM2_VALUE8.
 #define BM_EPDC_HIST16_PARAM2_VALUE8      (0x0000001f)  //!< Bit mask for EPDC_HIST16_PARAM2_VALUE8.
 
@@ -5897,7 +5606,6 @@ typedef union _hw_epdc_hist16_param2
 //! @brief Set the VALUE8 field to a new value.
 #define BW_EPDC_HIST16_PARAM2_VALUE8(v)   (HW_EPDC_HIST16_PARAM2_WR((HW_EPDC_HIST16_PARAM2_RD() & ~BM_EPDC_HIST16_PARAM2_VALUE8) | BF_EPDC_HIST16_PARAM2_VALUE8(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_HIST16_PARAM2, field VALUE9[12:8] (RW)
@@ -5905,7 +5613,6 @@ typedef union _hw_epdc_hist16_param2
  * GRAY9 value for 16-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST16_PARAM2_VALUE9      (8)      //!< Bit position for EPDC_HIST16_PARAM2_VALUE9.
 #define BM_EPDC_HIST16_PARAM2_VALUE9      (0x00001f00)  //!< Bit mask for EPDC_HIST16_PARAM2_VALUE9.
 
@@ -5919,7 +5626,6 @@ typedef union _hw_epdc_hist16_param2
 //! @brief Set the VALUE9 field to a new value.
 #define BW_EPDC_HIST16_PARAM2_VALUE9(v)   (HW_EPDC_HIST16_PARAM2_WR((HW_EPDC_HIST16_PARAM2_RD() & ~BM_EPDC_HIST16_PARAM2_VALUE9) | BF_EPDC_HIST16_PARAM2_VALUE9(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_HIST16_PARAM2, field VALUE10[20:16] (RW)
@@ -5927,7 +5633,6 @@ typedef union _hw_epdc_hist16_param2
  * GRAY10 value for 16-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST16_PARAM2_VALUE10      (16)      //!< Bit position for EPDC_HIST16_PARAM2_VALUE10.
 #define BM_EPDC_HIST16_PARAM2_VALUE10      (0x001f0000)  //!< Bit mask for EPDC_HIST16_PARAM2_VALUE10.
 
@@ -5941,7 +5646,6 @@ typedef union _hw_epdc_hist16_param2
 //! @brief Set the VALUE10 field to a new value.
 #define BW_EPDC_HIST16_PARAM2_VALUE10(v)   (HW_EPDC_HIST16_PARAM2_WR((HW_EPDC_HIST16_PARAM2_RD() & ~BM_EPDC_HIST16_PARAM2_VALUE10) | BF_EPDC_HIST16_PARAM2_VALUE10(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_HIST16_PARAM2, field VALUE11[28:24] (RW)
@@ -5949,7 +5653,6 @@ typedef union _hw_epdc_hist16_param2
  * GRAY11 value for 16-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST16_PARAM2_VALUE11      (24)      //!< Bit position for EPDC_HIST16_PARAM2_VALUE11.
 #define BM_EPDC_HIST16_PARAM2_VALUE11      (0x1f000000)  //!< Bit mask for EPDC_HIST16_PARAM2_VALUE11.
 
@@ -5963,7 +5666,6 @@ typedef union _hw_epdc_hist16_param2
 //! @brief Set the VALUE11 field to a new value.
 #define BW_EPDC_HIST16_PARAM2_VALUE11(v)   (HW_EPDC_HIST16_PARAM2_WR((HW_EPDC_HIST16_PARAM2_RD() & ~BM_EPDC_HIST16_PARAM2_VALUE11) | BF_EPDC_HIST16_PARAM2_VALUE11(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6023,7 +5725,6 @@ typedef union _hw_epdc_hist16_param3
  * GRAY12 value for 16-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST16_PARAM3_VALUE12      (0)      //!< Bit position for EPDC_HIST16_PARAM3_VALUE12.
 #define BM_EPDC_HIST16_PARAM3_VALUE12      (0x0000001f)  //!< Bit mask for EPDC_HIST16_PARAM3_VALUE12.
 
@@ -6037,7 +5738,6 @@ typedef union _hw_epdc_hist16_param3
 //! @brief Set the VALUE12 field to a new value.
 #define BW_EPDC_HIST16_PARAM3_VALUE12(v)   (HW_EPDC_HIST16_PARAM3_WR((HW_EPDC_HIST16_PARAM3_RD() & ~BM_EPDC_HIST16_PARAM3_VALUE12) | BF_EPDC_HIST16_PARAM3_VALUE12(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_HIST16_PARAM3, field VALUE13[12:8] (RW)
@@ -6045,7 +5745,6 @@ typedef union _hw_epdc_hist16_param3
  * GRAY13 value for 16-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST16_PARAM3_VALUE13      (8)      //!< Bit position for EPDC_HIST16_PARAM3_VALUE13.
 #define BM_EPDC_HIST16_PARAM3_VALUE13      (0x00001f00)  //!< Bit mask for EPDC_HIST16_PARAM3_VALUE13.
 
@@ -6059,7 +5758,6 @@ typedef union _hw_epdc_hist16_param3
 //! @brief Set the VALUE13 field to a new value.
 #define BW_EPDC_HIST16_PARAM3_VALUE13(v)   (HW_EPDC_HIST16_PARAM3_WR((HW_EPDC_HIST16_PARAM3_RD() & ~BM_EPDC_HIST16_PARAM3_VALUE13) | BF_EPDC_HIST16_PARAM3_VALUE13(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_HIST16_PARAM3, field VALUE14[20:16] (RW)
@@ -6067,7 +5765,6 @@ typedef union _hw_epdc_hist16_param3
  * GRAY14 value for 16-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST16_PARAM3_VALUE14      (16)      //!< Bit position for EPDC_HIST16_PARAM3_VALUE14.
 #define BM_EPDC_HIST16_PARAM3_VALUE14      (0x001f0000)  //!< Bit mask for EPDC_HIST16_PARAM3_VALUE14.
 
@@ -6081,7 +5778,6 @@ typedef union _hw_epdc_hist16_param3
 //! @brief Set the VALUE14 field to a new value.
 #define BW_EPDC_HIST16_PARAM3_VALUE14(v)   (HW_EPDC_HIST16_PARAM3_WR((HW_EPDC_HIST16_PARAM3_RD() & ~BM_EPDC_HIST16_PARAM3_VALUE14) | BF_EPDC_HIST16_PARAM3_VALUE14(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_HIST16_PARAM3, field VALUE15[28:24] (RW)
@@ -6089,7 +5785,6 @@ typedef union _hw_epdc_hist16_param3
  * GRAY15 (White) value for 16-level histogram
  */
 //@{
-
 #define BP_EPDC_HIST16_PARAM3_VALUE15      (24)      //!< Bit position for EPDC_HIST16_PARAM3_VALUE15.
 #define BM_EPDC_HIST16_PARAM3_VALUE15      (0x1f000000)  //!< Bit mask for EPDC_HIST16_PARAM3_VALUE15.
 
@@ -6103,7 +5798,6 @@ typedef union _hw_epdc_hist16_param3
 //! @brief Set the VALUE15 field to a new value.
 #define BW_EPDC_HIST16_PARAM3_VALUE15(v)   (HW_EPDC_HIST16_PARAM3_WR((HW_EPDC_HIST16_PARAM3_RD() & ~BM_EPDC_HIST16_PARAM3_VALUE15) | BF_EPDC_HIST16_PARAM3_VALUE15(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6162,7 +5856,6 @@ typedef union _hw_epdc_gpio
  * Controls ipp_epdc_bdr[1:0] output
  */
 //@{
-
 #define BP_EPDC_GPIO_BDR      (0)      //!< Bit position for EPDC_GPIO_BDR.
 #define BM_EPDC_GPIO_BDR      (0x00000003)  //!< Bit mask for EPDC_GPIO_BDR.
 
@@ -6176,7 +5869,6 @@ typedef union _hw_epdc_gpio
 //! @brief Set the BDR field to a new value.
 #define BW_EPDC_GPIO_BDR(v)   BF_CS1(EPDC_GPIO, BDR, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_GPIO, field PWRCTRL[5:2] (RW)
@@ -6184,7 +5876,6 @@ typedef union _hw_epdc_gpio
  * Controls ipp_epdc_pwrctrl[3:0] output
  */
 //@{
-
 #define BP_EPDC_GPIO_PWRCTRL      (2)      //!< Bit position for EPDC_GPIO_PWRCTRL.
 #define BM_EPDC_GPIO_PWRCTRL      (0x0000003c)  //!< Bit mask for EPDC_GPIO_PWRCTRL.
 
@@ -6198,7 +5889,6 @@ typedef union _hw_epdc_gpio
 //! @brief Set the PWRCTRL field to a new value.
 #define BW_EPDC_GPIO_PWRCTRL(v)   BF_CS1(EPDC_GPIO, PWRCTRL, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_GPIO, field PWRCOM[6] (RW)
@@ -6206,7 +5896,6 @@ typedef union _hw_epdc_gpio
  * Controls ipp_epdc_pwrcom output
  */
 //@{
-
 #define BP_EPDC_GPIO_PWRCOM      (6)      //!< Bit position for EPDC_GPIO_PWRCOM.
 #define BM_EPDC_GPIO_PWRCOM      (0x00000040)  //!< Bit mask for EPDC_GPIO_PWRCOM.
 
@@ -6220,7 +5909,6 @@ typedef union _hw_epdc_gpio
 //! @brief Set the PWRCOM field to a new value.
 #define BW_EPDC_GPIO_PWRCOM(v)   BF_CS1(EPDC_GPIO, PWRCOM, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_GPIO, field PWRWAKE[7] (RW)
@@ -6228,7 +5916,6 @@ typedef union _hw_epdc_gpio
  * Controls ipp_epdc_pwrwake output
  */
 //@{
-
 #define BP_EPDC_GPIO_PWRWAKE      (7)      //!< Bit position for EPDC_GPIO_PWRWAKE.
 #define BM_EPDC_GPIO_PWRWAKE      (0x00000080)  //!< Bit mask for EPDC_GPIO_PWRWAKE.
 
@@ -6242,7 +5929,6 @@ typedef union _hw_epdc_gpio
 //! @brief Set the PWRWAKE field to a new value.
 #define BW_EPDC_GPIO_PWRWAKE(v)   BF_CS1(EPDC_GPIO, PWRWAKE, v)
 #endif
-
 //@}
 
 /*! @name Register EPDC_GPIO, field PWRSTAT[8] (RO)
@@ -6250,13 +5936,11 @@ typedef union _hw_epdc_gpio
  * reflect ipp_epdc_pwrstat input
  */
 //@{
-
 #define BP_EPDC_GPIO_PWRSTAT      (8)      //!< Bit position for EPDC_GPIO_PWRSTAT.
 #define BM_EPDC_GPIO_PWRSTAT      (0x00000100)  //!< Bit mask for EPDC_GPIO_PWRSTAT.
 
 //! @brief Get value of EPDC_GPIO_PWRSTAT from a register value.
 #define BG_EPDC_GPIO_PWRSTAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_GPIO_PWRSTAT) >> BP_EPDC_GPIO_PWRSTAT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6308,13 +5992,11 @@ typedef union _hw_epdc_version
  * Fixed read-only value reflecting the stepping of the RTL version.
  */
 //@{
-
 #define BP_EPDC_VERSION_STEP      (0)      //!< Bit position for EPDC_VERSION_STEP.
 #define BM_EPDC_VERSION_STEP      (0x0000ffff)  //!< Bit mask for EPDC_VERSION_STEP.
 
 //! @brief Get value of EPDC_VERSION_STEP from a register value.
 #define BG_EPDC_VERSION_STEP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_VERSION_STEP) >> BP_EPDC_VERSION_STEP)
-
 //@}
 
 /*! @name Register EPDC_VERSION, field MINOR[23:16] (RO)
@@ -6322,13 +6004,11 @@ typedef union _hw_epdc_version
  * Fixed read-only value reflecting the MINOR field of the RTL version.
  */
 //@{
-
 #define BP_EPDC_VERSION_MINOR      (16)      //!< Bit position for EPDC_VERSION_MINOR.
 #define BM_EPDC_VERSION_MINOR      (0x00ff0000)  //!< Bit mask for EPDC_VERSION_MINOR.
 
 //! @brief Get value of EPDC_VERSION_MINOR from a register value.
 #define BG_EPDC_VERSION_MINOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_VERSION_MINOR) >> BP_EPDC_VERSION_MINOR)
-
 //@}
 
 /*! @name Register EPDC_VERSION, field MAJOR[31:24] (RO)
@@ -6336,13 +6016,11 @@ typedef union _hw_epdc_version
  * Fixed read-only value reflecting the MAJOR field of the RTL version.
  */
 //@{
-
 #define BP_EPDC_VERSION_MAJOR      (24)      //!< Bit position for EPDC_VERSION_MAJOR.
 #define BM_EPDC_VERSION_MAJOR      (0xff000000)  //!< Bit mask for EPDC_VERSION_MAJOR.
 
 //! @brief Get value of EPDC_VERSION_MAJOR from a register value.
 #define BG_EPDC_VERSION_MAJOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_EPDC_VERSION_MAJOR) >> BP_EPDC_VERSION_MAJOR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6398,7 +6076,6 @@ typedef union _hw_epdc_pigeon_0_0
  * enable pigeon mode on this signal
  */
 //@{
-
 #define BP_EPDC_PIGEON_0_0_EN      (0)      //!< Bit position for EPDC_PIGEON_0_0_EN.
 #define BM_EPDC_PIGEON_0_0_EN      (0x00000001)  //!< Bit mask for EPDC_PIGEON_0_0_EN.
 
@@ -6412,7 +6089,6 @@ typedef union _hw_epdc_pigeon_0_0
 //! @brief Set the EN field to a new value.
 #define BW_EPDC_PIGEON_0_0_EN(v)   (HW_EPDC_PIGEON_0_0_WR((HW_EPDC_PIGEON_0_0_RD() & ~BM_EPDC_PIGEON_0_0_EN) | BF_EPDC_PIGEON_0_0_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_0_0, field POL[1] (RW)
@@ -6424,7 +6100,6 @@ typedef union _hw_epdc_pigeon_0_0
  * - ACTIVE_LOW = 0x1 - inverted signal (active low)
  */
 //@{
-
 #define BP_EPDC_PIGEON_0_0_POL      (1)      //!< Bit position for EPDC_PIGEON_0_0_POL.
 #define BM_EPDC_PIGEON_0_0_POL      (0x00000002)  //!< Bit mask for EPDC_PIGEON_0_0_POL.
 
@@ -6444,7 +6119,6 @@ typedef union _hw_epdc_pigeon_0_0
 
 #define BV_EPDC_PIGEON_0_0_POL__ACTIVE_HIGH (0x0) //!< normal signal (active high)
 #define BV_EPDC_PIGEON_0_0_POL__ACTIVE_LOW (0x1) //!< inverted signal (active low)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_0_0, field INC_SEL[3:2] (RW)
@@ -6458,7 +6132,6 @@ typedef union _hw_epdc_pigeon_0_0
  * - SIG_ANOTHER = 0x3 - use another signal as tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_0_0_INC_SEL      (2)      //!< Bit position for EPDC_PIGEON_0_0_INC_SEL.
 #define BM_EPDC_PIGEON_0_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_PIGEON_0_0_INC_SEL.
 
@@ -6480,7 +6153,6 @@ typedef union _hw_epdc_pigeon_0_0
 #define BV_EPDC_PIGEON_0_0_INC_SEL__LINE (0x1) //!< line start pulse
 #define BV_EPDC_PIGEON_0_0_INC_SEL__FRAME (0x2) //!< frame start pulse
 #define BV_EPDC_PIGEON_0_0_INC_SEL__SIG_ANOTHER (0x3) //!< use another signal as tick event
-
 //@}
 
 /*! @name Register EPDC_PIGEON_0_0, field OFFSET[7:4] (RW)
@@ -6489,7 +6161,6 @@ typedef union _hw_epdc_pigeon_0_0
  * Supported range depends on panel mode
  */
 //@{
-
 #define BP_EPDC_PIGEON_0_0_OFFSET      (4)      //!< Bit position for EPDC_PIGEON_0_0_OFFSET.
 #define BM_EPDC_PIGEON_0_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_PIGEON_0_0_OFFSET.
 
@@ -6503,7 +6174,6 @@ typedef union _hw_epdc_pigeon_0_0
 //! @brief Set the OFFSET field to a new value.
 #define BW_EPDC_PIGEON_0_0_OFFSET(v)   (HW_EPDC_PIGEON_0_0_WR((HW_EPDC_PIGEON_0_0_RD() & ~BM_EPDC_PIGEON_0_0_OFFSET) | BF_EPDC_PIGEON_0_0_OFFSET(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_0_0, field MASK_CNT_SEL[11:8] (RW)
@@ -6521,7 +6191,6 @@ typedef union _hw_epdc_pigeon_0_0
  * - VCNT = 0x7 - vertical counter (line counter within one frame)
  */
 //@{
-
 #define BP_EPDC_PIGEON_0_0_MASK_CNT_SEL      (8)      //!< Bit position for EPDC_PIGEON_0_0_MASK_CNT_SEL.
 #define BM_EPDC_PIGEON_0_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_PIGEON_0_0_MASK_CNT_SEL.
 
@@ -6547,7 +6216,6 @@ typedef union _hw_epdc_pigeon_0_0
 #define BV_EPDC_PIGEON_0_0_MASK_CNT_SEL__FRAME_CYCLE (0x5) //!< frame cycle
 #define BV_EPDC_PIGEON_0_0_MASK_CNT_SEL__HCNT (0x6) //!< horizontal counter (pclk counter within one line )
 #define BV_EPDC_PIGEON_0_0_MASK_CNT_SEL__VCNT (0x7) //!< vertical counter (line counter within one frame)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_0_0, field MASK_CNT[23:12] (RW)
@@ -6556,7 +6224,6 @@ typedef union _hw_epdc_pigeon_0_0
  * counter start ticking. 0=disable
  */
 //@{
-
 #define BP_EPDC_PIGEON_0_0_MASK_CNT      (12)      //!< Bit position for EPDC_PIGEON_0_0_MASK_CNT.
 #define BM_EPDC_PIGEON_0_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_PIGEON_0_0_MASK_CNT.
 
@@ -6570,7 +6237,6 @@ typedef union _hw_epdc_pigeon_0_0
 //! @brief Set the MASK_CNT field to a new value.
 #define BW_EPDC_PIGEON_0_0_MASK_CNT(v)   (HW_EPDC_PIGEON_0_0_WR((HW_EPDC_PIGEON_0_0_RD() & ~BM_EPDC_PIGEON_0_0_MASK_CNT) | BF_EPDC_PIGEON_0_0_MASK_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_0_0, field STATE_MASK[31:24] (RW)
@@ -6589,7 +6255,6 @@ typedef union _hw_epdc_pigeon_0_0
  * - LE = 0x80 - LINE END
  */
 //@{
-
 #define BP_EPDC_PIGEON_0_0_STATE_MASK      (24)      //!< Bit position for EPDC_PIGEON_0_0_STATE_MASK.
 #define BM_EPDC_PIGEON_0_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_PIGEON_0_0_STATE_MASK.
 
@@ -6615,7 +6280,6 @@ typedef union _hw_epdc_pigeon_0_0
 #define BV_EPDC_PIGEON_0_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_PIGEON_0_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_PIGEON_0_0_STATE_MASK__LE (0x80) //!< LINE END
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6669,7 +6333,6 @@ typedef union _hw_epdc_pigeon_0_1
  * - START_ACTIVE = 0x0 - start as active
  */
 //@{
-
 #define BP_EPDC_PIGEON_0_1_SET_CNT      (0)      //!< Bit position for EPDC_PIGEON_0_1_SET_CNT.
 #define BM_EPDC_PIGEON_0_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_PIGEON_0_1_SET_CNT.
 
@@ -6688,7 +6351,6 @@ typedef union _hw_epdc_pigeon_0_1
 #define BF_EPDC_PIGEON_0_1_SET_CNT_V(v) BF_EPDC_PIGEON_0_1_SET_CNT(BV_EPDC_PIGEON_0_1_SET_CNT__##v)
 
 #define BV_EPDC_PIGEON_0_1_SET_CNT__START_ACTIVE (0x0) //!< start as active
-
 //@}
 
 /*! @name Register EPDC_PIGEON_0_1, field CLR_CNT[31:16] (RW)
@@ -6699,7 +6361,6 @@ typedef union _hw_epdc_pigeon_0_1
  * - CLEAR_USING_MASK = 0x0 - keep active until mask off
  */
 //@{
-
 #define BP_EPDC_PIGEON_0_1_CLR_CNT      (16)      //!< Bit position for EPDC_PIGEON_0_1_CLR_CNT.
 #define BM_EPDC_PIGEON_0_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_PIGEON_0_1_CLR_CNT.
 
@@ -6718,7 +6379,6 @@ typedef union _hw_epdc_pigeon_0_1
 #define BF_EPDC_PIGEON_0_1_CLR_CNT_V(v) BF_EPDC_PIGEON_0_1_CLR_CNT(BV_EPDC_PIGEON_0_1_CLR_CNT__##v)
 
 #define BV_EPDC_PIGEON_0_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6779,7 +6439,6 @@ typedef union _hw_epdc_pigeon_0_2
  * - MASK = 0x3 - mask = sig_another AND other_masks
  */
 //@{
-
 #define BP_EPDC_PIGEON_0_2_SIG_LOGIC      (0)      //!< Bit position for EPDC_PIGEON_0_2_SIG_LOGIC.
 #define BM_EPDC_PIGEON_0_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_PIGEON_0_2_SIG_LOGIC.
 
@@ -6801,7 +6460,6 @@ typedef union _hw_epdc_pigeon_0_2
 #define BV_EPDC_PIGEON_0_2_SIG_LOGIC__AND (0x1) //!< sigout = sig_another AND this_sig
 #define BV_EPDC_PIGEON_0_2_SIG_LOGIC__OR (0x2) //!< sigout = sig_another OR this_sig
 #define BV_EPDC_PIGEON_0_2_SIG_LOGIC__MASK (0x3) //!< mask = sig_another AND other_masks
-
 //@}
 
 /*! @name Register EPDC_PIGEON_0_2, field SIG_ANOTHER[8:4] (RW)
@@ -6809,7 +6467,6 @@ typedef union _hw_epdc_pigeon_0_2
  * select another signal for logic operation or as mask or counter tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_0_2_SIG_ANOTHER      (4)      //!< Bit position for EPDC_PIGEON_0_2_SIG_ANOTHER.
 #define BM_EPDC_PIGEON_0_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_PIGEON_0_2_SIG_ANOTHER.
 
@@ -6823,7 +6480,6 @@ typedef union _hw_epdc_pigeon_0_2
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_PIGEON_0_2_SIG_ANOTHER(v)   (HW_EPDC_PIGEON_0_2_WR((HW_EPDC_PIGEON_0_2_RD() & ~BM_EPDC_PIGEON_0_2_SIG_ANOTHER) | BF_EPDC_PIGEON_0_2_SIG_ANOTHER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6879,7 +6535,6 @@ typedef union _hw_epdc_pigeon_1_0
  * enable pigeon mode on this signal
  */
 //@{
-
 #define BP_EPDC_PIGEON_1_0_EN      (0)      //!< Bit position for EPDC_PIGEON_1_0_EN.
 #define BM_EPDC_PIGEON_1_0_EN      (0x00000001)  //!< Bit mask for EPDC_PIGEON_1_0_EN.
 
@@ -6893,7 +6548,6 @@ typedef union _hw_epdc_pigeon_1_0
 //! @brief Set the EN field to a new value.
 #define BW_EPDC_PIGEON_1_0_EN(v)   (HW_EPDC_PIGEON_1_0_WR((HW_EPDC_PIGEON_1_0_RD() & ~BM_EPDC_PIGEON_1_0_EN) | BF_EPDC_PIGEON_1_0_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_1_0, field POL[1] (RW)
@@ -6905,7 +6559,6 @@ typedef union _hw_epdc_pigeon_1_0
  * - ACTIVE_LOW = 0x1 - inverted signal (active low)
  */
 //@{
-
 #define BP_EPDC_PIGEON_1_0_POL      (1)      //!< Bit position for EPDC_PIGEON_1_0_POL.
 #define BM_EPDC_PIGEON_1_0_POL      (0x00000002)  //!< Bit mask for EPDC_PIGEON_1_0_POL.
 
@@ -6925,7 +6578,6 @@ typedef union _hw_epdc_pigeon_1_0
 
 #define BV_EPDC_PIGEON_1_0_POL__ACTIVE_HIGH (0x0) //!< normal signal (active high)
 #define BV_EPDC_PIGEON_1_0_POL__ACTIVE_LOW (0x1) //!< inverted signal (active low)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_1_0, field INC_SEL[3:2] (RW)
@@ -6939,7 +6591,6 @@ typedef union _hw_epdc_pigeon_1_0
  * - SIG_ANOTHER = 0x3 - use another signal as tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_1_0_INC_SEL      (2)      //!< Bit position for EPDC_PIGEON_1_0_INC_SEL.
 #define BM_EPDC_PIGEON_1_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_PIGEON_1_0_INC_SEL.
 
@@ -6961,7 +6612,6 @@ typedef union _hw_epdc_pigeon_1_0
 #define BV_EPDC_PIGEON_1_0_INC_SEL__LINE (0x1) //!< line start pulse
 #define BV_EPDC_PIGEON_1_0_INC_SEL__FRAME (0x2) //!< frame start pulse
 #define BV_EPDC_PIGEON_1_0_INC_SEL__SIG_ANOTHER (0x3) //!< use another signal as tick event
-
 //@}
 
 /*! @name Register EPDC_PIGEON_1_0, field OFFSET[7:4] (RW)
@@ -6970,7 +6620,6 @@ typedef union _hw_epdc_pigeon_1_0
  * Supported range depends on panel mode
  */
 //@{
-
 #define BP_EPDC_PIGEON_1_0_OFFSET      (4)      //!< Bit position for EPDC_PIGEON_1_0_OFFSET.
 #define BM_EPDC_PIGEON_1_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_PIGEON_1_0_OFFSET.
 
@@ -6984,7 +6633,6 @@ typedef union _hw_epdc_pigeon_1_0
 //! @brief Set the OFFSET field to a new value.
 #define BW_EPDC_PIGEON_1_0_OFFSET(v)   (HW_EPDC_PIGEON_1_0_WR((HW_EPDC_PIGEON_1_0_RD() & ~BM_EPDC_PIGEON_1_0_OFFSET) | BF_EPDC_PIGEON_1_0_OFFSET(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_1_0, field MASK_CNT_SEL[11:8] (RW)
@@ -7002,7 +6650,6 @@ typedef union _hw_epdc_pigeon_1_0
  * - VCNT = 0x7 - vertical counter (line counter within one frame)
  */
 //@{
-
 #define BP_EPDC_PIGEON_1_0_MASK_CNT_SEL      (8)      //!< Bit position for EPDC_PIGEON_1_0_MASK_CNT_SEL.
 #define BM_EPDC_PIGEON_1_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_PIGEON_1_0_MASK_CNT_SEL.
 
@@ -7028,7 +6675,6 @@ typedef union _hw_epdc_pigeon_1_0
 #define BV_EPDC_PIGEON_1_0_MASK_CNT_SEL__FRAME_CYCLE (0x5) //!< frame cycle
 #define BV_EPDC_PIGEON_1_0_MASK_CNT_SEL__HCNT (0x6) //!< horizontal counter (pclk counter within one line )
 #define BV_EPDC_PIGEON_1_0_MASK_CNT_SEL__VCNT (0x7) //!< vertical counter (line counter within one frame)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_1_0, field MASK_CNT[23:12] (RW)
@@ -7037,7 +6683,6 @@ typedef union _hw_epdc_pigeon_1_0
  * counter start ticking. 0=disable
  */
 //@{
-
 #define BP_EPDC_PIGEON_1_0_MASK_CNT      (12)      //!< Bit position for EPDC_PIGEON_1_0_MASK_CNT.
 #define BM_EPDC_PIGEON_1_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_PIGEON_1_0_MASK_CNT.
 
@@ -7051,7 +6696,6 @@ typedef union _hw_epdc_pigeon_1_0
 //! @brief Set the MASK_CNT field to a new value.
 #define BW_EPDC_PIGEON_1_0_MASK_CNT(v)   (HW_EPDC_PIGEON_1_0_WR((HW_EPDC_PIGEON_1_0_RD() & ~BM_EPDC_PIGEON_1_0_MASK_CNT) | BF_EPDC_PIGEON_1_0_MASK_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_1_0, field STATE_MASK[31:24] (RW)
@@ -7070,7 +6714,6 @@ typedef union _hw_epdc_pigeon_1_0
  * - LE = 0x80 - LINE END
  */
 //@{
-
 #define BP_EPDC_PIGEON_1_0_STATE_MASK      (24)      //!< Bit position for EPDC_PIGEON_1_0_STATE_MASK.
 #define BM_EPDC_PIGEON_1_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_PIGEON_1_0_STATE_MASK.
 
@@ -7096,7 +6739,6 @@ typedef union _hw_epdc_pigeon_1_0
 #define BV_EPDC_PIGEON_1_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_PIGEON_1_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_PIGEON_1_0_STATE_MASK__LE (0x80) //!< LINE END
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7150,7 +6792,6 @@ typedef union _hw_epdc_pigeon_1_1
  * - START_ACTIVE = 0x0 - start as active
  */
 //@{
-
 #define BP_EPDC_PIGEON_1_1_SET_CNT      (0)      //!< Bit position for EPDC_PIGEON_1_1_SET_CNT.
 #define BM_EPDC_PIGEON_1_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_PIGEON_1_1_SET_CNT.
 
@@ -7169,7 +6810,6 @@ typedef union _hw_epdc_pigeon_1_1
 #define BF_EPDC_PIGEON_1_1_SET_CNT_V(v) BF_EPDC_PIGEON_1_1_SET_CNT(BV_EPDC_PIGEON_1_1_SET_CNT__##v)
 
 #define BV_EPDC_PIGEON_1_1_SET_CNT__START_ACTIVE (0x0) //!< start as active
-
 //@}
 
 /*! @name Register EPDC_PIGEON_1_1, field CLR_CNT[31:16] (RW)
@@ -7180,7 +6820,6 @@ typedef union _hw_epdc_pigeon_1_1
  * - CLEAR_USING_MASK = 0x0 - keep active until mask off
  */
 //@{
-
 #define BP_EPDC_PIGEON_1_1_CLR_CNT      (16)      //!< Bit position for EPDC_PIGEON_1_1_CLR_CNT.
 #define BM_EPDC_PIGEON_1_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_PIGEON_1_1_CLR_CNT.
 
@@ -7199,7 +6838,6 @@ typedef union _hw_epdc_pigeon_1_1
 #define BF_EPDC_PIGEON_1_1_CLR_CNT_V(v) BF_EPDC_PIGEON_1_1_CLR_CNT(BV_EPDC_PIGEON_1_1_CLR_CNT__##v)
 
 #define BV_EPDC_PIGEON_1_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7260,7 +6898,6 @@ typedef union _hw_epdc_pigeon_1_2
  * - MASK = 0x3 - mask = sig_another AND other_masks
  */
 //@{
-
 #define BP_EPDC_PIGEON_1_2_SIG_LOGIC      (0)      //!< Bit position for EPDC_PIGEON_1_2_SIG_LOGIC.
 #define BM_EPDC_PIGEON_1_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_PIGEON_1_2_SIG_LOGIC.
 
@@ -7282,7 +6919,6 @@ typedef union _hw_epdc_pigeon_1_2
 #define BV_EPDC_PIGEON_1_2_SIG_LOGIC__AND (0x1) //!< sigout = sig_another AND this_sig
 #define BV_EPDC_PIGEON_1_2_SIG_LOGIC__OR (0x2) //!< sigout = sig_another OR this_sig
 #define BV_EPDC_PIGEON_1_2_SIG_LOGIC__MASK (0x3) //!< mask = sig_another AND other_masks
-
 //@}
 
 /*! @name Register EPDC_PIGEON_1_2, field SIG_ANOTHER[8:4] (RW)
@@ -7290,7 +6926,6 @@ typedef union _hw_epdc_pigeon_1_2
  * select another signal for logic operation or as mask or counter tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_1_2_SIG_ANOTHER      (4)      //!< Bit position for EPDC_PIGEON_1_2_SIG_ANOTHER.
 #define BM_EPDC_PIGEON_1_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_PIGEON_1_2_SIG_ANOTHER.
 
@@ -7304,7 +6939,6 @@ typedef union _hw_epdc_pigeon_1_2
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_PIGEON_1_2_SIG_ANOTHER(v)   (HW_EPDC_PIGEON_1_2_WR((HW_EPDC_PIGEON_1_2_RD() & ~BM_EPDC_PIGEON_1_2_SIG_ANOTHER) | BF_EPDC_PIGEON_1_2_SIG_ANOTHER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7360,7 +6994,6 @@ typedef union _hw_epdc_pigeon_2_0
  * enable pigeon mode on this signal
  */
 //@{
-
 #define BP_EPDC_PIGEON_2_0_EN      (0)      //!< Bit position for EPDC_PIGEON_2_0_EN.
 #define BM_EPDC_PIGEON_2_0_EN      (0x00000001)  //!< Bit mask for EPDC_PIGEON_2_0_EN.
 
@@ -7374,7 +7007,6 @@ typedef union _hw_epdc_pigeon_2_0
 //! @brief Set the EN field to a new value.
 #define BW_EPDC_PIGEON_2_0_EN(v)   (HW_EPDC_PIGEON_2_0_WR((HW_EPDC_PIGEON_2_0_RD() & ~BM_EPDC_PIGEON_2_0_EN) | BF_EPDC_PIGEON_2_0_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_2_0, field POL[1] (RW)
@@ -7386,7 +7018,6 @@ typedef union _hw_epdc_pigeon_2_0
  * - ACTIVE_LOW = 0x1 - inverted signal (active low)
  */
 //@{
-
 #define BP_EPDC_PIGEON_2_0_POL      (1)      //!< Bit position for EPDC_PIGEON_2_0_POL.
 #define BM_EPDC_PIGEON_2_0_POL      (0x00000002)  //!< Bit mask for EPDC_PIGEON_2_0_POL.
 
@@ -7406,7 +7037,6 @@ typedef union _hw_epdc_pigeon_2_0
 
 #define BV_EPDC_PIGEON_2_0_POL__ACTIVE_HIGH (0x0) //!< normal signal (active high)
 #define BV_EPDC_PIGEON_2_0_POL__ACTIVE_LOW (0x1) //!< inverted signal (active low)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_2_0, field INC_SEL[3:2] (RW)
@@ -7420,7 +7050,6 @@ typedef union _hw_epdc_pigeon_2_0
  * - SIG_ANOTHER = 0x3 - use another signal as tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_2_0_INC_SEL      (2)      //!< Bit position for EPDC_PIGEON_2_0_INC_SEL.
 #define BM_EPDC_PIGEON_2_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_PIGEON_2_0_INC_SEL.
 
@@ -7442,7 +7071,6 @@ typedef union _hw_epdc_pigeon_2_0
 #define BV_EPDC_PIGEON_2_0_INC_SEL__LINE (0x1) //!< line start pulse
 #define BV_EPDC_PIGEON_2_0_INC_SEL__FRAME (0x2) //!< frame start pulse
 #define BV_EPDC_PIGEON_2_0_INC_SEL__SIG_ANOTHER (0x3) //!< use another signal as tick event
-
 //@}
 
 /*! @name Register EPDC_PIGEON_2_0, field OFFSET[7:4] (RW)
@@ -7451,7 +7079,6 @@ typedef union _hw_epdc_pigeon_2_0
  * Supported range depends on panel mode
  */
 //@{
-
 #define BP_EPDC_PIGEON_2_0_OFFSET      (4)      //!< Bit position for EPDC_PIGEON_2_0_OFFSET.
 #define BM_EPDC_PIGEON_2_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_PIGEON_2_0_OFFSET.
 
@@ -7465,7 +7092,6 @@ typedef union _hw_epdc_pigeon_2_0
 //! @brief Set the OFFSET field to a new value.
 #define BW_EPDC_PIGEON_2_0_OFFSET(v)   (HW_EPDC_PIGEON_2_0_WR((HW_EPDC_PIGEON_2_0_RD() & ~BM_EPDC_PIGEON_2_0_OFFSET) | BF_EPDC_PIGEON_2_0_OFFSET(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_2_0, field MASK_CNT_SEL[11:8] (RW)
@@ -7483,7 +7109,6 @@ typedef union _hw_epdc_pigeon_2_0
  * - VCNT = 0x7 - vertical counter (line counter within one frame)
  */
 //@{
-
 #define BP_EPDC_PIGEON_2_0_MASK_CNT_SEL      (8)      //!< Bit position for EPDC_PIGEON_2_0_MASK_CNT_SEL.
 #define BM_EPDC_PIGEON_2_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_PIGEON_2_0_MASK_CNT_SEL.
 
@@ -7509,7 +7134,6 @@ typedef union _hw_epdc_pigeon_2_0
 #define BV_EPDC_PIGEON_2_0_MASK_CNT_SEL__FRAME_CYCLE (0x5) //!< frame cycle
 #define BV_EPDC_PIGEON_2_0_MASK_CNT_SEL__HCNT (0x6) //!< horizontal counter (pclk counter within one line )
 #define BV_EPDC_PIGEON_2_0_MASK_CNT_SEL__VCNT (0x7) //!< vertical counter (line counter within one frame)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_2_0, field MASK_CNT[23:12] (RW)
@@ -7518,7 +7142,6 @@ typedef union _hw_epdc_pigeon_2_0
  * counter start ticking. 0=disable
  */
 //@{
-
 #define BP_EPDC_PIGEON_2_0_MASK_CNT      (12)      //!< Bit position for EPDC_PIGEON_2_0_MASK_CNT.
 #define BM_EPDC_PIGEON_2_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_PIGEON_2_0_MASK_CNT.
 
@@ -7532,7 +7155,6 @@ typedef union _hw_epdc_pigeon_2_0
 //! @brief Set the MASK_CNT field to a new value.
 #define BW_EPDC_PIGEON_2_0_MASK_CNT(v)   (HW_EPDC_PIGEON_2_0_WR((HW_EPDC_PIGEON_2_0_RD() & ~BM_EPDC_PIGEON_2_0_MASK_CNT) | BF_EPDC_PIGEON_2_0_MASK_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_2_0, field STATE_MASK[31:24] (RW)
@@ -7551,7 +7173,6 @@ typedef union _hw_epdc_pigeon_2_0
  * - LE = 0x80 - LINE END
  */
 //@{
-
 #define BP_EPDC_PIGEON_2_0_STATE_MASK      (24)      //!< Bit position for EPDC_PIGEON_2_0_STATE_MASK.
 #define BM_EPDC_PIGEON_2_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_PIGEON_2_0_STATE_MASK.
 
@@ -7577,7 +7198,6 @@ typedef union _hw_epdc_pigeon_2_0
 #define BV_EPDC_PIGEON_2_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_PIGEON_2_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_PIGEON_2_0_STATE_MASK__LE (0x80) //!< LINE END
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7631,7 +7251,6 @@ typedef union _hw_epdc_pigeon_2_1
  * - START_ACTIVE = 0x0 - start as active
  */
 //@{
-
 #define BP_EPDC_PIGEON_2_1_SET_CNT      (0)      //!< Bit position for EPDC_PIGEON_2_1_SET_CNT.
 #define BM_EPDC_PIGEON_2_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_PIGEON_2_1_SET_CNT.
 
@@ -7650,7 +7269,6 @@ typedef union _hw_epdc_pigeon_2_1
 #define BF_EPDC_PIGEON_2_1_SET_CNT_V(v) BF_EPDC_PIGEON_2_1_SET_CNT(BV_EPDC_PIGEON_2_1_SET_CNT__##v)
 
 #define BV_EPDC_PIGEON_2_1_SET_CNT__START_ACTIVE (0x0) //!< start as active
-
 //@}
 
 /*! @name Register EPDC_PIGEON_2_1, field CLR_CNT[31:16] (RW)
@@ -7661,7 +7279,6 @@ typedef union _hw_epdc_pigeon_2_1
  * - CLEAR_USING_MASK = 0x0 - keep active until mask off
  */
 //@{
-
 #define BP_EPDC_PIGEON_2_1_CLR_CNT      (16)      //!< Bit position for EPDC_PIGEON_2_1_CLR_CNT.
 #define BM_EPDC_PIGEON_2_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_PIGEON_2_1_CLR_CNT.
 
@@ -7680,7 +7297,6 @@ typedef union _hw_epdc_pigeon_2_1
 #define BF_EPDC_PIGEON_2_1_CLR_CNT_V(v) BF_EPDC_PIGEON_2_1_CLR_CNT(BV_EPDC_PIGEON_2_1_CLR_CNT__##v)
 
 #define BV_EPDC_PIGEON_2_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7741,7 +7357,6 @@ typedef union _hw_epdc_pigeon_2_2
  * - MASK = 0x3 - mask = sig_another AND other_masks
  */
 //@{
-
 #define BP_EPDC_PIGEON_2_2_SIG_LOGIC      (0)      //!< Bit position for EPDC_PIGEON_2_2_SIG_LOGIC.
 #define BM_EPDC_PIGEON_2_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_PIGEON_2_2_SIG_LOGIC.
 
@@ -7763,7 +7378,6 @@ typedef union _hw_epdc_pigeon_2_2
 #define BV_EPDC_PIGEON_2_2_SIG_LOGIC__AND (0x1) //!< sigout = sig_another AND this_sig
 #define BV_EPDC_PIGEON_2_2_SIG_LOGIC__OR (0x2) //!< sigout = sig_another OR this_sig
 #define BV_EPDC_PIGEON_2_2_SIG_LOGIC__MASK (0x3) //!< mask = sig_another AND other_masks
-
 //@}
 
 /*! @name Register EPDC_PIGEON_2_2, field SIG_ANOTHER[8:4] (RW)
@@ -7771,7 +7385,6 @@ typedef union _hw_epdc_pigeon_2_2
  * select another signal for logic operation or as mask or counter tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_2_2_SIG_ANOTHER      (4)      //!< Bit position for EPDC_PIGEON_2_2_SIG_ANOTHER.
 #define BM_EPDC_PIGEON_2_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_PIGEON_2_2_SIG_ANOTHER.
 
@@ -7785,7 +7398,6 @@ typedef union _hw_epdc_pigeon_2_2
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_PIGEON_2_2_SIG_ANOTHER(v)   (HW_EPDC_PIGEON_2_2_WR((HW_EPDC_PIGEON_2_2_RD() & ~BM_EPDC_PIGEON_2_2_SIG_ANOTHER) | BF_EPDC_PIGEON_2_2_SIG_ANOTHER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -7841,7 +7453,6 @@ typedef union _hw_epdc_pigeon_3_0
  * enable pigeon mode on this signal
  */
 //@{
-
 #define BP_EPDC_PIGEON_3_0_EN      (0)      //!< Bit position for EPDC_PIGEON_3_0_EN.
 #define BM_EPDC_PIGEON_3_0_EN      (0x00000001)  //!< Bit mask for EPDC_PIGEON_3_0_EN.
 
@@ -7855,7 +7466,6 @@ typedef union _hw_epdc_pigeon_3_0
 //! @brief Set the EN field to a new value.
 #define BW_EPDC_PIGEON_3_0_EN(v)   (HW_EPDC_PIGEON_3_0_WR((HW_EPDC_PIGEON_3_0_RD() & ~BM_EPDC_PIGEON_3_0_EN) | BF_EPDC_PIGEON_3_0_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_3_0, field POL[1] (RW)
@@ -7867,7 +7477,6 @@ typedef union _hw_epdc_pigeon_3_0
  * - ACTIVE_LOW = 0x1 - inverted signal (active low)
  */
 //@{
-
 #define BP_EPDC_PIGEON_3_0_POL      (1)      //!< Bit position for EPDC_PIGEON_3_0_POL.
 #define BM_EPDC_PIGEON_3_0_POL      (0x00000002)  //!< Bit mask for EPDC_PIGEON_3_0_POL.
 
@@ -7887,7 +7496,6 @@ typedef union _hw_epdc_pigeon_3_0
 
 #define BV_EPDC_PIGEON_3_0_POL__ACTIVE_HIGH (0x0) //!< normal signal (active high)
 #define BV_EPDC_PIGEON_3_0_POL__ACTIVE_LOW (0x1) //!< inverted signal (active low)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_3_0, field INC_SEL[3:2] (RW)
@@ -7901,7 +7509,6 @@ typedef union _hw_epdc_pigeon_3_0
  * - SIG_ANOTHER = 0x3 - use another signal as tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_3_0_INC_SEL      (2)      //!< Bit position for EPDC_PIGEON_3_0_INC_SEL.
 #define BM_EPDC_PIGEON_3_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_PIGEON_3_0_INC_SEL.
 
@@ -7923,7 +7530,6 @@ typedef union _hw_epdc_pigeon_3_0
 #define BV_EPDC_PIGEON_3_0_INC_SEL__LINE (0x1) //!< line start pulse
 #define BV_EPDC_PIGEON_3_0_INC_SEL__FRAME (0x2) //!< frame start pulse
 #define BV_EPDC_PIGEON_3_0_INC_SEL__SIG_ANOTHER (0x3) //!< use another signal as tick event
-
 //@}
 
 /*! @name Register EPDC_PIGEON_3_0, field OFFSET[7:4] (RW)
@@ -7932,7 +7538,6 @@ typedef union _hw_epdc_pigeon_3_0
  * Supported range depends on panel mode
  */
 //@{
-
 #define BP_EPDC_PIGEON_3_0_OFFSET      (4)      //!< Bit position for EPDC_PIGEON_3_0_OFFSET.
 #define BM_EPDC_PIGEON_3_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_PIGEON_3_0_OFFSET.
 
@@ -7946,7 +7551,6 @@ typedef union _hw_epdc_pigeon_3_0
 //! @brief Set the OFFSET field to a new value.
 #define BW_EPDC_PIGEON_3_0_OFFSET(v)   (HW_EPDC_PIGEON_3_0_WR((HW_EPDC_PIGEON_3_0_RD() & ~BM_EPDC_PIGEON_3_0_OFFSET) | BF_EPDC_PIGEON_3_0_OFFSET(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_3_0, field MASK_CNT_SEL[11:8] (RW)
@@ -7964,7 +7568,6 @@ typedef union _hw_epdc_pigeon_3_0
  * - VCNT = 0x7 - vertical counter (line counter within one frame)
  */
 //@{
-
 #define BP_EPDC_PIGEON_3_0_MASK_CNT_SEL      (8)      //!< Bit position for EPDC_PIGEON_3_0_MASK_CNT_SEL.
 #define BM_EPDC_PIGEON_3_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_PIGEON_3_0_MASK_CNT_SEL.
 
@@ -7990,7 +7593,6 @@ typedef union _hw_epdc_pigeon_3_0
 #define BV_EPDC_PIGEON_3_0_MASK_CNT_SEL__FRAME_CYCLE (0x5) //!< frame cycle
 #define BV_EPDC_PIGEON_3_0_MASK_CNT_SEL__HCNT (0x6) //!< horizontal counter (pclk counter within one line )
 #define BV_EPDC_PIGEON_3_0_MASK_CNT_SEL__VCNT (0x7) //!< vertical counter (line counter within one frame)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_3_0, field MASK_CNT[23:12] (RW)
@@ -7999,7 +7601,6 @@ typedef union _hw_epdc_pigeon_3_0
  * counter start ticking. 0=disable
  */
 //@{
-
 #define BP_EPDC_PIGEON_3_0_MASK_CNT      (12)      //!< Bit position for EPDC_PIGEON_3_0_MASK_CNT.
 #define BM_EPDC_PIGEON_3_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_PIGEON_3_0_MASK_CNT.
 
@@ -8013,7 +7614,6 @@ typedef union _hw_epdc_pigeon_3_0
 //! @brief Set the MASK_CNT field to a new value.
 #define BW_EPDC_PIGEON_3_0_MASK_CNT(v)   (HW_EPDC_PIGEON_3_0_WR((HW_EPDC_PIGEON_3_0_RD() & ~BM_EPDC_PIGEON_3_0_MASK_CNT) | BF_EPDC_PIGEON_3_0_MASK_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_3_0, field STATE_MASK[31:24] (RW)
@@ -8032,7 +7632,6 @@ typedef union _hw_epdc_pigeon_3_0
  * - LE = 0x80 - LINE END
  */
 //@{
-
 #define BP_EPDC_PIGEON_3_0_STATE_MASK      (24)      //!< Bit position for EPDC_PIGEON_3_0_STATE_MASK.
 #define BM_EPDC_PIGEON_3_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_PIGEON_3_0_STATE_MASK.
 
@@ -8058,7 +7657,6 @@ typedef union _hw_epdc_pigeon_3_0
 #define BV_EPDC_PIGEON_3_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_PIGEON_3_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_PIGEON_3_0_STATE_MASK__LE (0x80) //!< LINE END
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8112,7 +7710,6 @@ typedef union _hw_epdc_pigeon_3_1
  * - START_ACTIVE = 0x0 - start as active
  */
 //@{
-
 #define BP_EPDC_PIGEON_3_1_SET_CNT      (0)      //!< Bit position for EPDC_PIGEON_3_1_SET_CNT.
 #define BM_EPDC_PIGEON_3_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_PIGEON_3_1_SET_CNT.
 
@@ -8131,7 +7728,6 @@ typedef union _hw_epdc_pigeon_3_1
 #define BF_EPDC_PIGEON_3_1_SET_CNT_V(v) BF_EPDC_PIGEON_3_1_SET_CNT(BV_EPDC_PIGEON_3_1_SET_CNT__##v)
 
 #define BV_EPDC_PIGEON_3_1_SET_CNT__START_ACTIVE (0x0) //!< start as active
-
 //@}
 
 /*! @name Register EPDC_PIGEON_3_1, field CLR_CNT[31:16] (RW)
@@ -8142,7 +7738,6 @@ typedef union _hw_epdc_pigeon_3_1
  * - CLEAR_USING_MASK = 0x0 - keep active until mask off
  */
 //@{
-
 #define BP_EPDC_PIGEON_3_1_CLR_CNT      (16)      //!< Bit position for EPDC_PIGEON_3_1_CLR_CNT.
 #define BM_EPDC_PIGEON_3_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_PIGEON_3_1_CLR_CNT.
 
@@ -8161,7 +7756,6 @@ typedef union _hw_epdc_pigeon_3_1
 #define BF_EPDC_PIGEON_3_1_CLR_CNT_V(v) BF_EPDC_PIGEON_3_1_CLR_CNT(BV_EPDC_PIGEON_3_1_CLR_CNT__##v)
 
 #define BV_EPDC_PIGEON_3_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8222,7 +7816,6 @@ typedef union _hw_epdc_pigeon_3_2
  * - MASK = 0x3 - mask = sig_another AND other_masks
  */
 //@{
-
 #define BP_EPDC_PIGEON_3_2_SIG_LOGIC      (0)      //!< Bit position for EPDC_PIGEON_3_2_SIG_LOGIC.
 #define BM_EPDC_PIGEON_3_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_PIGEON_3_2_SIG_LOGIC.
 
@@ -8244,7 +7837,6 @@ typedef union _hw_epdc_pigeon_3_2
 #define BV_EPDC_PIGEON_3_2_SIG_LOGIC__AND (0x1) //!< sigout = sig_another AND this_sig
 #define BV_EPDC_PIGEON_3_2_SIG_LOGIC__OR (0x2) //!< sigout = sig_another OR this_sig
 #define BV_EPDC_PIGEON_3_2_SIG_LOGIC__MASK (0x3) //!< mask = sig_another AND other_masks
-
 //@}
 
 /*! @name Register EPDC_PIGEON_3_2, field SIG_ANOTHER[8:4] (RW)
@@ -8252,7 +7844,6 @@ typedef union _hw_epdc_pigeon_3_2
  * select another signal for logic operation or as mask or counter tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_3_2_SIG_ANOTHER      (4)      //!< Bit position for EPDC_PIGEON_3_2_SIG_ANOTHER.
 #define BM_EPDC_PIGEON_3_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_PIGEON_3_2_SIG_ANOTHER.
 
@@ -8266,7 +7857,6 @@ typedef union _hw_epdc_pigeon_3_2
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_PIGEON_3_2_SIG_ANOTHER(v)   (HW_EPDC_PIGEON_3_2_WR((HW_EPDC_PIGEON_3_2_RD() & ~BM_EPDC_PIGEON_3_2_SIG_ANOTHER) | BF_EPDC_PIGEON_3_2_SIG_ANOTHER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8322,7 +7912,6 @@ typedef union _hw_epdc_pigeon_4_0
  * enable pigeon mode on this signal
  */
 //@{
-
 #define BP_EPDC_PIGEON_4_0_EN      (0)      //!< Bit position for EPDC_PIGEON_4_0_EN.
 #define BM_EPDC_PIGEON_4_0_EN      (0x00000001)  //!< Bit mask for EPDC_PIGEON_4_0_EN.
 
@@ -8336,7 +7925,6 @@ typedef union _hw_epdc_pigeon_4_0
 //! @brief Set the EN field to a new value.
 #define BW_EPDC_PIGEON_4_0_EN(v)   (HW_EPDC_PIGEON_4_0_WR((HW_EPDC_PIGEON_4_0_RD() & ~BM_EPDC_PIGEON_4_0_EN) | BF_EPDC_PIGEON_4_0_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_4_0, field POL[1] (RW)
@@ -8348,7 +7936,6 @@ typedef union _hw_epdc_pigeon_4_0
  * - ACTIVE_LOW = 0x1 - inverted signal (active low)
  */
 //@{
-
 #define BP_EPDC_PIGEON_4_0_POL      (1)      //!< Bit position for EPDC_PIGEON_4_0_POL.
 #define BM_EPDC_PIGEON_4_0_POL      (0x00000002)  //!< Bit mask for EPDC_PIGEON_4_0_POL.
 
@@ -8368,7 +7955,6 @@ typedef union _hw_epdc_pigeon_4_0
 
 #define BV_EPDC_PIGEON_4_0_POL__ACTIVE_HIGH (0x0) //!< normal signal (active high)
 #define BV_EPDC_PIGEON_4_0_POL__ACTIVE_LOW (0x1) //!< inverted signal (active low)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_4_0, field INC_SEL[3:2] (RW)
@@ -8382,7 +7968,6 @@ typedef union _hw_epdc_pigeon_4_0
  * - SIG_ANOTHER = 0x3 - use another signal as tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_4_0_INC_SEL      (2)      //!< Bit position for EPDC_PIGEON_4_0_INC_SEL.
 #define BM_EPDC_PIGEON_4_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_PIGEON_4_0_INC_SEL.
 
@@ -8404,7 +7989,6 @@ typedef union _hw_epdc_pigeon_4_0
 #define BV_EPDC_PIGEON_4_0_INC_SEL__LINE (0x1) //!< line start pulse
 #define BV_EPDC_PIGEON_4_0_INC_SEL__FRAME (0x2) //!< frame start pulse
 #define BV_EPDC_PIGEON_4_0_INC_SEL__SIG_ANOTHER (0x3) //!< use another signal as tick event
-
 //@}
 
 /*! @name Register EPDC_PIGEON_4_0, field OFFSET[7:4] (RW)
@@ -8413,7 +7997,6 @@ typedef union _hw_epdc_pigeon_4_0
  * Supported range depends on panel mode
  */
 //@{
-
 #define BP_EPDC_PIGEON_4_0_OFFSET      (4)      //!< Bit position for EPDC_PIGEON_4_0_OFFSET.
 #define BM_EPDC_PIGEON_4_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_PIGEON_4_0_OFFSET.
 
@@ -8427,7 +8010,6 @@ typedef union _hw_epdc_pigeon_4_0
 //! @brief Set the OFFSET field to a new value.
 #define BW_EPDC_PIGEON_4_0_OFFSET(v)   (HW_EPDC_PIGEON_4_0_WR((HW_EPDC_PIGEON_4_0_RD() & ~BM_EPDC_PIGEON_4_0_OFFSET) | BF_EPDC_PIGEON_4_0_OFFSET(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_4_0, field MASK_CNT_SEL[11:8] (RW)
@@ -8445,7 +8027,6 @@ typedef union _hw_epdc_pigeon_4_0
  * - VCNT = 0x7 - vertical counter (line counter within one frame)
  */
 //@{
-
 #define BP_EPDC_PIGEON_4_0_MASK_CNT_SEL      (8)      //!< Bit position for EPDC_PIGEON_4_0_MASK_CNT_SEL.
 #define BM_EPDC_PIGEON_4_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_PIGEON_4_0_MASK_CNT_SEL.
 
@@ -8471,7 +8052,6 @@ typedef union _hw_epdc_pigeon_4_0
 #define BV_EPDC_PIGEON_4_0_MASK_CNT_SEL__FRAME_CYCLE (0x5) //!< frame cycle
 #define BV_EPDC_PIGEON_4_0_MASK_CNT_SEL__HCNT (0x6) //!< horizontal counter (pclk counter within one line )
 #define BV_EPDC_PIGEON_4_0_MASK_CNT_SEL__VCNT (0x7) //!< vertical counter (line counter within one frame)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_4_0, field MASK_CNT[23:12] (RW)
@@ -8480,7 +8060,6 @@ typedef union _hw_epdc_pigeon_4_0
  * counter start ticking. 0=disable
  */
 //@{
-
 #define BP_EPDC_PIGEON_4_0_MASK_CNT      (12)      //!< Bit position for EPDC_PIGEON_4_0_MASK_CNT.
 #define BM_EPDC_PIGEON_4_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_PIGEON_4_0_MASK_CNT.
 
@@ -8494,7 +8073,6 @@ typedef union _hw_epdc_pigeon_4_0
 //! @brief Set the MASK_CNT field to a new value.
 #define BW_EPDC_PIGEON_4_0_MASK_CNT(v)   (HW_EPDC_PIGEON_4_0_WR((HW_EPDC_PIGEON_4_0_RD() & ~BM_EPDC_PIGEON_4_0_MASK_CNT) | BF_EPDC_PIGEON_4_0_MASK_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_4_0, field STATE_MASK[31:24] (RW)
@@ -8513,7 +8091,6 @@ typedef union _hw_epdc_pigeon_4_0
  * - LE = 0x80 - LINE END
  */
 //@{
-
 #define BP_EPDC_PIGEON_4_0_STATE_MASK      (24)      //!< Bit position for EPDC_PIGEON_4_0_STATE_MASK.
 #define BM_EPDC_PIGEON_4_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_PIGEON_4_0_STATE_MASK.
 
@@ -8539,7 +8116,6 @@ typedef union _hw_epdc_pigeon_4_0
 #define BV_EPDC_PIGEON_4_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_PIGEON_4_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_PIGEON_4_0_STATE_MASK__LE (0x80) //!< LINE END
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8593,7 +8169,6 @@ typedef union _hw_epdc_pigeon_4_1
  * - START_ACTIVE = 0x0 - start as active
  */
 //@{
-
 #define BP_EPDC_PIGEON_4_1_SET_CNT      (0)      //!< Bit position for EPDC_PIGEON_4_1_SET_CNT.
 #define BM_EPDC_PIGEON_4_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_PIGEON_4_1_SET_CNT.
 
@@ -8612,7 +8187,6 @@ typedef union _hw_epdc_pigeon_4_1
 #define BF_EPDC_PIGEON_4_1_SET_CNT_V(v) BF_EPDC_PIGEON_4_1_SET_CNT(BV_EPDC_PIGEON_4_1_SET_CNT__##v)
 
 #define BV_EPDC_PIGEON_4_1_SET_CNT__START_ACTIVE (0x0) //!< start as active
-
 //@}
 
 /*! @name Register EPDC_PIGEON_4_1, field CLR_CNT[31:16] (RW)
@@ -8623,7 +8197,6 @@ typedef union _hw_epdc_pigeon_4_1
  * - CLEAR_USING_MASK = 0x0 - keep active until mask off
  */
 //@{
-
 #define BP_EPDC_PIGEON_4_1_CLR_CNT      (16)      //!< Bit position for EPDC_PIGEON_4_1_CLR_CNT.
 #define BM_EPDC_PIGEON_4_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_PIGEON_4_1_CLR_CNT.
 
@@ -8642,7 +8215,6 @@ typedef union _hw_epdc_pigeon_4_1
 #define BF_EPDC_PIGEON_4_1_CLR_CNT_V(v) BF_EPDC_PIGEON_4_1_CLR_CNT(BV_EPDC_PIGEON_4_1_CLR_CNT__##v)
 
 #define BV_EPDC_PIGEON_4_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8703,7 +8275,6 @@ typedef union _hw_epdc_pigeon_4_2
  * - MASK = 0x3 - mask = sig_another AND other_masks
  */
 //@{
-
 #define BP_EPDC_PIGEON_4_2_SIG_LOGIC      (0)      //!< Bit position for EPDC_PIGEON_4_2_SIG_LOGIC.
 #define BM_EPDC_PIGEON_4_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_PIGEON_4_2_SIG_LOGIC.
 
@@ -8725,7 +8296,6 @@ typedef union _hw_epdc_pigeon_4_2
 #define BV_EPDC_PIGEON_4_2_SIG_LOGIC__AND (0x1) //!< sigout = sig_another AND this_sig
 #define BV_EPDC_PIGEON_4_2_SIG_LOGIC__OR (0x2) //!< sigout = sig_another OR this_sig
 #define BV_EPDC_PIGEON_4_2_SIG_LOGIC__MASK (0x3) //!< mask = sig_another AND other_masks
-
 //@}
 
 /*! @name Register EPDC_PIGEON_4_2, field SIG_ANOTHER[8:4] (RW)
@@ -8733,7 +8303,6 @@ typedef union _hw_epdc_pigeon_4_2
  * select another signal for logic operation or as mask or counter tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_4_2_SIG_ANOTHER      (4)      //!< Bit position for EPDC_PIGEON_4_2_SIG_ANOTHER.
 #define BM_EPDC_PIGEON_4_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_PIGEON_4_2_SIG_ANOTHER.
 
@@ -8747,7 +8316,6 @@ typedef union _hw_epdc_pigeon_4_2
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_PIGEON_4_2_SIG_ANOTHER(v)   (HW_EPDC_PIGEON_4_2_WR((HW_EPDC_PIGEON_4_2_RD() & ~BM_EPDC_PIGEON_4_2_SIG_ANOTHER) | BF_EPDC_PIGEON_4_2_SIG_ANOTHER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -8803,7 +8371,6 @@ typedef union _hw_epdc_pigeon_5_0
  * enable pigeon mode on this signal
  */
 //@{
-
 #define BP_EPDC_PIGEON_5_0_EN      (0)      //!< Bit position for EPDC_PIGEON_5_0_EN.
 #define BM_EPDC_PIGEON_5_0_EN      (0x00000001)  //!< Bit mask for EPDC_PIGEON_5_0_EN.
 
@@ -8817,7 +8384,6 @@ typedef union _hw_epdc_pigeon_5_0
 //! @brief Set the EN field to a new value.
 #define BW_EPDC_PIGEON_5_0_EN(v)   (HW_EPDC_PIGEON_5_0_WR((HW_EPDC_PIGEON_5_0_RD() & ~BM_EPDC_PIGEON_5_0_EN) | BF_EPDC_PIGEON_5_0_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_5_0, field POL[1] (RW)
@@ -8829,7 +8395,6 @@ typedef union _hw_epdc_pigeon_5_0
  * - ACTIVE_LOW = 0x1 - inverted signal (active low)
  */
 //@{
-
 #define BP_EPDC_PIGEON_5_0_POL      (1)      //!< Bit position for EPDC_PIGEON_5_0_POL.
 #define BM_EPDC_PIGEON_5_0_POL      (0x00000002)  //!< Bit mask for EPDC_PIGEON_5_0_POL.
 
@@ -8849,7 +8414,6 @@ typedef union _hw_epdc_pigeon_5_0
 
 #define BV_EPDC_PIGEON_5_0_POL__ACTIVE_HIGH (0x0) //!< normal signal (active high)
 #define BV_EPDC_PIGEON_5_0_POL__ACTIVE_LOW (0x1) //!< inverted signal (active low)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_5_0, field INC_SEL[3:2] (RW)
@@ -8863,7 +8427,6 @@ typedef union _hw_epdc_pigeon_5_0
  * - SIG_ANOTHER = 0x3 - use another signal as tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_5_0_INC_SEL      (2)      //!< Bit position for EPDC_PIGEON_5_0_INC_SEL.
 #define BM_EPDC_PIGEON_5_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_PIGEON_5_0_INC_SEL.
 
@@ -8885,7 +8448,6 @@ typedef union _hw_epdc_pigeon_5_0
 #define BV_EPDC_PIGEON_5_0_INC_SEL__LINE (0x1) //!< line start pulse
 #define BV_EPDC_PIGEON_5_0_INC_SEL__FRAME (0x2) //!< frame start pulse
 #define BV_EPDC_PIGEON_5_0_INC_SEL__SIG_ANOTHER (0x3) //!< use another signal as tick event
-
 //@}
 
 /*! @name Register EPDC_PIGEON_5_0, field OFFSET[7:4] (RW)
@@ -8894,7 +8456,6 @@ typedef union _hw_epdc_pigeon_5_0
  * Supported range depends on panel mode
  */
 //@{
-
 #define BP_EPDC_PIGEON_5_0_OFFSET      (4)      //!< Bit position for EPDC_PIGEON_5_0_OFFSET.
 #define BM_EPDC_PIGEON_5_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_PIGEON_5_0_OFFSET.
 
@@ -8908,7 +8469,6 @@ typedef union _hw_epdc_pigeon_5_0
 //! @brief Set the OFFSET field to a new value.
 #define BW_EPDC_PIGEON_5_0_OFFSET(v)   (HW_EPDC_PIGEON_5_0_WR((HW_EPDC_PIGEON_5_0_RD() & ~BM_EPDC_PIGEON_5_0_OFFSET) | BF_EPDC_PIGEON_5_0_OFFSET(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_5_0, field MASK_CNT_SEL[11:8] (RW)
@@ -8926,7 +8486,6 @@ typedef union _hw_epdc_pigeon_5_0
  * - VCNT = 0x7 - vertical counter (line counter within one frame)
  */
 //@{
-
 #define BP_EPDC_PIGEON_5_0_MASK_CNT_SEL      (8)      //!< Bit position for EPDC_PIGEON_5_0_MASK_CNT_SEL.
 #define BM_EPDC_PIGEON_5_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_PIGEON_5_0_MASK_CNT_SEL.
 
@@ -8952,7 +8511,6 @@ typedef union _hw_epdc_pigeon_5_0
 #define BV_EPDC_PIGEON_5_0_MASK_CNT_SEL__FRAME_CYCLE (0x5) //!< frame cycle
 #define BV_EPDC_PIGEON_5_0_MASK_CNT_SEL__HCNT (0x6) //!< horizontal counter (pclk counter within one line )
 #define BV_EPDC_PIGEON_5_0_MASK_CNT_SEL__VCNT (0x7) //!< vertical counter (line counter within one frame)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_5_0, field MASK_CNT[23:12] (RW)
@@ -8961,7 +8519,6 @@ typedef union _hw_epdc_pigeon_5_0
  * counter start ticking. 0=disable
  */
 //@{
-
 #define BP_EPDC_PIGEON_5_0_MASK_CNT      (12)      //!< Bit position for EPDC_PIGEON_5_0_MASK_CNT.
 #define BM_EPDC_PIGEON_5_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_PIGEON_5_0_MASK_CNT.
 
@@ -8975,7 +8532,6 @@ typedef union _hw_epdc_pigeon_5_0
 //! @brief Set the MASK_CNT field to a new value.
 #define BW_EPDC_PIGEON_5_0_MASK_CNT(v)   (HW_EPDC_PIGEON_5_0_WR((HW_EPDC_PIGEON_5_0_RD() & ~BM_EPDC_PIGEON_5_0_MASK_CNT) | BF_EPDC_PIGEON_5_0_MASK_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_5_0, field STATE_MASK[31:24] (RW)
@@ -8994,7 +8550,6 @@ typedef union _hw_epdc_pigeon_5_0
  * - LE = 0x80 - LINE END
  */
 //@{
-
 #define BP_EPDC_PIGEON_5_0_STATE_MASK      (24)      //!< Bit position for EPDC_PIGEON_5_0_STATE_MASK.
 #define BM_EPDC_PIGEON_5_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_PIGEON_5_0_STATE_MASK.
 
@@ -9020,7 +8575,6 @@ typedef union _hw_epdc_pigeon_5_0
 #define BV_EPDC_PIGEON_5_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_PIGEON_5_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_PIGEON_5_0_STATE_MASK__LE (0x80) //!< LINE END
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9074,7 +8628,6 @@ typedef union _hw_epdc_pigeon_5_1
  * - START_ACTIVE = 0x0 - start as active
  */
 //@{
-
 #define BP_EPDC_PIGEON_5_1_SET_CNT      (0)      //!< Bit position for EPDC_PIGEON_5_1_SET_CNT.
 #define BM_EPDC_PIGEON_5_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_PIGEON_5_1_SET_CNT.
 
@@ -9093,7 +8646,6 @@ typedef union _hw_epdc_pigeon_5_1
 #define BF_EPDC_PIGEON_5_1_SET_CNT_V(v) BF_EPDC_PIGEON_5_1_SET_CNT(BV_EPDC_PIGEON_5_1_SET_CNT__##v)
 
 #define BV_EPDC_PIGEON_5_1_SET_CNT__START_ACTIVE (0x0) //!< start as active
-
 //@}
 
 /*! @name Register EPDC_PIGEON_5_1, field CLR_CNT[31:16] (RW)
@@ -9104,7 +8656,6 @@ typedef union _hw_epdc_pigeon_5_1
  * - CLEAR_USING_MASK = 0x0 - keep active until mask off
  */
 //@{
-
 #define BP_EPDC_PIGEON_5_1_CLR_CNT      (16)      //!< Bit position for EPDC_PIGEON_5_1_CLR_CNT.
 #define BM_EPDC_PIGEON_5_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_PIGEON_5_1_CLR_CNT.
 
@@ -9123,7 +8674,6 @@ typedef union _hw_epdc_pigeon_5_1
 #define BF_EPDC_PIGEON_5_1_CLR_CNT_V(v) BF_EPDC_PIGEON_5_1_CLR_CNT(BV_EPDC_PIGEON_5_1_CLR_CNT__##v)
 
 #define BV_EPDC_PIGEON_5_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9184,7 +8734,6 @@ typedef union _hw_epdc_pigeon_5_2
  * - MASK = 0x3 - mask = sig_another AND other_masks
  */
 //@{
-
 #define BP_EPDC_PIGEON_5_2_SIG_LOGIC      (0)      //!< Bit position for EPDC_PIGEON_5_2_SIG_LOGIC.
 #define BM_EPDC_PIGEON_5_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_PIGEON_5_2_SIG_LOGIC.
 
@@ -9206,7 +8755,6 @@ typedef union _hw_epdc_pigeon_5_2
 #define BV_EPDC_PIGEON_5_2_SIG_LOGIC__AND (0x1) //!< sigout = sig_another AND this_sig
 #define BV_EPDC_PIGEON_5_2_SIG_LOGIC__OR (0x2) //!< sigout = sig_another OR this_sig
 #define BV_EPDC_PIGEON_5_2_SIG_LOGIC__MASK (0x3) //!< mask = sig_another AND other_masks
-
 //@}
 
 /*! @name Register EPDC_PIGEON_5_2, field SIG_ANOTHER[8:4] (RW)
@@ -9214,7 +8762,6 @@ typedef union _hw_epdc_pigeon_5_2
  * select another signal for logic operation or as mask or counter tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_5_2_SIG_ANOTHER      (4)      //!< Bit position for EPDC_PIGEON_5_2_SIG_ANOTHER.
 #define BM_EPDC_PIGEON_5_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_PIGEON_5_2_SIG_ANOTHER.
 
@@ -9228,7 +8775,6 @@ typedef union _hw_epdc_pigeon_5_2
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_PIGEON_5_2_SIG_ANOTHER(v)   (HW_EPDC_PIGEON_5_2_WR((HW_EPDC_PIGEON_5_2_RD() & ~BM_EPDC_PIGEON_5_2_SIG_ANOTHER) | BF_EPDC_PIGEON_5_2_SIG_ANOTHER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9284,7 +8830,6 @@ typedef union _hw_epdc_pigeon_6_0
  * enable pigeon mode on this signal
  */
 //@{
-
 #define BP_EPDC_PIGEON_6_0_EN      (0)      //!< Bit position for EPDC_PIGEON_6_0_EN.
 #define BM_EPDC_PIGEON_6_0_EN      (0x00000001)  //!< Bit mask for EPDC_PIGEON_6_0_EN.
 
@@ -9298,7 +8843,6 @@ typedef union _hw_epdc_pigeon_6_0
 //! @brief Set the EN field to a new value.
 #define BW_EPDC_PIGEON_6_0_EN(v)   (HW_EPDC_PIGEON_6_0_WR((HW_EPDC_PIGEON_6_0_RD() & ~BM_EPDC_PIGEON_6_0_EN) | BF_EPDC_PIGEON_6_0_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_6_0, field POL[1] (RW)
@@ -9310,7 +8854,6 @@ typedef union _hw_epdc_pigeon_6_0
  * - ACTIVE_LOW = 0x1 - inverted signal (active low)
  */
 //@{
-
 #define BP_EPDC_PIGEON_6_0_POL      (1)      //!< Bit position for EPDC_PIGEON_6_0_POL.
 #define BM_EPDC_PIGEON_6_0_POL      (0x00000002)  //!< Bit mask for EPDC_PIGEON_6_0_POL.
 
@@ -9330,7 +8873,6 @@ typedef union _hw_epdc_pigeon_6_0
 
 #define BV_EPDC_PIGEON_6_0_POL__ACTIVE_HIGH (0x0) //!< normal signal (active high)
 #define BV_EPDC_PIGEON_6_0_POL__ACTIVE_LOW (0x1) //!< inverted signal (active low)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_6_0, field INC_SEL[3:2] (RW)
@@ -9344,7 +8886,6 @@ typedef union _hw_epdc_pigeon_6_0
  * - SIG_ANOTHER = 0x3 - use another signal as tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_6_0_INC_SEL      (2)      //!< Bit position for EPDC_PIGEON_6_0_INC_SEL.
 #define BM_EPDC_PIGEON_6_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_PIGEON_6_0_INC_SEL.
 
@@ -9366,7 +8907,6 @@ typedef union _hw_epdc_pigeon_6_0
 #define BV_EPDC_PIGEON_6_0_INC_SEL__LINE (0x1) //!< line start pulse
 #define BV_EPDC_PIGEON_6_0_INC_SEL__FRAME (0x2) //!< frame start pulse
 #define BV_EPDC_PIGEON_6_0_INC_SEL__SIG_ANOTHER (0x3) //!< use another signal as tick event
-
 //@}
 
 /*! @name Register EPDC_PIGEON_6_0, field OFFSET[7:4] (RW)
@@ -9375,7 +8915,6 @@ typedef union _hw_epdc_pigeon_6_0
  * Supported range depends on panel mode
  */
 //@{
-
 #define BP_EPDC_PIGEON_6_0_OFFSET      (4)      //!< Bit position for EPDC_PIGEON_6_0_OFFSET.
 #define BM_EPDC_PIGEON_6_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_PIGEON_6_0_OFFSET.
 
@@ -9389,7 +8928,6 @@ typedef union _hw_epdc_pigeon_6_0
 //! @brief Set the OFFSET field to a new value.
 #define BW_EPDC_PIGEON_6_0_OFFSET(v)   (HW_EPDC_PIGEON_6_0_WR((HW_EPDC_PIGEON_6_0_RD() & ~BM_EPDC_PIGEON_6_0_OFFSET) | BF_EPDC_PIGEON_6_0_OFFSET(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_6_0, field MASK_CNT_SEL[11:8] (RW)
@@ -9407,7 +8945,6 @@ typedef union _hw_epdc_pigeon_6_0
  * - VCNT = 0x7 - vertical counter (line counter within one frame)
  */
 //@{
-
 #define BP_EPDC_PIGEON_6_0_MASK_CNT_SEL      (8)      //!< Bit position for EPDC_PIGEON_6_0_MASK_CNT_SEL.
 #define BM_EPDC_PIGEON_6_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_PIGEON_6_0_MASK_CNT_SEL.
 
@@ -9433,7 +8970,6 @@ typedef union _hw_epdc_pigeon_6_0
 #define BV_EPDC_PIGEON_6_0_MASK_CNT_SEL__FRAME_CYCLE (0x5) //!< frame cycle
 #define BV_EPDC_PIGEON_6_0_MASK_CNT_SEL__HCNT (0x6) //!< horizontal counter (pclk counter within one line )
 #define BV_EPDC_PIGEON_6_0_MASK_CNT_SEL__VCNT (0x7) //!< vertical counter (line counter within one frame)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_6_0, field MASK_CNT[23:12] (RW)
@@ -9442,7 +8978,6 @@ typedef union _hw_epdc_pigeon_6_0
  * counter start ticking. 0=disable
  */
 //@{
-
 #define BP_EPDC_PIGEON_6_0_MASK_CNT      (12)      //!< Bit position for EPDC_PIGEON_6_0_MASK_CNT.
 #define BM_EPDC_PIGEON_6_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_PIGEON_6_0_MASK_CNT.
 
@@ -9456,7 +8991,6 @@ typedef union _hw_epdc_pigeon_6_0
 //! @brief Set the MASK_CNT field to a new value.
 #define BW_EPDC_PIGEON_6_0_MASK_CNT(v)   (HW_EPDC_PIGEON_6_0_WR((HW_EPDC_PIGEON_6_0_RD() & ~BM_EPDC_PIGEON_6_0_MASK_CNT) | BF_EPDC_PIGEON_6_0_MASK_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_6_0, field STATE_MASK[31:24] (RW)
@@ -9475,7 +9009,6 @@ typedef union _hw_epdc_pigeon_6_0
  * - LE = 0x80 - LINE END
  */
 //@{
-
 #define BP_EPDC_PIGEON_6_0_STATE_MASK      (24)      //!< Bit position for EPDC_PIGEON_6_0_STATE_MASK.
 #define BM_EPDC_PIGEON_6_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_PIGEON_6_0_STATE_MASK.
 
@@ -9501,7 +9034,6 @@ typedef union _hw_epdc_pigeon_6_0
 #define BV_EPDC_PIGEON_6_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_PIGEON_6_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_PIGEON_6_0_STATE_MASK__LE (0x80) //!< LINE END
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9555,7 +9087,6 @@ typedef union _hw_epdc_pigeon_6_1
  * - START_ACTIVE = 0x0 - start as active
  */
 //@{
-
 #define BP_EPDC_PIGEON_6_1_SET_CNT      (0)      //!< Bit position for EPDC_PIGEON_6_1_SET_CNT.
 #define BM_EPDC_PIGEON_6_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_PIGEON_6_1_SET_CNT.
 
@@ -9574,7 +9105,6 @@ typedef union _hw_epdc_pigeon_6_1
 #define BF_EPDC_PIGEON_6_1_SET_CNT_V(v) BF_EPDC_PIGEON_6_1_SET_CNT(BV_EPDC_PIGEON_6_1_SET_CNT__##v)
 
 #define BV_EPDC_PIGEON_6_1_SET_CNT__START_ACTIVE (0x0) //!< start as active
-
 //@}
 
 /*! @name Register EPDC_PIGEON_6_1, field CLR_CNT[31:16] (RW)
@@ -9585,7 +9115,6 @@ typedef union _hw_epdc_pigeon_6_1
  * - CLEAR_USING_MASK = 0x0 - keep active until mask off
  */
 //@{
-
 #define BP_EPDC_PIGEON_6_1_CLR_CNT      (16)      //!< Bit position for EPDC_PIGEON_6_1_CLR_CNT.
 #define BM_EPDC_PIGEON_6_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_PIGEON_6_1_CLR_CNT.
 
@@ -9604,7 +9133,6 @@ typedef union _hw_epdc_pigeon_6_1
 #define BF_EPDC_PIGEON_6_1_CLR_CNT_V(v) BF_EPDC_PIGEON_6_1_CLR_CNT(BV_EPDC_PIGEON_6_1_CLR_CNT__##v)
 
 #define BV_EPDC_PIGEON_6_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9665,7 +9193,6 @@ typedef union _hw_epdc_pigeon_6_2
  * - MASK = 0x3 - mask = sig_another AND other_masks
  */
 //@{
-
 #define BP_EPDC_PIGEON_6_2_SIG_LOGIC      (0)      //!< Bit position for EPDC_PIGEON_6_2_SIG_LOGIC.
 #define BM_EPDC_PIGEON_6_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_PIGEON_6_2_SIG_LOGIC.
 
@@ -9687,7 +9214,6 @@ typedef union _hw_epdc_pigeon_6_2
 #define BV_EPDC_PIGEON_6_2_SIG_LOGIC__AND (0x1) //!< sigout = sig_another AND this_sig
 #define BV_EPDC_PIGEON_6_2_SIG_LOGIC__OR (0x2) //!< sigout = sig_another OR this_sig
 #define BV_EPDC_PIGEON_6_2_SIG_LOGIC__MASK (0x3) //!< mask = sig_another AND other_masks
-
 //@}
 
 /*! @name Register EPDC_PIGEON_6_2, field SIG_ANOTHER[8:4] (RW)
@@ -9695,7 +9221,6 @@ typedef union _hw_epdc_pigeon_6_2
  * select another signal for logic operation or as mask or counter tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_6_2_SIG_ANOTHER      (4)      //!< Bit position for EPDC_PIGEON_6_2_SIG_ANOTHER.
 #define BM_EPDC_PIGEON_6_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_PIGEON_6_2_SIG_ANOTHER.
 
@@ -9709,7 +9234,6 @@ typedef union _hw_epdc_pigeon_6_2
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_PIGEON_6_2_SIG_ANOTHER(v)   (HW_EPDC_PIGEON_6_2_WR((HW_EPDC_PIGEON_6_2_RD() & ~BM_EPDC_PIGEON_6_2_SIG_ANOTHER) | BF_EPDC_PIGEON_6_2_SIG_ANOTHER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -9765,7 +9289,6 @@ typedef union _hw_epdc_pigeon_7_0
  * enable pigeon mode on this signal
  */
 //@{
-
 #define BP_EPDC_PIGEON_7_0_EN      (0)      //!< Bit position for EPDC_PIGEON_7_0_EN.
 #define BM_EPDC_PIGEON_7_0_EN      (0x00000001)  //!< Bit mask for EPDC_PIGEON_7_0_EN.
 
@@ -9779,7 +9302,6 @@ typedef union _hw_epdc_pigeon_7_0
 //! @brief Set the EN field to a new value.
 #define BW_EPDC_PIGEON_7_0_EN(v)   (HW_EPDC_PIGEON_7_0_WR((HW_EPDC_PIGEON_7_0_RD() & ~BM_EPDC_PIGEON_7_0_EN) | BF_EPDC_PIGEON_7_0_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_7_0, field POL[1] (RW)
@@ -9791,7 +9313,6 @@ typedef union _hw_epdc_pigeon_7_0
  * - ACTIVE_LOW = 0x1 - inverted signal (active low)
  */
 //@{
-
 #define BP_EPDC_PIGEON_7_0_POL      (1)      //!< Bit position for EPDC_PIGEON_7_0_POL.
 #define BM_EPDC_PIGEON_7_0_POL      (0x00000002)  //!< Bit mask for EPDC_PIGEON_7_0_POL.
 
@@ -9811,7 +9332,6 @@ typedef union _hw_epdc_pigeon_7_0
 
 #define BV_EPDC_PIGEON_7_0_POL__ACTIVE_HIGH (0x0) //!< normal signal (active high)
 #define BV_EPDC_PIGEON_7_0_POL__ACTIVE_LOW (0x1) //!< inverted signal (active low)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_7_0, field INC_SEL[3:2] (RW)
@@ -9825,7 +9345,6 @@ typedef union _hw_epdc_pigeon_7_0
  * - SIG_ANOTHER = 0x3 - use another signal as tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_7_0_INC_SEL      (2)      //!< Bit position for EPDC_PIGEON_7_0_INC_SEL.
 #define BM_EPDC_PIGEON_7_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_PIGEON_7_0_INC_SEL.
 
@@ -9847,7 +9366,6 @@ typedef union _hw_epdc_pigeon_7_0
 #define BV_EPDC_PIGEON_7_0_INC_SEL__LINE (0x1) //!< line start pulse
 #define BV_EPDC_PIGEON_7_0_INC_SEL__FRAME (0x2) //!< frame start pulse
 #define BV_EPDC_PIGEON_7_0_INC_SEL__SIG_ANOTHER (0x3) //!< use another signal as tick event
-
 //@}
 
 /*! @name Register EPDC_PIGEON_7_0, field OFFSET[7:4] (RW)
@@ -9856,7 +9374,6 @@ typedef union _hw_epdc_pigeon_7_0
  * Supported range depends on panel mode
  */
 //@{
-
 #define BP_EPDC_PIGEON_7_0_OFFSET      (4)      //!< Bit position for EPDC_PIGEON_7_0_OFFSET.
 #define BM_EPDC_PIGEON_7_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_PIGEON_7_0_OFFSET.
 
@@ -9870,7 +9387,6 @@ typedef union _hw_epdc_pigeon_7_0
 //! @brief Set the OFFSET field to a new value.
 #define BW_EPDC_PIGEON_7_0_OFFSET(v)   (HW_EPDC_PIGEON_7_0_WR((HW_EPDC_PIGEON_7_0_RD() & ~BM_EPDC_PIGEON_7_0_OFFSET) | BF_EPDC_PIGEON_7_0_OFFSET(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_7_0, field MASK_CNT_SEL[11:8] (RW)
@@ -9888,7 +9404,6 @@ typedef union _hw_epdc_pigeon_7_0
  * - VCNT = 0x7 - vertical counter (line counter within one frame)
  */
 //@{
-
 #define BP_EPDC_PIGEON_7_0_MASK_CNT_SEL      (8)      //!< Bit position for EPDC_PIGEON_7_0_MASK_CNT_SEL.
 #define BM_EPDC_PIGEON_7_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_PIGEON_7_0_MASK_CNT_SEL.
 
@@ -9914,7 +9429,6 @@ typedef union _hw_epdc_pigeon_7_0
 #define BV_EPDC_PIGEON_7_0_MASK_CNT_SEL__FRAME_CYCLE (0x5) //!< frame cycle
 #define BV_EPDC_PIGEON_7_0_MASK_CNT_SEL__HCNT (0x6) //!< horizontal counter (pclk counter within one line )
 #define BV_EPDC_PIGEON_7_0_MASK_CNT_SEL__VCNT (0x7) //!< vertical counter (line counter within one frame)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_7_0, field MASK_CNT[23:12] (RW)
@@ -9923,7 +9437,6 @@ typedef union _hw_epdc_pigeon_7_0
  * counter start ticking. 0=disable
  */
 //@{
-
 #define BP_EPDC_PIGEON_7_0_MASK_CNT      (12)      //!< Bit position for EPDC_PIGEON_7_0_MASK_CNT.
 #define BM_EPDC_PIGEON_7_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_PIGEON_7_0_MASK_CNT.
 
@@ -9937,7 +9450,6 @@ typedef union _hw_epdc_pigeon_7_0
 //! @brief Set the MASK_CNT field to a new value.
 #define BW_EPDC_PIGEON_7_0_MASK_CNT(v)   (HW_EPDC_PIGEON_7_0_WR((HW_EPDC_PIGEON_7_0_RD() & ~BM_EPDC_PIGEON_7_0_MASK_CNT) | BF_EPDC_PIGEON_7_0_MASK_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_7_0, field STATE_MASK[31:24] (RW)
@@ -9956,7 +9468,6 @@ typedef union _hw_epdc_pigeon_7_0
  * - LE = 0x80 - LINE END
  */
 //@{
-
 #define BP_EPDC_PIGEON_7_0_STATE_MASK      (24)      //!< Bit position for EPDC_PIGEON_7_0_STATE_MASK.
 #define BM_EPDC_PIGEON_7_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_PIGEON_7_0_STATE_MASK.
 
@@ -9982,7 +9493,6 @@ typedef union _hw_epdc_pigeon_7_0
 #define BV_EPDC_PIGEON_7_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_PIGEON_7_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_PIGEON_7_0_STATE_MASK__LE (0x80) //!< LINE END
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10036,7 +9546,6 @@ typedef union _hw_epdc_pigeon_7_1
  * - START_ACTIVE = 0x0 - start as active
  */
 //@{
-
 #define BP_EPDC_PIGEON_7_1_SET_CNT      (0)      //!< Bit position for EPDC_PIGEON_7_1_SET_CNT.
 #define BM_EPDC_PIGEON_7_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_PIGEON_7_1_SET_CNT.
 
@@ -10055,7 +9564,6 @@ typedef union _hw_epdc_pigeon_7_1
 #define BF_EPDC_PIGEON_7_1_SET_CNT_V(v) BF_EPDC_PIGEON_7_1_SET_CNT(BV_EPDC_PIGEON_7_1_SET_CNT__##v)
 
 #define BV_EPDC_PIGEON_7_1_SET_CNT__START_ACTIVE (0x0) //!< start as active
-
 //@}
 
 /*! @name Register EPDC_PIGEON_7_1, field CLR_CNT[31:16] (RW)
@@ -10066,7 +9574,6 @@ typedef union _hw_epdc_pigeon_7_1
  * - CLEAR_USING_MASK = 0x0 - keep active until mask off
  */
 //@{
-
 #define BP_EPDC_PIGEON_7_1_CLR_CNT      (16)      //!< Bit position for EPDC_PIGEON_7_1_CLR_CNT.
 #define BM_EPDC_PIGEON_7_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_PIGEON_7_1_CLR_CNT.
 
@@ -10085,7 +9592,6 @@ typedef union _hw_epdc_pigeon_7_1
 #define BF_EPDC_PIGEON_7_1_CLR_CNT_V(v) BF_EPDC_PIGEON_7_1_CLR_CNT(BV_EPDC_PIGEON_7_1_CLR_CNT__##v)
 
 #define BV_EPDC_PIGEON_7_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10146,7 +9652,6 @@ typedef union _hw_epdc_pigeon_7_2
  * - MASK = 0x3 - mask = sig_another AND other_masks
  */
 //@{
-
 #define BP_EPDC_PIGEON_7_2_SIG_LOGIC      (0)      //!< Bit position for EPDC_PIGEON_7_2_SIG_LOGIC.
 #define BM_EPDC_PIGEON_7_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_PIGEON_7_2_SIG_LOGIC.
 
@@ -10168,7 +9673,6 @@ typedef union _hw_epdc_pigeon_7_2
 #define BV_EPDC_PIGEON_7_2_SIG_LOGIC__AND (0x1) //!< sigout = sig_another AND this_sig
 #define BV_EPDC_PIGEON_7_2_SIG_LOGIC__OR (0x2) //!< sigout = sig_another OR this_sig
 #define BV_EPDC_PIGEON_7_2_SIG_LOGIC__MASK (0x3) //!< mask = sig_another AND other_masks
-
 //@}
 
 /*! @name Register EPDC_PIGEON_7_2, field SIG_ANOTHER[8:4] (RW)
@@ -10176,7 +9680,6 @@ typedef union _hw_epdc_pigeon_7_2
  * select another signal for logic operation or as mask or counter tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_7_2_SIG_ANOTHER      (4)      //!< Bit position for EPDC_PIGEON_7_2_SIG_ANOTHER.
 #define BM_EPDC_PIGEON_7_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_PIGEON_7_2_SIG_ANOTHER.
 
@@ -10190,7 +9693,6 @@ typedef union _hw_epdc_pigeon_7_2
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_PIGEON_7_2_SIG_ANOTHER(v)   (HW_EPDC_PIGEON_7_2_WR((HW_EPDC_PIGEON_7_2_RD() & ~BM_EPDC_PIGEON_7_2_SIG_ANOTHER) | BF_EPDC_PIGEON_7_2_SIG_ANOTHER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10246,7 +9748,6 @@ typedef union _hw_epdc_pigeon_8_0
  * enable pigeon mode on this signal
  */
 //@{
-
 #define BP_EPDC_PIGEON_8_0_EN      (0)      //!< Bit position for EPDC_PIGEON_8_0_EN.
 #define BM_EPDC_PIGEON_8_0_EN      (0x00000001)  //!< Bit mask for EPDC_PIGEON_8_0_EN.
 
@@ -10260,7 +9761,6 @@ typedef union _hw_epdc_pigeon_8_0
 //! @brief Set the EN field to a new value.
 #define BW_EPDC_PIGEON_8_0_EN(v)   (HW_EPDC_PIGEON_8_0_WR((HW_EPDC_PIGEON_8_0_RD() & ~BM_EPDC_PIGEON_8_0_EN) | BF_EPDC_PIGEON_8_0_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_8_0, field POL[1] (RW)
@@ -10272,7 +9772,6 @@ typedef union _hw_epdc_pigeon_8_0
  * - ACTIVE_LOW = 0x1 - inverted signal (active low)
  */
 //@{
-
 #define BP_EPDC_PIGEON_8_0_POL      (1)      //!< Bit position for EPDC_PIGEON_8_0_POL.
 #define BM_EPDC_PIGEON_8_0_POL      (0x00000002)  //!< Bit mask for EPDC_PIGEON_8_0_POL.
 
@@ -10292,7 +9791,6 @@ typedef union _hw_epdc_pigeon_8_0
 
 #define BV_EPDC_PIGEON_8_0_POL__ACTIVE_HIGH (0x0) //!< normal signal (active high)
 #define BV_EPDC_PIGEON_8_0_POL__ACTIVE_LOW (0x1) //!< inverted signal (active low)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_8_0, field INC_SEL[3:2] (RW)
@@ -10306,7 +9804,6 @@ typedef union _hw_epdc_pigeon_8_0
  * - SIG_ANOTHER = 0x3 - use another signal as tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_8_0_INC_SEL      (2)      //!< Bit position for EPDC_PIGEON_8_0_INC_SEL.
 #define BM_EPDC_PIGEON_8_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_PIGEON_8_0_INC_SEL.
 
@@ -10328,7 +9825,6 @@ typedef union _hw_epdc_pigeon_8_0
 #define BV_EPDC_PIGEON_8_0_INC_SEL__LINE (0x1) //!< line start pulse
 #define BV_EPDC_PIGEON_8_0_INC_SEL__FRAME (0x2) //!< frame start pulse
 #define BV_EPDC_PIGEON_8_0_INC_SEL__SIG_ANOTHER (0x3) //!< use another signal as tick event
-
 //@}
 
 /*! @name Register EPDC_PIGEON_8_0, field OFFSET[7:4] (RW)
@@ -10337,7 +9833,6 @@ typedef union _hw_epdc_pigeon_8_0
  * Supported range depends on panel mode
  */
 //@{
-
 #define BP_EPDC_PIGEON_8_0_OFFSET      (4)      //!< Bit position for EPDC_PIGEON_8_0_OFFSET.
 #define BM_EPDC_PIGEON_8_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_PIGEON_8_0_OFFSET.
 
@@ -10351,7 +9846,6 @@ typedef union _hw_epdc_pigeon_8_0
 //! @brief Set the OFFSET field to a new value.
 #define BW_EPDC_PIGEON_8_0_OFFSET(v)   (HW_EPDC_PIGEON_8_0_WR((HW_EPDC_PIGEON_8_0_RD() & ~BM_EPDC_PIGEON_8_0_OFFSET) | BF_EPDC_PIGEON_8_0_OFFSET(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_8_0, field MASK_CNT_SEL[11:8] (RW)
@@ -10369,7 +9863,6 @@ typedef union _hw_epdc_pigeon_8_0
  * - VCNT = 0x7 - vertical counter (line counter within one frame)
  */
 //@{
-
 #define BP_EPDC_PIGEON_8_0_MASK_CNT_SEL      (8)      //!< Bit position for EPDC_PIGEON_8_0_MASK_CNT_SEL.
 #define BM_EPDC_PIGEON_8_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_PIGEON_8_0_MASK_CNT_SEL.
 
@@ -10395,7 +9888,6 @@ typedef union _hw_epdc_pigeon_8_0
 #define BV_EPDC_PIGEON_8_0_MASK_CNT_SEL__FRAME_CYCLE (0x5) //!< frame cycle
 #define BV_EPDC_PIGEON_8_0_MASK_CNT_SEL__HCNT (0x6) //!< horizontal counter (pclk counter within one line )
 #define BV_EPDC_PIGEON_8_0_MASK_CNT_SEL__VCNT (0x7) //!< vertical counter (line counter within one frame)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_8_0, field MASK_CNT[23:12] (RW)
@@ -10404,7 +9896,6 @@ typedef union _hw_epdc_pigeon_8_0
  * counter start ticking. 0=disable
  */
 //@{
-
 #define BP_EPDC_PIGEON_8_0_MASK_CNT      (12)      //!< Bit position for EPDC_PIGEON_8_0_MASK_CNT.
 #define BM_EPDC_PIGEON_8_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_PIGEON_8_0_MASK_CNT.
 
@@ -10418,7 +9909,6 @@ typedef union _hw_epdc_pigeon_8_0
 //! @brief Set the MASK_CNT field to a new value.
 #define BW_EPDC_PIGEON_8_0_MASK_CNT(v)   (HW_EPDC_PIGEON_8_0_WR((HW_EPDC_PIGEON_8_0_RD() & ~BM_EPDC_PIGEON_8_0_MASK_CNT) | BF_EPDC_PIGEON_8_0_MASK_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_8_0, field STATE_MASK[31:24] (RW)
@@ -10437,7 +9927,6 @@ typedef union _hw_epdc_pigeon_8_0
  * - LE = 0x80 - LINE END
  */
 //@{
-
 #define BP_EPDC_PIGEON_8_0_STATE_MASK      (24)      //!< Bit position for EPDC_PIGEON_8_0_STATE_MASK.
 #define BM_EPDC_PIGEON_8_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_PIGEON_8_0_STATE_MASK.
 
@@ -10463,7 +9952,6 @@ typedef union _hw_epdc_pigeon_8_0
 #define BV_EPDC_PIGEON_8_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_PIGEON_8_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_PIGEON_8_0_STATE_MASK__LE (0x80) //!< LINE END
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10517,7 +10005,6 @@ typedef union _hw_epdc_pigeon_8_1
  * - START_ACTIVE = 0x0 - start as active
  */
 //@{
-
 #define BP_EPDC_PIGEON_8_1_SET_CNT      (0)      //!< Bit position for EPDC_PIGEON_8_1_SET_CNT.
 #define BM_EPDC_PIGEON_8_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_PIGEON_8_1_SET_CNT.
 
@@ -10536,7 +10023,6 @@ typedef union _hw_epdc_pigeon_8_1
 #define BF_EPDC_PIGEON_8_1_SET_CNT_V(v) BF_EPDC_PIGEON_8_1_SET_CNT(BV_EPDC_PIGEON_8_1_SET_CNT__##v)
 
 #define BV_EPDC_PIGEON_8_1_SET_CNT__START_ACTIVE (0x0) //!< start as active
-
 //@}
 
 /*! @name Register EPDC_PIGEON_8_1, field CLR_CNT[31:16] (RW)
@@ -10547,7 +10033,6 @@ typedef union _hw_epdc_pigeon_8_1
  * - CLEAR_USING_MASK = 0x0 - keep active until mask off
  */
 //@{
-
 #define BP_EPDC_PIGEON_8_1_CLR_CNT      (16)      //!< Bit position for EPDC_PIGEON_8_1_CLR_CNT.
 #define BM_EPDC_PIGEON_8_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_PIGEON_8_1_CLR_CNT.
 
@@ -10566,7 +10051,6 @@ typedef union _hw_epdc_pigeon_8_1
 #define BF_EPDC_PIGEON_8_1_CLR_CNT_V(v) BF_EPDC_PIGEON_8_1_CLR_CNT(BV_EPDC_PIGEON_8_1_CLR_CNT__##v)
 
 #define BV_EPDC_PIGEON_8_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10627,7 +10111,6 @@ typedef union _hw_epdc_pigeon_8_2
  * - MASK = 0x3 - mask = sig_another AND other_masks
  */
 //@{
-
 #define BP_EPDC_PIGEON_8_2_SIG_LOGIC      (0)      //!< Bit position for EPDC_PIGEON_8_2_SIG_LOGIC.
 #define BM_EPDC_PIGEON_8_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_PIGEON_8_2_SIG_LOGIC.
 
@@ -10649,7 +10132,6 @@ typedef union _hw_epdc_pigeon_8_2
 #define BV_EPDC_PIGEON_8_2_SIG_LOGIC__AND (0x1) //!< sigout = sig_another AND this_sig
 #define BV_EPDC_PIGEON_8_2_SIG_LOGIC__OR (0x2) //!< sigout = sig_another OR this_sig
 #define BV_EPDC_PIGEON_8_2_SIG_LOGIC__MASK (0x3) //!< mask = sig_another AND other_masks
-
 //@}
 
 /*! @name Register EPDC_PIGEON_8_2, field SIG_ANOTHER[8:4] (RW)
@@ -10657,7 +10139,6 @@ typedef union _hw_epdc_pigeon_8_2
  * select another signal for logic operation or as mask or counter tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_8_2_SIG_ANOTHER      (4)      //!< Bit position for EPDC_PIGEON_8_2_SIG_ANOTHER.
 #define BM_EPDC_PIGEON_8_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_PIGEON_8_2_SIG_ANOTHER.
 
@@ -10671,7 +10152,6 @@ typedef union _hw_epdc_pigeon_8_2
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_PIGEON_8_2_SIG_ANOTHER(v)   (HW_EPDC_PIGEON_8_2_WR((HW_EPDC_PIGEON_8_2_RD() & ~BM_EPDC_PIGEON_8_2_SIG_ANOTHER) | BF_EPDC_PIGEON_8_2_SIG_ANOTHER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10727,7 +10207,6 @@ typedef union _hw_epdc_pigeon_9_0
  * enable pigeon mode on this signal
  */
 //@{
-
 #define BP_EPDC_PIGEON_9_0_EN      (0)      //!< Bit position for EPDC_PIGEON_9_0_EN.
 #define BM_EPDC_PIGEON_9_0_EN      (0x00000001)  //!< Bit mask for EPDC_PIGEON_9_0_EN.
 
@@ -10741,7 +10220,6 @@ typedef union _hw_epdc_pigeon_9_0
 //! @brief Set the EN field to a new value.
 #define BW_EPDC_PIGEON_9_0_EN(v)   (HW_EPDC_PIGEON_9_0_WR((HW_EPDC_PIGEON_9_0_RD() & ~BM_EPDC_PIGEON_9_0_EN) | BF_EPDC_PIGEON_9_0_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_9_0, field POL[1] (RW)
@@ -10753,7 +10231,6 @@ typedef union _hw_epdc_pigeon_9_0
  * - ACTIVE_LOW = 0x1 - inverted signal (active low)
  */
 //@{
-
 #define BP_EPDC_PIGEON_9_0_POL      (1)      //!< Bit position for EPDC_PIGEON_9_0_POL.
 #define BM_EPDC_PIGEON_9_0_POL      (0x00000002)  //!< Bit mask for EPDC_PIGEON_9_0_POL.
 
@@ -10773,7 +10250,6 @@ typedef union _hw_epdc_pigeon_9_0
 
 #define BV_EPDC_PIGEON_9_0_POL__ACTIVE_HIGH (0x0) //!< normal signal (active high)
 #define BV_EPDC_PIGEON_9_0_POL__ACTIVE_LOW (0x1) //!< inverted signal (active low)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_9_0, field INC_SEL[3:2] (RW)
@@ -10787,7 +10263,6 @@ typedef union _hw_epdc_pigeon_9_0
  * - SIG_ANOTHER = 0x3 - use another signal as tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_9_0_INC_SEL      (2)      //!< Bit position for EPDC_PIGEON_9_0_INC_SEL.
 #define BM_EPDC_PIGEON_9_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_PIGEON_9_0_INC_SEL.
 
@@ -10809,7 +10284,6 @@ typedef union _hw_epdc_pigeon_9_0
 #define BV_EPDC_PIGEON_9_0_INC_SEL__LINE (0x1) //!< line start pulse
 #define BV_EPDC_PIGEON_9_0_INC_SEL__FRAME (0x2) //!< frame start pulse
 #define BV_EPDC_PIGEON_9_0_INC_SEL__SIG_ANOTHER (0x3) //!< use another signal as tick event
-
 //@}
 
 /*! @name Register EPDC_PIGEON_9_0, field OFFSET[7:4] (RW)
@@ -10818,7 +10292,6 @@ typedef union _hw_epdc_pigeon_9_0
  * Supported range depends on panel mode
  */
 //@{
-
 #define BP_EPDC_PIGEON_9_0_OFFSET      (4)      //!< Bit position for EPDC_PIGEON_9_0_OFFSET.
 #define BM_EPDC_PIGEON_9_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_PIGEON_9_0_OFFSET.
 
@@ -10832,7 +10305,6 @@ typedef union _hw_epdc_pigeon_9_0
 //! @brief Set the OFFSET field to a new value.
 #define BW_EPDC_PIGEON_9_0_OFFSET(v)   (HW_EPDC_PIGEON_9_0_WR((HW_EPDC_PIGEON_9_0_RD() & ~BM_EPDC_PIGEON_9_0_OFFSET) | BF_EPDC_PIGEON_9_0_OFFSET(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_9_0, field MASK_CNT_SEL[11:8] (RW)
@@ -10850,7 +10322,6 @@ typedef union _hw_epdc_pigeon_9_0
  * - VCNT = 0x7 - vertical counter (line counter within one frame)
  */
 //@{
-
 #define BP_EPDC_PIGEON_9_0_MASK_CNT_SEL      (8)      //!< Bit position for EPDC_PIGEON_9_0_MASK_CNT_SEL.
 #define BM_EPDC_PIGEON_9_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_PIGEON_9_0_MASK_CNT_SEL.
 
@@ -10876,7 +10347,6 @@ typedef union _hw_epdc_pigeon_9_0
 #define BV_EPDC_PIGEON_9_0_MASK_CNT_SEL__FRAME_CYCLE (0x5) //!< frame cycle
 #define BV_EPDC_PIGEON_9_0_MASK_CNT_SEL__HCNT (0x6) //!< horizontal counter (pclk counter within one line )
 #define BV_EPDC_PIGEON_9_0_MASK_CNT_SEL__VCNT (0x7) //!< vertical counter (line counter within one frame)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_9_0, field MASK_CNT[23:12] (RW)
@@ -10885,7 +10355,6 @@ typedef union _hw_epdc_pigeon_9_0
  * counter start ticking. 0=disable
  */
 //@{
-
 #define BP_EPDC_PIGEON_9_0_MASK_CNT      (12)      //!< Bit position for EPDC_PIGEON_9_0_MASK_CNT.
 #define BM_EPDC_PIGEON_9_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_PIGEON_9_0_MASK_CNT.
 
@@ -10899,7 +10368,6 @@ typedef union _hw_epdc_pigeon_9_0
 //! @brief Set the MASK_CNT field to a new value.
 #define BW_EPDC_PIGEON_9_0_MASK_CNT(v)   (HW_EPDC_PIGEON_9_0_WR((HW_EPDC_PIGEON_9_0_RD() & ~BM_EPDC_PIGEON_9_0_MASK_CNT) | BF_EPDC_PIGEON_9_0_MASK_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_9_0, field STATE_MASK[31:24] (RW)
@@ -10918,7 +10386,6 @@ typedef union _hw_epdc_pigeon_9_0
  * - LE = 0x80 - LINE END
  */
 //@{
-
 #define BP_EPDC_PIGEON_9_0_STATE_MASK      (24)      //!< Bit position for EPDC_PIGEON_9_0_STATE_MASK.
 #define BM_EPDC_PIGEON_9_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_PIGEON_9_0_STATE_MASK.
 
@@ -10944,7 +10411,6 @@ typedef union _hw_epdc_pigeon_9_0
 #define BV_EPDC_PIGEON_9_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_PIGEON_9_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_PIGEON_9_0_STATE_MASK__LE (0x80) //!< LINE END
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -10998,7 +10464,6 @@ typedef union _hw_epdc_pigeon_9_1
  * - START_ACTIVE = 0x0 - start as active
  */
 //@{
-
 #define BP_EPDC_PIGEON_9_1_SET_CNT      (0)      //!< Bit position for EPDC_PIGEON_9_1_SET_CNT.
 #define BM_EPDC_PIGEON_9_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_PIGEON_9_1_SET_CNT.
 
@@ -11017,7 +10482,6 @@ typedef union _hw_epdc_pigeon_9_1
 #define BF_EPDC_PIGEON_9_1_SET_CNT_V(v) BF_EPDC_PIGEON_9_1_SET_CNT(BV_EPDC_PIGEON_9_1_SET_CNT__##v)
 
 #define BV_EPDC_PIGEON_9_1_SET_CNT__START_ACTIVE (0x0) //!< start as active
-
 //@}
 
 /*! @name Register EPDC_PIGEON_9_1, field CLR_CNT[31:16] (RW)
@@ -11028,7 +10492,6 @@ typedef union _hw_epdc_pigeon_9_1
  * - CLEAR_USING_MASK = 0x0 - keep active until mask off
  */
 //@{
-
 #define BP_EPDC_PIGEON_9_1_CLR_CNT      (16)      //!< Bit position for EPDC_PIGEON_9_1_CLR_CNT.
 #define BM_EPDC_PIGEON_9_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_PIGEON_9_1_CLR_CNT.
 
@@ -11047,7 +10510,6 @@ typedef union _hw_epdc_pigeon_9_1
 #define BF_EPDC_PIGEON_9_1_CLR_CNT_V(v) BF_EPDC_PIGEON_9_1_CLR_CNT(BV_EPDC_PIGEON_9_1_CLR_CNT__##v)
 
 #define BV_EPDC_PIGEON_9_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11108,7 +10570,6 @@ typedef union _hw_epdc_pigeon_9_2
  * - MASK = 0x3 - mask = sig_another AND other_masks
  */
 //@{
-
 #define BP_EPDC_PIGEON_9_2_SIG_LOGIC      (0)      //!< Bit position for EPDC_PIGEON_9_2_SIG_LOGIC.
 #define BM_EPDC_PIGEON_9_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_PIGEON_9_2_SIG_LOGIC.
 
@@ -11130,7 +10591,6 @@ typedef union _hw_epdc_pigeon_9_2
 #define BV_EPDC_PIGEON_9_2_SIG_LOGIC__AND (0x1) //!< sigout = sig_another AND this_sig
 #define BV_EPDC_PIGEON_9_2_SIG_LOGIC__OR (0x2) //!< sigout = sig_another OR this_sig
 #define BV_EPDC_PIGEON_9_2_SIG_LOGIC__MASK (0x3) //!< mask = sig_another AND other_masks
-
 //@}
 
 /*! @name Register EPDC_PIGEON_9_2, field SIG_ANOTHER[8:4] (RW)
@@ -11138,7 +10598,6 @@ typedef union _hw_epdc_pigeon_9_2
  * select another signal for logic operation or as mask or counter tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_9_2_SIG_ANOTHER      (4)      //!< Bit position for EPDC_PIGEON_9_2_SIG_ANOTHER.
 #define BM_EPDC_PIGEON_9_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_PIGEON_9_2_SIG_ANOTHER.
 
@@ -11152,7 +10611,6 @@ typedef union _hw_epdc_pigeon_9_2
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_PIGEON_9_2_SIG_ANOTHER(v)   (HW_EPDC_PIGEON_9_2_WR((HW_EPDC_PIGEON_9_2_RD() & ~BM_EPDC_PIGEON_9_2_SIG_ANOTHER) | BF_EPDC_PIGEON_9_2_SIG_ANOTHER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11208,7 +10666,6 @@ typedef union _hw_epdc_pigeon_10_0
  * enable pigeon mode on this signal
  */
 //@{
-
 #define BP_EPDC_PIGEON_10_0_EN      (0)      //!< Bit position for EPDC_PIGEON_10_0_EN.
 #define BM_EPDC_PIGEON_10_0_EN      (0x00000001)  //!< Bit mask for EPDC_PIGEON_10_0_EN.
 
@@ -11222,7 +10679,6 @@ typedef union _hw_epdc_pigeon_10_0
 //! @brief Set the EN field to a new value.
 #define BW_EPDC_PIGEON_10_0_EN(v)   (HW_EPDC_PIGEON_10_0_WR((HW_EPDC_PIGEON_10_0_RD() & ~BM_EPDC_PIGEON_10_0_EN) | BF_EPDC_PIGEON_10_0_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_10_0, field POL[1] (RW)
@@ -11234,7 +10690,6 @@ typedef union _hw_epdc_pigeon_10_0
  * - ACTIVE_LOW = 0x1 - inverted signal (active low)
  */
 //@{
-
 #define BP_EPDC_PIGEON_10_0_POL      (1)      //!< Bit position for EPDC_PIGEON_10_0_POL.
 #define BM_EPDC_PIGEON_10_0_POL      (0x00000002)  //!< Bit mask for EPDC_PIGEON_10_0_POL.
 
@@ -11254,7 +10709,6 @@ typedef union _hw_epdc_pigeon_10_0
 
 #define BV_EPDC_PIGEON_10_0_POL__ACTIVE_HIGH (0x0) //!< normal signal (active high)
 #define BV_EPDC_PIGEON_10_0_POL__ACTIVE_LOW (0x1) //!< inverted signal (active low)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_10_0, field INC_SEL[3:2] (RW)
@@ -11268,7 +10722,6 @@ typedef union _hw_epdc_pigeon_10_0
  * - SIG_ANOTHER = 0x3 - use another signal as tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_10_0_INC_SEL      (2)      //!< Bit position for EPDC_PIGEON_10_0_INC_SEL.
 #define BM_EPDC_PIGEON_10_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_PIGEON_10_0_INC_SEL.
 
@@ -11290,7 +10743,6 @@ typedef union _hw_epdc_pigeon_10_0
 #define BV_EPDC_PIGEON_10_0_INC_SEL__LINE (0x1) //!< line start pulse
 #define BV_EPDC_PIGEON_10_0_INC_SEL__FRAME (0x2) //!< frame start pulse
 #define BV_EPDC_PIGEON_10_0_INC_SEL__SIG_ANOTHER (0x3) //!< use another signal as tick event
-
 //@}
 
 /*! @name Register EPDC_PIGEON_10_0, field OFFSET[7:4] (RW)
@@ -11299,7 +10751,6 @@ typedef union _hw_epdc_pigeon_10_0
  * Supported range depends on panel mode
  */
 //@{
-
 #define BP_EPDC_PIGEON_10_0_OFFSET      (4)      //!< Bit position for EPDC_PIGEON_10_0_OFFSET.
 #define BM_EPDC_PIGEON_10_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_PIGEON_10_0_OFFSET.
 
@@ -11313,7 +10764,6 @@ typedef union _hw_epdc_pigeon_10_0
 //! @brief Set the OFFSET field to a new value.
 #define BW_EPDC_PIGEON_10_0_OFFSET(v)   (HW_EPDC_PIGEON_10_0_WR((HW_EPDC_PIGEON_10_0_RD() & ~BM_EPDC_PIGEON_10_0_OFFSET) | BF_EPDC_PIGEON_10_0_OFFSET(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_10_0, field MASK_CNT_SEL[11:8] (RW)
@@ -11331,7 +10781,6 @@ typedef union _hw_epdc_pigeon_10_0
  * - VCNT = 0x7 - vertical counter (line counter within one frame)
  */
 //@{
-
 #define BP_EPDC_PIGEON_10_0_MASK_CNT_SEL      (8)      //!< Bit position for EPDC_PIGEON_10_0_MASK_CNT_SEL.
 #define BM_EPDC_PIGEON_10_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_PIGEON_10_0_MASK_CNT_SEL.
 
@@ -11357,7 +10806,6 @@ typedef union _hw_epdc_pigeon_10_0
 #define BV_EPDC_PIGEON_10_0_MASK_CNT_SEL__FRAME_CYCLE (0x5) //!< frame cycle
 #define BV_EPDC_PIGEON_10_0_MASK_CNT_SEL__HCNT (0x6) //!< horizontal counter (pclk counter within one line )
 #define BV_EPDC_PIGEON_10_0_MASK_CNT_SEL__VCNT (0x7) //!< vertical counter (line counter within one frame)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_10_0, field MASK_CNT[23:12] (RW)
@@ -11366,7 +10814,6 @@ typedef union _hw_epdc_pigeon_10_0
  * counter start ticking. 0=disable
  */
 //@{
-
 #define BP_EPDC_PIGEON_10_0_MASK_CNT      (12)      //!< Bit position for EPDC_PIGEON_10_0_MASK_CNT.
 #define BM_EPDC_PIGEON_10_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_PIGEON_10_0_MASK_CNT.
 
@@ -11380,7 +10827,6 @@ typedef union _hw_epdc_pigeon_10_0
 //! @brief Set the MASK_CNT field to a new value.
 #define BW_EPDC_PIGEON_10_0_MASK_CNT(v)   (HW_EPDC_PIGEON_10_0_WR((HW_EPDC_PIGEON_10_0_RD() & ~BM_EPDC_PIGEON_10_0_MASK_CNT) | BF_EPDC_PIGEON_10_0_MASK_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_10_0, field STATE_MASK[31:24] (RW)
@@ -11399,7 +10845,6 @@ typedef union _hw_epdc_pigeon_10_0
  * - LE = 0x80 - LINE END
  */
 //@{
-
 #define BP_EPDC_PIGEON_10_0_STATE_MASK      (24)      //!< Bit position for EPDC_PIGEON_10_0_STATE_MASK.
 #define BM_EPDC_PIGEON_10_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_PIGEON_10_0_STATE_MASK.
 
@@ -11425,7 +10870,6 @@ typedef union _hw_epdc_pigeon_10_0
 #define BV_EPDC_PIGEON_10_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_PIGEON_10_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_PIGEON_10_0_STATE_MASK__LE (0x80) //!< LINE END
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11479,7 +10923,6 @@ typedef union _hw_epdc_pigeon_10_1
  * - START_ACTIVE = 0x0 - start as active
  */
 //@{
-
 #define BP_EPDC_PIGEON_10_1_SET_CNT      (0)      //!< Bit position for EPDC_PIGEON_10_1_SET_CNT.
 #define BM_EPDC_PIGEON_10_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_PIGEON_10_1_SET_CNT.
 
@@ -11498,7 +10941,6 @@ typedef union _hw_epdc_pigeon_10_1
 #define BF_EPDC_PIGEON_10_1_SET_CNT_V(v) BF_EPDC_PIGEON_10_1_SET_CNT(BV_EPDC_PIGEON_10_1_SET_CNT__##v)
 
 #define BV_EPDC_PIGEON_10_1_SET_CNT__START_ACTIVE (0x0) //!< start as active
-
 //@}
 
 /*! @name Register EPDC_PIGEON_10_1, field CLR_CNT[31:16] (RW)
@@ -11509,7 +10951,6 @@ typedef union _hw_epdc_pigeon_10_1
  * - CLEAR_USING_MASK = 0x0 - keep active until mask off
  */
 //@{
-
 #define BP_EPDC_PIGEON_10_1_CLR_CNT      (16)      //!< Bit position for EPDC_PIGEON_10_1_CLR_CNT.
 #define BM_EPDC_PIGEON_10_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_PIGEON_10_1_CLR_CNT.
 
@@ -11528,7 +10969,6 @@ typedef union _hw_epdc_pigeon_10_1
 #define BF_EPDC_PIGEON_10_1_CLR_CNT_V(v) BF_EPDC_PIGEON_10_1_CLR_CNT(BV_EPDC_PIGEON_10_1_CLR_CNT__##v)
 
 #define BV_EPDC_PIGEON_10_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11589,7 +11029,6 @@ typedef union _hw_epdc_pigeon_10_2
  * - MASK = 0x3 - mask = sig_another AND other_masks
  */
 //@{
-
 #define BP_EPDC_PIGEON_10_2_SIG_LOGIC      (0)      //!< Bit position for EPDC_PIGEON_10_2_SIG_LOGIC.
 #define BM_EPDC_PIGEON_10_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_PIGEON_10_2_SIG_LOGIC.
 
@@ -11611,7 +11050,6 @@ typedef union _hw_epdc_pigeon_10_2
 #define BV_EPDC_PIGEON_10_2_SIG_LOGIC__AND (0x1) //!< sigout = sig_another AND this_sig
 #define BV_EPDC_PIGEON_10_2_SIG_LOGIC__OR (0x2) //!< sigout = sig_another OR this_sig
 #define BV_EPDC_PIGEON_10_2_SIG_LOGIC__MASK (0x3) //!< mask = sig_another AND other_masks
-
 //@}
 
 /*! @name Register EPDC_PIGEON_10_2, field SIG_ANOTHER[8:4] (RW)
@@ -11619,7 +11057,6 @@ typedef union _hw_epdc_pigeon_10_2
  * select another signal for logic operation or as mask or counter tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_10_2_SIG_ANOTHER      (4)      //!< Bit position for EPDC_PIGEON_10_2_SIG_ANOTHER.
 #define BM_EPDC_PIGEON_10_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_PIGEON_10_2_SIG_ANOTHER.
 
@@ -11633,7 +11070,6 @@ typedef union _hw_epdc_pigeon_10_2
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_PIGEON_10_2_SIG_ANOTHER(v)   (HW_EPDC_PIGEON_10_2_WR((HW_EPDC_PIGEON_10_2_RD() & ~BM_EPDC_PIGEON_10_2_SIG_ANOTHER) | BF_EPDC_PIGEON_10_2_SIG_ANOTHER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11689,7 +11125,6 @@ typedef union _hw_epdc_pigeon_11_0
  * enable pigeon mode on this signal
  */
 //@{
-
 #define BP_EPDC_PIGEON_11_0_EN      (0)      //!< Bit position for EPDC_PIGEON_11_0_EN.
 #define BM_EPDC_PIGEON_11_0_EN      (0x00000001)  //!< Bit mask for EPDC_PIGEON_11_0_EN.
 
@@ -11703,7 +11138,6 @@ typedef union _hw_epdc_pigeon_11_0
 //! @brief Set the EN field to a new value.
 #define BW_EPDC_PIGEON_11_0_EN(v)   (HW_EPDC_PIGEON_11_0_WR((HW_EPDC_PIGEON_11_0_RD() & ~BM_EPDC_PIGEON_11_0_EN) | BF_EPDC_PIGEON_11_0_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_11_0, field POL[1] (RW)
@@ -11715,7 +11149,6 @@ typedef union _hw_epdc_pigeon_11_0
  * - ACTIVE_LOW = 0x1 - inverted signal (active low)
  */
 //@{
-
 #define BP_EPDC_PIGEON_11_0_POL      (1)      //!< Bit position for EPDC_PIGEON_11_0_POL.
 #define BM_EPDC_PIGEON_11_0_POL      (0x00000002)  //!< Bit mask for EPDC_PIGEON_11_0_POL.
 
@@ -11735,7 +11168,6 @@ typedef union _hw_epdc_pigeon_11_0
 
 #define BV_EPDC_PIGEON_11_0_POL__ACTIVE_HIGH (0x0) //!< normal signal (active high)
 #define BV_EPDC_PIGEON_11_0_POL__ACTIVE_LOW (0x1) //!< inverted signal (active low)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_11_0, field INC_SEL[3:2] (RW)
@@ -11749,7 +11181,6 @@ typedef union _hw_epdc_pigeon_11_0
  * - SIG_ANOTHER = 0x3 - use another signal as tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_11_0_INC_SEL      (2)      //!< Bit position for EPDC_PIGEON_11_0_INC_SEL.
 #define BM_EPDC_PIGEON_11_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_PIGEON_11_0_INC_SEL.
 
@@ -11771,7 +11202,6 @@ typedef union _hw_epdc_pigeon_11_0
 #define BV_EPDC_PIGEON_11_0_INC_SEL__LINE (0x1) //!< line start pulse
 #define BV_EPDC_PIGEON_11_0_INC_SEL__FRAME (0x2) //!< frame start pulse
 #define BV_EPDC_PIGEON_11_0_INC_SEL__SIG_ANOTHER (0x3) //!< use another signal as tick event
-
 //@}
 
 /*! @name Register EPDC_PIGEON_11_0, field OFFSET[7:4] (RW)
@@ -11780,7 +11210,6 @@ typedef union _hw_epdc_pigeon_11_0
  * Supported range depends on panel mode
  */
 //@{
-
 #define BP_EPDC_PIGEON_11_0_OFFSET      (4)      //!< Bit position for EPDC_PIGEON_11_0_OFFSET.
 #define BM_EPDC_PIGEON_11_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_PIGEON_11_0_OFFSET.
 
@@ -11794,7 +11223,6 @@ typedef union _hw_epdc_pigeon_11_0
 //! @brief Set the OFFSET field to a new value.
 #define BW_EPDC_PIGEON_11_0_OFFSET(v)   (HW_EPDC_PIGEON_11_0_WR((HW_EPDC_PIGEON_11_0_RD() & ~BM_EPDC_PIGEON_11_0_OFFSET) | BF_EPDC_PIGEON_11_0_OFFSET(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_11_0, field MASK_CNT_SEL[11:8] (RW)
@@ -11812,7 +11240,6 @@ typedef union _hw_epdc_pigeon_11_0
  * - VCNT = 0x7 - vertical counter (line counter within one frame)
  */
 //@{
-
 #define BP_EPDC_PIGEON_11_0_MASK_CNT_SEL      (8)      //!< Bit position for EPDC_PIGEON_11_0_MASK_CNT_SEL.
 #define BM_EPDC_PIGEON_11_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_PIGEON_11_0_MASK_CNT_SEL.
 
@@ -11838,7 +11265,6 @@ typedef union _hw_epdc_pigeon_11_0
 #define BV_EPDC_PIGEON_11_0_MASK_CNT_SEL__FRAME_CYCLE (0x5) //!< frame cycle
 #define BV_EPDC_PIGEON_11_0_MASK_CNT_SEL__HCNT (0x6) //!< horizontal counter (pclk counter within one line )
 #define BV_EPDC_PIGEON_11_0_MASK_CNT_SEL__VCNT (0x7) //!< vertical counter (line counter within one frame)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_11_0, field MASK_CNT[23:12] (RW)
@@ -11847,7 +11273,6 @@ typedef union _hw_epdc_pigeon_11_0
  * counter start ticking. 0=disable
  */
 //@{
-
 #define BP_EPDC_PIGEON_11_0_MASK_CNT      (12)      //!< Bit position for EPDC_PIGEON_11_0_MASK_CNT.
 #define BM_EPDC_PIGEON_11_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_PIGEON_11_0_MASK_CNT.
 
@@ -11861,7 +11286,6 @@ typedef union _hw_epdc_pigeon_11_0
 //! @brief Set the MASK_CNT field to a new value.
 #define BW_EPDC_PIGEON_11_0_MASK_CNT(v)   (HW_EPDC_PIGEON_11_0_WR((HW_EPDC_PIGEON_11_0_RD() & ~BM_EPDC_PIGEON_11_0_MASK_CNT) | BF_EPDC_PIGEON_11_0_MASK_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_11_0, field STATE_MASK[31:24] (RW)
@@ -11880,7 +11304,6 @@ typedef union _hw_epdc_pigeon_11_0
  * - LE = 0x80 - LINE END
  */
 //@{
-
 #define BP_EPDC_PIGEON_11_0_STATE_MASK      (24)      //!< Bit position for EPDC_PIGEON_11_0_STATE_MASK.
 #define BM_EPDC_PIGEON_11_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_PIGEON_11_0_STATE_MASK.
 
@@ -11906,7 +11329,6 @@ typedef union _hw_epdc_pigeon_11_0
 #define BV_EPDC_PIGEON_11_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_PIGEON_11_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_PIGEON_11_0_STATE_MASK__LE (0x80) //!< LINE END
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -11960,7 +11382,6 @@ typedef union _hw_epdc_pigeon_11_1
  * - START_ACTIVE = 0x0 - start as active
  */
 //@{
-
 #define BP_EPDC_PIGEON_11_1_SET_CNT      (0)      //!< Bit position for EPDC_PIGEON_11_1_SET_CNT.
 #define BM_EPDC_PIGEON_11_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_PIGEON_11_1_SET_CNT.
 
@@ -11979,7 +11400,6 @@ typedef union _hw_epdc_pigeon_11_1
 #define BF_EPDC_PIGEON_11_1_SET_CNT_V(v) BF_EPDC_PIGEON_11_1_SET_CNT(BV_EPDC_PIGEON_11_1_SET_CNT__##v)
 
 #define BV_EPDC_PIGEON_11_1_SET_CNT__START_ACTIVE (0x0) //!< start as active
-
 //@}
 
 /*! @name Register EPDC_PIGEON_11_1, field CLR_CNT[31:16] (RW)
@@ -11990,7 +11410,6 @@ typedef union _hw_epdc_pigeon_11_1
  * - CLEAR_USING_MASK = 0x0 - keep active until mask off
  */
 //@{
-
 #define BP_EPDC_PIGEON_11_1_CLR_CNT      (16)      //!< Bit position for EPDC_PIGEON_11_1_CLR_CNT.
 #define BM_EPDC_PIGEON_11_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_PIGEON_11_1_CLR_CNT.
 
@@ -12009,7 +11428,6 @@ typedef union _hw_epdc_pigeon_11_1
 #define BF_EPDC_PIGEON_11_1_CLR_CNT_V(v) BF_EPDC_PIGEON_11_1_CLR_CNT(BV_EPDC_PIGEON_11_1_CLR_CNT__##v)
 
 #define BV_EPDC_PIGEON_11_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12070,7 +11488,6 @@ typedef union _hw_epdc_pigeon_11_2
  * - MASK = 0x3 - mask = sig_another AND other_masks
  */
 //@{
-
 #define BP_EPDC_PIGEON_11_2_SIG_LOGIC      (0)      //!< Bit position for EPDC_PIGEON_11_2_SIG_LOGIC.
 #define BM_EPDC_PIGEON_11_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_PIGEON_11_2_SIG_LOGIC.
 
@@ -12092,7 +11509,6 @@ typedef union _hw_epdc_pigeon_11_2
 #define BV_EPDC_PIGEON_11_2_SIG_LOGIC__AND (0x1) //!< sigout = sig_another AND this_sig
 #define BV_EPDC_PIGEON_11_2_SIG_LOGIC__OR (0x2) //!< sigout = sig_another OR this_sig
 #define BV_EPDC_PIGEON_11_2_SIG_LOGIC__MASK (0x3) //!< mask = sig_another AND other_masks
-
 //@}
 
 /*! @name Register EPDC_PIGEON_11_2, field SIG_ANOTHER[8:4] (RW)
@@ -12100,7 +11516,6 @@ typedef union _hw_epdc_pigeon_11_2
  * select another signal for logic operation or as mask or counter tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_11_2_SIG_ANOTHER      (4)      //!< Bit position for EPDC_PIGEON_11_2_SIG_ANOTHER.
 #define BM_EPDC_PIGEON_11_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_PIGEON_11_2_SIG_ANOTHER.
 
@@ -12114,7 +11529,6 @@ typedef union _hw_epdc_pigeon_11_2
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_PIGEON_11_2_SIG_ANOTHER(v)   (HW_EPDC_PIGEON_11_2_WR((HW_EPDC_PIGEON_11_2_RD() & ~BM_EPDC_PIGEON_11_2_SIG_ANOTHER) | BF_EPDC_PIGEON_11_2_SIG_ANOTHER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12170,7 +11584,6 @@ typedef union _hw_epdc_pigeon_12_0
  * enable pigeon mode on this signal
  */
 //@{
-
 #define BP_EPDC_PIGEON_12_0_EN      (0)      //!< Bit position for EPDC_PIGEON_12_0_EN.
 #define BM_EPDC_PIGEON_12_0_EN      (0x00000001)  //!< Bit mask for EPDC_PIGEON_12_0_EN.
 
@@ -12184,7 +11597,6 @@ typedef union _hw_epdc_pigeon_12_0
 //! @brief Set the EN field to a new value.
 #define BW_EPDC_PIGEON_12_0_EN(v)   (HW_EPDC_PIGEON_12_0_WR((HW_EPDC_PIGEON_12_0_RD() & ~BM_EPDC_PIGEON_12_0_EN) | BF_EPDC_PIGEON_12_0_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_12_0, field POL[1] (RW)
@@ -12196,7 +11608,6 @@ typedef union _hw_epdc_pigeon_12_0
  * - ACTIVE_LOW = 0x1 - inverted signal (active low)
  */
 //@{
-
 #define BP_EPDC_PIGEON_12_0_POL      (1)      //!< Bit position for EPDC_PIGEON_12_0_POL.
 #define BM_EPDC_PIGEON_12_0_POL      (0x00000002)  //!< Bit mask for EPDC_PIGEON_12_0_POL.
 
@@ -12216,7 +11627,6 @@ typedef union _hw_epdc_pigeon_12_0
 
 #define BV_EPDC_PIGEON_12_0_POL__ACTIVE_HIGH (0x0) //!< normal signal (active high)
 #define BV_EPDC_PIGEON_12_0_POL__ACTIVE_LOW (0x1) //!< inverted signal (active low)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_12_0, field INC_SEL[3:2] (RW)
@@ -12230,7 +11640,6 @@ typedef union _hw_epdc_pigeon_12_0
  * - SIG_ANOTHER = 0x3 - use another signal as tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_12_0_INC_SEL      (2)      //!< Bit position for EPDC_PIGEON_12_0_INC_SEL.
 #define BM_EPDC_PIGEON_12_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_PIGEON_12_0_INC_SEL.
 
@@ -12252,7 +11661,6 @@ typedef union _hw_epdc_pigeon_12_0
 #define BV_EPDC_PIGEON_12_0_INC_SEL__LINE (0x1) //!< line start pulse
 #define BV_EPDC_PIGEON_12_0_INC_SEL__FRAME (0x2) //!< frame start pulse
 #define BV_EPDC_PIGEON_12_0_INC_SEL__SIG_ANOTHER (0x3) //!< use another signal as tick event
-
 //@}
 
 /*! @name Register EPDC_PIGEON_12_0, field OFFSET[7:4] (RW)
@@ -12261,7 +11669,6 @@ typedef union _hw_epdc_pigeon_12_0
  * Supported range depends on panel mode
  */
 //@{
-
 #define BP_EPDC_PIGEON_12_0_OFFSET      (4)      //!< Bit position for EPDC_PIGEON_12_0_OFFSET.
 #define BM_EPDC_PIGEON_12_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_PIGEON_12_0_OFFSET.
 
@@ -12275,7 +11682,6 @@ typedef union _hw_epdc_pigeon_12_0
 //! @brief Set the OFFSET field to a new value.
 #define BW_EPDC_PIGEON_12_0_OFFSET(v)   (HW_EPDC_PIGEON_12_0_WR((HW_EPDC_PIGEON_12_0_RD() & ~BM_EPDC_PIGEON_12_0_OFFSET) | BF_EPDC_PIGEON_12_0_OFFSET(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_12_0, field MASK_CNT_SEL[11:8] (RW)
@@ -12293,7 +11699,6 @@ typedef union _hw_epdc_pigeon_12_0
  * - VCNT = 0x7 - vertical counter (line counter within one frame)
  */
 //@{
-
 #define BP_EPDC_PIGEON_12_0_MASK_CNT_SEL      (8)      //!< Bit position for EPDC_PIGEON_12_0_MASK_CNT_SEL.
 #define BM_EPDC_PIGEON_12_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_PIGEON_12_0_MASK_CNT_SEL.
 
@@ -12319,7 +11724,6 @@ typedef union _hw_epdc_pigeon_12_0
 #define BV_EPDC_PIGEON_12_0_MASK_CNT_SEL__FRAME_CYCLE (0x5) //!< frame cycle
 #define BV_EPDC_PIGEON_12_0_MASK_CNT_SEL__HCNT (0x6) //!< horizontal counter (pclk counter within one line )
 #define BV_EPDC_PIGEON_12_0_MASK_CNT_SEL__VCNT (0x7) //!< vertical counter (line counter within one frame)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_12_0, field MASK_CNT[23:12] (RW)
@@ -12328,7 +11732,6 @@ typedef union _hw_epdc_pigeon_12_0
  * counter start ticking. 0=disable
  */
 //@{
-
 #define BP_EPDC_PIGEON_12_0_MASK_CNT      (12)      //!< Bit position for EPDC_PIGEON_12_0_MASK_CNT.
 #define BM_EPDC_PIGEON_12_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_PIGEON_12_0_MASK_CNT.
 
@@ -12342,7 +11745,6 @@ typedef union _hw_epdc_pigeon_12_0
 //! @brief Set the MASK_CNT field to a new value.
 #define BW_EPDC_PIGEON_12_0_MASK_CNT(v)   (HW_EPDC_PIGEON_12_0_WR((HW_EPDC_PIGEON_12_0_RD() & ~BM_EPDC_PIGEON_12_0_MASK_CNT) | BF_EPDC_PIGEON_12_0_MASK_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_12_0, field STATE_MASK[31:24] (RW)
@@ -12361,7 +11763,6 @@ typedef union _hw_epdc_pigeon_12_0
  * - LE = 0x80 - LINE END
  */
 //@{
-
 #define BP_EPDC_PIGEON_12_0_STATE_MASK      (24)      //!< Bit position for EPDC_PIGEON_12_0_STATE_MASK.
 #define BM_EPDC_PIGEON_12_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_PIGEON_12_0_STATE_MASK.
 
@@ -12387,7 +11788,6 @@ typedef union _hw_epdc_pigeon_12_0
 #define BV_EPDC_PIGEON_12_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_PIGEON_12_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_PIGEON_12_0_STATE_MASK__LE (0x80) //!< LINE END
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12441,7 +11841,6 @@ typedef union _hw_epdc_pigeon_12_1
  * - START_ACTIVE = 0x0 - start as active
  */
 //@{
-
 #define BP_EPDC_PIGEON_12_1_SET_CNT      (0)      //!< Bit position for EPDC_PIGEON_12_1_SET_CNT.
 #define BM_EPDC_PIGEON_12_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_PIGEON_12_1_SET_CNT.
 
@@ -12460,7 +11859,6 @@ typedef union _hw_epdc_pigeon_12_1
 #define BF_EPDC_PIGEON_12_1_SET_CNT_V(v) BF_EPDC_PIGEON_12_1_SET_CNT(BV_EPDC_PIGEON_12_1_SET_CNT__##v)
 
 #define BV_EPDC_PIGEON_12_1_SET_CNT__START_ACTIVE (0x0) //!< start as active
-
 //@}
 
 /*! @name Register EPDC_PIGEON_12_1, field CLR_CNT[31:16] (RW)
@@ -12471,7 +11869,6 @@ typedef union _hw_epdc_pigeon_12_1
  * - CLEAR_USING_MASK = 0x0 - keep active until mask off
  */
 //@{
-
 #define BP_EPDC_PIGEON_12_1_CLR_CNT      (16)      //!< Bit position for EPDC_PIGEON_12_1_CLR_CNT.
 #define BM_EPDC_PIGEON_12_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_PIGEON_12_1_CLR_CNT.
 
@@ -12490,7 +11887,6 @@ typedef union _hw_epdc_pigeon_12_1
 #define BF_EPDC_PIGEON_12_1_CLR_CNT_V(v) BF_EPDC_PIGEON_12_1_CLR_CNT(BV_EPDC_PIGEON_12_1_CLR_CNT__##v)
 
 #define BV_EPDC_PIGEON_12_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12551,7 +11947,6 @@ typedef union _hw_epdc_pigeon_12_2
  * - MASK = 0x3 - mask = sig_another AND other_masks
  */
 //@{
-
 #define BP_EPDC_PIGEON_12_2_SIG_LOGIC      (0)      //!< Bit position for EPDC_PIGEON_12_2_SIG_LOGIC.
 #define BM_EPDC_PIGEON_12_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_PIGEON_12_2_SIG_LOGIC.
 
@@ -12573,7 +11968,6 @@ typedef union _hw_epdc_pigeon_12_2
 #define BV_EPDC_PIGEON_12_2_SIG_LOGIC__AND (0x1) //!< sigout = sig_another AND this_sig
 #define BV_EPDC_PIGEON_12_2_SIG_LOGIC__OR (0x2) //!< sigout = sig_another OR this_sig
 #define BV_EPDC_PIGEON_12_2_SIG_LOGIC__MASK (0x3) //!< mask = sig_another AND other_masks
-
 //@}
 
 /*! @name Register EPDC_PIGEON_12_2, field SIG_ANOTHER[8:4] (RW)
@@ -12581,7 +11975,6 @@ typedef union _hw_epdc_pigeon_12_2
  * select another signal for logic operation or as mask or counter tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_12_2_SIG_ANOTHER      (4)      //!< Bit position for EPDC_PIGEON_12_2_SIG_ANOTHER.
 #define BM_EPDC_PIGEON_12_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_PIGEON_12_2_SIG_ANOTHER.
 
@@ -12595,7 +11988,6 @@ typedef union _hw_epdc_pigeon_12_2
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_PIGEON_12_2_SIG_ANOTHER(v)   (HW_EPDC_PIGEON_12_2_WR((HW_EPDC_PIGEON_12_2_RD() & ~BM_EPDC_PIGEON_12_2_SIG_ANOTHER) | BF_EPDC_PIGEON_12_2_SIG_ANOTHER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12651,7 +12043,6 @@ typedef union _hw_epdc_pigeon_13_0
  * enable pigeon mode on this signal
  */
 //@{
-
 #define BP_EPDC_PIGEON_13_0_EN      (0)      //!< Bit position for EPDC_PIGEON_13_0_EN.
 #define BM_EPDC_PIGEON_13_0_EN      (0x00000001)  //!< Bit mask for EPDC_PIGEON_13_0_EN.
 
@@ -12665,7 +12056,6 @@ typedef union _hw_epdc_pigeon_13_0
 //! @brief Set the EN field to a new value.
 #define BW_EPDC_PIGEON_13_0_EN(v)   (HW_EPDC_PIGEON_13_0_WR((HW_EPDC_PIGEON_13_0_RD() & ~BM_EPDC_PIGEON_13_0_EN) | BF_EPDC_PIGEON_13_0_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_13_0, field POL[1] (RW)
@@ -12677,7 +12067,6 @@ typedef union _hw_epdc_pigeon_13_0
  * - ACTIVE_LOW = 0x1 - inverted signal (active low)
  */
 //@{
-
 #define BP_EPDC_PIGEON_13_0_POL      (1)      //!< Bit position for EPDC_PIGEON_13_0_POL.
 #define BM_EPDC_PIGEON_13_0_POL      (0x00000002)  //!< Bit mask for EPDC_PIGEON_13_0_POL.
 
@@ -12697,7 +12086,6 @@ typedef union _hw_epdc_pigeon_13_0
 
 #define BV_EPDC_PIGEON_13_0_POL__ACTIVE_HIGH (0x0) //!< normal signal (active high)
 #define BV_EPDC_PIGEON_13_0_POL__ACTIVE_LOW (0x1) //!< inverted signal (active low)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_13_0, field INC_SEL[3:2] (RW)
@@ -12711,7 +12099,6 @@ typedef union _hw_epdc_pigeon_13_0
  * - SIG_ANOTHER = 0x3 - use another signal as tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_13_0_INC_SEL      (2)      //!< Bit position for EPDC_PIGEON_13_0_INC_SEL.
 #define BM_EPDC_PIGEON_13_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_PIGEON_13_0_INC_SEL.
 
@@ -12733,7 +12120,6 @@ typedef union _hw_epdc_pigeon_13_0
 #define BV_EPDC_PIGEON_13_0_INC_SEL__LINE (0x1) //!< line start pulse
 #define BV_EPDC_PIGEON_13_0_INC_SEL__FRAME (0x2) //!< frame start pulse
 #define BV_EPDC_PIGEON_13_0_INC_SEL__SIG_ANOTHER (0x3) //!< use another signal as tick event
-
 //@}
 
 /*! @name Register EPDC_PIGEON_13_0, field OFFSET[7:4] (RW)
@@ -12742,7 +12128,6 @@ typedef union _hw_epdc_pigeon_13_0
  * Supported range depends on panel mode
  */
 //@{
-
 #define BP_EPDC_PIGEON_13_0_OFFSET      (4)      //!< Bit position for EPDC_PIGEON_13_0_OFFSET.
 #define BM_EPDC_PIGEON_13_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_PIGEON_13_0_OFFSET.
 
@@ -12756,7 +12141,6 @@ typedef union _hw_epdc_pigeon_13_0
 //! @brief Set the OFFSET field to a new value.
 #define BW_EPDC_PIGEON_13_0_OFFSET(v)   (HW_EPDC_PIGEON_13_0_WR((HW_EPDC_PIGEON_13_0_RD() & ~BM_EPDC_PIGEON_13_0_OFFSET) | BF_EPDC_PIGEON_13_0_OFFSET(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_13_0, field MASK_CNT_SEL[11:8] (RW)
@@ -12774,7 +12158,6 @@ typedef union _hw_epdc_pigeon_13_0
  * - VCNT = 0x7 - vertical counter (line counter within one frame)
  */
 //@{
-
 #define BP_EPDC_PIGEON_13_0_MASK_CNT_SEL      (8)      //!< Bit position for EPDC_PIGEON_13_0_MASK_CNT_SEL.
 #define BM_EPDC_PIGEON_13_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_PIGEON_13_0_MASK_CNT_SEL.
 
@@ -12800,7 +12183,6 @@ typedef union _hw_epdc_pigeon_13_0
 #define BV_EPDC_PIGEON_13_0_MASK_CNT_SEL__FRAME_CYCLE (0x5) //!< frame cycle
 #define BV_EPDC_PIGEON_13_0_MASK_CNT_SEL__HCNT (0x6) //!< horizontal counter (pclk counter within one line )
 #define BV_EPDC_PIGEON_13_0_MASK_CNT_SEL__VCNT (0x7) //!< vertical counter (line counter within one frame)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_13_0, field MASK_CNT[23:12] (RW)
@@ -12809,7 +12191,6 @@ typedef union _hw_epdc_pigeon_13_0
  * counter start ticking. 0=disable
  */
 //@{
-
 #define BP_EPDC_PIGEON_13_0_MASK_CNT      (12)      //!< Bit position for EPDC_PIGEON_13_0_MASK_CNT.
 #define BM_EPDC_PIGEON_13_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_PIGEON_13_0_MASK_CNT.
 
@@ -12823,7 +12204,6 @@ typedef union _hw_epdc_pigeon_13_0
 //! @brief Set the MASK_CNT field to a new value.
 #define BW_EPDC_PIGEON_13_0_MASK_CNT(v)   (HW_EPDC_PIGEON_13_0_WR((HW_EPDC_PIGEON_13_0_RD() & ~BM_EPDC_PIGEON_13_0_MASK_CNT) | BF_EPDC_PIGEON_13_0_MASK_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_13_0, field STATE_MASK[31:24] (RW)
@@ -12842,7 +12222,6 @@ typedef union _hw_epdc_pigeon_13_0
  * - LE = 0x80 - LINE END
  */
 //@{
-
 #define BP_EPDC_PIGEON_13_0_STATE_MASK      (24)      //!< Bit position for EPDC_PIGEON_13_0_STATE_MASK.
 #define BM_EPDC_PIGEON_13_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_PIGEON_13_0_STATE_MASK.
 
@@ -12868,7 +12247,6 @@ typedef union _hw_epdc_pigeon_13_0
 #define BV_EPDC_PIGEON_13_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_PIGEON_13_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_PIGEON_13_0_STATE_MASK__LE (0x80) //!< LINE END
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -12922,7 +12300,6 @@ typedef union _hw_epdc_pigeon_13_1
  * - START_ACTIVE = 0x0 - start as active
  */
 //@{
-
 #define BP_EPDC_PIGEON_13_1_SET_CNT      (0)      //!< Bit position for EPDC_PIGEON_13_1_SET_CNT.
 #define BM_EPDC_PIGEON_13_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_PIGEON_13_1_SET_CNT.
 
@@ -12941,7 +12318,6 @@ typedef union _hw_epdc_pigeon_13_1
 #define BF_EPDC_PIGEON_13_1_SET_CNT_V(v) BF_EPDC_PIGEON_13_1_SET_CNT(BV_EPDC_PIGEON_13_1_SET_CNT__##v)
 
 #define BV_EPDC_PIGEON_13_1_SET_CNT__START_ACTIVE (0x0) //!< start as active
-
 //@}
 
 /*! @name Register EPDC_PIGEON_13_1, field CLR_CNT[31:16] (RW)
@@ -12952,7 +12328,6 @@ typedef union _hw_epdc_pigeon_13_1
  * - CLEAR_USING_MASK = 0x0 - keep active until mask off
  */
 //@{
-
 #define BP_EPDC_PIGEON_13_1_CLR_CNT      (16)      //!< Bit position for EPDC_PIGEON_13_1_CLR_CNT.
 #define BM_EPDC_PIGEON_13_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_PIGEON_13_1_CLR_CNT.
 
@@ -12971,7 +12346,6 @@ typedef union _hw_epdc_pigeon_13_1
 #define BF_EPDC_PIGEON_13_1_CLR_CNT_V(v) BF_EPDC_PIGEON_13_1_CLR_CNT(BV_EPDC_PIGEON_13_1_CLR_CNT__##v)
 
 #define BV_EPDC_PIGEON_13_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -13032,7 +12406,6 @@ typedef union _hw_epdc_pigeon_13_2
  * - MASK = 0x3 - mask = sig_another AND other_masks
  */
 //@{
-
 #define BP_EPDC_PIGEON_13_2_SIG_LOGIC      (0)      //!< Bit position for EPDC_PIGEON_13_2_SIG_LOGIC.
 #define BM_EPDC_PIGEON_13_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_PIGEON_13_2_SIG_LOGIC.
 
@@ -13054,7 +12427,6 @@ typedef union _hw_epdc_pigeon_13_2
 #define BV_EPDC_PIGEON_13_2_SIG_LOGIC__AND (0x1) //!< sigout = sig_another AND this_sig
 #define BV_EPDC_PIGEON_13_2_SIG_LOGIC__OR (0x2) //!< sigout = sig_another OR this_sig
 #define BV_EPDC_PIGEON_13_2_SIG_LOGIC__MASK (0x3) //!< mask = sig_another AND other_masks
-
 //@}
 
 /*! @name Register EPDC_PIGEON_13_2, field SIG_ANOTHER[8:4] (RW)
@@ -13062,7 +12434,6 @@ typedef union _hw_epdc_pigeon_13_2
  * select another signal for logic operation or as mask or counter tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_13_2_SIG_ANOTHER      (4)      //!< Bit position for EPDC_PIGEON_13_2_SIG_ANOTHER.
 #define BM_EPDC_PIGEON_13_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_PIGEON_13_2_SIG_ANOTHER.
 
@@ -13076,7 +12447,6 @@ typedef union _hw_epdc_pigeon_13_2
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_PIGEON_13_2_SIG_ANOTHER(v)   (HW_EPDC_PIGEON_13_2_WR((HW_EPDC_PIGEON_13_2_RD() & ~BM_EPDC_PIGEON_13_2_SIG_ANOTHER) | BF_EPDC_PIGEON_13_2_SIG_ANOTHER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -13132,7 +12502,6 @@ typedef union _hw_epdc_pigeon_14_0
  * enable pigeon mode on this signal
  */
 //@{
-
 #define BP_EPDC_PIGEON_14_0_EN      (0)      //!< Bit position for EPDC_PIGEON_14_0_EN.
 #define BM_EPDC_PIGEON_14_0_EN      (0x00000001)  //!< Bit mask for EPDC_PIGEON_14_0_EN.
 
@@ -13146,7 +12515,6 @@ typedef union _hw_epdc_pigeon_14_0
 //! @brief Set the EN field to a new value.
 #define BW_EPDC_PIGEON_14_0_EN(v)   (HW_EPDC_PIGEON_14_0_WR((HW_EPDC_PIGEON_14_0_RD() & ~BM_EPDC_PIGEON_14_0_EN) | BF_EPDC_PIGEON_14_0_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_14_0, field POL[1] (RW)
@@ -13158,7 +12526,6 @@ typedef union _hw_epdc_pigeon_14_0
  * - ACTIVE_LOW = 0x1 - inverted signal (active low)
  */
 //@{
-
 #define BP_EPDC_PIGEON_14_0_POL      (1)      //!< Bit position for EPDC_PIGEON_14_0_POL.
 #define BM_EPDC_PIGEON_14_0_POL      (0x00000002)  //!< Bit mask for EPDC_PIGEON_14_0_POL.
 
@@ -13178,7 +12545,6 @@ typedef union _hw_epdc_pigeon_14_0
 
 #define BV_EPDC_PIGEON_14_0_POL__ACTIVE_HIGH (0x0) //!< normal signal (active high)
 #define BV_EPDC_PIGEON_14_0_POL__ACTIVE_LOW (0x1) //!< inverted signal (active low)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_14_0, field INC_SEL[3:2] (RW)
@@ -13192,7 +12558,6 @@ typedef union _hw_epdc_pigeon_14_0
  * - SIG_ANOTHER = 0x3 - use another signal as tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_14_0_INC_SEL      (2)      //!< Bit position for EPDC_PIGEON_14_0_INC_SEL.
 #define BM_EPDC_PIGEON_14_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_PIGEON_14_0_INC_SEL.
 
@@ -13214,7 +12579,6 @@ typedef union _hw_epdc_pigeon_14_0
 #define BV_EPDC_PIGEON_14_0_INC_SEL__LINE (0x1) //!< line start pulse
 #define BV_EPDC_PIGEON_14_0_INC_SEL__FRAME (0x2) //!< frame start pulse
 #define BV_EPDC_PIGEON_14_0_INC_SEL__SIG_ANOTHER (0x3) //!< use another signal as tick event
-
 //@}
 
 /*! @name Register EPDC_PIGEON_14_0, field OFFSET[7:4] (RW)
@@ -13223,7 +12587,6 @@ typedef union _hw_epdc_pigeon_14_0
  * Supported range depends on panel mode
  */
 //@{
-
 #define BP_EPDC_PIGEON_14_0_OFFSET      (4)      //!< Bit position for EPDC_PIGEON_14_0_OFFSET.
 #define BM_EPDC_PIGEON_14_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_PIGEON_14_0_OFFSET.
 
@@ -13237,7 +12600,6 @@ typedef union _hw_epdc_pigeon_14_0
 //! @brief Set the OFFSET field to a new value.
 #define BW_EPDC_PIGEON_14_0_OFFSET(v)   (HW_EPDC_PIGEON_14_0_WR((HW_EPDC_PIGEON_14_0_RD() & ~BM_EPDC_PIGEON_14_0_OFFSET) | BF_EPDC_PIGEON_14_0_OFFSET(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_14_0, field MASK_CNT_SEL[11:8] (RW)
@@ -13255,7 +12617,6 @@ typedef union _hw_epdc_pigeon_14_0
  * - VCNT = 0x7 - vertical counter (line counter within one frame)
  */
 //@{
-
 #define BP_EPDC_PIGEON_14_0_MASK_CNT_SEL      (8)      //!< Bit position for EPDC_PIGEON_14_0_MASK_CNT_SEL.
 #define BM_EPDC_PIGEON_14_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_PIGEON_14_0_MASK_CNT_SEL.
 
@@ -13281,7 +12642,6 @@ typedef union _hw_epdc_pigeon_14_0
 #define BV_EPDC_PIGEON_14_0_MASK_CNT_SEL__FRAME_CYCLE (0x5) //!< frame cycle
 #define BV_EPDC_PIGEON_14_0_MASK_CNT_SEL__HCNT (0x6) //!< horizontal counter (pclk counter within one line )
 #define BV_EPDC_PIGEON_14_0_MASK_CNT_SEL__VCNT (0x7) //!< vertical counter (line counter within one frame)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_14_0, field MASK_CNT[23:12] (RW)
@@ -13290,7 +12650,6 @@ typedef union _hw_epdc_pigeon_14_0
  * counter start ticking. 0=disable
  */
 //@{
-
 #define BP_EPDC_PIGEON_14_0_MASK_CNT      (12)      //!< Bit position for EPDC_PIGEON_14_0_MASK_CNT.
 #define BM_EPDC_PIGEON_14_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_PIGEON_14_0_MASK_CNT.
 
@@ -13304,7 +12663,6 @@ typedef union _hw_epdc_pigeon_14_0
 //! @brief Set the MASK_CNT field to a new value.
 #define BW_EPDC_PIGEON_14_0_MASK_CNT(v)   (HW_EPDC_PIGEON_14_0_WR((HW_EPDC_PIGEON_14_0_RD() & ~BM_EPDC_PIGEON_14_0_MASK_CNT) | BF_EPDC_PIGEON_14_0_MASK_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_14_0, field STATE_MASK[31:24] (RW)
@@ -13323,7 +12681,6 @@ typedef union _hw_epdc_pigeon_14_0
  * - LE = 0x80 - LINE END
  */
 //@{
-
 #define BP_EPDC_PIGEON_14_0_STATE_MASK      (24)      //!< Bit position for EPDC_PIGEON_14_0_STATE_MASK.
 #define BM_EPDC_PIGEON_14_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_PIGEON_14_0_STATE_MASK.
 
@@ -13349,7 +12706,6 @@ typedef union _hw_epdc_pigeon_14_0
 #define BV_EPDC_PIGEON_14_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_PIGEON_14_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_PIGEON_14_0_STATE_MASK__LE (0x80) //!< LINE END
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -13403,7 +12759,6 @@ typedef union _hw_epdc_pigeon_14_1
  * - START_ACTIVE = 0x0 - start as active
  */
 //@{
-
 #define BP_EPDC_PIGEON_14_1_SET_CNT      (0)      //!< Bit position for EPDC_PIGEON_14_1_SET_CNT.
 #define BM_EPDC_PIGEON_14_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_PIGEON_14_1_SET_CNT.
 
@@ -13422,7 +12777,6 @@ typedef union _hw_epdc_pigeon_14_1
 #define BF_EPDC_PIGEON_14_1_SET_CNT_V(v) BF_EPDC_PIGEON_14_1_SET_CNT(BV_EPDC_PIGEON_14_1_SET_CNT__##v)
 
 #define BV_EPDC_PIGEON_14_1_SET_CNT__START_ACTIVE (0x0) //!< start as active
-
 //@}
 
 /*! @name Register EPDC_PIGEON_14_1, field CLR_CNT[31:16] (RW)
@@ -13433,7 +12787,6 @@ typedef union _hw_epdc_pigeon_14_1
  * - CLEAR_USING_MASK = 0x0 - keep active until mask off
  */
 //@{
-
 #define BP_EPDC_PIGEON_14_1_CLR_CNT      (16)      //!< Bit position for EPDC_PIGEON_14_1_CLR_CNT.
 #define BM_EPDC_PIGEON_14_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_PIGEON_14_1_CLR_CNT.
 
@@ -13452,7 +12805,6 @@ typedef union _hw_epdc_pigeon_14_1
 #define BF_EPDC_PIGEON_14_1_CLR_CNT_V(v) BF_EPDC_PIGEON_14_1_CLR_CNT(BV_EPDC_PIGEON_14_1_CLR_CNT__##v)
 
 #define BV_EPDC_PIGEON_14_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -13513,7 +12865,6 @@ typedef union _hw_epdc_pigeon_14_2
  * - MASK = 0x3 - mask = sig_another AND other_masks
  */
 //@{
-
 #define BP_EPDC_PIGEON_14_2_SIG_LOGIC      (0)      //!< Bit position for EPDC_PIGEON_14_2_SIG_LOGIC.
 #define BM_EPDC_PIGEON_14_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_PIGEON_14_2_SIG_LOGIC.
 
@@ -13535,7 +12886,6 @@ typedef union _hw_epdc_pigeon_14_2
 #define BV_EPDC_PIGEON_14_2_SIG_LOGIC__AND (0x1) //!< sigout = sig_another AND this_sig
 #define BV_EPDC_PIGEON_14_2_SIG_LOGIC__OR (0x2) //!< sigout = sig_another OR this_sig
 #define BV_EPDC_PIGEON_14_2_SIG_LOGIC__MASK (0x3) //!< mask = sig_another AND other_masks
-
 //@}
 
 /*! @name Register EPDC_PIGEON_14_2, field SIG_ANOTHER[8:4] (RW)
@@ -13543,7 +12893,6 @@ typedef union _hw_epdc_pigeon_14_2
  * select another signal for logic operation or as mask or counter tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_14_2_SIG_ANOTHER      (4)      //!< Bit position for EPDC_PIGEON_14_2_SIG_ANOTHER.
 #define BM_EPDC_PIGEON_14_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_PIGEON_14_2_SIG_ANOTHER.
 
@@ -13557,7 +12906,6 @@ typedef union _hw_epdc_pigeon_14_2
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_PIGEON_14_2_SIG_ANOTHER(v)   (HW_EPDC_PIGEON_14_2_WR((HW_EPDC_PIGEON_14_2_RD() & ~BM_EPDC_PIGEON_14_2_SIG_ANOTHER) | BF_EPDC_PIGEON_14_2_SIG_ANOTHER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -13613,7 +12961,6 @@ typedef union _hw_epdc_pigeon_15_0
  * enable pigeon mode on this signal
  */
 //@{
-
 #define BP_EPDC_PIGEON_15_0_EN      (0)      //!< Bit position for EPDC_PIGEON_15_0_EN.
 #define BM_EPDC_PIGEON_15_0_EN      (0x00000001)  //!< Bit mask for EPDC_PIGEON_15_0_EN.
 
@@ -13627,7 +12974,6 @@ typedef union _hw_epdc_pigeon_15_0
 //! @brief Set the EN field to a new value.
 #define BW_EPDC_PIGEON_15_0_EN(v)   (HW_EPDC_PIGEON_15_0_WR((HW_EPDC_PIGEON_15_0_RD() & ~BM_EPDC_PIGEON_15_0_EN) | BF_EPDC_PIGEON_15_0_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_15_0, field POL[1] (RW)
@@ -13639,7 +12985,6 @@ typedef union _hw_epdc_pigeon_15_0
  * - ACTIVE_LOW = 0x1 - inverted signal (active low)
  */
 //@{
-
 #define BP_EPDC_PIGEON_15_0_POL      (1)      //!< Bit position for EPDC_PIGEON_15_0_POL.
 #define BM_EPDC_PIGEON_15_0_POL      (0x00000002)  //!< Bit mask for EPDC_PIGEON_15_0_POL.
 
@@ -13659,7 +13004,6 @@ typedef union _hw_epdc_pigeon_15_0
 
 #define BV_EPDC_PIGEON_15_0_POL__ACTIVE_HIGH (0x0) //!< normal signal (active high)
 #define BV_EPDC_PIGEON_15_0_POL__ACTIVE_LOW (0x1) //!< inverted signal (active low)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_15_0, field INC_SEL[3:2] (RW)
@@ -13673,7 +13017,6 @@ typedef union _hw_epdc_pigeon_15_0
  * - SIG_ANOTHER = 0x3 - use another signal as tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_15_0_INC_SEL      (2)      //!< Bit position for EPDC_PIGEON_15_0_INC_SEL.
 #define BM_EPDC_PIGEON_15_0_INC_SEL      (0x0000000c)  //!< Bit mask for EPDC_PIGEON_15_0_INC_SEL.
 
@@ -13695,7 +13038,6 @@ typedef union _hw_epdc_pigeon_15_0
 #define BV_EPDC_PIGEON_15_0_INC_SEL__LINE (0x1) //!< line start pulse
 #define BV_EPDC_PIGEON_15_0_INC_SEL__FRAME (0x2) //!< frame start pulse
 #define BV_EPDC_PIGEON_15_0_INC_SEL__SIG_ANOTHER (0x3) //!< use another signal as tick event
-
 //@}
 
 /*! @name Register EPDC_PIGEON_15_0, field OFFSET[7:4] (RW)
@@ -13704,7 +13046,6 @@ typedef union _hw_epdc_pigeon_15_0
  * Supported range depends on panel mode
  */
 //@{
-
 #define BP_EPDC_PIGEON_15_0_OFFSET      (4)      //!< Bit position for EPDC_PIGEON_15_0_OFFSET.
 #define BM_EPDC_PIGEON_15_0_OFFSET      (0x000000f0)  //!< Bit mask for EPDC_PIGEON_15_0_OFFSET.
 
@@ -13718,7 +13059,6 @@ typedef union _hw_epdc_pigeon_15_0
 //! @brief Set the OFFSET field to a new value.
 #define BW_EPDC_PIGEON_15_0_OFFSET(v)   (HW_EPDC_PIGEON_15_0_WR((HW_EPDC_PIGEON_15_0_RD() & ~BM_EPDC_PIGEON_15_0_OFFSET) | BF_EPDC_PIGEON_15_0_OFFSET(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_15_0, field MASK_CNT_SEL[11:8] (RW)
@@ -13736,7 +13076,6 @@ typedef union _hw_epdc_pigeon_15_0
  * - VCNT = 0x7 - vertical counter (line counter within one frame)
  */
 //@{
-
 #define BP_EPDC_PIGEON_15_0_MASK_CNT_SEL      (8)      //!< Bit position for EPDC_PIGEON_15_0_MASK_CNT_SEL.
 #define BM_EPDC_PIGEON_15_0_MASK_CNT_SEL      (0x00000f00)  //!< Bit mask for EPDC_PIGEON_15_0_MASK_CNT_SEL.
 
@@ -13762,7 +13101,6 @@ typedef union _hw_epdc_pigeon_15_0
 #define BV_EPDC_PIGEON_15_0_MASK_CNT_SEL__FRAME_CYCLE (0x5) //!< frame cycle
 #define BV_EPDC_PIGEON_15_0_MASK_CNT_SEL__HCNT (0x6) //!< horizontal counter (pclk counter within one line )
 #define BV_EPDC_PIGEON_15_0_MASK_CNT_SEL__VCNT (0x7) //!< vertical counter (line counter within one frame)
-
 //@}
 
 /*! @name Register EPDC_PIGEON_15_0, field MASK_CNT[23:12] (RW)
@@ -13771,7 +13109,6 @@ typedef union _hw_epdc_pigeon_15_0
  * counter start ticking. 0=disable
  */
 //@{
-
 #define BP_EPDC_PIGEON_15_0_MASK_CNT      (12)      //!< Bit position for EPDC_PIGEON_15_0_MASK_CNT.
 #define BM_EPDC_PIGEON_15_0_MASK_CNT      (0x00fff000)  //!< Bit mask for EPDC_PIGEON_15_0_MASK_CNT.
 
@@ -13785,7 +13122,6 @@ typedef union _hw_epdc_pigeon_15_0
 //! @brief Set the MASK_CNT field to a new value.
 #define BW_EPDC_PIGEON_15_0_MASK_CNT(v)   (HW_EPDC_PIGEON_15_0_WR((HW_EPDC_PIGEON_15_0_RD() & ~BM_EPDC_PIGEON_15_0_MASK_CNT) | BF_EPDC_PIGEON_15_0_MASK_CNT(v)))
 #endif
-
 //@}
 
 /*! @name Register EPDC_PIGEON_15_0, field STATE_MASK[31:24] (RW)
@@ -13804,7 +13140,6 @@ typedef union _hw_epdc_pigeon_15_0
  * - LE = 0x80 - LINE END
  */
 //@{
-
 #define BP_EPDC_PIGEON_15_0_STATE_MASK      (24)      //!< Bit position for EPDC_PIGEON_15_0_STATE_MASK.
 #define BM_EPDC_PIGEON_15_0_STATE_MASK      (0xff000000)  //!< Bit mask for EPDC_PIGEON_15_0_STATE_MASK.
 
@@ -13830,7 +13165,6 @@ typedef union _hw_epdc_pigeon_15_0
 #define BV_EPDC_PIGEON_15_0_STATE_MASK__LB (0x20) //!< LINE BEGIN
 #define BV_EPDC_PIGEON_15_0_STATE_MASK__LD (0x40) //!< LINE DATA
 #define BV_EPDC_PIGEON_15_0_STATE_MASK__LE (0x80) //!< LINE END
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -13884,7 +13218,6 @@ typedef union _hw_epdc_pigeon_15_1
  * - START_ACTIVE = 0x0 - start as active
  */
 //@{
-
 #define BP_EPDC_PIGEON_15_1_SET_CNT      (0)      //!< Bit position for EPDC_PIGEON_15_1_SET_CNT.
 #define BM_EPDC_PIGEON_15_1_SET_CNT      (0x0000ffff)  //!< Bit mask for EPDC_PIGEON_15_1_SET_CNT.
 
@@ -13903,7 +13236,6 @@ typedef union _hw_epdc_pigeon_15_1
 #define BF_EPDC_PIGEON_15_1_SET_CNT_V(v) BF_EPDC_PIGEON_15_1_SET_CNT(BV_EPDC_PIGEON_15_1_SET_CNT__##v)
 
 #define BV_EPDC_PIGEON_15_1_SET_CNT__START_ACTIVE (0x0) //!< start as active
-
 //@}
 
 /*! @name Register EPDC_PIGEON_15_1, field CLR_CNT[31:16] (RW)
@@ -13914,7 +13246,6 @@ typedef union _hw_epdc_pigeon_15_1
  * - CLEAR_USING_MASK = 0x0 - keep active until mask off
  */
 //@{
-
 #define BP_EPDC_PIGEON_15_1_CLR_CNT      (16)      //!< Bit position for EPDC_PIGEON_15_1_CLR_CNT.
 #define BM_EPDC_PIGEON_15_1_CLR_CNT      (0xffff0000)  //!< Bit mask for EPDC_PIGEON_15_1_CLR_CNT.
 
@@ -13933,7 +13264,6 @@ typedef union _hw_epdc_pigeon_15_1
 #define BF_EPDC_PIGEON_15_1_CLR_CNT_V(v) BF_EPDC_PIGEON_15_1_CLR_CNT(BV_EPDC_PIGEON_15_1_CLR_CNT__##v)
 
 #define BV_EPDC_PIGEON_15_1_CLR_CNT__CLEAR_USING_MASK (0x0) //!< keep active until mask off
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -13994,7 +13324,6 @@ typedef union _hw_epdc_pigeon_15_2
  * - MASK = 0x3 - mask = sig_another AND other_masks
  */
 //@{
-
 #define BP_EPDC_PIGEON_15_2_SIG_LOGIC      (0)      //!< Bit position for EPDC_PIGEON_15_2_SIG_LOGIC.
 #define BM_EPDC_PIGEON_15_2_SIG_LOGIC      (0x0000000f)  //!< Bit mask for EPDC_PIGEON_15_2_SIG_LOGIC.
 
@@ -14016,7 +13345,6 @@ typedef union _hw_epdc_pigeon_15_2
 #define BV_EPDC_PIGEON_15_2_SIG_LOGIC__AND (0x1) //!< sigout = sig_another AND this_sig
 #define BV_EPDC_PIGEON_15_2_SIG_LOGIC__OR (0x2) //!< sigout = sig_another OR this_sig
 #define BV_EPDC_PIGEON_15_2_SIG_LOGIC__MASK (0x3) //!< mask = sig_another AND other_masks
-
 //@}
 
 /*! @name Register EPDC_PIGEON_15_2, field SIG_ANOTHER[8:4] (RW)
@@ -14024,7 +13352,6 @@ typedef union _hw_epdc_pigeon_15_2
  * select another signal for logic operation or as mask or counter tick event
  */
 //@{
-
 #define BP_EPDC_PIGEON_15_2_SIG_ANOTHER      (4)      //!< Bit position for EPDC_PIGEON_15_2_SIG_ANOTHER.
 #define BM_EPDC_PIGEON_15_2_SIG_ANOTHER      (0x000001f0)  //!< Bit mask for EPDC_PIGEON_15_2_SIG_ANOTHER.
 
@@ -14038,7 +13365,6 @@ typedef union _hw_epdc_pigeon_15_2
 //! @brief Set the SIG_ANOTHER field to a new value.
 #define BW_EPDC_PIGEON_15_2_SIG_ANOTHER(v)   (HW_EPDC_PIGEON_15_2_WR((HW_EPDC_PIGEON_15_2_RD() & ~BM_EPDC_PIGEON_15_2_SIG_ANOTHER) | BF_EPDC_PIGEON_15_2_SIG_ANOTHER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -14089,7 +13415,6 @@ typedef union _hw_epdc_wb_addr_tce
  * double-word boundary.
  */
 //@{
-
 #define BP_EPDC_WB_ADDR_TCE_ADDR      (0)      //!< Bit position for EPDC_WB_ADDR_TCE_ADDR.
 #define BM_EPDC_WB_ADDR_TCE_ADDR      (0xffffffff)  //!< Bit mask for EPDC_WB_ADDR_TCE_ADDR.
 
@@ -14103,7 +13428,6 @@ typedef union _hw_epdc_wb_addr_tce
 //! @brief Set the ADDR field to a new value.
 #define BW_EPDC_WB_ADDR_TCE_ADDR(v)   (HW_EPDC_WB_ADDR_TCE_WR((HW_EPDC_WB_ADDR_TCE_RD() & ~BM_EPDC_WB_ADDR_TCE_ADDR) | BF_EPDC_WB_ADDR_TCE_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -14406,3 +13730,5 @@ typedef struct _hw_epdc
 #endif
 
 #endif // __HW_EPDC_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

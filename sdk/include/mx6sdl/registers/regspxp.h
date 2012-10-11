@@ -162,7 +162,6 @@ typedef union _hw_pxp_ctrl
  * in the PXP_STAT when polling for PXP completion.
  */
 //@{
-
 #define BP_PXP_CTRL_ENABLE      (0)      //!< Bit position for PXP_CTRL_ENABLE.
 #define BM_PXP_CTRL_ENABLE      (0x00000001)  //!< Bit mask for PXP_CTRL_ENABLE.
 
@@ -176,7 +175,6 @@ typedef union _hw_pxp_ctrl
 //! @brief Set the ENABLE field to a new value.
 #define BW_PXP_CTRL_ENABLE(v)   (HW_PXP_CTRL_WR((HW_PXP_CTRL_RD() & ~BM_PXP_CTRL_ENABLE) | BF_PXP_CTRL_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_CTRL, field IRQ_ENABLE[1] (RW)
@@ -185,7 +183,6 @@ typedef union _hw_pxp_ctrl
  * of this bit will be used and may therefore enable or disable an interrupt unintentionally.
  */
 //@{
-
 #define BP_PXP_CTRL_IRQ_ENABLE      (1)      //!< Bit position for PXP_CTRL_IRQ_ENABLE.
 #define BM_PXP_CTRL_IRQ_ENABLE      (0x00000002)  //!< Bit mask for PXP_CTRL_IRQ_ENABLE.
 
@@ -199,7 +196,6 @@ typedef union _hw_pxp_ctrl
 //! @brief Set the IRQ_ENABLE field to a new value.
 #define BW_PXP_CTRL_IRQ_ENABLE(v)   (HW_PXP_CTRL_WR((HW_PXP_CTRL_RD() & ~BM_PXP_CTRL_IRQ_ENABLE) | BF_PXP_CTRL_IRQ_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_CTRL, field NEXT_IRQ_ENABLE[2] (RW)
@@ -209,7 +205,6 @@ typedef union _hw_pxp_ctrl
  * interrupt also indicates that a new command may now be queued.
  */
 //@{
-
 #define BP_PXP_CTRL_NEXT_IRQ_ENABLE      (2)      //!< Bit position for PXP_CTRL_NEXT_IRQ_ENABLE.
 #define BM_PXP_CTRL_NEXT_IRQ_ENABLE      (0x00000004)  //!< Bit mask for PXP_CTRL_NEXT_IRQ_ENABLE.
 
@@ -223,7 +218,6 @@ typedef union _hw_pxp_ctrl
 //! @brief Set the NEXT_IRQ_ENABLE field to a new value.
 #define BW_PXP_CTRL_NEXT_IRQ_ENABLE(v)   (HW_PXP_CTRL_WR((HW_PXP_CTRL_RD() & ~BM_PXP_CTRL_NEXT_IRQ_ENABLE) | BF_PXP_CTRL_NEXT_IRQ_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_CTRL, field LUT_DMA_IRQ_ENABLE[3] (RW)
@@ -232,7 +226,6 @@ typedef union _hw_pxp_ctrl
  * transferring data.
  */
 //@{
-
 #define BP_PXP_CTRL_LUT_DMA_IRQ_ENABLE      (3)      //!< Bit position for PXP_CTRL_LUT_DMA_IRQ_ENABLE.
 #define BM_PXP_CTRL_LUT_DMA_IRQ_ENABLE      (0x00000008)  //!< Bit mask for PXP_CTRL_LUT_DMA_IRQ_ENABLE.
 
@@ -246,7 +239,6 @@ typedef union _hw_pxp_ctrl
 //! @brief Set the LUT_DMA_IRQ_ENABLE field to a new value.
 #define BW_PXP_CTRL_LUT_DMA_IRQ_ENABLE(v)   (HW_PXP_CTRL_WR((HW_PXP_CTRL_RD() & ~BM_PXP_CTRL_LUT_DMA_IRQ_ENABLE) | BF_PXP_CTRL_LUT_DMA_IRQ_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_CTRL, field ENABLE_LCD_HANDSHAKE[4] (RW)
@@ -256,7 +248,6 @@ typedef union _hw_pxp_ctrl
  * LCDIF. This enables the use of the onboard SRAM for a partial frame buffer.
  */
 //@{
-
 #define BP_PXP_CTRL_ENABLE_LCD_HANDSHAKE      (4)      //!< Bit position for PXP_CTRL_ENABLE_LCD_HANDSHAKE.
 #define BM_PXP_CTRL_ENABLE_LCD_HANDSHAKE      (0x00000010)  //!< Bit mask for PXP_CTRL_ENABLE_LCD_HANDSHAKE.
 
@@ -270,7 +261,6 @@ typedef union _hw_pxp_ctrl
 //! @brief Set the ENABLE_LCD_HANDSHAKE field to a new value.
 #define BW_PXP_CTRL_ENABLE_LCD_HANDSHAKE(v)   (HW_PXP_CTRL_WR((HW_PXP_CTRL_RD() & ~BM_PXP_CTRL_ENABLE_LCD_HANDSHAKE) | BF_PXP_CTRL_ENABLE_LCD_HANDSHAKE(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_CTRL, field ROTATE[9:8] (RW)
@@ -285,7 +275,6 @@ typedef union _hw_pxp_ctrl
  * - ROT_270 = 0x3 - 
  */
 //@{
-
 #define BP_PXP_CTRL_ROTATE      (8)      //!< Bit position for PXP_CTRL_ROTATE.
 #define BM_PXP_CTRL_ROTATE      (0x00000300)  //!< Bit mask for PXP_CTRL_ROTATE.
 
@@ -307,7 +296,6 @@ typedef union _hw_pxp_ctrl
 #define BV_PXP_CTRL_ROTATE__ROT_90 (0x1) //!< 
 #define BV_PXP_CTRL_ROTATE__ROT_180 (0x2) //!< 
 #define BV_PXP_CTRL_ROTATE__ROT_270 (0x3) //!< 
-
 //@}
 
 /*! @name Register PXP_CTRL, field HFLIP[10] (RW)
@@ -315,7 +303,6 @@ typedef union _hw_pxp_ctrl
  * Indicates that the output buffer should be flipped horizontally (effect applied before rotation).
  */
 //@{
-
 #define BP_PXP_CTRL_HFLIP      (10)      //!< Bit position for PXP_CTRL_HFLIP.
 #define BM_PXP_CTRL_HFLIP      (0x00000400)  //!< Bit mask for PXP_CTRL_HFLIP.
 
@@ -329,7 +316,6 @@ typedef union _hw_pxp_ctrl
 //! @brief Set the HFLIP field to a new value.
 #define BW_PXP_CTRL_HFLIP(v)   (HW_PXP_CTRL_WR((HW_PXP_CTRL_RD() & ~BM_PXP_CTRL_HFLIP) | BF_PXP_CTRL_HFLIP(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_CTRL, field VFLIP[11] (RW)
@@ -337,7 +323,6 @@ typedef union _hw_pxp_ctrl
  * Indicates that the output buffer should be flipped vertically (effect applied before rotation).
  */
 //@{
-
 #define BP_PXP_CTRL_VFLIP      (11)      //!< Bit position for PXP_CTRL_VFLIP.
 #define BM_PXP_CTRL_VFLIP      (0x00000800)  //!< Bit mask for PXP_CTRL_VFLIP.
 
@@ -351,7 +336,6 @@ typedef union _hw_pxp_ctrl
 //! @brief Set the VFLIP field to a new value.
 #define BW_PXP_CTRL_VFLIP(v)   (HW_PXP_CTRL_WR((HW_PXP_CTRL_RD() & ~BM_PXP_CTRL_VFLIP) | BF_PXP_CTRL_VFLIP(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_CTRL, field ROT_POS[22] (RW)
@@ -363,7 +347,6 @@ typedef union _hw_pxp_ctrl
  * AS will not be rotated.
  */
 //@{
-
 #define BP_PXP_CTRL_ROT_POS      (22)      //!< Bit position for PXP_CTRL_ROT_POS.
 #define BM_PXP_CTRL_ROT_POS      (0x00400000)  //!< Bit mask for PXP_CTRL_ROT_POS.
 
@@ -377,7 +360,6 @@ typedef union _hw_pxp_ctrl
 //! @brief Set the ROT_POS field to a new value.
 #define BW_PXP_CTRL_ROT_POS(v)   (HW_PXP_CTRL_WR((HW_PXP_CTRL_RD() & ~BM_PXP_CTRL_ROT_POS) | BF_PXP_CTRL_ROT_POS(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_CTRL, field BLOCK_SIZE[23] (RW)
@@ -389,7 +371,6 @@ typedef union _hw_pxp_ctrl
  * - 16X16 = 0x1 - Process 16x16 pixel blocks.
  */
 //@{
-
 #define BP_PXP_CTRL_BLOCK_SIZE      (23)      //!< Bit position for PXP_CTRL_BLOCK_SIZE.
 #define BM_PXP_CTRL_BLOCK_SIZE      (0x00800000)  //!< Bit mask for PXP_CTRL_BLOCK_SIZE.
 
@@ -409,7 +390,6 @@ typedef union _hw_pxp_ctrl
 
 #define BV_PXP_CTRL_BLOCK_SIZE__8X8 (0x0) //!< Process 8x8 pixel blocks.
 #define BV_PXP_CTRL_BLOCK_SIZE__16X16 (0x1) //!< Process 16x16 pixel blocks.
-
 //@}
 
 /*! @name Register PXP_CTRL, field EN_REPEAT[28] (RW)
@@ -424,7 +404,6 @@ typedef union _hw_pxp_ctrl
  * next PXP operation will continue.
  */
 //@{
-
 #define BP_PXP_CTRL_EN_REPEAT      (28)      //!< Bit position for PXP_CTRL_EN_REPEAT.
 #define BM_PXP_CTRL_EN_REPEAT      (0x10000000)  //!< Bit mask for PXP_CTRL_EN_REPEAT.
 
@@ -438,7 +417,6 @@ typedef union _hw_pxp_ctrl
 //! @brief Set the EN_REPEAT field to a new value.
 #define BW_PXP_CTRL_EN_REPEAT(v)   (HW_PXP_CTRL_WR((HW_PXP_CTRL_RD() & ~BM_PXP_CTRL_EN_REPEAT) | BF_PXP_CTRL_EN_REPEAT(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_CTRL, field CLKGATE[30] (RW)
@@ -447,7 +425,6 @@ typedef union _hw_pxp_ctrl
  * block.
  */
 //@{
-
 #define BP_PXP_CTRL_CLKGATE      (30)      //!< Bit position for PXP_CTRL_CLKGATE.
 #define BM_PXP_CTRL_CLKGATE      (0x40000000)  //!< Bit mask for PXP_CTRL_CLKGATE.
 
@@ -461,7 +438,6 @@ typedef union _hw_pxp_ctrl
 //! @brief Set the CLKGATE field to a new value.
 #define BW_PXP_CTRL_CLKGATE(v)   (HW_PXP_CTRL_WR((HW_PXP_CTRL_RD() & ~BM_PXP_CTRL_CLKGATE) | BF_PXP_CTRL_CLKGATE(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_CTRL, field SFTRST[31] (RW)
@@ -471,7 +447,6 @@ typedef union _hw_pxp_ctrl
  * and then off to reset the PXP block to its default state.
  */
 //@{
-
 #define BP_PXP_CTRL_SFTRST      (31)      //!< Bit position for PXP_CTRL_SFTRST.
 #define BM_PXP_CTRL_SFTRST      (0x80000000)  //!< Bit mask for PXP_CTRL_SFTRST.
 
@@ -485,7 +460,6 @@ typedef union _hw_pxp_ctrl
 //! @brief Set the SFTRST field to a new value.
 #define BW_PXP_CTRL_SFTRST(v)   (HW_PXP_CTRL_WR((HW_PXP_CTRL_RD() & ~BM_PXP_CTRL_SFTRST) | BF_PXP_CTRL_SFTRST(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -547,7 +521,6 @@ typedef union _hw_pxp_stat
  * bit in the control register is set.
  */
 //@{
-
 #define BP_PXP_STAT_IRQ      (0)      //!< Bit position for PXP_STAT_IRQ.
 #define BM_PXP_STAT_IRQ      (0x00000001)  //!< Bit mask for PXP_STAT_IRQ.
 
@@ -561,7 +534,6 @@ typedef union _hw_pxp_stat
 //! @brief Set the IRQ field to a new value.
 #define BW_PXP_STAT_IRQ(v)   (HW_PXP_STAT_WR((HW_PXP_STAT_RD() & ~BM_PXP_STAT_IRQ) | BF_PXP_STAT_IRQ(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_STAT, field AXI_WRITE_ERROR[1] (RW)
@@ -569,7 +541,6 @@ typedef union _hw_pxp_stat
  * Indicates PXP encountered an AXI write error and processing has been terminated.
  */
 //@{
-
 #define BP_PXP_STAT_AXI_WRITE_ERROR      (1)      //!< Bit position for PXP_STAT_AXI_WRITE_ERROR.
 #define BM_PXP_STAT_AXI_WRITE_ERROR      (0x00000002)  //!< Bit mask for PXP_STAT_AXI_WRITE_ERROR.
 
@@ -583,7 +554,6 @@ typedef union _hw_pxp_stat
 //! @brief Set the AXI_WRITE_ERROR field to a new value.
 #define BW_PXP_STAT_AXI_WRITE_ERROR(v)   (HW_PXP_STAT_WR((HW_PXP_STAT_RD() & ~BM_PXP_STAT_AXI_WRITE_ERROR) | BF_PXP_STAT_AXI_WRITE_ERROR(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_STAT, field AXI_READ_ERROR[2] (RW)
@@ -591,7 +561,6 @@ typedef union _hw_pxp_stat
  * Indicates PXP encountered an AXI read error and processing has been terminated.
  */
 //@{
-
 #define BP_PXP_STAT_AXI_READ_ERROR      (2)      //!< Bit position for PXP_STAT_AXI_READ_ERROR.
 #define BM_PXP_STAT_AXI_READ_ERROR      (0x00000004)  //!< Bit mask for PXP_STAT_AXI_READ_ERROR.
 
@@ -605,7 +574,6 @@ typedef union _hw_pxp_stat
 //! @brief Set the AXI_READ_ERROR field to a new value.
 #define BW_PXP_STAT_AXI_READ_ERROR(v)   (HW_PXP_STAT_WR((HW_PXP_STAT_RD() & ~BM_PXP_STAT_AXI_READ_ERROR) | BF_PXP_STAT_AXI_READ_ERROR(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_STAT, field NEXT_IRQ[3] (RW)
@@ -614,7 +582,6 @@ typedef union _hw_pxp_stat
  * new command may be initiated with a write to the PXP_NEXT register.
  */
 //@{
-
 #define BP_PXP_STAT_NEXT_IRQ      (3)      //!< Bit position for PXP_STAT_NEXT_IRQ.
 #define BM_PXP_STAT_NEXT_IRQ      (0x00000008)  //!< Bit mask for PXP_STAT_NEXT_IRQ.
 
@@ -628,7 +595,6 @@ typedef union _hw_pxp_stat
 //! @brief Set the NEXT_IRQ field to a new value.
 #define BW_PXP_STAT_NEXT_IRQ(v)   (HW_PXP_STAT_WR((HW_PXP_STAT_RD() & ~BM_PXP_STAT_NEXT_IRQ) | BF_PXP_STAT_NEXT_IRQ(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_STAT, field AXI_ERROR_ID[7:4] (RO)
@@ -636,13 +602,11 @@ typedef union _hw_pxp_stat
  * Indicates the AXI ID of the failing bus operation.
  */
 //@{
-
 #define BP_PXP_STAT_AXI_ERROR_ID      (4)      //!< Bit position for PXP_STAT_AXI_ERROR_ID.
 #define BM_PXP_STAT_AXI_ERROR_ID      (0x000000f0)  //!< Bit mask for PXP_STAT_AXI_ERROR_ID.
 
 //! @brief Get value of PXP_STAT_AXI_ERROR_ID from a register value.
 #define BG_PXP_STAT_AXI_ERROR_ID(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_STAT_AXI_ERROR_ID) >> BP_PXP_STAT_AXI_ERROR_ID)
-
 //@}
 
 /*! @name Register PXP_STAT, field LUT_DMA_LOAD_DONE_IRQ[8] (RW)
@@ -650,7 +614,6 @@ typedef union _hw_pxp_stat
  * Indicates that the LUT DMA transfer has completed.
  */
 //@{
-
 #define BP_PXP_STAT_LUT_DMA_LOAD_DONE_IRQ      (8)      //!< Bit position for PXP_STAT_LUT_DMA_LOAD_DONE_IRQ.
 #define BM_PXP_STAT_LUT_DMA_LOAD_DONE_IRQ      (0x00000100)  //!< Bit mask for PXP_STAT_LUT_DMA_LOAD_DONE_IRQ.
 
@@ -664,7 +627,6 @@ typedef union _hw_pxp_stat
 //! @brief Set the LUT_DMA_LOAD_DONE_IRQ field to a new value.
 #define BW_PXP_STAT_LUT_DMA_LOAD_DONE_IRQ(v)   (HW_PXP_STAT_WR((HW_PXP_STAT_RD() & ~BM_PXP_STAT_LUT_DMA_LOAD_DONE_IRQ) | BF_PXP_STAT_LUT_DMA_LOAD_DONE_IRQ(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_STAT, field BLOCKY[23:16] (RO)
@@ -672,13 +634,11 @@ typedef union _hw_pxp_stat
  * Indicates the X coordinate of the block currently being rendered.
  */
 //@{
-
 #define BP_PXP_STAT_BLOCKY      (16)      //!< Bit position for PXP_STAT_BLOCKY.
 #define BM_PXP_STAT_BLOCKY      (0x00ff0000)  //!< Bit mask for PXP_STAT_BLOCKY.
 
 //! @brief Get value of PXP_STAT_BLOCKY from a register value.
 #define BG_PXP_STAT_BLOCKY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_STAT_BLOCKY) >> BP_PXP_STAT_BLOCKY)
-
 //@}
 
 /*! @name Register PXP_STAT, field BLOCKX[31:24] (RO)
@@ -686,13 +646,11 @@ typedef union _hw_pxp_stat
  * Indicates the X coordinate of the block currently being rendered.
  */
 //@{
-
 #define BP_PXP_STAT_BLOCKX      (24)      //!< Bit position for PXP_STAT_BLOCKX.
 #define BM_PXP_STAT_BLOCKX      (0xff000000)  //!< Bit mask for PXP_STAT_BLOCKX.
 
 //! @brief Get value of PXP_STAT_BLOCKX from a register value.
 #define BG_PXP_STAT_BLOCKX(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_STAT_BLOCKX) >> BP_PXP_STAT_BLOCKX)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -772,7 +730,6 @@ typedef union _hw_pxp_out_ctrl
  * - YVU2P420 = 0x1B - 16-bit pixels (2-plane VU)
  */
 //@{
-
 #define BP_PXP_OUT_CTRL_FORMAT      (0)      //!< Bit position for PXP_OUT_CTRL_FORMAT.
 #define BM_PXP_OUT_CTRL_FORMAT      (0x0000001f)  //!< Bit mask for PXP_OUT_CTRL_FORMAT.
 
@@ -807,7 +764,6 @@ typedef union _hw_pxp_out_ctrl
 #define BV_PXP_OUT_CTRL_FORMAT__YUV2P420 (0x19) //!< 16-bit pixels (2-plane UV)
 #define BV_PXP_OUT_CTRL_FORMAT__YVU2P422 (0x1a) //!< 16-bit pixels (2-plane VU interleaved bytes)
 #define BV_PXP_OUT_CTRL_FORMAT__YVU2P420 (0x1b) //!< 16-bit pixels (2-plane VU)
-
 //@}
 
 /*! @name Register PXP_OUT_CTRL, field INTERLACED_OUTPUT[9:8] (RW)
@@ -823,7 +779,6 @@ typedef union _hw_pxp_out_ctrl
  * - INTERLACED = 0x3 - Interlaced output: data for field 0 is written to OUTBUF and data for field 1 is written to OUTBUF2.
  */
 //@{
-
 #define BP_PXP_OUT_CTRL_INTERLACED_OUTPUT      (8)      //!< Bit position for PXP_OUT_CTRL_INTERLACED_OUTPUT.
 #define BM_PXP_OUT_CTRL_INTERLACED_OUTPUT      (0x00000300)  //!< Bit mask for PXP_OUT_CTRL_INTERLACED_OUTPUT.
 
@@ -845,7 +800,6 @@ typedef union _hw_pxp_out_ctrl
 #define BV_PXP_OUT_CTRL_INTERLACED_OUTPUT__FIELD0 (0x1) //!< Interlaced output: only data for field 0 is written to the OUTBUF Pointer.
 #define BV_PXP_OUT_CTRL_INTERLACED_OUTPUT__FIELD1 (0x2) //!< Interlaced output: only data for field 1 is written to the OUTBUF2 Pointer.
 #define BV_PXP_OUT_CTRL_INTERLACED_OUTPUT__INTERLACED (0x3) //!< Interlaced output: data for field 0 is written to OUTBUF and data for field 1 is written to OUTBUF2.
-
 //@}
 
 /*! @name Register PXP_OUT_CTRL, field ALPHA_OUTPUT[23] (RW)
@@ -854,7 +808,6 @@ typedef union _hw_pxp_out_ctrl
  * PXP_OUT_CTRL[ALPHA]. If 0, retain their alpha value from the computed alpha for that pixel.
  */
 //@{
-
 #define BP_PXP_OUT_CTRL_ALPHA_OUTPUT      (23)      //!< Bit position for PXP_OUT_CTRL_ALPHA_OUTPUT.
 #define BM_PXP_OUT_CTRL_ALPHA_OUTPUT      (0x00800000)  //!< Bit mask for PXP_OUT_CTRL_ALPHA_OUTPUT.
 
@@ -868,7 +821,6 @@ typedef union _hw_pxp_out_ctrl
 //! @brief Set the ALPHA_OUTPUT field to a new value.
 #define BW_PXP_OUT_CTRL_ALPHA_OUTPUT(v)   (HW_PXP_OUT_CTRL_WR((HW_PXP_OUT_CTRL_RD() & ~BM_PXP_OUT_CTRL_ALPHA_OUTPUT) | BF_PXP_OUT_CTRL_ALPHA_OUTPUT(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_OUT_CTRL, field ALPHA[31:24] (RW)
@@ -877,7 +829,6 @@ typedef union _hw_pxp_out_ctrl
  * when enabled to override the alpha passed through the pixel data pipeline.
  */
 //@{
-
 #define BP_PXP_OUT_CTRL_ALPHA      (24)      //!< Bit position for PXP_OUT_CTRL_ALPHA.
 #define BM_PXP_OUT_CTRL_ALPHA      (0xff000000)  //!< Bit mask for PXP_OUT_CTRL_ALPHA.
 
@@ -891,7 +842,6 @@ typedef union _hw_pxp_out_ctrl
 //! @brief Set the ALPHA field to a new value.
 #define BW_PXP_OUT_CTRL_ALPHA(v)   (HW_PXP_OUT_CTRL_WR((HW_PXP_OUT_CTRL_RD() & ~BM_PXP_OUT_CTRL_ALPHA) | BF_PXP_OUT_CTRL_ALPHA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -945,7 +895,6 @@ typedef union _hw_pxp_out_buf
  * alignment is recommended for optimal performance.
  */
 //@{
-
 #define BP_PXP_OUT_BUF_ADDR      (0)      //!< Bit position for PXP_OUT_BUF_ADDR.
 #define BM_PXP_OUT_BUF_ADDR      (0xffffffff)  //!< Bit mask for PXP_OUT_BUF_ADDR.
 
@@ -959,7 +908,6 @@ typedef union _hw_pxp_out_buf
 //! @brief Set the ADDR field to a new value.
 #define BW_PXP_OUT_BUF_ADDR(v)   (HW_PXP_OUT_BUF_WR((HW_PXP_OUT_BUF_RD() & ~BM_PXP_OUT_BUF_ADDR) | BF_PXP_OUT_BUF_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1016,7 +964,6 @@ typedef union _hw_pxp_out_buf2
  * alignment is recommended for optimal performance.
  */
 //@{
-
 #define BP_PXP_OUT_BUF2_ADDR      (0)      //!< Bit position for PXP_OUT_BUF2_ADDR.
 #define BM_PXP_OUT_BUF2_ADDR      (0xffffffff)  //!< Bit mask for PXP_OUT_BUF2_ADDR.
 
@@ -1030,7 +977,6 @@ typedef union _hw_pxp_out_buf2
 //! @brief Set the ADDR field to a new value.
 #define BW_PXP_OUT_BUF2_ADDR(v)   (HW_PXP_OUT_BUF2_WR((HW_PXP_OUT_BUF2_RD() & ~BM_PXP_OUT_BUF2_ADDR) | BF_PXP_OUT_BUF2_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1083,7 +1029,6 @@ typedef union _hw_pxp_out_pitch
  * Indicates the number of bytes in memory between two vertically adjacent pixels.
  */
 //@{
-
 #define BP_PXP_OUT_PITCH_PITCH      (0)      //!< Bit position for PXP_OUT_PITCH_PITCH.
 #define BM_PXP_OUT_PITCH_PITCH      (0x0000ffff)  //!< Bit mask for PXP_OUT_PITCH_PITCH.
 
@@ -1097,7 +1042,6 @@ typedef union _hw_pxp_out_pitch
 //! @brief Set the PITCH field to a new value.
 #define BW_PXP_OUT_PITCH_PITCH(v)   (HW_PXP_OUT_PITCH_WR((HW_PXP_OUT_PITCH_RD() & ~BM_PXP_OUT_PITCH_PITCH) | BF_PXP_OUT_PITCH_PITCH(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1160,7 +1104,6 @@ typedef union _hw_pxp_out_lrc
  * pixels. The PXP will clip the pixel output at this boundary.
  */
 //@{
-
 #define BP_PXP_OUT_LRC_Y      (0)      //!< Bit position for PXP_OUT_LRC_Y.
 #define BM_PXP_OUT_LRC_Y      (0x00003fff)  //!< Bit mask for PXP_OUT_LRC_Y.
 
@@ -1174,7 +1117,6 @@ typedef union _hw_pxp_out_lrc
 //! @brief Set the Y field to a new value.
 #define BW_PXP_OUT_LRC_Y(v)   (HW_PXP_OUT_LRC_WR((HW_PXP_OUT_LRC_RD() & ~BM_PXP_OUT_LRC_Y) | BF_PXP_OUT_LRC_Y(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_OUT_LRC, field X[29:16] (RW)
@@ -1184,7 +1126,6 @@ typedef union _hw_pxp_out_lrc
  * pixels. The PXP will clip the pixel output at this boundary.
  */
 //@{
-
 #define BP_PXP_OUT_LRC_X      (16)      //!< Bit position for PXP_OUT_LRC_X.
 #define BM_PXP_OUT_LRC_X      (0x3fff0000)  //!< Bit mask for PXP_OUT_LRC_X.
 
@@ -1198,7 +1139,6 @@ typedef union _hw_pxp_out_lrc
 //! @brief Set the X field to a new value.
 #define BW_PXP_OUT_LRC_X(v)   (HW_PXP_OUT_LRC_WR((HW_PXP_OUT_LRC_RD() & ~BM_PXP_OUT_LRC_X) | BF_PXP_OUT_LRC_X(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1261,7 +1201,6 @@ typedef union _hw_pxp_out_ps_ulc
  * output buffer.
  */
 //@{
-
 #define BP_PXP_OUT_PS_ULC_Y      (0)      //!< Bit position for PXP_OUT_PS_ULC_Y.
 #define BM_PXP_OUT_PS_ULC_Y      (0x00003fff)  //!< Bit mask for PXP_OUT_PS_ULC_Y.
 
@@ -1275,7 +1214,6 @@ typedef union _hw_pxp_out_ps_ulc
 //! @brief Set the Y field to a new value.
 #define BW_PXP_OUT_PS_ULC_Y(v)   (HW_PXP_OUT_PS_ULC_WR((HW_PXP_OUT_PS_ULC_RD() & ~BM_PXP_OUT_PS_ULC_Y) | BF_PXP_OUT_PS_ULC_Y(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_OUT_PS_ULC, field X[29:16] (RW)
@@ -1284,7 +1222,6 @@ typedef union _hw_pxp_out_ps_ulc
  * output buffer.
  */
 //@{
-
 #define BP_PXP_OUT_PS_ULC_X      (16)      //!< Bit position for PXP_OUT_PS_ULC_X.
 #define BM_PXP_OUT_PS_ULC_X      (0x3fff0000)  //!< Bit mask for PXP_OUT_PS_ULC_X.
 
@@ -1298,7 +1235,6 @@ typedef union _hw_pxp_out_ps_ulc
 //! @brief Set the X field to a new value.
 #define BW_PXP_OUT_PS_ULC_X(v)   (HW_PXP_OUT_PS_ULC_WR((HW_PXP_OUT_PS_ULC_RD() & ~BM_PXP_OUT_PS_ULC_X) | BF_PXP_OUT_PS_ULC_X(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1359,7 +1295,6 @@ typedef union _hw_pxp_out_ps_lrc
  * output frame buffer.
  */
 //@{
-
 #define BP_PXP_OUT_PS_LRC_Y      (0)      //!< Bit position for PXP_OUT_PS_LRC_Y.
 #define BM_PXP_OUT_PS_LRC_Y      (0x00003fff)  //!< Bit mask for PXP_OUT_PS_LRC_Y.
 
@@ -1373,7 +1308,6 @@ typedef union _hw_pxp_out_ps_lrc
 //! @brief Set the Y field to a new value.
 #define BW_PXP_OUT_PS_LRC_Y(v)   (HW_PXP_OUT_PS_LRC_WR((HW_PXP_OUT_PS_LRC_RD() & ~BM_PXP_OUT_PS_LRC_Y) | BF_PXP_OUT_PS_LRC_Y(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_OUT_PS_LRC, field X[29:16] (RW)
@@ -1382,7 +1316,6 @@ typedef union _hw_pxp_out_ps_lrc
  * the output frame buffer.
  */
 //@{
-
 #define BP_PXP_OUT_PS_LRC_X      (16)      //!< Bit position for PXP_OUT_PS_LRC_X.
 #define BM_PXP_OUT_PS_LRC_X      (0x3fff0000)  //!< Bit mask for PXP_OUT_PS_LRC_X.
 
@@ -1396,7 +1329,6 @@ typedef union _hw_pxp_out_ps_lrc
 //! @brief Set the X field to a new value.
 #define BW_PXP_OUT_PS_LRC_X(v)   (HW_PXP_OUT_PS_LRC_WR((HW_PXP_OUT_PS_LRC_RD() & ~BM_PXP_OUT_PS_LRC_X) | BF_PXP_OUT_PS_LRC_X(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1456,7 +1388,6 @@ typedef union _hw_pxp_out_as_ulc
  * frame buffer.
  */
 //@{
-
 #define BP_PXP_OUT_AS_ULC_Y      (0)      //!< Bit position for PXP_OUT_AS_ULC_Y.
 #define BM_PXP_OUT_AS_ULC_Y      (0x00003fff)  //!< Bit mask for PXP_OUT_AS_ULC_Y.
 
@@ -1470,7 +1401,6 @@ typedef union _hw_pxp_out_as_ulc
 //! @brief Set the Y field to a new value.
 #define BW_PXP_OUT_AS_ULC_Y(v)   (HW_PXP_OUT_AS_ULC_WR((HW_PXP_OUT_AS_ULC_RD() & ~BM_PXP_OUT_AS_ULC_Y) | BF_PXP_OUT_AS_ULC_Y(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_OUT_AS_ULC, field X[29:16] (RW)
@@ -1479,7 +1409,6 @@ typedef union _hw_pxp_out_as_ulc
  * output frame buffer.
  */
 //@{
-
 #define BP_PXP_OUT_AS_ULC_X      (16)      //!< Bit position for PXP_OUT_AS_ULC_X.
 #define BM_PXP_OUT_AS_ULC_X      (0x3fff0000)  //!< Bit mask for PXP_OUT_AS_ULC_X.
 
@@ -1493,7 +1422,6 @@ typedef union _hw_pxp_out_as_ulc
 //! @brief Set the X field to a new value.
 #define BW_PXP_OUT_AS_ULC_X(v)   (HW_PXP_OUT_AS_ULC_WR((HW_PXP_OUT_AS_ULC_RD() & ~BM_PXP_OUT_AS_ULC_X) | BF_PXP_OUT_AS_ULC_X(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1552,7 +1480,6 @@ typedef union _hw_pxp_out_as_lrc
  * frame buffer.
  */
 //@{
-
 #define BP_PXP_OUT_AS_LRC_Y      (0)      //!< Bit position for PXP_OUT_AS_LRC_Y.
 #define BM_PXP_OUT_AS_LRC_Y      (0x00003fff)  //!< Bit mask for PXP_OUT_AS_LRC_Y.
 
@@ -1566,7 +1493,6 @@ typedef union _hw_pxp_out_as_lrc
 //! @brief Set the Y field to a new value.
 #define BW_PXP_OUT_AS_LRC_Y(v)   (HW_PXP_OUT_AS_LRC_WR((HW_PXP_OUT_AS_LRC_RD() & ~BM_PXP_OUT_AS_LRC_Y) | BF_PXP_OUT_AS_LRC_Y(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_OUT_AS_LRC, field X[29:16] (RW)
@@ -1575,7 +1501,6 @@ typedef union _hw_pxp_out_as_lrc
  * output frame buffer.
  */
 //@{
-
 #define BP_PXP_OUT_AS_LRC_X      (16)      //!< Bit position for PXP_OUT_AS_LRC_X.
 #define BM_PXP_OUT_AS_LRC_X      (0x3fff0000)  //!< Bit mask for PXP_OUT_AS_LRC_X.
 
@@ -1589,7 +1514,6 @@ typedef union _hw_pxp_out_as_lrc
 //! @brief Set the X field to a new value.
 #define BW_PXP_OUT_AS_LRC_X(v)   (HW_PXP_OUT_AS_LRC_WR((HW_PXP_OUT_AS_LRC_RD() & ~BM_PXP_OUT_AS_LRC_X) | BF_PXP_OUT_AS_LRC_X(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1665,7 +1589,6 @@ typedef union _hw_pxp_ps_ctrl
  * - YUV420 = 0x1F - 16-bit pixels (3-plane format)
  */
 //@{
-
 #define BP_PXP_PS_CTRL_FORMAT      (0)      //!< Bit position for PXP_PS_CTRL_FORMAT.
 #define BM_PXP_PS_CTRL_FORMAT      (0x0000001f)  //!< Bit mask for PXP_PS_CTRL_FORMAT.
 
@@ -1698,7 +1621,6 @@ typedef union _hw_pxp_ps_ctrl
 #define BV_PXP_PS_CTRL_FORMAT__YVU2P420 (0x1b) //!< 16-bit pixels (2-plane VU)
 #define BV_PXP_PS_CTRL_FORMAT__YUV422 (0x1e) //!< 16-bit pixels (3-plane format)
 #define BV_PXP_PS_CTRL_FORMAT__YUV420 (0x1f) //!< 16-bit pixels (3-plane format)
-
 //@}
 
 /*! @name Register PXP_PS_CTRL, field WB_SWAP[5] (RW)
@@ -1706,7 +1628,6 @@ typedef union _hw_pxp_ps_ctrl
  * Swap bytes in words. For each 16 bit word, the two bytes will be swapped.
  */
 //@{
-
 #define BP_PXP_PS_CTRL_WB_SWAP      (5)      //!< Bit position for PXP_PS_CTRL_WB_SWAP.
 #define BM_PXP_PS_CTRL_WB_SWAP      (0x00000020)  //!< Bit mask for PXP_PS_CTRL_WB_SWAP.
 
@@ -1720,7 +1641,6 @@ typedef union _hw_pxp_ps_ctrl
 //! @brief Set the WB_SWAP field to a new value.
 #define BW_PXP_PS_CTRL_WB_SWAP(v)   (HW_PXP_PS_CTRL_WR((HW_PXP_PS_CTRL_RD() & ~BM_PXP_PS_CTRL_WB_SWAP) | BF_PXP_PS_CTRL_WB_SWAP(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_PS_CTRL, field DECY[9:8] (RW)
@@ -1734,7 +1654,6 @@ typedef union _hw_pxp_ps_ctrl
  * - DECY8 = 0x3 - Decimate PS by 8.
  */
 //@{
-
 #define BP_PXP_PS_CTRL_DECY      (8)      //!< Bit position for PXP_PS_CTRL_DECY.
 #define BM_PXP_PS_CTRL_DECY      (0x00000300)  //!< Bit mask for PXP_PS_CTRL_DECY.
 
@@ -1756,7 +1675,6 @@ typedef union _hw_pxp_ps_ctrl
 #define BV_PXP_PS_CTRL_DECY__DECY2 (0x1) //!< Decimate PS by 2.
 #define BV_PXP_PS_CTRL_DECY__DECY4 (0x2) //!< Decimate PS by 4.
 #define BV_PXP_PS_CTRL_DECY__DECY8 (0x3) //!< Decimate PS by 8.
-
 //@}
 
 /*! @name Register PXP_PS_CTRL, field DECX[11:10] (RW)
@@ -1770,7 +1688,6 @@ typedef union _hw_pxp_ps_ctrl
  * - DECX8 = 0x3 - Decimate PS by 8.
  */
 //@{
-
 #define BP_PXP_PS_CTRL_DECX      (10)      //!< Bit position for PXP_PS_CTRL_DECX.
 #define BM_PXP_PS_CTRL_DECX      (0x00000c00)  //!< Bit mask for PXP_PS_CTRL_DECX.
 
@@ -1792,7 +1709,6 @@ typedef union _hw_pxp_ps_ctrl
 #define BV_PXP_PS_CTRL_DECX__DECX2 (0x1) //!< Decimate PS by 2.
 #define BV_PXP_PS_CTRL_DECX__DECX4 (0x2) //!< Decimate PS by 4.
 #define BV_PXP_PS_CTRL_DECX__DECX8 (0x3) //!< Decimate PS by 8.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1848,7 +1764,6 @@ typedef union _hw_pxp_ps_buf
  * Address pointer for the PS RGB or Y (luma) input buffer.
  */
 //@{
-
 #define BP_PXP_PS_BUF_ADDR      (0)      //!< Bit position for PXP_PS_BUF_ADDR.
 #define BM_PXP_PS_BUF_ADDR      (0xffffffff)  //!< Bit mask for PXP_PS_BUF_ADDR.
 
@@ -1862,7 +1777,6 @@ typedef union _hw_pxp_ps_buf
 //! @brief Set the ADDR field to a new value.
 #define BW_PXP_PS_BUF_ADDR(v)   (HW_PXP_PS_BUF_WR((HW_PXP_PS_BUF_RD() & ~BM_PXP_PS_BUF_ADDR) | BF_PXP_PS_BUF_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1919,7 +1833,6 @@ typedef union _hw_pxp_ps_ubuf
  * Address pointer for the PS U/Cb or 2 plane UV Chroma input buffer.
  */
 //@{
-
 #define BP_PXP_PS_UBUF_ADDR      (0)      //!< Bit position for PXP_PS_UBUF_ADDR.
 #define BM_PXP_PS_UBUF_ADDR      (0xffffffff)  //!< Bit mask for PXP_PS_UBUF_ADDR.
 
@@ -1933,7 +1846,6 @@ typedef union _hw_pxp_ps_ubuf
 //! @brief Set the ADDR field to a new value.
 #define BW_PXP_PS_UBUF_ADDR(v)   (HW_PXP_PS_UBUF_WR((HW_PXP_PS_UBUF_RD() & ~BM_PXP_PS_UBUF_ADDR) | BF_PXP_PS_UBUF_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1994,7 +1906,6 @@ typedef union _hw_pxp_ps_vbuf
  * Address pointer for the PS V/Cr Chroma input buffer.
  */
 //@{
-
 #define BP_PXP_PS_VBUF_ADDR      (0)      //!< Bit position for PXP_PS_VBUF_ADDR.
 #define BM_PXP_PS_VBUF_ADDR      (0xffffffff)  //!< Bit mask for PXP_PS_VBUF_ADDR.
 
@@ -2008,7 +1919,6 @@ typedef union _hw_pxp_ps_vbuf
 //! @brief Set the ADDR field to a new value.
 #define BW_PXP_PS_VBUF_ADDR(v)   (HW_PXP_PS_VBUF_WR((HW_PXP_PS_VBUF_RD() & ~BM_PXP_PS_VBUF_ADDR) | BF_PXP_PS_VBUF_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2067,7 +1977,6 @@ typedef union _hw_pxp_ps_pitch
  * Indicates the number of bytes in memory between two vertically adjacent pixels.
  */
 //@{
-
 #define BP_PXP_PS_PITCH_PITCH      (0)      //!< Bit position for PXP_PS_PITCH_PITCH.
 #define BM_PXP_PS_PITCH_PITCH      (0x0000ffff)  //!< Bit mask for PXP_PS_PITCH_PITCH.
 
@@ -2081,7 +1990,6 @@ typedef union _hw_pxp_ps_pitch
 //! @brief Set the PITCH field to a new value.
 #define BW_PXP_PS_PITCH_PITCH(v)   (HW_PXP_PS_PITCH_WR((HW_PXP_PS_PITCH_RD() & ~BM_PXP_PS_PITCH_PITCH) | BF_PXP_PS_PITCH_PITCH(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2141,7 +2049,6 @@ typedef union _hw_pxp_ps_background
  * ULC/LRC.
  */
 //@{
-
 #define BP_PXP_PS_BACKGROUND_COLOR      (0)      //!< Bit position for PXP_PS_BACKGROUND_COLOR.
 #define BM_PXP_PS_BACKGROUND_COLOR      (0x00ffffff)  //!< Bit mask for PXP_PS_BACKGROUND_COLOR.
 
@@ -2155,7 +2062,6 @@ typedef union _hw_pxp_ps_background
 //! @brief Set the COLOR field to a new value.
 #define BW_PXP_PS_BACKGROUND_COLOR(v)   (HW_PXP_PS_BACKGROUND_WR((HW_PXP_PS_BACKGROUND_RD() & ~BM_PXP_PS_BACKGROUND_COLOR) | BF_PXP_PS_BACKGROUND_COLOR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2219,7 +2125,6 @@ typedef union _hw_pxp_ps_scale
  * bilinear filter should be used together to achieve scaling by more than a factor of 2.
  */
 //@{
-
 #define BP_PXP_PS_SCALE_XSCALE      (0)      //!< Bit position for PXP_PS_SCALE_XSCALE.
 #define BM_PXP_PS_SCALE_XSCALE      (0x00007fff)  //!< Bit mask for PXP_PS_SCALE_XSCALE.
 
@@ -2233,7 +2138,6 @@ typedef union _hw_pxp_ps_scale
 //! @brief Set the XSCALE field to a new value.
 #define BW_PXP_PS_SCALE_XSCALE(v)   (HW_PXP_PS_SCALE_WR((HW_PXP_PS_SCALE_RD() & ~BM_PXP_PS_SCALE_XSCALE) | BF_PXP_PS_SCALE_XSCALE(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_PS_SCALE, field YSCALE[30:16] (RW)
@@ -2244,7 +2148,6 @@ typedef union _hw_pxp_ps_scale
  * bilinear filter should be used together to achieve scaling by more than a factor of 2.
  */
 //@{
-
 #define BP_PXP_PS_SCALE_YSCALE      (16)      //!< Bit position for PXP_PS_SCALE_YSCALE.
 #define BM_PXP_PS_SCALE_YSCALE      (0x7fff0000)  //!< Bit mask for PXP_PS_SCALE_YSCALE.
 
@@ -2258,7 +2161,6 @@ typedef union _hw_pxp_ps_scale
 //! @brief Set the YSCALE field to a new value.
 #define BW_PXP_PS_SCALE_YSCALE(v)   (HW_PXP_PS_SCALE_WR((HW_PXP_PS_SCALE_RD() & ~BM_PXP_PS_SCALE_YSCALE) | BF_PXP_PS_SCALE_YSCALE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2323,7 +2225,6 @@ typedef union _hw_pxp_ps_offset
  * for the scaling engine.
  */
 //@{
-
 #define BP_PXP_PS_OFFSET_XOFFSET      (0)      //!< Bit position for PXP_PS_OFFSET_XOFFSET.
 #define BM_PXP_PS_OFFSET_XOFFSET      (0x00000fff)  //!< Bit mask for PXP_PS_OFFSET_XOFFSET.
 
@@ -2337,7 +2238,6 @@ typedef union _hw_pxp_ps_offset
 //! @brief Set the XOFFSET field to a new value.
 #define BW_PXP_PS_OFFSET_XOFFSET(v)   (HW_PXP_PS_OFFSET_WR((HW_PXP_PS_OFFSET_RD() & ~BM_PXP_PS_OFFSET_XOFFSET) | BF_PXP_PS_OFFSET_XOFFSET(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_PS_OFFSET, field YOFFSET[27:16] (RW)
@@ -2347,7 +2247,6 @@ typedef union _hw_pxp_ps_offset
  * for the scaling engine.
  */
 //@{
-
 #define BP_PXP_PS_OFFSET_YOFFSET      (16)      //!< Bit position for PXP_PS_OFFSET_YOFFSET.
 #define BM_PXP_PS_OFFSET_YOFFSET      (0x0fff0000)  //!< Bit mask for PXP_PS_OFFSET_YOFFSET.
 
@@ -2361,7 +2260,6 @@ typedef union _hw_pxp_ps_offset
 //! @brief Set the YOFFSET field to a new value.
 #define BW_PXP_PS_OFFSET_YOFFSET(v)   (HW_PXP_PS_OFFSET_WR((HW_PXP_PS_OFFSET_RD() & ~BM_PXP_PS_OFFSET_YOFFSET) | BF_PXP_PS_OFFSET_YOFFSET(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2419,7 +2317,6 @@ typedef union _hw_pxp_ps_clrkeylow
  * 0xFFFFFF and the high colorkey to 0x000000.
  */
 //@{
-
 #define BP_PXP_PS_CLRKEYLOW_PIXEL      (0)      //!< Bit position for PXP_PS_CLRKEYLOW_PIXEL.
 #define BM_PXP_PS_CLRKEYLOW_PIXEL      (0x00ffffff)  //!< Bit mask for PXP_PS_CLRKEYLOW_PIXEL.
 
@@ -2433,7 +2330,6 @@ typedef union _hw_pxp_ps_clrkeylow
 //! @brief Set the PIXEL field to a new value.
 #define BW_PXP_PS_CLRKEYLOW_PIXEL(v)   (HW_PXP_PS_CLRKEYLOW_WR((HW_PXP_PS_CLRKEYLOW_RD() & ~BM_PXP_PS_CLRKEYLOW_PIXEL) | BF_PXP_PS_CLRKEYLOW_PIXEL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2491,7 +2387,6 @@ typedef union _hw_pxp_ps_clrkeyhigh
  * 0xFFFFFF and the high colorkey to 0x000000.
  */
 //@{
-
 #define BP_PXP_PS_CLRKEYHIGH_PIXEL      (0)      //!< Bit position for PXP_PS_CLRKEYHIGH_PIXEL.
 #define BM_PXP_PS_CLRKEYHIGH_PIXEL      (0x00ffffff)  //!< Bit mask for PXP_PS_CLRKEYHIGH_PIXEL.
 
@@ -2505,7 +2400,6 @@ typedef union _hw_pxp_ps_clrkeyhigh
 //! @brief Set the PIXEL field to a new value.
 #define BW_PXP_PS_CLRKEYHIGH_PIXEL(v)   (HW_PXP_PS_CLRKEYHIGH_WR((HW_PXP_PS_CLRKEYHIGH_RD() & ~BM_PXP_PS_CLRKEYHIGH_PIXEL) | BF_PXP_PS_CLRKEYHIGH_PIXEL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2578,7 +2472,6 @@ typedef union _hw_pxp_as_ctrl
  *     pixels.
  */
 //@{
-
 #define BP_PXP_AS_CTRL_ALPHA_CTRL      (1)      //!< Bit position for PXP_AS_CTRL_ALPHA_CTRL.
 #define BM_PXP_AS_CTRL_ALPHA_CTRL      (0x00000006)  //!< Bit mask for PXP_AS_CTRL_ALPHA_CTRL.
 
@@ -2600,7 +2493,6 @@ typedef union _hw_pxp_as_ctrl
 #define BV_PXP_AS_CTRL_ALPHA_CTRL__OVERRIDE (0x1) //!< Indicates that the value in the ALPHA field should be used instead of the alpha values present in the input pixels.
 #define BV_PXP_AS_CTRL_ALPHA_CTRL__MULTIPLY (0x2) //!< Indicates that the value in the ALPHA field should be used to scale all pixel alpha values. Each pixel alpha is multiplied by the value in the ALPHA field.
 #define BV_PXP_AS_CTRL_ALPHA_CTRL__ROPS (0x3) //!< Enable ROPs. The ROP field indicates an operation to be performed on the alpha surface and PS pixels.
-
 //@}
 
 /*! @name Register PXP_AS_CTRL, field ENABLE_COLORKEY[3] (RW)
@@ -2609,7 +2501,6 @@ typedef union _hw_pxp_as_ctrl
  * alpha surface colorkey range will be displayed as transparent (the PS pixel will be used).
  */
 //@{
-
 #define BP_PXP_AS_CTRL_ENABLE_COLORKEY      (3)      //!< Bit position for PXP_AS_CTRL_ENABLE_COLORKEY.
 #define BM_PXP_AS_CTRL_ENABLE_COLORKEY      (0x00000008)  //!< Bit mask for PXP_AS_CTRL_ENABLE_COLORKEY.
 
@@ -2623,7 +2514,6 @@ typedef union _hw_pxp_as_ctrl
 //! @brief Set the ENABLE_COLORKEY field to a new value.
 #define BW_PXP_AS_CTRL_ENABLE_COLORKEY(v)   (HW_PXP_AS_CTRL_WR((HW_PXP_AS_CTRL_RD() & ~BM_PXP_AS_CTRL_ENABLE_COLORKEY) | BF_PXP_AS_CTRL_ENABLE_COLORKEY(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_AS_CTRL, field FORMAT[7:4] (RW)
@@ -2640,7 +2530,6 @@ typedef union _hw_pxp_as_ctrl
  * - RGB565 = 0xE - 16-bit pixels without alpha
  */
 //@{
-
 #define BP_PXP_AS_CTRL_FORMAT      (4)      //!< Bit position for PXP_AS_CTRL_FORMAT.
 #define BM_PXP_AS_CTRL_FORMAT      (0x000000f0)  //!< Bit mask for PXP_AS_CTRL_FORMAT.
 
@@ -2665,7 +2554,6 @@ typedef union _hw_pxp_as_ctrl
 #define BV_PXP_AS_CTRL_FORMAT__RGB555 (0xc) //!< 16-bit pixels without alpha
 #define BV_PXP_AS_CTRL_FORMAT__RGB444 (0xd) //!< 16-bit pixels without alpha
 #define BV_PXP_AS_CTRL_FORMAT__RGB565 (0xe) //!< 16-bit pixels without alpha
-
 //@}
 
 /*! @name Register PXP_AS_CTRL, field ALPHA[15:8] (RW)
@@ -2675,7 +2563,6 @@ typedef union _hw_pxp_as_ctrl
  * scaled (ALPHA_MULTIPLY) when selected.
  */
 //@{
-
 #define BP_PXP_AS_CTRL_ALPHA      (8)      //!< Bit position for PXP_AS_CTRL_ALPHA.
 #define BM_PXP_AS_CTRL_ALPHA      (0x0000ff00)  //!< Bit mask for PXP_AS_CTRL_ALPHA.
 
@@ -2689,7 +2576,6 @@ typedef union _hw_pxp_as_ctrl
 //! @brief Set the ALPHA field to a new value.
 #define BW_PXP_AS_CTRL_ALPHA(v)   (HW_PXP_AS_CTRL_WR((HW_PXP_AS_CTRL_RD() & ~BM_PXP_AS_CTRL_ALPHA) | BF_PXP_AS_CTRL_ALPHA(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_AS_CTRL, field ROP[19:16] (RW)
@@ -2712,7 +2598,6 @@ typedef union _hw_pxp_as_ctrl
  * - NOTXORAS = 0xB - AS XNOR PS
  */
 //@{
-
 #define BP_PXP_AS_CTRL_ROP      (16)      //!< Bit position for PXP_AS_CTRL_ROP.
 #define BM_PXP_AS_CTRL_ROP      (0x000f0000)  //!< Bit mask for PXP_AS_CTRL_ROP.
 
@@ -2742,7 +2627,6 @@ typedef union _hw_pxp_as_ctrl
 #define BV_PXP_AS_CTRL_ROP__NOTMERGEAS (0x9) //!< AS NOR PS
 #define BV_PXP_AS_CTRL_ROP__XORAS (0xa) //!< AS XOR PS
 #define BV_PXP_AS_CTRL_ROP__NOTXORAS (0xb) //!< AS XNOR PS
-
 //@}
 
 /*! @name Register PXP_AS_CTRL, field ALPHA_INVERT[20] (RW)
@@ -2751,7 +2635,6 @@ typedef union _hw_pxp_as_ctrl
  * and apply (1-alpha) for image composition.
  */
 //@{
-
 #define BP_PXP_AS_CTRL_ALPHA_INVERT      (20)      //!< Bit position for PXP_AS_CTRL_ALPHA_INVERT.
 #define BM_PXP_AS_CTRL_ALPHA_INVERT      (0x00100000)  //!< Bit mask for PXP_AS_CTRL_ALPHA_INVERT.
 
@@ -2765,7 +2648,6 @@ typedef union _hw_pxp_as_ctrl
 //! @brief Set the ALPHA_INVERT field to a new value.
 #define BW_PXP_AS_CTRL_ALPHA_INVERT(v)   (HW_PXP_AS_CTRL_WR((HW_PXP_AS_CTRL_RD() & ~BM_PXP_AS_CTRL_ALPHA_INVERT) | BF_PXP_AS_CTRL_ALPHA_INVERT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2817,7 +2699,6 @@ typedef union _hw_pxp_as_buf
  * Address pointer for the alpha surface 0 buffer.
  */
 //@{
-
 #define BP_PXP_AS_BUF_ADDR      (0)      //!< Bit position for PXP_AS_BUF_ADDR.
 #define BM_PXP_AS_BUF_ADDR      (0xffffffff)  //!< Bit mask for PXP_AS_BUF_ADDR.
 
@@ -2831,7 +2712,6 @@ typedef union _hw_pxp_as_buf
 //! @brief Set the ADDR field to a new value.
 #define BW_PXP_AS_BUF_ADDR(v)   (HW_PXP_AS_BUF_WR((HW_PXP_AS_BUF_RD() & ~BM_PXP_AS_BUF_ADDR) | BF_PXP_AS_BUF_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2886,7 +2766,6 @@ typedef union _hw_pxp_as_pitch
  * Indicates the number of bytes in memory between two vertically adjacent pixels.
  */
 //@{
-
 #define BP_PXP_AS_PITCH_PITCH      (0)      //!< Bit position for PXP_AS_PITCH_PITCH.
 #define BM_PXP_AS_PITCH_PITCH      (0x0000ffff)  //!< Bit mask for PXP_AS_PITCH_PITCH.
 
@@ -2900,7 +2779,6 @@ typedef union _hw_pxp_as_pitch
 //! @brief Set the PITCH field to a new value.
 #define BW_PXP_AS_PITCH_PITCH(v)   (HW_PXP_AS_PITCH_WR((HW_PXP_AS_PITCH_RD() & ~BM_PXP_AS_PITCH_PITCH) | BF_PXP_AS_PITCH_PITCH(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2957,7 +2835,6 @@ typedef union _hw_pxp_as_clrkeylow
  * Low range of RGB color key applied to AS buffer. Each overlay has an independent colorkey enable.
  */
 //@{
-
 #define BP_PXP_AS_CLRKEYLOW_PIXEL      (0)      //!< Bit position for PXP_AS_CLRKEYLOW_PIXEL.
 #define BM_PXP_AS_CLRKEYLOW_PIXEL      (0x00ffffff)  //!< Bit mask for PXP_AS_CLRKEYLOW_PIXEL.
 
@@ -2971,7 +2848,6 @@ typedef union _hw_pxp_as_clrkeylow
 //! @brief Set the PIXEL field to a new value.
 #define BW_PXP_AS_CLRKEYLOW_PIXEL(v)   (HW_PXP_AS_CLRKEYLOW_WR((HW_PXP_AS_CLRKEYLOW_RD() & ~BM_PXP_AS_CLRKEYLOW_PIXEL) | BF_PXP_AS_CLRKEYLOW_PIXEL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3029,7 +2905,6 @@ typedef union _hw_pxp_as_clrkeyhigh
  * enable.
  */
 //@{
-
 #define BP_PXP_AS_CLRKEYHIGH_PIXEL      (0)      //!< Bit position for PXP_AS_CLRKEYHIGH_PIXEL.
 #define BM_PXP_AS_CLRKEYHIGH_PIXEL      (0x00ffffff)  //!< Bit mask for PXP_AS_CLRKEYHIGH_PIXEL.
 
@@ -3043,7 +2918,6 @@ typedef union _hw_pxp_as_clrkeyhigh
 //! @brief Set the PIXEL field to a new value.
 #define BW_PXP_AS_CLRKEYHIGH_PIXEL(v)   (HW_PXP_AS_CLRKEYHIGH_WR((HW_PXP_AS_CLRKEYHIGH_RD() & ~BM_PXP_AS_CLRKEYHIGH_PIXEL) | BF_PXP_AS_CLRKEYHIGH_PIXEL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3107,7 +2981,6 @@ typedef union _hw_pxp_csc1_coef0
  * YCbCr, this is typically -16 (0x1F0)
  */
 //@{
-
 #define BP_PXP_CSC1_COEF0_Y_OFFSET      (0)      //!< Bit position for PXP_CSC1_COEF0_Y_OFFSET.
 #define BM_PXP_CSC1_COEF0_Y_OFFSET      (0x000001ff)  //!< Bit mask for PXP_CSC1_COEF0_Y_OFFSET.
 
@@ -3121,7 +2994,6 @@ typedef union _hw_pxp_csc1_coef0
 //! @brief Set the Y_OFFSET field to a new value.
 #define BW_PXP_CSC1_COEF0_Y_OFFSET(v)   (HW_PXP_CSC1_COEF0_WR((HW_PXP_CSC1_COEF0_RD() & ~BM_PXP_CSC1_COEF0_Y_OFFSET) | BF_PXP_CSC1_COEF0_Y_OFFSET(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_CSC1_COEF0, field UV_OFFSET[17:9] (RW)
@@ -3130,7 +3002,6 @@ typedef union _hw_pxp_csc1_coef0
  * YCbCr=0x180, YUV=0x000 (typically -128 or 0x180 to indicate normalized -0.5 to 0.5 range)
  */
 //@{
-
 #define BP_PXP_CSC1_COEF0_UV_OFFSET      (9)      //!< Bit position for PXP_CSC1_COEF0_UV_OFFSET.
 #define BM_PXP_CSC1_COEF0_UV_OFFSET      (0x0003fe00)  //!< Bit mask for PXP_CSC1_COEF0_UV_OFFSET.
 
@@ -3144,7 +3015,6 @@ typedef union _hw_pxp_csc1_coef0
 //! @brief Set the UV_OFFSET field to a new value.
 #define BW_PXP_CSC1_COEF0_UV_OFFSET(v)   (HW_PXP_CSC1_COEF0_WR((HW_PXP_CSC1_COEF0_RD() & ~BM_PXP_CSC1_COEF0_UV_OFFSET) | BF_PXP_CSC1_COEF0_UV_OFFSET(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_CSC1_COEF0, field C0[28:18] (RW)
@@ -3152,7 +3022,6 @@ typedef union _hw_pxp_csc1_coef0
  * Two's compliment Y multiplier coefficient. YUV=0x100 (1.000) YCbCr=0x12A (1.164)
  */
 //@{
-
 #define BP_PXP_CSC1_COEF0_C0      (18)      //!< Bit position for PXP_CSC1_COEF0_C0.
 #define BM_PXP_CSC1_COEF0_C0      (0x1ffc0000)  //!< Bit mask for PXP_CSC1_COEF0_C0.
 
@@ -3166,7 +3035,6 @@ typedef union _hw_pxp_csc1_coef0
 //! @brief Set the C0 field to a new value.
 #define BW_PXP_CSC1_COEF0_C0(v)   (HW_PXP_CSC1_COEF0_WR((HW_PXP_CSC1_COEF0_RD() & ~BM_PXP_CSC1_COEF0_C0) | BF_PXP_CSC1_COEF0_C0(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_CSC1_COEF0, field BYPASS[30] (RW)
@@ -3176,7 +3044,6 @@ typedef union _hw_pxp_csc1_coef0
  * pixels will be converted based on the programmed coefficients.
  */
 //@{
-
 #define BP_PXP_CSC1_COEF0_BYPASS      (30)      //!< Bit position for PXP_CSC1_COEF0_BYPASS.
 #define BM_PXP_CSC1_COEF0_BYPASS      (0x40000000)  //!< Bit mask for PXP_CSC1_COEF0_BYPASS.
 
@@ -3190,7 +3057,6 @@ typedef union _hw_pxp_csc1_coef0
 //! @brief Set the BYPASS field to a new value.
 #define BW_PXP_CSC1_COEF0_BYPASS(v)   (HW_PXP_CSC1_COEF0_WR((HW_PXP_CSC1_COEF0_RD() & ~BM_PXP_CSC1_COEF0_BYPASS) | BF_PXP_CSC1_COEF0_BYPASS(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_CSC1_COEF0, field YCBCR_MODE[31] (RW)
@@ -3199,7 +3065,6 @@ typedef union _hw_pxp_csc1_coef0
  * bit changes the behavior of the scaler when performing U/V scaling.
  */
 //@{
-
 #define BP_PXP_CSC1_COEF0_YCBCR_MODE      (31)      //!< Bit position for PXP_CSC1_COEF0_YCBCR_MODE.
 #define BM_PXP_CSC1_COEF0_YCBCR_MODE      (0x80000000)  //!< Bit mask for PXP_CSC1_COEF0_YCBCR_MODE.
 
@@ -3213,7 +3078,6 @@ typedef union _hw_pxp_csc1_coef0
 //! @brief Set the YCBCR_MODE field to a new value.
 #define BW_PXP_CSC1_COEF0_YCBCR_MODE(v)   (HW_PXP_CSC1_COEF0_WR((HW_PXP_CSC1_COEF0_RD() & ~BM_PXP_CSC1_COEF0_YCBCR_MODE) | BF_PXP_CSC1_COEF0_YCBCR_MODE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3273,7 +3137,6 @@ typedef union _hw_pxp_csc1_coef1
  * Two's compliment Blue U/Cb multiplier coefficient. YUV=0x208 (2.032) YCbCr=0x204 (2.017)
  */
 //@{
-
 #define BP_PXP_CSC1_COEF1_C4      (0)      //!< Bit position for PXP_CSC1_COEF1_C4.
 #define BM_PXP_CSC1_COEF1_C4      (0x000007ff)  //!< Bit mask for PXP_CSC1_COEF1_C4.
 
@@ -3287,7 +3150,6 @@ typedef union _hw_pxp_csc1_coef1
 //! @brief Set the C4 field to a new value.
 #define BW_PXP_CSC1_COEF1_C4(v)   (HW_PXP_CSC1_COEF1_WR((HW_PXP_CSC1_COEF1_RD() & ~BM_PXP_CSC1_COEF1_C4) | BF_PXP_CSC1_COEF1_C4(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_CSC1_COEF1, field C1[26:16] (RW)
@@ -3295,7 +3157,6 @@ typedef union _hw_pxp_csc1_coef1
  * Two's compliment Red V/Cr multiplier coefficient. YUV=0x123 (1.140) YCbCr=0x198 (1.596)
  */
 //@{
-
 #define BP_PXP_CSC1_COEF1_C1      (16)      //!< Bit position for PXP_CSC1_COEF1_C1.
 #define BM_PXP_CSC1_COEF1_C1      (0x07ff0000)  //!< Bit mask for PXP_CSC1_COEF1_C1.
 
@@ -3309,7 +3170,6 @@ typedef union _hw_pxp_csc1_coef1
 //! @brief Set the C1 field to a new value.
 #define BW_PXP_CSC1_COEF1_C1(v)   (HW_PXP_CSC1_COEF1_WR((HW_PXP_CSC1_COEF1_RD() & ~BM_PXP_CSC1_COEF1_C1) | BF_PXP_CSC1_COEF1_C1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3371,7 +3231,6 @@ typedef union _hw_pxp_csc1_coef2
  * Two's complement Green U/Cb multiplier coefficient. YUV=0x79C (-0.394) YCbCr=0x79C (-0.392)
  */
 //@{
-
 #define BP_PXP_CSC1_COEF2_C3      (0)      //!< Bit position for PXP_CSC1_COEF2_C3.
 #define BM_PXP_CSC1_COEF2_C3      (0x000007ff)  //!< Bit mask for PXP_CSC1_COEF2_C3.
 
@@ -3385,7 +3244,6 @@ typedef union _hw_pxp_csc1_coef2
 //! @brief Set the C3 field to a new value.
 #define BW_PXP_CSC1_COEF2_C3(v)   (HW_PXP_CSC1_COEF2_WR((HW_PXP_CSC1_COEF2_RD() & ~BM_PXP_CSC1_COEF2_C3) | BF_PXP_CSC1_COEF2_C3(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_CSC1_COEF2, field C2[26:16] (RW)
@@ -3393,7 +3251,6 @@ typedef union _hw_pxp_csc1_coef2
  * Two's complement Green V/Cr multiplier coefficient. YUV=0x76B (-0.581) YCbCr=0x730 (-0.813)
  */
 //@{
-
 #define BP_PXP_CSC1_COEF2_C2      (16)      //!< Bit position for PXP_CSC1_COEF2_C2.
 #define BM_PXP_CSC1_COEF2_C2      (0x07ff0000)  //!< Bit mask for PXP_CSC1_COEF2_C2.
 
@@ -3407,7 +3264,6 @@ typedef union _hw_pxp_csc1_coef2
 //! @brief Set the C2 field to a new value.
 #define BW_PXP_CSC1_COEF2_C2(v)   (HW_PXP_CSC1_COEF2_WR((HW_PXP_CSC1_COEF2_RD() & ~BM_PXP_CSC1_COEF2_C2) | BF_PXP_CSC1_COEF2_C2(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3468,7 +3324,6 @@ typedef union _hw_pxp_csc2_ctrl
  * place.
  */
 //@{
-
 #define BP_PXP_CSC2_CTRL_BYPASS      (0)      //!< Bit position for PXP_CSC2_CTRL_BYPASS.
 #define BM_PXP_CSC2_CTRL_BYPASS      (0x00000001)  //!< Bit mask for PXP_CSC2_CTRL_BYPASS.
 
@@ -3482,7 +3337,6 @@ typedef union _hw_pxp_csc2_ctrl
 //! @brief Set the BYPASS field to a new value.
 #define BW_PXP_CSC2_CTRL_BYPASS(v)   (HW_PXP_CSC2_CTRL_WR((HW_PXP_CSC2_CTRL_RD() & ~BM_PXP_CSC2_CTRL_BYPASS) | BF_PXP_CSC2_CTRL_BYPASS(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_CSC2_CTRL, field CSC_MODE[2:1] (RW)
@@ -3496,7 +3350,6 @@ typedef union _hw_pxp_csc2_ctrl
  * - RGB2YCBCR = 0x3 - Convert from RGB to YCbCr.
  */
 //@{
-
 #define BP_PXP_CSC2_CTRL_CSC_MODE      (1)      //!< Bit position for PXP_CSC2_CTRL_CSC_MODE.
 #define BM_PXP_CSC2_CTRL_CSC_MODE      (0x00000006)  //!< Bit mask for PXP_CSC2_CTRL_CSC_MODE.
 
@@ -3518,7 +3371,6 @@ typedef union _hw_pxp_csc2_ctrl
 #define BV_PXP_CSC2_CTRL_CSC_MODE__YCBCR2RGB (0x1) //!< Convert from YCbCr to RGB.
 #define BV_PXP_CSC2_CTRL_CSC_MODE__RGB2YUV (0x2) //!< Convert from RGB to YUV.
 #define BV_PXP_CSC2_CTRL_CSC_MODE__RGB2YCBCR (0x3) //!< Convert from RGB to YCbCr.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3572,7 +3424,6 @@ typedef union _hw_pxp_csc2_coef0
  * of fraction as ###.####_####.
  */
 //@{
-
 #define BP_PXP_CSC2_COEF0_A1      (0)      //!< Bit position for PXP_CSC2_COEF0_A1.
 #define BM_PXP_CSC2_COEF0_A1      (0x000007ff)  //!< Bit mask for PXP_CSC2_COEF0_A1.
 
@@ -3586,7 +3437,6 @@ typedef union _hw_pxp_csc2_coef0
 //! @brief Set the A1 field to a new value.
 #define BW_PXP_CSC2_COEF0_A1(v)   (HW_PXP_CSC2_COEF0_WR((HW_PXP_CSC2_COEF0_RD() & ~BM_PXP_CSC2_COEF0_A1) | BF_PXP_CSC2_COEF0_A1(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_CSC2_COEF0, field A2[26:16] (RW)
@@ -3595,7 +3445,6 @@ typedef union _hw_pxp_csc2_coef0
  * of fraction as ###.####_####.
  */
 //@{
-
 #define BP_PXP_CSC2_COEF0_A2      (16)      //!< Bit position for PXP_CSC2_COEF0_A2.
 #define BM_PXP_CSC2_COEF0_A2      (0x07ff0000)  //!< Bit mask for PXP_CSC2_COEF0_A2.
 
@@ -3609,7 +3458,6 @@ typedef union _hw_pxp_csc2_coef0
 //! @brief Set the A2 field to a new value.
 #define BW_PXP_CSC2_COEF0_A2(v)   (HW_PXP_CSC2_COEF0_WR((HW_PXP_CSC2_COEF0_RD() & ~BM_PXP_CSC2_COEF0_A2) | BF_PXP_CSC2_COEF0_A2(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3663,7 +3511,6 @@ typedef union _hw_pxp_csc2_coef1
  * of fraction as ###.####_####.
  */
 //@{
-
 #define BP_PXP_CSC2_COEF1_A3      (0)      //!< Bit position for PXP_CSC2_COEF1_A3.
 #define BM_PXP_CSC2_COEF1_A3      (0x000007ff)  //!< Bit mask for PXP_CSC2_COEF1_A3.
 
@@ -3677,7 +3524,6 @@ typedef union _hw_pxp_csc2_coef1
 //! @brief Set the A3 field to a new value.
 #define BW_PXP_CSC2_COEF1_A3(v)   (HW_PXP_CSC2_COEF1_WR((HW_PXP_CSC2_COEF1_RD() & ~BM_PXP_CSC2_COEF1_A3) | BF_PXP_CSC2_COEF1_A3(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_CSC2_COEF1, field B1[26:16] (RW)
@@ -3686,7 +3532,6 @@ typedef union _hw_pxp_csc2_coef1
  * of fraction as ###.####_####.
  */
 //@{
-
 #define BP_PXP_CSC2_COEF1_B1      (16)      //!< Bit position for PXP_CSC2_COEF1_B1.
 #define BM_PXP_CSC2_COEF1_B1      (0x07ff0000)  //!< Bit mask for PXP_CSC2_COEF1_B1.
 
@@ -3700,7 +3545,6 @@ typedef union _hw_pxp_csc2_coef1
 //! @brief Set the B1 field to a new value.
 #define BW_PXP_CSC2_COEF1_B1(v)   (HW_PXP_CSC2_COEF1_WR((HW_PXP_CSC2_COEF1_RD() & ~BM_PXP_CSC2_COEF1_B1) | BF_PXP_CSC2_COEF1_B1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3754,7 +3598,6 @@ typedef union _hw_pxp_csc2_coef2
  * of fraction as ###.####_####.
  */
 //@{
-
 #define BP_PXP_CSC2_COEF2_B2      (0)      //!< Bit position for PXP_CSC2_COEF2_B2.
 #define BM_PXP_CSC2_COEF2_B2      (0x000007ff)  //!< Bit mask for PXP_CSC2_COEF2_B2.
 
@@ -3768,7 +3611,6 @@ typedef union _hw_pxp_csc2_coef2
 //! @brief Set the B2 field to a new value.
 #define BW_PXP_CSC2_COEF2_B2(v)   (HW_PXP_CSC2_COEF2_WR((HW_PXP_CSC2_COEF2_RD() & ~BM_PXP_CSC2_COEF2_B2) | BF_PXP_CSC2_COEF2_B2(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_CSC2_COEF2, field B3[26:16] (RW)
@@ -3777,7 +3619,6 @@ typedef union _hw_pxp_csc2_coef2
  * of fraction as ###.####_####.
  */
 //@{
-
 #define BP_PXP_CSC2_COEF2_B3      (16)      //!< Bit position for PXP_CSC2_COEF2_B3.
 #define BM_PXP_CSC2_COEF2_B3      (0x07ff0000)  //!< Bit mask for PXP_CSC2_COEF2_B3.
 
@@ -3791,7 +3632,6 @@ typedef union _hw_pxp_csc2_coef2
 //! @brief Set the B3 field to a new value.
 #define BW_PXP_CSC2_COEF2_B3(v)   (HW_PXP_CSC2_COEF2_WR((HW_PXP_CSC2_COEF2_RD() & ~BM_PXP_CSC2_COEF2_B3) | BF_PXP_CSC2_COEF2_B3(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3845,7 +3685,6 @@ typedef union _hw_pxp_csc2_coef3
  * of fraction as ###.####_####.
  */
 //@{
-
 #define BP_PXP_CSC2_COEF3_C1      (0)      //!< Bit position for PXP_CSC2_COEF3_C1.
 #define BM_PXP_CSC2_COEF3_C1      (0x000007ff)  //!< Bit mask for PXP_CSC2_COEF3_C1.
 
@@ -3859,7 +3698,6 @@ typedef union _hw_pxp_csc2_coef3
 //! @brief Set the C1 field to a new value.
 #define BW_PXP_CSC2_COEF3_C1(v)   (HW_PXP_CSC2_COEF3_WR((HW_PXP_CSC2_COEF3_RD() & ~BM_PXP_CSC2_COEF3_C1) | BF_PXP_CSC2_COEF3_C1(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_CSC2_COEF3, field C2[26:16] (RW)
@@ -3868,7 +3706,6 @@ typedef union _hw_pxp_csc2_coef3
  * of fraction as ###.####_####.
  */
 //@{
-
 #define BP_PXP_CSC2_COEF3_C2      (16)      //!< Bit position for PXP_CSC2_COEF3_C2.
 #define BM_PXP_CSC2_COEF3_C2      (0x07ff0000)  //!< Bit mask for PXP_CSC2_COEF3_C2.
 
@@ -3882,7 +3719,6 @@ typedef union _hw_pxp_csc2_coef3
 //! @brief Set the C2 field to a new value.
 #define BW_PXP_CSC2_COEF3_C2(v)   (HW_PXP_CSC2_COEF3_WR((HW_PXP_CSC2_COEF3_RD() & ~BM_PXP_CSC2_COEF3_C2) | BF_PXP_CSC2_COEF3_C2(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3936,7 +3772,6 @@ typedef union _hw_pxp_csc2_coef4
  * of fraction as ###.####_####.
  */
 //@{
-
 #define BP_PXP_CSC2_COEF4_C3      (0)      //!< Bit position for PXP_CSC2_COEF4_C3.
 #define BM_PXP_CSC2_COEF4_C3      (0x000007ff)  //!< Bit mask for PXP_CSC2_COEF4_C3.
 
@@ -3950,7 +3785,6 @@ typedef union _hw_pxp_csc2_coef4
 //! @brief Set the C3 field to a new value.
 #define BW_PXP_CSC2_COEF4_C3(v)   (HW_PXP_CSC2_COEF4_WR((HW_PXP_CSC2_COEF4_RD() & ~BM_PXP_CSC2_COEF4_C3) | BF_PXP_CSC2_COEF4_C3(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_CSC2_COEF4, field D1[24:16] (RW)
@@ -3958,7 +3792,6 @@ typedef union _hw_pxp_csc2_coef4
  * Two's complement coefficient integer offset to be added.
  */
 //@{
-
 #define BP_PXP_CSC2_COEF4_D1      (16)      //!< Bit position for PXP_CSC2_COEF4_D1.
 #define BM_PXP_CSC2_COEF4_D1      (0x01ff0000)  //!< Bit mask for PXP_CSC2_COEF4_D1.
 
@@ -3972,7 +3805,6 @@ typedef union _hw_pxp_csc2_coef4
 //! @brief Set the D1 field to a new value.
 #define BW_PXP_CSC2_COEF4_D1(v)   (HW_PXP_CSC2_COEF4_WR((HW_PXP_CSC2_COEF4_RD() & ~BM_PXP_CSC2_COEF4_D1) | BF_PXP_CSC2_COEF4_D1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4025,7 +3857,6 @@ typedef union _hw_pxp_csc2_coef5
  * Two's complement D1 coefficient integer offset to be added.
  */
 //@{
-
 #define BP_PXP_CSC2_COEF5_D2      (0)      //!< Bit position for PXP_CSC2_COEF5_D2.
 #define BM_PXP_CSC2_COEF5_D2      (0x000001ff)  //!< Bit mask for PXP_CSC2_COEF5_D2.
 
@@ -4039,7 +3870,6 @@ typedef union _hw_pxp_csc2_coef5
 //! @brief Set the D2 field to a new value.
 #define BW_PXP_CSC2_COEF5_D2(v)   (HW_PXP_CSC2_COEF5_WR((HW_PXP_CSC2_COEF5_RD() & ~BM_PXP_CSC2_COEF5_D2) | BF_PXP_CSC2_COEF5_D2(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_CSC2_COEF5, field D3[24:16] (RW)
@@ -4047,7 +3877,6 @@ typedef union _hw_pxp_csc2_coef5
  * Two's complement coefficient integer offset to be added.
  */
 //@{
-
 #define BP_PXP_CSC2_COEF5_D3      (16)      //!< Bit position for PXP_CSC2_COEF5_D3.
 #define BM_PXP_CSC2_COEF5_D3      (0x01ff0000)  //!< Bit mask for PXP_CSC2_COEF5_D3.
 
@@ -4061,7 +3890,6 @@ typedef union _hw_pxp_csc2_coef5
 //! @brief Set the D3 field to a new value.
 #define BW_PXP_CSC2_COEF5_D3(v)   (HW_PXP_CSC2_COEF5_WR((HW_PXP_CSC2_COEF5_RD() & ~BM_PXP_CSC2_COEF5_D3) | BF_PXP_CSC2_COEF5_D3(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4134,7 +3962,6 @@ typedef union _hw_pxp_lut_ctrl
  * and performing DMA transfers.
  */
 //@{
-
 #define BP_PXP_LUT_CTRL_DMA_START      (0)      //!< Bit position for PXP_LUT_CTRL_DMA_START.
 #define BM_PXP_LUT_CTRL_DMA_START      (0x00000001)  //!< Bit mask for PXP_LUT_CTRL_DMA_START.
 
@@ -4148,7 +3975,6 @@ typedef union _hw_pxp_lut_ctrl
 //! @brief Set the DMA_START field to a new value.
 #define BW_PXP_LUT_CTRL_DMA_START(v)   (HW_PXP_LUT_CTRL_WR((HW_PXP_LUT_CTRL_RD() & ~BM_PXP_LUT_CTRL_DMA_START) | BF_PXP_LUT_CTRL_DMA_START(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_LUT_CTRL, field INVALID[8] (RW)
@@ -4156,7 +3982,6 @@ typedef union _hw_pxp_lut_ctrl
  * Invalidate the cache LRU and valid bits. This bit will automatically reset when set to a logic 1.
  */
 //@{
-
 #define BP_PXP_LUT_CTRL_INVALID      (8)      //!< Bit position for PXP_LUT_CTRL_INVALID.
 #define BM_PXP_LUT_CTRL_INVALID      (0x00000100)  //!< Bit mask for PXP_LUT_CTRL_INVALID.
 
@@ -4170,7 +3995,6 @@ typedef union _hw_pxp_lut_ctrl
 //! @brief Set the INVALID field to a new value.
 #define BW_PXP_LUT_CTRL_INVALID(v)   (HW_PXP_LUT_CTRL_WR((HW_PXP_LUT_CTRL_RD() & ~BM_PXP_LUT_CTRL_INVALID) | BF_PXP_LUT_CTRL_INVALID(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_LUT_CTRL, field LRU_UPD[9] (RW)
@@ -4179,7 +4003,6 @@ typedef union _hw_pxp_lut_ctrl
  * LRU for all hits including hit after miss.
  */
 //@{
-
 #define BP_PXP_LUT_CTRL_LRU_UPD      (9)      //!< Bit position for PXP_LUT_CTRL_LRU_UPD.
 #define BM_PXP_LUT_CTRL_LRU_UPD      (0x00000200)  //!< Bit mask for PXP_LUT_CTRL_LRU_UPD.
 
@@ -4193,7 +4016,6 @@ typedef union _hw_pxp_lut_ctrl
 //! @brief Set the LRU_UPD field to a new value.
 #define BW_PXP_LUT_CTRL_LRU_UPD(v)   (HW_PXP_LUT_CTRL_WR((HW_PXP_LUT_CTRL_RD() & ~BM_PXP_LUT_CTRL_LRU_UPD) | BF_PXP_LUT_CTRL_LRU_UPD(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_LUT_CTRL, field SEL_8KB[10] (RW)
@@ -4203,7 +4025,6 @@ typedef union _hw_pxp_lut_ctrl
  * for a given PXP operation.
  */
 //@{
-
 #define BP_PXP_LUT_CTRL_SEL_8KB      (10)      //!< Bit position for PXP_LUT_CTRL_SEL_8KB.
 #define BM_PXP_LUT_CTRL_SEL_8KB      (0x00000400)  //!< Bit mask for PXP_LUT_CTRL_SEL_8KB.
 
@@ -4217,7 +4038,6 @@ typedef union _hw_pxp_lut_ctrl
 //! @brief Set the SEL_8KB field to a new value.
 #define BW_PXP_LUT_CTRL_SEL_8KB(v)   (HW_PXP_LUT_CTRL_WR((HW_PXP_LUT_CTRL_RD() & ~BM_PXP_LUT_CTRL_SEL_8KB) | BF_PXP_LUT_CTRL_SEL_8KB(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_LUT_CTRL, field OUT_MODE[17:16] (RW)
@@ -4234,7 +4054,6 @@ typedef union _hw_pxp_lut_ctrl
  * - RGB888 = 0x3 - RGB565->RGB888 conversion for Gamma correction.
  */
 //@{
-
 #define BP_PXP_LUT_CTRL_OUT_MODE      (16)      //!< Bit position for PXP_LUT_CTRL_OUT_MODE.
 #define BM_PXP_LUT_CTRL_OUT_MODE      (0x00030000)  //!< Bit mask for PXP_LUT_CTRL_OUT_MODE.
 
@@ -4256,7 +4075,6 @@ typedef union _hw_pxp_lut_ctrl
 #define BV_PXP_LUT_CTRL_OUT_MODE__Y8 (0x1) //!< R/Y byte lane 2 lookup, bytes 1,0 bypassed.
 #define BV_PXP_LUT_CTRL_OUT_MODE__RGBW4444CFA (0x2) //!< Byte lane 2 = CFA_Y8, byte lane 1,0 = RGBW4444.
 #define BV_PXP_LUT_CTRL_OUT_MODE__RGB888 (0x3) //!< RGB565->RGB888 conversion for Gamma correction.
-
 //@}
 
 /*! @name Register PXP_LUT_CTRL, field LOOKUP_MODE[25:24] (RW)
@@ -4273,7 +4091,6 @@ typedef union _hw_pxp_lut_ctrl
  * - DIRECT_RGB454 = 0x3 - LUT ADDR = R[7:4],G[7:3],B[7:4]. Use all 16KB of LUT.
  */
 //@{
-
 #define BP_PXP_LUT_CTRL_LOOKUP_MODE      (24)      //!< Bit position for PXP_LUT_CTRL_LOOKUP_MODE.
 #define BM_PXP_LUT_CTRL_LOOKUP_MODE      (0x03000000)  //!< Bit mask for PXP_LUT_CTRL_LOOKUP_MODE.
 
@@ -4295,7 +4112,6 @@ typedef union _hw_pxp_lut_ctrl
 #define BV_PXP_LUT_CTRL_LOOKUP_MODE__DIRECT_Y8 (0x1) //!< LUT ADDR = 16'b0,Y[7:0]. Use only the first 256 bytes of LUT. Only the Y, or third data path byte, is tranformed.
 #define BV_PXP_LUT_CTRL_LOOKUP_MODE__DIRECT_RGB444 (0x2) //!< LUT ADDR = R[7:4],G[7:4],B[7:4]. Use one 8KB bank of LUT selected by SEL_8KB.
 #define BV_PXP_LUT_CTRL_LOOKUP_MODE__DIRECT_RGB454 (0x3) //!< LUT ADDR = R[7:4],G[7:3],B[7:4]. Use all 16KB of LUT.
-
 //@}
 
 /*! @name Register PXP_LUT_CTRL, field BYPASS[31] (RW)
@@ -4304,7 +4120,6 @@ typedef union _hw_pxp_lut_ctrl
  * occur at this stage of the PXP pixel rpocessing pipeline.
  */
 //@{
-
 #define BP_PXP_LUT_CTRL_BYPASS      (31)      //!< Bit position for PXP_LUT_CTRL_BYPASS.
 #define BM_PXP_LUT_CTRL_BYPASS      (0x80000000)  //!< Bit mask for PXP_LUT_CTRL_BYPASS.
 
@@ -4318,7 +4133,6 @@ typedef union _hw_pxp_lut_ctrl
 //! @brief Set the BYPASS field to a new value.
 #define BW_PXP_LUT_CTRL_BYPASS(v)   (HW_PXP_LUT_CTRL_WR((HW_PXP_LUT_CTRL_RD() & ~BM_PXP_LUT_CTRL_BYPASS) | BF_PXP_LUT_CTRL_BYPASS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4390,7 +4204,6 @@ typedef union _hw_pxp_lut_addr
  * the LUT memory will increment this address field until NUM_BYTES has been loaded.
  */
 //@{
-
 #define BP_PXP_LUT_ADDR_ADDR      (0)      //!< Bit position for PXP_LUT_ADDR_ADDR.
 #define BM_PXP_LUT_ADDR_ADDR      (0x00003fff)  //!< Bit mask for PXP_LUT_ADDR_ADDR.
 
@@ -4404,7 +4217,6 @@ typedef union _hw_pxp_lut_addr
 //! @brief Set the ADDR field to a new value.
 #define BW_PXP_LUT_ADDR_ADDR(v)   (HW_PXP_LUT_ADDR_WR((HW_PXP_LUT_ADDR_RD() & ~BM_PXP_LUT_ADDR_ADDR) | BF_PXP_LUT_ADDR_ADDR(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_LUT_ADDR, field NUM_BYTES[30:16] (RW)
@@ -4414,7 +4226,6 @@ typedef union _hw_pxp_lut_addr
  * address indicated by PXP_LUT_MEM_ADDR to the LUT memory location indicated by PXP_LUT_CTRL_ADDR.
  */
 //@{
-
 #define BP_PXP_LUT_ADDR_NUM_BYTES      (16)      //!< Bit position for PXP_LUT_ADDR_NUM_BYTES.
 #define BM_PXP_LUT_ADDR_NUM_BYTES      (0x7fff0000)  //!< Bit mask for PXP_LUT_ADDR_NUM_BYTES.
 
@@ -4428,7 +4239,6 @@ typedef union _hw_pxp_lut_addr
 //! @brief Set the NUM_BYTES field to a new value.
 #define BW_PXP_LUT_ADDR_NUM_BYTES(v)   (HW_PXP_LUT_ADDR_WR((HW_PXP_LUT_ADDR_RD() & ~BM_PXP_LUT_ADDR_NUM_BYTES) | BF_PXP_LUT_ADDR_NUM_BYTES(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4479,7 +4289,6 @@ typedef union _hw_pxp_lut_data
  * ADDR field of the PXP_LUT_CTRL register.
  */
 //@{
-
 #define BP_PXP_LUT_DATA_DATA      (0)      //!< Bit position for PXP_LUT_DATA_DATA.
 #define BM_PXP_LUT_DATA_DATA      (0xffffffff)  //!< Bit mask for PXP_LUT_DATA_DATA.
 
@@ -4493,7 +4302,6 @@ typedef union _hw_pxp_lut_data
 //! @brief Set the DATA field to a new value.
 #define BW_PXP_LUT_DATA_DATA(v)   (HW_PXP_LUT_DATA_WR((HW_PXP_LUT_DATA_RD() & ~BM_PXP_LUT_DATA_DATA) | BF_PXP_LUT_DATA_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4548,7 +4356,6 @@ typedef union _hw_pxp_lut_extmem
  * address of the full 64K pixel LUT translation table.
  */
 //@{
-
 #define BP_PXP_LUT_EXTMEM_ADDR      (0)      //!< Bit position for PXP_LUT_EXTMEM_ADDR.
 #define BM_PXP_LUT_EXTMEM_ADDR      (0xffffffff)  //!< Bit mask for PXP_LUT_EXTMEM_ADDR.
 
@@ -4562,7 +4369,6 @@ typedef union _hw_pxp_lut_extmem
 //! @brief Set the ADDR field to a new value.
 #define BW_PXP_LUT_EXTMEM_ADDR(v)   (HW_PXP_LUT_EXTMEM_WR((HW_PXP_LUT_EXTMEM_RD() & ~BM_PXP_LUT_EXTMEM_ADDR) | BF_PXP_LUT_EXTMEM_ADDR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4619,7 +4425,6 @@ typedef union _hw_pxp_cfa
  * entire output frame buffer.
  */
 //@{
-
 #define BP_PXP_CFA_DATA      (0)      //!< Bit position for PXP_CFA_DATA.
 #define BM_PXP_CFA_DATA      (0xffffffff)  //!< Bit mask for PXP_CFA_DATA.
 
@@ -4633,7 +4438,6 @@ typedef union _hw_pxp_cfa
 //! @brief Set the DATA field to a new value.
 #define BW_PXP_CFA_DATA(v)   (HW_PXP_CFA_WR((HW_PXP_CFA_RD() & ~BM_PXP_CFA_DATA) | BF_PXP_CFA_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4690,7 +4494,6 @@ typedef union _hw_pxp_hist_ctrl
  * histogram.
  */
 //@{
-
 #define BP_PXP_HIST_CTRL_STATUS      (0)      //!< Bit position for PXP_HIST_CTRL_STATUS.
 #define BM_PXP_HIST_CTRL_STATUS      (0x0000000f)  //!< Bit mask for PXP_HIST_CTRL_STATUS.
 
@@ -4704,7 +4507,6 @@ typedef union _hw_pxp_hist_ctrl
 //! @brief Set the STATUS field to a new value.
 #define BW_PXP_HIST_CTRL_STATUS(v)   (HW_PXP_HIST_CTRL_WR((HW_PXP_HIST_CTRL_RD() & ~BM_PXP_HIST_CTRL_STATUS) | BF_PXP_HIST_CTRL_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_HIST_CTRL, field PANEL_MODE[5:4] (RW)
@@ -4721,7 +4523,6 @@ typedef union _hw_pxp_hist_ctrl
  * - GRAY32 = 0x3 - 32-bit grayscale
  */
 //@{
-
 #define BP_PXP_HIST_CTRL_PANEL_MODE      (4)      //!< Bit position for PXP_HIST_CTRL_PANEL_MODE.
 #define BM_PXP_HIST_CTRL_PANEL_MODE      (0x00000030)  //!< Bit mask for PXP_HIST_CTRL_PANEL_MODE.
 
@@ -4743,7 +4544,6 @@ typedef union _hw_pxp_hist_ctrl
 #define BV_PXP_HIST_CTRL_PANEL_MODE__GRAY8 (0x1) //!< 8-bit grayscale
 #define BV_PXP_HIST_CTRL_PANEL_MODE__GRAY16 (0x2) //!< 16-bit grayscale
 #define BV_PXP_HIST_CTRL_PANEL_MODE__GRAY32 (0x3) //!< 32-bit grayscale
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4799,7 +4599,6 @@ typedef union _hw_pxp_hist2_param
  * Black value for 2-level histogram
  */
 //@{
-
 #define BP_PXP_HIST2_PARAM_VALUE0      (0)      //!< Bit position for PXP_HIST2_PARAM_VALUE0.
 #define BM_PXP_HIST2_PARAM_VALUE0      (0x0000001f)  //!< Bit mask for PXP_HIST2_PARAM_VALUE0.
 
@@ -4813,7 +4612,6 @@ typedef union _hw_pxp_hist2_param
 //! @brief Set the VALUE0 field to a new value.
 #define BW_PXP_HIST2_PARAM_VALUE0(v)   (HW_PXP_HIST2_PARAM_WR((HW_PXP_HIST2_PARAM_RD() & ~BM_PXP_HIST2_PARAM_VALUE0) | BF_PXP_HIST2_PARAM_VALUE0(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_HIST2_PARAM, field VALUE1[12:8] (RW)
@@ -4821,7 +4619,6 @@ typedef union _hw_pxp_hist2_param
  * White value for 2-level histogram
  */
 //@{
-
 #define BP_PXP_HIST2_PARAM_VALUE1      (8)      //!< Bit position for PXP_HIST2_PARAM_VALUE1.
 #define BM_PXP_HIST2_PARAM_VALUE1      (0x00001f00)  //!< Bit mask for PXP_HIST2_PARAM_VALUE1.
 
@@ -4835,7 +4632,6 @@ typedef union _hw_pxp_hist2_param
 //! @brief Set the VALUE1 field to a new value.
 #define BW_PXP_HIST2_PARAM_VALUE1(v)   (HW_PXP_HIST2_PARAM_WR((HW_PXP_HIST2_PARAM_RD() & ~BM_PXP_HIST2_PARAM_VALUE1) | BF_PXP_HIST2_PARAM_VALUE1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4895,7 +4691,6 @@ typedef union _hw_pxp_hist4_param
  * GRAY0 (Black) value for 4-level histogram
  */
 //@{
-
 #define BP_PXP_HIST4_PARAM_VALUE0      (0)      //!< Bit position for PXP_HIST4_PARAM_VALUE0.
 #define BM_PXP_HIST4_PARAM_VALUE0      (0x0000001f)  //!< Bit mask for PXP_HIST4_PARAM_VALUE0.
 
@@ -4909,7 +4704,6 @@ typedef union _hw_pxp_hist4_param
 //! @brief Set the VALUE0 field to a new value.
 #define BW_PXP_HIST4_PARAM_VALUE0(v)   (HW_PXP_HIST4_PARAM_WR((HW_PXP_HIST4_PARAM_RD() & ~BM_PXP_HIST4_PARAM_VALUE0) | BF_PXP_HIST4_PARAM_VALUE0(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_HIST4_PARAM, field VALUE1[12:8] (RW)
@@ -4917,7 +4711,6 @@ typedef union _hw_pxp_hist4_param
  * GRAY1 value for 4-level histogram
  */
 //@{
-
 #define BP_PXP_HIST4_PARAM_VALUE1      (8)      //!< Bit position for PXP_HIST4_PARAM_VALUE1.
 #define BM_PXP_HIST4_PARAM_VALUE1      (0x00001f00)  //!< Bit mask for PXP_HIST4_PARAM_VALUE1.
 
@@ -4931,7 +4724,6 @@ typedef union _hw_pxp_hist4_param
 //! @brief Set the VALUE1 field to a new value.
 #define BW_PXP_HIST4_PARAM_VALUE1(v)   (HW_PXP_HIST4_PARAM_WR((HW_PXP_HIST4_PARAM_RD() & ~BM_PXP_HIST4_PARAM_VALUE1) | BF_PXP_HIST4_PARAM_VALUE1(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_HIST4_PARAM, field VALUE2[20:16] (RW)
@@ -4939,7 +4731,6 @@ typedef union _hw_pxp_hist4_param
  * GRAY2 value for 4-level histogram
  */
 //@{
-
 #define BP_PXP_HIST4_PARAM_VALUE2      (16)      //!< Bit position for PXP_HIST4_PARAM_VALUE2.
 #define BM_PXP_HIST4_PARAM_VALUE2      (0x001f0000)  //!< Bit mask for PXP_HIST4_PARAM_VALUE2.
 
@@ -4953,7 +4744,6 @@ typedef union _hw_pxp_hist4_param
 //! @brief Set the VALUE2 field to a new value.
 #define BW_PXP_HIST4_PARAM_VALUE2(v)   (HW_PXP_HIST4_PARAM_WR((HW_PXP_HIST4_PARAM_RD() & ~BM_PXP_HIST4_PARAM_VALUE2) | BF_PXP_HIST4_PARAM_VALUE2(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_HIST4_PARAM, field VALUE3[28:24] (RW)
@@ -4961,7 +4751,6 @@ typedef union _hw_pxp_hist4_param
  * GRAY3 (White) value for 4-level histogram
  */
 //@{
-
 #define BP_PXP_HIST4_PARAM_VALUE3      (24)      //!< Bit position for PXP_HIST4_PARAM_VALUE3.
 #define BM_PXP_HIST4_PARAM_VALUE3      (0x1f000000)  //!< Bit mask for PXP_HIST4_PARAM_VALUE3.
 
@@ -4975,7 +4764,6 @@ typedef union _hw_pxp_hist4_param
 //! @brief Set the VALUE3 field to a new value.
 #define BW_PXP_HIST4_PARAM_VALUE3(v)   (HW_PXP_HIST4_PARAM_WR((HW_PXP_HIST4_PARAM_RD() & ~BM_PXP_HIST4_PARAM_VALUE3) | BF_PXP_HIST4_PARAM_VALUE3(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5035,7 +4823,6 @@ typedef union _hw_pxp_hist8_param0
  * GRAY0 (Black) value for 8-level histogram
  */
 //@{
-
 #define BP_PXP_HIST8_PARAM0_VALUE0      (0)      //!< Bit position for PXP_HIST8_PARAM0_VALUE0.
 #define BM_PXP_HIST8_PARAM0_VALUE0      (0x0000001f)  //!< Bit mask for PXP_HIST8_PARAM0_VALUE0.
 
@@ -5049,7 +4836,6 @@ typedef union _hw_pxp_hist8_param0
 //! @brief Set the VALUE0 field to a new value.
 #define BW_PXP_HIST8_PARAM0_VALUE0(v)   (HW_PXP_HIST8_PARAM0_WR((HW_PXP_HIST8_PARAM0_RD() & ~BM_PXP_HIST8_PARAM0_VALUE0) | BF_PXP_HIST8_PARAM0_VALUE0(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_HIST8_PARAM0, field VALUE1[12:8] (RW)
@@ -5057,7 +4843,6 @@ typedef union _hw_pxp_hist8_param0
  * GRAY1 value for 8-level histogram
  */
 //@{
-
 #define BP_PXP_HIST8_PARAM0_VALUE1      (8)      //!< Bit position for PXP_HIST8_PARAM0_VALUE1.
 #define BM_PXP_HIST8_PARAM0_VALUE1      (0x00001f00)  //!< Bit mask for PXP_HIST8_PARAM0_VALUE1.
 
@@ -5071,7 +4856,6 @@ typedef union _hw_pxp_hist8_param0
 //! @brief Set the VALUE1 field to a new value.
 #define BW_PXP_HIST8_PARAM0_VALUE1(v)   (HW_PXP_HIST8_PARAM0_WR((HW_PXP_HIST8_PARAM0_RD() & ~BM_PXP_HIST8_PARAM0_VALUE1) | BF_PXP_HIST8_PARAM0_VALUE1(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_HIST8_PARAM0, field VALUE2[20:16] (RW)
@@ -5079,7 +4863,6 @@ typedef union _hw_pxp_hist8_param0
  * GRAY2 value for 8-level histogram
  */
 //@{
-
 #define BP_PXP_HIST8_PARAM0_VALUE2      (16)      //!< Bit position for PXP_HIST8_PARAM0_VALUE2.
 #define BM_PXP_HIST8_PARAM0_VALUE2      (0x001f0000)  //!< Bit mask for PXP_HIST8_PARAM0_VALUE2.
 
@@ -5093,7 +4876,6 @@ typedef union _hw_pxp_hist8_param0
 //! @brief Set the VALUE2 field to a new value.
 #define BW_PXP_HIST8_PARAM0_VALUE2(v)   (HW_PXP_HIST8_PARAM0_WR((HW_PXP_HIST8_PARAM0_RD() & ~BM_PXP_HIST8_PARAM0_VALUE2) | BF_PXP_HIST8_PARAM0_VALUE2(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_HIST8_PARAM0, field VALUE3[28:24] (RW)
@@ -5101,7 +4883,6 @@ typedef union _hw_pxp_hist8_param0
  * GRAY3 value for 8-level histogram
  */
 //@{
-
 #define BP_PXP_HIST8_PARAM0_VALUE3      (24)      //!< Bit position for PXP_HIST8_PARAM0_VALUE3.
 #define BM_PXP_HIST8_PARAM0_VALUE3      (0x1f000000)  //!< Bit mask for PXP_HIST8_PARAM0_VALUE3.
 
@@ -5115,7 +4896,6 @@ typedef union _hw_pxp_hist8_param0
 //! @brief Set the VALUE3 field to a new value.
 #define BW_PXP_HIST8_PARAM0_VALUE3(v)   (HW_PXP_HIST8_PARAM0_WR((HW_PXP_HIST8_PARAM0_RD() & ~BM_PXP_HIST8_PARAM0_VALUE3) | BF_PXP_HIST8_PARAM0_VALUE3(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5175,7 +4955,6 @@ typedef union _hw_pxp_hist8_param1
  * GRAY4 value for 8-level histogram
  */
 //@{
-
 #define BP_PXP_HIST8_PARAM1_VALUE4      (0)      //!< Bit position for PXP_HIST8_PARAM1_VALUE4.
 #define BM_PXP_HIST8_PARAM1_VALUE4      (0x0000001f)  //!< Bit mask for PXP_HIST8_PARAM1_VALUE4.
 
@@ -5189,7 +4968,6 @@ typedef union _hw_pxp_hist8_param1
 //! @brief Set the VALUE4 field to a new value.
 #define BW_PXP_HIST8_PARAM1_VALUE4(v)   (HW_PXP_HIST8_PARAM1_WR((HW_PXP_HIST8_PARAM1_RD() & ~BM_PXP_HIST8_PARAM1_VALUE4) | BF_PXP_HIST8_PARAM1_VALUE4(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_HIST8_PARAM1, field VALUE5[12:8] (RW)
@@ -5197,7 +4975,6 @@ typedef union _hw_pxp_hist8_param1
  * GRAY5 value for 8-level histogram
  */
 //@{
-
 #define BP_PXP_HIST8_PARAM1_VALUE5      (8)      //!< Bit position for PXP_HIST8_PARAM1_VALUE5.
 #define BM_PXP_HIST8_PARAM1_VALUE5      (0x00001f00)  //!< Bit mask for PXP_HIST8_PARAM1_VALUE5.
 
@@ -5211,7 +4988,6 @@ typedef union _hw_pxp_hist8_param1
 //! @brief Set the VALUE5 field to a new value.
 #define BW_PXP_HIST8_PARAM1_VALUE5(v)   (HW_PXP_HIST8_PARAM1_WR((HW_PXP_HIST8_PARAM1_RD() & ~BM_PXP_HIST8_PARAM1_VALUE5) | BF_PXP_HIST8_PARAM1_VALUE5(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_HIST8_PARAM1, field VALUE6[20:16] (RW)
@@ -5219,7 +4995,6 @@ typedef union _hw_pxp_hist8_param1
  * GRAY6 value for 8-level histogram
  */
 //@{
-
 #define BP_PXP_HIST8_PARAM1_VALUE6      (16)      //!< Bit position for PXP_HIST8_PARAM1_VALUE6.
 #define BM_PXP_HIST8_PARAM1_VALUE6      (0x001f0000)  //!< Bit mask for PXP_HIST8_PARAM1_VALUE6.
 
@@ -5233,7 +5008,6 @@ typedef union _hw_pxp_hist8_param1
 //! @brief Set the VALUE6 field to a new value.
 #define BW_PXP_HIST8_PARAM1_VALUE6(v)   (HW_PXP_HIST8_PARAM1_WR((HW_PXP_HIST8_PARAM1_RD() & ~BM_PXP_HIST8_PARAM1_VALUE6) | BF_PXP_HIST8_PARAM1_VALUE6(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_HIST8_PARAM1, field VALUE7[28:24] (RW)
@@ -5241,7 +5015,6 @@ typedef union _hw_pxp_hist8_param1
  * GRAY7 (White) value for 8-level histogram
  */
 //@{
-
 #define BP_PXP_HIST8_PARAM1_VALUE7      (24)      //!< Bit position for PXP_HIST8_PARAM1_VALUE7.
 #define BM_PXP_HIST8_PARAM1_VALUE7      (0x1f000000)  //!< Bit mask for PXP_HIST8_PARAM1_VALUE7.
 
@@ -5255,7 +5028,6 @@ typedef union _hw_pxp_hist8_param1
 //! @brief Set the VALUE7 field to a new value.
 #define BW_PXP_HIST8_PARAM1_VALUE7(v)   (HW_PXP_HIST8_PARAM1_WR((HW_PXP_HIST8_PARAM1_RD() & ~BM_PXP_HIST8_PARAM1_VALUE7) | BF_PXP_HIST8_PARAM1_VALUE7(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5315,7 +5087,6 @@ typedef union _hw_pxp_hist16_param0
  * GRAY0 (Black) value for 16-level histogram
  */
 //@{
-
 #define BP_PXP_HIST16_PARAM0_VALUE0      (0)      //!< Bit position for PXP_HIST16_PARAM0_VALUE0.
 #define BM_PXP_HIST16_PARAM0_VALUE0      (0x0000001f)  //!< Bit mask for PXP_HIST16_PARAM0_VALUE0.
 
@@ -5329,7 +5100,6 @@ typedef union _hw_pxp_hist16_param0
 //! @brief Set the VALUE0 field to a new value.
 #define BW_PXP_HIST16_PARAM0_VALUE0(v)   (HW_PXP_HIST16_PARAM0_WR((HW_PXP_HIST16_PARAM0_RD() & ~BM_PXP_HIST16_PARAM0_VALUE0) | BF_PXP_HIST16_PARAM0_VALUE0(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_HIST16_PARAM0, field VALUE1[12:8] (RW)
@@ -5337,7 +5107,6 @@ typedef union _hw_pxp_hist16_param0
  * GRAY1 value for 16-level histogram
  */
 //@{
-
 #define BP_PXP_HIST16_PARAM0_VALUE1      (8)      //!< Bit position for PXP_HIST16_PARAM0_VALUE1.
 #define BM_PXP_HIST16_PARAM0_VALUE1      (0x00001f00)  //!< Bit mask for PXP_HIST16_PARAM0_VALUE1.
 
@@ -5351,7 +5120,6 @@ typedef union _hw_pxp_hist16_param0
 //! @brief Set the VALUE1 field to a new value.
 #define BW_PXP_HIST16_PARAM0_VALUE1(v)   (HW_PXP_HIST16_PARAM0_WR((HW_PXP_HIST16_PARAM0_RD() & ~BM_PXP_HIST16_PARAM0_VALUE1) | BF_PXP_HIST16_PARAM0_VALUE1(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_HIST16_PARAM0, field VALUE2[20:16] (RW)
@@ -5359,7 +5127,6 @@ typedef union _hw_pxp_hist16_param0
  * GRAY2 value for 16-level histogram
  */
 //@{
-
 #define BP_PXP_HIST16_PARAM0_VALUE2      (16)      //!< Bit position for PXP_HIST16_PARAM0_VALUE2.
 #define BM_PXP_HIST16_PARAM0_VALUE2      (0x001f0000)  //!< Bit mask for PXP_HIST16_PARAM0_VALUE2.
 
@@ -5373,7 +5140,6 @@ typedef union _hw_pxp_hist16_param0
 //! @brief Set the VALUE2 field to a new value.
 #define BW_PXP_HIST16_PARAM0_VALUE2(v)   (HW_PXP_HIST16_PARAM0_WR((HW_PXP_HIST16_PARAM0_RD() & ~BM_PXP_HIST16_PARAM0_VALUE2) | BF_PXP_HIST16_PARAM0_VALUE2(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_HIST16_PARAM0, field VALUE3[28:24] (RW)
@@ -5381,7 +5147,6 @@ typedef union _hw_pxp_hist16_param0
  * GRAY3 value for 16-level histogram
  */
 //@{
-
 #define BP_PXP_HIST16_PARAM0_VALUE3      (24)      //!< Bit position for PXP_HIST16_PARAM0_VALUE3.
 #define BM_PXP_HIST16_PARAM0_VALUE3      (0x1f000000)  //!< Bit mask for PXP_HIST16_PARAM0_VALUE3.
 
@@ -5395,7 +5160,6 @@ typedef union _hw_pxp_hist16_param0
 //! @brief Set the VALUE3 field to a new value.
 #define BW_PXP_HIST16_PARAM0_VALUE3(v)   (HW_PXP_HIST16_PARAM0_WR((HW_PXP_HIST16_PARAM0_RD() & ~BM_PXP_HIST16_PARAM0_VALUE3) | BF_PXP_HIST16_PARAM0_VALUE3(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5455,7 +5219,6 @@ typedef union _hw_pxp_hist16_param1
  * GRAY4 value for 16-level histogram
  */
 //@{
-
 #define BP_PXP_HIST16_PARAM1_VALUE4      (0)      //!< Bit position for PXP_HIST16_PARAM1_VALUE4.
 #define BM_PXP_HIST16_PARAM1_VALUE4      (0x0000001f)  //!< Bit mask for PXP_HIST16_PARAM1_VALUE4.
 
@@ -5469,7 +5232,6 @@ typedef union _hw_pxp_hist16_param1
 //! @brief Set the VALUE4 field to a new value.
 #define BW_PXP_HIST16_PARAM1_VALUE4(v)   (HW_PXP_HIST16_PARAM1_WR((HW_PXP_HIST16_PARAM1_RD() & ~BM_PXP_HIST16_PARAM1_VALUE4) | BF_PXP_HIST16_PARAM1_VALUE4(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_HIST16_PARAM1, field VALUE5[12:8] (RW)
@@ -5477,7 +5239,6 @@ typedef union _hw_pxp_hist16_param1
  * GRAY5 value for 16-level histogram
  */
 //@{
-
 #define BP_PXP_HIST16_PARAM1_VALUE5      (8)      //!< Bit position for PXP_HIST16_PARAM1_VALUE5.
 #define BM_PXP_HIST16_PARAM1_VALUE5      (0x00001f00)  //!< Bit mask for PXP_HIST16_PARAM1_VALUE5.
 
@@ -5491,7 +5252,6 @@ typedef union _hw_pxp_hist16_param1
 //! @brief Set the VALUE5 field to a new value.
 #define BW_PXP_HIST16_PARAM1_VALUE5(v)   (HW_PXP_HIST16_PARAM1_WR((HW_PXP_HIST16_PARAM1_RD() & ~BM_PXP_HIST16_PARAM1_VALUE5) | BF_PXP_HIST16_PARAM1_VALUE5(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_HIST16_PARAM1, field VALUE6[20:16] (RW)
@@ -5499,7 +5259,6 @@ typedef union _hw_pxp_hist16_param1
  * GRAY6 value for 16-level histogram
  */
 //@{
-
 #define BP_PXP_HIST16_PARAM1_VALUE6      (16)      //!< Bit position for PXP_HIST16_PARAM1_VALUE6.
 #define BM_PXP_HIST16_PARAM1_VALUE6      (0x001f0000)  //!< Bit mask for PXP_HIST16_PARAM1_VALUE6.
 
@@ -5513,7 +5272,6 @@ typedef union _hw_pxp_hist16_param1
 //! @brief Set the VALUE6 field to a new value.
 #define BW_PXP_HIST16_PARAM1_VALUE6(v)   (HW_PXP_HIST16_PARAM1_WR((HW_PXP_HIST16_PARAM1_RD() & ~BM_PXP_HIST16_PARAM1_VALUE6) | BF_PXP_HIST16_PARAM1_VALUE6(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_HIST16_PARAM1, field VALUE7[28:24] (RW)
@@ -5521,7 +5279,6 @@ typedef union _hw_pxp_hist16_param1
  * GRAY7 value for 16-level histogram
  */
 //@{
-
 #define BP_PXP_HIST16_PARAM1_VALUE7      (24)      //!< Bit position for PXP_HIST16_PARAM1_VALUE7.
 #define BM_PXP_HIST16_PARAM1_VALUE7      (0x1f000000)  //!< Bit mask for PXP_HIST16_PARAM1_VALUE7.
 
@@ -5535,7 +5292,6 @@ typedef union _hw_pxp_hist16_param1
 //! @brief Set the VALUE7 field to a new value.
 #define BW_PXP_HIST16_PARAM1_VALUE7(v)   (HW_PXP_HIST16_PARAM1_WR((HW_PXP_HIST16_PARAM1_RD() & ~BM_PXP_HIST16_PARAM1_VALUE7) | BF_PXP_HIST16_PARAM1_VALUE7(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5595,7 +5351,6 @@ typedef union _hw_pxp_hist16_param2
  * GRAY8 value for 16-level histogram
  */
 //@{
-
 #define BP_PXP_HIST16_PARAM2_VALUE8      (0)      //!< Bit position for PXP_HIST16_PARAM2_VALUE8.
 #define BM_PXP_HIST16_PARAM2_VALUE8      (0x0000001f)  //!< Bit mask for PXP_HIST16_PARAM2_VALUE8.
 
@@ -5609,7 +5364,6 @@ typedef union _hw_pxp_hist16_param2
 //! @brief Set the VALUE8 field to a new value.
 #define BW_PXP_HIST16_PARAM2_VALUE8(v)   (HW_PXP_HIST16_PARAM2_WR((HW_PXP_HIST16_PARAM2_RD() & ~BM_PXP_HIST16_PARAM2_VALUE8) | BF_PXP_HIST16_PARAM2_VALUE8(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_HIST16_PARAM2, field VALUE9[12:8] (RW)
@@ -5617,7 +5371,6 @@ typedef union _hw_pxp_hist16_param2
  * GRAY9 value for 16-level histogram
  */
 //@{
-
 #define BP_PXP_HIST16_PARAM2_VALUE9      (8)      //!< Bit position for PXP_HIST16_PARAM2_VALUE9.
 #define BM_PXP_HIST16_PARAM2_VALUE9      (0x00001f00)  //!< Bit mask for PXP_HIST16_PARAM2_VALUE9.
 
@@ -5631,7 +5384,6 @@ typedef union _hw_pxp_hist16_param2
 //! @brief Set the VALUE9 field to a new value.
 #define BW_PXP_HIST16_PARAM2_VALUE9(v)   (HW_PXP_HIST16_PARAM2_WR((HW_PXP_HIST16_PARAM2_RD() & ~BM_PXP_HIST16_PARAM2_VALUE9) | BF_PXP_HIST16_PARAM2_VALUE9(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_HIST16_PARAM2, field VALUE10[20:16] (RW)
@@ -5639,7 +5391,6 @@ typedef union _hw_pxp_hist16_param2
  * GRAY10 value for 16-level histogram
  */
 //@{
-
 #define BP_PXP_HIST16_PARAM2_VALUE10      (16)      //!< Bit position for PXP_HIST16_PARAM2_VALUE10.
 #define BM_PXP_HIST16_PARAM2_VALUE10      (0x001f0000)  //!< Bit mask for PXP_HIST16_PARAM2_VALUE10.
 
@@ -5653,7 +5404,6 @@ typedef union _hw_pxp_hist16_param2
 //! @brief Set the VALUE10 field to a new value.
 #define BW_PXP_HIST16_PARAM2_VALUE10(v)   (HW_PXP_HIST16_PARAM2_WR((HW_PXP_HIST16_PARAM2_RD() & ~BM_PXP_HIST16_PARAM2_VALUE10) | BF_PXP_HIST16_PARAM2_VALUE10(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_HIST16_PARAM2, field VALUE11[28:24] (RW)
@@ -5661,7 +5411,6 @@ typedef union _hw_pxp_hist16_param2
  * GRAY11 value for 16-level histogram
  */
 //@{
-
 #define BP_PXP_HIST16_PARAM2_VALUE11      (24)      //!< Bit position for PXP_HIST16_PARAM2_VALUE11.
 #define BM_PXP_HIST16_PARAM2_VALUE11      (0x1f000000)  //!< Bit mask for PXP_HIST16_PARAM2_VALUE11.
 
@@ -5675,7 +5424,6 @@ typedef union _hw_pxp_hist16_param2
 //! @brief Set the VALUE11 field to a new value.
 #define BW_PXP_HIST16_PARAM2_VALUE11(v)   (HW_PXP_HIST16_PARAM2_WR((HW_PXP_HIST16_PARAM2_RD() & ~BM_PXP_HIST16_PARAM2_VALUE11) | BF_PXP_HIST16_PARAM2_VALUE11(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5735,7 +5483,6 @@ typedef union _hw_pxp_hist16_param3
  * GRAY12 value for 16-level histogram
  */
 //@{
-
 #define BP_PXP_HIST16_PARAM3_VALUE12      (0)      //!< Bit position for PXP_HIST16_PARAM3_VALUE12.
 #define BM_PXP_HIST16_PARAM3_VALUE12      (0x0000001f)  //!< Bit mask for PXP_HIST16_PARAM3_VALUE12.
 
@@ -5749,7 +5496,6 @@ typedef union _hw_pxp_hist16_param3
 //! @brief Set the VALUE12 field to a new value.
 #define BW_PXP_HIST16_PARAM3_VALUE12(v)   (HW_PXP_HIST16_PARAM3_WR((HW_PXP_HIST16_PARAM3_RD() & ~BM_PXP_HIST16_PARAM3_VALUE12) | BF_PXP_HIST16_PARAM3_VALUE12(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_HIST16_PARAM3, field VALUE13[12:8] (RW)
@@ -5757,7 +5503,6 @@ typedef union _hw_pxp_hist16_param3
  * GRAY13 value for 16-level histogram
  */
 //@{
-
 #define BP_PXP_HIST16_PARAM3_VALUE13      (8)      //!< Bit position for PXP_HIST16_PARAM3_VALUE13.
 #define BM_PXP_HIST16_PARAM3_VALUE13      (0x00001f00)  //!< Bit mask for PXP_HIST16_PARAM3_VALUE13.
 
@@ -5771,7 +5516,6 @@ typedef union _hw_pxp_hist16_param3
 //! @brief Set the VALUE13 field to a new value.
 #define BW_PXP_HIST16_PARAM3_VALUE13(v)   (HW_PXP_HIST16_PARAM3_WR((HW_PXP_HIST16_PARAM3_RD() & ~BM_PXP_HIST16_PARAM3_VALUE13) | BF_PXP_HIST16_PARAM3_VALUE13(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_HIST16_PARAM3, field VALUE14[20:16] (RW)
@@ -5779,7 +5523,6 @@ typedef union _hw_pxp_hist16_param3
  * GRAY14 value for 16-level histogram
  */
 //@{
-
 #define BP_PXP_HIST16_PARAM3_VALUE14      (16)      //!< Bit position for PXP_HIST16_PARAM3_VALUE14.
 #define BM_PXP_HIST16_PARAM3_VALUE14      (0x001f0000)  //!< Bit mask for PXP_HIST16_PARAM3_VALUE14.
 
@@ -5793,7 +5536,6 @@ typedef union _hw_pxp_hist16_param3
 //! @brief Set the VALUE14 field to a new value.
 #define BW_PXP_HIST16_PARAM3_VALUE14(v)   (HW_PXP_HIST16_PARAM3_WR((HW_PXP_HIST16_PARAM3_RD() & ~BM_PXP_HIST16_PARAM3_VALUE14) | BF_PXP_HIST16_PARAM3_VALUE14(v)))
 #endif
-
 //@}
 
 /*! @name Register PXP_HIST16_PARAM3, field VALUE15[28:24] (RW)
@@ -5801,7 +5543,6 @@ typedef union _hw_pxp_hist16_param3
  * GRAY15 (White) value for 16-level histogram
  */
 //@{
-
 #define BP_PXP_HIST16_PARAM3_VALUE15      (24)      //!< Bit position for PXP_HIST16_PARAM3_VALUE15.
 #define BM_PXP_HIST16_PARAM3_VALUE15      (0x1f000000)  //!< Bit mask for PXP_HIST16_PARAM3_VALUE15.
 
@@ -5815,7 +5556,6 @@ typedef union _hw_pxp_hist16_param3
 //! @brief Set the VALUE15 field to a new value.
 #define BW_PXP_HIST16_PARAM3_VALUE15(v)   (HW_PXP_HIST16_PARAM3_WR((HW_PXP_HIST16_PARAM3_RD() & ~BM_PXP_HIST16_PARAM3_VALUE15) | BF_PXP_HIST16_PARAM3_VALUE15(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -5875,7 +5615,6 @@ typedef union _hw_pxp_power
  * - SD = 0x4 - Shut Down Mode. Shut Down periphery and core, no memory retention.
  */
 //@{
-
 #define BP_PXP_POWER_LUT_LP_STATE_WAY0_BANK0      (0)      //!< Bit position for PXP_POWER_LUT_LP_STATE_WAY0_BANK0.
 #define BM_PXP_POWER_LUT_LP_STATE_WAY0_BANK0      (0x00000007)  //!< Bit mask for PXP_POWER_LUT_LP_STATE_WAY0_BANK0.
 
@@ -5897,7 +5636,6 @@ typedef union _hw_pxp_power
 #define BV_PXP_POWER_LUT_LP_STATE_WAY0_BANK0__LS (0x1) //!< Light Sleep Mode. Low leakage mode, maintain memory contents.
 #define BV_PXP_POWER_LUT_LP_STATE_WAY0_BANK0__DS (0x2) //!< Deep Sleep Mode. Low leakage mode, maintain memory contents.
 #define BV_PXP_POWER_LUT_LP_STATE_WAY0_BANK0__SD (0x4) //!< Shut Down Mode. Shut Down periphery and core, no memory retention.
-
 //@}
 
 /*! @name Register PXP_POWER, field LUT_LP_STATE_WAY0_BANKN[5:3] (RW)
@@ -5911,7 +5649,6 @@ typedef union _hw_pxp_power
  * - SD = 0x4 - Shut Down Mode. Shut Down periphery and core, no memory retention.
  */
 //@{
-
 #define BP_PXP_POWER_LUT_LP_STATE_WAY0_BANKN      (3)      //!< Bit position for PXP_POWER_LUT_LP_STATE_WAY0_BANKN.
 #define BM_PXP_POWER_LUT_LP_STATE_WAY0_BANKN      (0x00000038)  //!< Bit mask for PXP_POWER_LUT_LP_STATE_WAY0_BANKN.
 
@@ -5933,7 +5670,6 @@ typedef union _hw_pxp_power
 #define BV_PXP_POWER_LUT_LP_STATE_WAY0_BANKN__LS (0x1) //!< Light Sleep Mode. Low leakage mode, maintain memory contents.
 #define BV_PXP_POWER_LUT_LP_STATE_WAY0_BANKN__DS (0x2) //!< Deep Sleep Mode. Low leakage mode, maintain memory contents.
 #define BV_PXP_POWER_LUT_LP_STATE_WAY0_BANKN__SD (0x4) //!< Shut Down Mode. Shut Down periphery and core, no memory retention.
-
 //@}
 
 /*! @name Register PXP_POWER, field LUT_LP_STATE_WAY1_BANKN[8:6] (RW)
@@ -5947,7 +5683,6 @@ typedef union _hw_pxp_power
  * - SD = 0x4 - Shut Down Mode. Shut Down periphery and core, no memory retention.
  */
 //@{
-
 #define BP_PXP_POWER_LUT_LP_STATE_WAY1_BANKN      (6)      //!< Bit position for PXP_POWER_LUT_LP_STATE_WAY1_BANKN.
 #define BM_PXP_POWER_LUT_LP_STATE_WAY1_BANKN      (0x000001c0)  //!< Bit mask for PXP_POWER_LUT_LP_STATE_WAY1_BANKN.
 
@@ -5969,7 +5704,6 @@ typedef union _hw_pxp_power
 #define BV_PXP_POWER_LUT_LP_STATE_WAY1_BANKN__LS (0x1) //!< Light Sleep Mode. Low leakage mode, maintain memory contents.
 #define BV_PXP_POWER_LUT_LP_STATE_WAY1_BANKN__DS (0x2) //!< Deep Sleep Mode. Low leakage mode, maintain memory contents.
 #define BV_PXP_POWER_LUT_LP_STATE_WAY1_BANKN__SD (0x4) //!< Shut Down Mode. Shut Down periphery and core, no memory retention.
-
 //@}
 
 /*! @name Register PXP_POWER, field ROT_MEM_LP_STATE[11:9] (RW)
@@ -5983,7 +5717,6 @@ typedef union _hw_pxp_power
  * - SD = 0x4 - Shut Down Mode. Shut Down periphery and core, no memory retention.
  */
 //@{
-
 #define BP_PXP_POWER_ROT_MEM_LP_STATE      (9)      //!< Bit position for PXP_POWER_ROT_MEM_LP_STATE.
 #define BM_PXP_POWER_ROT_MEM_LP_STATE      (0x00000e00)  //!< Bit mask for PXP_POWER_ROT_MEM_LP_STATE.
 
@@ -6005,7 +5738,6 @@ typedef union _hw_pxp_power
 #define BV_PXP_POWER_ROT_MEM_LP_STATE__LS (0x1) //!< Light Sleep Mode. Low leakage mode, maintain memory contents.
 #define BV_PXP_POWER_ROT_MEM_LP_STATE__DS (0x2) //!< Deep Sleep Mode. Low leakage mode, maintain memory contents.
 #define BV_PXP_POWER_ROT_MEM_LP_STATE__SD (0x4) //!< Shut Down Mode. Shut Down periphery and core, no memory retention.
-
 //@}
 
 /*! @name Register PXP_POWER, field CTRL[31:12] (RW)
@@ -6013,7 +5745,6 @@ typedef union _hw_pxp_power
  * This register contains power control for the PXP.
  */
 //@{
-
 #define BP_PXP_POWER_CTRL      (12)      //!< Bit position for PXP_POWER_CTRL.
 #define BM_PXP_POWER_CTRL      (0xfffff000)  //!< Bit mask for PXP_POWER_CTRL.
 
@@ -6027,7 +5758,6 @@ typedef union _hw_pxp_power
 //! @brief Set the CTRL field to a new value.
 #define BW_PXP_POWER_CTRL(v)   (HW_PXP_POWER_WR((HW_PXP_POWER_RD() & ~BM_PXP_POWER_CTRL) | BF_PXP_POWER_CTRL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6101,13 +5831,11 @@ typedef union _hw_pxp_next
  * frame.
  */
 //@{
-
 #define BP_PXP_NEXT_ENABLED      (0)      //!< Bit position for PXP_NEXT_ENABLED.
 #define BM_PXP_NEXT_ENABLED      (0x00000001)  //!< Bit mask for PXP_NEXT_ENABLED.
 
 //! @brief Get value of PXP_NEXT_ENABLED from a register value.
 #define BG_PXP_NEXT_ENABLED(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PXP_NEXT_ENABLED) >> BP_PXP_NEXT_ENABLED)
-
 //@}
 
 /*! @name Register PXP_NEXT, field POINTER[31:2] (RW)
@@ -6116,7 +5844,6 @@ typedef union _hw_pxp_next
  * frame. The pointer must be 32-bit aligned and should reside in on-chip or off-chip memory.
  */
 //@{
-
 #define BP_PXP_NEXT_POINTER      (2)      //!< Bit position for PXP_NEXT_POINTER.
 #define BM_PXP_NEXT_POINTER      (0xfffffffc)  //!< Bit mask for PXP_NEXT_POINTER.
 
@@ -6130,7 +5857,6 @@ typedef union _hw_pxp_next
 //! @brief Set the POINTER field to a new value.
 #define BW_PXP_NEXT_POINTER(v)   (HW_PXP_NEXT_WR((HW_PXP_NEXT_RD() & ~BM_PXP_NEXT_POINTER) | BF_PXP_NEXT_POINTER(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -6256,3 +5982,5 @@ typedef struct _hw_pxp
 #endif
 
 #endif // __HW_PXP_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

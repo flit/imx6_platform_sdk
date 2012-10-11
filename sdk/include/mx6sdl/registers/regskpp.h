@@ -106,7 +106,6 @@ typedef union _hw_kpp_kpcr
  * - 1 - Row is included in the keypad key press detect.
  */
 //@{
-
 #define BP_KPP_KPCR_KRE      (0)      //!< Bit position for KPP_KPCR_KRE.
 #define BM_KPP_KPCR_KRE      (0x000000ff)  //!< Bit mask for KPP_KPCR_KRE.
 
@@ -120,7 +119,6 @@ typedef union _hw_kpp_kpcr
 //! @brief Set the KRE field to a new value.
 #define BW_KPP_KPCR_KRE(v)   (HW_KPP_KPCR_WR((HW_KPP_KPCR_RD() & ~BM_KPP_KPCR_KRE) | BF_KPP_KPCR_KRE(v)))
 #endif
-
 //@}
 
 /*! @name Register KPP_KPCR, field KCO[15:8] (RW)
@@ -136,7 +134,6 @@ typedef union _hw_kpp_kpcr
  * - OPEN_DRAIN = 1 - Column strobe output is open drain.
  */
 //@{
-
 #define BP_KPP_KPCR_KCO      (8)      //!< Bit position for KPP_KPCR_KCO.
 #define BM_KPP_KPCR_KCO      (0x0000ff00)  //!< Bit mask for KPP_KPCR_KCO.
 
@@ -156,7 +153,6 @@ typedef union _hw_kpp_kpcr
 
 #define BV_KPP_KPCR_KCO__TOTEM_POLE (0x0) //!< Column strobe output is totem pole drive.
 #define BV_KPP_KPCR_KCO__OPEN_DRAIN (0x1) //!< Column strobe output is open drain.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -227,7 +223,6 @@ typedef union _hw_kpp_kpsr
  * - 1 - A key has been depressed
  */
 //@{
-
 #define BP_KPP_KPSR_KPKD      (0)      //!< Bit position for KPP_KPSR_KPKD.
 #define BM_KPP_KPSR_KPKD      (0x00000001)  //!< Bit mask for KPP_KPSR_KPKD.
 
@@ -241,7 +236,6 @@ typedef union _hw_kpp_kpsr
 //! @brief Set the KPKD field to a new value.
 #define BW_KPP_KPSR_KPKD(v)   (HW_KPP_KPSR_WR((HW_KPP_KPSR_RD() & ~BM_KPP_KPSR_KPKD) | BF_KPP_KPSR_KPKD(v)))
 #endif
-
 //@}
 
 /*! @name Register KPP_KPSR, field KPKR[1] (W1C)
@@ -261,7 +255,6 @@ typedef union _hw_kpp_kpsr
  * - 1 - All keys have been released
  */
 //@{
-
 #define BP_KPP_KPSR_KPKR      (1)      //!< Bit position for KPP_KPSR_KPKR.
 #define BM_KPP_KPSR_KPKR      (0x00000002)  //!< Bit mask for KPP_KPSR_KPKR.
 
@@ -275,7 +268,6 @@ typedef union _hw_kpp_kpsr
 //! @brief Set the KPKR field to a new value.
 #define BW_KPP_KPSR_KPKR(v)   (HW_KPP_KPSR_WR((HW_KPP_KPSR_RD() & ~BM_KPP_KPSR_KPKR) | BF_KPP_KPSR_KPKR(v)))
 #endif
-
 //@}
 
 /*! @name Register KPP_KPSR, field KDSC[2] (WORZ)
@@ -288,7 +280,6 @@ typedef union _hw_kpp_kpsr
  * - 1 - Set bits that clear the keypad depress synchronizer chain
  */
 //@{
-
 #define BP_KPP_KPSR_KDSC      (2)      //!< Bit position for KPP_KPSR_KDSC.
 #define BM_KPP_KPSR_KDSC      (0x00000004)  //!< Bit mask for KPP_KPSR_KDSC.
 
@@ -297,7 +288,6 @@ typedef union _hw_kpp_kpsr
 
 //! @brief Format value for bitfield KPP_KPSR_KDSC.
 #define BF_KPP_KPSR_KDSC(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_KPP_KPSR_KDSC) & BM_KPP_KPSR_KDSC)
-
 //@}
 
 /*! @name Register KPP_KPSR, field KRSS[3] (WORZ)
@@ -310,7 +300,6 @@ typedef union _hw_kpp_kpsr
  * - 1 - Set bits which sets keypad release synchronizer chain
  */
 //@{
-
 #define BP_KPP_KPSR_KRSS      (3)      //!< Bit position for KPP_KPSR_KRSS.
 #define BM_KPP_KPSR_KRSS      (0x00000008)  //!< Bit mask for KPP_KPSR_KRSS.
 
@@ -319,7 +308,6 @@ typedef union _hw_kpp_kpsr
 
 //! @brief Format value for bitfield KPP_KPSR_KRSS.
 #define BF_KPP_KPSR_KRSS(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_KPP_KPSR_KRSS) & BM_KPP_KPSR_KRSS)
-
 //@}
 
 /*! @name Register KPP_KPSR, field KDIE[8] (RW)
@@ -336,7 +324,6 @@ typedef union _hw_kpp_kpsr
  * - 1 - An interrupt request is generated when KPKD is set.
  */
 //@{
-
 #define BP_KPP_KPSR_KDIE      (8)      //!< Bit position for KPP_KPSR_KDIE.
 #define BM_KPP_KPSR_KDIE      (0x00000100)  //!< Bit mask for KPP_KPSR_KDIE.
 
@@ -350,7 +337,6 @@ typedef union _hw_kpp_kpsr
 //! @brief Set the KDIE field to a new value.
 #define BW_KPP_KPSR_KDIE(v)   (HW_KPP_KPSR_WR((HW_KPP_KPSR_RD() & ~BM_KPP_KPSR_KDIE) | BF_KPP_KPSR_KDIE(v)))
 #endif
-
 //@}
 
 /*! @name Register KPP_KPSR, field KRIE[9] (RW)
@@ -367,7 +353,6 @@ typedef union _hw_kpp_kpsr
  * - 1 - An interrupt request is generated when KPKR is set.
  */
 //@{
-
 #define BP_KPP_KPSR_KRIE      (9)      //!< Bit position for KPP_KPSR_KRIE.
 #define BM_KPP_KPSR_KRIE      (0x00000200)  //!< Bit mask for KPP_KPSR_KRIE.
 
@@ -381,7 +366,6 @@ typedef union _hw_kpp_kpsr
 //! @brief Set the KRIE field to a new value.
 #define BW_KPP_KPSR_KRIE(v)   (HW_KPP_KPSR_WR((HW_KPP_KPSR_RD() & ~BM_KPP_KPSR_KRIE) | BF_KPP_KPSR_KRIE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -444,7 +428,6 @@ typedef union _hw_kpp_kddr
  * - OUTPUT = 1 - ROWn pin configured as an output.
  */
 //@{
-
 #define BP_KPP_KDDR_KRDD      (0)      //!< Bit position for KPP_KDDR_KRDD.
 #define BM_KPP_KDDR_KRDD      (0x000000ff)  //!< Bit mask for KPP_KDDR_KRDD.
 
@@ -464,7 +447,6 @@ typedef union _hw_kpp_kddr
 
 #define BV_KPP_KDDR_KRDD__INPUT (0x0) //!< ROWn pin configured as an input.
 #define BV_KPP_KDDR_KRDD__OUTPUT (0x1) //!< ROWn pin configured as an output.
-
 //@}
 
 /*! @name Register KPP_KDDR, field KCDD[15:8] (RW)
@@ -477,7 +459,6 @@ typedef union _hw_kpp_kddr
  * - OUTPUT = 1 - COLn pin is configured as an output.
  */
 //@{
-
 #define BP_KPP_KDDR_KCDD      (8)      //!< Bit position for KPP_KDDR_KCDD.
 #define BM_KPP_KDDR_KCDD      (0x0000ff00)  //!< Bit mask for KPP_KDDR_KCDD.
 
@@ -497,7 +478,6 @@ typedef union _hw_kpp_kddr
 
 #define BV_KPP_KDDR_KCDD__INPUT (0x0) //!< COLn pin is configured as an input.
 #define BV_KPP_KDDR_KCDD__OUTPUT (0x1) //!< COLn pin is configured as an output.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -555,7 +535,6 @@ typedef union _hw_kpp_kpdr
  * row ports 1 Read/Write "1" from/to row ports
  */
 //@{
-
 #define BP_KPP_KPDR_KRD      (0)      //!< Bit position for KPP_KPDR_KRD.
 #define BM_KPP_KPDR_KRD      (0x000000ff)  //!< Bit mask for KPP_KPDR_KRD.
 
@@ -569,7 +548,6 @@ typedef union _hw_kpp_kpdr
 //! @brief Set the KRD field to a new value.
 #define BW_KPP_KPDR_KRD(v)   (HW_KPP_KPDR_WR((HW_KPP_KPDR_RD() & ~BM_KPP_KPDR_KRD) | BF_KPP_KPDR_KRD(v)))
 #endif
-
 //@}
 
 /*! @name Register KPP_KPDR, field KCD[15:8] (RW)
@@ -579,7 +557,6 @@ typedef union _hw_kpp_kpdr
  * from/to column ports 1 Read/Write "1" from/to column ports
  */
 //@{
-
 #define BP_KPP_KPDR_KCD      (8)      //!< Bit position for KPP_KPDR_KCD.
 #define BM_KPP_KPDR_KCD      (0x0000ff00)  //!< Bit mask for KPP_KPDR_KCD.
 
@@ -593,7 +570,6 @@ typedef union _hw_kpp_kpdr
 //! @brief Set the KCD field to a new value.
 #define BW_KPP_KPDR_KCD(v)   (HW_KPP_KPDR_WR((HW_KPP_KPDR_RD() & ~BM_KPP_KPDR_KCD) | BF_KPP_KPDR_KCD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -620,3 +596,5 @@ typedef struct _hw_kpp
 #endif
 
 #endif // __HW_KPP_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

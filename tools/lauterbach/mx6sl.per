@@ -6438,37 +6438,37 @@ group.long 0x90++0x3
 width 4.
 group.long 0x94++0x3
     line.long 0x00 "DCR,DLL Control Register"
-        bitfld.long 0x00 0. " DLL_CTRL_ENABLE ," "0,1"
+        bitfld.long 0x00 0. " DLL_CTRL_ENABLE ,Set this bit to 1 to enable the DLL and delay chain; otherwise; set to 0 to bypasses DLL." "0,1"
         textline "   "
-        bitfld.long 0x00 1. " DLL_CTRL_RESET ," "0,1"
+        bitfld.long 0x00 1. " DLL_CTRL_RESET ,Setting this bit to 1 force a reset on DLL." "0,1"
         textline "   "
-        bitfld.long 0x00 2. " DLL_CTRL_SLV_FORCE_UPD ," "0,1"
+        bitfld.long 0x00 2. " DLL_CTRL_SLV_FORCE_UPD ,Setting this bit to 1, forces the slave delay line to update to the DLL calibrated value immediately." "0,1"
         textline "   "
-        bitfld.long 0x00 3. " DLL_CTRL_SLV_OFFSET_DEC ," "0,1"
+        bitfld.long 0x00 3. " DLL_CTRL_SLV_OFFSET_DEC ,Decrease(or increase) the value defined by DLL_CTRL_SLV_OFFSET when calculating DLL_STS_SLV_SEL" "0,1"
         textline "   "
-        hexmask.long.byte 0x00 4.--7. 1. " DLL_CTRL_SLV_OFFSET ,"
+        hexmask.long.byte 0x00 4.--7. 1. " DLL_CTRL_SLV_OFFSET ,OFFSET value for DLL_CTRL_SLV_SEL"
         textline "   "
-        bitfld.long 0x00 7. " DLL_CTRL_GATE_UPDATE ," "0,1"
+        bitfld.long 0x00 7. " DLL_CTRL_GATE_UPDATE ,Set this bit to 1 to force DLL not update from now on." "0,1"
         textline "   "
-        bitfld.long 0x00 8. " DLL_CTRL_SLV_OVERRIDE ,Use override value in DLL_CTRL_SLV_OVERRIDE_VAL bit field instead of DLL locked value as delay." "0,1"
+        bitfld.long 0x00 8. " DLL_CTRL_SLV_OVERRIDE ,Set this bit to 1 to Enable manual override for slave delay chain using SLV_OVERRIDE_VAL; to set 0 to disable manual override." "0,1"
         textline "   "
-        hexmask.long.byte 0x00 9.--16. 1. " DLL_CTRL_SLV_OVERRIDE_VAL ,"
+        hexmask.long.byte 0x00 9.--16. 1. " DLL_CTRL_SLV_OVERRIDE_VAL ,When SLV_OVERRIDE=1 This field is used to select 1 of 128 physical taps manually."
         textline "   "
-        hexmask.long.byte 0x00 16.--23. 1. " DLL_CTRL_REF_INITIAL_VAL ,"
+        hexmask.long.byte 0x00 16.--23. 1. " DLL_CTRL_REF_INITIAL_VAL ,This field is used to select the initial value of reference chain before DLL enabled."
         textline "   "
-        hexmask.long.byte 0x00 23.--28. 1. " DLL_CTRL_SLV_UPDATE_INT ,Update interval of slave DLL."
+        hexmask.long.byte 0x00 23.--28. 1. " DLL_CTRL_SLV_UPDATE_INT ,If default 0 is used, it means 256 cycles of ref_clock."
         textline "   "
-        hexmask.long.byte 0x00 28.--32. 1. " DLL_CTRL_REF_UPDATE_INT ,Update interval of reference DLL."
+        hexmask.long.byte 0x00 28.--32. 1. " DLL_CTRL_REF_UPDATE_INT ,DLL control loop update interval."
 width 4.
 rgroup.long 0x98++0x3
     line.long 0x00 "DSR,DLL Status Register"
-        bitfld.long 0x00 0. " DLL_STS_SLV_LOCK ," "0,1"
+        bitfld.long 0x00 0. " DLL_STS_SLV_LOCK ,Slave delay-line lock status." "0,1"
         textline "   "
-        bitfld.long 0x00 1. " DLL_STS_REF_LOCK ," "0,1"
+        bitfld.long 0x00 1. " DLL_STS_REF_LOCK ,Reference DLL lock status." "0,1"
         textline "   "
-        hexmask.long.byte 0x00 2.--9. 1. " DLL_STS_SLV_SEL ,"
+        hexmask.long.byte 0x00 2.--9. 1. " DLL_STS_SLV_SEL ,Slave delay line select status."
         textline "   "
-        hexmask.long.byte 0x00 9.--16. 1. " DLL_STS_REF_SEL ,"
+        hexmask.long.byte 0x00 9.--16. 1. " DLL_STS_REF_SEL ,Reference delay line select taps."
 width 5.
 group.long 0x9c++0x3
     line.long 0x00 "WIAR,EIM IP Access Register"
@@ -15466,7 +15466,7 @@ group.long 0x1c++0x3
         textline "     "
         bitfld.long 0x00 15. " CON_REQ ,Configuration request." "0,1"
         textline "     "
-        hexmask.long.byte 0x00 16.--24. 1. " CMD_ADDR_LSB ,Command/Address LSB."
+        hexmask.long.byte 0x00 16.--24. 1. " CMD_ADDR_LSB_MR_ADDR ,Command/Address LSB."
         textline "     "
         hexmask.long.byte 0x00 24.--32. 1. " CMD_ADDR_MSB ,Command/Address MSB."
 width 6.
@@ -18006,7 +18006,7 @@ group.long 0x8++0x3
 width 7.
 group.long 0xc++0x3
     line.long 0x00 "HSTART,Channel Start"
-        hexmask.long.long 0x00 0.--32. 1. " HSTART ,The HSTART/HE registers are 32 bits wide with one bit for every channel."
+        hexmask.long.long 0x00 0.--32. 1. " HSTART_HE ,The HSTART_HE registers are 32 bits wide with one bit for every channel."
 width 7.
 group.long 0x10++0x3
     line.long 0x00 "EVTOVR,Channel Event Override"
@@ -18281,197 +18281,197 @@ width 14.
 group.long 0x17c++0x3
     line.long 0x00 "SDMA_CHNPRI31,Channel Priority Registers"
         hexmask.long.byte 0x00 0.--3. 1. " CHNPRIN ,This contains the priority of channel number n ."
-width 14.
+width 9.
 group.long 0x200++0x3
-    line.long 0x00 "SDMA_CHNENBL0,Channel Enable RAM"
+    line.long 0x00 "CHNENBL0,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 14.
+width 9.
 group.long 0x204++0x3
-    line.long 0x00 "SDMA_CHNENBL1,Channel Enable RAM"
+    line.long 0x00 "CHNENBL1,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 14.
+width 9.
 group.long 0x208++0x3
-    line.long 0x00 "SDMA_CHNENBL2,Channel Enable RAM"
+    line.long 0x00 "CHNENBL2,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 14.
+width 9.
 group.long 0x20c++0x3
-    line.long 0x00 "SDMA_CHNENBL3,Channel Enable RAM"
+    line.long 0x00 "CHNENBL3,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 14.
+width 9.
 group.long 0x210++0x3
-    line.long 0x00 "SDMA_CHNENBL4,Channel Enable RAM"
+    line.long 0x00 "CHNENBL4,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 14.
+width 9.
 group.long 0x214++0x3
-    line.long 0x00 "SDMA_CHNENBL5,Channel Enable RAM"
+    line.long 0x00 "CHNENBL5,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 14.
+width 9.
 group.long 0x218++0x3
-    line.long 0x00 "SDMA_CHNENBL6,Channel Enable RAM"
+    line.long 0x00 "CHNENBL6,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 14.
+width 9.
 group.long 0x21c++0x3
-    line.long 0x00 "SDMA_CHNENBL7,Channel Enable RAM"
+    line.long 0x00 "CHNENBL7,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 14.
+width 9.
 group.long 0x220++0x3
-    line.long 0x00 "SDMA_CHNENBL8,Channel Enable RAM"
+    line.long 0x00 "CHNENBL8,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 14.
+width 9.
 group.long 0x224++0x3
-    line.long 0x00 "SDMA_CHNENBL9,Channel Enable RAM"
+    line.long 0x00 "CHNENBL9,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x228++0x3
-    line.long 0x00 "SDMA_CHNENBL10,Channel Enable RAM"
+    line.long 0x00 "CHNENBL10,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x22c++0x3
-    line.long 0x00 "SDMA_CHNENBL11,Channel Enable RAM"
+    line.long 0x00 "CHNENBL11,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x230++0x3
-    line.long 0x00 "SDMA_CHNENBL12,Channel Enable RAM"
+    line.long 0x00 "CHNENBL12,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x234++0x3
-    line.long 0x00 "SDMA_CHNENBL13,Channel Enable RAM"
+    line.long 0x00 "CHNENBL13,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x238++0x3
-    line.long 0x00 "SDMA_CHNENBL14,Channel Enable RAM"
+    line.long 0x00 "CHNENBL14,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x23c++0x3
-    line.long 0x00 "SDMA_CHNENBL15,Channel Enable RAM"
+    line.long 0x00 "CHNENBL15,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x240++0x3
-    line.long 0x00 "SDMA_CHNENBL16,Channel Enable RAM"
+    line.long 0x00 "CHNENBL16,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x244++0x3
-    line.long 0x00 "SDMA_CHNENBL17,Channel Enable RAM"
+    line.long 0x00 "CHNENBL17,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x248++0x3
-    line.long 0x00 "SDMA_CHNENBL18,Channel Enable RAM"
+    line.long 0x00 "CHNENBL18,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x24c++0x3
-    line.long 0x00 "SDMA_CHNENBL19,Channel Enable RAM"
+    line.long 0x00 "CHNENBL19,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x250++0x3
-    line.long 0x00 "SDMA_CHNENBL20,Channel Enable RAM"
+    line.long 0x00 "CHNENBL20,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x254++0x3
-    line.long 0x00 "SDMA_CHNENBL21,Channel Enable RAM"
+    line.long 0x00 "CHNENBL21,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x258++0x3
-    line.long 0x00 "SDMA_CHNENBL22,Channel Enable RAM"
+    line.long 0x00 "CHNENBL22,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x25c++0x3
-    line.long 0x00 "SDMA_CHNENBL23,Channel Enable RAM"
+    line.long 0x00 "CHNENBL23,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x260++0x3
-    line.long 0x00 "SDMA_CHNENBL24,Channel Enable RAM"
+    line.long 0x00 "CHNENBL24,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x264++0x3
-    line.long 0x00 "SDMA_CHNENBL25,Channel Enable RAM"
+    line.long 0x00 "CHNENBL25,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x268++0x3
-    line.long 0x00 "SDMA_CHNENBL26,Channel Enable RAM"
+    line.long 0x00 "CHNENBL26,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x26c++0x3
-    line.long 0x00 "SDMA_CHNENBL27,Channel Enable RAM"
+    line.long 0x00 "CHNENBL27,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x270++0x3
-    line.long 0x00 "SDMA_CHNENBL28,Channel Enable RAM"
+    line.long 0x00 "CHNENBL28,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x274++0x3
-    line.long 0x00 "SDMA_CHNENBL29,Channel Enable RAM"
+    line.long 0x00 "CHNENBL29,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x278++0x3
-    line.long 0x00 "SDMA_CHNENBL30,Channel Enable RAM"
+    line.long 0x00 "CHNENBL30,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x27c++0x3
-    line.long 0x00 "SDMA_CHNENBL31,Channel Enable RAM"
+    line.long 0x00 "CHNENBL31,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x280++0x3
-    line.long 0x00 "SDMA_CHNENBL32,Channel Enable RAM"
+    line.long 0x00 "CHNENBL32,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x284++0x3
-    line.long 0x00 "SDMA_CHNENBL33,Channel Enable RAM"
+    line.long 0x00 "CHNENBL33,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x288++0x3
-    line.long 0x00 "SDMA_CHNENBL34,Channel Enable RAM"
+    line.long 0x00 "CHNENBL34,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x28c++0x3
-    line.long 0x00 "SDMA_CHNENBL35,Channel Enable RAM"
+    line.long 0x00 "CHNENBL35,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x290++0x3
-    line.long 0x00 "SDMA_CHNENBL36,Channel Enable RAM"
+    line.long 0x00 "CHNENBL36,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x294++0x3
-    line.long 0x00 "SDMA_CHNENBL37,Channel Enable RAM"
+    line.long 0x00 "CHNENBL37,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x298++0x3
-    line.long 0x00 "SDMA_CHNENBL38,Channel Enable RAM"
+    line.long 0x00 "CHNENBL38,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x29c++0x3
-    line.long 0x00 "SDMA_CHNENBL39,Channel Enable RAM"
+    line.long 0x00 "CHNENBL39,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x2a0++0x3
-    line.long 0x00 "SDMA_CHNENBL40,Channel Enable RAM"
+    line.long 0x00 "CHNENBL40,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x2a4++0x3
-    line.long 0x00 "SDMA_CHNENBL41,Channel Enable RAM"
+    line.long 0x00 "CHNENBL41,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x2a8++0x3
-    line.long 0x00 "SDMA_CHNENBL42,Channel Enable RAM"
+    line.long 0x00 "CHNENBL42,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x2ac++0x3
-    line.long 0x00 "SDMA_CHNENBL43,Channel Enable RAM"
+    line.long 0x00 "CHNENBL43,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x2b0++0x3
-    line.long 0x00 "SDMA_CHNENBL44,Channel Enable RAM"
+    line.long 0x00 "CHNENBL44,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x2b4++0x3
-    line.long 0x00 "SDMA_CHNENBL45,Channel Enable RAM"
+    line.long 0x00 "CHNENBL45,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x2b8++0x3
-    line.long 0x00 "SDMA_CHNENBL46,Channel Enable RAM"
+    line.long 0x00 "CHNENBL46,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
-width 15.
+width 10.
 group.long 0x2bc++0x3
-    line.long 0x00 "SDMA_CHNENBL47,Channel Enable RAM"
+    line.long 0x00 "CHNENBL47,Channel Enable RAM"
         hexmask.long.long 0x00 0.--32. 1. " ENBLN ,This 32-bit value selects the channels that are triggered by the DMA request number n ."
 
 
@@ -18500,7 +18500,7 @@ group.long 0x8++0x3
 width 7.
 rgroup.long 0xc++0x3
     line.long 0x00 "DSTART,Channel Start"
-        hexmask.long.long 0x00 0.--32. 1. " DSTART ,The DSTART/DE registers are 32 bits wide with one bit for every channel."
+        hexmask.long.long 0x00 0.--32. 1. " DSTART_DE ,The DSTART_DE registers are 32 bits wide with one bit for every channel."
 width 7.
 rgroup.long 0x28++0x3
     line.long 0x00 "EVTERR,DMA Request Error Register"
@@ -18846,7 +18846,19 @@ group.long 0x10++0x3
 width 5.
 group.long 0x14++0x3
     line.long 0x00 "HPSR,SNVS _HP Status Register"
+        bitfld.long 0x00 0. " HPTA ,HP Time Alarm Indicates that the HP Time Alarm has occurred since this bit was last cleared." "0,1"
+        textline "    "
+        bitfld.long 0x00 1. " PI ,Periodic Interrupt Indicates that periodic interrupt has occurred since this bit was last cleared." "0,1"
+        textline "    "
+        bitfld.long 0x00 4. " LPDIS ,Low Power Disable If 1, the SNVS low power section has been disabled by means of an input signal to the SNVS ." "0,1"
+        textline "    "
         hexmask.long.byte 0x00 8.--12. 1. " SSM_ST ,System Security Monitor State This field contains the encoded state of the SSM's state machine."
+        textline "    "
+        hexmask.long.byte 0x00 12.--15. 1. " SYS_SECURITY_CFG ,This field reflects the value of the sys_security_cfg input signal, which is defined as follows:"
+        textline "    "
+        bitfld.long 0x00 15. " SYS_SECURE_BOOT ,This bit reflects the value of the sys_secure_boot input signal to SNVS ." "0,1"
+        textline "    "
+        hexmask.long.word 0x00 16.--25. 1. " OTPMK_SYNDROME ,One Time Programmable Master Key Syndrome Value The eight lower bits of this value indicate error location in case of a single-bit error."
         textline "    "
         bitfld.long 0x00 27. " OTPMK_ZERO ,One Time Programmable Master Key is Equal to Zero." "0,1"
         textline "    "
@@ -18866,7 +18878,7 @@ group.long 0x18++0x3
         textline "      "
         bitfld.long 0x00 5. " SEC_VIO5 ,Security volation on input 5 is detected." "0,1"
         textline "      "
-        hexmask.long.word 0x00 16.--25. 1. " ZMK_SYNDROME ,Zeroizable Master Key Syndrome Value The ZMK syndrome indicates error location and parity ."
+        hexmask.long.word 0x00 16.--25. 1. " ZMK_SYNDROME ,Zeroizable Master Key Syndrome Value The ZMK syndrome indicates error location and parity similar to the OTPMK syndrome ."
         textline "      "
         bitfld.long 0x00 27. " ZMK_ECC_FAIL ,Zeroizable Master Key Error Correcting Code Check Failure When set, this bit triggers a bad key violation to the SSM and a security violation to the SNVS _LP section, which clears security sensitive data." "0,1"
 width 9.
@@ -18880,7 +18892,7 @@ group.long 0x20++0x3
 width 8.
 group.long 0x24++0x3
     line.long 0x00 "HPRTCMR,SNVS_HP Real Time Counter MSB Register"
-        hexmask.long.word 0x00 0.--15. 1. " RTC ,HP Real Time Counter Most significant bits."
+        hexmask.long.word 0x00 0.--15. 1. " RTC ,HP Real Time Counter Most significant 15 bits."
 width 8.
 group.long 0x28++0x3
     line.long 0x00 "HPRTCLR,SNVS_HP Real Time Counter LSB Register"
@@ -18964,10 +18976,6 @@ group.long 0x40++0x3
 width 8.
 group.long 0x44++0x3
     line.long 0x00 "LPTGFCR,SNVS_LP Tamper Glitch Filters Configuration Register"
-        hexmask.long.byte 0x00 0.--5. 1. " WMTGF ,Wire-Mesh Tamper Glitch Filter Configures the length of the digital glitch filter for the wire-mesh tamper 1 and 2 pins between 1 and 63 SRTC clock cycles."
-        textline "       "
-        bitfld.long 0x00 7. " WMTGF_EN ,Wire-Mesh Tamper Glitch Filter Enable When set, enables the wire-mesh tamper glitch filter." "0,1"
-        textline "       "
         hexmask.long.byte 0x00 16.--21. 1. " ETGF1 ,External Tamper Glitch Filter 1 Configures the length of the digital glitch filter for the external tamper 1 pin between 128 and 8064 SRTC clock cycles."
         textline "       "
         bitfld.long 0x00 23. " ETGF1_EN ,External Tamper Glitch Filter 1 Enable When set, enables the external tamper glitch filter 1." "0,1"
@@ -18978,29 +18986,11 @@ group.long 0x48++0x3
         textline "      "
         bitfld.long 0x00 2. " MCR_EN ,MC Rollover Enable When set, an MC Rollover event generates an LP security violation." "0,1"
         textline "      "
-        bitfld.long 0x00 4. " CT_EN ,Clock Tamper Enable When set, a clock monitor tamper generates an LP security violation." "0,1"
-        textline "      "
-        bitfld.long 0x00 5. " TT_EN ,Temperature Tamper Enable When set, a temperature monitor tamper generates an LP security violation." "0,1"
-        textline "      "
-        bitfld.long 0x00 6. " VT_EN ,Voltage Tamper Enable When set, a voltage monitor tamper generates an LP security violation." "0,1"
-        textline "      "
-        bitfld.long 0x00 7. " WMT1_EN ,Wire-Mesh Tampering 1 Enable When set, wire-mesh tampering 1 detection generates an LP security violation." "0,1"
-        textline "      "
-        bitfld.long 0x00 8. " WMT2_EN ,Wire-Mesh Tampering 2 Enable When set, wire-mesh tampering 2 detection generates an LP security violation." "0,1"
-        textline "      "
         bitfld.long 0x00 9. " ET1_EN ,External Tampering 1 Enable When set, external tampering 1 detection generates an LP security violation." "0,1"
         textline "      "
         bitfld.long 0x00 14. " PFD_OBSERV ,System Power Fail Detector (PFD) Observability Flop The asynchronous reset input of this flop is connected directly to the inverted output of the PFD analog circuitry (external to the SNVS block)." "0,1"
         textline "      "
         bitfld.long 0x00 15. " POR_OBSERV ,Power On Reset (POR) Observability Flop The asynchronous reset input of this flop is connected directly to the output of the POR analog circuitry (external to the SNVS block)." "0,1"
-        textline "      "
-        hexmask.long.byte 0x00 16.--19. 1. " LTDC ,Low Temperature Detect Configuration These configuration bits are wired as an output of the module."
-        textline "      "
-        hexmask.long.byte 0x00 20.--23. 1. " HTDC ,High Temperature Detect Configuration These configuration bits are wired as an output of the module."
-        textline "      "
-        hexmask.long.byte 0x00 24.--27. 1. " VRC ,Voltage Reference Configuration These configuration bits are wired as an output of the module."
-        textline "      "
-        bitfld.long 0x00 28. " OSCB ,Oscillator Bypass When set, this signal bypasses the internal SRTC clock oscillator, allowing only an external clock to drive the SRTC clock source." "0,1"
 width 5.
 group.long 0x4c++0x3
     line.long 0x00 "LPSR,SNVS _LP Status Register"
@@ -19012,19 +19002,15 @@ group.long 0x4c++0x3
         textline "    "
         bitfld.long 0x00 3. " PGD ,Power Supply Glitch Detected." "0,1"
         textline "    "
-        bitfld.long 0x00 4. " CTD ,Clock Tampering Detected." "0,1"
-        textline "    "
-        bitfld.long 0x00 5. " TTD ,Temperature Tamper Detected." "0,1"
-        textline "    "
-        bitfld.long 0x00 6. " VTD ,Voltage Tampering Detected." "0,1"
-        textline "    "
-        bitfld.long 0x00 7. " WMT1D ,Wire-Mesh Tampering 1 Detected." "0,1"
-        textline "    "
-        bitfld.long 0x00 8. " WMT2D ,Wire-Mesh Tampering 2 Detected." "0,1"
-        textline "    "
         bitfld.long 0x00 9. " ET1D ,External Tampering 1 Detected." "0,1"
         textline "    "
         bitfld.long 0x00 16. " ESVD ,External Security Violation Detected Indicates that a security violation is detected on one of the HP security violation ports." "0,1"
+        textline "    "
+        bitfld.long 0x00 17. " EO ,Emergency Off This bit is set when a power off is requested." "0,1"
+        textline "    "
+        bitfld.long 0x00 18. " SPO ,Set Power Off This bit is set when power off was requested by a button press, but the button was not pressed for 5 seconds." "0,1"
+        textline "    "
+        bitfld.long 0x00 20. " SED ,Scan Exit Detected" "0,1"
         textline "    "
         bitfld.long 0x00 30. " LPNS ,LP Section is Non-Secured Indicates that LP section was provisioned/programmed in the non-secure state." "0,1"
         textline "    "
@@ -19032,7 +19018,7 @@ group.long 0x4c++0x3
 width 9.
 group.long 0x50++0x3
     line.long 0x00 "LPSRTCMR,SNVS_LP Secure Real Time Counter MSB Register"
-        hexmask.long.word 0x00 0.--15. 1. " SRTC ,LP Secure Real Time Counter most significant bits This register can be programmed only when SRTC is not active and not locked, meaning the SRTC_ENV, SRTC_SL, and SRTC_HL bits are not set."
+        hexmask.long.word 0x00 0.--15. 1. " SRTC ,LP Secure Real Time Counter most significant 15 bits This register can be programmed only when SRTC is not active and not locked, meaning the SRTC_ENV, SRTC_SL, and SRTC_HL bits are not set."
 width 9.
 group.long 0x54++0x3
     line.long 0x00 "LPSRTCLR,SNVS_LP Secure Real Time Counter LSB Register"
@@ -19983,36 +19969,6 @@ rgroup.long 0x1c++0x3
         hexmask.long.byte 0x00 24.--26. 1. " BMOD ,Please refer to fuse map."
         textline "     "
         hexmask.long.byte 0x00 27.--30. 1. " TEST_MODE ,Please refer to fuse map."
-width 5.
-group.long 0x20++0x3
-    line.long 0x00 "GPR1,SRC General Purpose Register 1"
-width 5.
-group.long 0x24++0x3
-    line.long 0x00 "GPR2,SRC General Purpose Register 2"
-width 5.
-group.long 0x28++0x3
-    line.long 0x00 "GPR3,SRC General Purpose Register 3"
-width 5.
-group.long 0x2c++0x3
-    line.long 0x00 "GPR4,SRC General Purpose Register 4"
-width 5.
-group.long 0x30++0x3
-    line.long 0x00 "GPR5,SRC General Purpose Register 5"
-width 5.
-group.long 0x34++0x3
-    line.long 0x00 "GPR6,SRC General Purpose Register 6"
-width 5.
-group.long 0x38++0x3
-    line.long 0x00 "GPR7,SRC General Purpose Register 7"
-width 5.
-group.long 0x3c++0x3
-    line.long 0x00 "GPR8,SRC General Purpose Register 8"
-width 5.
-group.long 0x40++0x3
-    line.long 0x00 "GPR9,SRC General Purpose Register 9"
-width 6.
-group.long 0x44++0x3
-    line.long 0x00 "GPR10,SRC General Purpose Register 10"
 
 
 tree.end

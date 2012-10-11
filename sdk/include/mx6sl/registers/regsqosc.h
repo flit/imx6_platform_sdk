@@ -114,7 +114,6 @@ typedef union _hw_qos_ctrl
  *     command.
  */
 //@{
-
 #define BP_QOS_CTRL_EMI_PRIORITY_MODE      (0)      //!< Bit position for QOS_CTRL_EMI_PRIORITY_MODE.
 #define BM_QOS_CTRL_EMI_PRIORITY_MODE      (0x00000001)  //!< Bit mask for QOS_CTRL_EMI_PRIORITY_MODE.
 
@@ -134,7 +133,6 @@ typedef union _hw_qos_ctrl
 
 #define BV_QOS_CTRL_EMI_PRIORITY_MODE__PASSTHROUGH_PRIORITY (0x0) //!< Translate and pass the AXI fabric QoS settings for each master and command type through to the EMI with each command.
 #define BV_QOS_CTRL_EMI_PRIORITY_MODE__MANUAL_PRIORITY (0x1) //!< Pass the register priority settings for each master and command type through to the EMI with each command.
-
 //@}
 
 /*! @name Register QOS_CTRL, field XLATE_AXI_MODE[1] (RW)
@@ -149,7 +147,6 @@ typedef union _hw_qos_ctrl
  * - ALLOW_PRIORITY0 = 0x1 - Map transactions to all EMI priority levels including level 0 (highest).
  */
 //@{
-
 #define BP_QOS_CTRL_XLATE_AXI_MODE      (1)      //!< Bit position for QOS_CTRL_XLATE_AXI_MODE.
 #define BM_QOS_CTRL_XLATE_AXI_MODE      (0x00000002)  //!< Bit mask for QOS_CTRL_XLATE_AXI_MODE.
 
@@ -169,7 +166,6 @@ typedef union _hw_qos_ctrl
 
 #define BV_QOS_CTRL_XLATE_AXI_MODE__DISALLOW_PRIORITY0 (0x0) //!< Never map transaction priorities to level 0 (highest priority). Allow the EMI itself to exclusively use this level to elevate transactions to through aging.
 #define BV_QOS_CTRL_XLATE_AXI_MODE__ALLOW_PRIORITY0 (0x1) //!< Map transactions to all EMI priority levels including level 0 (highest).
-
 //@}
 
 /*! @name Register QOS_CTRL, field EPDC_PRIORITY_BOOST[3:2] (RW)
@@ -186,7 +182,6 @@ typedef union _hw_qos_ctrl
  * - RESERVED = 0x3 - Reserved.
  */
 //@{
-
 #define BP_QOS_CTRL_EPDC_PRIORITY_BOOST      (2)      //!< Bit position for QOS_CTRL_EPDC_PRIORITY_BOOST.
 #define BM_QOS_CTRL_EPDC_PRIORITY_BOOST      (0x0000000c)  //!< Bit mask for QOS_CTRL_EPDC_PRIORITY_BOOST.
 
@@ -208,7 +203,6 @@ typedef union _hw_qos_ctrl
 #define BV_QOS_CTRL_EPDC_PRIORITY_BOOST__INC_PRIORITY (0x1) //!< This setting will raise the access priority level by 1 for the EPDC when it requests a priority boost.
 #define BV_QOS_CTRL_EPDC_PRIORITY_BOOST__HIGHEST_PRIORITY (0x2) //!< This setting will raise the access priority to the highest level for the EPDC when it requests a priority boost.
 #define BV_QOS_CTRL_EPDC_PRIORITY_BOOST__RESERVED (0x3) //!< Reserved.
-
 //@}
 
 /*! @name Register QOS_CTRL, field LCDIF_PRIORITY_BOOST[5:4] (RW)
@@ -225,7 +219,6 @@ typedef union _hw_qos_ctrl
  * - RESERVED = 0x3 - Reserved.
  */
 //@{
-
 #define BP_QOS_CTRL_LCDIF_PRIORITY_BOOST      (4)      //!< Bit position for QOS_CTRL_LCDIF_PRIORITY_BOOST.
 #define BM_QOS_CTRL_LCDIF_PRIORITY_BOOST      (0x00000030)  //!< Bit mask for QOS_CTRL_LCDIF_PRIORITY_BOOST.
 
@@ -247,7 +240,6 @@ typedef union _hw_qos_ctrl
 #define BV_QOS_CTRL_LCDIF_PRIORITY_BOOST__INC_PRIORITY (0x1) //!< This setting will raise the access priority level by 1 for the eLCDIF when it requests a priority boost.
 #define BV_QOS_CTRL_LCDIF_PRIORITY_BOOST__HIGHEST_PRIORITY (0x2) //!< This setting will raise the access priority to the highest level for the eLCDIF when it requests a priority boost.
 #define BV_QOS_CTRL_LCDIF_PRIORITY_BOOST__RESERVED (0x3) //!< Reserved.
-
 //@}
 
 /*! @name Register QOS_CTRL, field CLKGATE[30] (RW)
@@ -260,7 +252,6 @@ typedef union _hw_qos_ctrl
  * - NO_CLKS = 0x1 - Do not clock QoS gates in order to minimize power consumption.
  */
 //@{
-
 #define BP_QOS_CTRL_CLKGATE      (30)      //!< Bit position for QOS_CTRL_CLKGATE.
 #define BM_QOS_CTRL_CLKGATE      (0x40000000)  //!< Bit mask for QOS_CTRL_CLKGATE.
 
@@ -280,7 +271,6 @@ typedef union _hw_qos_ctrl
 
 #define BV_QOS_CTRL_CLKGATE__RUN (0x0) //!< Allow QoS to operate normally.
 #define BV_QOS_CTRL_CLKGATE__NO_CLKS (0x1) //!< Do not clock QoS gates in order to minimize power consumption.
-
 //@}
 
 /*! @name Register QOS_CTRL, field SFTRST[31] (RW)
@@ -293,7 +283,6 @@ typedef union _hw_qos_ctrl
  * - RESET = 0x1 - Hold QoS in reset.
  */
 //@{
-
 #define BP_QOS_CTRL_SFTRST      (31)      //!< Bit position for QOS_CTRL_SFTRST.
 #define BM_QOS_CTRL_SFTRST      (0x80000000)  //!< Bit mask for QOS_CTRL_SFTRST.
 
@@ -313,7 +302,6 @@ typedef union _hw_qos_ctrl
 
 #define BV_QOS_CTRL_SFTRST__RUN (0x0) //!< Allow QoS to operate normally.
 #define BV_QOS_CTRL_SFTRST__RESET (0x1) //!< Hold QoS in reset.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -381,7 +369,6 @@ typedef union _hw_qos_axi_qos0
  * Specifies the QOS level for the write commands on MasterID 0. 15 = highest QOS. 0 = lowest QOS.
  */
 //@{
-
 #define BP_QOS_AXI_QOS0_M0_AWQOS      (0)      //!< Bit position for QOS_AXI_QOS0_M0_AWQOS.
 #define BM_QOS_AXI_QOS0_M0_AWQOS      (0x00000007)  //!< Bit mask for QOS_AXI_QOS0_M0_AWQOS.
 
@@ -395,7 +382,6 @@ typedef union _hw_qos_axi_qos0
 //! @brief Set the M0_AWQOS field to a new value.
 #define BW_QOS_AXI_QOS0_M0_AWQOS(v)   BF_CS1(QOS_AXI_QOS0, M0_AWQOS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_AXI_QOS0, field M0_ARQOS[6:4] (RW)
@@ -403,7 +389,6 @@ typedef union _hw_qos_axi_qos0
  * Specifies the QOS level for the read commands on MasterID 0. 15 = highest QOS. 0 = lowest QOS.
  */
 //@{
-
 #define BP_QOS_AXI_QOS0_M0_ARQOS      (4)      //!< Bit position for QOS_AXI_QOS0_M0_ARQOS.
 #define BM_QOS_AXI_QOS0_M0_ARQOS      (0x00000070)  //!< Bit mask for QOS_AXI_QOS0_M0_ARQOS.
 
@@ -417,7 +402,6 @@ typedef union _hw_qos_axi_qos0
 //! @brief Set the M0_ARQOS field to a new value.
 #define BW_QOS_AXI_QOS0_M0_ARQOS(v)   BF_CS1(QOS_AXI_QOS0, M0_ARQOS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_AXI_QOS0, field M1_0_AWQOS[10:8] (RW)
@@ -425,7 +409,6 @@ typedef union _hw_qos_axi_qos0
  * Specifies the QOS level for the write commands on MasterID 1. 15 = highest QOS. 0 = lowest QOS.
  */
 //@{
-
 #define BP_QOS_AXI_QOS0_M1_0_AWQOS      (8)      //!< Bit position for QOS_AXI_QOS0_M1_0_AWQOS.
 #define BM_QOS_AXI_QOS0_M1_0_AWQOS      (0x00000700)  //!< Bit mask for QOS_AXI_QOS0_M1_0_AWQOS.
 
@@ -439,7 +422,6 @@ typedef union _hw_qos_axi_qos0
 //! @brief Set the M1_0_AWQOS field to a new value.
 #define BW_QOS_AXI_QOS0_M1_0_AWQOS(v)   BF_CS1(QOS_AXI_QOS0, M1_0_AWQOS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_AXI_QOS0, field M1_0_ARQOS[14:12] (RW)
@@ -447,7 +429,6 @@ typedef union _hw_qos_axi_qos0
  * Specifies the QOS level for the read commands on MasterID 1. 15 = highest QOS. 0 = lowest QOS.
  */
 //@{
-
 #define BP_QOS_AXI_QOS0_M1_0_ARQOS      (12)      //!< Bit position for QOS_AXI_QOS0_M1_0_ARQOS.
 #define BM_QOS_AXI_QOS0_M1_0_ARQOS      (0x00007000)  //!< Bit mask for QOS_AXI_QOS0_M1_0_ARQOS.
 
@@ -461,7 +442,6 @@ typedef union _hw_qos_axi_qos0
 //! @brief Set the M1_0_ARQOS field to a new value.
 #define BW_QOS_AXI_QOS0_M1_0_ARQOS(v)   BF_CS1(QOS_AXI_QOS0, M1_0_ARQOS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_AXI_QOS0, field M1_1_AWQOS[18:16] (RW)
@@ -469,7 +449,6 @@ typedef union _hw_qos_axi_qos0
  * Specifies the QOS level for the write commands on MasterID 2. 15 = highest QOS. 0 = lowest QOS.
  */
 //@{
-
 #define BP_QOS_AXI_QOS0_M1_1_AWQOS      (16)      //!< Bit position for QOS_AXI_QOS0_M1_1_AWQOS.
 #define BM_QOS_AXI_QOS0_M1_1_AWQOS      (0x00070000)  //!< Bit mask for QOS_AXI_QOS0_M1_1_AWQOS.
 
@@ -483,7 +462,6 @@ typedef union _hw_qos_axi_qos0
 //! @brief Set the M1_1_AWQOS field to a new value.
 #define BW_QOS_AXI_QOS0_M1_1_AWQOS(v)   BF_CS1(QOS_AXI_QOS0, M1_1_AWQOS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_AXI_QOS0, field M1_1_ARQOS[22:20] (RW)
@@ -491,7 +469,6 @@ typedef union _hw_qos_axi_qos0
  * Specifies the QOS level for the read commands on MasterID 2. 15 = highest QOS. 0 = lowest QOS.
  */
 //@{
-
 #define BP_QOS_AXI_QOS0_M1_1_ARQOS      (20)      //!< Bit position for QOS_AXI_QOS0_M1_1_ARQOS.
 #define BM_QOS_AXI_QOS0_M1_1_ARQOS      (0x00700000)  //!< Bit mask for QOS_AXI_QOS0_M1_1_ARQOS.
 
@@ -505,7 +482,6 @@ typedef union _hw_qos_axi_qos0
 //! @brief Set the M1_1_ARQOS field to a new value.
 #define BW_QOS_AXI_QOS0_M1_1_ARQOS(v)   BF_CS1(QOS_AXI_QOS0, M1_1_ARQOS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_AXI_QOS0, field M1_2_AWQOS[26:24] (RW)
@@ -513,7 +489,6 @@ typedef union _hw_qos_axi_qos0
  * Specifies the QOS level for the write commands on MasterID 3. 15 = highest QOS. 0 = lowest QOS.
  */
 //@{
-
 #define BP_QOS_AXI_QOS0_M1_2_AWQOS      (24)      //!< Bit position for QOS_AXI_QOS0_M1_2_AWQOS.
 #define BM_QOS_AXI_QOS0_M1_2_AWQOS      (0x07000000)  //!< Bit mask for QOS_AXI_QOS0_M1_2_AWQOS.
 
@@ -527,7 +502,6 @@ typedef union _hw_qos_axi_qos0
 //! @brief Set the M1_2_AWQOS field to a new value.
 #define BW_QOS_AXI_QOS0_M1_2_AWQOS(v)   BF_CS1(QOS_AXI_QOS0, M1_2_AWQOS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_AXI_QOS0, field M1_2_ARQOS[30:28] (RW)
@@ -535,7 +509,6 @@ typedef union _hw_qos_axi_qos0
  * Specifies the QOS level for the read commands on MasterID 3. 15 = highest QOS. 0 = lowest QOS.
  */
 //@{
-
 #define BP_QOS_AXI_QOS0_M1_2_ARQOS      (28)      //!< Bit position for QOS_AXI_QOS0_M1_2_ARQOS.
 #define BM_QOS_AXI_QOS0_M1_2_ARQOS      (0x70000000)  //!< Bit mask for QOS_AXI_QOS0_M1_2_ARQOS.
 
@@ -549,7 +522,6 @@ typedef union _hw_qos_axi_qos0
 //! @brief Set the M1_2_ARQOS field to a new value.
 #define BW_QOS_AXI_QOS0_M1_2_ARQOS(v)   BF_CS1(QOS_AXI_QOS0, M1_2_ARQOS, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -617,7 +589,6 @@ typedef union _hw_qos_axi_qos1
  * Specifies the QOS level for the write commands on MasterID 4. 15 = highest QOS. 0 = lowest QOS.
  */
 //@{
-
 #define BP_QOS_AXI_QOS1_M2_AWQOS      (0)      //!< Bit position for QOS_AXI_QOS1_M2_AWQOS.
 #define BM_QOS_AXI_QOS1_M2_AWQOS      (0x00000007)  //!< Bit mask for QOS_AXI_QOS1_M2_AWQOS.
 
@@ -631,7 +602,6 @@ typedef union _hw_qos_axi_qos1
 //! @brief Set the M2_AWQOS field to a new value.
 #define BW_QOS_AXI_QOS1_M2_AWQOS(v)   BF_CS1(QOS_AXI_QOS1, M2_AWQOS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_AXI_QOS1, field M2_ARQOS[6:4] (RW)
@@ -639,7 +609,6 @@ typedef union _hw_qos_axi_qos1
  * Specifies the QOS level for the read commands on MasterID 4. 15 = highest QOS. 0 = lowest QOS.
  */
 //@{
-
 #define BP_QOS_AXI_QOS1_M2_ARQOS      (4)      //!< Bit position for QOS_AXI_QOS1_M2_ARQOS.
 #define BM_QOS_AXI_QOS1_M2_ARQOS      (0x00000070)  //!< Bit mask for QOS_AXI_QOS1_M2_ARQOS.
 
@@ -653,7 +622,6 @@ typedef union _hw_qos_axi_qos1
 //! @brief Set the M2_ARQOS field to a new value.
 #define BW_QOS_AXI_QOS1_M2_ARQOS(v)   BF_CS1(QOS_AXI_QOS1, M2_ARQOS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_AXI_QOS1, field M3_AWQOS[10:8] (RW)
@@ -661,7 +629,6 @@ typedef union _hw_qos_axi_qos1
  * Specifies the QOS level for the write commands on MasterID 5. 15 = highest QOS. 0 = lowest QOS.
  */
 //@{
-
 #define BP_QOS_AXI_QOS1_M3_AWQOS      (8)      //!< Bit position for QOS_AXI_QOS1_M3_AWQOS.
 #define BM_QOS_AXI_QOS1_M3_AWQOS      (0x00000700)  //!< Bit mask for QOS_AXI_QOS1_M3_AWQOS.
 
@@ -675,7 +642,6 @@ typedef union _hw_qos_axi_qos1
 //! @brief Set the M3_AWQOS field to a new value.
 #define BW_QOS_AXI_QOS1_M3_AWQOS(v)   BF_CS1(QOS_AXI_QOS1, M3_AWQOS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_AXI_QOS1, field M3_ARQOS[14:12] (RW)
@@ -683,7 +649,6 @@ typedef union _hw_qos_axi_qos1
  * Specifies the QOS level for the read commands on MasterID 5. 15 = highest QOS. 0 = lowest QOS.
  */
 //@{
-
 #define BP_QOS_AXI_QOS1_M3_ARQOS      (12)      //!< Bit position for QOS_AXI_QOS1_M3_ARQOS.
 #define BM_QOS_AXI_QOS1_M3_ARQOS      (0x00007000)  //!< Bit mask for QOS_AXI_QOS1_M3_ARQOS.
 
@@ -697,7 +662,6 @@ typedef union _hw_qos_axi_qos1
 //! @brief Set the M3_ARQOS field to a new value.
 #define BW_QOS_AXI_QOS1_M3_ARQOS(v)   BF_CS1(QOS_AXI_QOS1, M3_ARQOS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_AXI_QOS1, field M4_AWQOS[18:16] (RW)
@@ -705,7 +669,6 @@ typedef union _hw_qos_axi_qos1
  * Specifies the QOS level for the write commands on MasterID 6. 15 = highest QOS. 0 = lowest QOS.
  */
 //@{
-
 #define BP_QOS_AXI_QOS1_M4_AWQOS      (16)      //!< Bit position for QOS_AXI_QOS1_M4_AWQOS.
 #define BM_QOS_AXI_QOS1_M4_AWQOS      (0x00070000)  //!< Bit mask for QOS_AXI_QOS1_M4_AWQOS.
 
@@ -719,7 +682,6 @@ typedef union _hw_qos_axi_qos1
 //! @brief Set the M4_AWQOS field to a new value.
 #define BW_QOS_AXI_QOS1_M4_AWQOS(v)   BF_CS1(QOS_AXI_QOS1, M4_AWQOS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_AXI_QOS1, field M4_ARQOS[22:20] (RW)
@@ -727,7 +689,6 @@ typedef union _hw_qos_axi_qos1
  * Specifies the QOS level for the read commands on MasterID 6. 15 = highest QOS. 0 = lowest QOS.
  */
 //@{
-
 #define BP_QOS_AXI_QOS1_M4_ARQOS      (20)      //!< Bit position for QOS_AXI_QOS1_M4_ARQOS.
 #define BM_QOS_AXI_QOS1_M4_ARQOS      (0x00700000)  //!< Bit mask for QOS_AXI_QOS1_M4_ARQOS.
 
@@ -741,7 +702,6 @@ typedef union _hw_qos_axi_qos1
 //! @brief Set the M4_ARQOS field to a new value.
 #define BW_QOS_AXI_QOS1_M4_ARQOS(v)   BF_CS1(QOS_AXI_QOS1, M4_ARQOS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_AXI_QOS1, field M5_AWQOS[26:24] (RW)
@@ -749,7 +709,6 @@ typedef union _hw_qos_axi_qos1
  * Specifies the QOS level for the write commands on MasterID 7. 15 = highest QOS. 0 = lowest QOS.
  */
 //@{
-
 #define BP_QOS_AXI_QOS1_M5_AWQOS      (24)      //!< Bit position for QOS_AXI_QOS1_M5_AWQOS.
 #define BM_QOS_AXI_QOS1_M5_AWQOS      (0x07000000)  //!< Bit mask for QOS_AXI_QOS1_M5_AWQOS.
 
@@ -763,7 +722,6 @@ typedef union _hw_qos_axi_qos1
 //! @brief Set the M5_AWQOS field to a new value.
 #define BW_QOS_AXI_QOS1_M5_AWQOS(v)   BF_CS1(QOS_AXI_QOS1, M5_AWQOS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_AXI_QOS1, field M5_ARQOS[30:28] (RW)
@@ -771,7 +729,6 @@ typedef union _hw_qos_axi_qos1
  * Specifies the QOS level for the read commands on MasterID 7. 15 = highest QOS. 0 = lowest QOS.
  */
 //@{
-
 #define BP_QOS_AXI_QOS1_M5_ARQOS      (28)      //!< Bit position for QOS_AXI_QOS1_M5_ARQOS.
 #define BM_QOS_AXI_QOS1_M5_ARQOS      (0x70000000)  //!< Bit mask for QOS_AXI_QOS1_M5_ARQOS.
 
@@ -785,7 +742,6 @@ typedef union _hw_qos_axi_qos1
 //! @brief Set the M5_ARQOS field to a new value.
 #define BW_QOS_AXI_QOS1_M5_ARQOS(v)   BF_CS1(QOS_AXI_QOS1, M5_ARQOS, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -853,7 +809,6 @@ typedef union _hw_qos_axi_qos2
  * Specifies the QOS level for the write commands on MasterID 8. 15 = highest QOS. 0 = lowest QOS.
  */
 //@{
-
 #define BP_QOS_AXI_QOS2_M6_AWQOS      (0)      //!< Bit position for QOS_AXI_QOS2_M6_AWQOS.
 #define BM_QOS_AXI_QOS2_M6_AWQOS      (0x00000007)  //!< Bit mask for QOS_AXI_QOS2_M6_AWQOS.
 
@@ -867,7 +822,6 @@ typedef union _hw_qos_axi_qos2
 //! @brief Set the M6_AWQOS field to a new value.
 #define BW_QOS_AXI_QOS2_M6_AWQOS(v)   BF_CS1(QOS_AXI_QOS2, M6_AWQOS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_AXI_QOS2, field M6_ARQOS[6:4] (RW)
@@ -875,7 +829,6 @@ typedef union _hw_qos_axi_qos2
  * Specifies the QOS level for the read commands on MasterID 8. 15 = highest QOS. 0 = lowest QOS.
  */
 //@{
-
 #define BP_QOS_AXI_QOS2_M6_ARQOS      (4)      //!< Bit position for QOS_AXI_QOS2_M6_ARQOS.
 #define BM_QOS_AXI_QOS2_M6_ARQOS      (0x00000070)  //!< Bit mask for QOS_AXI_QOS2_M6_ARQOS.
 
@@ -889,7 +842,6 @@ typedef union _hw_qos_axi_qos2
 //! @brief Set the M6_ARQOS field to a new value.
 #define BW_QOS_AXI_QOS2_M6_ARQOS(v)   BF_CS1(QOS_AXI_QOS2, M6_ARQOS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_AXI_QOS2, field M7_AWQOS[10:8] (RW)
@@ -897,7 +849,6 @@ typedef union _hw_qos_axi_qos2
  * Specifies the QOS level for the write commands on MasterID 9. 15 = highest QOS. 0 = lowest QOS.
  */
 //@{
-
 #define BP_QOS_AXI_QOS2_M7_AWQOS      (8)      //!< Bit position for QOS_AXI_QOS2_M7_AWQOS.
 #define BM_QOS_AXI_QOS2_M7_AWQOS      (0x00000700)  //!< Bit mask for QOS_AXI_QOS2_M7_AWQOS.
 
@@ -911,7 +862,6 @@ typedef union _hw_qos_axi_qos2
 //! @brief Set the M7_AWQOS field to a new value.
 #define BW_QOS_AXI_QOS2_M7_AWQOS(v)   BF_CS1(QOS_AXI_QOS2, M7_AWQOS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_AXI_QOS2, field M7_ARQOS[14:12] (RW)
@@ -919,7 +869,6 @@ typedef union _hw_qos_axi_qos2
  * Specifies the QOS level for the read commands on MasterID 9. 15 = highest QOS. 0 = lowest QOS.
  */
 //@{
-
 #define BP_QOS_AXI_QOS2_M7_ARQOS      (12)      //!< Bit position for QOS_AXI_QOS2_M7_ARQOS.
 #define BM_QOS_AXI_QOS2_M7_ARQOS      (0x00007000)  //!< Bit mask for QOS_AXI_QOS2_M7_ARQOS.
 
@@ -933,7 +882,6 @@ typedef union _hw_qos_axi_qos2
 //! @brief Set the M7_ARQOS field to a new value.
 #define BW_QOS_AXI_QOS2_M7_ARQOS(v)   BF_CS1(QOS_AXI_QOS2, M7_ARQOS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_AXI_QOS2, field M8_AWQOS[18:16] (RW)
@@ -941,7 +889,6 @@ typedef union _hw_qos_axi_qos2
  * Specifies the QOS level for the write commands on MasterID 10. 15 = highest QOS. 0 = lowest QOS.
  */
 //@{
-
 #define BP_QOS_AXI_QOS2_M8_AWQOS      (16)      //!< Bit position for QOS_AXI_QOS2_M8_AWQOS.
 #define BM_QOS_AXI_QOS2_M8_AWQOS      (0x00070000)  //!< Bit mask for QOS_AXI_QOS2_M8_AWQOS.
 
@@ -955,7 +902,6 @@ typedef union _hw_qos_axi_qos2
 //! @brief Set the M8_AWQOS field to a new value.
 #define BW_QOS_AXI_QOS2_M8_AWQOS(v)   BF_CS1(QOS_AXI_QOS2, M8_AWQOS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_AXI_QOS2, field M8_ARQOS[22:20] (RW)
@@ -963,7 +909,6 @@ typedef union _hw_qos_axi_qos2
  * Specifies the QOS level for the read commands on MasterID 10. 15 = highest QOS. 0 = lowest QOS.
  */
 //@{
-
 #define BP_QOS_AXI_QOS2_M8_ARQOS      (20)      //!< Bit position for QOS_AXI_QOS2_M8_ARQOS.
 #define BM_QOS_AXI_QOS2_M8_ARQOS      (0x00700000)  //!< Bit mask for QOS_AXI_QOS2_M8_ARQOS.
 
@@ -977,7 +922,6 @@ typedef union _hw_qos_axi_qos2
 //! @brief Set the M8_ARQOS field to a new value.
 #define BW_QOS_AXI_QOS2_M8_ARQOS(v)   BF_CS1(QOS_AXI_QOS2, M8_ARQOS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_AXI_QOS2, field M9_AWQOS[26:24] (RW)
@@ -985,7 +929,6 @@ typedef union _hw_qos_axi_qos2
  * Specifies the QOS level for the write commands on MasterID 10. 15 = highest QOS. 0 = lowest QOS.
  */
 //@{
-
 #define BP_QOS_AXI_QOS2_M9_AWQOS      (24)      //!< Bit position for QOS_AXI_QOS2_M9_AWQOS.
 #define BM_QOS_AXI_QOS2_M9_AWQOS      (0x07000000)  //!< Bit mask for QOS_AXI_QOS2_M9_AWQOS.
 
@@ -999,7 +942,6 @@ typedef union _hw_qos_axi_qos2
 //! @brief Set the M9_AWQOS field to a new value.
 #define BW_QOS_AXI_QOS2_M9_AWQOS(v)   BF_CS1(QOS_AXI_QOS2, M9_AWQOS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_AXI_QOS2, field M9_ARQOS[30:28] (RW)
@@ -1007,7 +949,6 @@ typedef union _hw_qos_axi_qos2
  * Specifies the QOS level for the read commands on MasterID 11. 15 = highest QOS. 0 = lowest QOS.
  */
 //@{
-
 #define BP_QOS_AXI_QOS2_M9_ARQOS      (28)      //!< Bit position for QOS_AXI_QOS2_M9_ARQOS.
 #define BM_QOS_AXI_QOS2_M9_ARQOS      (0x70000000)  //!< Bit mask for QOS_AXI_QOS2_M9_ARQOS.
 
@@ -1021,7 +962,6 @@ typedef union _hw_qos_axi_qos2
 //! @brief Set the M9_ARQOS field to a new value.
 #define BW_QOS_AXI_QOS2_M9_ARQOS(v)   BF_CS1(QOS_AXI_QOS2, M9_ARQOS, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1091,7 +1031,6 @@ typedef union _hw_qos_emi_priority0
  * lowest priority.
  */
 //@{
-
 #define BP_QOS_EMI_PRIORITY0_M0_WR      (0)      //!< Bit position for QOS_EMI_PRIORITY0_M0_WR.
 #define BM_QOS_EMI_PRIORITY0_M0_WR      (0x00000007)  //!< Bit mask for QOS_EMI_PRIORITY0_M0_WR.
 
@@ -1105,7 +1044,6 @@ typedef union _hw_qos_emi_priority0
 //! @brief Set the M0_WR field to a new value.
 #define BW_QOS_EMI_PRIORITY0_M0_WR(v)   BF_CS1(QOS_EMI_PRIORITY0, M0_WR, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_EMI_PRIORITY0, field M0_RD[6:4] (RW)
@@ -1114,7 +1052,6 @@ typedef union _hw_qos_emi_priority0
  * lowest priority.
  */
 //@{
-
 #define BP_QOS_EMI_PRIORITY0_M0_RD      (4)      //!< Bit position for QOS_EMI_PRIORITY0_M0_RD.
 #define BM_QOS_EMI_PRIORITY0_M0_RD      (0x00000070)  //!< Bit mask for QOS_EMI_PRIORITY0_M0_RD.
 
@@ -1128,7 +1065,6 @@ typedef union _hw_qos_emi_priority0
 //! @brief Set the M0_RD field to a new value.
 #define BW_QOS_EMI_PRIORITY0_M0_RD(v)   BF_CS1(QOS_EMI_PRIORITY0, M0_RD, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_EMI_PRIORITY0, field M1_0_WR[10:8] (RW)
@@ -1137,7 +1073,6 @@ typedef union _hw_qos_emi_priority0
  * lowest priority.
  */
 //@{
-
 #define BP_QOS_EMI_PRIORITY0_M1_0_WR      (8)      //!< Bit position for QOS_EMI_PRIORITY0_M1_0_WR.
 #define BM_QOS_EMI_PRIORITY0_M1_0_WR      (0x00000700)  //!< Bit mask for QOS_EMI_PRIORITY0_M1_0_WR.
 
@@ -1151,7 +1086,6 @@ typedef union _hw_qos_emi_priority0
 //! @brief Set the M1_0_WR field to a new value.
 #define BW_QOS_EMI_PRIORITY0_M1_0_WR(v)   BF_CS1(QOS_EMI_PRIORITY0, M1_0_WR, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_EMI_PRIORITY0, field M1_0_RD[14:12] (RW)
@@ -1160,7 +1094,6 @@ typedef union _hw_qos_emi_priority0
  * lowest priority.
  */
 //@{
-
 #define BP_QOS_EMI_PRIORITY0_M1_0_RD      (12)      //!< Bit position for QOS_EMI_PRIORITY0_M1_0_RD.
 #define BM_QOS_EMI_PRIORITY0_M1_0_RD      (0x00007000)  //!< Bit mask for QOS_EMI_PRIORITY0_M1_0_RD.
 
@@ -1174,7 +1107,6 @@ typedef union _hw_qos_emi_priority0
 //! @brief Set the M1_0_RD field to a new value.
 #define BW_QOS_EMI_PRIORITY0_M1_0_RD(v)   BF_CS1(QOS_EMI_PRIORITY0, M1_0_RD, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_EMI_PRIORITY0, field M1_1_WR[18:16] (RW)
@@ -1183,7 +1115,6 @@ typedef union _hw_qos_emi_priority0
  * lowest priority.
  */
 //@{
-
 #define BP_QOS_EMI_PRIORITY0_M1_1_WR      (16)      //!< Bit position for QOS_EMI_PRIORITY0_M1_1_WR.
 #define BM_QOS_EMI_PRIORITY0_M1_1_WR      (0x00070000)  //!< Bit mask for QOS_EMI_PRIORITY0_M1_1_WR.
 
@@ -1197,7 +1128,6 @@ typedef union _hw_qos_emi_priority0
 //! @brief Set the M1_1_WR field to a new value.
 #define BW_QOS_EMI_PRIORITY0_M1_1_WR(v)   BF_CS1(QOS_EMI_PRIORITY0, M1_1_WR, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_EMI_PRIORITY0, field M1_1_RD[22:20] (RW)
@@ -1206,7 +1136,6 @@ typedef union _hw_qos_emi_priority0
  * lowest priority.
  */
 //@{
-
 #define BP_QOS_EMI_PRIORITY0_M1_1_RD      (20)      //!< Bit position for QOS_EMI_PRIORITY0_M1_1_RD.
 #define BM_QOS_EMI_PRIORITY0_M1_1_RD      (0x00700000)  //!< Bit mask for QOS_EMI_PRIORITY0_M1_1_RD.
 
@@ -1220,7 +1149,6 @@ typedef union _hw_qos_emi_priority0
 //! @brief Set the M1_1_RD field to a new value.
 #define BW_QOS_EMI_PRIORITY0_M1_1_RD(v)   BF_CS1(QOS_EMI_PRIORITY0, M1_1_RD, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_EMI_PRIORITY0, field M1_2_WR[26:24] (RW)
@@ -1229,7 +1157,6 @@ typedef union _hw_qos_emi_priority0
  * lowest priority.
  */
 //@{
-
 #define BP_QOS_EMI_PRIORITY0_M1_2_WR      (24)      //!< Bit position for QOS_EMI_PRIORITY0_M1_2_WR.
 #define BM_QOS_EMI_PRIORITY0_M1_2_WR      (0x07000000)  //!< Bit mask for QOS_EMI_PRIORITY0_M1_2_WR.
 
@@ -1243,7 +1170,6 @@ typedef union _hw_qos_emi_priority0
 //! @brief Set the M1_2_WR field to a new value.
 #define BW_QOS_EMI_PRIORITY0_M1_2_WR(v)   BF_CS1(QOS_EMI_PRIORITY0, M1_2_WR, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_EMI_PRIORITY0, field M1_2_RD[30:28] (RW)
@@ -1252,7 +1178,6 @@ typedef union _hw_qos_emi_priority0
  * lowest priority.
  */
 //@{
-
 #define BP_QOS_EMI_PRIORITY0_M1_2_RD      (28)      //!< Bit position for QOS_EMI_PRIORITY0_M1_2_RD.
 #define BM_QOS_EMI_PRIORITY0_M1_2_RD      (0x70000000)  //!< Bit mask for QOS_EMI_PRIORITY0_M1_2_RD.
 
@@ -1266,7 +1191,6 @@ typedef union _hw_qos_emi_priority0
 //! @brief Set the M1_2_RD field to a new value.
 #define BW_QOS_EMI_PRIORITY0_M1_2_RD(v)   BF_CS1(QOS_EMI_PRIORITY0, M1_2_RD, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1336,7 +1260,6 @@ typedef union _hw_qos_emi_priority1
  * lowest priority.
  */
 //@{
-
 #define BP_QOS_EMI_PRIORITY1_M2_WR      (0)      //!< Bit position for QOS_EMI_PRIORITY1_M2_WR.
 #define BM_QOS_EMI_PRIORITY1_M2_WR      (0x00000007)  //!< Bit mask for QOS_EMI_PRIORITY1_M2_WR.
 
@@ -1350,7 +1273,6 @@ typedef union _hw_qos_emi_priority1
 //! @brief Set the M2_WR field to a new value.
 #define BW_QOS_EMI_PRIORITY1_M2_WR(v)   BF_CS1(QOS_EMI_PRIORITY1, M2_WR, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_EMI_PRIORITY1, field M2_RD[6:4] (RW)
@@ -1359,7 +1281,6 @@ typedef union _hw_qos_emi_priority1
  * lowest priority.
  */
 //@{
-
 #define BP_QOS_EMI_PRIORITY1_M2_RD      (4)      //!< Bit position for QOS_EMI_PRIORITY1_M2_RD.
 #define BM_QOS_EMI_PRIORITY1_M2_RD      (0x00000070)  //!< Bit mask for QOS_EMI_PRIORITY1_M2_RD.
 
@@ -1373,7 +1294,6 @@ typedef union _hw_qos_emi_priority1
 //! @brief Set the M2_RD field to a new value.
 #define BW_QOS_EMI_PRIORITY1_M2_RD(v)   BF_CS1(QOS_EMI_PRIORITY1, M2_RD, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_EMI_PRIORITY1, field M3_WR[10:8] (RW)
@@ -1382,7 +1302,6 @@ typedef union _hw_qos_emi_priority1
  * lowest priority.
  */
 //@{
-
 #define BP_QOS_EMI_PRIORITY1_M3_WR      (8)      //!< Bit position for QOS_EMI_PRIORITY1_M3_WR.
 #define BM_QOS_EMI_PRIORITY1_M3_WR      (0x00000700)  //!< Bit mask for QOS_EMI_PRIORITY1_M3_WR.
 
@@ -1396,7 +1315,6 @@ typedef union _hw_qos_emi_priority1
 //! @brief Set the M3_WR field to a new value.
 #define BW_QOS_EMI_PRIORITY1_M3_WR(v)   BF_CS1(QOS_EMI_PRIORITY1, M3_WR, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_EMI_PRIORITY1, field M3_RD[14:12] (RW)
@@ -1405,7 +1323,6 @@ typedef union _hw_qos_emi_priority1
  * lowest priority.
  */
 //@{
-
 #define BP_QOS_EMI_PRIORITY1_M3_RD      (12)      //!< Bit position for QOS_EMI_PRIORITY1_M3_RD.
 #define BM_QOS_EMI_PRIORITY1_M3_RD      (0x00007000)  //!< Bit mask for QOS_EMI_PRIORITY1_M3_RD.
 
@@ -1419,7 +1336,6 @@ typedef union _hw_qos_emi_priority1
 //! @brief Set the M3_RD field to a new value.
 #define BW_QOS_EMI_PRIORITY1_M3_RD(v)   BF_CS1(QOS_EMI_PRIORITY1, M3_RD, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_EMI_PRIORITY1, field M4_WR[18:16] (RW)
@@ -1428,7 +1344,6 @@ typedef union _hw_qos_emi_priority1
  * lowest priority.
  */
 //@{
-
 #define BP_QOS_EMI_PRIORITY1_M4_WR      (16)      //!< Bit position for QOS_EMI_PRIORITY1_M4_WR.
 #define BM_QOS_EMI_PRIORITY1_M4_WR      (0x00070000)  //!< Bit mask for QOS_EMI_PRIORITY1_M4_WR.
 
@@ -1442,7 +1357,6 @@ typedef union _hw_qos_emi_priority1
 //! @brief Set the M4_WR field to a new value.
 #define BW_QOS_EMI_PRIORITY1_M4_WR(v)   BF_CS1(QOS_EMI_PRIORITY1, M4_WR, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_EMI_PRIORITY1, field M4_RD[22:20] (RW)
@@ -1451,7 +1365,6 @@ typedef union _hw_qos_emi_priority1
  * lowest priority.
  */
 //@{
-
 #define BP_QOS_EMI_PRIORITY1_M4_RD      (20)      //!< Bit position for QOS_EMI_PRIORITY1_M4_RD.
 #define BM_QOS_EMI_PRIORITY1_M4_RD      (0x00700000)  //!< Bit mask for QOS_EMI_PRIORITY1_M4_RD.
 
@@ -1465,7 +1378,6 @@ typedef union _hw_qos_emi_priority1
 //! @brief Set the M4_RD field to a new value.
 #define BW_QOS_EMI_PRIORITY1_M4_RD(v)   BF_CS1(QOS_EMI_PRIORITY1, M4_RD, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_EMI_PRIORITY1, field M5_WR[26:24] (RW)
@@ -1474,7 +1386,6 @@ typedef union _hw_qos_emi_priority1
  * lowest priority.
  */
 //@{
-
 #define BP_QOS_EMI_PRIORITY1_M5_WR      (24)      //!< Bit position for QOS_EMI_PRIORITY1_M5_WR.
 #define BM_QOS_EMI_PRIORITY1_M5_WR      (0x07000000)  //!< Bit mask for QOS_EMI_PRIORITY1_M5_WR.
 
@@ -1488,7 +1399,6 @@ typedef union _hw_qos_emi_priority1
 //! @brief Set the M5_WR field to a new value.
 #define BW_QOS_EMI_PRIORITY1_M5_WR(v)   BF_CS1(QOS_EMI_PRIORITY1, M5_WR, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_EMI_PRIORITY1, field M5_RD[30:28] (RW)
@@ -1497,7 +1407,6 @@ typedef union _hw_qos_emi_priority1
  * lowest priority.
  */
 //@{
-
 #define BP_QOS_EMI_PRIORITY1_M5_RD      (28)      //!< Bit position for QOS_EMI_PRIORITY1_M5_RD.
 #define BM_QOS_EMI_PRIORITY1_M5_RD      (0x70000000)  //!< Bit mask for QOS_EMI_PRIORITY1_M5_RD.
 
@@ -1511,7 +1420,6 @@ typedef union _hw_qos_emi_priority1
 //! @brief Set the M5_RD field to a new value.
 #define BW_QOS_EMI_PRIORITY1_M5_RD(v)   BF_CS1(QOS_EMI_PRIORITY1, M5_RD, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1581,7 +1489,6 @@ typedef union _hw_qos_emi_priority2
  * lowest priority.
  */
 //@{
-
 #define BP_QOS_EMI_PRIORITY2_M6_WR      (0)      //!< Bit position for QOS_EMI_PRIORITY2_M6_WR.
 #define BM_QOS_EMI_PRIORITY2_M6_WR      (0x00000007)  //!< Bit mask for QOS_EMI_PRIORITY2_M6_WR.
 
@@ -1595,7 +1502,6 @@ typedef union _hw_qos_emi_priority2
 //! @brief Set the M6_WR field to a new value.
 #define BW_QOS_EMI_PRIORITY2_M6_WR(v)   BF_CS1(QOS_EMI_PRIORITY2, M6_WR, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_EMI_PRIORITY2, field M6_RD[6:4] (RW)
@@ -1604,7 +1510,6 @@ typedef union _hw_qos_emi_priority2
  * lowest priority.
  */
 //@{
-
 #define BP_QOS_EMI_PRIORITY2_M6_RD      (4)      //!< Bit position for QOS_EMI_PRIORITY2_M6_RD.
 #define BM_QOS_EMI_PRIORITY2_M6_RD      (0x00000070)  //!< Bit mask for QOS_EMI_PRIORITY2_M6_RD.
 
@@ -1618,7 +1523,6 @@ typedef union _hw_qos_emi_priority2
 //! @brief Set the M6_RD field to a new value.
 #define BW_QOS_EMI_PRIORITY2_M6_RD(v)   BF_CS1(QOS_EMI_PRIORITY2, M6_RD, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_EMI_PRIORITY2, field M7_WR[10:8] (RW)
@@ -1627,7 +1531,6 @@ typedef union _hw_qos_emi_priority2
  * lowest priority.
  */
 //@{
-
 #define BP_QOS_EMI_PRIORITY2_M7_WR      (8)      //!< Bit position for QOS_EMI_PRIORITY2_M7_WR.
 #define BM_QOS_EMI_PRIORITY2_M7_WR      (0x00000700)  //!< Bit mask for QOS_EMI_PRIORITY2_M7_WR.
 
@@ -1641,7 +1544,6 @@ typedef union _hw_qos_emi_priority2
 //! @brief Set the M7_WR field to a new value.
 #define BW_QOS_EMI_PRIORITY2_M7_WR(v)   BF_CS1(QOS_EMI_PRIORITY2, M7_WR, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_EMI_PRIORITY2, field M7_RD[14:12] (RW)
@@ -1650,7 +1552,6 @@ typedef union _hw_qos_emi_priority2
  * lowest priority.
  */
 //@{
-
 #define BP_QOS_EMI_PRIORITY2_M7_RD      (12)      //!< Bit position for QOS_EMI_PRIORITY2_M7_RD.
 #define BM_QOS_EMI_PRIORITY2_M7_RD      (0x00007000)  //!< Bit mask for QOS_EMI_PRIORITY2_M7_RD.
 
@@ -1664,7 +1565,6 @@ typedef union _hw_qos_emi_priority2
 //! @brief Set the M7_RD field to a new value.
 #define BW_QOS_EMI_PRIORITY2_M7_RD(v)   BF_CS1(QOS_EMI_PRIORITY2, M7_RD, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_EMI_PRIORITY2, field M8_WR[18:16] (RW)
@@ -1673,7 +1573,6 @@ typedef union _hw_qos_emi_priority2
  * lowest priority.
  */
 //@{
-
 #define BP_QOS_EMI_PRIORITY2_M8_WR      (16)      //!< Bit position for QOS_EMI_PRIORITY2_M8_WR.
 #define BM_QOS_EMI_PRIORITY2_M8_WR      (0x00070000)  //!< Bit mask for QOS_EMI_PRIORITY2_M8_WR.
 
@@ -1687,7 +1586,6 @@ typedef union _hw_qos_emi_priority2
 //! @brief Set the M8_WR field to a new value.
 #define BW_QOS_EMI_PRIORITY2_M8_WR(v)   BF_CS1(QOS_EMI_PRIORITY2, M8_WR, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_EMI_PRIORITY2, field M8_RD[22:20] (RW)
@@ -1696,7 +1594,6 @@ typedef union _hw_qos_emi_priority2
  * lowest priority.
  */
 //@{
-
 #define BP_QOS_EMI_PRIORITY2_M8_RD      (20)      //!< Bit position for QOS_EMI_PRIORITY2_M8_RD.
 #define BM_QOS_EMI_PRIORITY2_M8_RD      (0x00700000)  //!< Bit mask for QOS_EMI_PRIORITY2_M8_RD.
 
@@ -1710,7 +1607,6 @@ typedef union _hw_qos_emi_priority2
 //! @brief Set the M8_RD field to a new value.
 #define BW_QOS_EMI_PRIORITY2_M8_RD(v)   BF_CS1(QOS_EMI_PRIORITY2, M8_RD, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_EMI_PRIORITY2, field M9_WR[26:24] (RW)
@@ -1719,7 +1615,6 @@ typedef union _hw_qos_emi_priority2
  * lowest priority.
  */
 //@{
-
 #define BP_QOS_EMI_PRIORITY2_M9_WR      (24)      //!< Bit position for QOS_EMI_PRIORITY2_M9_WR.
 #define BM_QOS_EMI_PRIORITY2_M9_WR      (0x07000000)  //!< Bit mask for QOS_EMI_PRIORITY2_M9_WR.
 
@@ -1733,7 +1628,6 @@ typedef union _hw_qos_emi_priority2
 //! @brief Set the M9_WR field to a new value.
 #define BW_QOS_EMI_PRIORITY2_M9_WR(v)   BF_CS1(QOS_EMI_PRIORITY2, M9_WR, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_EMI_PRIORITY2, field M9_RD[30:28] (RW)
@@ -1742,7 +1636,6 @@ typedef union _hw_qos_emi_priority2
  * lowest priority.
  */
 //@{
-
 #define BP_QOS_EMI_PRIORITY2_M9_RD      (28)      //!< Bit position for QOS_EMI_PRIORITY2_M9_RD.
 #define BM_QOS_EMI_PRIORITY2_M9_RD      (0x70000000)  //!< Bit mask for QOS_EMI_PRIORITY2_M9_RD.
 
@@ -1756,7 +1649,6 @@ typedef union _hw_qos_emi_priority2
 //! @brief Set the M9_RD field to a new value.
 #define BW_QOS_EMI_PRIORITY2_M9_RD(v)   BF_CS1(QOS_EMI_PRIORITY2, M9_RD, v)
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1834,7 +1726,6 @@ typedef union _hw_qos_disable
  * Setting this bit disables the interface between master1_0 and the AXI fabric.
  */
 //@{
-
 #define BP_QOS_DISABLE_M1_0_DIS      (1)      //!< Bit position for QOS_DISABLE_M1_0_DIS.
 #define BM_QOS_DISABLE_M1_0_DIS      (0x00000002)  //!< Bit mask for QOS_DISABLE_M1_0_DIS.
 
@@ -1848,7 +1739,6 @@ typedef union _hw_qos_disable
 //! @brief Set the M1_0_DIS field to a new value.
 #define BW_QOS_DISABLE_M1_0_DIS(v)   BF_CS1(QOS_DISABLE, M1_0_DIS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_DISABLE, field M1_1_DIS[2] (RW)
@@ -1856,7 +1746,6 @@ typedef union _hw_qos_disable
  * Setting this bit disables the interface between master1_1 and the AXI fabric.
  */
 //@{
-
 #define BP_QOS_DISABLE_M1_1_DIS      (2)      //!< Bit position for QOS_DISABLE_M1_1_DIS.
 #define BM_QOS_DISABLE_M1_1_DIS      (0x00000004)  //!< Bit mask for QOS_DISABLE_M1_1_DIS.
 
@@ -1870,7 +1759,6 @@ typedef union _hw_qos_disable
 //! @brief Set the M1_1_DIS field to a new value.
 #define BW_QOS_DISABLE_M1_1_DIS(v)   BF_CS1(QOS_DISABLE, M1_1_DIS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_DISABLE, field M1_2_DIS[3] (RW)
@@ -1878,7 +1766,6 @@ typedef union _hw_qos_disable
  * Setting this bit disables the interface between master1_2 and the AXI fabric.
  */
 //@{
-
 #define BP_QOS_DISABLE_M1_2_DIS      (3)      //!< Bit position for QOS_DISABLE_M1_2_DIS.
 #define BM_QOS_DISABLE_M1_2_DIS      (0x00000008)  //!< Bit mask for QOS_DISABLE_M1_2_DIS.
 
@@ -1892,7 +1779,6 @@ typedef union _hw_qos_disable
 //! @brief Set the M1_2_DIS field to a new value.
 #define BW_QOS_DISABLE_M1_2_DIS(v)   BF_CS1(QOS_DISABLE, M1_2_DIS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_DISABLE, field M2_DIS[4] (RW)
@@ -1900,7 +1786,6 @@ typedef union _hw_qos_disable
  * Setting this bit disables the interface between master2 and the AXI fabric.
  */
 //@{
-
 #define BP_QOS_DISABLE_M2_DIS      (4)      //!< Bit position for QOS_DISABLE_M2_DIS.
 #define BM_QOS_DISABLE_M2_DIS      (0x00000010)  //!< Bit mask for QOS_DISABLE_M2_DIS.
 
@@ -1914,7 +1799,6 @@ typedef union _hw_qos_disable
 //! @brief Set the M2_DIS field to a new value.
 #define BW_QOS_DISABLE_M2_DIS(v)   BF_CS1(QOS_DISABLE, M2_DIS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_DISABLE, field M3_DIS[5] (RW)
@@ -1922,7 +1806,6 @@ typedef union _hw_qos_disable
  * Setting this bit disables the interface between master3 and the AXI fabric.
  */
 //@{
-
 #define BP_QOS_DISABLE_M3_DIS      (5)      //!< Bit position for QOS_DISABLE_M3_DIS.
 #define BM_QOS_DISABLE_M3_DIS      (0x00000020)  //!< Bit mask for QOS_DISABLE_M3_DIS.
 
@@ -1936,7 +1819,6 @@ typedef union _hw_qos_disable
 //! @brief Set the M3_DIS field to a new value.
 #define BW_QOS_DISABLE_M3_DIS(v)   BF_CS1(QOS_DISABLE, M3_DIS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_DISABLE, field M4_DIS[6] (RW)
@@ -1944,7 +1826,6 @@ typedef union _hw_qos_disable
  * Setting this bit disables the interface between master4 and the AXI fabric.
  */
 //@{
-
 #define BP_QOS_DISABLE_M4_DIS      (6)      //!< Bit position for QOS_DISABLE_M4_DIS.
 #define BM_QOS_DISABLE_M4_DIS      (0x00000040)  //!< Bit mask for QOS_DISABLE_M4_DIS.
 
@@ -1958,7 +1839,6 @@ typedef union _hw_qos_disable
 //! @brief Set the M4_DIS field to a new value.
 #define BW_QOS_DISABLE_M4_DIS(v)   BF_CS1(QOS_DISABLE, M4_DIS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_DISABLE, field M5_DIS[7] (RW)
@@ -1966,7 +1846,6 @@ typedef union _hw_qos_disable
  * Setting this bit disables the interface between master5 and the AXI fabric.
  */
 //@{
-
 #define BP_QOS_DISABLE_M5_DIS      (7)      //!< Bit position for QOS_DISABLE_M5_DIS.
 #define BM_QOS_DISABLE_M5_DIS      (0x00000080)  //!< Bit mask for QOS_DISABLE_M5_DIS.
 
@@ -1980,7 +1859,6 @@ typedef union _hw_qos_disable
 //! @brief Set the M5_DIS field to a new value.
 #define BW_QOS_DISABLE_M5_DIS(v)   BF_CS1(QOS_DISABLE, M5_DIS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_DISABLE, field M6_DIS[8] (RW)
@@ -1988,7 +1866,6 @@ typedef union _hw_qos_disable
  * Setting this bit disables the interface between master6 and the AXI fabric.
  */
 //@{
-
 #define BP_QOS_DISABLE_M6_DIS      (8)      //!< Bit position for QOS_DISABLE_M6_DIS.
 #define BM_QOS_DISABLE_M6_DIS      (0x00000100)  //!< Bit mask for QOS_DISABLE_M6_DIS.
 
@@ -2002,7 +1879,6 @@ typedef union _hw_qos_disable
 //! @brief Set the M6_DIS field to a new value.
 #define BW_QOS_DISABLE_M6_DIS(v)   BF_CS1(QOS_DISABLE, M6_DIS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_DISABLE, field M7_DIS[9] (RW)
@@ -2010,7 +1886,6 @@ typedef union _hw_qos_disable
  * Setting this bit disables the interface between master7 and the AXI fabric.
  */
 //@{
-
 #define BP_QOS_DISABLE_M7_DIS      (9)      //!< Bit position for QOS_DISABLE_M7_DIS.
 #define BM_QOS_DISABLE_M7_DIS      (0x00000200)  //!< Bit mask for QOS_DISABLE_M7_DIS.
 
@@ -2024,7 +1899,6 @@ typedef union _hw_qos_disable
 //! @brief Set the M7_DIS field to a new value.
 #define BW_QOS_DISABLE_M7_DIS(v)   BF_CS1(QOS_DISABLE, M7_DIS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_DISABLE, field M8_DIS[10] (RW)
@@ -2032,7 +1906,6 @@ typedef union _hw_qos_disable
  * Setting this bit disables the interface between master8 and the AXI fabric.
  */
 //@{
-
 #define BP_QOS_DISABLE_M8_DIS      (10)      //!< Bit position for QOS_DISABLE_M8_DIS.
 #define BM_QOS_DISABLE_M8_DIS      (0x00000400)  //!< Bit mask for QOS_DISABLE_M8_DIS.
 
@@ -2046,7 +1919,6 @@ typedef union _hw_qos_disable
 //! @brief Set the M8_DIS field to a new value.
 #define BW_QOS_DISABLE_M8_DIS(v)   BF_CS1(QOS_DISABLE, M8_DIS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_DISABLE, field M9_DIS[11] (RW)
@@ -2054,7 +1926,6 @@ typedef union _hw_qos_disable
  * Setting this bit disables the interface between master9 and the AXI fabric.
  */
 //@{
-
 #define BP_QOS_DISABLE_M9_DIS      (11)      //!< Bit position for QOS_DISABLE_M9_DIS.
 #define BM_QOS_DISABLE_M9_DIS      (0x00000800)  //!< Bit mask for QOS_DISABLE_M9_DIS.
 
@@ -2068,7 +1939,6 @@ typedef union _hw_qos_disable
 //! @brief Set the M9_DIS field to a new value.
 #define BW_QOS_DISABLE_M9_DIS(v)   BF_CS1(QOS_DISABLE, M9_DIS, v)
 #endif
-
 //@}
 
 /*! @name Register QOS_DISABLE, field M1_0_DIS_STAT[17] (RO)
@@ -2077,13 +1947,11 @@ typedef union _hw_qos_disable
  * = disabled.
  */
 //@{
-
 #define BP_QOS_DISABLE_M1_0_DIS_STAT      (17)      //!< Bit position for QOS_DISABLE_M1_0_DIS_STAT.
 #define BM_QOS_DISABLE_M1_0_DIS_STAT      (0x00020000)  //!< Bit mask for QOS_DISABLE_M1_0_DIS_STAT.
 
 //! @brief Get value of QOS_DISABLE_M1_0_DIS_STAT from a register value.
 #define BG_QOS_DISABLE_M1_0_DIS_STAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_QOS_DISABLE_M1_0_DIS_STAT) >> BP_QOS_DISABLE_M1_0_DIS_STAT)
-
 //@}
 
 /*! @name Register QOS_DISABLE, field M1_1_DIS_STAT[18] (RO)
@@ -2092,13 +1960,11 @@ typedef union _hw_qos_disable
  * = disabled.
  */
 //@{
-
 #define BP_QOS_DISABLE_M1_1_DIS_STAT      (18)      //!< Bit position for QOS_DISABLE_M1_1_DIS_STAT.
 #define BM_QOS_DISABLE_M1_1_DIS_STAT      (0x00040000)  //!< Bit mask for QOS_DISABLE_M1_1_DIS_STAT.
 
 //! @brief Get value of QOS_DISABLE_M1_1_DIS_STAT from a register value.
 #define BG_QOS_DISABLE_M1_1_DIS_STAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_QOS_DISABLE_M1_1_DIS_STAT) >> BP_QOS_DISABLE_M1_1_DIS_STAT)
-
 //@}
 
 /*! @name Register QOS_DISABLE, field M1_2_DIS_STAT[19] (RO)
@@ -2107,13 +1973,11 @@ typedef union _hw_qos_disable
  * = disabled.
  */
 //@{
-
 #define BP_QOS_DISABLE_M1_2_DIS_STAT      (19)      //!< Bit position for QOS_DISABLE_M1_2_DIS_STAT.
 #define BM_QOS_DISABLE_M1_2_DIS_STAT      (0x00080000)  //!< Bit mask for QOS_DISABLE_M1_2_DIS_STAT.
 
 //! @brief Get value of QOS_DISABLE_M1_2_DIS_STAT from a register value.
 #define BG_QOS_DISABLE_M1_2_DIS_STAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_QOS_DISABLE_M1_2_DIS_STAT) >> BP_QOS_DISABLE_M1_2_DIS_STAT)
-
 //@}
 
 /*! @name Register QOS_DISABLE, field M2_DIS_STAT[20] (RO)
@@ -2122,13 +1986,11 @@ typedef union _hw_qos_disable
  * disabled.
  */
 //@{
-
 #define BP_QOS_DISABLE_M2_DIS_STAT      (20)      //!< Bit position for QOS_DISABLE_M2_DIS_STAT.
 #define BM_QOS_DISABLE_M2_DIS_STAT      (0x00100000)  //!< Bit mask for QOS_DISABLE_M2_DIS_STAT.
 
 //! @brief Get value of QOS_DISABLE_M2_DIS_STAT from a register value.
 #define BG_QOS_DISABLE_M2_DIS_STAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_QOS_DISABLE_M2_DIS_STAT) >> BP_QOS_DISABLE_M2_DIS_STAT)
-
 //@}
 
 /*! @name Register QOS_DISABLE, field M3_DIS_STAT[21] (RO)
@@ -2137,13 +1999,11 @@ typedef union _hw_qos_disable
  * disabled.
  */
 //@{
-
 #define BP_QOS_DISABLE_M3_DIS_STAT      (21)      //!< Bit position for QOS_DISABLE_M3_DIS_STAT.
 #define BM_QOS_DISABLE_M3_DIS_STAT      (0x00200000)  //!< Bit mask for QOS_DISABLE_M3_DIS_STAT.
 
 //! @brief Get value of QOS_DISABLE_M3_DIS_STAT from a register value.
 #define BG_QOS_DISABLE_M3_DIS_STAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_QOS_DISABLE_M3_DIS_STAT) >> BP_QOS_DISABLE_M3_DIS_STAT)
-
 //@}
 
 /*! @name Register QOS_DISABLE, field M4_DIS_STAT[22] (RO)
@@ -2152,13 +2012,11 @@ typedef union _hw_qos_disable
  * disabled.
  */
 //@{
-
 #define BP_QOS_DISABLE_M4_DIS_STAT      (22)      //!< Bit position for QOS_DISABLE_M4_DIS_STAT.
 #define BM_QOS_DISABLE_M4_DIS_STAT      (0x00400000)  //!< Bit mask for QOS_DISABLE_M4_DIS_STAT.
 
 //! @brief Get value of QOS_DISABLE_M4_DIS_STAT from a register value.
 #define BG_QOS_DISABLE_M4_DIS_STAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_QOS_DISABLE_M4_DIS_STAT) >> BP_QOS_DISABLE_M4_DIS_STAT)
-
 //@}
 
 /*! @name Register QOS_DISABLE, field M5_DIS_STAT[23] (RO)
@@ -2167,13 +2025,11 @@ typedef union _hw_qos_disable
  * disabled.
  */
 //@{
-
 #define BP_QOS_DISABLE_M5_DIS_STAT      (23)      //!< Bit position for QOS_DISABLE_M5_DIS_STAT.
 #define BM_QOS_DISABLE_M5_DIS_STAT      (0x00800000)  //!< Bit mask for QOS_DISABLE_M5_DIS_STAT.
 
 //! @brief Get value of QOS_DISABLE_M5_DIS_STAT from a register value.
 #define BG_QOS_DISABLE_M5_DIS_STAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_QOS_DISABLE_M5_DIS_STAT) >> BP_QOS_DISABLE_M5_DIS_STAT)
-
 //@}
 
 /*! @name Register QOS_DISABLE, field M6_DIS_STAT[24] (RO)
@@ -2182,13 +2038,11 @@ typedef union _hw_qos_disable
  * disabled.
  */
 //@{
-
 #define BP_QOS_DISABLE_M6_DIS_STAT      (24)      //!< Bit position for QOS_DISABLE_M6_DIS_STAT.
 #define BM_QOS_DISABLE_M6_DIS_STAT      (0x01000000)  //!< Bit mask for QOS_DISABLE_M6_DIS_STAT.
 
 //! @brief Get value of QOS_DISABLE_M6_DIS_STAT from a register value.
 #define BG_QOS_DISABLE_M6_DIS_STAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_QOS_DISABLE_M6_DIS_STAT) >> BP_QOS_DISABLE_M6_DIS_STAT)
-
 //@}
 
 /*! @name Register QOS_DISABLE, field M7_DIS_STAT[25] (RO)
@@ -2197,13 +2051,11 @@ typedef union _hw_qos_disable
  * disabled.
  */
 //@{
-
 #define BP_QOS_DISABLE_M7_DIS_STAT      (25)      //!< Bit position for QOS_DISABLE_M7_DIS_STAT.
 #define BM_QOS_DISABLE_M7_DIS_STAT      (0x02000000)  //!< Bit mask for QOS_DISABLE_M7_DIS_STAT.
 
 //! @brief Get value of QOS_DISABLE_M7_DIS_STAT from a register value.
 #define BG_QOS_DISABLE_M7_DIS_STAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_QOS_DISABLE_M7_DIS_STAT) >> BP_QOS_DISABLE_M7_DIS_STAT)
-
 //@}
 
 /*! @name Register QOS_DISABLE, field M8_DIS_STAT[26] (RO)
@@ -2212,13 +2064,11 @@ typedef union _hw_qos_disable
  * disabled.
  */
 //@{
-
 #define BP_QOS_DISABLE_M8_DIS_STAT      (26)      //!< Bit position for QOS_DISABLE_M8_DIS_STAT.
 #define BM_QOS_DISABLE_M8_DIS_STAT      (0x04000000)  //!< Bit mask for QOS_DISABLE_M8_DIS_STAT.
 
 //! @brief Get value of QOS_DISABLE_M8_DIS_STAT from a register value.
 #define BG_QOS_DISABLE_M8_DIS_STAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_QOS_DISABLE_M8_DIS_STAT) >> BP_QOS_DISABLE_M8_DIS_STAT)
-
 //@}
 
 /*! @name Register QOS_DISABLE, field M9_DIS_STAT[27] (RO)
@@ -2227,13 +2077,11 @@ typedef union _hw_qos_disable
  * disabled.
  */
 //@{
-
 #define BP_QOS_DISABLE_M9_DIS_STAT      (27)      //!< Bit position for QOS_DISABLE_M9_DIS_STAT.
 #define BM_QOS_DISABLE_M9_DIS_STAT      (0x08000000)  //!< Bit mask for QOS_DISABLE_M9_DIS_STAT.
 
 //! @brief Get value of QOS_DISABLE_M9_DIS_STAT from a register value.
 #define BG_QOS_DISABLE_M9_DIS_STAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_QOS_DISABLE_M9_DIS_STAT) >> BP_QOS_DISABLE_M9_DIS_STAT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2283,13 +2131,11 @@ typedef union _hw_qos_version
  * Fixed read-only value reflecting the stepping of the RTL version.
  */
 //@{
-
 #define BP_QOS_VERSION_STEP      (0)      //!< Bit position for QOS_VERSION_STEP.
 #define BM_QOS_VERSION_STEP      (0x0000ffff)  //!< Bit mask for QOS_VERSION_STEP.
 
 //! @brief Get value of QOS_VERSION_STEP from a register value.
 #define BG_QOS_VERSION_STEP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_QOS_VERSION_STEP) >> BP_QOS_VERSION_STEP)
-
 //@}
 
 /*! @name Register QOS_VERSION, field MINOR[23:16] (RO)
@@ -2297,13 +2143,11 @@ typedef union _hw_qos_version
  * Fixed read-only value reflecting the MINOR field of the RTL version.
  */
 //@{
-
 #define BP_QOS_VERSION_MINOR      (16)      //!< Bit position for QOS_VERSION_MINOR.
 #define BM_QOS_VERSION_MINOR      (0x00ff0000)  //!< Bit mask for QOS_VERSION_MINOR.
 
 //! @brief Get value of QOS_VERSION_MINOR from a register value.
 #define BG_QOS_VERSION_MINOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_QOS_VERSION_MINOR) >> BP_QOS_VERSION_MINOR)
-
 //@}
 
 /*! @name Register QOS_VERSION, field MAJOR[31:24] (RO)
@@ -2311,13 +2155,11 @@ typedef union _hw_qos_version
  * Fixed read-only value reflecting the MAJOR field of the RTL version.
  */
 //@{
-
 #define BP_QOS_VERSION_MAJOR      (24)      //!< Bit position for QOS_VERSION_MAJOR.
 #define BM_QOS_VERSION_MAJOR      (0xff000000)  //!< Bit mask for QOS_VERSION_MAJOR.
 
 //! @brief Get value of QOS_VERSION_MAJOR from a register value.
 #define BG_QOS_VERSION_MAJOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_QOS_VERSION_MAJOR) >> BP_QOS_VERSION_MAJOR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2373,3 +2215,5 @@ typedef struct _hw_qos
 #endif
 
 #endif // __HW_QOS_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

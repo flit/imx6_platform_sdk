@@ -180,7 +180,6 @@ typedef union _hw_pcie_ep_command
  * I/O Space Enable
  */
 //@{
-
 #define BP_PCIE_EP_COMMAND_I_O_SPACE_ENABLE      (0)      //!< Bit position for PCIE_EP_COMMAND_I_O_SPACE_ENABLE.
 #define BM_PCIE_EP_COMMAND_I_O_SPACE_ENABLE      (0x00000001)  //!< Bit mask for PCIE_EP_COMMAND_I_O_SPACE_ENABLE.
 
@@ -194,7 +193,6 @@ typedef union _hw_pcie_ep_command
 //! @brief Set the I_O_SPACE_ENABLE field to a new value.
 #define BW_PCIE_EP_COMMAND_I_O_SPACE_ENABLE(v)   (HW_PCIE_EP_COMMAND_WR((HW_PCIE_EP_COMMAND_RD() & ~BM_PCIE_EP_COMMAND_I_O_SPACE_ENABLE) | BF_PCIE_EP_COMMAND_I_O_SPACE_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_COMMAND, field MEMORY_SPACE_ENABLE[1] (RW)
@@ -202,7 +200,6 @@ typedef union _hw_pcie_ep_command
  * Memory Space Enable
  */
 //@{
-
 #define BP_PCIE_EP_COMMAND_MEMORY_SPACE_ENABLE      (1)      //!< Bit position for PCIE_EP_COMMAND_MEMORY_SPACE_ENABLE.
 #define BM_PCIE_EP_COMMAND_MEMORY_SPACE_ENABLE      (0x00000002)  //!< Bit mask for PCIE_EP_COMMAND_MEMORY_SPACE_ENABLE.
 
@@ -216,7 +213,6 @@ typedef union _hw_pcie_ep_command
 //! @brief Set the MEMORY_SPACE_ENABLE field to a new value.
 #define BW_PCIE_EP_COMMAND_MEMORY_SPACE_ENABLE(v)   (HW_PCIE_EP_COMMAND_WR((HW_PCIE_EP_COMMAND_RD() & ~BM_PCIE_EP_COMMAND_MEMORY_SPACE_ENABLE) | BF_PCIE_EP_COMMAND_MEMORY_SPACE_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_COMMAND, field BUS_MASTER_ENABLE[2] (RW)
@@ -224,7 +220,6 @@ typedef union _hw_pcie_ep_command
  * Bus Master Enable
  */
 //@{
-
 #define BP_PCIE_EP_COMMAND_BUS_MASTER_ENABLE      (2)      //!< Bit position for PCIE_EP_COMMAND_BUS_MASTER_ENABLE.
 #define BM_PCIE_EP_COMMAND_BUS_MASTER_ENABLE      (0x00000004)  //!< Bit mask for PCIE_EP_COMMAND_BUS_MASTER_ENABLE.
 
@@ -238,7 +233,6 @@ typedef union _hw_pcie_ep_command
 //! @brief Set the BUS_MASTER_ENABLE field to a new value.
 #define BW_PCIE_EP_COMMAND_BUS_MASTER_ENABLE(v)   (HW_PCIE_EP_COMMAND_WR((HW_PCIE_EP_COMMAND_RD() & ~BM_PCIE_EP_COMMAND_BUS_MASTER_ENABLE) | BF_PCIE_EP_COMMAND_BUS_MASTER_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_COMMAND, field SPECIAL_CYCLE_ENABLE[3] (RW)
@@ -246,7 +240,6 @@ typedef union _hw_pcie_ep_command
  * Special Cycle Enable Not applicable for PCI Express. Must be hardwired to 0.
  */
 //@{
-
 #define BP_PCIE_EP_COMMAND_SPECIAL_CYCLE_ENABLE      (3)      //!< Bit position for PCIE_EP_COMMAND_SPECIAL_CYCLE_ENABLE.
 #define BM_PCIE_EP_COMMAND_SPECIAL_CYCLE_ENABLE      (0x00000008)  //!< Bit mask for PCIE_EP_COMMAND_SPECIAL_CYCLE_ENABLE.
 
@@ -260,7 +253,6 @@ typedef union _hw_pcie_ep_command
 //! @brief Set the SPECIAL_CYCLE_ENABLE field to a new value.
 #define BW_PCIE_EP_COMMAND_SPECIAL_CYCLE_ENABLE(v)   (HW_PCIE_EP_COMMAND_WR((HW_PCIE_EP_COMMAND_RD() & ~BM_PCIE_EP_COMMAND_SPECIAL_CYCLE_ENABLE) | BF_PCIE_EP_COMMAND_SPECIAL_CYCLE_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_COMMAND, field MEMORY_WRITE_AND_INVALIDATE[4] (RW)
@@ -268,7 +260,6 @@ typedef union _hw_pcie_ep_command
  * Memory Write and Invalidate Not applicable for PCI Express. Must be hardwired to 0.
  */
 //@{
-
 #define BP_PCIE_EP_COMMAND_MEMORY_WRITE_AND_INVALIDATE      (4)      //!< Bit position for PCIE_EP_COMMAND_MEMORY_WRITE_AND_INVALIDATE.
 #define BM_PCIE_EP_COMMAND_MEMORY_WRITE_AND_INVALIDATE      (0x00000010)  //!< Bit mask for PCIE_EP_COMMAND_MEMORY_WRITE_AND_INVALIDATE.
 
@@ -282,7 +273,6 @@ typedef union _hw_pcie_ep_command
 //! @brief Set the MEMORY_WRITE_AND_INVALIDATE field to a new value.
 #define BW_PCIE_EP_COMMAND_MEMORY_WRITE_AND_INVALIDATE(v)   (HW_PCIE_EP_COMMAND_WR((HW_PCIE_EP_COMMAND_RD() & ~BM_PCIE_EP_COMMAND_MEMORY_WRITE_AND_INVALIDATE) | BF_PCIE_EP_COMMAND_MEMORY_WRITE_AND_INVALIDATE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_COMMAND, field VGA_PALETTE_SNOOP[5] (RW)
@@ -290,7 +280,6 @@ typedef union _hw_pcie_ep_command
  * VGA Palette Snoop Not applicable for PCI Express. Must be hardwired to 0.
  */
 //@{
-
 #define BP_PCIE_EP_COMMAND_VGA_PALETTE_SNOOP      (5)      //!< Bit position for PCIE_EP_COMMAND_VGA_PALETTE_SNOOP.
 #define BM_PCIE_EP_COMMAND_VGA_PALETTE_SNOOP      (0x00000020)  //!< Bit mask for PCIE_EP_COMMAND_VGA_PALETTE_SNOOP.
 
@@ -304,7 +293,6 @@ typedef union _hw_pcie_ep_command
 //! @brief Set the VGA_PALETTE_SNOOP field to a new value.
 #define BW_PCIE_EP_COMMAND_VGA_PALETTE_SNOOP(v)   (HW_PCIE_EP_COMMAND_WR((HW_PCIE_EP_COMMAND_RD() & ~BM_PCIE_EP_COMMAND_VGA_PALETTE_SNOOP) | BF_PCIE_EP_COMMAND_VGA_PALETTE_SNOOP(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_COMMAND, field PARITY_ERROR_RESPONSE[6] (RW)
@@ -312,7 +300,6 @@ typedef union _hw_pcie_ep_command
  * Parity Error Response
  */
 //@{
-
 #define BP_PCIE_EP_COMMAND_PARITY_ERROR_RESPONSE      (6)      //!< Bit position for PCIE_EP_COMMAND_PARITY_ERROR_RESPONSE.
 #define BM_PCIE_EP_COMMAND_PARITY_ERROR_RESPONSE      (0x00000040)  //!< Bit mask for PCIE_EP_COMMAND_PARITY_ERROR_RESPONSE.
 
@@ -326,7 +313,6 @@ typedef union _hw_pcie_ep_command
 //! @brief Set the PARITY_ERROR_RESPONSE field to a new value.
 #define BW_PCIE_EP_COMMAND_PARITY_ERROR_RESPONSE(v)   (HW_PCIE_EP_COMMAND_WR((HW_PCIE_EP_COMMAND_RD() & ~BM_PCIE_EP_COMMAND_PARITY_ERROR_RESPONSE) | BF_PCIE_EP_COMMAND_PARITY_ERROR_RESPONSE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_COMMAND, field IDSEL_STEPPING[7] (RW)
@@ -334,7 +320,6 @@ typedef union _hw_pcie_ep_command
  * IDSEL Stepping/Wait Cycle Control Not applicable for PCI Express. Must be hardwired to 0
  */
 //@{
-
 #define BP_PCIE_EP_COMMAND_IDSEL_STEPPING      (7)      //!< Bit position for PCIE_EP_COMMAND_IDSEL_STEPPING.
 #define BM_PCIE_EP_COMMAND_IDSEL_STEPPING      (0x00000080)  //!< Bit mask for PCIE_EP_COMMAND_IDSEL_STEPPING.
 
@@ -348,7 +333,6 @@ typedef union _hw_pcie_ep_command
 //! @brief Set the IDSEL_STEPPING field to a new value.
 #define BW_PCIE_EP_COMMAND_IDSEL_STEPPING(v)   (HW_PCIE_EP_COMMAND_WR((HW_PCIE_EP_COMMAND_RD() & ~BM_PCIE_EP_COMMAND_IDSEL_STEPPING) | BF_PCIE_EP_COMMAND_IDSEL_STEPPING(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_COMMAND, field SERR_ENABLE[8] (RW)
@@ -356,7 +340,6 @@ typedef union _hw_pcie_ep_command
  * SERR# Enable
  */
 //@{
-
 #define BP_PCIE_EP_COMMAND_SERR_ENABLE      (8)      //!< Bit position for PCIE_EP_COMMAND_SERR_ENABLE.
 #define BM_PCIE_EP_COMMAND_SERR_ENABLE      (0x00000100)  //!< Bit mask for PCIE_EP_COMMAND_SERR_ENABLE.
 
@@ -370,7 +353,6 @@ typedef union _hw_pcie_ep_command
 //! @brief Set the SERR_ENABLE field to a new value.
 #define BW_PCIE_EP_COMMAND_SERR_ENABLE(v)   (HW_PCIE_EP_COMMAND_WR((HW_PCIE_EP_COMMAND_RD() & ~BM_PCIE_EP_COMMAND_SERR_ENABLE) | BF_PCIE_EP_COMMAND_SERR_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_COMMAND, field FAST_BACK_TO_BACK_ENABLE[9] (RW)
@@ -378,7 +360,6 @@ typedef union _hw_pcie_ep_command
  * Fast Back-to-Back Enable Not applicable for PCI Express. Must be hardwired to 0.
  */
 //@{
-
 #define BP_PCIE_EP_COMMAND_FAST_BACK_TO_BACK_ENABLE      (9)      //!< Bit position for PCIE_EP_COMMAND_FAST_BACK_TO_BACK_ENABLE.
 #define BM_PCIE_EP_COMMAND_FAST_BACK_TO_BACK_ENABLE      (0x00000200)  //!< Bit mask for PCIE_EP_COMMAND_FAST_BACK_TO_BACK_ENABLE.
 
@@ -392,7 +373,6 @@ typedef union _hw_pcie_ep_command
 //! @brief Set the FAST_BACK_TO_BACK_ENABLE field to a new value.
 #define BW_PCIE_EP_COMMAND_FAST_BACK_TO_BACK_ENABLE(v)   (HW_PCIE_EP_COMMAND_WR((HW_PCIE_EP_COMMAND_RD() & ~BM_PCIE_EP_COMMAND_FAST_BACK_TO_BACK_ENABLE) | BF_PCIE_EP_COMMAND_FAST_BACK_TO_BACK_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_COMMAND, field INTX_ASSERTION_DISABLE[10] (RW)
@@ -400,7 +380,6 @@ typedef union _hw_pcie_ep_command
  * INTx Assertion Disable
  */
 //@{
-
 #define BP_PCIE_EP_COMMAND_INTX_ASSERTION_DISABLE      (10)      //!< Bit position for PCIE_EP_COMMAND_INTX_ASSERTION_DISABLE.
 #define BM_PCIE_EP_COMMAND_INTX_ASSERTION_DISABLE      (0x00000400)  //!< Bit mask for PCIE_EP_COMMAND_INTX_ASSERTION_DISABLE.
 
@@ -414,7 +393,6 @@ typedef union _hw_pcie_ep_command
 //! @brief Set the INTX_ASSERTION_DISABLE field to a new value.
 #define BW_PCIE_EP_COMMAND_INTX_ASSERTION_DISABLE(v)   (HW_PCIE_EP_COMMAND_WR((HW_PCIE_EP_COMMAND_RD() & ~BM_PCIE_EP_COMMAND_INTX_ASSERTION_DISABLE) | BF_PCIE_EP_COMMAND_INTX_ASSERTION_DISABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_COMMAND, field INTX_STATUS[19] (RW)
@@ -422,7 +400,6 @@ typedef union _hw_pcie_ep_command
  * INTx Status
  */
 //@{
-
 #define BP_PCIE_EP_COMMAND_INTX_STATUS      (19)      //!< Bit position for PCIE_EP_COMMAND_INTX_STATUS.
 #define BM_PCIE_EP_COMMAND_INTX_STATUS      (0x00080000)  //!< Bit mask for PCIE_EP_COMMAND_INTX_STATUS.
 
@@ -436,7 +413,6 @@ typedef union _hw_pcie_ep_command
 //! @brief Set the INTX_STATUS field to a new value.
 #define BW_PCIE_EP_COMMAND_INTX_STATUS(v)   (HW_PCIE_EP_COMMAND_WR((HW_PCIE_EP_COMMAND_RD() & ~BM_PCIE_EP_COMMAND_INTX_STATUS) | BF_PCIE_EP_COMMAND_INTX_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_COMMAND, field CAPABILITIES_LIST[20] (RW)
@@ -444,7 +420,6 @@ typedef union _hw_pcie_ep_command
  * Capabilities List Indicates presence of an extended capability item. Hardwired to 1.
  */
 //@{
-
 #define BP_PCIE_EP_COMMAND_CAPABILITIES_LIST      (20)      //!< Bit position for PCIE_EP_COMMAND_CAPABILITIES_LIST.
 #define BM_PCIE_EP_COMMAND_CAPABILITIES_LIST      (0x00100000)  //!< Bit mask for PCIE_EP_COMMAND_CAPABILITIES_LIST.
 
@@ -458,7 +433,6 @@ typedef union _hw_pcie_ep_command
 //! @brief Set the CAPABILITIES_LIST field to a new value.
 #define BW_PCIE_EP_COMMAND_CAPABILITIES_LIST(v)   (HW_PCIE_EP_COMMAND_WR((HW_PCIE_EP_COMMAND_RD() & ~BM_PCIE_EP_COMMAND_CAPABILITIES_LIST) | BF_PCIE_EP_COMMAND_CAPABILITIES_LIST(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_COMMAND, field SIXTYSIX_MHZ_CAPABLE[21] (RW)
@@ -466,7 +440,6 @@ typedef union _hw_pcie_ep_command
  * 66 MHz Capable Not applicable for PCI Express. Hardwired to 0.
  */
 //@{
-
 #define BP_PCIE_EP_COMMAND_SIXTYSIX_MHZ_CAPABLE      (21)      //!< Bit position for PCIE_EP_COMMAND_SIXTYSIX_MHZ_CAPABLE.
 #define BM_PCIE_EP_COMMAND_SIXTYSIX_MHZ_CAPABLE      (0x00200000)  //!< Bit mask for PCIE_EP_COMMAND_SIXTYSIX_MHZ_CAPABLE.
 
@@ -480,7 +453,6 @@ typedef union _hw_pcie_ep_command
 //! @brief Set the SIXTYSIX_MHZ_CAPABLE field to a new value.
 #define BW_PCIE_EP_COMMAND_SIXTYSIX_MHZ_CAPABLE(v)   (HW_PCIE_EP_COMMAND_WR((HW_PCIE_EP_COMMAND_RD() & ~BM_PCIE_EP_COMMAND_SIXTYSIX_MHZ_CAPABLE) | BF_PCIE_EP_COMMAND_SIXTYSIX_MHZ_CAPABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_COMMAND, field FAST_BACK_TO_BACK_CAPABLE[23] (RW)
@@ -488,7 +460,6 @@ typedef union _hw_pcie_ep_command
  * Fast Back-to-Back Capable Not applicable for PCI Express. Hardwired to 0.
  */
 //@{
-
 #define BP_PCIE_EP_COMMAND_FAST_BACK_TO_BACK_CAPABLE      (23)      //!< Bit position for PCIE_EP_COMMAND_FAST_BACK_TO_BACK_CAPABLE.
 #define BM_PCIE_EP_COMMAND_FAST_BACK_TO_BACK_CAPABLE      (0x00800000)  //!< Bit mask for PCIE_EP_COMMAND_FAST_BACK_TO_BACK_CAPABLE.
 
@@ -502,7 +473,6 @@ typedef union _hw_pcie_ep_command
 //! @brief Set the FAST_BACK_TO_BACK_CAPABLE field to a new value.
 #define BW_PCIE_EP_COMMAND_FAST_BACK_TO_BACK_CAPABLE(v)   (HW_PCIE_EP_COMMAND_WR((HW_PCIE_EP_COMMAND_RD() & ~BM_PCIE_EP_COMMAND_FAST_BACK_TO_BACK_CAPABLE) | BF_PCIE_EP_COMMAND_FAST_BACK_TO_BACK_CAPABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_COMMAND, field MASTER_DATA_PARITY_ERROR[24] (RW)
@@ -510,7 +480,6 @@ typedef union _hw_pcie_ep_command
  * Master Data Parity Error
  */
 //@{
-
 #define BP_PCIE_EP_COMMAND_MASTER_DATA_PARITY_ERROR      (24)      //!< Bit position for PCIE_EP_COMMAND_MASTER_DATA_PARITY_ERROR.
 #define BM_PCIE_EP_COMMAND_MASTER_DATA_PARITY_ERROR      (0x01000000)  //!< Bit mask for PCIE_EP_COMMAND_MASTER_DATA_PARITY_ERROR.
 
@@ -524,7 +493,6 @@ typedef union _hw_pcie_ep_command
 //! @brief Set the MASTER_DATA_PARITY_ERROR field to a new value.
 #define BW_PCIE_EP_COMMAND_MASTER_DATA_PARITY_ERROR(v)   (HW_PCIE_EP_COMMAND_WR((HW_PCIE_EP_COMMAND_RD() & ~BM_PCIE_EP_COMMAND_MASTER_DATA_PARITY_ERROR) | BF_PCIE_EP_COMMAND_MASTER_DATA_PARITY_ERROR(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_COMMAND, field DEVSEL_TIMING[26:25] (RW)
@@ -532,7 +500,6 @@ typedef union _hw_pcie_ep_command
  * DEVSEL Timing Not applicable for PCI Express. Hardwired to 0.
  */
 //@{
-
 #define BP_PCIE_EP_COMMAND_DEVSEL_TIMING      (25)      //!< Bit position for PCIE_EP_COMMAND_DEVSEL_TIMING.
 #define BM_PCIE_EP_COMMAND_DEVSEL_TIMING      (0x06000000)  //!< Bit mask for PCIE_EP_COMMAND_DEVSEL_TIMING.
 
@@ -546,7 +513,6 @@ typedef union _hw_pcie_ep_command
 //! @brief Set the DEVSEL_TIMING field to a new value.
 #define BW_PCIE_EP_COMMAND_DEVSEL_TIMING(v)   (HW_PCIE_EP_COMMAND_WR((HW_PCIE_EP_COMMAND_RD() & ~BM_PCIE_EP_COMMAND_DEVSEL_TIMING) | BF_PCIE_EP_COMMAND_DEVSEL_TIMING(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_COMMAND, field SIGNALED_TARGET_ABORT[27] (RW)
@@ -554,7 +520,6 @@ typedef union _hw_pcie_ep_command
  * Signaled Target Abort
  */
 //@{
-
 #define BP_PCIE_EP_COMMAND_SIGNALED_TARGET_ABORT      (27)      //!< Bit position for PCIE_EP_COMMAND_SIGNALED_TARGET_ABORT.
 #define BM_PCIE_EP_COMMAND_SIGNALED_TARGET_ABORT      (0x08000000)  //!< Bit mask for PCIE_EP_COMMAND_SIGNALED_TARGET_ABORT.
 
@@ -568,7 +533,6 @@ typedef union _hw_pcie_ep_command
 //! @brief Set the SIGNALED_TARGET_ABORT field to a new value.
 #define BW_PCIE_EP_COMMAND_SIGNALED_TARGET_ABORT(v)   (HW_PCIE_EP_COMMAND_WR((HW_PCIE_EP_COMMAND_RD() & ~BM_PCIE_EP_COMMAND_SIGNALED_TARGET_ABORT) | BF_PCIE_EP_COMMAND_SIGNALED_TARGET_ABORT(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_COMMAND, field RECEIVED_TARGET_ABORT[28] (RW)
@@ -576,7 +540,6 @@ typedef union _hw_pcie_ep_command
  * Received Target Abort
  */
 //@{
-
 #define BP_PCIE_EP_COMMAND_RECEIVED_TARGET_ABORT      (28)      //!< Bit position for PCIE_EP_COMMAND_RECEIVED_TARGET_ABORT.
 #define BM_PCIE_EP_COMMAND_RECEIVED_TARGET_ABORT      (0x10000000)  //!< Bit mask for PCIE_EP_COMMAND_RECEIVED_TARGET_ABORT.
 
@@ -590,7 +553,6 @@ typedef union _hw_pcie_ep_command
 //! @brief Set the RECEIVED_TARGET_ABORT field to a new value.
 #define BW_PCIE_EP_COMMAND_RECEIVED_TARGET_ABORT(v)   (HW_PCIE_EP_COMMAND_WR((HW_PCIE_EP_COMMAND_RD() & ~BM_PCIE_EP_COMMAND_RECEIVED_TARGET_ABORT) | BF_PCIE_EP_COMMAND_RECEIVED_TARGET_ABORT(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_COMMAND, field RECEIVED_MASTER_ABORT[29] (RW)
@@ -598,7 +560,6 @@ typedef union _hw_pcie_ep_command
  * Received Master Abort
  */
 //@{
-
 #define BP_PCIE_EP_COMMAND_RECEIVED_MASTER_ABORT      (29)      //!< Bit position for PCIE_EP_COMMAND_RECEIVED_MASTER_ABORT.
 #define BM_PCIE_EP_COMMAND_RECEIVED_MASTER_ABORT      (0x20000000)  //!< Bit mask for PCIE_EP_COMMAND_RECEIVED_MASTER_ABORT.
 
@@ -612,7 +573,6 @@ typedef union _hw_pcie_ep_command
 //! @brief Set the RECEIVED_MASTER_ABORT field to a new value.
 #define BW_PCIE_EP_COMMAND_RECEIVED_MASTER_ABORT(v)   (HW_PCIE_EP_COMMAND_WR((HW_PCIE_EP_COMMAND_RD() & ~BM_PCIE_EP_COMMAND_RECEIVED_MASTER_ABORT) | BF_PCIE_EP_COMMAND_RECEIVED_MASTER_ABORT(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_COMMAND, field DETECTED_PARITY_ERROR[30] (RW)
@@ -620,7 +580,6 @@ typedef union _hw_pcie_ep_command
  * Detected Parity Error
  */
 //@{
-
 #define BP_PCIE_EP_COMMAND_DETECTED_PARITY_ERROR      (30)      //!< Bit position for PCIE_EP_COMMAND_DETECTED_PARITY_ERROR.
 #define BM_PCIE_EP_COMMAND_DETECTED_PARITY_ERROR      (0x40000000)  //!< Bit mask for PCIE_EP_COMMAND_DETECTED_PARITY_ERROR.
 
@@ -634,7 +593,6 @@ typedef union _hw_pcie_ep_command
 //! @brief Set the DETECTED_PARITY_ERROR field to a new value.
 #define BW_PCIE_EP_COMMAND_DETECTED_PARITY_ERROR(v)   (HW_PCIE_EP_COMMAND_WR((HW_PCIE_EP_COMMAND_RD() & ~BM_PCIE_EP_COMMAND_DETECTED_PARITY_ERROR) | BF_PCIE_EP_COMMAND_DETECTED_PARITY_ERROR(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_COMMAND, field SIGNALED_SYSTEM_ERROR[31] (RW)
@@ -642,7 +600,6 @@ typedef union _hw_pcie_ep_command
  * Signaled System Error
  */
 //@{
-
 #define BP_PCIE_EP_COMMAND_SIGNALED_SYSTEM_ERROR      (31)      //!< Bit position for PCIE_EP_COMMAND_SIGNALED_SYSTEM_ERROR.
 #define BM_PCIE_EP_COMMAND_SIGNALED_SYSTEM_ERROR      (0x80000000)  //!< Bit mask for PCIE_EP_COMMAND_SIGNALED_SYSTEM_ERROR.
 
@@ -656,7 +613,6 @@ typedef union _hw_pcie_ep_command
 //! @brief Set the SIGNALED_SYSTEM_ERROR field to a new value.
 #define BW_PCIE_EP_COMMAND_SIGNALED_SYSTEM_ERROR(v)   (HW_PCIE_EP_COMMAND_WR((HW_PCIE_EP_COMMAND_RD() & ~BM_PCIE_EP_COMMAND_SIGNALED_SYSTEM_ERROR) | BF_PCIE_EP_COMMAND_SIGNALED_SYSTEM_ERROR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -712,7 +668,6 @@ typedef union _hw_pcie_ep_bist
  * impact functionality of the core.
  */
 //@{
-
 #define BP_PCIE_EP_BIST_CACHE_LINE_SIZE      (0)      //!< Bit position for PCIE_EP_BIST_CACHE_LINE_SIZE.
 #define BM_PCIE_EP_BIST_CACHE_LINE_SIZE      (0x000000ff)  //!< Bit mask for PCIE_EP_BIST_CACHE_LINE_SIZE.
 
@@ -726,7 +681,6 @@ typedef union _hw_pcie_ep_bist
 //! @brief Set the CACHE_LINE_SIZE field to a new value.
 #define BW_PCIE_EP_BIST_CACHE_LINE_SIZE(v)   (HW_PCIE_EP_BIST_WR((HW_PCIE_EP_BIST_RD() & ~BM_PCIE_EP_BIST_CACHE_LINE_SIZE) | BF_PCIE_EP_BIST_CACHE_LINE_SIZE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_BIST, field MASTER_LATENCY_TIMER[15:8] (RW)
@@ -734,7 +688,6 @@ typedef union _hw_pcie_ep_bist
  * Master Latency Timer Not applicable for PCI Express, hardwired to 0.
  */
 //@{
-
 #define BP_PCIE_EP_BIST_MASTER_LATENCY_TIMER      (8)      //!< Bit position for PCIE_EP_BIST_MASTER_LATENCY_TIMER.
 #define BM_PCIE_EP_BIST_MASTER_LATENCY_TIMER      (0x0000ff00)  //!< Bit mask for PCIE_EP_BIST_MASTER_LATENCY_TIMER.
 
@@ -748,7 +701,6 @@ typedef union _hw_pcie_ep_bist
 //! @brief Set the MASTER_LATENCY_TIMER field to a new value.
 #define BW_PCIE_EP_BIST_MASTER_LATENCY_TIMER(v)   (HW_PCIE_EP_BIST_WR((HW_PCIE_EP_BIST_RD() & ~BM_PCIE_EP_BIST_MASTER_LATENCY_TIMER) | BF_PCIE_EP_BIST_MASTER_LATENCY_TIMER(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_BIST, field CONFIGURATION_HEADER_FORMAT[22:16] (RW)
@@ -756,7 +708,6 @@ typedef union _hw_pcie_ep_bist
  * Configuration Header Format Hardwired to 0 for type 0.
  */
 //@{
-
 #define BP_PCIE_EP_BIST_CONFIGURATION_HEADER_FORMAT      (16)      //!< Bit position for PCIE_EP_BIST_CONFIGURATION_HEADER_FORMAT.
 #define BM_PCIE_EP_BIST_CONFIGURATION_HEADER_FORMAT      (0x007f0000)  //!< Bit mask for PCIE_EP_BIST_CONFIGURATION_HEADER_FORMAT.
 
@@ -770,7 +721,6 @@ typedef union _hw_pcie_ep_bist
 //! @brief Set the CONFIGURATION_HEADER_FORMAT field to a new value.
 #define BW_PCIE_EP_BIST_CONFIGURATION_HEADER_FORMAT(v)   (HW_PCIE_EP_BIST_WR((HW_PCIE_EP_BIST_RD() & ~BM_PCIE_EP_BIST_CONFIGURATION_HEADER_FORMAT) | BF_PCIE_EP_BIST_CONFIGURATION_HEADER_FORMAT(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_BIST, field MULTI_FUNCTION_DEVICE[23] (RW)
@@ -780,7 +730,6 @@ typedef union _hw_pcie_ep_bist
  * the DBI.
  */
 //@{
-
 #define BP_PCIE_EP_BIST_MULTI_FUNCTION_DEVICE      (23)      //!< Bit position for PCIE_EP_BIST_MULTI_FUNCTION_DEVICE.
 #define BM_PCIE_EP_BIST_MULTI_FUNCTION_DEVICE      (0x00800000)  //!< Bit mask for PCIE_EP_BIST_MULTI_FUNCTION_DEVICE.
 
@@ -794,7 +743,6 @@ typedef union _hw_pcie_ep_bist
 //! @brief Set the MULTI_FUNCTION_DEVICE field to a new value.
 #define BW_PCIE_EP_BIST_MULTI_FUNCTION_DEVICE(v)   (HW_PCIE_EP_BIST_WR((HW_PCIE_EP_BIST_RD() & ~BM_PCIE_EP_BIST_MULTI_FUNCTION_DEVICE) | BF_PCIE_EP_BIST_MULTI_FUNCTION_DEVICE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_BIST, field NOT_SUPPORTED_BY__CORE[31:24] (RW)
@@ -803,7 +751,6 @@ typedef union _hw_pcie_ep_bist
  * hardwired to 0.
  */
 //@{
-
 #define BP_PCIE_EP_BIST_NOT_SUPPORTED_BY__CORE      (24)      //!< Bit position for PCIE_EP_BIST_NOT_SUPPORTED_BY__CORE.
 #define BM_PCIE_EP_BIST_NOT_SUPPORTED_BY__CORE      (0xff000000)  //!< Bit mask for PCIE_EP_BIST_NOT_SUPPORTED_BY__CORE.
 
@@ -817,7 +764,6 @@ typedef union _hw_pcie_ep_bist
 //! @brief Set the NOT_SUPPORTED_BY__CORE field to a new value.
 #define BW_PCIE_EP_BIST_NOT_SUPPORTED_BY__CORE(v)   (HW_PCIE_EP_BIST_WR((HW_PCIE_EP_BIST_RD() & ~BM_PCIE_EP_BIST_NOT_SUPPORTED_BY__CORE) | BF_PCIE_EP_BIST_NOT_SUPPORTED_BY__CORE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -903,13 +849,11 @@ typedef union _hw_pcie_ep_bar0
  * - 1 - = BAR 0 is an I/O BAR
  */
 //@{
-
 #define BP_PCIE_EP_BAR0_MEM_I_O      (0)      //!< Bit position for PCIE_EP_BAR0_MEM_I_O.
 #define BM_PCIE_EP_BAR0_MEM_I_O      (0x00000001)  //!< Bit mask for PCIE_EP_BAR0_MEM_I_O.
 
 //! @brief Get value of PCIE_EP_BAR0_MEM_I_O from a register value.
 #define BG_PCIE_EP_BAR0_MEM_I_O(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_BAR0_MEM_I_O) >> BP_PCIE_EP_BAR0_MEM_I_O)
-
 //@}
 
 /*! @name Register PCIE_EP_BAR0, field TYPE[2:1] (RO)
@@ -922,13 +866,11 @@ typedef union _hw_pcie_ep_bar0
  * - 10 - = 64-bit BAR
  */
 //@{
-
 #define BP_PCIE_EP_BAR0_TYPE      (1)      //!< Bit position for PCIE_EP_BAR0_TYPE.
 #define BM_PCIE_EP_BAR0_TYPE      (0x00000006)  //!< Bit mask for PCIE_EP_BAR0_TYPE.
 
 //! @brief Get value of PCIE_EP_BAR0_TYPE from a register value.
 #define BG_PCIE_EP_BAR0_TYPE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_BAR0_TYPE) >> BP_PCIE_EP_BAR0_TYPE)
-
 //@}
 
 /*! @name Register PCIE_EP_BAR0, field PREF[3] (RO)
@@ -942,13 +884,11 @@ typedef union _hw_pcie_ep_bar0
  * - 1 - = Prefetchable
  */
 //@{
-
 #define BP_PCIE_EP_BAR0_PREF      (3)      //!< Bit position for PCIE_EP_BAR0_PREF.
 #define BM_PCIE_EP_BAR0_PREF      (0x00000008)  //!< Bit mask for PCIE_EP_BAR0_PREF.
 
 //! @brief Get value of PCIE_EP_BAR0_PREF from a register value.
 #define BG_PCIE_EP_BAR0_PREF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_BAR0_PREF) >> BP_PCIE_EP_BAR0_PREF)
-
 //@}
 
 /*! @name Register PCIE_EP_BAR0, field ADDRESS[31:4] (RO)
@@ -957,13 +897,11 @@ typedef union _hw_pcie_ep_bar0
  * BAR 0 Mask value determines which address bits are masked.
  */
 //@{
-
 #define BP_PCIE_EP_BAR0_ADDRESS      (4)      //!< Bit position for PCIE_EP_BAR0_ADDRESS.
 #define BM_PCIE_EP_BAR0_ADDRESS      (0xfffffff0)  //!< Bit mask for PCIE_EP_BAR0_ADDRESS.
 
 //! @brief Get value of PCIE_EP_BAR0_ADDRESS from a register value.
 #define BG_PCIE_EP_BAR0_ADDRESS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_BAR0_ADDRESS) >> BP_PCIE_EP_BAR0_ADDRESS)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1050,13 +988,11 @@ typedef union _hw_pcie_ep_mask0
  * - 1 - BAR 0 is enabled
  */
 //@{
-
 #define BP_PCIE_EP_MASK0_ENABLE      (0)      //!< Bit position for PCIE_EP_MASK0_ENABLE.
 #define BM_PCIE_EP_MASK0_ENABLE      (0x00000001)  //!< Bit mask for PCIE_EP_MASK0_ENABLE.
 
 //! @brief Get value of PCIE_EP_MASK0_ENABLE from a register value.
 #define BG_PCIE_EP_MASK0_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_MASK0_ENABLE) >> BP_PCIE_EP_MASK0_ENABLE)
-
 //@}
 
 /*! @name Register PCIE_EP_MASK0, field MASK[31:1] (RO)
@@ -1069,13 +1005,11 @@ typedef union _hw_pcie_ep_mask0
  * DBI.
  */
 //@{
-
 #define BP_PCIE_EP_MASK0_MASK      (1)      //!< Bit position for PCIE_EP_MASK0_MASK.
 #define BM_PCIE_EP_MASK0_MASK      (0xfffffffe)  //!< Bit mask for PCIE_EP_MASK0_MASK.
 
 //! @brief Get value of PCIE_EP_MASK0_MASK from a register value.
 #define BG_PCIE_EP_MASK0_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_MASK0_MASK) >> BP_PCIE_EP_MASK0_MASK)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1125,13 +1059,11 @@ typedef union _hw_pcie_ep_mask1
  * application write access to the full 64-bit BAR 0 Mask register.
  */
 //@{
-
 #define BP_PCIE_EP_MASK1_MASK      (0)      //!< Bit position for PCIE_EP_MASK1_MASK.
 #define BM_PCIE_EP_MASK1_MASK      (0xffffffff)  //!< Bit mask for PCIE_EP_MASK1_MASK.
 
 //! @brief Get value of PCIE_EP_MASK1_MASK from a register value.
 #define BG_PCIE_EP_MASK1_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_MASK1_MASK) >> BP_PCIE_EP_MASK1_MASK)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1183,13 +1115,11 @@ typedef union _hw_pcie_ep_mask2
  * - 1 - BAR 2 is enabled
  */
 //@{
-
 #define BP_PCIE_EP_MASK2_BAR2_ENABLED_N      (0)      //!< Bit position for PCIE_EP_MASK2_BAR2_ENABLED_N.
 #define BM_PCIE_EP_MASK2_BAR2_ENABLED_N      (0x00000001)  //!< Bit mask for PCIE_EP_MASK2_BAR2_ENABLED_N.
 
 //! @brief Get value of PCIE_EP_MASK2_BAR2_ENABLED_N from a register value.
 #define BG_PCIE_EP_MASK2_BAR2_ENABLED_N(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_MASK2_BAR2_ENABLED_N) >> BP_PCIE_EP_MASK2_BAR2_ENABLED_N)
-
 //@}
 
 /*! @name Register PCIE_EP_MASK2, field BAR2_MASK_N[31:1] (RO)
@@ -1201,13 +1131,11 @@ typedef union _hw_pcie_ep_mask2
  * register is writable through the DBI.
  */
 //@{
-
 #define BP_PCIE_EP_MASK2_BAR2_MASK_N      (1)      //!< Bit position for PCIE_EP_MASK2_BAR2_MASK_N.
 #define BM_PCIE_EP_MASK2_BAR2_MASK_N      (0xfffffffe)  //!< Bit mask for PCIE_EP_MASK2_BAR2_MASK_N.
 
 //! @brief Get value of PCIE_EP_MASK2_BAR2_MASK_N from a register value.
 #define BG_PCIE_EP_MASK2_BAR2_MASK_N(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_MASK2_BAR2_MASK_N) >> BP_PCIE_EP_MASK2_BAR2_MASK_N)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1257,13 +1185,11 @@ typedef union _hw_pcie_ep_mask3
  * controls application write access to the full 64-bit BAR 2 Mask register.
  */
 //@{
-
 #define BP_PCIE_EP_MASK3_MASK      (0)      //!< Bit position for PCIE_EP_MASK3_MASK.
 #define BM_PCIE_EP_MASK3_MASK      (0xffffffff)  //!< Bit mask for PCIE_EP_MASK3_MASK.
 
 //! @brief Get value of PCIE_EP_MASK3_MASK from a register value.
 #define BG_PCIE_EP_MASK3_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_MASK3_MASK) >> BP_PCIE_EP_MASK3_MASK)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1309,13 +1235,11 @@ typedef union _hw_pcie_ep_cisp
  * CardBus CIS Pointer Optional, writable through the DBI.
  */
 //@{
-
 #define BP_PCIE_EP_CISP_CARDBUS_CIS_PTR_N      (0)      //!< Bit position for PCIE_EP_CISP_CARDBUS_CIS_PTR_N.
 #define BM_PCIE_EP_CISP_CARDBUS_CIS_PTR_N      (0xffffffff)  //!< Bit mask for PCIE_EP_CISP_CARDBUS_CIS_PTR_N.
 
 //! @brief Get value of PCIE_EP_CISP_CARDBUS_CIS_PTR_N from a register value.
 #define BG_PCIE_EP_CISP_CARDBUS_CIS_PTR_N(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_CISP_CARDBUS_CIS_PTR_N) >> BP_PCIE_EP_CISP_CARDBUS_CIS_PTR_N)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1362,13 +1286,11 @@ typedef union _hw_pcie_ep_ssid
  * Subsystem Vendor ID Writable through the DBI.
  */
 //@{
-
 #define BP_PCIE_EP_SSID_SUBSYS_VENDOR_ID_N      (0)      //!< Bit position for PCIE_EP_SSID_SUBSYS_VENDOR_ID_N.
 #define BM_PCIE_EP_SSID_SUBSYS_VENDOR_ID_N      (0x0000ffff)  //!< Bit mask for PCIE_EP_SSID_SUBSYS_VENDOR_ID_N.
 
 //! @brief Get value of PCIE_EP_SSID_SUBSYS_VENDOR_ID_N from a register value.
 #define BG_PCIE_EP_SSID_SUBSYS_VENDOR_ID_N(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_SSID_SUBSYS_VENDOR_ID_N) >> BP_PCIE_EP_SSID_SUBSYS_VENDOR_ID_N)
-
 //@}
 
 /*! @name Register PCIE_EP_SSID, field SUBSYS_DEV_ID_N[31:16] (RO)
@@ -1376,13 +1298,11 @@ typedef union _hw_pcie_ep_ssid
  * Subsystem ID Writable through the DBI.
  */
 //@{
-
 #define BP_PCIE_EP_SSID_SUBSYS_DEV_ID_N      (16)      //!< Bit position for PCIE_EP_SSID_SUBSYS_DEV_ID_N.
 #define BM_PCIE_EP_SSID_SUBSYS_DEV_ID_N      (0xffff0000)  //!< Bit mask for PCIE_EP_SSID_SUBSYS_DEV_ID_N.
 
 //! @brief Get value of PCIE_EP_SSID_SUBSYS_DEV_ID_N from a register value.
 #define BG_PCIE_EP_SSID_SUBSYS_DEV_ID_N(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_SSID_SUBSYS_DEV_ID_N) >> BP_PCIE_EP_SSID_SUBSYS_DEV_ID_N)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1434,7 +1354,6 @@ typedef union _hw_pcie_ep_erombar
  * Expansion ROM Enable
  */
 //@{
-
 #define BP_PCIE_EP_EROMBAR_ENABLE      (0)      //!< Bit position for PCIE_EP_EROMBAR_ENABLE.
 #define BM_PCIE_EP_EROMBAR_ENABLE      (0x00000001)  //!< Bit mask for PCIE_EP_EROMBAR_ENABLE.
 
@@ -1448,7 +1367,6 @@ typedef union _hw_pcie_ep_erombar
 //! @brief Set the ENABLE field to a new value.
 #define BW_PCIE_EP_EROMBAR_ENABLE(v)   (HW_PCIE_EP_EROMBAR_WR((HW_PCIE_EP_EROMBAR_RD() & ~BM_PCIE_EP_EROMBAR_ENABLE) | BF_PCIE_EP_EROMBAR_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_EROMBAR, field ADDRESS[31:11] (RW)
@@ -1456,7 +1374,6 @@ typedef union _hw_pcie_ep_erombar
  * Expansion ROM Address
  */
 //@{
-
 #define BP_PCIE_EP_EROMBAR_ADDRESS      (11)      //!< Bit position for PCIE_EP_EROMBAR_ADDRESS.
 #define BM_PCIE_EP_EROMBAR_ADDRESS      (0xfffff800)  //!< Bit mask for PCIE_EP_EROMBAR_ADDRESS.
 
@@ -1470,7 +1387,6 @@ typedef union _hw_pcie_ep_erombar
 //! @brief Set the ADDRESS field to a new value.
 #define BW_PCIE_EP_EROMBAR_ADDRESS(v)   (HW_PCIE_EP_EROMBAR_WR((HW_PCIE_EP_EROMBAR_RD() & ~BM_PCIE_EP_EROMBAR_ADDRESS) | BF_PCIE_EP_EROMBAR_ADDRESS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1525,7 +1441,6 @@ typedef union _hw_pcie_ep_erommask
  * - 1 - Expansion ROM BAR is enabled
  */
 //@{
-
 #define BP_PCIE_EP_EROMMASK_ROM_BAR_ENABLED_N      (0)      //!< Bit position for PCIE_EP_EROMMASK_ROM_BAR_ENABLED_N.
 #define BM_PCIE_EP_EROMMASK_ROM_BAR_ENABLED_N      (0x00000001)  //!< Bit mask for PCIE_EP_EROMMASK_ROM_BAR_ENABLED_N.
 
@@ -1539,7 +1454,6 @@ typedef union _hw_pcie_ep_erommask
 //! @brief Set the ROM_BAR_ENABLED_N field to a new value.
 #define BW_PCIE_EP_EROMMASK_ROM_BAR_ENABLED_N(v)   (HW_PCIE_EP_EROMMASK_WR((HW_PCIE_EP_EROMMASK_RD() & ~BM_PCIE_EP_EROMMASK_ROM_BAR_ENABLED_N) | BF_PCIE_EP_EROMMASK_ROM_BAR_ENABLED_N(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_EROMMASK, field ROM_MASK_N[31:1] (RW)
@@ -1553,7 +1467,6 @@ typedef union _hw_pcie_ep_erommask
  * register is writable through the DBI.
  */
 //@{
-
 #define BP_PCIE_EP_EROMMASK_ROM_MASK_N      (1)      //!< Bit position for PCIE_EP_EROMMASK_ROM_MASK_N.
 #define BM_PCIE_EP_EROMMASK_ROM_MASK_N      (0xfffffffe)  //!< Bit mask for PCIE_EP_EROMMASK_ROM_MASK_N.
 
@@ -1567,7 +1480,6 @@ typedef union _hw_pcie_ep_erommask
 //! @brief Set the ROM_MASK_N field to a new value.
 #define BW_PCIE_EP_EROMMASK_ROM_MASK_N(v)   (HW_PCIE_EP_EROMMASK_WR((HW_PCIE_EP_EROMMASK_RD() & ~BM_PCIE_EP_EROMMASK_ROM_MASK_N) | BF_PCIE_EP_EROMMASK_ROM_MASK_N(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1614,13 +1526,11 @@ typedef union _hw_pcie_ep_cappr
  * First Capability Pointer. See for more information.
  */
 //@{
-
 #define BP_PCIE_EP_CAPPR_CFG_NEXT_PTR      (0)      //!< Bit position for PCIE_EP_CAPPR_CFG_NEXT_PTR.
 #define BM_PCIE_EP_CAPPR_CFG_NEXT_PTR      (0x000000ff)  //!< Bit mask for PCIE_EP_CAPPR_CFG_NEXT_PTR.
 
 //! @brief Get value of PCIE_EP_CAPPR_CFG_NEXT_PTR from a register value.
 #define BG_PCIE_EP_CAPPR_CFG_NEXT_PTR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_CAPPR_CFG_NEXT_PTR) >> BP_PCIE_EP_CAPPR_CFG_NEXT_PTR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1673,7 +1583,6 @@ typedef union _hw_pcie_ep_ilr
  * the routing information into this register as it initializes and configures the system.
  */
 //@{
-
 #define BP_PCIE_EP_ILR_INTERRUPT_LINE      (0)      //!< Bit position for PCIE_EP_ILR_INTERRUPT_LINE.
 #define BM_PCIE_EP_ILR_INTERRUPT_LINE      (0x000000ff)  //!< Bit mask for PCIE_EP_ILR_INTERRUPT_LINE.
 
@@ -1687,7 +1596,6 @@ typedef union _hw_pcie_ep_ilr
 //! @brief Set the INTERRUPT_LINE field to a new value.
 #define BW_PCIE_EP_ILR_INTERRUPT_LINE(v)   (HW_PCIE_EP_ILR_WR((HW_PCIE_EP_ILR_RD() & ~BM_PCIE_EP_ILR_INTERRUPT_LINE) | BF_PCIE_EP_ILR_INTERRUPT_LINE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_ILR, field INT_PIN_MAPPING_N[15:8] (RW)
@@ -1704,7 +1612,6 @@ typedef union _hw_pcie_ep_ilr
  * - 0x04 - The device (or function) uses INTD
  */
 //@{
-
 #define BP_PCIE_EP_ILR_INT_PIN_MAPPING_N      (8)      //!< Bit position for PCIE_EP_ILR_INT_PIN_MAPPING_N.
 #define BM_PCIE_EP_ILR_INT_PIN_MAPPING_N      (0x0000ff00)  //!< Bit mask for PCIE_EP_ILR_INT_PIN_MAPPING_N.
 
@@ -1718,7 +1625,6 @@ typedef union _hw_pcie_ep_ilr
 //! @brief Set the INT_PIN_MAPPING_N field to a new value.
 #define BW_PCIE_EP_ILR_INT_PIN_MAPPING_N(v)   (HW_PCIE_EP_ILR_WR((HW_PCIE_EP_ILR_RD() & ~BM_PCIE_EP_ILR_INT_PIN_MAPPING_N) | BF_PCIE_EP_ILR_INT_PIN_MAPPING_N(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1771,7 +1677,6 @@ typedef union _hw_pcie_ep_aer
  * PCI Express Extended Capability ID Value is 0x1 for Advanced Error Reporting.
  */
 //@{
-
 #define BP_PCIE_EP_AER_PCI_EXPRESS_EXTENDED_CAPABILITY_ID      (0)      //!< Bit position for PCIE_EP_AER_PCI_EXPRESS_EXTENDED_CAPABILITY_ID.
 #define BM_PCIE_EP_AER_PCI_EXPRESS_EXTENDED_CAPABILITY_ID      (0x0000ffff)  //!< Bit mask for PCIE_EP_AER_PCI_EXPRESS_EXTENDED_CAPABILITY_ID.
 
@@ -1785,7 +1690,6 @@ typedef union _hw_pcie_ep_aer
 //! @brief Set the PCI_EXPRESS_EXTENDED_CAPABILITY_ID field to a new value.
 #define BW_PCIE_EP_AER_PCI_EXPRESS_EXTENDED_CAPABILITY_ID(v)   (HW_PCIE_EP_AER_WR((HW_PCIE_EP_AER_RD() & ~BM_PCIE_EP_AER_PCI_EXPRESS_EXTENDED_CAPABILITY_ID) | BF_PCIE_EP_AER_PCI_EXPRESS_EXTENDED_CAPABILITY_ID(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_AER, field CAPABILITY_VERSION[19:16] (RW)
@@ -1793,7 +1697,6 @@ typedef union _hw_pcie_ep_aer
  * Capability Version
  */
 //@{
-
 #define BP_PCIE_EP_AER_CAPABILITY_VERSION      (16)      //!< Bit position for PCIE_EP_AER_CAPABILITY_VERSION.
 #define BM_PCIE_EP_AER_CAPABILITY_VERSION      (0x000f0000)  //!< Bit mask for PCIE_EP_AER_CAPABILITY_VERSION.
 
@@ -1807,7 +1710,6 @@ typedef union _hw_pcie_ep_aer
 //! @brief Set the CAPABILITY_VERSION field to a new value.
 #define BW_PCIE_EP_AER_CAPABILITY_VERSION(v)   (HW_PCIE_EP_AER_WR((HW_PCIE_EP_AER_RD() & ~BM_PCIE_EP_AER_CAPABILITY_VERSION) | BF_PCIE_EP_AER_CAPABILITY_VERSION(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_AER, field NEXT_CAPABILITY_OFFSET[31:20] (RW)
@@ -1815,7 +1717,6 @@ typedef union _hw_pcie_ep_aer
  * Next Capability Offset See Table 5-222 on page 641.
  */
 //@{
-
 #define BP_PCIE_EP_AER_NEXT_CAPABILITY_OFFSET      (20)      //!< Bit position for PCIE_EP_AER_NEXT_CAPABILITY_OFFSET.
 #define BM_PCIE_EP_AER_NEXT_CAPABILITY_OFFSET      (0xfff00000)  //!< Bit mask for PCIE_EP_AER_NEXT_CAPABILITY_OFFSET.
 
@@ -1829,7 +1730,6 @@ typedef union _hw_pcie_ep_aer
 //! @brief Set the NEXT_CAPABILITY_OFFSET field to a new value.
 #define BW_PCIE_EP_AER_NEXT_CAPABILITY_OFFSET(v)   (HW_PCIE_EP_AER_WR((HW_PCIE_EP_AER_RD() & ~BM_PCIE_EP_AER_NEXT_CAPABILITY_OFFSET) | BF_PCIE_EP_AER_NEXT_CAPABILITY_OFFSET(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1892,7 +1792,6 @@ typedef union _hw_pcie_ep_uesr
  * Data Link Protocol Error Status
  */
 //@{
-
 #define BP_PCIE_EP_UESR_DATA_LINK_PROTOCOL_ERROR_STATUS      (4)      //!< Bit position for PCIE_EP_UESR_DATA_LINK_PROTOCOL_ERROR_STATUS.
 #define BM_PCIE_EP_UESR_DATA_LINK_PROTOCOL_ERROR_STATUS      (0x00000010)  //!< Bit mask for PCIE_EP_UESR_DATA_LINK_PROTOCOL_ERROR_STATUS.
 
@@ -1906,7 +1805,6 @@ typedef union _hw_pcie_ep_uesr
 //! @brief Set the DATA_LINK_PROTOCOL_ERROR_STATUS field to a new value.
 #define BW_PCIE_EP_UESR_DATA_LINK_PROTOCOL_ERROR_STATUS(v)   (HW_PCIE_EP_UESR_WR((HW_PCIE_EP_UESR_RD() & ~BM_PCIE_EP_UESR_DATA_LINK_PROTOCOL_ERROR_STATUS) | BF_PCIE_EP_UESR_DATA_LINK_PROTOCOL_ERROR_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UESR, field SURPRISE_DOWN_ERROR_STATUS[5] (RW)
@@ -1914,7 +1812,6 @@ typedef union _hw_pcie_ep_uesr
  * Surprise Down Error Status (not supported)
  */
 //@{
-
 #define BP_PCIE_EP_UESR_SURPRISE_DOWN_ERROR_STATUS      (5)      //!< Bit position for PCIE_EP_UESR_SURPRISE_DOWN_ERROR_STATUS.
 #define BM_PCIE_EP_UESR_SURPRISE_DOWN_ERROR_STATUS      (0x00000020)  //!< Bit mask for PCIE_EP_UESR_SURPRISE_DOWN_ERROR_STATUS.
 
@@ -1928,7 +1825,6 @@ typedef union _hw_pcie_ep_uesr
 //! @brief Set the SURPRISE_DOWN_ERROR_STATUS field to a new value.
 #define BW_PCIE_EP_UESR_SURPRISE_DOWN_ERROR_STATUS(v)   (HW_PCIE_EP_UESR_WR((HW_PCIE_EP_UESR_RD() & ~BM_PCIE_EP_UESR_SURPRISE_DOWN_ERROR_STATUS) | BF_PCIE_EP_UESR_SURPRISE_DOWN_ERROR_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UESR, field POISONED_TLP_STATUS[12] (RW)
@@ -1936,7 +1832,6 @@ typedef union _hw_pcie_ep_uesr
  * Poisoned TLP Status
  */
 //@{
-
 #define BP_PCIE_EP_UESR_POISONED_TLP_STATUS      (12)      //!< Bit position for PCIE_EP_UESR_POISONED_TLP_STATUS.
 #define BM_PCIE_EP_UESR_POISONED_TLP_STATUS      (0x00001000)  //!< Bit mask for PCIE_EP_UESR_POISONED_TLP_STATUS.
 
@@ -1950,7 +1845,6 @@ typedef union _hw_pcie_ep_uesr
 //! @brief Set the POISONED_TLP_STATUS field to a new value.
 #define BW_PCIE_EP_UESR_POISONED_TLP_STATUS(v)   (HW_PCIE_EP_UESR_WR((HW_PCIE_EP_UESR_RD() & ~BM_PCIE_EP_UESR_POISONED_TLP_STATUS) | BF_PCIE_EP_UESR_POISONED_TLP_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UESR, field FLOW_CONTROL_PROTOCOL_ERROR_STATUS[13] (RW)
@@ -1958,7 +1852,6 @@ typedef union _hw_pcie_ep_uesr
  * Flow Control Protocol Error Status
  */
 //@{
-
 #define BP_PCIE_EP_UESR_FLOW_CONTROL_PROTOCOL_ERROR_STATUS      (13)      //!< Bit position for PCIE_EP_UESR_FLOW_CONTROL_PROTOCOL_ERROR_STATUS.
 #define BM_PCIE_EP_UESR_FLOW_CONTROL_PROTOCOL_ERROR_STATUS      (0x00002000)  //!< Bit mask for PCIE_EP_UESR_FLOW_CONTROL_PROTOCOL_ERROR_STATUS.
 
@@ -1972,7 +1865,6 @@ typedef union _hw_pcie_ep_uesr
 //! @brief Set the FLOW_CONTROL_PROTOCOL_ERROR_STATUS field to a new value.
 #define BW_PCIE_EP_UESR_FLOW_CONTROL_PROTOCOL_ERROR_STATUS(v)   (HW_PCIE_EP_UESR_WR((HW_PCIE_EP_UESR_RD() & ~BM_PCIE_EP_UESR_FLOW_CONTROL_PROTOCOL_ERROR_STATUS) | BF_PCIE_EP_UESR_FLOW_CONTROL_PROTOCOL_ERROR_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UESR, field COMPLETION_TIMEOUT_STATUS[14] (RW)
@@ -1980,7 +1872,6 @@ typedef union _hw_pcie_ep_uesr
  * Completion Timeout Status
  */
 //@{
-
 #define BP_PCIE_EP_UESR_COMPLETION_TIMEOUT_STATUS      (14)      //!< Bit position for PCIE_EP_UESR_COMPLETION_TIMEOUT_STATUS.
 #define BM_PCIE_EP_UESR_COMPLETION_TIMEOUT_STATUS      (0x00004000)  //!< Bit mask for PCIE_EP_UESR_COMPLETION_TIMEOUT_STATUS.
 
@@ -1994,7 +1885,6 @@ typedef union _hw_pcie_ep_uesr
 //! @brief Set the COMPLETION_TIMEOUT_STATUS field to a new value.
 #define BW_PCIE_EP_UESR_COMPLETION_TIMEOUT_STATUS(v)   (HW_PCIE_EP_UESR_WR((HW_PCIE_EP_UESR_RD() & ~BM_PCIE_EP_UESR_COMPLETION_TIMEOUT_STATUS) | BF_PCIE_EP_UESR_COMPLETION_TIMEOUT_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UESR, field COMPLETER_ABORT_STATUS[15] (RW)
@@ -2002,7 +1892,6 @@ typedef union _hw_pcie_ep_uesr
  * Completer Abort Status
  */
 //@{
-
 #define BP_PCIE_EP_UESR_COMPLETER_ABORT_STATUS      (15)      //!< Bit position for PCIE_EP_UESR_COMPLETER_ABORT_STATUS.
 #define BM_PCIE_EP_UESR_COMPLETER_ABORT_STATUS      (0x00008000)  //!< Bit mask for PCIE_EP_UESR_COMPLETER_ABORT_STATUS.
 
@@ -2016,7 +1905,6 @@ typedef union _hw_pcie_ep_uesr
 //! @brief Set the COMPLETER_ABORT_STATUS field to a new value.
 #define BW_PCIE_EP_UESR_COMPLETER_ABORT_STATUS(v)   (HW_PCIE_EP_UESR_WR((HW_PCIE_EP_UESR_RD() & ~BM_PCIE_EP_UESR_COMPLETER_ABORT_STATUS) | BF_PCIE_EP_UESR_COMPLETER_ABORT_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UESR, field UNEXPECTED_COMPLETION_STATUS[16] (RW)
@@ -2024,7 +1912,6 @@ typedef union _hw_pcie_ep_uesr
  * Unexpected Completion Status
  */
 //@{
-
 #define BP_PCIE_EP_UESR_UNEXPECTED_COMPLETION_STATUS      (16)      //!< Bit position for PCIE_EP_UESR_UNEXPECTED_COMPLETION_STATUS.
 #define BM_PCIE_EP_UESR_UNEXPECTED_COMPLETION_STATUS      (0x00010000)  //!< Bit mask for PCIE_EP_UESR_UNEXPECTED_COMPLETION_STATUS.
 
@@ -2038,7 +1925,6 @@ typedef union _hw_pcie_ep_uesr
 //! @brief Set the UNEXPECTED_COMPLETION_STATUS field to a new value.
 #define BW_PCIE_EP_UESR_UNEXPECTED_COMPLETION_STATUS(v)   (HW_PCIE_EP_UESR_WR((HW_PCIE_EP_UESR_RD() & ~BM_PCIE_EP_UESR_UNEXPECTED_COMPLETION_STATUS) | BF_PCIE_EP_UESR_UNEXPECTED_COMPLETION_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UESR, field RECEIVER_OVERFLOW_STATUS[17] (RW)
@@ -2046,7 +1932,6 @@ typedef union _hw_pcie_ep_uesr
  * Receiver Overflow Status
  */
 //@{
-
 #define BP_PCIE_EP_UESR_RECEIVER_OVERFLOW_STATUS      (17)      //!< Bit position for PCIE_EP_UESR_RECEIVER_OVERFLOW_STATUS.
 #define BM_PCIE_EP_UESR_RECEIVER_OVERFLOW_STATUS      (0x00020000)  //!< Bit mask for PCIE_EP_UESR_RECEIVER_OVERFLOW_STATUS.
 
@@ -2060,7 +1945,6 @@ typedef union _hw_pcie_ep_uesr
 //! @brief Set the RECEIVER_OVERFLOW_STATUS field to a new value.
 #define BW_PCIE_EP_UESR_RECEIVER_OVERFLOW_STATUS(v)   (HW_PCIE_EP_UESR_WR((HW_PCIE_EP_UESR_RD() & ~BM_PCIE_EP_UESR_RECEIVER_OVERFLOW_STATUS) | BF_PCIE_EP_UESR_RECEIVER_OVERFLOW_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UESR, field MALFORMED_TLP_STATUS[18] (RW)
@@ -2068,7 +1952,6 @@ typedef union _hw_pcie_ep_uesr
  * Malformed TLP Status
  */
 //@{
-
 #define BP_PCIE_EP_UESR_MALFORMED_TLP_STATUS      (18)      //!< Bit position for PCIE_EP_UESR_MALFORMED_TLP_STATUS.
 #define BM_PCIE_EP_UESR_MALFORMED_TLP_STATUS      (0x00040000)  //!< Bit mask for PCIE_EP_UESR_MALFORMED_TLP_STATUS.
 
@@ -2082,7 +1965,6 @@ typedef union _hw_pcie_ep_uesr
 //! @brief Set the MALFORMED_TLP_STATUS field to a new value.
 #define BW_PCIE_EP_UESR_MALFORMED_TLP_STATUS(v)   (HW_PCIE_EP_UESR_WR((HW_PCIE_EP_UESR_RD() & ~BM_PCIE_EP_UESR_MALFORMED_TLP_STATUS) | BF_PCIE_EP_UESR_MALFORMED_TLP_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UESR, field ECRC_ERROR_STATUS[19] (RW)
@@ -2090,7 +1972,6 @@ typedef union _hw_pcie_ep_uesr
  * ECRC Error Status
  */
 //@{
-
 #define BP_PCIE_EP_UESR_ECRC_ERROR_STATUS      (19)      //!< Bit position for PCIE_EP_UESR_ECRC_ERROR_STATUS.
 #define BM_PCIE_EP_UESR_ECRC_ERROR_STATUS      (0x00080000)  //!< Bit mask for PCIE_EP_UESR_ECRC_ERROR_STATUS.
 
@@ -2104,7 +1985,6 @@ typedef union _hw_pcie_ep_uesr
 //! @brief Set the ECRC_ERROR_STATUS field to a new value.
 #define BW_PCIE_EP_UESR_ECRC_ERROR_STATUS(v)   (HW_PCIE_EP_UESR_WR((HW_PCIE_EP_UESR_RD() & ~BM_PCIE_EP_UESR_ECRC_ERROR_STATUS) | BF_PCIE_EP_UESR_ECRC_ERROR_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UESR, field UNSUPPORTED_REQUEST_ERROR_STATUS[20] (RW)
@@ -2112,7 +1992,6 @@ typedef union _hw_pcie_ep_uesr
  * Unsupported Request Error Status
  */
 //@{
-
 #define BP_PCIE_EP_UESR_UNSUPPORTED_REQUEST_ERROR_STATUS      (20)      //!< Bit position for PCIE_EP_UESR_UNSUPPORTED_REQUEST_ERROR_STATUS.
 #define BM_PCIE_EP_UESR_UNSUPPORTED_REQUEST_ERROR_STATUS      (0x00100000)  //!< Bit mask for PCIE_EP_UESR_UNSUPPORTED_REQUEST_ERROR_STATUS.
 
@@ -2126,7 +2005,6 @@ typedef union _hw_pcie_ep_uesr
 //! @brief Set the UNSUPPORTED_REQUEST_ERROR_STATUS field to a new value.
 #define BW_PCIE_EP_UESR_UNSUPPORTED_REQUEST_ERROR_STATUS(v)   (HW_PCIE_EP_UESR_WR((HW_PCIE_EP_UESR_RD() & ~BM_PCIE_EP_UESR_UNSUPPORTED_REQUEST_ERROR_STATUS) | BF_PCIE_EP_UESR_UNSUPPORTED_REQUEST_ERROR_STATUS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2189,7 +2067,6 @@ typedef union _hw_pcie_ep_uemr
  * Data Link Protocol Error Mask
  */
 //@{
-
 #define BP_PCIE_EP_UEMR_DATA_LINK_PROTOCOL_ERROR_MASK      (4)      //!< Bit position for PCIE_EP_UEMR_DATA_LINK_PROTOCOL_ERROR_MASK.
 #define BM_PCIE_EP_UEMR_DATA_LINK_PROTOCOL_ERROR_MASK      (0x00000010)  //!< Bit mask for PCIE_EP_UEMR_DATA_LINK_PROTOCOL_ERROR_MASK.
 
@@ -2203,7 +2080,6 @@ typedef union _hw_pcie_ep_uemr
 //! @brief Set the DATA_LINK_PROTOCOL_ERROR_MASK field to a new value.
 #define BW_PCIE_EP_UEMR_DATA_LINK_PROTOCOL_ERROR_MASK(v)   (HW_PCIE_EP_UEMR_WR((HW_PCIE_EP_UEMR_RD() & ~BM_PCIE_EP_UEMR_DATA_LINK_PROTOCOL_ERROR_MASK) | BF_PCIE_EP_UEMR_DATA_LINK_PROTOCOL_ERROR_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UEMR, field SURPRISE_DOWN_ERROR_MASK[5] (RW)
@@ -2211,7 +2087,6 @@ typedef union _hw_pcie_ep_uemr
  * Surprise Down Error Mask (not supported)
  */
 //@{
-
 #define BP_PCIE_EP_UEMR_SURPRISE_DOWN_ERROR_MASK      (5)      //!< Bit position for PCIE_EP_UEMR_SURPRISE_DOWN_ERROR_MASK.
 #define BM_PCIE_EP_UEMR_SURPRISE_DOWN_ERROR_MASK      (0x00000020)  //!< Bit mask for PCIE_EP_UEMR_SURPRISE_DOWN_ERROR_MASK.
 
@@ -2225,7 +2100,6 @@ typedef union _hw_pcie_ep_uemr
 //! @brief Set the SURPRISE_DOWN_ERROR_MASK field to a new value.
 #define BW_PCIE_EP_UEMR_SURPRISE_DOWN_ERROR_MASK(v)   (HW_PCIE_EP_UEMR_WR((HW_PCIE_EP_UEMR_RD() & ~BM_PCIE_EP_UEMR_SURPRISE_DOWN_ERROR_MASK) | BF_PCIE_EP_UEMR_SURPRISE_DOWN_ERROR_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UEMR, field POISONED_TLP_MASK[12] (RW)
@@ -2233,7 +2107,6 @@ typedef union _hw_pcie_ep_uemr
  * Poisoned TLP Mask
  */
 //@{
-
 #define BP_PCIE_EP_UEMR_POISONED_TLP_MASK      (12)      //!< Bit position for PCIE_EP_UEMR_POISONED_TLP_MASK.
 #define BM_PCIE_EP_UEMR_POISONED_TLP_MASK      (0x00001000)  //!< Bit mask for PCIE_EP_UEMR_POISONED_TLP_MASK.
 
@@ -2247,7 +2120,6 @@ typedef union _hw_pcie_ep_uemr
 //! @brief Set the POISONED_TLP_MASK field to a new value.
 #define BW_PCIE_EP_UEMR_POISONED_TLP_MASK(v)   (HW_PCIE_EP_UEMR_WR((HW_PCIE_EP_UEMR_RD() & ~BM_PCIE_EP_UEMR_POISONED_TLP_MASK) | BF_PCIE_EP_UEMR_POISONED_TLP_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UEMR, field FLOW_CONTROL_PROTOCOL_ERROR_MASK[13] (RW)
@@ -2255,7 +2127,6 @@ typedef union _hw_pcie_ep_uemr
  * Flow Control Protocol Error Mask
  */
 //@{
-
 #define BP_PCIE_EP_UEMR_FLOW_CONTROL_PROTOCOL_ERROR_MASK      (13)      //!< Bit position for PCIE_EP_UEMR_FLOW_CONTROL_PROTOCOL_ERROR_MASK.
 #define BM_PCIE_EP_UEMR_FLOW_CONTROL_PROTOCOL_ERROR_MASK      (0x00002000)  //!< Bit mask for PCIE_EP_UEMR_FLOW_CONTROL_PROTOCOL_ERROR_MASK.
 
@@ -2269,7 +2140,6 @@ typedef union _hw_pcie_ep_uemr
 //! @brief Set the FLOW_CONTROL_PROTOCOL_ERROR_MASK field to a new value.
 #define BW_PCIE_EP_UEMR_FLOW_CONTROL_PROTOCOL_ERROR_MASK(v)   (HW_PCIE_EP_UEMR_WR((HW_PCIE_EP_UEMR_RD() & ~BM_PCIE_EP_UEMR_FLOW_CONTROL_PROTOCOL_ERROR_MASK) | BF_PCIE_EP_UEMR_FLOW_CONTROL_PROTOCOL_ERROR_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UEMR, field COMPLETION_TIMEOUT_MASK[14] (RW)
@@ -2277,7 +2147,6 @@ typedef union _hw_pcie_ep_uemr
  * Completion Timeout Mask
  */
 //@{
-
 #define BP_PCIE_EP_UEMR_COMPLETION_TIMEOUT_MASK      (14)      //!< Bit position for PCIE_EP_UEMR_COMPLETION_TIMEOUT_MASK.
 #define BM_PCIE_EP_UEMR_COMPLETION_TIMEOUT_MASK      (0x00004000)  //!< Bit mask for PCIE_EP_UEMR_COMPLETION_TIMEOUT_MASK.
 
@@ -2291,7 +2160,6 @@ typedef union _hw_pcie_ep_uemr
 //! @brief Set the COMPLETION_TIMEOUT_MASK field to a new value.
 #define BW_PCIE_EP_UEMR_COMPLETION_TIMEOUT_MASK(v)   (HW_PCIE_EP_UEMR_WR((HW_PCIE_EP_UEMR_RD() & ~BM_PCIE_EP_UEMR_COMPLETION_TIMEOUT_MASK) | BF_PCIE_EP_UEMR_COMPLETION_TIMEOUT_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UEMR, field COMPLETER_ABORT_MASK[15] (RW)
@@ -2299,7 +2167,6 @@ typedef union _hw_pcie_ep_uemr
  * Completer Abort Mask
  */
 //@{
-
 #define BP_PCIE_EP_UEMR_COMPLETER_ABORT_MASK      (15)      //!< Bit position for PCIE_EP_UEMR_COMPLETER_ABORT_MASK.
 #define BM_PCIE_EP_UEMR_COMPLETER_ABORT_MASK      (0x00008000)  //!< Bit mask for PCIE_EP_UEMR_COMPLETER_ABORT_MASK.
 
@@ -2313,7 +2180,6 @@ typedef union _hw_pcie_ep_uemr
 //! @brief Set the COMPLETER_ABORT_MASK field to a new value.
 #define BW_PCIE_EP_UEMR_COMPLETER_ABORT_MASK(v)   (HW_PCIE_EP_UEMR_WR((HW_PCIE_EP_UEMR_RD() & ~BM_PCIE_EP_UEMR_COMPLETER_ABORT_MASK) | BF_PCIE_EP_UEMR_COMPLETER_ABORT_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UEMR, field UNEXPECTED_COMPLETION_MASK[16] (RW)
@@ -2321,7 +2187,6 @@ typedef union _hw_pcie_ep_uemr
  * Unexpected Completion Mask
  */
 //@{
-
 #define BP_PCIE_EP_UEMR_UNEXPECTED_COMPLETION_MASK      (16)      //!< Bit position for PCIE_EP_UEMR_UNEXPECTED_COMPLETION_MASK.
 #define BM_PCIE_EP_UEMR_UNEXPECTED_COMPLETION_MASK      (0x00010000)  //!< Bit mask for PCIE_EP_UEMR_UNEXPECTED_COMPLETION_MASK.
 
@@ -2335,7 +2200,6 @@ typedef union _hw_pcie_ep_uemr
 //! @brief Set the UNEXPECTED_COMPLETION_MASK field to a new value.
 #define BW_PCIE_EP_UEMR_UNEXPECTED_COMPLETION_MASK(v)   (HW_PCIE_EP_UEMR_WR((HW_PCIE_EP_UEMR_RD() & ~BM_PCIE_EP_UEMR_UNEXPECTED_COMPLETION_MASK) | BF_PCIE_EP_UEMR_UNEXPECTED_COMPLETION_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UEMR, field RECEIVER_OVERFLOW_MASK[17] (RW)
@@ -2343,7 +2207,6 @@ typedef union _hw_pcie_ep_uemr
  * Receiver Overflow Mask
  */
 //@{
-
 #define BP_PCIE_EP_UEMR_RECEIVER_OVERFLOW_MASK      (17)      //!< Bit position for PCIE_EP_UEMR_RECEIVER_OVERFLOW_MASK.
 #define BM_PCIE_EP_UEMR_RECEIVER_OVERFLOW_MASK      (0x00020000)  //!< Bit mask for PCIE_EP_UEMR_RECEIVER_OVERFLOW_MASK.
 
@@ -2357,7 +2220,6 @@ typedef union _hw_pcie_ep_uemr
 //! @brief Set the RECEIVER_OVERFLOW_MASK field to a new value.
 #define BW_PCIE_EP_UEMR_RECEIVER_OVERFLOW_MASK(v)   (HW_PCIE_EP_UEMR_WR((HW_PCIE_EP_UEMR_RD() & ~BM_PCIE_EP_UEMR_RECEIVER_OVERFLOW_MASK) | BF_PCIE_EP_UEMR_RECEIVER_OVERFLOW_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UEMR, field MALFORMED_TLP_MASK[18] (RW)
@@ -2365,7 +2227,6 @@ typedef union _hw_pcie_ep_uemr
  * Malformed TLP Mask
  */
 //@{
-
 #define BP_PCIE_EP_UEMR_MALFORMED_TLP_MASK      (18)      //!< Bit position for PCIE_EP_UEMR_MALFORMED_TLP_MASK.
 #define BM_PCIE_EP_UEMR_MALFORMED_TLP_MASK      (0x00040000)  //!< Bit mask for PCIE_EP_UEMR_MALFORMED_TLP_MASK.
 
@@ -2379,7 +2240,6 @@ typedef union _hw_pcie_ep_uemr
 //! @brief Set the MALFORMED_TLP_MASK field to a new value.
 #define BW_PCIE_EP_UEMR_MALFORMED_TLP_MASK(v)   (HW_PCIE_EP_UEMR_WR((HW_PCIE_EP_UEMR_RD() & ~BM_PCIE_EP_UEMR_MALFORMED_TLP_MASK) | BF_PCIE_EP_UEMR_MALFORMED_TLP_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UEMR, field ECRC_ERROR_MASK[19] (RW)
@@ -2387,7 +2247,6 @@ typedef union _hw_pcie_ep_uemr
  * ECRC Error Mask
  */
 //@{
-
 #define BP_PCIE_EP_UEMR_ECRC_ERROR_MASK      (19)      //!< Bit position for PCIE_EP_UEMR_ECRC_ERROR_MASK.
 #define BM_PCIE_EP_UEMR_ECRC_ERROR_MASK      (0x00080000)  //!< Bit mask for PCIE_EP_UEMR_ECRC_ERROR_MASK.
 
@@ -2401,7 +2260,6 @@ typedef union _hw_pcie_ep_uemr
 //! @brief Set the ECRC_ERROR_MASK field to a new value.
 #define BW_PCIE_EP_UEMR_ECRC_ERROR_MASK(v)   (HW_PCIE_EP_UEMR_WR((HW_PCIE_EP_UEMR_RD() & ~BM_PCIE_EP_UEMR_ECRC_ERROR_MASK) | BF_PCIE_EP_UEMR_ECRC_ERROR_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UEMR, field UNSUPPORTED_REQUEST_ERROR_MASK[20] (RW)
@@ -2409,7 +2267,6 @@ typedef union _hw_pcie_ep_uemr
  * Unsupported Request Error Mask
  */
 //@{
-
 #define BP_PCIE_EP_UEMR_UNSUPPORTED_REQUEST_ERROR_MASK      (20)      //!< Bit position for PCIE_EP_UEMR_UNSUPPORTED_REQUEST_ERROR_MASK.
 #define BM_PCIE_EP_UEMR_UNSUPPORTED_REQUEST_ERROR_MASK      (0x00100000)  //!< Bit mask for PCIE_EP_UEMR_UNSUPPORTED_REQUEST_ERROR_MASK.
 
@@ -2423,7 +2280,6 @@ typedef union _hw_pcie_ep_uemr
 //! @brief Set the UNSUPPORTED_REQUEST_ERROR_MASK field to a new value.
 #define BW_PCIE_EP_UEMR_UNSUPPORTED_REQUEST_ERROR_MASK(v)   (HW_PCIE_EP_UEMR_WR((HW_PCIE_EP_UEMR_RD() & ~BM_PCIE_EP_UEMR_UNSUPPORTED_REQUEST_ERROR_MASK) | BF_PCIE_EP_UEMR_UNSUPPORTED_REQUEST_ERROR_MASK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2486,7 +2342,6 @@ typedef union _hw_pcie_ep_uesevr
  * Data Link Protocol Error Severity
  */
 //@{
-
 #define BP_PCIE_EP_UESEVR_DATA_LINK_PROTOCOL_ERROR_SEVERITY      (4)      //!< Bit position for PCIE_EP_UESEVR_DATA_LINK_PROTOCOL_ERROR_SEVERITY.
 #define BM_PCIE_EP_UESEVR_DATA_LINK_PROTOCOL_ERROR_SEVERITY      (0x00000010)  //!< Bit mask for PCIE_EP_UESEVR_DATA_LINK_PROTOCOL_ERROR_SEVERITY.
 
@@ -2500,7 +2355,6 @@ typedef union _hw_pcie_ep_uesevr
 //! @brief Set the DATA_LINK_PROTOCOL_ERROR_SEVERITY field to a new value.
 #define BW_PCIE_EP_UESEVR_DATA_LINK_PROTOCOL_ERROR_SEVERITY(v)   (HW_PCIE_EP_UESEVR_WR((HW_PCIE_EP_UESEVR_RD() & ~BM_PCIE_EP_UESEVR_DATA_LINK_PROTOCOL_ERROR_SEVERITY) | BF_PCIE_EP_UESEVR_DATA_LINK_PROTOCOL_ERROR_SEVERITY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UESEVR, field SURPRISE_DOWN_ERROR_SEVERITY[5] (RW)
@@ -2508,7 +2362,6 @@ typedef union _hw_pcie_ep_uesevr
  * Surprise Down Error Severity (not supported)
  */
 //@{
-
 #define BP_PCIE_EP_UESEVR_SURPRISE_DOWN_ERROR_SEVERITY      (5)      //!< Bit position for PCIE_EP_UESEVR_SURPRISE_DOWN_ERROR_SEVERITY.
 #define BM_PCIE_EP_UESEVR_SURPRISE_DOWN_ERROR_SEVERITY      (0x00000020)  //!< Bit mask for PCIE_EP_UESEVR_SURPRISE_DOWN_ERROR_SEVERITY.
 
@@ -2522,7 +2375,6 @@ typedef union _hw_pcie_ep_uesevr
 //! @brief Set the SURPRISE_DOWN_ERROR_SEVERITY field to a new value.
 #define BW_PCIE_EP_UESEVR_SURPRISE_DOWN_ERROR_SEVERITY(v)   (HW_PCIE_EP_UESEVR_WR((HW_PCIE_EP_UESEVR_RD() & ~BM_PCIE_EP_UESEVR_SURPRISE_DOWN_ERROR_SEVERITY) | BF_PCIE_EP_UESEVR_SURPRISE_DOWN_ERROR_SEVERITY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UESEVR, field POISONED_TLP_SEVERITY[12] (RW)
@@ -2530,7 +2382,6 @@ typedef union _hw_pcie_ep_uesevr
  * Poisoned TLP Severity
  */
 //@{
-
 #define BP_PCIE_EP_UESEVR_POISONED_TLP_SEVERITY      (12)      //!< Bit position for PCIE_EP_UESEVR_POISONED_TLP_SEVERITY.
 #define BM_PCIE_EP_UESEVR_POISONED_TLP_SEVERITY      (0x00001000)  //!< Bit mask for PCIE_EP_UESEVR_POISONED_TLP_SEVERITY.
 
@@ -2544,7 +2395,6 @@ typedef union _hw_pcie_ep_uesevr
 //! @brief Set the POISONED_TLP_SEVERITY field to a new value.
 #define BW_PCIE_EP_UESEVR_POISONED_TLP_SEVERITY(v)   (HW_PCIE_EP_UESEVR_WR((HW_PCIE_EP_UESEVR_RD() & ~BM_PCIE_EP_UESEVR_POISONED_TLP_SEVERITY) | BF_PCIE_EP_UESEVR_POISONED_TLP_SEVERITY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UESEVR, field FLOW_CONTROL_PROTOCOL_ERROR_SEVERITY[13] (RW)
@@ -2552,7 +2402,6 @@ typedef union _hw_pcie_ep_uesevr
  * Flow Control Protocol Error Severity
  */
 //@{
-
 #define BP_PCIE_EP_UESEVR_FLOW_CONTROL_PROTOCOL_ERROR_SEVERITY      (13)      //!< Bit position for PCIE_EP_UESEVR_FLOW_CONTROL_PROTOCOL_ERROR_SEVERITY.
 #define BM_PCIE_EP_UESEVR_FLOW_CONTROL_PROTOCOL_ERROR_SEVERITY      (0x00002000)  //!< Bit mask for PCIE_EP_UESEVR_FLOW_CONTROL_PROTOCOL_ERROR_SEVERITY.
 
@@ -2566,7 +2415,6 @@ typedef union _hw_pcie_ep_uesevr
 //! @brief Set the FLOW_CONTROL_PROTOCOL_ERROR_SEVERITY field to a new value.
 #define BW_PCIE_EP_UESEVR_FLOW_CONTROL_PROTOCOL_ERROR_SEVERITY(v)   (HW_PCIE_EP_UESEVR_WR((HW_PCIE_EP_UESEVR_RD() & ~BM_PCIE_EP_UESEVR_FLOW_CONTROL_PROTOCOL_ERROR_SEVERITY) | BF_PCIE_EP_UESEVR_FLOW_CONTROL_PROTOCOL_ERROR_SEVERITY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UESEVR, field COMPLETION_TIMEOUT_SEVERITY[14] (RW)
@@ -2574,7 +2422,6 @@ typedef union _hw_pcie_ep_uesevr
  * Completion Timeout Severity
  */
 //@{
-
 #define BP_PCIE_EP_UESEVR_COMPLETION_TIMEOUT_SEVERITY      (14)      //!< Bit position for PCIE_EP_UESEVR_COMPLETION_TIMEOUT_SEVERITY.
 #define BM_PCIE_EP_UESEVR_COMPLETION_TIMEOUT_SEVERITY      (0x00004000)  //!< Bit mask for PCIE_EP_UESEVR_COMPLETION_TIMEOUT_SEVERITY.
 
@@ -2588,7 +2435,6 @@ typedef union _hw_pcie_ep_uesevr
 //! @brief Set the COMPLETION_TIMEOUT_SEVERITY field to a new value.
 #define BW_PCIE_EP_UESEVR_COMPLETION_TIMEOUT_SEVERITY(v)   (HW_PCIE_EP_UESEVR_WR((HW_PCIE_EP_UESEVR_RD() & ~BM_PCIE_EP_UESEVR_COMPLETION_TIMEOUT_SEVERITY) | BF_PCIE_EP_UESEVR_COMPLETION_TIMEOUT_SEVERITY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UESEVR, field COMPLETER_ABORT_SEVERITY[15] (RW)
@@ -2596,7 +2442,6 @@ typedef union _hw_pcie_ep_uesevr
  * Completer Abort Severity
  */
 //@{
-
 #define BP_PCIE_EP_UESEVR_COMPLETER_ABORT_SEVERITY      (15)      //!< Bit position for PCIE_EP_UESEVR_COMPLETER_ABORT_SEVERITY.
 #define BM_PCIE_EP_UESEVR_COMPLETER_ABORT_SEVERITY      (0x00008000)  //!< Bit mask for PCIE_EP_UESEVR_COMPLETER_ABORT_SEVERITY.
 
@@ -2610,7 +2455,6 @@ typedef union _hw_pcie_ep_uesevr
 //! @brief Set the COMPLETER_ABORT_SEVERITY field to a new value.
 #define BW_PCIE_EP_UESEVR_COMPLETER_ABORT_SEVERITY(v)   (HW_PCIE_EP_UESEVR_WR((HW_PCIE_EP_UESEVR_RD() & ~BM_PCIE_EP_UESEVR_COMPLETER_ABORT_SEVERITY) | BF_PCIE_EP_UESEVR_COMPLETER_ABORT_SEVERITY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UESEVR, field UNEXPECTED_COMPLETION_SEVERITY[16] (RW)
@@ -2618,7 +2462,6 @@ typedef union _hw_pcie_ep_uesevr
  * Unexpected Completion Severity
  */
 //@{
-
 #define BP_PCIE_EP_UESEVR_UNEXPECTED_COMPLETION_SEVERITY      (16)      //!< Bit position for PCIE_EP_UESEVR_UNEXPECTED_COMPLETION_SEVERITY.
 #define BM_PCIE_EP_UESEVR_UNEXPECTED_COMPLETION_SEVERITY      (0x00010000)  //!< Bit mask for PCIE_EP_UESEVR_UNEXPECTED_COMPLETION_SEVERITY.
 
@@ -2632,7 +2475,6 @@ typedef union _hw_pcie_ep_uesevr
 //! @brief Set the UNEXPECTED_COMPLETION_SEVERITY field to a new value.
 #define BW_PCIE_EP_UESEVR_UNEXPECTED_COMPLETION_SEVERITY(v)   (HW_PCIE_EP_UESEVR_WR((HW_PCIE_EP_UESEVR_RD() & ~BM_PCIE_EP_UESEVR_UNEXPECTED_COMPLETION_SEVERITY) | BF_PCIE_EP_UESEVR_UNEXPECTED_COMPLETION_SEVERITY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UESEVR, field RECEIVER_OVERFLOW_SEVERITY[17] (RW)
@@ -2640,7 +2482,6 @@ typedef union _hw_pcie_ep_uesevr
  * Receiver Overflow Severity
  */
 //@{
-
 #define BP_PCIE_EP_UESEVR_RECEIVER_OVERFLOW_SEVERITY      (17)      //!< Bit position for PCIE_EP_UESEVR_RECEIVER_OVERFLOW_SEVERITY.
 #define BM_PCIE_EP_UESEVR_RECEIVER_OVERFLOW_SEVERITY      (0x00020000)  //!< Bit mask for PCIE_EP_UESEVR_RECEIVER_OVERFLOW_SEVERITY.
 
@@ -2654,7 +2495,6 @@ typedef union _hw_pcie_ep_uesevr
 //! @brief Set the RECEIVER_OVERFLOW_SEVERITY field to a new value.
 #define BW_PCIE_EP_UESEVR_RECEIVER_OVERFLOW_SEVERITY(v)   (HW_PCIE_EP_UESEVR_WR((HW_PCIE_EP_UESEVR_RD() & ~BM_PCIE_EP_UESEVR_RECEIVER_OVERFLOW_SEVERITY) | BF_PCIE_EP_UESEVR_RECEIVER_OVERFLOW_SEVERITY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UESEVR, field MALFORMED_TLP_SEVERITY[18] (RW)
@@ -2662,7 +2502,6 @@ typedef union _hw_pcie_ep_uesevr
  * Malformed TLP Severity
  */
 //@{
-
 #define BP_PCIE_EP_UESEVR_MALFORMED_TLP_SEVERITY      (18)      //!< Bit position for PCIE_EP_UESEVR_MALFORMED_TLP_SEVERITY.
 #define BM_PCIE_EP_UESEVR_MALFORMED_TLP_SEVERITY      (0x00040000)  //!< Bit mask for PCIE_EP_UESEVR_MALFORMED_TLP_SEVERITY.
 
@@ -2676,7 +2515,6 @@ typedef union _hw_pcie_ep_uesevr
 //! @brief Set the MALFORMED_TLP_SEVERITY field to a new value.
 #define BW_PCIE_EP_UESEVR_MALFORMED_TLP_SEVERITY(v)   (HW_PCIE_EP_UESEVR_WR((HW_PCIE_EP_UESEVR_RD() & ~BM_PCIE_EP_UESEVR_MALFORMED_TLP_SEVERITY) | BF_PCIE_EP_UESEVR_MALFORMED_TLP_SEVERITY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UESEVR, field ECRC_ERROR_SEVERITY[19] (RW)
@@ -2684,7 +2522,6 @@ typedef union _hw_pcie_ep_uesevr
  * ECRC Error Severity
  */
 //@{
-
 #define BP_PCIE_EP_UESEVR_ECRC_ERROR_SEVERITY      (19)      //!< Bit position for PCIE_EP_UESEVR_ECRC_ERROR_SEVERITY.
 #define BM_PCIE_EP_UESEVR_ECRC_ERROR_SEVERITY      (0x00080000)  //!< Bit mask for PCIE_EP_UESEVR_ECRC_ERROR_SEVERITY.
 
@@ -2698,7 +2535,6 @@ typedef union _hw_pcie_ep_uesevr
 //! @brief Set the ECRC_ERROR_SEVERITY field to a new value.
 #define BW_PCIE_EP_UESEVR_ECRC_ERROR_SEVERITY(v)   (HW_PCIE_EP_UESEVR_WR((HW_PCIE_EP_UESEVR_RD() & ~BM_PCIE_EP_UESEVR_ECRC_ERROR_SEVERITY) | BF_PCIE_EP_UESEVR_ECRC_ERROR_SEVERITY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_UESEVR, field UNSUPPORTED_REQUEST_ERROR_SEVERITY[20] (RW)
@@ -2706,7 +2542,6 @@ typedef union _hw_pcie_ep_uesevr
  * Unsupported Request Error Severity
  */
 //@{
-
 #define BP_PCIE_EP_UESEVR_UNSUPPORTED_REQUEST_ERROR_SEVERITY      (20)      //!< Bit position for PCIE_EP_UESEVR_UNSUPPORTED_REQUEST_ERROR_SEVERITY.
 #define BM_PCIE_EP_UESEVR_UNSUPPORTED_REQUEST_ERROR_SEVERITY      (0x00100000)  //!< Bit mask for PCIE_EP_UESEVR_UNSUPPORTED_REQUEST_ERROR_SEVERITY.
 
@@ -2720,7 +2555,6 @@ typedef union _hw_pcie_ep_uesevr
 //! @brief Set the UNSUPPORTED_REQUEST_ERROR_SEVERITY field to a new value.
 #define BW_PCIE_EP_UESEVR_UNSUPPORTED_REQUEST_ERROR_SEVERITY(v)   (HW_PCIE_EP_UESEVR_WR((HW_PCIE_EP_UESEVR_RD() & ~BM_PCIE_EP_UESEVR_UNSUPPORTED_REQUEST_ERROR_SEVERITY) | BF_PCIE_EP_UESEVR_UNSUPPORTED_REQUEST_ERROR_SEVERITY(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2778,7 +2612,6 @@ typedef union _hw_pcie_ep_cesr
  * Receiver Error Status
  */
 //@{
-
 #define BP_PCIE_EP_CESR_RECEIVER_ERROR_STATUS      (0)      //!< Bit position for PCIE_EP_CESR_RECEIVER_ERROR_STATUS.
 #define BM_PCIE_EP_CESR_RECEIVER_ERROR_STATUS      (0x00000001)  //!< Bit mask for PCIE_EP_CESR_RECEIVER_ERROR_STATUS.
 
@@ -2792,7 +2625,6 @@ typedef union _hw_pcie_ep_cesr
 //! @brief Set the RECEIVER_ERROR_STATUS field to a new value.
 #define BW_PCIE_EP_CESR_RECEIVER_ERROR_STATUS(v)   (HW_PCIE_EP_CESR_WR((HW_PCIE_EP_CESR_RD() & ~BM_PCIE_EP_CESR_RECEIVER_ERROR_STATUS) | BF_PCIE_EP_CESR_RECEIVER_ERROR_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_CESR, field BAD_TLP_STATUS[6] (RW)
@@ -2800,7 +2632,6 @@ typedef union _hw_pcie_ep_cesr
  * Bad TLP Status
  */
 //@{
-
 #define BP_PCIE_EP_CESR_BAD_TLP_STATUS      (6)      //!< Bit position for PCIE_EP_CESR_BAD_TLP_STATUS.
 #define BM_PCIE_EP_CESR_BAD_TLP_STATUS      (0x00000040)  //!< Bit mask for PCIE_EP_CESR_BAD_TLP_STATUS.
 
@@ -2814,7 +2645,6 @@ typedef union _hw_pcie_ep_cesr
 //! @brief Set the BAD_TLP_STATUS field to a new value.
 #define BW_PCIE_EP_CESR_BAD_TLP_STATUS(v)   (HW_PCIE_EP_CESR_WR((HW_PCIE_EP_CESR_RD() & ~BM_PCIE_EP_CESR_BAD_TLP_STATUS) | BF_PCIE_EP_CESR_BAD_TLP_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_CESR, field BAD_DLLP_STATUS[7] (RW)
@@ -2822,7 +2652,6 @@ typedef union _hw_pcie_ep_cesr
  * Bad DLLP Status
  */
 //@{
-
 #define BP_PCIE_EP_CESR_BAD_DLLP_STATUS      (7)      //!< Bit position for PCIE_EP_CESR_BAD_DLLP_STATUS.
 #define BM_PCIE_EP_CESR_BAD_DLLP_STATUS      (0x00000080)  //!< Bit mask for PCIE_EP_CESR_BAD_DLLP_STATUS.
 
@@ -2836,7 +2665,6 @@ typedef union _hw_pcie_ep_cesr
 //! @brief Set the BAD_DLLP_STATUS field to a new value.
 #define BW_PCIE_EP_CESR_BAD_DLLP_STATUS(v)   (HW_PCIE_EP_CESR_WR((HW_PCIE_EP_CESR_RD() & ~BM_PCIE_EP_CESR_BAD_DLLP_STATUS) | BF_PCIE_EP_CESR_BAD_DLLP_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_CESR, field REPLAY_NUM_ROLLOVER_STATUS[8] (RW)
@@ -2844,7 +2672,6 @@ typedef union _hw_pcie_ep_cesr
  * REPLAY_NUM Rollover Status
  */
 //@{
-
 #define BP_PCIE_EP_CESR_REPLAY_NUM_ROLLOVER_STATUS      (8)      //!< Bit position for PCIE_EP_CESR_REPLAY_NUM_ROLLOVER_STATUS.
 #define BM_PCIE_EP_CESR_REPLAY_NUM_ROLLOVER_STATUS      (0x00000100)  //!< Bit mask for PCIE_EP_CESR_REPLAY_NUM_ROLLOVER_STATUS.
 
@@ -2858,7 +2685,6 @@ typedef union _hw_pcie_ep_cesr
 //! @brief Set the REPLAY_NUM_ROLLOVER_STATUS field to a new value.
 #define BW_PCIE_EP_CESR_REPLAY_NUM_ROLLOVER_STATUS(v)   (HW_PCIE_EP_CESR_WR((HW_PCIE_EP_CESR_RD() & ~BM_PCIE_EP_CESR_REPLAY_NUM_ROLLOVER_STATUS) | BF_PCIE_EP_CESR_REPLAY_NUM_ROLLOVER_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_CESR, field REPLY_TIMER_TIMEOUT_STATUS[12] (RW)
@@ -2866,7 +2692,6 @@ typedef union _hw_pcie_ep_cesr
  * Reply Timer Timeout Status
  */
 //@{
-
 #define BP_PCIE_EP_CESR_REPLY_TIMER_TIMEOUT_STATUS      (12)      //!< Bit position for PCIE_EP_CESR_REPLY_TIMER_TIMEOUT_STATUS.
 #define BM_PCIE_EP_CESR_REPLY_TIMER_TIMEOUT_STATUS      (0x00001000)  //!< Bit mask for PCIE_EP_CESR_REPLY_TIMER_TIMEOUT_STATUS.
 
@@ -2880,7 +2705,6 @@ typedef union _hw_pcie_ep_cesr
 //! @brief Set the REPLY_TIMER_TIMEOUT_STATUS field to a new value.
 #define BW_PCIE_EP_CESR_REPLY_TIMER_TIMEOUT_STATUS(v)   (HW_PCIE_EP_CESR_WR((HW_PCIE_EP_CESR_RD() & ~BM_PCIE_EP_CESR_REPLY_TIMER_TIMEOUT_STATUS) | BF_PCIE_EP_CESR_REPLY_TIMER_TIMEOUT_STATUS(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_CESR, field ADVISORY_NON_FATAL_ERROR_STATUS[13] (RW)
@@ -2888,7 +2712,6 @@ typedef union _hw_pcie_ep_cesr
  * Advisory Non-Fatal Error Status
  */
 //@{
-
 #define BP_PCIE_EP_CESR_ADVISORY_NON_FATAL_ERROR_STATUS      (13)      //!< Bit position for PCIE_EP_CESR_ADVISORY_NON_FATAL_ERROR_STATUS.
 #define BM_PCIE_EP_CESR_ADVISORY_NON_FATAL_ERROR_STATUS      (0x00002000)  //!< Bit mask for PCIE_EP_CESR_ADVISORY_NON_FATAL_ERROR_STATUS.
 
@@ -2902,7 +2725,6 @@ typedef union _hw_pcie_ep_cesr
 //! @brief Set the ADVISORY_NON_FATAL_ERROR_STATUS field to a new value.
 #define BW_PCIE_EP_CESR_ADVISORY_NON_FATAL_ERROR_STATUS(v)   (HW_PCIE_EP_CESR_WR((HW_PCIE_EP_CESR_RD() & ~BM_PCIE_EP_CESR_ADVISORY_NON_FATAL_ERROR_STATUS) | BF_PCIE_EP_CESR_ADVISORY_NON_FATAL_ERROR_STATUS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2960,7 +2782,6 @@ typedef union _hw_pcie_ep_cemr
  * Receiver Error Mask
  */
 //@{
-
 #define BP_PCIE_EP_CEMR_RECEIVER_ERROR_MASK      (0)      //!< Bit position for PCIE_EP_CEMR_RECEIVER_ERROR_MASK.
 #define BM_PCIE_EP_CEMR_RECEIVER_ERROR_MASK      (0x00000001)  //!< Bit mask for PCIE_EP_CEMR_RECEIVER_ERROR_MASK.
 
@@ -2974,7 +2795,6 @@ typedef union _hw_pcie_ep_cemr
 //! @brief Set the RECEIVER_ERROR_MASK field to a new value.
 #define BW_PCIE_EP_CEMR_RECEIVER_ERROR_MASK(v)   (HW_PCIE_EP_CEMR_WR((HW_PCIE_EP_CEMR_RD() & ~BM_PCIE_EP_CEMR_RECEIVER_ERROR_MASK) | BF_PCIE_EP_CEMR_RECEIVER_ERROR_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_CEMR, field BAD_TLP_MASK[6] (RW)
@@ -2982,7 +2802,6 @@ typedef union _hw_pcie_ep_cemr
  * Bad TLP Mask
  */
 //@{
-
 #define BP_PCIE_EP_CEMR_BAD_TLP_MASK      (6)      //!< Bit position for PCIE_EP_CEMR_BAD_TLP_MASK.
 #define BM_PCIE_EP_CEMR_BAD_TLP_MASK      (0x00000040)  //!< Bit mask for PCIE_EP_CEMR_BAD_TLP_MASK.
 
@@ -2996,7 +2815,6 @@ typedef union _hw_pcie_ep_cemr
 //! @brief Set the BAD_TLP_MASK field to a new value.
 #define BW_PCIE_EP_CEMR_BAD_TLP_MASK(v)   (HW_PCIE_EP_CEMR_WR((HW_PCIE_EP_CEMR_RD() & ~BM_PCIE_EP_CEMR_BAD_TLP_MASK) | BF_PCIE_EP_CEMR_BAD_TLP_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_CEMR, field BAD_DLLP_MASK[7] (RW)
@@ -3004,7 +2822,6 @@ typedef union _hw_pcie_ep_cemr
  * Bad DLLP Mask
  */
 //@{
-
 #define BP_PCIE_EP_CEMR_BAD_DLLP_MASK      (7)      //!< Bit position for PCIE_EP_CEMR_BAD_DLLP_MASK.
 #define BM_PCIE_EP_CEMR_BAD_DLLP_MASK      (0x00000080)  //!< Bit mask for PCIE_EP_CEMR_BAD_DLLP_MASK.
 
@@ -3018,7 +2835,6 @@ typedef union _hw_pcie_ep_cemr
 //! @brief Set the BAD_DLLP_MASK field to a new value.
 #define BW_PCIE_EP_CEMR_BAD_DLLP_MASK(v)   (HW_PCIE_EP_CEMR_WR((HW_PCIE_EP_CEMR_RD() & ~BM_PCIE_EP_CEMR_BAD_DLLP_MASK) | BF_PCIE_EP_CEMR_BAD_DLLP_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_CEMR, field REPLAY_NUM_ROLLOVER_MASK[8] (RW)
@@ -3026,7 +2842,6 @@ typedef union _hw_pcie_ep_cemr
  * REPLAY_NUM Rollover Mask
  */
 //@{
-
 #define BP_PCIE_EP_CEMR_REPLAY_NUM_ROLLOVER_MASK      (8)      //!< Bit position for PCIE_EP_CEMR_REPLAY_NUM_ROLLOVER_MASK.
 #define BM_PCIE_EP_CEMR_REPLAY_NUM_ROLLOVER_MASK      (0x00000100)  //!< Bit mask for PCIE_EP_CEMR_REPLAY_NUM_ROLLOVER_MASK.
 
@@ -3040,7 +2855,6 @@ typedef union _hw_pcie_ep_cemr
 //! @brief Set the REPLAY_NUM_ROLLOVER_MASK field to a new value.
 #define BW_PCIE_EP_CEMR_REPLAY_NUM_ROLLOVER_MASK(v)   (HW_PCIE_EP_CEMR_WR((HW_PCIE_EP_CEMR_RD() & ~BM_PCIE_EP_CEMR_REPLAY_NUM_ROLLOVER_MASK) | BF_PCIE_EP_CEMR_REPLAY_NUM_ROLLOVER_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_CEMR, field REPLY_TIMER_TIMEOUT_MASK[12] (RW)
@@ -3048,7 +2862,6 @@ typedef union _hw_pcie_ep_cemr
  * Reply Timer Timeout Mask
  */
 //@{
-
 #define BP_PCIE_EP_CEMR_REPLY_TIMER_TIMEOUT_MASK      (12)      //!< Bit position for PCIE_EP_CEMR_REPLY_TIMER_TIMEOUT_MASK.
 #define BM_PCIE_EP_CEMR_REPLY_TIMER_TIMEOUT_MASK      (0x00001000)  //!< Bit mask for PCIE_EP_CEMR_REPLY_TIMER_TIMEOUT_MASK.
 
@@ -3062,7 +2875,6 @@ typedef union _hw_pcie_ep_cemr
 //! @brief Set the REPLY_TIMER_TIMEOUT_MASK field to a new value.
 #define BW_PCIE_EP_CEMR_REPLY_TIMER_TIMEOUT_MASK(v)   (HW_PCIE_EP_CEMR_WR((HW_PCIE_EP_CEMR_RD() & ~BM_PCIE_EP_CEMR_REPLY_TIMER_TIMEOUT_MASK) | BF_PCIE_EP_CEMR_REPLY_TIMER_TIMEOUT_MASK(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_CEMR, field ADVISORY_NON_FATAL_ERROR_MASK[13] (RW)
@@ -3070,7 +2882,6 @@ typedef union _hw_pcie_ep_cemr
  * Advisory Non-Fatal Error Mask
  */
 //@{
-
 #define BP_PCIE_EP_CEMR_ADVISORY_NON_FATAL_ERROR_MASK      (13)      //!< Bit position for PCIE_EP_CEMR_ADVISORY_NON_FATAL_ERROR_MASK.
 #define BM_PCIE_EP_CEMR_ADVISORY_NON_FATAL_ERROR_MASK      (0x00002000)  //!< Bit mask for PCIE_EP_CEMR_ADVISORY_NON_FATAL_ERROR_MASK.
 
@@ -3084,7 +2895,6 @@ typedef union _hw_pcie_ep_cemr
 //! @brief Set the ADVISORY_NON_FATAL_ERROR_MASK field to a new value.
 #define BW_PCIE_EP_CEMR_ADVISORY_NON_FATAL_ERROR_MASK(v)   (HW_PCIE_EP_CEMR_WR((HW_PCIE_EP_CEMR_RD() & ~BM_PCIE_EP_CEMR_ADVISORY_NON_FATAL_ERROR_MASK) | BF_PCIE_EP_CEMR_ADVISORY_NON_FATAL_ERROR_MASK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3139,7 +2949,6 @@ typedef union _hw_pcie_ep_accr
  * First Error Pointer
  */
 //@{
-
 #define BP_PCIE_EP_ACCR_FIRST_ERROR_POINTER      (0)      //!< Bit position for PCIE_EP_ACCR_FIRST_ERROR_POINTER.
 #define BM_PCIE_EP_ACCR_FIRST_ERROR_POINTER      (0x0000001f)  //!< Bit mask for PCIE_EP_ACCR_FIRST_ERROR_POINTER.
 
@@ -3153,7 +2962,6 @@ typedef union _hw_pcie_ep_accr
 //! @brief Set the FIRST_ERROR_POINTER field to a new value.
 #define BW_PCIE_EP_ACCR_FIRST_ERROR_POINTER(v)   (HW_PCIE_EP_ACCR_WR((HW_PCIE_EP_ACCR_RD() & ~BM_PCIE_EP_ACCR_FIRST_ERROR_POINTER) | BF_PCIE_EP_ACCR_FIRST_ERROR_POINTER(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_ACCR, field ECRC_GENERATION_CAPABILITY[5] (RW)
@@ -3161,7 +2969,6 @@ typedef union _hw_pcie_ep_accr
  * ECRC Generation Capability
  */
 //@{
-
 #define BP_PCIE_EP_ACCR_ECRC_GENERATION_CAPABILITY      (5)      //!< Bit position for PCIE_EP_ACCR_ECRC_GENERATION_CAPABILITY.
 #define BM_PCIE_EP_ACCR_ECRC_GENERATION_CAPABILITY      (0x00000020)  //!< Bit mask for PCIE_EP_ACCR_ECRC_GENERATION_CAPABILITY.
 
@@ -3175,7 +2982,6 @@ typedef union _hw_pcie_ep_accr
 //! @brief Set the ECRC_GENERATION_CAPABILITY field to a new value.
 #define BW_PCIE_EP_ACCR_ECRC_GENERATION_CAPABILITY(v)   (HW_PCIE_EP_ACCR_WR((HW_PCIE_EP_ACCR_RD() & ~BM_PCIE_EP_ACCR_ECRC_GENERATION_CAPABILITY) | BF_PCIE_EP_ACCR_ECRC_GENERATION_CAPABILITY(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_ACCR, field ECRC_GENERATION_ENABLE[6] (RW)
@@ -3183,7 +2989,6 @@ typedef union _hw_pcie_ep_accr
  * ECRC Generation Enable
  */
 //@{
-
 #define BP_PCIE_EP_ACCR_ECRC_GENERATION_ENABLE      (6)      //!< Bit position for PCIE_EP_ACCR_ECRC_GENERATION_ENABLE.
 #define BM_PCIE_EP_ACCR_ECRC_GENERATION_ENABLE      (0x00000040)  //!< Bit mask for PCIE_EP_ACCR_ECRC_GENERATION_ENABLE.
 
@@ -3197,7 +3002,6 @@ typedef union _hw_pcie_ep_accr
 //! @brief Set the ECRC_GENERATION_ENABLE field to a new value.
 #define BW_PCIE_EP_ACCR_ECRC_GENERATION_ENABLE(v)   (HW_PCIE_EP_ACCR_WR((HW_PCIE_EP_ACCR_RD() & ~BM_PCIE_EP_ACCR_ECRC_GENERATION_ENABLE) | BF_PCIE_EP_ACCR_ECRC_GENERATION_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_ACCR, field ECRC_CHECK_CAPABLE[7] (RW)
@@ -3205,7 +3009,6 @@ typedef union _hw_pcie_ep_accr
  * ECRC Check Capable
  */
 //@{
-
 #define BP_PCIE_EP_ACCR_ECRC_CHECK_CAPABLE      (7)      //!< Bit position for PCIE_EP_ACCR_ECRC_CHECK_CAPABLE.
 #define BM_PCIE_EP_ACCR_ECRC_CHECK_CAPABLE      (0x00000080)  //!< Bit mask for PCIE_EP_ACCR_ECRC_CHECK_CAPABLE.
 
@@ -3219,7 +3022,6 @@ typedef union _hw_pcie_ep_accr
 //! @brief Set the ECRC_CHECK_CAPABLE field to a new value.
 #define BW_PCIE_EP_ACCR_ECRC_CHECK_CAPABLE(v)   (HW_PCIE_EP_ACCR_WR((HW_PCIE_EP_ACCR_RD() & ~BM_PCIE_EP_ACCR_ECRC_CHECK_CAPABLE) | BF_PCIE_EP_ACCR_ECRC_CHECK_CAPABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_ACCR, field ECRC_CHECK_ENABLE[8] (RW)
@@ -3227,7 +3029,6 @@ typedef union _hw_pcie_ep_accr
  * ECRC Check Enable
  */
 //@{
-
 #define BP_PCIE_EP_ACCR_ECRC_CHECK_ENABLE      (8)      //!< Bit position for PCIE_EP_ACCR_ECRC_CHECK_ENABLE.
 #define BM_PCIE_EP_ACCR_ECRC_CHECK_ENABLE      (0x00000100)  //!< Bit mask for PCIE_EP_ACCR_ECRC_CHECK_ENABLE.
 
@@ -3241,7 +3042,6 @@ typedef union _hw_pcie_ep_accr
 //! @brief Set the ECRC_CHECK_ENABLE field to a new value.
 #define BW_PCIE_EP_ACCR_ECRC_CHECK_ENABLE(v)   (HW_PCIE_EP_ACCR_WR((HW_PCIE_EP_ACCR_RD() & ~BM_PCIE_EP_ACCR_ECRC_CHECK_ENABLE) | BF_PCIE_EP_ACCR_ECRC_CHECK_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3329,13 +3129,11 @@ typedef union _hw_pcie_ep_vcechr
  * PCI Express Extended Capability The default value is 0x2 for VC Capability.
  */
 //@{
-
 #define BP_PCIE_EP_VCECHR_EXTENDED_CAPABILITY      (0)      //!< Bit position for PCIE_EP_VCECHR_EXTENDED_CAPABILITY.
 #define BM_PCIE_EP_VCECHR_EXTENDED_CAPABILITY      (0x0000ffff)  //!< Bit mask for PCIE_EP_VCECHR_EXTENDED_CAPABILITY.
 
 //! @brief Get value of PCIE_EP_VCECHR_EXTENDED_CAPABILITY from a register value.
 #define BG_PCIE_EP_VCECHR_EXTENDED_CAPABILITY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_VCECHR_EXTENDED_CAPABILITY) >> BP_PCIE_EP_VCECHR_EXTENDED_CAPABILITY)
-
 //@}
 
 /*! @name Register PCIE_EP_VCECHR, field CAPABILITY_VERSION[19:16] (RO)
@@ -3343,13 +3141,11 @@ typedef union _hw_pcie_ep_vcechr
  * Capability Version
  */
 //@{
-
 #define BP_PCIE_EP_VCECHR_CAPABILITY_VERSION      (16)      //!< Bit position for PCIE_EP_VCECHR_CAPABILITY_VERSION.
 #define BM_PCIE_EP_VCECHR_CAPABILITY_VERSION      (0x000f0000)  //!< Bit mask for PCIE_EP_VCECHR_CAPABILITY_VERSION.
 
 //! @brief Get value of PCIE_EP_VCECHR_CAPABILITY_VERSION from a register value.
 #define BG_PCIE_EP_VCECHR_CAPABILITY_VERSION(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_VCECHR_CAPABILITY_VERSION) >> BP_PCIE_EP_VCECHR_CAPABILITY_VERSION)
-
 //@}
 
 /*! @name Register PCIE_EP_VCECHR, field NEXT_CAPABILITY_OFFSET[31:20] (RO)
@@ -3357,13 +3153,11 @@ typedef union _hw_pcie_ep_vcechr
  * Next Capability Offset See Table 5-222 on page 641.
  */
 //@{
-
 #define BP_PCIE_EP_VCECHR_NEXT_CAPABILITY_OFFSET      (20)      //!< Bit position for PCIE_EP_VCECHR_NEXT_CAPABILITY_OFFSET.
 #define BM_PCIE_EP_VCECHR_NEXT_CAPABILITY_OFFSET      (0xfff00000)  //!< Bit mask for PCIE_EP_VCECHR_NEXT_CAPABILITY_OFFSET.
 
 //! @brief Get value of PCIE_EP_VCECHR_NEXT_CAPABILITY_OFFSET from a register value.
 #define BG_PCIE_EP_VCECHR_NEXT_CAPABILITY_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_VCECHR_NEXT_CAPABILITY_OFFSET) >> BP_PCIE_EP_VCECHR_NEXT_CAPABILITY_OFFSET)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3415,13 +3209,11 @@ typedef union _hw_pcie_ep_pvccr1
  * Extended VC Count The default value is the one less than the number of VCs that
  */
 //@{
-
 #define BP_PCIE_EP_PVCCR1_EXTENDED_VC_COUNT      (0)      //!< Bit position for PCIE_EP_PVCCR1_EXTENDED_VC_COUNT.
 #define BM_PCIE_EP_PVCCR1_EXTENDED_VC_COUNT      (0x00000007)  //!< Bit mask for PCIE_EP_PVCCR1_EXTENDED_VC_COUNT.
 
 //! @brief Get value of PCIE_EP_PVCCR1_EXTENDED_VC_COUNT from a register value.
 #define BG_PCIE_EP_PVCCR1_EXTENDED_VC_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_PVCCR1_EXTENDED_VC_COUNT) >> BP_PCIE_EP_PVCCR1_EXTENDED_VC_COUNT)
-
 //@}
 
 /*! @name Register PCIE_EP_PVCCR1, field LOW_PRIORITY_EXTENDED_VC_COUNT[6:4] (RO)
@@ -3429,13 +3221,11 @@ typedef union _hw_pcie_ep_pvccr1
  * Low Priority Extended VC Count, writable through the DBI
  */
 //@{
-
 #define BP_PCIE_EP_PVCCR1_LOW_PRIORITY_EXTENDED_VC_COUNT      (4)      //!< Bit position for PCIE_EP_PVCCR1_LOW_PRIORITY_EXTENDED_VC_COUNT.
 #define BM_PCIE_EP_PVCCR1_LOW_PRIORITY_EXTENDED_VC_COUNT      (0x00000070)  //!< Bit mask for PCIE_EP_PVCCR1_LOW_PRIORITY_EXTENDED_VC_COUNT.
 
 //! @brief Get value of PCIE_EP_PVCCR1_LOW_PRIORITY_EXTENDED_VC_COUNT from a register value.
 #define BG_PCIE_EP_PVCCR1_LOW_PRIORITY_EXTENDED_VC_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_PVCCR1_LOW_PRIORITY_EXTENDED_VC_COUNT) >> BP_PCIE_EP_PVCCR1_LOW_PRIORITY_EXTENDED_VC_COUNT)
-
 //@}
 
 /*! @name Register PCIE_EP_PVCCR1, field REFERENCE_CLOCK[9:8] (RO)
@@ -3443,13 +3233,11 @@ typedef union _hw_pcie_ep_pvccr1
  * Reference Clock
  */
 //@{
-
 #define BP_PCIE_EP_PVCCR1_REFERENCE_CLOCK      (8)      //!< Bit position for PCIE_EP_PVCCR1_REFERENCE_CLOCK.
 #define BM_PCIE_EP_PVCCR1_REFERENCE_CLOCK      (0x00000300)  //!< Bit mask for PCIE_EP_PVCCR1_REFERENCE_CLOCK.
 
 //! @brief Get value of PCIE_EP_PVCCR1_REFERENCE_CLOCK from a register value.
 #define BG_PCIE_EP_PVCCR1_REFERENCE_CLOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_PVCCR1_REFERENCE_CLOCK) >> BP_PCIE_EP_PVCCR1_REFERENCE_CLOCK)
-
 //@}
 
 /*! @name Register PCIE_EP_PVCCR1, field PORT_ARBITRATION_TABLE_ENTRY_SIZE[11:10] (RO)
@@ -3457,13 +3245,11 @@ typedef union _hw_pcie_ep_pvccr1
  * Port Arbitration Table Entry Size
  */
 //@{
-
 #define BP_PCIE_EP_PVCCR1_PORT_ARBITRATION_TABLE_ENTRY_SIZE      (10)      //!< Bit position for PCIE_EP_PVCCR1_PORT_ARBITRATION_TABLE_ENTRY_SIZE.
 #define BM_PCIE_EP_PVCCR1_PORT_ARBITRATION_TABLE_ENTRY_SIZE      (0x00000c00)  //!< Bit mask for PCIE_EP_PVCCR1_PORT_ARBITRATION_TABLE_ENTRY_SIZE.
 
 //! @brief Get value of PCIE_EP_PVCCR1_PORT_ARBITRATION_TABLE_ENTRY_SIZE from a register value.
 #define BG_PCIE_EP_PVCCR1_PORT_ARBITRATION_TABLE_ENTRY_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_PVCCR1_PORT_ARBITRATION_TABLE_ENTRY_SIZE) >> BP_PCIE_EP_PVCCR1_PORT_ARBITRATION_TABLE_ENTRY_SIZE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3514,13 +3300,11 @@ typedef union _hw_pcie_ep_pvccr2
  * Device supports 64-phase WRR •Bit 3: Device supports 128-phase WRR •Bits 4-7: Reserved
  */
 //@{
-
 #define BP_PCIE_EP_PVCCR2_VC_ARBITRATION_CAPABILITY      (0)      //!< Bit position for PCIE_EP_PVCCR2_VC_ARBITRATION_CAPABILITY.
 #define BM_PCIE_EP_PVCCR2_VC_ARBITRATION_CAPABILITY      (0x000000ff)  //!< Bit mask for PCIE_EP_PVCCR2_VC_ARBITRATION_CAPABILITY.
 
 //! @brief Get value of PCIE_EP_PVCCR2_VC_ARBITRATION_CAPABILITY from a register value.
 #define BG_PCIE_EP_PVCCR2_VC_ARBITRATION_CAPABILITY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_PVCCR2_VC_ARBITRATION_CAPABILITY) >> BP_PCIE_EP_PVCCR2_VC_ARBITRATION_CAPABILITY)
-
 //@}
 
 /*! @name Register PCIE_EP_PVCCR2, field VC_ARBITRATION_TABLE_OFFSET[31:24] (RO)
@@ -3529,13 +3313,11 @@ typedef union _hw_pcie_ep_pvccr2
  * present).
  */
 //@{
-
 #define BP_PCIE_EP_PVCCR2_VC_ARBITRATION_TABLE_OFFSET      (24)      //!< Bit position for PCIE_EP_PVCCR2_VC_ARBITRATION_TABLE_OFFSET.
 #define BM_PCIE_EP_PVCCR2_VC_ARBITRATION_TABLE_OFFSET      (0xff000000)  //!< Bit mask for PCIE_EP_PVCCR2_VC_ARBITRATION_TABLE_OFFSET.
 
 //! @brief Get value of PCIE_EP_PVCCR2_VC_ARBITRATION_TABLE_OFFSET from a register value.
 #define BG_PCIE_EP_PVCCR2_VC_ARBITRATION_TABLE_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_PVCCR2_VC_ARBITRATION_TABLE_OFFSET) >> BP_PCIE_EP_PVCCR2_VC_ARBITRATION_TABLE_OFFSET)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3589,7 +3371,6 @@ typedef union _hw_pcie_ep_pvccsr
  * Load VC Arbitration Table
  */
 //@{
-
 #define BP_PCIE_EP_PVCCSR_LOAD_VC_ARBITRATION_TABLE      (0)      //!< Bit position for PCIE_EP_PVCCSR_LOAD_VC_ARBITRATION_TABLE.
 #define BM_PCIE_EP_PVCCSR_LOAD_VC_ARBITRATION_TABLE      (0x00000001)  //!< Bit mask for PCIE_EP_PVCCSR_LOAD_VC_ARBITRATION_TABLE.
 
@@ -3603,7 +3384,6 @@ typedef union _hw_pcie_ep_pvccsr
 //! @brief Set the LOAD_VC_ARBITRATION_TABLE field to a new value.
 #define BW_PCIE_EP_PVCCSR_LOAD_VC_ARBITRATION_TABLE(v)   (HW_PCIE_EP_PVCCSR_WR((HW_PCIE_EP_PVCCSR_RD() & ~BM_PCIE_EP_PVCCSR_LOAD_VC_ARBITRATION_TABLE) | BF_PCIE_EP_PVCCSR_LOAD_VC_ARBITRATION_TABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_PVCCSR, field VC_ARBITRATION_SELECT[3:1] (RW)
@@ -3611,7 +3391,6 @@ typedef union _hw_pcie_ep_pvccsr
  * VC Arbitration Select
  */
 //@{
-
 #define BP_PCIE_EP_PVCCSR_VC_ARBITRATION_SELECT      (1)      //!< Bit position for PCIE_EP_PVCCSR_VC_ARBITRATION_SELECT.
 #define BM_PCIE_EP_PVCCSR_VC_ARBITRATION_SELECT      (0x0000000e)  //!< Bit mask for PCIE_EP_PVCCSR_VC_ARBITRATION_SELECT.
 
@@ -3625,7 +3404,6 @@ typedef union _hw_pcie_ep_pvccsr
 //! @brief Set the VC_ARBITRATION_SELECT field to a new value.
 #define BW_PCIE_EP_PVCCSR_VC_ARBITRATION_SELECT(v)   (HW_PCIE_EP_PVCCSR_WR((HW_PCIE_EP_PVCCSR_RD() & ~BM_PCIE_EP_PVCCSR_VC_ARBITRATION_SELECT) | BF_PCIE_EP_PVCCSR_VC_ARBITRATION_SELECT(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_PVCCSR, field ARBITRATION_TABLE_STATUS[16] (RW)
@@ -3633,7 +3411,6 @@ typedef union _hw_pcie_ep_pvccsr
  * Arbitration Table Status
  */
 //@{
-
 #define BP_PCIE_EP_PVCCSR_ARBITRATION_TABLE_STATUS      (16)      //!< Bit position for PCIE_EP_PVCCSR_ARBITRATION_TABLE_STATUS.
 #define BM_PCIE_EP_PVCCSR_ARBITRATION_TABLE_STATUS      (0x00010000)  //!< Bit mask for PCIE_EP_PVCCSR_ARBITRATION_TABLE_STATUS.
 
@@ -3647,7 +3424,6 @@ typedef union _hw_pcie_ep_pvccsr
 //! @brief Set the ARBITRATION_TABLE_STATUS field to a new value.
 #define BW_PCIE_EP_PVCCSR_ARBITRATION_TABLE_STATUS(v)   (HW_PCIE_EP_PVCCSR_WR((HW_PCIE_EP_PVCCSR_RD() & ~BM_PCIE_EP_PVCCSR_ARBITRATION_TABLE_STATUS) | BF_PCIE_EP_PVCCSR_ARBITRATION_TABLE_STATUS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3698,13 +3474,11 @@ typedef union _hw_pcie_ep_vcrcr
  * Port Arbitration Capability
  */
 //@{
-
 #define BP_PCIE_EP_VCRCR_PORT_ARBITRATION_CAPABILITY      (0)      //!< Bit position for PCIE_EP_VCRCR_PORT_ARBITRATION_CAPABILITY.
 #define BM_PCIE_EP_VCRCR_PORT_ARBITRATION_CAPABILITY      (0x000000ff)  //!< Bit mask for PCIE_EP_VCRCR_PORT_ARBITRATION_CAPABILITY.
 
 //! @brief Get value of PCIE_EP_VCRCR_PORT_ARBITRATION_CAPABILITY from a register value.
 #define BG_PCIE_EP_VCRCR_PORT_ARBITRATION_CAPABILITY(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_VCRCR_PORT_ARBITRATION_CAPABILITY) >> BP_PCIE_EP_VCRCR_PORT_ARBITRATION_CAPABILITY)
-
 //@}
 
 /*! @name Register PCIE_EP_VCRCR, field REJECT_SNOOP_TRANSACTIONS[15] (RO)
@@ -3712,13 +3486,11 @@ typedef union _hw_pcie_ep_vcrcr
  * Reject Snoop Transactions
  */
 //@{
-
 #define BP_PCIE_EP_VCRCR_REJECT_SNOOP_TRANSACTIONS      (15)      //!< Bit position for PCIE_EP_VCRCR_REJECT_SNOOP_TRANSACTIONS.
 #define BM_PCIE_EP_VCRCR_REJECT_SNOOP_TRANSACTIONS      (0x00008000)  //!< Bit mask for PCIE_EP_VCRCR_REJECT_SNOOP_TRANSACTIONS.
 
 //! @brief Get value of PCIE_EP_VCRCR_REJECT_SNOOP_TRANSACTIONS from a register value.
 #define BG_PCIE_EP_VCRCR_REJECT_SNOOP_TRANSACTIONS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_VCRCR_REJECT_SNOOP_TRANSACTIONS) >> BP_PCIE_EP_VCRCR_REJECT_SNOOP_TRANSACTIONS)
-
 //@}
 
 /*! @name Register PCIE_EP_VCRCR, field MAXIMUM_TIME_SLOTS[22:16] (RO)
@@ -3726,13 +3498,11 @@ typedef union _hw_pcie_ep_vcrcr
  * Maximum Time Slots
  */
 //@{
-
 #define BP_PCIE_EP_VCRCR_MAXIMUM_TIME_SLOTS      (16)      //!< Bit position for PCIE_EP_VCRCR_MAXIMUM_TIME_SLOTS.
 #define BM_PCIE_EP_VCRCR_MAXIMUM_TIME_SLOTS      (0x007f0000)  //!< Bit mask for PCIE_EP_VCRCR_MAXIMUM_TIME_SLOTS.
 
 //! @brief Get value of PCIE_EP_VCRCR_MAXIMUM_TIME_SLOTS from a register value.
 #define BG_PCIE_EP_VCRCR_MAXIMUM_TIME_SLOTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_VCRCR_MAXIMUM_TIME_SLOTS) >> BP_PCIE_EP_VCRCR_MAXIMUM_TIME_SLOTS)
-
 //@}
 
 /*! @name Register PCIE_EP_VCRCR, field PORT_ARBITRATION_TABLE_OFFSET[31:24] (RO)
@@ -3740,13 +3510,11 @@ typedef union _hw_pcie_ep_vcrcr
  * Port Arbitration Table Offset
  */
 //@{
-
 #define BP_PCIE_EP_VCRCR_PORT_ARBITRATION_TABLE_OFFSET      (24)      //!< Bit position for PCIE_EP_VCRCR_PORT_ARBITRATION_TABLE_OFFSET.
 #define BM_PCIE_EP_VCRCR_PORT_ARBITRATION_TABLE_OFFSET      (0xff000000)  //!< Bit mask for PCIE_EP_VCRCR_PORT_ARBITRATION_TABLE_OFFSET.
 
 //! @brief Get value of PCIE_EP_VCRCR_PORT_ARBITRATION_TABLE_OFFSET from a register value.
 #define BG_PCIE_EP_VCRCR_PORT_ARBITRATION_TABLE_OFFSET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_VCRCR_PORT_ARBITRATION_TABLE_OFFSET) >> BP_PCIE_EP_VCRCR_PORT_ARBITRATION_TABLE_OFFSET)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3803,7 +3571,6 @@ typedef union _hw_pcie_ep_vcrconr
  * TC/VC Map Bit 0 is hardwired to 1; bits 7:1 are RW.
  */
 //@{
-
 #define BP_PCIE_EP_VCRCONR_TC_VC_MAP      (0)      //!< Bit position for PCIE_EP_VCRCONR_TC_VC_MAP.
 #define BM_PCIE_EP_VCRCONR_TC_VC_MAP      (0x000000ff)  //!< Bit mask for PCIE_EP_VCRCONR_TC_VC_MAP.
 
@@ -3817,7 +3584,6 @@ typedef union _hw_pcie_ep_vcrconr
 //! @brief Set the TC_VC_MAP field to a new value.
 #define BW_PCIE_EP_VCRCONR_TC_VC_MAP(v)   (HW_PCIE_EP_VCRCONR_WR((HW_PCIE_EP_VCRCONR_RD() & ~BM_PCIE_EP_VCRCONR_TC_VC_MAP) | BF_PCIE_EP_VCRCONR_TC_VC_MAP(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_VCRCONR, field LOAD_PORT_ARBITRATION_TABLE[16] (RW)
@@ -3825,7 +3591,6 @@ typedef union _hw_pcie_ep_vcrconr
  * Load Port Arbitration Table
  */
 //@{
-
 #define BP_PCIE_EP_VCRCONR_LOAD_PORT_ARBITRATION_TABLE      (16)      //!< Bit position for PCIE_EP_VCRCONR_LOAD_PORT_ARBITRATION_TABLE.
 #define BM_PCIE_EP_VCRCONR_LOAD_PORT_ARBITRATION_TABLE      (0x00010000)  //!< Bit mask for PCIE_EP_VCRCONR_LOAD_PORT_ARBITRATION_TABLE.
 
@@ -3839,7 +3604,6 @@ typedef union _hw_pcie_ep_vcrconr
 //! @brief Set the LOAD_PORT_ARBITRATION_TABLE field to a new value.
 #define BW_PCIE_EP_VCRCONR_LOAD_PORT_ARBITRATION_TABLE(v)   (HW_PCIE_EP_VCRCONR_WR((HW_PCIE_EP_VCRCONR_RD() & ~BM_PCIE_EP_VCRCONR_LOAD_PORT_ARBITRATION_TABLE) | BF_PCIE_EP_VCRCONR_LOAD_PORT_ARBITRATION_TABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_VCRCONR, field PORT_ARBITRATION_SELECT[19:17] (RW)
@@ -3847,7 +3611,6 @@ typedef union _hw_pcie_ep_vcrconr
  * Port Arbitration Select
  */
 //@{
-
 #define BP_PCIE_EP_VCRCONR_PORT_ARBITRATION_SELECT      (17)      //!< Bit position for PCIE_EP_VCRCONR_PORT_ARBITRATION_SELECT.
 #define BM_PCIE_EP_VCRCONR_PORT_ARBITRATION_SELECT      (0x000e0000)  //!< Bit mask for PCIE_EP_VCRCONR_PORT_ARBITRATION_SELECT.
 
@@ -3861,7 +3624,6 @@ typedef union _hw_pcie_ep_vcrconr
 //! @brief Set the PORT_ARBITRATION_SELECT field to a new value.
 #define BW_PCIE_EP_VCRCONR_PORT_ARBITRATION_SELECT(v)   (HW_PCIE_EP_VCRCONR_WR((HW_PCIE_EP_VCRCONR_RD() & ~BM_PCIE_EP_VCRCONR_PORT_ARBITRATION_SELECT) | BF_PCIE_EP_VCRCONR_PORT_ARBITRATION_SELECT(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_VCRCONR, field VC_ID[26:24] (RW)
@@ -3869,7 +3631,6 @@ typedef union _hw_pcie_ep_vcrconr
  * VC ID Hardwired to 0 for VC0.
  */
 //@{
-
 #define BP_PCIE_EP_VCRCONR_VC_ID      (24)      //!< Bit position for PCIE_EP_VCRCONR_VC_ID.
 #define BM_PCIE_EP_VCRCONR_VC_ID      (0x07000000)  //!< Bit mask for PCIE_EP_VCRCONR_VC_ID.
 
@@ -3883,7 +3644,6 @@ typedef union _hw_pcie_ep_vcrconr
 //! @brief Set the VC_ID field to a new value.
 #define BW_PCIE_EP_VCRCONR_VC_ID(v)   (HW_PCIE_EP_VCRCONR_WR((HW_PCIE_EP_VCRCONR_RD() & ~BM_PCIE_EP_VCRCONR_VC_ID) | BF_PCIE_EP_VCRCONR_VC_ID(v)))
 #endif
-
 //@}
 
 /*! @name Register PCIE_EP_VCRCONR, field VC_ENABLE[31] (RW)
@@ -3891,7 +3651,6 @@ typedef union _hw_pcie_ep_vcrconr
  * VC Enable Hardwired to 1 for the first VC.
  */
 //@{
-
 #define BP_PCIE_EP_VCRCONR_VC_ENABLE      (31)      //!< Bit position for PCIE_EP_VCRCONR_VC_ENABLE.
 #define BM_PCIE_EP_VCRCONR_VC_ENABLE      (0x80000000)  //!< Bit mask for PCIE_EP_VCRCONR_VC_ENABLE.
 
@@ -3905,7 +3664,6 @@ typedef union _hw_pcie_ep_vcrconr
 //! @brief Set the VC_ENABLE field to a new value.
 #define BW_PCIE_EP_VCRCONR_VC_ENABLE(v)   (HW_PCIE_EP_VCRCONR_WR((HW_PCIE_EP_VCRCONR_RD() & ~BM_PCIE_EP_VCRCONR_VC_ENABLE) | BF_PCIE_EP_VCRCONR_VC_ENABLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3954,13 +3712,11 @@ typedef union _hw_pcie_ep_vcrsr
  * Port Arbitration Table Status
  */
 //@{
-
 #define BP_PCIE_EP_VCRSR_PORT_ARBITRATION_TABLE_STATUS      (16)      //!< Bit position for PCIE_EP_VCRSR_PORT_ARBITRATION_TABLE_STATUS.
 #define BM_PCIE_EP_VCRSR_PORT_ARBITRATION_TABLE_STATUS      (0x00010000)  //!< Bit mask for PCIE_EP_VCRSR_PORT_ARBITRATION_TABLE_STATUS.
 
 //! @brief Get value of PCIE_EP_VCRSR_PORT_ARBITRATION_TABLE_STATUS from a register value.
 #define BG_PCIE_EP_VCRSR_PORT_ARBITRATION_TABLE_STATUS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_VCRSR_PORT_ARBITRATION_TABLE_STATUS) >> BP_PCIE_EP_VCRSR_PORT_ARBITRATION_TABLE_STATUS)
-
 //@}
 
 /*! @name Register PCIE_EP_VCRSR, field VC_NEGOTIATION_PENDING[17] (RO)
@@ -3968,13 +3724,11 @@ typedef union _hw_pcie_ep_vcrsr
  * VC Negotiation Pending
  */
 //@{
-
 #define BP_PCIE_EP_VCRSR_VC_NEGOTIATION_PENDING      (17)      //!< Bit position for PCIE_EP_VCRSR_VC_NEGOTIATION_PENDING.
 #define BM_PCIE_EP_VCRSR_VC_NEGOTIATION_PENDING      (0x00020000)  //!< Bit mask for PCIE_EP_VCRSR_VC_NEGOTIATION_PENDING.
 
 //! @brief Get value of PCIE_EP_VCRSR_VC_NEGOTIATION_PENDING from a register value.
 #define BG_PCIE_EP_VCRSR_VC_NEGOTIATION_PENDING(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PCIE_EP_VCRSR_VC_NEGOTIATION_PENDING) >> BP_PCIE_EP_VCRSR_VC_NEGOTIATION_PENDING)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4030,3 +3784,5 @@ typedef struct _hw_pcie_ep
 #endif
 
 #endif // __HW_PCIE_EP_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

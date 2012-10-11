@@ -133,7 +133,6 @@ typedef union _hw_pwm_pwmcr
  * - 1 - PWM enabled
  */
 //@{
-
 #define BP_PWM_PWMCR_EN      (0)      //!< Bit position for PWM_PWMCR_EN.
 #define BM_PWM_PWMCR_EN      (0x00000001)  //!< Bit mask for PWM_PWMCR_EN.
 
@@ -147,7 +146,6 @@ typedef union _hw_pwm_pwmcr
 //! @brief Set the EN field to a new value.
 #define BW_PWM_PWMCR_EN(x, v)   (HW_PWM_PWMCR_WR(x, (HW_PWM_PWMCR_RD(x) & ~BM_PWM_PWMCR_EN) | BF_PWM_PWMCR_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register PWM_PWMCR, field REPEAT[2:1] (RW)
@@ -162,7 +160,6 @@ typedef union _hw_pwm_pwmcr
  * - 11 - Use each sample eight times
  */
 //@{
-
 #define BP_PWM_PWMCR_REPEAT      (1)      //!< Bit position for PWM_PWMCR_REPEAT.
 #define BM_PWM_PWMCR_REPEAT      (0x00000006)  //!< Bit mask for PWM_PWMCR_REPEAT.
 
@@ -176,7 +173,6 @@ typedef union _hw_pwm_pwmcr
 //! @brief Set the REPEAT field to a new value.
 #define BW_PWM_PWMCR_REPEAT(x, v)   (HW_PWM_PWMCR_WR(x, (HW_PWM_PWMCR_RD(x) & ~BM_PWM_PWMCR_REPEAT) | BF_PWM_PWMCR_REPEAT(v)))
 #endif
-
 //@}
 
 /*! @name Register PWM_PWMCR, field SWR[3] (RW)
@@ -191,7 +187,6 @@ typedef union _hw_pwm_pwmcr
  * - 1 - PWM is undergoing reset
  */
 //@{
-
 #define BP_PWM_PWMCR_SWR      (3)      //!< Bit position for PWM_PWMCR_SWR.
 #define BM_PWM_PWMCR_SWR      (0x00000008)  //!< Bit mask for PWM_PWMCR_SWR.
 
@@ -205,7 +200,6 @@ typedef union _hw_pwm_pwmcr
 //! @brief Set the SWR field to a new value.
 #define BW_PWM_PWMCR_SWR(x, v)   (HW_PWM_PWMCR_WR(x, (HW_PWM_PWMCR_RD(x) & ~BM_PWM_PWMCR_SWR) | BF_PWM_PWMCR_SWR(v)))
 #endif
-
 //@}
 
 /*! @name Register PWM_PWMCR, field PRESCALER[15:4] (RW)
@@ -219,7 +213,6 @@ typedef union _hw_pwm_pwmcr
  * - 0xfff - Divide by 4096
  */
 //@{
-
 #define BP_PWM_PWMCR_PRESCALER      (4)      //!< Bit position for PWM_PWMCR_PRESCALER.
 #define BM_PWM_PWMCR_PRESCALER      (0x0000fff0)  //!< Bit mask for PWM_PWMCR_PRESCALER.
 
@@ -233,7 +226,6 @@ typedef union _hw_pwm_pwmcr
 //! @brief Set the PRESCALER field to a new value.
 #define BW_PWM_PWMCR_PRESCALER(x, v)   (HW_PWM_PWMCR_WR(x, (HW_PWM_PWMCR_RD(x) & ~BM_PWM_PWMCR_PRESCALER) | BF_PWM_PWMCR_PRESCALER(v)))
 #endif
-
 //@}
 
 /*! @name Register PWM_PWMCR, field CLKSRC[17:16] (RW)
@@ -249,7 +241,6 @@ typedef union _hw_pwm_pwmcr
  * - 11 - ipg_clk_32k
  */
 //@{
-
 #define BP_PWM_PWMCR_CLKSRC      (16)      //!< Bit position for PWM_PWMCR_CLKSRC.
 #define BM_PWM_PWMCR_CLKSRC      (0x00030000)  //!< Bit mask for PWM_PWMCR_CLKSRC.
 
@@ -263,7 +254,6 @@ typedef union _hw_pwm_pwmcr
 //! @brief Set the CLKSRC field to a new value.
 #define BW_PWM_PWMCR_CLKSRC(x, v)   (HW_PWM_PWMCR_WR(x, (HW_PWM_PWMCR_RD(x) & ~BM_PWM_PWMCR_CLKSRC) | BF_PWM_PWMCR_CLKSRC(v)))
 #endif
-
 //@}
 
 /*! @name Register PWM_PWMCR, field POUTC[19:18] (RW)
@@ -277,7 +267,6 @@ typedef union _hw_pwm_pwmcr
  * - 11 - PWM output is disconnected
  */
 //@{
-
 #define BP_PWM_PWMCR_POUTC      (18)      //!< Bit position for PWM_PWMCR_POUTC.
 #define BM_PWM_PWMCR_POUTC      (0x000c0000)  //!< Bit mask for PWM_PWMCR_POUTC.
 
@@ -291,7 +280,6 @@ typedef union _hw_pwm_pwmcr
 //! @brief Set the POUTC field to a new value.
 #define BW_PWM_PWMCR_POUTC(x, v)   (HW_PWM_PWMCR_WR(x, (HW_PWM_PWMCR_RD(x) & ~BM_PWM_PWMCR_POUTC) | BF_PWM_PWMCR_POUTC(v)))
 #endif
-
 //@}
 
 /*! @name Register PWM_PWMCR, field HCTR[20] (RW)
@@ -304,7 +292,6 @@ typedef union _hw_pwm_pwmcr
  * - 1 - Half words from write data bus are swapped
  */
 //@{
-
 #define BP_PWM_PWMCR_HCTR      (20)      //!< Bit position for PWM_PWMCR_HCTR.
 #define BM_PWM_PWMCR_HCTR      (0x00100000)  //!< Bit mask for PWM_PWMCR_HCTR.
 
@@ -318,7 +305,6 @@ typedef union _hw_pwm_pwmcr
 //! @brief Set the HCTR field to a new value.
 #define BW_PWM_PWMCR_HCTR(x, v)   (HW_PWM_PWMCR_WR(x, (HW_PWM_PWMCR_RD(x) & ~BM_PWM_PWMCR_HCTR) | BF_PWM_PWMCR_HCTR(v)))
 #endif
-
 //@}
 
 /*! @name Register PWM_PWMCR, field BCTR[21] (RW)
@@ -331,7 +317,6 @@ typedef union _hw_pwm_pwmcr
  * - 1 - byte ordering is reversed
  */
 //@{
-
 #define BP_PWM_PWMCR_BCTR      (21)      //!< Bit position for PWM_PWMCR_BCTR.
 #define BM_PWM_PWMCR_BCTR      (0x00200000)  //!< Bit mask for PWM_PWMCR_BCTR.
 
@@ -345,7 +330,6 @@ typedef union _hw_pwm_pwmcr
 //! @brief Set the BCTR field to a new value.
 #define BW_PWM_PWMCR_BCTR(x, v)   (HW_PWM_PWMCR_WR(x, (HW_PWM_PWMCR_RD(x) & ~BM_PWM_PWMCR_BCTR) | BF_PWM_PWMCR_BCTR(v)))
 #endif
-
 //@}
 
 /*! @name Register PWM_PWMCR, field DBGEN[22] (RW)
@@ -359,7 +343,6 @@ typedef union _hw_pwm_pwmcr
  * - 1 - Active in debug mode
  */
 //@{
-
 #define BP_PWM_PWMCR_DBGEN      (22)      //!< Bit position for PWM_PWMCR_DBGEN.
 #define BM_PWM_PWMCR_DBGEN      (0x00400000)  //!< Bit mask for PWM_PWMCR_DBGEN.
 
@@ -373,7 +356,6 @@ typedef union _hw_pwm_pwmcr
 //! @brief Set the DBGEN field to a new value.
 #define BW_PWM_PWMCR_DBGEN(x, v)   (HW_PWM_PWMCR_WR(x, (HW_PWM_PWMCR_RD(x) & ~BM_PWM_PWMCR_DBGEN) | BF_PWM_PWMCR_DBGEN(v)))
 #endif
-
 //@}
 
 /*! @name Register PWM_PWMCR, field WAITEN[23] (RW)
@@ -387,7 +369,6 @@ typedef union _hw_pwm_pwmcr
  * - 1 - Active in wait mode
  */
 //@{
-
 #define BP_PWM_PWMCR_WAITEN      (23)      //!< Bit position for PWM_PWMCR_WAITEN.
 #define BM_PWM_PWMCR_WAITEN      (0x00800000)  //!< Bit mask for PWM_PWMCR_WAITEN.
 
@@ -401,7 +382,6 @@ typedef union _hw_pwm_pwmcr
 //! @brief Set the WAITEN field to a new value.
 #define BW_PWM_PWMCR_WAITEN(x, v)   (HW_PWM_PWMCR_WR(x, (HW_PWM_PWMCR_RD(x) & ~BM_PWM_PWMCR_WAITEN) | BF_PWM_PWMCR_WAITEN(v)))
 #endif
-
 //@}
 
 /*! @name Register PWM_PWMCR, field DOZEN[24] (RW)
@@ -415,7 +395,6 @@ typedef union _hw_pwm_pwmcr
  * - 1 - Active in doze mode
  */
 //@{
-
 #define BP_PWM_PWMCR_DOZEN      (24)      //!< Bit position for PWM_PWMCR_DOZEN.
 #define BM_PWM_PWMCR_DOZEN      (0x01000000)  //!< Bit mask for PWM_PWMCR_DOZEN.
 
@@ -429,7 +408,6 @@ typedef union _hw_pwm_pwmcr
 //! @brief Set the DOZEN field to a new value.
 #define BW_PWM_PWMCR_DOZEN(x, v)   (HW_PWM_PWMCR_WR(x, (HW_PWM_PWMCR_RD(x) & ~BM_PWM_PWMCR_DOZEN) | BF_PWM_PWMCR_DOZEN(v)))
 #endif
-
 //@}
 
 /*! @name Register PWM_PWMCR, field STOPEN[25] (RW)
@@ -443,7 +421,6 @@ typedef union _hw_pwm_pwmcr
  * - 1 - Active in stop mode
  */
 //@{
-
 #define BP_PWM_PWMCR_STOPEN      (25)      //!< Bit position for PWM_PWMCR_STOPEN.
 #define BM_PWM_PWMCR_STOPEN      (0x02000000)  //!< Bit mask for PWM_PWMCR_STOPEN.
 
@@ -457,7 +434,6 @@ typedef union _hw_pwm_pwmcr
 //! @brief Set the STOPEN field to a new value.
 #define BW_PWM_PWMCR_STOPEN(x, v)   (HW_PWM_PWMCR_WR(x, (HW_PWM_PWMCR_RD(x) & ~BM_PWM_PWMCR_STOPEN) | BF_PWM_PWMCR_STOPEN(v)))
 #endif
-
 //@}
 
 /*! @name Register PWM_PWMCR, field FWM[27:26] (RW)
@@ -472,7 +448,6 @@ typedef union _hw_pwm_pwmcr
  * - 11 - FIFO empty flag is set when there are more than or equal to 4 empty slots in FIFO
  */
 //@{
-
 #define BP_PWM_PWMCR_FWM      (26)      //!< Bit position for PWM_PWMCR_FWM.
 #define BM_PWM_PWMCR_FWM      (0x0c000000)  //!< Bit mask for PWM_PWMCR_FWM.
 
@@ -486,7 +461,6 @@ typedef union _hw_pwm_pwmcr
 //! @brief Set the FWM field to a new value.
 #define BW_PWM_PWMCR_FWM(x, v)   (HW_PWM_PWMCR_WR(x, (HW_PWM_PWMCR_RD(x) & ~BM_PWM_PWMCR_FWM) | BF_PWM_PWMCR_FWM(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -555,13 +529,11 @@ typedef union _hw_pwm_pwmsr
  * - 111 - unused
  */
 //@{
-
 #define BP_PWM_PWMSR_FIFOAV      (0)      //!< Bit position for PWM_PWMSR_FIFOAV.
 #define BM_PWM_PWMSR_FIFOAV      (0x00000007)  //!< Bit mask for PWM_PWMSR_FIFOAV.
 
 //! @brief Get value of PWM_PWMSR_FIFOAV from a register value.
 #define BG_PWM_PWMSR_FIFOAV(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PWM_PWMSR_FIFOAV) >> BP_PWM_PWMSR_FIFOAV)
-
 //@}
 
 /*! @name Register PWM_PWMSR, field FE[3] (W1C)
@@ -574,7 +546,6 @@ typedef union _hw_pwm_pwmsr
  * - 1 - When the data level falls below the mark set by FWM field
  */
 //@{
-
 #define BP_PWM_PWMSR_FE      (3)      //!< Bit position for PWM_PWMSR_FE.
 #define BM_PWM_PWMSR_FE      (0x00000008)  //!< Bit mask for PWM_PWMSR_FE.
 
@@ -588,7 +559,6 @@ typedef union _hw_pwm_pwmsr
 //! @brief Set the FE field to a new value.
 #define BW_PWM_PWMSR_FE(x, v)   (HW_PWM_PWMSR_WR(x, (HW_PWM_PWMSR_RD(x) & ~BM_PWM_PWMSR_FE) | BF_PWM_PWMSR_FE(v)))
 #endif
-
 //@}
 
 /*! @name Register PWM_PWMSR, field ROV[4] (W1C)
@@ -600,7 +570,6 @@ typedef union _hw_pwm_pwmsr
  * - 1 - Roll-over event occurred
  */
 //@{
-
 #define BP_PWM_PWMSR_ROV      (4)      //!< Bit position for PWM_PWMSR_ROV.
 #define BM_PWM_PWMSR_ROV      (0x00000010)  //!< Bit mask for PWM_PWMSR_ROV.
 
@@ -614,7 +583,6 @@ typedef union _hw_pwm_pwmsr
 //! @brief Set the ROV field to a new value.
 #define BW_PWM_PWMSR_ROV(x, v)   (HW_PWM_PWMSR_WR(x, (HW_PWM_PWMSR_RD(x) & ~BM_PWM_PWMSR_ROV) | BF_PWM_PWMSR_ROV(v)))
 #endif
-
 //@}
 
 /*! @name Register PWM_PWMSR, field CMP[5] (W1C)
@@ -626,7 +594,6 @@ typedef union _hw_pwm_pwmsr
  * - 1 - Compare event occurred
  */
 //@{
-
 #define BP_PWM_PWMSR_CMP      (5)      //!< Bit position for PWM_PWMSR_CMP.
 #define BM_PWM_PWMSR_CMP      (0x00000020)  //!< Bit mask for PWM_PWMSR_CMP.
 
@@ -640,7 +607,6 @@ typedef union _hw_pwm_pwmsr
 //! @brief Set the CMP field to a new value.
 #define BW_PWM_PWMSR_CMP(x, v)   (HW_PWM_PWMSR_WR(x, (HW_PWM_PWMSR_RD(x) & ~BM_PWM_PWMSR_CMP) | BF_PWM_PWMSR_CMP(v)))
 #endif
-
 //@}
 
 /*! @name Register PWM_PWMSR, field FWE[6] (W1C)
@@ -653,7 +619,6 @@ typedef union _hw_pwm_pwmsr
  * - 1 - FIFO write error occurred
  */
 //@{
-
 #define BP_PWM_PWMSR_FWE      (6)      //!< Bit position for PWM_PWMSR_FWE.
 #define BM_PWM_PWMSR_FWE      (0x00000040)  //!< Bit mask for PWM_PWMSR_FWE.
 
@@ -667,7 +632,6 @@ typedef union _hw_pwm_pwmsr
 //! @brief Set the FWE field to a new value.
 #define BW_PWM_PWMSR_FWE(x, v)   (HW_PWM_PWMSR_WR(x, (HW_PWM_PWMSR_RD(x) & ~BM_PWM_PWMSR_FWE) | BF_PWM_PWMSR_FWE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -725,7 +689,6 @@ typedef union _hw_pwm_pwmir
  * - 1 - FIFO Empty interrupt enabled
  */
 //@{
-
 #define BP_PWM_PWMIR_FIE      (0)      //!< Bit position for PWM_PWMIR_FIE.
 #define BM_PWM_PWMIR_FIE      (0x00000001)  //!< Bit mask for PWM_PWMIR_FIE.
 
@@ -739,7 +702,6 @@ typedef union _hw_pwm_pwmir
 //! @brief Set the FIE field to a new value.
 #define BW_PWM_PWMIR_FIE(x, v)   (HW_PWM_PWMIR_WR(x, (HW_PWM_PWMIR_RD(x) & ~BM_PWM_PWMIR_FIE) | BF_PWM_PWMIR_FIE(v)))
 #endif
-
 //@}
 
 /*! @name Register PWM_PWMIR, field RIE[1] (RW)
@@ -751,7 +713,6 @@ typedef union _hw_pwm_pwmir
  * - 1 - Roll-over Interrupt enabled
  */
 //@{
-
 #define BP_PWM_PWMIR_RIE      (1)      //!< Bit position for PWM_PWMIR_RIE.
 #define BM_PWM_PWMIR_RIE      (0x00000002)  //!< Bit mask for PWM_PWMIR_RIE.
 
@@ -765,7 +726,6 @@ typedef union _hw_pwm_pwmir
 //! @brief Set the RIE field to a new value.
 #define BW_PWM_PWMIR_RIE(x, v)   (HW_PWM_PWMIR_WR(x, (HW_PWM_PWMIR_RD(x) & ~BM_PWM_PWMIR_RIE) | BF_PWM_PWMIR_RIE(v)))
 #endif
-
 //@}
 
 /*! @name Register PWM_PWMIR, field CIE[2] (RW)
@@ -777,7 +737,6 @@ typedef union _hw_pwm_pwmir
  * - 1 - Compare Interrupt enabled
  */
 //@{
-
 #define BP_PWM_PWMIR_CIE      (2)      //!< Bit position for PWM_PWMIR_CIE.
 #define BM_PWM_PWMIR_CIE      (0x00000004)  //!< Bit mask for PWM_PWMIR_CIE.
 
@@ -791,7 +750,6 @@ typedef union _hw_pwm_pwmir
 //! @brief Set the CIE field to a new value.
 #define BW_PWM_PWMIR_CIE(x, v)   (HW_PWM_PWMIR_WR(x, (HW_PWM_PWMIR_RD(x) & ~BM_PWM_PWMIR_CIE) | BF_PWM_PWMIR_CIE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -850,7 +808,6 @@ typedef union _hw_pwm_pwmsar
  * the sample being currently used.
  */
 //@{
-
 #define BP_PWM_PWMSAR_SAMPLE      (0)      //!< Bit position for PWM_PWMSAR_SAMPLE.
 #define BM_PWM_PWMSAR_SAMPLE      (0x0000ffff)  //!< Bit mask for PWM_PWMSAR_SAMPLE.
 
@@ -864,7 +821,6 @@ typedef union _hw_pwm_pwmsar
 //! @brief Set the SAMPLE field to a new value.
 #define BW_PWM_PWMSAR_SAMPLE(x, v)   (HW_PWM_PWMSAR_WR(x, (HW_PWM_PWMSAR_RD(x) & ~BM_PWM_PWMSAR_SAMPLE) | BF_PWM_PWMSAR_SAMPLE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -922,7 +878,6 @@ typedef union _hw_pwm_pwmpr
  * [Period Value] +1 and is then reset to 0x0000.
  */
 //@{
-
 #define BP_PWM_PWMPR_PERIOD      (0)      //!< Bit position for PWM_PWMPR_PERIOD.
 #define BM_PWM_PWMPR_PERIOD      (0x0000ffff)  //!< Bit mask for PWM_PWMPR_PERIOD.
 
@@ -936,7 +891,6 @@ typedef union _hw_pwm_pwmpr
 //! @brief Set the PERIOD field to a new value.
 #define BW_PWM_PWMPR_PERIOD(x, v)   (HW_PWM_PWMPR_WR(x, (HW_PWM_PWMPR_RD(x) & ~BM_PWM_PWMPR_PERIOD) | BF_PWM_PWMPR_PERIOD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -985,13 +939,11 @@ typedef union _hw_pwm_pwmcnr
  * counter register is in.
  */
 //@{
-
 #define BP_PWM_PWMCNR_COUNT      (0)      //!< Bit position for PWM_PWMCNR_COUNT.
 #define BM_PWM_PWMCNR_COUNT      (0x0000ffff)  //!< Bit mask for PWM_PWMCNR_COUNT.
 
 //! @brief Get value of PWM_PWMCNR_COUNT from a register value.
 #define BG_PWM_PWMCNR_COUNT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_PWM_PWMCNR_COUNT) >> BP_PWM_PWMCNR_COUNT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1021,3 +973,5 @@ typedef struct _hw_pwm
 #endif
 
 #endif // __HW_PWM_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

@@ -67,13 +67,13 @@
  *
  * Reset value: 0x0030
  *
- * The Watchdog Control Register (WDOG_WCR) controls the WDOG operation. WDZST, WDBG and WDW bits
- * are write-once only bits. Once the software does a write access to these bits, all these bits
- * will get locked and cannot be reprogrammed until the next system reset assertion. WDE is a write
- * one once only bit. Once software performs a write "1" operation to this bit it cannot be
- * reset/cleared until the next system reset. WDT is also a write one once only bit. Once software
- * performs a write "1" operation to this bit it cannot be reset/cleared until the next POR. This
- * bit does not gets reset/cleared due to any system reset.
+ * The Watchdog Control Register (WDOG_WCR) controls the WDOG operation. WDZST, WDBG and WDW are
+ * write-once only bits. Once the software does a write access to these bits, they will be locked
+ * and cannot be reprogrammed until the next system reset assertion. WDE is a write one once only
+ * bit. Once software performs a write "1" operation to this bit it cannot be reset/cleared until
+ * the next system reset. WDT is also a write one once only bit. Once software performs a write "1"
+ * operation to this bit it cannot be reset/cleared until the next POR. This bit does not get
+ * reset/cleared due to any system reset.
  */
 typedef union _hw_wdog_wcr
 {
@@ -124,7 +124,6 @@ typedef union _hw_wdog_wcr
  * - 1 - Suspend the watchdog timer.
  */
 //@{
-
 #define BP_WDOG_WCR_WDZST      (0)      //!< Bit position for WDOG_WCR_WDZST.
 #define BM_WDOG_WCR_WDZST      (0x00000001)  //!< Bit mask for WDOG_WCR_WDZST.
 
@@ -138,20 +137,18 @@ typedef union _hw_wdog_wcr
 //! @brief Set the WDZST field to a new value.
 #define BW_WDOG_WCR_WDZST(x, v)   (HW_WDOG_WCR_WR(x, (HW_WDOG_WCR_RD(x) & ~BM_WDOG_WCR_WDZST) | BF_WDOG_WCR_WDZST(v)))
 #endif
-
 //@}
 
 /*! @name Register WDOG_WCR, field WDBG[1] (RW)
  *
  * Watchdog DEBUG Enable. Determines the operation of the WDOG during DEBUG mode. This bit is write
- * once-only.
+ * once only.
  *
  * Values:
  * - 0 - Continue WDOG timer operation (Default).
  * - 1 - Suspend the watchdog timer.
  */
 //@{
-
 #define BP_WDOG_WCR_WDBG      (1)      //!< Bit position for WDOG_WCR_WDBG.
 #define BM_WDOG_WCR_WDBG      (0x00000002)  //!< Bit mask for WDOG_WCR_WDBG.
 
@@ -165,7 +162,6 @@ typedef union _hw_wdog_wcr
 //! @brief Set the WDBG field to a new value.
 #define BW_WDOG_WCR_WDBG(x, v)   (HW_WDOG_WCR_WR(x, (HW_WDOG_WCR_RD(x) & ~BM_WDOG_WCR_WDBG) | BF_WDOG_WCR_WDBG(v)))
 #endif
-
 //@}
 
 /*! @name Register WDOG_WCR, field WDE[2] (RW)
@@ -179,7 +175,6 @@ typedef union _hw_wdog_wcr
  * - 1 - Enable the Watchdog.
  */
 //@{
-
 #define BP_WDOG_WCR_WDE      (2)      //!< Bit position for WDOG_WCR_WDE.
 #define BM_WDOG_WCR_WDE      (0x00000004)  //!< Bit mask for WDOG_WCR_WDE.
 
@@ -193,7 +188,6 @@ typedef union _hw_wdog_wcr
 //! @brief Set the WDE field to a new value.
 #define BW_WDOG_WCR_WDE(x, v)   (HW_WDOG_WCR_WR(x, (HW_WDOG_WCR_RD(x) & ~BM_WDOG_WCR_WDE) | BF_WDOG_WCR_WDE(v)))
 #endif
-
 //@}
 
 /*! @name Register WDOG_WCR, field WDT[3] (RW)
@@ -207,7 +201,6 @@ typedef union _hw_wdog_wcr
  * - 1 - Assert WDOG upon a Watchdog Time-out event.
  */
 //@{
-
 #define BP_WDOG_WCR_WDT      (3)      //!< Bit position for WDOG_WCR_WDT.
 #define BM_WDOG_WCR_WDT      (0x00000008)  //!< Bit mask for WDOG_WCR_WDT.
 
@@ -221,7 +214,6 @@ typedef union _hw_wdog_wcr
 //! @brief Set the WDT field to a new value.
 #define BW_WDOG_WCR_WDT(x, v)   (HW_WDOG_WCR_WR(x, (HW_WDOG_WCR_RD(x) & ~BM_WDOG_WCR_WDT) | BF_WDOG_WCR_WDT(v)))
 #endif
-
 //@}
 
 /*! @name Register WDOG_WCR, field SRS[4] (RW)
@@ -235,7 +227,6 @@ typedef union _hw_wdog_wcr
  * - 1 - No effect on the system (Default).
  */
 //@{
-
 #define BP_WDOG_WCR_SRS      (4)      //!< Bit position for WDOG_WCR_SRS.
 #define BM_WDOG_WCR_SRS      (0x00000010)  //!< Bit mask for WDOG_WCR_SRS.
 
@@ -249,7 +240,6 @@ typedef union _hw_wdog_wcr
 //! @brief Set the SRS field to a new value.
 #define BW_WDOG_WCR_SRS(x, v)   (HW_WDOG_WCR_WR(x, (HW_WDOG_WCR_RD(x) & ~BM_WDOG_WCR_SRS) | BF_WDOG_WCR_SRS(v)))
 #endif
-
 //@}
 
 /*! @name Register WDOG_WCR, field WDA[5] (RW)
@@ -261,7 +251,6 @@ typedef union _hw_wdog_wcr
  * - 1 - No effect on system (Default).
  */
 //@{
-
 #define BP_WDOG_WCR_WDA      (5)      //!< Bit position for WDOG_WCR_WDA.
 #define BM_WDOG_WCR_WDA      (0x00000020)  //!< Bit mask for WDOG_WCR_WDA.
 
@@ -275,7 +264,6 @@ typedef union _hw_wdog_wcr
 //! @brief Set the WDA field to a new value.
 #define BW_WDOG_WCR_WDA(x, v)   (HW_WDOG_WCR_WR(x, (HW_WDOG_WCR_RD(x) & ~BM_WDOG_WCR_WDA) | BF_WDOG_WCR_WDA(v)))
 #endif
-
 //@}
 
 /*! @name Register WDOG_WCR, field WDW[7] (RW)
@@ -288,7 +276,6 @@ typedef union _hw_wdog_wcr
  * - 1 - Suspend WDOG timer operation.
  */
 //@{
-
 #define BP_WDOG_WCR_WDW      (7)      //!< Bit position for WDOG_WCR_WDW.
 #define BM_WDOG_WCR_WDW      (0x00000080)  //!< Bit mask for WDOG_WCR_WDW.
 
@@ -302,7 +289,6 @@ typedef union _hw_wdog_wcr
 //! @brief Set the WDW field to a new value.
 #define BW_WDOG_WCR_WDW(x, v)   (HW_WDOG_WCR_WR(x, (HW_WDOG_WCR_RD(x) & ~BM_WDOG_WCR_WDW) | BF_WDOG_WCR_WDW(v)))
 #endif
-
 //@}
 
 /*! @name Register WDOG_WCR, field WT[15:8] (RW)
@@ -322,7 +308,6 @@ typedef union _hw_wdog_wcr
  * - 0xff - - 128 Seconds.
  */
 //@{
-
 #define BP_WDOG_WCR_WT      (8)      //!< Bit position for WDOG_WCR_WT.
 #define BM_WDOG_WCR_WT      (0x0000ff00)  //!< Bit mask for WDOG_WCR_WT.
 
@@ -336,7 +321,6 @@ typedef union _hw_wdog_wcr
 //! @brief Set the WT field to a new value.
 #define BW_WDOG_WCR_WT(x, v)   (HW_WDOG_WCR_WR(x, (HW_WDOG_WCR_RD(x) & ~BM_WDOG_WCR_WT) | BF_WDOG_WCR_WT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -394,7 +378,6 @@ typedef union _hw_wdog_wsr
  * - 0xAAAA - Write to the Watchdog Service Register (WDOG_WSR).
  */
 //@{
-
 #define BP_WDOG_WSR_WSR      (0)      //!< Bit position for WDOG_WSR_WSR.
 #define BM_WDOG_WSR_WSR      (0x0000ffff)  //!< Bit mask for WDOG_WSR_WSR.
 
@@ -408,7 +391,6 @@ typedef union _hw_wdog_wsr
 //! @brief Set the WSR field to a new value.
 #define BW_WDOG_WSR_WSR(x, v)   (HW_WDOG_WSR_WR(x, (HW_WDOG_WSR_RD(x) & ~BM_WDOG_WSR_WSR) | BF_WDOG_WSR_WSR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -468,13 +450,11 @@ typedef union _hw_wdog_wrsr
  * - 1 - Reset is the result of a software reset.
  */
 //@{
-
 #define BP_WDOG_WRSR_SFTW      (0)      //!< Bit position for WDOG_WRSR_SFTW.
 #define BM_WDOG_WRSR_SFTW      (0x00000001)  //!< Bit mask for WDOG_WRSR_SFTW.
 
 //! @brief Get value of WDOG_WRSR_SFTW from a register value.
 #define BG_WDOG_WRSR_SFTW(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_WDOG_WRSR_SFTW) >> BP_WDOG_WRSR_SFTW)
-
 //@}
 
 /*! @name Register WDOG_WRSR, field TOUT[1] (RO)
@@ -486,13 +466,11 @@ typedef union _hw_wdog_wrsr
  * - 1 - Reset is the result of a WDOG timeout.
  */
 //@{
-
 #define BP_WDOG_WRSR_TOUT      (1)      //!< Bit position for WDOG_WRSR_TOUT.
 #define BM_WDOG_WRSR_TOUT      (0x00000002)  //!< Bit mask for WDOG_WRSR_TOUT.
 
 //! @brief Get value of WDOG_WRSR_TOUT from a register value.
 #define BG_WDOG_WRSR_TOUT(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_WDOG_WRSR_TOUT) >> BP_WDOG_WRSR_TOUT)
-
 //@}
 
 /*! @name Register WDOG_WRSR, field POR[4] (RO)
@@ -504,13 +482,11 @@ typedef union _hw_wdog_wrsr
  * - 1 - Reset is the result of a power on reset.
  */
 //@{
-
 #define BP_WDOG_WRSR_POR      (4)      //!< Bit position for WDOG_WRSR_POR.
 #define BM_WDOG_WRSR_POR      (0x00000010)  //!< Bit mask for WDOG_WRSR_POR.
 
 //! @brief Get value of WDOG_WRSR_POR from a register value.
 #define BG_WDOG_WRSR_POR(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_WDOG_WRSR_POR) >> BP_WDOG_WRSR_POR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -574,7 +550,6 @@ typedef union _hw_wdog_wicr
  * - 0xff - WICT[7:0] = Time duration between interrupt and time-out is 127.5 seconds.
  */
 //@{
-
 #define BP_WDOG_WICR_WICT      (0)      //!< Bit position for WDOG_WICR_WICT.
 #define BM_WDOG_WICR_WICT      (0x000000ff)  //!< Bit mask for WDOG_WICR_WICT.
 
@@ -588,7 +563,6 @@ typedef union _hw_wdog_wicr
 //! @brief Set the WICT field to a new value.
 #define BW_WDOG_WICR_WICT(x, v)   (HW_WDOG_WICR_WR(x, (HW_WDOG_WICR_RD(x) & ~BM_WDOG_WICR_WICT) | BF_WDOG_WICR_WICT(v)))
 #endif
-
 //@}
 
 /*! @name Register WDOG_WICR, field WTIS[14] (W1C)
@@ -602,7 +576,6 @@ typedef union _hw_wdog_wicr
  * - 1 - Interrupt has occurred
  */
 //@{
-
 #define BP_WDOG_WICR_WTIS      (14)      //!< Bit position for WDOG_WICR_WTIS.
 #define BM_WDOG_WICR_WTIS      (0x00004000)  //!< Bit mask for WDOG_WICR_WTIS.
 
@@ -616,7 +589,6 @@ typedef union _hw_wdog_wicr
 //! @brief Set the WTIS field to a new value.
 #define BW_WDOG_WICR_WTIS(x, v)   (HW_WDOG_WICR_WR(x, (HW_WDOG_WICR_RD(x) & ~BM_WDOG_WICR_WTIS) | BF_WDOG_WICR_WTIS(v)))
 #endif
-
 //@}
 
 /*! @name Register WDOG_WICR, field WIE[15] (RW)
@@ -630,7 +602,6 @@ typedef union _hw_wdog_wicr
  * - 1 - Enable Interrupt.
  */
 //@{
-
 #define BP_WDOG_WICR_WIE      (15)      //!< Bit position for WDOG_WICR_WIE.
 #define BM_WDOG_WICR_WIE      (0x00008000)  //!< Bit mask for WDOG_WICR_WIE.
 
@@ -644,7 +615,6 @@ typedef union _hw_wdog_wicr
 //! @brief Set the WIE field to a new value.
 #define BW_WDOG_WICR_WIE(x, v)   (HW_WDOG_WICR_WR(x, (HW_WDOG_WICR_RD(x) & ~BM_WDOG_WICR_WIE) | BF_WDOG_WICR_WIE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -703,7 +673,6 @@ typedef union _hw_wdog_wmcr
  * - 1 - Power Down Counter of WDOG is enabled (Default).
  */
 //@{
-
 #define BP_WDOG_WMCR_PDE      (0)      //!< Bit position for WDOG_WMCR_PDE.
 #define BM_WDOG_WMCR_PDE      (0x00000001)  //!< Bit mask for WDOG_WMCR_PDE.
 
@@ -717,7 +686,6 @@ typedef union _hw_wdog_wmcr
 //! @brief Set the PDE field to a new value.
 #define BW_WDOG_WMCR_PDE(x, v)   (HW_WDOG_WMCR_WR(x, (HW_WDOG_WMCR_RD(x) & ~BM_WDOG_WMCR_PDE) | BF_WDOG_WMCR_PDE(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -746,3 +714,5 @@ typedef struct _hw_wdog
 #endif
 
 #endif // __HW_WDOG_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

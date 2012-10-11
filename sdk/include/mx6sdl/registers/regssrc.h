@@ -128,7 +128,6 @@ typedef union _hw_src_scr
  * - 1 - WARM reset enabled
  */
 //@{
-
 #define BP_SRC_SCR_WARM_RESET_ENABLE      (0)      //!< Bit position for SRC_SCR_WARM_RESET_ENABLE.
 #define BM_SRC_SCR_WARM_RESET_ENABLE      (0x00000001)  //!< Bit mask for SRC_SCR_WARM_RESET_ENABLE.
 
@@ -142,7 +141,6 @@ typedef union _hw_src_scr
 //! @brief Set the WARM_RESET_ENABLE field to a new value.
 #define BW_SRC_SCR_WARM_RESET_ENABLE(v)   (HW_SRC_SCR_WR((HW_SRC_SCR_RD() & ~BM_SRC_SCR_WARM_RESET_ENABLE) | BF_SRC_SCR_WARM_RESET_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register SRC_SCR, field SW_GPU_RST[1] (RW)
@@ -159,7 +157,6 @@ typedef union _hw_src_scr
  * - 1 - assert gpu reset
  */
 //@{
-
 #define BP_SRC_SCR_SW_GPU_RST      (1)      //!< Bit position for SRC_SCR_SW_GPU_RST.
 #define BM_SRC_SCR_SW_GPU_RST      (0x00000002)  //!< Bit mask for SRC_SCR_SW_GPU_RST.
 
@@ -173,7 +170,6 @@ typedef union _hw_src_scr
 //! @brief Set the SW_GPU_RST field to a new value.
 #define BW_SRC_SCR_SW_GPU_RST(v)   (HW_SRC_SCR_WR((HW_SRC_SCR_RD() & ~BM_SRC_SCR_SW_GPU_RST) | BF_SRC_SCR_SW_GPU_RST(v)))
 #endif
-
 //@}
 
 /*! @name Register SRC_SCR, field SW_VPU_RST[2] (RW)
@@ -190,7 +186,6 @@ typedef union _hw_src_scr
  * - 1 - assert vpu reset
  */
 //@{
-
 #define BP_SRC_SCR_SW_VPU_RST      (2)      //!< Bit position for SRC_SCR_SW_VPU_RST.
 #define BM_SRC_SCR_SW_VPU_RST      (0x00000004)  //!< Bit mask for SRC_SCR_SW_VPU_RST.
 
@@ -204,7 +199,6 @@ typedef union _hw_src_scr
 //! @brief Set the SW_VPU_RST field to a new value.
 #define BW_SRC_SCR_SW_VPU_RST(v)   (HW_SRC_SCR_WR((HW_SRC_SCR_RD() & ~BM_SRC_SCR_SW_VPU_RST) | BF_SRC_SCR_SW_VPU_RST(v)))
 #endif
-
 //@}
 
 /*! @name Register SRC_SCR, field SW_IPU1_RST[3] (RW)
@@ -219,7 +213,6 @@ typedef union _hw_src_scr
  * - 1 - assert ipu1 reset
  */
 //@{
-
 #define BP_SRC_SCR_SW_IPU1_RST      (3)      //!< Bit position for SRC_SCR_SW_IPU1_RST.
 #define BM_SRC_SCR_SW_IPU1_RST      (0x00000008)  //!< Bit mask for SRC_SCR_SW_IPU1_RST.
 
@@ -233,7 +226,6 @@ typedef union _hw_src_scr
 //! @brief Set the SW_IPU1_RST field to a new value.
 #define BW_SRC_SCR_SW_IPU1_RST(v)   (HW_SRC_SCR_WR((HW_SRC_SCR_RD() & ~BM_SRC_SCR_SW_IPU1_RST) | BF_SRC_SCR_SW_IPU1_RST(v)))
 #endif
-
 //@}
 
 /*! @name Register SRC_SCR, field SW_OPEN_VG_RST[4] (RW)
@@ -250,7 +242,6 @@ typedef union _hw_src_scr
  * - 1 - assert open_vg reset
  */
 //@{
-
 #define BP_SRC_SCR_SW_OPEN_VG_RST      (4)      //!< Bit position for SRC_SCR_SW_OPEN_VG_RST.
 #define BM_SRC_SCR_SW_OPEN_VG_RST      (0x00000010)  //!< Bit mask for SRC_SCR_SW_OPEN_VG_RST.
 
@@ -264,7 +255,6 @@ typedef union _hw_src_scr
 //! @brief Set the SW_OPEN_VG_RST field to a new value.
 #define BW_SRC_SCR_SW_OPEN_VG_RST(v)   (HW_SRC_SCR_WR((HW_SRC_SCR_RD() & ~BM_SRC_SCR_SW_OPEN_VG_RST) | BF_SRC_SCR_SW_OPEN_VG_RST(v)))
 #endif
-
 //@}
 
 /*! @name Register SRC_SCR, field WARM_RST_BYPASS_COUNT[6:5] (RW)
@@ -280,7 +270,6 @@ typedef union _hw_src_scr
  * - 11 - Wait 64 ckil cycles before changing WARM reset to a COLD reset
  */
 //@{
-
 #define BP_SRC_SCR_WARM_RST_BYPASS_COUNT      (5)      //!< Bit position for SRC_SCR_WARM_RST_BYPASS_COUNT.
 #define BM_SRC_SCR_WARM_RST_BYPASS_COUNT      (0x00000060)  //!< Bit mask for SRC_SCR_WARM_RST_BYPASS_COUNT.
 
@@ -294,7 +283,6 @@ typedef union _hw_src_scr
 //! @brief Set the WARM_RST_BYPASS_COUNT field to a new value.
 #define BW_SRC_SCR_WARM_RST_BYPASS_COUNT(v)   (HW_SRC_SCR_WR((HW_SRC_SCR_RD() & ~BM_SRC_SCR_WARM_RST_BYPASS_COUNT) | BF_SRC_SCR_WARM_RST_BYPASS_COUNT(v)))
 #endif
-
 //@}
 
 /*! @name Register SRC_SCR, field MASK_WDOG_RST[10:7] (RW)
@@ -314,7 +302,6 @@ typedef union _hw_src_scr
  * - 1010 - wdog_rst_b is not masked (default)
  */
 //@{
-
 #define BP_SRC_SCR_MASK_WDOG_RST      (7)      //!< Bit position for SRC_SCR_MASK_WDOG_RST.
 #define BM_SRC_SCR_MASK_WDOG_RST      (0x00000780)  //!< Bit mask for SRC_SCR_MASK_WDOG_RST.
 
@@ -328,7 +315,6 @@ typedef union _hw_src_scr
 //! @brief Set the MASK_WDOG_RST field to a new value.
 #define BW_SRC_SCR_MASK_WDOG_RST(v)   (HW_SRC_SCR_WR((HW_SRC_SCR_RD() & ~BM_SRC_SCR_MASK_WDOG_RST) | BF_SRC_SCR_MASK_WDOG_RST(v)))
 #endif
-
 //@}
 
 /*! @name Register SRC_SCR, field EIM_RST[11] (RW)
@@ -338,7 +324,6 @@ typedef union _hw_src_scr
  * asserted since this is not self-refresh.
  */
 //@{
-
 #define BP_SRC_SCR_EIM_RST      (11)      //!< Bit position for SRC_SCR_EIM_RST.
 #define BM_SRC_SCR_EIM_RST      (0x00000800)  //!< Bit mask for SRC_SCR_EIM_RST.
 
@@ -352,7 +337,6 @@ typedef union _hw_src_scr
 //! @brief Set the EIM_RST field to a new value.
 #define BW_SRC_SCR_EIM_RST(v)   (HW_SRC_SCR_WR((HW_SRC_SCR_RD() & ~BM_SRC_SCR_EIM_RST) | BF_SRC_SCR_EIM_RST(v)))
 #endif
-
 //@}
 
 /*! @name Register SRC_SCR, field CORE0_RST[13] (RW)
@@ -365,7 +349,6 @@ typedef union _hw_src_scr
  * - 1 - assert core0 reset
  */
 //@{
-
 #define BP_SRC_SCR_CORE0_RST      (13)      //!< Bit position for SRC_SCR_CORE0_RST.
 #define BM_SRC_SCR_CORE0_RST      (0x00002000)  //!< Bit mask for SRC_SCR_CORE0_RST.
 
@@ -379,7 +362,6 @@ typedef union _hw_src_scr
 //! @brief Set the CORE0_RST field to a new value.
 #define BW_SRC_SCR_CORE0_RST(v)   (HW_SRC_SCR_WR((HW_SRC_SCR_RD() & ~BM_SRC_SCR_CORE0_RST) | BF_SRC_SCR_CORE0_RST(v)))
 #endif
-
 //@}
 
 /*! @name Register SRC_SCR, field CORE1_RST[14] (RW)
@@ -392,7 +374,6 @@ typedef union _hw_src_scr
  * - 1 - assert core1 reset
  */
 //@{
-
 #define BP_SRC_SCR_CORE1_RST      (14)      //!< Bit position for SRC_SCR_CORE1_RST.
 #define BM_SRC_SCR_CORE1_RST      (0x00004000)  //!< Bit mask for SRC_SCR_CORE1_RST.
 
@@ -406,7 +387,6 @@ typedef union _hw_src_scr
 //! @brief Set the CORE1_RST field to a new value.
 #define BW_SRC_SCR_CORE1_RST(v)   (HW_SRC_SCR_WR((HW_SRC_SCR_RD() & ~BM_SRC_SCR_CORE1_RST) | BF_SRC_SCR_CORE1_RST(v)))
 #endif
-
 //@}
 
 /*! @name Register SRC_SCR, field CORE0_DBG_RST[17] (RW)
@@ -419,7 +399,6 @@ typedef union _hw_src_scr
  * - 1 - assert core0 debug reset
  */
 //@{
-
 #define BP_SRC_SCR_CORE0_DBG_RST      (17)      //!< Bit position for SRC_SCR_CORE0_DBG_RST.
 #define BM_SRC_SCR_CORE0_DBG_RST      (0x00020000)  //!< Bit mask for SRC_SCR_CORE0_DBG_RST.
 
@@ -433,7 +412,6 @@ typedef union _hw_src_scr
 //! @brief Set the CORE0_DBG_RST field to a new value.
 #define BW_SRC_SCR_CORE0_DBG_RST(v)   (HW_SRC_SCR_WR((HW_SRC_SCR_RD() & ~BM_SRC_SCR_CORE0_DBG_RST) | BF_SRC_SCR_CORE0_DBG_RST(v)))
 #endif
-
 //@}
 
 /*! @name Register SRC_SCR, field CORE1_DBG_RST[18] (RW)
@@ -446,7 +424,6 @@ typedef union _hw_src_scr
  * - 1 - assert core1 debug reset
  */
 //@{
-
 #define BP_SRC_SCR_CORE1_DBG_RST      (18)      //!< Bit position for SRC_SCR_CORE1_DBG_RST.
 #define BM_SRC_SCR_CORE1_DBG_RST      (0x00040000)  //!< Bit mask for SRC_SCR_CORE1_DBG_RST.
 
@@ -460,7 +437,6 @@ typedef union _hw_src_scr
 //! @brief Set the CORE1_DBG_RST field to a new value.
 #define BW_SRC_SCR_CORE1_DBG_RST(v)   (HW_SRC_SCR_WR((HW_SRC_SCR_RD() & ~BM_SRC_SCR_CORE1_DBG_RST) | BF_SRC_SCR_CORE1_DBG_RST(v)))
 #endif
-
 //@}
 
 /*! @name Register SRC_SCR, field CORES_DBG_RST[21] (RW)
@@ -473,7 +449,6 @@ typedef union _hw_src_scr
  * - 1 - assert arm platform debug reset
  */
 //@{
-
 #define BP_SRC_SCR_CORES_DBG_RST      (21)      //!< Bit position for SRC_SCR_CORES_DBG_RST.
 #define BM_SRC_SCR_CORES_DBG_RST      (0x00200000)  //!< Bit mask for SRC_SCR_CORES_DBG_RST.
 
@@ -487,7 +462,6 @@ typedef union _hw_src_scr
 //! @brief Set the CORES_DBG_RST field to a new value.
 #define BW_SRC_SCR_CORES_DBG_RST(v)   (HW_SRC_SCR_WR((HW_SRC_SCR_RD() & ~BM_SRC_SCR_CORES_DBG_RST) | BF_SRC_SCR_CORES_DBG_RST(v)))
 #endif
-
 //@}
 
 /*! @name Register SRC_SCR, field CORE1_ENABLE[22] (RW)
@@ -499,7 +473,6 @@ typedef union _hw_src_scr
  * - 1 - core1 is enabled
  */
 //@{
-
 #define BP_SRC_SCR_CORE1_ENABLE      (22)      //!< Bit position for SRC_SCR_CORE1_ENABLE.
 #define BM_SRC_SCR_CORE1_ENABLE      (0x00400000)  //!< Bit mask for SRC_SCR_CORE1_ENABLE.
 
@@ -513,7 +486,6 @@ typedef union _hw_src_scr
 //! @brief Set the CORE1_ENABLE field to a new value.
 #define BW_SRC_SCR_CORE1_ENABLE(v)   (HW_SRC_SCR_WR((HW_SRC_SCR_RD() & ~BM_SRC_SCR_CORE1_ENABLE) | BF_SRC_SCR_CORE1_ENABLE(v)))
 #endif
-
 //@}
 
 /*! @name Register SRC_SCR, field DBG_RST_MSK_PG[25] (RW)
@@ -525,7 +497,6 @@ typedef union _hw_src_scr
  * - 1 - makes cpu debug resets (debug resets won't be asserted after power gating event)
  */
 //@{
-
 #define BP_SRC_SCR_DBG_RST_MSK_PG      (25)      //!< Bit position for SRC_SCR_DBG_RST_MSK_PG.
 #define BM_SRC_SCR_DBG_RST_MSK_PG      (0x02000000)  //!< Bit mask for SRC_SCR_DBG_RST_MSK_PG.
 
@@ -539,7 +510,6 @@ typedef union _hw_src_scr
 //! @brief Set the DBG_RST_MSK_PG field to a new value.
 #define BW_SRC_SCR_DBG_RST_MSK_PG(v)   (HW_SRC_SCR_WR((HW_SRC_SCR_RD() & ~BM_SRC_SCR_DBG_RST_MSK_PG) | BF_SRC_SCR_DBG_RST_MSK_PG(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -589,13 +559,11 @@ typedef union _hw_src_sbmr1
  * Please refer to fuse map.
  */
 //@{
-
 #define BP_SRC_SBMR1_BOOT_CFG1      (0)      //!< Bit position for SRC_SBMR1_BOOT_CFG1.
 #define BM_SRC_SBMR1_BOOT_CFG1      (0x000000ff)  //!< Bit mask for SRC_SBMR1_BOOT_CFG1.
 
 //! @brief Get value of SRC_SBMR1_BOOT_CFG1 from a register value.
 #define BG_SRC_SBMR1_BOOT_CFG1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SBMR1_BOOT_CFG1) >> BP_SRC_SBMR1_BOOT_CFG1)
-
 //@}
 
 /*! @name Register SRC_SBMR1, field BOOT_CFG2[15:8] (RO)
@@ -603,13 +571,11 @@ typedef union _hw_src_sbmr1
  * Please refer to fuse map.
  */
 //@{
-
 #define BP_SRC_SBMR1_BOOT_CFG2      (8)      //!< Bit position for SRC_SBMR1_BOOT_CFG2.
 #define BM_SRC_SBMR1_BOOT_CFG2      (0x0000ff00)  //!< Bit mask for SRC_SBMR1_BOOT_CFG2.
 
 //! @brief Get value of SRC_SBMR1_BOOT_CFG2 from a register value.
 #define BG_SRC_SBMR1_BOOT_CFG2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SBMR1_BOOT_CFG2) >> BP_SRC_SBMR1_BOOT_CFG2)
-
 //@}
 
 /*! @name Register SRC_SBMR1, field BOOT_CFG3[23:16] (RO)
@@ -617,13 +583,11 @@ typedef union _hw_src_sbmr1
  * Please refer to fuse map.
  */
 //@{
-
 #define BP_SRC_SBMR1_BOOT_CFG3      (16)      //!< Bit position for SRC_SBMR1_BOOT_CFG3.
 #define BM_SRC_SBMR1_BOOT_CFG3      (0x00ff0000)  //!< Bit mask for SRC_SBMR1_BOOT_CFG3.
 
 //! @brief Get value of SRC_SBMR1_BOOT_CFG3 from a register value.
 #define BG_SRC_SBMR1_BOOT_CFG3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SBMR1_BOOT_CFG3) >> BP_SRC_SBMR1_BOOT_CFG3)
-
 //@}
 
 /*! @name Register SRC_SBMR1, field BOOT_CFG4[31:24] (RO)
@@ -631,13 +595,11 @@ typedef union _hw_src_sbmr1
  * Please refer to fuse map.
  */
 //@{
-
 #define BP_SRC_SBMR1_BOOT_CFG4      (24)      //!< Bit position for SRC_SBMR1_BOOT_CFG4.
 #define BM_SRC_SBMR1_BOOT_CFG4      (0xff000000)  //!< Bit mask for SRC_SBMR1_BOOT_CFG4.
 
 //! @brief Get value of SRC_SBMR1_BOOT_CFG4 from a register value.
 #define BG_SRC_SBMR1_BOOT_CFG4(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SBMR1_BOOT_CFG4) >> BP_SRC_SBMR1_BOOT_CFG4)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -707,7 +669,6 @@ typedef union _hw_src_srsr
  * - 1 - Reset is a result of ipp_reset_b pin.
  */
 //@{
-
 #define BP_SRC_SRSR_IPP_RESET_B      (0)      //!< Bit position for SRC_SRSR_IPP_RESET_B.
 #define BM_SRC_SRSR_IPP_RESET_B      (0x00000001)  //!< Bit mask for SRC_SRSR_IPP_RESET_B.
 
@@ -721,7 +682,6 @@ typedef union _hw_src_srsr
 //! @brief Set the IPP_RESET_B field to a new value.
 #define BW_SRC_SRSR_IPP_RESET_B(v)   (HW_SRC_SRSR_WR((HW_SRC_SRSR_RD() & ~BM_SRC_SRSR_IPP_RESET_B) | BF_SRC_SRSR_IPP_RESET_B(v)))
 #endif
-
 //@}
 
 /*! @name Register SRC_SRSR, field CSU_RESET_B[2] (W1C)
@@ -735,7 +695,6 @@ typedef union _hw_src_srsr
  * - 1 - Reset is a result of the csu_reset_b event.
  */
 //@{
-
 #define BP_SRC_SRSR_CSU_RESET_B      (2)      //!< Bit position for SRC_SRSR_CSU_RESET_B.
 #define BM_SRC_SRSR_CSU_RESET_B      (0x00000004)  //!< Bit mask for SRC_SRSR_CSU_RESET_B.
 
@@ -749,7 +708,6 @@ typedef union _hw_src_srsr
 //! @brief Set the CSU_RESET_B field to a new value.
 #define BW_SRC_SRSR_CSU_RESET_B(v)   (HW_SRC_SRSR_WR((HW_SRC_SRSR_RD() & ~BM_SRC_SRSR_CSU_RESET_B) | BF_SRC_SRSR_CSU_RESET_B(v)))
 #endif
-
 //@}
 
 /*! @name Register SRC_SRSR, field IPP_USER_RESET_B[3] (W1C)
@@ -761,7 +719,6 @@ typedef union _hw_src_srsr
  * - 1 - Reset is a result of the ipp_user_reset_b qualified as COLD reset event.
  */
 //@{
-
 #define BP_SRC_SRSR_IPP_USER_RESET_B      (3)      //!< Bit position for SRC_SRSR_IPP_USER_RESET_B.
 #define BM_SRC_SRSR_IPP_USER_RESET_B      (0x00000008)  //!< Bit mask for SRC_SRSR_IPP_USER_RESET_B.
 
@@ -775,7 +732,6 @@ typedef union _hw_src_srsr
 //! @brief Set the IPP_USER_RESET_B field to a new value.
 #define BW_SRC_SRSR_IPP_USER_RESET_B(v)   (HW_SRC_SRSR_WR((HW_SRC_SRSR_RD() & ~BM_SRC_SRSR_IPP_USER_RESET_B) | BF_SRC_SRSR_IPP_USER_RESET_B(v)))
 #endif
-
 //@}
 
 /*! @name Register SRC_SRSR, field WDOG_RST_B[4] (W1C)
@@ -788,7 +744,6 @@ typedef union _hw_src_srsr
  * - 1 - Reset is a result of the watchdog time-out event.
  */
 //@{
-
 #define BP_SRC_SRSR_WDOG_RST_B      (4)      //!< Bit position for SRC_SRSR_WDOG_RST_B.
 #define BM_SRC_SRSR_WDOG_RST_B      (0x00000010)  //!< Bit mask for SRC_SRSR_WDOG_RST_B.
 
@@ -802,7 +757,6 @@ typedef union _hw_src_srsr
 //! @brief Set the WDOG_RST_B field to a new value.
 #define BW_SRC_SRSR_WDOG_RST_B(v)   (HW_SRC_SRSR_WR((HW_SRC_SRSR_RD() & ~BM_SRC_SRSR_WDOG_RST_B) | BF_SRC_SRSR_WDOG_RST_B(v)))
 #endif
-
 //@}
 
 /*! @name Register SRC_SRSR, field JTAG_RST_B[5] (W1C)
@@ -815,7 +769,6 @@ typedef union _hw_src_srsr
  * - 1 - Reset is a result of HIGH-Z reset from JTAG.
  */
 //@{
-
 #define BP_SRC_SRSR_JTAG_RST_B      (5)      //!< Bit position for SRC_SRSR_JTAG_RST_B.
 #define BM_SRC_SRSR_JTAG_RST_B      (0x00000020)  //!< Bit mask for SRC_SRSR_JTAG_RST_B.
 
@@ -829,7 +782,6 @@ typedef union _hw_src_srsr
 //! @brief Set the JTAG_RST_B field to a new value.
 #define BW_SRC_SRSR_JTAG_RST_B(v)   (HW_SRC_SRSR_WR((HW_SRC_SRSR_RD() & ~BM_SRC_SRSR_JTAG_RST_B) | BF_SRC_SRSR_JTAG_RST_B(v)))
 #endif
-
 //@}
 
 /*! @name Register SRC_SRSR, field JTAG_SW_RST[6] (W1C)
@@ -842,7 +794,6 @@ typedef union _hw_src_srsr
  * - 1 - Reset is a result of software reset from JTAG.
  */
 //@{
-
 #define BP_SRC_SRSR_JTAG_SW_RST      (6)      //!< Bit position for SRC_SRSR_JTAG_SW_RST.
 #define BM_SRC_SRSR_JTAG_SW_RST      (0x00000040)  //!< Bit mask for SRC_SRSR_JTAG_SW_RST.
 
@@ -856,7 +807,6 @@ typedef union _hw_src_srsr
 //! @brief Set the JTAG_SW_RST field to a new value.
 #define BW_SRC_SRSR_JTAG_SW_RST(v)   (HW_SRC_SRSR_WR((HW_SRC_SRSR_RD() & ~BM_SRC_SRSR_JTAG_SW_RST) | BF_SRC_SRSR_JTAG_SW_RST(v)))
 #endif
-
 //@}
 
 /*! @name Register SRC_SRSR, field WARM_BOOT[16] (RW)
@@ -873,7 +823,6 @@ typedef union _hw_src_srsr
  * - 1 - WARM boot initiated by software.
  */
 //@{
-
 #define BP_SRC_SRSR_WARM_BOOT      (16)      //!< Bit position for SRC_SRSR_WARM_BOOT.
 #define BM_SRC_SRSR_WARM_BOOT      (0x00010000)  //!< Bit mask for SRC_SRSR_WARM_BOOT.
 
@@ -887,7 +836,6 @@ typedef union _hw_src_srsr
 //! @brief Set the WARM_BOOT field to a new value.
 #define BW_SRC_SRSR_WARM_BOOT(v)   (HW_SRC_SRSR_WR((HW_SRC_SRSR_RD() & ~BM_SRC_SRSR_WARM_BOOT) | BF_SRC_SRSR_WARM_BOOT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -944,13 +892,11 @@ typedef union _hw_src_sisr
  * - 1 - interrupt generated due to gpu passed reset
  */
 //@{
-
 #define BP_SRC_SISR_GPU_PASSED_RESET      (0)      //!< Bit position for SRC_SISR_GPU_PASSED_RESET.
 #define BM_SRC_SISR_GPU_PASSED_RESET      (0x00000001)  //!< Bit mask for SRC_SISR_GPU_PASSED_RESET.
 
 //! @brief Get value of SRC_SISR_GPU_PASSED_RESET from a register value.
 #define BG_SRC_SISR_GPU_PASSED_RESET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SISR_GPU_PASSED_RESET) >> BP_SRC_SISR_GPU_PASSED_RESET)
-
 //@}
 
 /*! @name Register SRC_SISR, field VPU_PASSED_RESET[1] (RO)
@@ -962,13 +908,11 @@ typedef union _hw_src_sisr
  * - 1 - interrupt generated due to vpu passed reset
  */
 //@{
-
 #define BP_SRC_SISR_VPU_PASSED_RESET      (1)      //!< Bit position for SRC_SISR_VPU_PASSED_RESET.
 #define BM_SRC_SISR_VPU_PASSED_RESET      (0x00000002)  //!< Bit mask for SRC_SISR_VPU_PASSED_RESET.
 
 //! @brief Get value of SRC_SISR_VPU_PASSED_RESET from a register value.
 #define BG_SRC_SISR_VPU_PASSED_RESET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SISR_VPU_PASSED_RESET) >> BP_SRC_SISR_VPU_PASSED_RESET)
-
 //@}
 
 /*! @name Register SRC_SISR, field IPU1_PASSED_RESET[2] (RO)
@@ -980,13 +924,11 @@ typedef union _hw_src_sisr
  * - 1 - interrupt generated due to ipu passed reset
  */
 //@{
-
 #define BP_SRC_SISR_IPU1_PASSED_RESET      (2)      //!< Bit position for SRC_SISR_IPU1_PASSED_RESET.
 #define BM_SRC_SISR_IPU1_PASSED_RESET      (0x00000004)  //!< Bit mask for SRC_SISR_IPU1_PASSED_RESET.
 
 //! @brief Get value of SRC_SISR_IPU1_PASSED_RESET from a register value.
 #define BG_SRC_SISR_IPU1_PASSED_RESET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SISR_IPU1_PASSED_RESET) >> BP_SRC_SISR_IPU1_PASSED_RESET)
-
 //@}
 
 /*! @name Register SRC_SISR, field OPEN_VG_PASSED_RESET[3] (RO)
@@ -998,13 +940,11 @@ typedef union _hw_src_sisr
  * - 1 - interrupt generated due to open_vg passed reset
  */
 //@{
-
 #define BP_SRC_SISR_OPEN_VG_PASSED_RESET      (3)      //!< Bit position for SRC_SISR_OPEN_VG_PASSED_RESET.
 #define BM_SRC_SISR_OPEN_VG_PASSED_RESET      (0x00000008)  //!< Bit mask for SRC_SISR_OPEN_VG_PASSED_RESET.
 
 //! @brief Get value of SRC_SISR_OPEN_VG_PASSED_RESET from a register value.
 #define BG_SRC_SISR_OPEN_VG_PASSED_RESET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SISR_OPEN_VG_PASSED_RESET) >> BP_SRC_SISR_OPEN_VG_PASSED_RESET)
-
 //@}
 
 /*! @name Register SRC_SISR, field CORE0_WDOG_RST_REQ[5] (RO)
@@ -1012,13 +952,11 @@ typedef union _hw_src_sisr
  * WDOG reset request from CPU core0. Read-only status bit.
  */
 //@{
-
 #define BP_SRC_SISR_CORE0_WDOG_RST_REQ      (5)      //!< Bit position for SRC_SISR_CORE0_WDOG_RST_REQ.
 #define BM_SRC_SISR_CORE0_WDOG_RST_REQ      (0x00000020)  //!< Bit mask for SRC_SISR_CORE0_WDOG_RST_REQ.
 
 //! @brief Get value of SRC_SISR_CORE0_WDOG_RST_REQ from a register value.
 #define BG_SRC_SISR_CORE0_WDOG_RST_REQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SISR_CORE0_WDOG_RST_REQ) >> BP_SRC_SISR_CORE0_WDOG_RST_REQ)
-
 //@}
 
 /*! @name Register SRC_SISR, field CORE1_WDOG_RST_REQ[6] (RO)
@@ -1026,13 +964,11 @@ typedef union _hw_src_sisr
  * WDOG reset request from CPU core1. Read-only status bit.
  */
 //@{
-
 #define BP_SRC_SISR_CORE1_WDOG_RST_REQ      (6)      //!< Bit position for SRC_SISR_CORE1_WDOG_RST_REQ.
 #define BM_SRC_SISR_CORE1_WDOG_RST_REQ      (0x00000040)  //!< Bit mask for SRC_SISR_CORE1_WDOG_RST_REQ.
 
 //! @brief Get value of SRC_SISR_CORE1_WDOG_RST_REQ from a register value.
 #define BG_SRC_SISR_CORE1_WDOG_RST_REQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SISR_CORE1_WDOG_RST_REQ) >> BP_SRC_SISR_CORE1_WDOG_RST_REQ)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1090,7 +1026,6 @@ typedef union _hw_src_simr
  * - 1 - mask interrupt due to gpu passed reset
  */
 //@{
-
 #define BP_SRC_SIMR_MASK_GPU_PASSED_RESET      (0)      //!< Bit position for SRC_SIMR_MASK_GPU_PASSED_RESET.
 #define BM_SRC_SIMR_MASK_GPU_PASSED_RESET      (0x00000001)  //!< Bit mask for SRC_SIMR_MASK_GPU_PASSED_RESET.
 
@@ -1104,7 +1039,6 @@ typedef union _hw_src_simr
 //! @brief Set the MASK_GPU_PASSED_RESET field to a new value.
 #define BW_SRC_SIMR_MASK_GPU_PASSED_RESET(v)   (HW_SRC_SIMR_WR((HW_SRC_SIMR_RD() & ~BM_SRC_SIMR_MASK_GPU_PASSED_RESET) | BF_SRC_SIMR_MASK_GPU_PASSED_RESET(v)))
 #endif
-
 //@}
 
 /*! @name Register SRC_SIMR, field MASK_VPU_PASSED_RESET[1] (RW)
@@ -1116,7 +1050,6 @@ typedef union _hw_src_simr
  * - 1 - mask interrupt due to vpu passed reset
  */
 //@{
-
 #define BP_SRC_SIMR_MASK_VPU_PASSED_RESET      (1)      //!< Bit position for SRC_SIMR_MASK_VPU_PASSED_RESET.
 #define BM_SRC_SIMR_MASK_VPU_PASSED_RESET      (0x00000002)  //!< Bit mask for SRC_SIMR_MASK_VPU_PASSED_RESET.
 
@@ -1130,7 +1063,6 @@ typedef union _hw_src_simr
 //! @brief Set the MASK_VPU_PASSED_RESET field to a new value.
 #define BW_SRC_SIMR_MASK_VPU_PASSED_RESET(v)   (HW_SRC_SIMR_WR((HW_SRC_SIMR_RD() & ~BM_SRC_SIMR_MASK_VPU_PASSED_RESET) | BF_SRC_SIMR_MASK_VPU_PASSED_RESET(v)))
 #endif
-
 //@}
 
 /*! @name Register SRC_SIMR, field MASK_IPU_PASSED_RESET[2] (RW)
@@ -1142,7 +1074,6 @@ typedef union _hw_src_simr
  * - 1 - mask interrupt due to ipu passed reset
  */
 //@{
-
 #define BP_SRC_SIMR_MASK_IPU_PASSED_RESET      (2)      //!< Bit position for SRC_SIMR_MASK_IPU_PASSED_RESET.
 #define BM_SRC_SIMR_MASK_IPU_PASSED_RESET      (0x00000004)  //!< Bit mask for SRC_SIMR_MASK_IPU_PASSED_RESET.
 
@@ -1156,7 +1087,6 @@ typedef union _hw_src_simr
 //! @brief Set the MASK_IPU_PASSED_RESET field to a new value.
 #define BW_SRC_SIMR_MASK_IPU_PASSED_RESET(v)   (HW_SRC_SIMR_WR((HW_SRC_SIMR_RD() & ~BM_SRC_SIMR_MASK_IPU_PASSED_RESET) | BF_SRC_SIMR_MASK_IPU_PASSED_RESET(v)))
 #endif
-
 //@}
 
 /*! @name Register SRC_SIMR, field MASK_OPEN_VG_PASSED_RESET[3] (RW)
@@ -1168,7 +1098,6 @@ typedef union _hw_src_simr
  * - 1 - mask interrupt due to open_vg passed reset
  */
 //@{
-
 #define BP_SRC_SIMR_MASK_OPEN_VG_PASSED_RESET      (3)      //!< Bit position for SRC_SIMR_MASK_OPEN_VG_PASSED_RESET.
 #define BM_SRC_SIMR_MASK_OPEN_VG_PASSED_RESET      (0x00000008)  //!< Bit mask for SRC_SIMR_MASK_OPEN_VG_PASSED_RESET.
 
@@ -1182,7 +1111,6 @@ typedef union _hw_src_simr
 //! @brief Set the MASK_OPEN_VG_PASSED_RESET field to a new value.
 #define BW_SRC_SIMR_MASK_OPEN_VG_PASSED_RESET(v)   (HW_SRC_SIMR_WR((HW_SRC_SIMR_RD() & ~BM_SRC_SIMR_MASK_OPEN_VG_PASSED_RESET) | BF_SRC_SIMR_MASK_OPEN_VG_PASSED_RESET(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1238,13 +1166,11 @@ typedef union _hw_src_sbmr2
  * Please refer to fuse map.
  */
 //@{
-
 #define BP_SRC_SBMR2_SEC_CONFIG      (0)      //!< Bit position for SRC_SBMR2_SEC_CONFIG.
 #define BM_SRC_SBMR2_SEC_CONFIG      (0x00000003)  //!< Bit mask for SRC_SBMR2_SEC_CONFIG.
 
 //! @brief Get value of SRC_SBMR2_SEC_CONFIG from a register value.
 #define BG_SRC_SBMR2_SEC_CONFIG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SBMR2_SEC_CONFIG) >> BP_SRC_SBMR2_SEC_CONFIG)
-
 //@}
 
 /*! @name Register SRC_SBMR2, field DIR_BT_DIS[3] (RO)
@@ -1252,13 +1178,11 @@ typedef union _hw_src_sbmr2
  * Please refer to fuse map.
  */
 //@{
-
 #define BP_SRC_SBMR2_DIR_BT_DIS      (3)      //!< Bit position for SRC_SBMR2_DIR_BT_DIS.
 #define BM_SRC_SBMR2_DIR_BT_DIS      (0x00000008)  //!< Bit mask for SRC_SBMR2_DIR_BT_DIS.
 
 //! @brief Get value of SRC_SBMR2_DIR_BT_DIS from a register value.
 #define BG_SRC_SBMR2_DIR_BT_DIS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SBMR2_DIR_BT_DIS) >> BP_SRC_SBMR2_DIR_BT_DIS)
-
 //@}
 
 /*! @name Register SRC_SBMR2, field BT_FUSE_SEL[4] (RO)
@@ -1266,13 +1190,11 @@ typedef union _hw_src_sbmr2
  * BT_FUSE_SEL (connected to gpio bt_fuse_sel)
  */
 //@{
-
 #define BP_SRC_SBMR2_BT_FUSE_SEL      (4)      //!< Bit position for SRC_SBMR2_BT_FUSE_SEL.
 #define BM_SRC_SBMR2_BT_FUSE_SEL      (0x00000010)  //!< Bit mask for SRC_SBMR2_BT_FUSE_SEL.
 
 //! @brief Get value of SRC_SBMR2_BT_FUSE_SEL from a register value.
 #define BG_SRC_SBMR2_BT_FUSE_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SBMR2_BT_FUSE_SEL) >> BP_SRC_SBMR2_BT_FUSE_SEL)
-
 //@}
 
 /*! @name Register SRC_SBMR2, field BMOD[25:24] (RO)
@@ -1280,13 +1202,11 @@ typedef union _hw_src_sbmr2
  * Please refer to fuse map.
  */
 //@{
-
 #define BP_SRC_SBMR2_BMOD      (24)      //!< Bit position for SRC_SBMR2_BMOD.
 #define BM_SRC_SBMR2_BMOD      (0x03000000)  //!< Bit mask for SRC_SBMR2_BMOD.
 
 //! @brief Get value of SRC_SBMR2_BMOD from a register value.
 #define BG_SRC_SBMR2_BMOD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SBMR2_BMOD) >> BP_SRC_SBMR2_BMOD)
-
 //@}
 
 /*! @name Register SRC_SBMR2, field TEST_MODE[29:27] (RO)
@@ -1294,13 +1214,11 @@ typedef union _hw_src_sbmr2
  * Please refer to fuse map.
  */
 //@{
-
 #define BP_SRC_SBMR2_TEST_MODE      (27)      //!< Bit position for SRC_SBMR2_TEST_MODE.
 #define BM_SRC_SBMR2_TEST_MODE      (0x38000000)  //!< Bit mask for SRC_SBMR2_TEST_MODE.
 
 //! @brief Get value of SRC_SBMR2_TEST_MODE from a register value.
 #define BG_SRC_SBMR2_TEST_MODE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SRC_SBMR2_TEST_MODE) >> BP_SRC_SBMR2_TEST_MODE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1761,3 +1679,5 @@ typedef struct _hw_src
 #endif
 
 #endif // __HW_SRC_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

@@ -222,8 +222,8 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_1MMDC_MDSCR_CON_REQ={\
         gui_name="CON_REQ":position=15:size=1:read_only=false\
       }\
-      :bit_fields.B_1MMDC_MDSCR_CMD_ADDR_LSB={\
-        gui_name="CMD_ADDR_LSB":position=16:size=8:read_only=false\
+      :bit_fields.B_1MMDC_MDSCR_CMD_ADDR_LSB_MR_AD1={\
+        gui_name="CMD_ADDR_LSB_MR_ADDR":position=16:size=8:read_only=false\
       }\
       :bit_fields.B_1MMDC_MDSCR_CMD_ADDR_MSB={\
         gui_name="CMD_ADDR_MSB":position=24:size=8:read_only=false\
@@ -572,7 +572,7 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_1MMDC_MPZQHWCTRL_TZQ_CS={\
         gui_name="TZQ_CS":position=23:size=3:read_only=false\
       }\
-      :bit_fields.B_1MMDC_MPZQHWCTRL_ZQ_EARLY_COMP1={\
+      :bit_fields.B_1MMDC_MPZQHWCTRL_ZQ_EARLY_COMP2={\
         gui_name="ZQ_EARLY_COMPARATOR_EN_TIMER":position=27:size=5:read_only=false\
       }\
     }\
@@ -641,7 +641,7 @@ Advanced_Information.Cortex-A9={\
     :Register.G_1MMDC_MPWLDECTRL0={\
       gui_name="MPWLDECTRL0":start=0x21b080c:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_1MMDC_MPWLDECTRL0_WL_DL_ABS_OF2={\
+      :bit_fields.B_1MMDC_MPWLDECTRL0_WL_DL_ABS_OF3={\
         gui_name="WL_DL_ABS_OFFSET0":position=0:size=7:read_only=false\
       }\
       :bit_fields.B_1MMDC_MPWLDECTRL0_WL_HC_DEL0={\
@@ -650,7 +650,7 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_1MMDC_MPWLDECTRL0_WL_CYC_DEL0={\
         gui_name="WL_CYC_DEL0":position=9:size=2:read_only=false\
       }\
-      :bit_fields.B_1MMDC_MPWLDECTRL0_WL_DL_ABS_OF3={\
+      :bit_fields.B_1MMDC_MPWLDECTRL0_WL_DL_ABS_OF4={\
         gui_name="WL_DL_ABS_OFFSET1":position=16:size=7:read_only=false\
       }\
       :bit_fields.B_1MMDC_MPWLDECTRL0_WL_HC_DEL1={\
@@ -663,7 +663,7 @@ Advanced_Information.Cortex-A9={\
     :Register.G_1MMDC_MPWLDECTRL1={\
       gui_name="MPWLDECTRL1":start=0x21b0810:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_1MMDC_MPWLDECTRL1_WL_DL_ABS_OF4={\
+      :bit_fields.B_1MMDC_MPWLDECTRL1_WL_DL_ABS_OF5={\
         gui_name="WL_DL_ABS_OFFSET2":position=0:size=7:read_only=false\
       }\
       :bit_fields.B_1MMDC_MPWLDECTRL1_WL_HC_DEL2={\
@@ -672,7 +672,7 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_1MMDC_MPWLDECTRL1_WL_CYC_DEL2={\
         gui_name="WL_CYC_DEL2":position=9:size=2:read_only=false\
       }\
-      :bit_fields.B_1MMDC_MPWLDECTRL1_WL_DL_ABS_OF5={\
+      :bit_fields.B_1MMDC_MPWLDECTRL1_WL_DL_ABS_OF6={\
         gui_name="WL_DL_ABS_OFFSET3":position=16:size=7:read_only=false\
       }\
       :bit_fields.B_1MMDC_MPWLDECTRL1_WL_HC_DEL3={\
@@ -965,7 +965,7 @@ Advanced_Information.Cortex-A9={\
     :Register.G_1MMDC_MPDGCTRL0={\
       gui_name="MPDGCTRL0":start=0x21b083c:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_1MMDC_MPDGCTRL0_DG_DL_ABS_OFFS6={\
+      :bit_fields.B_1MMDC_MPDGCTRL0_DG_DL_ABS_OFFS7={\
         gui_name="DG_DL_ABS_OFFSET0":position=0:size=7:read_only=false\
       }\
       :bit_fields.B_1MMDC_MPDGCTRL0_DG_HC_DEL0={\
@@ -974,7 +974,7 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_1MMDC_MPDGCTRL0_HW_DG_ERR={\
         gui_name="HW_DG_ERR":position=12:size=1:read_only=true\
       }\
-      :bit_fields.B_1MMDC_MPDGCTRL0_DG_DL_ABS_OFFS7={\
+      :bit_fields.B_1MMDC_MPDGCTRL0_DG_DL_ABS_OFFS8={\
         gui_name="DG_DL_ABS_OFFSET1":position=16:size=7:read_only=false\
       }\
       :bit_fields.B_1MMDC_MPDGCTRL0_DG_EXT_UP={\
@@ -999,13 +999,13 @@ Advanced_Information.Cortex-A9={\
     :Register.G_1MMDC_MPDGCTRL1={\
       gui_name="MPDGCTRL1":start=0x21b0840:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_1MMDC_MPDGCTRL1_DG_DL_ABS_OFFS8={\
+      :bit_fields.B_1MMDC_MPDGCTRL1_DG_DL_ABS_OFFS9={\
         gui_name="DG_DL_ABS_OFFSET2":position=0:size=7:read_only=false\
       }\
       :bit_fields.B_1MMDC_MPDGCTRL1_DG_HC_DEL2={\
         gui_name="DG_HC_DEL2":position=8:size=4:read_only=false\
       }\
-      :bit_fields.B_1MMDC_MPDGCTRL1_DG_DL_ABS_OFFS9={\
+      :bit_fields.B_1MMDC_MPDGCTRL1_DG_DL_ABS_OFF10={\
         gui_name="DG_DL_ABS_OFFSET3":position=16:size=7:read_only=false\
       }\
       :bit_fields.B_1MMDC_MPDGCTRL1_DG_HC_DEL3={\
@@ -1031,16 +1031,16 @@ Advanced_Information.Cortex-A9={\
     :Register.G_1MMDC_MPRDDLCTL={\
       gui_name="MPRDDLCTL":start=0x21b0848:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_1MMDC_MPRDDLCTL_RD_DL_ABS_OFF10={\
+      :bit_fields.B_1MMDC_MPRDDLCTL_RD_DL_ABS_OFF11={\
         gui_name="RD_DL_ABS_OFFSET0":position=0:size=7:read_only=false\
       }\
-      :bit_fields.B_1MMDC_MPRDDLCTL_RD_DL_ABS_OFF11={\
+      :bit_fields.B_1MMDC_MPRDDLCTL_RD_DL_ABS_OFF12={\
         gui_name="RD_DL_ABS_OFFSET1":position=8:size=7:read_only=false\
       }\
-      :bit_fields.B_1MMDC_MPRDDLCTL_RD_DL_ABS_OFF12={\
+      :bit_fields.B_1MMDC_MPRDDLCTL_RD_DL_ABS_OFF13={\
         gui_name="RD_DL_ABS_OFFSET2":position=16:size=7:read_only=false\
       }\
-      :bit_fields.B_1MMDC_MPRDDLCTL_RD_DL_ABS_OFF13={\
+      :bit_fields.B_1MMDC_MPRDDLCTL_RD_DL_ABS_OFF14={\
         gui_name="RD_DL_ABS_OFFSET3":position=24:size=7:read_only=false\
       }\
     }\
@@ -1063,16 +1063,16 @@ Advanced_Information.Cortex-A9={\
     :Register.G_1MMDC_MPWRDLCTL={\
       gui_name="MPWRDLCTL":start=0x21b0850:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_1MMDC_MPWRDLCTL_WR_DL_ABS_OFF14={\
+      :bit_fields.B_1MMDC_MPWRDLCTL_WR_DL_ABS_OFF15={\
         gui_name="WR_DL_ABS_OFFSET0":position=0:size=7:read_only=false\
       }\
-      :bit_fields.B_1MMDC_MPWRDLCTL_WR_DL_ABS_OFF15={\
+      :bit_fields.B_1MMDC_MPWRDLCTL_WR_DL_ABS_OFF16={\
         gui_name="WR_DL_ABS_OFFSET1":position=8:size=7:read_only=false\
       }\
-      :bit_fields.B_1MMDC_MPWRDLCTL_WR_DL_ABS_OFF16={\
+      :bit_fields.B_1MMDC_MPWRDLCTL_WR_DL_ABS_OFF17={\
         gui_name="WR_DL_ABS_OFFSET2":position=16:size=7:read_only=false\
       }\
-      :bit_fields.B_1MMDC_MPWRDLCTL_WR_DL_ABS_OFF17={\
+      :bit_fields.B_1MMDC_MPWRDLCTL_WR_DL_ABS_OFF18={\
         gui_name="WR_DL_ABS_OFFSET3":position=24:size=7:read_only=false\
       }\
     }\
@@ -1102,7 +1102,7 @@ Advanced_Information.Cortex-A9={\
     :Register.G_1MMDC_MPZQLP2CTL={\
       gui_name="MPZQLP2CTL":start=0x21b085c:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_1MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQ18={\
+      :bit_fields.B_1MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQ19={\
         gui_name="ZQ_LP2_HW_ZQINIT":position=0:size=9:read_only=false\
       }\
       :bit_fields.B_1MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL={\
@@ -1130,7 +1130,7 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_1MMDC_MPRDDLHWCTL_HW_RD_DL_EN={\
         gui_name="HW_RD_DL_EN":position=4:size=1:read_only=false\
       }\
-      :bit_fields.B_1MMDC_MPRDDLHWCTL_HW_RD_DL_CM19={\
+      :bit_fields.B_1MMDC_MPRDDLHWCTL_HW_RD_DL_CM20={\
         gui_name="HW_RD_DL_CMP_CYC":position=5:size=1:read_only=false\
       }\
     }\
@@ -1152,7 +1152,7 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_1MMDC_MPWRDLHWCTL_HW_WR_DL_EN={\
         gui_name="HW_WR_DL_EN":position=4:size=1:read_only=false\
       }\
-      :bit_fields.B_1MMDC_MPWRDLHWCTL_HW_WR_DL_CM20={\
+      :bit_fields.B_1MMDC_MPWRDLHWCTL_HW_WR_DL_CM21={\
         gui_name="HW_WR_DL_CMP_CYC":position=5:size=1:read_only=false\
       }\
     }\
@@ -1295,10 +1295,10 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_1MMDC_MPPDCMPR2_MPR_FULL_CMP={\
         gui_name="MPR_FULL_CMP":position=1:size=1:read_only=false\
       }\
-      :bit_fields.B_1MMDC_MPPDCMPR2_READ_LEVEL_PA21={\
+      :bit_fields.B_1MMDC_MPPDCMPR2_READ_LEVEL_PA22={\
         gui_name="READ_LEVEL_PATTERN":position=2:size=1:read_only=false\
       }\
-      :bit_fields.B_1MMDC_MPPDCMPR2_CA_DL_ABS_OFF22={\
+      :bit_fields.B_1MMDC_MPPDCMPR2_CA_DL_ABS_OFF23={\
         gui_name="CA_DL_ABS_OFFSET":position=16:size=7:read_only=false\
       }\
       :bit_fields.B_1MMDC_MPPDCMPR2_PHY_CA_DL_UNIT={\
@@ -1681,8 +1681,8 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_2MMDC_MDSCR_CON_REQ={\
         gui_name="CON_REQ":position=15:size=1:read_only=false\
       }\
-      :bit_fields.B_2MMDC_MDSCR_CMD_ADDR_LSB={\
-        gui_name="CMD_ADDR_LSB":position=16:size=8:read_only=false\
+      :bit_fields.B_2MMDC_MDSCR_CMD_ADDR_LSB_MR_A24={\
+        gui_name="CMD_ADDR_LSB_MR_ADDR":position=16:size=8:read_only=false\
       }\
       :bit_fields.B_2MMDC_MDSCR_CMD_ADDR_MSB={\
         gui_name="CMD_ADDR_MSB":position=24:size=8:read_only=false\
@@ -2031,7 +2031,7 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_2MMDC_MPZQHWCTRL_TZQ_CS={\
         gui_name="TZQ_CS":position=23:size=3:read_only=false\
       }\
-      :bit_fields.B_2MMDC_MPZQHWCTRL_ZQ_EARLY_COM23={\
+      :bit_fields.B_2MMDC_MPZQHWCTRL_ZQ_EARLY_COM25={\
         gui_name="ZQ_EARLY_COMPARATOR_EN_TIMER":position=27:size=5:read_only=false\
       }\
     }\
@@ -2100,7 +2100,7 @@ Advanced_Information.Cortex-A9={\
     :Register.G_2MMDC_MPWLDECTRL0={\
       gui_name="MPWLDECTRL0":start=0x21b480c:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_2MMDC_MPWLDECTRL0_WL_DL_ABS_O24={\
+      :bit_fields.B_2MMDC_MPWLDECTRL0_WL_DL_ABS_O26={\
         gui_name="WL_DL_ABS_OFFSET0":position=0:size=7:read_only=false\
       }\
       :bit_fields.B_2MMDC_MPWLDECTRL0_WL_HC_DEL0={\
@@ -2109,7 +2109,7 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_2MMDC_MPWLDECTRL0_WL_CYC_DEL0={\
         gui_name="WL_CYC_DEL0":position=9:size=2:read_only=false\
       }\
-      :bit_fields.B_2MMDC_MPWLDECTRL0_WL_DL_ABS_O25={\
+      :bit_fields.B_2MMDC_MPWLDECTRL0_WL_DL_ABS_O27={\
         gui_name="WL_DL_ABS_OFFSET1":position=16:size=7:read_only=false\
       }\
       :bit_fields.B_2MMDC_MPWLDECTRL0_WL_HC_DEL1={\
@@ -2122,7 +2122,7 @@ Advanced_Information.Cortex-A9={\
     :Register.G_2MMDC_MPWLDECTRL1={\
       gui_name="MPWLDECTRL1":start=0x21b4810:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_2MMDC_MPWLDECTRL1_WL_DL_ABS_O26={\
+      :bit_fields.B_2MMDC_MPWLDECTRL1_WL_DL_ABS_O28={\
         gui_name="WL_DL_ABS_OFFSET2":position=0:size=7:read_only=false\
       }\
       :bit_fields.B_2MMDC_MPWLDECTRL1_WL_HC_DEL2={\
@@ -2131,7 +2131,7 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_2MMDC_MPWLDECTRL1_WL_CYC_DEL2={\
         gui_name="WL_CYC_DEL2":position=9:size=2:read_only=false\
       }\
-      :bit_fields.B_2MMDC_MPWLDECTRL1_WL_DL_ABS_O27={\
+      :bit_fields.B_2MMDC_MPWLDECTRL1_WL_DL_ABS_O29={\
         gui_name="WL_DL_ABS_OFFSET3":position=16:size=7:read_only=false\
       }\
       :bit_fields.B_2MMDC_MPWLDECTRL1_WL_HC_DEL3={\
@@ -2424,7 +2424,7 @@ Advanced_Information.Cortex-A9={\
     :Register.G_2MMDC_MPDGCTRL0={\
       gui_name="MPDGCTRL0":start=0x21b483c:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_2MMDC_MPDGCTRL0_DG_DL_ABS_OFF28={\
+      :bit_fields.B_2MMDC_MPDGCTRL0_DG_DL_ABS_OFF30={\
         gui_name="DG_DL_ABS_OFFSET0":position=0:size=7:read_only=false\
       }\
       :bit_fields.B_2MMDC_MPDGCTRL0_DG_HC_DEL0={\
@@ -2433,7 +2433,7 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_2MMDC_MPDGCTRL0_HW_DG_ERR={\
         gui_name="HW_DG_ERR":position=12:size=1:read_only=true\
       }\
-      :bit_fields.B_2MMDC_MPDGCTRL0_DG_DL_ABS_OFF29={\
+      :bit_fields.B_2MMDC_MPDGCTRL0_DG_DL_ABS_OFF31={\
         gui_name="DG_DL_ABS_OFFSET1":position=16:size=7:read_only=false\
       }\
       :bit_fields.B_2MMDC_MPDGCTRL0_DG_EXT_UP={\
@@ -2458,13 +2458,13 @@ Advanced_Information.Cortex-A9={\
     :Register.G_2MMDC_MPDGCTRL1={\
       gui_name="MPDGCTRL1":start=0x21b4840:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_2MMDC_MPDGCTRL1_DG_DL_ABS_OFF30={\
+      :bit_fields.B_2MMDC_MPDGCTRL1_DG_DL_ABS_OFF32={\
         gui_name="DG_DL_ABS_OFFSET2":position=0:size=7:read_only=false\
       }\
       :bit_fields.B_2MMDC_MPDGCTRL1_DG_HC_DEL2={\
         gui_name="DG_HC_DEL2":position=8:size=4:read_only=false\
       }\
-      :bit_fields.B_2MMDC_MPDGCTRL1_DG_DL_ABS_OFF31={\
+      :bit_fields.B_2MMDC_MPDGCTRL1_DG_DL_ABS_OFF33={\
         gui_name="DG_DL_ABS_OFFSET3":position=16:size=7:read_only=false\
       }\
       :bit_fields.B_2MMDC_MPDGCTRL1_DG_HC_DEL3={\
@@ -2490,16 +2490,16 @@ Advanced_Information.Cortex-A9={\
     :Register.G_2MMDC_MPRDDLCTL={\
       gui_name="MPRDDLCTL":start=0x21b4848:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_2MMDC_MPRDDLCTL_RD_DL_ABS_OFF32={\
+      :bit_fields.B_2MMDC_MPRDDLCTL_RD_DL_ABS_OFF34={\
         gui_name="RD_DL_ABS_OFFSET0":position=0:size=7:read_only=false\
       }\
-      :bit_fields.B_2MMDC_MPRDDLCTL_RD_DL_ABS_OFF33={\
+      :bit_fields.B_2MMDC_MPRDDLCTL_RD_DL_ABS_OFF35={\
         gui_name="RD_DL_ABS_OFFSET1":position=8:size=7:read_only=false\
       }\
-      :bit_fields.B_2MMDC_MPRDDLCTL_RD_DL_ABS_OFF34={\
+      :bit_fields.B_2MMDC_MPRDDLCTL_RD_DL_ABS_OFF36={\
         gui_name="RD_DL_ABS_OFFSET2":position=16:size=7:read_only=false\
       }\
-      :bit_fields.B_2MMDC_MPRDDLCTL_RD_DL_ABS_OFF35={\
+      :bit_fields.B_2MMDC_MPRDDLCTL_RD_DL_ABS_OFF37={\
         gui_name="RD_DL_ABS_OFFSET3":position=24:size=7:read_only=false\
       }\
     }\
@@ -2522,16 +2522,16 @@ Advanced_Information.Cortex-A9={\
     :Register.G_2MMDC_MPWRDLCTL={\
       gui_name="MPWRDLCTL":start=0x21b4850:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_2MMDC_MPWRDLCTL_WR_DL_ABS_OFF36={\
+      :bit_fields.B_2MMDC_MPWRDLCTL_WR_DL_ABS_OFF38={\
         gui_name="WR_DL_ABS_OFFSET0":position=0:size=7:read_only=false\
       }\
-      :bit_fields.B_2MMDC_MPWRDLCTL_WR_DL_ABS_OFF37={\
+      :bit_fields.B_2MMDC_MPWRDLCTL_WR_DL_ABS_OFF39={\
         gui_name="WR_DL_ABS_OFFSET1":position=8:size=7:read_only=false\
       }\
-      :bit_fields.B_2MMDC_MPWRDLCTL_WR_DL_ABS_OFF38={\
+      :bit_fields.B_2MMDC_MPWRDLCTL_WR_DL_ABS_OFF40={\
         gui_name="WR_DL_ABS_OFFSET2":position=16:size=7:read_only=false\
       }\
-      :bit_fields.B_2MMDC_MPWRDLCTL_WR_DL_ABS_OFF39={\
+      :bit_fields.B_2MMDC_MPWRDLCTL_WR_DL_ABS_OFF41={\
         gui_name="WR_DL_ABS_OFFSET3":position=24:size=7:read_only=false\
       }\
     }\
@@ -2561,7 +2561,7 @@ Advanced_Information.Cortex-A9={\
     :Register.G_2MMDC_MPZQLP2CTL={\
       gui_name="MPZQLP2CTL":start=0x21b485c:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_2MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQ40={\
+      :bit_fields.B_2MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQ42={\
         gui_name="ZQ_LP2_HW_ZQINIT":position=0:size=9:read_only=false\
       }\
       :bit_fields.B_2MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL={\
@@ -2589,7 +2589,7 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_2MMDC_MPRDDLHWCTL_HW_RD_DL_EN={\
         gui_name="HW_RD_DL_EN":position=4:size=1:read_only=false\
       }\
-      :bit_fields.B_2MMDC_MPRDDLHWCTL_HW_RD_DL_CM41={\
+      :bit_fields.B_2MMDC_MPRDDLHWCTL_HW_RD_DL_CM43={\
         gui_name="HW_RD_DL_CMP_CYC":position=5:size=1:read_only=false\
       }\
     }\
@@ -2611,7 +2611,7 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_2MMDC_MPWRDLHWCTL_HW_WR_DL_EN={\
         gui_name="HW_WR_DL_EN":position=4:size=1:read_only=false\
       }\
-      :bit_fields.B_2MMDC_MPWRDLHWCTL_HW_WR_DL_CM42={\
+      :bit_fields.B_2MMDC_MPWRDLHWCTL_HW_WR_DL_CM44={\
         gui_name="HW_WR_DL_CMP_CYC":position=5:size=1:read_only=false\
       }\
     }\
@@ -2754,10 +2754,10 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_2MMDC_MPPDCMPR2_MPR_FULL_CMP={\
         gui_name="MPR_FULL_CMP":position=1:size=1:read_only=false\
       }\
-      :bit_fields.B_2MMDC_MPPDCMPR2_READ_LEVEL_PA43={\
+      :bit_fields.B_2MMDC_MPPDCMPR2_READ_LEVEL_PA45={\
         gui_name="READ_LEVEL_PATTERN":position=2:size=1:read_only=false\
       }\
-      :bit_fields.B_2MMDC_MPPDCMPR2_CA_DL_ABS_OFF44={\
+      :bit_fields.B_2MMDC_MPPDCMPR2_CA_DL_ABS_OFF46={\
         gui_name="CA_DL_ABS_OFFSET":position=16:size=7:read_only=false\
       }\
       :bit_fields.B_2MMDC_MPPDCMPR2_PHY_CA_DL_UNIT={\
@@ -3011,7 +3011,7 @@ Advanced_Information.Cortex-A9={\
     line="B_1MMDC_MDSCR_MRR_READ_DATA_VALID":\
     line="B_1MMDC_MDSCR_CON_ACK":\
     line="B_1MMDC_MDSCR_CON_REQ":\
-    line="B_1MMDC_MDSCR_CMD_ADDR_LSB":\
+    line="B_1MMDC_MDSCR_CMD_ADDR_LSB_MR_A24":\
     line="B_1MMDC_MDSCR_CMD_ADDR_MSB":\
     line="$$":\
     line="$+":\
@@ -3166,7 +3166,7 @@ Advanced_Information.Cortex-A9={\
     line="B_1MMDC_MPZQHWCTRL_TZQ_INIT":\
     line="B_1MMDC_MPZQHWCTRL_TZQ_OPER":\
     line="B_1MMDC_MPZQHWCTRL_TZQ_CS":\
-    line="B_1MMDC_MPZQHWCTRL_ZQ_EARLY_COM23":\
+    line="B_1MMDC_MPZQHWCTRL_ZQ_EARLY_COM25":\
     line="$$":\
     line="$+":\
     line="=G_1MMDC_MPZQSWCTRL":\
@@ -3194,19 +3194,19 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_1MMDC_MPWLDECTRL0":\
-    line="B_1MMDC_MPWLDECTRL0_WL_DL_ABS_O24":\
+    line="B_1MMDC_MPWLDECTRL0_WL_DL_ABS_O26":\
     line="B_1MMDC_MPWLDECTRL0_WL_HC_DEL0":\
     line="B_1MMDC_MPWLDECTRL0_WL_CYC_DEL0":\
-    line="B_1MMDC_MPWLDECTRL0_WL_DL_ABS_O25":\
+    line="B_1MMDC_MPWLDECTRL0_WL_DL_ABS_O27":\
     line="B_1MMDC_MPWLDECTRL0_WL_HC_DEL1":\
     line="B_1MMDC_MPWLDECTRL0_WL_CYC_DEL1":\
     line="$$":\
     line="$+":\
     line="=G_1MMDC_MPWLDECTRL1":\
-    line="B_1MMDC_MPWLDECTRL1_WL_DL_ABS_O26":\
+    line="B_1MMDC_MPWLDECTRL1_WL_DL_ABS_O28":\
     line="B_1MMDC_MPWLDECTRL1_WL_HC_DEL2":\
     line="B_1MMDC_MPWLDECTRL1_WL_CYC_DEL2":\
-    line="B_1MMDC_MPWLDECTRL1_WL_DL_ABS_O27":\
+    line="B_1MMDC_MPWLDECTRL1_WL_DL_ABS_O29":\
     line="B_1MMDC_MPWLDECTRL1_WL_HC_DEL3":\
     line="B_1MMDC_MPWLDECTRL1_WL_CYC_DEL3":\
     line="$$":\
@@ -3322,10 +3322,10 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_1MMDC_MPDGCTRL0":\
-    line="B_1MMDC_MPDGCTRL0_DG_DL_ABS_OFF28":\
+    line="B_1MMDC_MPDGCTRL0_DG_DL_ABS_OFF30":\
     line="B_1MMDC_MPDGCTRL0_DG_HC_DEL0":\
     line="B_1MMDC_MPDGCTRL0_HW_DG_ERR":\
-    line="B_1MMDC_MPDGCTRL0_DG_DL_ABS_OFF29":\
+    line="B_1MMDC_MPDGCTRL0_DG_DL_ABS_OFF31":\
     line="B_1MMDC_MPDGCTRL0_DG_EXT_UP":\
     line="B_1MMDC_MPDGCTRL0_DG_HC_DEL1":\
     line="B_1MMDC_MPDGCTRL0_HW_DG_EN":\
@@ -3335,9 +3335,9 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_1MMDC_MPDGCTRL1":\
-    line="B_1MMDC_MPDGCTRL1_DG_DL_ABS_OFF30":\
+    line="B_1MMDC_MPDGCTRL1_DG_DL_ABS_OFF32":\
     line="B_1MMDC_MPDGCTRL1_DG_HC_DEL2":\
-    line="B_1MMDC_MPDGCTRL1_DG_DL_ABS_OFF31":\
+    line="B_1MMDC_MPDGCTRL1_DG_DL_ABS_OFF33":\
     line="B_1MMDC_MPDGCTRL1_DG_HC_DEL3":\
     line="$$":\
     line="$+":\
@@ -3349,10 +3349,10 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_1MMDC_MPRDDLCTL":\
-    line="B_1MMDC_MPRDDLCTL_RD_DL_ABS_OFF32":\
-    line="B_1MMDC_MPRDDLCTL_RD_DL_ABS_OFF33":\
     line="B_1MMDC_MPRDDLCTL_RD_DL_ABS_OFF34":\
     line="B_1MMDC_MPRDDLCTL_RD_DL_ABS_OFF35":\
+    line="B_1MMDC_MPRDDLCTL_RD_DL_ABS_OFF36":\
+    line="B_1MMDC_MPRDDLCTL_RD_DL_ABS_OFF37":\
     line="$$":\
     line="$+":\
     line="=G_1MMDC_MPRDDLST":\
@@ -3363,10 +3363,10 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_1MMDC_MPWRDLCTL":\
-    line="B_1MMDC_MPWRDLCTL_WR_DL_ABS_OFF36":\
-    line="B_1MMDC_MPWRDLCTL_WR_DL_ABS_OFF37":\
     line="B_1MMDC_MPWRDLCTL_WR_DL_ABS_OFF38":\
     line="B_1MMDC_MPWRDLCTL_WR_DL_ABS_OFF39":\
+    line="B_1MMDC_MPWRDLCTL_WR_DL_ABS_OFF40":\
+    line="B_1MMDC_MPWRDLCTL_WR_DL_ABS_OFF41":\
     line="$$":\
     line="$+":\
     line="=G_1MMDC_MPWRDLST":\
@@ -3381,7 +3381,7 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_1MMDC_MPZQLP2CTL":\
-    line="B_1MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQ40":\
+    line="B_1MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQ42":\
     line="B_1MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL":\
     line="B_1MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS":\
     line="$$":\
@@ -3392,7 +3392,7 @@ Advanced_Information.Cortex-A9={\
     line="B_1MMDC_MPRDDLHWCTL_HW_RD_DL_ERR2":\
     line="B_1MMDC_MPRDDLHWCTL_HW_RD_DL_ERR3":\
     line="B_1MMDC_MPRDDLHWCTL_HW_RD_DL_EN":\
-    line="B_1MMDC_MPRDDLHWCTL_HW_RD_DL_CM41":\
+    line="B_1MMDC_MPRDDLHWCTL_HW_RD_DL_CM43":\
     line="$$":\
     line="$+":\
     line="=G_1MMDC_MPWRDLHWCTL":\
@@ -3401,7 +3401,7 @@ Advanced_Information.Cortex-A9={\
     line="B_1MMDC_MPWRDLHWCTL_HW_WR_DL_ERR2":\
     line="B_1MMDC_MPWRDLHWCTL_HW_WR_DL_ERR3":\
     line="B_1MMDC_MPWRDLHWCTL_HW_WR_DL_EN":\
-    line="B_1MMDC_MPWRDLHWCTL_HW_WR_DL_CM42":\
+    line="B_1MMDC_MPWRDLHWCTL_HW_WR_DL_CM44":\
     line="$$":\
     line="$+":\
     line="=G_1MMDC_MPRDDLHWST0":\
@@ -3467,8 +3467,8 @@ Advanced_Information.Cortex-A9={\
     line="=G_1MMDC_MPPDCMPR2":\
     line="B_1MMDC_MPPDCMPR2_MPR_CMP":\
     line="B_1MMDC_MPPDCMPR2_MPR_FULL_CMP":\
-    line="B_1MMDC_MPPDCMPR2_READ_LEVEL_PA43":\
-    line="B_1MMDC_MPPDCMPR2_CA_DL_ABS_OFF44":\
+    line="B_1MMDC_MPPDCMPR2_READ_LEVEL_PA45":\
+    line="B_1MMDC_MPPDCMPR2_CA_DL_ABS_OFF46":\
     line="B_1MMDC_MPPDCMPR2_PHY_CA_DL_UNIT":\
     line="$$":\
     line="$+":\
@@ -3630,7 +3630,7 @@ Advanced_Information.Cortex-A9={\
     line="B_2MMDC_MDSCR_MRR_READ_DATA_VALID":\
     line="B_2MMDC_MDSCR_CON_ACK":\
     line="B_2MMDC_MDSCR_CON_REQ":\
-    line="B_2MMDC_MDSCR_CMD_ADDR_LSB":\
+    line="B_2MMDC_MDSCR_CMD_ADDR_LSB_MR_A24":\
     line="B_2MMDC_MDSCR_CMD_ADDR_MSB":\
     line="$$":\
     line="$+":\
@@ -3785,7 +3785,7 @@ Advanced_Information.Cortex-A9={\
     line="B_2MMDC_MPZQHWCTRL_TZQ_INIT":\
     line="B_2MMDC_MPZQHWCTRL_TZQ_OPER":\
     line="B_2MMDC_MPZQHWCTRL_TZQ_CS":\
-    line="B_2MMDC_MPZQHWCTRL_ZQ_EARLY_COM23":\
+    line="B_2MMDC_MPZQHWCTRL_ZQ_EARLY_COM25":\
     line="$$":\
     line="$+":\
     line="=G_2MMDC_MPZQSWCTRL":\
@@ -3813,19 +3813,19 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_2MMDC_MPWLDECTRL0":\
-    line="B_2MMDC_MPWLDECTRL0_WL_DL_ABS_O24":\
+    line="B_2MMDC_MPWLDECTRL0_WL_DL_ABS_O26":\
     line="B_2MMDC_MPWLDECTRL0_WL_HC_DEL0":\
     line="B_2MMDC_MPWLDECTRL0_WL_CYC_DEL0":\
-    line="B_2MMDC_MPWLDECTRL0_WL_DL_ABS_O25":\
+    line="B_2MMDC_MPWLDECTRL0_WL_DL_ABS_O27":\
     line="B_2MMDC_MPWLDECTRL0_WL_HC_DEL1":\
     line="B_2MMDC_MPWLDECTRL0_WL_CYC_DEL1":\
     line="$$":\
     line="$+":\
     line="=G_2MMDC_MPWLDECTRL1":\
-    line="B_2MMDC_MPWLDECTRL1_WL_DL_ABS_O26":\
+    line="B_2MMDC_MPWLDECTRL1_WL_DL_ABS_O28":\
     line="B_2MMDC_MPWLDECTRL1_WL_HC_DEL2":\
     line="B_2MMDC_MPWLDECTRL1_WL_CYC_DEL2":\
-    line="B_2MMDC_MPWLDECTRL1_WL_DL_ABS_O27":\
+    line="B_2MMDC_MPWLDECTRL1_WL_DL_ABS_O29":\
     line="B_2MMDC_MPWLDECTRL1_WL_HC_DEL3":\
     line="B_2MMDC_MPWLDECTRL1_WL_CYC_DEL3":\
     line="$$":\
@@ -3941,10 +3941,10 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_2MMDC_MPDGCTRL0":\
-    line="B_2MMDC_MPDGCTRL0_DG_DL_ABS_OFF28":\
+    line="B_2MMDC_MPDGCTRL0_DG_DL_ABS_OFF30":\
     line="B_2MMDC_MPDGCTRL0_DG_HC_DEL0":\
     line="B_2MMDC_MPDGCTRL0_HW_DG_ERR":\
-    line="B_2MMDC_MPDGCTRL0_DG_DL_ABS_OFF29":\
+    line="B_2MMDC_MPDGCTRL0_DG_DL_ABS_OFF31":\
     line="B_2MMDC_MPDGCTRL0_DG_EXT_UP":\
     line="B_2MMDC_MPDGCTRL0_DG_HC_DEL1":\
     line="B_2MMDC_MPDGCTRL0_HW_DG_EN":\
@@ -3954,9 +3954,9 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_2MMDC_MPDGCTRL1":\
-    line="B_2MMDC_MPDGCTRL1_DG_DL_ABS_OFF30":\
+    line="B_2MMDC_MPDGCTRL1_DG_DL_ABS_OFF32":\
     line="B_2MMDC_MPDGCTRL1_DG_HC_DEL2":\
-    line="B_2MMDC_MPDGCTRL1_DG_DL_ABS_OFF31":\
+    line="B_2MMDC_MPDGCTRL1_DG_DL_ABS_OFF33":\
     line="B_2MMDC_MPDGCTRL1_DG_HC_DEL3":\
     line="$$":\
     line="$+":\
@@ -3968,10 +3968,10 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_2MMDC_MPRDDLCTL":\
-    line="B_2MMDC_MPRDDLCTL_RD_DL_ABS_OFF32":\
-    line="B_2MMDC_MPRDDLCTL_RD_DL_ABS_OFF33":\
     line="B_2MMDC_MPRDDLCTL_RD_DL_ABS_OFF34":\
     line="B_2MMDC_MPRDDLCTL_RD_DL_ABS_OFF35":\
+    line="B_2MMDC_MPRDDLCTL_RD_DL_ABS_OFF36":\
+    line="B_2MMDC_MPRDDLCTL_RD_DL_ABS_OFF37":\
     line="$$":\
     line="$+":\
     line="=G_2MMDC_MPRDDLST":\
@@ -3982,10 +3982,10 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_2MMDC_MPWRDLCTL":\
-    line="B_2MMDC_MPWRDLCTL_WR_DL_ABS_OFF36":\
-    line="B_2MMDC_MPWRDLCTL_WR_DL_ABS_OFF37":\
     line="B_2MMDC_MPWRDLCTL_WR_DL_ABS_OFF38":\
     line="B_2MMDC_MPWRDLCTL_WR_DL_ABS_OFF39":\
+    line="B_2MMDC_MPWRDLCTL_WR_DL_ABS_OFF40":\
+    line="B_2MMDC_MPWRDLCTL_WR_DL_ABS_OFF41":\
     line="$$":\
     line="$+":\
     line="=G_2MMDC_MPWRDLST":\
@@ -4000,7 +4000,7 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_2MMDC_MPZQLP2CTL":\
-    line="B_2MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQ40":\
+    line="B_2MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQ42":\
     line="B_2MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL":\
     line="B_2MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS":\
     line="$$":\
@@ -4011,7 +4011,7 @@ Advanced_Information.Cortex-A9={\
     line="B_2MMDC_MPRDDLHWCTL_HW_RD_DL_ERR2":\
     line="B_2MMDC_MPRDDLHWCTL_HW_RD_DL_ERR3":\
     line="B_2MMDC_MPRDDLHWCTL_HW_RD_DL_EN":\
-    line="B_2MMDC_MPRDDLHWCTL_HW_RD_DL_CM41":\
+    line="B_2MMDC_MPRDDLHWCTL_HW_RD_DL_CM43":\
     line="$$":\
     line="$+":\
     line="=G_2MMDC_MPWRDLHWCTL":\
@@ -4020,7 +4020,7 @@ Advanced_Information.Cortex-A9={\
     line="B_2MMDC_MPWRDLHWCTL_HW_WR_DL_ERR2":\
     line="B_2MMDC_MPWRDLHWCTL_HW_WR_DL_ERR3":\
     line="B_2MMDC_MPWRDLHWCTL_HW_WR_DL_EN":\
-    line="B_2MMDC_MPWRDLHWCTL_HW_WR_DL_CM42":\
+    line="B_2MMDC_MPWRDLHWCTL_HW_WR_DL_CM44":\
     line="$$":\
     line="$+":\
     line="=G_2MMDC_MPRDDLHWST0":\
@@ -4086,8 +4086,8 @@ Advanced_Information.Cortex-A9={\
     line="=G_2MMDC_MPPDCMPR2":\
     line="B_2MMDC_MPPDCMPR2_MPR_CMP":\
     line="B_2MMDC_MPPDCMPR2_MPR_FULL_CMP":\
-    line="B_2MMDC_MPPDCMPR2_READ_LEVEL_PA43":\
-    line="B_2MMDC_MPPDCMPR2_CA_DL_ABS_OFF44":\
+    line="B_2MMDC_MPPDCMPR2_READ_LEVEL_PA45":\
+    line="B_2MMDC_MPPDCMPR2_CA_DL_ABS_OFF46":\
     line="B_2MMDC_MPPDCMPR2_PHY_CA_DL_UNIT":\
     line="$$":\
     line="$+":\

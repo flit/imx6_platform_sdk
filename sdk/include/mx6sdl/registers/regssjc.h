@@ -100,13 +100,11 @@ typedef union _hw_sjc_gpusr1
  * in debug.
  */
 //@{
-
 #define BP_SJC_GPUSR1_A_DBG      (0)      //!< Bit position for SJC_GPUSR1_A_DBG.
 #define BM_SJC_GPUSR1_A_DBG      (0x00000001)  //!< Bit mask for SJC_GPUSR1_A_DBG.
 
 //! @brief Get value of SJC_GPUSR1_A_DBG from a register value.
 #define BG_SJC_GPUSR1_A_DBG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_GPUSR1_A_DBG) >> BP_SJC_GPUSR1_A_DBG)
-
 //@}
 
 /*! @name Register SJC_GPUSR1, field A_WFI[1] (RO)
@@ -115,13 +113,11 @@ typedef union _hw_sjc_gpusr1
  * When this bit is HIGH, ARM core is in wait for interrupt mode.
  */
 //@{
-
 #define BP_SJC_GPUSR1_A_WFI      (1)      //!< Bit position for SJC_GPUSR1_A_WFI.
 #define BM_SJC_GPUSR1_A_WFI      (0x00000002)  //!< Bit mask for SJC_GPUSR1_A_WFI.
 
 //! @brief Get value of SJC_GPUSR1_A_WFI from a register value.
 #define BG_SJC_GPUSR1_A_WFI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_GPUSR1_A_WFI) >> BP_SJC_GPUSR1_A_WFI)
-
 //@}
 
 /*! @name Register SJC_GPUSR1, field S_STAT[4:2] (RO)
@@ -129,13 +125,11 @@ typedef union _hw_sjc_gpusr1
  * 3 LSBits of SDMA core statusH.
  */
 //@{
-
 #define BP_SJC_GPUSR1_S_STAT      (2)      //!< Bit position for SJC_GPUSR1_S_STAT.
 #define BM_SJC_GPUSR1_S_STAT      (0x0000001c)  //!< Bit mask for SJC_GPUSR1_S_STAT.
 
 //! @brief Get value of SJC_GPUSR1_S_STAT from a register value.
 #define BG_SJC_GPUSR1_S_STAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_GPUSR1_S_STAT) >> BP_SJC_GPUSR1_S_STAT)
-
 //@}
 
 /*! @name Register SJC_GPUSR1, field PLL_LOCK[8] (RO)
@@ -143,13 +137,11 @@ typedef union _hw_sjc_gpusr1
  * PLL_LOCK A Combined PLL-Lock flag indicator, for all the PLL's.
  */
 //@{
-
 #define BP_SJC_GPUSR1_PLL_LOCK      (8)      //!< Bit position for SJC_GPUSR1_PLL_LOCK.
 #define BM_SJC_GPUSR1_PLL_LOCK      (0x00000100)  //!< Bit mask for SJC_GPUSR1_PLL_LOCK.
 
 //! @brief Get value of SJC_GPUSR1_PLL_LOCK from a register value.
 #define BG_SJC_GPUSR1_PLL_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_GPUSR1_PLL_LOCK) >> BP_SJC_GPUSR1_PLL_LOCK)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -198,13 +190,11 @@ typedef union _hw_sjc_gpusr2
  * STBYWFI[3:0] These bits provide status of "Standby Wait-For-Interrupt" state of all ARM cores.
  */
 //@{
-
 #define BP_SJC_GPUSR2_STBYWFI      (0)      //!< Bit position for SJC_GPUSR2_STBYWFI.
 #define BM_SJC_GPUSR2_STBYWFI      (0x0000000f)  //!< Bit mask for SJC_GPUSR2_STBYWFI.
 
 //! @brief Get value of SJC_GPUSR2_STBYWFI from a register value.
 #define BG_SJC_GPUSR2_STBYWFI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_GPUSR2_STBYWFI) >> BP_SJC_GPUSR2_STBYWFI)
-
 //@}
 
 /*! @name Register SJC_GPUSR2, field S_STAT[7:4] (RO)
@@ -212,13 +202,11 @@ typedef union _hw_sjc_gpusr2
  * S_STAT[3:0] SDMA debug status bits: debug_core_state[3:0]
  */
 //@{
-
 #define BP_SJC_GPUSR2_S_STAT      (4)      //!< Bit position for SJC_GPUSR2_S_STAT.
 #define BM_SJC_GPUSR2_S_STAT      (0x000000f0)  //!< Bit mask for SJC_GPUSR2_S_STAT.
 
 //! @brief Get value of SJC_GPUSR2_S_STAT from a register value.
 #define BG_SJC_GPUSR2_S_STAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_GPUSR2_S_STAT) >> BP_SJC_GPUSR2_S_STAT)
-
 //@}
 
 /*! @name Register SJC_GPUSR2, field STBYWFE[11:8] (RO)
@@ -226,13 +214,11 @@ typedef union _hw_sjc_gpusr2
  * STBYWFE[3:0] Reflecting the "Standby Wait For Event" signals of all cores.
  */
 //@{
-
 #define BP_SJC_GPUSR2_STBYWFE      (8)      //!< Bit position for SJC_GPUSR2_STBYWFE.
 #define BM_SJC_GPUSR2_STBYWFE      (0x00000f00)  //!< Bit mask for SJC_GPUSR2_STBYWFE.
 
 //! @brief Get value of SJC_GPUSR2_STBYWFE from a register value.
 #define BG_SJC_GPUSR2_STBYWFE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_GPUSR2_STBYWFE) >> BP_SJC_GPUSR2_STBYWFE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -281,13 +267,11 @@ typedef union _hw_sjc_gpusr3
  * IPG_WAIT CCM's "ipg_wait" signal indication
  */
 //@{
-
 #define BP_SJC_GPUSR3_IPG_WAIT      (0)      //!< Bit position for SJC_GPUSR3_IPG_WAIT.
 #define BM_SJC_GPUSR3_IPG_WAIT      (0x00000001)  //!< Bit mask for SJC_GPUSR3_IPG_WAIT.
 
 //! @brief Get value of SJC_GPUSR3_IPG_WAIT from a register value.
 #define BG_SJC_GPUSR3_IPG_WAIT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_GPUSR3_IPG_WAIT) >> BP_SJC_GPUSR3_IPG_WAIT)
-
 //@}
 
 /*! @name Register SJC_GPUSR3, field IPG_STOP[1] (RO)
@@ -295,13 +279,11 @@ typedef union _hw_sjc_gpusr3
  * IPG_STOP CCM's "ipg_stop" signal indication
  */
 //@{
-
 #define BP_SJC_GPUSR3_IPG_STOP      (1)      //!< Bit position for SJC_GPUSR3_IPG_STOP.
 #define BM_SJC_GPUSR3_IPG_STOP      (0x00000002)  //!< Bit mask for SJC_GPUSR3_IPG_STOP.
 
 //! @brief Get value of SJC_GPUSR3_IPG_STOP from a register value.
 #define BG_SJC_GPUSR3_IPG_STOP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_GPUSR3_IPG_STOP) >> BP_SJC_GPUSR3_IPG_STOP)
-
 //@}
 
 /*! @name Register SJC_GPUSR3, field SYS_WAIT[2] (RO)
@@ -309,13 +291,11 @@ typedef union _hw_sjc_gpusr3
  * System In wait Indication on System in wait mode (from CCM).
  */
 //@{
-
 #define BP_SJC_GPUSR3_SYS_WAIT      (2)      //!< Bit position for SJC_GPUSR3_SYS_WAIT.
 #define BM_SJC_GPUSR3_SYS_WAIT      (0x00000004)  //!< Bit mask for SJC_GPUSR3_SYS_WAIT.
 
 //! @brief Get value of SJC_GPUSR3_SYS_WAIT from a register value.
 #define BG_SJC_GPUSR3_SYS_WAIT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_GPUSR3_SYS_WAIT) >> BP_SJC_GPUSR3_SYS_WAIT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -362,13 +342,11 @@ typedef union _hw_sjc_gpssr
  * General Purpose Secured Status Register Register is used for testing and debug.
  */
 //@{
-
 #define BP_SJC_GPSSR_GPSSR      (0)      //!< Bit position for SJC_GPSSR_GPSSR.
 #define BM_SJC_GPSSR_GPSSR      (0xffffffff)  //!< Bit mask for SJC_GPSSR_GPSSR.
 
 //! @brief Get value of SJC_GPSSR_GPSSR from a register value.
 #define BG_SJC_GPSSR_GPSSR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_GPSSR_GPSSR) >> BP_SJC_GPSSR_GPSSR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -431,7 +409,6 @@ typedef union _hw_sjc_dcr
  * - 1 - Enable propagation of debug request to ARM platform
  */
 //@{
-
 #define BP_SJC_DCR_DE_TO_ARM      (0)      //!< Bit position for SJC_DCR_DE_TO_ARM.
 #define BM_SJC_DCR_DE_TO_ARM      (0x00000001)  //!< Bit mask for SJC_DCR_DE_TO_ARM.
 
@@ -445,7 +422,6 @@ typedef union _hw_sjc_dcr
 //! @brief Set the DE_TO_ARM field to a new value.
 #define BW_SJC_DCR_DE_TO_ARM(v)   (HW_SJC_DCR_WR((HW_SJC_DCR_RD() & ~BM_SJC_DCR_DE_TO_ARM) | BF_SJC_DCR_DE_TO_ARM(v)))
 #endif
-
 //@}
 
 /*! @name Register SJC_DCR, field DE_TO_SDMA[1] (RW)
@@ -458,7 +434,6 @@ typedef union _hw_sjc_dcr
  * - 1 - Enable propagation of debug request to SDMA
  */
 //@{
-
 #define BP_SJC_DCR_DE_TO_SDMA      (1)      //!< Bit position for SJC_DCR_DE_TO_SDMA.
 #define BM_SJC_DCR_DE_TO_SDMA      (0x00000002)  //!< Bit mask for SJC_DCR_DE_TO_SDMA.
 
@@ -472,7 +447,6 @@ typedef union _hw_sjc_dcr
 //! @brief Set the DE_TO_SDMA field to a new value.
 #define BW_SJC_DCR_DE_TO_SDMA(v)   (HW_SJC_DCR_WR((HW_SJC_DCR_RD() & ~BM_SJC_DCR_DE_TO_SDMA) | BF_SJC_DCR_DE_TO_SDMA(v)))
 #endif
-
 //@}
 
 /*! @name Register SJC_DCR, field DEBUG_OBS[3] (RW)
@@ -486,7 +460,6 @@ typedef union _hw_sjc_dcr
  * - 1 - unconditional assertion of pad. DE_B
  */
 //@{
-
 #define BP_SJC_DCR_DEBUG_OBS      (3)      //!< Bit position for SJC_DCR_DEBUG_OBS.
 #define BM_SJC_DCR_DEBUG_OBS      (0x00000008)  //!< Bit mask for SJC_DCR_DEBUG_OBS.
 
@@ -500,7 +473,6 @@ typedef union _hw_sjc_dcr
 //! @brief Set the DEBUG_OBS field to a new value.
 #define BW_SJC_DCR_DEBUG_OBS(v)   (HW_SJC_DCR_WR((HW_SJC_DCR_RD() & ~BM_SJC_DCR_DEBUG_OBS) | BF_SJC_DCR_DEBUG_OBS(v)))
 #endif
-
 //@}
 
 /*! @name Register SJC_DCR, field DIRECT_SDMA_REQ_EN[5] (RW)
@@ -513,7 +485,6 @@ typedef union _hw_sjc_dcr
  * - 1 - Enable propagation of system debug to (DE pin) to sdma.
  */
 //@{
-
 #define BP_SJC_DCR_DIRECT_SDMA_REQ_EN      (5)      //!< Bit position for SJC_DCR_DIRECT_SDMA_REQ_EN.
 #define BM_SJC_DCR_DIRECT_SDMA_REQ_EN      (0x00000020)  //!< Bit mask for SJC_DCR_DIRECT_SDMA_REQ_EN.
 
@@ -527,7 +498,6 @@ typedef union _hw_sjc_dcr
 //! @brief Set the DIRECT_SDMA_REQ_EN field to a new value.
 #define BW_SJC_DCR_DIRECT_SDMA_REQ_EN(v)   (HW_SJC_DCR_WR((HW_SJC_DCR_RD() & ~BM_SJC_DCR_DIRECT_SDMA_REQ_EN) | BF_SJC_DCR_DIRECT_SDMA_REQ_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SJC_DCR, field DIRECT_ARM_REQ_EN[6] (RW)
@@ -540,7 +510,6 @@ typedef union _hw_sjc_dcr
  * - 1 - Enable propagation of system debug to (DE pin) to Arm platform.
  */
 //@{
-
 #define BP_SJC_DCR_DIRECT_ARM_REQ_EN      (6)      //!< Bit position for SJC_DCR_DIRECT_ARM_REQ_EN.
 #define BM_SJC_DCR_DIRECT_ARM_REQ_EN      (0x00000040)  //!< Bit mask for SJC_DCR_DIRECT_ARM_REQ_EN.
 
@@ -554,7 +523,6 @@ typedef union _hw_sjc_dcr
 //! @brief Set the DIRECT_ARM_REQ_EN field to a new value.
 #define BW_SJC_DCR_DIRECT_ARM_REQ_EN(v)   (HW_SJC_DCR_WR((HW_SJC_DCR_RD() & ~BM_SJC_DCR_DIRECT_ARM_REQ_EN) | BF_SJC_DCR_DIRECT_ARM_REQ_EN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -616,13 +584,11 @@ typedef union _hw_sjc_ssr
  * - 1 - (burned) - kill trace functionality enabled
  */
 //@{
-
 #define BP_SJC_SSR_KTF      (0)      //!< Bit position for SJC_SSR_KTF.
 #define BM_SJC_SSR_KTF      (0x00000001)  //!< Bit mask for SJC_SSR_KTF.
 
 //! @brief Get value of SJC_SSR_KTF from a register value.
 #define BG_SJC_SSR_KTF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_SSR_KTF) >> BP_SJC_SSR_KTF)
-
 //@}
 
 /*! @name Register SJC_SSR, field KTA[1] (RO)
@@ -634,13 +600,11 @@ typedef union _hw_sjc_ssr
  * - 1 - active
  */
 //@{
-
 #define BP_SJC_SSR_KTA      (1)      //!< Bit position for SJC_SSR_KTA.
 #define BM_SJC_SSR_KTA      (0x00000002)  //!< Bit mask for SJC_SSR_KTA.
 
 //! @brief Get value of SJC_SSR_KTA from a register value.
 #define BG_SJC_SSR_KTA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_SSR_KTA) >> BP_SJC_SSR_KTA)
-
 //@}
 
 /*! @name Register SJC_SSR, field SWF[2] (RO)
@@ -652,13 +616,11 @@ typedef union _hw_sjc_ssr
  * - 1 - (intact) - no SW enable possible
  */
 //@{
-
 #define BP_SJC_SSR_SWF      (2)      //!< Bit position for SJC_SSR_SWF.
 #define BM_SJC_SSR_SWF      (0x00000004)  //!< Bit mask for SJC_SSR_SWF.
 
 //! @brief Get value of SJC_SSR_SWF from a register value.
 #define BG_SJC_SSR_SWF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_SSR_SWF) >> BP_SJC_SSR_SWF)
-
 //@}
 
 /*! @name Register SJC_SSR, field SWE[3] (RO)
@@ -670,13 +632,11 @@ typedef union _hw_sjc_ssr
  * - 1 - enabled
  */
 //@{
-
 #define BP_SJC_SSR_SWE      (3)      //!< Bit position for SJC_SSR_SWE.
 #define BM_SJC_SSR_SWE      (0x00000008)  //!< Bit mask for SJC_SSR_SWE.
 
 //! @brief Get value of SJC_SSR_SWE from a register value.
 #define BG_SJC_SSR_SWE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_SSR_SWE) >> BP_SJC_SSR_SWE)
-
 //@}
 
 /*! @name Register SJC_SSR, field EBF[4] (RO)
@@ -688,13 +648,11 @@ typedef union _hw_sjc_ssr
  * - 1 - (burned) - external boot is disabled
  */
 //@{
-
 #define BP_SJC_SSR_EBF      (4)      //!< Bit position for SJC_SSR_EBF.
 #define BM_SJC_SSR_EBF      (0x00000010)  //!< Bit mask for SJC_SSR_EBF.
 
 //! @brief Get value of SJC_SSR_EBF from a register value.
 #define BG_SJC_SSR_EBF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_SSR_EBF) >> BP_SJC_SSR_EBF)
-
 //@}
 
 /*! @name Register SJC_SSR, field EBG[5] (RO)
@@ -706,13 +664,11 @@ typedef union _hw_sjc_ssr
  * - 1 - granted
  */
 //@{
-
 #define BP_SJC_SSR_EBG      (5)      //!< Bit position for SJC_SSR_EBG.
 #define BM_SJC_SSR_EBG      (0x00000020)  //!< Bit mask for SJC_SSR_EBG.
 
 //! @brief Get value of SJC_SSR_EBG from a register value.
 #define BG_SJC_SSR_EBG(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_SSR_EBG) >> BP_SJC_SSR_EBG)
-
 //@}
 
 /*! @name Register SJC_SSR, field FT[8] (RO)
@@ -724,13 +680,11 @@ typedef union _hw_sjc_ssr
  * - 1 - Laser fuse technology
  */
 //@{
-
 #define BP_SJC_SSR_FT      (8)      //!< Bit position for SJC_SSR_FT.
 #define BM_SJC_SSR_FT      (0x00000100)  //!< Bit mask for SJC_SSR_FT.
 
 //! @brief Get value of SJC_SSR_FT from a register value.
 #define BG_SJC_SSR_FT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_SSR_FT) >> BP_SJC_SSR_FT)
-
 //@}
 
 /*! @name Register SJC_SSR, field SJM[10:9] (RO)
@@ -744,13 +698,11 @@ typedef union _hw_sjc_ssr
  * - 11 - JTAG enabled (#3)
  */
 //@{
-
 #define BP_SJC_SSR_SJM      (9)      //!< Bit position for SJC_SSR_SJM.
 #define BM_SJC_SSR_SJM      (0x00000600)  //!< Bit mask for SJC_SSR_SJM.
 
 //! @brief Get value of SJC_SSR_SJM from a register value.
 #define BG_SJC_SSR_SJM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_SSR_SJM) >> BP_SJC_SSR_SJM)
-
 //@}
 
 /*! @name Register SJC_SSR, field RSSTAT[12:11] (RO)
@@ -764,13 +716,11 @@ typedef union _hw_sjc_ssr
  * - 11 - Response is correct
  */
 //@{
-
 #define BP_SJC_SSR_RSSTAT      (11)      //!< Bit position for SJC_SSR_RSSTAT.
 #define BM_SJC_SSR_RSSTAT      (0x00001800)  //!< Bit mask for SJC_SSR_RSSTAT.
 
 //! @brief Get value of SJC_SSR_RSSTAT from a register value.
 #define BG_SJC_SSR_RSSTAT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_SSR_RSSTAT) >> BP_SJC_SSR_RSSTAT)
-
 //@}
 
 /*! @name Register SJC_SSR, field BOOTIND[14] (RO)
@@ -778,13 +728,11 @@ typedef union _hw_sjc_ssr
  * Boot Indication Inverted Internal Boot indication, i.e inverse of SRC: "src_int_boot" signal
  */
 //@{
-
 #define BP_SJC_SSR_BOOTIND      (14)      //!< Bit position for SJC_SSR_BOOTIND.
 #define BM_SJC_SSR_BOOTIND      (0x00004000)  //!< Bit mask for SJC_SSR_BOOTIND.
 
 //! @brief Get value of SJC_SSR_BOOTIND from a register value.
 #define BG_SJC_SSR_BOOTIND(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SJC_SSR_BOOTIND) >> BP_SJC_SSR_BOOTIND)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -842,7 +790,6 @@ typedef union _hw_sjc_gpccr
  * SDMA Clock ON Register - This bit forces the clock on of the SDMA
  */
 //@{
-
 #define BP_SJC_GPCCR_SCLKR      (0)      //!< Bit position for SJC_GPCCR_SCLKR.
 #define BM_SJC_GPCCR_SCLKR      (0x00000001)  //!< Bit mask for SJC_GPCCR_SCLKR.
 
@@ -856,7 +803,6 @@ typedef union _hw_sjc_gpccr
 //! @brief Set the SCLKR field to a new value.
 #define BW_SJC_GPCCR_SCLKR(v)   (HW_SJC_GPCCR_WR((HW_SJC_GPCCR_RD() & ~BM_SJC_GPCCR_SCLKR) | BF_SJC_GPCCR_SCLKR(v)))
 #endif
-
 //@}
 
 /*! @name Register SJC_GPCCR, field ACLKOFFDIS[1] (RW)
@@ -864,7 +810,6 @@ typedef union _hw_sjc_gpccr
  * Disable/prevent ARM platform clock/power shutdown
  */
 //@{
-
 #define BP_SJC_GPCCR_ACLKOFFDIS      (1)      //!< Bit position for SJC_GPCCR_ACLKOFFDIS.
 #define BM_SJC_GPCCR_ACLKOFFDIS      (0x00000002)  //!< Bit mask for SJC_GPCCR_ACLKOFFDIS.
 
@@ -878,7 +823,6 @@ typedef union _hw_sjc_gpccr
 //! @brief Set the ACLKOFFDIS field to a new value.
 #define BW_SJC_GPCCR_ACLKOFFDIS(v)   (HW_SJC_GPCCR_WR((HW_SJC_GPCCR_RD() & ~BM_SJC_GPCCR_ACLKOFFDIS) | BF_SJC_GPCCR_ACLKOFFDIS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -908,3 +852,5 @@ typedef struct _hw_sjc
 #endif
 
 #endif // __HW_SJC_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

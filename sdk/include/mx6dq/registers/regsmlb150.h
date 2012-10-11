@@ -92,7 +92,7 @@ typedef union _hw_mlb150_mlbc0
     {
         unsigned MLBEN : 1; //!< [0] MediaLB enable.
         unsigned RESERVED0 : 1; //!< [1] Reserved
-        unsigned MLBCLK : 3; //!< [4:2] MediaLB clock speed select.
+        unsigned MLBCLK_2_0 : 3; //!< [4:2] MediaLB clock speed select.
         unsigned MLBPEN : 1; //!< [5] MediaLB 6-pin enable.
         unsigned RESERVED1 : 1; //!< [6] Reserved
         unsigned MLBLK : 1; //!< [7] MediaLB lock status.
@@ -132,7 +132,6 @@ typedef union _hw_mlb150_mlbc0
  * appropriate MediaLB pins.
  */
 //@{
-
 #define BP_MLB150_MLBC0_MLBEN      (0)      //!< Bit position for MLB150_MLBC0_MLBEN.
 #define BM_MLB150_MLBC0_MLBEN      (0x00000001)  //!< Bit mask for MLB150_MLBC0_MLBEN.
 
@@ -146,10 +145,9 @@ typedef union _hw_mlb150_mlbc0
 //! @brief Set the MLBEN field to a new value.
 #define BW_MLB150_MLBC0_MLBEN(v)   (HW_MLB150_MLBC0_WR((HW_MLB150_MLBC0_RD() & ~BM_MLB150_MLBC0_MLBEN) | BF_MLB150_MLBC0_MLBEN(v)))
 #endif
-
 //@}
 
-/*! @name Register MLB150_MLBC0, field MLBCLK[4:2] (RW)
+/*! @name Register MLB150_MLBC0, field MLBCLK_2_0[4:2] (RW)
  *
  * MediaLB clock speed select.
  *
@@ -164,21 +162,19 @@ typedef union _hw_mlb150_mlbc0
  * - 111 - reserved
  */
 //@{
+#define BP_MLB150_MLBC0_MLBCLK_2_0      (2)      //!< Bit position for MLB150_MLBC0_MLBCLK_2_0.
+#define BM_MLB150_MLBC0_MLBCLK_2_0      (0x0000001c)  //!< Bit mask for MLB150_MLBC0_MLBCLK_2_0.
 
-#define BP_MLB150_MLBC0_MLBCLK      (2)      //!< Bit position for MLB150_MLBC0_MLBCLK.
-#define BM_MLB150_MLBC0_MLBCLK      (0x0000001c)  //!< Bit mask for MLB150_MLBC0_MLBCLK.
+//! @brief Get value of MLB150_MLBC0_MLBCLK_2_0 from a register value.
+#define BG_MLB150_MLBC0_MLBCLK_2_0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MLBC0_MLBCLK_2_0) >> BP_MLB150_MLBC0_MLBCLK_2_0)
 
-//! @brief Get value of MLB150_MLBC0_MLBCLK from a register value.
-#define BG_MLB150_MLBC0_MLBCLK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MLBC0_MLBCLK) >> BP_MLB150_MLBC0_MLBCLK)
-
-//! @brief Format value for bitfield MLB150_MLBC0_MLBCLK.
-#define BF_MLB150_MLBC0_MLBCLK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MLBC0_MLBCLK) & BM_MLB150_MLBC0_MLBCLK)
+//! @brief Format value for bitfield MLB150_MLBC0_MLBCLK_2_0.
+#define BF_MLB150_MLBC0_MLBCLK_2_0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MLBC0_MLBCLK_2_0) & BM_MLB150_MLBC0_MLBCLK_2_0)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the MLBCLK field to a new value.
-#define BW_MLB150_MLBC0_MLBCLK(v)   (HW_MLB150_MLBC0_WR((HW_MLB150_MLBC0_RD() & ~BM_MLB150_MLBC0_MLBCLK) | BF_MLB150_MLBC0_MLBCLK(v)))
+//! @brief Set the MLBCLK_2_0 field to a new value.
+#define BW_MLB150_MLBC0_MLBCLK_2_0(v)   (HW_MLB150_MLBC0_WR((HW_MLB150_MLBC0_RD() & ~BM_MLB150_MLBC0_MLBCLK_2_0) | BF_MLB150_MLBC0_MLBCLK_2_0(v)))
 #endif
-
 //@}
 
 /*! @name Register MLB150_MLBC0, field MLBPEN[5] (RW)
@@ -190,7 +186,6 @@ typedef union _hw_mlb150_mlbc0
  * - 1 - MediaLB 6-pin interface enabled. MLB PLL and MLB PHY is enabled in this case.
  */
 //@{
-
 #define BP_MLB150_MLBC0_MLBPEN      (5)      //!< Bit position for MLB150_MLBC0_MLBPEN.
 #define BM_MLB150_MLBC0_MLBPEN      (0x00000020)  //!< Bit mask for MLB150_MLBC0_MLBPEN.
 
@@ -204,7 +199,6 @@ typedef union _hw_mlb150_mlbc0
 //! @brief Set the MLBPEN field to a new value.
 #define BW_MLB150_MLBC0_MLBPEN(v)   (HW_MLB150_MLBC0_WR((HW_MLB150_MLBC0_RD() & ~BM_MLB150_MLBC0_MLBPEN) | BF_MLB150_MLBC0_MLBPEN(v)))
 #endif
-
 //@}
 
 /*! @name Register MLB150_MLBC0, field MLBLK[7] (RO)
@@ -216,13 +210,11 @@ typedef union _hw_mlb150_mlbc0
  * FRAMESYNC patterns occurring at locations other than the expected one are ignored. (read-only)
  */
 //@{
-
 #define BP_MLB150_MLBC0_MLBLK      (7)      //!< Bit position for MLB150_MLBC0_MLBLK.
 #define BM_MLB150_MLBC0_MLBLK      (0x00000080)  //!< Bit mask for MLB150_MLBC0_MLBLK.
 
 //! @brief Get value of MLB150_MLBC0_MLBLK from a register value.
 #define BG_MLB150_MLBC0_MLBLK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MLBC0_MLBLK) >> BP_MLB150_MLBC0_MLBLK)
-
 //@}
 
 /*! @name Register MLB150_MLBC0, field ASYRETRY[12] (RW)
@@ -232,7 +224,6 @@ typedef union _hw_mlb150_mlbc0
  * flagged with a Break or ProtocolError by the receiver is skipped.
  */
 //@{
-
 #define BP_MLB150_MLBC0_ASYRETRY      (12)      //!< Bit position for MLB150_MLBC0_ASYRETRY.
 #define BM_MLB150_MLBC0_ASYRETRY      (0x00001000)  //!< Bit mask for MLB150_MLBC0_ASYRETRY.
 
@@ -246,7 +237,6 @@ typedef union _hw_mlb150_mlbc0
 //! @brief Set the ASYRETRY field to a new value.
 #define BW_MLB150_MLBC0_ASYRETRY(v)   (HW_MLB150_MLBC0_WR((HW_MLB150_MLBC0_RD() & ~BM_MLB150_MLBC0_ASYRETRY) | BF_MLB150_MLBC0_ASYRETRY(v)))
 #endif
-
 //@}
 
 /*! @name Register MLB150_MLBC0, field CTLRETRY[14] (RW)
@@ -256,7 +246,6 @@ typedef union _hw_mlb150_mlbc0
  * ProtocolError by the receiver is skipped.
  */
 //@{
-
 #define BP_MLB150_MLBC0_CTLRETRY      (14)      //!< Bit position for MLB150_MLBC0_CTLRETRY.
 #define BM_MLB150_MLBC0_CTLRETRY      (0x00004000)  //!< Bit mask for MLB150_MLBC0_CTLRETRY.
 
@@ -270,7 +259,6 @@ typedef union _hw_mlb150_mlbc0
 //! @brief Set the CTLRETRY field to a new value.
 #define BW_MLB150_MLBC0_CTLRETRY(v)   (HW_MLB150_MLBC0_WR((HW_MLB150_MLBC0_RD() & ~BM_MLB150_MLBC0_CTLRETRY) | BF_MLB150_MLBC0_CTLRETRY(v)))
 #endif
-
 //@}
 
 /*! @name Register MLB150_MLBC0, field FCNT[17:15] (RW)
@@ -288,7 +276,6 @@ typedef union _hw_mlb150_mlbc0
  * - 111 - Reserved
  */
 //@{
-
 #define BP_MLB150_MLBC0_FCNT      (15)      //!< Bit position for MLB150_MLBC0_FCNT.
 #define BM_MLB150_MLBC0_FCNT      (0x00038000)  //!< Bit mask for MLB150_MLBC0_FCNT.
 
@@ -302,7 +289,6 @@ typedef union _hw_mlb150_mlbc0
 //! @brief Set the FCNT field to a new value.
 #define BW_MLB150_MLBC0_FCNT(v)   (HW_MLB150_MLBC0_WR((HW_MLB150_MLBC0_RD() & ~BM_MLB150_MLBC0_FCNT) | BF_MLB150_MLBC0_FCNT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -355,7 +341,6 @@ typedef union _hw_mlb150_mlbpc0
  * is driven on mlb_clk_hys_enable output pin and has no internal function.
  */
 //@{
-
 #define BP_MLB150_MLBPC0_MCLKHYS      (11)      //!< Bit position for MLB150_MLBPC0_MCLKHYS.
 #define BM_MLB150_MLBPC0_MCLKHYS      (0x00000800)  //!< Bit mask for MLB150_MLBPC0_MCLKHYS.
 
@@ -369,7 +354,6 @@ typedef union _hw_mlb150_mlbpc0
 //! @brief Set the MCLKHYS field to a new value.
 #define BW_MLB150_MLBPC0_MCLKHYS(v)   (HW_MLB150_MLBPC0_WR((HW_MLB150_MLBPC0_RD() & ~BM_MLB150_MLBPC0_MCLKHYS) | BF_MLB150_MLBPC0_MCLKHYS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -389,7 +373,7 @@ typedef union _hw_mlb150_ms0
     reg32_t U;
     struct _hw_mlb150_ms0_bitfields
     {
-        unsigned MCS : 32; //!< [31:0] MediaLB channel status.
+        unsigned MCS_31_0 : 32; //!< [31:0] MediaLB channel status.
     } B;
 } hw_mlb150_ms0_t;
 #endif
@@ -410,20 +394,18 @@ typedef union _hw_mlb150_ms0
  * constants & macros for individual MLB150_MS0 bitfields
  */
 
-/*! @name Register MLB150_MS0, field MCS[31:0] (RO)
+/*! @name Register MLB150_MS0, field MCS_31_0[31:0] (RO)
  *
  * MediaLB channel status. Indicates the channel status for MediaLB channels 31 to 0. Channel status
  * bits are set by hardware and cleared by software. Status is only set if the appropriate bits in
  * the MIEN register are set.
  */
 //@{
+#define BP_MLB150_MS0_MCS_31_0      (0)      //!< Bit position for MLB150_MS0_MCS_31_0.
+#define BM_MLB150_MS0_MCS_31_0      (0xffffffff)  //!< Bit mask for MLB150_MS0_MCS_31_0.
 
-#define BP_MLB150_MS0_MCS      (0)      //!< Bit position for MLB150_MS0_MCS.
-#define BM_MLB150_MS0_MCS      (0xffffffff)  //!< Bit mask for MLB150_MS0_MCS.
-
-//! @brief Get value of MLB150_MS0_MCS from a register value.
-#define BG_MLB150_MS0_MCS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MS0_MCS) >> BP_MLB150_MS0_MCS)
-
+//! @brief Get value of MLB150_MS0_MCS_31_0 from a register value.
+#define BG_MLB150_MS0_MCS_31_0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MS0_MCS_31_0) >> BP_MLB150_MS0_MCS_31_0)
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -475,13 +457,11 @@ typedef union _hw_mlb150_mlbpc2
  * - 1 - MLB signal/data launch at falling edge of MLB clock
  */
 //@{
-
 #define BP_MLB150_MLBPC2_SDOPC      (0)      //!< Bit position for MLB150_MLBPC2_SDOPC.
 #define BM_MLB150_MLBPC2_SDOPC      (0x00000001)  //!< Bit mask for MLB150_MLBPC2_SDOPC.
 
 //! @brief Get value of MLB150_MLBPC2_SDOPC from a register value.
 #define BG_MLB150_MLBPC2_SDOPC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MLBPC2_SDOPC) >> BP_MLB150_MLBPC2_SDOPC)
-
 //@}
 
 /*! @name Register MLB150_MLBPC2, field SDRTO[2:1] (RW)
@@ -489,13 +469,11 @@ typedef union _hw_mlb150_mlbpc2
  * MLB 6-pin interface: Signal/Data receiver threshold offset control.
  */
 //@{
-
 #define BP_MLB150_MLBPC2_SDRTO      (1)      //!< Bit position for MLB150_MLBPC2_SDRTO.
 #define BM_MLB150_MLBPC2_SDRTO      (0x00000006)  //!< Bit mask for MLB150_MLBPC2_SDRTO.
 
 //! @brief Get value of MLB150_MLBPC2_SDRTO from a register value.
 #define BG_MLB150_MLBPC2_SDRTO(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MLBPC2_SDRTO) >> BP_MLB150_MLBPC2_SDRTO)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -515,7 +493,7 @@ typedef union _hw_mlb150_ms1
     reg32_t U;
     struct _hw_mlb150_ms1_bitfields
     {
-        unsigned MCS : 32; //!< [31:0] MediaLB channel status.
+        unsigned MCS_63_32 : 32; //!< [31:0] MediaLB channel status.
     } B;
 } hw_mlb150_ms1_t;
 #endif
@@ -536,20 +514,18 @@ typedef union _hw_mlb150_ms1
  * constants & macros for individual MLB150_MS1 bitfields
  */
 
-/*! @name Register MLB150_MS1, field MCS[31:0] (RO)
+/*! @name Register MLB150_MS1, field MCS_63_32[31:0] (RO)
  *
  * MediaLB channel status. Indicates the channel status for MediaLB channels 63 to 32. Channel
  * status bits are set by hardware and cleared by software. Status is only set if the appropriate
  * bits in the MIEN register are set.
  */
 //@{
+#define BP_MLB150_MS1_MCS_63_32      (0)      //!< Bit position for MLB150_MS1_MCS_63_32.
+#define BM_MLB150_MS1_MCS_63_32      (0xffffffff)  //!< Bit mask for MLB150_MS1_MCS_63_32.
 
-#define BP_MLB150_MS1_MCS      (0)      //!< Bit position for MLB150_MS1_MCS.
-#define BM_MLB150_MS1_MCS      (0xffffffff)  //!< Bit mask for MLB150_MS1_MCS.
-
-//! @brief Get value of MLB150_MS1_MCS from a register value.
-#define BG_MLB150_MS1_MCS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MS1_MCS) >> BP_MLB150_MS1_MCS)
-
+//! @brief Get value of MLB150_MS1_MCS_63_32 from a register value.
+#define BG_MLB150_MS1_MCS_63_32(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MS1_MCS_63_32) >> BP_MLB150_MS1_MCS_63_32)
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -601,13 +577,11 @@ typedef union _hw_mlb150_mss
  * Reset system command detected (in the system quadlet). Set by hardware, cleared by software.
  */
 //@{
-
 #define BP_MLB150_MSS_RSTSYSCMD      (0)      //!< Bit position for MLB150_MSS_RSTSYSCMD.
 #define BM_MLB150_MSS_RSTSYSCMD      (0x00000001)  //!< Bit mask for MLB150_MSS_RSTSYSCMD.
 
 //! @brief Get value of MLB150_MSS_RSTSYSCMD from a register value.
 #define BG_MLB150_MSS_RSTSYSCMD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MSS_RSTSYSCMD) >> BP_MLB150_MSS_RSTSYSCMD)
-
 //@}
 
 /*! @name Register MLB150_MSS, field LKSYSCMD[1] (RO)
@@ -616,13 +590,11 @@ typedef union _hw_mlb150_mss
  * software.
  */
 //@{
-
 #define BP_MLB150_MSS_LKSYSCMD      (1)      //!< Bit position for MLB150_MSS_LKSYSCMD.
 #define BM_MLB150_MSS_LKSYSCMD      (0x00000002)  //!< Bit mask for MLB150_MSS_LKSYSCMD.
 
 //! @brief Get value of MLB150_MSS_LKSYSCMD from a register value.
 #define BG_MLB150_MSS_LKSYSCMD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MSS_LKSYSCMD) >> BP_MLB150_MSS_LKSYSCMD)
-
 //@}
 
 /*! @name Register MLB150_MSS, field ULKSYSCMD[2] (RO)
@@ -631,13 +603,11 @@ typedef union _hw_mlb150_mss
  * software.
  */
 //@{
-
 #define BP_MLB150_MSS_ULKSYSCMD      (2)      //!< Bit position for MLB150_MSS_ULKSYSCMD.
 #define BM_MLB150_MSS_ULKSYSCMD      (0x00000004)  //!< Bit mask for MLB150_MSS_ULKSYSCMD.
 
 //! @brief Get value of MLB150_MSS_ULKSYSCMD from a register value.
 #define BG_MLB150_MSS_ULKSYSCMD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MSS_ULKSYSCMD) >> BP_MLB150_MSS_ULKSYSCMD)
-
 //@}
 
 /*! @name Register MLB150_MSS, field CSSYSCMD[3] (RO)
@@ -648,13 +618,11 @@ typedef union _hw_mlb150_mss
  * the next system quadlet.
  */
 //@{
-
 #define BP_MLB150_MSS_CSSYSCMD      (3)      //!< Bit position for MLB150_MSS_CSSYSCMD.
 #define BM_MLB150_MSS_CSSYSCMD      (0x00000008)  //!< Bit mask for MLB150_MSS_CSSYSCMD.
 
 //! @brief Get value of MLB150_MSS_CSSYSCMD from a register value.
 #define BG_MLB150_MSS_CSSYSCMD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MSS_CSSYSCMD) >> BP_MLB150_MSS_CSSYSCMD)
-
 //@}
 
 /*! @name Register MLB150_MSS, field SWSYSCMD[4] (RO)
@@ -663,13 +631,11 @@ typedef union _hw_mlb150_mss
  * Data is stored in the MSD register for this command.
  */
 //@{
-
 #define BP_MLB150_MSS_SWSYSCMD      (4)      //!< Bit position for MLB150_MSS_SWSYSCMD.
 #define BM_MLB150_MSS_SWSYSCMD      (0x00000010)  //!< Bit mask for MLB150_MSS_SWSYSCMD.
 
 //! @brief Get value of MLB150_MSS_SWSYSCMD from a register value.
 #define BG_MLB150_MSS_SWSYSCMD(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MSS_SWSYSCMD) >> BP_MLB150_MSS_SWSYSCMD)
-
 //@}
 
 /*! @name Register MLB150_MSS, field SERVREQ[5] (RW)
@@ -679,13 +645,11 @@ typedef union _hw_mlb150_mss
  * MediaLB block responds with a "device present" system response.
  */
 //@{
-
 #define BP_MLB150_MSS_SERVREQ      (5)      //!< Bit position for MLB150_MSS_SERVREQ.
 #define BM_MLB150_MSS_SERVREQ      (0x00000020)  //!< Bit mask for MLB150_MSS_SERVREQ.
 
 //! @brief Get value of MLB150_MSS_SERVREQ from a register value.
 #define BG_MLB150_MSS_SERVREQ(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MSS_SERVREQ) >> BP_MLB150_MSS_SERVREQ)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -705,10 +669,10 @@ typedef union _hw_mlb150_msd
     reg32_t U;
     struct _hw_mlb150_msd_bitfields
     {
-        unsigned SD0 : 8; //!< [7:0] System data (byte 0).
-        unsigned SD1 : 8; //!< [15:8] System data (byte 1).
-        unsigned SD2 : 8; //!< [23:16] System data (byte 2).
-        unsigned SD3 : 8; //!< [31:24] System data (byte 3).
+        unsigned SD0_7_0 : 8; //!< [7:0] System data (byte 0).
+        unsigned SD1_7_0 : 8; //!< [15:8] System data (byte 1).
+        unsigned SD2_7_0 : 8; //!< [23:16] System data (byte 2).
+        unsigned SD3_7_0 : 8; //!< [31:24] System data (byte 3).
     } B;
 } hw_mlb150_msd_t;
 #endif
@@ -729,68 +693,60 @@ typedef union _hw_mlb150_msd
  * constants & macros for individual MLB150_MSD bitfields
  */
 
-/*! @name Register MLB150_MSD, field SD0[7:0] (RO)
+/*! @name Register MLB150_MSD, field SD0_7_0[7:0] (RO)
  *
  * System data (byte 0). Updated with MediaLB Data[7:0] when a MediaLB software system command is
  * received in the system quadlet. If MSS.SWSYSCMD is already set, then SD0 is not updated. (read-
  * only)
  */
 //@{
+#define BP_MLB150_MSD_SD0_7_0      (0)      //!< Bit position for MLB150_MSD_SD0_7_0.
+#define BM_MLB150_MSD_SD0_7_0      (0x000000ff)  //!< Bit mask for MLB150_MSD_SD0_7_0.
 
-#define BP_MLB150_MSD_SD0      (0)      //!< Bit position for MLB150_MSD_SD0.
-#define BM_MLB150_MSD_SD0      (0x000000ff)  //!< Bit mask for MLB150_MSD_SD0.
-
-//! @brief Get value of MLB150_MSD_SD0 from a register value.
-#define BG_MLB150_MSD_SD0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MSD_SD0) >> BP_MLB150_MSD_SD0)
-
+//! @brief Get value of MLB150_MSD_SD0_7_0 from a register value.
+#define BG_MLB150_MSD_SD0_7_0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MSD_SD0_7_0) >> BP_MLB150_MSD_SD0_7_0)
 //@}
 
-/*! @name Register MLB150_MSD, field SD1[15:8] (RO)
+/*! @name Register MLB150_MSD, field SD1_7_0[15:8] (RO)
  *
  * System data (byte 1). Updated with MediaLB Data[15:8] when a MediaLB software system command is
  * received in the system quadlet. If MSS.SWSYSCMD is already set, then SD1 is not updated. (read-
  * only)
  */
 //@{
+#define BP_MLB150_MSD_SD1_7_0      (8)      //!< Bit position for MLB150_MSD_SD1_7_0.
+#define BM_MLB150_MSD_SD1_7_0      (0x0000ff00)  //!< Bit mask for MLB150_MSD_SD1_7_0.
 
-#define BP_MLB150_MSD_SD1      (8)      //!< Bit position for MLB150_MSD_SD1.
-#define BM_MLB150_MSD_SD1      (0x0000ff00)  //!< Bit mask for MLB150_MSD_SD1.
-
-//! @brief Get value of MLB150_MSD_SD1 from a register value.
-#define BG_MLB150_MSD_SD1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MSD_SD1) >> BP_MLB150_MSD_SD1)
-
+//! @brief Get value of MLB150_MSD_SD1_7_0 from a register value.
+#define BG_MLB150_MSD_SD1_7_0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MSD_SD1_7_0) >> BP_MLB150_MSD_SD1_7_0)
 //@}
 
-/*! @name Register MLB150_MSD, field SD2[23:16] (RO)
+/*! @name Register MLB150_MSD, field SD2_7_0[23:16] (RO)
  *
  * System data (byte 2). Updated with MediaLB Data[23:16] when a MediaLB software system command is
  * received in the system quadlet. If MSS.SWSYSCMD is already set, then SD2 is not updated. (read-
  * only)
  */
 //@{
+#define BP_MLB150_MSD_SD2_7_0      (16)      //!< Bit position for MLB150_MSD_SD2_7_0.
+#define BM_MLB150_MSD_SD2_7_0      (0x00ff0000)  //!< Bit mask for MLB150_MSD_SD2_7_0.
 
-#define BP_MLB150_MSD_SD2      (16)      //!< Bit position for MLB150_MSD_SD2.
-#define BM_MLB150_MSD_SD2      (0x00ff0000)  //!< Bit mask for MLB150_MSD_SD2.
-
-//! @brief Get value of MLB150_MSD_SD2 from a register value.
-#define BG_MLB150_MSD_SD2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MSD_SD2) >> BP_MLB150_MSD_SD2)
-
+//! @brief Get value of MLB150_MSD_SD2_7_0 from a register value.
+#define BG_MLB150_MSD_SD2_7_0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MSD_SD2_7_0) >> BP_MLB150_MSD_SD2_7_0)
 //@}
 
-/*! @name Register MLB150_MSD, field SD3[31:24] (RO)
+/*! @name Register MLB150_MSD, field SD3_7_0[31:24] (RO)
  *
  * System data (byte 3). Updated with MediaLB Data[31:24] when a MediaLB software system command is
  * received in the system quadlet. If MSS.SWSYSCMD is already set, then SD3 is not updated. (read-
  * only)
  */
 //@{
+#define BP_MLB150_MSD_SD3_7_0      (24)      //!< Bit position for MLB150_MSD_SD3_7_0.
+#define BM_MLB150_MSD_SD3_7_0      (0xff000000)  //!< Bit mask for MLB150_MSD_SD3_7_0.
 
-#define BP_MLB150_MSD_SD3      (24)      //!< Bit position for MLB150_MSD_SD3.
-#define BM_MLB150_MSD_SD3      (0xff000000)  //!< Bit mask for MLB150_MSD_SD3.
-
-//! @brief Get value of MLB150_MSD_SD3 from a register value.
-#define BG_MLB150_MSD_SD3(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MSD_SD3) >> BP_MLB150_MSD_SD3)
-
+//! @brief Get value of MLB150_MSD_SD3_7_0 from a register value.
+#define BG_MLB150_MSD_SD3_7_0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MSD_SD3_7_0) >> BP_MLB150_MSD_SD3_7_0)
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -858,7 +814,6 @@ typedef union _hw_mlb150_mien
  * channel causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 //@{
-
 #define BP_MLB150_MIEN_ISOC_PE      (0)      //!< Bit position for MLB150_MIEN_ISOC_PE.
 #define BM_MLB150_MIEN_ISOC_PE      (0x00000001)  //!< Bit mask for MLB150_MIEN_ISOC_PE.
 
@@ -872,7 +827,6 @@ typedef union _hw_mlb150_mien
 //! @brief Set the ISOC_PE field to a new value.
 #define BW_MLB150_MIEN_ISOC_PE(v)   (HW_MLB150_MIEN_WR((HW_MLB150_MIEN_RD() & ~BM_MLB150_MIEN_ISOC_PE) | BF_MLB150_MIEN_ISOC_PE(v)))
 #endif
-
 //@}
 
 /*! @name Register MLB150_MIEN, field ISOC_BUFO[1] (RW)
@@ -882,7 +836,6 @@ typedef union _hw_mlb150_mien
  * isochronous flow control is disabled.
  */
 //@{
-
 #define BP_MLB150_MIEN_ISOC_BUFO      (1)      //!< Bit position for MLB150_MIEN_ISOC_BUFO.
 #define BM_MLB150_MIEN_ISOC_BUFO      (0x00000002)  //!< Bit mask for MLB150_MIEN_ISOC_BUFO.
 
@@ -896,7 +849,6 @@ typedef union _hw_mlb150_mien
 //! @brief Set the ISOC_BUFO field to a new value.
 #define BW_MLB150_MIEN_ISOC_BUFO(v)   (HW_MLB150_MIEN_WR((HW_MLB150_MIEN_RD() & ~BM_MLB150_MIEN_ISOC_BUFO) | BF_MLB150_MIEN_ISOC_BUFO(v)))
 #endif
-
 //@}
 
 /*! @name Register MLB150_MIEN, field SYNC_PE[16] (RW)
@@ -905,7 +857,6 @@ typedef union _hw_mlb150_mien
  * causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 //@{
-
 #define BP_MLB150_MIEN_SYNC_PE      (16)      //!< Bit position for MLB150_MIEN_SYNC_PE.
 #define BM_MLB150_MIEN_SYNC_PE      (0x00010000)  //!< Bit mask for MLB150_MIEN_SYNC_PE.
 
@@ -919,7 +870,6 @@ typedef union _hw_mlb150_mien
 //! @brief Set the SYNC_PE field to a new value.
 #define BW_MLB150_MIEN_SYNC_PE(v)   (HW_MLB150_MIEN_WR((HW_MLB150_MIEN_RD() & ~BM_MLB150_MIEN_SYNC_PE) | BF_MLB150_MIEN_SYNC_PE(v)))
 #endif
-
 //@}
 
 /*! @name Register MLB150_MIEN, field ARX_DONE[17] (RW)
@@ -928,7 +878,6 @@ typedef union _hw_mlb150_mien
  * channel causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 //@{
-
 #define BP_MLB150_MIEN_ARX_DONE      (17)      //!< Bit position for MLB150_MIEN_ARX_DONE.
 #define BM_MLB150_MIEN_ARX_DONE      (0x00020000)  //!< Bit mask for MLB150_MIEN_ARX_DONE.
 
@@ -942,7 +891,6 @@ typedef union _hw_mlb150_mien
 //! @brief Set the ARX_DONE field to a new value.
 #define BW_MLB150_MIEN_ARX_DONE(v)   (HW_MLB150_MIEN_WR((HW_MLB150_MIEN_RD() & ~BM_MLB150_MIEN_ARX_DONE) | BF_MLB150_MIEN_ARX_DONE(v)))
 #endif
-
 //@}
 
 /*! @name Register MLB150_MIEN, field ARX_PE[18] (RW)
@@ -951,7 +899,6 @@ typedef union _hw_mlb150_mien
  * channel causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 //@{
-
 #define BP_MLB150_MIEN_ARX_PE      (18)      //!< Bit position for MLB150_MIEN_ARX_PE.
 #define BM_MLB150_MIEN_ARX_PE      (0x00040000)  //!< Bit mask for MLB150_MIEN_ARX_PE.
 
@@ -965,7 +912,6 @@ typedef union _hw_mlb150_mien
 //! @brief Set the ARX_PE field to a new value.
 #define BW_MLB150_MIEN_ARX_PE(v)   (HW_MLB150_MIEN_WR((HW_MLB150_MIEN_RD() & ~BM_MLB150_MIEN_ARX_PE) | BF_MLB150_MIEN_ARX_PE(v)))
 #endif
-
 //@}
 
 /*! @name Register MLB150_MIEN, field ARX_BREAK[19] (RW)
@@ -974,7 +920,6 @@ typedef union _hw_mlb150_mien
  * asynchronous Rx channel causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 //@{
-
 #define BP_MLB150_MIEN_ARX_BREAK      (19)      //!< Bit position for MLB150_MIEN_ARX_BREAK.
 #define BM_MLB150_MIEN_ARX_BREAK      (0x00080000)  //!< Bit mask for MLB150_MIEN_ARX_BREAK.
 
@@ -988,7 +933,6 @@ typedef union _hw_mlb150_mien
 //! @brief Set the ARX_BREAK field to a new value.
 #define BW_MLB150_MIEN_ARX_BREAK(v)   (HW_MLB150_MIEN_WR((HW_MLB150_MIEN_RD() & ~BM_MLB150_MIEN_ARX_BREAK) | BF_MLB150_MIEN_ARX_BREAK(v)))
 #endif
-
 //@}
 
 /*! @name Register MLB150_MIEN, field ATX_DONE[20] (RW)
@@ -997,7 +941,6 @@ typedef union _hw_mlb150_mien
  * asynchronous Tx channel causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 //@{
-
 #define BP_MLB150_MIEN_ATX_DONE      (20)      //!< Bit position for MLB150_MIEN_ATX_DONE.
 #define BM_MLB150_MIEN_ATX_DONE      (0x00100000)  //!< Bit mask for MLB150_MIEN_ATX_DONE.
 
@@ -1011,7 +954,6 @@ typedef union _hw_mlb150_mien
 //! @brief Set the ATX_DONE field to a new value.
 #define BW_MLB150_MIEN_ATX_DONE(v)   (HW_MLB150_MIEN_WR((HW_MLB150_MIEN_RD() & ~BM_MLB150_MIEN_ATX_DONE) | BF_MLB150_MIEN_ATX_DONE(v)))
 #endif
-
 //@}
 
 /*! @name Register MLB150_MIEN, field ATX_PE[21] (RW)
@@ -1020,7 +962,6 @@ typedef union _hw_mlb150_mien
  * asynchronous Tx channel causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 //@{
-
 #define BP_MLB150_MIEN_ATX_PE      (21)      //!< Bit position for MLB150_MIEN_ATX_PE.
 #define BM_MLB150_MIEN_ATX_PE      (0x00200000)  //!< Bit mask for MLB150_MIEN_ATX_PE.
 
@@ -1034,7 +975,6 @@ typedef union _hw_mlb150_mien
 //! @brief Set the ATX_PE field to a new value.
 #define BW_MLB150_MIEN_ATX_PE(v)   (HW_MLB150_MIEN_WR((HW_MLB150_MIEN_RD() & ~BM_MLB150_MIEN_ATX_PE) | BF_MLB150_MIEN_ATX_PE(v)))
 #endif
-
 //@}
 
 /*! @name Register MLB150_MIEN, field ATX_BREAK[22] (RW)
@@ -1043,7 +983,6 @@ typedef union _hw_mlb150_mien
  * asynchronous Tx channel causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 //@{
-
 #define BP_MLB150_MIEN_ATX_BREAK      (22)      //!< Bit position for MLB150_MIEN_ATX_BREAK.
 #define BM_MLB150_MIEN_ATX_BREAK      (0x00400000)  //!< Bit mask for MLB150_MIEN_ATX_BREAK.
 
@@ -1057,7 +996,6 @@ typedef union _hw_mlb150_mien
 //! @brief Set the ATX_BREAK field to a new value.
 #define BW_MLB150_MIEN_ATX_BREAK(v)   (HW_MLB150_MIEN_WR((HW_MLB150_MIEN_RD() & ~BM_MLB150_MIEN_ATX_BREAK) | BF_MLB150_MIEN_ATX_BREAK(v)))
 #endif
-
 //@}
 
 /*! @name Register MLB150_MIEN, field CRX_DONE[24] (RW)
@@ -1066,7 +1004,6 @@ typedef union _hw_mlb150_mien
  * causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 //@{
-
 #define BP_MLB150_MIEN_CRX_DONE      (24)      //!< Bit position for MLB150_MIEN_CRX_DONE.
 #define BM_MLB150_MIEN_CRX_DONE      (0x01000000)  //!< Bit mask for MLB150_MIEN_CRX_DONE.
 
@@ -1080,7 +1017,6 @@ typedef union _hw_mlb150_mien
 //! @brief Set the CRX_DONE field to a new value.
 #define BW_MLB150_MIEN_CRX_DONE(v)   (HW_MLB150_MIEN_WR((HW_MLB150_MIEN_RD() & ~BM_MLB150_MIEN_CRX_DONE) | BF_MLB150_MIEN_CRX_DONE(v)))
 #endif
-
 //@}
 
 /*! @name Register MLB150_MIEN, field CRX_PE[25] (RW)
@@ -1089,7 +1025,6 @@ typedef union _hw_mlb150_mien
  * causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 //@{
-
 #define BP_MLB150_MIEN_CRX_PE      (25)      //!< Bit position for MLB150_MIEN_CRX_PE.
 #define BM_MLB150_MIEN_CRX_PE      (0x02000000)  //!< Bit mask for MLB150_MIEN_CRX_PE.
 
@@ -1103,7 +1038,6 @@ typedef union _hw_mlb150_mien
 //! @brief Set the CRX_PE field to a new value.
 #define BW_MLB150_MIEN_CRX_PE(v)   (HW_MLB150_MIEN_WR((HW_MLB150_MIEN_RD() & ~BM_MLB150_MIEN_CRX_PE) | BF_MLB150_MIEN_CRX_PE(v)))
 #endif
-
 //@}
 
 /*! @name Register MLB150_MIEN, field CRX_BREAK[26] (RW)
@@ -1112,7 +1046,6 @@ typedef union _hw_mlb150_mien
  * control Rx channel causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 //@{
-
 #define BP_MLB150_MIEN_CRX_BREAK      (26)      //!< Bit position for MLB150_MIEN_CRX_BREAK.
 #define BM_MLB150_MIEN_CRX_BREAK      (0x04000000)  //!< Bit mask for MLB150_MIEN_CRX_BREAK.
 
@@ -1126,7 +1059,6 @@ typedef union _hw_mlb150_mien
 //! @brief Set the CRX_BREAK field to a new value.
 #define BW_MLB150_MIEN_CRX_BREAK(v)   (HW_MLB150_MIEN_WR((HW_MLB150_MIEN_RD() & ~BM_MLB150_MIEN_CRX_BREAK) | BF_MLB150_MIEN_CRX_BREAK(v)))
 #endif
-
 //@}
 
 /*! @name Register MLB150_MIEN, field CTX_DONE[27] (RW)
@@ -1135,7 +1067,6 @@ typedef union _hw_mlb150_mien
  * channel causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 //@{
-
 #define BP_MLB150_MIEN_CTX_DONE      (27)      //!< Bit position for MLB150_MIEN_CTX_DONE.
 #define BM_MLB150_MIEN_CTX_DONE      (0x08000000)  //!< Bit mask for MLB150_MIEN_CTX_DONE.
 
@@ -1149,7 +1080,6 @@ typedef union _hw_mlb150_mien
 //! @brief Set the CTX_DONE field to a new value.
 #define BW_MLB150_MIEN_CTX_DONE(v)   (HW_MLB150_MIEN_WR((HW_MLB150_MIEN_RD() & ~BM_MLB150_MIEN_CTX_DONE) | BF_MLB150_MIEN_CTX_DONE(v)))
 #endif
-
 //@}
 
 /*! @name Register MLB150_MIEN, field CTX_PE[28] (RW)
@@ -1158,7 +1088,6 @@ typedef union _hw_mlb150_mien
  * control Tx channel causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 //@{
-
 #define BP_MLB150_MIEN_CTX_PE      (28)      //!< Bit position for MLB150_MIEN_CTX_PE.
 #define BM_MLB150_MIEN_CTX_PE      (0x10000000)  //!< Bit mask for MLB150_MIEN_CTX_PE.
 
@@ -1172,7 +1101,6 @@ typedef union _hw_mlb150_mien
 //! @brief Set the CTX_PE field to a new value.
 #define BW_MLB150_MIEN_CTX_PE(v)   (HW_MLB150_MIEN_WR((HW_MLB150_MIEN_RD() & ~BM_MLB150_MIEN_CTX_PE) | BF_MLB150_MIEN_CTX_PE(v)))
 #endif
-
 //@}
 
 /*! @name Register MLB150_MIEN, field CTX_BREAK[29] (RW)
@@ -1181,7 +1109,6 @@ typedef union _hw_mlb150_mien
  * control Tx channel causes the appropriate channel bit in the MS0 or MS1 registers to be set.
  */
 //@{
-
 #define BP_MLB150_MIEN_CTX_BREAK      (29)      //!< Bit position for MLB150_MIEN_CTX_BREAK.
 #define BM_MLB150_MIEN_CTX_BREAK      (0x20000000)  //!< Bit mask for MLB150_MIEN_CTX_BREAK.
 
@@ -1195,7 +1122,6 @@ typedef union _hw_mlb150_mien
 //! @brief Set the CTX_BREAK field to a new value.
 #define BW_MLB150_MIEN_CTX_BREAK(v)   (HW_MLB150_MIEN_WR((HW_MLB150_MIEN_RD() & ~BM_MLB150_MIEN_CTX_BREAK) | BF_MLB150_MIEN_CTX_BREAK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1215,9 +1141,9 @@ typedef union _hw_mlb150_mlbpc1
     reg32_t U;
     struct _hw_mlb150_mlbpc1_bitfields
     {
-        unsigned SDRCVBIAS : 4; //!< [3:0] Signal/Data receiver bias control (for MediaLB 6-pin interface).
-        unsigned SDXMTBIAS : 4; //!< [7:4] Signal/Data transmitter bias control (for MediaLB 6-pin interface).
-        unsigned CKRCVBIAS : 4; //!< [11:8] Clock receiver bias control (for MediaLB 6-pin interface).
+        unsigned SDRCVBIAS_3_0 : 4; //!< [3:0] Signal/Data receiver bias control (for MediaLB 6-pin interface).
+        unsigned SDXMTBIAS_3_0 : 4; //!< [7:4] Signal/Data transmitter bias control (for MediaLB 6-pin interface).
+        unsigned CKRCVBIAS_3_0 : 4; //!< [11:8] Clock receiver bias control (for MediaLB 6-pin interface).
         unsigned RESERVED0 : 20; //!< [31:12] Reserved
     } B;
 } hw_mlb150_mlbpc1_t;
@@ -1243,76 +1169,70 @@ typedef union _hw_mlb150_mlbpc1
  * constants & macros for individual MLB150_MLBPC1 bitfields
  */
 
-/*! @name Register MLB150_MLBPC1, field SDRCVBIAS[3:0] (RW)
+/*! @name Register MLB150_MLBPC1, field SDRCVBIAS_3_0[3:0] (RW)
  *
  * Signal/Data receiver bias control (for MediaLB 6-pin interface). Must be written to 0xC when
  * MediaLB 6-pin is initialized (final value needs to be determined through characterization). This
  * value is driven on mlb_sig_data_rx_bias_ctl[3:0] output pin and has no internal function.
  */
 //@{
+#define BP_MLB150_MLBPC1_SDRCVBIAS_3_0      (0)      //!< Bit position for MLB150_MLBPC1_SDRCVBIAS_3_0.
+#define BM_MLB150_MLBPC1_SDRCVBIAS_3_0      (0x0000000f)  //!< Bit mask for MLB150_MLBPC1_SDRCVBIAS_3_0.
 
-#define BP_MLB150_MLBPC1_SDRCVBIAS      (0)      //!< Bit position for MLB150_MLBPC1_SDRCVBIAS.
-#define BM_MLB150_MLBPC1_SDRCVBIAS      (0x0000000f)  //!< Bit mask for MLB150_MLBPC1_SDRCVBIAS.
+//! @brief Get value of MLB150_MLBPC1_SDRCVBIAS_3_0 from a register value.
+#define BG_MLB150_MLBPC1_SDRCVBIAS_3_0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MLBPC1_SDRCVBIAS_3_0) >> BP_MLB150_MLBPC1_SDRCVBIAS_3_0)
 
-//! @brief Get value of MLB150_MLBPC1_SDRCVBIAS from a register value.
-#define BG_MLB150_MLBPC1_SDRCVBIAS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MLBPC1_SDRCVBIAS) >> BP_MLB150_MLBPC1_SDRCVBIAS)
-
-//! @brief Format value for bitfield MLB150_MLBPC1_SDRCVBIAS.
-#define BF_MLB150_MLBPC1_SDRCVBIAS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MLBPC1_SDRCVBIAS) & BM_MLB150_MLBPC1_SDRCVBIAS)
+//! @brief Format value for bitfield MLB150_MLBPC1_SDRCVBIAS_3_0.
+#define BF_MLB150_MLBPC1_SDRCVBIAS_3_0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MLBPC1_SDRCVBIAS_3_0) & BM_MLB150_MLBPC1_SDRCVBIAS_3_0)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the SDRCVBIAS field to a new value.
-#define BW_MLB150_MLBPC1_SDRCVBIAS(v)   (HW_MLB150_MLBPC1_WR((HW_MLB150_MLBPC1_RD() & ~BM_MLB150_MLBPC1_SDRCVBIAS) | BF_MLB150_MLBPC1_SDRCVBIAS(v)))
+//! @brief Set the SDRCVBIAS_3_0 field to a new value.
+#define BW_MLB150_MLBPC1_SDRCVBIAS_3_0(v)   (HW_MLB150_MLBPC1_WR((HW_MLB150_MLBPC1_RD() & ~BM_MLB150_MLBPC1_SDRCVBIAS_3_0) | BF_MLB150_MLBPC1_SDRCVBIAS_3_0(v)))
 #endif
-
 //@}
 
-/*! @name Register MLB150_MLBPC1, field SDXMTBIAS[7:4] (RW)
+/*! @name Register MLB150_MLBPC1, field SDXMTBIAS_3_0[7:4] (RW)
  *
  * Signal/Data transmitter bias control (for MediaLB 6-pin interface). Must be written to 0xC when
  * MediaLB 6-pin is initialized (final value needs to be determined through characterization). This
  * value is driven on mlb_sig_data_tx_bias_ctl[3:0] output pin and has no internal function.
  */
 //@{
+#define BP_MLB150_MLBPC1_SDXMTBIAS_3_0      (4)      //!< Bit position for MLB150_MLBPC1_SDXMTBIAS_3_0.
+#define BM_MLB150_MLBPC1_SDXMTBIAS_3_0      (0x000000f0)  //!< Bit mask for MLB150_MLBPC1_SDXMTBIAS_3_0.
 
-#define BP_MLB150_MLBPC1_SDXMTBIAS      (4)      //!< Bit position for MLB150_MLBPC1_SDXMTBIAS.
-#define BM_MLB150_MLBPC1_SDXMTBIAS      (0x000000f0)  //!< Bit mask for MLB150_MLBPC1_SDXMTBIAS.
+//! @brief Get value of MLB150_MLBPC1_SDXMTBIAS_3_0 from a register value.
+#define BG_MLB150_MLBPC1_SDXMTBIAS_3_0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MLBPC1_SDXMTBIAS_3_0) >> BP_MLB150_MLBPC1_SDXMTBIAS_3_0)
 
-//! @brief Get value of MLB150_MLBPC1_SDXMTBIAS from a register value.
-#define BG_MLB150_MLBPC1_SDXMTBIAS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MLBPC1_SDXMTBIAS) >> BP_MLB150_MLBPC1_SDXMTBIAS)
-
-//! @brief Format value for bitfield MLB150_MLBPC1_SDXMTBIAS.
-#define BF_MLB150_MLBPC1_SDXMTBIAS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MLBPC1_SDXMTBIAS) & BM_MLB150_MLBPC1_SDXMTBIAS)
+//! @brief Format value for bitfield MLB150_MLBPC1_SDXMTBIAS_3_0.
+#define BF_MLB150_MLBPC1_SDXMTBIAS_3_0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MLBPC1_SDXMTBIAS_3_0) & BM_MLB150_MLBPC1_SDXMTBIAS_3_0)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the SDXMTBIAS field to a new value.
-#define BW_MLB150_MLBPC1_SDXMTBIAS(v)   (HW_MLB150_MLBPC1_WR((HW_MLB150_MLBPC1_RD() & ~BM_MLB150_MLBPC1_SDXMTBIAS) | BF_MLB150_MLBPC1_SDXMTBIAS(v)))
+//! @brief Set the SDXMTBIAS_3_0 field to a new value.
+#define BW_MLB150_MLBPC1_SDXMTBIAS_3_0(v)   (HW_MLB150_MLBPC1_WR((HW_MLB150_MLBPC1_RD() & ~BM_MLB150_MLBPC1_SDXMTBIAS_3_0) | BF_MLB150_MLBPC1_SDXMTBIAS_3_0(v)))
 #endif
-
 //@}
 
-/*! @name Register MLB150_MLBPC1, field CKRCVBIAS[11:8] (RW)
+/*! @name Register MLB150_MLBPC1, field CKRCVBIAS_3_0[11:8] (RW)
  *
  * Clock receiver bias control (for MediaLB 6-pin interface). Must be written to 0xC when MediaLB
  * 6-pin is initialized (final value needs to be determined through characterization). This value is
  * driven on mlb_clk_rx_bias_ctl[3:0] output pin and has no internal function.
  */
 //@{
+#define BP_MLB150_MLBPC1_CKRCVBIAS_3_0      (8)      //!< Bit position for MLB150_MLBPC1_CKRCVBIAS_3_0.
+#define BM_MLB150_MLBPC1_CKRCVBIAS_3_0      (0x00000f00)  //!< Bit mask for MLB150_MLBPC1_CKRCVBIAS_3_0.
 
-#define BP_MLB150_MLBPC1_CKRCVBIAS      (8)      //!< Bit position for MLB150_MLBPC1_CKRCVBIAS.
-#define BM_MLB150_MLBPC1_CKRCVBIAS      (0x00000f00)  //!< Bit mask for MLB150_MLBPC1_CKRCVBIAS.
+//! @brief Get value of MLB150_MLBPC1_CKRCVBIAS_3_0 from a register value.
+#define BG_MLB150_MLBPC1_CKRCVBIAS_3_0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MLBPC1_CKRCVBIAS_3_0) >> BP_MLB150_MLBPC1_CKRCVBIAS_3_0)
 
-//! @brief Get value of MLB150_MLBPC1_CKRCVBIAS from a register value.
-#define BG_MLB150_MLBPC1_CKRCVBIAS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MLBPC1_CKRCVBIAS) >> BP_MLB150_MLBPC1_CKRCVBIAS)
-
-//! @brief Format value for bitfield MLB150_MLBPC1_CKRCVBIAS.
-#define BF_MLB150_MLBPC1_CKRCVBIAS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MLBPC1_CKRCVBIAS) & BM_MLB150_MLBPC1_CKRCVBIAS)
+//! @brief Format value for bitfield MLB150_MLBPC1_CKRCVBIAS_3_0.
+#define BF_MLB150_MLBPC1_CKRCVBIAS_3_0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MLBPC1_CKRCVBIAS_3_0) & BM_MLB150_MLBPC1_CKRCVBIAS_3_0)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CKRCVBIAS field to a new value.
-#define BW_MLB150_MLBPC1_CKRCVBIAS(v)   (HW_MLB150_MLBPC1_WR((HW_MLB150_MLBPC1_RD() & ~BM_MLB150_MLBPC1_CKRCVBIAS) | BF_MLB150_MLBPC1_CKRCVBIAS(v)))
+//! @brief Set the CKRCVBIAS_3_0 field to a new value.
+#define BW_MLB150_MLBPC1_CKRCVBIAS_3_0(v)   (HW_MLB150_MLBPC1_WR((HW_MLB150_MLBPC1_RD() & ~BM_MLB150_MLBPC1_CKRCVBIAS_3_0) | BF_MLB150_MLBPC1_CKRCVBIAS_3_0(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1335,7 +1255,7 @@ typedef union _hw_mlb150_mlbc1
         unsigned RESERVED0 : 6; //!< [5:0] Reserved
         unsigned LOCK : 1; //!< [6] MediaLB lock error status.
         unsigned CLKM : 1; //!< [7] MediaLB clock missing status.
-        unsigned NDA : 8; //!< [15:8] Node device address.
+        unsigned NDA_7_0 : 8; //!< [15:8] Node device address.
         unsigned RESERVED1 : 16; //!< [31:16] Reserved
     } B;
 } hw_mlb150_mlbc1_t;
@@ -1362,13 +1282,11 @@ typedef union _hw_mlb150_mlbc1
  * MediaLB lock error status. Set when MediaLB is unlocked; cleared by software.
  */
 //@{
-
 #define BP_MLB150_MLBC1_LOCK      (6)      //!< Bit position for MLB150_MLBC1_LOCK.
 #define BM_MLB150_MLBC1_LOCK      (0x00000040)  //!< Bit mask for MLB150_MLBC1_LOCK.
 
 //! @brief Get value of MLB150_MLBC1_LOCK from a register value.
 #define BG_MLB150_MLBC1_LOCK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MLBC1_LOCK) >> BP_MLB150_MLBC1_LOCK)
-
 //@}
 
 /*! @name Register MLB150_MLBC1, field CLKM[7] (RO)
@@ -1377,27 +1295,23 @@ typedef union _hw_mlb150_mlbc1
  * software.
  */
 //@{
-
 #define BP_MLB150_MLBC1_CLKM      (7)      //!< Bit position for MLB150_MLBC1_CLKM.
 #define BM_MLB150_MLBC1_CLKM      (0x00000080)  //!< Bit mask for MLB150_MLBC1_CLKM.
 
 //! @brief Get value of MLB150_MLBC1_CLKM from a register value.
 #define BG_MLB150_MLBC1_CLKM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MLBC1_CLKM) >> BP_MLB150_MLBC1_CLKM)
-
 //@}
 
-/*! @name Register MLB150_MLBC1, field NDA[15:8] (RW)
+/*! @name Register MLB150_MLBC1, field NDA_7_0[15:8] (RW)
  *
  * Node device address. Used for system commands directed to individual MediaLB nodes.
  */
 //@{
+#define BP_MLB150_MLBC1_NDA_7_0      (8)      //!< Bit position for MLB150_MLBC1_NDA_7_0.
+#define BM_MLB150_MLBC1_NDA_7_0      (0x0000ff00)  //!< Bit mask for MLB150_MLBC1_NDA_7_0.
 
-#define BP_MLB150_MLBC1_NDA      (8)      //!< Bit position for MLB150_MLBC1_NDA.
-#define BM_MLB150_MLBC1_NDA      (0x0000ff00)  //!< Bit mask for MLB150_MLBC1_NDA.
-
-//! @brief Get value of MLB150_MLBC1_NDA from a register value.
-#define BG_MLB150_MLBC1_NDA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MLBC1_NDA) >> BP_MLB150_MLBC1_NDA)
-
+//! @brief Get value of MLB150_MLBC1_NDA_7_0 from a register value.
+#define BG_MLB150_MLBC1_NDA_7_0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MLBC1_NDA_7_0) >> BP_MLB150_MLBC1_NDA_7_0)
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1456,7 +1370,6 @@ typedef union _hw_mlb150_hctl
  * - 1 - reset
  */
 //@{
-
 #define BP_MLB150_HCTL_RST0      (0)      //!< Bit position for MLB150_HCTL_RST0.
 #define BM_MLB150_HCTL_RST0      (0x00000001)  //!< Bit mask for MLB150_HCTL_RST0.
 
@@ -1470,7 +1383,6 @@ typedef union _hw_mlb150_hctl
 //! @brief Set the RST0 field to a new value.
 #define BW_MLB150_HCTL_RST0(v)   (HW_MLB150_HCTL_WR((HW_MLB150_HCTL_RD() & ~BM_MLB150_HCTL_RST0) | BF_MLB150_HCTL_RST0(v)))
 #endif
-
 //@}
 
 /*! @name Register MLB150_HCTL, field RST1[1] (RW)
@@ -1482,7 +1394,6 @@ typedef union _hw_mlb150_hctl
  * - 1 - reset
  */
 //@{
-
 #define BP_MLB150_HCTL_RST1      (1)      //!< Bit position for MLB150_HCTL_RST1.
 #define BM_MLB150_HCTL_RST1      (0x00000002)  //!< Bit mask for MLB150_HCTL_RST1.
 
@@ -1496,7 +1407,6 @@ typedef union _hw_mlb150_hctl
 //! @brief Set the RST1 field to a new value.
 #define BW_MLB150_HCTL_RST1(v)   (HW_MLB150_HCTL_WR((HW_MLB150_HCTL_RD() & ~BM_MLB150_HCTL_RST1) | BF_MLB150_HCTL_RST1(v)))
 #endif
-
 //@}
 
 /*! @name Register MLB150_HCTL, field EN[15] (RW)
@@ -1508,7 +1418,6 @@ typedef union _hw_mlb150_hctl
  * - 1 - enabled
  */
 //@{
-
 #define BP_MLB150_HCTL_EN      (15)      //!< Bit position for MLB150_HCTL_EN.
 #define BM_MLB150_HCTL_EN      (0x00008000)  //!< Bit mask for MLB150_HCTL_EN.
 
@@ -1522,7 +1431,6 @@ typedef union _hw_mlb150_hctl
 //! @brief Set the EN field to a new value.
 #define BW_MLB150_HCTL_EN(v)   (HW_MLB150_HCTL_WR((HW_MLB150_HCTL_RD() & ~BM_MLB150_HCTL_EN) | BF_MLB150_HCTL_EN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1545,7 +1453,7 @@ typedef union _hw_mlb150_hcmr0
     reg32_t U;
     struct _hw_mlb150_hcmr0_bitfields
     {
-        unsigned CHM : 32; //!< [31:0] Bitwise channel mask bit
+        unsigned CHM_31_0_P : 32; //!< [31:0] Bitwise channel mask bit
     } B;
 } hw_mlb150_hcmr0_t;
 #endif
@@ -1570,7 +1478,7 @@ typedef union _hw_mlb150_hcmr0
  * constants & macros for individual MLB150_HCMR0 bitfields
  */
 
-/*! @name Register MLB150_HCMR0, field CHM[31:0] (RW)
+/*! @name Register MLB150_HCMR0, field CHM_31_0_P[31:0] (RW)
  *
  * Bitwise channel mask bit
  *
@@ -1579,21 +1487,19 @@ typedef union _hw_mlb150_hcmr0
  * - 1 - unmasked
  */
 //@{
+#define BP_MLB150_HCMR0_CHM_31_0_P      (0)      //!< Bit position for MLB150_HCMR0_CHM_31_0_P.
+#define BM_MLB150_HCMR0_CHM_31_0_P      (0xffffffff)  //!< Bit mask for MLB150_HCMR0_CHM_31_0_P.
 
-#define BP_MLB150_HCMR0_CHM      (0)      //!< Bit position for MLB150_HCMR0_CHM.
-#define BM_MLB150_HCMR0_CHM      (0xffffffff)  //!< Bit mask for MLB150_HCMR0_CHM.
+//! @brief Get value of MLB150_HCMR0_CHM_31_0_P from a register value.
+#define BG_MLB150_HCMR0_CHM_31_0_P(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_HCMR0_CHM_31_0_P) >> BP_MLB150_HCMR0_CHM_31_0_P)
 
-//! @brief Get value of MLB150_HCMR0_CHM from a register value.
-#define BG_MLB150_HCMR0_CHM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_HCMR0_CHM) >> BP_MLB150_HCMR0_CHM)
-
-//! @brief Format value for bitfield MLB150_HCMR0_CHM.
-#define BF_MLB150_HCMR0_CHM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_HCMR0_CHM) & BM_MLB150_HCMR0_CHM)
+//! @brief Format value for bitfield MLB150_HCMR0_CHM_31_0_P.
+#define BF_MLB150_HCMR0_CHM_31_0_P(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_HCMR0_CHM_31_0_P) & BM_MLB150_HCMR0_CHM_31_0_P)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CHM field to a new value.
-#define BW_MLB150_HCMR0_CHM(v)   (HW_MLB150_HCMR0_WR((HW_MLB150_HCMR0_RD() & ~BM_MLB150_HCMR0_CHM) | BF_MLB150_HCMR0_CHM(v)))
+//! @brief Set the CHM_31_0_P field to a new value.
+#define BW_MLB150_HCMR0_CHM_31_0_P(v)   (HW_MLB150_HCMR0_WR((HW_MLB150_HCMR0_RD() & ~BM_MLB150_HCMR0_CHM_31_0_P) | BF_MLB150_HCMR0_CHM_31_0_P(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1613,7 +1519,7 @@ typedef union _hw_mlb150_hcmr1
     reg32_t U;
     struct _hw_mlb150_hcmr1_bitfields
     {
-        unsigned CHM : 32; //!< [31:0] Bitwise channel mask bit
+        unsigned CHM_63_32 : 32; //!< [31:0] Bitwise channel mask bit
     } B;
 } hw_mlb150_hcmr1_t;
 #endif
@@ -1638,7 +1544,7 @@ typedef union _hw_mlb150_hcmr1
  * constants & macros for individual MLB150_HCMR1 bitfields
  */
 
-/*! @name Register MLB150_HCMR1, field CHM[31:0] (RW)
+/*! @name Register MLB150_HCMR1, field CHM_63_32[31:0] (RW)
  *
  * Bitwise channel mask bit
  *
@@ -1647,21 +1553,19 @@ typedef union _hw_mlb150_hcmr1
  * - 1 - unmasked
  */
 //@{
+#define BP_MLB150_HCMR1_CHM_63_32      (0)      //!< Bit position for MLB150_HCMR1_CHM_63_32.
+#define BM_MLB150_HCMR1_CHM_63_32      (0xffffffff)  //!< Bit mask for MLB150_HCMR1_CHM_63_32.
 
-#define BP_MLB150_HCMR1_CHM      (0)      //!< Bit position for MLB150_HCMR1_CHM.
-#define BM_MLB150_HCMR1_CHM      (0xffffffff)  //!< Bit mask for MLB150_HCMR1_CHM.
+//! @brief Get value of MLB150_HCMR1_CHM_63_32 from a register value.
+#define BG_MLB150_HCMR1_CHM_63_32(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_HCMR1_CHM_63_32) >> BP_MLB150_HCMR1_CHM_63_32)
 
-//! @brief Get value of MLB150_HCMR1_CHM from a register value.
-#define BG_MLB150_HCMR1_CHM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_HCMR1_CHM) >> BP_MLB150_HCMR1_CHM)
-
-//! @brief Format value for bitfield MLB150_HCMR1_CHM.
-#define BF_MLB150_HCMR1_CHM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_HCMR1_CHM) & BM_MLB150_HCMR1_CHM)
+//! @brief Format value for bitfield MLB150_HCMR1_CHM_63_32.
+#define BF_MLB150_HCMR1_CHM_63_32(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_HCMR1_CHM_63_32) & BM_MLB150_HCMR1_CHM_63_32)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CHM field to a new value.
-#define BW_MLB150_HCMR1_CHM(v)   (HW_MLB150_HCMR1_WR((HW_MLB150_HCMR1_RD() & ~BM_MLB150_HCMR1_CHM) | BF_MLB150_HCMR1_CHM(v)))
+//! @brief Set the CHM_63_32 field to a new value.
+#define BW_MLB150_HCMR1_CHM_63_32(v)   (HW_MLB150_HCMR1_WR((HW_MLB150_HCMR1_RD() & ~BM_MLB150_HCMR1_CHM_63_32) | BF_MLB150_HCMR1_CHM_63_32(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1681,7 +1585,7 @@ typedef union _hw_mlb150_hcer0
     reg32_t U;
     struct _hw_mlb150_hcer0_bitfields
     {
-        unsigned CERR : 32; //!< [31:0] Bitwise channel error bit
+        unsigned CERR_31_0 : 32; //!< [31:0] Bitwise channel error bit
     } B;
 } hw_mlb150_hcer0_t;
 #endif
@@ -1702,18 +1606,16 @@ typedef union _hw_mlb150_hcer0
  * constants & macros for individual MLB150_HCER0 bitfields
  */
 
-/*! @name Register MLB150_HCER0, field CERR[31:0] (RO)
+/*! @name Register MLB150_HCER0, field CERR_31_0[31:0] (RO)
  *
  * Bitwise channel error bit
  */
 //@{
+#define BP_MLB150_HCER0_CERR_31_0      (0)      //!< Bit position for MLB150_HCER0_CERR_31_0.
+#define BM_MLB150_HCER0_CERR_31_0      (0xffffffff)  //!< Bit mask for MLB150_HCER0_CERR_31_0.
 
-#define BP_MLB150_HCER0_CERR      (0)      //!< Bit position for MLB150_HCER0_CERR.
-#define BM_MLB150_HCER0_CERR      (0xffffffff)  //!< Bit mask for MLB150_HCER0_CERR.
-
-//! @brief Get value of MLB150_HCER0_CERR from a register value.
-#define BG_MLB150_HCER0_CERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_HCER0_CERR) >> BP_MLB150_HCER0_CERR)
-
+//! @brief Get value of MLB150_HCER0_CERR_31_0 from a register value.
+#define BG_MLB150_HCER0_CERR_31_0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_HCER0_CERR_31_0) >> BP_MLB150_HCER0_CERR_31_0)
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1735,7 +1637,7 @@ typedef union _hw_mlb150_hcer1
     reg32_t U;
     struct _hw_mlb150_hcer1_bitfields
     {
-        unsigned CERR : 32; //!< [31:0] Bitwise channel error bit
+        unsigned CERR_63_32 : 32; //!< [31:0] Bitwise channel error bit
     } B;
 } hw_mlb150_hcer1_t;
 #endif
@@ -1756,18 +1658,16 @@ typedef union _hw_mlb150_hcer1
  * constants & macros for individual MLB150_HCER1 bitfields
  */
 
-/*! @name Register MLB150_HCER1, field CERR[31:0] (RO)
+/*! @name Register MLB150_HCER1, field CERR_63_32[31:0] (RO)
  *
  * Bitwise channel error bit
  */
 //@{
+#define BP_MLB150_HCER1_CERR_63_32      (0)      //!< Bit position for MLB150_HCER1_CERR_63_32.
+#define BM_MLB150_HCER1_CERR_63_32      (0xffffffff)  //!< Bit mask for MLB150_HCER1_CERR_63_32.
 
-#define BP_MLB150_HCER1_CERR      (0)      //!< Bit position for MLB150_HCER1_CERR.
-#define BM_MLB150_HCER1_CERR      (0xffffffff)  //!< Bit mask for MLB150_HCER1_CERR.
-
-//! @brief Get value of MLB150_HCER1_CERR from a register value.
-#define BG_MLB150_HCER1_CERR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_HCER1_CERR) >> BP_MLB150_HCER1_CERR)
-
+//! @brief Get value of MLB150_HCER1_CERR_63_32 from a register value.
+#define BG_MLB150_HCER1_CERR_63_32(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_HCER1_CERR_63_32) >> BP_MLB150_HCER1_CERR_63_32)
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1792,7 +1692,7 @@ typedef union _hw_mlb150_hcbr0
     reg32_t U;
     struct _hw_mlb150_hcbr0_bitfields
     {
-        unsigned CHB : 32; //!< [31:0] Bitwise channel busy bit
+        unsigned CHB_31_0 : 32; //!< [31:0] Bitwise channel busy bit
     } B;
 } hw_mlb150_hcbr0_t;
 #endif
@@ -1813,7 +1713,7 @@ typedef union _hw_mlb150_hcbr0
  * constants & macros for individual MLB150_HCBR0 bitfields
  */
 
-/*! @name Register MLB150_HCBR0, field CHB[31:0] (RO)
+/*! @name Register MLB150_HCBR0, field CHB_31_0[31:0] (RO)
  *
  * Bitwise channel busy bit
  *
@@ -1822,13 +1722,11 @@ typedef union _hw_mlb150_hcbr0
  * - 1 - busy
  */
 //@{
+#define BP_MLB150_HCBR0_CHB_31_0      (0)      //!< Bit position for MLB150_HCBR0_CHB_31_0.
+#define BM_MLB150_HCBR0_CHB_31_0      (0xffffffff)  //!< Bit mask for MLB150_HCBR0_CHB_31_0.
 
-#define BP_MLB150_HCBR0_CHB      (0)      //!< Bit position for MLB150_HCBR0_CHB.
-#define BM_MLB150_HCBR0_CHB      (0xffffffff)  //!< Bit mask for MLB150_HCBR0_CHB.
-
-//! @brief Get value of MLB150_HCBR0_CHB from a register value.
-#define BG_MLB150_HCBR0_CHB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_HCBR0_CHB) >> BP_MLB150_HCBR0_CHB)
-
+//! @brief Get value of MLB150_HCBR0_CHB_31_0 from a register value.
+#define BG_MLB150_HCBR0_CHB_31_0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_HCBR0_CHB_31_0) >> BP_MLB150_HCBR0_CHB_31_0)
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1848,7 +1746,7 @@ typedef union _hw_mlb150_hcbr1
     reg32_t U;
     struct _hw_mlb150_hcbr1_bitfields
     {
-        unsigned CHB : 32; //!< [31:0] Bitwise channel busy bit
+        unsigned CHB_63_32 : 32; //!< [31:0] Bitwise channel busy bit
     } B;
 } hw_mlb150_hcbr1_t;
 #endif
@@ -1869,7 +1767,7 @@ typedef union _hw_mlb150_hcbr1
  * constants & macros for individual MLB150_HCBR1 bitfields
  */
 
-/*! @name Register MLB150_HCBR1, field CHB[31:0] (RO)
+/*! @name Register MLB150_HCBR1, field CHB_63_32[31:0] (RO)
  *
  * Bitwise channel busy bit
  *
@@ -1878,13 +1776,11 @@ typedef union _hw_mlb150_hcbr1
  * - 1 - busy
  */
 //@{
+#define BP_MLB150_HCBR1_CHB_63_32      (0)      //!< Bit position for MLB150_HCBR1_CHB_63_32.
+#define BM_MLB150_HCBR1_CHB_63_32      (0xffffffff)  //!< Bit mask for MLB150_HCBR1_CHB_63_32.
 
-#define BP_MLB150_HCBR1_CHB      (0)      //!< Bit position for MLB150_HCBR1_CHB.
-#define BM_MLB150_HCBR1_CHB      (0xffffffff)  //!< Bit mask for MLB150_HCBR1_CHB.
-
-//! @brief Get value of MLB150_HCBR1_CHB from a register value.
-#define BG_MLB150_HCBR1_CHB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_HCBR1_CHB) >> BP_MLB150_HCBR1_CHB)
-
+//! @brief Get value of MLB150_HCBR1_CHB_63_32 from a register value.
+#define BG_MLB150_HCBR1_CHB_63_32(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_HCBR1_CHB_63_32) >> BP_MLB150_HCBR1_CHB_63_32)
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1904,7 +1800,7 @@ typedef union _hw_mlb150_mdat0
     reg32_t U;
     struct _hw_mlb150_mdat0_bitfields
     {
-        unsigned DATA : 32; //!< [31:0] CTR data - bits[31:0] of 128-bit entry or
+        unsigned DATA_31_0 : 32; //!< [31:0] CTR data - bits[31:0] of 128-bit entry or
     } B;
 } hw_mlb150_mdat0_t;
 #endif
@@ -1929,26 +1825,24 @@ typedef union _hw_mlb150_mdat0
  * constants & macros for individual MLB150_MDAT0 bitfields
  */
 
-/*! @name Register MLB150_MDAT0, field DATA[31:0] (RW)
+/*! @name Register MLB150_MDAT0, field DATA_31_0[31:0] (RW)
  *
  * CTR data - bits[31:0] of 128-bit entry or DBR data - bits[7:0] of 8-bit entry
  */
 //@{
+#define BP_MLB150_MDAT0_DATA_31_0      (0)      //!< Bit position for MLB150_MDAT0_DATA_31_0.
+#define BM_MLB150_MDAT0_DATA_31_0      (0xffffffff)  //!< Bit mask for MLB150_MDAT0_DATA_31_0.
 
-#define BP_MLB150_MDAT0_DATA      (0)      //!< Bit position for MLB150_MDAT0_DATA.
-#define BM_MLB150_MDAT0_DATA      (0xffffffff)  //!< Bit mask for MLB150_MDAT0_DATA.
+//! @brief Get value of MLB150_MDAT0_DATA_31_0 from a register value.
+#define BG_MLB150_MDAT0_DATA_31_0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MDAT0_DATA_31_0) >> BP_MLB150_MDAT0_DATA_31_0)
 
-//! @brief Get value of MLB150_MDAT0_DATA from a register value.
-#define BG_MLB150_MDAT0_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MDAT0_DATA) >> BP_MLB150_MDAT0_DATA)
-
-//! @brief Format value for bitfield MLB150_MDAT0_DATA.
-#define BF_MLB150_MDAT0_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MDAT0_DATA) & BM_MLB150_MDAT0_DATA)
+//! @brief Format value for bitfield MLB150_MDAT0_DATA_31_0.
+#define BF_MLB150_MDAT0_DATA_31_0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MDAT0_DATA_31_0) & BM_MLB150_MDAT0_DATA_31_0)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MLB150_MDAT0_DATA(v)   (HW_MLB150_MDAT0_WR((HW_MLB150_MDAT0_RD() & ~BM_MLB150_MDAT0_DATA) | BF_MLB150_MDAT0_DATA(v)))
+//! @brief Set the DATA_31_0 field to a new value.
+#define BW_MLB150_MDAT0_DATA_31_0(v)   (HW_MLB150_MDAT0_WR((HW_MLB150_MDAT0_RD() & ~BM_MLB150_MDAT0_DATA_31_0) | BF_MLB150_MDAT0_DATA_31_0(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1968,7 +1862,7 @@ typedef union _hw_mlb150_mdat1
     reg32_t U;
     struct _hw_mlb150_mdat1_bitfields
     {
-        unsigned DATA : 32; //!< [31:0] CTR data - bits[63:32] of 128-bit entry
+        unsigned DATA_63_32 : 32; //!< [31:0] CTR data - bits[63:32] of 128-bit entry
     } B;
 } hw_mlb150_mdat1_t;
 #endif
@@ -1993,26 +1887,24 @@ typedef union _hw_mlb150_mdat1
  * constants & macros for individual MLB150_MDAT1 bitfields
  */
 
-/*! @name Register MLB150_MDAT1, field DATA[31:0] (RW)
+/*! @name Register MLB150_MDAT1, field DATA_63_32[31:0] (RW)
  *
  * CTR data - bits[63:32] of 128-bit entry
  */
 //@{
+#define BP_MLB150_MDAT1_DATA_63_32      (0)      //!< Bit position for MLB150_MDAT1_DATA_63_32.
+#define BM_MLB150_MDAT1_DATA_63_32      (0xffffffff)  //!< Bit mask for MLB150_MDAT1_DATA_63_32.
 
-#define BP_MLB150_MDAT1_DATA      (0)      //!< Bit position for MLB150_MDAT1_DATA.
-#define BM_MLB150_MDAT1_DATA      (0xffffffff)  //!< Bit mask for MLB150_MDAT1_DATA.
+//! @brief Get value of MLB150_MDAT1_DATA_63_32 from a register value.
+#define BG_MLB150_MDAT1_DATA_63_32(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MDAT1_DATA_63_32) >> BP_MLB150_MDAT1_DATA_63_32)
 
-//! @brief Get value of MLB150_MDAT1_DATA from a register value.
-#define BG_MLB150_MDAT1_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MDAT1_DATA) >> BP_MLB150_MDAT1_DATA)
-
-//! @brief Format value for bitfield MLB150_MDAT1_DATA.
-#define BF_MLB150_MDAT1_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MDAT1_DATA) & BM_MLB150_MDAT1_DATA)
+//! @brief Format value for bitfield MLB150_MDAT1_DATA_63_32.
+#define BF_MLB150_MDAT1_DATA_63_32(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MDAT1_DATA_63_32) & BM_MLB150_MDAT1_DATA_63_32)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MLB150_MDAT1_DATA(v)   (HW_MLB150_MDAT1_WR((HW_MLB150_MDAT1_RD() & ~BM_MLB150_MDAT1_DATA) | BF_MLB150_MDAT1_DATA(v)))
+//! @brief Set the DATA_63_32 field to a new value.
+#define BW_MLB150_MDAT1_DATA_63_32(v)   (HW_MLB150_MDAT1_WR((HW_MLB150_MDAT1_RD() & ~BM_MLB150_MDAT1_DATA_63_32) | BF_MLB150_MDAT1_DATA_63_32(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2032,7 +1924,7 @@ typedef union _hw_mlb150_mdat2
     reg32_t U;
     struct _hw_mlb150_mdat2_bitfields
     {
-        unsigned DATA : 32; //!< [31:0] CTR data - bits[95:64] of 128-bit entry
+        unsigned DATA_95_64 : 32; //!< [31:0] CTR data - bits[95:64] of 128-bit entry
     } B;
 } hw_mlb150_mdat2_t;
 #endif
@@ -2057,26 +1949,24 @@ typedef union _hw_mlb150_mdat2
  * constants & macros for individual MLB150_MDAT2 bitfields
  */
 
-/*! @name Register MLB150_MDAT2, field DATA[31:0] (RW)
+/*! @name Register MLB150_MDAT2, field DATA_95_64[31:0] (RW)
  *
  * CTR data - bits[95:64] of 128-bit entry
  */
 //@{
+#define BP_MLB150_MDAT2_DATA_95_64      (0)      //!< Bit position for MLB150_MDAT2_DATA_95_64.
+#define BM_MLB150_MDAT2_DATA_95_64      (0xffffffff)  //!< Bit mask for MLB150_MDAT2_DATA_95_64.
 
-#define BP_MLB150_MDAT2_DATA      (0)      //!< Bit position for MLB150_MDAT2_DATA.
-#define BM_MLB150_MDAT2_DATA      (0xffffffff)  //!< Bit mask for MLB150_MDAT2_DATA.
+//! @brief Get value of MLB150_MDAT2_DATA_95_64 from a register value.
+#define BG_MLB150_MDAT2_DATA_95_64(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MDAT2_DATA_95_64) >> BP_MLB150_MDAT2_DATA_95_64)
 
-//! @brief Get value of MLB150_MDAT2_DATA from a register value.
-#define BG_MLB150_MDAT2_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MDAT2_DATA) >> BP_MLB150_MDAT2_DATA)
-
-//! @brief Format value for bitfield MLB150_MDAT2_DATA.
-#define BF_MLB150_MDAT2_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MDAT2_DATA) & BM_MLB150_MDAT2_DATA)
+//! @brief Format value for bitfield MLB150_MDAT2_DATA_95_64.
+#define BF_MLB150_MDAT2_DATA_95_64(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MDAT2_DATA_95_64) & BM_MLB150_MDAT2_DATA_95_64)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MLB150_MDAT2_DATA(v)   (HW_MLB150_MDAT2_WR((HW_MLB150_MDAT2_RD() & ~BM_MLB150_MDAT2_DATA) | BF_MLB150_MDAT2_DATA(v)))
+//! @brief Set the DATA_95_64 field to a new value.
+#define BW_MLB150_MDAT2_DATA_95_64(v)   (HW_MLB150_MDAT2_WR((HW_MLB150_MDAT2_RD() & ~BM_MLB150_MDAT2_DATA_95_64) | BF_MLB150_MDAT2_DATA_95_64(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2096,7 +1986,7 @@ typedef union _hw_mlb150_mdat3
     reg32_t U;
     struct _hw_mlb150_mdat3_bitfields
     {
-        unsigned DATA : 32; //!< [31:0] CTR data - bits[127:96] of 128-bit entry
+        unsigned DATA_127_96 : 32; //!< [31:0] CTR data - bits[127:96] of 128-bit entry
     } B;
 } hw_mlb150_mdat3_t;
 #endif
@@ -2121,26 +2011,24 @@ typedef union _hw_mlb150_mdat3
  * constants & macros for individual MLB150_MDAT3 bitfields
  */
 
-/*! @name Register MLB150_MDAT3, field DATA[31:0] (RW)
+/*! @name Register MLB150_MDAT3, field DATA_127_96[31:0] (RW)
  *
  * CTR data - bits[127:96] of 128-bit entry
  */
 //@{
+#define BP_MLB150_MDAT3_DATA_127_96      (0)      //!< Bit position for MLB150_MDAT3_DATA_127_96.
+#define BM_MLB150_MDAT3_DATA_127_96      (0xffffffff)  //!< Bit mask for MLB150_MDAT3_DATA_127_96.
 
-#define BP_MLB150_MDAT3_DATA      (0)      //!< Bit position for MLB150_MDAT3_DATA.
-#define BM_MLB150_MDAT3_DATA      (0xffffffff)  //!< Bit mask for MLB150_MDAT3_DATA.
+//! @brief Get value of MLB150_MDAT3_DATA_127_96 from a register value.
+#define BG_MLB150_MDAT3_DATA_127_96(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MDAT3_DATA_127_96) >> BP_MLB150_MDAT3_DATA_127_96)
 
-//! @brief Get value of MLB150_MDAT3_DATA from a register value.
-#define BG_MLB150_MDAT3_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MDAT3_DATA) >> BP_MLB150_MDAT3_DATA)
-
-//! @brief Format value for bitfield MLB150_MDAT3_DATA.
-#define BF_MLB150_MDAT3_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MDAT3_DATA) & BM_MLB150_MDAT3_DATA)
+//! @brief Format value for bitfield MLB150_MDAT3_DATA_127_96.
+#define BF_MLB150_MDAT3_DATA_127_96(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MDAT3_DATA_127_96) & BM_MLB150_MDAT3_DATA_127_96)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MLB150_MDAT3_DATA(v)   (HW_MLB150_MDAT3_WR((HW_MLB150_MDAT3_RD() & ~BM_MLB150_MDAT3_DATA) | BF_MLB150_MDAT3_DATA(v)))
+//! @brief Set the DATA_127_96 field to a new value.
+#define BW_MLB150_MDAT3_DATA_127_96(v)   (HW_MLB150_MDAT3_WR((HW_MLB150_MDAT3_RD() & ~BM_MLB150_MDAT3_DATA_127_96) | BF_MLB150_MDAT3_DATA_127_96(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2160,7 +2048,7 @@ typedef union _hw_mlb150_mdwe0
     reg32_t U;
     struct _hw_mlb150_mdwe0_bitfields
     {
-        unsigned MASK : 32; //!< [31:0] Bitwise write enable for CTR data - bits[31:0]
+        unsigned MASK_31_0 : 32; //!< [31:0] Bitwise write enable for CTR data - bits[31:0]
     } B;
 } hw_mlb150_mdwe0_t;
 #endif
@@ -2185,7 +2073,7 @@ typedef union _hw_mlb150_mdwe0
  * constants & macros for individual MLB150_MDWE0 bitfields
  */
 
-/*! @name Register MLB150_MDWE0, field MASK[31:0] (RW)
+/*! @name Register MLB150_MDWE0, field MASK_31_0[31:0] (RW)
  *
  * Bitwise write enable for CTR data - bits[31:0]
  *
@@ -2194,21 +2082,19 @@ typedef union _hw_mlb150_mdwe0
  * - 1 - enabled
  */
 //@{
+#define BP_MLB150_MDWE0_MASK_31_0      (0)      //!< Bit position for MLB150_MDWE0_MASK_31_0.
+#define BM_MLB150_MDWE0_MASK_31_0      (0xffffffff)  //!< Bit mask for MLB150_MDWE0_MASK_31_0.
 
-#define BP_MLB150_MDWE0_MASK      (0)      //!< Bit position for MLB150_MDWE0_MASK.
-#define BM_MLB150_MDWE0_MASK      (0xffffffff)  //!< Bit mask for MLB150_MDWE0_MASK.
+//! @brief Get value of MLB150_MDWE0_MASK_31_0 from a register value.
+#define BG_MLB150_MDWE0_MASK_31_0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MDWE0_MASK_31_0) >> BP_MLB150_MDWE0_MASK_31_0)
 
-//! @brief Get value of MLB150_MDWE0_MASK from a register value.
-#define BG_MLB150_MDWE0_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MDWE0_MASK) >> BP_MLB150_MDWE0_MASK)
-
-//! @brief Format value for bitfield MLB150_MDWE0_MASK.
-#define BF_MLB150_MDWE0_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MDWE0_MASK) & BM_MLB150_MDWE0_MASK)
+//! @brief Format value for bitfield MLB150_MDWE0_MASK_31_0.
+#define BF_MLB150_MDWE0_MASK_31_0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MDWE0_MASK_31_0) & BM_MLB150_MDWE0_MASK_31_0)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the MASK field to a new value.
-#define BW_MLB150_MDWE0_MASK(v)   (HW_MLB150_MDWE0_WR((HW_MLB150_MDWE0_RD() & ~BM_MLB150_MDWE0_MASK) | BF_MLB150_MDWE0_MASK(v)))
+//! @brief Set the MASK_31_0 field to a new value.
+#define BW_MLB150_MDWE0_MASK_31_0(v)   (HW_MLB150_MDWE0_WR((HW_MLB150_MDWE0_RD() & ~BM_MLB150_MDWE0_MASK_31_0) | BF_MLB150_MDWE0_MASK_31_0(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2228,7 +2114,7 @@ typedef union _hw_mlb150_mdwe1
     reg32_t U;
     struct _hw_mlb150_mdwe1_bitfields
     {
-        unsigned MASK : 32; //!< [31:0] Bitwise write enable for CTR data - bits[63:32]
+        unsigned MASK_63_32 : 32; //!< [31:0] Bitwise write enable for CTR data - bits[63:32]
     } B;
 } hw_mlb150_mdwe1_t;
 #endif
@@ -2253,7 +2139,7 @@ typedef union _hw_mlb150_mdwe1
  * constants & macros for individual MLB150_MDWE1 bitfields
  */
 
-/*! @name Register MLB150_MDWE1, field MASK[31:0] (RW)
+/*! @name Register MLB150_MDWE1, field MASK_63_32[31:0] (RW)
  *
  * Bitwise write enable for CTR data - bits[63:32]
  *
@@ -2262,21 +2148,19 @@ typedef union _hw_mlb150_mdwe1
  * - 1 - enabled
  */
 //@{
+#define BP_MLB150_MDWE1_MASK_63_32      (0)      //!< Bit position for MLB150_MDWE1_MASK_63_32.
+#define BM_MLB150_MDWE1_MASK_63_32      (0xffffffff)  //!< Bit mask for MLB150_MDWE1_MASK_63_32.
 
-#define BP_MLB150_MDWE1_MASK      (0)      //!< Bit position for MLB150_MDWE1_MASK.
-#define BM_MLB150_MDWE1_MASK      (0xffffffff)  //!< Bit mask for MLB150_MDWE1_MASK.
+//! @brief Get value of MLB150_MDWE1_MASK_63_32 from a register value.
+#define BG_MLB150_MDWE1_MASK_63_32(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MDWE1_MASK_63_32) >> BP_MLB150_MDWE1_MASK_63_32)
 
-//! @brief Get value of MLB150_MDWE1_MASK from a register value.
-#define BG_MLB150_MDWE1_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MDWE1_MASK) >> BP_MLB150_MDWE1_MASK)
-
-//! @brief Format value for bitfield MLB150_MDWE1_MASK.
-#define BF_MLB150_MDWE1_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MDWE1_MASK) & BM_MLB150_MDWE1_MASK)
+//! @brief Format value for bitfield MLB150_MDWE1_MASK_63_32.
+#define BF_MLB150_MDWE1_MASK_63_32(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MDWE1_MASK_63_32) & BM_MLB150_MDWE1_MASK_63_32)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the MASK field to a new value.
-#define BW_MLB150_MDWE1_MASK(v)   (HW_MLB150_MDWE1_WR((HW_MLB150_MDWE1_RD() & ~BM_MLB150_MDWE1_MASK) | BF_MLB150_MDWE1_MASK(v)))
+//! @brief Set the MASK_63_32 field to a new value.
+#define BW_MLB150_MDWE1_MASK_63_32(v)   (HW_MLB150_MDWE1_WR((HW_MLB150_MDWE1_RD() & ~BM_MLB150_MDWE1_MASK_63_32) | BF_MLB150_MDWE1_MASK_63_32(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2296,7 +2180,7 @@ typedef union _hw_mlb150_mdwe2
     reg32_t U;
     struct _hw_mlb150_mdwe2_bitfields
     {
-        unsigned MASK : 32; //!< [31:0] Bitwise write enable for CTR data - bits[95:64]
+        unsigned MASK_95_64 : 32; //!< [31:0] Bitwise write enable for CTR data - bits[95:64]
     } B;
 } hw_mlb150_mdwe2_t;
 #endif
@@ -2321,7 +2205,7 @@ typedef union _hw_mlb150_mdwe2
  * constants & macros for individual MLB150_MDWE2 bitfields
  */
 
-/*! @name Register MLB150_MDWE2, field MASK[31:0] (RW)
+/*! @name Register MLB150_MDWE2, field MASK_95_64[31:0] (RW)
  *
  * Bitwise write enable for CTR data - bits[95:64]
  *
@@ -2330,21 +2214,19 @@ typedef union _hw_mlb150_mdwe2
  * - 1 - enabled
  */
 //@{
+#define BP_MLB150_MDWE2_MASK_95_64      (0)      //!< Bit position for MLB150_MDWE2_MASK_95_64.
+#define BM_MLB150_MDWE2_MASK_95_64      (0xffffffff)  //!< Bit mask for MLB150_MDWE2_MASK_95_64.
 
-#define BP_MLB150_MDWE2_MASK      (0)      //!< Bit position for MLB150_MDWE2_MASK.
-#define BM_MLB150_MDWE2_MASK      (0xffffffff)  //!< Bit mask for MLB150_MDWE2_MASK.
+//! @brief Get value of MLB150_MDWE2_MASK_95_64 from a register value.
+#define BG_MLB150_MDWE2_MASK_95_64(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MDWE2_MASK_95_64) >> BP_MLB150_MDWE2_MASK_95_64)
 
-//! @brief Get value of MLB150_MDWE2_MASK from a register value.
-#define BG_MLB150_MDWE2_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MDWE2_MASK) >> BP_MLB150_MDWE2_MASK)
-
-//! @brief Format value for bitfield MLB150_MDWE2_MASK.
-#define BF_MLB150_MDWE2_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MDWE2_MASK) & BM_MLB150_MDWE2_MASK)
+//! @brief Format value for bitfield MLB150_MDWE2_MASK_95_64.
+#define BF_MLB150_MDWE2_MASK_95_64(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MDWE2_MASK_95_64) & BM_MLB150_MDWE2_MASK_95_64)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the MASK field to a new value.
-#define BW_MLB150_MDWE2_MASK(v)   (HW_MLB150_MDWE2_WR((HW_MLB150_MDWE2_RD() & ~BM_MLB150_MDWE2_MASK) | BF_MLB150_MDWE2_MASK(v)))
+//! @brief Set the MASK_95_64 field to a new value.
+#define BW_MLB150_MDWE2_MASK_95_64(v)   (HW_MLB150_MDWE2_WR((HW_MLB150_MDWE2_RD() & ~BM_MLB150_MDWE2_MASK_95_64) | BF_MLB150_MDWE2_MASK_95_64(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2364,7 +2246,7 @@ typedef union _hw_mlb150_mdwe3
     reg32_t U;
     struct _hw_mlb150_mdwe3_bitfields
     {
-        unsigned MASK : 32; //!< [31:0] Bitwise write enable for CTR data - bits[127:96]
+        unsigned MASK_127_96 : 32; //!< [31:0] Bitwise write enable for CTR data - bits[127:96]
     } B;
 } hw_mlb150_mdwe3_t;
 #endif
@@ -2389,7 +2271,7 @@ typedef union _hw_mlb150_mdwe3
  * constants & macros for individual MLB150_MDWE3 bitfields
  */
 
-/*! @name Register MLB150_MDWE3, field MASK[31:0] (RW)
+/*! @name Register MLB150_MDWE3, field MASK_127_96[31:0] (RW)
  *
  * Bitwise write enable for CTR data - bits[127:96]
  *
@@ -2398,21 +2280,19 @@ typedef union _hw_mlb150_mdwe3
  * - 1 - enabled
  */
 //@{
+#define BP_MLB150_MDWE3_MASK_127_96      (0)      //!< Bit position for MLB150_MDWE3_MASK_127_96.
+#define BM_MLB150_MDWE3_MASK_127_96      (0xffffffff)  //!< Bit mask for MLB150_MDWE3_MASK_127_96.
 
-#define BP_MLB150_MDWE3_MASK      (0)      //!< Bit position for MLB150_MDWE3_MASK.
-#define BM_MLB150_MDWE3_MASK      (0xffffffff)  //!< Bit mask for MLB150_MDWE3_MASK.
+//! @brief Get value of MLB150_MDWE3_MASK_127_96 from a register value.
+#define BG_MLB150_MDWE3_MASK_127_96(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MDWE3_MASK_127_96) >> BP_MLB150_MDWE3_MASK_127_96)
 
-//! @brief Get value of MLB150_MDWE3_MASK from a register value.
-#define BG_MLB150_MDWE3_MASK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MDWE3_MASK) >> BP_MLB150_MDWE3_MASK)
-
-//! @brief Format value for bitfield MLB150_MDWE3_MASK.
-#define BF_MLB150_MDWE3_MASK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MDWE3_MASK) & BM_MLB150_MDWE3_MASK)
+//! @brief Format value for bitfield MLB150_MDWE3_MASK_127_96.
+#define BF_MLB150_MDWE3_MASK_127_96(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MDWE3_MASK_127_96) & BM_MLB150_MDWE3_MASK_127_96)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the MASK field to a new value.
-#define BW_MLB150_MDWE3_MASK(v)   (HW_MLB150_MDWE3_WR((HW_MLB150_MDWE3_RD() & ~BM_MLB150_MDWE3_MASK) | BF_MLB150_MDWE3_MASK(v)))
+//! @brief Set the MASK_127_96 field to a new value.
+#define BW_MLB150_MDWE3_MASK_127_96(v)   (HW_MLB150_MDWE3_WR((HW_MLB150_MDWE3_RD() & ~BM_MLB150_MDWE3_MASK_127_96) | BF_MLB150_MDWE3_MASK_127_96(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2459,13 +2339,11 @@ typedef union _hw_mlb150_mctl
  * Transfer complete (write 0 to clear)
  */
 //@{
-
 #define BP_MLB150_MCTL_XCMP      (0)      //!< Bit position for MLB150_MCTL_XCMP.
 #define BM_MLB150_MCTL_XCMP      (0x00000001)  //!< Bit mask for MLB150_MCTL_XCMP.
 
 //! @brief Get value of MLB150_MCTL_XCMP from a register value.
 #define BG_MLB150_MCTL_XCMP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MCTL_XCMP) >> BP_MLB150_MCTL_XCMP)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2485,8 +2363,8 @@ typedef union _hw_mlb150_madr
     reg32_t U;
     struct _hw_mlb150_madr_bitfields
     {
-        unsigned ADDR1 : 8; //!< [7:0] CTR address of 128-bit entry or
-        unsigned ADDR : 6; //!< [13:8] DBR address of 8-bit entry - bits[13:8]
+        unsigned ADDR_7_0 : 8; //!< [7:0] CTR address of 128-bit entry or
+        unsigned ADDR_13_8 : 6; //!< [13:8] DBR address of 8-bit entry - bits[13:8]
         unsigned RESERVED0 : 16; //!< [29:14] Reserved
         unsigned TB : 1; //!< [30] Target location bit
         unsigned WNR : 1; //!< [31] Write-Not-Read selection
@@ -2514,48 +2392,44 @@ typedef union _hw_mlb150_madr
  * constants & macros for individual MLB150_MADR bitfields
  */
 
-/*! @name Register MLB150_MADR, field ADDR1[7:0] (RW)
+/*! @name Register MLB150_MADR, field ADDR_7_0[7:0] (RW)
  *
  * CTR address of 128-bit entry or DBR address of 8-bit entry - bits[7:0]
  */
 //@{
+#define BP_MLB150_MADR_ADDR_7_0      (0)      //!< Bit position for MLB150_MADR_ADDR_7_0.
+#define BM_MLB150_MADR_ADDR_7_0      (0x000000ff)  //!< Bit mask for MLB150_MADR_ADDR_7_0.
 
-#define BP_MLB150_MADR_ADDR1      (0)      //!< Bit position for MLB150_MADR_ADDR1.
-#define BM_MLB150_MADR_ADDR1      (0x000000ff)  //!< Bit mask for MLB150_MADR_ADDR1.
+//! @brief Get value of MLB150_MADR_ADDR_7_0 from a register value.
+#define BG_MLB150_MADR_ADDR_7_0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MADR_ADDR_7_0) >> BP_MLB150_MADR_ADDR_7_0)
 
-//! @brief Get value of MLB150_MADR_ADDR1 from a register value.
-#define BG_MLB150_MADR_ADDR1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MADR_ADDR1) >> BP_MLB150_MADR_ADDR1)
-
-//! @brief Format value for bitfield MLB150_MADR_ADDR1.
-#define BF_MLB150_MADR_ADDR1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MADR_ADDR1) & BM_MLB150_MADR_ADDR1)
+//! @brief Format value for bitfield MLB150_MADR_ADDR_7_0.
+#define BF_MLB150_MADR_ADDR_7_0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MADR_ADDR_7_0) & BM_MLB150_MADR_ADDR_7_0)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the ADDR1 field to a new value.
-#define BW_MLB150_MADR_ADDR1(v)   (HW_MLB150_MADR_WR((HW_MLB150_MADR_RD() & ~BM_MLB150_MADR_ADDR1) | BF_MLB150_MADR_ADDR1(v)))
+//! @brief Set the ADDR_7_0 field to a new value.
+#define BW_MLB150_MADR_ADDR_7_0(v)   (HW_MLB150_MADR_WR((HW_MLB150_MADR_RD() & ~BM_MLB150_MADR_ADDR_7_0) | BF_MLB150_MADR_ADDR_7_0(v)))
 #endif
-
 //@}
 
-/*! @name Register MLB150_MADR, field ADDR[13:8] (RW)
+/*! @name Register MLB150_MADR, field ADDR_13_8[13:8] (RW)
  *
  * DBR address of 8-bit entry - bits[13:8]
  */
 //@{
+#define BP_MLB150_MADR_ADDR_13_8      (8)      //!< Bit position for MLB150_MADR_ADDR_13_8.
+#define BM_MLB150_MADR_ADDR_13_8      (0x00003f00)  //!< Bit mask for MLB150_MADR_ADDR_13_8.
 
-#define BP_MLB150_MADR_ADDR      (8)      //!< Bit position for MLB150_MADR_ADDR.
-#define BM_MLB150_MADR_ADDR      (0x00003f00)  //!< Bit mask for MLB150_MADR_ADDR.
+//! @brief Get value of MLB150_MADR_ADDR_13_8 from a register value.
+#define BG_MLB150_MADR_ADDR_13_8(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MADR_ADDR_13_8) >> BP_MLB150_MADR_ADDR_13_8)
 
-//! @brief Get value of MLB150_MADR_ADDR from a register value.
-#define BG_MLB150_MADR_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_MADR_ADDR) >> BP_MLB150_MADR_ADDR)
-
-//! @brief Format value for bitfield MLB150_MADR_ADDR.
-#define BF_MLB150_MADR_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MADR_ADDR) & BM_MLB150_MADR_ADDR)
+//! @brief Format value for bitfield MLB150_MADR_ADDR_13_8.
+#define BF_MLB150_MADR_ADDR_13_8(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_MADR_ADDR_13_8) & BM_MLB150_MADR_ADDR_13_8)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the ADDR field to a new value.
-#define BW_MLB150_MADR_ADDR(v)   (HW_MLB150_MADR_WR((HW_MLB150_MADR_RD() & ~BM_MLB150_MADR_ADDR) | BF_MLB150_MADR_ADDR(v)))
+//! @brief Set the ADDR_13_8 field to a new value.
+#define BW_MLB150_MADR_ADDR_13_8(v)   (HW_MLB150_MADR_WR((HW_MLB150_MADR_RD() & ~BM_MLB150_MADR_ADDR_13_8) | BF_MLB150_MADR_ADDR_13_8(v)))
 #endif
-
 //@}
 
 /*! @name Register MLB150_MADR, field TB[30] (RW)
@@ -2567,7 +2441,6 @@ typedef union _hw_mlb150_madr
  * - 1 - selects DBR
  */
 //@{
-
 #define BP_MLB150_MADR_TB      (30)      //!< Bit position for MLB150_MADR_TB.
 #define BM_MLB150_MADR_TB      (0x40000000)  //!< Bit mask for MLB150_MADR_TB.
 
@@ -2581,7 +2454,6 @@ typedef union _hw_mlb150_madr
 //! @brief Set the TB field to a new value.
 #define BW_MLB150_MADR_TB(v)   (HW_MLB150_MADR_WR((HW_MLB150_MADR_RD() & ~BM_MLB150_MADR_TB) | BF_MLB150_MADR_TB(v)))
 #endif
-
 //@}
 
 /*! @name Register MLB150_MADR, field WNR[31] (RW)
@@ -2593,7 +2465,6 @@ typedef union _hw_mlb150_madr
  * - 1 - write
  */
 //@{
-
 #define BP_MLB150_MADR_WNR      (31)      //!< Bit position for MLB150_MADR_WNR.
 #define BM_MLB150_MADR_WNR      (0x80000000)  //!< Bit mask for MLB150_MADR_WNR.
 
@@ -2607,7 +2478,6 @@ typedef union _hw_mlb150_madr
 //! @brief Set the WNR field to a new value.
 #define BW_MLB150_MADR_WNR(v)   (HW_MLB150_MADR_WR((HW_MLB150_MADR_RD() & ~BM_MLB150_MADR_WNR) | BF_MLB150_MADR_WNR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2669,7 +2539,6 @@ typedef union _hw_mlb150_actl
  * - 1 - Software clears interrupt
  */
 //@{
-
 #define BP_MLB150_ACTL_SCE      (0)      //!< Bit position for MLB150_ACTL_SCE.
 #define BM_MLB150_ACTL_SCE      (0x00000001)  //!< Bit mask for MLB150_ACTL_SCE.
 
@@ -2683,7 +2552,6 @@ typedef union _hw_mlb150_actl
 //! @brief Set the SCE field to a new value.
 #define BW_MLB150_ACTL_SCE(v)   (HW_MLB150_ACTL_WR((HW_MLB150_ACTL_RD() & ~BM_MLB150_ACTL_SCE) | BF_MLB150_ACTL_SCE(v)))
 #endif
-
 //@}
 
 /*! @name Register MLB150_ACTL, field SMX[1] (RW)
@@ -2695,7 +2563,6 @@ typedef union _hw_mlb150_actl
  * - 1 - ACSR0 and ACSR1 generate an interrupts on ahb_int[0] only
  */
 //@{
-
 #define BP_MLB150_ACTL_SMX      (1)      //!< Bit position for MLB150_ACTL_SMX.
 #define BM_MLB150_ACTL_SMX      (0x00000002)  //!< Bit mask for MLB150_ACTL_SMX.
 
@@ -2709,7 +2576,6 @@ typedef union _hw_mlb150_actl
 //! @brief Set the SMX field to a new value.
 #define BW_MLB150_ACTL_SMX(v)   (HW_MLB150_ACTL_WR((HW_MLB150_ACTL_RD() & ~BM_MLB150_ACTL_SMX) | BF_MLB150_ACTL_SMX(v)))
 #endif
-
 //@}
 
 /*! @name Register MLB150_ACTL, field DMA_MODE[2] (RW)
@@ -2721,7 +2587,6 @@ typedef union _hw_mlb150_actl
  * - 1 - DMA Mode 1
  */
 //@{
-
 #define BP_MLB150_ACTL_DMA_MODE      (2)      //!< Bit position for MLB150_ACTL_DMA_MODE.
 #define BM_MLB150_ACTL_DMA_MODE      (0x00000004)  //!< Bit mask for MLB150_ACTL_DMA_MODE.
 
@@ -2735,7 +2600,6 @@ typedef union _hw_mlb150_actl
 //! @brief Set the DMA_MODE field to a new value.
 #define BW_MLB150_ACTL_DMA_MODE(v)   (HW_MLB150_ACTL_WR((HW_MLB150_ACTL_RD() & ~BM_MLB150_ACTL_DMA_MODE) | BF_MLB150_ACTL_DMA_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register MLB150_ACTL, field MPB[4] (RW)
@@ -2747,7 +2611,6 @@ typedef union _hw_mlb150_actl
  * - 1 - Multiple-packet mode
  */
 //@{
-
 #define BP_MLB150_ACTL_MPB      (4)      //!< Bit position for MLB150_ACTL_MPB.
 #define BM_MLB150_ACTL_MPB      (0x00000010)  //!< Bit mask for MLB150_ACTL_MPB.
 
@@ -2761,7 +2624,6 @@ typedef union _hw_mlb150_actl
 //! @brief Set the MPB field to a new value.
 #define BW_MLB150_ACTL_MPB(v)   (HW_MLB150_ACTL_WR((HW_MLB150_ACTL_RD() & ~BM_MLB150_ACTL_MPB) | BF_MLB150_ACTL_MPB(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2820,13 +2682,11 @@ typedef union _hw_mlb150_acsr0
  * - 1 - Interrupt
  */
 //@{
-
 #define BP_MLB150_ACSR0_CHS      (0)      //!< Bit position for MLB150_ACSR0_CHS.
 #define BM_MLB150_ACSR0_CHS      (0xffffffff)  //!< Bit mask for MLB150_ACSR0_CHS.
 
 //! @brief Get value of MLB150_ACSR0_CHS from a register value.
 #define BG_MLB150_ACSR0_CHS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_ACSR0_CHS) >> BP_MLB150_ACSR0_CHS)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2876,13 +2736,11 @@ typedef union _hw_mlb150_acsr1
  * - 1 - Interrupt
  */
 //@{
-
 #define BP_MLB150_ACSR1_CHS      (0)      //!< Bit position for MLB150_ACSR1_CHS.
 #define BM_MLB150_ACSR1_CHS      (0xffffffff)  //!< Bit mask for MLB150_ACSR1_CHS.
 
 //! @brief Get value of MLB150_ACSR1_CHS from a register value.
 #define BG_MLB150_ACSR1_CHS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_ACSR1_CHS) >> BP_MLB150_ACSR1_CHS)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2904,7 +2762,7 @@ typedef union _hw_mlb150_acmr0
     reg32_t U;
     struct _hw_mlb150_acmr0_bitfields
     {
-        unsigned CHM : 32; //!< [31:0] Bitwise channel mask bit:
+        unsigned CHM_31_0 : 32; //!< [31:0] Bitwise channel mask bit:
     } B;
 } hw_mlb150_acmr0_t;
 #endif
@@ -2929,7 +2787,7 @@ typedef union _hw_mlb150_acmr0
  * constants & macros for individual MLB150_ACMR0 bitfields
  */
 
-/*! @name Register MLB150_ACMR0, field CHM[31:0] (RW)
+/*! @name Register MLB150_ACMR0, field CHM_31_0[31:0] (RW)
  *
  * Bitwise channel mask bit:
  *
@@ -2938,21 +2796,19 @@ typedef union _hw_mlb150_acmr0
  * - 1 - Unmasked
  */
 //@{
+#define BP_MLB150_ACMR0_CHM_31_0      (0)      //!< Bit position for MLB150_ACMR0_CHM_31_0.
+#define BM_MLB150_ACMR0_CHM_31_0      (0xffffffff)  //!< Bit mask for MLB150_ACMR0_CHM_31_0.
 
-#define BP_MLB150_ACMR0_CHM      (0)      //!< Bit position for MLB150_ACMR0_CHM.
-#define BM_MLB150_ACMR0_CHM      (0xffffffff)  //!< Bit mask for MLB150_ACMR0_CHM.
+//! @brief Get value of MLB150_ACMR0_CHM_31_0 from a register value.
+#define BG_MLB150_ACMR0_CHM_31_0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_ACMR0_CHM_31_0) >> BP_MLB150_ACMR0_CHM_31_0)
 
-//! @brief Get value of MLB150_ACMR0_CHM from a register value.
-#define BG_MLB150_ACMR0_CHM(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MLB150_ACMR0_CHM) >> BP_MLB150_ACMR0_CHM)
-
-//! @brief Format value for bitfield MLB150_ACMR0_CHM.
-#define BF_MLB150_ACMR0_CHM(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_ACMR0_CHM) & BM_MLB150_ACMR0_CHM)
+//! @brief Format value for bitfield MLB150_ACMR0_CHM_31_0.
+#define BF_MLB150_ACMR0_CHM_31_0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MLB150_ACMR0_CHM_31_0) & BM_MLB150_ACMR0_CHM_31_0)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CHM field to a new value.
-#define BW_MLB150_ACMR0_CHM(v)   (HW_MLB150_ACMR0_WR((HW_MLB150_ACMR0_RD() & ~BM_MLB150_ACMR0_CHM) | BF_MLB150_ACMR0_CHM(v)))
+//! @brief Set the CHM_31_0 field to a new value.
+#define BW_MLB150_ACMR0_CHM_31_0(v)   (HW_MLB150_ACMR0_WR((HW_MLB150_ACMR0_RD() & ~BM_MLB150_ACMR0_CHM_31_0) | BF_MLB150_ACMR0_CHM_31_0(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3006,7 +2862,6 @@ typedef union _hw_mlb150_acmr1
  * - 1 - Unmasked
  */
 //@{
-
 #define BP_MLB150_ACMR1_CHM      (0)      //!< Bit position for MLB150_ACMR1_CHM.
 #define BM_MLB150_ACMR1_CHM      (0xffffffff)  //!< Bit mask for MLB150_ACMR1_CHM.
 
@@ -3020,7 +2875,6 @@ typedef union _hw_mlb150_acmr1
 //! @brief Set the CHM field to a new value.
 #define BW_MLB150_ACMR1_CHM(v)   (HW_MLB150_ACMR1_WR((HW_MLB150_ACMR1_RD() & ~BM_MLB150_ACMR1_CHM) | BF_MLB150_ACMR1_CHM(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3084,3 +2938,5 @@ typedef struct _hw_mlb150
 #endif
 
 #endif // __HW_MLB150_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

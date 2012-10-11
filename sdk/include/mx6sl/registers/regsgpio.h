@@ -131,7 +131,6 @@ typedef union _hw_gpio_dr
  * input path disabled always returns a zero value.
  */
 //@{
-
 #define BP_GPIO_DR_DR      (0)      //!< Bit position for GPIO_DR_DR.
 #define BM_GPIO_DR_DR      (0xffffffff)  //!< Bit mask for GPIO_DR_DR.
 
@@ -145,7 +144,6 @@ typedef union _hw_gpio_dr
 //! @brief Set the DR field to a new value.
 #define BW_GPIO_DR_DR(x, v)   (HW_GPIO_DR_WR(x, (HW_GPIO_DR_RD(x) & ~BM_GPIO_DR_DR) | BF_GPIO_DR_DR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -200,11 +198,10 @@ typedef union _hw_gpio_gdir
  * is configured for GPIO.
  *
  * Values:
- * - 0 - GPIO is configured as input.
- * - 1 - GPIO is configured as output.
+ * - INPUT = 0 - GPIO is configured as input.
+ * - OUTPUT = 1 - GPIO is configured as output.
  */
 //@{
-
 #define BP_GPIO_GDIR_GDIR      (0)      //!< Bit position for GPIO_GDIR_GDIR.
 #define BM_GPIO_GDIR_GDIR      (0xffffffff)  //!< Bit mask for GPIO_GDIR_GDIR.
 
@@ -219,6 +216,11 @@ typedef union _hw_gpio_gdir
 #define BW_GPIO_GDIR_GDIR(x, v)   (HW_GPIO_GDIR_WR(x, (HW_GPIO_GDIR_RD(x) & ~BM_GPIO_GDIR_GDIR) | BF_GPIO_GDIR_GDIR(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_GDIR_GDIR_V(v) BF_GPIO_GDIR_GDIR(BV_GPIO_GDIR_GDIR__##v)
+
+#define BV_GPIO_GDIR_GDIR__INPUT (0x0) //!< GPIO is configured as input.
+#define BV_GPIO_GDIR_GDIR__OUTPUT (0x1) //!< GPIO is configured as output.
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -269,13 +271,11 @@ typedef union _hw_gpio_psr
  * the corresponding signal.
  */
 //@{
-
 #define BP_GPIO_PSR_PSR      (0)      //!< Bit position for GPIO_PSR_PSR.
 #define BM_GPIO_PSR_PSR      (0xffffffff)  //!< Bit mask for GPIO_PSR_PSR.
 
 //! @brief Get value of GPIO_PSR_PSR from a register value.
 #define BG_GPIO_PSR_PSR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_GPIO_PSR_PSR) >> BP_GPIO_PSR_PSR)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -343,13 +343,12 @@ typedef union _hw_gpio_icr1
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR1_ICR0      (0)      //!< Bit position for GPIO_ICR1_ICR0.
 #define BM_GPIO_ICR1_ICR0      (0x00000003)  //!< Bit mask for GPIO_ICR1_ICR0.
 
@@ -364,6 +363,13 @@ typedef union _hw_gpio_icr1
 #define BW_GPIO_ICR1_ICR0(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR0) | BF_GPIO_ICR1_ICR0(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR1_ICR0_V(v) BF_GPIO_ICR1_ICR0(BV_GPIO_ICR1_ICR0__##v)
+
+#define BV_GPIO_ICR1_ICR0__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR1_ICR0__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR1_ICR0__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR1_ICR0__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR1, field ICR1[3:2] (RW)
@@ -373,13 +379,12 @@ typedef union _hw_gpio_icr1
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR1_ICR1      (2)      //!< Bit position for GPIO_ICR1_ICR1.
 #define BM_GPIO_ICR1_ICR1      (0x0000000c)  //!< Bit mask for GPIO_ICR1_ICR1.
 
@@ -394,6 +399,13 @@ typedef union _hw_gpio_icr1
 #define BW_GPIO_ICR1_ICR1(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR1) | BF_GPIO_ICR1_ICR1(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR1_ICR1_V(v) BF_GPIO_ICR1_ICR1(BV_GPIO_ICR1_ICR1__##v)
+
+#define BV_GPIO_ICR1_ICR1__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR1_ICR1__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR1_ICR1__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR1_ICR1__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR1, field ICR2[5:4] (RW)
@@ -403,13 +415,12 @@ typedef union _hw_gpio_icr1
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR1_ICR2      (4)      //!< Bit position for GPIO_ICR1_ICR2.
 #define BM_GPIO_ICR1_ICR2      (0x00000030)  //!< Bit mask for GPIO_ICR1_ICR2.
 
@@ -424,6 +435,13 @@ typedef union _hw_gpio_icr1
 #define BW_GPIO_ICR1_ICR2(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR2) | BF_GPIO_ICR1_ICR2(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR1_ICR2_V(v) BF_GPIO_ICR1_ICR2(BV_GPIO_ICR1_ICR2__##v)
+
+#define BV_GPIO_ICR1_ICR2__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR1_ICR2__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR1_ICR2__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR1_ICR2__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR1, field ICR3[7:6] (RW)
@@ -433,13 +451,12 @@ typedef union _hw_gpio_icr1
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR1_ICR3      (6)      //!< Bit position for GPIO_ICR1_ICR3.
 #define BM_GPIO_ICR1_ICR3      (0x000000c0)  //!< Bit mask for GPIO_ICR1_ICR3.
 
@@ -454,6 +471,13 @@ typedef union _hw_gpio_icr1
 #define BW_GPIO_ICR1_ICR3(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR3) | BF_GPIO_ICR1_ICR3(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR1_ICR3_V(v) BF_GPIO_ICR1_ICR3(BV_GPIO_ICR1_ICR3__##v)
+
+#define BV_GPIO_ICR1_ICR3__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR1_ICR3__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR1_ICR3__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR1_ICR3__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR1, field ICR4[9:8] (RW)
@@ -463,13 +487,12 @@ typedef union _hw_gpio_icr1
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR1_ICR4      (8)      //!< Bit position for GPIO_ICR1_ICR4.
 #define BM_GPIO_ICR1_ICR4      (0x00000300)  //!< Bit mask for GPIO_ICR1_ICR4.
 
@@ -484,6 +507,13 @@ typedef union _hw_gpio_icr1
 #define BW_GPIO_ICR1_ICR4(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR4) | BF_GPIO_ICR1_ICR4(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR1_ICR4_V(v) BF_GPIO_ICR1_ICR4(BV_GPIO_ICR1_ICR4__##v)
+
+#define BV_GPIO_ICR1_ICR4__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR1_ICR4__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR1_ICR4__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR1_ICR4__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR1, field ICR5[11:10] (RW)
@@ -493,13 +523,12 @@ typedef union _hw_gpio_icr1
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR1_ICR5      (10)      //!< Bit position for GPIO_ICR1_ICR5.
 #define BM_GPIO_ICR1_ICR5      (0x00000c00)  //!< Bit mask for GPIO_ICR1_ICR5.
 
@@ -514,6 +543,13 @@ typedef union _hw_gpio_icr1
 #define BW_GPIO_ICR1_ICR5(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR5) | BF_GPIO_ICR1_ICR5(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR1_ICR5_V(v) BF_GPIO_ICR1_ICR5(BV_GPIO_ICR1_ICR5__##v)
+
+#define BV_GPIO_ICR1_ICR5__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR1_ICR5__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR1_ICR5__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR1_ICR5__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR1, field ICR6[13:12] (RW)
@@ -523,13 +559,12 @@ typedef union _hw_gpio_icr1
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR1_ICR6      (12)      //!< Bit position for GPIO_ICR1_ICR6.
 #define BM_GPIO_ICR1_ICR6      (0x00003000)  //!< Bit mask for GPIO_ICR1_ICR6.
 
@@ -544,6 +579,13 @@ typedef union _hw_gpio_icr1
 #define BW_GPIO_ICR1_ICR6(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR6) | BF_GPIO_ICR1_ICR6(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR1_ICR6_V(v) BF_GPIO_ICR1_ICR6(BV_GPIO_ICR1_ICR6__##v)
+
+#define BV_GPIO_ICR1_ICR6__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR1_ICR6__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR1_ICR6__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR1_ICR6__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR1, field ICR7[15:14] (RW)
@@ -553,13 +595,12 @@ typedef union _hw_gpio_icr1
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR1_ICR7      (14)      //!< Bit position for GPIO_ICR1_ICR7.
 #define BM_GPIO_ICR1_ICR7      (0x0000c000)  //!< Bit mask for GPIO_ICR1_ICR7.
 
@@ -574,6 +615,13 @@ typedef union _hw_gpio_icr1
 #define BW_GPIO_ICR1_ICR7(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR7) | BF_GPIO_ICR1_ICR7(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR1_ICR7_V(v) BF_GPIO_ICR1_ICR7(BV_GPIO_ICR1_ICR7__##v)
+
+#define BV_GPIO_ICR1_ICR7__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR1_ICR7__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR1_ICR7__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR1_ICR7__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR1, field ICR8[17:16] (RW)
@@ -583,13 +631,12 @@ typedef union _hw_gpio_icr1
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR1_ICR8      (16)      //!< Bit position for GPIO_ICR1_ICR8.
 #define BM_GPIO_ICR1_ICR8      (0x00030000)  //!< Bit mask for GPIO_ICR1_ICR8.
 
@@ -604,6 +651,13 @@ typedef union _hw_gpio_icr1
 #define BW_GPIO_ICR1_ICR8(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR8) | BF_GPIO_ICR1_ICR8(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR1_ICR8_V(v) BF_GPIO_ICR1_ICR8(BV_GPIO_ICR1_ICR8__##v)
+
+#define BV_GPIO_ICR1_ICR8__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR1_ICR8__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR1_ICR8__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR1_ICR8__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR1, field ICR9[19:18] (RW)
@@ -613,13 +667,12 @@ typedef union _hw_gpio_icr1
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR1_ICR9      (18)      //!< Bit position for GPIO_ICR1_ICR9.
 #define BM_GPIO_ICR1_ICR9      (0x000c0000)  //!< Bit mask for GPIO_ICR1_ICR9.
 
@@ -634,6 +687,13 @@ typedef union _hw_gpio_icr1
 #define BW_GPIO_ICR1_ICR9(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR9) | BF_GPIO_ICR1_ICR9(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR1_ICR9_V(v) BF_GPIO_ICR1_ICR9(BV_GPIO_ICR1_ICR9__##v)
+
+#define BV_GPIO_ICR1_ICR9__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR1_ICR9__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR1_ICR9__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR1_ICR9__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR1, field ICR10[21:20] (RW)
@@ -643,13 +703,12 @@ typedef union _hw_gpio_icr1
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR1_ICR10      (20)      //!< Bit position for GPIO_ICR1_ICR10.
 #define BM_GPIO_ICR1_ICR10      (0x00300000)  //!< Bit mask for GPIO_ICR1_ICR10.
 
@@ -664,6 +723,13 @@ typedef union _hw_gpio_icr1
 #define BW_GPIO_ICR1_ICR10(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR10) | BF_GPIO_ICR1_ICR10(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR1_ICR10_V(v) BF_GPIO_ICR1_ICR10(BV_GPIO_ICR1_ICR10__##v)
+
+#define BV_GPIO_ICR1_ICR10__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR1_ICR10__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR1_ICR10__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR1_ICR10__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR1, field ICR11[23:22] (RW)
@@ -673,13 +739,12 @@ typedef union _hw_gpio_icr1
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR1_ICR11      (22)      //!< Bit position for GPIO_ICR1_ICR11.
 #define BM_GPIO_ICR1_ICR11      (0x00c00000)  //!< Bit mask for GPIO_ICR1_ICR11.
 
@@ -694,6 +759,13 @@ typedef union _hw_gpio_icr1
 #define BW_GPIO_ICR1_ICR11(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR11) | BF_GPIO_ICR1_ICR11(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR1_ICR11_V(v) BF_GPIO_ICR1_ICR11(BV_GPIO_ICR1_ICR11__##v)
+
+#define BV_GPIO_ICR1_ICR11__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR1_ICR11__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR1_ICR11__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR1_ICR11__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR1, field ICR12[25:24] (RW)
@@ -703,13 +775,12 @@ typedef union _hw_gpio_icr1
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR1_ICR12      (24)      //!< Bit position for GPIO_ICR1_ICR12.
 #define BM_GPIO_ICR1_ICR12      (0x03000000)  //!< Bit mask for GPIO_ICR1_ICR12.
 
@@ -724,6 +795,13 @@ typedef union _hw_gpio_icr1
 #define BW_GPIO_ICR1_ICR12(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR12) | BF_GPIO_ICR1_ICR12(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR1_ICR12_V(v) BF_GPIO_ICR1_ICR12(BV_GPIO_ICR1_ICR12__##v)
+
+#define BV_GPIO_ICR1_ICR12__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR1_ICR12__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR1_ICR12__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR1_ICR12__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR1, field ICR13[27:26] (RW)
@@ -733,13 +811,12 @@ typedef union _hw_gpio_icr1
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR1_ICR13      (26)      //!< Bit position for GPIO_ICR1_ICR13.
 #define BM_GPIO_ICR1_ICR13      (0x0c000000)  //!< Bit mask for GPIO_ICR1_ICR13.
 
@@ -754,6 +831,13 @@ typedef union _hw_gpio_icr1
 #define BW_GPIO_ICR1_ICR13(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR13) | BF_GPIO_ICR1_ICR13(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR1_ICR13_V(v) BF_GPIO_ICR1_ICR13(BV_GPIO_ICR1_ICR13__##v)
+
+#define BV_GPIO_ICR1_ICR13__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR1_ICR13__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR1_ICR13__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR1_ICR13__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR1, field ICR14[29:28] (RW)
@@ -763,13 +847,12 @@ typedef union _hw_gpio_icr1
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR1_ICR14      (28)      //!< Bit position for GPIO_ICR1_ICR14.
 #define BM_GPIO_ICR1_ICR14      (0x30000000)  //!< Bit mask for GPIO_ICR1_ICR14.
 
@@ -784,6 +867,13 @@ typedef union _hw_gpio_icr1
 #define BW_GPIO_ICR1_ICR14(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR14) | BF_GPIO_ICR1_ICR14(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR1_ICR14_V(v) BF_GPIO_ICR1_ICR14(BV_GPIO_ICR1_ICR14__##v)
+
+#define BV_GPIO_ICR1_ICR14__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR1_ICR14__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR1_ICR14__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR1_ICR14__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR1, field ICR15[31:30] (RW)
@@ -793,13 +883,12 @@ typedef union _hw_gpio_icr1
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR1_ICR15      (30)      //!< Bit position for GPIO_ICR1_ICR15.
 #define BM_GPIO_ICR1_ICR15      (0xc0000000)  //!< Bit mask for GPIO_ICR1_ICR15.
 
@@ -814,6 +903,13 @@ typedef union _hw_gpio_icr1
 #define BW_GPIO_ICR1_ICR15(x, v)   (HW_GPIO_ICR1_WR(x, (HW_GPIO_ICR1_RD(x) & ~BM_GPIO_ICR1_ICR15) | BF_GPIO_ICR1_ICR15(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR1_ICR15_V(v) BF_GPIO_ICR1_ICR15(BV_GPIO_ICR1_ICR15__##v)
+
+#define BV_GPIO_ICR1_ICR15__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR1_ICR15__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR1_ICR15__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR1_ICR15__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -881,13 +977,12 @@ typedef union _hw_gpio_icr2
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR2_ICR16      (0)      //!< Bit position for GPIO_ICR2_ICR16.
 #define BM_GPIO_ICR2_ICR16      (0x00000003)  //!< Bit mask for GPIO_ICR2_ICR16.
 
@@ -902,6 +997,13 @@ typedef union _hw_gpio_icr2
 #define BW_GPIO_ICR2_ICR16(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR16) | BF_GPIO_ICR2_ICR16(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR2_ICR16_V(v) BF_GPIO_ICR2_ICR16(BV_GPIO_ICR2_ICR16__##v)
+
+#define BV_GPIO_ICR2_ICR16__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR2_ICR16__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR2_ICR16__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR2_ICR16__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR2, field ICR17[3:2] (RW)
@@ -911,13 +1013,12 @@ typedef union _hw_gpio_icr2
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR2_ICR17      (2)      //!< Bit position for GPIO_ICR2_ICR17.
 #define BM_GPIO_ICR2_ICR17      (0x0000000c)  //!< Bit mask for GPIO_ICR2_ICR17.
 
@@ -932,6 +1033,13 @@ typedef union _hw_gpio_icr2
 #define BW_GPIO_ICR2_ICR17(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR17) | BF_GPIO_ICR2_ICR17(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR2_ICR17_V(v) BF_GPIO_ICR2_ICR17(BV_GPIO_ICR2_ICR17__##v)
+
+#define BV_GPIO_ICR2_ICR17__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR2_ICR17__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR2_ICR17__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR2_ICR17__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR2, field ICR18[5:4] (RW)
@@ -941,13 +1049,12 @@ typedef union _hw_gpio_icr2
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR2_ICR18      (4)      //!< Bit position for GPIO_ICR2_ICR18.
 #define BM_GPIO_ICR2_ICR18      (0x00000030)  //!< Bit mask for GPIO_ICR2_ICR18.
 
@@ -962,6 +1069,13 @@ typedef union _hw_gpio_icr2
 #define BW_GPIO_ICR2_ICR18(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR18) | BF_GPIO_ICR2_ICR18(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR2_ICR18_V(v) BF_GPIO_ICR2_ICR18(BV_GPIO_ICR2_ICR18__##v)
+
+#define BV_GPIO_ICR2_ICR18__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR2_ICR18__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR2_ICR18__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR2_ICR18__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR2, field ICR19[7:6] (RW)
@@ -971,13 +1085,12 @@ typedef union _hw_gpio_icr2
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR2_ICR19      (6)      //!< Bit position for GPIO_ICR2_ICR19.
 #define BM_GPIO_ICR2_ICR19      (0x000000c0)  //!< Bit mask for GPIO_ICR2_ICR19.
 
@@ -992,6 +1105,13 @@ typedef union _hw_gpio_icr2
 #define BW_GPIO_ICR2_ICR19(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR19) | BF_GPIO_ICR2_ICR19(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR2_ICR19_V(v) BF_GPIO_ICR2_ICR19(BV_GPIO_ICR2_ICR19__##v)
+
+#define BV_GPIO_ICR2_ICR19__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR2_ICR19__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR2_ICR19__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR2_ICR19__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR2, field ICR20[9:8] (RW)
@@ -1001,13 +1121,12 @@ typedef union _hw_gpio_icr2
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR2_ICR20      (8)      //!< Bit position for GPIO_ICR2_ICR20.
 #define BM_GPIO_ICR2_ICR20      (0x00000300)  //!< Bit mask for GPIO_ICR2_ICR20.
 
@@ -1022,6 +1141,13 @@ typedef union _hw_gpio_icr2
 #define BW_GPIO_ICR2_ICR20(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR20) | BF_GPIO_ICR2_ICR20(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR2_ICR20_V(v) BF_GPIO_ICR2_ICR20(BV_GPIO_ICR2_ICR20__##v)
+
+#define BV_GPIO_ICR2_ICR20__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR2_ICR20__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR2_ICR20__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR2_ICR20__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR2, field ICR21[11:10] (RW)
@@ -1031,13 +1157,12 @@ typedef union _hw_gpio_icr2
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR2_ICR21      (10)      //!< Bit position for GPIO_ICR2_ICR21.
 #define BM_GPIO_ICR2_ICR21      (0x00000c00)  //!< Bit mask for GPIO_ICR2_ICR21.
 
@@ -1052,6 +1177,13 @@ typedef union _hw_gpio_icr2
 #define BW_GPIO_ICR2_ICR21(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR21) | BF_GPIO_ICR2_ICR21(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR2_ICR21_V(v) BF_GPIO_ICR2_ICR21(BV_GPIO_ICR2_ICR21__##v)
+
+#define BV_GPIO_ICR2_ICR21__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR2_ICR21__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR2_ICR21__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR2_ICR21__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR2, field ICR22[13:12] (RW)
@@ -1061,13 +1193,12 @@ typedef union _hw_gpio_icr2
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR2_ICR22      (12)      //!< Bit position for GPIO_ICR2_ICR22.
 #define BM_GPIO_ICR2_ICR22      (0x00003000)  //!< Bit mask for GPIO_ICR2_ICR22.
 
@@ -1082,6 +1213,13 @@ typedef union _hw_gpio_icr2
 #define BW_GPIO_ICR2_ICR22(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR22) | BF_GPIO_ICR2_ICR22(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR2_ICR22_V(v) BF_GPIO_ICR2_ICR22(BV_GPIO_ICR2_ICR22__##v)
+
+#define BV_GPIO_ICR2_ICR22__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR2_ICR22__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR2_ICR22__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR2_ICR22__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR2, field ICR23[15:14] (RW)
@@ -1091,13 +1229,12 @@ typedef union _hw_gpio_icr2
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR2_ICR23      (14)      //!< Bit position for GPIO_ICR2_ICR23.
 #define BM_GPIO_ICR2_ICR23      (0x0000c000)  //!< Bit mask for GPIO_ICR2_ICR23.
 
@@ -1112,6 +1249,13 @@ typedef union _hw_gpio_icr2
 #define BW_GPIO_ICR2_ICR23(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR23) | BF_GPIO_ICR2_ICR23(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR2_ICR23_V(v) BF_GPIO_ICR2_ICR23(BV_GPIO_ICR2_ICR23__##v)
+
+#define BV_GPIO_ICR2_ICR23__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR2_ICR23__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR2_ICR23__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR2_ICR23__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR2, field ICR24[17:16] (RW)
@@ -1121,13 +1265,12 @@ typedef union _hw_gpio_icr2
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR2_ICR24      (16)      //!< Bit position for GPIO_ICR2_ICR24.
 #define BM_GPIO_ICR2_ICR24      (0x00030000)  //!< Bit mask for GPIO_ICR2_ICR24.
 
@@ -1142,6 +1285,13 @@ typedef union _hw_gpio_icr2
 #define BW_GPIO_ICR2_ICR24(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR24) | BF_GPIO_ICR2_ICR24(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR2_ICR24_V(v) BF_GPIO_ICR2_ICR24(BV_GPIO_ICR2_ICR24__##v)
+
+#define BV_GPIO_ICR2_ICR24__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR2_ICR24__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR2_ICR24__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR2_ICR24__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR2, field ICR25[19:18] (RW)
@@ -1151,13 +1301,12 @@ typedef union _hw_gpio_icr2
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR2_ICR25      (18)      //!< Bit position for GPIO_ICR2_ICR25.
 #define BM_GPIO_ICR2_ICR25      (0x000c0000)  //!< Bit mask for GPIO_ICR2_ICR25.
 
@@ -1172,6 +1321,13 @@ typedef union _hw_gpio_icr2
 #define BW_GPIO_ICR2_ICR25(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR25) | BF_GPIO_ICR2_ICR25(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR2_ICR25_V(v) BF_GPIO_ICR2_ICR25(BV_GPIO_ICR2_ICR25__##v)
+
+#define BV_GPIO_ICR2_ICR25__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR2_ICR25__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR2_ICR25__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR2_ICR25__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR2, field ICR26[21:20] (RW)
@@ -1181,13 +1337,12 @@ typedef union _hw_gpio_icr2
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR2_ICR26      (20)      //!< Bit position for GPIO_ICR2_ICR26.
 #define BM_GPIO_ICR2_ICR26      (0x00300000)  //!< Bit mask for GPIO_ICR2_ICR26.
 
@@ -1202,6 +1357,13 @@ typedef union _hw_gpio_icr2
 #define BW_GPIO_ICR2_ICR26(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR26) | BF_GPIO_ICR2_ICR26(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR2_ICR26_V(v) BF_GPIO_ICR2_ICR26(BV_GPIO_ICR2_ICR26__##v)
+
+#define BV_GPIO_ICR2_ICR26__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR2_ICR26__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR2_ICR26__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR2_ICR26__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR2, field ICR27[23:22] (RW)
@@ -1211,13 +1373,12 @@ typedef union _hw_gpio_icr2
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR2_ICR27      (22)      //!< Bit position for GPIO_ICR2_ICR27.
 #define BM_GPIO_ICR2_ICR27      (0x00c00000)  //!< Bit mask for GPIO_ICR2_ICR27.
 
@@ -1232,6 +1393,13 @@ typedef union _hw_gpio_icr2
 #define BW_GPIO_ICR2_ICR27(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR27) | BF_GPIO_ICR2_ICR27(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR2_ICR27_V(v) BF_GPIO_ICR2_ICR27(BV_GPIO_ICR2_ICR27__##v)
+
+#define BV_GPIO_ICR2_ICR27__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR2_ICR27__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR2_ICR27__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR2_ICR27__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR2, field ICR28[25:24] (RW)
@@ -1241,13 +1409,12 @@ typedef union _hw_gpio_icr2
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR2_ICR28      (24)      //!< Bit position for GPIO_ICR2_ICR28.
 #define BM_GPIO_ICR2_ICR28      (0x03000000)  //!< Bit mask for GPIO_ICR2_ICR28.
 
@@ -1262,6 +1429,13 @@ typedef union _hw_gpio_icr2
 #define BW_GPIO_ICR2_ICR28(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR28) | BF_GPIO_ICR2_ICR28(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR2_ICR28_V(v) BF_GPIO_ICR2_ICR28(BV_GPIO_ICR2_ICR28__##v)
+
+#define BV_GPIO_ICR2_ICR28__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR2_ICR28__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR2_ICR28__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR2_ICR28__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR2, field ICR29[27:26] (RW)
@@ -1271,13 +1445,12 @@ typedef union _hw_gpio_icr2
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR2_ICR29      (26)      //!< Bit position for GPIO_ICR2_ICR29.
 #define BM_GPIO_ICR2_ICR29      (0x0c000000)  //!< Bit mask for GPIO_ICR2_ICR29.
 
@@ -1292,6 +1465,13 @@ typedef union _hw_gpio_icr2
 #define BW_GPIO_ICR2_ICR29(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR29) | BF_GPIO_ICR2_ICR29(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR2_ICR29_V(v) BF_GPIO_ICR2_ICR29(BV_GPIO_ICR2_ICR29__##v)
+
+#define BV_GPIO_ICR2_ICR29__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR2_ICR29__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR2_ICR29__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR2_ICR29__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR2, field ICR30[29:28] (RW)
@@ -1301,13 +1481,12 @@ typedef union _hw_gpio_icr2
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR2_ICR30      (28)      //!< Bit position for GPIO_ICR2_ICR30.
 #define BM_GPIO_ICR2_ICR30      (0x30000000)  //!< Bit mask for GPIO_ICR2_ICR30.
 
@@ -1322,6 +1501,13 @@ typedef union _hw_gpio_icr2
 #define BW_GPIO_ICR2_ICR30(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR30) | BF_GPIO_ICR2_ICR30(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR2_ICR30_V(v) BF_GPIO_ICR2_ICR30(BV_GPIO_ICR2_ICR30__##v)
+
+#define BV_GPIO_ICR2_ICR30__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR2_ICR30__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR2_ICR30__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR2_ICR30__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 /*! @name Register GPIO_ICR2, field ICR31[31:30] (RW)
@@ -1331,13 +1517,12 @@ typedef union _hw_gpio_icr2
  * signal n as follows:
  *
  * Values:
- * - 00 - Interrupt n is low-level sensitive.
- * - 01 - Interrupt n is high-level sensitive.
- * - 10 - Interrupt n is rising-edge sensitive.
- * - 11 - Interrupt n is falling-edge sensitive.
+ * - LOW_LEVEL = 00 - Interrupt n is low-level sensitive.
+ * - HIGH_LEVEL = 01 - Interrupt n is high-level sensitive.
+ * - RISING_EDGE = 10 - Interrupt n is rising-edge sensitive.
+ * - FALLING_EDGE = 11 - Interrupt n is falling-edge sensitive.
  */
 //@{
-
 #define BP_GPIO_ICR2_ICR31      (30)      //!< Bit position for GPIO_ICR2_ICR31.
 #define BM_GPIO_ICR2_ICR31      (0xc0000000)  //!< Bit mask for GPIO_ICR2_ICR31.
 
@@ -1352,6 +1537,13 @@ typedef union _hw_gpio_icr2
 #define BW_GPIO_ICR2_ICR31(x, v)   (HW_GPIO_ICR2_WR(x, (HW_GPIO_ICR2_RD(x) & ~BM_GPIO_ICR2_ICR31) | BF_GPIO_ICR2_ICR31(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_ICR2_ICR31_V(v) BF_GPIO_ICR2_ICR31(BV_GPIO_ICR2_ICR31__##v)
+
+#define BV_GPIO_ICR2_ICR31__LOW_LEVEL (0x0) //!< Interrupt n is low-level sensitive.
+#define BV_GPIO_ICR2_ICR31__HIGH_LEVEL (0x1) //!< Interrupt n is high-level sensitive.
+#define BV_GPIO_ICR2_ICR31__RISING_EDGE (0x2) //!< Interrupt n is rising-edge sensitive.
+#define BV_GPIO_ICR2_ICR31__FALLING_EDGE (0x3) //!< Interrupt n is falling-edge sensitive.
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1402,11 +1594,10 @@ typedef union _hw_gpio_imr
  * the 32 GPIO signals. Settings: Bit IMR[n] (n=0...31) controls interrupt n as follows:
  *
  * Values:
- * - 0 - Interrupt n is disabled.
- * - 1 - Interrupt n is enabled.
+ * - UNMASKED = 0 - Interrupt n is disabled.
+ * - MASKED = 1 - Interrupt n is enabled.
  */
 //@{
-
 #define BP_GPIO_IMR_IMR      (0)      //!< Bit position for GPIO_IMR_IMR.
 #define BM_GPIO_IMR_IMR      (0xffffffff)  //!< Bit mask for GPIO_IMR_IMR.
 
@@ -1421,6 +1612,11 @@ typedef union _hw_gpio_imr
 #define BW_GPIO_IMR_IMR(x, v)   (HW_GPIO_IMR_WR(x, (HW_GPIO_IMR_RD(x) & ~BM_GPIO_IMR_IMR) | BF_GPIO_IMR_IMR(v)))
 #endif
 
+//! @brief Macro to simplify usage of value macros.
+#define BF_GPIO_IMR_IMR_V(v) BF_GPIO_IMR_IMR(BV_GPIO_IMR_IMR__##v)
+
+#define BV_GPIO_IMR_IMR__UNMASKED (0x0) //!< Interrupt n is disabled.
+#define BV_GPIO_IMR_IMR__MASKED (0x1) //!< Interrupt n is enabled.
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1478,7 +1674,6 @@ typedef union _hw_gpio_isr
  * Status flags are cleared by writing a 1 to the corresponding bit position.
  */
 //@{
-
 #define BP_GPIO_ISR_ISR      (0)      //!< Bit position for GPIO_ISR_ISR.
 #define BM_GPIO_ISR_ISR      (0xffffffff)  //!< Bit mask for GPIO_ISR_ISR.
 
@@ -1492,7 +1687,6 @@ typedef union _hw_gpio_isr
 //! @brief Set the ISR field to a new value.
 #define BW_GPIO_ISR_ISR(x, v)   (HW_GPIO_ISR_WR(x, (HW_GPIO_ISR_RD(x) & ~BM_GPIO_ISR_ISR) | BF_GPIO_ISR_ISR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1546,7 +1740,6 @@ typedef union _hw_gpio_edge_sel
  * detects any edge on the corresponding input signal.
  */
 //@{
-
 #define BP_GPIO_EDGE_SEL_GPIO_EDGE_SEL      (0)      //!< Bit position for GPIO_EDGE_SEL_GPIO_EDGE_SEL.
 #define BM_GPIO_EDGE_SEL_GPIO_EDGE_SEL      (0xffffffff)  //!< Bit mask for GPIO_EDGE_SEL_GPIO_EDGE_SEL.
 
@@ -1560,7 +1753,6 @@ typedef union _hw_gpio_edge_sel
 //! @brief Set the GPIO_EDGE_SEL field to a new value.
 #define BW_GPIO_EDGE_SEL_GPIO_EDGE_SEL(x, v)   (HW_GPIO_EDGE_SEL_WR(x, (HW_GPIO_EDGE_SEL_RD(x) & ~BM_GPIO_EDGE_SEL_GPIO_EDGE_SEL) | BF_GPIO_EDGE_SEL_GPIO_EDGE_SEL(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1592,3 +1784,5 @@ typedef struct _hw_gpio
 #endif
 
 #endif // __HW_GPIO_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

@@ -134,7 +134,6 @@ typedef union _hw_aipstz_mpr
  * - MBW1 = 1xxx - Write accesses from this master are allowed to be buffered
  */
 //@{
-
 #define BP_AIPSTZ_MPR_MPROT3      (16)      //!< Bit position for AIPSTZ_MPR_MPROT3.
 #define BM_AIPSTZ_MPR_MPROT3      (0x000f0000)  //!< Bit mask for AIPSTZ_MPR_MPROT3.
 
@@ -160,7 +159,6 @@ typedef union _hw_aipstz_mpr
 #define BV_AIPSTZ_MPR_MPROT3__MTW1 (0x2) //!< This master is trusted for write accesses.
 #define BV_AIPSTZ_MPR_MPROT3__MTR1 (0x4) //!< This master is trusted for read accesses.
 #define BV_AIPSTZ_MPR_MPROT3__MBW1 (0x8) //!< Write accesses from this master are allowed to be buffered
-
 //@}
 
 /*! @name Register AIPSTZ_MPR, field MPROT1[27:24] (RW)
@@ -180,7 +178,6 @@ typedef union _hw_aipstz_mpr
  * - MBW1 = 1xxx - Write accesses from this master are allowed to be buffered
  */
 //@{
-
 #define BP_AIPSTZ_MPR_MPROT1      (24)      //!< Bit position for AIPSTZ_MPR_MPROT1.
 #define BM_AIPSTZ_MPR_MPROT1      (0x0f000000)  //!< Bit mask for AIPSTZ_MPR_MPROT1.
 
@@ -206,7 +203,6 @@ typedef union _hw_aipstz_mpr
 #define BV_AIPSTZ_MPR_MPROT1__MTW1 (0x2) //!< This master is trusted for write accesses.
 #define BV_AIPSTZ_MPR_MPROT1__MTR1 (0x4) //!< This master is trusted for read accesses.
 #define BV_AIPSTZ_MPR_MPROT1__MBW1 (0x8) //!< Write accesses from this master are allowed to be buffered
-
 //@}
 
 /*! @name Register AIPSTZ_MPR, field MPROT0[31:28] (RW)
@@ -226,7 +222,6 @@ typedef union _hw_aipstz_mpr
  * - MBW1 = 1xxx - Write accesses from this master are allowed to be buffered
  */
 //@{
-
 #define BP_AIPSTZ_MPR_MPROT0      (28)      //!< Bit position for AIPSTZ_MPR_MPROT0.
 #define BM_AIPSTZ_MPR_MPROT0      (0xf0000000)  //!< Bit mask for AIPSTZ_MPR_MPROT0.
 
@@ -252,7 +247,6 @@ typedef union _hw_aipstz_mpr
 #define BV_AIPSTZ_MPR_MPROT0__MTW1 (0x2) //!< This master is trusted for write accesses.
 #define BV_AIPSTZ_MPR_MPROT0__MTR1 (0x4) //!< This master is trusted for read accesses.
 #define BV_AIPSTZ_MPR_MPROT0__MBW1 (0x8) //!< Write accesses from this master are allowed to be buffered
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -332,7 +326,6 @@ typedef union _hw_aipstz_opacr
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR_OPAC7      (0)      //!< Bit position for AIPSTZ_OPACR_OPAC7.
 #define BM_AIPSTZ_OPACR_OPAC7      (0x0000000f)  //!< Bit mask for AIPSTZ_OPACR_OPAC7.
 
@@ -358,7 +351,6 @@ typedef union _hw_aipstz_opacr
 #define BV_AIPSTZ_OPACR_OPAC7__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR_OPAC7__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR_OPAC7__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR, field OPAC6[7:4] (RW)
@@ -382,7 +374,6 @@ typedef union _hw_aipstz_opacr
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR_OPAC6      (4)      //!< Bit position for AIPSTZ_OPACR_OPAC6.
 #define BM_AIPSTZ_OPACR_OPAC6      (0x000000f0)  //!< Bit mask for AIPSTZ_OPACR_OPAC6.
 
@@ -408,7 +399,6 @@ typedef union _hw_aipstz_opacr
 #define BV_AIPSTZ_OPACR_OPAC6__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR_OPAC6__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR_OPAC6__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR, field OPAC5[11:8] (RW)
@@ -432,7 +422,6 @@ typedef union _hw_aipstz_opacr
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR_OPAC5      (8)      //!< Bit position for AIPSTZ_OPACR_OPAC5.
 #define BM_AIPSTZ_OPACR_OPAC5      (0x00000f00)  //!< Bit mask for AIPSTZ_OPACR_OPAC5.
 
@@ -458,7 +447,6 @@ typedef union _hw_aipstz_opacr
 #define BV_AIPSTZ_OPACR_OPAC5__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR_OPAC5__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR_OPAC5__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR, field OPAC4[15:12] (RW)
@@ -482,7 +470,6 @@ typedef union _hw_aipstz_opacr
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR_OPAC4      (12)      //!< Bit position for AIPSTZ_OPACR_OPAC4.
 #define BM_AIPSTZ_OPACR_OPAC4      (0x0000f000)  //!< Bit mask for AIPSTZ_OPACR_OPAC4.
 
@@ -508,7 +495,6 @@ typedef union _hw_aipstz_opacr
 #define BV_AIPSTZ_OPACR_OPAC4__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR_OPAC4__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR_OPAC4__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR, field OPAC3[19:16] (RW)
@@ -532,7 +518,6 @@ typedef union _hw_aipstz_opacr
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR_OPAC3      (16)      //!< Bit position for AIPSTZ_OPACR_OPAC3.
 #define BM_AIPSTZ_OPACR_OPAC3      (0x000f0000)  //!< Bit mask for AIPSTZ_OPACR_OPAC3.
 
@@ -558,7 +543,6 @@ typedef union _hw_aipstz_opacr
 #define BV_AIPSTZ_OPACR_OPAC3__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR_OPAC3__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR_OPAC3__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR, field OPAC2[23:20] (RW)
@@ -582,7 +566,6 @@ typedef union _hw_aipstz_opacr
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR_OPAC2      (20)      //!< Bit position for AIPSTZ_OPACR_OPAC2.
 #define BM_AIPSTZ_OPACR_OPAC2      (0x00f00000)  //!< Bit mask for AIPSTZ_OPACR_OPAC2.
 
@@ -608,7 +591,6 @@ typedef union _hw_aipstz_opacr
 #define BV_AIPSTZ_OPACR_OPAC2__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR_OPAC2__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR_OPAC2__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR, field OPAC1[27:24] (RW)
@@ -632,7 +614,6 @@ typedef union _hw_aipstz_opacr
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR_OPAC1      (24)      //!< Bit position for AIPSTZ_OPACR_OPAC1.
 #define BM_AIPSTZ_OPACR_OPAC1      (0x0f000000)  //!< Bit mask for AIPSTZ_OPACR_OPAC1.
 
@@ -658,7 +639,6 @@ typedef union _hw_aipstz_opacr
 #define BV_AIPSTZ_OPACR_OPAC1__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR_OPAC1__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR_OPAC1__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR, field OPAC0[31:28] (RW)
@@ -682,7 +662,6 @@ typedef union _hw_aipstz_opacr
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR_OPAC0      (28)      //!< Bit position for AIPSTZ_OPACR_OPAC0.
 #define BM_AIPSTZ_OPACR_OPAC0      (0xf0000000)  //!< Bit mask for AIPSTZ_OPACR_OPAC0.
 
@@ -708,7 +687,6 @@ typedef union _hw_aipstz_opacr
 #define BV_AIPSTZ_OPACR_OPAC0__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR_OPAC0__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR_OPAC0__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -783,7 +761,6 @@ typedef union _hw_aipstz_opacr1
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR1_OPAC15      (0)      //!< Bit position for AIPSTZ_OPACR1_OPAC15.
 #define BM_AIPSTZ_OPACR1_OPAC15      (0x0000000f)  //!< Bit mask for AIPSTZ_OPACR1_OPAC15.
 
@@ -809,7 +786,6 @@ typedef union _hw_aipstz_opacr1
 #define BV_AIPSTZ_OPACR1_OPAC15__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR1_OPAC15__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR1_OPAC15__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR1, field OPAC14[7:4] (RW)
@@ -833,7 +809,6 @@ typedef union _hw_aipstz_opacr1
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR1_OPAC14      (4)      //!< Bit position for AIPSTZ_OPACR1_OPAC14.
 #define BM_AIPSTZ_OPACR1_OPAC14      (0x000000f0)  //!< Bit mask for AIPSTZ_OPACR1_OPAC14.
 
@@ -859,7 +834,6 @@ typedef union _hw_aipstz_opacr1
 #define BV_AIPSTZ_OPACR1_OPAC14__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR1_OPAC14__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR1_OPAC14__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR1, field OPAC13[11:8] (RW)
@@ -883,7 +857,6 @@ typedef union _hw_aipstz_opacr1
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR1_OPAC13      (8)      //!< Bit position for AIPSTZ_OPACR1_OPAC13.
 #define BM_AIPSTZ_OPACR1_OPAC13      (0x00000f00)  //!< Bit mask for AIPSTZ_OPACR1_OPAC13.
 
@@ -909,7 +882,6 @@ typedef union _hw_aipstz_opacr1
 #define BV_AIPSTZ_OPACR1_OPAC13__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR1_OPAC13__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR1_OPAC13__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR1, field OPAC12[15:12] (RW)
@@ -933,7 +905,6 @@ typedef union _hw_aipstz_opacr1
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR1_OPAC12      (12)      //!< Bit position for AIPSTZ_OPACR1_OPAC12.
 #define BM_AIPSTZ_OPACR1_OPAC12      (0x0000f000)  //!< Bit mask for AIPSTZ_OPACR1_OPAC12.
 
@@ -959,7 +930,6 @@ typedef union _hw_aipstz_opacr1
 #define BV_AIPSTZ_OPACR1_OPAC12__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR1_OPAC12__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR1_OPAC12__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR1, field OPAC11[19:16] (RW)
@@ -983,7 +953,6 @@ typedef union _hw_aipstz_opacr1
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR1_OPAC11      (16)      //!< Bit position for AIPSTZ_OPACR1_OPAC11.
 #define BM_AIPSTZ_OPACR1_OPAC11      (0x000f0000)  //!< Bit mask for AIPSTZ_OPACR1_OPAC11.
 
@@ -1009,7 +978,6 @@ typedef union _hw_aipstz_opacr1
 #define BV_AIPSTZ_OPACR1_OPAC11__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR1_OPAC11__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR1_OPAC11__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR1, field OPAC10[23:20] (RW)
@@ -1033,7 +1001,6 @@ typedef union _hw_aipstz_opacr1
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR1_OPAC10      (20)      //!< Bit position for AIPSTZ_OPACR1_OPAC10.
 #define BM_AIPSTZ_OPACR1_OPAC10      (0x00f00000)  //!< Bit mask for AIPSTZ_OPACR1_OPAC10.
 
@@ -1059,7 +1026,6 @@ typedef union _hw_aipstz_opacr1
 #define BV_AIPSTZ_OPACR1_OPAC10__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR1_OPAC10__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR1_OPAC10__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR1, field OPAC9[27:24] (RW)
@@ -1083,7 +1049,6 @@ typedef union _hw_aipstz_opacr1
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR1_OPAC9      (24)      //!< Bit position for AIPSTZ_OPACR1_OPAC9.
 #define BM_AIPSTZ_OPACR1_OPAC9      (0x0f000000)  //!< Bit mask for AIPSTZ_OPACR1_OPAC9.
 
@@ -1109,7 +1074,6 @@ typedef union _hw_aipstz_opacr1
 #define BV_AIPSTZ_OPACR1_OPAC9__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR1_OPAC9__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR1_OPAC9__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR1, field OPAC8[31:28] (RW)
@@ -1133,7 +1097,6 @@ typedef union _hw_aipstz_opacr1
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR1_OPAC8      (28)      //!< Bit position for AIPSTZ_OPACR1_OPAC8.
 #define BM_AIPSTZ_OPACR1_OPAC8      (0xf0000000)  //!< Bit mask for AIPSTZ_OPACR1_OPAC8.
 
@@ -1159,7 +1122,6 @@ typedef union _hw_aipstz_opacr1
 #define BV_AIPSTZ_OPACR1_OPAC8__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR1_OPAC8__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR1_OPAC8__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1234,7 +1196,6 @@ typedef union _hw_aipstz_opacr2
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR2_OPAC23      (0)      //!< Bit position for AIPSTZ_OPACR2_OPAC23.
 #define BM_AIPSTZ_OPACR2_OPAC23      (0x0000000f)  //!< Bit mask for AIPSTZ_OPACR2_OPAC23.
 
@@ -1260,7 +1221,6 @@ typedef union _hw_aipstz_opacr2
 #define BV_AIPSTZ_OPACR2_OPAC23__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR2_OPAC23__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR2_OPAC23__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR2, field OPAC22[7:4] (RW)
@@ -1284,7 +1244,6 @@ typedef union _hw_aipstz_opacr2
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR2_OPAC22      (4)      //!< Bit position for AIPSTZ_OPACR2_OPAC22.
 #define BM_AIPSTZ_OPACR2_OPAC22      (0x000000f0)  //!< Bit mask for AIPSTZ_OPACR2_OPAC22.
 
@@ -1310,7 +1269,6 @@ typedef union _hw_aipstz_opacr2
 #define BV_AIPSTZ_OPACR2_OPAC22__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR2_OPAC22__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR2_OPAC22__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR2, field OPAC21[11:8] (RW)
@@ -1334,7 +1292,6 @@ typedef union _hw_aipstz_opacr2
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR2_OPAC21      (8)      //!< Bit position for AIPSTZ_OPACR2_OPAC21.
 #define BM_AIPSTZ_OPACR2_OPAC21      (0x00000f00)  //!< Bit mask for AIPSTZ_OPACR2_OPAC21.
 
@@ -1360,7 +1317,6 @@ typedef union _hw_aipstz_opacr2
 #define BV_AIPSTZ_OPACR2_OPAC21__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR2_OPAC21__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR2_OPAC21__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR2, field OPAC20[15:12] (RW)
@@ -1384,7 +1340,6 @@ typedef union _hw_aipstz_opacr2
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR2_OPAC20      (12)      //!< Bit position for AIPSTZ_OPACR2_OPAC20.
 #define BM_AIPSTZ_OPACR2_OPAC20      (0x0000f000)  //!< Bit mask for AIPSTZ_OPACR2_OPAC20.
 
@@ -1410,7 +1365,6 @@ typedef union _hw_aipstz_opacr2
 #define BV_AIPSTZ_OPACR2_OPAC20__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR2_OPAC20__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR2_OPAC20__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR2, field OPAC19[19:16] (RW)
@@ -1434,7 +1388,6 @@ typedef union _hw_aipstz_opacr2
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR2_OPAC19      (16)      //!< Bit position for AIPSTZ_OPACR2_OPAC19.
 #define BM_AIPSTZ_OPACR2_OPAC19      (0x000f0000)  //!< Bit mask for AIPSTZ_OPACR2_OPAC19.
 
@@ -1460,7 +1413,6 @@ typedef union _hw_aipstz_opacr2
 #define BV_AIPSTZ_OPACR2_OPAC19__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR2_OPAC19__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR2_OPAC19__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR2, field OPAC18[23:20] (RW)
@@ -1484,7 +1436,6 @@ typedef union _hw_aipstz_opacr2
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR2_OPAC18      (20)      //!< Bit position for AIPSTZ_OPACR2_OPAC18.
 #define BM_AIPSTZ_OPACR2_OPAC18      (0x00f00000)  //!< Bit mask for AIPSTZ_OPACR2_OPAC18.
 
@@ -1510,7 +1461,6 @@ typedef union _hw_aipstz_opacr2
 #define BV_AIPSTZ_OPACR2_OPAC18__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR2_OPAC18__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR2_OPAC18__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR2, field OPAC17[27:24] (RW)
@@ -1534,7 +1484,6 @@ typedef union _hw_aipstz_opacr2
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR2_OPAC17      (24)      //!< Bit position for AIPSTZ_OPACR2_OPAC17.
 #define BM_AIPSTZ_OPACR2_OPAC17      (0x0f000000)  //!< Bit mask for AIPSTZ_OPACR2_OPAC17.
 
@@ -1560,7 +1509,6 @@ typedef union _hw_aipstz_opacr2
 #define BV_AIPSTZ_OPACR2_OPAC17__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR2_OPAC17__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR2_OPAC17__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR2, field OPAC16[31:28] (RW)
@@ -1584,7 +1532,6 @@ typedef union _hw_aipstz_opacr2
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR2_OPAC16      (28)      //!< Bit position for AIPSTZ_OPACR2_OPAC16.
 #define BM_AIPSTZ_OPACR2_OPAC16      (0xf0000000)  //!< Bit mask for AIPSTZ_OPACR2_OPAC16.
 
@@ -1610,7 +1557,6 @@ typedef union _hw_aipstz_opacr2
 #define BV_AIPSTZ_OPACR2_OPAC16__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR2_OPAC16__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR2_OPAC16__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1685,7 +1631,6 @@ typedef union _hw_aipstz_opacr3
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR3_OPAC31      (0)      //!< Bit position for AIPSTZ_OPACR3_OPAC31.
 #define BM_AIPSTZ_OPACR3_OPAC31      (0x0000000f)  //!< Bit mask for AIPSTZ_OPACR3_OPAC31.
 
@@ -1711,7 +1656,6 @@ typedef union _hw_aipstz_opacr3
 #define BV_AIPSTZ_OPACR3_OPAC31__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR3_OPAC31__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR3_OPAC31__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR3, field OPAC30[7:4] (RW)
@@ -1735,7 +1679,6 @@ typedef union _hw_aipstz_opacr3
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR3_OPAC30      (4)      //!< Bit position for AIPSTZ_OPACR3_OPAC30.
 #define BM_AIPSTZ_OPACR3_OPAC30      (0x000000f0)  //!< Bit mask for AIPSTZ_OPACR3_OPAC30.
 
@@ -1761,7 +1704,6 @@ typedef union _hw_aipstz_opacr3
 #define BV_AIPSTZ_OPACR3_OPAC30__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR3_OPAC30__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR3_OPAC30__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR3, field OPAC29[11:8] (RW)
@@ -1785,7 +1727,6 @@ typedef union _hw_aipstz_opacr3
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR3_OPAC29      (8)      //!< Bit position for AIPSTZ_OPACR3_OPAC29.
 #define BM_AIPSTZ_OPACR3_OPAC29      (0x00000f00)  //!< Bit mask for AIPSTZ_OPACR3_OPAC29.
 
@@ -1811,7 +1752,6 @@ typedef union _hw_aipstz_opacr3
 #define BV_AIPSTZ_OPACR3_OPAC29__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR3_OPAC29__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR3_OPAC29__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR3, field OPAC28[15:12] (RW)
@@ -1835,7 +1775,6 @@ typedef union _hw_aipstz_opacr3
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR3_OPAC28      (12)      //!< Bit position for AIPSTZ_OPACR3_OPAC28.
 #define BM_AIPSTZ_OPACR3_OPAC28      (0x0000f000)  //!< Bit mask for AIPSTZ_OPACR3_OPAC28.
 
@@ -1861,7 +1800,6 @@ typedef union _hw_aipstz_opacr3
 #define BV_AIPSTZ_OPACR3_OPAC28__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR3_OPAC28__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR3_OPAC28__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR3, field OPAC27[19:16] (RW)
@@ -1885,7 +1823,6 @@ typedef union _hw_aipstz_opacr3
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR3_OPAC27      (16)      //!< Bit position for AIPSTZ_OPACR3_OPAC27.
 #define BM_AIPSTZ_OPACR3_OPAC27      (0x000f0000)  //!< Bit mask for AIPSTZ_OPACR3_OPAC27.
 
@@ -1911,7 +1848,6 @@ typedef union _hw_aipstz_opacr3
 #define BV_AIPSTZ_OPACR3_OPAC27__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR3_OPAC27__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR3_OPAC27__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR3, field OPAC26[23:20] (RW)
@@ -1935,7 +1871,6 @@ typedef union _hw_aipstz_opacr3
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR3_OPAC26      (20)      //!< Bit position for AIPSTZ_OPACR3_OPAC26.
 #define BM_AIPSTZ_OPACR3_OPAC26      (0x00f00000)  //!< Bit mask for AIPSTZ_OPACR3_OPAC26.
 
@@ -1961,7 +1896,6 @@ typedef union _hw_aipstz_opacr3
 #define BV_AIPSTZ_OPACR3_OPAC26__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR3_OPAC26__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR3_OPAC26__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR3, field OPAC25[27:24] (RW)
@@ -1985,7 +1919,6 @@ typedef union _hw_aipstz_opacr3
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR3_OPAC25      (24)      //!< Bit position for AIPSTZ_OPACR3_OPAC25.
 #define BM_AIPSTZ_OPACR3_OPAC25      (0x0f000000)  //!< Bit mask for AIPSTZ_OPACR3_OPAC25.
 
@@ -2011,7 +1944,6 @@ typedef union _hw_aipstz_opacr3
 #define BV_AIPSTZ_OPACR3_OPAC25__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR3_OPAC25__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR3_OPAC25__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR3, field OPAC24[31:28] (RW)
@@ -2035,7 +1967,6 @@ typedef union _hw_aipstz_opacr3
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR3_OPAC24      (28)      //!< Bit position for AIPSTZ_OPACR3_OPAC24.
 #define BM_AIPSTZ_OPACR3_OPAC24      (0xf0000000)  //!< Bit mask for AIPSTZ_OPACR3_OPAC24.
 
@@ -2061,7 +1992,6 @@ typedef union _hw_aipstz_opacr3
 #define BV_AIPSTZ_OPACR3_OPAC24__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR3_OPAC24__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR3_OPAC24__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2131,7 +2061,6 @@ typedef union _hw_aipstz_opacr4
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR4_OPAC33      (24)      //!< Bit position for AIPSTZ_OPACR4_OPAC33.
 #define BM_AIPSTZ_OPACR4_OPAC33      (0x0f000000)  //!< Bit mask for AIPSTZ_OPACR4_OPAC33.
 
@@ -2157,7 +2086,6 @@ typedef union _hw_aipstz_opacr4
 #define BV_AIPSTZ_OPACR4_OPAC33__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR4_OPAC33__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR4_OPAC33__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 /*! @name Register AIPSTZ_OPACR4, field OPAC32[31:28] (RW)
@@ -2181,7 +2109,6 @@ typedef union _hw_aipstz_opacr4
  * - BW1 = 1xxx - Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
  */
 //@{
-
 #define BP_AIPSTZ_OPACR4_OPAC32      (28)      //!< Bit position for AIPSTZ_OPACR4_OPAC32.
 #define BM_AIPSTZ_OPACR4_OPAC32      (0xf0000000)  //!< Bit mask for AIPSTZ_OPACR4_OPAC32.
 
@@ -2207,7 +2134,6 @@ typedef union _hw_aipstz_opacr4
 #define BV_AIPSTZ_OPACR4_OPAC32__WP1 (0x2) //!< This peripheral is write protected. If a write access is attempted, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR4_OPAC32__SP1 (0x4) //!< This peripheral requires supervisor privilege level for accesses. The master privilege level must indicate supervisor via the hprot[1] access attribute, and the MPROTx[MPL] control bit for the master must be set. If not, the access is terminated with an error response and no peripheral access is initiated on the IPS bus.
 #define BV_AIPSTZ_OPACR4_OPAC32__BW1 (0x8) //!< Write accesses to this peripheral are allowed to be buffered by the AIPSTZ.
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2238,3 +2164,5 @@ typedef struct _hw_aipstz
 #endif
 
 #endif // __HW_AIPSTZ_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

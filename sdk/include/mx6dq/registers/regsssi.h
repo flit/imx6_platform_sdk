@@ -131,7 +131,6 @@ typedef union _hw_ssi_ssi_stx0
  * Data1, Data2 to STX0, then Data2 will not over-write Data1 and will be discarded.
  */
 //@{
-
 #define BP_SSI_SSI_STX0_STXN      (0)      //!< Bit position for SSI_SSI_STX0_STXN.
 #define BM_SSI_SSI_STX0_STXN      (0xffffffff)  //!< Bit mask for SSI_SSI_STX0_STXN.
 
@@ -145,7 +144,6 @@ typedef union _hw_ssi_ssi_stx0
 //! @brief Set the STXN field to a new value.
 #define BW_SSI_SSI_STX0_STXN(x, v)   (HW_SSI_SSI_STX0_WR(x, (HW_SSI_SSI_STX0_RD(x) & ~BM_SSI_SSI_STX0_STXN) | BF_SSI_SSI_STX0_STXN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -204,7 +202,6 @@ typedef union _hw_ssi_ssi_stx1
  * Data1, Data2 to STX0, then Data2 will not over-write Data1 and will be discarded.
  */
 //@{
-
 #define BP_SSI_SSI_STX1_STXN      (0)      //!< Bit position for SSI_SSI_STX1_STXN.
 #define BM_SSI_SSI_STX1_STXN      (0xffffffff)  //!< Bit mask for SSI_SSI_STX1_STXN.
 
@@ -218,7 +215,6 @@ typedef union _hw_ssi_ssi_stx1
 //! @brief Set the STXN field to a new value.
 #define BW_SSI_SSI_STX1_STXN(x, v)   (HW_SSI_SSI_STX1_WR(x, (HW_SSI_SSI_STX1_RD(x) & ~BM_SSI_SSI_STX1_STXN) | BF_SSI_SSI_STX1_STXN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -267,13 +263,11 @@ typedef union _hw_ssi_ssi_srx0
  * SRX1 can only be used in Two-Channel mode of operation.
  */
 //@{
-
 #define BP_SSI_SSI_SRX0_SRXN      (0)      //!< Bit position for SSI_SSI_SRX0_SRXN.
 #define BM_SSI_SSI_SRX0_SRXN      (0xffffffff)  //!< Bit mask for SSI_SSI_SRX0_SRXN.
 
 //! @brief Get value of SSI_SSI_SRX0_SRXN from a register value.
 #define BG_SSI_SSI_SRX0_SRXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SSI_SSI_SRX0_SRXN) >> BP_SSI_SSI_SRX0_SRXN)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -322,13 +316,11 @@ typedef union _hw_ssi_ssi_srx1
  * SRX1 can only be used in Two-Channel mode of operation.
  */
 //@{
-
 #define BP_SSI_SSI_SRX1_SRXN      (0)      //!< Bit position for SSI_SSI_SRX1_SRXN.
 #define BM_SSI_SSI_SRX1_SRXN      (0xffffffff)  //!< Bit mask for SSI_SSI_SRX1_SRXN.
 
 //! @brief Get value of SSI_SSI_SRX1_SRXN from a register value.
 #define BG_SSI_SSI_SRX1_SRXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SSI_SSI_SRX1_SRXN) >> BP_SSI_SSI_SRX1_SRXN)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -399,7 +391,6 @@ typedef union _hw_ssi_ssi_scr
  * - 1 - SSI is enabled.
  */
 //@{
-
 #define BP_SSI_SSI_SCR_SSIEN      (0)      //!< Bit position for SSI_SSI_SCR_SSIEN.
 #define BM_SSI_SSI_SCR_SSIEN      (0x00000001)  //!< Bit mask for SSI_SSI_SCR_SSIEN.
 
@@ -413,7 +404,6 @@ typedef union _hw_ssi_ssi_scr
 //! @brief Set the SSIEN field to a new value.
 #define BW_SSI_SSI_SCR_SSIEN(x, v)   (HW_SSI_SSI_SCR_WR(x, (HW_SSI_SSI_SCR_RD(x) & ~BM_SSI_SSI_SCR_SSIEN) | BF_SSI_SSI_SCR_SSIEN(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SCR, field TE[1] (RW)
@@ -440,7 +430,6 @@ typedef union _hw_ssi_ssi_scr
  * - 1 - Transmit section enabled.
  */
 //@{
-
 #define BP_SSI_SSI_SCR_TE      (1)      //!< Bit position for SSI_SSI_SCR_TE.
 #define BM_SSI_SSI_SCR_TE      (0x00000002)  //!< Bit mask for SSI_SSI_SCR_TE.
 
@@ -454,7 +443,6 @@ typedef union _hw_ssi_ssi_scr
 //! @brief Set the TE field to a new value.
 #define BW_SSI_SSI_SCR_TE(x, v)   (HW_SSI_SSI_SCR_WR(x, (HW_SSI_SSI_SCR_RD(x) & ~BM_SSI_SSI_SCR_TE) | BF_SSI_SSI_SCR_TE(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SCR, field RE[2] (RW)
@@ -471,7 +459,6 @@ typedef union _hw_ssi_ssi_scr
  * - 1 - Receive section enabled.
  */
 //@{
-
 #define BP_SSI_SSI_SCR_RE      (2)      //!< Bit position for SSI_SSI_SCR_RE.
 #define BM_SSI_SSI_SCR_RE      (0x00000004)  //!< Bit mask for SSI_SSI_SCR_RE.
 
@@ -485,7 +472,6 @@ typedef union _hw_ssi_ssi_scr
 //! @brief Set the RE field to a new value.
 #define BW_SSI_SSI_SCR_RE(x, v)   (HW_SSI_SSI_SCR_WR(x, (HW_SSI_SSI_SCR_RD(x) & ~BM_SSI_SSI_SCR_RE) | BF_SSI_SSI_SCR_RE(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SCR, field NET[3] (RW)
@@ -497,7 +483,6 @@ typedef union _hw_ssi_ssi_scr
  * - 1 - Network mode selected.
  */
 //@{
-
 #define BP_SSI_SSI_SCR_NET      (3)      //!< Bit position for SSI_SSI_SCR_NET.
 #define BM_SSI_SSI_SCR_NET      (0x00000008)  //!< Bit mask for SSI_SSI_SCR_NET.
 
@@ -511,7 +496,6 @@ typedef union _hw_ssi_ssi_scr
 //! @brief Set the NET field to a new value.
 #define BW_SSI_SSI_SCR_NET(x, v)   (HW_SSI_SSI_SCR_WR(x, (HW_SSI_SSI_SCR_RD(x) & ~BM_SSI_SSI_SCR_NET) | BF_SSI_SSI_SCR_NET(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SCR, field SYN[4] (RW)
@@ -525,7 +509,6 @@ typedef union _hw_ssi_ssi_scr
  * - 1 - Synchronous mode selected.
  */
 //@{
-
 #define BP_SSI_SSI_SCR_SYN      (4)      //!< Bit position for SSI_SSI_SCR_SYN.
 #define BM_SSI_SSI_SCR_SYN      (0x00000010)  //!< Bit mask for SSI_SSI_SCR_SYN.
 
@@ -539,7 +522,6 @@ typedef union _hw_ssi_ssi_scr
 //! @brief Set the SYN field to a new value.
 #define BW_SSI_SSI_SCR_SYN(x, v)   (HW_SSI_SSI_SCR_WR(x, (HW_SSI_SSI_SCR_RD(x) & ~BM_SSI_SSI_SCR_SYN) | BF_SSI_SSI_SCR_SYN(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SCR, field I2S_MODE[6:5] (RW)
@@ -549,7 +531,6 @@ typedef union _hw_ssi_ssi_scr
  * settings.
  */
 //@{
-
 #define BP_SSI_SSI_SCR_I2S_MODE      (5)      //!< Bit position for SSI_SSI_SCR_I2S_MODE.
 #define BM_SSI_SSI_SCR_I2S_MODE      (0x00000060)  //!< Bit mask for SSI_SSI_SCR_I2S_MODE.
 
@@ -563,7 +544,6 @@ typedef union _hw_ssi_ssi_scr
 //! @brief Set the I2S_MODE field to a new value.
 #define BW_SSI_SSI_SCR_I2S_MODE(x, v)   (HW_SSI_SSI_SCR_WR(x, (HW_SSI_SSI_SCR_RD(x) & ~BM_SSI_SSI_SCR_I2S_MODE) | BF_SSI_SSI_SCR_I2S_MODE(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SCR, field SYS_CLK_EN[7] (RW)
@@ -579,7 +559,6 @@ typedef union _hw_ssi_ssi_scr
  * - 1 - network clock output on SRCK port.
  */
 //@{
-
 #define BP_SSI_SSI_SCR_SYS_CLK_EN      (7)      //!< Bit position for SSI_SSI_SCR_SYS_CLK_EN.
 #define BM_SSI_SSI_SCR_SYS_CLK_EN      (0x00000080)  //!< Bit mask for SSI_SSI_SCR_SYS_CLK_EN.
 
@@ -593,7 +572,6 @@ typedef union _hw_ssi_ssi_scr
 //! @brief Set the SYS_CLK_EN field to a new value.
 #define BW_SSI_SSI_SCR_SYS_CLK_EN(x, v)   (HW_SSI_SSI_SCR_WR(x, (HW_SSI_SSI_SCR_RD(x) & ~BM_SSI_SSI_SCR_SYS_CLK_EN) | BF_SSI_SSI_SCR_SYS_CLK_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SCR, field TCH_EN[8] (RW)
@@ -610,7 +588,6 @@ typedef union _hw_ssi_ssi_scr
  * - 1 - Two-channel mode enabled.
  */
 //@{
-
 #define BP_SSI_SSI_SCR_TCH_EN      (8)      //!< Bit position for SSI_SSI_SCR_TCH_EN.
 #define BM_SSI_SSI_SCR_TCH_EN      (0x00000100)  //!< Bit mask for SSI_SSI_SCR_TCH_EN.
 
@@ -624,7 +601,6 @@ typedef union _hw_ssi_ssi_scr
 //! @brief Set the TCH_EN field to a new value.
 #define BW_SSI_SSI_SCR_TCH_EN(x, v)   (HW_SSI_SSI_SCR_WR(x, (HW_SSI_SSI_SCR_RD(x) & ~BM_SSI_SSI_SCR_TCH_EN) | BF_SSI_SSI_SCR_TCH_EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SCR, field CLK_IST[9] (RW)
@@ -638,7 +614,6 @@ typedef union _hw_ssi_ssi_scr
  * - 1 - Clock idle state is '1'.
  */
 //@{
-
 #define BP_SSI_SSI_SCR_CLK_IST      (9)      //!< Bit position for SSI_SSI_SCR_CLK_IST.
 #define BM_SSI_SSI_SCR_CLK_IST      (0x00000200)  //!< Bit mask for SSI_SSI_SCR_CLK_IST.
 
@@ -652,7 +627,6 @@ typedef union _hw_ssi_ssi_scr
 //! @brief Set the CLK_IST field to a new value.
 #define BW_SSI_SSI_SCR_CLK_IST(x, v)   (HW_SSI_SSI_SCR_WR(x, (HW_SSI_SSI_SCR_RD(x) & ~BM_SSI_SSI_SCR_CLK_IST) | BF_SSI_SSI_SCR_CLK_IST(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SCR, field TFR_CLK_DIS[10] (RW)
@@ -669,7 +643,6 @@ typedef union _hw_ssi_ssi_scr
  *     transmitter is already disabled in current or previous frames.
  */
 //@{
-
 #define BP_SSI_SSI_SCR_TFR_CLK_DIS      (10)      //!< Bit position for SSI_SSI_SCR_TFR_CLK_DIS.
 #define BM_SSI_SSI_SCR_TFR_CLK_DIS      (0x00000400)  //!< Bit mask for SSI_SSI_SCR_TFR_CLK_DIS.
 
@@ -683,7 +656,6 @@ typedef union _hw_ssi_ssi_scr
 //! @brief Set the TFR_CLK_DIS field to a new value.
 #define BW_SSI_SSI_SCR_TFR_CLK_DIS(x, v)   (HW_SSI_SSI_SCR_WR(x, (HW_SSI_SSI_SCR_RD(x) & ~BM_SSI_SSI_SCR_TFR_CLK_DIS) | BF_SSI_SSI_SCR_TFR_CLK_DIS(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SCR, field RFR_CLK_DIS[11] (RW)
@@ -700,7 +672,6 @@ typedef union _hw_ssi_ssi_scr
  *     receiver is already disabled in current or previous frames.
  */
 //@{
-
 #define BP_SSI_SSI_SCR_RFR_CLK_DIS      (11)      //!< Bit position for SSI_SSI_SCR_RFR_CLK_DIS.
 #define BM_SSI_SSI_SCR_RFR_CLK_DIS      (0x00000800)  //!< Bit mask for SSI_SSI_SCR_RFR_CLK_DIS.
 
@@ -714,7 +685,6 @@ typedef union _hw_ssi_ssi_scr
 //! @brief Set the RFR_CLK_DIS field to a new value.
 #define BW_SSI_SSI_SCR_RFR_CLK_DIS(x, v)   (HW_SSI_SSI_SCR_WR(x, (HW_SSI_SSI_SCR_RD(x) & ~BM_SSI_SSI_SCR_RFR_CLK_DIS) | BF_SSI_SSI_SCR_RFR_CLK_DIS(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SCR, field SYNC_TX_FS[12] (RW)
@@ -733,7 +703,6 @@ typedef union _hw_ssi_ssi_scr
  * - 1 - TE latched with FS occurrence & latched-TE used for transmitter enable/disable.
  */
 //@{
-
 #define BP_SSI_SSI_SCR_SYNC_TX_FS      (12)      //!< Bit position for SSI_SSI_SCR_SYNC_TX_FS.
 #define BM_SSI_SSI_SCR_SYNC_TX_FS      (0x00001000)  //!< Bit mask for SSI_SSI_SCR_SYNC_TX_FS.
 
@@ -747,7 +716,6 @@ typedef union _hw_ssi_ssi_scr
 //! @brief Set the SYNC_TX_FS field to a new value.
 #define BW_SSI_SSI_SCR_SYNC_TX_FS(x, v)   (HW_SSI_SSI_SCR_WR(x, (HW_SSI_SSI_SCR_RD(x) & ~BM_SSI_SSI_SCR_SYNC_TX_FS) | BF_SSI_SSI_SCR_SYNC_TX_FS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -833,13 +801,11 @@ typedef union _hw_ssi_ssi_sisr
  * - 1 - Transmit FIFO0 is empty.
  */
 //@{
-
 #define BP_SSI_SSI_SISR_TFE0      (0)      //!< Bit position for SSI_SSI_SISR_TFE0.
 #define BM_SSI_SSI_SISR_TFE0      (0x00000001)  //!< Bit mask for SSI_SSI_SISR_TFE0.
 
 //! @brief Get value of SSI_SSI_SISR_TFE0 from a register value.
 #define BG_SSI_SSI_SISR_TFE0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SSI_SSI_SISR_TFE0) >> BP_SSI_SSI_SISR_TFE0)
-
 //@}
 
 /*! @name Register SSI_SSI_SISR, field TFE1[1] (RO)
@@ -856,13 +822,11 @@ typedef union _hw_ssi_ssi_sisr
  * - 1 - Transmit FIFO1 is empty.
  */
 //@{
-
 #define BP_SSI_SSI_SISR_TFE1      (1)      //!< Bit position for SSI_SSI_SISR_TFE1.
 #define BM_SSI_SSI_SISR_TFE1      (0x00000002)  //!< Bit mask for SSI_SSI_SISR_TFE1.
 
 //! @brief Get value of SSI_SSI_SISR_TFE1 from a register value.
 #define BG_SSI_SSI_SISR_TFE1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SSI_SSI_SISR_TFE1) >> BP_SSI_SSI_SISR_TFE1)
-
 //@}
 
 /*! @name Register SSI_SSI_SISR, field RFF0[2] (RO)
@@ -879,13 +843,11 @@ typedef union _hw_ssi_ssi_sisr
  * - 1 - Receive FIFO0 is full.
  */
 //@{
-
 #define BP_SSI_SSI_SISR_RFF0      (2)      //!< Bit position for SSI_SSI_SISR_RFF0.
 #define BM_SSI_SSI_SISR_RFF0      (0x00000004)  //!< Bit mask for SSI_SSI_SISR_RFF0.
 
 //! @brief Get value of SSI_SSI_SISR_RFF0 from a register value.
 #define BG_SSI_SSI_SISR_RFF0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SSI_SSI_SISR_RFF0) >> BP_SSI_SSI_SISR_RFF0)
-
 //@}
 
 /*! @name Register SSI_SSI_SISR, field RFF1[3] (RO)
@@ -903,13 +865,11 @@ typedef union _hw_ssi_ssi_sisr
  * - 1 - Receive FIFO1 is full.
  */
 //@{
-
 #define BP_SSI_SSI_SISR_RFF1      (3)      //!< Bit position for SSI_SSI_SISR_RFF1.
 #define BM_SSI_SSI_SISR_RFF1      (0x00000008)  //!< Bit mask for SSI_SSI_SISR_RFF1.
 
 //! @brief Get value of SSI_SSI_SISR_RFF1 from a register value.
 #define BG_SSI_SSI_SISR_RFF1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SSI_SSI_SISR_RFF1) >> BP_SSI_SSI_SISR_RFF1)
-
 //@}
 
 /*! @name Register SSI_SSI_SISR, field RLS[4] (RO)
@@ -924,13 +884,11 @@ typedef union _hw_ssi_ssi_sisr
  * - 1 - Current time slot is the last receive time slot of frame.
  */
 //@{
-
 #define BP_SSI_SSI_SISR_RLS      (4)      //!< Bit position for SSI_SSI_SISR_RLS.
 #define BM_SSI_SSI_SISR_RLS      (0x00000010)  //!< Bit mask for SSI_SSI_SISR_RLS.
 
 //! @brief Get value of SSI_SSI_SISR_RLS from a register value.
 #define BG_SSI_SSI_SISR_RLS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SSI_SSI_SISR_RLS) >> BP_SSI_SSI_SISR_RLS)
-
 //@}
 
 /*! @name Register SSI_SSI_SISR, field TLS[5] (RO)
@@ -946,13 +904,11 @@ typedef union _hw_ssi_ssi_sisr
  * - 1 - Current time slot is the last transmit time slot of frame.
  */
 //@{
-
 #define BP_SSI_SSI_SISR_TLS      (5)      //!< Bit position for SSI_SSI_SISR_TLS.
 #define BM_SSI_SSI_SISR_TLS      (0x00000020)  //!< Bit mask for SSI_SSI_SISR_TLS.
 
 //! @brief Get value of SSI_SSI_SISR_TLS from a register value.
 #define BG_SSI_SSI_SISR_TLS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SSI_SSI_SISR_TLS) >> BP_SSI_SSI_SISR_TLS)
-
 //@}
 
 /*! @name Register SSI_SSI_SISR, field RFS[6] (RO)
@@ -967,13 +923,11 @@ typedef union _hw_ssi_ssi_sisr
  * - 1 - Receive frame sync occurred during reception of next word in SRX registers.
  */
 //@{
-
 #define BP_SSI_SSI_SISR_RFS      (6)      //!< Bit position for SSI_SSI_SISR_RFS.
 #define BM_SSI_SSI_SISR_RFS      (0x00000040)  //!< Bit mask for SSI_SSI_SISR_RFS.
 
 //! @brief Get value of SSI_SSI_SISR_RFS from a register value.
 #define BG_SSI_SSI_SISR_RFS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SSI_SSI_SISR_RFS) >> BP_SSI_SSI_SISR_RFS)
-
 //@}
 
 /*! @name Register SSI_SSI_SISR, field TFS[7] (RO)
@@ -991,13 +945,11 @@ typedef union _hw_ssi_ssi_sisr
  * - 1 - Transmit frame sync occurred during transmission of last word written to STX registers.
  */
 //@{
-
 #define BP_SSI_SSI_SISR_TFS      (7)      //!< Bit position for SSI_SSI_SISR_TFS.
 #define BM_SSI_SSI_SISR_TFS      (0x00000080)  //!< Bit mask for SSI_SSI_SISR_TFS.
 
 //! @brief Get value of SSI_SSI_SISR_TFS from a register value.
 #define BG_SSI_SSI_SISR_TFS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SSI_SSI_SISR_TFS) >> BP_SSI_SSI_SISR_TFS)
-
 //@}
 
 /*! @name Register SSI_SSI_SISR, field TUE0[8] (W1C)
@@ -1014,7 +966,6 @@ typedef union _hw_ssi_ssi_sisr
  * - 1 - Exception interrupt issued to the Core.
  */
 //@{
-
 #define BP_SSI_SSI_SISR_TUE0      (8)      //!< Bit position for SSI_SSI_SISR_TUE0.
 #define BM_SSI_SSI_SISR_TUE0      (0x00000100)  //!< Bit mask for SSI_SSI_SISR_TUE0.
 
@@ -1028,7 +979,6 @@ typedef union _hw_ssi_ssi_sisr
 //! @brief Set the TUE0 field to a new value.
 #define BW_SSI_SSI_SISR_TUE0(x, v)   (HW_SSI_SSI_SISR_WR(x, (HW_SSI_SSI_SISR_RD(x) & ~BM_SSI_SSI_SISR_TUE0) | BF_SSI_SSI_SISR_TUE0(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SISR, field TUE1[9] (W1C)
@@ -1045,7 +995,6 @@ typedef union _hw_ssi_ssi_sisr
  * - 1 - Exception interrupt issued to the Core.
  */
 //@{
-
 #define BP_SSI_SSI_SISR_TUE1      (9)      //!< Bit position for SSI_SSI_SISR_TUE1.
 #define BM_SSI_SSI_SISR_TUE1      (0x00000200)  //!< Bit mask for SSI_SSI_SISR_TUE1.
 
@@ -1059,7 +1008,6 @@ typedef union _hw_ssi_ssi_sisr
 //! @brief Set the TUE1 field to a new value.
 #define BW_SSI_SSI_SISR_TUE1(x, v)   (HW_SSI_SSI_SISR_WR(x, (HW_SSI_SSI_SISR_RD(x) & ~BM_SSI_SSI_SISR_TUE1) | BF_SSI_SSI_SISR_TUE1(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SISR, field ROE0[10] (W1C)
@@ -1076,7 +1024,6 @@ typedef union _hw_ssi_ssi_sisr
  * - 1 - Exception interrupt issued to the Core.
  */
 //@{
-
 #define BP_SSI_SSI_SISR_ROE0      (10)      //!< Bit position for SSI_SSI_SISR_ROE0.
 #define BM_SSI_SSI_SISR_ROE0      (0x00000400)  //!< Bit mask for SSI_SSI_SISR_ROE0.
 
@@ -1090,7 +1037,6 @@ typedef union _hw_ssi_ssi_sisr
 //! @brief Set the ROE0 field to a new value.
 #define BW_SSI_SSI_SISR_ROE0(x, v)   (HW_SSI_SSI_SISR_WR(x, (HW_SSI_SSI_SISR_RD(x) & ~BM_SSI_SSI_SISR_ROE0) | BF_SSI_SSI_SISR_ROE0(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SISR, field ROE1[11] (W1C)
@@ -1107,7 +1053,6 @@ typedef union _hw_ssi_ssi_sisr
  * - 1 - Exception interrupt issued to the Core.
  */
 //@{
-
 #define BP_SSI_SSI_SISR_ROE1      (11)      //!< Bit position for SSI_SSI_SISR_ROE1.
 #define BM_SSI_SSI_SISR_ROE1      (0x00000800)  //!< Bit mask for SSI_SSI_SISR_ROE1.
 
@@ -1121,7 +1066,6 @@ typedef union _hw_ssi_ssi_sisr
 //! @brief Set the ROE1 field to a new value.
 #define BW_SSI_SSI_SISR_ROE1(x, v)   (HW_SSI_SSI_SISR_WR(x, (HW_SSI_SSI_SISR_RD(x) & ~BM_SSI_SSI_SISR_ROE1) | BF_SSI_SSI_SISR_ROE1(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SISR, field TDE0[12] (RO)
@@ -1138,13 +1082,11 @@ typedef union _hw_ssi_ssi_sisr
  * - 1 - Data needs to be written by the Core for transmission.
  */
 //@{
-
 #define BP_SSI_SSI_SISR_TDE0      (12)      //!< Bit position for SSI_SSI_SISR_TDE0.
 #define BM_SSI_SSI_SISR_TDE0      (0x00001000)  //!< Bit mask for SSI_SSI_SISR_TDE0.
 
 //! @brief Get value of SSI_SSI_SISR_TDE0 from a register value.
 #define BG_SSI_SSI_SISR_TDE0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SSI_SSI_SISR_TDE0) >> BP_SSI_SSI_SISR_TDE0)
-
 //@}
 
 /*! @name Register SSI_SSI_SISR, field TDE1[13] (RO)
@@ -1161,13 +1103,11 @@ typedef union _hw_ssi_ssi_sisr
  * - 1 - Data needs to be written by the Core for transmission.
  */
 //@{
-
 #define BP_SSI_SSI_SISR_TDE1      (13)      //!< Bit position for SSI_SSI_SISR_TDE1.
 #define BM_SSI_SSI_SISR_TDE1      (0x00002000)  //!< Bit mask for SSI_SSI_SISR_TDE1.
 
 //! @brief Get value of SSI_SSI_SISR_TDE1 from a register value.
 #define BG_SSI_SSI_SISR_TDE1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SSI_SSI_SISR_TDE1) >> BP_SSI_SSI_SISR_TDE1)
-
 //@}
 
 /*! @name Register SSI_SSI_SISR, field RDR0[14] (RO)
@@ -1183,13 +1123,11 @@ typedef union _hw_ssi_ssi_sisr
  * - 1 - New data for Core to read.
  */
 //@{
-
 #define BP_SSI_SSI_SISR_RDR0      (14)      //!< Bit position for SSI_SSI_SISR_RDR0.
 #define BM_SSI_SSI_SISR_RDR0      (0x00004000)  //!< Bit mask for SSI_SSI_SISR_RDR0.
 
 //! @brief Get value of SSI_SSI_SISR_RDR0 from a register value.
 #define BG_SSI_SSI_SISR_RDR0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SSI_SSI_SISR_RDR0) >> BP_SSI_SSI_SISR_RDR0)
-
 //@}
 
 /*! @name Register SSI_SSI_SISR, field RDR1[15] (RO)
@@ -1205,13 +1143,11 @@ typedef union _hw_ssi_ssi_sisr
  * - 1 - New data for Core to read.
  */
 //@{
-
 #define BP_SSI_SSI_SISR_RDR1      (15)      //!< Bit position for SSI_SSI_SISR_RDR1.
 #define BM_SSI_SSI_SISR_RDR1      (0x00008000)  //!< Bit mask for SSI_SSI_SISR_RDR1.
 
 //! @brief Get value of SSI_SSI_SISR_RDR1 from a register value.
 #define BG_SSI_SSI_SISR_RDR1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SSI_SSI_SISR_RDR1) >> BP_SSI_SSI_SISR_RDR1)
-
 //@}
 
 /*! @name Register SSI_SSI_SISR, field RXT[16] (RO)
@@ -1225,13 +1161,11 @@ typedef union _hw_ssi_ssi_sisr
  * - 1 - SATAG register updated with different value.
  */
 //@{
-
 #define BP_SSI_SSI_SISR_RXT      (16)      //!< Bit position for SSI_SSI_SISR_RXT.
 #define BM_SSI_SSI_SISR_RXT      (0x00010000)  //!< Bit mask for SSI_SSI_SISR_RXT.
 
 //! @brief Get value of SSI_SSI_SISR_RXT from a register value.
 #define BG_SSI_SSI_SISR_RXT(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SSI_SSI_SISR_RXT) >> BP_SSI_SSI_SISR_RXT)
-
 //@}
 
 /*! @name Register SSI_SSI_SISR, field CMDDU[17] (RO)
@@ -1245,13 +1179,11 @@ typedef union _hw_ssi_ssi_sisr
  * - 1 - SACDAT register updated with different value.
  */
 //@{
-
 #define BP_SSI_SSI_SISR_CMDDU      (17)      //!< Bit position for SSI_SSI_SISR_CMDDU.
 #define BM_SSI_SSI_SISR_CMDDU      (0x00020000)  //!< Bit mask for SSI_SSI_SISR_CMDDU.
 
 //! @brief Get value of SSI_SSI_SISR_CMDDU from a register value.
 #define BG_SSI_SSI_SISR_CMDDU(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SSI_SSI_SISR_CMDDU) >> BP_SSI_SSI_SISR_CMDDU)
-
 //@}
 
 /*! @name Register SSI_SSI_SISR, field CMDAU[18] (RO)
@@ -1266,13 +1198,11 @@ typedef union _hw_ssi_ssi_sisr
  * - 1 - SACADD register updated with different value.
  */
 //@{
-
 #define BP_SSI_SSI_SISR_CMDAU      (18)      //!< Bit position for SSI_SSI_SISR_CMDAU.
 #define BM_SSI_SSI_SISR_CMDAU      (0x00040000)  //!< Bit mask for SSI_SSI_SISR_CMDAU.
 
 //! @brief Get value of SSI_SSI_SISR_CMDAU from a register value.
 #define BG_SSI_SSI_SISR_CMDAU(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SSI_SSI_SISR_CMDAU) >> BP_SSI_SSI_SISR_CMDAU)
-
 //@}
 
 /*! @name Register SSI_SSI_SISR, field TFRC[23] (RO)
@@ -1289,13 +1219,11 @@ typedef union _hw_ssi_ssi_sisr
  *     disabled.
  */
 //@{
-
 #define BP_SSI_SSI_SISR_TFRC      (23)      //!< Bit position for SSI_SSI_SISR_TFRC.
 #define BM_SSI_SSI_SISR_TFRC      (0x00800000)  //!< Bit mask for SSI_SSI_SISR_TFRC.
 
 //! @brief Get value of SSI_SSI_SISR_TFRC from a register value.
 #define BG_SSI_SSI_SISR_TFRC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SSI_SSI_SISR_TFRC) >> BP_SSI_SSI_SISR_TFRC)
-
 //@}
 
 /*! @name Register SSI_SSI_SISR, field RFRC[24] (RO)
@@ -1311,13 +1239,11 @@ typedef union _hw_ssi_ssi_sisr
  * - 1 - End of frame reached after disabling RE or disabling RFR_CLK_DIS, when receiver is already disabled.
  */
 //@{
-
 #define BP_SSI_SSI_SISR_RFRC      (24)      //!< Bit position for SSI_SSI_SISR_RFRC.
 #define BM_SSI_SSI_SISR_RFRC      (0x01000000)  //!< Bit mask for SSI_SSI_SISR_RFRC.
 
 //! @brief Get value of SSI_SSI_SISR_RFRC from a register value.
 #define BG_SSI_SSI_SISR_RFRC(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SSI_SSI_SISR_RFRC) >> BP_SSI_SSI_SISR_RFRC)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1379,7 +1305,6 @@ typedef union _hw_ssi_sier
  * - 1 - Corresponding status bit can issue interrupt.
  */
 //@{
-
 #define BP_SSI_SIER_ENABLE_BITS1      (0)      //!< Bit position for SSI_SIER_ENABLE_BITS1.
 #define BM_SSI_SIER_ENABLE_BITS1      (0x0007ffff)  //!< Bit mask for SSI_SIER_ENABLE_BITS1.
 
@@ -1393,7 +1318,6 @@ typedef union _hw_ssi_sier
 //! @brief Set the ENABLE_BITS1 field to a new value.
 #define BW_SSI_SIER_ENABLE_BITS1(x, v)   (HW_SSI_SIER_WR(x, (HW_SSI_SIER_RD(x) & ~BM_SSI_SIER_ENABLE_BITS1) | BF_SSI_SIER_ENABLE_BITS1(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SIER, field TIE[19] (RW)
@@ -1406,7 +1330,6 @@ typedef union _hw_ssi_sier
  * - 1 - SSI Transmitter Interrupt requests enabled.
  */
 //@{
-
 #define BP_SSI_SIER_TIE      (19)      //!< Bit position for SSI_SIER_TIE.
 #define BM_SSI_SIER_TIE      (0x00080000)  //!< Bit mask for SSI_SIER_TIE.
 
@@ -1420,7 +1343,6 @@ typedef union _hw_ssi_sier
 //! @brief Set the TIE field to a new value.
 #define BW_SSI_SIER_TIE(x, v)   (HW_SSI_SIER_WR(x, (HW_SSI_SIER_RD(x) & ~BM_SSI_SIER_TIE) | BF_SSI_SIER_TIE(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SIER, field TDMAE[20] (RW)
@@ -1435,7 +1357,6 @@ typedef union _hw_ssi_sier
  * - 1 - SSI Transmitter DMA requests enabled.
  */
 //@{
-
 #define BP_SSI_SIER_TDMAE      (20)      //!< Bit position for SSI_SIER_TDMAE.
 #define BM_SSI_SIER_TDMAE      (0x00100000)  //!< Bit mask for SSI_SIER_TDMAE.
 
@@ -1449,7 +1370,6 @@ typedef union _hw_ssi_sier
 //! @brief Set the TDMAE field to a new value.
 #define BW_SSI_SIER_TDMAE(x, v)   (HW_SSI_SIER_WR(x, (HW_SSI_SIER_RD(x) & ~BM_SSI_SIER_TDMAE) | BF_SSI_SIER_TDMAE(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SIER, field RIE[21] (RW)
@@ -1462,7 +1382,6 @@ typedef union _hw_ssi_sier
  * - 1 - SSI Receiver Interrupt requests enabled.
  */
 //@{
-
 #define BP_SSI_SIER_RIE      (21)      //!< Bit position for SSI_SIER_RIE.
 #define BM_SSI_SIER_RIE      (0x00200000)  //!< Bit mask for SSI_SIER_RIE.
 
@@ -1476,7 +1395,6 @@ typedef union _hw_ssi_sier
 //! @brief Set the RIE field to a new value.
 #define BW_SSI_SIER_RIE(x, v)   (HW_SSI_SIER_WR(x, (HW_SSI_SIER_RD(x) & ~BM_SSI_SIER_RIE) | BF_SSI_SIER_RIE(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SIER, field RDMAE[22] (RW)
@@ -1491,7 +1409,6 @@ typedef union _hw_ssi_sier
  * - 1 - SSI Receiver DMA requests enabled.
  */
 //@{
-
 #define BP_SSI_SIER_RDMAE      (22)      //!< Bit position for SSI_SIER_RDMAE.
 #define BM_SSI_SIER_RDMAE      (0x00400000)  //!< Bit mask for SSI_SIER_RDMAE.
 
@@ -1505,7 +1422,6 @@ typedef union _hw_ssi_sier
 //! @brief Set the RDMAE field to a new value.
 #define BW_SSI_SIER_RDMAE(x, v)   (HW_SSI_SIER_WR(x, (HW_SSI_SIER_RD(x) & ~BM_SSI_SIER_RDMAE) | BF_SSI_SIER_RDMAE(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SIER, field ENABLE_BITS[24:23] (RW)
@@ -1518,7 +1434,6 @@ typedef union _hw_ssi_sier
  * - 1 - Corresponding status bit can issue interrupt.
  */
 //@{
-
 #define BP_SSI_SIER_ENABLE_BITS      (23)      //!< Bit position for SSI_SIER_ENABLE_BITS.
 #define BM_SSI_SIER_ENABLE_BITS      (0x01800000)  //!< Bit mask for SSI_SIER_ENABLE_BITS.
 
@@ -1532,7 +1447,6 @@ typedef union _hw_ssi_sier
 //! @brief Set the ENABLE_BITS field to a new value.
 #define BW_SSI_SIER_ENABLE_BITS(x, v)   (HW_SSI_SIER_WR(x, (HW_SSI_SIER_RD(x) & ~BM_SSI_SIER_ENABLE_BITS) | BF_SSI_SIER_ENABLE_BITS(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1607,7 +1521,6 @@ typedef union _hw_ssi_ssi_stcr
  * - 1 - Transmit frame sync is initiated one bit before the data is transmitted.
  */
 //@{
-
 #define BP_SSI_SSI_STCR_TEFS      (0)      //!< Bit position for SSI_SSI_STCR_TEFS.
 #define BM_SSI_SSI_STCR_TEFS      (0x00000001)  //!< Bit mask for SSI_SSI_STCR_TEFS.
 
@@ -1621,7 +1534,6 @@ typedef union _hw_ssi_ssi_stcr
 //! @brief Set the TEFS field to a new value.
 #define BW_SSI_SSI_STCR_TEFS(x, v)   (HW_SSI_SSI_STCR_WR(x, (HW_SSI_SSI_STCR_RD(x) & ~BM_SSI_SSI_STCR_TEFS) | BF_SSI_SSI_STCR_TEFS(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_STCR, field TFSL[1] (RW)
@@ -1635,7 +1547,6 @@ typedef union _hw_ssi_ssi_stcr
  * - 1 - Transmit frame sync is one-clock-bit long.
  */
 //@{
-
 #define BP_SSI_SSI_STCR_TFSL      (1)      //!< Bit position for SSI_SSI_STCR_TFSL.
 #define BM_SSI_SSI_STCR_TFSL      (0x00000002)  //!< Bit mask for SSI_SSI_STCR_TFSL.
 
@@ -1649,7 +1560,6 @@ typedef union _hw_ssi_ssi_stcr
 //! @brief Set the TFSL field to a new value.
 #define BW_SSI_SSI_STCR_TFSL(x, v)   (HW_SSI_SSI_STCR_WR(x, (HW_SSI_SSI_STCR_RD(x) & ~BM_SSI_SSI_STCR_TFSL) | BF_SSI_SSI_STCR_TFSL(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_STCR, field TFSI[2] (RW)
@@ -1662,7 +1572,6 @@ typedef union _hw_ssi_ssi_stcr
  * - 1 - Transmit frame sync is active low.
  */
 //@{
-
 #define BP_SSI_SSI_STCR_TFSI      (2)      //!< Bit position for SSI_SSI_STCR_TFSI.
 #define BM_SSI_SSI_STCR_TFSI      (0x00000004)  //!< Bit mask for SSI_SSI_STCR_TFSI.
 
@@ -1676,7 +1585,6 @@ typedef union _hw_ssi_ssi_stcr
 //! @brief Set the TFSI field to a new value.
 #define BW_SSI_SSI_STCR_TFSI(x, v)   (HW_SSI_SSI_STCR_WR(x, (HW_SSI_SSI_STCR_RD(x) & ~BM_SSI_SSI_STCR_TFSI) | BF_SSI_SSI_STCR_TFSI(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_STCR, field TSCKP[3] (RW)
@@ -1689,7 +1597,6 @@ typedef union _hw_ssi_ssi_stcr
  * - 1 - Data clocked out on falling edge of bit clock.
  */
 //@{
-
 #define BP_SSI_SSI_STCR_TSCKP      (3)      //!< Bit position for SSI_SSI_STCR_TSCKP.
 #define BM_SSI_SSI_STCR_TSCKP      (0x00000008)  //!< Bit mask for SSI_SSI_STCR_TSCKP.
 
@@ -1703,7 +1610,6 @@ typedef union _hw_ssi_ssi_stcr
 //! @brief Set the TSCKP field to a new value.
 #define BW_SSI_SSI_STCR_TSCKP(x, v)   (HW_SSI_SSI_STCR_WR(x, (HW_SSI_SSI_STCR_RD(x) & ~BM_SSI_SSI_STCR_TSCKP) | BF_SSI_SSI_STCR_TSCKP(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_STCR, field TSHFD[4] (RW)
@@ -1717,7 +1623,6 @@ typedef union _hw_ssi_ssi_stcr
  * - 1 - Data transmitted LSB first.
  */
 //@{
-
 #define BP_SSI_SSI_STCR_TSHFD      (4)      //!< Bit position for SSI_SSI_STCR_TSHFD.
 #define BM_SSI_SSI_STCR_TSHFD      (0x00000010)  //!< Bit mask for SSI_SSI_STCR_TSHFD.
 
@@ -1731,7 +1636,6 @@ typedef union _hw_ssi_ssi_stcr
 //! @brief Set the TSHFD field to a new value.
 #define BW_SSI_SSI_STCR_TSHFD(x, v)   (HW_SSI_SSI_STCR_WR(x, (HW_SSI_SSI_STCR_RD(x) & ~BM_SSI_SSI_STCR_TSHFD) | BF_SSI_SSI_STCR_TSHFD(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_STCR, field TXDIR[5] (RW)
@@ -1745,7 +1649,6 @@ typedef union _hw_ssi_ssi_stcr
  * - 1 - Transmit Clock generated internally.
  */
 //@{
-
 #define BP_SSI_SSI_STCR_TXDIR      (5)      //!< Bit position for SSI_SSI_STCR_TXDIR.
 #define BM_SSI_SSI_STCR_TXDIR      (0x00000020)  //!< Bit mask for SSI_SSI_STCR_TXDIR.
 
@@ -1759,7 +1662,6 @@ typedef union _hw_ssi_ssi_stcr
 //! @brief Set the TXDIR field to a new value.
 #define BW_SSI_SSI_STCR_TXDIR(x, v)   (HW_SSI_SSI_STCR_WR(x, (HW_SSI_SSI_STCR_RD(x) & ~BM_SSI_SSI_STCR_TXDIR) | BF_SSI_SSI_STCR_TXDIR(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_STCR, field TFDIR[6] (RW)
@@ -1773,7 +1675,6 @@ typedef union _hw_ssi_ssi_stcr
  * - 1 - Frame Sync generated internally.
  */
 //@{
-
 #define BP_SSI_SSI_STCR_TFDIR      (6)      //!< Bit position for SSI_SSI_STCR_TFDIR.
 #define BM_SSI_SSI_STCR_TFDIR      (0x00000040)  //!< Bit mask for SSI_SSI_STCR_TFDIR.
 
@@ -1787,7 +1688,6 @@ typedef union _hw_ssi_ssi_stcr
 //! @brief Set the TFDIR field to a new value.
 #define BW_SSI_SSI_STCR_TFDIR(x, v)   (HW_SSI_SSI_STCR_WR(x, (HW_SSI_SSI_STCR_RD(x) & ~BM_SSI_SSI_STCR_TFDIR) | BF_SSI_SSI_STCR_TFDIR(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_STCR, field TFEN0[7] (RW)
@@ -1802,7 +1702,6 @@ typedef union _hw_ssi_ssi_stcr
  * - 1 - Transmit FIFO 0 enabled.
  */
 //@{
-
 #define BP_SSI_SSI_STCR_TFEN0      (7)      //!< Bit position for SSI_SSI_STCR_TFEN0.
 #define BM_SSI_SSI_STCR_TFEN0      (0x00000080)  //!< Bit mask for SSI_SSI_STCR_TFEN0.
 
@@ -1816,7 +1715,6 @@ typedef union _hw_ssi_ssi_stcr
 //! @brief Set the TFEN0 field to a new value.
 #define BW_SSI_SSI_STCR_TFEN0(x, v)   (HW_SSI_SSI_STCR_WR(x, (HW_SSI_SSI_STCR_RD(x) & ~BM_SSI_SSI_STCR_TFEN0) | BF_SSI_SSI_STCR_TFEN0(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_STCR, field TFEN1[8] (RW)
@@ -1831,7 +1729,6 @@ typedef union _hw_ssi_ssi_stcr
  * - 1 - Transmit FIFO 1 enabled.
  */
 //@{
-
 #define BP_SSI_SSI_STCR_TFEN1      (8)      //!< Bit position for SSI_SSI_STCR_TFEN1.
 #define BM_SSI_SSI_STCR_TFEN1      (0x00000100)  //!< Bit mask for SSI_SSI_STCR_TFEN1.
 
@@ -1845,7 +1742,6 @@ typedef union _hw_ssi_ssi_stcr
 //! @brief Set the TFEN1 field to a new value.
 #define BW_SSI_SSI_STCR_TFEN1(x, v)   (HW_SSI_SSI_STCR_WR(x, (HW_SSI_SSI_STCR_RD(x) & ~BM_SSI_SSI_STCR_TFEN1) | BF_SSI_SSI_STCR_TFEN1(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_STCR, field TXBIT0[9] (RW)
@@ -1860,7 +1756,6 @@ typedef union _hw_ssi_ssi_stcr
  * - 1 - Shifting with respect to bit 0 of transmit shift register (LSB aligned).
  */
 //@{
-
 #define BP_SSI_SSI_STCR_TXBIT0      (9)      //!< Bit position for SSI_SSI_STCR_TXBIT0.
 #define BM_SSI_SSI_STCR_TXBIT0      (0x00000200)  //!< Bit mask for SSI_SSI_STCR_TXBIT0.
 
@@ -1874,7 +1769,6 @@ typedef union _hw_ssi_ssi_stcr
 //! @brief Set the TXBIT0 field to a new value.
 #define BW_SSI_SSI_STCR_TXBIT0(x, v)   (HW_SSI_SSI_STCR_WR(x, (HW_SSI_SSI_STCR_RD(x) & ~BM_SSI_SSI_STCR_TXBIT0) | BF_SSI_SSI_STCR_TXBIT0(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1945,7 +1839,6 @@ typedef union _hw_ssi_ssi_srcr
  * - 1 - Receive frame sync is initiated one bit before the data is received.
  */
 //@{
-
 #define BP_SSI_SSI_SRCR_REFS      (0)      //!< Bit position for SSI_SSI_SRCR_REFS.
 #define BM_SSI_SSI_SRCR_REFS      (0x00000001)  //!< Bit mask for SSI_SSI_SRCR_REFS.
 
@@ -1959,7 +1852,6 @@ typedef union _hw_ssi_ssi_srcr
 //! @brief Set the REFS field to a new value.
 #define BW_SSI_SSI_SRCR_REFS(x, v)   (HW_SSI_SSI_SRCR_WR(x, (HW_SSI_SSI_SRCR_RD(x) & ~BM_SSI_SSI_SRCR_REFS) | BF_SSI_SSI_SRCR_REFS(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SRCR, field RFSL[1] (RW)
@@ -1973,7 +1865,6 @@ typedef union _hw_ssi_ssi_srcr
  * - 1 - Receive frame sync is one-clock-bit long.
  */
 //@{
-
 #define BP_SSI_SSI_SRCR_RFSL      (1)      //!< Bit position for SSI_SSI_SRCR_RFSL.
 #define BM_SSI_SSI_SRCR_RFSL      (0x00000002)  //!< Bit mask for SSI_SSI_SRCR_RFSL.
 
@@ -1987,7 +1878,6 @@ typedef union _hw_ssi_ssi_srcr
 //! @brief Set the RFSL field to a new value.
 #define BW_SSI_SSI_SRCR_RFSL(x, v)   (HW_SSI_SSI_SRCR_WR(x, (HW_SSI_SSI_SRCR_RD(x) & ~BM_SSI_SSI_SRCR_RFSL) | BF_SSI_SSI_SRCR_RFSL(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SRCR, field RFSI[2] (RW)
@@ -2000,7 +1890,6 @@ typedef union _hw_ssi_ssi_srcr
  * - 1 - Receive frame sync is active low.
  */
 //@{
-
 #define BP_SSI_SSI_SRCR_RFSI      (2)      //!< Bit position for SSI_SSI_SRCR_RFSI.
 #define BM_SSI_SSI_SRCR_RFSI      (0x00000004)  //!< Bit mask for SSI_SSI_SRCR_RFSI.
 
@@ -2014,7 +1903,6 @@ typedef union _hw_ssi_ssi_srcr
 //! @brief Set the RFSI field to a new value.
 #define BW_SSI_SSI_SRCR_RFSI(x, v)   (HW_SSI_SSI_SRCR_WR(x, (HW_SSI_SSI_SRCR_RD(x) & ~BM_SSI_SSI_SRCR_RFSI) | BF_SSI_SSI_SRCR_RFSI(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SRCR, field RSCKP[3] (RW)
@@ -2027,7 +1915,6 @@ typedef union _hw_ssi_ssi_srcr
  * - 1 - Data latched on rising edge of bit clock.
  */
 //@{
-
 #define BP_SSI_SSI_SRCR_RSCKP      (3)      //!< Bit position for SSI_SSI_SRCR_RSCKP.
 #define BM_SSI_SSI_SRCR_RSCKP      (0x00000008)  //!< Bit mask for SSI_SSI_SRCR_RSCKP.
 
@@ -2041,7 +1928,6 @@ typedef union _hw_ssi_ssi_srcr
 //! @brief Set the RSCKP field to a new value.
 #define BW_SSI_SSI_SRCR_RSCKP(x, v)   (HW_SSI_SSI_SRCR_WR(x, (HW_SSI_SSI_SRCR_RD(x) & ~BM_SSI_SSI_SRCR_RSCKP) | BF_SSI_SSI_SRCR_RSCKP(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SRCR, field RSHFD[4] (RW)
@@ -2055,7 +1941,6 @@ typedef union _hw_ssi_ssi_srcr
  * - 1 - Data received LSB first.
  */
 //@{
-
 #define BP_SSI_SSI_SRCR_RSHFD      (4)      //!< Bit position for SSI_SSI_SRCR_RSHFD.
 #define BM_SSI_SSI_SRCR_RSHFD      (0x00000010)  //!< Bit mask for SSI_SSI_SRCR_RSHFD.
 
@@ -2069,7 +1954,6 @@ typedef union _hw_ssi_ssi_srcr
 //! @brief Set the RSHFD field to a new value.
 #define BW_SSI_SSI_SRCR_RSHFD(x, v)   (HW_SSI_SSI_SRCR_WR(x, (HW_SSI_SSI_SRCR_RD(x) & ~BM_SSI_SSI_SRCR_RSHFD) | BF_SSI_SSI_SRCR_RSHFD(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SRCR, field RXDIR[5] (RW)
@@ -2083,7 +1967,6 @@ typedef union _hw_ssi_ssi_srcr
  * - 1 - Receive Clock generated internally.
  */
 //@{
-
 #define BP_SSI_SSI_SRCR_RXDIR      (5)      //!< Bit position for SSI_SSI_SRCR_RXDIR.
 #define BM_SSI_SSI_SRCR_RXDIR      (0x00000020)  //!< Bit mask for SSI_SSI_SRCR_RXDIR.
 
@@ -2097,7 +1980,6 @@ typedef union _hw_ssi_ssi_srcr
 //! @brief Set the RXDIR field to a new value.
 #define BW_SSI_SSI_SRCR_RXDIR(x, v)   (HW_SSI_SSI_SRCR_WR(x, (HW_SSI_SSI_SRCR_RD(x) & ~BM_SSI_SSI_SRCR_RXDIR) | BF_SSI_SSI_SRCR_RXDIR(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SRCR, field RFDIR[6] (RW)
@@ -2111,7 +1993,6 @@ typedef union _hw_ssi_ssi_srcr
  * - 1 - Frame Sync generated internally.
  */
 //@{
-
 #define BP_SSI_SSI_SRCR_RFDIR      (6)      //!< Bit position for SSI_SSI_SRCR_RFDIR.
 #define BM_SSI_SSI_SRCR_RFDIR      (0x00000040)  //!< Bit mask for SSI_SSI_SRCR_RFDIR.
 
@@ -2125,7 +2006,6 @@ typedef union _hw_ssi_ssi_srcr
 //! @brief Set the RFDIR field to a new value.
 #define BW_SSI_SSI_SRCR_RFDIR(x, v)   (HW_SSI_SSI_SRCR_WR(x, (HW_SSI_SSI_SRCR_RD(x) & ~BM_SSI_SSI_SRCR_RFDIR) | BF_SSI_SSI_SRCR_RFDIR(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SRCR, field RFEN0[7] (RW)
@@ -2140,7 +2020,6 @@ typedef union _hw_ssi_ssi_srcr
  * - 1 - Receive FIFO 0 enabled.
  */
 //@{
-
 #define BP_SSI_SSI_SRCR_RFEN0      (7)      //!< Bit position for SSI_SSI_SRCR_RFEN0.
 #define BM_SSI_SSI_SRCR_RFEN0      (0x00000080)  //!< Bit mask for SSI_SSI_SRCR_RFEN0.
 
@@ -2154,7 +2033,6 @@ typedef union _hw_ssi_ssi_srcr
 //! @brief Set the RFEN0 field to a new value.
 #define BW_SSI_SSI_SRCR_RFEN0(x, v)   (HW_SSI_SSI_SRCR_WR(x, (HW_SSI_SSI_SRCR_RD(x) & ~BM_SSI_SSI_SRCR_RFEN0) | BF_SSI_SSI_SRCR_RFEN0(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SRCR, field RFEN1[8] (RW)
@@ -2169,7 +2047,6 @@ typedef union _hw_ssi_ssi_srcr
  * - 1 - Receive FIFO 1 enabled.
  */
 //@{
-
 #define BP_SSI_SSI_SRCR_RFEN1      (8)      //!< Bit position for SSI_SSI_SRCR_RFEN1.
 #define BM_SSI_SSI_SRCR_RFEN1      (0x00000100)  //!< Bit mask for SSI_SSI_SRCR_RFEN1.
 
@@ -2183,7 +2060,6 @@ typedef union _hw_ssi_ssi_srcr
 //! @brief Set the RFEN1 field to a new value.
 #define BW_SSI_SSI_SRCR_RFEN1(x, v)   (HW_SSI_SSI_SRCR_WR(x, (HW_SSI_SSI_SRCR_RD(x) & ~BM_SSI_SSI_SRCR_RFEN1) | BF_SSI_SSI_SRCR_RFEN1(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SRCR, field RXBIT0[9] (RW)
@@ -2198,7 +2074,6 @@ typedef union _hw_ssi_ssi_srcr
  * - 1 - Shifting with respect to bit 0 of receive shift register (LSB aligned).
  */
 //@{
-
 #define BP_SSI_SSI_SRCR_RXBIT0      (9)      //!< Bit position for SSI_SSI_SRCR_RXBIT0.
 #define BM_SSI_SSI_SRCR_RXBIT0      (0x00000200)  //!< Bit mask for SSI_SSI_SRCR_RXBIT0.
 
@@ -2212,7 +2087,6 @@ typedef union _hw_ssi_ssi_srcr
 //! @brief Set the RXBIT0 field to a new value.
 #define BW_SSI_SSI_SRCR_RXBIT0(x, v)   (HW_SSI_SSI_SRCR_WR(x, (HW_SSI_SSI_SRCR_RD(x) & ~BM_SSI_SSI_SRCR_RXBIT0) | BF_SSI_SSI_SRCR_RXBIT0(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SRCR, field RXEXT[10] (RW)
@@ -2226,7 +2100,6 @@ typedef union _hw_ssi_ssi_srcr
  * - 1 - Sign extension turned on.
  */
 //@{
-
 #define BP_SSI_SSI_SRCR_RXEXT      (10)      //!< Bit position for SSI_SSI_SRCR_RXEXT.
 #define BM_SSI_SSI_SRCR_RXEXT      (0x00000400)  //!< Bit mask for SSI_SSI_SRCR_RXEXT.
 
@@ -2240,7 +2113,6 @@ typedef union _hw_ssi_ssi_srcr
 //! @brief Set the RXEXT field to a new value.
 #define BW_SSI_SSI_SRCR_RXEXT(x, v)   (HW_SSI_SSI_SRCR_WR(x, (HW_SSI_SSI_SRCR_RD(x) & ~BM_SSI_SSI_SRCR_RXEXT) | BF_SSI_SSI_SRCR_RXEXT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2313,7 +2185,6 @@ typedef union _hw_ssi_ssi_stccr
  * selected. Refer to for details regarding settings.
  */
 //@{
-
 #define BP_SSI_SSI_STCCR_PM7_PM0      (0)      //!< Bit position for SSI_SSI_STCCR_PM7_PM0.
 #define BM_SSI_SSI_STCCR_PM7_PM0      (0x000000ff)  //!< Bit mask for SSI_SSI_STCCR_PM7_PM0.
 
@@ -2327,7 +2198,6 @@ typedef union _hw_ssi_ssi_stccr
 //! @brief Set the PM7_PM0 field to a new value.
 #define BW_SSI_SSI_STCCR_PM7_PM0(x, v)   (HW_SSI_SSI_STCCR_WR(x, (HW_SSI_SSI_STCCR_RD(x) & ~BM_SSI_SSI_STCCR_PM7_PM0) | BF_SSI_SSI_STCCR_PM7_PM0(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_STCCR, field DC4_DC0[12:8] (RW)
@@ -2341,7 +2211,6 @@ typedef union _hw_ssi_ssi_stccr
  * from "00000" to "11111" to control the number of words in a frame.
  */
 //@{
-
 #define BP_SSI_SSI_STCCR_DC4_DC0      (8)      //!< Bit position for SSI_SSI_STCCR_DC4_DC0.
 #define BM_SSI_SSI_STCCR_DC4_DC0      (0x00001f00)  //!< Bit mask for SSI_SSI_STCCR_DC4_DC0.
 
@@ -2355,7 +2224,6 @@ typedef union _hw_ssi_ssi_stccr
 //! @brief Set the DC4_DC0 field to a new value.
 #define BW_SSI_SSI_STCCR_DC4_DC0(x, v)   (HW_SSI_SSI_STCCR_WR(x, (HW_SSI_SSI_STCCR_RD(x) & ~BM_SSI_SSI_STCCR_DC4_DC0) | BF_SSI_SSI_STCCR_DC4_DC0(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_STCCR, field WL3_WL0[16:13] (RW)
@@ -2368,7 +2236,6 @@ typedef union _hw_ssi_ssi_stccr
  * 16 bits, it will result in a word length of 20 bits.
  */
 //@{
-
 #define BP_SSI_SSI_STCCR_WL3_WL0      (13)      //!< Bit position for SSI_SSI_STCCR_WL3_WL0.
 #define BM_SSI_SSI_STCCR_WL3_WL0      (0x0001e000)  //!< Bit mask for SSI_SSI_STCCR_WL3_WL0.
 
@@ -2382,7 +2249,6 @@ typedef union _hw_ssi_ssi_stccr
 //! @brief Set the WL3_WL0 field to a new value.
 #define BW_SSI_SSI_STCCR_WL3_WL0(x, v)   (HW_SSI_SSI_STCCR_WR(x, (HW_SSI_SSI_STCCR_RD(x) & ~BM_SSI_SSI_STCCR_WL3_WL0) | BF_SSI_SSI_STCCR_WL3_WL0(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_STCCR, field PSR[17] (RW)
@@ -2392,7 +2258,6 @@ typedef union _hw_ssi_ssi_stccr
  * required. 0 Prescaler bypassed. 1 Prescaler used to divide clock by 8.
  */
 //@{
-
 #define BP_SSI_SSI_STCCR_PSR      (17)      //!< Bit position for SSI_SSI_STCCR_PSR.
 #define BM_SSI_SSI_STCCR_PSR      (0x00020000)  //!< Bit mask for SSI_SSI_STCCR_PSR.
 
@@ -2406,7 +2271,6 @@ typedef union _hw_ssi_ssi_stccr
 //! @brief Set the PSR field to a new value.
 #define BW_SSI_SSI_STCCR_PSR(x, v)   (HW_SSI_SSI_STCCR_WR(x, (HW_SSI_SSI_STCCR_RD(x) & ~BM_SSI_SSI_STCCR_PSR) | BF_SSI_SSI_STCCR_PSR(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_STCCR, field DIV2[18] (RW)
@@ -2415,7 +2279,6 @@ typedef union _hw_ssi_ssi_stccr
  * 0 Divider bypassed. 1 Divider used to divide clock by 2.
  */
 //@{
-
 #define BP_SSI_SSI_STCCR_DIV2      (18)      //!< Bit position for SSI_SSI_STCCR_DIV2.
 #define BM_SSI_SSI_STCCR_DIV2      (0x00040000)  //!< Bit mask for SSI_SSI_STCCR_DIV2.
 
@@ -2429,7 +2292,6 @@ typedef union _hw_ssi_ssi_stccr
 //! @brief Set the DIV2 field to a new value.
 #define BW_SSI_SSI_STCCR_DIV2(x, v)   (HW_SSI_SSI_STCCR_WR(x, (HW_SSI_SSI_STCCR_RD(x) & ~BM_SSI_SSI_STCCR_DIV2) | BF_SSI_SSI_STCCR_DIV2(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2502,7 +2364,6 @@ typedef union _hw_ssi_srccr
  * selected. Refer to for details regarding settings.
  */
 //@{
-
 #define BP_SSI_SRCCR_PM7_PM0      (0)      //!< Bit position for SSI_SRCCR_PM7_PM0.
 #define BM_SSI_SRCCR_PM7_PM0      (0x000000ff)  //!< Bit mask for SSI_SRCCR_PM7_PM0.
 
@@ -2516,7 +2377,6 @@ typedef union _hw_ssi_srccr
 //! @brief Set the PM7_PM0 field to a new value.
 #define BW_SSI_SRCCR_PM7_PM0(x, v)   (HW_SSI_SRCCR_WR(x, (HW_SSI_SRCCR_RD(x) & ~BM_SSI_SRCCR_PM7_PM0) | BF_SSI_SRCCR_PM7_PM0(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SRCCR, field DC4_DC0[12:8] (RW)
@@ -2530,7 +2390,6 @@ typedef union _hw_ssi_srccr
  * from "00000" to "11111" to control the number of words in a frame.
  */
 //@{
-
 #define BP_SSI_SRCCR_DC4_DC0      (8)      //!< Bit position for SSI_SRCCR_DC4_DC0.
 #define BM_SSI_SRCCR_DC4_DC0      (0x00001f00)  //!< Bit mask for SSI_SRCCR_DC4_DC0.
 
@@ -2544,7 +2403,6 @@ typedef union _hw_ssi_srccr
 //! @brief Set the DC4_DC0 field to a new value.
 #define BW_SSI_SRCCR_DC4_DC0(x, v)   (HW_SSI_SRCCR_WR(x, (HW_SSI_SRCCR_RD(x) & ~BM_SSI_SRCCR_DC4_DC0) | BF_SSI_SRCCR_DC4_DC0(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SRCCR, field WL3_WL0[16:13] (RW)
@@ -2557,7 +2415,6 @@ typedef union _hw_ssi_srccr
  * 16 bits, it will result in a word length of 20 bits.
  */
 //@{
-
 #define BP_SSI_SRCCR_WL3_WL0      (13)      //!< Bit position for SSI_SRCCR_WL3_WL0.
 #define BM_SSI_SRCCR_WL3_WL0      (0x0001e000)  //!< Bit mask for SSI_SRCCR_WL3_WL0.
 
@@ -2571,7 +2428,6 @@ typedef union _hw_ssi_srccr
 //! @brief Set the WL3_WL0 field to a new value.
 #define BW_SSI_SRCCR_WL3_WL0(x, v)   (HW_SSI_SRCCR_WR(x, (HW_SSI_SRCCR_RD(x) & ~BM_SSI_SRCCR_WL3_WL0) | BF_SSI_SRCCR_WL3_WL0(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SRCCR, field PSR[17] (RW)
@@ -2581,7 +2437,6 @@ typedef union _hw_ssi_srccr
  * required. 0 Prescaler bypassed. 1 Prescaler used to divide clock by 8.
  */
 //@{
-
 #define BP_SSI_SRCCR_PSR      (17)      //!< Bit position for SSI_SRCCR_PSR.
 #define BM_SSI_SRCCR_PSR      (0x00020000)  //!< Bit mask for SSI_SRCCR_PSR.
 
@@ -2595,7 +2450,6 @@ typedef union _hw_ssi_srccr
 //! @brief Set the PSR field to a new value.
 #define BW_SSI_SRCCR_PSR(x, v)   (HW_SSI_SRCCR_WR(x, (HW_SSI_SRCCR_RD(x) & ~BM_SSI_SRCCR_PSR) | BF_SSI_SRCCR_PSR(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SRCCR, field DIV2[18] (RW)
@@ -2604,7 +2458,6 @@ typedef union _hw_ssi_srccr
  * 0 Divider bypassed. 1 Divider used to divide clock by 2.
  */
 //@{
-
 #define BP_SSI_SRCCR_DIV2      (18)      //!< Bit position for SSI_SRCCR_DIV2.
 #define BM_SSI_SRCCR_DIV2      (0x00040000)  //!< Bit mask for SSI_SRCCR_DIV2.
 
@@ -2618,7 +2471,6 @@ typedef union _hw_ssi_srccr
 //! @brief Set the DIV2 field to a new value.
 #define BW_SSI_SRCCR_DIV2(x, v)   (HW_SSI_SRCCR_WR(x, (HW_SSI_SRCCR_RD(x) & ~BM_SSI_SRCCR_DIV2) | BF_SSI_SRCCR_DIV2(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2685,7 +2537,6 @@ typedef union _hw_ssi_ssi_sfcsr
  * threshold. See SSI_SFCSR_bf4 for details regarding settings for transmit FIFO watermark bits.
  */
 //@{
-
 #define BP_SSI_SSI_SFCSR_TFWM0      (0)      //!< Bit position for SSI_SSI_SFCSR_TFWM0.
 #define BM_SSI_SSI_SFCSR_TFWM0      (0x0000000f)  //!< Bit mask for SSI_SSI_SFCSR_TFWM0.
 
@@ -2699,7 +2550,6 @@ typedef union _hw_ssi_ssi_sfcsr
 //! @brief Set the TFWM0 field to a new value.
 #define BW_SSI_SSI_SFCSR_TFWM0(x, v)   (HW_SSI_SSI_SFCSR_WR(x, (HW_SSI_SSI_SFCSR_RD(x) & ~BM_SSI_SSI_SFCSR_TFWM0) | BF_SSI_SSI_SFCSR_TFWM0(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SFCSR, field RFWM0[7:4] (RW)
@@ -2709,7 +2559,6 @@ typedef union _hw_ssi_ssi_sfcsr
  * See SSI_SFCSR_bf3 for details regarding settings for receive FIFO watermark bits.
  */
 //@{
-
 #define BP_SSI_SSI_SFCSR_RFWM0      (4)      //!< Bit position for SSI_SSI_SFCSR_RFWM0.
 #define BM_SSI_SSI_SFCSR_RFWM0      (0x000000f0)  //!< Bit mask for SSI_SSI_SFCSR_RFWM0.
 
@@ -2723,7 +2572,6 @@ typedef union _hw_ssi_ssi_sfcsr
 //! @brief Set the RFWM0 field to a new value.
 #define BW_SSI_SSI_SFCSR_RFWM0(x, v)   (HW_SSI_SSI_SFCSR_WR(x, (HW_SSI_SSI_SFCSR_RD(x) & ~BM_SSI_SSI_SFCSR_RFWM0) | BF_SSI_SSI_SFCSR_RFWM0(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SFCSR, field TFCNT0[11:8] (RW)
@@ -2732,7 +2580,6 @@ typedef union _hw_ssi_ssi_sfcsr
  * SSI_SFCSR_bf2 for details regarding settings for transmit FIFO counter bits.
  */
 //@{
-
 #define BP_SSI_SSI_SFCSR_TFCNT0      (8)      //!< Bit position for SSI_SSI_SFCSR_TFCNT0.
 #define BM_SSI_SSI_SFCSR_TFCNT0      (0x00000f00)  //!< Bit mask for SSI_SSI_SFCSR_TFCNT0.
 
@@ -2746,7 +2593,6 @@ typedef union _hw_ssi_ssi_sfcsr
 //! @brief Set the TFCNT0 field to a new value.
 #define BW_SSI_SSI_SFCSR_TFCNT0(x, v)   (HW_SSI_SSI_SFCSR_WR(x, (HW_SSI_SSI_SFCSR_RD(x) & ~BM_SSI_SSI_SFCSR_TFCNT0) | BF_SSI_SSI_SFCSR_TFCNT0(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SFCSR, field RFCNT0[15:12] (RW)
@@ -2755,7 +2601,6 @@ typedef union _hw_ssi_ssi_sfcsr
  * SSI_SFCSR_bf1 for details regarding settings for receive FIFO counter bits.
  */
 //@{
-
 #define BP_SSI_SSI_SFCSR_RFCNT0      (12)      //!< Bit position for SSI_SSI_SFCSR_RFCNT0.
 #define BM_SSI_SSI_SFCSR_RFCNT0      (0x0000f000)  //!< Bit mask for SSI_SSI_SFCSR_RFCNT0.
 
@@ -2769,7 +2614,6 @@ typedef union _hw_ssi_ssi_sfcsr
 //! @brief Set the RFCNT0 field to a new value.
 #define BW_SSI_SSI_SFCSR_RFCNT0(x, v)   (HW_SSI_SSI_SFCSR_WR(x, (HW_SSI_SSI_SFCSR_RD(x) & ~BM_SSI_SSI_SFCSR_RFCNT0) | BF_SSI_SSI_SFCSR_RFCNT0(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SFCSR, field TFWM1[19:16] (RW)
@@ -2812,7 +2656,6 @@ typedef union _hw_ssi_ssi_sfcsr
  *     data.
  */
 //@{
-
 #define BP_SSI_SSI_SFCSR_TFWM1      (16)      //!< Bit position for SSI_SSI_SFCSR_TFWM1.
 #define BM_SSI_SSI_SFCSR_TFWM1      (0x000f0000)  //!< Bit mask for SSI_SSI_SFCSR_TFWM1.
 
@@ -2826,7 +2669,6 @@ typedef union _hw_ssi_ssi_sfcsr
 //! @brief Set the TFWM1 field to a new value.
 #define BW_SSI_SSI_SFCSR_TFWM1(x, v)   (HW_SSI_SSI_SFCSR_WR(x, (HW_SSI_SSI_SFCSR_RD(x) & ~BM_SSI_SSI_SFCSR_TFWM1) | BF_SSI_SSI_SFCSR_TFWM1(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SFCSR, field RFWM1[23:20] (RW)
@@ -2868,7 +2710,6 @@ typedef union _hw_ssi_ssi_sfcsr
  *     data words
  */
 //@{
-
 #define BP_SSI_SSI_SFCSR_RFWM1      (20)      //!< Bit position for SSI_SSI_SFCSR_RFWM1.
 #define BM_SSI_SSI_SFCSR_RFWM1      (0x00f00000)  //!< Bit mask for SSI_SSI_SFCSR_RFWM1.
 
@@ -2882,7 +2723,6 @@ typedef union _hw_ssi_ssi_sfcsr
 //! @brief Set the RFWM1 field to a new value.
 #define BW_SSI_SSI_SFCSR_RFWM1(x, v)   (HW_SSI_SSI_SFCSR_WR(x, (HW_SSI_SSI_SFCSR_RD(x) & ~BM_SSI_SSI_SFCSR_RFWM1) | BF_SSI_SSI_SFCSR_RFWM1(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SFCSR, field TFCNT1[27:24] (RW)
@@ -2908,7 +2748,6 @@ typedef union _hw_ssi_ssi_sfcsr
  * - 1111 - 15 data word in transmit FIFO
  */
 //@{
-
 #define BP_SSI_SSI_SFCSR_TFCNT1      (24)      //!< Bit position for SSI_SSI_SFCSR_TFCNT1.
 #define BM_SSI_SSI_SFCSR_TFCNT1      (0x0f000000)  //!< Bit mask for SSI_SSI_SFCSR_TFCNT1.
 
@@ -2922,7 +2761,6 @@ typedef union _hw_ssi_ssi_sfcsr
 //! @brief Set the TFCNT1 field to a new value.
 #define BW_SSI_SSI_SFCSR_TFCNT1(x, v)   (HW_SSI_SSI_SFCSR_WR(x, (HW_SSI_SSI_SFCSR_RD(x) & ~BM_SSI_SSI_SFCSR_TFCNT1) | BF_SSI_SSI_SFCSR_TFCNT1(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SFCSR, field RFCNT1[31:28] (RW)
@@ -2948,7 +2786,6 @@ typedef union _hw_ssi_ssi_sfcsr
  * - 1111 - 15 data word in receive FIFO
  */
 //@{
-
 #define BP_SSI_SSI_SFCSR_RFCNT1      (28)      //!< Bit position for SSI_SSI_SFCSR_RFCNT1.
 #define BM_SSI_SSI_SFCSR_RFCNT1      (0xf0000000)  //!< Bit mask for SSI_SSI_SFCSR_RFCNT1.
 
@@ -2962,7 +2799,6 @@ typedef union _hw_ssi_ssi_sfcsr
 //! @brief Set the RFCNT1 field to a new value.
 #define BW_SSI_SSI_SFCSR_RFCNT1(x, v)   (HW_SSI_SSI_SFCSR_WR(x, (HW_SSI_SSI_SFCSR_RD(x) & ~BM_SSI_SSI_SFCSR_RFCNT1) | BF_SSI_SSI_SFCSR_RFCNT1(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3023,7 +2859,6 @@ typedef union _hw_ssi_ssi_sacnt
  * - 1 - SSI in AC97 mode.
  */
 //@{
-
 #define BP_SSI_SSI_SACNT_AC97EN      (0)      //!< Bit position for SSI_SSI_SACNT_AC97EN.
 #define BM_SSI_SSI_SACNT_AC97EN      (0x00000001)  //!< Bit mask for SSI_SSI_SACNT_AC97EN.
 
@@ -3037,7 +2872,6 @@ typedef union _hw_ssi_ssi_sacnt
 //! @brief Set the AC97EN field to a new value.
 #define BW_SSI_SSI_SACNT_AC97EN(x, v)   (HW_SSI_SSI_SACNT_WR(x, (HW_SSI_SSI_SACNT_RD(x) & ~BM_SSI_SSI_SACNT_AC97EN) | BF_SSI_SSI_SACNT_AC97EN(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SACNT, field FV[1] (RW)
@@ -3050,7 +2884,6 @@ typedef union _hw_ssi_ssi_sacnt
  * - 1 - AC97 Variable Mode.
  */
 //@{
-
 #define BP_SSI_SSI_SACNT_FV      (1)      //!< Bit position for SSI_SSI_SACNT_FV.
 #define BM_SSI_SSI_SACNT_FV      (0x00000002)  //!< Bit mask for SSI_SSI_SACNT_FV.
 
@@ -3064,7 +2897,6 @@ typedef union _hw_ssi_ssi_sacnt
 //! @brief Set the FV field to a new value.
 #define BW_SSI_SSI_SACNT_FV(x, v)   (HW_SSI_SSI_SACNT_WR(x, (HW_SSI_SSI_SACNT_RD(x) & ~BM_SSI_SSI_SACNT_FV) | BF_SSI_SSI_SACNT_FV(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SACNT, field TIF[2] (RW)
@@ -3077,7 +2909,6 @@ typedef union _hw_ssi_ssi_sacnt
  * - 1 - Tag info stored in Rx FIFO 0.
  */
 //@{
-
 #define BP_SSI_SSI_SACNT_TIF      (2)      //!< Bit position for SSI_SSI_SACNT_TIF.
 #define BM_SSI_SSI_SACNT_TIF      (0x00000004)  //!< Bit mask for SSI_SSI_SACNT_TIF.
 
@@ -3091,7 +2922,6 @@ typedef union _hw_ssi_ssi_sacnt
 //! @brief Set the TIF field to a new value.
 #define BW_SSI_SSI_SACNT_TIF(x, v)   (HW_SSI_SSI_SACNT_WR(x, (HW_SSI_SSI_SACNT_RD(x) & ~BM_SSI_SSI_SACNT_TIF) | BF_SSI_SSI_SACNT_TIF(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SACNT, field RD[3] (RW)
@@ -3107,7 +2937,6 @@ typedef union _hw_ssi_ssi_sacnt
  * - 1 - Next frame will have a Read Command.
  */
 //@{
-
 #define BP_SSI_SSI_SACNT_RD      (3)      //!< Bit position for SSI_SSI_SACNT_RD.
 #define BM_SSI_SSI_SACNT_RD      (0x00000008)  //!< Bit mask for SSI_SSI_SACNT_RD.
 
@@ -3121,7 +2950,6 @@ typedef union _hw_ssi_ssi_sacnt
 //! @brief Set the RD field to a new value.
 #define BW_SSI_SSI_SACNT_RD(x, v)   (HW_SSI_SSI_SACNT_WR(x, (HW_SSI_SSI_SACNT_RD(x) & ~BM_SSI_SSI_SACNT_RD) | BF_SSI_SSI_SACNT_RD(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SACNT, field WR[4] (RW)
@@ -3137,7 +2965,6 @@ typedef union _hw_ssi_ssi_sacnt
  * - 1 - Next frame will have a Write Command.
  */
 //@{
-
 #define BP_SSI_SSI_SACNT_WR      (4)      //!< Bit position for SSI_SSI_SACNT_WR.
 #define BM_SSI_SSI_SACNT_WR      (0x00000010)  //!< Bit mask for SSI_SSI_SACNT_WR.
 
@@ -3151,7 +2978,6 @@ typedef union _hw_ssi_ssi_sacnt
 //! @brief Set the WR field to a new value.
 #define BW_SSI_SSI_SACNT_WR(x, v)   (HW_SSI_SSI_SACNT_WR(x, (HW_SSI_SSI_SACNT_RD(x) & ~BM_SSI_SSI_SACNT_WR) | BF_SSI_SSI_SACNT_WR(v)))
 #endif
-
 //@}
 
 /*! @name Register SSI_SSI_SACNT, field FRDIV[10:5] (RW)
@@ -3162,7 +2988,6 @@ typedef union _hw_ssi_ssi_sacnt
  * can be achieved. Sample Value: 001010 (10 Decimal) = SSI will operate once every 11 frames.
  */
 //@{
-
 #define BP_SSI_SSI_SACNT_FRDIV      (5)      //!< Bit position for SSI_SSI_SACNT_FRDIV.
 #define BM_SSI_SSI_SACNT_FRDIV      (0x000007e0)  //!< Bit mask for SSI_SSI_SACNT_FRDIV.
 
@@ -3176,7 +3001,6 @@ typedef union _hw_ssi_ssi_sacnt
 //! @brief Set the FRDIV field to a new value.
 #define BW_SSI_SSI_SACNT_FRDIV(x, v)   (HW_SSI_SSI_SACNT_WR(x, (HW_SSI_SSI_SACNT_RD(x) & ~BM_SSI_SSI_SACNT_FRDIV) | BF_SSI_SSI_SACNT_FRDIV(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3231,7 +3055,6 @@ typedef union _hw_ssi_ssi_sacadd
  * CMDAU bit in SISR is set.
  */
 //@{
-
 #define BP_SSI_SSI_SACADD_SACADD      (0)      //!< Bit position for SSI_SSI_SACADD_SACADD.
 #define BM_SSI_SSI_SACADD_SACADD      (0x0007ffff)  //!< Bit mask for SSI_SSI_SACADD_SACADD.
 
@@ -3245,7 +3068,6 @@ typedef union _hw_ssi_ssi_sacadd
 //! @brief Set the SACADD field to a new value.
 #define BW_SSI_SSI_SACADD_SACADD(x, v)   (HW_SSI_SSI_SACADD_WR(x, (HW_SSI_SSI_SACADD_RD(x) & ~BM_SSI_SSI_SACADD_SACADD) | BF_SSI_SSI_SACADD_SACADD(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3300,7 +3122,6 @@ typedef union _hw_ssi_ssi_sacdat
  * Command. During AC97 Read Command, 0x00000 is transmitted in time slot #2.
  */
 //@{
-
 #define BP_SSI_SSI_SACDAT_SACDAT      (0)      //!< Bit position for SSI_SSI_SACDAT_SACDAT.
 #define BM_SSI_SSI_SACDAT_SACDAT      (0x000fffff)  //!< Bit mask for SSI_SSI_SACDAT_SACDAT.
 
@@ -3314,7 +3135,6 @@ typedef union _hw_ssi_ssi_sacdat
 //! @brief Set the SACDAT field to a new value.
 #define BW_SSI_SSI_SACDAT_SACDAT(x, v)   (HW_SSI_SSI_SACDAT_WR(x, (HW_SSI_SSI_SACDAT_RD(x) & ~BM_SSI_SSI_SACDAT_SACDAT) | BF_SSI_SSI_SACDAT_SACDAT(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3370,7 +3190,6 @@ typedef union _hw_ssi_satag
  * supported. Thus writing value 2'b00 to this field is mandatory.
  */
 //@{
-
 #define BP_SSI_SATAG_SATAG      (0)      //!< Bit position for SSI_SATAG_SATAG.
 #define BM_SSI_SATAG_SATAG      (0x0000ffff)  //!< Bit mask for SSI_SATAG_SATAG.
 
@@ -3384,7 +3203,6 @@ typedef union _hw_ssi_satag
 //! @brief Set the SATAG field to a new value.
 #define BW_SSI_SATAG_SATAG(x, v)   (HW_SSI_SATAG_WR(x, (HW_SSI_SATAG_RD(x) & ~BM_SSI_SATAG_SATAG) | BF_SSI_SATAG_SATAG(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3442,7 +3260,6 @@ typedef union _hw_ssi_ssi_stmsk
  * - 1 - Time Slot masked (no data transmitted in this time slot).
  */
 //@{
-
 #define BP_SSI_SSI_STMSK_STMSK      (0)      //!< Bit position for SSI_SSI_STMSK_STMSK.
 #define BM_SSI_SSI_STMSK_STMSK      (0xffffffff)  //!< Bit mask for SSI_SSI_STMSK_STMSK.
 
@@ -3456,7 +3273,6 @@ typedef union _hw_ssi_ssi_stmsk
 //! @brief Set the STMSK field to a new value.
 #define BW_SSI_SSI_STMSK_STMSK(x, v)   (HW_SSI_SSI_STMSK_WR(x, (HW_SSI_SSI_STMSK_RD(x) & ~BM_SSI_SSI_STMSK_STMSK) | BF_SSI_SSI_STMSK_STMSK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3513,7 +3329,6 @@ typedef union _hw_ssi_ssi_srmsk
  * - 1 - Time Slot masked (no data received in this time slot).
  */
 //@{
-
 #define BP_SSI_SSI_SRMSK_SRMSK      (0)      //!< Bit position for SSI_SSI_SRMSK_SRMSK.
 #define BM_SSI_SSI_SRMSK_SRMSK      (0xffffffff)  //!< Bit mask for SSI_SSI_SRMSK_SRMSK.
 
@@ -3527,7 +3342,6 @@ typedef union _hw_ssi_ssi_srmsk
 //! @brief Set the SRMSK field to a new value.
 #define BW_SSI_SSI_SRMSK_SRMSK(x, v)   (HW_SSI_SSI_SRMSK_WR(x, (HW_SSI_SSI_SRMSK_RD(x) & ~BM_SSI_SSI_SRMSK_SRMSK) | BF_SSI_SSI_SRMSK_SRMSK(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3584,13 +3398,11 @@ typedef union _hw_ssi_ssi_saccst
  * - 1 - Data channel enabled.
  */
 //@{
-
 #define BP_SSI_SSI_SACCST_SACCST      (0)      //!< Bit position for SSI_SSI_SACCST_SACCST.
 #define BM_SSI_SSI_SACCST_SACCST      (0x000003ff)  //!< Bit mask for SSI_SSI_SACCST_SACCST.
 
 //! @brief Get value of SSI_SSI_SACCST_SACCST from a register value.
 #define BG_SSI_SSI_SACCST_SACCST(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SSI_SSI_SACCST_SACCST) >> BP_SSI_SSI_SACCST_SACCST)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3644,7 +3456,6 @@ typedef union _hw_ssi_ssi_saccen
  * - 1 - Write Enables the corresponding data channel.
  */
 //@{
-
 #define BP_SSI_SSI_SACCEN_SACCEN      (0)      //!< Bit position for SSI_SSI_SACCEN_SACCEN.
 #define BM_SSI_SSI_SACCEN_SACCEN      (0x000003ff)  //!< Bit mask for SSI_SSI_SACCEN_SACCEN.
 
@@ -3653,7 +3464,6 @@ typedef union _hw_ssi_ssi_saccen
 
 //! @brief Format value for bitfield SSI_SSI_SACCEN_SACCEN.
 #define BF_SSI_SSI_SACCEN_SACCEN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SSI_SSI_SACCEN_SACCEN) & BM_SSI_SSI_SACCEN_SACCEN)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3707,7 +3517,6 @@ typedef union _hw_ssi_ssi_saccdis
  * - 1 - Write Disables the corresponding data channel.
  */
 //@{
-
 #define BP_SSI_SSI_SACCDIS_SACCDIS      (0)      //!< Bit position for SSI_SSI_SACCDIS_SACCDIS.
 #define BM_SSI_SSI_SACCDIS_SACCDIS      (0x000003ff)  //!< Bit mask for SSI_SSI_SACCDIS_SACCDIS.
 
@@ -3716,7 +3525,6 @@ typedef union _hw_ssi_ssi_saccdis
 
 //! @brief Format value for bitfield SSI_SSI_SACCDIS_SACCDIS.
 #define BF_SSI_SSI_SACCDIS_SACCDIS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SSI_SSI_SACCDIS_SACCDIS) & BM_SSI_SSI_SACCDIS_SACCDIS)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3762,3 +3570,5 @@ typedef struct _hw_ssi
 #endif
 
 #endif // __HW_SSI_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

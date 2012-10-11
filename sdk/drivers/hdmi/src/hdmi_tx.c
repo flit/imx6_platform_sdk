@@ -200,10 +200,10 @@ void update_csc_coeffs(hdmi_data_info_s hdmi_instance)
     HW_HDMI_CSC_COEF_C2_MSB.U = (uint8_t) (csc_coeff[2][1] >> 8);
     HW_HDMI_CSC_COEF_C3_LSB.U = (uint8_t) (csc_coeff[2][2] & 0xFF);
     HW_HDMI_CSC_COEF_C3_MSB.U = (uint8_t) (csc_coeff[2][2] >> 8);
-    HW_HDMI_CSC_COEFC4_LSB.U = (uint8_t) (csc_coeff[2][3] & 0xFF);
-    HW_HDMI_CSC_COEFC4_MSB.U = (uint8_t) (csc_coeff[2][3] >> 8);
+    HW_HDMI_CSC_COEF_C4_LSB.U = (uint8_t) (csc_coeff[2][3] & 0xFF);
+    HW_HDMI_CSC_COEF_C4_MSB.U = (uint8_t) (csc_coeff[2][3] >> 8);
 
-    HW_HDMI_CSC_SCALE.B.RESERVED0 = csc_scale;  //Note by Ray: the bf defined is wrong in .h file
+    HW_HDMI_CSC_SCALE.B.CSC_SCALE = csc_scale;
 }
 
 void hdmi_video_csc(hdmi_data_info_s hdmi_instance)
@@ -235,7 +235,7 @@ void hdmi_video_csc(hdmi_data_info_s hdmi_instance)
     /*configure the CSC registers */
     HW_HDMI_CSC_CFG.B.DECMODE = decimation;
     HW_HDMI_CSC_CFG.B.INTMODE = interpolation;
-    HW_HDMI_CSC_SCALE.B.CSC_COLORDE_PTH = color_depth;  // Ray: Typo in .h file
+    HW_HDMI_CSC_SCALE.B.CSC_COLORDEPTH = color_depth;
     update_csc_coeffs(hdmi_instance);
 }
 

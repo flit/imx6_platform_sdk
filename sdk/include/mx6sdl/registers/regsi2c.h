@@ -113,7 +113,6 @@ typedef union _hw_i2c_iadr
  * address transfer. The register is not reset by a software reset.
  */
 //@{
-
 #define BP_I2C_IADR_ADR      (1)      //!< Bit position for I2C_IADR_ADR.
 #define BM_I2C_IADR_ADR      (0x000000fe)  //!< Bit mask for I2C_IADR_ADR.
 
@@ -127,7 +126,6 @@ typedef union _hw_i2c_iadr
 //! @brief Set the ADR field to a new value.
 #define BW_I2C_IADR_ADR(x, v)   (HW_I2C_IADR_WR(x, (HW_I2C_IADR_RD(x) & ~BM_I2C_IADR_ADR) | BF_I2C_IADR_ADR(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -192,7 +190,6 @@ typedef union _hw_i2c_ifdr
  * to 400 kbps. The IC bits need to be programmed in accordance with this constraint.
  */
 //@{
-
 #define BP_I2C_IFDR_IC      (0)      //!< Bit position for I2C_IFDR_IC.
 #define BM_I2C_IFDR_IC      (0x0000003f)  //!< Bit mask for I2C_IFDR_IC.
 
@@ -206,7 +203,6 @@ typedef union _hw_i2c_ifdr
 //! @brief Set the IC field to a new value.
 #define BW_I2C_IFDR_IC(x, v)   (HW_I2C_IFDR_WR(x, (HW_I2C_IFDR_RD(x) & ~BM_I2C_IFDR_IC) | BF_I2C_IFDR_IC(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -269,7 +265,6 @@ typedef union _hw_i2c_i2cr
  * - 1 - Generates a repeated START condition
  */
 //@{
-
 #define BP_I2C_I2CR_RSTA      (2)      //!< Bit position for I2C_I2CR_RSTA.
 #define BM_I2C_I2CR_RSTA      (0x00000004)  //!< Bit mask for I2C_I2CR_RSTA.
 
@@ -278,7 +273,6 @@ typedef union _hw_i2c_i2cr
 
 //! @brief Format value for bitfield I2C_I2CR_RSTA.
 #define BF_I2C_I2CR_RSTA(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_I2C_I2CR_RSTA) & BM_I2C_I2CR_RSTA)
-
 //@}
 
 /*! @name Register I2C_I2CR, field TXAK[3] (RW)
@@ -291,7 +285,6 @@ typedef union _hw_i2c_i2cr
  * - 1 - No acknowledge signal response is sent (that is, the acknowledge bit = 1).
  */
 //@{
-
 #define BP_I2C_I2CR_TXAK      (3)      //!< Bit position for I2C_I2CR_TXAK.
 #define BM_I2C_I2CR_TXAK      (0x00000008)  //!< Bit mask for I2C_I2CR_TXAK.
 
@@ -305,7 +298,6 @@ typedef union _hw_i2c_i2cr
 //! @brief Set the TXAK field to a new value.
 #define BW_I2C_I2CR_TXAK(x, v)   (HW_I2C_I2CR_WR(x, (HW_I2C_I2CR_RD(x) & ~BM_I2C_I2CR_TXAK) | BF_I2C_I2CR_TXAK(v)))
 #endif
-
 //@}
 
 /*! @name Register I2C_I2CR, field MTX[4] (RW)
@@ -319,7 +311,6 @@ typedef union _hw_i2c_i2cr
  *     for address cycles, MTX is always 1.
  */
 //@{
-
 #define BP_I2C_I2CR_MTX      (4)      //!< Bit position for I2C_I2CR_MTX.
 #define BM_I2C_I2CR_MTX      (0x00000010)  //!< Bit mask for I2C_I2CR_MTX.
 
@@ -333,7 +324,6 @@ typedef union _hw_i2c_i2cr
 //! @brief Set the MTX field to a new value.
 #define BW_I2C_I2CR_MTX(x, v)   (HW_I2C_I2CR_WR(x, (HW_I2C_I2CR_RD(x) & ~BM_I2C_I2CR_MTX) | BF_I2C_I2CR_MTX(v)))
 #endif
-
 //@}
 
 /*! @name Register I2C_I2CR, field MSTA[5] (RW)
@@ -348,7 +338,6 @@ typedef union _hw_i2c_i2cr
  * - 1 - Master mode. Changing MSTA from 0 to 1 signals a START on the bus and selects master mode.
  */
 //@{
-
 #define BP_I2C_I2CR_MSTA      (5)      //!< Bit position for I2C_I2CR_MSTA.
 #define BM_I2C_I2CR_MSTA      (0x00000020)  //!< Bit mask for I2C_I2CR_MSTA.
 
@@ -362,7 +351,6 @@ typedef union _hw_i2c_i2cr
 //! @brief Set the MSTA field to a new value.
 #define BW_I2C_I2CR_MSTA(x, v)   (HW_I2C_I2CR_WR(x, (HW_I2C_I2CR_RD(x) & ~BM_I2C_I2CR_MSTA) | BF_I2C_I2CR_MSTA(v)))
 #endif
-
 //@}
 
 /*! @name Register I2C_I2CR, field IIEN[6] (RW)
@@ -378,7 +366,6 @@ typedef union _hw_i2c_i2cr
  * - 1 - I2C interrupts are enabled. An I2C interrupt occurs if I2C_I2SR[IIF] is also set.
  */
 //@{
-
 #define BP_I2C_I2CR_IIEN      (6)      //!< Bit position for I2C_I2CR_IIEN.
 #define BM_I2C_I2CR_IIEN      (0x00000040)  //!< Bit mask for I2C_I2CR_IIEN.
 
@@ -392,7 +379,6 @@ typedef union _hw_i2c_i2cr
 //! @brief Set the IIEN field to a new value.
 #define BW_I2C_I2CR_IIEN(x, v)   (HW_I2C_I2CR_WR(x, (HW_I2C_I2CR_RD(x) & ~BM_I2C_I2CR_IIEN) | BF_I2C_I2CR_IIEN(v)))
 #endif
-
 //@}
 
 /*! @name Register I2C_I2CR, field IEN[7] (RW)
@@ -409,7 +395,6 @@ typedef union _hw_i2c_i2cr
  * - 1 - The I2C is enabled. This bit must be set before any other I2C_I2CR bits have any effect.
  */
 //@{
-
 #define BP_I2C_I2CR_IEN      (7)      //!< Bit position for I2C_I2CR_IEN.
 #define BM_I2C_I2CR_IEN      (0x00000080)  //!< Bit mask for I2C_I2CR_IEN.
 
@@ -423,7 +408,6 @@ typedef union _hw_i2c_i2cr
 //! @brief Set the IEN field to a new value.
 #define BW_I2C_I2CR_IEN(x, v)   (HW_I2C_I2CR_WR(x, (HW_I2C_I2CR_RD(x) & ~BM_I2C_I2CR_IEN) | BF_I2C_I2CR_IEN(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -486,13 +470,11 @@ typedef union _hw_i2c_i2sr
  * - 1 - A "No acknowledge" signal was detected at the ninth clock.
  */
 //@{
-
 #define BP_I2C_I2SR_RXAK      (0)      //!< Bit position for I2C_I2SR_RXAK.
 #define BM_I2C_I2SR_RXAK      (0x00000001)  //!< Bit mask for I2C_I2SR_RXAK.
 
 //! @brief Get value of I2C_I2SR_RXAK from a register value.
 #define BG_I2C_I2SR_RXAK(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_I2C_I2SR_RXAK) >> BP_I2C_I2SR_RXAK)
-
 //@}
 
 /*! @name Register I2C_I2SR, field IIF[1] (RW)
@@ -509,7 +491,6 @@ typedef union _hw_i2c_i2sr
  *     is lost.
  */
 //@{
-
 #define BP_I2C_I2SR_IIF      (1)      //!< Bit position for I2C_I2SR_IIF.
 #define BM_I2C_I2SR_IIF      (0x00000002)  //!< Bit mask for I2C_I2SR_IIF.
 
@@ -523,7 +504,6 @@ typedef union _hw_i2c_i2sr
 //! @brief Set the IIF field to a new value.
 #define BW_I2C_I2SR_IIF(x, v)   (HW_I2C_I2SR_WR(x, (HW_I2C_I2SR_RD(x) & ~BM_I2C_I2SR_IIF) | BF_I2C_I2SR_IIF(v)))
 #endif
-
 //@}
 
 /*! @name Register I2C_I2SR, field SRW[2] (RO)
@@ -538,13 +518,11 @@ typedef union _hw_i2c_i2sr
  * - 1 - Slave transmit, master reading from slave
  */
 //@{
-
 #define BP_I2C_I2SR_SRW      (2)      //!< Bit position for I2C_I2SR_SRW.
 #define BM_I2C_I2SR_SRW      (0x00000004)  //!< Bit mask for I2C_I2SR_SRW.
 
 //! @brief Get value of I2C_I2SR_SRW from a register value.
 #define BG_I2C_I2SR_SRW(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_I2C_I2SR_SRW) >> BP_I2C_I2SR_SRW)
-
 //@}
 
 /*! @name Register I2C_I2SR, field IAL[4] (RW)
@@ -562,7 +540,6 @@ typedef union _hw_i2c_i2sr
  * - 1 - Arbitration is lost.
  */
 //@{
-
 #define BP_I2C_I2SR_IAL      (4)      //!< Bit position for I2C_I2SR_IAL.
 #define BM_I2C_I2SR_IAL      (0x00000010)  //!< Bit mask for I2C_I2SR_IAL.
 
@@ -576,7 +553,6 @@ typedef union _hw_i2c_i2sr
 //! @brief Set the IAL field to a new value.
 #define BW_I2C_I2SR_IAL(x, v)   (HW_I2C_I2SR_WR(x, (HW_I2C_I2SR_RD(x) & ~BM_I2C_I2SR_IAL) | BF_I2C_I2SR_IAL(v)))
 #endif
-
 //@}
 
 /*! @name Register I2C_I2SR, field IBB[5] (RO)
@@ -590,13 +566,11 @@ typedef union _hw_i2c_i2sr
  * - 1 - Bus is busy. When START is detected, IBB is set.
  */
 //@{
-
 #define BP_I2C_I2SR_IBB      (5)      //!< Bit position for I2C_I2SR_IBB.
 #define BM_I2C_I2SR_IBB      (0x00000020)  //!< Bit mask for I2C_I2SR_IBB.
 
 //! @brief Get value of I2C_I2SR_IBB from a register value.
 #define BG_I2C_I2SR_IBB(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_I2C_I2SR_IBB) >> BP_I2C_I2SR_IBB)
-
 //@}
 
 /*! @name Register I2C_I2SR, field IAAS[6] (RO)
@@ -610,13 +584,11 @@ typedef union _hw_i2c_i2sr
  * - 1 - Addressed as a slave. Set when its own address (I2C_IADR) matches the calling address.
  */
 //@{
-
 #define BP_I2C_I2SR_IAAS      (6)      //!< Bit position for I2C_I2SR_IAAS.
 #define BM_I2C_I2SR_IAAS      (0x00000040)  //!< Bit mask for I2C_I2SR_IAAS.
 
 //! @brief Get value of I2C_I2SR_IAAS from a register value.
 #define BG_I2C_I2SR_IAAS(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_I2C_I2SR_IAAS) >> BP_I2C_I2SR_IAAS)
-
 //@}
 
 /*! @name Register I2C_I2SR, field ICF[7] (RO)
@@ -629,13 +601,11 @@ typedef union _hw_i2c_i2sr
  *     transfer.
  */
 //@{
-
 #define BP_I2C_I2SR_ICF      (7)      //!< Bit position for I2C_I2SR_ICF.
 #define BM_I2C_I2SR_ICF      (0x00000080)  //!< Bit mask for I2C_I2SR_ICF.
 
 //! @brief Get value of I2C_I2SR_ICF from a register value.
 #define BG_I2C_I2SR_ICF(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_I2C_I2SR_ICF) >> BP_I2C_I2SR_ICF)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -690,7 +660,6 @@ typedef union _hw_i2c_i2dr
  * read.
  */
 //@{
-
 #define BP_I2C_I2DR_DATA      (0)      //!< Bit position for I2C_I2DR_DATA.
 #define BM_I2C_I2DR_DATA      (0x000000ff)  //!< Bit mask for I2C_I2DR_DATA.
 
@@ -704,7 +673,6 @@ typedef union _hw_i2c_i2dr
 //! @brief Set the DATA field to a new value.
 #define BW_I2C_I2DR_DATA(x, v)   (HW_I2C_I2DR_WR(x, (HW_I2C_I2DR_RD(x) & ~BM_I2C_I2DR_DATA) | BF_I2C_I2DR_DATA(v)))
 #endif
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -737,3 +705,5 @@ typedef struct _hw_i2c
 #endif
 
 #endif // __HW_I2C_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

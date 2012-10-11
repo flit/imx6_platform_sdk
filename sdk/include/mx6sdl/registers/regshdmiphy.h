@@ -112,10 +112,6 @@ typedef union _hw_hdmi_phy_pwrctrl
  */
 //@{
 #define HW_HDMI_PHY_PWRCTRL_ADDR      (REGS_HDMI_PHY_BASE + 0x0)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_PWRCTRL           (*(volatile hw_hdmi_phy_pwrctrl_t *) HW_HDMI_PHY_PWRCTRL_ADDR)
-#endif
 //@}
 
 /*
@@ -131,7 +127,6 @@ typedef union _hw_hdmi_phy_pwrctrl
  * - 1 - Power on the clock driver, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_PWRCTRL_CK_PWRON      (0)      //!< Bit position for HDMI_PHY_PWRCTRL_CK_PWRON.
 #define BM_HDMI_PHY_PWRCTRL_CK_PWRON      (0x00000001)  //!< Bit mask for HDMI_PHY_PWRCTRL_CK_PWRON.
 
@@ -140,7 +135,6 @@ typedef union _hw_hdmi_phy_pwrctrl
 
 //! @brief Format value for bitfield HDMI_PHY_PWRCTRL_CK_PWRON.
 #define BF_HDMI_PHY_PWRCTRL_CK_PWRON(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_PWRCTRL_CK_PWRON) & BM_HDMI_PHY_PWRCTRL_CK_PWRON)
-
 //@}
 
 /*! @name Register HDMI_PHY_PWRCTRL, field TX_PWRON2[1] (RW)
@@ -152,7 +146,6 @@ typedef union _hw_hdmi_phy_pwrctrl
  * - 1 - Power on the transmitter driver for the third channel, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_PWRCTRL_TX_PWRON2      (1)      //!< Bit position for HDMI_PHY_PWRCTRL_TX_PWRON2.
 #define BM_HDMI_PHY_PWRCTRL_TX_PWRON2      (0x00000002)  //!< Bit mask for HDMI_PHY_PWRCTRL_TX_PWRON2.
 
@@ -161,7 +154,6 @@ typedef union _hw_hdmi_phy_pwrctrl
 
 //! @brief Format value for bitfield HDMI_PHY_PWRCTRL_TX_PWRON2.
 #define BF_HDMI_PHY_PWRCTRL_TX_PWRON2(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_PWRCTRL_TX_PWRON2) & BM_HDMI_PHY_PWRCTRL_TX_PWRON2)
-
 //@}
 
 /*! @name Register HDMI_PHY_PWRCTRL, field TX_PWRON1[2] (RW)
@@ -173,7 +165,6 @@ typedef union _hw_hdmi_phy_pwrctrl
  * - 1 - Power on the transmitter driver for the second channel, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_PWRCTRL_TX_PWRON1      (2)      //!< Bit position for HDMI_PHY_PWRCTRL_TX_PWRON1.
 #define BM_HDMI_PHY_PWRCTRL_TX_PWRON1      (0x00000004)  //!< Bit mask for HDMI_PHY_PWRCTRL_TX_PWRON1.
 
@@ -182,7 +173,6 @@ typedef union _hw_hdmi_phy_pwrctrl
 
 //! @brief Format value for bitfield HDMI_PHY_PWRCTRL_TX_PWRON1.
 #define BF_HDMI_PHY_PWRCTRL_TX_PWRON1(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_PWRCTRL_TX_PWRON1) & BM_HDMI_PHY_PWRCTRL_TX_PWRON1)
-
 //@}
 
 /*! @name Register HDMI_PHY_PWRCTRL, field TX_PWRON0[3] (RW)
@@ -194,7 +184,6 @@ typedef union _hw_hdmi_phy_pwrctrl
  * - 1 - Power on the transmitter driver for the first channel, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_PWRCTRL_TX_PWRON0      (3)      //!< Bit position for HDMI_PHY_PWRCTRL_TX_PWRON0.
 #define BM_HDMI_PHY_PWRCTRL_TX_PWRON0      (0x00000008)  //!< Bit mask for HDMI_PHY_PWRCTRL_TX_PWRON0.
 
@@ -203,7 +192,6 @@ typedef union _hw_hdmi_phy_pwrctrl
 
 //! @brief Format value for bitfield HDMI_PHY_PWRCTRL_TX_PWRON0.
 #define BF_HDMI_PHY_PWRCTRL_TX_PWRON0(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_PWRCTRL_TX_PWRON0) & BM_HDMI_PHY_PWRCTRL_TX_PWRON0)
-
 //@}
 
 /*! @name Register HDMI_PHY_PWRCTRL, field TX_PWRON[4] (RW)
@@ -216,7 +204,6 @@ typedef union _hw_hdmi_phy_pwrctrl
  * - 1 - Power on the PHY, if the Override bit is 1.
  */
 //@{
-
 #define BP_HDMI_PHY_PWRCTRL_TX_PWRON      (4)      //!< Bit position for HDMI_PHY_PWRCTRL_TX_PWRON.
 #define BM_HDMI_PHY_PWRCTRL_TX_PWRON      (0x00000010)  //!< Bit mask for HDMI_PHY_PWRCTRL_TX_PWRON.
 
@@ -225,7 +212,6 @@ typedef union _hw_hdmi_phy_pwrctrl
 
 //! @brief Format value for bitfield HDMI_PHY_PWRCTRL_TX_PWRON.
 #define BF_HDMI_PHY_PWRCTRL_TX_PWRON(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_PWRCTRL_TX_PWRON) & BM_HDMI_PHY_PWRCTRL_TX_PWRON)
-
 //@}
 
 /*! @name Register HDMI_PHY_PWRCTRL, field OVERRIDE[15] (RW)
@@ -234,7 +220,6 @@ typedef union _hw_hdmi_phy_pwrctrl
  * value.
  */
 //@{
-
 #define BP_HDMI_PHY_PWRCTRL_OVERRIDE      (15)      //!< Bit position for HDMI_PHY_PWRCTRL_OVERRIDE.
 #define BM_HDMI_PHY_PWRCTRL_OVERRIDE      (0x00008000)  //!< Bit mask for HDMI_PHY_PWRCTRL_OVERRIDE.
 
@@ -243,7 +228,6 @@ typedef union _hw_hdmi_phy_pwrctrl
 
 //! @brief Format value for bitfield HDMI_PHY_PWRCTRL_OVERRIDE.
 #define BF_HDMI_PHY_PWRCTRL_OVERRIDE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_PWRCTRL_OVERRIDE) & BM_HDMI_PHY_PWRCTRL_OVERRIDE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -278,10 +262,6 @@ typedef union _hw_hdmi_phy_serdivctrl
  */
 //@{
 #define HW_HDMI_PHY_SERDIVCTRL_ADDR      (REGS_HDMI_PHY_BASE + 0x1)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_SERDIVCTRL           (*(volatile hw_hdmi_phy_serdivctrl_t *) HW_HDMI_PHY_SERDIVCTRL_ADDR)
-#endif
 //@}
 
 /*
@@ -298,7 +278,6 @@ typedef union _hw_hdmi_phy_serdivctrl
  * - 1 - Enable the low-speed clock in the third serializer, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN2      (0)      //!< Bit position for HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN2.
 #define BM_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN2      (0x00000001)  //!< Bit mask for HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN2.
 
@@ -307,7 +286,6 @@ typedef union _hw_hdmi_phy_serdivctrl
 
 //! @brief Format value for bitfield HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN2.
 #define BF_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN2(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN2) & BM_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN2)
-
 //@}
 
 /*! @name Register HDMI_PHY_SERDIVCTRL, field TX_SER_DIV_EN1[1] (RW)
@@ -320,7 +298,6 @@ typedef union _hw_hdmi_phy_serdivctrl
  * - 1 - Enable the low-speed clock in the second serializer, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN1      (1)      //!< Bit position for HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN1.
 #define BM_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN1      (0x00000002)  //!< Bit mask for HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN1.
 
@@ -329,7 +306,6 @@ typedef union _hw_hdmi_phy_serdivctrl
 
 //! @brief Format value for bitfield HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN1.
 #define BF_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN1(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN1) & BM_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN1)
-
 //@}
 
 /*! @name Register HDMI_PHY_SERDIVCTRL, field TX_SER_DIV_EN0[2] (RW)
@@ -342,7 +318,6 @@ typedef union _hw_hdmi_phy_serdivctrl
  * - 1 - Enable the low-speed clock in the first serializer, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN0      (2)      //!< Bit position for HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN0.
 #define BM_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN0      (0x00000004)  //!< Bit mask for HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN0.
 
@@ -351,7 +326,6 @@ typedef union _hw_hdmi_phy_serdivctrl
 
 //! @brief Format value for bitfield HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN0.
 #define BF_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN0(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN0) & BM_HDMI_PHY_SERDIVCTRL_TX_SER_DIV_EN0)
-
 //@}
 
 /*! @name Register HDMI_PHY_SERDIVCTRL, field OVERRIDE[15] (RW)
@@ -360,7 +334,6 @@ typedef union _hw_hdmi_phy_serdivctrl
  * value.
  */
 //@{
-
 #define BP_HDMI_PHY_SERDIVCTRL_OVERRIDE      (15)      //!< Bit position for HDMI_PHY_SERDIVCTRL_OVERRIDE.
 #define BM_HDMI_PHY_SERDIVCTRL_OVERRIDE      (0x00008000)  //!< Bit mask for HDMI_PHY_SERDIVCTRL_OVERRIDE.
 
@@ -369,7 +342,6 @@ typedef union _hw_hdmi_phy_serdivctrl
 
 //! @brief Format value for bitfield HDMI_PHY_SERDIVCTRL_OVERRIDE.
 #define BF_HDMI_PHY_SERDIVCTRL_OVERRIDE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_SERDIVCTRL_OVERRIDE) & BM_HDMI_PHY_SERDIVCTRL_OVERRIDE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -404,10 +376,6 @@ typedef union _hw_hdmi_phy_serckctrl
  */
 //@{
 #define HW_HDMI_PHY_SERCKCTRL_ADDR      (REGS_HDMI_PHY_BASE + 0x2)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_SERCKCTRL           (*(volatile hw_hdmi_phy_serckctrl_t *) HW_HDMI_PHY_SERCKCTRL_ADDR)
-#endif
 //@}
 
 /*
@@ -424,7 +392,6 @@ typedef union _hw_hdmi_phy_serckctrl
  * - 1 - Enable the high-speed clock in the third serializer, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN2      (0)      //!< Bit position for HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN2.
 #define BM_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN2      (0x00000001)  //!< Bit mask for HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN2.
 
@@ -433,7 +400,6 @@ typedef union _hw_hdmi_phy_serckctrl
 
 //! @brief Format value for bitfield HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN2.
 #define BF_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN2(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN2) & BM_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN2)
-
 //@}
 
 /*! @name Register HDMI_PHY_SERCKCTRL, field TX_SER_CLK_EN1[1] (RW)
@@ -446,7 +412,6 @@ typedef union _hw_hdmi_phy_serckctrl
  * - 1 - Enable the high-speed clock in the second serializer, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN1      (1)      //!< Bit position for HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN1.
 #define BM_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN1      (0x00000002)  //!< Bit mask for HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN1.
 
@@ -455,7 +420,6 @@ typedef union _hw_hdmi_phy_serckctrl
 
 //! @brief Format value for bitfield HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN1.
 #define BF_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN1(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN1) & BM_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN1)
-
 //@}
 
 /*! @name Register HDMI_PHY_SERCKCTRL, field TX_SER_CLK_EN0[2] (RW)
@@ -468,7 +432,6 @@ typedef union _hw_hdmi_phy_serckctrl
  * - 1 - Enable the high-speed clock in the first serializer, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN0      (2)      //!< Bit position for HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN0.
 #define BM_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN0      (0x00000004)  //!< Bit mask for HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN0.
 
@@ -477,7 +440,6 @@ typedef union _hw_hdmi_phy_serckctrl
 
 //! @brief Format value for bitfield HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN0.
 #define BF_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN0(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN0) & BM_HDMI_PHY_SERCKCTRL_TX_SER_CLK_EN0)
-
 //@}
 
 /*! @name Register HDMI_PHY_SERCKCTRL, field OVERRIDE[15] (RW)
@@ -486,7 +448,6 @@ typedef union _hw_hdmi_phy_serckctrl
  * value.
  */
 //@{
-
 #define BP_HDMI_PHY_SERCKCTRL_OVERRIDE      (15)      //!< Bit position for HDMI_PHY_SERCKCTRL_OVERRIDE.
 #define BM_HDMI_PHY_SERCKCTRL_OVERRIDE      (0x00008000)  //!< Bit mask for HDMI_PHY_SERCKCTRL_OVERRIDE.
 
@@ -495,7 +456,6 @@ typedef union _hw_hdmi_phy_serckctrl
 
 //! @brief Format value for bitfield HDMI_PHY_SERCKCTRL_OVERRIDE.
 #define BF_HDMI_PHY_SERCKCTRL_OVERRIDE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_SERCKCTRL_OVERRIDE) & BM_HDMI_PHY_SERCKCTRL_OVERRIDE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -530,10 +490,6 @@ typedef union _hw_hdmi_phy_serckkillctrl
  */
 //@{
 #define HW_HDMI_PHY_SERCKKILLCTRL_ADDR      (REGS_HDMI_PHY_BASE + 0x3)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_SERCKKILLCTRL           (*(volatile hw_hdmi_phy_serckkillctrl_t *) HW_HDMI_PHY_SERCKKILLCTRL_ADDR)
-#endif
 //@}
 
 /*
@@ -551,7 +507,6 @@ typedef union _hw_hdmi_phy_serckkillctrl
  * - 1 - Delay the tx_ck_out2 clock by 0.2 UI, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL2      (0)      //!< Bit position for HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL2.
 #define BM_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL2      (0x00000001)  //!< Bit mask for HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL2.
 
@@ -560,7 +515,6 @@ typedef union _hw_hdmi_phy_serckkillctrl
 
 //! @brief Format value for bitfield HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL2.
 #define BF_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL2(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL2) & BM_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL2)
-
 //@}
 
 /*! @name Register HDMI_PHY_SERCKKILLCTRL, field TX_SER_CLK_KILL1[1] (RW)
@@ -574,7 +528,6 @@ typedef union _hw_hdmi_phy_serckkillctrl
  * - 1 - Delay the tx_ck_out1 clock by 0.2 UI, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL1      (1)      //!< Bit position for HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL1.
 #define BM_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL1      (0x00000002)  //!< Bit mask for HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL1.
 
@@ -583,7 +536,6 @@ typedef union _hw_hdmi_phy_serckkillctrl
 
 //! @brief Format value for bitfield HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL1.
 #define BF_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL1(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL1) & BM_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL1)
-
 //@}
 
 /*! @name Register HDMI_PHY_SERCKKILLCTRL, field TX_SER_CLK_KILL0[2] (RW)
@@ -597,7 +549,6 @@ typedef union _hw_hdmi_phy_serckkillctrl
  * - 1 - Delay the tx_ck_out0 clock by 0.2 UI, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL0      (2)      //!< Bit position for HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL0.
 #define BM_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL0      (0x00000004)  //!< Bit mask for HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL0.
 
@@ -606,7 +557,6 @@ typedef union _hw_hdmi_phy_serckkillctrl
 
 //! @brief Format value for bitfield HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL0.
 #define BF_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL0(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL0) & BM_HDMI_PHY_SERCKKILLCTRL_TX_SER_CLK_KILL0)
-
 //@}
 
 /*! @name Register HDMI_PHY_SERCKKILLCTRL, field OVERRIDE[15] (RW)
@@ -615,7 +565,6 @@ typedef union _hw_hdmi_phy_serckkillctrl
  * value.
  */
 //@{
-
 #define BP_HDMI_PHY_SERCKKILLCTRL_OVERRIDE      (15)      //!< Bit position for HDMI_PHY_SERCKKILLCTRL_OVERRIDE.
 #define BM_HDMI_PHY_SERCKKILLCTRL_OVERRIDE      (0x00008000)  //!< Bit mask for HDMI_PHY_SERCKKILLCTRL_OVERRIDE.
 
@@ -624,7 +573,6 @@ typedef union _hw_hdmi_phy_serckkillctrl
 
 //! @brief Format value for bitfield HDMI_PHY_SERCKKILLCTRL_OVERRIDE.
 #define BF_HDMI_PHY_SERCKKILLCTRL_OVERRIDE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_SERCKKILLCTRL_OVERRIDE) & BM_HDMI_PHY_SERCKKILLCTRL_OVERRIDE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -658,10 +606,6 @@ typedef union _hw_hdmi_phy_txresctrl
  */
 //@{
 #define HW_HDMI_PHY_TXRESCTRL_ADDR      (REGS_HDMI_PHY_BASE + 0x4)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_TXRESCTRL           (*(volatile hw_hdmi_phy_txresctrl_t *) HW_HDMI_PHY_TXRESCTRL_ADDR)
-#endif
 //@}
 
 /*
@@ -675,7 +619,6 @@ typedef union _hw_hdmi_phy_txresctrl
  * results.
  */
 //@{
-
 #define BP_HDMI_PHY_TXRESCTRL_RESCAL_REP      (0)      //!< Bit position for HDMI_PHY_TXRESCTRL_RESCAL_REP.
 #define BM_HDMI_PHY_TXRESCTRL_RESCAL_REP      (0x0000007f)  //!< Bit mask for HDMI_PHY_TXRESCTRL_RESCAL_REP.
 
@@ -684,7 +627,6 @@ typedef union _hw_hdmi_phy_txresctrl
 
 //! @brief Format value for bitfield HDMI_PHY_TXRESCTRL_RESCAL_REP.
 #define BF_HDMI_PHY_TXRESCTRL_RESCAL_REP(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_TXRESCTRL_RESCAL_REP) & BM_HDMI_PHY_TXRESCTRL_RESCAL_REP)
-
 //@}
 
 /*! @name Register HDMI_PHY_TXRESCTRL, field TX_RESCAL[13:7] (RW)
@@ -695,7 +637,6 @@ typedef union _hw_hdmi_phy_txresctrl
  * specific values are defined from lab test results.
  */
 //@{
-
 #define BP_HDMI_PHY_TXRESCTRL_TX_RESCAL      (7)      //!< Bit position for HDMI_PHY_TXRESCTRL_TX_RESCAL.
 #define BM_HDMI_PHY_TXRESCTRL_TX_RESCAL      (0x00003f80)  //!< Bit mask for HDMI_PHY_TXRESCTRL_TX_RESCAL.
 
@@ -704,7 +645,6 @@ typedef union _hw_hdmi_phy_txresctrl
 
 //! @brief Format value for bitfield HDMI_PHY_TXRESCTRL_TX_RESCAL.
 #define BF_HDMI_PHY_TXRESCTRL_TX_RESCAL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_TXRESCTRL_TX_RESCAL) & BM_HDMI_PHY_TXRESCTRL_TX_RESCAL)
-
 //@}
 
 /*! @name Register HDMI_PHY_TXRESCTRL, field OVERRIDE[15] (RW)
@@ -713,7 +653,6 @@ typedef union _hw_hdmi_phy_txresctrl
  * value.
  */
 //@{
-
 #define BP_HDMI_PHY_TXRESCTRL_OVERRIDE      (15)      //!< Bit position for HDMI_PHY_TXRESCTRL_OVERRIDE.
 #define BM_HDMI_PHY_TXRESCTRL_OVERRIDE      (0x00008000)  //!< Bit mask for HDMI_PHY_TXRESCTRL_OVERRIDE.
 
@@ -722,7 +661,6 @@ typedef union _hw_hdmi_phy_txresctrl
 
 //! @brief Format value for bitfield HDMI_PHY_TXRESCTRL_OVERRIDE.
 #define BF_HDMI_PHY_TXRESCTRL_OVERRIDE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_TXRESCTRL_OVERRIDE) & BM_HDMI_PHY_TXRESCTRL_OVERRIDE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -755,10 +693,6 @@ typedef union _hw_hdmi_phy_ckcalctrl
  */
 //@{
 #define HW_HDMI_PHY_CKCALCTRL_ADDR      (REGS_HDMI_PHY_BASE + 0x5)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_CKCALCTRL           (*(volatile hw_hdmi_phy_ckcalctrl_t *) HW_HDMI_PHY_CKCALCTRL_ADDR)
-#endif
 //@}
 
 /*
@@ -773,7 +707,6 @@ typedef union _hw_hdmi_phy_ckcalctrl
  * defined from lab test results.
  */
 //@{
-
 #define BP_HDMI_PHY_CKCALCTRL_CK_RESCAL      (0)      //!< Bit position for HDMI_PHY_CKCALCTRL_CK_RESCAL.
 #define BM_HDMI_PHY_CKCALCTRL_CK_RESCAL      (0x0000007f)  //!< Bit mask for HDMI_PHY_CKCALCTRL_CK_RESCAL.
 
@@ -782,7 +715,6 @@ typedef union _hw_hdmi_phy_ckcalctrl
 
 //! @brief Format value for bitfield HDMI_PHY_CKCALCTRL_CK_RESCAL.
 #define BF_HDMI_PHY_CKCALCTRL_CK_RESCAL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_CKCALCTRL_CK_RESCAL) & BM_HDMI_PHY_CKCALCTRL_CK_RESCAL)
-
 //@}
 
 /*! @name Register HDMI_PHY_CKCALCTRL, field OVERRIDE[15] (RW)
@@ -791,7 +723,6 @@ typedef union _hw_hdmi_phy_ckcalctrl
  * value.
  */
 //@{
-
 #define BP_HDMI_PHY_CKCALCTRL_OVERRIDE      (15)      //!< Bit position for HDMI_PHY_CKCALCTRL_OVERRIDE.
 #define BM_HDMI_PHY_CKCALCTRL_OVERRIDE      (0x00008000)  //!< Bit mask for HDMI_PHY_CKCALCTRL_OVERRIDE.
 
@@ -800,7 +731,6 @@ typedef union _hw_hdmi_phy_ckcalctrl
 
 //! @brief Format value for bitfield HDMI_PHY_CKCALCTRL_OVERRIDE.
 #define BF_HDMI_PHY_CKCALCTRL_OVERRIDE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_CKCALCTRL_OVERRIDE) & BM_HDMI_PHY_CKCALCTRL_OVERRIDE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -837,10 +767,6 @@ typedef union _hw_hdmi_phy_cpce_ctrl
  */
 //@{
 #define HW_HDMI_PHY_CPCE_CTRL_ADDR      (REGS_HDMI_PHY_BASE + 0x6)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_CPCE_CTRL           (*(volatile hw_hdmi_phy_cpce_ctrl_t *) HW_HDMI_PHY_CPCE_CTRL_ADDR)
-#endif
 //@}
 
 /*
@@ -859,7 +785,6 @@ typedef union _hw_hdmi_phy_cpce_ctrl
  * - 11 - Divide by 8.
  */
 //@{
-
 #define BP_HDMI_PHY_CPCE_CTRL_CLR_DPTH      (0)      //!< Bit position for HDMI_PHY_CPCE_CTRL_CLR_DPTH.
 #define BM_HDMI_PHY_CPCE_CTRL_CLR_DPTH      (0x00000003)  //!< Bit mask for HDMI_PHY_CPCE_CTRL_CLR_DPTH.
 
@@ -868,7 +793,6 @@ typedef union _hw_hdmi_phy_cpce_ctrl
 
 //! @brief Format value for bitfield HDMI_PHY_CPCE_CTRL_CLR_DPTH.
 #define BF_HDMI_PHY_CPCE_CTRL_CLR_DPTH(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_CPCE_CTRL_CLR_DPTH) & BM_HDMI_PHY_CPCE_CTRL_CLR_DPTH)
-
 //@}
 
 /*! @name Register HDMI_PHY_CPCE_CTRL, field PIXEL_REP[4:2] (RW)
@@ -885,7 +809,6 @@ typedef union _hw_hdmi_phy_cpce_ctrl
  * - 1x - Pixel_rep[1:0] Divide by 1.
  */
 //@{
-
 #define BP_HDMI_PHY_CPCE_CTRL_PIXEL_REP      (2)      //!< Bit position for HDMI_PHY_CPCE_CTRL_PIXEL_REP.
 #define BM_HDMI_PHY_CPCE_CTRL_PIXEL_REP      (0x0000001c)  //!< Bit mask for HDMI_PHY_CPCE_CTRL_PIXEL_REP.
 
@@ -894,7 +817,6 @@ typedef union _hw_hdmi_phy_cpce_ctrl
 
 //! @brief Format value for bitfield HDMI_PHY_CPCE_CTRL_PIXEL_REP.
 #define BF_HDMI_PHY_CPCE_CTRL_PIXEL_REP(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_CPCE_CTRL_PIXEL_REP) & BM_HDMI_PHY_CPCE_CTRL_PIXEL_REP)
-
 //@}
 
 /*! @name Register HDMI_PHY_CPCE_CTRL, field PLL_N_CNTRL[6:5] (RW)
@@ -910,7 +832,6 @@ typedef union _hw_hdmi_phy_cpce_ctrl
  * - 11 - N = 8 (for TMDS rate (not the pixel rate) up to 45.25 MHz)
  */
 //@{
-
 #define BP_HDMI_PHY_CPCE_CTRL_PLL_N_CNTRL      (5)      //!< Bit position for HDMI_PHY_CPCE_CTRL_PLL_N_CNTRL.
 #define BM_HDMI_PHY_CPCE_CTRL_PLL_N_CNTRL      (0x00000060)  //!< Bit mask for HDMI_PHY_CPCE_CTRL_PLL_N_CNTRL.
 
@@ -919,7 +840,6 @@ typedef union _hw_hdmi_phy_cpce_ctrl
 
 //! @brief Format value for bitfield HDMI_PHY_CPCE_CTRL_PLL_N_CNTRL.
 #define BF_HDMI_PHY_CPCE_CTRL_PLL_N_CNTRL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_CPCE_CTRL_PLL_N_CNTRL) & BM_HDMI_PHY_CPCE_CTRL_PLL_N_CNTRL)
-
 //@}
 
 /*! @name Register HDMI_PHY_CPCE_CTRL, field MPLL_N_CNTRL[8:7] (RW)
@@ -935,7 +855,6 @@ typedef union _hw_hdmi_phy_cpce_ctrl
  * - 11 - N = 8 (for TMDS rate up to 45.25 MHz)
  */
 //@{
-
 #define BP_HDMI_PHY_CPCE_CTRL_MPLL_N_CNTRL      (7)      //!< Bit position for HDMI_PHY_CPCE_CTRL_MPLL_N_CNTRL.
 #define BM_HDMI_PHY_CPCE_CTRL_MPLL_N_CNTRL      (0x00000180)  //!< Bit mask for HDMI_PHY_CPCE_CTRL_MPLL_N_CNTRL.
 
@@ -944,7 +863,6 @@ typedef union _hw_hdmi_phy_cpce_ctrl
 
 //! @brief Format value for bitfield HDMI_PHY_CPCE_CTRL_MPLL_N_CNTRL.
 #define BF_HDMI_PHY_CPCE_CTRL_MPLL_N_CNTRL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_CPCE_CTRL_MPLL_N_CNTRL) & BM_HDMI_PHY_CPCE_CTRL_MPLL_N_CNTRL)
-
 //@}
 
 /*! @name Register HDMI_PHY_CPCE_CTRL, field CK_EDGERATE[10:9] (RW)
@@ -958,7 +876,6 @@ typedef union _hw_hdmi_phy_cpce_ctrl
  * - 1 - ck_edgerate[1]: Enable edge rate override.
  */
 //@{
-
 #define BP_HDMI_PHY_CPCE_CTRL_CK_EDGERATE      (9)      //!< Bit position for HDMI_PHY_CPCE_CTRL_CK_EDGERATE.
 #define BM_HDMI_PHY_CPCE_CTRL_CK_EDGERATE      (0x00000600)  //!< Bit mask for HDMI_PHY_CPCE_CTRL_CK_EDGERATE.
 
@@ -967,7 +884,6 @@ typedef union _hw_hdmi_phy_cpce_ctrl
 
 //! @brief Format value for bitfield HDMI_PHY_CPCE_CTRL_CK_EDGERATE.
 #define BF_HDMI_PHY_CPCE_CTRL_CK_EDGERATE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_CPCE_CTRL_CK_EDGERATE) & BM_HDMI_PHY_CPCE_CTRL_CK_EDGERATE)
-
 //@}
 
 /*! @name Register HDMI_PHY_CPCE_CTRL, field TX_EDGERATE[12:11] (RW)
@@ -981,7 +897,6 @@ typedef union _hw_hdmi_phy_cpce_ctrl
  * - 1 - tx_edgerate[1]: Enable edge rate override.
  */
 //@{
-
 #define BP_HDMI_PHY_CPCE_CTRL_TX_EDGERATE      (11)      //!< Bit position for HDMI_PHY_CPCE_CTRL_TX_EDGERATE.
 #define BM_HDMI_PHY_CPCE_CTRL_TX_EDGERATE      (0x00001800)  //!< Bit mask for HDMI_PHY_CPCE_CTRL_TX_EDGERATE.
 
@@ -990,7 +905,6 @@ typedef union _hw_hdmi_phy_cpce_ctrl
 
 //! @brief Format value for bitfield HDMI_PHY_CPCE_CTRL_TX_EDGERATE.
 #define BF_HDMI_PHY_CPCE_CTRL_TX_EDGERATE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_CPCE_CTRL_TX_EDGERATE) & BM_HDMI_PHY_CPCE_CTRL_TX_EDGERATE)
-
 //@}
 
 /*! @name Register HDMI_PHY_CPCE_CTRL, field PREP_DIV[14:13] (RW)
@@ -1005,7 +919,6 @@ typedef union _hw_hdmi_phy_cpce_ctrl
  * - 11 - Divide by 2 (16 bits).
  */
 //@{
-
 #define BP_HDMI_PHY_CPCE_CTRL_PREP_DIV      (13)      //!< Bit position for HDMI_PHY_CPCE_CTRL_PREP_DIV.
 #define BM_HDMI_PHY_CPCE_CTRL_PREP_DIV      (0x00006000)  //!< Bit mask for HDMI_PHY_CPCE_CTRL_PREP_DIV.
 
@@ -1014,7 +927,6 @@ typedef union _hw_hdmi_phy_cpce_ctrl
 
 //! @brief Format value for bitfield HDMI_PHY_CPCE_CTRL_PREP_DIV.
 #define BF_HDMI_PHY_CPCE_CTRL_PREP_DIV(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_CPCE_CTRL_PREP_DIV) & BM_HDMI_PHY_CPCE_CTRL_PREP_DIV)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1067,10 +979,6 @@ typedef union _hw_hdmi_phy_txclkmeasctrl
  */
 //@{
 #define HW_HDMI_PHY_TXCLKMEASCTRL_ADDR      (REGS_HDMI_PHY_BASE + 0x7)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_TXCLKMEASCTRL           (*(volatile hw_hdmi_phy_txclkmeasctrl_t *) HW_HDMI_PHY_TXCLKMEASCTRL_ADDR)
-#endif
 //@}
 
 /*
@@ -1084,7 +992,6 @@ typedef union _hw_hdmi_phy_txclkmeasctrl
  * described in the ck_meas_iv[7:0] table.
  */
 //@{
-
 #define BP_HDMI_PHY_TXCLKMEASCTRL_CK_MEAS_IV      (0)      //!< Bit position for HDMI_PHY_TXCLKMEASCTRL_CK_MEAS_IV.
 #define BM_HDMI_PHY_TXCLKMEASCTRL_CK_MEAS_IV      (0x000000ff)  //!< Bit mask for HDMI_PHY_TXCLKMEASCTRL_CK_MEAS_IV.
 
@@ -1093,7 +1000,6 @@ typedef union _hw_hdmi_phy_txclkmeasctrl
 
 //! @brief Format value for bitfield HDMI_PHY_TXCLKMEASCTRL_CK_MEAS_IV.
 #define BF_HDMI_PHY_TXCLKMEASCTRL_CK_MEAS_IV(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_TXCLKMEASCTRL_CK_MEAS_IV) & BM_HDMI_PHY_TXCLKMEASCTRL_CK_MEAS_IV)
-
 //@}
 
 /*! @name Register HDMI_PHY_TXCLKMEASCTRL, field TX_MEAS_IV2[15:8] (RW)
@@ -1103,7 +1009,6 @@ typedef union _hw_hdmi_phy_txclkmeasctrl
  * as described in the tx_meas_iv2[7:0] table.
  */
 //@{
-
 #define BP_HDMI_PHY_TXCLKMEASCTRL_TX_MEAS_IV2      (8)      //!< Bit position for HDMI_PHY_TXCLKMEASCTRL_TX_MEAS_IV2.
 #define BM_HDMI_PHY_TXCLKMEASCTRL_TX_MEAS_IV2      (0x0000ff00)  //!< Bit mask for HDMI_PHY_TXCLKMEASCTRL_TX_MEAS_IV2.
 
@@ -1112,7 +1017,6 @@ typedef union _hw_hdmi_phy_txclkmeasctrl
 
 //! @brief Format value for bitfield HDMI_PHY_TXCLKMEASCTRL_TX_MEAS_IV2.
 #define BF_HDMI_PHY_TXCLKMEASCTRL_TX_MEAS_IV2(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_TXCLKMEASCTRL_TX_MEAS_IV2) & BM_HDMI_PHY_TXCLKMEASCTRL_TX_MEAS_IV2)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1165,10 +1069,6 @@ typedef union _hw_hdmi_phy_txmeasctrl
  */
 //@{
 #define HW_HDMI_PHY_TXMEASCTRL_ADDR      (REGS_HDMI_PHY_BASE + 0x8)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_TXMEASCTRL           (*(volatile hw_hdmi_phy_txmeasctrl_t *) HW_HDMI_PHY_TXMEASCTRL_ADDR)
-#endif
 //@}
 
 /*
@@ -1182,7 +1082,6 @@ typedef union _hw_hdmi_phy_txmeasctrl
  * as described in the tx_meas_iv1[7:0] table.
  */
 //@{
-
 #define BP_HDMI_PHY_TXMEASCTRL_TX_MEAS_IV1      (0)      //!< Bit position for HDMI_PHY_TXMEASCTRL_TX_MEAS_IV1.
 #define BM_HDMI_PHY_TXMEASCTRL_TX_MEAS_IV1      (0x000000ff)  //!< Bit mask for HDMI_PHY_TXMEASCTRL_TX_MEAS_IV1.
 
@@ -1191,7 +1090,6 @@ typedef union _hw_hdmi_phy_txmeasctrl
 
 //! @brief Format value for bitfield HDMI_PHY_TXMEASCTRL_TX_MEAS_IV1.
 #define BF_HDMI_PHY_TXMEASCTRL_TX_MEAS_IV1(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_TXMEASCTRL_TX_MEAS_IV1) & BM_HDMI_PHY_TXMEASCTRL_TX_MEAS_IV1)
-
 //@}
 
 /*! @name Register HDMI_PHY_TXMEASCTRL, field TX_MEAS_IV0[15:8] (RW)
@@ -1201,7 +1099,6 @@ typedef union _hw_hdmi_phy_txmeasctrl
  * as described in the tx_meas_iv0[7:0] table.
  */
 //@{
-
 #define BP_HDMI_PHY_TXMEASCTRL_TX_MEAS_IV0      (8)      //!< Bit position for HDMI_PHY_TXMEASCTRL_TX_MEAS_IV0.
 #define BM_HDMI_PHY_TXMEASCTRL_TX_MEAS_IV0      (0x0000ff00)  //!< Bit mask for HDMI_PHY_TXMEASCTRL_TX_MEAS_IV0.
 
@@ -1210,7 +1107,6 @@ typedef union _hw_hdmi_phy_txmeasctrl
 
 //! @brief Format value for bitfield HDMI_PHY_TXMEASCTRL_TX_MEAS_IV0.
 #define BF_HDMI_PHY_TXMEASCTRL_TX_MEAS_IV0(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_TXMEASCTRL_TX_MEAS_IV0) & BM_HDMI_PHY_TXMEASCTRL_TX_MEAS_IV0)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1246,10 +1142,6 @@ typedef union _hw_hdmi_phy_cksymtxctrl
  */
 //@{
 #define HW_HDMI_PHY_CKSYMTXCTRL_ADDR      (REGS_HDMI_PHY_BASE + 0x9)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_CKSYMTXCTRL           (*(volatile hw_hdmi_phy_cksymtxctrl_t *) HW_HDMI_PHY_CKSYMTXCTRL_ADDR)
-#endif
 //@}
 
 /*
@@ -1266,7 +1158,6 @@ typedef union _hw_hdmi_phy_cksymtxctrl
  * - 1 - Enable the clock symbol driver, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_CKSYMTXCTRL_CK_SYMON      (0)      //!< Bit position for HDMI_PHY_CKSYMTXCTRL_CK_SYMON.
 #define BM_HDMI_PHY_CKSYMTXCTRL_CK_SYMON      (0x00000001)  //!< Bit mask for HDMI_PHY_CKSYMTXCTRL_CK_SYMON.
 
@@ -1275,7 +1166,6 @@ typedef union _hw_hdmi_phy_cksymtxctrl
 
 //! @brief Format value for bitfield HDMI_PHY_CKSYMTXCTRL_CK_SYMON.
 #define BF_HDMI_PHY_CKSYMTXCTRL_CK_SYMON(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_CKSYMTXCTRL_CK_SYMON) & BM_HDMI_PHY_CKSYMTXCTRL_CK_SYMON)
-
 //@}
 
 /*! @name Register HDMI_PHY_CKSYMTXCTRL, field TX_TRBON[1] (RW)
@@ -1289,7 +1179,6 @@ typedef union _hw_hdmi_phy_cksymtxctrl
  * - 1 - Enable the transmitter trailer B driver(s), if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_CKSYMTXCTRL_TX_TRBON      (1)      //!< Bit position for HDMI_PHY_CKSYMTXCTRL_TX_TRBON.
 #define BM_HDMI_PHY_CKSYMTXCTRL_TX_TRBON      (0x00000002)  //!< Bit mask for HDMI_PHY_CKSYMTXCTRL_TX_TRBON.
 
@@ -1298,7 +1187,6 @@ typedef union _hw_hdmi_phy_cksymtxctrl
 
 //! @brief Format value for bitfield HDMI_PHY_CKSYMTXCTRL_TX_TRBON.
 #define BF_HDMI_PHY_CKSYMTXCTRL_TX_TRBON(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_CKSYMTXCTRL_TX_TRBON) & BM_HDMI_PHY_CKSYMTXCTRL_TX_TRBON)
-
 //@}
 
 /*! @name Register HDMI_PHY_CKSYMTXCTRL, field TX_TRAON[2] (RW)
@@ -1312,7 +1200,6 @@ typedef union _hw_hdmi_phy_cksymtxctrl
  * - 1 - Enable the transmitter trailer A driver(s), if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_CKSYMTXCTRL_TX_TRAON      (2)      //!< Bit position for HDMI_PHY_CKSYMTXCTRL_TX_TRAON.
 #define BM_HDMI_PHY_CKSYMTXCTRL_TX_TRAON      (0x00000004)  //!< Bit mask for HDMI_PHY_CKSYMTXCTRL_TX_TRAON.
 
@@ -1321,7 +1208,6 @@ typedef union _hw_hdmi_phy_cksymtxctrl
 
 //! @brief Format value for bitfield HDMI_PHY_CKSYMTXCTRL_TX_TRAON.
 #define BF_HDMI_PHY_CKSYMTXCTRL_TX_TRAON(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_CKSYMTXCTRL_TX_TRAON) & BM_HDMI_PHY_CKSYMTXCTRL_TX_TRAON)
-
 //@}
 
 /*! @name Register HDMI_PHY_CKSYMTXCTRL, field TX_SYMON[3] (RW)
@@ -1334,7 +1220,6 @@ typedef union _hw_hdmi_phy_cksymtxctrl
  * - 1 - Enable the transmitter symbol driver(s), if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_CKSYMTXCTRL_TX_SYMON      (3)      //!< Bit position for HDMI_PHY_CKSYMTXCTRL_TX_SYMON.
 #define BM_HDMI_PHY_CKSYMTXCTRL_TX_SYMON      (0x00000008)  //!< Bit mask for HDMI_PHY_CKSYMTXCTRL_TX_SYMON.
 
@@ -1343,7 +1228,6 @@ typedef union _hw_hdmi_phy_cksymtxctrl
 
 //! @brief Format value for bitfield HDMI_PHY_CKSYMTXCTRL_TX_SYMON.
 #define BF_HDMI_PHY_CKSYMTXCTRL_TX_SYMON(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_CKSYMTXCTRL_TX_SYMON) & BM_HDMI_PHY_CKSYMTXCTRL_TX_SYMON)
-
 //@}
 
 /*! @name Register HDMI_PHY_CKSYMTXCTRL, field OVERRIDE[15] (RW)
@@ -1351,7 +1235,6 @@ typedef union _hw_hdmi_phy_cksymtxctrl
 
  */
 //@{
-
 #define BP_HDMI_PHY_CKSYMTXCTRL_OVERRIDE      (15)      //!< Bit position for HDMI_PHY_CKSYMTXCTRL_OVERRIDE.
 #define BM_HDMI_PHY_CKSYMTXCTRL_OVERRIDE      (0x00008000)  //!< Bit mask for HDMI_PHY_CKSYMTXCTRL_OVERRIDE.
 
@@ -1360,7 +1243,6 @@ typedef union _hw_hdmi_phy_cksymtxctrl
 
 //! @brief Format value for bitfield HDMI_PHY_CKSYMTXCTRL_OVERRIDE.
 #define BF_HDMI_PHY_CKSYMTXCTRL_OVERRIDE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_CKSYMTXCTRL_OVERRIDE) & BM_HDMI_PHY_CKSYMTXCTRL_OVERRIDE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1393,10 +1275,6 @@ typedef union _hw_hdmi_phy_cmpseqctrl
  */
 //@{
 #define HW_HDMI_PHY_CMPSEQCTRL_ADDR      (REGS_HDMI_PHY_BASE + 0xa)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_CMPSEQCTRL           (*(volatile hw_hdmi_phy_cmpseqctrl_t *) HW_HDMI_PHY_CMPSEQCTRL_ADDR)
-#endif
 //@}
 
 /*
@@ -1413,7 +1291,6 @@ typedef union _hw_hdmi_phy_cmpseqctrl
  *     Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_CMPSEQCTRL_SUP_COMP_RT_R      (0)      //!< Bit position for HDMI_PHY_CMPSEQCTRL_SUP_COMP_RT_R.
 #define BM_HDMI_PHY_CMPSEQCTRL_SUP_COMP_RT_R      (0x00000001)  //!< Bit mask for HDMI_PHY_CMPSEQCTRL_SUP_COMP_RT_R.
 
@@ -1422,7 +1299,6 @@ typedef union _hw_hdmi_phy_cmpseqctrl
 
 //! @brief Format value for bitfield HDMI_PHY_CMPSEQCTRL_SUP_COMP_RT_R.
 #define BF_HDMI_PHY_CMPSEQCTRL_SUP_COMP_RT_R(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_CMPSEQCTRL_SUP_COMP_RT_R) & BM_HDMI_PHY_CMPSEQCTRL_SUP_COMP_RT_R)
-
 //@}
 
 /*! @name Register HDMI_PHY_CMPSEQCTRL, field OVERRIDE[15] (RW)
@@ -1431,7 +1307,6 @@ typedef union _hw_hdmi_phy_cmpseqctrl
  * value.
  */
 //@{
-
 #define BP_HDMI_PHY_CMPSEQCTRL_OVERRIDE      (15)      //!< Bit position for HDMI_PHY_CMPSEQCTRL_OVERRIDE.
 #define BM_HDMI_PHY_CMPSEQCTRL_OVERRIDE      (0x00008000)  //!< Bit mask for HDMI_PHY_CMPSEQCTRL_OVERRIDE.
 
@@ -1440,7 +1315,6 @@ typedef union _hw_hdmi_phy_cmpseqctrl
 
 //! @brief Format value for bitfield HDMI_PHY_CMPSEQCTRL_OVERRIDE.
 #define BF_HDMI_PHY_CMPSEQCTRL_OVERRIDE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_CMPSEQCTRL_OVERRIDE) & BM_HDMI_PHY_CMPSEQCTRL_OVERRIDE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1473,10 +1347,6 @@ typedef union _hw_hdmi_phy_cmppwrctrl
  */
 //@{
 #define HW_HDMI_PHY_CMPPWRCTRL_ADDR      (REGS_HDMI_PHY_BASE + 0xb)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_CMPPWRCTRL           (*(volatile hw_hdmi_phy_cmppwrctrl_t *) HW_HDMI_PHY_CMPPWRCTRL_ADDR)
-#endif
 //@}
 
 /*
@@ -1493,7 +1363,6 @@ typedef union _hw_hdmi_phy_cmppwrctrl
  * - 1 - Power on the Comparator module, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_CMPPWRCTRL_SUP_COMP_RT_PWRON      (0)      //!< Bit position for HDMI_PHY_CMPPWRCTRL_SUP_COMP_RT_PWRON.
 #define BM_HDMI_PHY_CMPPWRCTRL_SUP_COMP_RT_PWRON      (0x00000001)  //!< Bit mask for HDMI_PHY_CMPPWRCTRL_SUP_COMP_RT_PWRON.
 
@@ -1502,7 +1371,6 @@ typedef union _hw_hdmi_phy_cmppwrctrl
 
 //! @brief Format value for bitfield HDMI_PHY_CMPPWRCTRL_SUP_COMP_RT_PWRON.
 #define BF_HDMI_PHY_CMPPWRCTRL_SUP_COMP_RT_PWRON(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_CMPPWRCTRL_SUP_COMP_RT_PWRON) & BM_HDMI_PHY_CMPPWRCTRL_SUP_COMP_RT_PWRON)
-
 //@}
 
 /*! @name Register HDMI_PHY_CMPPWRCTRL, field OVERRIDE[15] (RW)
@@ -1511,7 +1379,6 @@ typedef union _hw_hdmi_phy_cmppwrctrl
  * value.
  */
 //@{
-
 #define BP_HDMI_PHY_CMPPWRCTRL_OVERRIDE      (15)      //!< Bit position for HDMI_PHY_CMPPWRCTRL_OVERRIDE.
 #define BM_HDMI_PHY_CMPPWRCTRL_OVERRIDE      (0x00008000)  //!< Bit mask for HDMI_PHY_CMPPWRCTRL_OVERRIDE.
 
@@ -1520,7 +1387,6 @@ typedef union _hw_hdmi_phy_cmppwrctrl
 
 //! @brief Format value for bitfield HDMI_PHY_CMPPWRCTRL_OVERRIDE.
 #define BF_HDMI_PHY_CMPPWRCTRL_OVERRIDE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_CMPPWRCTRL_OVERRIDE) & BM_HDMI_PHY_CMPPWRCTRL_OVERRIDE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1553,10 +1419,6 @@ typedef union _hw_hdmi_phy_cmpmodectrl
  */
 //@{
 #define HW_HDMI_PHY_CMPMODECTRL_ADDR      (REGS_HDMI_PHY_BASE + 0xc)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_CMPMODECTRL           (*(volatile hw_hdmi_phy_cmpmodectrl_t *) HW_HDMI_PHY_CMPMODECTRL_ADDR)
-#endif
 //@}
 
 /*
@@ -1572,7 +1434,6 @@ typedef union _hw_hdmi_phy_cmpmodectrl
  * - 1 - Calibration mode
  */
 //@{
-
 #define BP_HDMI_PHY_CMPMODECTRL_SUP_COMP_MODE      (0)      //!< Bit position for HDMI_PHY_CMPMODECTRL_SUP_COMP_MODE.
 #define BM_HDMI_PHY_CMPMODECTRL_SUP_COMP_MODE      (0x00000001)  //!< Bit mask for HDMI_PHY_CMPMODECTRL_SUP_COMP_MODE.
 
@@ -1581,7 +1442,6 @@ typedef union _hw_hdmi_phy_cmpmodectrl
 
 //! @brief Format value for bitfield HDMI_PHY_CMPMODECTRL_SUP_COMP_MODE.
 #define BF_HDMI_PHY_CMPMODECTRL_SUP_COMP_MODE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_CMPMODECTRL_SUP_COMP_MODE) & BM_HDMI_PHY_CMPMODECTRL_SUP_COMP_MODE)
-
 //@}
 
 /*! @name Register HDMI_PHY_CMPMODECTRL, field OVERRIDE[15] (RW)
@@ -1590,7 +1450,6 @@ typedef union _hw_hdmi_phy_cmpmodectrl
  * value.
  */
 //@{
-
 #define BP_HDMI_PHY_CMPMODECTRL_OVERRIDE      (15)      //!< Bit position for HDMI_PHY_CMPMODECTRL_OVERRIDE.
 #define BM_HDMI_PHY_CMPMODECTRL_OVERRIDE      (0x00008000)  //!< Bit mask for HDMI_PHY_CMPMODECTRL_OVERRIDE.
 
@@ -1599,7 +1458,6 @@ typedef union _hw_hdmi_phy_cmpmodectrl
 
 //! @brief Format value for bitfield HDMI_PHY_CMPMODECTRL_OVERRIDE.
 #define BF_HDMI_PHY_CMPMODECTRL_OVERRIDE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_CMPMODECTRL_OVERRIDE) & BM_HDMI_PHY_CMPMODECTRL_OVERRIDE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1634,10 +1492,6 @@ typedef union _hw_hdmi_phy_measctrl
  */
 //@{
 #define HW_HDMI_PHY_MEASCTRL_ADDR      (REGS_HDMI_PHY_BASE + 0xd)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_MEASCTRL           (*(volatile hw_hdmi_phy_measctrl_t *) HW_HDMI_PHY_MEASCTRL_ADDR)
-#endif
 //@}
 
 /*
@@ -1655,7 +1509,6 @@ typedef union _hw_hdmi_phy_measctrl
  * - 1 - Connect the DAC's output to the analog test bus.
  */
 //@{
-
 #define BP_HDMI_PHY_MEASCTRL_SUP_DAC_ON_ATB      (0)      //!< Bit position for HDMI_PHY_MEASCTRL_SUP_DAC_ON_ATB.
 #define BM_HDMI_PHY_MEASCTRL_SUP_DAC_ON_ATB      (0x00000001)  //!< Bit mask for HDMI_PHY_MEASCTRL_SUP_DAC_ON_ATB.
 
@@ -1664,7 +1517,6 @@ typedef union _hw_hdmi_phy_measctrl
 
 //! @brief Format value for bitfield HDMI_PHY_MEASCTRL_SUP_DAC_ON_ATB.
 #define BF_HDMI_PHY_MEASCTRL_SUP_DAC_ON_ATB(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_MEASCTRL_SUP_DAC_ON_ATB) & BM_HDMI_PHY_MEASCTRL_SUP_DAC_ON_ATB)
-
 //@}
 
 /*! @name Register HDMI_PHY_MEASCTRL, field SUP_POR_MEAS_IV[2:1] (RW)
@@ -1677,7 +1529,6 @@ typedef union _hw_hdmi_phy_measctrl
  * - 10 - Connect V bg (Band-gap voltage) to the analog test bus.
  */
 //@{
-
 #define BP_HDMI_PHY_MEASCTRL_SUP_POR_MEAS_IV      (1)      //!< Bit position for HDMI_PHY_MEASCTRL_SUP_POR_MEAS_IV.
 #define BM_HDMI_PHY_MEASCTRL_SUP_POR_MEAS_IV      (0x00000006)  //!< Bit mask for HDMI_PHY_MEASCTRL_SUP_POR_MEAS_IV.
 
@@ -1686,7 +1537,6 @@ typedef union _hw_hdmi_phy_measctrl
 
 //! @brief Format value for bitfield HDMI_PHY_MEASCTRL_SUP_POR_MEAS_IV.
 #define BF_HDMI_PHY_MEASCTRL_SUP_POR_MEAS_IV(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_MEASCTRL_SUP_POR_MEAS_IV) & BM_HDMI_PHY_MEASCTRL_SUP_POR_MEAS_IV)
-
 //@}
 
 /*! @name Register HDMI_PHY_MEASCTRL, field SUP_ATB_ON_REXT[3] (RW)
@@ -1699,7 +1549,6 @@ typedef union _hw_hdmi_phy_measctrl
  * - 1 - Connect the V rext node to the analog test bus.
  */
 //@{
-
 #define BP_HDMI_PHY_MEASCTRL_SUP_ATB_ON_REXT      (3)      //!< Bit position for HDMI_PHY_MEASCTRL_SUP_ATB_ON_REXT.
 #define BM_HDMI_PHY_MEASCTRL_SUP_ATB_ON_REXT      (0x00000008)  //!< Bit mask for HDMI_PHY_MEASCTRL_SUP_ATB_ON_REXT.
 
@@ -1708,7 +1557,6 @@ typedef union _hw_hdmi_phy_measctrl
 
 //! @brief Format value for bitfield HDMI_PHY_MEASCTRL_SUP_ATB_ON_REXT.
 #define BF_HDMI_PHY_MEASCTRL_SUP_ATB_ON_REXT(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_MEASCTRL_SUP_ATB_ON_REXT) & BM_HDMI_PHY_MEASCTRL_SUP_ATB_ON_REXT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1740,10 +1588,6 @@ typedef union _hw_hdmi_phy_vlevctrl
  */
 //@{
 #define HW_HDMI_PHY_VLEVCTRL_ADDR      (REGS_HDMI_PHY_BASE + 0xe)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_VLEVCTRL           (*(volatile hw_hdmi_phy_vlevctrl_t *) HW_HDMI_PHY_VLEVCTRL_ADDR)
-#endif
 //@}
 
 /*
@@ -1757,7 +1601,6 @@ typedef union _hw_hdmi_phy_vlevctrl
  * information about the driver voltage level configuration, see .
  */
 //@{
-
 #define BP_HDMI_PHY_VLEVCTRL_SUP_CK_LVL      (0)      //!< Bit position for HDMI_PHY_VLEVCTRL_SUP_CK_LVL.
 #define BM_HDMI_PHY_VLEVCTRL_SUP_CK_LVL      (0x0000001f)  //!< Bit mask for HDMI_PHY_VLEVCTRL_SUP_CK_LVL.
 
@@ -1766,7 +1609,6 @@ typedef union _hw_hdmi_phy_vlevctrl
 
 //! @brief Format value for bitfield HDMI_PHY_VLEVCTRL_SUP_CK_LVL.
 #define BF_HDMI_PHY_VLEVCTRL_SUP_CK_LVL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_VLEVCTRL_SUP_CK_LVL) & BM_HDMI_PHY_VLEVCTRL_SUP_CK_LVL)
-
 //@}
 
 /*! @name Register HDMI_PHY_VLEVCTRL, field SUP_TX_LVL[9:5] (RW)
@@ -1776,7 +1618,6 @@ typedef union _hw_hdmi_phy_vlevctrl
  * level. For more information about the driver voltage level configuration, see .
  */
 //@{
-
 #define BP_HDMI_PHY_VLEVCTRL_SUP_TX_LVL      (5)      //!< Bit position for HDMI_PHY_VLEVCTRL_SUP_TX_LVL.
 #define BM_HDMI_PHY_VLEVCTRL_SUP_TX_LVL      (0x000003e0)  //!< Bit mask for HDMI_PHY_VLEVCTRL_SUP_TX_LVL.
 
@@ -1785,7 +1626,6 @@ typedef union _hw_hdmi_phy_vlevctrl
 
 //! @brief Format value for bitfield HDMI_PHY_VLEVCTRL_SUP_TX_LVL.
 #define BF_HDMI_PHY_VLEVCTRL_SUP_TX_LVL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_VLEVCTRL_SUP_TX_LVL) & BM_HDMI_PHY_VLEVCTRL_SUP_TX_LVL)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1818,10 +1658,6 @@ typedef union _hw_hdmi_phy_d2actrl
  */
 //@{
 #define HW_HDMI_PHY_D2ACTRL_ADDR      (REGS_HDMI_PHY_BASE + 0xf)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_D2ACTRL           (*(volatile hw_hdmi_phy_d2actrl_t *) HW_HDMI_PHY_D2ACTRL_ADDR)
-#endif
 //@}
 
 /*
@@ -1838,7 +1674,6 @@ typedef union _hw_hdmi_phy_d2actrl
  * "00" -> "01" -> "11" in thermometer code.
  */
 //@{
-
 #define BP_HDMI_PHY_D2ACTRL_SUP_DAC_TH_N      (0)      //!< Bit position for HDMI_PHY_D2ACTRL_SUP_DAC_TH_N.
 #define BM_HDMI_PHY_D2ACTRL_SUP_DAC_TH_N      (0x00000007)  //!< Bit mask for HDMI_PHY_D2ACTRL_SUP_DAC_TH_N.
 
@@ -1847,7 +1682,6 @@ typedef union _hw_hdmi_phy_d2actrl
 
 //! @brief Format value for bitfield HDMI_PHY_D2ACTRL_SUP_DAC_TH_N.
 #define BF_HDMI_PHY_D2ACTRL_SUP_DAC_TH_N(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_D2ACTRL_SUP_DAC_TH_N) & BM_HDMI_PHY_D2ACTRL_SUP_DAC_TH_N)
-
 //@}
 
 /*! @name Register HDMI_PHY_D2ACTRL, field SUP_DAC_N[10:3] (RW)
@@ -1855,7 +1689,6 @@ typedef union _hw_hdmi_phy_d2actrl
  * Support Analog-to-Digital Inverted This bus represents the LSB's of the 9-bit DAC value.
  */
 //@{
-
 #define BP_HDMI_PHY_D2ACTRL_SUP_DAC_N      (3)      //!< Bit position for HDMI_PHY_D2ACTRL_SUP_DAC_N.
 #define BM_HDMI_PHY_D2ACTRL_SUP_DAC_N      (0x000007f8)  //!< Bit mask for HDMI_PHY_D2ACTRL_SUP_DAC_N.
 
@@ -1864,7 +1697,6 @@ typedef union _hw_hdmi_phy_d2actrl
 
 //! @brief Format value for bitfield HDMI_PHY_D2ACTRL_SUP_DAC_N.
 #define BF_HDMI_PHY_D2ACTRL_SUP_DAC_N(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_D2ACTRL_SUP_DAC_N) & BM_HDMI_PHY_D2ACTRL_SUP_DAC_N)
-
 //@}
 
 /*! @name Register HDMI_PHY_D2ACTRL, field OVERRIDE[15] (RW)
@@ -1873,7 +1705,6 @@ typedef union _hw_hdmi_phy_d2actrl
  * value.
  */
 //@{
-
 #define BP_HDMI_PHY_D2ACTRL_OVERRIDE      (15)      //!< Bit position for HDMI_PHY_D2ACTRL_OVERRIDE.
 #define BM_HDMI_PHY_D2ACTRL_OVERRIDE      (0x00008000)  //!< Bit mask for HDMI_PHY_D2ACTRL_OVERRIDE.
 
@@ -1882,7 +1713,6 @@ typedef union _hw_hdmi_phy_d2actrl
 
 //! @brief Format value for bitfield HDMI_PHY_D2ACTRL_OVERRIDE.
 #define BF_HDMI_PHY_D2ACTRL_OVERRIDE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_D2ACTRL_OVERRIDE) & BM_HDMI_PHY_D2ACTRL_OVERRIDE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1916,10 +1746,6 @@ typedef union _hw_hdmi_phy_currctrl
  */
 //@{
 #define HW_HDMI_PHY_CURRCTRL_ADDR      (REGS_HDMI_PHY_BASE + 0x10)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_CURRCTRL           (*(volatile hw_hdmi_phy_currctrl_t *) HW_HDMI_PHY_CURRCTRL_ADDR)
-#endif
 //@}
 
 /*
@@ -1933,7 +1759,6 @@ typedef union _hw_hdmi_phy_currctrl
  * Default (reset) value of pll_int_cntrl[2:0] is 100.
  */
 //@{
-
 #define BP_HDMI_PHY_CURRCTRL_PLL_INT_CNTRL      (0)      //!< Bit position for HDMI_PHY_CURRCTRL_PLL_INT_CNTRL.
 #define BM_HDMI_PHY_CURRCTRL_PLL_INT_CNTRL      (0x00000007)  //!< Bit mask for HDMI_PHY_CURRCTRL_PLL_INT_CNTRL.
 
@@ -1942,7 +1767,6 @@ typedef union _hw_hdmi_phy_currctrl
 
 //! @brief Format value for bitfield HDMI_PHY_CURRCTRL_PLL_INT_CNTRL.
 #define BF_HDMI_PHY_CURRCTRL_PLL_INT_CNTRL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_CURRCTRL_PLL_INT_CNTRL) & BM_HDMI_PHY_CURRCTRL_PLL_INT_CNTRL)
-
 //@}
 
 /*! @name Register HDMI_PHY_CURRCTRL, field PLL_PROP_CNTRL[5:3] (RW)
@@ -1952,7 +1776,6 @@ typedef union _hw_hdmi_phy_currctrl
  * Default (reset) value of pll_int_cntrl is 011.
  */
 //@{
-
 #define BP_HDMI_PHY_CURRCTRL_PLL_PROP_CNTRL      (3)      //!< Bit position for HDMI_PHY_CURRCTRL_PLL_PROP_CNTRL.
 #define BM_HDMI_PHY_CURRCTRL_PLL_PROP_CNTRL      (0x00000038)  //!< Bit mask for HDMI_PHY_CURRCTRL_PLL_PROP_CNTRL.
 
@@ -1961,7 +1784,6 @@ typedef union _hw_hdmi_phy_currctrl
 
 //! @brief Format value for bitfield HDMI_PHY_CURRCTRL_PLL_PROP_CNTRL.
 #define BF_HDMI_PHY_CURRCTRL_PLL_PROP_CNTRL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_CURRCTRL_PLL_PROP_CNTRL) & BM_HDMI_PHY_CURRCTRL_PLL_PROP_CNTRL)
-
 //@}
 
 /*! @name Register HDMI_PHY_CURRCTRL, field MPLL_INT_CNTRL[8:6] (RW)
@@ -1971,7 +1793,6 @@ typedef union _hw_hdmi_phy_currctrl
  * value of pll_int_cntrl[1:0] is 100.
  */
 //@{
-
 #define BP_HDMI_PHY_CURRCTRL_MPLL_INT_CNTRL      (6)      //!< Bit position for HDMI_PHY_CURRCTRL_MPLL_INT_CNTRL.
 #define BM_HDMI_PHY_CURRCTRL_MPLL_INT_CNTRL      (0x000001c0)  //!< Bit mask for HDMI_PHY_CURRCTRL_MPLL_INT_CNTRL.
 
@@ -1980,7 +1801,6 @@ typedef union _hw_hdmi_phy_currctrl
 
 //! @brief Format value for bitfield HDMI_PHY_CURRCTRL_MPLL_INT_CNTRL.
 #define BF_HDMI_PHY_CURRCTRL_MPLL_INT_CNTRL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_CURRCTRL_MPLL_INT_CNTRL) & BM_HDMI_PHY_CURRCTRL_MPLL_INT_CNTRL)
-
 //@}
 
 /*! @name Register HDMI_PHY_CURRCTRL, field MPLL_PROP_CNTRL[11:9] (RW)
@@ -1990,7 +1810,6 @@ typedef union _hw_hdmi_phy_currctrl
  * . Default (reset) value of pll_prop_cntrl[1:0] is 100.
  */
 //@{
-
 #define BP_HDMI_PHY_CURRCTRL_MPLL_PROP_CNTRL      (9)      //!< Bit position for HDMI_PHY_CURRCTRL_MPLL_PROP_CNTRL.
 #define BM_HDMI_PHY_CURRCTRL_MPLL_PROP_CNTRL      (0x00000e00)  //!< Bit mask for HDMI_PHY_CURRCTRL_MPLL_PROP_CNTRL.
 
@@ -1999,7 +1818,6 @@ typedef union _hw_hdmi_phy_currctrl
 
 //! @brief Format value for bitfield HDMI_PHY_CURRCTRL_MPLL_PROP_CNTRL.
 #define BF_HDMI_PHY_CURRCTRL_MPLL_PROP_CNTRL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_CURRCTRL_MPLL_PROP_CNTRL) & BM_HDMI_PHY_CURRCTRL_MPLL_PROP_CNTRL)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2033,10 +1851,6 @@ typedef union _hw_hdmi_phy_drvanactrl
  */
 //@{
 #define HW_HDMI_PHY_DRVANACTRL_ADDR      (REGS_HDMI_PHY_BASE + 0x11)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_DRVANACTRL           (*(volatile hw_hdmi_phy_drvanactrl_t *) HW_HDMI_PHY_DRVANACTRL_ADDR)
-#endif
 //@}
 
 /*
@@ -2054,7 +1868,6 @@ typedef union _hw_hdmi_phy_drvanactrl
  *     (tx_topa), if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_DRVANACTRL_MPLL_DRV_ANA      (0)      //!< Bit position for HDMI_PHY_DRVANACTRL_MPLL_DRV_ANA.
 #define BM_HDMI_PHY_DRVANACTRL_MPLL_DRV_ANA      (0x00000001)  //!< Bit mask for HDMI_PHY_DRVANACTRL_MPLL_DRV_ANA.
 
@@ -2063,7 +1876,6 @@ typedef union _hw_hdmi_phy_drvanactrl
 
 //! @brief Format value for bitfield HDMI_PHY_DRVANACTRL_MPLL_DRV_ANA.
 #define BF_HDMI_PHY_DRVANACTRL_MPLL_DRV_ANA(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_DRVANACTRL_MPLL_DRV_ANA) & BM_HDMI_PHY_DRVANACTRL_MPLL_DRV_ANA)
-
 //@}
 
 /*! @name Register HDMI_PHY_DRVANACTRL, field PLL_DRV_ANA[1] (RW)
@@ -2076,7 +1888,6 @@ typedef union _hw_hdmi_phy_drvanactrl
  * - 1 - Enable 25-340 MHz output clock (ck_ref_mpll_p/m) to be driven to MPLL, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_DRVANACTRL_PLL_DRV_ANA      (1)      //!< Bit position for HDMI_PHY_DRVANACTRL_PLL_DRV_ANA.
 #define BM_HDMI_PHY_DRVANACTRL_PLL_DRV_ANA      (0x00000002)  //!< Bit mask for HDMI_PHY_DRVANACTRL_PLL_DRV_ANA.
 
@@ -2085,7 +1896,6 @@ typedef union _hw_hdmi_phy_drvanactrl
 
 //! @brief Format value for bitfield HDMI_PHY_DRVANACTRL_PLL_DRV_ANA.
 #define BF_HDMI_PHY_DRVANACTRL_PLL_DRV_ANA(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_DRVANACTRL_PLL_DRV_ANA) & BM_HDMI_PHY_DRVANACTRL_PLL_DRV_ANA)
-
 //@}
 
 /*! @name Register HDMI_PHY_DRVANACTRL, field OVERRIDE[15] (RW)
@@ -2094,7 +1904,6 @@ typedef union _hw_hdmi_phy_drvanactrl
  * value.
  */
 //@{
-
 #define BP_HDMI_PHY_DRVANACTRL_OVERRIDE      (15)      //!< Bit position for HDMI_PHY_DRVANACTRL_OVERRIDE.
 #define BM_HDMI_PHY_DRVANACTRL_OVERRIDE      (0x00008000)  //!< Bit mask for HDMI_PHY_DRVANACTRL_OVERRIDE.
 
@@ -2103,7 +1912,6 @@ typedef union _hw_hdmi_phy_drvanactrl
 
 //! @brief Format value for bitfield HDMI_PHY_DRVANACTRL_OVERRIDE.
 #define BF_HDMI_PHY_DRVANACTRL_OVERRIDE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_DRVANACTRL_OVERRIDE) & BM_HDMI_PHY_DRVANACTRL_OVERRIDE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2149,10 +1957,6 @@ typedef union _hw_hdmi_phy_pllmeasctrl
  */
 //@{
 #define HW_HDMI_PHY_PLLMEASCTRL_ADDR      (REGS_HDMI_PHY_BASE + 0x12)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_PLLMEASCTRL           (*(volatile hw_hdmi_phy_pllmeasctrl_t *) HW_HDMI_PHY_PLLMEASCTRL_ADDR)
-#endif
 //@}
 
 /*
@@ -2169,7 +1973,6 @@ typedef union _hw_hdmi_phy_pllmeasctrl
  * - 1 - Connect the ground signal to the atb_sense bus.
  */
 //@{
-
 #define BP_HDMI_PHY_PLLMEASCTRL_PLL_MEAS_GD      (0)      //!< Bit position for HDMI_PHY_PLLMEASCTRL_PLL_MEAS_GD.
 #define BM_HDMI_PHY_PLLMEASCTRL_PLL_MEAS_GD      (0x00000001)  //!< Bit mask for HDMI_PHY_PLLMEASCTRL_PLL_MEAS_GD.
 
@@ -2178,7 +1981,6 @@ typedef union _hw_hdmi_phy_pllmeasctrl
 
 //! @brief Format value for bitfield HDMI_PHY_PLLMEASCTRL_PLL_MEAS_GD.
 #define BF_HDMI_PHY_PLLMEASCTRL_PLL_MEAS_GD(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_PLLMEASCTRL_PLL_MEAS_GD) & BM_HDMI_PHY_PLLMEASCTRL_PLL_MEAS_GD)
-
 //@}
 
 /*! @name Register HDMI_PHY_PLLMEASCTRL, field PLL_MEAS_IV[11:1] (RW)
@@ -2187,7 +1989,6 @@ typedef union _hw_hdmi_phy_pllmeasctrl
  * branch currents. For information about the bit settings, see the pll_meas_iv[10:0] table.
  */
 //@{
-
 #define BP_HDMI_PHY_PLLMEASCTRL_PLL_MEAS_IV      (1)      //!< Bit position for HDMI_PHY_PLLMEASCTRL_PLL_MEAS_IV.
 #define BM_HDMI_PHY_PLLMEASCTRL_PLL_MEAS_IV      (0x00000ffe)  //!< Bit mask for HDMI_PHY_PLLMEASCTRL_PLL_MEAS_IV.
 
@@ -2196,7 +1997,6 @@ typedef union _hw_hdmi_phy_pllmeasctrl
 
 //! @brief Format value for bitfield HDMI_PHY_PLLMEASCTRL_PLL_MEAS_IV.
 #define BF_HDMI_PHY_PLLMEASCTRL_PLL_MEAS_IV(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_PLLMEASCTRL_PLL_MEAS_IV) & BM_HDMI_PHY_PLLMEASCTRL_PLL_MEAS_IV)
-
 //@}
 
 /*! @name Register HDMI_PHY_PLLMEASCTRL, field PLL_ATB_SENSE_SEL[12] (RW)
@@ -2210,7 +2010,6 @@ typedef union _hw_hdmi_phy_pllmeasctrl
  * - 1 - Enable the ability to measure internal DC signals on the atb_sense line in the PLL.
  */
 //@{
-
 #define BP_HDMI_PHY_PLLMEASCTRL_PLL_ATB_SENSE_SEL      (12)      //!< Bit position for HDMI_PHY_PLLMEASCTRL_PLL_ATB_SENSE_SEL.
 #define BM_HDMI_PHY_PLLMEASCTRL_PLL_ATB_SENSE_SEL      (0x00001000)  //!< Bit mask for HDMI_PHY_PLLMEASCTRL_PLL_ATB_SENSE_SEL.
 
@@ -2219,7 +2018,6 @@ typedef union _hw_hdmi_phy_pllmeasctrl
 
 //! @brief Format value for bitfield HDMI_PHY_PLLMEASCTRL_PLL_ATB_SENSE_SEL.
 #define BF_HDMI_PHY_PLLMEASCTRL_PLL_ATB_SENSE_SEL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_PLLMEASCTRL_PLL_ATB_SENSE_SEL) & BM_HDMI_PHY_PLLMEASCTRL_PLL_ATB_SENSE_SEL)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2252,10 +2050,6 @@ typedef union _hw_hdmi_phy_pllphbyctrl
  */
 //@{
 #define HW_HDMI_PHY_PLLPHBYCTRL_ADDR      (REGS_HDMI_PHY_BASE + 0x13)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_PLLPHBYCTRL           (*(volatile hw_hdmi_phy_pllphbyctrl_t *) HW_HDMI_PHY_PLLPHBYCTRL_ADDR)
-#endif
 //@}
 
 /*
@@ -2268,7 +2062,6 @@ typedef union _hw_hdmi_phy_pllphbyctrl
  * pll_cko_pm_p/m to be varied ± 0.5 UI of the VCO frequency, which is 740-1,480 MHz.
  */
 //@{
-
 #define BP_HDMI_PHY_PLLPHBYCTRL_PLL_PH_SEL      (0)      //!< Bit position for HDMI_PHY_PLLPHBYCTRL_PLL_PH_SEL.
 #define BM_HDMI_PHY_PLLPHBYCTRL_PLL_PH_SEL      (0x000003ff)  //!< Bit mask for HDMI_PHY_PLLPHBYCTRL_PLL_PH_SEL.
 
@@ -2277,7 +2070,6 @@ typedef union _hw_hdmi_phy_pllphbyctrl
 
 //! @brief Format value for bitfield HDMI_PHY_PLLPHBYCTRL_PLL_PH_SEL.
 #define BF_HDMI_PHY_PLLPHBYCTRL_PLL_PH_SEL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_PLLPHBYCTRL_PLL_PH_SEL) & BM_HDMI_PHY_PLLPHBYCTRL_PLL_PH_SEL)
-
 //@}
 
 /*! @name Register HDMI_PHY_PLLPHBYCTRL, field PLL_PH_SEL_CK[10] (RW)
@@ -2290,7 +2082,6 @@ typedef union _hw_hdmi_phy_pllphbyctrl
  * - 1 - Enable latching the pll_ph_sel[9:0] into the 9-bit DAC.
  */
 //@{
-
 #define BP_HDMI_PHY_PLLPHBYCTRL_PLL_PH_SEL_CK      (10)      //!< Bit position for HDMI_PHY_PLLPHBYCTRL_PLL_PH_SEL_CK.
 #define BM_HDMI_PHY_PLLPHBYCTRL_PLL_PH_SEL_CK      (0x00000400)  //!< Bit mask for HDMI_PHY_PLLPHBYCTRL_PLL_PH_SEL_CK.
 
@@ -2299,7 +2090,6 @@ typedef union _hw_hdmi_phy_pllphbyctrl
 
 //! @brief Format value for bitfield HDMI_PHY_PLLPHBYCTRL_PLL_PH_SEL_CK.
 #define BF_HDMI_PHY_PLLPHBYCTRL_PLL_PH_SEL_CK(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_PLLPHBYCTRL_PLL_PH_SEL_CK) & BM_HDMI_PHY_PLLPHBYCTRL_PLL_PH_SEL_CK)
-
 //@}
 
 /*! @name Register HDMI_PHY_PLLPHBYCTRL, field BYPASS_PPLL[11] (RW)
@@ -2311,7 +2101,6 @@ typedef union _hw_hdmi_phy_pllphbyctrl
  * - 1 - Enable bypassing pll_top by buffering refclk to refclk_mpll_ref.
  */
 //@{
-
 #define BP_HDMI_PHY_PLLPHBYCTRL_BYPASS_PPLL      (11)      //!< Bit position for HDMI_PHY_PLLPHBYCTRL_BYPASS_PPLL.
 #define BM_HDMI_PHY_PLLPHBYCTRL_BYPASS_PPLL      (0x00000800)  //!< Bit mask for HDMI_PHY_PLLPHBYCTRL_BYPASS_PPLL.
 
@@ -2320,7 +2109,6 @@ typedef union _hw_hdmi_phy_pllphbyctrl
 
 //! @brief Format value for bitfield HDMI_PHY_PLLPHBYCTRL_BYPASS_PPLL.
 #define BF_HDMI_PHY_PLLPHBYCTRL_BYPASS_PPLL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_PLLPHBYCTRL_BYPASS_PPLL) & BM_HDMI_PHY_PLLPHBYCTRL_BYPASS_PPLL)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2357,10 +2145,6 @@ typedef union _hw_hdmi_phy_grp_ctrl
  */
 //@{
 #define HW_HDMI_PHY_GRP_CTRL_ADDR      (REGS_HDMI_PHY_BASE + 0x14)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_GRP_CTRL           (*(volatile hw_hdmi_phy_grp_ctrl_t *) HW_HDMI_PHY_GRP_CTRL_ADDR)
-#endif
 //@}
 
 /*
@@ -2377,7 +2161,6 @@ typedef union _hw_hdmi_phy_grp_ctrl
  * - 1 - Enable Rapid Locking mode, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_GRP_CTRL_MPLL_GEAR_SHIFT      (0)      //!< Bit position for HDMI_PHY_GRP_CTRL_MPLL_GEAR_SHIFT.
 #define BM_HDMI_PHY_GRP_CTRL_MPLL_GEAR_SHIFT      (0x00000001)  //!< Bit mask for HDMI_PHY_GRP_CTRL_MPLL_GEAR_SHIFT.
 
@@ -2386,7 +2169,6 @@ typedef union _hw_hdmi_phy_grp_ctrl
 
 //! @brief Format value for bitfield HDMI_PHY_GRP_CTRL_MPLL_GEAR_SHIFT.
 #define BF_HDMI_PHY_GRP_CTRL_MPLL_GEAR_SHIFT(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_GRP_CTRL_MPLL_GEAR_SHIFT) & BM_HDMI_PHY_GRP_CTRL_MPLL_GEAR_SHIFT)
-
 //@}
 
 /*! @name Register HDMI_PHY_GRP_CTRL, field PLL_GEAR_SHIFT[1] (RW)
@@ -2399,7 +2181,6 @@ typedef union _hw_hdmi_phy_grp_ctrl
  * - 1 - Enable Rapid Locking mode, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_GRP_CTRL_PLL_GEAR_SHIFT      (1)      //!< Bit position for HDMI_PHY_GRP_CTRL_PLL_GEAR_SHIFT.
 #define BM_HDMI_PHY_GRP_CTRL_PLL_GEAR_SHIFT      (0x00000002)  //!< Bit mask for HDMI_PHY_GRP_CTRL_PLL_GEAR_SHIFT.
 
@@ -2408,7 +2189,6 @@ typedef union _hw_hdmi_phy_grp_ctrl
 
 //! @brief Format value for bitfield HDMI_PHY_GRP_CTRL_PLL_GEAR_SHIFT.
 #define BF_HDMI_PHY_GRP_CTRL_PLL_GEAR_SHIFT(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_GRP_CTRL_PLL_GEAR_SHIFT) & BM_HDMI_PHY_GRP_CTRL_PLL_GEAR_SHIFT)
-
 //@}
 
 /*! @name Register HDMI_PHY_GRP_CTRL, field MPLL_RST[2] (RW)
@@ -2420,7 +2200,6 @@ typedef union _hw_hdmi_phy_grp_ctrl
  * - 1 - Place the MPLL in Reset mode, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_GRP_CTRL_MPLL_RST      (2)      //!< Bit position for HDMI_PHY_GRP_CTRL_MPLL_RST.
 #define BM_HDMI_PHY_GRP_CTRL_MPLL_RST      (0x00000004)  //!< Bit mask for HDMI_PHY_GRP_CTRL_MPLL_RST.
 
@@ -2429,7 +2208,6 @@ typedef union _hw_hdmi_phy_grp_ctrl
 
 //! @brief Format value for bitfield HDMI_PHY_GRP_CTRL_MPLL_RST.
 #define BF_HDMI_PHY_GRP_CTRL_MPLL_RST(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_GRP_CTRL_MPLL_RST) & BM_HDMI_PHY_GRP_CTRL_MPLL_RST)
-
 //@}
 
 /*! @name Register HDMI_PHY_GRP_CTRL, field MPLL_PWR_ON[3] (RW)
@@ -2441,7 +2219,6 @@ typedef union _hw_hdmi_phy_grp_ctrl
  * - 1 - Power off MPLL and enable it to operate normally, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_GRP_CTRL_MPLL_PWR_ON      (3)      //!< Bit position for HDMI_PHY_GRP_CTRL_MPLL_PWR_ON.
 #define BM_HDMI_PHY_GRP_CTRL_MPLL_PWR_ON      (0x00000008)  //!< Bit mask for HDMI_PHY_GRP_CTRL_MPLL_PWR_ON.
 
@@ -2450,7 +2227,6 @@ typedef union _hw_hdmi_phy_grp_ctrl
 
 //! @brief Format value for bitfield HDMI_PHY_GRP_CTRL_MPLL_PWR_ON.
 #define BF_HDMI_PHY_GRP_CTRL_MPLL_PWR_ON(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_GRP_CTRL_MPLL_PWR_ON) & BM_HDMI_PHY_GRP_CTRL_MPLL_PWR_ON)
-
 //@}
 
 /*! @name Register HDMI_PHY_GRP_CTRL, field PLL_RST[4] (RW)
@@ -2462,7 +2238,6 @@ typedef union _hw_hdmi_phy_grp_ctrl
  * - 1 - Place the PLL in Reset mode, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_GRP_CTRL_PLL_RST      (4)      //!< Bit position for HDMI_PHY_GRP_CTRL_PLL_RST.
 #define BM_HDMI_PHY_GRP_CTRL_PLL_RST      (0x00000010)  //!< Bit mask for HDMI_PHY_GRP_CTRL_PLL_RST.
 
@@ -2471,7 +2246,6 @@ typedef union _hw_hdmi_phy_grp_ctrl
 
 //! @brief Format value for bitfield HDMI_PHY_GRP_CTRL_PLL_RST.
 #define BF_HDMI_PHY_GRP_CTRL_PLL_RST(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_GRP_CTRL_PLL_RST) & BM_HDMI_PHY_GRP_CTRL_PLL_RST)
-
 //@}
 
 /*! @name Register HDMI_PHY_GRP_CTRL, field PLL_PWR_ON[5] (RW)
@@ -2484,7 +2258,6 @@ typedef union _hw_hdmi_phy_grp_ctrl
  * - 1 - Power on PLL and enable it to operate normally, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_GRP_CTRL_PLL_PWR_ON      (5)      //!< Bit position for HDMI_PHY_GRP_CTRL_PLL_PWR_ON.
 #define BM_HDMI_PHY_GRP_CTRL_PLL_PWR_ON      (0x00000020)  //!< Bit mask for HDMI_PHY_GRP_CTRL_PLL_PWR_ON.
 
@@ -2493,7 +2266,6 @@ typedef union _hw_hdmi_phy_grp_ctrl
 
 //! @brief Format value for bitfield HDMI_PHY_GRP_CTRL_PLL_PWR_ON.
 #define BF_HDMI_PHY_GRP_CTRL_PLL_PWR_ON(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_GRP_CTRL_PLL_PWR_ON) & BM_HDMI_PHY_GRP_CTRL_PLL_PWR_ON)
-
 //@}
 
 /*! @name Register HDMI_PHY_GRP_CTRL, field OVERRIDE[15] (RW)
@@ -2502,7 +2274,6 @@ typedef union _hw_hdmi_phy_grp_ctrl
  * value.
  */
 //@{
-
 #define BP_HDMI_PHY_GRP_CTRL_OVERRIDE      (15)      //!< Bit position for HDMI_PHY_GRP_CTRL_OVERRIDE.
 #define BM_HDMI_PHY_GRP_CTRL_OVERRIDE      (0x00008000)  //!< Bit mask for HDMI_PHY_GRP_CTRL_OVERRIDE.
 
@@ -2511,7 +2282,6 @@ typedef union _hw_hdmi_phy_grp_ctrl
 
 //! @brief Format value for bitfield HDMI_PHY_GRP_CTRL_OVERRIDE.
 #define BF_HDMI_PHY_GRP_CTRL_OVERRIDE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_GRP_CTRL_OVERRIDE) & BM_HDMI_PHY_GRP_CTRL_OVERRIDE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2543,10 +2313,6 @@ typedef union _hw_hdmi_phy_gmpctrl
  */
 //@{
 #define HW_HDMI_PHY_GMPCTRL_ADDR      (REGS_HDMI_PHY_BASE + 0x15)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_GMPCTRL           (*(volatile hw_hdmi_phy_gmpctrl_t *) HW_HDMI_PHY_GMPCTRL_ADDR)
-#endif
 //@}
 
 /*
@@ -2565,7 +2331,6 @@ typedef union _hw_hdmi_phy_gmpctrl
  * - 11 - TMDS rate of 184.1-370 MHz
  */
 //@{
-
 #define BP_HDMI_PHY_GMPCTRL_MPLL_GMP_CNTRL      (0)      //!< Bit position for HDMI_PHY_GMPCTRL_MPLL_GMP_CNTRL.
 #define BM_HDMI_PHY_GMPCTRL_MPLL_GMP_CNTRL      (0x00000003)  //!< Bit mask for HDMI_PHY_GMPCTRL_MPLL_GMP_CNTRL.
 
@@ -2574,7 +2339,6 @@ typedef union _hw_hdmi_phy_gmpctrl
 
 //! @brief Format value for bitfield HDMI_PHY_GMPCTRL_MPLL_GMP_CNTRL.
 #define BF_HDMI_PHY_GMPCTRL_MPLL_GMP_CNTRL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_GMPCTRL_MPLL_GMP_CNTRL) & BM_HDMI_PHY_GMPCTRL_MPLL_GMP_CNTRL)
-
 //@}
 
 /*! @name Register HDMI_PHY_GMPCTRL, field PLL_GMP_CNTRL[3:2] (RW)
@@ -2589,7 +2353,6 @@ typedef union _hw_hdmi_phy_gmpctrl
  * - 11 - TMDS rate of 184.1-370 MHz
  */
 //@{
-
 #define BP_HDMI_PHY_GMPCTRL_PLL_GMP_CNTRL      (2)      //!< Bit position for HDMI_PHY_GMPCTRL_PLL_GMP_CNTRL.
 #define BM_HDMI_PHY_GMPCTRL_PLL_GMP_CNTRL      (0x0000000c)  //!< Bit mask for HDMI_PHY_GMPCTRL_PLL_GMP_CNTRL.
 
@@ -2598,7 +2361,6 @@ typedef union _hw_hdmi_phy_gmpctrl
 
 //! @brief Format value for bitfield HDMI_PHY_GMPCTRL_PLL_GMP_CNTRL.
 #define BF_HDMI_PHY_GMPCTRL_PLL_GMP_CNTRL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_GMPCTRL_PLL_GMP_CNTRL) & BM_HDMI_PHY_GMPCTRL_PLL_GMP_CNTRL)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2648,10 +2410,6 @@ typedef union _hw_hdmi_phy_mpllmeasctrl
  */
 //@{
 #define HW_HDMI_PHY_MPLLMEASCTRL_ADDR      (REGS_HDMI_PHY_BASE + 0x16)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_MPLLMEASCTRL           (*(volatile hw_hdmi_phy_mpllmeasctrl_t *) HW_HDMI_PHY_MPLLMEASCTRL_ADDR)
-#endif
 //@}
 
 /*
@@ -2668,7 +2426,6 @@ typedef union _hw_hdmi_phy_mpllmeasctrl
  * - 1 - Connect the ground signal to the atb_sense bus.
  */
 //@{
-
 #define BP_HDMI_PHY_MPLLMEASCTRL_MPLL_MEAS_GD      (0)      //!< Bit position for HDMI_PHY_MPLLMEASCTRL_MPLL_MEAS_GD.
 #define BM_HDMI_PHY_MPLLMEASCTRL_MPLL_MEAS_GD      (0x00000001)  //!< Bit mask for HDMI_PHY_MPLLMEASCTRL_MPLL_MEAS_GD.
 
@@ -2677,7 +2434,6 @@ typedef union _hw_hdmi_phy_mpllmeasctrl
 
 //! @brief Format value for bitfield HDMI_PHY_MPLLMEASCTRL_MPLL_MEAS_GD.
 #define BF_HDMI_PHY_MPLLMEASCTRL_MPLL_MEAS_GD(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_MPLLMEASCTRL_MPLL_MEAS_GD) & BM_HDMI_PHY_MPLLMEASCTRL_MPLL_MEAS_GD)
-
 //@}
 
 /*! @name Register HDMI_PHY_MPLLMEASCTRL, field MPLL_MEAS_IV[12:1] (RW)
@@ -2686,7 +2442,6 @@ typedef union _hw_hdmi_phy_mpllmeasctrl
  * and branch currents. For information about the bit settings, see the mpll_meas_iv[11:0] table.
  */
 //@{
-
 #define BP_HDMI_PHY_MPLLMEASCTRL_MPLL_MEAS_IV      (1)      //!< Bit position for HDMI_PHY_MPLLMEASCTRL_MPLL_MEAS_IV.
 #define BM_HDMI_PHY_MPLLMEASCTRL_MPLL_MEAS_IV      (0x00001ffe)  //!< Bit mask for HDMI_PHY_MPLLMEASCTRL_MPLL_MEAS_IV.
 
@@ -2695,7 +2450,6 @@ typedef union _hw_hdmi_phy_mpllmeasctrl
 
 //! @brief Format value for bitfield HDMI_PHY_MPLLMEASCTRL_MPLL_MEAS_IV.
 #define BF_HDMI_PHY_MPLLMEASCTRL_MPLL_MEAS_IV(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_MPLLMEASCTRL_MPLL_MEAS_IV) & BM_HDMI_PHY_MPLLMEASCTRL_MPLL_MEAS_IV)
-
 //@}
 
 /*! @name Register HDMI_PHY_MPLLMEASCTRL, field MPLL_ATB_SENSE_SEL[13] (RW)
@@ -2709,7 +2463,6 @@ typedef union _hw_hdmi_phy_mpllmeasctrl
  * - 1 - Enable the ability to measure internal DC signals on the atb_sense line in the PLL.
  */
 //@{
-
 #define BP_HDMI_PHY_MPLLMEASCTRL_MPLL_ATB_SENSE_SEL      (13)      //!< Bit position for HDMI_PHY_MPLLMEASCTRL_MPLL_ATB_SENSE_SEL.
 #define BM_HDMI_PHY_MPLLMEASCTRL_MPLL_ATB_SENSE_SEL      (0x00002000)  //!< Bit mask for HDMI_PHY_MPLLMEASCTRL_MPLL_ATB_SENSE_SEL.
 
@@ -2718,7 +2471,6 @@ typedef union _hw_hdmi_phy_mpllmeasctrl
 
 //! @brief Format value for bitfield HDMI_PHY_MPLLMEASCTRL_MPLL_ATB_SENSE_SEL.
 #define BF_HDMI_PHY_MPLLMEASCTRL_MPLL_ATB_SENSE_SEL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_MPLLMEASCTRL_MPLL_ATB_SENSE_SEL) & BM_HDMI_PHY_MPLLMEASCTRL_MPLL_ATB_SENSE_SEL)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2760,10 +2512,6 @@ typedef union _hw_hdmi_phy_msm_ctrl
  */
 //@{
 #define HW_HDMI_PHY_MSM_CTRL_ADDR      (REGS_HDMI_PHY_BASE + 0x17)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_MSM_CTRL           (*(volatile hw_hdmi_phy_msm_ctrl_t *) HW_HDMI_PHY_MSM_CTRL_ADDR)
-#endif
 //@}
 
 /*
@@ -2782,7 +2530,6 @@ typedef union _hw_hdmi_phy_msm_ctrl
  *     pll_meas_iv[9] bit must be high.
  */
 //@{
-
 #define BP_HDMI_PHY_MSM_CTRL_SCOPE_CK_SEL      (0)      //!< Bit position for HDMI_PHY_MSM_CTRL_SCOPE_CK_SEL.
 #define BM_HDMI_PHY_MSM_CTRL_SCOPE_CK_SEL      (0x00000001)  //!< Bit mask for HDMI_PHY_MSM_CTRL_SCOPE_CK_SEL.
 
@@ -2791,7 +2538,6 @@ typedef union _hw_hdmi_phy_msm_ctrl
 
 //! @brief Format value for bitfield HDMI_PHY_MSM_CTRL_SCOPE_CK_SEL.
 #define BF_HDMI_PHY_MSM_CTRL_SCOPE_CK_SEL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_MSM_CTRL_SCOPE_CK_SEL) & BM_HDMI_PHY_MSM_CTRL_SCOPE_CK_SEL)
-
 //@}
 
 /*! @name Register HDMI_PHY_MSM_CTRL, field CKO_SEL[2:1] (RW)
@@ -2804,7 +2550,6 @@ typedef union _hw_hdmi_phy_msm_ctrl
  * cko_sel[1:0] bit settings and corresponding PLL/MPLL modes, see the cko_sel[1:0] table.
  */
 //@{
-
 #define BP_HDMI_PHY_MSM_CTRL_CKO_SEL      (1)      //!< Bit position for HDMI_PHY_MSM_CTRL_CKO_SEL.
 #define BM_HDMI_PHY_MSM_CTRL_CKO_SEL      (0x00000006)  //!< Bit mask for HDMI_PHY_MSM_CTRL_CKO_SEL.
 
@@ -2813,7 +2558,6 @@ typedef union _hw_hdmi_phy_msm_ctrl
 
 //! @brief Format value for bitfield HDMI_PHY_MSM_CTRL_CKO_SEL.
 #define BF_HDMI_PHY_MSM_CTRL_CKO_SEL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_MSM_CTRL_CKO_SEL) & BM_HDMI_PHY_MSM_CTRL_CKO_SEL)
-
 //@}
 
 /*! @name Register HDMI_PHY_MSM_CTRL, field MPLL_PH_SEL[12:3] (RW)
@@ -2822,7 +2566,6 @@ typedef union _hw_hdmi_phy_msm_ctrl
  * pll_cko_pm_p /m to be varied ± 0.5 UI of the VCO frequency, which has a range of 925-1,850 MHz.
  */
 //@{
-
 #define BP_HDMI_PHY_MSM_CTRL_MPLL_PH_SEL      (3)      //!< Bit position for HDMI_PHY_MSM_CTRL_MPLL_PH_SEL.
 #define BM_HDMI_PHY_MSM_CTRL_MPLL_PH_SEL      (0x00001ff8)  //!< Bit mask for HDMI_PHY_MSM_CTRL_MPLL_PH_SEL.
 
@@ -2831,7 +2574,6 @@ typedef union _hw_hdmi_phy_msm_ctrl
 
 //! @brief Format value for bitfield HDMI_PHY_MSM_CTRL_MPLL_PH_SEL.
 #define BF_HDMI_PHY_MSM_CTRL_MPLL_PH_SEL(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_MSM_CTRL_MPLL_PH_SEL) & BM_HDMI_PHY_MSM_CTRL_MPLL_PH_SEL)
-
 //@}
 
 /*! @name Register HDMI_PHY_MSM_CTRL, field MPLL_PH_SEL_CK[13] (RW)
@@ -2844,7 +2586,6 @@ typedef union _hw_hdmi_phy_msm_ctrl
  * - 1 - Enable latching mpll_ph_sel[9:0] into the 9-bit DAC.
  */
 //@{
-
 #define BP_HDMI_PHY_MSM_CTRL_MPLL_PH_SEL_CK      (13)      //!< Bit position for HDMI_PHY_MSM_CTRL_MPLL_PH_SEL_CK.
 #define BM_HDMI_PHY_MSM_CTRL_MPLL_PH_SEL_CK      (0x00002000)  //!< Bit mask for HDMI_PHY_MSM_CTRL_MPLL_PH_SEL_CK.
 
@@ -2853,7 +2594,6 @@ typedef union _hw_hdmi_phy_msm_ctrl
 
 //! @brief Format value for bitfield HDMI_PHY_MSM_CTRL_MPLL_PH_SEL_CK.
 #define BF_HDMI_PHY_MSM_CTRL_MPLL_PH_SEL_CK(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_MSM_CTRL_MPLL_PH_SEL_CK) & BM_HDMI_PHY_MSM_CTRL_MPLL_PH_SEL_CK)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -2889,10 +2629,6 @@ typedef union _hw_hdmi_phy_scrpb_status
  */
 //@{
 #define HW_HDMI_PHY_SCRPB_STATUS_ADDR      (REGS_HDMI_PHY_BASE + 0x18)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_SCRPB_STATUS           (*(volatile hw_hdmi_phy_scrpb_status_t *) HW_HDMI_PHY_SCRPB_STATUS_ADDR)
-#endif
 //@}
 
 /*
@@ -2908,13 +2644,11 @@ typedef union _hw_hdmi_phy_scrpb_status
  * - 1 - The clock driver output is differential.
  */
 //@{
-
 #define BP_HDMI_PHY_SCRPB_STATUS_CK_SCOPE_OUT      (0)      //!< Bit position for HDMI_PHY_SCRPB_STATUS_CK_SCOPE_OUT.
 #define BM_HDMI_PHY_SCRPB_STATUS_CK_SCOPE_OUT      (0x00000001)  //!< Bit mask for HDMI_PHY_SCRPB_STATUS_CK_SCOPE_OUT.
 
 //! @brief Get value of HDMI_PHY_SCRPB_STATUS_CK_SCOPE_OUT from a register value.
 #define BG_HDMI_PHY_SCRPB_STATUS_CK_SCOPE_OUT(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_HDMI_PHY_SCRPB_STATUS_CK_SCOPE_OUT) >> BP_HDMI_PHY_SCRPB_STATUS_CK_SCOPE_OUT)
-
 //@}
 
 /*! @name Register HDMI_PHY_SCRPB_STATUS, field TX_SCOPE_OUT2[1] (RO)
@@ -2926,13 +2660,11 @@ typedef union _hw_hdmi_phy_scrpb_status
  * - 1 - The driver output of lane 2 is differential.
  */
 //@{
-
 #define BP_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT2      (1)      //!< Bit position for HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT2.
 #define BM_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT2      (0x00000002)  //!< Bit mask for HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT2.
 
 //! @brief Get value of HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT2 from a register value.
 #define BG_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT2(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT2) >> BP_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT2)
-
 //@}
 
 /*! @name Register HDMI_PHY_SCRPB_STATUS, field TX_SCOPE_OUT1[2] (RO)
@@ -2944,13 +2676,11 @@ typedef union _hw_hdmi_phy_scrpb_status
  * - 1 - The driver output of lane 1 is differential.
  */
 //@{
-
 #define BP_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT1      (2)      //!< Bit position for HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT1.
 #define BM_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT1      (0x00000004)  //!< Bit mask for HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT1.
 
 //! @brief Get value of HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT1 from a register value.
 #define BG_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT1(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT1) >> BP_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT1)
-
 //@}
 
 /*! @name Register HDMI_PHY_SCRPB_STATUS, field TX_SCOPE_OUT0[3] (RO)
@@ -2962,13 +2692,11 @@ typedef union _hw_hdmi_phy_scrpb_status
  * - 1 - The driver output of lane 0 is differential.
  */
 //@{
-
 #define BP_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT0      (3)      //!< Bit position for HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT0.
 #define BM_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT0      (0x00000008)  //!< Bit mask for HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT0.
 
 //! @brief Get value of HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT0 from a register value.
 #define BG_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT0(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT0) >> BP_HDMI_PHY_SCRPB_STATUS_TX_SCOPE_OUT0)
-
 //@}
 
 /*! @name Register HDMI_PHY_SCRPB_STATUS, field SUP_COMP_RT_RESULT[4] (RO)
@@ -2981,13 +2709,11 @@ typedef union _hw_hdmi_phy_scrpb_status
  * - 1 - The first input is less than the second input.
  */
 //@{
-
 #define BP_HDMI_PHY_SCRPB_STATUS_SUP_COMP_RT_RESULT      (4)      //!< Bit position for HDMI_PHY_SCRPB_STATUS_SUP_COMP_RT_RESULT.
 #define BM_HDMI_PHY_SCRPB_STATUS_SUP_COMP_RT_RESULT      (0x00000010)  //!< Bit mask for HDMI_PHY_SCRPB_STATUS_SUP_COMP_RT_RESULT.
 
 //! @brief Get value of HDMI_PHY_SCRPB_STATUS_SUP_COMP_RT_RESULT from a register value.
 #define BG_HDMI_PHY_SCRPB_STATUS_SUP_COMP_RT_RESULT(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_HDMI_PHY_SCRPB_STATUS_SUP_COMP_RT_RESULT) >> BP_HDMI_PHY_SCRPB_STATUS_SUP_COMP_RT_RESULT)
-
 //@}
 
 /*! @name Register HDMI_PHY_SCRPB_STATUS, field ADC_VAL[15:6] (RO)
@@ -2995,13 +2721,11 @@ typedef union _hw_hdmi_phy_scrpb_status
  * ADC/DAC bit word (analog signal value)
  */
 //@{
-
 #define BP_HDMI_PHY_SCRPB_STATUS_ADC_VAL      (6)      //!< Bit position for HDMI_PHY_SCRPB_STATUS_ADC_VAL.
 #define BM_HDMI_PHY_SCRPB_STATUS_ADC_VAL      (0x0000ffc0)  //!< Bit mask for HDMI_PHY_SCRPB_STATUS_ADC_VAL.
 
 //! @brief Get value of HDMI_PHY_SCRPB_STATUS_ADC_VAL from a register value.
 #define BG_HDMI_PHY_SCRPB_STATUS_ADC_VAL(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_HDMI_PHY_SCRPB_STATUS_ADC_VAL) >> BP_HDMI_PHY_SCRPB_STATUS_ADC_VAL)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3032,10 +2756,6 @@ typedef union _hw_hdmi_phy_txterm
  */
 //@{
 #define HW_HDMI_PHY_TXTERM_ADDR      (REGS_HDMI_PHY_BASE + 0x19)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_TXTERM           (*(volatile hw_hdmi_phy_txterm_t *) HW_HDMI_PHY_TXTERM_ADDR)
-#endif
 //@}
 
 /*
@@ -3050,7 +2770,6 @@ typedef union _hw_hdmi_phy_txterm
  * Ω 010: 66.67 Ω 011: 80 Ω 100: 100 Ω 101: 133.33 Ω 110: 200 Ω 111: Open circuit
  */
 //@{
-
 #define BP_HDMI_PHY_TXTERM_D_TX_TERM      (0)      //!< Bit position for HDMI_PHY_TXTERM_D_TX_TERM.
 #define BM_HDMI_PHY_TXTERM_D_TX_TERM      (0x00000007)  //!< Bit mask for HDMI_PHY_TXTERM_D_TX_TERM.
 
@@ -3059,7 +2778,6 @@ typedef union _hw_hdmi_phy_txterm
 
 //! @brief Format value for bitfield HDMI_PHY_TXTERM_D_TX_TERM.
 #define BF_HDMI_PHY_TXTERM_D_TX_TERM(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_TXTERM_D_TX_TERM) & BM_HDMI_PHY_TXTERM_D_TX_TERM)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3099,10 +2817,6 @@ typedef union _hw_hdmi_phy_ptrpt_enbl
  */
 //@{
 #define HW_HDMI_PHY_PTRPT_ENBL_ADDR      (REGS_HDMI_PHY_BASE + 0x1a)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_PTRPT_ENBL           (*(volatile hw_hdmi_phy_ptrpt_enbl_t *) HW_HDMI_PHY_PTRPT_ENBL_ADDR)
-#endif
 //@}
 
 /*
@@ -3118,7 +2832,6 @@ typedef union _hw_hdmi_phy_ptrpt_enbl
  * - 1 - Enable the input reference clock, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_PTRPT_ENBL_REFCLK_ENB      (0)      //!< Bit position for HDMI_PHY_PTRPT_ENBL_REFCLK_ENB.
 #define BM_HDMI_PHY_PTRPT_ENBL_REFCLK_ENB      (0x00000001)  //!< Bit mask for HDMI_PHY_PTRPT_ENBL_REFCLK_ENB.
 
@@ -3127,7 +2840,6 @@ typedef union _hw_hdmi_phy_ptrpt_enbl
 
 //! @brief Format value for bitfield HDMI_PHY_PTRPT_ENBL_REFCLK_ENB.
 #define BF_HDMI_PHY_PTRPT_ENBL_REFCLK_ENB(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_PTRPT_ENBL_REFCLK_ENB) & BM_HDMI_PHY_PTRPT_ENBL_REFCLK_ENB)
-
 //@}
 
 /*! @name Register HDMI_PHY_PTRPT_ENBL, field CKO_WORD_ENB[1] (RW)
@@ -3139,7 +2851,6 @@ typedef union _hw_hdmi_phy_ptrpt_enbl
  * - 1 - Enable the output clock word, if the Override bit is 0
  */
 //@{
-
 #define BP_HDMI_PHY_PTRPT_ENBL_CKO_WORD_ENB      (1)      //!< Bit position for HDMI_PHY_PTRPT_ENBL_CKO_WORD_ENB.
 #define BM_HDMI_PHY_PTRPT_ENBL_CKO_WORD_ENB      (0x00000002)  //!< Bit mask for HDMI_PHY_PTRPT_ENBL_CKO_WORD_ENB.
 
@@ -3148,7 +2859,6 @@ typedef union _hw_hdmi_phy_ptrpt_enbl
 
 //! @brief Format value for bitfield HDMI_PHY_PTRPT_ENBL_CKO_WORD_ENB.
 #define BF_HDMI_PHY_PTRPT_ENBL_CKO_WORD_ENB(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_PTRPT_ENBL_CKO_WORD_ENB) & BM_HDMI_PHY_PTRPT_ENBL_CKO_WORD_ENB)
-
 //@}
 
 /*! @name Register HDMI_PHY_PTRPT_ENBL, field TX_READY[2] (RW)
@@ -3160,7 +2870,6 @@ typedef union _hw_hdmi_phy_ptrpt_enbl
  * - 1 - PHY transmit driver is ready to transmit data, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_PTRPT_ENBL_TX_READY      (2)      //!< Bit position for HDMI_PHY_PTRPT_ENBL_TX_READY.
 #define BM_HDMI_PHY_PTRPT_ENBL_TX_READY      (0x00000004)  //!< Bit mask for HDMI_PHY_PTRPT_ENBL_TX_READY.
 
@@ -3169,7 +2878,6 @@ typedef union _hw_hdmi_phy_ptrpt_enbl
 
 //! @brief Format value for bitfield HDMI_PHY_PTRPT_ENBL_TX_READY.
 #define BF_HDMI_PHY_PTRPT_ENBL_TX_READY(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_PTRPT_ENBL_TX_READY) & BM_HDMI_PHY_PTRPT_ENBL_TX_READY)
-
 //@}
 
 /*! @name Register HDMI_PHY_PTRPT_ENBL, field TX_CK_ALIGN_ENB[3] (RW)
@@ -3181,7 +2889,6 @@ typedef union _hw_hdmi_phy_ptrpt_enbl
  * - 1 - Enable transmission clock alignment FSM, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_PTRPT_ENBL_TX_CK_ALIGN_ENB      (3)      //!< Bit position for HDMI_PHY_PTRPT_ENBL_TX_CK_ALIGN_ENB.
 #define BM_HDMI_PHY_PTRPT_ENBL_TX_CK_ALIGN_ENB      (0x00000008)  //!< Bit mask for HDMI_PHY_PTRPT_ENBL_TX_CK_ALIGN_ENB.
 
@@ -3190,7 +2897,6 @@ typedef union _hw_hdmi_phy_ptrpt_enbl
 
 //! @brief Format value for bitfield HDMI_PHY_PTRPT_ENBL_TX_CK_ALIGN_ENB.
 #define BF_HDMI_PHY_PTRPT_ENBL_TX_CK_ALIGN_ENB(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_PTRPT_ENBL_TX_CK_ALIGN_ENB) & BM_HDMI_PHY_PTRPT_ENBL_TX_CK_ALIGN_ENB)
-
 //@}
 
 /*! @name Register HDMI_PHY_PTRPT_ENBL, field RCAL_ENB[4] (RW)
@@ -3203,7 +2909,6 @@ typedef union _hw_hdmi_phy_ptrpt_enbl
  * - 1 - Enable the resistance calibration FSM, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_PTRPT_ENBL_RCAL_ENB      (4)      //!< Bit position for HDMI_PHY_PTRPT_ENBL_RCAL_ENB.
 #define BM_HDMI_PHY_PTRPT_ENBL_RCAL_ENB      (0x00000010)  //!< Bit mask for HDMI_PHY_PTRPT_ENBL_RCAL_ENB.
 
@@ -3212,7 +2917,6 @@ typedef union _hw_hdmi_phy_ptrpt_enbl
 
 //! @brief Format value for bitfield HDMI_PHY_PTRPT_ENBL_RCAL_ENB.
 #define BF_HDMI_PHY_PTRPT_ENBL_RCAL_ENB(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_PTRPT_ENBL_RCAL_ENB) & BM_HDMI_PHY_PTRPT_ENBL_RCAL_ENB)
-
 //@}
 
 /*! @name Register HDMI_PHY_PTRPT_ENBL, field CK_REF_ENB[5] (RW)
@@ -3225,7 +2929,6 @@ typedef union _hw_hdmi_phy_ptrpt_enbl
  * - 1 - Powers up the clock alignment and the resistance calibration modules, if the Override bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_PTRPT_ENBL_CK_REF_ENB      (5)      //!< Bit position for HDMI_PHY_PTRPT_ENBL_CK_REF_ENB.
 #define BM_HDMI_PHY_PTRPT_ENBL_CK_REF_ENB      (0x00000020)  //!< Bit mask for HDMI_PHY_PTRPT_ENBL_CK_REF_ENB.
 
@@ -3234,7 +2937,6 @@ typedef union _hw_hdmi_phy_ptrpt_enbl
 
 //! @brief Format value for bitfield HDMI_PHY_PTRPT_ENBL_CK_REF_ENB.
 #define BF_HDMI_PHY_PTRPT_ENBL_CK_REF_ENB(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_PTRPT_ENBL_CK_REF_ENB) & BM_HDMI_PHY_PTRPT_ENBL_CK_REF_ENB)
-
 //@}
 
 /*! @name Register HDMI_PHY_PTRPT_ENBL, field PG_SKIP_BIT0[6] (RW)
@@ -3249,7 +2951,6 @@ typedef union _hw_hdmi_phy_ptrpt_enbl
  *     bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT0      (6)      //!< Bit position for HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT0.
 #define BM_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT0      (0x00000040)  //!< Bit mask for HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT0.
 
@@ -3258,7 +2959,6 @@ typedef union _hw_hdmi_phy_ptrpt_enbl
 
 //! @brief Format value for bitfield HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT0.
 #define BF_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT0(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT0) & BM_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT0)
-
 //@}
 
 /*! @name Register HDMI_PHY_PTRPT_ENBL, field PG_SKIP_BIT1[7] (RW)
@@ -3273,7 +2973,6 @@ typedef union _hw_hdmi_phy_ptrpt_enbl
  *     bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT1      (7)      //!< Bit position for HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT1.
 #define BM_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT1      (0x00000080)  //!< Bit mask for HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT1.
 
@@ -3282,7 +2981,6 @@ typedef union _hw_hdmi_phy_ptrpt_enbl
 
 //! @brief Format value for bitfield HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT1.
 #define BF_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT1(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT1) & BM_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT1)
-
 //@}
 
 /*! @name Register HDMI_PHY_PTRPT_ENBL, field PG_SKIP_BIT2[8] (RW)
@@ -3297,7 +2995,6 @@ typedef union _hw_hdmi_phy_ptrpt_enbl
  *     bit is 0.
  */
 //@{
-
 #define BP_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT2      (8)      //!< Bit position for HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT2.
 #define BM_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT2      (0x00000100)  //!< Bit mask for HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT2.
 
@@ -3306,7 +3003,6 @@ typedef union _hw_hdmi_phy_ptrpt_enbl
 
 //! @brief Format value for bitfield HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT2.
 #define BF_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT2(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT2) & BM_HDMI_PHY_PTRPT_ENBL_PG_SKIP_BIT2)
-
 //@}
 
 /*! @name Register HDMI_PHY_PTRPT_ENBL, field OVERRIDE[15] (RW)
@@ -3315,7 +3011,6 @@ typedef union _hw_hdmi_phy_ptrpt_enbl
  * value.
  */
 //@{
-
 #define BP_HDMI_PHY_PTRPT_ENBL_OVERRIDE      (15)      //!< Bit position for HDMI_PHY_PTRPT_ENBL_OVERRIDE.
 #define BM_HDMI_PHY_PTRPT_ENBL_OVERRIDE      (0x00008000)  //!< Bit mask for HDMI_PHY_PTRPT_ENBL_OVERRIDE.
 
@@ -3324,7 +3019,6 @@ typedef union _hw_hdmi_phy_ptrpt_enbl
 
 //! @brief Format value for bitfield HDMI_PHY_PTRPT_ENBL_OVERRIDE.
 #define BF_HDMI_PHY_PTRPT_ENBL_OVERRIDE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_PTRPT_ENBL_OVERRIDE) & BM_HDMI_PHY_PTRPT_ENBL_OVERRIDE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3358,10 +3052,6 @@ typedef union _hw_hdmi_phy_patterngen
  */
 //@{
 #define HW_HDMI_PHY_PATTERNGEN_ADDR      (REGS_HDMI_PHY_BASE + 0x1b)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_PATTERNGEN           (*(volatile hw_hdmi_phy_patterngen_t *) HW_HDMI_PHY_PATTERNGEN_ADDR)
-#endif
 //@}
 
 /*
@@ -3374,7 +3064,6 @@ typedef union _hw_hdmi_phy_patterngen
  * Generator module.
  */
 //@{
-
 #define BP_HDMI_PHY_PATTERNGEN_PG_PAT      (0)      //!< Bit position for HDMI_PHY_PATTERNGEN_PG_PAT.
 #define BM_HDMI_PHY_PATTERNGEN_PG_PAT      (0x000003ff)  //!< Bit mask for HDMI_PHY_PATTERNGEN_PG_PAT.
 
@@ -3383,7 +3072,6 @@ typedef union _hw_hdmi_phy_patterngen
 
 //! @brief Format value for bitfield HDMI_PHY_PATTERNGEN_PG_PAT.
 #define BF_HDMI_PHY_PATTERNGEN_PG_PAT(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_PATTERNGEN_PG_PAT) & BM_HDMI_PHY_PATTERNGEN_PG_PAT)
-
 //@}
 
 /*! @name Register HDMI_PHY_PATTERNGEN, field PG_INSERT_ERR0[10] (RW)
@@ -3396,7 +3084,6 @@ typedef union _hw_hdmi_phy_patterngen
  * - 1 - Insert error inside generated pattern for the first transmit channel.
  */
 //@{
-
 #define BP_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR0      (10)      //!< Bit position for HDMI_PHY_PATTERNGEN_PG_INSERT_ERR0.
 #define BM_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR0      (0x00000400)  //!< Bit mask for HDMI_PHY_PATTERNGEN_PG_INSERT_ERR0.
 
@@ -3405,7 +3092,6 @@ typedef union _hw_hdmi_phy_patterngen
 
 //! @brief Format value for bitfield HDMI_PHY_PATTERNGEN_PG_INSERT_ERR0.
 #define BF_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR0(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR0) & BM_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR0)
-
 //@}
 
 /*! @name Register HDMI_PHY_PATTERNGEN, field PG_INSERT_ERR1[11] (RW)
@@ -3418,7 +3104,6 @@ typedef union _hw_hdmi_phy_patterngen
  * - 1 - Insert error inside generated pattern for the second transmit channel.
  */
 //@{
-
 #define BP_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR1      (11)      //!< Bit position for HDMI_PHY_PATTERNGEN_PG_INSERT_ERR1.
 #define BM_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR1      (0x00000800)  //!< Bit mask for HDMI_PHY_PATTERNGEN_PG_INSERT_ERR1.
 
@@ -3427,7 +3112,6 @@ typedef union _hw_hdmi_phy_patterngen
 
 //! @brief Format value for bitfield HDMI_PHY_PATTERNGEN_PG_INSERT_ERR1.
 #define BF_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR1(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR1) & BM_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR1)
-
 //@}
 
 /*! @name Register HDMI_PHY_PATTERNGEN, field PG_INSERT_ERR2[12] (RW)
@@ -3440,7 +3124,6 @@ typedef union _hw_hdmi_phy_patterngen
  * - 1 - Insert error inside generated pattern for the third transmit channel.
  */
 //@{
-
 #define BP_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR2      (12)      //!< Bit position for HDMI_PHY_PATTERNGEN_PG_INSERT_ERR2.
 #define BM_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR2      (0x00001000)  //!< Bit mask for HDMI_PHY_PATTERNGEN_PG_INSERT_ERR2.
 
@@ -3449,7 +3132,6 @@ typedef union _hw_hdmi_phy_patterngen
 
 //! @brief Format value for bitfield HDMI_PHY_PATTERNGEN_PG_INSERT_ERR2.
 #define BF_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR2(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR2) & BM_HDMI_PHY_PATTERNGEN_PG_INSERT_ERR2)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3485,10 +3167,6 @@ typedef union _hw_hdmi_phy_sdcap_mode
  */
 //@{
 #define HW_HDMI_PHY_SDCAP_MODE_ADDR      (REGS_HDMI_PHY_BASE + 0x1c)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_SDCAP_MODE           (*(volatile hw_hdmi_phy_sdcap_mode_t *) HW_HDMI_PHY_SDCAP_MODE_ADDR)
-#endif
 //@}
 
 /*
@@ -3504,7 +3182,6 @@ typedef union _hw_hdmi_phy_sdcap_mode
  * - 1 - Perform a soft reset by resetting all the system FSMs except the I 2 C and Control Register modules.
  */
 //@{
-
 #define BP_HDMI_PHY_SDCAP_MODE_SOFT_RESET      (0)      //!< Bit position for HDMI_PHY_SDCAP_MODE_SOFT_RESET.
 #define BM_HDMI_PHY_SDCAP_MODE_SOFT_RESET      (0x00000001)  //!< Bit mask for HDMI_PHY_SDCAP_MODE_SOFT_RESET.
 
@@ -3513,7 +3190,6 @@ typedef union _hw_hdmi_phy_sdcap_mode
 
 //! @brief Format value for bitfield HDMI_PHY_SDCAP_MODE_SOFT_RESET.
 #define BF_HDMI_PHY_SDCAP_MODE_SOFT_RESET(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_SDCAP_MODE_SOFT_RESET) & BM_HDMI_PHY_SDCAP_MODE_SOFT_RESET)
-
 //@}
 
 /*! @name Register HDMI_PHY_SDCAP_MODE, field ADC_ENB[1] (RW)
@@ -3525,7 +3201,6 @@ typedef union _hw_hdmi_phy_sdcap_mode
  * - 1 - Enable the analog-to-digital converter, which is used in the Resistance Calibration module.
  */
 //@{
-
 #define BP_HDMI_PHY_SDCAP_MODE_ADC_ENB      (1)      //!< Bit position for HDMI_PHY_SDCAP_MODE_ADC_ENB.
 #define BM_HDMI_PHY_SDCAP_MODE_ADC_ENB      (0x00000002)  //!< Bit mask for HDMI_PHY_SDCAP_MODE_ADC_ENB.
 
@@ -3534,7 +3209,6 @@ typedef union _hw_hdmi_phy_sdcap_mode
 
 //! @brief Format value for bitfield HDMI_PHY_SDCAP_MODE_ADC_ENB.
 #define BF_HDMI_PHY_SDCAP_MODE_ADC_ENB(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_SDCAP_MODE_ADC_ENB) & BM_HDMI_PHY_SDCAP_MODE_ADC_ENB)
-
 //@}
 
 /*! @name Register HDMI_PHY_SDCAP_MODE, field TX_CK_ALIGN_MODE[2] (RW)
@@ -3546,7 +3220,6 @@ typedef union _hw_hdmi_phy_sdcap_mode
  * - 1 - Align each of the three lanes separately in the following order: lane 2, lane 0, then lane 1.
  */
 //@{
-
 #define BP_HDMI_PHY_SDCAP_MODE_TX_CK_ALIGN_MODE      (2)      //!< Bit position for HDMI_PHY_SDCAP_MODE_TX_CK_ALIGN_MODE.
 #define BM_HDMI_PHY_SDCAP_MODE_TX_CK_ALIGN_MODE      (0x00000004)  //!< Bit mask for HDMI_PHY_SDCAP_MODE_TX_CK_ALIGN_MODE.
 
@@ -3555,7 +3228,6 @@ typedef union _hw_hdmi_phy_sdcap_mode
 
 //! @brief Format value for bitfield HDMI_PHY_SDCAP_MODE_TX_CK_ALIGN_MODE.
 #define BF_HDMI_PHY_SDCAP_MODE_TX_CK_ALIGN_MODE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_SDCAP_MODE_TX_CK_ALIGN_MODE) & BM_HDMI_PHY_SDCAP_MODE_TX_CK_ALIGN_MODE)
-
 //@}
 
 /*! @name Register HDMI_PHY_SDCAP_MODE, field PG_MODE0[5:3] (RW)
@@ -3581,7 +3253,6 @@ typedef union _hw_hdmi_phy_sdcap_mode
  * - 111 - Reserved
  */
 //@{
-
 #define BP_HDMI_PHY_SDCAP_MODE_PG_MODE0      (3)      //!< Bit position for HDMI_PHY_SDCAP_MODE_PG_MODE0.
 #define BM_HDMI_PHY_SDCAP_MODE_PG_MODE0      (0x00000038)  //!< Bit mask for HDMI_PHY_SDCAP_MODE_PG_MODE0.
 
@@ -3590,7 +3261,6 @@ typedef union _hw_hdmi_phy_sdcap_mode
 
 //! @brief Format value for bitfield HDMI_PHY_SDCAP_MODE_PG_MODE0.
 #define BF_HDMI_PHY_SDCAP_MODE_PG_MODE0(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_SDCAP_MODE_PG_MODE0) & BM_HDMI_PHY_SDCAP_MODE_PG_MODE0)
-
 //@}
 
 /*! @name Register HDMI_PHY_SDCAP_MODE, field PG_MODE1[8:6] (RW)
@@ -3616,7 +3286,6 @@ typedef union _hw_hdmi_phy_sdcap_mode
  * - 111 - Reserved
  */
 //@{
-
 #define BP_HDMI_PHY_SDCAP_MODE_PG_MODE1      (6)      //!< Bit position for HDMI_PHY_SDCAP_MODE_PG_MODE1.
 #define BM_HDMI_PHY_SDCAP_MODE_PG_MODE1      (0x000001c0)  //!< Bit mask for HDMI_PHY_SDCAP_MODE_PG_MODE1.
 
@@ -3625,7 +3294,6 @@ typedef union _hw_hdmi_phy_sdcap_mode
 
 //! @brief Format value for bitfield HDMI_PHY_SDCAP_MODE_PG_MODE1.
 #define BF_HDMI_PHY_SDCAP_MODE_PG_MODE1(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_SDCAP_MODE_PG_MODE1) & BM_HDMI_PHY_SDCAP_MODE_PG_MODE1)
-
 //@}
 
 /*! @name Register HDMI_PHY_SDCAP_MODE, field PG_MODE2[11:9] (RW)
@@ -3651,7 +3319,6 @@ typedef union _hw_hdmi_phy_sdcap_mode
  * - 111 - Reserved
  */
 //@{
-
 #define BP_HDMI_PHY_SDCAP_MODE_PG_MODE2      (9)      //!< Bit position for HDMI_PHY_SDCAP_MODE_PG_MODE2.
 #define BM_HDMI_PHY_SDCAP_MODE_PG_MODE2      (0x00000e00)  //!< Bit mask for HDMI_PHY_SDCAP_MODE_PG_MODE2.
 
@@ -3660,7 +3327,6 @@ typedef union _hw_hdmi_phy_sdcap_mode
 
 //! @brief Format value for bitfield HDMI_PHY_SDCAP_MODE_PG_MODE2.
 #define BF_HDMI_PHY_SDCAP_MODE_PG_MODE2(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_SDCAP_MODE_PG_MODE2) & BM_HDMI_PHY_SDCAP_MODE_PG_MODE2)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3695,10 +3361,6 @@ typedef union _hw_hdmi_phy_scopemode
  */
 //@{
 #define HW_HDMI_PHY_SCOPEMODE_ADDR      (REGS_HDMI_PHY_BASE + 0x1d)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_SCOPEMODE           (*(volatile hw_hdmi_phy_scopemode_t *) HW_HDMI_PHY_SCOPEMODE_ADDR)
-#endif
 //@}
 
 /*
@@ -3712,7 +3374,6 @@ typedef union _hw_hdmi_phy_scopemode
  * the new bits under the 0x24 register.
  */
 //@{
-
 #define BP_HDMI_PHY_SCOPEMODE_SCOPE_SAMPLE_CNT      (0)      //!< Bit position for HDMI_PHY_SCOPEMODE_SCOPE_SAMPLE_CNT.
 #define BM_HDMI_PHY_SCOPEMODE_SCOPE_SAMPLE_CNT      (0x000003ff)  //!< Bit mask for HDMI_PHY_SCOPEMODE_SCOPE_SAMPLE_CNT.
 
@@ -3721,7 +3382,6 @@ typedef union _hw_hdmi_phy_scopemode
 
 //! @brief Format value for bitfield HDMI_PHY_SCOPEMODE_SCOPE_SAMPLE_CNT.
 #define BF_HDMI_PHY_SCOPEMODE_SCOPE_SAMPLE_CNT(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_SCOPEMODE_SCOPE_SAMPLE_CNT) & BM_HDMI_PHY_SCOPEMODE_SCOPE_SAMPLE_CNT)
-
 //@}
 
 /*! @name Register HDMI_PHY_SCOPEMODE, field SCOPE_ENB0[10] (RW)
@@ -3733,7 +3393,6 @@ typedef union _hw_hdmi_phy_scopemode
  * - 1 - Enable the tracing of 1's on the first channel.
  */
 //@{
-
 #define BP_HDMI_PHY_SCOPEMODE_SCOPE_ENB0      (10)      //!< Bit position for HDMI_PHY_SCOPEMODE_SCOPE_ENB0.
 #define BM_HDMI_PHY_SCOPEMODE_SCOPE_ENB0      (0x00000400)  //!< Bit mask for HDMI_PHY_SCOPEMODE_SCOPE_ENB0.
 
@@ -3742,7 +3401,6 @@ typedef union _hw_hdmi_phy_scopemode
 
 //! @brief Format value for bitfield HDMI_PHY_SCOPEMODE_SCOPE_ENB0.
 #define BF_HDMI_PHY_SCOPEMODE_SCOPE_ENB0(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_SCOPEMODE_SCOPE_ENB0) & BM_HDMI_PHY_SCOPEMODE_SCOPE_ENB0)
-
 //@}
 
 /*! @name Register HDMI_PHY_SCOPEMODE, field SCOPE_ENB1[11] (RW)
@@ -3754,7 +3412,6 @@ typedef union _hw_hdmi_phy_scopemode
  * - 1 - Enable the tracing of 1's on the second channel.
  */
 //@{
-
 #define BP_HDMI_PHY_SCOPEMODE_SCOPE_ENB1      (11)      //!< Bit position for HDMI_PHY_SCOPEMODE_SCOPE_ENB1.
 #define BM_HDMI_PHY_SCOPEMODE_SCOPE_ENB1      (0x00000800)  //!< Bit mask for HDMI_PHY_SCOPEMODE_SCOPE_ENB1.
 
@@ -3763,7 +3420,6 @@ typedef union _hw_hdmi_phy_scopemode
 
 //! @brief Format value for bitfield HDMI_PHY_SCOPEMODE_SCOPE_ENB1.
 #define BF_HDMI_PHY_SCOPEMODE_SCOPE_ENB1(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_SCOPEMODE_SCOPE_ENB1) & BM_HDMI_PHY_SCOPEMODE_SCOPE_ENB1)
-
 //@}
 
 /*! @name Register HDMI_PHY_SCOPEMODE, field SCOPE_ENB2[12] (RW)
@@ -3775,7 +3431,6 @@ typedef union _hw_hdmi_phy_scopemode
  * - 1 - Enable the tracing of 1's on the third channel.
  */
 //@{
-
 #define BP_HDMI_PHY_SCOPEMODE_SCOPE_ENB2      (12)      //!< Bit position for HDMI_PHY_SCOPEMODE_SCOPE_ENB2.
 #define BM_HDMI_PHY_SCOPEMODE_SCOPE_ENB2      (0x00001000)  //!< Bit mask for HDMI_PHY_SCOPEMODE_SCOPE_ENB2.
 
@@ -3784,7 +3439,6 @@ typedef union _hw_hdmi_phy_scopemode
 
 //! @brief Format value for bitfield HDMI_PHY_SCOPEMODE_SCOPE_ENB2.
 #define BF_HDMI_PHY_SCOPEMODE_SCOPE_ENB2(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_SCOPEMODE_SCOPE_ENB2) & BM_HDMI_PHY_SCOPEMODE_SCOPE_ENB2)
-
 //@}
 
 /*! @name Register HDMI_PHY_SCOPEMODE, field CK_SCOPE_ENB[13] (RW)
@@ -3796,7 +3450,6 @@ typedef union _hw_hdmi_phy_scopemode
  * - 1 - Enable the tracing of 1's on the clock.
  */
 //@{
-
 #define BP_HDMI_PHY_SCOPEMODE_CK_SCOPE_ENB      (13)      //!< Bit position for HDMI_PHY_SCOPEMODE_CK_SCOPE_ENB.
 #define BM_HDMI_PHY_SCOPEMODE_CK_SCOPE_ENB      (0x00002000)  //!< Bit mask for HDMI_PHY_SCOPEMODE_CK_SCOPE_ENB.
 
@@ -3805,7 +3458,6 @@ typedef union _hw_hdmi_phy_scopemode
 
 //! @brief Format value for bitfield HDMI_PHY_SCOPEMODE_CK_SCOPE_ENB.
 #define BF_HDMI_PHY_SCOPEMODE_CK_SCOPE_ENB(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_SCOPEMODE_CK_SCOPE_ENB) & BM_HDMI_PHY_SCOPEMODE_CK_SCOPE_ENB)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -3898,10 +3550,6 @@ typedef union _hw_hdmi_phy_digtxmode
  */
 //@{
 #define HW_HDMI_PHY_DIGTXMODE_ADDR      (REGS_HDMI_PHY_BASE + 0x1e)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_DIGTXMODE           (*(volatile hw_hdmi_phy_digtxmode_t *) HW_HDMI_PHY_DIGTXMODE_ADDR)
-#endif
 //@}
 
 /*
@@ -3918,7 +3566,6 @@ typedef union _hw_hdmi_phy_digtxmode
  * - 1 - Enable the skipping feature on the first channel.
  */
 //@{
-
 #define BP_HDMI_PHY_DIGTXMODE_SKIP_BIT0      (0)      //!< Bit position for HDMI_PHY_DIGTXMODE_SKIP_BIT0.
 #define BM_HDMI_PHY_DIGTXMODE_SKIP_BIT0      (0x00000001)  //!< Bit mask for HDMI_PHY_DIGTXMODE_SKIP_BIT0.
 
@@ -3927,7 +3574,6 @@ typedef union _hw_hdmi_phy_digtxmode
 
 //! @brief Format value for bitfield HDMI_PHY_DIGTXMODE_SKIP_BIT0.
 #define BF_HDMI_PHY_DIGTXMODE_SKIP_BIT0(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_DIGTXMODE_SKIP_BIT0) & BM_HDMI_PHY_DIGTXMODE_SKIP_BIT0)
-
 //@}
 
 /*! @name Register HDMI_PHY_DIGTXMODE, field SKIP_BIT1[1] (RW)
@@ -3940,7 +3586,6 @@ typedef union _hw_hdmi_phy_digtxmode
  * - 1 - Enable the skipping feature on the second channel.
  */
 //@{
-
 #define BP_HDMI_PHY_DIGTXMODE_SKIP_BIT1      (1)      //!< Bit position for HDMI_PHY_DIGTXMODE_SKIP_BIT1.
 #define BM_HDMI_PHY_DIGTXMODE_SKIP_BIT1      (0x00000002)  //!< Bit mask for HDMI_PHY_DIGTXMODE_SKIP_BIT1.
 
@@ -3949,7 +3594,6 @@ typedef union _hw_hdmi_phy_digtxmode
 
 //! @brief Format value for bitfield HDMI_PHY_DIGTXMODE_SKIP_BIT1.
 #define BF_HDMI_PHY_DIGTXMODE_SKIP_BIT1(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_DIGTXMODE_SKIP_BIT1) & BM_HDMI_PHY_DIGTXMODE_SKIP_BIT1)
-
 //@}
 
 /*! @name Register HDMI_PHY_DIGTXMODE, field SKIP_BIT2[2] (RW)
@@ -3962,7 +3606,6 @@ typedef union _hw_hdmi_phy_digtxmode
  * - 1 - Enable the skipping feature on the third channel.
  */
 //@{
-
 #define BP_HDMI_PHY_DIGTXMODE_SKIP_BIT2      (2)      //!< Bit position for HDMI_PHY_DIGTXMODE_SKIP_BIT2.
 #define BM_HDMI_PHY_DIGTXMODE_SKIP_BIT2      (0x00000004)  //!< Bit mask for HDMI_PHY_DIGTXMODE_SKIP_BIT2.
 
@@ -3971,7 +3614,6 @@ typedef union _hw_hdmi_phy_digtxmode
 
 //! @brief Format value for bitfield HDMI_PHY_DIGTXMODE_SKIP_BIT2.
 #define BF_HDMI_PHY_DIGTXMODE_SKIP_BIT2(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_DIGTXMODE_SKIP_BIT2) & BM_HDMI_PHY_DIGTXMODE_SKIP_BIT2)
-
 //@}
 
 /*! @name Register HDMI_PHY_DIGTXMODE, field CKO_WORD_DIV_ENB[3] (RW)
@@ -3983,7 +3625,6 @@ typedef union _hw_hdmi_phy_digtxmode
  * - 1 - Enable the output clock divider.
  */
 //@{
-
 #define BP_HDMI_PHY_DIGTXMODE_CKO_WORD_DIV_ENB      (3)      //!< Bit position for HDMI_PHY_DIGTXMODE_CKO_WORD_DIV_ENB.
 #define BM_HDMI_PHY_DIGTXMODE_CKO_WORD_DIV_ENB      (0x00000008)  //!< Bit mask for HDMI_PHY_DIGTXMODE_CKO_WORD_DIV_ENB.
 
@@ -3992,7 +3633,6 @@ typedef union _hw_hdmi_phy_digtxmode
 
 //! @brief Format value for bitfield HDMI_PHY_DIGTXMODE_CKO_WORD_DIV_ENB.
 #define BF_HDMI_PHY_DIGTXMODE_CKO_WORD_DIV_ENB(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_DIGTXMODE_CKO_WORD_DIV_ENB) & BM_HDMI_PHY_DIGTXMODE_CKO_WORD_DIV_ENB)
-
 //@}
 
 /*! @name Register HDMI_PHY_DIGTXMODE, field INVERT_DATA0[4] (RW)
@@ -4005,7 +3645,6 @@ typedef union _hw_hdmi_phy_digtxmode
  * - 1 - Enable the inverting feature on the first channel.
  */
 //@{
-
 #define BP_HDMI_PHY_DIGTXMODE_INVERT_DATA0      (4)      //!< Bit position for HDMI_PHY_DIGTXMODE_INVERT_DATA0.
 #define BM_HDMI_PHY_DIGTXMODE_INVERT_DATA0      (0x00000010)  //!< Bit mask for HDMI_PHY_DIGTXMODE_INVERT_DATA0.
 
@@ -4014,7 +3653,6 @@ typedef union _hw_hdmi_phy_digtxmode
 
 //! @brief Format value for bitfield HDMI_PHY_DIGTXMODE_INVERT_DATA0.
 #define BF_HDMI_PHY_DIGTXMODE_INVERT_DATA0(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_DIGTXMODE_INVERT_DATA0) & BM_HDMI_PHY_DIGTXMODE_INVERT_DATA0)
-
 //@}
 
 /*! @name Register HDMI_PHY_DIGTXMODE, field INVERT_DATA1[5] (RW)
@@ -4027,7 +3665,6 @@ typedef union _hw_hdmi_phy_digtxmode
  * - 1 - Enable the inverting feature on the second channel.
  */
 //@{
-
 #define BP_HDMI_PHY_DIGTXMODE_INVERT_DATA1      (5)      //!< Bit position for HDMI_PHY_DIGTXMODE_INVERT_DATA1.
 #define BM_HDMI_PHY_DIGTXMODE_INVERT_DATA1      (0x00000020)  //!< Bit mask for HDMI_PHY_DIGTXMODE_INVERT_DATA1.
 
@@ -4036,7 +3673,6 @@ typedef union _hw_hdmi_phy_digtxmode
 
 //! @brief Format value for bitfield HDMI_PHY_DIGTXMODE_INVERT_DATA1.
 #define BF_HDMI_PHY_DIGTXMODE_INVERT_DATA1(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_DIGTXMODE_INVERT_DATA1) & BM_HDMI_PHY_DIGTXMODE_INVERT_DATA1)
-
 //@}
 
 /*! @name Register HDMI_PHY_DIGTXMODE, field INVERT_DATA2[6] (RW)
@@ -4049,7 +3685,6 @@ typedef union _hw_hdmi_phy_digtxmode
  * - 1 - Enable the inverting feature on the third channel.
  */
 //@{
-
 #define BP_HDMI_PHY_DIGTXMODE_INVERT_DATA2      (6)      //!< Bit position for HDMI_PHY_DIGTXMODE_INVERT_DATA2.
 #define BM_HDMI_PHY_DIGTXMODE_INVERT_DATA2      (0x00000040)  //!< Bit mask for HDMI_PHY_DIGTXMODE_INVERT_DATA2.
 
@@ -4058,7 +3693,6 @@ typedef union _hw_hdmi_phy_digtxmode
 
 //! @brief Format value for bitfield HDMI_PHY_DIGTXMODE_INVERT_DATA2.
 #define BF_HDMI_PHY_DIGTXMODE_INVERT_DATA2(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_DIGTXMODE_INVERT_DATA2) & BM_HDMI_PHY_DIGTXMODE_INVERT_DATA2)
-
 //@}
 
 /*! @name Register HDMI_PHY_DIGTXMODE, field DTB_SELECT[12:7] (RW)
@@ -4070,7 +3704,6 @@ typedef union _hw_hdmi_phy_digtxmode
  * the bit pairs, see dtb_select[6:0] .
  */
 //@{
-
 #define BP_HDMI_PHY_DIGTXMODE_DTB_SELECT      (7)      //!< Bit position for HDMI_PHY_DIGTXMODE_DTB_SELECT.
 #define BM_HDMI_PHY_DIGTXMODE_DTB_SELECT      (0x00001f80)  //!< Bit mask for HDMI_PHY_DIGTXMODE_DTB_SELECT.
 
@@ -4079,7 +3712,6 @@ typedef union _hw_hdmi_phy_digtxmode
 
 //! @brief Format value for bitfield HDMI_PHY_DIGTXMODE_DTB_SELECT.
 #define BF_HDMI_PHY_DIGTXMODE_DTB_SELECT(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_DIGTXMODE_DTB_SELECT) & BM_HDMI_PHY_DIGTXMODE_DTB_SELECT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4116,10 +3748,6 @@ typedef union _hw_hdmi_phy_str_status
  */
 //@{
 #define HW_HDMI_PHY_STR_STATUS_ADDR      (REGS_HDMI_PHY_BASE + 0x1f)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_STR_STATUS           (*(volatile hw_hdmi_phy_str_status_t *) HW_HDMI_PHY_STR_STATUS_ADDR)
-#endif
 //@}
 
 /*
@@ -4135,7 +3763,6 @@ typedef union _hw_hdmi_phy_str_status
  * - 1 - The tracing process on channel 0 is complete.
  */
 //@{
-
 #define BP_HDMI_PHY_STR_STATUS_SCOPE_DONE0      (0)      //!< Bit position for HDMI_PHY_STR_STATUS_SCOPE_DONE0.
 #define BM_HDMI_PHY_STR_STATUS_SCOPE_DONE0      (0x00000001)  //!< Bit mask for HDMI_PHY_STR_STATUS_SCOPE_DONE0.
 
@@ -4144,7 +3771,6 @@ typedef union _hw_hdmi_phy_str_status
 
 //! @brief Format value for bitfield HDMI_PHY_STR_STATUS_SCOPE_DONE0.
 #define BF_HDMI_PHY_STR_STATUS_SCOPE_DONE0(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_STR_STATUS_SCOPE_DONE0) & BM_HDMI_PHY_STR_STATUS_SCOPE_DONE0)
-
 //@}
 
 /*! @name Register HDMI_PHY_STR_STATUS, field SCOPE_DONE1[1] (RW)
@@ -4156,7 +3782,6 @@ typedef union _hw_hdmi_phy_str_status
  * - 1 - The tracing process on channel 1 is complete.
  */
 //@{
-
 #define BP_HDMI_PHY_STR_STATUS_SCOPE_DONE1      (1)      //!< Bit position for HDMI_PHY_STR_STATUS_SCOPE_DONE1.
 #define BM_HDMI_PHY_STR_STATUS_SCOPE_DONE1      (0x00000002)  //!< Bit mask for HDMI_PHY_STR_STATUS_SCOPE_DONE1.
 
@@ -4165,7 +3790,6 @@ typedef union _hw_hdmi_phy_str_status
 
 //! @brief Format value for bitfield HDMI_PHY_STR_STATUS_SCOPE_DONE1.
 #define BF_HDMI_PHY_STR_STATUS_SCOPE_DONE1(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_STR_STATUS_SCOPE_DONE1) & BM_HDMI_PHY_STR_STATUS_SCOPE_DONE1)
-
 //@}
 
 /*! @name Register HDMI_PHY_STR_STATUS, field SCOPE_DONE2[2] (RW)
@@ -4177,7 +3801,6 @@ typedef union _hw_hdmi_phy_str_status
  * - 1 - The tracing process on channel 2 is complete.
  */
 //@{
-
 #define BP_HDMI_PHY_STR_STATUS_SCOPE_DONE2      (2)      //!< Bit position for HDMI_PHY_STR_STATUS_SCOPE_DONE2.
 #define BM_HDMI_PHY_STR_STATUS_SCOPE_DONE2      (0x00000004)  //!< Bit mask for HDMI_PHY_STR_STATUS_SCOPE_DONE2.
 
@@ -4186,7 +3809,6 @@ typedef union _hw_hdmi_phy_str_status
 
 //! @brief Format value for bitfield HDMI_PHY_STR_STATUS_SCOPE_DONE2.
 #define BF_HDMI_PHY_STR_STATUS_SCOPE_DONE2(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_STR_STATUS_SCOPE_DONE2) & BM_HDMI_PHY_STR_STATUS_SCOPE_DONE2)
-
 //@}
 
 /*! @name Register HDMI_PHY_STR_STATUS, field CK_SCOPE_DONE[3] (RW)
@@ -4198,7 +3820,6 @@ typedef union _hw_hdmi_phy_str_status
  * - 1 - The tracing process on the clock channel is complete.
  */
 //@{
-
 #define BP_HDMI_PHY_STR_STATUS_CK_SCOPE_DONE      (3)      //!< Bit position for HDMI_PHY_STR_STATUS_CK_SCOPE_DONE.
 #define BM_HDMI_PHY_STR_STATUS_CK_SCOPE_DONE      (0x00000008)  //!< Bit mask for HDMI_PHY_STR_STATUS_CK_SCOPE_DONE.
 
@@ -4207,7 +3828,6 @@ typedef union _hw_hdmi_phy_str_status
 
 //! @brief Format value for bitfield HDMI_PHY_STR_STATUS_CK_SCOPE_DONE.
 #define BF_HDMI_PHY_STR_STATUS_CK_SCOPE_DONE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_STR_STATUS_CK_SCOPE_DONE) & BM_HDMI_PHY_STR_STATUS_CK_SCOPE_DONE)
-
 //@}
 
 /*! @name Register HDMI_PHY_STR_STATUS, field TX_CK_ALIGN_DONE[4] (RW)
@@ -4220,7 +3840,6 @@ typedef union _hw_hdmi_phy_str_status
  * - 1 - The transmission clock alignment FSM is complete.
  */
 //@{
-
 #define BP_HDMI_PHY_STR_STATUS_TX_CK_ALIGN_DONE      (4)      //!< Bit position for HDMI_PHY_STR_STATUS_TX_CK_ALIGN_DONE.
 #define BM_HDMI_PHY_STR_STATUS_TX_CK_ALIGN_DONE      (0x00000010)  //!< Bit mask for HDMI_PHY_STR_STATUS_TX_CK_ALIGN_DONE.
 
@@ -4229,7 +3848,6 @@ typedef union _hw_hdmi_phy_str_status
 
 //! @brief Format value for bitfield HDMI_PHY_STR_STATUS_TX_CK_ALIGN_DONE.
 #define BF_HDMI_PHY_STR_STATUS_TX_CK_ALIGN_DONE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_STR_STATUS_TX_CK_ALIGN_DONE) & BM_HDMI_PHY_STR_STATUS_TX_CK_ALIGN_DONE)
-
 //@}
 
 /*! @name Register HDMI_PHY_STR_STATUS, field RCAL_ADC_DONE[5] (RW)
@@ -4242,7 +3860,6 @@ typedef union _hw_hdmi_phy_str_status
  * - 1 - The resistance calibration FSM is complete.
  */
 //@{
-
 #define BP_HDMI_PHY_STR_STATUS_RCAL_ADC_DONE      (5)      //!< Bit position for HDMI_PHY_STR_STATUS_RCAL_ADC_DONE.
 #define BM_HDMI_PHY_STR_STATUS_RCAL_ADC_DONE      (0x00000020)  //!< Bit mask for HDMI_PHY_STR_STATUS_RCAL_ADC_DONE.
 
@@ -4251,7 +3868,6 @@ typedef union _hw_hdmi_phy_str_status
 
 //! @brief Format value for bitfield HDMI_PHY_STR_STATUS_RCAL_ADC_DONE.
 #define BF_HDMI_PHY_STR_STATUS_RCAL_ADC_DONE(v)   ((__REG_VALUE_TYPE((v), reg16_t) << BP_HDMI_PHY_STR_STATUS_RCAL_ADC_DONE) & BM_HDMI_PHY_STR_STATUS_RCAL_ADC_DONE)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4281,10 +3897,6 @@ typedef union _hw_hdmi_phy_scopecnt0
  */
 //@{
 #define HW_HDMI_PHY_SCOPECNT0_ADDR      (REGS_HDMI_PHY_BASE + 0x20)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_SCOPECNT0           (*(volatile hw_hdmi_phy_scopecnt0_t *) HW_HDMI_PHY_SCOPECNT0_ADDR)
-#endif
 //@}
 
 /*
@@ -4297,13 +3909,11 @@ typedef union _hw_hdmi_phy_scopecnt0
  * was used to generate the scope patterns, you must read the MSB bits under 0x25 register.
  */
 //@{
-
 #define BP_HDMI_PHY_SCOPECNT0_SCOPE_ONES_CNT0      (0)      //!< Bit position for HDMI_PHY_SCOPECNT0_SCOPE_ONES_CNT0.
 #define BM_HDMI_PHY_SCOPECNT0_SCOPE_ONES_CNT0      (0x0000ffff)  //!< Bit mask for HDMI_PHY_SCOPECNT0_SCOPE_ONES_CNT0.
 
 //! @brief Get value of HDMI_PHY_SCOPECNT0_SCOPE_ONES_CNT0 from a register value.
 #define BG_HDMI_PHY_SCOPECNT0_SCOPE_ONES_CNT0(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_HDMI_PHY_SCOPECNT0_SCOPE_ONES_CNT0) >> BP_HDMI_PHY_SCOPECNT0_SCOPE_ONES_CNT0)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4333,10 +3943,6 @@ typedef union _hw_hdmi_phy_scopecnt1
  */
 //@{
 #define HW_HDMI_PHY_SCOPECNT1_ADDR      (REGS_HDMI_PHY_BASE + 0x21)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_SCOPECNT1           (*(volatile hw_hdmi_phy_scopecnt1_t *) HW_HDMI_PHY_SCOPECNT1_ADDR)
-#endif
 //@}
 
 /*
@@ -4349,13 +3955,11 @@ typedef union _hw_hdmi_phy_scopecnt1
  * was used to generate the scope patterns, you must read the MSB bits under 0x25 register.
  */
 //@{
-
 #define BP_HDMI_PHY_SCOPECNT1_SCOPE_ONES_CNT1      (0)      //!< Bit position for HDMI_PHY_SCOPECNT1_SCOPE_ONES_CNT1.
 #define BM_HDMI_PHY_SCOPECNT1_SCOPE_ONES_CNT1      (0x0000ffff)  //!< Bit mask for HDMI_PHY_SCOPECNT1_SCOPE_ONES_CNT1.
 
 //! @brief Get value of HDMI_PHY_SCOPECNT1_SCOPE_ONES_CNT1 from a register value.
 #define BG_HDMI_PHY_SCOPECNT1_SCOPE_ONES_CNT1(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_HDMI_PHY_SCOPECNT1_SCOPE_ONES_CNT1) >> BP_HDMI_PHY_SCOPECNT1_SCOPE_ONES_CNT1)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4385,10 +3989,6 @@ typedef union _hw_hdmi_phy_scopecnt2
  */
 //@{
 #define HW_HDMI_PHY_SCOPECNT2_ADDR      (REGS_HDMI_PHY_BASE + 0x22)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_SCOPECNT2           (*(volatile hw_hdmi_phy_scopecnt2_t *) HW_HDMI_PHY_SCOPECNT2_ADDR)
-#endif
 //@}
 
 /*
@@ -4401,13 +4001,11 @@ typedef union _hw_hdmi_phy_scopecnt2
  * was used to generate the scope patterns, you must read the MSB bits under 0x26 register.
  */
 //@{
-
 #define BP_HDMI_PHY_SCOPECNT2_SCOPE_ONES_CNT2      (0)      //!< Bit position for HDMI_PHY_SCOPECNT2_SCOPE_ONES_CNT2.
 #define BM_HDMI_PHY_SCOPECNT2_SCOPE_ONES_CNT2      (0x0000ffff)  //!< Bit mask for HDMI_PHY_SCOPECNT2_SCOPE_ONES_CNT2.
 
 //! @brief Get value of HDMI_PHY_SCOPECNT2_SCOPE_ONES_CNT2 from a register value.
 #define BG_HDMI_PHY_SCOPECNT2_SCOPE_ONES_CNT2(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_HDMI_PHY_SCOPECNT2_SCOPE_ONES_CNT2) >> BP_HDMI_PHY_SCOPECNT2_SCOPE_ONES_CNT2)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4437,10 +4035,6 @@ typedef union _hw_hdmi_phy_scopecntclk
  */
 //@{
 #define HW_HDMI_PHY_SCOPECNTCLK_ADDR      (REGS_HDMI_PHY_BASE + 0x23)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_SCOPECNTCLK           (*(volatile hw_hdmi_phy_scopecntclk_t *) HW_HDMI_PHY_SCOPECNTCLK_ADDR)
-#endif
 //@}
 
 /*
@@ -4454,13 +4048,11 @@ typedef union _hw_hdmi_phy_scopecntclk
  * register.
  */
 //@{
-
 #define BP_HDMI_PHY_SCOPECNTCLK_CK_SCOPE_ONES_CNT      (0)      //!< Bit position for HDMI_PHY_SCOPECNTCLK_CK_SCOPE_ONES_CNT.
 #define BM_HDMI_PHY_SCOPECNTCLK_CK_SCOPE_ONES_CNT      (0x0000ffff)  //!< Bit mask for HDMI_PHY_SCOPECNTCLK_CK_SCOPE_ONES_CNT.
 
 //! @brief Get value of HDMI_PHY_SCOPECNTCLK_CK_SCOPE_ONES_CNT from a register value.
 #define BG_HDMI_PHY_SCOPECNTCLK_CK_SCOPE_ONES_CNT(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_HDMI_PHY_SCOPECNTCLK_CK_SCOPE_ONES_CNT) >> BP_HDMI_PHY_SCOPECNTCLK_CK_SCOPE_ONES_CNT)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4492,10 +4084,6 @@ typedef union _hw_hdmi_phy_scopesample
  */
 //@{
 #define HW_HDMI_PHY_SCOPESAMPLE_ADDR      (REGS_HDMI_PHY_BASE + 0x24)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_SCOPESAMPLE           (*(volatile hw_hdmi_phy_scopesample_t *) HW_HDMI_PHY_SCOPESAMPLE_ADDR)
-#endif
 //@}
 
 /*
@@ -4508,13 +4096,11 @@ typedef union _hw_hdmi_phy_scopesample
  * the LFSR length). These samples are the MSB bits only.
  */
 //@{
-
 #define BP_HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_CNT      (0)      //!< Bit position for HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_CNT.
 #define BM_HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_CNT      (0x0000003f)  //!< Bit mask for HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_CNT.
 
 //! @brief Get value of HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_CNT from a register value.
 #define BG_HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_CNT(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_CNT) >> BP_HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_CNT)
-
 //@}
 
 /*! @name Register HDMI_PHY_SCOPESAMPLE, field SCOPE_SAMPLE_REP[12:6] (RO)
@@ -4523,13 +4109,11 @@ typedef union _hw_hdmi_phy_scopesample
  * is scope_sample_rep x scope_sample_cnt.
  */
 //@{
-
 #define BP_HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_REP      (6)      //!< Bit position for HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_REP.
 #define BM_HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_REP      (0x00001fc0)  //!< Bit mask for HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_REP.
 
 //! @brief Get value of HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_REP from a register value.
 #define BG_HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_REP(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_REP) >> BP_HDMI_PHY_SCOPESAMPLE_SCOPE_SAMPLE_REP)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4561,10 +4145,6 @@ typedef union _hw_hdmi_phy_scopecntmsb01
  */
 //@{
 #define HW_HDMI_PHY_SCOPECNTMSB01_ADDR      (REGS_HDMI_PHY_BASE + 0x25)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_SCOPECNTMSB01           (*(volatile hw_hdmi_phy_scopecntmsb01_t *) HW_HDMI_PHY_SCOPECNTMSB01_ADDR)
-#endif
 //@}
 
 /*
@@ -4577,13 +4157,11 @@ typedef union _hw_hdmi_phy_scopecntmsb01
  * the MSB bits only.
  */
 //@{
-
 #define BP_HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT0      (0)      //!< Bit position for HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT0.
 #define BM_HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT0      (0x000000ff)  //!< Bit mask for HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT0.
 
 //! @brief Get value of HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT0 from a register value.
 #define BG_HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT0(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT0) >> BP_HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT0)
-
 //@}
 
 /*! @name Register HDMI_PHY_SCOPECNTMSB01, field SCOPE_ONES_CNT1[12:8] (RO)
@@ -4592,13 +4170,11 @@ typedef union _hw_hdmi_phy_scopecntmsb01
  * the MSB bits only.
  */
 //@{
-
 #define BP_HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT1      (8)      //!< Bit position for HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT1.
 #define BM_HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT1      (0x00001f00)  //!< Bit mask for HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT1.
 
 //! @brief Get value of HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT1 from a register value.
 #define BG_HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT1(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT1) >> BP_HDMI_PHY_SCOPECNTMSB01_SCOPE_ONES_CNT1)
-
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4630,10 +4206,6 @@ typedef union _hw_hdmi_phy_scopecntmsb2ck
  */
 //@{
 #define HW_HDMI_PHY_SCOPECNTMSB2CK_ADDR      (REGS_HDMI_PHY_BASE + 0x26)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_HDMI_PHY_SCOPECNTMSB2CK           (*(volatile hw_hdmi_phy_scopecntmsb2ck_t *) HW_HDMI_PHY_SCOPECNTMSB2CK_ADDR)
-#endif
 //@}
 
 /*
@@ -4646,13 +4218,11 @@ typedef union _hw_hdmi_phy_scopecntmsb2ck
  * the MSB bits only.
  */
 //@{
-
 #define BP_HDMI_PHY_SCOPECNTMSB2CK_SCOPE_ONES_CNT2      (0)      //!< Bit position for HDMI_PHY_SCOPECNTMSB2CK_SCOPE_ONES_CNT2.
 #define BM_HDMI_PHY_SCOPECNTMSB2CK_SCOPE_ONES_CNT2      (0x0000003f)  //!< Bit mask for HDMI_PHY_SCOPECNTMSB2CK_SCOPE_ONES_CNT2.
 
 //! @brief Get value of HDMI_PHY_SCOPECNTMSB2CK_SCOPE_ONES_CNT2 from a register value.
 #define BG_HDMI_PHY_SCOPECNTMSB2CK_SCOPE_ONES_CNT2(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_HDMI_PHY_SCOPECNTMSB2CK_SCOPE_ONES_CNT2) >> BP_HDMI_PHY_SCOPECNTMSB2CK_SCOPE_ONES_CNT2)
-
 //@}
 
 /*! @name Register HDMI_PHY_SCOPECNTMSB2CK, field CK_SCOPE_ONES_CNT[12:6] (RO)
@@ -4661,13 +4231,13 @@ typedef union _hw_hdmi_phy_scopecntmsb2ck
  * These 1's are the MSB bits only.
  */
 //@{
-
 #define BP_HDMI_PHY_SCOPECNTMSB2CK_CK_SCOPE_ONES_CNT      (6)      //!< Bit position for HDMI_PHY_SCOPECNTMSB2CK_CK_SCOPE_ONES_CNT.
 #define BM_HDMI_PHY_SCOPECNTMSB2CK_CK_SCOPE_ONES_CNT      (0x00001fc0)  //!< Bit mask for HDMI_PHY_SCOPECNTMSB2CK_CK_SCOPE_ONES_CNT.
 
 //! @brief Get value of HDMI_PHY_SCOPECNTMSB2CK_CK_SCOPE_ONES_CNT from a register value.
 #define BG_HDMI_PHY_SCOPECNTMSB2CK_CK_SCOPE_ONES_CNT(r)   ((__REG_VALUE_TYPE((r), reg16_t) & BM_HDMI_PHY_SCOPECNTMSB2CK_CK_SCOPE_ONES_CNT) >> BP_HDMI_PHY_SCOPECNTMSB2CK_CK_SCOPE_ONES_CNT)
-
 //@}
 
 #endif // __HW_HDMI_PHY_REGISTERS_H__
+// v16/121010/1.1.4
+// EOF

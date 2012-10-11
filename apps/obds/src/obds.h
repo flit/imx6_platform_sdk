@@ -80,6 +80,8 @@ menu_action_t i2s_audio_test(const menu_context_t* const context, void* const pa
 menu_action_t uart_test(const menu_context_t* const context, void* const param);
 menu_action_t spi_nor_test(const menu_context_t* const context, void* const param);
 menu_action_t mmcsd_test(const menu_context_t* const context, void* const param);
+menu_action_t pf0100_i2c_device_id_check(const menu_context_t* const context, void* const param);
+
 //
 // PRIVATE
 //
@@ -107,7 +109,7 @@ extern int ard_mb_expander_reset_test_enable;
 extern int ds90ur124_test_enable;
 extern int mlb_os81050_test_enable;
 extern int weim_nor_flash_test_enable;
-extern int pf0100_i2c_device_id_test_enable;
+//extern int pf0100_i2c_device_id_test_enable;
 extern int usbh_EHCI_test_mode_test_enable;
 extern int usbh_dev_enum_test_enable;
 extern int usbo_dev_enum_test_enable;

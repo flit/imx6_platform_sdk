@@ -116,6 +116,11 @@ extern reg_param_t mt9p111_af_firmware[];
 extern reg_param_t mt9p111_af_trigger[];
 extern reg_param_t mt9p111_af_ready[];
 
+//! @brief The I2C port number to which the camera is connected.
+//!
+//! This global must be provided by the board library or application.
+extern uint8_t g_camera_i2c_port;
+
 /*!
  * @brief Perform sensor reset operation
  *
@@ -130,7 +135,7 @@ void sensor_reset(void);
  * When @enable equals 1, it initiates hardware standy mode
  * Before entering work mode, make sure call this function with @enable 0.
  *
- * @param	enable parameter controlis if initiate a hardware standby mode or normal work mode
+ * @param	enable parameter controlis if initiate a hardware standby mode or normal work mode. 1 for standby mode, 0 for normal work mode.
  */
 void sensor_standby(int32_t enable);
 
@@ -189,11 +194,6 @@ int32_t sensor_af_trigger(camera_profile_t * sensor);
  * @return 0 on success; non-zero otherwise
  */
 int32_t sensor_autofocus_init(camera_profile_t * sensor);
-
-//! @brief The I2C port number to which the camera is connected.
-//!
-//! This global must be provided by the board library or application.
-extern uint8_t g_camera_i2c_port;
 
 //! @}
 #endif

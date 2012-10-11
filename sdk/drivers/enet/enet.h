@@ -8,7 +8,12 @@
 #ifndef __ENET_H__
 #define __ENET_H__
 
+#if !defined (CHIP_MX6SL)
 #include "registers/regsenet.h"
+#else
+#include "registers/regsfec.h"
+#define hw_enet_t hw_fec_t
+#endif
 
 #define 	NUM_OF_ETH_DEVS	1
 

@@ -8,34 +8,36 @@
 #ifndef __ENET_H__
 #define __ENET_H__
 
+#include "registers/regsenet.h"
+
 #define 	NUM_OF_ETH_DEVS	1
 
 /* The defines of event bits */
-#define ENET_EVENT_HBERR	0x80000000
+#define ENET_EVENT_HBERR 0x80000000
 
-#define ENET_EVENT_BABR	0x40000000
+#define ENET_EVENT_BABR	BM_ENET_EIR_BABR
 
-#define ENET_EVENT_BABT	0x20000000
+#define ENET_EVENT_BABT	BM_ENET_EIR_BABT
 
-#define ENET_EVENT_GRA	0x10000000
+#define ENET_EVENT_GRA	BM_ENET_EIR_GRA
 
-#define ENET_EVENT_TXF 	0x08000000
+#define ENET_EVENT_TXF 	BM_ENET_EIR_TXF
 
-#define ENET_EVENT_TXB	0x04000000
+#define ENET_EVENT_TXB	BM_ENET_EIR_TXB
 
-#define ENET_EVENT_RXF	0x02000000
+#define ENET_EVENT_RXF	BM_ENET_EIR_RXF
 
-#define ENET_EVENT_RXB	0x01000000
+#define ENET_EVENT_RXB	BM_ENET_EIR_RXB
 
-#define ENET_EVENT_MII	0x00800000
+#define ENET_EVENT_MII	BM_ENET_EIR_MII
 
-#define ENET_EVENT_EBERR	0x00400000
+#define ENET_EVENT_EBERR	BM_ENET_EIR_EBERR
 
-#define ENET_EVENT_LC	0x00200000
+#define ENET_EVENT_LC	BM_ENET_EIR_LC
 
-#define ENET_EVENT_RL	0x00100000
+#define ENET_EVENT_RL	BM_ENET_EIR_RL
 
-#define ENET_EVENT_UN	0x00080000
+#define ENET_EVENT_UN	BM_ENET_EIR_UN
 
 #define ENET_EVENT_TX		ENET_EVENT_TXF
 
@@ -50,18 +52,18 @@
 #define ENET_FRAME_LEN		(1540+4)
 
 /* the defines to active transmit or receive frame */
-#define ENET_RX_TX_ACTIVE	0x01000000
+#define ENET_RX_TX_ACTIVE	BM_ENET_TDAR_TDAR	//BM_ENET_RDAR_RDAR
 
 /* the defines of Ethernet Control register */
-#define ENET_RESET	0x00000001
+#define ENET_RESET	BM_ENET_ECR_RESET
 
-#define ENET_ETHER_EN	0x00000002
+#define ENET_ETHER_EN	BM_ENET_ECR_ETHEREN
 #define ENET_ETHER_SPEED_1000M (1<<5)
 #define ENET_ETHER_LITTLE_ENDIAN (1<<8)
 /* the defins of MII operation */
 #define ENET_MII_ST	0x40000000
 
-#define ENET_MII_OP_OFF	28
+#define ENET_MII_OP_OFF	BP_ENET_MMFR_OP
 
 #define ENET_MII_OP_MASK 0x03
 
@@ -69,7 +71,7 @@
 
 #define ENET_MII_OP_WR	0x01
 
-#define ENET_MII_PA_OFF	23
+#define ENET_MII_PA_OFF	BP_ENET_MMFR_PA
 
 #define ENET_MII_PA_MASK 0xFF
 
@@ -79,7 +81,7 @@
 
 #define ENET_MII_TA	0x00020000
 
-#define ENET_MII_DATA_OFF 0
+#define ENET_MII_DATA_OFF BP_ENET_MMFR_DATA
 
 #define ENET_MII_DATA_MASK 0x0000FFFF
 
@@ -108,148 +110,35 @@
 #define MII_SPEED(x)	( (((((x)+499999)/2500000)&(MII_SPEED_MASK))>>1)<<(MII_SPEED_SHIFT) )
 
 /*the defines of MIB control */
-#define ENET_MIB_DISABLE	0x80000000
+#define ENET_MIB_DISABLE	BM_ENET_MIBC_MIB_DIS
 
 /*the defines of Receive Control*/
-#define ENET_RCR_FCE	0x00000020
+#define ENET_RCR_FCE	BM_ENET_RCR_FCE
 
-#define ENET_RCR_BC_REJ	0x00000010
+#define ENET_RCR_BC_REJ	BM_ENET_RCR_BC_REJ
 
-#define ENET_RCR_PROM	0x00000008
+#define ENET_RCR_PROM	BM_ENET_RCR_PROM
 
-#define ENET_RCR_MII_MODE	(1<<2)
+#define ENET_RCR_MII_MODE	(BM_ENET_RCR_MII_MODE)
 #define ENET_RCR_RGMII_EN       (1<<6)  /*RGMII enable/disable */
-#define ENET_RCR_RMII_MODE      (1<<8)  /*RMII mode:1->10M, 0->100M */
+#define ENET_RCR_RMII_MODE      (BM_ENET_RCR_RMII_MODE)  /*RMII mode:1->10M, 0->100M */
 
 /*the defines of Transmit Control*/
-#define ENET_TCR_RFC_PAUSE	0x00000010
+#define ENET_TCR_RFC_PAUSE	BM_ENET_TCR_RFC_PAUSE
 
-#define ENET_TCR_FDEN		0x00000004
+#define ENET_TCR_FDEN		BM_ENET_TCR_FDEN
 
 /*the defines of buffer description*/
 #define ENET_BD_RX_NUM	8
 
 #define ENET_BD_TX_NUM	2
 
+//! @brief MII type
 enum imx_mii_type {
     MII,
     RMII,
     RGMII,
 };
-
-typedef struct imx_enet_reg_s {
-    unsigned long res1;
-    /*0x004 */
-    unsigned long eir;          /* Interrupt Event Register */
-    /*0x008 */
-    unsigned long eimr;         /* Interrupt Mask Register */
-    unsigned long res2;
-    /*0x010 */
-    unsigned long rdar;         /* Receive Descriptor Active Register */
-    /*0x014 */
-    unsigned long tdar;         /* Transmit Descriptor Active Register */
-    unsigned long res3[3];
-    /*0x024 */
-    unsigned long ecr;          /*Ethernet Control Register */
-    unsigned long res4[6];
-    /*0x040 */
-    unsigned long mmfr;         /*MII Management Frame Register */
-    /*0x044 */
-    unsigned long mscr;         /*MII Speed Control Register */
-    unsigned long res5[7];
-    /*0x064 */
-    unsigned long mibc;         /*MII Control/Status Register */
-    unsigned long res6[7];
-    /*0x084 */
-    unsigned long rcr;          /*Receive Control Register */
-    unsigned long res7[15];
-    /*0x0C4 */
-    unsigned long tcr;          /*Transmit Control register */
-    unsigned long res8[7];
-    /*0x0E4 */
-    unsigned long palr;         /*Physical Address Low Register */
-    /*0x0E8 */
-    unsigned long paur;         /*Physical Address High+Type Register */
-    /*0x0EC */
-    unsigned long opd;          /*Opcode+Pause Duration */
-    unsigned long res9[10];
-    /*0x118 */
-    unsigned long iaur;         /*Upper 32bits Individual Hash Table */
-    /*0x11c */
-    unsigned long ialr;         /*lower 32bits Individual Hash Table */
-    /*0x120 */
-    unsigned long gaur;         /*Upper 32bits Group Hash Table */
-    /*0x124 */
-    unsigned long galr;         /*lower 32bits Group Hash Table */
-    unsigned long res10[7];
-    /*0x144 */
-    unsigned long tfwr;         /*Trasmit FIFO Watermark */
-    unsigned long res11[14];
-    /*0x180 */
-    unsigned long rdsr;         /*Pointer to Receive Descriptor Ring */
-    /*0x184 */
-    unsigned long tdsr;         /*Pointer to Transmit Descriptor Ring */
-    /*0x188 */
-    unsigned long mrbr;         /*Maximum Receive Buffer size */
-    unsigned long res12;
-    /*0x190 */
-    unsigned long rsfl;         /*Receive FIFO Section Full Threshold */
-    /*0x194 */
-    unsigned long rsem;         /*Receive FIFO Section Empty Threshold */
-    /*0x198 */
-    unsigned long raem;         /*Receive FIFO Almost Empty Threshold */
-    /*0x19C */
-    unsigned long rafl;         /*Receive FIFO Almost Full Threshold */
-    /*0x1A0 */
-    unsigned long tsem;         /*Transmit FIFO Section Empty Threshold */
-    /*0x1A4 */
-    unsigned long taem;         /*Transmit FIFO Almost Empty Threshold */
-    /*0x1A8 */
-    unsigned long tafl;         /*Transmit FIFO Almost Full Threshold */
-    /*0x1AC */
-    unsigned long tipg;         /*Transmit Inter-Packet Gap */
-    /*0x1B0 */
-    unsigned long ftrl;         /*Frame Truncation length */
-    unsigned long res13[3];
-    /*0x1C0 */
-    unsigned long tacc;         /*Transmit Accelerator Function config */
-    /*0x1C4 */
-    unsigned long racc;         /*Receive Accelerator Function config */
-    unsigned short res14[142];
-    /*0x400 */
-    unsigned short atcr;        /* Timer Control Register */
-    /*0x404 */
-    unsigned short atvr;        /* Timer Value Register */
-    /*0x408 */
-    unsigned short atoff;       /* Timer Offset Register */
-    /*0x40C */
-    unsigned short atper;       /* Timer Period Register */
-    /*0x410 */
-    unsigned short atcor;       /* Timer Correction Register */
-    /*0x414 */
-    unsigned short atinc;       /* Time-Stamping Clock Period Register */
-    /*0x418 */
-    unsigned short atstmp;      /* Timestamp of Last Transmitted Frame */
-    unsigned short res15[122];
-    /*0x604 */
-    unsigned short tgsr;        /* Timer Global Status Register */
-    /*0x608 */
-    unsigned short tcsr0;       /* Timer Control Status Register 0 */
-    /*0x60C */
-    unsigned short tccr0;       /* Timer Compare Capture Register 0 */
-    /*0x610 */
-    unsigned short tcsr1;       /* Timer Control Status Register 1 */
-    /*0x614 */
-    unsigned short tccr1;       /* Timer Compare Capture Register 1 */
-    /*0x618 */
-    unsigned short tcsr2;       /* Timer Control Status Register 2 */
-    /*0x61C */
-    unsigned short tccr2;       /* Timer Compare Capture Register 2 */
-    /*0x620 */
-    unsigned short tcsr3;       /* Timer Control Status Register 3 */
-    /*0x624 */
-    unsigned short tccr3;       /* Timer Compare Capture Register 3 */
-} imx_enet_reg_t;
 
 #define BD_RX_ST_EMPTY 0x8000
 
@@ -269,14 +158,16 @@ typedef struct imx_enet_reg_s {
 
 #define BD_TX_ST_ABC	0x0200
 
+//! @brief  Data structure for Tx/Rx buffer descriptor
 typedef struct imx_enet_bd_t {
     unsigned short int length;  /*packet size */
     unsigned short int status;  /*control & statue of this buffer description */
     unsigned char *data;        /*frame buffer address */
 } imx_enet_bd_t;
 
+//! @brief  Data structure for ENET device
 typedef struct imx_enet_priv_s {
-    imx_enet_reg_t *hw_reg;     /*the reister base address of ENET */
+    hw_enet_t *enet_reg;     /*the reister base address of ENET */
     unsigned char phy_addr;     /*the address of PHY which associated with ENET controller */
     unsigned char tx_busy;      /*0:free, 1:transmitting frame */
     unsigned char res[2];
@@ -374,12 +265,70 @@ typedef struct imx_enet_priv_s {
 
 #define ENET_MII_TIMEOUT	(1000*1000)
 
+/*! 
+ * Enable ENET and start transfer.
+ * @param       dev    a pointer of ENET interface(imx_enet_priv_t) 
+ *			 enaddr 	a pointer of MAC address
+ *
+ * @return      none
+ */
 void imx_enet_start(imx_enet_priv_t * dev, unsigned char *enaddr);
+
+/*! 
+ * Disable ENET
+ * @param       dev    a pointer of ENET interface(imx_enet_priv_t) 
+ *
+ * @return      none
+ */
 void imx_enet_stop(imx_enet_priv_t * dev);
+
+/*! 
+ * Initialize ENET PHY, like LAN8700, 8720, AR8031, etc
+ * @param       dev    a pointer of ENET interface(imx_enet_priv_t) 
+ *
+ * @return      none
+ */
 void imx_enet_phy_init(imx_enet_priv_t * dev);
+
+/*! 
+ * Initialize ENET interface, including buffer descriptor and MAC
+ * @param       dev    a pointer of ENET interface(imx_enet_priv_t) 
+ *			 reg_base	base address of ethernet registers
+ *			 phy_addr	phy address, 0 or 1
+ *
+ * @return      zero
+ */
 int imx_enet_init(imx_enet_priv_t * dev, unsigned long reg_base, int phy_addr);
+
+/*! 
+ * Poll ENET events
+ * @param       dev    a pointer of ENET interface(imx_enet_priv_t) 
+ *
+ * @return      event value
+ */
 unsigned long imx_enet_poll(imx_enet_priv_t * dev);
+
+/*! 
+ * Recieve ENET packet
+ * @param       dev    a pointer of ENET interface(imx_enet_priv_t) 
+ *			 buf		a pointer of buffer for received packet
+ *			 length	the length of received packet
+ *
+ * @return      0 if succeeded
+ *			-1 if failed
+ *
+ */
 int imx_enet_recv(imx_enet_priv_t * dev, unsigned char *buf, int *length);
+
+/*! 
+ * Transmit ENET packet
+ * @param       dev    a pointer of ENET interface(imx_enet_priv_t) 
+ *			 buf		a pointer of buffer for packet to be sent
+ *			 length	the length of packet to be sent
+ *			 key		key
+ *
+ * @return      zero
+ */
 int imx_enet_send(imx_enet_priv_t * dev, unsigned char *buf, int length, unsigned long key);
 
 #endif //__ENET_H__

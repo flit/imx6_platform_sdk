@@ -42,20 +42,20 @@ static unsigned char imx_enet_tx_buf[ENET_BD_TX_NUM * NUM_OF_ETH_DEVS][2048]
 /*!
  * This function gets the value of the PHY registers through the MII interface.
  */
-int imx_enet_mii_read(volatile imx_enet_reg_t * hw_reg, unsigned char phy_addr,
+int imx_enet_mii_read(volatile hw_enet_t * enet_reg, unsigned char phy_addr,
                       unsigned char reg_addr, unsigned short int *value)
 {
     unsigned long waiting = ENET_MII_TIMEOUT;
 
-    if (hw_reg->eir & ENET_EVENT_MII) {
-        hw_reg->eir = ENET_EVENT_MII;
+    if (enet_reg->EIR.U & ENET_EVENT_MII) {
+        enet_reg->EIR.U = ENET_EVENT_MII;
     }
 
-    hw_reg->mmfr = ENET_MII_READ(phy_addr, reg_addr);   /*Write CMD */
+    enet_reg->MMFR.U = ENET_MII_READ(phy_addr, reg_addr);   /*Write CMD */
 
     while (1) {
-        if (hw_reg->eir & ENET_EVENT_MII) {
-            hw_reg->eir = ENET_EVENT_MII;
+        if (enet_reg->EIR.U & ENET_EVENT_MII) {
+            enet_reg->EIR.U = ENET_EVENT_MII;
             break;
         }
         if ((--waiting) == 0)
@@ -64,27 +64,27 @@ int imx_enet_mii_read(volatile imx_enet_reg_t * hw_reg, unsigned char phy_addr,
         hal_delay_us(ENET_MII_TICK);
     }
 
-    *value = ENET_MII_GET_DATA(hw_reg->mmfr);
+    *value = ENET_MII_GET_DATA(enet_reg->MMFR.U);
     return 0;
 }
 
 /*!
  * This function sets the value of the PHY registers through the MII interface.
  */
-int imx_enet_mii_write(volatile imx_enet_reg_t * hw_reg, unsigned char phy_addr,
+int imx_enet_mii_write(volatile hw_enet_t * enet_reg, unsigned char phy_addr,
                        unsigned char reg_addr, unsigned short int value)
 {
     unsigned long waiting = ENET_MII_TIMEOUT;
 
-    if (hw_reg->eir & ENET_EVENT_MII) {
-        hw_reg->eir = ENET_EVENT_MII;
+    if (enet_reg->EIR.U & ENET_EVENT_MII) {
+        enet_reg->EIR.U = ENET_EVENT_MII;
     }
 
-    hw_reg->mmfr = ENET_MII_WRITE(phy_addr, reg_addr, value);   /* Write CMD */
+    enet_reg->MMFR.U = ENET_MII_WRITE(phy_addr, reg_addr, value);   /* Write CMD */
 
     while (1) {
-        if (hw_reg->eir & ENET_EVENT_MII) {
-            hw_reg->eir = ENET_EVENT_MII;
+        if (enet_reg->EIR.U & ENET_EVENT_MII) {
+            enet_reg->EIR.U = ENET_EVENT_MII;
             break;
         }
 
@@ -141,85 +141,85 @@ static void imx_enet_bd_init(imx_enet_priv_t * dev, int dev_idx)
  */
 static void imx_enet_chip_init(imx_enet_priv_t * dev)
 {
-    volatile imx_enet_reg_t *chip = (imx_enet_reg_t *) dev->hw_reg;
+    volatile hw_enet_t *enet_reg = (hw_enet_t *) dev->enet_reg;
 
-    chip->ecr = ENET_RESET;
+    enet_reg->ECR.U = ENET_RESET;
 
-    while (chip->ecr & ENET_RESET) {
+    while (enet_reg->ECR.U & ENET_RESET) {
         hal_delay_us(ENET_COMMON_TICK);
     }
 
-    chip->eimr = 0x00000000;
-    chip->eir = 0xFFFFFFFF;
+    enet_reg->EIMR.U = 0x00000000;
+    enet_reg->EIR.U = 0xFFFFFFFF;
 
     /*
      * setup the MII gasket for RMII mode
      */
-    chip->rcr = (chip->rcr & ~(0x0000003F)) | ENET_RCR_RGMII_EN | ENET_RCR_FCE | ENET_RCR_PROM;
-    chip->tcr |= ENET_TCR_FDEN;
-    chip->mibc |= ENET_MIB_DISABLE;
+    enet_reg->RCR.U = (enet_reg->RCR.U & ~(0x0000003F)) | ENET_RCR_RGMII_EN | ENET_RCR_FCE | ENET_RCR_PROM;
+    enet_reg->TCR.U |= ENET_TCR_FDEN;
+    enet_reg->MIBC.U |= ENET_MIB_DISABLE;
 
-    chip->iaur = 0;
-    chip->ialr = 0;
-    chip->gaur = 0;
-    chip->galr = 0;
+    enet_reg->IAUR.U = 0;
+    enet_reg->IALR.U = 0;
+    enet_reg->GAUR.U = 0;
+    enet_reg->GALR.U = 0;
 
     /*TODO:: Use MII_SPEED(IPG_CLK) to get the value */
-    chip->mscr = (chip->mscr & (~0x7e)) | (1 << 8) | (40 << 1);
+    enet_reg->MSCR.U = (enet_reg->MSCR.U & (~0x7e)) | (1 << 8) | (40 << 1);
 
     /*Enable ETHER_EN */
-    chip->mrbr = 2048 - 16;
-    chip->rdsr = (unsigned long)dev->rx_bd;
-    chip->tdsr = (unsigned long)dev->tx_bd;
+    enet_reg->MRBR.U = 2048 - 16;
+    enet_reg->RDSR.U = (unsigned long)dev->rx_bd;
+    enet_reg->TDSR.U = (unsigned long)dev->tx_bd;
 }
 
 void imx_enet_phy_clock_output_125M(imx_enet_priv_t * dev)
 {
     unsigned short val = 0;
     int i;
-    imx_enet_mii_write(dev->hw_reg, dev->phy_addr, 0x1d, 0x1F);
-    imx_enet_mii_read(dev->hw_reg, dev->phy_addr, 0x1e, &val);
+    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1d, 0x1F);
+    imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0x1e, &val);
     printf("debug before 0x1F val = 0x%x\n", val);
     val |= 0x4;
-    imx_enet_mii_write(dev->hw_reg, dev->phy_addr, 0x1e, val);
-    imx_enet_mii_read(dev->hw_reg, dev->phy_addr, 0x1e, &val);
+    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1e, val);
+    imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0x1e, &val);
     printf("debug after 0x1F val = 0x%x\n", val);
 
-    imx_enet_mii_write(dev->hw_reg, dev->phy_addr, 0xd, 0x7);
-    imx_enet_mii_write(dev->hw_reg, dev->phy_addr, 0xe, 0x8016);
-    imx_enet_mii_write(dev->hw_reg, dev->phy_addr, 0xd, 0x4007);
-    imx_enet_mii_read(dev->hw_reg, dev->phy_addr, 0xe, &val);
+    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0xd, 0x7);
+    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0xe, 0x8016);
+    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0xd, 0x4007);
+    imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0xe, &val);
     printf("debug read from 0x8016 val = 0x%x\n", val);
     val &= 0xffe3;
     val |= 0x18;
-    imx_enet_mii_write(dev->hw_reg, dev->phy_addr, 0xe, val);
-    imx_enet_mii_read(dev->hw_reg, dev->phy_addr, 0xe, &val);
+    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0xe, val);
+    imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0xe, &val);
     printf("debug after read from 0x8016 val = 0x%x\n", val);
     for (i = 0; i < 100000; i++) ;
 
     //debug register 0x5[8]=1'b1 - suggest add 2ns GTX_CLK delay
-    imx_enet_mii_write(dev->hw_reg, dev->phy_addr, 0x1d, 0x5);
-    imx_enet_mii_read(dev->hw_reg, dev->phy_addr, 0x1e, &val);
+    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1d, 0x5);
+    imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0x1e, &val);
     val |= 0x0100;
-    imx_enet_mii_write(dev->hw_reg, dev->phy_addr, 0x1e, val);
+    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1e, val);
 
     // Config to external loopback
-    imx_enet_mii_write(dev->hw_reg, dev->phy_addr, 0x1d, 0xb);
-    imx_enet_mii_read(dev->hw_reg, dev->phy_addr, 0x1e, &val);
-    imx_enet_mii_write(dev->hw_reg, dev->phy_addr, 0x1e, 0x3c40);
+    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1d, 0xb);
+    imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0x1e, &val);
+    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1e, 0x3c40);
 
-    imx_enet_mii_write(dev->hw_reg, dev->phy_addr, 0x1d, 0x11);
-    imx_enet_mii_read(dev->hw_reg, dev->phy_addr, 0x1e, &val);
+    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1d, 0x11);
+    imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0x1e, &val);
     val |= 0x0001;
-    imx_enet_mii_write(dev->hw_reg, dev->phy_addr, 0x1e, val);
+    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1e, val);
 
     // PHY AR8031 Integrated 10/100/1000 Gigabit
     // Reset & full duplex
     // Use default speed - after Pwer on reset - 1000Mbs
-    imx_enet_mii_write(dev->hw_reg, dev->phy_addr, 0, 0x8140);
-    imx_enet_mii_read(dev->hw_reg, dev->phy_addr, 0, &val);
+    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0, 0x8140);
+    imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0, &val);
     while (val == 0x8140)
-        imx_enet_mii_read(dev->hw_reg, dev->phy_addr, 0, &val);
+        imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0, &val);
 
 }
 
@@ -230,9 +230,9 @@ void imx_enet_phy_init(imx_enet_priv_t * dev)
 {
     unsigned short value = 0;
     unsigned long id = 0, timeout = 50;
-    imx_enet_mii_read(dev->hw_reg, dev->phy_addr, PHY_IDENTIFY_1, &value);
+    imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_IDENTIFY_1, &value);
     id = (value & PHY_ID1_MASK) << PHY_ID1_SHIFT;
-    imx_enet_mii_read(dev->hw_reg, dev->phy_addr, PHY_IDENTIFY_2, &value);
+    imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_IDENTIFY_2, &value);
     id |= (value & PHY_ID2_MASK) << PHY_ID2_SHIFT;
 
     switch (id & 0xfffffff0) {
@@ -255,20 +255,20 @@ void imx_enet_phy_init(imx_enet_priv_t * dev)
     }
 
     value = 0x8100;
-    imx_enet_mii_write(dev->hw_reg, dev->phy_addr, 0x1f, value);
+    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1f, value);
     imx_enet_phy_clock_output_125M(dev);
     for (id = 0x0; id <= 0x1f; id++) {
-        imx_enet_mii_read(dev->hw_reg, dev->phy_addr, id, &value);
+        imx_enet_mii_read(dev->enet_reg, dev->phy_addr, id, &value);
         printf("ENET phy reg %lx is %x\n", id, value);
     }
 
-    imx_enet_mii_read(dev->hw_reg, dev->phy_addr, PHY_STATUS_REG, &value);
+    imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_STATUS_REG, &value);
     printf("ENET phy status %x\n", value);
     timeout = 5;
 
     while ((0 == (value & PHY_STATUS_LINK_ST)) && (timeout > 0)) {
         hal_delay_us(500000);
-        imx_enet_mii_read(dev->hw_reg, dev->phy_addr, PHY_STATUS_REG, &value);
+        imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_STATUS_REG, &value);
         printf("enet phy status %0d: %04x\n", dev->phy_addr, value);    //  0x7809 or 0x782d
         timeout--;
     }
@@ -278,10 +278,10 @@ void imx_enet_phy_init(imx_enet_priv_t * dev)
         dev->status &= ~ENET_STATUS_LINK_ON;
     }
     for (id = 0x0; id <= 0x1f; id++) {
-        imx_enet_mii_read(dev->hw_reg, dev->phy_addr, id, &value);
+        imx_enet_mii_read(dev->enet_reg, dev->phy_addr, id, &value);
         printf("ENET phy reg %lx is %x\n", id, value);
     }
-    imx_enet_mii_read(dev->hw_reg, dev->phy_addr, 0x1b, &value);
+    imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0x1b, &value);
     if (value & (1 << 2))
         dev->status |= ENET_STATUS_FULL_DPLX;
     else
@@ -294,7 +294,7 @@ void imx_enet_phy_init(imx_enet_priv_t * dev)
     else
         dev->status |= ENET_STATUS_10M;
 
-/*    imx_enet_mii_read(dev->hw_reg, dev->phy_addr, PHY_AUTO_NEG_REG, &value);
+/*    imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_AUTO_NEG_REG, &value);
     printf("enet phy reg 0x5 is %x\n",value);
     if (value & PHY_AUTO_10BASET) {
         dev->status &= ~ENET_STATUS_100M;
@@ -326,11 +326,11 @@ void imx_enet_phy_init(imx_enet_priv_t * dev)
 
 unsigned long imx_enet_poll(imx_enet_priv_t * dev)
 {
-    volatile imx_enet_reg_t *hw_reg = dev->hw_reg;
+    volatile hw_enet_t *enet_reg = dev->enet_reg;
     unsigned int value = 0;
 
-    value = hw_reg->eir;
-    hw_reg->eir = value & (~ENET_EVENT_MII);
+    value = enet_reg->EIR.U;
+    enet_reg->EIR.U = value & (~ENET_EVENT_MII);
 
     if (value & ENET_EVENT_TX_ERR) {
         printf("WARNING[POLL]: There are error(%x) for transmit\n", value & ENET_EVENT_TX_ERR);
@@ -358,7 +358,7 @@ unsigned long imx_enet_poll(imx_enet_priv_t * dev)
 
 int imx_enet_send(imx_enet_priv_t * dev, unsigned char *buf, int length, unsigned long key)
 {
-    volatile imx_enet_reg_t *hw_reg = dev->hw_reg;
+    volatile hw_enet_t *enet_reg = dev->enet_reg;
     imx_enet_bd_t *p = dev->tx_cur;
 
     memcpy(p->data, buf, length);
@@ -375,7 +375,7 @@ int imx_enet_send(imx_enet_priv_t * dev, unsigned char *buf, int length, unsigne
     dev->tx_cur = p;
     dev->tx_busy = 1;
     dev->tx_key = key;
-    hw_reg->tdar = ENET_RX_TX_ACTIVE;
+    enet_reg->TDAR.U = ENET_RX_TX_ACTIVE;
 
     return 0;
 }
@@ -383,7 +383,7 @@ int imx_enet_send(imx_enet_priv_t * dev, unsigned char *buf, int length, unsigne
 int imx_enet_recv(imx_enet_priv_t * dev, unsigned char *buf, int *length)
 {
     imx_enet_bd_t *p = dev->rx_cur;
-    volatile imx_enet_reg_t *hw_reg = dev->hw_reg;
+    volatile hw_enet_t *enet_reg = dev->enet_reg;
 
     if (p->status & BD_RX_ST_EMPTY) {
         return -1;
@@ -410,15 +410,15 @@ int imx_enet_recv(imx_enet_priv_t * dev, unsigned char *buf, int *length)
     }
 
     dev->rx_cur = p;
-    hw_reg->ecr |= ENET_ETHER_EN;
-    hw_reg->rdar |= ENET_RX_TX_ACTIVE;
+    enet_reg->ECR.U |= ENET_ETHER_EN;
+    enet_reg->RDAR.U |= ENET_RX_TX_ACTIVE;
 
     return 0;
 }
 
 int imx_enet_init(imx_enet_priv_t * dev, unsigned long reg_base, int phy_addr)
 {
-    dev->hw_reg = (imx_enet_reg_t *) reg_base;
+    dev->enet_reg = (hw_enet_t *) reg_base;
     dev->tx_busy = 0;
     dev->status = 0;
     dev->phy_addr = phy_addr;   /* 0 or 1 */
@@ -432,7 +432,7 @@ int imx_enet_init(imx_enet_priv_t * dev, unsigned long reg_base, int phy_addr)
     return 0;
 }
 
-static void imx_enet_set_mac_address(volatile imx_enet_reg_t * hw_reg, unsigned char *enaddr)
+static void imx_enet_set_mac_address(volatile hw_enet_t * enet_reg, unsigned char *enaddr)
 {
     unsigned long value;
 
@@ -440,34 +440,34 @@ static void imx_enet_set_mac_address(volatile imx_enet_reg_t * hw_reg, unsigned 
     value = (value << 8) + enaddr[1];
     value = (value << 8) + enaddr[2];
     value = (value << 8) + enaddr[3];
-    hw_reg->palr = value;
+    enet_reg->PALR.U = value;
 
     value = enaddr[4];
     value = (value << 8) + enaddr[5];
-    hw_reg->paur = (value << 16);
+    enet_reg->PAUR.U = (value << 16);
 }
 
 void imx_enet_start(imx_enet_priv_t * dev, unsigned char *enaddr)
 {
-    imx_enet_set_mac_address(dev->hw_reg, enaddr);
+    imx_enet_set_mac_address(dev->enet_reg, enaddr);
 
     dev->tx_busy = 0;
-    dev->hw_reg->ecr |= ENET_ETHER_EN | ENET_ETHER_SPEED_1000M | ENET_ETHER_LITTLE_ENDIAN;
-    dev->hw_reg->rdar |= ENET_RX_TX_ACTIVE;
+    dev->enet_reg->ECR.U |= ENET_ETHER_EN | ENET_ETHER_SPEED_1000M | ENET_ETHER_LITTLE_ENDIAN;
+    dev->enet_reg->RDAR.U |= ENET_RX_TX_ACTIVE;
 }
 
 void imx_enet_stop(imx_enet_priv_t * dev)
 {
-    dev->hw_reg->ecr &= ~ENET_ETHER_EN;
+    dev->enet_reg->ECR.U &= ~ENET_ETHER_EN;
 }
 
 int imx_enet_isolate_phy(imx_enet_priv_t * dev)
 {
     unsigned short value = 0;
 
-    if (!imx_enet_mii_read(dev->hw_reg, dev->phy_addr, PHY_CTRL_REG, &value)) {
+    if (!imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_CTRL_REG, &value)) {
         value |= (0x01 << 10);
-        if (!imx_enet_mii_write(dev->hw_reg, dev->phy_addr, PHY_CTRL_REG, value)) {
+        if (!imx_enet_mii_write(dev->enet_reg, dev->phy_addr, PHY_CTRL_REG, value)) {
             return 0;
         }
     }
@@ -478,10 +478,10 @@ int imx_enet_unisolate_phy(imx_enet_priv_t * dev)
 {
     unsigned short value = 0;
 
-    if (!imx_enet_mii_read(dev->hw_reg, dev->phy_addr, PHY_CTRL_REG, &value)) {
+    if (!imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_CTRL_REG, &value)) {
         value &= ~(0x01 << 10);
-        if (!imx_enet_mii_write(dev->hw_reg, dev->phy_addr, PHY_CTRL_REG, value)) {
-            imx_enet_mii_read(dev->hw_reg, dev->phy_addr, PHY_CTRL_REG, &value);
+        if (!imx_enet_mii_write(dev->enet_reg, dev->phy_addr, PHY_CTRL_REG, value)) {
+            imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_CTRL_REG, &value);
             return 0;
         }
     }
@@ -490,22 +490,22 @@ int imx_enet_unisolate_phy(imx_enet_priv_t * dev)
 
 int imx_enet_mii_type(imx_enet_priv_t * dev, enum imx_mii_type mii_type)
 {
-    volatile imx_enet_reg_t *hw_reg = dev->hw_reg;
+    volatile hw_enet_t *enet_reg = dev->enet_reg;
 
     switch (mii_type) {
     case MII:
         /*clear RMII and RGMII */
-        hw_reg->rcr &= ~(ENET_RCR_RMII_MODE | ENET_RCR_RGMII_EN);
-        hw_reg->rcr |= ENET_RCR_MII_MODE;
+        enet_reg->RCR.U &= ~(ENET_RCR_RMII_MODE | ENET_RCR_RGMII_EN);
+        enet_reg->RCR.U |= ENET_RCR_MII_MODE;
         break;
     case RMII:
-        hw_reg->rcr &= ~(ENET_RCR_RGMII_EN);
-        hw_reg->rcr |= (ENET_RCR_MII_MODE | ENET_RCR_RMII_MODE);
+        enet_reg->RCR.U &= ~(ENET_RCR_RGMII_EN);
+        enet_reg->RCR.U |= (ENET_RCR_MII_MODE | ENET_RCR_RMII_MODE);
         break;
     case RGMII:
-        hw_reg->rcr &= ~(ENET_RCR_RMII_MODE | ENET_RCR_MII_MODE);
-        hw_reg->rcr |= ENET_RCR_RGMII_EN;
-        hw_reg->tfwr = 0x3f;    //for mx6dq
+        enet_reg->RCR.U &= ~(ENET_RCR_RMII_MODE | ENET_RCR_MII_MODE);
+        enet_reg->RCR.U |= ENET_RCR_RGMII_EN;
+        enet_reg->TFWR.U = 0x3f;    //for mx6dq
         break;
     default:
         printf("BUG:unknow MII type=%x\n", mii_type);

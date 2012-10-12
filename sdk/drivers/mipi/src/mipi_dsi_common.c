@@ -15,6 +15,7 @@
 #include "registers/regsmipidsi.h"
 #include "mipi/mipi_common.h"
 #include "ipu/ipu_common.h"
+#include "truly_hx8369.h"
 
 void dphy_write_control(unsigned long testcode, unsigned long testwrite)
 {
@@ -46,6 +47,7 @@ void dphy_write_control(unsigned long testcode, unsigned long testwrite)
 void gen_write_cmd(unsigned long gen_hdr)
 {
 	HW_MIPI_DSI_GEN_HDR_WR(gen_hdr);
+	//while(!HW_MIPI_DSI_CMD_PKT_STATUS.B.GEN_CMD_EMPTY);
 }
 
 void gen_write_data(unsigned long gen_pld_data)
@@ -53,93 +55,127 @@ void gen_write_data(unsigned long gen_pld_data)
 	HW_MIPI_DSI_GEN_PLD_DATA_WR(gen_pld_data);
 }
 
+int gen_read_data(void)
+{
+	return HW_MIPI_DSI_GEN_PLD_DATA_RD();
+}
+
 void mipi_lcd_init(void)
 {
-    gen_write_data(0x6983ffb9);
-    gen_write_cmd(0x00000429);
-    //hal_delay_us(1000);
+	int val = 0;
+	gen_write_data(HX8369_CMD_SETEXTC | (HX8369_CMD_SETEXTC_PARAM_1 << 8));
+	gen_write_cmd((HX8369_CMD_SETEXTC_LEN << 8) | MIPI_DSI_GENERIC_LONG_WRITE);
 
-    gen_write_data(0x032300b2);
-    gen_write_data(0xff007003);
-    gen_write_data(0x00000000);
-    gen_write_data(0x01000303);
-    gen_write_cmd(0x00001029);
-    //hal_delay_us(1000);
+#if 0
+	gen_write_cmd((HX8369_CMD_GETHXID << 8) | MIPI_DSI_GENERIC_READ_REQUEST_2_PARAM);
+	val = gen_read_data();
+	printf("ID is %x\n", val);
+#endif
 
-    gen_write_data(0x5f1d00b4);
-    gen_write_data(0x0000060e);
-    gen_write_cmd(0x00000629);
-    //hal_delay_us(1000);
+	/* 
+	 * set the TRULY MIPI panel
+	 * choose DPI mode, resolution is 480x800, RGB24 format
+	 */
+	gen_write_data(HX8369_CMD_SETDISP | (HX8369_CMD_SETDISP_1_HALT << 8) |
+			(HX8369_CMD_SETDISP_2_RES_MODE << 16) |
+			(HX8369_CMD_SETDISP_3_BP << 24));
+	gen_write_data(HX8369_CMD_SETDISP_4_FP | (HX8369_CMD_SETDISP_5_SAP << 8) |
+			 (HX8369_CMD_SETDISP_6_GENON << 16) |
+			 (HX8369_CMD_SETDISP_7_GENOFF << 24));
+	gen_write_data(HX8369_CMD_SETDISP_8_RTN | (HX8369_CMD_SETDISP_9_TEI << 8) |
+			 (HX8369_CMD_SETDISP_10_TEP_UP << 16) |
+			 (HX8369_CMD_SETDISP_11_TEP_LOW << 24));
+	gen_write_data(HX8369_CMD_SETDISP_12_BP_PE |
+			(HX8369_CMD_SETDISP_13_FP_PE << 8) |
+			 (HX8369_CMD_SETDISP_14_RTN_PE << 16) |
+			 (HX8369_CMD_SETDISP_15_GON << 24));
+	gen_write_cmd((HX8369_CMD_SETDISP_LEN << 8) | MIPI_DSI_GENERIC_LONG_WRITE);
+		
+	/* Set display waveform cycle */
+	gen_write_data(HX8369_CMD_SETCYC | (HX8369_CMD_SETCYC_PARAM_1 << 8));
+	gen_write_data(HX8369_CMD_SETCYC_PARAM_2);
+	gen_write_cmd((HX8369_CMD_SETCYC_LEN << 8) | MIPI_DSI_GENERIC_LONG_WRITE);
 
-    gen_write_data(0x030400d5);
-    gen_write_data(0x1c050100);
-    gen_write_data(0x00030170);
-    gen_write_data(0x51064000);
-    gen_write_data(0x41000007);
-    gen_write_data(0x07075006);
-    gen_write_data(0x0000040f);
-    gen_write_cmd(0x00001b29);
-    //hal_delay_us(5000);
+	/* Set GIP timing output control */
+	gen_write_data(HX8369_CMD_SETGIP | (HX8369_CMD_SETGIP_PARAM_1 << 8));
+	gen_write_data(HX8369_CMD_SETGIP_PARAM_2);
+	gen_write_data(HX8369_CMD_SETGIP_PARAM_3);
+	gen_write_data(HX8369_CMD_SETGIP_PARAM_4);
+	gen_write_data(HX8369_CMD_SETGIP_PARAM_5);
+	gen_write_data(HX8369_CMD_SETGIP_PARAM_6);
+	gen_write_data(HX8369_CMD_SETGIP_PARAM_7);
+	gen_write_cmd((HX8369_CMD_SETGIP_LEN << 8) | MIPI_DSI_GENERIC_LONG_WRITE);
 
-    gen_write_data(0x340001b1);
-    gen_write_data(0x0f0f0006);
-    gen_write_data(0x3f3f322a);
-    gen_write_data(0xe6013a07);
-    gen_write_data(0xe6e6e6e6);
-    gen_write_cmd(0x00001429);
-    //hal_delay_us(1000);
+	/* Set power: standby, DC etc. */
+	gen_write_data(HX8369_CMD_SETPOWER | (HX8369_CMD_SETPOWER_PARAM_1 << 8));
+	gen_write_data(HX8369_CMD_SETPOWER_PARAM_2);
+	gen_write_data(HX8369_CMD_SETPOWER_PARAM_3);
+	gen_write_data(HX8369_CMD_SETPOWER_PARAM_4);
+	gen_write_data(HX8369_CMD_SETPOWER_PARAM_5);
+	gen_write_cmd((HX8369_CMD_SETPOWER_LEN << 8) | MIPI_DSI_GENERIC_LONG_WRITE);
 
-    gen_write_data(0x005656b6);
-    gen_write_cmd(0x00000329);
-    //hal_delay_us(1000);
+	/* Set VCOM voltage. */
+	gen_write_data(HX8369_CMD_SETVCOM | (HX8369_CMD_SETVCOM_PARAM_1 << 8));
+	gen_write_cmd((HX8369_CMD_SETVCOM_LEN << 8) | MIPI_DSI_GENERIC_LONG_WRITE);
 
-    gen_write_cmd(0x0002cc23);
-    //hal_delay_us(1000);
+	/* Set Panel format: BGR/RGB*/
+	val = HX8369_CMD_SETPANEL | (HX8369_CMD_SETPANEL_PARAM_1 << 8);
+	gen_write_cmd((val << 8) |MIPI_DSI_GENERIC_SHORT_WRITE_2_PARAM);
 
-    gen_write_data(0x221d00e0);
-    gen_write_data(0x2e3f3d38);
-    gen_write_data(0x0f0d064a);
-    gen_write_data(0x16131513);
-    gen_write_data(0x1d001910);
-    gen_write_data(0x3f3d3822);
-    gen_write_data(0x0d064a2e);
-    gen_write_data(0x1315130f);
-    gen_write_data(0x00191016);
-    gen_write_cmd(0x00002329);
-    //hal_delay_us(500);
+	/* Set gamma curve related setting */
+	gen_write_data(HX8369_CMD_SETGAMMA | (HX8369_CMD_SETGAMMA_PARAM_1 << 8));
+	gen_write_data(HX8369_CMD_SETGAMMA_PARAM_2);
+	gen_write_data(HX8369_CMD_SETGAMMA_PARAM_3);
+	gen_write_data(HX8369_CMD_SETGAMMA_PARAM_4);
+	gen_write_data(HX8369_CMD_SETGAMMA_PARAM_5);
+	gen_write_data(HX8369_CMD_SETGAMMA_PARAM_6);
+	gen_write_data(HX8369_CMD_SETGAMMA_PARAM_7);
+	gen_write_data(HX8369_CMD_SETGAMMA_PARAM_8);
+	gen_write_data(HX8369_CMD_SETGAMMA_PARAM_9);
+	gen_write_cmd((HX8369_CMD_SETGAMMA_LEN << 8) | MIPI_DSI_GENERIC_LONG_WRITE);
 
-    gen_write_data(0xc6a000ba);
-    gen_write_data(0x10000a00);
-    gen_write_data(0x11026f30);
-    gen_write_data(0x00004018);
+	/* Set MIPI: DPHYCMD & DSICMD, data lane number */
+	gen_write_data(HX8369_CMD_SETMIPI | (HX8369_CMD_SETMIPI_PARAM_1 << 8));
+	gen_write_data(HX8369_CMD_SETMIPI_PARAM_2);
+	gen_write_data(HX8369_CMD_SETMIPI_PARAM_3 | HX8369_CMD_SETMIPI_ONELANE);
+	gen_write_data(HX8369_CMD_SETMIPI_PARAM_4);
+	gen_write_cmd((HX8369_CMD_SETMIPI_LEN << 8) | MIPI_DSI_GENERIC_LONG_WRITE);
 
-    gen_write_cmd(0x00000e29);
-    gen_write_cmd(0x00773a23);
+	/* Set pixel format:24bpp */
+	val = HX8369_CMD_SETPIXEL_FMT | (HX8369_CMD_SETPIXEL_FMT_24BPP << 8);
+	gen_write_cmd((val << 8) | MIPI_DSI_GENERIC_SHORT_WRITE_2_PARAM);
 
-    gen_write_data(0xdf00002a);
-    gen_write_data(0x00000001);
+	/* Set column address: 0~479 */
+	gen_write_data(HX8369_CMD_SETCLUMN_ADDR | (HX8369_CMD_SETCLUMN_ADDR_PARAM_1 << 8));
+	gen_write_data(HX8369_CMD_SETCLUMN_ADDR_PARAM_2);
+	gen_write_cmd((HX8369_CMD_SETCLUMN_ADDR_LEN << 8) | MIPI_DSI_GENERIC_LONG_WRITE);
 
-    gen_write_cmd(0x00000529);
+	/* Set page address: 0~799 */
+	gen_write_data(HX8369_CMD_SETPAGE_ADDR |(HX8369_CMD_SETPAGE_ADDR_PARAM_1 << 8));
+	gen_write_data(HX8369_CMD_SETPAGE_ADDR_PARAM_2);
+	gen_write_cmd((HX8369_CMD_SETPAGE_ADDR_LEN << 8) | MIPI_DSI_GENERIC_LONG_WRITE);
+    	hal_delay_us(500);
 
-    gen_write_data(0x1f00002b);
-    gen_write_data(0x00000003);
+	/* Set display brightness related */
+	val = HX8369_CMD_WRT_DISP_BRIGHT | (HX8369_CMD_WRT_DISP_BRIGHT_PARAM_1 << 8);
+	gen_write_cmd((val << 8) |MIPI_DSI_GENERIC_SHORT_WRITE_2_PARAM);
 
-    gen_write_cmd(0x00000529);
-    hal_delay_us(500);
+	val = HX8369_CMD_WRT_CABC_CTRL |(HX8369_CMD_WRT_CABC_CTRL_PARAM_1 << 8);
+	gen_write_cmd((val << 8) |MIPI_DSI_GENERIC_SHORT_WRITE_2_PARAM);
+    	hal_delay_us(500);
+	
+	val = HX8369_CMD_WRT_CTRL_DISP |(HX8369_CMD_WRT_CTRL_DISP_PARAM_1 << 8);
+	gen_write_cmd((val << 8) |MIPI_DSI_GENERIC_SHORT_WRITE_2_PARAM);
+    	hal_delay_us(500);
 
-    gen_write_cmd(0x00ff5123);  //Write CABC minimum brightness,
-
-    gen_write_cmd(0x00001523);  //Write CABC minimum brightness,
-    hal_delay_us(500);
-    gen_write_cmd(0x00245323);  //Write CABC minimum brightness,
-    hal_delay_us(500);
-
-    gen_write_cmd(0x00001113);
-    //hal_delay_us(1000);
-
-    gen_write_cmd(0x00002913);
-
-    hal_delay_us(1000);
+	/* exit sleep mode and set display on */
+	gen_write_cmd((MIPI_DCS_EXIT_SLEEP_MODE << 8) |MIPI_DSI_GENERIC_SHORT_WRITE_1_PARAM);
+	
+	/* To allow time for the supply voltages
+	 * and clock circuits to stabilize.
+	 */
+	hal_delay_us(5000);
+	gen_write_cmd((MIPI_DCS_SET_DISPLAY_ON << 8) |MIPI_DSI_GENERIC_SHORT_WRITE_1_PARAM);
 }
 
 void mipi_dsi_init(void)

@@ -186,16 +186,6 @@ typedef struct {
 //////////////////////////////////////////////////////////////////////////////
 
 /*!
- * @brief Write bit fields of hdmi internal regiters
- *
- * @param data Written value of the bit fields
- * @param addr Address of the register
- * @param shift Lsb offset of the bit-field
- * @param width Width of the bit-field
- */
-void writebf(uint8_t data, uint32_t addr, uint8_t shift, uint8_t width);
-
-/*!
  * @brief This submodule is responsible for the video/audio data composition
  *
  * @param vmode Video mode parameters
@@ -324,7 +314,6 @@ void audio_info_config(void);
  */
 int audio_Configure(hdmi_audioparam_s hdmi_audioparam_instance, uint16_t pixelClk,
                     unsigned ratioClk);
-
 
 /*!
  * @brief Configure the audio DMA

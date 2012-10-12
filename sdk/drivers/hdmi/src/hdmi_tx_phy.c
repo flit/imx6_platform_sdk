@@ -90,7 +90,7 @@ static inline void hdmi_phy_test_clear(uint8_t bit)
 static inline void hdmi_phy_test_enable(uint8_t bit)
 {
     HW_HDMI_PHY_TST0.B.TESTEN = bit;
-} 
+}
 
 /*!
  * @brief HDMI PHY TEST clock enable
@@ -162,6 +162,7 @@ static void hdmi_phy_gen2_tx_pon(uint8_t bit)
 {
     HW_HDMI_PHY_CONF0.B.GEN2_TXPWRON = bit;
 }
+
 /*!
  * @brief HDMI PHY tx PDDQ down
  * 
@@ -283,7 +284,7 @@ static int hdmi_phy_i2c_write_verify(uint16_t data, uint8_t addr)
  * @return FALSE if configuration failed or TRUE ifconfiguration succeed
  */
 static int hdmi_phy_configure(uint16_t pClk, uint8_t pRep, uint8_t cRes, int cscOn,
-                       int audioOn, int cecOn, int hdcpOn)
+                              int audioOn, int cecOn, int hdcpOn)
 {
     // colour resolution 0 is 8 bit colour depth
     if (cRes == 0) {
@@ -736,4 +737,3 @@ void hdmi_phy_init(uint8_t de, uint16_t pclk)
 ///////////////////////////////////////////////////////////////////////////////////
 // EOF
 ///////////////////////////////////////////////////////////////////////////////////
-

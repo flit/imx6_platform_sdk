@@ -13,21 +13,6 @@
 // CODE
 ///////////////////////////////////////////////////////////////////////////////////
 
-void writebf(uint8_t data, uint32_t addr, uint8_t shift, uint8_t width)
-{
-    uint8_t temp = 0;
-    uint8_t mask = (1 << width) - 1;
-    if (data > mask) {
-        printf("Invalid parameter for %s\n", __FUNCTION__);
-        return;
-    }
-
-    temp = readb(addr);
-    temp &= ~(mask << shift);
-    temp |= (data & mask) << shift;
-    writeb(temp, addr);
-}
-
 int isColorSpaceConversion(hdmi_data_info_s hdmi_instance)
 {
     return (hdmi_instance.enc_in_format != hdmi_instance.enc_out_format) ? TRUE : FALSE;

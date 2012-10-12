@@ -337,20 +337,21 @@ void hdmi_av_frame_composer(hdmi_data_info_s * hdmi_instance)
     hdmi_set_video_mode(hdmi_instance->video_mode);
 
     // configure HDMI_FC_INVIDCONF register
-#if 1                           // Note by Ray: this part should be replaced once the new register header are ready
-    writebf((hdmi_instance->hdcp_enable == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 7, 1);
-    writebf((hdmi_instance->video_mode->mVSyncPolarity == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 6, 1);
-    writebf((hdmi_instance->video_mode->mHSyncPolarity == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 5, 1);
-    writebf((hdmi_instance->video_mode->mDataEnablePolarity == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 4,
-            1);
-    writebf((hdmi_instance->video_mode->mHdmiDviSel == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 3, 1); // select hdmi or dvi mode    
+    HW_HDMI_FC_INVIDCONF.B.HDCP_KEEPOUT = (hdmi_instance->hdcp_enable == TRUE) ? 1 : 0;
+    HW_HDMI_FC_INVIDCONF.B.VSYNC_IN_POLARITY =
+        (hdmi_instance->video_mode->mVSyncPolarity == TRUE) ? 1 : 0;
+    HW_HDMI_FC_INVIDCONF.B.HSYNC_IN_POLARITY =
+        (hdmi_instance->video_mode->mHSyncPolarity == TRUE) ? 1 : 0;
+    HW_HDMI_FC_INVIDCONF.B.DE_IN_POLARITY =
+        (hdmi_instance->video_mode->mDataEnablePolarity == TRUE) ? 1 : 0;
+    HW_HDMI_FC_INVIDCONF.B.DVI_MODEZ = (hdmi_instance->video_mode->mHdmiDviSel == TRUE) ? 1 : 0;
     if (hdmi_instance->video_mode->mCode == 39) {
-        writebf(0, HDMI_FC_INVIDCONF, 1, 1);
+        HW_HDMI_FC_INVIDCONF.B.R_V_BLANK_IN_OSC = 0;
     } else {
-        writebf((hdmi_instance->video_mode->mInterlaced == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 1, 1);
+        HW_HDMI_FC_INVIDCONF.B.R_V_BLANK_IN_OSC =
+            (hdmi_instance->video_mode->mInterlaced == TRUE) ? 1 : 0;
     }
-    writebf((hdmi_instance->video_mode->mInterlaced == TRUE) ? 1 : 0, HDMI_FC_INVIDCONF, 0, 1);
-#endif
+    HW_HDMI_FC_INVIDCONF.B.IN_I_P = (hdmi_instance->video_mode->mInterlaced == TRUE) ? 1 : 0;
 
     HW_HDMI_FC_INHACTIV0.U = hdmi_instance->video_mode->mHActive;
     HW_HDMI_FC_INHACTIV1.B.H_IN_ACTIV = (hdmi_instance->video_mode->mHActive >> 8);
@@ -381,11 +382,9 @@ void hdmi_av_frame_composer(hdmi_data_info_s * hdmi_instance)
 
 void hdmi_tx_hdcp_config(uint32_t de)
 {
-#if 1                           // Note by Ray: this part should be replaced once the new register header are ready
-    writebf(0, HDMI_A_HDCPCFG0, 2, 1);  //disable rx detect
-    writebf((de == TRUE) ? 1 : 0, HDMI_A_VIDPOLCFG, 4, 1);
-    writebf(1, HDMI_A_HDCPCFG1, 1, 1);
-#endif
+    HW_HDMI_A_HDCPCFG0.B.RXDETECT = 0;
+    HW_HDMI_A_VIDPOLCFG.B.DATAENPOL = (de == TRUE) ? 1 : 0;
+    HW_HDMI_A_HDCPCFG1.B.ENCRYPTIONDISABLE = 1;
 }
 
 void hdmi_config_force_video(uint8_t force)

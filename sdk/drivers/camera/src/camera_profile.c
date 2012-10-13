@@ -13,33 +13,33 @@
 
 #include "camera/camera_def.h"
 
-reg_param_t ov3640_sensor_detection[] = {
+reg_param_t g_ov3640_sensor_detection[] = {
     {0x300a, 0x36, 0, 0, 0}
     ,
     {0x300b, 0x4C, 0, 0, 0}
     ,
 };
 
-reg_param_t ov5640_sensor_detection[] = {
+reg_param_t g_ov5640_sensor_detection[] = {
     {0x300a, 0x56, 0, 0, 0}
     ,
     {0x300b, 0x40, 0, 0, 0}
     ,
 };
 
-reg_param_t ov5642_sensor_detection[] = {
+reg_param_t g_ov5642_sensor_detection[] = {
     {0x300a, 0x56, 0, 0, 0}
     ,
     {0x300b, 0x42, 0, 0, 0}
     ,
 };
 
-reg_param_t mt9p111_sensor_detection[] = {
+reg_param_t g_mt9p111_sensor_detection[] = {
     {0x0010, 0x0028, 1, 0, 0}
     ,
 };
 
-reg_param_t ov3640_mode_vga_640_480_30fps[] = {
+reg_param_t g_ov3640_mode_vga_640_480_30fps[] = {
     {0x3012, 0x80, 0, 0, 0}
     ,
     {0x304d, 0x45, 0, 0, 0}
@@ -277,7 +277,7 @@ reg_param_t ov3640_mode_vga_640_480_30fps[] = {
     {0x302d, 0x00, 0, 0, 0}
 };
 
-reg_param_t ov5640_mode_vga_640_480_30fps[] = {
+reg_param_t g_ov5640_mode_vga_640_480_30fps[] = {
     {0x3103, 0x11, 0, 0, 0}
     ,
     {0x3008, 0x82, 0, 0, 0}
@@ -775,7 +775,7 @@ reg_param_t ov5640_mode_vga_640_480_30fps[] = {
     {0x3035, 0x11, 0, 0, 0}
 };
 
-reg_param_t ov5642_mode_vga_640_480_30fps[] = {
+reg_param_t g_ov5642_mode_vga_640_480_30fps[] = {
     {0x3103, 0x93, 0, 0, 0}
     ,
     {0x3008, 0x82, 0, 0, 0}
@@ -1773,7 +1773,7 @@ reg_param_t ov5642_mode_vga_640_480_30fps[] = {
     {0x3a00, 0x78, 0, 0, 0}
 };
 
-reg_param_t ov5642_af_firmware[] = {
+reg_param_t g_ov5642_af_firmware[] = {
     {0x3000, 0x20, 0, 0, 0}
     ,
     {0x8000, 0x02, 0, 0, 0}
@@ -13449,26 +13449,26 @@ reg_param_t ov5642_af_firmware[] = {
     {0x3000, 0x00, 0, 0, 0}
 };
 
-reg_param_t ov5642_af_trigger[] = {
+reg_param_t g_ov5642_af_trigger[] = {
     {0x3024, 0x03, 0, 500, 0}
     ,
     {0x5003, 0xa8, 0, 0, 0}
 };
 
-reg_param_t ov5642_af_ready[] = {
+reg_param_t g_ov5642_af_ready[] = {
     {0x3027, 0x12, 0, 0, 0}
     ,
 };
 
 /*
-reg_param_t ov5642_strobe_on[] = {
+reg_param_t g_ov5642_strobe_on[] = {
     {0x3004, 0xff, 0, 0, 0},
     {0x3016, 0x02, 0, 0, 0},
     {0x3B00, 0x8C, 0, 0, 0},
 };
 */
 
-reg_param_t mt9p111_mode_vga_640_480_30fps[] = {
+reg_param_t g_mt9p111_mode_vga_640_480_30fps[] = {
     //Step2-PLL_Timing
     {0x0010, 0x0320, 1, 0, 1}
     ,                           //PLL Dividers = 800
@@ -15272,7 +15272,7 @@ reg_param_t mt9p111_mode_vga_640_480_30fps[] = {
     ,                           // CLOCKS_CONTROL
 };
 
-reg_param_t mt9p111_af_firmware[] = {
+reg_param_t g_mt9p111_af_firmware[] = {
     {0x098E, 0xE001, 1, 0, 0}
     ,                           // LOGICAL_ADDRESS_ACCESS [IO_MODE]
     {0xE001, 0x00, 0, 0, 0}
@@ -15529,7 +15529,7 @@ reg_param_t mt9p111_af_firmware[] = {
     ,                           // CLOCKS_CONTROL
 };
 
-reg_param_t mt9p111_af_trigger[] = {
+reg_param_t g_mt9p111_af_trigger[] = {
     {0x098E, 0x8419, 1, 0, 0}
     ,
     {0x8419, 0x03, 0, 500, 0}
@@ -15537,30 +15537,30 @@ reg_param_t mt9p111_af_trigger[] = {
     {0x8404, 0x06, 0, 500, 0}
 };
 
-reg_param_t mt9p111_af_ready[] = {
+reg_param_t g_mt9p111_af_ready[] = {
     {0xB000, 0x0000, 1, 0, 1}
     ,
 };
 
-camera_mode_t camera_modes[CAMERA_MODE_NUM] = {
-    {ov3640_mode_vga_640_480_30fps, ARRAY_SIZE(ov3640_mode_vga_640_480_30fps)}
+camera_mode_t g_camera_modes[CAMERA_MODE_NUM] = {
+    {g_ov3640_mode_vga_640_480_30fps, ARRAY_SIZE(g_ov3640_mode_vga_640_480_30fps)}
     ,
-    {ov5640_mode_vga_640_480_30fps, ARRAY_SIZE(ov5640_mode_vga_640_480_30fps)}
+    {g_ov5640_mode_vga_640_480_30fps, ARRAY_SIZE(g_ov5640_mode_vga_640_480_30fps)}
     ,
-    {ov5642_mode_vga_640_480_30fps, ARRAY_SIZE(ov5642_mode_vga_640_480_30fps)}
+    {g_ov5642_mode_vga_640_480_30fps, ARRAY_SIZE(g_ov5642_mode_vga_640_480_30fps)}
     ,
-    {mt9p111_mode_vga_640_480_30fps, ARRAY_SIZE(mt9p111_mode_vga_640_480_30fps)}
+    {g_mt9p111_mode_vga_640_480_30fps, ARRAY_SIZE(g_mt9p111_mode_vga_640_480_30fps)}
     ,
 };
 
-camera_profile_t camera_profiles[SENSOR_NUM] = {
+camera_profile_t g_camera_profiles[SENSOR_NUM] = {
     {"OV3640",
      0x5F, 0x4C, 0x45,          //2.75v, 1.8v, 1.5v
      0x78,
-     ov3640_sensor_detection,
-     ARRAY_SIZE(ov3640_sensor_detection),
+     g_ov3640_sensor_detection,
+     ARRAY_SIZE(g_ov3640_sensor_detection),
      OV3640_MODE_VGA_640_480_30FPS,
-     camera_modes,
+     g_camera_modes,
      0,
      (reg_param_t *) 0,
      0,
@@ -15572,10 +15572,10 @@ camera_profile_t camera_profiles[SENSOR_NUM] = {
        "OV5640",
        0x5F, 0x4C, 0x45,        //2.75v, 1.8v, 1.5v
        0x78,
-       ov5640_sensor_detection,
-       ARRAY_SIZE(ov5640_sensor_detection),
+       g_ov5640_sensor_detection,
+       ARRAY_SIZE(g_ov5640_sensor_detection),
        OV5640_MODE_VGA_640_480_30FPS,
-       camera_modes,
+       g_camera_modes,
        0,
        (reg_param_t *) 0,
        0,
@@ -15587,32 +15587,32 @@ camera_profile_t camera_profiles[SENSOR_NUM] = {
        "OV5642",
        0x5F, 0x4C, 0x45,        //2.75v, 1.8v, 1.5v
        0x78,
-       ov5642_sensor_detection,
-       ARRAY_SIZE(ov5642_sensor_detection),
+       g_ov5642_sensor_detection,
+       ARRAY_SIZE(g_ov5642_sensor_detection),
        OV5642_MODE_VGA_640_480_30FPS,
-       camera_modes,
+       g_camera_modes,
        1,
-       ov5642_af_firmware,
-       ARRAY_SIZE(ov5642_af_firmware),
-       ov5642_af_trigger,
-       ARRAY_SIZE(ov5642_af_trigger),
-       ov5642_af_ready,
-       ARRAY_SIZE(ov5642_af_ready)
+       g_ov5642_af_firmware,
+       ARRAY_SIZE(g_ov5642_af_firmware),
+       g_ov5642_af_trigger,
+       ARRAY_SIZE(g_ov5642_af_trigger),
+       g_ov5642_af_ready,
+       ARRAY_SIZE(g_ov5642_af_ready)
        }
     , {
        "Aptina5410",
        0x5F, 0x4C, 0x4C,        //2.75v, 1.8v, 1.8v
        0x78,
-       mt9p111_sensor_detection,
-       ARRAY_SIZE(mt9p111_sensor_detection),
+       g_mt9p111_sensor_detection,
+       ARRAY_SIZE(g_mt9p111_sensor_detection),
        MT9P111_MODE_VGA_640_480_30FPS,
-       camera_modes,
+       g_camera_modes,
        1,
-       mt9p111_af_firmware,
-       ARRAY_SIZE(mt9p111_af_firmware),
-       mt9p111_af_trigger,
-       ARRAY_SIZE(mt9p111_af_trigger),
-       mt9p111_af_ready,
-       ARRAY_SIZE(mt9p111_af_ready)
+       g_mt9p111_af_firmware,
+       ARRAY_SIZE(g_mt9p111_af_firmware),
+       g_mt9p111_af_trigger,
+       ARRAY_SIZE(g_mt9p111_af_trigger),
+       g_mt9p111_af_ready,
+       ARRAY_SIZE(g_mt9p111_af_ready)
        }
 };

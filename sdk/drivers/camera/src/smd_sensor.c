@@ -141,7 +141,7 @@ camera_profile_t *sensor_search(void)
 
     for (i = 0; i < SENSOR_NUM; i++) {
         error = 0;
-        sensor_on = &camera_profiles[i];
+        sensor_on = &g_camera_profiles[i];
         camera_power_on();
         sensor_reset();
         sensor_clock_setting();

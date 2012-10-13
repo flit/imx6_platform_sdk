@@ -98,23 +98,23 @@ enum {
 };
 
 
-extern camera_mode_t camera_modes[CAMERA_MODE_NUM];
-extern camera_profile_t camera_profiles[SENSOR_NUM];
+extern camera_mode_t g_camera_modes[CAMERA_MODE_NUM];
+extern camera_profile_t g_camera_profiles[SENSOR_NUM];
 
-extern reg_param_t ov3640_sensor_detection[];
-extern reg_param_t ov5640_sensor_detection[];
-extern reg_param_t ov5642_sensor_detection[];
-extern reg_param_t mt9p111_sensor_detection[];
-extern reg_param_t ov3640_mode_vga_640_480_30fps[];
-extern reg_param_t ov5640_mode_vga_640_480_30fps[];
-extern reg_param_t ov5642_mode_vga_640_480_30fps[];
-extern reg_param_t ov5642_af_firmware[];
-extern reg_param_t ov5642_af_trigger[];
-extern reg_param_t ov5642_af_ready[];
-extern reg_param_t mt9p111_mode_vga_640_480_30fps[];
-extern reg_param_t mt9p111_af_firmware[];
-extern reg_param_t mt9p111_af_trigger[];
-extern reg_param_t mt9p111_af_ready[];
+extern reg_param_t g_ov3640_sensor_detection[];
+extern reg_param_t g_ov5640_sensor_detection[];
+extern reg_param_t g_ov5642_sensor_detection[];
+extern reg_param_t g_mt9p111_sensor_detection[];
+extern reg_param_t g_ov3640_mode_vga_640_480_30fps[];
+extern reg_param_t g_ov5640_mode_vga_640_480_30fps[];
+extern reg_param_t g_ov5642_mode_vga_640_480_30fps[];
+extern reg_param_t g_ov5642_af_firmware[];
+extern reg_param_t g_ov5642_af_trigger[];
+extern reg_param_t g_ov5642_af_ready[];
+extern reg_param_t g_mt9p111_mode_vga_640_480_30fps[];
+extern reg_param_t g_mt9p111_af_firmware[];
+extern reg_param_t g_mt9p111_af_trigger[];
+extern reg_param_t g_mt9p111_af_ready[];
 
 //! @brief The I2C port number to which the camera is connected.
 //!

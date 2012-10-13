@@ -50,28 +50,6 @@
 #include "board_id/board_id.h"
 
 
-
-// Android_Buttons test defines
-#define HOME_BUTTON_GPIO_INST     GPIO_PORT1
-#define HOME_BUTTON_GPIO_NUM      11
-#define BACK_BUTTON_GPIO_INST     GPIO_PORT1
-#define BACK_BUTTON_GPIO_NUM      12
-#define PROG_BUTTON_GPIO_INST     GPIO_PORT2
-#define PROG_BUTTON_GPIO_NUM      12
-#define VOLPLUS_BUTTON_GPIO_INST  GPIO_PORT2
-#define VOLPLUS_BUTTON_GPIO_NUM   15
-#define VOLMINUS_BUTTON_GPIO_INST GPIO_PORT7
-#define VOLMINUS_BUTTON_GPIO_NUM  8
-
-
-
-
-// input clocks
-#define CKIL        32768
-#define FREQ_24MHZ  24000000
-#define CKIH        22579200
-
-
 extern hw_module_t g_debug_uart;
 extern hw_module_t g_system_timer;
 
@@ -79,27 +57,6 @@ extern hw_module_t g_system_timer;
 
 void freq_populate(void);
 uint32_t get_freq(uint32_t module_base);
-
-void reset_usb_hub(void);
-void usb_clock_enable(void);
-
-void imx_enet_setup(void);
-
-void gpmi_nand_clk_setup(void);
-
-void hw_can_iomux_config(uint32_t module_instance);
-
-//OBDS-SDK Merge, add according to hardware.c
-void deserializer_io_config(void);
-void mlb_io_config(void);
-void weim_nor_flash_cs_setup(void);
-void audio_codec_power_on(void);
-void audio_clock_config(void);
-
-void gpio_backlight_lvds_en(void);
-
-void camera_power_on(void);
-void csi_port0_iomux_config(void);
 
 
 

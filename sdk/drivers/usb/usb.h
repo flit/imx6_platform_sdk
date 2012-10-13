@@ -262,6 +262,15 @@ typedef struct usbdEndpointInfo {
 #define GET_HID_CLASS_DESCRIPTOR	0x8106
 #define SET_FEATURE					0x0003
 
+//! @name Board support functions
+//!
+//! The functions are called by the usb driver and must be defined by the board
+//! support library or the application. Their purpose is to isolate the usb driver
+//! from board-specific configuration.
+//@{
+void reset_usb_hub(void);
+//@}
+
 //! Host driver function prototypes
 int usbh_init(usb_module_t *);
 void usbh_bus_reset(usb_module_t *);

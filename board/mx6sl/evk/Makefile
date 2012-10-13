@@ -25,7 +25,6 @@ SOURCES := \
 	$(SDK_ROOT)/board/common/board_audio.c \
 	$(SDK_ROOT)/board/common/board_camera.c \
 	$(SDK_ROOT)/board/common/board_network.c \
-	$(SDK_ROOT)/board/common/board_parallel_nor.c \
 	$(SDK_ROOT)/board/common/board_usb.c \
 	$(SDK_ROOT)/board/$(TARGET)/$(BOARD)/dcd.c \
 	$(wildcard iomux/*.c)

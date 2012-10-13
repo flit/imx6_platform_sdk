@@ -162,4 +162,19 @@ uint64_t can_mb_int_flag(struct hw_module *port);
  */
 void can_mb_int_ack(struct hw_module *port, uint32_t mbID);
 
+//! @name Board support functions
+//!
+//! These functions are called by the flexcan driver and must be defined in the
+//! board support library or the application.
+//@{
+
+/*!
+ * @brief Configure IOMUX and GPIOs to enable CAN.
+ *
+ * @param module_instance The CAN module instance number to configure for, starting at 1.
+ */
+void hw_can_iomux_config(uint32_t module_instance);
+
+//@}
+
 #endif //__CAN_H__

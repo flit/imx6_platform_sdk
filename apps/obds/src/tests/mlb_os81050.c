@@ -19,6 +19,19 @@ static struct imx_i2c_request os81050_i2c_req;
 
 static unsigned char ref_status[6] = { 0x00, 0x03, 0x02, 0x1A, 0x80, 0x00 };
 
+//MLB iomux configuration
+void mlb_io_config(void)
+{
+#ifdef MLB_SUPPORT
+   //default board will use I2C3, but might be I2C2
+   io_cfg_i2c(OS81050_I2C_BASE);
+   mlb_iomux_config();
+   //MLB_PWRDN input
+   writel(ALT1, IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT15);
+   gpio_set_direction(GPIO_PORT5, 9, GPIO_GDIR_INPUT);
+#endif
+}
+
 /*!
  * I2C init function to control the OS81050.
  */

@@ -13,6 +13,20 @@
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
 
+//! @name Android_Buttons test defines
+//@{
+#define HOME_BUTTON_GPIO_INST     GPIO_PORT1
+#define HOME_BUTTON_GPIO_NUM      11
+#define BACK_BUTTON_GPIO_INST     GPIO_PORT1
+#define BACK_BUTTON_GPIO_NUM      12
+#define PROG_BUTTON_GPIO_INST     GPIO_PORT2
+#define PROG_BUTTON_GPIO_NUM      12
+#define VOLPLUS_BUTTON_GPIO_INST  GPIO_PORT2
+#define VOLPLUS_BUTTON_GPIO_NUM   15
+#define VOLMINUS_BUTTON_GPIO_INST GPIO_PORT7
+#define VOLMINUS_BUTTON_GPIO_NUM  8
+//@}
+
 //! @brief I2C addresses for devices tested by OBDS.
 enum
 {

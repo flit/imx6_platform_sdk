@@ -5,8 +5,11 @@
  * Freescale Semiconductor, Inc.
 */
 
-#include "hardware.h"
+#include "iomux_config.h"
+#include "ioexpander/max7310.h"
+#include "gpio/gpio.h"
 #include "registers/regsflexcan.h"
+#include "flexcan/flexcan.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code

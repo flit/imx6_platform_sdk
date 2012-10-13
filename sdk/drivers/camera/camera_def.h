@@ -121,11 +121,27 @@ extern reg_param_t g_mt9p111_af_ready[];
 //! This global must be provided by the board library or application.
 extern uint8_t g_camera_i2c_port;
 
+//! @name Board support functions
+//!
+//! These functions are called by the driver in order to factor out board
+//! specific functionality. They must be defined by the board support
+//! library or the application.
+//@{
+
+/*!
+ * @brief Enable power to the camera.
+ */
+void camera_power_on(void);
+
+/*!
+ * @brief IOMUX configuration for CSI port0
+ */
+void csi_port0_iomux_config(void);
+
 /*!
  * @brief Perform sensor reset operation
  *
  * Reset camera sensor through GPIO according to the timing specified by datasheet
- *
  */
 void sensor_reset(void);
 
@@ -143,9 +159,13 @@ void sensor_standby(int32_t enable);
  * @brief Set sensor input clock
  *
  * Sensor input clock comes from IPU. A typical camera sensor clock is 24MHz. 
- *
  */
 void sensor_clock_setting(void);
+
+//@}
+
+//! @name Camera API
+//@{
 
 /*!
  * @brief Search which camera sensor is pluged in
@@ -194,6 +214,8 @@ int32_t sensor_af_trigger(camera_profile_t * sensor);
  * @return 0 on success; non-zero otherwise
  */
 int32_t sensor_autofocus_init(camera_profile_t * sensor);
+
+//@}
 
 //! @}
 #endif

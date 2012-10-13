@@ -85,18 +85,6 @@ void csi_port0_iomux_config(void)
 }
 #endif // !CHIP_MX6SL
 
-//Copied from obds
-/* I/O config for the DS90UR124QVS - LVDS camera in */
-void deserializer_io_config(void)
-{
-   // REN and RPWDB controlled by ADV7180 configured in the driver
-#if defined (CHIP_MX6SL)
-    csi_iomux_config();
-#else
-    csi_port0_iomux_config();
-#endif
-}
-
 #if !defined(CHIP_MX6SL)
 
 /*!

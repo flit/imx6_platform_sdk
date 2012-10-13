@@ -124,6 +124,23 @@ extern const i2c_device_info_t g_adv7180_i2c_device;
 
 extern video_fmt_t video_fmts[];
 
+//! @name Board support functions
+//!
+//! These functions are called by the driver in order to factor out board
+//! specific functionality. They must be defined by the board support
+//! library or the application.
+//@{
+
+/*!
+ * @brief IOMUX configuration for CSI port0
+ */
+void csi_port0_iomux_config(void);
+
+//@}
+
+//! @name ADV7810 API
+//@{
+
 /*!
  * @brief Hardware and software initialize adv7180
  *
@@ -144,6 +161,8 @@ extern int32_t adv7180_get_std(void);
  * @return 1 for interlaced mode, 0 for progressive mode
  */
 extern int32_t adv7180_is_interlaced_mode(void);
+
+//@}
 
 //! @}
 

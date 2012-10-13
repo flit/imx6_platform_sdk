@@ -18,7 +18,19 @@
 extern void adv7180_set_gpio_output(unsigned int, unsigned int);
 extern void adv7180_i2c_init_obds(void);
 extern void adv7180_set_tristate_output(void);
+extern void csi_port0_iomux_config(void);
 void deserializer_io_config(void);
+
+/* I/O config for the DS90UR124QVS - LVDS camera in */
+void deserializer_io_config(void)
+{
+   // REN and RPWDB controlled by ADV7180 configured in the driver
+#if defined (CHIP_MX6SL)
+    csi_iomux_config();
+#else
+    csi_port0_iomux_config();
+#endif
+}
 
 /*!
  * Init function of the deserializer DS90UR124.

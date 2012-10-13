@@ -29,10 +29,8 @@ SOURCES := \
 	$(SDK_ROOT)/board/common/board_display.c \
 	$(SDK_ROOT)/board/common/board_hdmi.c \
 	$(SDK_ROOT)/board/common/board_mipi.c \
-	$(SDK_ROOT)/board/common/board_mlb.c \
 	$(SDK_ROOT)/board/common/board_nand.c \
 	$(SDK_ROOT)/board/common/board_network.c \
-	$(SDK_ROOT)/board/common/board_parallel_nor.c \
 	$(SDK_ROOT)/board/common/board_pcie.c \
 	$(SDK_ROOT)/board/common/board_sata.c \
 	$(SDK_ROOT)/board/common/board_usb.c \

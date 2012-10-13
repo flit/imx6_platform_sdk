@@ -68,8 +68,6 @@
  * @brief HW_I2C_IADR - I2C Address Register (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_i2c_iadr
 {
@@ -703,5 +701,5 @@ typedef struct _hw_i2c
 #endif
 
 #endif // __HW_I2C_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

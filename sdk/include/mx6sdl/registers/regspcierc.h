@@ -1072,8 +1072,6 @@ typedef union _hw_pcie_rc_bar1
  * @brief HW_PCIE_RC_BNR - Bus Number Registers (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_pcie_rc_bnr
 {
@@ -1161,8 +1159,6 @@ typedef union _hw_pcie_rc_bnr
  * @brief HW_PCIE_RC_IOBLSSR - I/O Base Limit Secondary Status Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_pcie_rc_ioblssr
 {
@@ -1401,8 +1397,6 @@ typedef union _hw_pcie_rc_ioblssr
  * @brief HW_PCIE_RC_MEM_BLR - Memory Base and Memory Limit Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_pcie_rc_mem_blr
 {
@@ -1486,8 +1480,6 @@ typedef union _hw_pcie_rc_mem_blr
  * @brief HW_PCIE_RC_PREF_MEM_BLR - Prefetchable Memory Base and Limit Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_pcie_rc_pref_mem_blr
 {
@@ -7843,5 +7835,5 @@ typedef struct _hw_pcie_rc
 #endif
 
 #endif // __HW_PCIE_RC_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

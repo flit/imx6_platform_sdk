@@ -67,8 +67,6 @@
  * @brief HW_DVFSC_THRS - DVFS Thresholds (RW)
  *
  * Reset value: 0x0faf003e
- *
-
  */
 typedef union _hw_dvfsc_thrs
 {
@@ -173,8 +171,6 @@ typedef union _hw_dvfsc_thrs
  * @brief HW_DVFSC_COUN - DVFS Counters thresholds (RW)
  *
  * Reset value: 0x00070020
- *
-
  */
 typedef union _hw_dvfsc_coun
 {
@@ -258,8 +254,6 @@ typedef union _hw_dvfsc_coun
  * @brief HW_DVFSC_SIG1 - DVFS general purpose bits weight (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_dvfsc_sig1
 {
@@ -510,8 +504,6 @@ typedef union _hw_dvfsc_sig1
  * @brief HW_DVFSC_DVFSSIG0 - DVFS general purpose bits weight (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_dvfsc_dvfssig0
 {
@@ -892,8 +884,6 @@ typedef union _hw_dvfsc_dvfsgpc1
  * @brief HW_DVFSC_DVFSGPBT - DVFS general purpose bits enables (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_dvfsc_dvfsgpbt
 {
@@ -1272,8 +1262,6 @@ typedef union _hw_dvfsc_dvfsgpbt
  * @brief HW_DVFSC_DVFSEMAC - DVFS EMAC settings (RW)
  *
  * Reset value: 0x00000004
- *
-
  */
 typedef union _hw_dvfsc_dvfsemac
 {
@@ -2068,8 +2056,6 @@ typedef union _hw_dvfsc_cntr
  * @brief HW_DVFSC_DVFSLTR0_0 - DVFS Load Tracking Register 0, portion 0 (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_dvfsc_dvfsltr0_0
 {
@@ -2209,8 +2195,6 @@ typedef union _hw_dvfsc_dvfsltr0_0
  * @brief HW_DVFSC_DVFSLTR0_1 - DVFS Load Tracking Register 0, portion 1 (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_dvfsc_dvfsltr0_1
 {
@@ -2350,8 +2334,6 @@ typedef union _hw_dvfsc_dvfsltr0_1
  * @brief HW_DVFSC_DVFSLTR1_0 - DVFS Load Tracking Register 1, portion 0 (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_dvfsc_dvfsltr1_0
 {
@@ -2491,8 +2473,6 @@ typedef union _hw_dvfsc_dvfsltr1_0
  * @brief HW_DVFSC_DVFSLTR1_1 - DVFS Load Tracking Register 3, portion 1 (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_dvfsc_dvfsltr1_1
 {
@@ -2632,8 +2612,6 @@ typedef union _hw_dvfsc_dvfsltr1_1
  * @brief HW_DVFSC_DVFSPT0 - DVFS pattern 0 length (RW)
  *
  * Reset value: 0x00000010
- *
-
  */
 typedef union _hw_dvfsc_dvfspt0
 {
@@ -2713,8 +2691,6 @@ typedef union _hw_dvfsc_dvfspt0
  * @brief HW_DVFSC_DVFSPT1 - DVFS pattern 1 length (RW)
  *
  * Reset value: 0x00000010
- *
-
  */
 typedef union _hw_dvfsc_dvfspt1
 {
@@ -2794,8 +2770,6 @@ typedef union _hw_dvfsc_dvfspt1
  * @brief HW_DVFSC_DVFSPT2 - DVFS pattern 2 length (RW)
  *
  * Reset value: 0x00000010
- *
-
  */
 typedef union _hw_dvfsc_dvfspt2
 {
@@ -2899,8 +2873,6 @@ typedef union _hw_dvfsc_dvfspt2
  * @brief HW_DVFSC_DVFSPT3 - DVFS pattern 3 length (RW)
  *
  * Reset value: 0x00000010
- *
-
  */
 typedef union _hw_dvfsc_dvfspt3
 {
@@ -3008,5 +2980,5 @@ typedef struct _hw_dvfsc
 #endif
 
 #endif // __HW_DVFSC_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

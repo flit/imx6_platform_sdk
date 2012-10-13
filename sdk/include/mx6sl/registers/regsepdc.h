@@ -1280,8 +1280,6 @@ typedef union _hw_epdc_upd_ctrl
 
 /*! @name Register EPDC_UPD_CTRL, field AUTOWV_PAUSE[3] (RW)
  *
-
- *
  * Values:
  * - AUTO = 0x0 - epdc will analyze update buffer, report histogram, then update waveform mode using the programmed
  *     mode mapping in AUTOWV_LUT and start LUT loading
@@ -13730,5 +13728,5 @@ typedef struct _hw_epdc
 #endif
 
 #endif // __HW_EPDC_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

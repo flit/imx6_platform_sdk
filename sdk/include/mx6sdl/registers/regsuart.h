@@ -312,8 +312,6 @@ typedef union _hw_uart_utxd
  * @brief HW_UART_UCR1 - UART Control Register 1 (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_uart_ucr1
 {
@@ -769,8 +767,6 @@ typedef union _hw_uart_ucr1
  * @brief HW_UART_UCR2 - UART Control Register 2 (RW)
  *
  * Reset value: 0x00000001
- *
-
  */
 typedef union _hw_uart_ucr2
 {
@@ -1218,8 +1214,6 @@ typedef union _hw_uart_ucr2
  * @brief HW_UART_UCR3 - UART Control Register 3 (RW)
  *
  * Reset value: 0x00000700
- *
-
  */
 typedef union _hw_uart_ucr3
 {
@@ -1659,8 +1653,6 @@ typedef union _hw_uart_ucr3
  * @brief HW_UART_UCR4 - UART Control Register 4 (RW)
  *
  * Reset value: 0x00008000
- *
-
  */
 typedef union _hw_uart_ucr4
 {
@@ -1997,8 +1989,6 @@ typedef union _hw_uart_ucr4
  * @brief HW_UART_UFCR - UART FIFO Control Register (RW)
  *
  * Reset value: 0x00000801
- *
-
  */
 typedef union _hw_uart_ufcr
 {
@@ -2163,8 +2153,6 @@ typedef union _hw_uart_ufcr
  * @brief HW_UART_USR1 - UART Status Register 1 (RW)
  *
  * Reset value: 0x00002040
- *
-
  */
 typedef union _hw_uart_usr1
 {
@@ -2527,8 +2515,6 @@ typedef union _hw_uart_usr1
  * @brief HW_UART_USR2 - UART Status Register 2 (RW)
  *
  * Reset value: 0x00004028
- *
-
  */
 typedef union _hw_uart_usr2
 {
@@ -2962,8 +2948,6 @@ typedef union _hw_uart_usr2
  * @brief HW_UART_UESC - UART Escape Character Register (RW)
  *
  * Reset value: 0x0000002b
- *
-
  */
 typedef union _hw_uart_uesc
 {
@@ -3026,8 +3010,6 @@ typedef union _hw_uart_uesc
  * @brief HW_UART_UTIM - UART Escape Timer Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_uart_utim
 {
@@ -3235,8 +3217,6 @@ typedef union _hw_uart_ubmr
  * @brief HW_UART_UBRC - UART Baud Rate Count Register (RO)
  *
  * Reset value: 0x00000004
- *
-
  */
 typedef union _hw_uart_ubrc
 {
@@ -3364,8 +3344,6 @@ typedef union _hw_uart_onems
  * @brief HW_UART_UTS - UART Test Register (RW)
  *
  * Reset value: 0x00000060
- *
-
  */
 typedef union _hw_uart_uts
 {
@@ -3664,8 +3642,6 @@ typedef union _hw_uart_uts
  * @brief HW_UART_UMCR - UART RS-485 Mode Control Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_uart_umcr
 {
@@ -3861,5 +3837,5 @@ typedef struct _hw_uart
 #endif
 
 #endif // __HW_UART_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

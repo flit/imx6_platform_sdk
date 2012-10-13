@@ -71,8 +71,6 @@
  * @brief HW_SDMACORE_MC0PTR - ARM platform Channel 0 Pointer (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sdmacore_mc0ptr
 {
@@ -122,8 +120,6 @@ typedef union _hw_sdmacore_mc0ptr
  * @brief HW_SDMACORE_CCPTR - Current Channel Pointer (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sdmacore_ccptr
 {
@@ -175,8 +171,6 @@ typedef union _hw_sdmacore_ccptr
  * @brief HW_SDMACORE_CCR - Current Channel Register (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sdmacore_ccr
 {
@@ -229,8 +223,6 @@ typedef union _hw_sdmacore_ccr
  * @brief HW_SDMACORE_NCR - Highest Pending Channel Register (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sdmacore_ncr
 {
@@ -349,8 +341,6 @@ typedef union _hw_sdmacore_events
  * @brief HW_SDMACORE_CCPRI - Current Channel Priority (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sdmacore_ccpri
 {
@@ -404,8 +394,6 @@ typedef union _hw_sdmacore_ccpri
  * @brief HW_SDMACORE_NCPRI - Next Channel Priority (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sdmacore_ncpri
 {
@@ -456,8 +444,6 @@ typedef union _hw_sdmacore_ncpri
  * @brief HW_SDMACORE_ECOUNT - OnCE Event Cell Counter (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sdmacore_ecount
 {
@@ -522,8 +508,6 @@ typedef union _hw_sdmacore_ecount
  * @brief HW_SDMACORE_ECTL - OnCE Event Cell Control Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sdmacore_ectl
 {
@@ -794,8 +778,6 @@ typedef union _hw_sdmacore_ectl
  * @brief HW_SDMACORE_EAA - OnCE Event Address Register A (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sdmacore_eaa
 {
@@ -857,8 +839,6 @@ typedef union _hw_sdmacore_eaa
  * @brief HW_SDMACORE_EAB - OnCE Event Cell Address Register B (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sdmacore_eab
 {
@@ -920,8 +900,6 @@ typedef union _hw_sdmacore_eab
  * @brief HW_SDMACORE_EAM - OnCE Event Cell Address Mask (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sdmacore_eam
 {
@@ -987,8 +965,6 @@ typedef union _hw_sdmacore_eam
  * @brief HW_SDMACORE_ED - OnCE Event Cell Data Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sdmacore_ed
 {
@@ -1050,8 +1026,6 @@ typedef union _hw_sdmacore_ed
  * @brief HW_SDMACORE_EDM - OnCE Event Cell Data Mask (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sdmacore_edm
 {
@@ -1116,8 +1090,6 @@ typedef union _hw_sdmacore_edm
  * @brief HW_SDMACORE_RTB - OnCE Real-Time Buffer (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sdmacore_rtb
 {
@@ -1181,8 +1153,6 @@ typedef union _hw_sdmacore_rtb
  * @brief HW_SDMACORE_TB - OnCE Trace Buffer (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sdmacore_tb
 {
@@ -1264,8 +1234,6 @@ typedef union _hw_sdmacore_tb
  * @brief HW_SDMACORE_OSTAT - OnCE Status (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sdmacore_ostat
 {
@@ -1440,8 +1408,6 @@ typedef union _hw_sdmacore_ostat
  * @brief HW_SDMACORE_MCHN0ADDR - Channel 0 Boot Address (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sdmacore_mchn0addr
 {
@@ -1515,8 +1481,6 @@ typedef union _hw_sdmacore_mchn0addr
  * @brief HW_SDMACORE_ENDIANNESS - ENDIAN Status Register (RO)
  *
  * Reset value: 0x00000001
- *
-
  */
 typedef union _hw_sdmacore_endianness
 {
@@ -1571,8 +1535,6 @@ typedef union _hw_sdmacore_endianness
  * @brief HW_SDMACORE_SDMA_LOCK - Lock Status Register (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sdmacore_sdma_lock
 {
@@ -1627,8 +1589,6 @@ typedef union _hw_sdmacore_sdma_lock
  * @brief HW_SDMACORE_EVENTS2 - External DMA Requests Mirror #2 (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sdmacore_events2
 {
@@ -1712,5 +1672,5 @@ typedef struct _hw_sdmacore
 #endif
 
 #endif // __HW_SDMACORE_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

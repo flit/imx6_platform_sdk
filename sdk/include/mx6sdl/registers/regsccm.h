@@ -5540,8 +5540,6 @@ typedef union _hw_ccm_cgpr
 
 /*! @name Register CCM_CGPR, field FPL[16] (RW)
  *
-
- *
  * Values:
  * - 0 - Engage PLL enable default way.
  * - 1 - Engage PLL enable 3 CKIL clocks earlier at exiting low power mode (STOP). Should be used only if
@@ -8589,5 +8587,5 @@ typedef struct _hw_ccm
 #endif
 
 #endif // __HW_CCM_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

@@ -84,8 +84,8 @@ void time_init_global_timer()
     HW_ARMGLOBALTIMER_CONTROL.B.TIMER_ENABLE = 0;
     
     // Clear counter.
-    HW_ARMGLOBALTIMER_COUNTER0_WR(0);
-    HW_ARMGLOBALTIMER_COUNTER1_WR(0);
+    HW_ARMGLOBALTIMER_COUNTERn_WR(0, 0);
+    HW_ARMGLOBALTIMER_COUNTERn_WR(1, 0);
     
     // Set prescaler and clear other flags.
     HW_ARMGLOBALTIMER_CONTROL_WR(BF_ARMGLOBALTIMER_CONTROL_PRESCALER(prescaler));
@@ -97,16 +97,16 @@ void time_init_global_timer()
 uint64_t time_get_microseconds()
 {
     // First read upper.
-    uint32_t upper = HW_ARMGLOBALTIMER_COUNTER1_RD();
+    uint32_t upper = HW_ARMGLOBALTIMER_COUNTERn_RD(1);
     uint32_t lower;
     
     while (true)
     {
         // Read lower.
-        lower = HW_ARMGLOBALTIMER_COUNTER0_RD();
+        lower = HW_ARMGLOBALTIMER_COUNTERn_RD(0);
         
         // Read upper again.
-        uint32_t newUpper = HW_ARMGLOBALTIMER_COUNTER1_RD();
+        uint32_t newUpper = HW_ARMGLOBALTIMER_COUNTERn_RD(1);
         
         // If the first and second read of the upper bits are the same, then return.
         if (newUpper == upper)

@@ -115,8 +115,6 @@ typedef union _hw_rng_ver
 
 /*! @name Register RNG_VER, field TYPE[31:28] (RO)
  *
-
- *
  * Values:
  * - 0000 - RNGA
  * - 0001 - RNGB (This is the type used in this module)
@@ -679,8 +677,6 @@ typedef union _hw_rng_sr
  * @brief HW_RNG_ESR - RNGB Error Status Register (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_rng_esr
 {
@@ -843,8 +839,6 @@ typedef union _hw_rng_out
  */
 
 /*! @name Register RNG_OUT, field RANDOUT[31:0] (RO)
- *
-
  */
 //@{
 #define BP_RNG_OUT_RANDOUT      (0)      //!< Bit position for RNG_OUT_RANDOUT.
@@ -880,5 +874,5 @@ typedef struct _hw_rng
 #endif
 
 #endif // __HW_RNG_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

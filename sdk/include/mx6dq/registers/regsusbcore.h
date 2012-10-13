@@ -358,8 +358,6 @@ typedef union _hw_usbc_uog_hwgeneral
  * @brief HW_USBC_UOG_HWHOST - Host Hardware Parameters (RO)
  *
  * Reset value: 0x10020001
- *
-
  */
 typedef union _hw_usbc_uog_hwhost
 {
@@ -495,8 +493,6 @@ typedef union _hw_usbc_uog_hwdevice
  * @brief HW_USBC_UOG_HWTXBUF - TX Buffer Hardware Parameters (RO)
  *
  * Reset value: 0x80080b08
- *
-
  */
 typedef union _hw_usbc_uog_hwtxbuf
 {
@@ -565,8 +561,6 @@ typedef union _hw_usbc_uog_hwtxbuf
  * @brief HW_USBC_UOG_HWRXBUF - RX Buffer Hardware Parameters (RO)
  *
  * Reset value: 0x00000808
- *
-
  */
 typedef union _hw_usbc_uog_hwrxbuf
 {
@@ -1057,8 +1051,6 @@ typedef union _hw_usbc_uog_gptimer1ctrl
  * @brief HW_USBC_UOG_SBUSCFG - System Bus Config (RW)
  *
  * Reset value: 0x00000002
- *
-
  */
 typedef union _hw_usbc_uog_sbuscfg
 {
@@ -3490,8 +3482,6 @@ typedef union _hw_usbc_uog_txfilltuning
  * @brief HW_USBC_UOG_ENDPTNAK - Endpoint NAK (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_usbc_uog_endptnak
 {
@@ -3579,8 +3569,6 @@ typedef union _hw_usbc_uog_endptnak
  * @brief HW_USBC_UOG_ENDPTNAKEN - Endpoint NAK Enable (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_usbc_uog_endptnaken
 {
@@ -3668,8 +3656,6 @@ typedef union _hw_usbc_uog_endptnaken
  * @brief HW_USBC_UOG_CONFIGFLAG - Configure Flag Register (RW)
  *
  * Reset value: 0x00000001
- *
-
  */
 typedef union _hw_usbc_uog_configflag
 {
@@ -5009,8 +4995,6 @@ typedef union _hw_usbc_uog_otgsc
  * @brief HW_USBC_UOG_USBMODE - USB Device Mode (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_usbc_uog_usbmode
 {
@@ -5169,8 +5153,6 @@ typedef union _hw_usbc_uog_usbmode
  * @brief HW_USBC_UOG_ENDPTSETUPSTAT - Endpoint Setup Status (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_usbc_uog_endptsetupstat
 {
@@ -8267,8 +8249,6 @@ typedef union _hw_usbc_uh1_hwgeneral
  * @brief HW_USBC_UH1_HWHOST - Host Hardware Parameters (RO)
  *
  * Reset value: 0x10020001
- *
-
  */
 typedef union _hw_usbc_uh1_hwhost
 {
@@ -8336,8 +8316,6 @@ typedef union _hw_usbc_uh1_hwhost
  * @brief HW_USBC_UH1_HWTXBUF - TX Buffer Hardware Parameters (RO)
  *
  * Reset value: 0x80080b08
- *
-
  */
 typedef union _hw_usbc_uh1_hwtxbuf
 {
@@ -8406,8 +8384,6 @@ typedef union _hw_usbc_uh1_hwtxbuf
  * @brief HW_USBC_UH1_HWRXBUF - RX Buffer Hardware Parameters (RO)
  *
  * Reset value: 0x00000808
- *
-
  */
 typedef union _hw_usbc_uh1_hwrxbuf
 {
@@ -8898,8 +8874,6 @@ typedef union _hw_usbc_uh1_gptimer1ctrl
  * @brief HW_USBC_UH1_SBUSCFG - System Bus Config (RW)
  *
  * Reset value: 0x00000002
- *
-
  */
 typedef union _hw_usbc_uh1_sbuscfg
 {
@@ -11032,8 +11006,6 @@ typedef union _hw_usbc_uh1_txfilltuning
  * @brief HW_USBC_UH1_CONFIGFLAG - Configure Flag Register (RW)
  *
  * Reset value: 0x00000001
- *
-
  */
 typedef union _hw_usbc_uh1_configflag
 {
@@ -11814,8 +11786,6 @@ typedef union _hw_usbc_uh1_portsc1
  * @brief HW_USBC_UH1_USBMODE - USB Device Mode (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_usbc_uh1_usbmode
 {
@@ -12161,8 +12131,6 @@ typedef union _hw_usbc_uh2_hwgeneral
  * @brief HW_USBC_UH2_HWHOST - Host Hardware Parameters (RO)
  *
  * Reset value: 0x10020001
- *
-
  */
 typedef union _hw_usbc_uh2_hwhost
 {
@@ -12230,8 +12198,6 @@ typedef union _hw_usbc_uh2_hwhost
  * @brief HW_USBC_UH2_HWTXBUF - TX Buffer Hardware Parameters (RO)
  *
  * Reset value: 0x80080b08
- *
-
  */
 typedef union _hw_usbc_uh2_hwtxbuf
 {
@@ -12300,8 +12266,6 @@ typedef union _hw_usbc_uh2_hwtxbuf
  * @brief HW_USBC_UH2_HWRXBUF - RX Buffer Hardware Parameters (RO)
  *
  * Reset value: 0x00000808
- *
-
  */
 typedef union _hw_usbc_uh2_hwrxbuf
 {
@@ -12792,8 +12756,6 @@ typedef union _hw_usbc_uh2_gptimer1ctrl
  * @brief HW_USBC_UH2_SBUSCFG - System Bus Config (RW)
  *
  * Reset value: 0x00000002
- *
-
  */
 typedef union _hw_usbc_uh2_sbuscfg
 {
@@ -14926,8 +14888,6 @@ typedef union _hw_usbc_uh2_txfilltuning
  * @brief HW_USBC_UH2_CONFIGFLAG - Configure Flag Register (RW)
  *
  * Reset value: 0x00000001
- *
-
  */
 typedef union _hw_usbc_uh2_configflag
 {
@@ -15708,8 +15668,6 @@ typedef union _hw_usbc_uh2_portsc1
  * @brief HW_USBC_UH2_USBMODE - USB Device Mode (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_usbc_uh2_usbmode
 {
@@ -16055,8 +16013,6 @@ typedef union _hw_usbc_uh3_hwgeneral
  * @brief HW_USBC_UH3_HWHOST - Host Hardware Parameters (RO)
  *
  * Reset value: 0x10020001
- *
-
  */
 typedef union _hw_usbc_uh3_hwhost
 {
@@ -16124,8 +16080,6 @@ typedef union _hw_usbc_uh3_hwhost
  * @brief HW_USBC_UH3_HWTXBUF - TX Buffer Hardware Parameters (RO)
  *
  * Reset value: 0x80080b08
- *
-
  */
 typedef union _hw_usbc_uh3_hwtxbuf
 {
@@ -16194,8 +16148,6 @@ typedef union _hw_usbc_uh3_hwtxbuf
  * @brief HW_USBC_UH3_HWRXBUF - RX Buffer Hardware Parameters (RO)
  *
  * Reset value: 0x00000808
- *
-
  */
 typedef union _hw_usbc_uh3_hwrxbuf
 {
@@ -16686,8 +16638,6 @@ typedef union _hw_usbc_uh3_gptimer1ctrl
  * @brief HW_USBC_UH3_SBUSCFG - System Bus Config (RW)
  *
  * Reset value: 0x00000002
- *
-
  */
 typedef union _hw_usbc_uh3_sbuscfg
 {
@@ -18820,8 +18770,6 @@ typedef union _hw_usbc_uh3_txfilltuning
  * @brief HW_USBC_UH3_CONFIGFLAG - Configure Flag Register (RW)
  *
  * Reset value: 0x00000001
- *
-
  */
 typedef union _hw_usbc_uh3_configflag
 {
@@ -19602,8 +19550,6 @@ typedef union _hw_usbc_uh3_portsc1
  * @brief HW_USBC_UH3_USBMODE - USB Device Mode (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_usbc_uh3_usbmode
 {
@@ -19933,5 +19879,5 @@ typedef struct _hw_usbc
 #endif
 
 #endif // __HW_USBC_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

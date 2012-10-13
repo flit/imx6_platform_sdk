@@ -80,7 +80,7 @@ int gpu_test(void)
     neg_new_half_height.f = -new_half_height.f;
 
     // enable GPU to access MMDC
-    HW_CSU_CSL25_SET(0xFF);
+    HW_CSU_CSLn_SET(25, 0xFF);
 
     //IPU2 QoS
     HW_IOMUXC_GPR7_SET(0xFFFFFFFF);

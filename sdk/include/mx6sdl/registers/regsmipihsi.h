@@ -47,105 +47,15 @@
  * - HW_MIPI_HSI_FIFO_THR_IRQSTAT - HSI FIFO Threshold Interrupt Status Register
  * - HW_MIPI_HSI_FIFO_THR_IRQSTAT_EN - HSI FIFO Threshold Interrupt Status Enable Register
  * - HW_MIPI_HSI_FIFO_THR_IRQSIG_EN - HSI FIFO Threshold Interrupt Signal Enable Register
- * - HW_MIPI_HSI_TX_CH0_DP - Tx Channel n Data Port Register
- * - HW_MIPI_HSI_TX_CH1_DP - Tx Channel n Data Port Register
- * - HW_MIPI_HSI_TX_CH2_DP - Tx Channel n Data Port Register
- * - HW_MIPI_HSI_TX_CH3_DP - Tx Channel n Data Port Register
- * - HW_MIPI_HSI_TX_CH4_DP - Tx Channel n Data Port Register
- * - HW_MIPI_HSI_TX_CH5_DP - Tx Channel n Data Port Register
- * - HW_MIPI_HSI_TX_CH6_DP - Tx Channel n Data Port Register
- * - HW_MIPI_HSI_TX_CH7_DP - Tx Channel n Data Port Register
- * - HW_MIPI_HSI_TX_CH8_DP - Tx Channel n Data Port Register
- * - HW_MIPI_HSI_TX_CH9_DP - Tx Channel n Data Port Register
- * - HW_MIPI_HSI_TX_CH10_DP - Tx Channel n Data Port Register
- * - HW_MIPI_HSI_TX_CH11_DP - Tx Channel n Data Port Register
- * - HW_MIPI_HSI_TX_CH12_DP - Tx Channel n Data Port Register
- * - HW_MIPI_HSI_TX_CH13_DP - Tx Channel n Data Port Register
- * - HW_MIPI_HSI_TX_CH14_DP - Tx Channel n Data Port Register
- * - HW_MIPI_HSI_TX_CH15_DP - Tx Channel n Data Port Register
- * - HW_MIPI_HSI_RX_CH0_DP - Rx Channel n Data Port Register
- * - HW_MIPI_HSI_RX_CH1_DP - Rx Channel n Data Port Register
- * - HW_MIPI_HSI_RX_CH2_DP - Rx Channel n Data Port Register
- * - HW_MIPI_HSI_RX_CH3_DP - Rx Channel n Data Port Register
- * - HW_MIPI_HSI_RX_CH4_DP - Rx Channel n Data Port Register
- * - HW_MIPI_HSI_RX_CH5_DP - Rx Channel n Data Port Register
- * - HW_MIPI_HSI_RX_CH6_DP - Rx Channel n Data Port Register
- * - HW_MIPI_HSI_RX_CH7_DP - Rx Channel n Data Port Register
- * - HW_MIPI_HSI_RX_CH8_DP - Rx Channel n Data Port Register
- * - HW_MIPI_HSI_RX_CH9_DP - Rx Channel n Data Port Register
- * - HW_MIPI_HSI_RX_CH10_DP - Rx Channel n Data Port Register
- * - HW_MIPI_HSI_RX_CH11_DP - Rx Channel n Data Port Register
- * - HW_MIPI_HSI_RX_CH12_DP - Rx Channel n Data Port Register
- * - HW_MIPI_HSI_RX_CH13_DP - Rx Channel n Data Port Register
- * - HW_MIPI_HSI_RX_CH14_DP - Rx Channel n Data Port Register
- * - HW_MIPI_HSI_RX_CH15_DP - Rx Channel n Data Port Register
+ * - HW_MIPI_HSI_TX_CHn_DP - Tx Channel n Data Port Register
+ * - HW_MIPI_HSI_RX_CHn_DP - Rx Channel n Data Port Register
  * - HW_MIPI_HSI_ERR_IRQSTAT - HSI Error Interrupt Status Register
  * - HW_MIPI_HSI_ERR_IRQSTAT_EN - HSI Error Interrupt Status Enable Register
  * - HW_MIPI_HSI_ERR_IRQSIG_EN - HSI Error Interrupt Signal Enable Register
- * - HW_MIPI_HSI_TDMA0_CONF - Tx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_TDMA1_CONF - Tx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_TDMA2_CONF - Tx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_TDMA3_CONF - Tx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_TDMA4_CONF - Tx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_TDMA5_CONF - Tx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_TDMA6_CONF - Tx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_TDMA7_CONF - Tx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_TDMA8_CONF - Tx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_TDMA9_CONF - Tx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_TDMA10_CONF - Tx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_TDMA11_CONF - Tx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_TDMA12_CONF - Tx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_TDMA13_CONF - Tx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_TDMA14_CONF - Tx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_TDMA15_CONF - Tx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_RDMA0_CONF - Rx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_RDMA1_CONF - Rx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_RDMA2_CONF - Rx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_RDMA3_CONF - Rx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_RDMA4_CONF - Rx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_RDMA5_CONF - Rx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_RDMA6_CONF - Rx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_RDMA7_CONF - Rx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_RDMA8_CONF - Rx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_RDMA9_CONF - Rx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_RDMA10_CONF - Rx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_RDMA11_CONF - Rx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_RDMA12_CONF - Rx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_RDMA13_CONF - Rx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_RDMA14_CONF - Rx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_RDMA15_CONF - Rx DMA Channel n Configuration Register
- * - HW_MIPI_HSI_TDMA0_STA_ADDR - Tx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_TDMA1_STA_ADDR - Tx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_TDMA2_STA_ADDR - Tx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_TDMA3_STA_ADDR - Tx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_TDMA4_STA_ADDR - Tx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_TDMA5_STA_ADDR - Tx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_TDMA6_STA_ADDR - Tx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_TDMA7_STA_ADDR - Tx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_TDMA8_STA_ADDR - Tx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_TDMA9_STA_ADDR - Tx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_TDMA10_STA_ADDR - Tx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_TDMA11_STA_ADDR - Tx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_TDMA12_STA_ADDR - Tx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_TDMA13_STA_ADDR - Tx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_TDMA14_STA_ADDR - Tx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_TDMA15_STA_ADDR - Tx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_RDMA0_STA_ADDR - Rx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_RDMA1_STA_ADDR - Rx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_RDMA2_STA_ADDR - Rx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_RDMA3_STA_ADDR - Rx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_RDMA4_STA_ADDR - Rx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_RDMA5_STA_ADDR - Rx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_RDMA6_STA_ADDR - Rx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_RDMA7_STA_ADDR - Rx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_RDMA8_STA_ADDR - Rx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_RDMA9_STA_ADDR - Rx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_RDMA10_STA_ADDR - Rx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_RDMA11_STA_ADDR - Rx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_RDMA12_STA_ADDR - Rx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_RDMA13_STA_ADDR - Rx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_RDMA14_STA_ADDR - Rx DMA Channel n Start Address Register
- * - HW_MIPI_HSI_RDMA15_STA_ADDR - Rx DMA Channel n Start Address Register
+ * - HW_MIPI_HSI_TDMAn_CONF - Tx DMA Channel n Configuration Register
+ * - HW_MIPI_HSI_RDMAn_CONF - Rx DMA Channel n Configuration Register
+ * - HW_MIPI_HSI_TDMAn_STA_ADDR - Tx DMA Channel n Start Address Register
+ * - HW_MIPI_HSI_RDMAn_STA_ADDR - Rx DMA Channel n Start Address Register
  * - HW_MIPI_HSI_DMA_IRQSTAT - DMA Interrupt Status Register
  * - HW_MIPI_HSI_DMA_IRQSTAT_EN - DMA Interrupt Enable Register
  * - HW_MIPI_HSI_DMA_IRQSIG_EN - DMA Interrupt Status Signal Enable Register
@@ -521,8 +431,6 @@ typedef union _hw_mipi_hsi_tx_conf
 
 /*! @name Register MIPI_HSI_TX_CONF, field TRANS_MODE[0] (RW)
  *
-
- *
  * Values:
  * - 0 - Stream Transmission Mode
  * - 1 - Frame Transmission Mode
@@ -570,8 +478,6 @@ typedef union _hw_mipi_hsi_tx_conf
 
 /*! @name Register MIPI_HSI_TX_CONF, field TIMEOUT_CNT[11:8] (RW)
  *
-
- *
  * Values:
  * - 0000 - tx timeout value 2^14 tx_refclk
  * - 0001 - tx timeout value 2^15 tx_refclk
@@ -598,8 +504,6 @@ typedef union _hw_mipi_hsi_tx_conf
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH0_EN[16] (RW)
  *
-
- *
  * Values:
  * - 0 - Tx Ch0 is Disabled.
  * - 1 - Tx Ch0 is Enabled.
@@ -621,8 +525,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //@}
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH1_EN[17] (RW)
- *
-
  *
  * Values:
  * - 0 - Tx Ch1 is Disabled.
@@ -646,8 +548,6 @@ typedef union _hw_mipi_hsi_tx_conf
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH2_EN[18] (RW)
  *
-
- *
  * Values:
  * - 0 - Tx Ch2 is Disabled.
  * - 1 - Tx Ch2 is Enabled.
@@ -669,8 +569,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //@}
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH3_EN[19] (RW)
- *
-
  *
  * Values:
  * - 0 - Tx Ch3 is Disabled.
@@ -694,8 +592,6 @@ typedef union _hw_mipi_hsi_tx_conf
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH4_EN[20] (RW)
  *
-
- *
  * Values:
  * - 0 - Tx Ch4 is Disabled.
  * - 1 - Tx Ch4 is Enabled.
@@ -717,8 +613,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //@}
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH5_EN[21] (RW)
- *
-
  *
  * Values:
  * - 0 - Tx Ch5 is Disabled.
@@ -742,8 +636,6 @@ typedef union _hw_mipi_hsi_tx_conf
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH6_EN[22] (RW)
  *
-
- *
  * Values:
  * - 0 - Tx Ch6 is Disabled.
  * - 1 - Tx Ch6 is Enabled.
@@ -765,8 +657,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //@}
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH7_EN[23] (RW)
- *
-
  *
  * Values:
  * - 0 - Tx Ch7 is Disabled.
@@ -790,8 +680,6 @@ typedef union _hw_mipi_hsi_tx_conf
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH8_EN[24] (RW)
  *
-
- *
  * Values:
  * - 0 - Tx Ch8 is Disabled.
  * - 1 - Tx Ch8 is Enabled.
@@ -813,8 +701,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //@}
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH9_EN[25] (RW)
- *
-
  *
  * Values:
  * - 0 - Tx Ch9 is Disabled.
@@ -838,8 +724,6 @@ typedef union _hw_mipi_hsi_tx_conf
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH10_EN[26] (RW)
  *
-
- *
  * Values:
  * - 0 - Tx Ch10 is Disabled.
  * - 1 - Tx Ch10 is Enabled.
@@ -861,8 +745,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //@}
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH11_EN[27] (RW)
- *
-
  *
  * Values:
  * - 0 - Tx Ch11 is Disabled.
@@ -886,8 +768,6 @@ typedef union _hw_mipi_hsi_tx_conf
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH12_EN[28] (RW)
  *
-
- *
  * Values:
  * - 0 - Tx Ch12 is Disabled.
  * - 1 - Tx Ch12 is Enabled.
@@ -909,8 +789,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //@}
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH13_EN[29] (RW)
- *
-
  *
  * Values:
  * - 0 - Tx Ch13 is Disabled.
@@ -934,8 +812,6 @@ typedef union _hw_mipi_hsi_tx_conf
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH14_EN[30] (RW)
  *
-
- *
  * Values:
  * - 0 - Tx Ch14 is Disabled.
  * - 1 - Tx Ch14 is Enabled.
@@ -957,8 +833,6 @@ typedef union _hw_mipi_hsi_tx_conf
 //@}
 
 /*! @name Register MIPI_HSI_TX_CONF, field CH15_EN[31] (RW)
- *
-
  *
  * Values:
  * - 0 - Tx Ch15 is Disabled.
@@ -1047,8 +921,6 @@ typedef union _hw_mipi_hsi_rx_conf
 
 /*! @name Register MIPI_HSI_RX_CONF, field DATA_FLOW[1:0] (RW)
  *
-
- *
  * Values:
  * - 00 - Synchronized Data Flow
  * - 01 - Pipelined Data Flow
@@ -1073,8 +945,6 @@ typedef union _hw_mipi_hsi_rx_conf
 
 /*! @name Register MIPI_HSI_RX_CONF, field WAKE[2] (RW)
  *
-
- *
  * Values:
  * - 0 - Receiver is in Sleep State
  * - 1 - Receiver is in Wakeup State
@@ -1097,8 +967,6 @@ typedef union _hw_mipi_hsi_rx_conf
 
 /*! @name Register MIPI_HSI_RX_CONF, field REC_MODE[3] (RW)
  *
-
- *
  * Values:
  * - 0 - Stream Receive Mode
  * - 1 - Frame Receive Mode
@@ -1120,8 +988,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field TAIL_BIT_CNT_EN[4] (RW)
- *
-
  *
  * Values:
  * - 0 - Tailing bit counter disable
@@ -1171,8 +1037,6 @@ typedef union _hw_mipi_hsi_rx_conf
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH0_EN[16] (RW)
  *
-
- *
  * Values:
  * - 0 - Rx Ch0 is Disabled.
  * - 1 - Rx Ch0 is Enabled.
@@ -1194,8 +1058,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH1_EN[17] (RW)
- *
-
  *
  * Values:
  * - 0 - Rx Ch1 is Disabled.
@@ -1219,8 +1081,6 @@ typedef union _hw_mipi_hsi_rx_conf
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH2_EN[18] (RW)
  *
-
- *
  * Values:
  * - 0 - Rx Ch2 is Disabled.
  * - 1 - Rx Ch2 is Enabled.
@@ -1242,8 +1102,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH3_EN[19] (RW)
- *
-
  *
  * Values:
  * - 0 - Rx Ch3 is Disabled.
@@ -1267,8 +1125,6 @@ typedef union _hw_mipi_hsi_rx_conf
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH4_EN[20] (RW)
  *
-
- *
  * Values:
  * - 0 - Rx Ch4 is Disabled.
  * - 1 - Rx Ch4 is Enabled.
@@ -1290,8 +1146,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH5_EN[21] (RW)
- *
-
  *
  * Values:
  * - 0 - Rx Ch5 is Disabled.
@@ -1315,8 +1169,6 @@ typedef union _hw_mipi_hsi_rx_conf
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH6_EN[22] (RW)
  *
-
- *
  * Values:
  * - 0 - Rx Ch6 is Disabled.
  * - 1 - Rx Ch6 is Enabled.
@@ -1338,8 +1190,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH7_EN[23] (RW)
- *
-
  *
  * Values:
  * - 0 - Rx Ch7 is Disabled.
@@ -1363,8 +1213,6 @@ typedef union _hw_mipi_hsi_rx_conf
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH8_EN[24] (RW)
  *
-
- *
  * Values:
  * - 0 - Rx Ch8 is Disabled.
  * - 1 - Rx Ch8 is Enabled.
@@ -1386,8 +1234,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH9_EN[25] (RW)
- *
-
  *
  * Values:
  * - 0 - Rx Ch9 is Disabled.
@@ -1411,8 +1257,6 @@ typedef union _hw_mipi_hsi_rx_conf
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH10_EN[26] (RW)
  *
-
- *
  * Values:
  * - 0 - Rx Ch10 is Disabled.
  * - 1 - Rx Ch10 is Enabled.
@@ -1434,8 +1278,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH11_EN[27] (RW)
- *
-
  *
  * Values:
  * - 0 - Rx Ch11 is Disabled.
@@ -1459,8 +1301,6 @@ typedef union _hw_mipi_hsi_rx_conf
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH12_EN[28] (RW)
  *
-
- *
  * Values:
  * - 0 - Rx Ch12 is Disabled.
  * - 1 - Rx Ch12 is Enabled.
@@ -1482,8 +1322,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH13_EN[29] (RW)
- *
-
  *
  * Values:
  * - 0 - Rx Ch13 is Disabled.
@@ -1507,8 +1345,6 @@ typedef union _hw_mipi_hsi_rx_conf
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH14_EN[30] (RW)
  *
-
- *
  * Values:
  * - 0 - Rx Ch14 is Disabled.
  * - 1 - Rx Ch14 is Enabled.
@@ -1530,8 +1366,6 @@ typedef union _hw_mipi_hsi_rx_conf
 //@}
 
 /*! @name Register MIPI_HSI_RX_CONF, field CH15_EN[31] (RW)
- *
-
  *
  * Values:
  * - 0 - Rx Ch15 is Disabled.
@@ -1600,8 +1434,6 @@ typedef union _hw_mipi_hsi_cap
 
 /*! @name Register MIPI_HSI_CAP, field TX_CH_NU_SUPPORTE[3:0] (RO)
  *
-
- *
  * Values:
  * - 0000 - 1 Tx channel supported
  * - 0001 - 2 Tx channels supported
@@ -1617,8 +1449,6 @@ typedef union _hw_mipi_hsi_cap
 
 /*! @name Register MIPI_HSI_CAP, field RX_CH_NU_SUPPORTE[7:4] (RO)
  *
-
- *
  * Values:
  * - 0000 - 1 Rx channel supported
  * - 0001 - 2 Rx channels supported
@@ -1633,8 +1463,6 @@ typedef union _hw_mipi_hsi_cap
 //@}
 
 /*! @name Register MIPI_HSI_CAP, field DMA_CH_NU_SUPPORT[12:8] (RO)
- *
-
  *
  * Values:
  * - 00000 - 1 DMA supported
@@ -1656,8 +1484,6 @@ typedef union _hw_mipi_hsi_cap
 
 /*! @name Register MIPI_HSI_CAP, field TX_DMA_SUPPORT[16] (RO)
  *
-
- *
  * Values:
  * - 0 - Not supported
  * - 1 - DMA is supported.
@@ -1672,8 +1498,6 @@ typedef union _hw_mipi_hsi_cap
 
 /*! @name Register MIPI_HSI_CAP, field RX_DMA_SUPPORT[17] (RO)
  *
-
- *
  * Values:
  * - 0 - Not supported
  * - 1 - DMA is supported.
@@ -1687,8 +1511,6 @@ typedef union _hw_mipi_hsi_cap
 //@}
 
 /*! @name Register MIPI_HSI_CAP, field WAKEUP_EVENT[18] (RO)
- *
-
  *
  * Values:
  * - 0 - Wakeup Event is supported
@@ -2531,8 +2353,6 @@ typedef union _hw_mipi_hsi_tx_arb_pri0
  * @brief HW_MIPI_HSI_TX_ARB_PRI1 - HSI Tx Arbiter Priority 1 Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mipi_hsi_tx_arb_pri1
 {
@@ -3112,8 +2932,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH0[0] (RW)
  *
-
- *
  * Values:
  * - 0 - Half Full (fifo size / 2)
  * - 1 - Almost Full (3/4th of fifo size)
@@ -3135,8 +2953,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH1[1] (RW)
- *
-
  *
  * Values:
  * - 0 - Half Full (fifo size / 2)
@@ -3160,8 +2976,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH2[2] (RW)
  *
-
- *
  * Values:
  * - 0 - Half Full (fifo size / 2)
  * - 1 - Almost Full (3/4th of fifo size)
@@ -3183,8 +2997,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH3[3] (RW)
- *
-
  *
  * Values:
  * - 0 - Half Full (fifo size / 2)
@@ -3208,8 +3020,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH4[4] (RW)
  *
-
- *
  * Values:
  * - 0 - Half Full (fifo size / 2)
  * - 1 - Almost Full (3/4th of fifo size)
@@ -3231,8 +3041,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH5[5] (RW)
- *
-
  *
  * Values:
  * - 0 - Half Full (fifo size / 2)
@@ -3256,8 +3064,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH6[6] (RW)
  *
-
- *
  * Values:
  * - 0 - Half Full (fifo size / 2)
  * - 1 - Almost Full (3/4th of fifo size)
@@ -3279,8 +3085,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH7[7] (RW)
- *
-
  *
  * Values:
  * - 0 - Half Full (fifo size / 2)
@@ -3304,8 +3108,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH8[8] (RW)
  *
-
- *
  * Values:
  * - 0 - Half Full (fifo size / 2)
  * - 1 - Almost Full (3/4th of fifo size)
@@ -3327,8 +3129,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH9[9] (RW)
- *
-
  *
  * Values:
  * - 0 - Half Full (fifo size / 2)
@@ -3352,8 +3152,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH10[10] (RW)
  *
-
- *
  * Values:
  * - 0 - Half Full (fifo size / 2)
  * - 1 - Almost Full (3/4th of fifo size)
@@ -3375,8 +3173,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH11[11] (RW)
- *
-
  *
  * Values:
  * - 0 - Half Full (fifo size / 2)
@@ -3400,8 +3196,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH12[12] (RW)
  *
-
- *
  * Values:
  * - 0 - Half Full (fifo size / 2)
  * - 1 - Almost Full (3/4th of fifo size)
@@ -3423,8 +3217,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH13[13] (RW)
- *
-
  *
  * Values:
  * - 0 - Half Full (fifo size / 2)
@@ -3448,8 +3240,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH14[14] (RW)
  *
-
- *
  * Values:
  * - 0 - Half Full (fifo size / 2)
  * - 1 - Almost Full (3/4th of fifo size)
@@ -3471,8 +3261,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field RX_CH15[15] (RW)
- *
-
  *
  * Values:
  * - 0 - Half Full (fifo size / 2)
@@ -3496,8 +3284,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH0[16] (RW)
  *
-
- *
  * Values:
  * - 0 - Half Empty (fifo size / 2)
  * - 1 - Almost Empty (fifo size / 4)
@@ -3519,8 +3305,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH1[17] (RW)
- *
-
  *
  * Values:
  * - 0 - Half Empty (fifo size / 2)
@@ -3544,8 +3328,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH2[18] (RW)
  *
-
- *
  * Values:
  * - 0 - Half Empty (fifo size / 2)
  * - 1 - Almost Empty (fifo size / 4)
@@ -3567,8 +3349,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH3[19] (RW)
- *
-
  *
  * Values:
  * - 0 - Half Empty (fifo size / 2)
@@ -3592,8 +3372,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH4[20] (RW)
  *
-
- *
  * Values:
  * - 0 - Half Empty (fifo size / 2)
  * - 1 - Almost Empty (fifo size / 4)
@@ -3615,8 +3393,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH5[21] (RW)
- *
-
  *
  * Values:
  * - 0 - Half Empty (fifo size / 2)
@@ -3640,8 +3416,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH6[22] (RW)
  *
-
- *
  * Values:
  * - 0 - Half Empty (fifo size / 2)
  * - 1 - Almost Empty (fifo size / 4)
@@ -3663,8 +3437,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH7[23] (RW)
- *
-
  *
  * Values:
  * - 0 - Half Empty (fifo size / 2)
@@ -3688,8 +3460,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH8[24] (RW)
  *
-
- *
  * Values:
  * - 0 - Half Empty (fifo size / 2)
  * - 1 - Almost Empty (fifo size / 4)
@@ -3711,8 +3481,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH9[25] (RW)
- *
-
  *
  * Values:
  * - 0 - Half Empty (fifo size / 2)
@@ -3736,8 +3504,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH10[26] (RW)
  *
-
- *
  * Values:
  * - 0 - Half Empty (fifo size / 2)
  * - 1 - Almost Empty (fifo size / 4)
@@ -3759,8 +3525,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH11[27] (RW)
- *
-
  *
  * Values:
  * - 0 - Half Empty (fifo size / 2)
@@ -3784,8 +3548,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH12[28] (RW)
  *
-
- *
  * Values:
  * - 0 - Half Empty (fifo size / 2)
  * - 1 - Almost Empty (fifo size / 4)
@@ -3807,8 +3569,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH13[29] (RW)
- *
-
  *
  * Values:
  * - 0 - Half Empty (fifo size / 2)
@@ -3832,8 +3592,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH14[30] (RW)
  *
-
- *
  * Values:
  * - 0 - Half Empty (fifo size / 2)
  * - 1 - Almost Empty (fifo size / 4)
@@ -3855,8 +3613,6 @@ typedef union _hw_mipi_hsi_fifo_thr_conf
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_CONF, field TX_CH15[31] (RW)
- *
-
  *
  * Values:
  * - 0 - Half Empty (fifo size / 2)
@@ -4513,8 +4269,6 @@ typedef union _hw_mipi_hsi_irqstat
 
 /*! @name Register MIPI_HSI_IRQSTAT, field FIFO_THRESHOLD_INT[0] (RO)
  *
-
- *
  * Values:
  * - 0 - Threshold amount of data not reached in TX/Rx FIFO Interrupt Status
  * - 1 - Threshold amount of data reached in TX/Rx FIFO Interrupt Status
@@ -4528,8 +4282,6 @@ typedef union _hw_mipi_hsi_irqstat
 //@}
 
 /*! @name Register MIPI_HSI_IRQSTAT, field RX_WAKEUP_INT[1] (WO)
- *
-
  *
  * Values:
  * - 0 - Receiver Wakeup event is not occurred
@@ -4594,8 +4346,6 @@ typedef union _hw_mipi_hsi_irqstat
 
 /*! @name Register MIPI_HSI_IRQSTAT, field TX_TIMEOUT_ERR_INT[5] (WO)
  *
-
- *
  * Values:
  * - 0 - No Error.
  * - 1 - Error.
@@ -4612,8 +4362,6 @@ typedef union _hw_mipi_hsi_irqstat
 //@}
 
 /*! @name Register MIPI_HSI_IRQSTAT, field RX_ERROR_INT[6] (WO)
- *
-
  *
  * Values:
  * - 0 - No Error.
@@ -4632,8 +4380,6 @@ typedef union _hw_mipi_hsi_irqstat
 
 /*! @name Register MIPI_HSI_IRQSTAT, field RX_BREAK_INT[7] (WO)
  *
-
- *
  * Values:
  * - 0 - No Error.
  * - 1 - Error.
@@ -4650,8 +4396,6 @@ typedef union _hw_mipi_hsi_irqstat
 //@}
 
 /*! @name Register MIPI_HSI_IRQSTAT, field TX_EMPTY_INT[8] (RO)
- *
-
  *
  * Values:
  * - 0 - not All tx channel empty and tx state IDLE Interrupt Status
@@ -4718,8 +4462,6 @@ typedef union _hw_mipi_hsi_irqstat_en
 
 /*! @name Register MIPI_HSI_IRQSTAT_EN, field FIFO_THRESHOLD_INT[0] (RW)
  *
-
- *
  * Values:
  * - 0 - Interrupt status masked FIFO_THRESHOLD_INT_STATUS interrupt.
  * - 1 - Interrupt status enabled for FIFO_THRESHOLD_INT_STATUS interrupt.
@@ -4741,8 +4483,6 @@ typedef union _hw_mipi_hsi_irqstat_en
 //@}
 
 /*! @name Register MIPI_HSI_IRQSTAT_EN, field RX_WAKEUP_INT[1] (RW)
- *
-
  *
  * Values:
  * - 0 - Interrupt status masked RX_WAKEUP_INT_STATUS interrupt.
@@ -4766,8 +4506,6 @@ typedef union _hw_mipi_hsi_irqstat_en
 
 /*! @name Register MIPI_HSI_IRQSTAT_EN, field RX_TIMEOUT_INT[2] (RW)
  *
-
- *
  * Values:
  * - 0 - Interrupt status masked RX_TIMEOUT_INT_STATUS interrupt.
  * - 1 - Interrupt status enabled for RX_TIMEOUT_INT_STATUS interrupt.
@@ -4789,8 +4527,6 @@ typedef union _hw_mipi_hsi_irqstat_en
 //@}
 
 /*! @name Register MIPI_HSI_IRQSTAT_EN, field DMA_INT[3] (RW)
- *
-
  *
  * Values:
  * - 0 - Interrupt status masked DMA_INT_STATUS interrupt.
@@ -4814,8 +4550,6 @@ typedef union _hw_mipi_hsi_irqstat_en
 
 /*! @name Register MIPI_HSI_IRQSTAT_EN, field DMA_ERR_INT[4] (RW)
  *
-
- *
  * Values:
  * - 0 - Interrupt status masked DMA_ERROR_INT_STATUS interrupt.
  * - 1 - Interrupt status enabled for DMA_ERROR_INT_STATUS interrupt.
@@ -4837,8 +4571,6 @@ typedef union _hw_mipi_hsi_irqstat_en
 //@}
 
 /*! @name Register MIPI_HSI_IRQSTAT_EN, field TX_TIMEOUT_ERR_INT[5] (RW)
- *
-
  *
  * Values:
  * - 0 - Interrupt status masked TX_TIMEOUT_ERR status interrupt.
@@ -4862,8 +4594,6 @@ typedef union _hw_mipi_hsi_irqstat_en
 
 /*! @name Register MIPI_HSI_IRQSTAT_EN, field RX_ERROR_INT[6] (RW)
  *
-
- *
  * Values:
  * - 0 - Interrupt status masked RX_ERROR status interrupt.
  * - 1 - Interrupt status enabled for RX_ERROR status interrupt.
@@ -4886,8 +4616,6 @@ typedef union _hw_mipi_hsi_irqstat_en
 
 /*! @name Register MIPI_HSI_IRQSTAT_EN, field RX_BREAK_INT[7] (RW)
  *
-
- *
  * Values:
  * - 0 - Interrupt status masked RX_BREAK status interrupt.
  * - 1 - Interrupt status enabled for RX_BREAK status interrupt.
@@ -4909,8 +4637,6 @@ typedef union _hw_mipi_hsi_irqstat_en
 //@}
 
 /*! @name Register MIPI_HSI_IRQSTAT_EN, field TX_EMPTY_INT[8] (RW)
- *
-
  *
  * Values:
  * - 0 - Interrupt status masked TX_EMPTY_INT_STATUS interrupt.
@@ -5270,8 +4996,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH0_INT[0] (RO)
  *
-
- *
  * Values:
  * - 0 - Threshold amount of data not reached in Rx Channel 0 FIFO
  * - 1 - Threshold amount of data reached in Rx Channel 0 FIFO
@@ -5285,8 +5009,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH1_INT[1] (RO)
- *
-
  *
  * Values:
  * - 0 - Threshold amount of data not reached in Rx Channel 1 FIFO
@@ -5302,8 +5024,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH2_INT[2] (RO)
  *
-
- *
  * Values:
  * - 0 - Threshold amount of data not reached in Rx Channel 2 FIFO
  * - 1 - Threshold amount of data reached in Rx Channel 2 FIFO
@@ -5317,8 +5037,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH3_INT[3] (RO)
- *
-
  *
  * Values:
  * - 0 - Threshold amount of data not reached in Rx Channel 3 FIFO
@@ -5334,8 +5052,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH4_INT[4] (RO)
  *
-
- *
  * Values:
  * - 0 - Threshold amount of data not reached in Rx Channel 4 FIFO
  * - 1 - Threshold amount of data reached in Rx Channel 4 FIFO
@@ -5349,8 +5065,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH5_INT[5] (RO)
- *
-
  *
  * Values:
  * - 0 - Threshold amount of data not reached in Rx Channel 5 FIFO
@@ -5366,8 +5080,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH6_INT[6] (RO)
  *
-
- *
  * Values:
  * - 0 - Threshold amount of data not reached in Rx Channel 6 FIFO
  * - 1 - Threshold amount of data reached in Rx Channel 6 FIFO
@@ -5381,8 +5093,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH7_INT[7] (RO)
- *
-
  *
  * Values:
  * - 0 - Threshold amount of data not reached in Rx Channel 7 FIFO
@@ -5398,8 +5108,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH8_INT[8] (RO)
  *
-
- *
  * Values:
  * - 0 - Threshold amount of data not reached in Rx Channel 8 FIFO
  * - 1 - Threshold amount of data reached in Rx Channel 8 FIFO
@@ -5413,8 +5121,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH9_INT[9] (RO)
- *
-
  *
  * Values:
  * - 0 - Threshold amount of data not reached in Rx Channel 9 FIFO
@@ -5430,8 +5136,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH10_INT[10] (RO)
  *
-
- *
  * Values:
  * - 0 - Threshold amount of data not reached in Rx Channel 10 FIFO
  * - 1 - Threshold amount of data reached in Rx Channel 10 FIFO
@@ -5445,8 +5149,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH11_INT[11] (RO)
- *
-
  *
  * Values:
  * - 0 - Threshold amount of data not reached in Rx Channel 11 FIFO
@@ -5462,8 +5164,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH12_INT[12] (RO)
  *
-
- *
  * Values:
  * - 0 - Threshold amount of data not reached in Rx Channel 12 FIFO
  * - 1 - Threshold amount of data reached in Rx Channel 12 FIFO
@@ -5477,8 +5177,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH13_INT[13] (RO)
- *
-
  *
  * Values:
  * - 0 - Threshold amount of data not reached in Rx Channel 13 FIFO
@@ -5494,8 +5192,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH14_INT[14] (RO)
  *
-
- *
  * Values:
  * - 0 - Threshold amount of data not reached in Rx Channel 14 FIFO
  * - 1 - Threshold amount of data reached in Rx Channel 14 FIFO
@@ -5509,8 +5205,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field RX_CH15_INT[15] (RO)
- *
-
  *
  * Values:
  * - 0 - Threshold amount of data not reached in Rx Channel 15 FIFO
@@ -5526,8 +5220,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH0_INT[16] (RO)
  *
-
- *
  * Values:
  * - 0 - Threshold amount of data not reached in Tx Channel 0 FIFO
  * - 1 - Threshold amount of data reached in Tx Channel 0 FIFO
@@ -5541,8 +5233,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH1_INT[17] (RO)
- *
-
  *
  * Values:
  * - 0 - Threshold amount of data not reached in Tx Channel 1 FIFO
@@ -5558,8 +5248,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH2_INT[18] (RO)
  *
-
- *
  * Values:
  * - 0 - Threshold amount of data not reached in Tx Channel 2 FIFO
  * - 1 - Threshold amount of data reached in Tx Channel 2 FIFO
@@ -5573,8 +5261,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH3_INT[19] (RO)
- *
-
  *
  * Values:
  * - 0 - Threshold amount of data not reached in Tx Channel 3 FIFO
@@ -5590,8 +5276,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH4_INT[20] (RO)
  *
-
- *
  * Values:
  * - 0 - Threshold amount of data not reached in Tx Channel 4 FIFO
  * - 1 - Threshold amount of data reached in Tx Channel 4 FIFO
@@ -5605,8 +5289,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH5_INT[21] (RO)
- *
-
  *
  * Values:
  * - 0 - Threshold amount of data not reached in Tx Channel 5 FIFO
@@ -5622,8 +5304,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH6_INT[22] (RO)
  *
-
- *
  * Values:
  * - 0 - Threshold amount of data not reached in Tx Channel 6 FIFO
  * - 1 - Threshold amount of data reached in Tx Channel 6 FIFO
@@ -5637,8 +5317,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH7_INT[23] (RO)
- *
-
  *
  * Values:
  * - 0 - Threshold amount of data not reached in Tx Channel 7 FIFO
@@ -5654,8 +5332,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH8_INT[24] (RO)
  *
-
- *
  * Values:
  * - 0 - Threshold amount of data not reached in Tx Channel 8 FIFO
  * - 1 - Threshold amount of data reached in Tx Channel 8 FIFO
@@ -5669,8 +5345,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH9_INT[25] (RO)
- *
-
  *
  * Values:
  * - 0 - Threshold amount of data not reached in Tx Channel 9 FIFO
@@ -5686,8 +5360,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH10_INT[26] (RO)
  *
-
- *
  * Values:
  * - 0 - Threshold amount of data not reached in Tx Channel 10 FIFO
  * - 1 - Threshold amount of data reached in Tx Channel 10 FIFO
@@ -5701,8 +5373,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH11_INT[27] (RO)
- *
-
  *
  * Values:
  * - 0 - Threshold amount of data not reached in Tx Channel 11 FIFO
@@ -5718,8 +5388,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH12_INT[28] (RO)
  *
-
- *
  * Values:
  * - 0 - Threshold amount of data not reached in Tx Channel 12 FIFO
  * - 1 - Threshold amount of data reached in Tx Channel 12 FIFO
@@ -5733,8 +5401,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH13_INT[29] (RO)
- *
-
  *
  * Values:
  * - 0 - Threshold amount of data not reached in Tx Channel 13 FIFO
@@ -5750,8 +5416,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH14_INT[30] (RO)
  *
-
- *
  * Values:
  * - 0 - Threshold amount of data not reached in Tx Channel 14 FIFO
  * - 1 - Threshold amount of data reached in Tx Channel 14 FIFO
@@ -5765,8 +5429,6 @@ typedef union _hw_mipi_hsi_fifo_thr_irqstat
 //@}
 
 /*! @name Register MIPI_HSI_FIFO_THR_IRQSTAT, field TX_CH15_INT[31] (RO)
- *
-
  *
  * Values:
  * - 0 - Threshold amount of data not reached in Tx Channel 15 FIFO
@@ -7463,1986 +7125,132 @@ typedef union _hw_mipi_hsi_fifo_thr_irqsig_en
 //@}
 
 //-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TX_CH0_DP - Tx Channel n Data Port Register
+// HW_MIPI_HSI_TX_CHn_DP - Tx Channel n Data Port Register
 //-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MIPI_HSI_TX_CH0_DP - Tx Channel n Data Port Register (RW)
+ * @brief HW_MIPI_HSI_TX_CHn_DP - Tx Channel n Data Port Register (RW)
  *
  * Reset value: 0x00000000
  *
  * This Register is connected to fifo data port for Tx Channel n.
  */
-typedef union _hw_mipi_hsi_tx_ch0_dp
+typedef union _hw_mipi_hsi_tx_chn_dp
 {
     reg32_t U;
-    struct _hw_mipi_hsi_tx_ch0_dp_bitfields
+    struct _hw_mipi_hsi_tx_chn_dp_bitfields
     {
         unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Tx Channel n.
     } B;
-} hw_mipi_hsi_tx_ch0_dp_t;
+} hw_mipi_hsi_tx_chn_dp_t;
 #endif
 
 /*!
- * @name Constants and macros for entire MIPI_HSI_TX_CH0_DP register
+ * @name Constants and macros for entire MIPI_HSI_TX_CHn_DP register
  */
 //@{
-#define HW_MIPI_HSI_TX_CH0_DP_ADDR      (REGS_MIPI_HSI_BASE + 0x50)
+//! @brief Number of instances of the MIPI_HSI_TX_CHn_DP register.
+#define HW_MIPI_HSI_TX_CHn_DP_COUNT     (16)
+
+#define HW_MIPI_HSI_TX_CHn_DP_ADDR(n)   (REGS_MIPI_HSI_BASE + 0x50 + (0x4 * (n)))
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TX_CH0_DP           (*(volatile hw_mipi_hsi_tx_ch0_dp_t *) HW_MIPI_HSI_TX_CH0_DP_ADDR)
-#define HW_MIPI_HSI_TX_CH0_DP_RD()      (HW_MIPI_HSI_TX_CH0_DP.U)
-#define HW_MIPI_HSI_TX_CH0_DP_WR(v)     (HW_MIPI_HSI_TX_CH0_DP.U = (v))
-#define HW_MIPI_HSI_TX_CH0_DP_SET(v)    (HW_MIPI_HSI_TX_CH0_DP_WR(HW_MIPI_HSI_TX_CH0_DP_RD() |  (v)))
-#define HW_MIPI_HSI_TX_CH0_DP_CLR(v)    (HW_MIPI_HSI_TX_CH0_DP_WR(HW_MIPI_HSI_TX_CH0_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_TX_CH0_DP_TOG(v)    (HW_MIPI_HSI_TX_CH0_DP_WR(HW_MIPI_HSI_TX_CH0_DP_RD() ^  (v)))
+#define HW_MIPI_HSI_TX_CHn_DP(n)        (*(volatile hw_mipi_hsi_tx_chn_dp_t *) HW_MIPI_HSI_TX_CHn_DP_ADDR(n))
+#define HW_MIPI_HSI_TX_CHn_DP_RD(n)     (HW_MIPI_HSI_TX_CHn_DP(n).U)
+#define HW_MIPI_HSI_TX_CHn_DP_WR(n, v)  (HW_MIPI_HSI_TX_CHn_DP(n).U = (v))
+#define HW_MIPI_HSI_TX_CHn_DP_SET(n, v) (HW_MIPI_HSI_TX_CHn_DP_WR(n, HW_MIPI_HSI_TX_CHn_DP_RD(n) |  (v)))
+#define HW_MIPI_HSI_TX_CHn_DP_CLR(n, v) (HW_MIPI_HSI_TX_CHn_DP_WR(n, HW_MIPI_HSI_TX_CHn_DP_RD(n) & ~(v)))
+#define HW_MIPI_HSI_TX_CHn_DP_TOG(n, v) (HW_MIPI_HSI_TX_CHn_DP_WR(n, HW_MIPI_HSI_TX_CHn_DP_RD(n) ^  (v)))
 #endif
 //@}
 
 /*
- * constants & macros for individual MIPI_HSI_TX_CH0_DP bitfields
+ * constants & macros for individual MIPI_HSI_TX_CHn_DP bitfields
  */
 
-/*! @name Register MIPI_HSI_TX_CH0_DP, field DATA[31:0] (RW)
+/*! @name Register MIPI_HSI_TX_CHn_DP, field DATA[31:0] (RW)
  *
  * Software could Write/Read this bits to access Tx Channel n.
  */
 //@{
-#define BP_MIPI_HSI_TX_CH0_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH0_DP_DATA.
-#define BM_MIPI_HSI_TX_CH0_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH0_DP_DATA.
+#define BP_MIPI_HSI_TX_CHn_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CHn_DP_DATA.
+#define BM_MIPI_HSI_TX_CHn_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CHn_DP_DATA.
 
-//! @brief Get value of MIPI_HSI_TX_CH0_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH0_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH0_DP_DATA) >> BP_MIPI_HSI_TX_CH0_DP_DATA)
+//! @brief Get value of MIPI_HSI_TX_CHn_DP_DATA from a register value.
+#define BG_MIPI_HSI_TX_CHn_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CHn_DP_DATA) >> BP_MIPI_HSI_TX_CHn_DP_DATA)
 
-//! @brief Format value for bitfield MIPI_HSI_TX_CH0_DP_DATA.
-#define BF_MIPI_HSI_TX_CH0_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH0_DP_DATA) & BM_MIPI_HSI_TX_CH0_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_TX_CH0_DP_DATA(v)   (HW_MIPI_HSI_TX_CH0_DP_WR((HW_MIPI_HSI_TX_CH0_DP_RD() & ~BM_MIPI_HSI_TX_CH0_DP_DATA) | BF_MIPI_HSI_TX_CH0_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TX_CH1_DP - Tx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TX_CH1_DP - Tx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Tx Channel n.
- */
-typedef union _hw_mipi_hsi_tx_ch1_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tx_ch1_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Tx Channel n.
-    } B;
-} hw_mipi_hsi_tx_ch1_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TX_CH1_DP register
- */
-//@{
-#define HW_MIPI_HSI_TX_CH1_DP_ADDR      (REGS_MIPI_HSI_BASE + 0x54)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TX_CH1_DP           (*(volatile hw_mipi_hsi_tx_ch1_dp_t *) HW_MIPI_HSI_TX_CH1_DP_ADDR)
-#define HW_MIPI_HSI_TX_CH1_DP_RD()      (HW_MIPI_HSI_TX_CH1_DP.U)
-#define HW_MIPI_HSI_TX_CH1_DP_WR(v)     (HW_MIPI_HSI_TX_CH1_DP.U = (v))
-#define HW_MIPI_HSI_TX_CH1_DP_SET(v)    (HW_MIPI_HSI_TX_CH1_DP_WR(HW_MIPI_HSI_TX_CH1_DP_RD() |  (v)))
-#define HW_MIPI_HSI_TX_CH1_DP_CLR(v)    (HW_MIPI_HSI_TX_CH1_DP_WR(HW_MIPI_HSI_TX_CH1_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_TX_CH1_DP_TOG(v)    (HW_MIPI_HSI_TX_CH1_DP_WR(HW_MIPI_HSI_TX_CH1_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TX_CH1_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_TX_CH1_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Tx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_TX_CH1_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH1_DP_DATA.
-#define BM_MIPI_HSI_TX_CH1_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH1_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_TX_CH1_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH1_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH1_DP_DATA) >> BP_MIPI_HSI_TX_CH1_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_TX_CH1_DP_DATA.
-#define BF_MIPI_HSI_TX_CH1_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH1_DP_DATA) & BM_MIPI_HSI_TX_CH1_DP_DATA)
+//! @brief Format value for bitfield MIPI_HSI_TX_CHn_DP_DATA.
+#define BF_MIPI_HSI_TX_CHn_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CHn_DP_DATA) & BM_MIPI_HSI_TX_CHn_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_TX_CH1_DP_DATA(v)   (HW_MIPI_HSI_TX_CH1_DP_WR((HW_MIPI_HSI_TX_CH1_DP_RD() & ~BM_MIPI_HSI_TX_CH1_DP_DATA) | BF_MIPI_HSI_TX_CH1_DP_DATA(v)))
+#define BW_MIPI_HSI_TX_CHn_DP_DATA(n, v)   (HW_MIPI_HSI_TX_CHn_DP_WR(n, (HW_MIPI_HSI_TX_CHn_DP_RD(n) & ~BM_MIPI_HSI_TX_CHn_DP_DATA) | BF_MIPI_HSI_TX_CHn_DP_DATA(v)))
 #endif
 //@}
 
 //-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TX_CH2_DP - Tx Channel n Data Port Register
+// HW_MIPI_HSI_RX_CHn_DP - Rx Channel n Data Port Register
 //-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MIPI_HSI_TX_CH2_DP - Tx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Tx Channel n.
- */
-typedef union _hw_mipi_hsi_tx_ch2_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tx_ch2_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Tx Channel n.
-    } B;
-} hw_mipi_hsi_tx_ch2_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TX_CH2_DP register
- */
-//@{
-#define HW_MIPI_HSI_TX_CH2_DP_ADDR      (REGS_MIPI_HSI_BASE + 0x58)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TX_CH2_DP           (*(volatile hw_mipi_hsi_tx_ch2_dp_t *) HW_MIPI_HSI_TX_CH2_DP_ADDR)
-#define HW_MIPI_HSI_TX_CH2_DP_RD()      (HW_MIPI_HSI_TX_CH2_DP.U)
-#define HW_MIPI_HSI_TX_CH2_DP_WR(v)     (HW_MIPI_HSI_TX_CH2_DP.U = (v))
-#define HW_MIPI_HSI_TX_CH2_DP_SET(v)    (HW_MIPI_HSI_TX_CH2_DP_WR(HW_MIPI_HSI_TX_CH2_DP_RD() |  (v)))
-#define HW_MIPI_HSI_TX_CH2_DP_CLR(v)    (HW_MIPI_HSI_TX_CH2_DP_WR(HW_MIPI_HSI_TX_CH2_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_TX_CH2_DP_TOG(v)    (HW_MIPI_HSI_TX_CH2_DP_WR(HW_MIPI_HSI_TX_CH2_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TX_CH2_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_TX_CH2_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Tx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_TX_CH2_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH2_DP_DATA.
-#define BM_MIPI_HSI_TX_CH2_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH2_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_TX_CH2_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH2_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH2_DP_DATA) >> BP_MIPI_HSI_TX_CH2_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_TX_CH2_DP_DATA.
-#define BF_MIPI_HSI_TX_CH2_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH2_DP_DATA) & BM_MIPI_HSI_TX_CH2_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_TX_CH2_DP_DATA(v)   (HW_MIPI_HSI_TX_CH2_DP_WR((HW_MIPI_HSI_TX_CH2_DP_RD() & ~BM_MIPI_HSI_TX_CH2_DP_DATA) | BF_MIPI_HSI_TX_CH2_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TX_CH3_DP - Tx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TX_CH3_DP - Tx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Tx Channel n.
- */
-typedef union _hw_mipi_hsi_tx_ch3_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tx_ch3_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Tx Channel n.
-    } B;
-} hw_mipi_hsi_tx_ch3_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TX_CH3_DP register
- */
-//@{
-#define HW_MIPI_HSI_TX_CH3_DP_ADDR      (REGS_MIPI_HSI_BASE + 0x5c)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TX_CH3_DP           (*(volatile hw_mipi_hsi_tx_ch3_dp_t *) HW_MIPI_HSI_TX_CH3_DP_ADDR)
-#define HW_MIPI_HSI_TX_CH3_DP_RD()      (HW_MIPI_HSI_TX_CH3_DP.U)
-#define HW_MIPI_HSI_TX_CH3_DP_WR(v)     (HW_MIPI_HSI_TX_CH3_DP.U = (v))
-#define HW_MIPI_HSI_TX_CH3_DP_SET(v)    (HW_MIPI_HSI_TX_CH3_DP_WR(HW_MIPI_HSI_TX_CH3_DP_RD() |  (v)))
-#define HW_MIPI_HSI_TX_CH3_DP_CLR(v)    (HW_MIPI_HSI_TX_CH3_DP_WR(HW_MIPI_HSI_TX_CH3_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_TX_CH3_DP_TOG(v)    (HW_MIPI_HSI_TX_CH3_DP_WR(HW_MIPI_HSI_TX_CH3_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TX_CH3_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_TX_CH3_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Tx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_TX_CH3_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH3_DP_DATA.
-#define BM_MIPI_HSI_TX_CH3_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH3_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_TX_CH3_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH3_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH3_DP_DATA) >> BP_MIPI_HSI_TX_CH3_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_TX_CH3_DP_DATA.
-#define BF_MIPI_HSI_TX_CH3_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH3_DP_DATA) & BM_MIPI_HSI_TX_CH3_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_TX_CH3_DP_DATA(v)   (HW_MIPI_HSI_TX_CH3_DP_WR((HW_MIPI_HSI_TX_CH3_DP_RD() & ~BM_MIPI_HSI_TX_CH3_DP_DATA) | BF_MIPI_HSI_TX_CH3_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TX_CH4_DP - Tx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TX_CH4_DP - Tx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Tx Channel n.
- */
-typedef union _hw_mipi_hsi_tx_ch4_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tx_ch4_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Tx Channel n.
-    } B;
-} hw_mipi_hsi_tx_ch4_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TX_CH4_DP register
- */
-//@{
-#define HW_MIPI_HSI_TX_CH4_DP_ADDR      (REGS_MIPI_HSI_BASE + 0x60)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TX_CH4_DP           (*(volatile hw_mipi_hsi_tx_ch4_dp_t *) HW_MIPI_HSI_TX_CH4_DP_ADDR)
-#define HW_MIPI_HSI_TX_CH4_DP_RD()      (HW_MIPI_HSI_TX_CH4_DP.U)
-#define HW_MIPI_HSI_TX_CH4_DP_WR(v)     (HW_MIPI_HSI_TX_CH4_DP.U = (v))
-#define HW_MIPI_HSI_TX_CH4_DP_SET(v)    (HW_MIPI_HSI_TX_CH4_DP_WR(HW_MIPI_HSI_TX_CH4_DP_RD() |  (v)))
-#define HW_MIPI_HSI_TX_CH4_DP_CLR(v)    (HW_MIPI_HSI_TX_CH4_DP_WR(HW_MIPI_HSI_TX_CH4_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_TX_CH4_DP_TOG(v)    (HW_MIPI_HSI_TX_CH4_DP_WR(HW_MIPI_HSI_TX_CH4_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TX_CH4_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_TX_CH4_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Tx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_TX_CH4_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH4_DP_DATA.
-#define BM_MIPI_HSI_TX_CH4_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH4_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_TX_CH4_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH4_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH4_DP_DATA) >> BP_MIPI_HSI_TX_CH4_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_TX_CH4_DP_DATA.
-#define BF_MIPI_HSI_TX_CH4_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH4_DP_DATA) & BM_MIPI_HSI_TX_CH4_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_TX_CH4_DP_DATA(v)   (HW_MIPI_HSI_TX_CH4_DP_WR((HW_MIPI_HSI_TX_CH4_DP_RD() & ~BM_MIPI_HSI_TX_CH4_DP_DATA) | BF_MIPI_HSI_TX_CH4_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TX_CH5_DP - Tx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TX_CH5_DP - Tx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Tx Channel n.
- */
-typedef union _hw_mipi_hsi_tx_ch5_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tx_ch5_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Tx Channel n.
-    } B;
-} hw_mipi_hsi_tx_ch5_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TX_CH5_DP register
- */
-//@{
-#define HW_MIPI_HSI_TX_CH5_DP_ADDR      (REGS_MIPI_HSI_BASE + 0x64)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TX_CH5_DP           (*(volatile hw_mipi_hsi_tx_ch5_dp_t *) HW_MIPI_HSI_TX_CH5_DP_ADDR)
-#define HW_MIPI_HSI_TX_CH5_DP_RD()      (HW_MIPI_HSI_TX_CH5_DP.U)
-#define HW_MIPI_HSI_TX_CH5_DP_WR(v)     (HW_MIPI_HSI_TX_CH5_DP.U = (v))
-#define HW_MIPI_HSI_TX_CH5_DP_SET(v)    (HW_MIPI_HSI_TX_CH5_DP_WR(HW_MIPI_HSI_TX_CH5_DP_RD() |  (v)))
-#define HW_MIPI_HSI_TX_CH5_DP_CLR(v)    (HW_MIPI_HSI_TX_CH5_DP_WR(HW_MIPI_HSI_TX_CH5_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_TX_CH5_DP_TOG(v)    (HW_MIPI_HSI_TX_CH5_DP_WR(HW_MIPI_HSI_TX_CH5_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TX_CH5_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_TX_CH5_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Tx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_TX_CH5_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH5_DP_DATA.
-#define BM_MIPI_HSI_TX_CH5_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH5_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_TX_CH5_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH5_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH5_DP_DATA) >> BP_MIPI_HSI_TX_CH5_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_TX_CH5_DP_DATA.
-#define BF_MIPI_HSI_TX_CH5_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH5_DP_DATA) & BM_MIPI_HSI_TX_CH5_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_TX_CH5_DP_DATA(v)   (HW_MIPI_HSI_TX_CH5_DP_WR((HW_MIPI_HSI_TX_CH5_DP_RD() & ~BM_MIPI_HSI_TX_CH5_DP_DATA) | BF_MIPI_HSI_TX_CH5_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TX_CH6_DP - Tx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TX_CH6_DP - Tx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Tx Channel n.
- */
-typedef union _hw_mipi_hsi_tx_ch6_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tx_ch6_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Tx Channel n.
-    } B;
-} hw_mipi_hsi_tx_ch6_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TX_CH6_DP register
- */
-//@{
-#define HW_MIPI_HSI_TX_CH6_DP_ADDR      (REGS_MIPI_HSI_BASE + 0x68)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TX_CH6_DP           (*(volatile hw_mipi_hsi_tx_ch6_dp_t *) HW_MIPI_HSI_TX_CH6_DP_ADDR)
-#define HW_MIPI_HSI_TX_CH6_DP_RD()      (HW_MIPI_HSI_TX_CH6_DP.U)
-#define HW_MIPI_HSI_TX_CH6_DP_WR(v)     (HW_MIPI_HSI_TX_CH6_DP.U = (v))
-#define HW_MIPI_HSI_TX_CH6_DP_SET(v)    (HW_MIPI_HSI_TX_CH6_DP_WR(HW_MIPI_HSI_TX_CH6_DP_RD() |  (v)))
-#define HW_MIPI_HSI_TX_CH6_DP_CLR(v)    (HW_MIPI_HSI_TX_CH6_DP_WR(HW_MIPI_HSI_TX_CH6_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_TX_CH6_DP_TOG(v)    (HW_MIPI_HSI_TX_CH6_DP_WR(HW_MIPI_HSI_TX_CH6_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TX_CH6_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_TX_CH6_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Tx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_TX_CH6_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH6_DP_DATA.
-#define BM_MIPI_HSI_TX_CH6_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH6_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_TX_CH6_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH6_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH6_DP_DATA) >> BP_MIPI_HSI_TX_CH6_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_TX_CH6_DP_DATA.
-#define BF_MIPI_HSI_TX_CH6_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH6_DP_DATA) & BM_MIPI_HSI_TX_CH6_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_TX_CH6_DP_DATA(v)   (HW_MIPI_HSI_TX_CH6_DP_WR((HW_MIPI_HSI_TX_CH6_DP_RD() & ~BM_MIPI_HSI_TX_CH6_DP_DATA) | BF_MIPI_HSI_TX_CH6_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TX_CH7_DP - Tx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TX_CH7_DP - Tx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Tx Channel n.
- */
-typedef union _hw_mipi_hsi_tx_ch7_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tx_ch7_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Tx Channel n.
-    } B;
-} hw_mipi_hsi_tx_ch7_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TX_CH7_DP register
- */
-//@{
-#define HW_MIPI_HSI_TX_CH7_DP_ADDR      (REGS_MIPI_HSI_BASE + 0x6c)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TX_CH7_DP           (*(volatile hw_mipi_hsi_tx_ch7_dp_t *) HW_MIPI_HSI_TX_CH7_DP_ADDR)
-#define HW_MIPI_HSI_TX_CH7_DP_RD()      (HW_MIPI_HSI_TX_CH7_DP.U)
-#define HW_MIPI_HSI_TX_CH7_DP_WR(v)     (HW_MIPI_HSI_TX_CH7_DP.U = (v))
-#define HW_MIPI_HSI_TX_CH7_DP_SET(v)    (HW_MIPI_HSI_TX_CH7_DP_WR(HW_MIPI_HSI_TX_CH7_DP_RD() |  (v)))
-#define HW_MIPI_HSI_TX_CH7_DP_CLR(v)    (HW_MIPI_HSI_TX_CH7_DP_WR(HW_MIPI_HSI_TX_CH7_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_TX_CH7_DP_TOG(v)    (HW_MIPI_HSI_TX_CH7_DP_WR(HW_MIPI_HSI_TX_CH7_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TX_CH7_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_TX_CH7_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Tx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_TX_CH7_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH7_DP_DATA.
-#define BM_MIPI_HSI_TX_CH7_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH7_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_TX_CH7_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH7_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH7_DP_DATA) >> BP_MIPI_HSI_TX_CH7_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_TX_CH7_DP_DATA.
-#define BF_MIPI_HSI_TX_CH7_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH7_DP_DATA) & BM_MIPI_HSI_TX_CH7_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_TX_CH7_DP_DATA(v)   (HW_MIPI_HSI_TX_CH7_DP_WR((HW_MIPI_HSI_TX_CH7_DP_RD() & ~BM_MIPI_HSI_TX_CH7_DP_DATA) | BF_MIPI_HSI_TX_CH7_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TX_CH8_DP - Tx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TX_CH8_DP - Tx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Tx Channel n.
- */
-typedef union _hw_mipi_hsi_tx_ch8_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tx_ch8_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Tx Channel n.
-    } B;
-} hw_mipi_hsi_tx_ch8_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TX_CH8_DP register
- */
-//@{
-#define HW_MIPI_HSI_TX_CH8_DP_ADDR      (REGS_MIPI_HSI_BASE + 0x70)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TX_CH8_DP           (*(volatile hw_mipi_hsi_tx_ch8_dp_t *) HW_MIPI_HSI_TX_CH8_DP_ADDR)
-#define HW_MIPI_HSI_TX_CH8_DP_RD()      (HW_MIPI_HSI_TX_CH8_DP.U)
-#define HW_MIPI_HSI_TX_CH8_DP_WR(v)     (HW_MIPI_HSI_TX_CH8_DP.U = (v))
-#define HW_MIPI_HSI_TX_CH8_DP_SET(v)    (HW_MIPI_HSI_TX_CH8_DP_WR(HW_MIPI_HSI_TX_CH8_DP_RD() |  (v)))
-#define HW_MIPI_HSI_TX_CH8_DP_CLR(v)    (HW_MIPI_HSI_TX_CH8_DP_WR(HW_MIPI_HSI_TX_CH8_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_TX_CH8_DP_TOG(v)    (HW_MIPI_HSI_TX_CH8_DP_WR(HW_MIPI_HSI_TX_CH8_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TX_CH8_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_TX_CH8_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Tx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_TX_CH8_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH8_DP_DATA.
-#define BM_MIPI_HSI_TX_CH8_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH8_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_TX_CH8_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH8_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH8_DP_DATA) >> BP_MIPI_HSI_TX_CH8_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_TX_CH8_DP_DATA.
-#define BF_MIPI_HSI_TX_CH8_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH8_DP_DATA) & BM_MIPI_HSI_TX_CH8_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_TX_CH8_DP_DATA(v)   (HW_MIPI_HSI_TX_CH8_DP_WR((HW_MIPI_HSI_TX_CH8_DP_RD() & ~BM_MIPI_HSI_TX_CH8_DP_DATA) | BF_MIPI_HSI_TX_CH8_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TX_CH9_DP - Tx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TX_CH9_DP - Tx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Tx Channel n.
- */
-typedef union _hw_mipi_hsi_tx_ch9_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tx_ch9_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Tx Channel n.
-    } B;
-} hw_mipi_hsi_tx_ch9_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TX_CH9_DP register
- */
-//@{
-#define HW_MIPI_HSI_TX_CH9_DP_ADDR      (REGS_MIPI_HSI_BASE + 0x74)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TX_CH9_DP           (*(volatile hw_mipi_hsi_tx_ch9_dp_t *) HW_MIPI_HSI_TX_CH9_DP_ADDR)
-#define HW_MIPI_HSI_TX_CH9_DP_RD()      (HW_MIPI_HSI_TX_CH9_DP.U)
-#define HW_MIPI_HSI_TX_CH9_DP_WR(v)     (HW_MIPI_HSI_TX_CH9_DP.U = (v))
-#define HW_MIPI_HSI_TX_CH9_DP_SET(v)    (HW_MIPI_HSI_TX_CH9_DP_WR(HW_MIPI_HSI_TX_CH9_DP_RD() |  (v)))
-#define HW_MIPI_HSI_TX_CH9_DP_CLR(v)    (HW_MIPI_HSI_TX_CH9_DP_WR(HW_MIPI_HSI_TX_CH9_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_TX_CH9_DP_TOG(v)    (HW_MIPI_HSI_TX_CH9_DP_WR(HW_MIPI_HSI_TX_CH9_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TX_CH9_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_TX_CH9_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Tx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_TX_CH9_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH9_DP_DATA.
-#define BM_MIPI_HSI_TX_CH9_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH9_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_TX_CH9_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH9_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH9_DP_DATA) >> BP_MIPI_HSI_TX_CH9_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_TX_CH9_DP_DATA.
-#define BF_MIPI_HSI_TX_CH9_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH9_DP_DATA) & BM_MIPI_HSI_TX_CH9_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_TX_CH9_DP_DATA(v)   (HW_MIPI_HSI_TX_CH9_DP_WR((HW_MIPI_HSI_TX_CH9_DP_RD() & ~BM_MIPI_HSI_TX_CH9_DP_DATA) | BF_MIPI_HSI_TX_CH9_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TX_CH10_DP - Tx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TX_CH10_DP - Tx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Tx Channel n.
- */
-typedef union _hw_mipi_hsi_tx_ch10_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tx_ch10_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Tx Channel n.
-    } B;
-} hw_mipi_hsi_tx_ch10_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TX_CH10_DP register
- */
-//@{
-#define HW_MIPI_HSI_TX_CH10_DP_ADDR      (REGS_MIPI_HSI_BASE + 0x78)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TX_CH10_DP           (*(volatile hw_mipi_hsi_tx_ch10_dp_t *) HW_MIPI_HSI_TX_CH10_DP_ADDR)
-#define HW_MIPI_HSI_TX_CH10_DP_RD()      (HW_MIPI_HSI_TX_CH10_DP.U)
-#define HW_MIPI_HSI_TX_CH10_DP_WR(v)     (HW_MIPI_HSI_TX_CH10_DP.U = (v))
-#define HW_MIPI_HSI_TX_CH10_DP_SET(v)    (HW_MIPI_HSI_TX_CH10_DP_WR(HW_MIPI_HSI_TX_CH10_DP_RD() |  (v)))
-#define HW_MIPI_HSI_TX_CH10_DP_CLR(v)    (HW_MIPI_HSI_TX_CH10_DP_WR(HW_MIPI_HSI_TX_CH10_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_TX_CH10_DP_TOG(v)    (HW_MIPI_HSI_TX_CH10_DP_WR(HW_MIPI_HSI_TX_CH10_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TX_CH10_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_TX_CH10_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Tx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_TX_CH10_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH10_DP_DATA.
-#define BM_MIPI_HSI_TX_CH10_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH10_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_TX_CH10_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH10_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH10_DP_DATA) >> BP_MIPI_HSI_TX_CH10_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_TX_CH10_DP_DATA.
-#define BF_MIPI_HSI_TX_CH10_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH10_DP_DATA) & BM_MIPI_HSI_TX_CH10_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_TX_CH10_DP_DATA(v)   (HW_MIPI_HSI_TX_CH10_DP_WR((HW_MIPI_HSI_TX_CH10_DP_RD() & ~BM_MIPI_HSI_TX_CH10_DP_DATA) | BF_MIPI_HSI_TX_CH10_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TX_CH11_DP - Tx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TX_CH11_DP - Tx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Tx Channel n.
- */
-typedef union _hw_mipi_hsi_tx_ch11_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tx_ch11_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Tx Channel n.
-    } B;
-} hw_mipi_hsi_tx_ch11_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TX_CH11_DP register
- */
-//@{
-#define HW_MIPI_HSI_TX_CH11_DP_ADDR      (REGS_MIPI_HSI_BASE + 0x7c)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TX_CH11_DP           (*(volatile hw_mipi_hsi_tx_ch11_dp_t *) HW_MIPI_HSI_TX_CH11_DP_ADDR)
-#define HW_MIPI_HSI_TX_CH11_DP_RD()      (HW_MIPI_HSI_TX_CH11_DP.U)
-#define HW_MIPI_HSI_TX_CH11_DP_WR(v)     (HW_MIPI_HSI_TX_CH11_DP.U = (v))
-#define HW_MIPI_HSI_TX_CH11_DP_SET(v)    (HW_MIPI_HSI_TX_CH11_DP_WR(HW_MIPI_HSI_TX_CH11_DP_RD() |  (v)))
-#define HW_MIPI_HSI_TX_CH11_DP_CLR(v)    (HW_MIPI_HSI_TX_CH11_DP_WR(HW_MIPI_HSI_TX_CH11_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_TX_CH11_DP_TOG(v)    (HW_MIPI_HSI_TX_CH11_DP_WR(HW_MIPI_HSI_TX_CH11_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TX_CH11_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_TX_CH11_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Tx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_TX_CH11_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH11_DP_DATA.
-#define BM_MIPI_HSI_TX_CH11_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH11_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_TX_CH11_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH11_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH11_DP_DATA) >> BP_MIPI_HSI_TX_CH11_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_TX_CH11_DP_DATA.
-#define BF_MIPI_HSI_TX_CH11_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH11_DP_DATA) & BM_MIPI_HSI_TX_CH11_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_TX_CH11_DP_DATA(v)   (HW_MIPI_HSI_TX_CH11_DP_WR((HW_MIPI_HSI_TX_CH11_DP_RD() & ~BM_MIPI_HSI_TX_CH11_DP_DATA) | BF_MIPI_HSI_TX_CH11_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TX_CH12_DP - Tx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TX_CH12_DP - Tx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Tx Channel n.
- */
-typedef union _hw_mipi_hsi_tx_ch12_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tx_ch12_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Tx Channel n.
-    } B;
-} hw_mipi_hsi_tx_ch12_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TX_CH12_DP register
- */
-//@{
-#define HW_MIPI_HSI_TX_CH12_DP_ADDR      (REGS_MIPI_HSI_BASE + 0x80)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TX_CH12_DP           (*(volatile hw_mipi_hsi_tx_ch12_dp_t *) HW_MIPI_HSI_TX_CH12_DP_ADDR)
-#define HW_MIPI_HSI_TX_CH12_DP_RD()      (HW_MIPI_HSI_TX_CH12_DP.U)
-#define HW_MIPI_HSI_TX_CH12_DP_WR(v)     (HW_MIPI_HSI_TX_CH12_DP.U = (v))
-#define HW_MIPI_HSI_TX_CH12_DP_SET(v)    (HW_MIPI_HSI_TX_CH12_DP_WR(HW_MIPI_HSI_TX_CH12_DP_RD() |  (v)))
-#define HW_MIPI_HSI_TX_CH12_DP_CLR(v)    (HW_MIPI_HSI_TX_CH12_DP_WR(HW_MIPI_HSI_TX_CH12_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_TX_CH12_DP_TOG(v)    (HW_MIPI_HSI_TX_CH12_DP_WR(HW_MIPI_HSI_TX_CH12_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TX_CH12_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_TX_CH12_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Tx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_TX_CH12_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH12_DP_DATA.
-#define BM_MIPI_HSI_TX_CH12_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH12_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_TX_CH12_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH12_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH12_DP_DATA) >> BP_MIPI_HSI_TX_CH12_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_TX_CH12_DP_DATA.
-#define BF_MIPI_HSI_TX_CH12_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH12_DP_DATA) & BM_MIPI_HSI_TX_CH12_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_TX_CH12_DP_DATA(v)   (HW_MIPI_HSI_TX_CH12_DP_WR((HW_MIPI_HSI_TX_CH12_DP_RD() & ~BM_MIPI_HSI_TX_CH12_DP_DATA) | BF_MIPI_HSI_TX_CH12_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TX_CH13_DP - Tx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TX_CH13_DP - Tx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Tx Channel n.
- */
-typedef union _hw_mipi_hsi_tx_ch13_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tx_ch13_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Tx Channel n.
-    } B;
-} hw_mipi_hsi_tx_ch13_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TX_CH13_DP register
- */
-//@{
-#define HW_MIPI_HSI_TX_CH13_DP_ADDR      (REGS_MIPI_HSI_BASE + 0x84)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TX_CH13_DP           (*(volatile hw_mipi_hsi_tx_ch13_dp_t *) HW_MIPI_HSI_TX_CH13_DP_ADDR)
-#define HW_MIPI_HSI_TX_CH13_DP_RD()      (HW_MIPI_HSI_TX_CH13_DP.U)
-#define HW_MIPI_HSI_TX_CH13_DP_WR(v)     (HW_MIPI_HSI_TX_CH13_DP.U = (v))
-#define HW_MIPI_HSI_TX_CH13_DP_SET(v)    (HW_MIPI_HSI_TX_CH13_DP_WR(HW_MIPI_HSI_TX_CH13_DP_RD() |  (v)))
-#define HW_MIPI_HSI_TX_CH13_DP_CLR(v)    (HW_MIPI_HSI_TX_CH13_DP_WR(HW_MIPI_HSI_TX_CH13_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_TX_CH13_DP_TOG(v)    (HW_MIPI_HSI_TX_CH13_DP_WR(HW_MIPI_HSI_TX_CH13_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TX_CH13_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_TX_CH13_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Tx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_TX_CH13_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH13_DP_DATA.
-#define BM_MIPI_HSI_TX_CH13_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH13_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_TX_CH13_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH13_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH13_DP_DATA) >> BP_MIPI_HSI_TX_CH13_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_TX_CH13_DP_DATA.
-#define BF_MIPI_HSI_TX_CH13_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH13_DP_DATA) & BM_MIPI_HSI_TX_CH13_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_TX_CH13_DP_DATA(v)   (HW_MIPI_HSI_TX_CH13_DP_WR((HW_MIPI_HSI_TX_CH13_DP_RD() & ~BM_MIPI_HSI_TX_CH13_DP_DATA) | BF_MIPI_HSI_TX_CH13_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TX_CH14_DP - Tx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TX_CH14_DP - Tx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Tx Channel n.
- */
-typedef union _hw_mipi_hsi_tx_ch14_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tx_ch14_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Tx Channel n.
-    } B;
-} hw_mipi_hsi_tx_ch14_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TX_CH14_DP register
- */
-//@{
-#define HW_MIPI_HSI_TX_CH14_DP_ADDR      (REGS_MIPI_HSI_BASE + 0x88)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TX_CH14_DP           (*(volatile hw_mipi_hsi_tx_ch14_dp_t *) HW_MIPI_HSI_TX_CH14_DP_ADDR)
-#define HW_MIPI_HSI_TX_CH14_DP_RD()      (HW_MIPI_HSI_TX_CH14_DP.U)
-#define HW_MIPI_HSI_TX_CH14_DP_WR(v)     (HW_MIPI_HSI_TX_CH14_DP.U = (v))
-#define HW_MIPI_HSI_TX_CH14_DP_SET(v)    (HW_MIPI_HSI_TX_CH14_DP_WR(HW_MIPI_HSI_TX_CH14_DP_RD() |  (v)))
-#define HW_MIPI_HSI_TX_CH14_DP_CLR(v)    (HW_MIPI_HSI_TX_CH14_DP_WR(HW_MIPI_HSI_TX_CH14_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_TX_CH14_DP_TOG(v)    (HW_MIPI_HSI_TX_CH14_DP_WR(HW_MIPI_HSI_TX_CH14_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TX_CH14_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_TX_CH14_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Tx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_TX_CH14_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH14_DP_DATA.
-#define BM_MIPI_HSI_TX_CH14_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH14_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_TX_CH14_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH14_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH14_DP_DATA) >> BP_MIPI_HSI_TX_CH14_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_TX_CH14_DP_DATA.
-#define BF_MIPI_HSI_TX_CH14_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH14_DP_DATA) & BM_MIPI_HSI_TX_CH14_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_TX_CH14_DP_DATA(v)   (HW_MIPI_HSI_TX_CH14_DP_WR((HW_MIPI_HSI_TX_CH14_DP_RD() & ~BM_MIPI_HSI_TX_CH14_DP_DATA) | BF_MIPI_HSI_TX_CH14_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TX_CH15_DP - Tx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TX_CH15_DP - Tx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Tx Channel n.
- */
-typedef union _hw_mipi_hsi_tx_ch15_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tx_ch15_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Tx Channel n.
-    } B;
-} hw_mipi_hsi_tx_ch15_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TX_CH15_DP register
- */
-//@{
-#define HW_MIPI_HSI_TX_CH15_DP_ADDR      (REGS_MIPI_HSI_BASE + 0x8c)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TX_CH15_DP           (*(volatile hw_mipi_hsi_tx_ch15_dp_t *) HW_MIPI_HSI_TX_CH15_DP_ADDR)
-#define HW_MIPI_HSI_TX_CH15_DP_RD()      (HW_MIPI_HSI_TX_CH15_DP.U)
-#define HW_MIPI_HSI_TX_CH15_DP_WR(v)     (HW_MIPI_HSI_TX_CH15_DP.U = (v))
-#define HW_MIPI_HSI_TX_CH15_DP_SET(v)    (HW_MIPI_HSI_TX_CH15_DP_WR(HW_MIPI_HSI_TX_CH15_DP_RD() |  (v)))
-#define HW_MIPI_HSI_TX_CH15_DP_CLR(v)    (HW_MIPI_HSI_TX_CH15_DP_WR(HW_MIPI_HSI_TX_CH15_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_TX_CH15_DP_TOG(v)    (HW_MIPI_HSI_TX_CH15_DP_WR(HW_MIPI_HSI_TX_CH15_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TX_CH15_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_TX_CH15_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Tx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_TX_CH15_DP_DATA      (0)      //!< Bit position for MIPI_HSI_TX_CH15_DP_DATA.
-#define BM_MIPI_HSI_TX_CH15_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_TX_CH15_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_TX_CH15_DP_DATA from a register value.
-#define BG_MIPI_HSI_TX_CH15_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TX_CH15_DP_DATA) >> BP_MIPI_HSI_TX_CH15_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_TX_CH15_DP_DATA.
-#define BF_MIPI_HSI_TX_CH15_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TX_CH15_DP_DATA) & BM_MIPI_HSI_TX_CH15_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_TX_CH15_DP_DATA(v)   (HW_MIPI_HSI_TX_CH15_DP_WR((HW_MIPI_HSI_TX_CH15_DP_RD() & ~BM_MIPI_HSI_TX_CH15_DP_DATA) | BF_MIPI_HSI_TX_CH15_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RX_CH0_DP - Rx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RX_CH0_DP - Rx Channel n Data Port Register (RW)
+ * @brief HW_MIPI_HSI_RX_CHn_DP - Rx Channel n Data Port Register (RW)
  *
  * Reset value: 0x00000000
  *
  * This Register is connected to fifo data port for Rx Channel n.
  */
-typedef union _hw_mipi_hsi_rx_ch0_dp
+typedef union _hw_mipi_hsi_rx_chn_dp
 {
     reg32_t U;
-    struct _hw_mipi_hsi_rx_ch0_dp_bitfields
+    struct _hw_mipi_hsi_rx_chn_dp_bitfields
     {
         unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Rx Channel n.
     } B;
-} hw_mipi_hsi_rx_ch0_dp_t;
+} hw_mipi_hsi_rx_chn_dp_t;
 #endif
 
 /*!
- * @name Constants and macros for entire MIPI_HSI_RX_CH0_DP register
+ * @name Constants and macros for entire MIPI_HSI_RX_CHn_DP register
  */
 //@{
-#define HW_MIPI_HSI_RX_CH0_DP_ADDR      (REGS_MIPI_HSI_BASE + 0x90)
+//! @brief Number of instances of the MIPI_HSI_RX_CHn_DP register.
+#define HW_MIPI_HSI_RX_CHn_DP_COUNT     (16)
+
+#define HW_MIPI_HSI_RX_CHn_DP_ADDR(n)   (REGS_MIPI_HSI_BASE + 0x90 + (0x4 * (n)))
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RX_CH0_DP           (*(volatile hw_mipi_hsi_rx_ch0_dp_t *) HW_MIPI_HSI_RX_CH0_DP_ADDR)
-#define HW_MIPI_HSI_RX_CH0_DP_RD()      (HW_MIPI_HSI_RX_CH0_DP.U)
-#define HW_MIPI_HSI_RX_CH0_DP_WR(v)     (HW_MIPI_HSI_RX_CH0_DP.U = (v))
-#define HW_MIPI_HSI_RX_CH0_DP_SET(v)    (HW_MIPI_HSI_RX_CH0_DP_WR(HW_MIPI_HSI_RX_CH0_DP_RD() |  (v)))
-#define HW_MIPI_HSI_RX_CH0_DP_CLR(v)    (HW_MIPI_HSI_RX_CH0_DP_WR(HW_MIPI_HSI_RX_CH0_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_RX_CH0_DP_TOG(v)    (HW_MIPI_HSI_RX_CH0_DP_WR(HW_MIPI_HSI_RX_CH0_DP_RD() ^  (v)))
+#define HW_MIPI_HSI_RX_CHn_DP(n)        (*(volatile hw_mipi_hsi_rx_chn_dp_t *) HW_MIPI_HSI_RX_CHn_DP_ADDR(n))
+#define HW_MIPI_HSI_RX_CHn_DP_RD(n)     (HW_MIPI_HSI_RX_CHn_DP(n).U)
+#define HW_MIPI_HSI_RX_CHn_DP_WR(n, v)  (HW_MIPI_HSI_RX_CHn_DP(n).U = (v))
+#define HW_MIPI_HSI_RX_CHn_DP_SET(n, v) (HW_MIPI_HSI_RX_CHn_DP_WR(n, HW_MIPI_HSI_RX_CHn_DP_RD(n) |  (v)))
+#define HW_MIPI_HSI_RX_CHn_DP_CLR(n, v) (HW_MIPI_HSI_RX_CHn_DP_WR(n, HW_MIPI_HSI_RX_CHn_DP_RD(n) & ~(v)))
+#define HW_MIPI_HSI_RX_CHn_DP_TOG(n, v) (HW_MIPI_HSI_RX_CHn_DP_WR(n, HW_MIPI_HSI_RX_CHn_DP_RD(n) ^  (v)))
 #endif
 //@}
 
 /*
- * constants & macros for individual MIPI_HSI_RX_CH0_DP bitfields
+ * constants & macros for individual MIPI_HSI_RX_CHn_DP bitfields
  */
 
-/*! @name Register MIPI_HSI_RX_CH0_DP, field DATA[31:0] (RW)
+/*! @name Register MIPI_HSI_RX_CHn_DP, field DATA[31:0] (RW)
  *
  * Software could Write/Read this bits to access Rx Channel n.
  */
 //@{
-#define BP_MIPI_HSI_RX_CH0_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH0_DP_DATA.
-#define BM_MIPI_HSI_RX_CH0_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH0_DP_DATA.
+#define BP_MIPI_HSI_RX_CHn_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CHn_DP_DATA.
+#define BM_MIPI_HSI_RX_CHn_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CHn_DP_DATA.
 
-//! @brief Get value of MIPI_HSI_RX_CH0_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH0_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH0_DP_DATA) >> BP_MIPI_HSI_RX_CH0_DP_DATA)
+//! @brief Get value of MIPI_HSI_RX_CHn_DP_DATA from a register value.
+#define BG_MIPI_HSI_RX_CHn_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CHn_DP_DATA) >> BP_MIPI_HSI_RX_CHn_DP_DATA)
 
-//! @brief Format value for bitfield MIPI_HSI_RX_CH0_DP_DATA.
-#define BF_MIPI_HSI_RX_CH0_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH0_DP_DATA) & BM_MIPI_HSI_RX_CH0_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_RX_CH0_DP_DATA(v)   (HW_MIPI_HSI_RX_CH0_DP_WR((HW_MIPI_HSI_RX_CH0_DP_RD() & ~BM_MIPI_HSI_RX_CH0_DP_DATA) | BF_MIPI_HSI_RX_CH0_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RX_CH1_DP - Rx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RX_CH1_DP - Rx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Rx Channel n.
- */
-typedef union _hw_mipi_hsi_rx_ch1_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rx_ch1_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Rx Channel n.
-    } B;
-} hw_mipi_hsi_rx_ch1_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RX_CH1_DP register
- */
-//@{
-#define HW_MIPI_HSI_RX_CH1_DP_ADDR      (REGS_MIPI_HSI_BASE + 0x94)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RX_CH1_DP           (*(volatile hw_mipi_hsi_rx_ch1_dp_t *) HW_MIPI_HSI_RX_CH1_DP_ADDR)
-#define HW_MIPI_HSI_RX_CH1_DP_RD()      (HW_MIPI_HSI_RX_CH1_DP.U)
-#define HW_MIPI_HSI_RX_CH1_DP_WR(v)     (HW_MIPI_HSI_RX_CH1_DP.U = (v))
-#define HW_MIPI_HSI_RX_CH1_DP_SET(v)    (HW_MIPI_HSI_RX_CH1_DP_WR(HW_MIPI_HSI_RX_CH1_DP_RD() |  (v)))
-#define HW_MIPI_HSI_RX_CH1_DP_CLR(v)    (HW_MIPI_HSI_RX_CH1_DP_WR(HW_MIPI_HSI_RX_CH1_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_RX_CH1_DP_TOG(v)    (HW_MIPI_HSI_RX_CH1_DP_WR(HW_MIPI_HSI_RX_CH1_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RX_CH1_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_RX_CH1_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Rx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_RX_CH1_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH1_DP_DATA.
-#define BM_MIPI_HSI_RX_CH1_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH1_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_RX_CH1_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH1_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH1_DP_DATA) >> BP_MIPI_HSI_RX_CH1_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_RX_CH1_DP_DATA.
-#define BF_MIPI_HSI_RX_CH1_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH1_DP_DATA) & BM_MIPI_HSI_RX_CH1_DP_DATA)
+//! @brief Format value for bitfield MIPI_HSI_RX_CHn_DP_DATA.
+#define BF_MIPI_HSI_RX_CHn_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CHn_DP_DATA) & BM_MIPI_HSI_RX_CHn_DP_DATA)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_RX_CH1_DP_DATA(v)   (HW_MIPI_HSI_RX_CH1_DP_WR((HW_MIPI_HSI_RX_CH1_DP_RD() & ~BM_MIPI_HSI_RX_CH1_DP_DATA) | BF_MIPI_HSI_RX_CH1_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RX_CH2_DP - Rx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RX_CH2_DP - Rx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Rx Channel n.
- */
-typedef union _hw_mipi_hsi_rx_ch2_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rx_ch2_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Rx Channel n.
-    } B;
-} hw_mipi_hsi_rx_ch2_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RX_CH2_DP register
- */
-//@{
-#define HW_MIPI_HSI_RX_CH2_DP_ADDR      (REGS_MIPI_HSI_BASE + 0x98)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RX_CH2_DP           (*(volatile hw_mipi_hsi_rx_ch2_dp_t *) HW_MIPI_HSI_RX_CH2_DP_ADDR)
-#define HW_MIPI_HSI_RX_CH2_DP_RD()      (HW_MIPI_HSI_RX_CH2_DP.U)
-#define HW_MIPI_HSI_RX_CH2_DP_WR(v)     (HW_MIPI_HSI_RX_CH2_DP.U = (v))
-#define HW_MIPI_HSI_RX_CH2_DP_SET(v)    (HW_MIPI_HSI_RX_CH2_DP_WR(HW_MIPI_HSI_RX_CH2_DP_RD() |  (v)))
-#define HW_MIPI_HSI_RX_CH2_DP_CLR(v)    (HW_MIPI_HSI_RX_CH2_DP_WR(HW_MIPI_HSI_RX_CH2_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_RX_CH2_DP_TOG(v)    (HW_MIPI_HSI_RX_CH2_DP_WR(HW_MIPI_HSI_RX_CH2_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RX_CH2_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_RX_CH2_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Rx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_RX_CH2_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH2_DP_DATA.
-#define BM_MIPI_HSI_RX_CH2_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH2_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_RX_CH2_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH2_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH2_DP_DATA) >> BP_MIPI_HSI_RX_CH2_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_RX_CH2_DP_DATA.
-#define BF_MIPI_HSI_RX_CH2_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH2_DP_DATA) & BM_MIPI_HSI_RX_CH2_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_RX_CH2_DP_DATA(v)   (HW_MIPI_HSI_RX_CH2_DP_WR((HW_MIPI_HSI_RX_CH2_DP_RD() & ~BM_MIPI_HSI_RX_CH2_DP_DATA) | BF_MIPI_HSI_RX_CH2_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RX_CH3_DP - Rx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RX_CH3_DP - Rx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Rx Channel n.
- */
-typedef union _hw_mipi_hsi_rx_ch3_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rx_ch3_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Rx Channel n.
-    } B;
-} hw_mipi_hsi_rx_ch3_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RX_CH3_DP register
- */
-//@{
-#define HW_MIPI_HSI_RX_CH3_DP_ADDR      (REGS_MIPI_HSI_BASE + 0x9c)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RX_CH3_DP           (*(volatile hw_mipi_hsi_rx_ch3_dp_t *) HW_MIPI_HSI_RX_CH3_DP_ADDR)
-#define HW_MIPI_HSI_RX_CH3_DP_RD()      (HW_MIPI_HSI_RX_CH3_DP.U)
-#define HW_MIPI_HSI_RX_CH3_DP_WR(v)     (HW_MIPI_HSI_RX_CH3_DP.U = (v))
-#define HW_MIPI_HSI_RX_CH3_DP_SET(v)    (HW_MIPI_HSI_RX_CH3_DP_WR(HW_MIPI_HSI_RX_CH3_DP_RD() |  (v)))
-#define HW_MIPI_HSI_RX_CH3_DP_CLR(v)    (HW_MIPI_HSI_RX_CH3_DP_WR(HW_MIPI_HSI_RX_CH3_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_RX_CH3_DP_TOG(v)    (HW_MIPI_HSI_RX_CH3_DP_WR(HW_MIPI_HSI_RX_CH3_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RX_CH3_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_RX_CH3_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Rx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_RX_CH3_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH3_DP_DATA.
-#define BM_MIPI_HSI_RX_CH3_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH3_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_RX_CH3_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH3_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH3_DP_DATA) >> BP_MIPI_HSI_RX_CH3_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_RX_CH3_DP_DATA.
-#define BF_MIPI_HSI_RX_CH3_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH3_DP_DATA) & BM_MIPI_HSI_RX_CH3_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_RX_CH3_DP_DATA(v)   (HW_MIPI_HSI_RX_CH3_DP_WR((HW_MIPI_HSI_RX_CH3_DP_RD() & ~BM_MIPI_HSI_RX_CH3_DP_DATA) | BF_MIPI_HSI_RX_CH3_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RX_CH4_DP - Rx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RX_CH4_DP - Rx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Rx Channel n.
- */
-typedef union _hw_mipi_hsi_rx_ch4_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rx_ch4_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Rx Channel n.
-    } B;
-} hw_mipi_hsi_rx_ch4_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RX_CH4_DP register
- */
-//@{
-#define HW_MIPI_HSI_RX_CH4_DP_ADDR      (REGS_MIPI_HSI_BASE + 0xa0)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RX_CH4_DP           (*(volatile hw_mipi_hsi_rx_ch4_dp_t *) HW_MIPI_HSI_RX_CH4_DP_ADDR)
-#define HW_MIPI_HSI_RX_CH4_DP_RD()      (HW_MIPI_HSI_RX_CH4_DP.U)
-#define HW_MIPI_HSI_RX_CH4_DP_WR(v)     (HW_MIPI_HSI_RX_CH4_DP.U = (v))
-#define HW_MIPI_HSI_RX_CH4_DP_SET(v)    (HW_MIPI_HSI_RX_CH4_DP_WR(HW_MIPI_HSI_RX_CH4_DP_RD() |  (v)))
-#define HW_MIPI_HSI_RX_CH4_DP_CLR(v)    (HW_MIPI_HSI_RX_CH4_DP_WR(HW_MIPI_HSI_RX_CH4_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_RX_CH4_DP_TOG(v)    (HW_MIPI_HSI_RX_CH4_DP_WR(HW_MIPI_HSI_RX_CH4_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RX_CH4_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_RX_CH4_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Rx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_RX_CH4_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH4_DP_DATA.
-#define BM_MIPI_HSI_RX_CH4_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH4_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_RX_CH4_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH4_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH4_DP_DATA) >> BP_MIPI_HSI_RX_CH4_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_RX_CH4_DP_DATA.
-#define BF_MIPI_HSI_RX_CH4_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH4_DP_DATA) & BM_MIPI_HSI_RX_CH4_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_RX_CH4_DP_DATA(v)   (HW_MIPI_HSI_RX_CH4_DP_WR((HW_MIPI_HSI_RX_CH4_DP_RD() & ~BM_MIPI_HSI_RX_CH4_DP_DATA) | BF_MIPI_HSI_RX_CH4_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RX_CH5_DP - Rx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RX_CH5_DP - Rx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Rx Channel n.
- */
-typedef union _hw_mipi_hsi_rx_ch5_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rx_ch5_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Rx Channel n.
-    } B;
-} hw_mipi_hsi_rx_ch5_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RX_CH5_DP register
- */
-//@{
-#define HW_MIPI_HSI_RX_CH5_DP_ADDR      (REGS_MIPI_HSI_BASE + 0xa4)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RX_CH5_DP           (*(volatile hw_mipi_hsi_rx_ch5_dp_t *) HW_MIPI_HSI_RX_CH5_DP_ADDR)
-#define HW_MIPI_HSI_RX_CH5_DP_RD()      (HW_MIPI_HSI_RX_CH5_DP.U)
-#define HW_MIPI_HSI_RX_CH5_DP_WR(v)     (HW_MIPI_HSI_RX_CH5_DP.U = (v))
-#define HW_MIPI_HSI_RX_CH5_DP_SET(v)    (HW_MIPI_HSI_RX_CH5_DP_WR(HW_MIPI_HSI_RX_CH5_DP_RD() |  (v)))
-#define HW_MIPI_HSI_RX_CH5_DP_CLR(v)    (HW_MIPI_HSI_RX_CH5_DP_WR(HW_MIPI_HSI_RX_CH5_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_RX_CH5_DP_TOG(v)    (HW_MIPI_HSI_RX_CH5_DP_WR(HW_MIPI_HSI_RX_CH5_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RX_CH5_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_RX_CH5_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Rx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_RX_CH5_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH5_DP_DATA.
-#define BM_MIPI_HSI_RX_CH5_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH5_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_RX_CH5_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH5_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH5_DP_DATA) >> BP_MIPI_HSI_RX_CH5_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_RX_CH5_DP_DATA.
-#define BF_MIPI_HSI_RX_CH5_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH5_DP_DATA) & BM_MIPI_HSI_RX_CH5_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_RX_CH5_DP_DATA(v)   (HW_MIPI_HSI_RX_CH5_DP_WR((HW_MIPI_HSI_RX_CH5_DP_RD() & ~BM_MIPI_HSI_RX_CH5_DP_DATA) | BF_MIPI_HSI_RX_CH5_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RX_CH6_DP - Rx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RX_CH6_DP - Rx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Rx Channel n.
- */
-typedef union _hw_mipi_hsi_rx_ch6_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rx_ch6_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Rx Channel n.
-    } B;
-} hw_mipi_hsi_rx_ch6_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RX_CH6_DP register
- */
-//@{
-#define HW_MIPI_HSI_RX_CH6_DP_ADDR      (REGS_MIPI_HSI_BASE + 0xa8)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RX_CH6_DP           (*(volatile hw_mipi_hsi_rx_ch6_dp_t *) HW_MIPI_HSI_RX_CH6_DP_ADDR)
-#define HW_MIPI_HSI_RX_CH6_DP_RD()      (HW_MIPI_HSI_RX_CH6_DP.U)
-#define HW_MIPI_HSI_RX_CH6_DP_WR(v)     (HW_MIPI_HSI_RX_CH6_DP.U = (v))
-#define HW_MIPI_HSI_RX_CH6_DP_SET(v)    (HW_MIPI_HSI_RX_CH6_DP_WR(HW_MIPI_HSI_RX_CH6_DP_RD() |  (v)))
-#define HW_MIPI_HSI_RX_CH6_DP_CLR(v)    (HW_MIPI_HSI_RX_CH6_DP_WR(HW_MIPI_HSI_RX_CH6_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_RX_CH6_DP_TOG(v)    (HW_MIPI_HSI_RX_CH6_DP_WR(HW_MIPI_HSI_RX_CH6_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RX_CH6_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_RX_CH6_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Rx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_RX_CH6_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH6_DP_DATA.
-#define BM_MIPI_HSI_RX_CH6_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH6_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_RX_CH6_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH6_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH6_DP_DATA) >> BP_MIPI_HSI_RX_CH6_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_RX_CH6_DP_DATA.
-#define BF_MIPI_HSI_RX_CH6_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH6_DP_DATA) & BM_MIPI_HSI_RX_CH6_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_RX_CH6_DP_DATA(v)   (HW_MIPI_HSI_RX_CH6_DP_WR((HW_MIPI_HSI_RX_CH6_DP_RD() & ~BM_MIPI_HSI_RX_CH6_DP_DATA) | BF_MIPI_HSI_RX_CH6_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RX_CH7_DP - Rx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RX_CH7_DP - Rx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Rx Channel n.
- */
-typedef union _hw_mipi_hsi_rx_ch7_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rx_ch7_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Rx Channel n.
-    } B;
-} hw_mipi_hsi_rx_ch7_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RX_CH7_DP register
- */
-//@{
-#define HW_MIPI_HSI_RX_CH7_DP_ADDR      (REGS_MIPI_HSI_BASE + 0xac)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RX_CH7_DP           (*(volatile hw_mipi_hsi_rx_ch7_dp_t *) HW_MIPI_HSI_RX_CH7_DP_ADDR)
-#define HW_MIPI_HSI_RX_CH7_DP_RD()      (HW_MIPI_HSI_RX_CH7_DP.U)
-#define HW_MIPI_HSI_RX_CH7_DP_WR(v)     (HW_MIPI_HSI_RX_CH7_DP.U = (v))
-#define HW_MIPI_HSI_RX_CH7_DP_SET(v)    (HW_MIPI_HSI_RX_CH7_DP_WR(HW_MIPI_HSI_RX_CH7_DP_RD() |  (v)))
-#define HW_MIPI_HSI_RX_CH7_DP_CLR(v)    (HW_MIPI_HSI_RX_CH7_DP_WR(HW_MIPI_HSI_RX_CH7_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_RX_CH7_DP_TOG(v)    (HW_MIPI_HSI_RX_CH7_DP_WR(HW_MIPI_HSI_RX_CH7_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RX_CH7_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_RX_CH7_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Rx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_RX_CH7_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH7_DP_DATA.
-#define BM_MIPI_HSI_RX_CH7_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH7_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_RX_CH7_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH7_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH7_DP_DATA) >> BP_MIPI_HSI_RX_CH7_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_RX_CH7_DP_DATA.
-#define BF_MIPI_HSI_RX_CH7_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH7_DP_DATA) & BM_MIPI_HSI_RX_CH7_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_RX_CH7_DP_DATA(v)   (HW_MIPI_HSI_RX_CH7_DP_WR((HW_MIPI_HSI_RX_CH7_DP_RD() & ~BM_MIPI_HSI_RX_CH7_DP_DATA) | BF_MIPI_HSI_RX_CH7_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RX_CH8_DP - Rx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RX_CH8_DP - Rx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Rx Channel n.
- */
-typedef union _hw_mipi_hsi_rx_ch8_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rx_ch8_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Rx Channel n.
-    } B;
-} hw_mipi_hsi_rx_ch8_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RX_CH8_DP register
- */
-//@{
-#define HW_MIPI_HSI_RX_CH8_DP_ADDR      (REGS_MIPI_HSI_BASE + 0xb0)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RX_CH8_DP           (*(volatile hw_mipi_hsi_rx_ch8_dp_t *) HW_MIPI_HSI_RX_CH8_DP_ADDR)
-#define HW_MIPI_HSI_RX_CH8_DP_RD()      (HW_MIPI_HSI_RX_CH8_DP.U)
-#define HW_MIPI_HSI_RX_CH8_DP_WR(v)     (HW_MIPI_HSI_RX_CH8_DP.U = (v))
-#define HW_MIPI_HSI_RX_CH8_DP_SET(v)    (HW_MIPI_HSI_RX_CH8_DP_WR(HW_MIPI_HSI_RX_CH8_DP_RD() |  (v)))
-#define HW_MIPI_HSI_RX_CH8_DP_CLR(v)    (HW_MIPI_HSI_RX_CH8_DP_WR(HW_MIPI_HSI_RX_CH8_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_RX_CH8_DP_TOG(v)    (HW_MIPI_HSI_RX_CH8_DP_WR(HW_MIPI_HSI_RX_CH8_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RX_CH8_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_RX_CH8_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Rx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_RX_CH8_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH8_DP_DATA.
-#define BM_MIPI_HSI_RX_CH8_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH8_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_RX_CH8_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH8_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH8_DP_DATA) >> BP_MIPI_HSI_RX_CH8_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_RX_CH8_DP_DATA.
-#define BF_MIPI_HSI_RX_CH8_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH8_DP_DATA) & BM_MIPI_HSI_RX_CH8_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_RX_CH8_DP_DATA(v)   (HW_MIPI_HSI_RX_CH8_DP_WR((HW_MIPI_HSI_RX_CH8_DP_RD() & ~BM_MIPI_HSI_RX_CH8_DP_DATA) | BF_MIPI_HSI_RX_CH8_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RX_CH9_DP - Rx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RX_CH9_DP - Rx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Rx Channel n.
- */
-typedef union _hw_mipi_hsi_rx_ch9_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rx_ch9_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Rx Channel n.
-    } B;
-} hw_mipi_hsi_rx_ch9_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RX_CH9_DP register
- */
-//@{
-#define HW_MIPI_HSI_RX_CH9_DP_ADDR      (REGS_MIPI_HSI_BASE + 0xb4)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RX_CH9_DP           (*(volatile hw_mipi_hsi_rx_ch9_dp_t *) HW_MIPI_HSI_RX_CH9_DP_ADDR)
-#define HW_MIPI_HSI_RX_CH9_DP_RD()      (HW_MIPI_HSI_RX_CH9_DP.U)
-#define HW_MIPI_HSI_RX_CH9_DP_WR(v)     (HW_MIPI_HSI_RX_CH9_DP.U = (v))
-#define HW_MIPI_HSI_RX_CH9_DP_SET(v)    (HW_MIPI_HSI_RX_CH9_DP_WR(HW_MIPI_HSI_RX_CH9_DP_RD() |  (v)))
-#define HW_MIPI_HSI_RX_CH9_DP_CLR(v)    (HW_MIPI_HSI_RX_CH9_DP_WR(HW_MIPI_HSI_RX_CH9_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_RX_CH9_DP_TOG(v)    (HW_MIPI_HSI_RX_CH9_DP_WR(HW_MIPI_HSI_RX_CH9_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RX_CH9_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_RX_CH9_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Rx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_RX_CH9_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH9_DP_DATA.
-#define BM_MIPI_HSI_RX_CH9_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH9_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_RX_CH9_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH9_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH9_DP_DATA) >> BP_MIPI_HSI_RX_CH9_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_RX_CH9_DP_DATA.
-#define BF_MIPI_HSI_RX_CH9_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH9_DP_DATA) & BM_MIPI_HSI_RX_CH9_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_RX_CH9_DP_DATA(v)   (HW_MIPI_HSI_RX_CH9_DP_WR((HW_MIPI_HSI_RX_CH9_DP_RD() & ~BM_MIPI_HSI_RX_CH9_DP_DATA) | BF_MIPI_HSI_RX_CH9_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RX_CH10_DP - Rx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RX_CH10_DP - Rx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Rx Channel n.
- */
-typedef union _hw_mipi_hsi_rx_ch10_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rx_ch10_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Rx Channel n.
-    } B;
-} hw_mipi_hsi_rx_ch10_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RX_CH10_DP register
- */
-//@{
-#define HW_MIPI_HSI_RX_CH10_DP_ADDR      (REGS_MIPI_HSI_BASE + 0xb8)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RX_CH10_DP           (*(volatile hw_mipi_hsi_rx_ch10_dp_t *) HW_MIPI_HSI_RX_CH10_DP_ADDR)
-#define HW_MIPI_HSI_RX_CH10_DP_RD()      (HW_MIPI_HSI_RX_CH10_DP.U)
-#define HW_MIPI_HSI_RX_CH10_DP_WR(v)     (HW_MIPI_HSI_RX_CH10_DP.U = (v))
-#define HW_MIPI_HSI_RX_CH10_DP_SET(v)    (HW_MIPI_HSI_RX_CH10_DP_WR(HW_MIPI_HSI_RX_CH10_DP_RD() |  (v)))
-#define HW_MIPI_HSI_RX_CH10_DP_CLR(v)    (HW_MIPI_HSI_RX_CH10_DP_WR(HW_MIPI_HSI_RX_CH10_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_RX_CH10_DP_TOG(v)    (HW_MIPI_HSI_RX_CH10_DP_WR(HW_MIPI_HSI_RX_CH10_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RX_CH10_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_RX_CH10_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Rx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_RX_CH10_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH10_DP_DATA.
-#define BM_MIPI_HSI_RX_CH10_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH10_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_RX_CH10_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH10_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH10_DP_DATA) >> BP_MIPI_HSI_RX_CH10_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_RX_CH10_DP_DATA.
-#define BF_MIPI_HSI_RX_CH10_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH10_DP_DATA) & BM_MIPI_HSI_RX_CH10_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_RX_CH10_DP_DATA(v)   (HW_MIPI_HSI_RX_CH10_DP_WR((HW_MIPI_HSI_RX_CH10_DP_RD() & ~BM_MIPI_HSI_RX_CH10_DP_DATA) | BF_MIPI_HSI_RX_CH10_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RX_CH11_DP - Rx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RX_CH11_DP - Rx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Rx Channel n.
- */
-typedef union _hw_mipi_hsi_rx_ch11_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rx_ch11_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Rx Channel n.
-    } B;
-} hw_mipi_hsi_rx_ch11_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RX_CH11_DP register
- */
-//@{
-#define HW_MIPI_HSI_RX_CH11_DP_ADDR      (REGS_MIPI_HSI_BASE + 0xbc)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RX_CH11_DP           (*(volatile hw_mipi_hsi_rx_ch11_dp_t *) HW_MIPI_HSI_RX_CH11_DP_ADDR)
-#define HW_MIPI_HSI_RX_CH11_DP_RD()      (HW_MIPI_HSI_RX_CH11_DP.U)
-#define HW_MIPI_HSI_RX_CH11_DP_WR(v)     (HW_MIPI_HSI_RX_CH11_DP.U = (v))
-#define HW_MIPI_HSI_RX_CH11_DP_SET(v)    (HW_MIPI_HSI_RX_CH11_DP_WR(HW_MIPI_HSI_RX_CH11_DP_RD() |  (v)))
-#define HW_MIPI_HSI_RX_CH11_DP_CLR(v)    (HW_MIPI_HSI_RX_CH11_DP_WR(HW_MIPI_HSI_RX_CH11_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_RX_CH11_DP_TOG(v)    (HW_MIPI_HSI_RX_CH11_DP_WR(HW_MIPI_HSI_RX_CH11_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RX_CH11_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_RX_CH11_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Rx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_RX_CH11_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH11_DP_DATA.
-#define BM_MIPI_HSI_RX_CH11_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH11_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_RX_CH11_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH11_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH11_DP_DATA) >> BP_MIPI_HSI_RX_CH11_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_RX_CH11_DP_DATA.
-#define BF_MIPI_HSI_RX_CH11_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH11_DP_DATA) & BM_MIPI_HSI_RX_CH11_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_RX_CH11_DP_DATA(v)   (HW_MIPI_HSI_RX_CH11_DP_WR((HW_MIPI_HSI_RX_CH11_DP_RD() & ~BM_MIPI_HSI_RX_CH11_DP_DATA) | BF_MIPI_HSI_RX_CH11_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RX_CH12_DP - Rx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RX_CH12_DP - Rx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Rx Channel n.
- */
-typedef union _hw_mipi_hsi_rx_ch12_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rx_ch12_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Rx Channel n.
-    } B;
-} hw_mipi_hsi_rx_ch12_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RX_CH12_DP register
- */
-//@{
-#define HW_MIPI_HSI_RX_CH12_DP_ADDR      (REGS_MIPI_HSI_BASE + 0xc0)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RX_CH12_DP           (*(volatile hw_mipi_hsi_rx_ch12_dp_t *) HW_MIPI_HSI_RX_CH12_DP_ADDR)
-#define HW_MIPI_HSI_RX_CH12_DP_RD()      (HW_MIPI_HSI_RX_CH12_DP.U)
-#define HW_MIPI_HSI_RX_CH12_DP_WR(v)     (HW_MIPI_HSI_RX_CH12_DP.U = (v))
-#define HW_MIPI_HSI_RX_CH12_DP_SET(v)    (HW_MIPI_HSI_RX_CH12_DP_WR(HW_MIPI_HSI_RX_CH12_DP_RD() |  (v)))
-#define HW_MIPI_HSI_RX_CH12_DP_CLR(v)    (HW_MIPI_HSI_RX_CH12_DP_WR(HW_MIPI_HSI_RX_CH12_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_RX_CH12_DP_TOG(v)    (HW_MIPI_HSI_RX_CH12_DP_WR(HW_MIPI_HSI_RX_CH12_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RX_CH12_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_RX_CH12_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Rx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_RX_CH12_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH12_DP_DATA.
-#define BM_MIPI_HSI_RX_CH12_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH12_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_RX_CH12_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH12_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH12_DP_DATA) >> BP_MIPI_HSI_RX_CH12_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_RX_CH12_DP_DATA.
-#define BF_MIPI_HSI_RX_CH12_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH12_DP_DATA) & BM_MIPI_HSI_RX_CH12_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_RX_CH12_DP_DATA(v)   (HW_MIPI_HSI_RX_CH12_DP_WR((HW_MIPI_HSI_RX_CH12_DP_RD() & ~BM_MIPI_HSI_RX_CH12_DP_DATA) | BF_MIPI_HSI_RX_CH12_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RX_CH13_DP - Rx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RX_CH13_DP - Rx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Rx Channel n.
- */
-typedef union _hw_mipi_hsi_rx_ch13_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rx_ch13_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Rx Channel n.
-    } B;
-} hw_mipi_hsi_rx_ch13_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RX_CH13_DP register
- */
-//@{
-#define HW_MIPI_HSI_RX_CH13_DP_ADDR      (REGS_MIPI_HSI_BASE + 0xc4)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RX_CH13_DP           (*(volatile hw_mipi_hsi_rx_ch13_dp_t *) HW_MIPI_HSI_RX_CH13_DP_ADDR)
-#define HW_MIPI_HSI_RX_CH13_DP_RD()      (HW_MIPI_HSI_RX_CH13_DP.U)
-#define HW_MIPI_HSI_RX_CH13_DP_WR(v)     (HW_MIPI_HSI_RX_CH13_DP.U = (v))
-#define HW_MIPI_HSI_RX_CH13_DP_SET(v)    (HW_MIPI_HSI_RX_CH13_DP_WR(HW_MIPI_HSI_RX_CH13_DP_RD() |  (v)))
-#define HW_MIPI_HSI_RX_CH13_DP_CLR(v)    (HW_MIPI_HSI_RX_CH13_DP_WR(HW_MIPI_HSI_RX_CH13_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_RX_CH13_DP_TOG(v)    (HW_MIPI_HSI_RX_CH13_DP_WR(HW_MIPI_HSI_RX_CH13_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RX_CH13_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_RX_CH13_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Rx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_RX_CH13_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH13_DP_DATA.
-#define BM_MIPI_HSI_RX_CH13_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH13_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_RX_CH13_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH13_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH13_DP_DATA) >> BP_MIPI_HSI_RX_CH13_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_RX_CH13_DP_DATA.
-#define BF_MIPI_HSI_RX_CH13_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH13_DP_DATA) & BM_MIPI_HSI_RX_CH13_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_RX_CH13_DP_DATA(v)   (HW_MIPI_HSI_RX_CH13_DP_WR((HW_MIPI_HSI_RX_CH13_DP_RD() & ~BM_MIPI_HSI_RX_CH13_DP_DATA) | BF_MIPI_HSI_RX_CH13_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RX_CH14_DP - Rx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RX_CH14_DP - Rx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Rx Channel n.
- */
-typedef union _hw_mipi_hsi_rx_ch14_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rx_ch14_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Rx Channel n.
-    } B;
-} hw_mipi_hsi_rx_ch14_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RX_CH14_DP register
- */
-//@{
-#define HW_MIPI_HSI_RX_CH14_DP_ADDR      (REGS_MIPI_HSI_BASE + 0xc8)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RX_CH14_DP           (*(volatile hw_mipi_hsi_rx_ch14_dp_t *) HW_MIPI_HSI_RX_CH14_DP_ADDR)
-#define HW_MIPI_HSI_RX_CH14_DP_RD()      (HW_MIPI_HSI_RX_CH14_DP.U)
-#define HW_MIPI_HSI_RX_CH14_DP_WR(v)     (HW_MIPI_HSI_RX_CH14_DP.U = (v))
-#define HW_MIPI_HSI_RX_CH14_DP_SET(v)    (HW_MIPI_HSI_RX_CH14_DP_WR(HW_MIPI_HSI_RX_CH14_DP_RD() |  (v)))
-#define HW_MIPI_HSI_RX_CH14_DP_CLR(v)    (HW_MIPI_HSI_RX_CH14_DP_WR(HW_MIPI_HSI_RX_CH14_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_RX_CH14_DP_TOG(v)    (HW_MIPI_HSI_RX_CH14_DP_WR(HW_MIPI_HSI_RX_CH14_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RX_CH14_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_RX_CH14_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Rx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_RX_CH14_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH14_DP_DATA.
-#define BM_MIPI_HSI_RX_CH14_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH14_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_RX_CH14_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH14_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH14_DP_DATA) >> BP_MIPI_HSI_RX_CH14_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_RX_CH14_DP_DATA.
-#define BF_MIPI_HSI_RX_CH14_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH14_DP_DATA) & BM_MIPI_HSI_RX_CH14_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_RX_CH14_DP_DATA(v)   (HW_MIPI_HSI_RX_CH14_DP_WR((HW_MIPI_HSI_RX_CH14_DP_RD() & ~BM_MIPI_HSI_RX_CH14_DP_DATA) | BF_MIPI_HSI_RX_CH14_DP_DATA(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RX_CH15_DP - Rx Channel n Data Port Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RX_CH15_DP - Rx Channel n Data Port Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register is connected to fifo data port for Rx Channel n.
- */
-typedef union _hw_mipi_hsi_rx_ch15_dp
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rx_ch15_dp_bitfields
-    {
-        unsigned DATA : 32; //!< [31:0] Software could Write/Read this bits to access Rx Channel n.
-    } B;
-} hw_mipi_hsi_rx_ch15_dp_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RX_CH15_DP register
- */
-//@{
-#define HW_MIPI_HSI_RX_CH15_DP_ADDR      (REGS_MIPI_HSI_BASE + 0xcc)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RX_CH15_DP           (*(volatile hw_mipi_hsi_rx_ch15_dp_t *) HW_MIPI_HSI_RX_CH15_DP_ADDR)
-#define HW_MIPI_HSI_RX_CH15_DP_RD()      (HW_MIPI_HSI_RX_CH15_DP.U)
-#define HW_MIPI_HSI_RX_CH15_DP_WR(v)     (HW_MIPI_HSI_RX_CH15_DP.U = (v))
-#define HW_MIPI_HSI_RX_CH15_DP_SET(v)    (HW_MIPI_HSI_RX_CH15_DP_WR(HW_MIPI_HSI_RX_CH15_DP_RD() |  (v)))
-#define HW_MIPI_HSI_RX_CH15_DP_CLR(v)    (HW_MIPI_HSI_RX_CH15_DP_WR(HW_MIPI_HSI_RX_CH15_DP_RD() & ~(v)))
-#define HW_MIPI_HSI_RX_CH15_DP_TOG(v)    (HW_MIPI_HSI_RX_CH15_DP_WR(HW_MIPI_HSI_RX_CH15_DP_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RX_CH15_DP bitfields
- */
-
-/*! @name Register MIPI_HSI_RX_CH15_DP, field DATA[31:0] (RW)
- *
- * Software could Write/Read this bits to access Rx Channel n.
- */
-//@{
-#define BP_MIPI_HSI_RX_CH15_DP_DATA      (0)      //!< Bit position for MIPI_HSI_RX_CH15_DP_DATA.
-#define BM_MIPI_HSI_RX_CH15_DP_DATA      (0xffffffff)  //!< Bit mask for MIPI_HSI_RX_CH15_DP_DATA.
-
-//! @brief Get value of MIPI_HSI_RX_CH15_DP_DATA from a register value.
-#define BG_MIPI_HSI_RX_CH15_DP_DATA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RX_CH15_DP_DATA) >> BP_MIPI_HSI_RX_CH15_DP_DATA)
-
-//! @brief Format value for bitfield MIPI_HSI_RX_CH15_DP_DATA.
-#define BF_MIPI_HSI_RX_CH15_DP_DATA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RX_CH15_DP_DATA) & BM_MIPI_HSI_RX_CH15_DP_DATA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DATA field to a new value.
-#define BW_MIPI_HSI_RX_CH15_DP_DATA(v)   (HW_MIPI_HSI_RX_CH15_DP_WR((HW_MIPI_HSI_RX_CH15_DP_RD() & ~BM_MIPI_HSI_RX_CH15_DP_DATA) | BF_MIPI_HSI_RX_CH15_DP_DATA(v)))
+#define BW_MIPI_HSI_RX_CHn_DP_DATA(n, v)   (HW_MIPI_HSI_RX_CHn_DP_WR(n, (HW_MIPI_HSI_RX_CHn_DP_RD(n) & ~BM_MIPI_HSI_RX_CHn_DP_DATA) | BF_MIPI_HSI_RX_CHn_DP_DATA(v)))
 #endif
 //@}
 
@@ -9800,8 +7608,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH0_TIMEOUT_INT_EN[16] (RW)
  *
-
- *
  * Values:
  * - 0 - Interrupt status masked for data timeout for ch0 interrupt.
  * - 1 - Interrupt status enabled for data timeout for ch0 interrupt.
@@ -9823,8 +7629,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH1_TIMEOUT_INT_EN[17] (RW)
- *
-
  *
  * Values:
  * - 0 - Interrupt status masked for data timeout for ch1 interrupt.
@@ -9848,8 +7652,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH2_TIMEOUT_INT_EN[18] (RW)
  *
-
- *
  * Values:
  * - 0 - Interrupt status masked for data timeout for ch2 interrupt.
  * - 1 - Interrupt status enabled for data timeout for ch2 interrupt.
@@ -9871,8 +7673,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH3_TIMEOUT_INT_EN[19] (RW)
- *
-
  *
  * Values:
  * - 0 - Interrupt status masked for data timeout for ch3 interrupt.
@@ -9896,8 +7696,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH4_TIMEOUT_INT_EN[20] (RW)
  *
-
- *
  * Values:
  * - 0 - Interrupt status masked for data timeout for ch4 interrupt.
  * - 1 - Interrupt status enabled for data timeout for ch4 interrupt.
@@ -9919,8 +7717,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH5_TIMEOUT_INT_EN[21] (RW)
- *
-
  *
  * Values:
  * - 0 - Interrupt status masked for data timeout for ch5 interrupt.
@@ -9944,8 +7740,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH6_TIMEOUT_INT_EN[22] (RW)
  *
-
- *
  * Values:
  * - 0 - Interrupt status masked for data timeout for ch6 interrupt.
  * - 1 - Interrupt status enabled for data timeout for ch6 interrupt.
@@ -9967,8 +7761,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH7_TIMEOUT_INT_EN[23] (RW)
- *
-
  *
  * Values:
  * - 0 - Interrupt status masked for data timeout for ch7 interrupt.
@@ -9992,8 +7784,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH8_TIMEOUT_INT_EN[24] (RW)
  *
-
- *
  * Values:
  * - 0 - Interrupt status masked for data timeout for ch8 interrupt.
  * - 1 - Interrupt status enabled for data timeout for ch8 interrupt.
@@ -10015,8 +7805,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH9_TIMEOUT_INT_EN[25] (RW)
- *
-
  *
  * Values:
  * - 0 - Interrupt status masked for data timeout for ch9 interrupt.
@@ -10040,8 +7828,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH10_TIMEOUT_INT_EN[26] (RW)
  *
-
- *
  * Values:
  * - 0 - Interrupt status masked for data timeout for ch10 interrupt.
  * - 1 - Interrupt status enabled for data timeout for ch10 interrupt.
@@ -10063,8 +7849,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH11_TIMEOUT_INT_EN[27] (RW)
- *
-
  *
  * Values:
  * - 0 - Interrupt status masked for data timeout for ch11 interrupt.
@@ -10088,8 +7872,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH12_TIMEOUT_INT_EN[28] (RW)
  *
-
- *
  * Values:
  * - 0 - Interrupt status masked for data timeout for ch12 interrupt.
  * - 1 - Interrupt status enabled for data timeout for ch12 interrupt.
@@ -10111,8 +7893,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH13_TIMEOUT_INT_EN[29] (RW)
- *
-
  *
  * Values:
  * - 0 - Interrupt status masked for data timeout for ch13 interrupt.
@@ -10136,8 +7916,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH14_TIMEOUT_INT_EN[30] (RW)
  *
-
- *
  * Values:
  * - 0 - Interrupt status masked for data timeout for ch14 interrupt.
  * - 1 - Interrupt status enabled for data timeout for ch14 interrupt.
@@ -10159,8 +7937,6 @@ typedef union _hw_mipi_hsi_err_irqstat_en
 //@}
 
 /*! @name Register MIPI_HSI_ERR_IRQSTAT_EN, field RX_CH15_TIMEOUT_INT_EN[31] (RW)
- *
-
  *
  * Values:
  * - 0 - Interrupt status masked for data timeout for ch15 interrupt.
@@ -10625,22 +8401,22 @@ typedef union _hw_mipi_hsi_err_irqsig_en
 //@}
 
 //-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA0_CONF - Tx DMA Channel n Configuration Register
+// HW_MIPI_HSI_TDMAn_CONF - Tx DMA Channel n Configuration Register
 //-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MIPI_HSI_TDMA0_CONF - Tx DMA Channel n Configuration Register (RW)
+ * @brief HW_MIPI_HSI_TDMAn_CONF - Tx DMA Channel n Configuration Register (RW)
  *
  * Reset value: 0x00000000
  *
  * This register contains the configurations of enable/disable, burst size and transfer count for Tx
  * DMA channel n.
  */
-typedef union _hw_mipi_hsi_tdma0_conf
+typedef union _hw_mipi_hsi_tdman_conf
 {
     reg32_t U;
-    struct _hw_mipi_hsi_tdma0_conf_bitfields
+    struct _hw_mipi_hsi_tdman_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
         unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
@@ -10648,1759 +8424,112 @@ typedef union _hw_mipi_hsi_tdma0_conf
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
     } B;
-} hw_mipi_hsi_tdma0_conf_t;
+} hw_mipi_hsi_tdman_conf_t;
 #endif
 
 /*!
- * @name Constants and macros for entire MIPI_HSI_TDMA0_CONF register
+ * @name Constants and macros for entire MIPI_HSI_TDMAn_CONF register
  */
 //@{
-#define HW_MIPI_HSI_TDMA0_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0xdc)
+//! @brief Number of instances of the MIPI_HSI_TDMAn_CONF register.
+#define HW_MIPI_HSI_TDMAn_CONF_COUNT     (16)
+
+#define HW_MIPI_HSI_TDMAn_CONF_ADDR(n)   (REGS_MIPI_HSI_BASE + 0xdc + (0x4 * (n)))
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA0_CONF           (*(volatile hw_mipi_hsi_tdma0_conf_t *) HW_MIPI_HSI_TDMA0_CONF_ADDR)
-#define HW_MIPI_HSI_TDMA0_CONF_RD()      (HW_MIPI_HSI_TDMA0_CONF.U)
-#define HW_MIPI_HSI_TDMA0_CONF_WR(v)     (HW_MIPI_HSI_TDMA0_CONF.U = (v))
-#define HW_MIPI_HSI_TDMA0_CONF_SET(v)    (HW_MIPI_HSI_TDMA0_CONF_WR(HW_MIPI_HSI_TDMA0_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA0_CONF_CLR(v)    (HW_MIPI_HSI_TDMA0_CONF_WR(HW_MIPI_HSI_TDMA0_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA0_CONF_TOG(v)    (HW_MIPI_HSI_TDMA0_CONF_WR(HW_MIPI_HSI_TDMA0_CONF_RD() ^  (v)))
+#define HW_MIPI_HSI_TDMAn_CONF(n)        (*(volatile hw_mipi_hsi_tdman_conf_t *) HW_MIPI_HSI_TDMAn_CONF_ADDR(n))
+#define HW_MIPI_HSI_TDMAn_CONF_RD(n)     (HW_MIPI_HSI_TDMAn_CONF(n).U)
+#define HW_MIPI_HSI_TDMAn_CONF_WR(n, v)  (HW_MIPI_HSI_TDMAn_CONF(n).U = (v))
+#define HW_MIPI_HSI_TDMAn_CONF_SET(n, v) (HW_MIPI_HSI_TDMAn_CONF_WR(n, HW_MIPI_HSI_TDMAn_CONF_RD(n) |  (v)))
+#define HW_MIPI_HSI_TDMAn_CONF_CLR(n, v) (HW_MIPI_HSI_TDMAn_CONF_WR(n, HW_MIPI_HSI_TDMAn_CONF_RD(n) & ~(v)))
+#define HW_MIPI_HSI_TDMAn_CONF_TOG(n, v) (HW_MIPI_HSI_TDMAn_CONF_WR(n, HW_MIPI_HSI_TDMAn_CONF_RD(n) ^  (v)))
 #endif
 //@}
 
 /*
- * constants & macros for individual MIPI_HSI_TDMA0_CONF bitfields
+ * constants & macros for individual MIPI_HSI_TDMAn_CONF bitfields
  */
 
-/*! @name Register MIPI_HSI_TDMA0_CONF, field TRANS_LENGTH[24:5] (RW)
+/*! @name Register MIPI_HSI_TDMAn_CONF, field TRANS_LENGTH[24:5] (RW)
  *
  * Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-#define BP_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA0_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA0_CONF_TRANS_LENGTH.
+#define BP_MIPI_HSI_TDMAn_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMAn_CONF_TRANS_LENGTH.
+#define BM_MIPI_HSI_TDMAn_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMAn_CONF_TRANS_LENGTH.
 
-//! @brief Get value of MIPI_HSI_TDMA0_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH)
+//! @brief Get value of MIPI_HSI_TDMAn_CONF_TRANS_LENGTH from a register value.
+#define BG_MIPI_HSI_TDMAn_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMAn_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMAn_CONF_TRANS_LENGTH)
 
-//! @brief Format value for bitfield MIPI_HSI_TDMA0_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH)
+//! @brief Format value for bitfield MIPI_HSI_TDMAn_CONF_TRANS_LENGTH.
+#define BF_MIPI_HSI_TDMAn_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMAn_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMAn_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA0_CONF_WR((HW_MIPI_HSI_TDMA0_CONF_RD() & ~BM_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA0_CONF_TRANS_LENGTH(v)))
+#define BW_MIPI_HSI_TDMAn_CONF_TRANS_LENGTH(n, v)   (HW_MIPI_HSI_TDMAn_CONF_WR(n, (HW_MIPI_HSI_TDMAn_CONF_RD(n) & ~BM_MIPI_HSI_TDMAn_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMAn_CONF_TRANS_LENGTH(v)))
 #endif
 //@}
 
-/*! @name Register MIPI_HSI_TDMA0_CONF, field BURST_SIZE[28:25] (RW)
+/*! @name Register MIPI_HSI_TDMAn_CONF, field BURST_SIZE[28:25] (RW)
  *
  * Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than
  * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-#define BP_MIPI_HSI_TDMA0_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA0_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_TDMA0_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA0_CONF_BURST_SIZE.
+#define BP_MIPI_HSI_TDMAn_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMAn_CONF_BURST_SIZE.
+#define BM_MIPI_HSI_TDMAn_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMAn_CONF_BURST_SIZE.
 
-//! @brief Get value of MIPI_HSI_TDMA0_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA0_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA0_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA0_CONF_BURST_SIZE)
+//! @brief Get value of MIPI_HSI_TDMAn_CONF_BURST_SIZE from a register value.
+#define BG_MIPI_HSI_TDMAn_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMAn_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMAn_CONF_BURST_SIZE)
 
-//! @brief Format value for bitfield MIPI_HSI_TDMA0_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA0_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA0_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA0_CONF_BURST_SIZE)
+//! @brief Format value for bitfield MIPI_HSI_TDMAn_CONF_BURST_SIZE.
+#define BF_MIPI_HSI_TDMAn_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMAn_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMAn_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_TDMA0_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA0_CONF_WR((HW_MIPI_HSI_TDMA0_CONF_RD() & ~BM_MIPI_HSI_TDMA0_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA0_CONF_BURST_SIZE(v)))
+#define BW_MIPI_HSI_TDMAn_CONF_BURST_SIZE(n, v)   (HW_MIPI_HSI_TDMAn_CONF_WR(n, (HW_MIPI_HSI_TDMAn_CONF_RD(n) & ~BM_MIPI_HSI_TDMAn_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMAn_CONF_BURST_SIZE(v)))
 #endif
 //@}
 
-/*! @name Register MIPI_HSI_TDMA0_CONF, field ENABLE[31] (RW)
+/*! @name Register MIPI_HSI_TDMAn_CONF, field ENABLE[31] (RW)
  *
  * Setting this bit enables the inernal Tx DMA channel n.
  */
 //@{
-#define BP_MIPI_HSI_TDMA0_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA0_CONF_ENABLE.
-#define BM_MIPI_HSI_TDMA0_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA0_CONF_ENABLE.
+#define BP_MIPI_HSI_TDMAn_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMAn_CONF_ENABLE.
+#define BM_MIPI_HSI_TDMAn_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMAn_CONF_ENABLE.
 
-//! @brief Get value of MIPI_HSI_TDMA0_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA0_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA0_CONF_ENABLE) >> BP_MIPI_HSI_TDMA0_CONF_ENABLE)
+//! @brief Get value of MIPI_HSI_TDMAn_CONF_ENABLE from a register value.
+#define BG_MIPI_HSI_TDMAn_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMAn_CONF_ENABLE) >> BP_MIPI_HSI_TDMAn_CONF_ENABLE)
 
-//! @brief Format value for bitfield MIPI_HSI_TDMA0_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA0_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA0_CONF_ENABLE) & BM_MIPI_HSI_TDMA0_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_TDMA0_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA0_CONF_WR((HW_MIPI_HSI_TDMA0_CONF_RD() & ~BM_MIPI_HSI_TDMA0_CONF_ENABLE) | BF_MIPI_HSI_TDMA0_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA1_CONF - Tx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA1_CONF - Tx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Tx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_tdma1_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma1_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
-    } B;
-} hw_mipi_hsi_tdma1_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA1_CONF register
- */
-//@{
-#define HW_MIPI_HSI_TDMA1_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0xe0)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA1_CONF           (*(volatile hw_mipi_hsi_tdma1_conf_t *) HW_MIPI_HSI_TDMA1_CONF_ADDR)
-#define HW_MIPI_HSI_TDMA1_CONF_RD()      (HW_MIPI_HSI_TDMA1_CONF.U)
-#define HW_MIPI_HSI_TDMA1_CONF_WR(v)     (HW_MIPI_HSI_TDMA1_CONF.U = (v))
-#define HW_MIPI_HSI_TDMA1_CONF_SET(v)    (HW_MIPI_HSI_TDMA1_CONF_WR(HW_MIPI_HSI_TDMA1_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA1_CONF_CLR(v)    (HW_MIPI_HSI_TDMA1_CONF_WR(HW_MIPI_HSI_TDMA1_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA1_CONF_TOG(v)    (HW_MIPI_HSI_TDMA1_CONF_WR(HW_MIPI_HSI_TDMA1_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA1_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA1_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA1_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA1_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_TDMA1_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA1_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA1_CONF_WR((HW_MIPI_HSI_TDMA1_CONF_RD() & ~BM_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA1_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA1_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_TDMA1_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA1_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_TDMA1_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA1_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_TDMA1_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA1_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA1_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA1_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA1_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA1_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA1_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA1_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_TDMA1_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA1_CONF_WR((HW_MIPI_HSI_TDMA1_CONF_RD() & ~BM_MIPI_HSI_TDMA1_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA1_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA1_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Tx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_TDMA1_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA1_CONF_ENABLE.
-#define BM_MIPI_HSI_TDMA1_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA1_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_TDMA1_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA1_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA1_CONF_ENABLE) >> BP_MIPI_HSI_TDMA1_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA1_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA1_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA1_CONF_ENABLE) & BM_MIPI_HSI_TDMA1_CONF_ENABLE)
+//! @brief Format value for bitfield MIPI_HSI_TDMAn_CONF_ENABLE.
+#define BF_MIPI_HSI_TDMAn_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMAn_CONF_ENABLE) & BM_MIPI_HSI_TDMAn_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_TDMA1_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA1_CONF_WR((HW_MIPI_HSI_TDMA1_CONF_RD() & ~BM_MIPI_HSI_TDMA1_CONF_ENABLE) | BF_MIPI_HSI_TDMA1_CONF_ENABLE(v)))
+#define BW_MIPI_HSI_TDMAn_CONF_ENABLE(n, v)   (HW_MIPI_HSI_TDMAn_CONF_WR(n, (HW_MIPI_HSI_TDMAn_CONF_RD(n) & ~BM_MIPI_HSI_TDMAn_CONF_ENABLE) | BF_MIPI_HSI_TDMAn_CONF_ENABLE(v)))
 #endif
 //@}
 
 //-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA2_CONF - Tx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA2_CONF - Tx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Tx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_tdma2_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma2_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
-    } B;
-} hw_mipi_hsi_tdma2_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA2_CONF register
- */
-//@{
-#define HW_MIPI_HSI_TDMA2_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0xe4)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA2_CONF           (*(volatile hw_mipi_hsi_tdma2_conf_t *) HW_MIPI_HSI_TDMA2_CONF_ADDR)
-#define HW_MIPI_HSI_TDMA2_CONF_RD()      (HW_MIPI_HSI_TDMA2_CONF.U)
-#define HW_MIPI_HSI_TDMA2_CONF_WR(v)     (HW_MIPI_HSI_TDMA2_CONF.U = (v))
-#define HW_MIPI_HSI_TDMA2_CONF_SET(v)    (HW_MIPI_HSI_TDMA2_CONF_WR(HW_MIPI_HSI_TDMA2_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA2_CONF_CLR(v)    (HW_MIPI_HSI_TDMA2_CONF_WR(HW_MIPI_HSI_TDMA2_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA2_CONF_TOG(v)    (HW_MIPI_HSI_TDMA2_CONF_WR(HW_MIPI_HSI_TDMA2_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA2_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA2_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA2_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA2_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_TDMA2_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA2_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA2_CONF_WR((HW_MIPI_HSI_TDMA2_CONF_RD() & ~BM_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA2_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA2_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_TDMA2_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA2_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_TDMA2_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA2_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_TDMA2_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA2_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA2_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA2_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA2_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA2_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA2_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA2_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_TDMA2_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA2_CONF_WR((HW_MIPI_HSI_TDMA2_CONF_RD() & ~BM_MIPI_HSI_TDMA2_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA2_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA2_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Tx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_TDMA2_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA2_CONF_ENABLE.
-#define BM_MIPI_HSI_TDMA2_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA2_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_TDMA2_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA2_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA2_CONF_ENABLE) >> BP_MIPI_HSI_TDMA2_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA2_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA2_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA2_CONF_ENABLE) & BM_MIPI_HSI_TDMA2_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_TDMA2_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA2_CONF_WR((HW_MIPI_HSI_TDMA2_CONF_RD() & ~BM_MIPI_HSI_TDMA2_CONF_ENABLE) | BF_MIPI_HSI_TDMA2_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA3_CONF - Tx DMA Channel n Configuration Register
+// HW_MIPI_HSI_RDMAn_CONF - Rx DMA Channel n Configuration Register
 //-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MIPI_HSI_TDMA3_CONF - Tx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Tx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_tdma3_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma3_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
-    } B;
-} hw_mipi_hsi_tdma3_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA3_CONF register
- */
-//@{
-#define HW_MIPI_HSI_TDMA3_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0xe8)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA3_CONF           (*(volatile hw_mipi_hsi_tdma3_conf_t *) HW_MIPI_HSI_TDMA3_CONF_ADDR)
-#define HW_MIPI_HSI_TDMA3_CONF_RD()      (HW_MIPI_HSI_TDMA3_CONF.U)
-#define HW_MIPI_HSI_TDMA3_CONF_WR(v)     (HW_MIPI_HSI_TDMA3_CONF.U = (v))
-#define HW_MIPI_HSI_TDMA3_CONF_SET(v)    (HW_MIPI_HSI_TDMA3_CONF_WR(HW_MIPI_HSI_TDMA3_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA3_CONF_CLR(v)    (HW_MIPI_HSI_TDMA3_CONF_WR(HW_MIPI_HSI_TDMA3_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA3_CONF_TOG(v)    (HW_MIPI_HSI_TDMA3_CONF_WR(HW_MIPI_HSI_TDMA3_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA3_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA3_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA3_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA3_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_TDMA3_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA3_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA3_CONF_WR((HW_MIPI_HSI_TDMA3_CONF_RD() & ~BM_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA3_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA3_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_TDMA3_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA3_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_TDMA3_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA3_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_TDMA3_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA3_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA3_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA3_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA3_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA3_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA3_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA3_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_TDMA3_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA3_CONF_WR((HW_MIPI_HSI_TDMA3_CONF_RD() & ~BM_MIPI_HSI_TDMA3_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA3_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA3_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Tx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_TDMA3_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA3_CONF_ENABLE.
-#define BM_MIPI_HSI_TDMA3_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA3_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_TDMA3_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA3_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA3_CONF_ENABLE) >> BP_MIPI_HSI_TDMA3_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA3_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA3_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA3_CONF_ENABLE) & BM_MIPI_HSI_TDMA3_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_TDMA3_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA3_CONF_WR((HW_MIPI_HSI_TDMA3_CONF_RD() & ~BM_MIPI_HSI_TDMA3_CONF_ENABLE) | BF_MIPI_HSI_TDMA3_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA4_CONF - Tx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA4_CONF - Tx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Tx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_tdma4_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma4_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
-    } B;
-} hw_mipi_hsi_tdma4_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA4_CONF register
- */
-//@{
-#define HW_MIPI_HSI_TDMA4_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0xec)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA4_CONF           (*(volatile hw_mipi_hsi_tdma4_conf_t *) HW_MIPI_HSI_TDMA4_CONF_ADDR)
-#define HW_MIPI_HSI_TDMA4_CONF_RD()      (HW_MIPI_HSI_TDMA4_CONF.U)
-#define HW_MIPI_HSI_TDMA4_CONF_WR(v)     (HW_MIPI_HSI_TDMA4_CONF.U = (v))
-#define HW_MIPI_HSI_TDMA4_CONF_SET(v)    (HW_MIPI_HSI_TDMA4_CONF_WR(HW_MIPI_HSI_TDMA4_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA4_CONF_CLR(v)    (HW_MIPI_HSI_TDMA4_CONF_WR(HW_MIPI_HSI_TDMA4_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA4_CONF_TOG(v)    (HW_MIPI_HSI_TDMA4_CONF_WR(HW_MIPI_HSI_TDMA4_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA4_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA4_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA4_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA4_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_TDMA4_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA4_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA4_CONF_WR((HW_MIPI_HSI_TDMA4_CONF_RD() & ~BM_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA4_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA4_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_TDMA4_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA4_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_TDMA4_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA4_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_TDMA4_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA4_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA4_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA4_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA4_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA4_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA4_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA4_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_TDMA4_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA4_CONF_WR((HW_MIPI_HSI_TDMA4_CONF_RD() & ~BM_MIPI_HSI_TDMA4_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA4_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA4_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Tx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_TDMA4_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA4_CONF_ENABLE.
-#define BM_MIPI_HSI_TDMA4_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA4_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_TDMA4_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA4_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA4_CONF_ENABLE) >> BP_MIPI_HSI_TDMA4_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA4_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA4_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA4_CONF_ENABLE) & BM_MIPI_HSI_TDMA4_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_TDMA4_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA4_CONF_WR((HW_MIPI_HSI_TDMA4_CONF_RD() & ~BM_MIPI_HSI_TDMA4_CONF_ENABLE) | BF_MIPI_HSI_TDMA4_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA5_CONF - Tx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA5_CONF - Tx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Tx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_tdma5_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma5_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
-    } B;
-} hw_mipi_hsi_tdma5_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA5_CONF register
- */
-//@{
-#define HW_MIPI_HSI_TDMA5_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0xf0)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA5_CONF           (*(volatile hw_mipi_hsi_tdma5_conf_t *) HW_MIPI_HSI_TDMA5_CONF_ADDR)
-#define HW_MIPI_HSI_TDMA5_CONF_RD()      (HW_MIPI_HSI_TDMA5_CONF.U)
-#define HW_MIPI_HSI_TDMA5_CONF_WR(v)     (HW_MIPI_HSI_TDMA5_CONF.U = (v))
-#define HW_MIPI_HSI_TDMA5_CONF_SET(v)    (HW_MIPI_HSI_TDMA5_CONF_WR(HW_MIPI_HSI_TDMA5_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA5_CONF_CLR(v)    (HW_MIPI_HSI_TDMA5_CONF_WR(HW_MIPI_HSI_TDMA5_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA5_CONF_TOG(v)    (HW_MIPI_HSI_TDMA5_CONF_WR(HW_MIPI_HSI_TDMA5_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA5_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA5_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA5_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA5_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_TDMA5_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA5_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA5_CONF_WR((HW_MIPI_HSI_TDMA5_CONF_RD() & ~BM_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA5_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA5_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_TDMA5_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA5_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_TDMA5_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA5_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_TDMA5_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA5_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA5_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA5_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA5_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA5_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA5_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA5_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_TDMA5_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA5_CONF_WR((HW_MIPI_HSI_TDMA5_CONF_RD() & ~BM_MIPI_HSI_TDMA5_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA5_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA5_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Tx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_TDMA5_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA5_CONF_ENABLE.
-#define BM_MIPI_HSI_TDMA5_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA5_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_TDMA5_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA5_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA5_CONF_ENABLE) >> BP_MIPI_HSI_TDMA5_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA5_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA5_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA5_CONF_ENABLE) & BM_MIPI_HSI_TDMA5_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_TDMA5_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA5_CONF_WR((HW_MIPI_HSI_TDMA5_CONF_RD() & ~BM_MIPI_HSI_TDMA5_CONF_ENABLE) | BF_MIPI_HSI_TDMA5_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA6_CONF - Tx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA6_CONF - Tx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Tx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_tdma6_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma6_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
-    } B;
-} hw_mipi_hsi_tdma6_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA6_CONF register
- */
-//@{
-#define HW_MIPI_HSI_TDMA6_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0xf4)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA6_CONF           (*(volatile hw_mipi_hsi_tdma6_conf_t *) HW_MIPI_HSI_TDMA6_CONF_ADDR)
-#define HW_MIPI_HSI_TDMA6_CONF_RD()      (HW_MIPI_HSI_TDMA6_CONF.U)
-#define HW_MIPI_HSI_TDMA6_CONF_WR(v)     (HW_MIPI_HSI_TDMA6_CONF.U = (v))
-#define HW_MIPI_HSI_TDMA6_CONF_SET(v)    (HW_MIPI_HSI_TDMA6_CONF_WR(HW_MIPI_HSI_TDMA6_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA6_CONF_CLR(v)    (HW_MIPI_HSI_TDMA6_CONF_WR(HW_MIPI_HSI_TDMA6_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA6_CONF_TOG(v)    (HW_MIPI_HSI_TDMA6_CONF_WR(HW_MIPI_HSI_TDMA6_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA6_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA6_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA6_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA6_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_TDMA6_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA6_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA6_CONF_WR((HW_MIPI_HSI_TDMA6_CONF_RD() & ~BM_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA6_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA6_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_TDMA6_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA6_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_TDMA6_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA6_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_TDMA6_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA6_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA6_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA6_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA6_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA6_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA6_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA6_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_TDMA6_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA6_CONF_WR((HW_MIPI_HSI_TDMA6_CONF_RD() & ~BM_MIPI_HSI_TDMA6_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA6_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA6_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Tx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_TDMA6_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA6_CONF_ENABLE.
-#define BM_MIPI_HSI_TDMA6_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA6_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_TDMA6_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA6_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA6_CONF_ENABLE) >> BP_MIPI_HSI_TDMA6_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA6_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA6_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA6_CONF_ENABLE) & BM_MIPI_HSI_TDMA6_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_TDMA6_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA6_CONF_WR((HW_MIPI_HSI_TDMA6_CONF_RD() & ~BM_MIPI_HSI_TDMA6_CONF_ENABLE) | BF_MIPI_HSI_TDMA6_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA7_CONF - Tx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA7_CONF - Tx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Tx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_tdma7_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma7_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
-    } B;
-} hw_mipi_hsi_tdma7_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA7_CONF register
- */
-//@{
-#define HW_MIPI_HSI_TDMA7_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0xf8)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA7_CONF           (*(volatile hw_mipi_hsi_tdma7_conf_t *) HW_MIPI_HSI_TDMA7_CONF_ADDR)
-#define HW_MIPI_HSI_TDMA7_CONF_RD()      (HW_MIPI_HSI_TDMA7_CONF.U)
-#define HW_MIPI_HSI_TDMA7_CONF_WR(v)     (HW_MIPI_HSI_TDMA7_CONF.U = (v))
-#define HW_MIPI_HSI_TDMA7_CONF_SET(v)    (HW_MIPI_HSI_TDMA7_CONF_WR(HW_MIPI_HSI_TDMA7_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA7_CONF_CLR(v)    (HW_MIPI_HSI_TDMA7_CONF_WR(HW_MIPI_HSI_TDMA7_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA7_CONF_TOG(v)    (HW_MIPI_HSI_TDMA7_CONF_WR(HW_MIPI_HSI_TDMA7_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA7_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA7_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA7_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA7_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_TDMA7_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA7_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA7_CONF_WR((HW_MIPI_HSI_TDMA7_CONF_RD() & ~BM_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA7_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA7_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_TDMA7_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA7_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_TDMA7_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA7_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_TDMA7_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA7_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA7_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA7_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA7_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA7_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA7_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA7_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_TDMA7_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA7_CONF_WR((HW_MIPI_HSI_TDMA7_CONF_RD() & ~BM_MIPI_HSI_TDMA7_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA7_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA7_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Tx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_TDMA7_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA7_CONF_ENABLE.
-#define BM_MIPI_HSI_TDMA7_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA7_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_TDMA7_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA7_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA7_CONF_ENABLE) >> BP_MIPI_HSI_TDMA7_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA7_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA7_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA7_CONF_ENABLE) & BM_MIPI_HSI_TDMA7_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_TDMA7_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA7_CONF_WR((HW_MIPI_HSI_TDMA7_CONF_RD() & ~BM_MIPI_HSI_TDMA7_CONF_ENABLE) | BF_MIPI_HSI_TDMA7_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA8_CONF - Tx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA8_CONF - Tx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Tx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_tdma8_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma8_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
-    } B;
-} hw_mipi_hsi_tdma8_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA8_CONF register
- */
-//@{
-#define HW_MIPI_HSI_TDMA8_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0xfc)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA8_CONF           (*(volatile hw_mipi_hsi_tdma8_conf_t *) HW_MIPI_HSI_TDMA8_CONF_ADDR)
-#define HW_MIPI_HSI_TDMA8_CONF_RD()      (HW_MIPI_HSI_TDMA8_CONF.U)
-#define HW_MIPI_HSI_TDMA8_CONF_WR(v)     (HW_MIPI_HSI_TDMA8_CONF.U = (v))
-#define HW_MIPI_HSI_TDMA8_CONF_SET(v)    (HW_MIPI_HSI_TDMA8_CONF_WR(HW_MIPI_HSI_TDMA8_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA8_CONF_CLR(v)    (HW_MIPI_HSI_TDMA8_CONF_WR(HW_MIPI_HSI_TDMA8_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA8_CONF_TOG(v)    (HW_MIPI_HSI_TDMA8_CONF_WR(HW_MIPI_HSI_TDMA8_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA8_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA8_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA8_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA8_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_TDMA8_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA8_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA8_CONF_WR((HW_MIPI_HSI_TDMA8_CONF_RD() & ~BM_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA8_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA8_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_TDMA8_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA8_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_TDMA8_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA8_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_TDMA8_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA8_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA8_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA8_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA8_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA8_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA8_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA8_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_TDMA8_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA8_CONF_WR((HW_MIPI_HSI_TDMA8_CONF_RD() & ~BM_MIPI_HSI_TDMA8_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA8_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA8_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Tx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_TDMA8_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA8_CONF_ENABLE.
-#define BM_MIPI_HSI_TDMA8_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA8_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_TDMA8_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA8_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA8_CONF_ENABLE) >> BP_MIPI_HSI_TDMA8_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA8_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA8_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA8_CONF_ENABLE) & BM_MIPI_HSI_TDMA8_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_TDMA8_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA8_CONF_WR((HW_MIPI_HSI_TDMA8_CONF_RD() & ~BM_MIPI_HSI_TDMA8_CONF_ENABLE) | BF_MIPI_HSI_TDMA8_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA9_CONF - Tx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA9_CONF - Tx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Tx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_tdma9_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma9_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
-    } B;
-} hw_mipi_hsi_tdma9_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA9_CONF register
- */
-//@{
-#define HW_MIPI_HSI_TDMA9_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0x100)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA9_CONF           (*(volatile hw_mipi_hsi_tdma9_conf_t *) HW_MIPI_HSI_TDMA9_CONF_ADDR)
-#define HW_MIPI_HSI_TDMA9_CONF_RD()      (HW_MIPI_HSI_TDMA9_CONF.U)
-#define HW_MIPI_HSI_TDMA9_CONF_WR(v)     (HW_MIPI_HSI_TDMA9_CONF.U = (v))
-#define HW_MIPI_HSI_TDMA9_CONF_SET(v)    (HW_MIPI_HSI_TDMA9_CONF_WR(HW_MIPI_HSI_TDMA9_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA9_CONF_CLR(v)    (HW_MIPI_HSI_TDMA9_CONF_WR(HW_MIPI_HSI_TDMA9_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA9_CONF_TOG(v)    (HW_MIPI_HSI_TDMA9_CONF_WR(HW_MIPI_HSI_TDMA9_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA9_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA9_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA9_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA9_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_TDMA9_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA9_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA9_CONF_WR((HW_MIPI_HSI_TDMA9_CONF_RD() & ~BM_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA9_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA9_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_TDMA9_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA9_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_TDMA9_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA9_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_TDMA9_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA9_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA9_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA9_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA9_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA9_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA9_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA9_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_TDMA9_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA9_CONF_WR((HW_MIPI_HSI_TDMA9_CONF_RD() & ~BM_MIPI_HSI_TDMA9_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA9_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA9_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Tx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_TDMA9_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA9_CONF_ENABLE.
-#define BM_MIPI_HSI_TDMA9_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA9_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_TDMA9_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA9_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA9_CONF_ENABLE) >> BP_MIPI_HSI_TDMA9_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA9_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA9_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA9_CONF_ENABLE) & BM_MIPI_HSI_TDMA9_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_TDMA9_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA9_CONF_WR((HW_MIPI_HSI_TDMA9_CONF_RD() & ~BM_MIPI_HSI_TDMA9_CONF_ENABLE) | BF_MIPI_HSI_TDMA9_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA10_CONF - Tx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA10_CONF - Tx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Tx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_tdma10_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma10_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
-    } B;
-} hw_mipi_hsi_tdma10_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA10_CONF register
- */
-//@{
-#define HW_MIPI_HSI_TDMA10_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0x104)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA10_CONF           (*(volatile hw_mipi_hsi_tdma10_conf_t *) HW_MIPI_HSI_TDMA10_CONF_ADDR)
-#define HW_MIPI_HSI_TDMA10_CONF_RD()      (HW_MIPI_HSI_TDMA10_CONF.U)
-#define HW_MIPI_HSI_TDMA10_CONF_WR(v)     (HW_MIPI_HSI_TDMA10_CONF.U = (v))
-#define HW_MIPI_HSI_TDMA10_CONF_SET(v)    (HW_MIPI_HSI_TDMA10_CONF_WR(HW_MIPI_HSI_TDMA10_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA10_CONF_CLR(v)    (HW_MIPI_HSI_TDMA10_CONF_WR(HW_MIPI_HSI_TDMA10_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA10_CONF_TOG(v)    (HW_MIPI_HSI_TDMA10_CONF_WR(HW_MIPI_HSI_TDMA10_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA10_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA10_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA10_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA10_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_TDMA10_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA10_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA10_CONF_WR((HW_MIPI_HSI_TDMA10_CONF_RD() & ~BM_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA10_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA10_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_TDMA10_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA10_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_TDMA10_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA10_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_TDMA10_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA10_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA10_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA10_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA10_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA10_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA10_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA10_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_TDMA10_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA10_CONF_WR((HW_MIPI_HSI_TDMA10_CONF_RD() & ~BM_MIPI_HSI_TDMA10_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA10_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA10_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Tx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_TDMA10_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA10_CONF_ENABLE.
-#define BM_MIPI_HSI_TDMA10_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA10_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_TDMA10_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA10_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA10_CONF_ENABLE) >> BP_MIPI_HSI_TDMA10_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA10_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA10_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA10_CONF_ENABLE) & BM_MIPI_HSI_TDMA10_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_TDMA10_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA10_CONF_WR((HW_MIPI_HSI_TDMA10_CONF_RD() & ~BM_MIPI_HSI_TDMA10_CONF_ENABLE) | BF_MIPI_HSI_TDMA10_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA11_CONF - Tx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA11_CONF - Tx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Tx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_tdma11_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma11_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
-    } B;
-} hw_mipi_hsi_tdma11_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA11_CONF register
- */
-//@{
-#define HW_MIPI_HSI_TDMA11_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0x108)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA11_CONF           (*(volatile hw_mipi_hsi_tdma11_conf_t *) HW_MIPI_HSI_TDMA11_CONF_ADDR)
-#define HW_MIPI_HSI_TDMA11_CONF_RD()      (HW_MIPI_HSI_TDMA11_CONF.U)
-#define HW_MIPI_HSI_TDMA11_CONF_WR(v)     (HW_MIPI_HSI_TDMA11_CONF.U = (v))
-#define HW_MIPI_HSI_TDMA11_CONF_SET(v)    (HW_MIPI_HSI_TDMA11_CONF_WR(HW_MIPI_HSI_TDMA11_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA11_CONF_CLR(v)    (HW_MIPI_HSI_TDMA11_CONF_WR(HW_MIPI_HSI_TDMA11_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA11_CONF_TOG(v)    (HW_MIPI_HSI_TDMA11_CONF_WR(HW_MIPI_HSI_TDMA11_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA11_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA11_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA11_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA11_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_TDMA11_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA11_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA11_CONF_WR((HW_MIPI_HSI_TDMA11_CONF_RD() & ~BM_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA11_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA11_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_TDMA11_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA11_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_TDMA11_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA11_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_TDMA11_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA11_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA11_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA11_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA11_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA11_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA11_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA11_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_TDMA11_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA11_CONF_WR((HW_MIPI_HSI_TDMA11_CONF_RD() & ~BM_MIPI_HSI_TDMA11_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA11_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA11_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Tx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_TDMA11_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA11_CONF_ENABLE.
-#define BM_MIPI_HSI_TDMA11_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA11_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_TDMA11_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA11_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA11_CONF_ENABLE) >> BP_MIPI_HSI_TDMA11_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA11_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA11_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA11_CONF_ENABLE) & BM_MIPI_HSI_TDMA11_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_TDMA11_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA11_CONF_WR((HW_MIPI_HSI_TDMA11_CONF_RD() & ~BM_MIPI_HSI_TDMA11_CONF_ENABLE) | BF_MIPI_HSI_TDMA11_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA12_CONF - Tx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA12_CONF - Tx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Tx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_tdma12_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma12_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
-    } B;
-} hw_mipi_hsi_tdma12_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA12_CONF register
- */
-//@{
-#define HW_MIPI_HSI_TDMA12_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0x10c)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA12_CONF           (*(volatile hw_mipi_hsi_tdma12_conf_t *) HW_MIPI_HSI_TDMA12_CONF_ADDR)
-#define HW_MIPI_HSI_TDMA12_CONF_RD()      (HW_MIPI_HSI_TDMA12_CONF.U)
-#define HW_MIPI_HSI_TDMA12_CONF_WR(v)     (HW_MIPI_HSI_TDMA12_CONF.U = (v))
-#define HW_MIPI_HSI_TDMA12_CONF_SET(v)    (HW_MIPI_HSI_TDMA12_CONF_WR(HW_MIPI_HSI_TDMA12_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA12_CONF_CLR(v)    (HW_MIPI_HSI_TDMA12_CONF_WR(HW_MIPI_HSI_TDMA12_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA12_CONF_TOG(v)    (HW_MIPI_HSI_TDMA12_CONF_WR(HW_MIPI_HSI_TDMA12_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA12_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA12_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA12_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA12_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_TDMA12_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA12_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA12_CONF_WR((HW_MIPI_HSI_TDMA12_CONF_RD() & ~BM_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA12_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA12_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_TDMA12_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA12_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_TDMA12_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA12_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_TDMA12_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA12_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA12_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA12_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA12_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA12_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA12_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA12_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_TDMA12_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA12_CONF_WR((HW_MIPI_HSI_TDMA12_CONF_RD() & ~BM_MIPI_HSI_TDMA12_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA12_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA12_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Tx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_TDMA12_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA12_CONF_ENABLE.
-#define BM_MIPI_HSI_TDMA12_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA12_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_TDMA12_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA12_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA12_CONF_ENABLE) >> BP_MIPI_HSI_TDMA12_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA12_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA12_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA12_CONF_ENABLE) & BM_MIPI_HSI_TDMA12_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_TDMA12_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA12_CONF_WR((HW_MIPI_HSI_TDMA12_CONF_RD() & ~BM_MIPI_HSI_TDMA12_CONF_ENABLE) | BF_MIPI_HSI_TDMA12_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA13_CONF - Tx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA13_CONF - Tx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Tx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_tdma13_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma13_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
-    } B;
-} hw_mipi_hsi_tdma13_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA13_CONF register
- */
-//@{
-#define HW_MIPI_HSI_TDMA13_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0x110)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA13_CONF           (*(volatile hw_mipi_hsi_tdma13_conf_t *) HW_MIPI_HSI_TDMA13_CONF_ADDR)
-#define HW_MIPI_HSI_TDMA13_CONF_RD()      (HW_MIPI_HSI_TDMA13_CONF.U)
-#define HW_MIPI_HSI_TDMA13_CONF_WR(v)     (HW_MIPI_HSI_TDMA13_CONF.U = (v))
-#define HW_MIPI_HSI_TDMA13_CONF_SET(v)    (HW_MIPI_HSI_TDMA13_CONF_WR(HW_MIPI_HSI_TDMA13_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA13_CONF_CLR(v)    (HW_MIPI_HSI_TDMA13_CONF_WR(HW_MIPI_HSI_TDMA13_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA13_CONF_TOG(v)    (HW_MIPI_HSI_TDMA13_CONF_WR(HW_MIPI_HSI_TDMA13_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA13_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA13_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA13_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA13_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_TDMA13_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA13_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA13_CONF_WR((HW_MIPI_HSI_TDMA13_CONF_RD() & ~BM_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA13_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA13_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_TDMA13_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA13_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_TDMA13_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA13_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_TDMA13_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA13_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA13_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA13_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA13_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA13_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA13_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA13_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_TDMA13_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA13_CONF_WR((HW_MIPI_HSI_TDMA13_CONF_RD() & ~BM_MIPI_HSI_TDMA13_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA13_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA13_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Tx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_TDMA13_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA13_CONF_ENABLE.
-#define BM_MIPI_HSI_TDMA13_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA13_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_TDMA13_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA13_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA13_CONF_ENABLE) >> BP_MIPI_HSI_TDMA13_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA13_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA13_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA13_CONF_ENABLE) & BM_MIPI_HSI_TDMA13_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_TDMA13_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA13_CONF_WR((HW_MIPI_HSI_TDMA13_CONF_RD() & ~BM_MIPI_HSI_TDMA13_CONF_ENABLE) | BF_MIPI_HSI_TDMA13_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA14_CONF - Tx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA14_CONF - Tx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Tx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_tdma14_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma14_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
-    } B;
-} hw_mipi_hsi_tdma14_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA14_CONF register
- */
-//@{
-#define HW_MIPI_HSI_TDMA14_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0x114)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA14_CONF           (*(volatile hw_mipi_hsi_tdma14_conf_t *) HW_MIPI_HSI_TDMA14_CONF_ADDR)
-#define HW_MIPI_HSI_TDMA14_CONF_RD()      (HW_MIPI_HSI_TDMA14_CONF.U)
-#define HW_MIPI_HSI_TDMA14_CONF_WR(v)     (HW_MIPI_HSI_TDMA14_CONF.U = (v))
-#define HW_MIPI_HSI_TDMA14_CONF_SET(v)    (HW_MIPI_HSI_TDMA14_CONF_WR(HW_MIPI_HSI_TDMA14_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA14_CONF_CLR(v)    (HW_MIPI_HSI_TDMA14_CONF_WR(HW_MIPI_HSI_TDMA14_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA14_CONF_TOG(v)    (HW_MIPI_HSI_TDMA14_CONF_WR(HW_MIPI_HSI_TDMA14_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA14_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA14_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA14_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA14_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_TDMA14_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA14_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA14_CONF_WR((HW_MIPI_HSI_TDMA14_CONF_RD() & ~BM_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA14_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA14_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_TDMA14_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA14_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_TDMA14_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA14_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_TDMA14_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA14_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA14_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA14_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA14_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA14_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA14_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA14_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_TDMA14_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA14_CONF_WR((HW_MIPI_HSI_TDMA14_CONF_RD() & ~BM_MIPI_HSI_TDMA14_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA14_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA14_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Tx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_TDMA14_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA14_CONF_ENABLE.
-#define BM_MIPI_HSI_TDMA14_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA14_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_TDMA14_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA14_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA14_CONF_ENABLE) >> BP_MIPI_HSI_TDMA14_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA14_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA14_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA14_CONF_ENABLE) & BM_MIPI_HSI_TDMA14_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_TDMA14_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA14_CONF_WR((HW_MIPI_HSI_TDMA14_CONF_RD() & ~BM_MIPI_HSI_TDMA14_CONF_ENABLE) | BF_MIPI_HSI_TDMA14_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA15_CONF - Tx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA15_CONF - Tx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Tx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_tdma15_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma15_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Tx DMA channel n.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Tx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Tx DMA channel n.
-    } B;
-} hw_mipi_hsi_tdma15_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA15_CONF register
- */
-//@{
-#define HW_MIPI_HSI_TDMA15_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0x118)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA15_CONF           (*(volatile hw_mipi_hsi_tdma15_conf_t *) HW_MIPI_HSI_TDMA15_CONF_ADDR)
-#define HW_MIPI_HSI_TDMA15_CONF_RD()      (HW_MIPI_HSI_TDMA15_CONF.U)
-#define HW_MIPI_HSI_TDMA15_CONF_WR(v)     (HW_MIPI_HSI_TDMA15_CONF.U = (v))
-#define HW_MIPI_HSI_TDMA15_CONF_SET(v)    (HW_MIPI_HSI_TDMA15_CONF_WR(HW_MIPI_HSI_TDMA15_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA15_CONF_CLR(v)    (HW_MIPI_HSI_TDMA15_CONF_WR(HW_MIPI_HSI_TDMA15_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA15_CONF_TOG(v)    (HW_MIPI_HSI_TDMA15_CONF_WR(HW_MIPI_HSI_TDMA15_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA15_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA15_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Tx DMA channel n. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_TDMA15_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_TDMA15_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_TDMA15_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA15_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH) & BM_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_TDMA15_CONF_WR((HW_MIPI_HSI_TDMA15_CONF_RD() & ~BM_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH) | BF_MIPI_HSI_TDMA15_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA15_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Tx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_TDMA15_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_TDMA15_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_TDMA15_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_TDMA15_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_TDMA15_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_TDMA15_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA15_CONF_BURST_SIZE) >> BP_MIPI_HSI_TDMA15_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA15_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_TDMA15_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA15_CONF_BURST_SIZE) & BM_MIPI_HSI_TDMA15_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_TDMA15_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_TDMA15_CONF_WR((HW_MIPI_HSI_TDMA15_CONF_RD() & ~BM_MIPI_HSI_TDMA15_CONF_BURST_SIZE) | BF_MIPI_HSI_TDMA15_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_TDMA15_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Tx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_TDMA15_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_TDMA15_CONF_ENABLE.
-#define BM_MIPI_HSI_TDMA15_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_TDMA15_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_TDMA15_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_TDMA15_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA15_CONF_ENABLE) >> BP_MIPI_HSI_TDMA15_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA15_CONF_ENABLE.
-#define BF_MIPI_HSI_TDMA15_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA15_CONF_ENABLE) & BM_MIPI_HSI_TDMA15_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_TDMA15_CONF_ENABLE(v)   (HW_MIPI_HSI_TDMA15_CONF_WR((HW_MIPI_HSI_TDMA15_CONF_RD() & ~BM_MIPI_HSI_TDMA15_CONF_ENABLE) | BF_MIPI_HSI_TDMA15_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA0_CONF - Rx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA0_CONF - Rx DMA Channel n Configuration Register (RW)
+ * @brief HW_MIPI_HSI_RDMAn_CONF - Rx DMA Channel n Configuration Register (RW)
  *
  * Reset value: 0x00000000
  *
  * This register contains the configurations of enable/disable, burst size and transfer count for Rx
  * DMA channel n.
  */
-typedef union _hw_mipi_hsi_rdma0_conf
+typedef union _hw_mipi_hsi_rdman_conf
 {
     reg32_t U;
-    struct _hw_mipi_hsi_rdma0_conf_bitfields
+    struct _hw_mipi_hsi_rdman_conf_bitfields
     {
         unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
         unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
@@ -12408,3755 +8537,224 @@ typedef union _hw_mipi_hsi_rdma0_conf
         unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
         unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
     } B;
-} hw_mipi_hsi_rdma0_conf_t;
+} hw_mipi_hsi_rdman_conf_t;
 #endif
 
 /*!
- * @name Constants and macros for entire MIPI_HSI_RDMA0_CONF register
+ * @name Constants and macros for entire MIPI_HSI_RDMAn_CONF register
  */
 //@{
-#define HW_MIPI_HSI_RDMA0_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0x11c)
+//! @brief Number of instances of the MIPI_HSI_RDMAn_CONF register.
+#define HW_MIPI_HSI_RDMAn_CONF_COUNT     (16)
+
+#define HW_MIPI_HSI_RDMAn_CONF_ADDR(n)   (REGS_MIPI_HSI_BASE + 0x11c + (0x4 * (n)))
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA0_CONF           (*(volatile hw_mipi_hsi_rdma0_conf_t *) HW_MIPI_HSI_RDMA0_CONF_ADDR)
-#define HW_MIPI_HSI_RDMA0_CONF_RD()      (HW_MIPI_HSI_RDMA0_CONF.U)
-#define HW_MIPI_HSI_RDMA0_CONF_WR(v)     (HW_MIPI_HSI_RDMA0_CONF.U = (v))
-#define HW_MIPI_HSI_RDMA0_CONF_SET(v)    (HW_MIPI_HSI_RDMA0_CONF_WR(HW_MIPI_HSI_RDMA0_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA0_CONF_CLR(v)    (HW_MIPI_HSI_RDMA0_CONF_WR(HW_MIPI_HSI_RDMA0_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA0_CONF_TOG(v)    (HW_MIPI_HSI_RDMA0_CONF_WR(HW_MIPI_HSI_RDMA0_CONF_RD() ^  (v)))
+#define HW_MIPI_HSI_RDMAn_CONF(n)        (*(volatile hw_mipi_hsi_rdman_conf_t *) HW_MIPI_HSI_RDMAn_CONF_ADDR(n))
+#define HW_MIPI_HSI_RDMAn_CONF_RD(n)     (HW_MIPI_HSI_RDMAn_CONF(n).U)
+#define HW_MIPI_HSI_RDMAn_CONF_WR(n, v)  (HW_MIPI_HSI_RDMAn_CONF(n).U = (v))
+#define HW_MIPI_HSI_RDMAn_CONF_SET(n, v) (HW_MIPI_HSI_RDMAn_CONF_WR(n, HW_MIPI_HSI_RDMAn_CONF_RD(n) |  (v)))
+#define HW_MIPI_HSI_RDMAn_CONF_CLR(n, v) (HW_MIPI_HSI_RDMAn_CONF_WR(n, HW_MIPI_HSI_RDMAn_CONF_RD(n) & ~(v)))
+#define HW_MIPI_HSI_RDMAn_CONF_TOG(n, v) (HW_MIPI_HSI_RDMAn_CONF_WR(n, HW_MIPI_HSI_RDMAn_CONF_RD(n) ^  (v)))
 #endif
 //@}
 
 /*
- * constants & macros for individual MIPI_HSI_RDMA0_CONF bitfields
+ * constants & macros for individual MIPI_HSI_RDMAn_CONF bitfields
  */
 
-/*! @name Register MIPI_HSI_RDMA0_CONF, field TRANS_LENGTH[24:5] (RW)
+/*! @name Register MIPI_HSI_RDMAn_CONF, field TRANS_LENGTH[24:5] (RW)
  *
  * Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
  * transfer hfffff 1048575Dwords to transfer
  */
 //@{
-#define BP_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA0_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA0_CONF_TRANS_LENGTH.
+#define BP_MIPI_HSI_RDMAn_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMAn_CONF_TRANS_LENGTH.
+#define BM_MIPI_HSI_RDMAn_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMAn_CONF_TRANS_LENGTH.
 
-//! @brief Get value of MIPI_HSI_RDMA0_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH)
+//! @brief Get value of MIPI_HSI_RDMAn_CONF_TRANS_LENGTH from a register value.
+#define BG_MIPI_HSI_RDMAn_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMAn_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMAn_CONF_TRANS_LENGTH)
 
-//! @brief Format value for bitfield MIPI_HSI_RDMA0_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH)
+//! @brief Format value for bitfield MIPI_HSI_RDMAn_CONF_TRANS_LENGTH.
+#define BF_MIPI_HSI_RDMAn_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMAn_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMAn_CONF_TRANS_LENGTH)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA0_CONF_WR((HW_MIPI_HSI_RDMA0_CONF_RD() & ~BM_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA0_CONF_TRANS_LENGTH(v)))
+#define BW_MIPI_HSI_RDMAn_CONF_TRANS_LENGTH(n, v)   (HW_MIPI_HSI_RDMAn_CONF_WR(n, (HW_MIPI_HSI_RDMAn_CONF_RD(n) & ~BM_MIPI_HSI_RDMAn_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMAn_CONF_TRANS_LENGTH(v)))
 #endif
 //@}
 
-/*! @name Register MIPI_HSI_RDMA0_CONF, field BURST_SIZE[28:25] (RW)
+/*! @name Register MIPI_HSI_RDMAn_CONF, field BURST_SIZE[28:25] (RW)
  *
  * Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than
  * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
  * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
  */
 //@{
-#define BP_MIPI_HSI_RDMA0_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA0_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_RDMA0_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA0_CONF_BURST_SIZE.
+#define BP_MIPI_HSI_RDMAn_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMAn_CONF_BURST_SIZE.
+#define BM_MIPI_HSI_RDMAn_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMAn_CONF_BURST_SIZE.
 
-//! @brief Get value of MIPI_HSI_RDMA0_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA0_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA0_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA0_CONF_BURST_SIZE)
+//! @brief Get value of MIPI_HSI_RDMAn_CONF_BURST_SIZE from a register value.
+#define BG_MIPI_HSI_RDMAn_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMAn_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMAn_CONF_BURST_SIZE)
 
-//! @brief Format value for bitfield MIPI_HSI_RDMA0_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA0_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA0_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA0_CONF_BURST_SIZE)
+//! @brief Format value for bitfield MIPI_HSI_RDMAn_CONF_BURST_SIZE.
+#define BF_MIPI_HSI_RDMAn_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMAn_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMAn_CONF_BURST_SIZE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_RDMA0_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA0_CONF_WR((HW_MIPI_HSI_RDMA0_CONF_RD() & ~BM_MIPI_HSI_RDMA0_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA0_CONF_BURST_SIZE(v)))
+#define BW_MIPI_HSI_RDMAn_CONF_BURST_SIZE(n, v)   (HW_MIPI_HSI_RDMAn_CONF_WR(n, (HW_MIPI_HSI_RDMAn_CONF_RD(n) & ~BM_MIPI_HSI_RDMAn_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMAn_CONF_BURST_SIZE(v)))
 #endif
 //@}
 
-/*! @name Register MIPI_HSI_RDMA0_CONF, field ENABLE[31] (RW)
+/*! @name Register MIPI_HSI_RDMAn_CONF, field ENABLE[31] (RW)
  *
  * Setting this bit enables the inernal Rx DMA channel n.
  */
 //@{
-#define BP_MIPI_HSI_RDMA0_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA0_CONF_ENABLE.
-#define BM_MIPI_HSI_RDMA0_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA0_CONF_ENABLE.
+#define BP_MIPI_HSI_RDMAn_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMAn_CONF_ENABLE.
+#define BM_MIPI_HSI_RDMAn_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMAn_CONF_ENABLE.
 
-//! @brief Get value of MIPI_HSI_RDMA0_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA0_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA0_CONF_ENABLE) >> BP_MIPI_HSI_RDMA0_CONF_ENABLE)
+//! @brief Get value of MIPI_HSI_RDMAn_CONF_ENABLE from a register value.
+#define BG_MIPI_HSI_RDMAn_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMAn_CONF_ENABLE) >> BP_MIPI_HSI_RDMAn_CONF_ENABLE)
 
-//! @brief Format value for bitfield MIPI_HSI_RDMA0_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA0_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA0_CONF_ENABLE) & BM_MIPI_HSI_RDMA0_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_RDMA0_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA0_CONF_WR((HW_MIPI_HSI_RDMA0_CONF_RD() & ~BM_MIPI_HSI_RDMA0_CONF_ENABLE) | BF_MIPI_HSI_RDMA0_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA1_CONF - Rx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA1_CONF - Rx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Rx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_rdma1_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma1_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
-    } B;
-} hw_mipi_hsi_rdma1_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA1_CONF register
- */
-//@{
-#define HW_MIPI_HSI_RDMA1_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0x120)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA1_CONF           (*(volatile hw_mipi_hsi_rdma1_conf_t *) HW_MIPI_HSI_RDMA1_CONF_ADDR)
-#define HW_MIPI_HSI_RDMA1_CONF_RD()      (HW_MIPI_HSI_RDMA1_CONF.U)
-#define HW_MIPI_HSI_RDMA1_CONF_WR(v)     (HW_MIPI_HSI_RDMA1_CONF.U = (v))
-#define HW_MIPI_HSI_RDMA1_CONF_SET(v)    (HW_MIPI_HSI_RDMA1_CONF_WR(HW_MIPI_HSI_RDMA1_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA1_CONF_CLR(v)    (HW_MIPI_HSI_RDMA1_CONF_WR(HW_MIPI_HSI_RDMA1_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA1_CONF_TOG(v)    (HW_MIPI_HSI_RDMA1_CONF_WR(HW_MIPI_HSI_RDMA1_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA1_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA1_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA1_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA1_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_RDMA1_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA1_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA1_CONF_WR((HW_MIPI_HSI_RDMA1_CONF_RD() & ~BM_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA1_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA1_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_RDMA1_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA1_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_RDMA1_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA1_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_RDMA1_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA1_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA1_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA1_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA1_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA1_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA1_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA1_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_RDMA1_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA1_CONF_WR((HW_MIPI_HSI_RDMA1_CONF_RD() & ~BM_MIPI_HSI_RDMA1_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA1_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA1_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Rx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_RDMA1_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA1_CONF_ENABLE.
-#define BM_MIPI_HSI_RDMA1_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA1_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_RDMA1_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA1_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA1_CONF_ENABLE) >> BP_MIPI_HSI_RDMA1_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA1_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA1_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA1_CONF_ENABLE) & BM_MIPI_HSI_RDMA1_CONF_ENABLE)
+//! @brief Format value for bitfield MIPI_HSI_RDMAn_CONF_ENABLE.
+#define BF_MIPI_HSI_RDMAn_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMAn_CONF_ENABLE) & BM_MIPI_HSI_RDMAn_CONF_ENABLE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_RDMA1_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA1_CONF_WR((HW_MIPI_HSI_RDMA1_CONF_RD() & ~BM_MIPI_HSI_RDMA1_CONF_ENABLE) | BF_MIPI_HSI_RDMA1_CONF_ENABLE(v)))
+#define BW_MIPI_HSI_RDMAn_CONF_ENABLE(n, v)   (HW_MIPI_HSI_RDMAn_CONF_WR(n, (HW_MIPI_HSI_RDMAn_CONF_RD(n) & ~BM_MIPI_HSI_RDMAn_CONF_ENABLE) | BF_MIPI_HSI_RDMAn_CONF_ENABLE(v)))
 #endif
 //@}
 
 //-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA2_CONF - Rx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA2_CONF - Rx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Rx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_rdma2_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma2_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
-    } B;
-} hw_mipi_hsi_rdma2_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA2_CONF register
- */
-//@{
-#define HW_MIPI_HSI_RDMA2_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0x124)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA2_CONF           (*(volatile hw_mipi_hsi_rdma2_conf_t *) HW_MIPI_HSI_RDMA2_CONF_ADDR)
-#define HW_MIPI_HSI_RDMA2_CONF_RD()      (HW_MIPI_HSI_RDMA2_CONF.U)
-#define HW_MIPI_HSI_RDMA2_CONF_WR(v)     (HW_MIPI_HSI_RDMA2_CONF.U = (v))
-#define HW_MIPI_HSI_RDMA2_CONF_SET(v)    (HW_MIPI_HSI_RDMA2_CONF_WR(HW_MIPI_HSI_RDMA2_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA2_CONF_CLR(v)    (HW_MIPI_HSI_RDMA2_CONF_WR(HW_MIPI_HSI_RDMA2_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA2_CONF_TOG(v)    (HW_MIPI_HSI_RDMA2_CONF_WR(HW_MIPI_HSI_RDMA2_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA2_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA2_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA2_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA2_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_RDMA2_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA2_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA2_CONF_WR((HW_MIPI_HSI_RDMA2_CONF_RD() & ~BM_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA2_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA2_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_RDMA2_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA2_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_RDMA2_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA2_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_RDMA2_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA2_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA2_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA2_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA2_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA2_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA2_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA2_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_RDMA2_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA2_CONF_WR((HW_MIPI_HSI_RDMA2_CONF_RD() & ~BM_MIPI_HSI_RDMA2_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA2_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA2_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Rx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_RDMA2_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA2_CONF_ENABLE.
-#define BM_MIPI_HSI_RDMA2_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA2_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_RDMA2_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA2_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA2_CONF_ENABLE) >> BP_MIPI_HSI_RDMA2_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA2_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA2_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA2_CONF_ENABLE) & BM_MIPI_HSI_RDMA2_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_RDMA2_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA2_CONF_WR((HW_MIPI_HSI_RDMA2_CONF_RD() & ~BM_MIPI_HSI_RDMA2_CONF_ENABLE) | BF_MIPI_HSI_RDMA2_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA3_CONF - Rx DMA Channel n Configuration Register
+// HW_MIPI_HSI_TDMAn_STA_ADDR - Tx DMA Channel n Start Address Register
 //-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MIPI_HSI_RDMA3_CONF - Rx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Rx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_rdma3_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma3_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
-    } B;
-} hw_mipi_hsi_rdma3_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA3_CONF register
- */
-//@{
-#define HW_MIPI_HSI_RDMA3_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0x128)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA3_CONF           (*(volatile hw_mipi_hsi_rdma3_conf_t *) HW_MIPI_HSI_RDMA3_CONF_ADDR)
-#define HW_MIPI_HSI_RDMA3_CONF_RD()      (HW_MIPI_HSI_RDMA3_CONF.U)
-#define HW_MIPI_HSI_RDMA3_CONF_WR(v)     (HW_MIPI_HSI_RDMA3_CONF.U = (v))
-#define HW_MIPI_HSI_RDMA3_CONF_SET(v)    (HW_MIPI_HSI_RDMA3_CONF_WR(HW_MIPI_HSI_RDMA3_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA3_CONF_CLR(v)    (HW_MIPI_HSI_RDMA3_CONF_WR(HW_MIPI_HSI_RDMA3_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA3_CONF_TOG(v)    (HW_MIPI_HSI_RDMA3_CONF_WR(HW_MIPI_HSI_RDMA3_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA3_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA3_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA3_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA3_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_RDMA3_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA3_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA3_CONF_WR((HW_MIPI_HSI_RDMA3_CONF_RD() & ~BM_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA3_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA3_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_RDMA3_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA3_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_RDMA3_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA3_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_RDMA3_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA3_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA3_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA3_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA3_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA3_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA3_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA3_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_RDMA3_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA3_CONF_WR((HW_MIPI_HSI_RDMA3_CONF_RD() & ~BM_MIPI_HSI_RDMA3_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA3_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA3_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Rx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_RDMA3_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA3_CONF_ENABLE.
-#define BM_MIPI_HSI_RDMA3_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA3_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_RDMA3_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA3_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA3_CONF_ENABLE) >> BP_MIPI_HSI_RDMA3_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA3_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA3_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA3_CONF_ENABLE) & BM_MIPI_HSI_RDMA3_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_RDMA3_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA3_CONF_WR((HW_MIPI_HSI_RDMA3_CONF_RD() & ~BM_MIPI_HSI_RDMA3_CONF_ENABLE) | BF_MIPI_HSI_RDMA3_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA4_CONF - Rx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA4_CONF - Rx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Rx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_rdma4_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma4_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
-    } B;
-} hw_mipi_hsi_rdma4_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA4_CONF register
- */
-//@{
-#define HW_MIPI_HSI_RDMA4_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0x12c)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA4_CONF           (*(volatile hw_mipi_hsi_rdma4_conf_t *) HW_MIPI_HSI_RDMA4_CONF_ADDR)
-#define HW_MIPI_HSI_RDMA4_CONF_RD()      (HW_MIPI_HSI_RDMA4_CONF.U)
-#define HW_MIPI_HSI_RDMA4_CONF_WR(v)     (HW_MIPI_HSI_RDMA4_CONF.U = (v))
-#define HW_MIPI_HSI_RDMA4_CONF_SET(v)    (HW_MIPI_HSI_RDMA4_CONF_WR(HW_MIPI_HSI_RDMA4_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA4_CONF_CLR(v)    (HW_MIPI_HSI_RDMA4_CONF_WR(HW_MIPI_HSI_RDMA4_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA4_CONF_TOG(v)    (HW_MIPI_HSI_RDMA4_CONF_WR(HW_MIPI_HSI_RDMA4_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA4_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA4_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA4_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA4_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_RDMA4_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA4_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA4_CONF_WR((HW_MIPI_HSI_RDMA4_CONF_RD() & ~BM_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA4_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA4_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_RDMA4_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA4_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_RDMA4_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA4_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_RDMA4_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA4_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA4_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA4_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA4_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA4_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA4_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA4_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_RDMA4_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA4_CONF_WR((HW_MIPI_HSI_RDMA4_CONF_RD() & ~BM_MIPI_HSI_RDMA4_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA4_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA4_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Rx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_RDMA4_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA4_CONF_ENABLE.
-#define BM_MIPI_HSI_RDMA4_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA4_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_RDMA4_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA4_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA4_CONF_ENABLE) >> BP_MIPI_HSI_RDMA4_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA4_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA4_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA4_CONF_ENABLE) & BM_MIPI_HSI_RDMA4_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_RDMA4_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA4_CONF_WR((HW_MIPI_HSI_RDMA4_CONF_RD() & ~BM_MIPI_HSI_RDMA4_CONF_ENABLE) | BF_MIPI_HSI_RDMA4_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA5_CONF - Rx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA5_CONF - Rx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Rx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_rdma5_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma5_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
-    } B;
-} hw_mipi_hsi_rdma5_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA5_CONF register
- */
-//@{
-#define HW_MIPI_HSI_RDMA5_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0x130)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA5_CONF           (*(volatile hw_mipi_hsi_rdma5_conf_t *) HW_MIPI_HSI_RDMA5_CONF_ADDR)
-#define HW_MIPI_HSI_RDMA5_CONF_RD()      (HW_MIPI_HSI_RDMA5_CONF.U)
-#define HW_MIPI_HSI_RDMA5_CONF_WR(v)     (HW_MIPI_HSI_RDMA5_CONF.U = (v))
-#define HW_MIPI_HSI_RDMA5_CONF_SET(v)    (HW_MIPI_HSI_RDMA5_CONF_WR(HW_MIPI_HSI_RDMA5_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA5_CONF_CLR(v)    (HW_MIPI_HSI_RDMA5_CONF_WR(HW_MIPI_HSI_RDMA5_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA5_CONF_TOG(v)    (HW_MIPI_HSI_RDMA5_CONF_WR(HW_MIPI_HSI_RDMA5_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA5_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA5_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA5_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA5_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_RDMA5_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA5_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA5_CONF_WR((HW_MIPI_HSI_RDMA5_CONF_RD() & ~BM_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA5_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA5_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_RDMA5_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA5_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_RDMA5_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA5_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_RDMA5_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA5_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA5_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA5_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA5_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA5_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA5_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA5_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_RDMA5_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA5_CONF_WR((HW_MIPI_HSI_RDMA5_CONF_RD() & ~BM_MIPI_HSI_RDMA5_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA5_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA5_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Rx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_RDMA5_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA5_CONF_ENABLE.
-#define BM_MIPI_HSI_RDMA5_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA5_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_RDMA5_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA5_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA5_CONF_ENABLE) >> BP_MIPI_HSI_RDMA5_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA5_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA5_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA5_CONF_ENABLE) & BM_MIPI_HSI_RDMA5_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_RDMA5_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA5_CONF_WR((HW_MIPI_HSI_RDMA5_CONF_RD() & ~BM_MIPI_HSI_RDMA5_CONF_ENABLE) | BF_MIPI_HSI_RDMA5_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA6_CONF - Rx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA6_CONF - Rx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Rx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_rdma6_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma6_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
-    } B;
-} hw_mipi_hsi_rdma6_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA6_CONF register
- */
-//@{
-#define HW_MIPI_HSI_RDMA6_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0x134)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA6_CONF           (*(volatile hw_mipi_hsi_rdma6_conf_t *) HW_MIPI_HSI_RDMA6_CONF_ADDR)
-#define HW_MIPI_HSI_RDMA6_CONF_RD()      (HW_MIPI_HSI_RDMA6_CONF.U)
-#define HW_MIPI_HSI_RDMA6_CONF_WR(v)     (HW_MIPI_HSI_RDMA6_CONF.U = (v))
-#define HW_MIPI_HSI_RDMA6_CONF_SET(v)    (HW_MIPI_HSI_RDMA6_CONF_WR(HW_MIPI_HSI_RDMA6_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA6_CONF_CLR(v)    (HW_MIPI_HSI_RDMA6_CONF_WR(HW_MIPI_HSI_RDMA6_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA6_CONF_TOG(v)    (HW_MIPI_HSI_RDMA6_CONF_WR(HW_MIPI_HSI_RDMA6_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA6_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA6_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA6_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA6_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_RDMA6_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA6_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA6_CONF_WR((HW_MIPI_HSI_RDMA6_CONF_RD() & ~BM_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA6_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA6_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_RDMA6_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA6_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_RDMA6_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA6_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_RDMA6_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA6_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA6_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA6_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA6_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA6_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA6_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA6_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_RDMA6_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA6_CONF_WR((HW_MIPI_HSI_RDMA6_CONF_RD() & ~BM_MIPI_HSI_RDMA6_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA6_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA6_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Rx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_RDMA6_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA6_CONF_ENABLE.
-#define BM_MIPI_HSI_RDMA6_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA6_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_RDMA6_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA6_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA6_CONF_ENABLE) >> BP_MIPI_HSI_RDMA6_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA6_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA6_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA6_CONF_ENABLE) & BM_MIPI_HSI_RDMA6_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_RDMA6_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA6_CONF_WR((HW_MIPI_HSI_RDMA6_CONF_RD() & ~BM_MIPI_HSI_RDMA6_CONF_ENABLE) | BF_MIPI_HSI_RDMA6_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA7_CONF - Rx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA7_CONF - Rx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Rx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_rdma7_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma7_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
-    } B;
-} hw_mipi_hsi_rdma7_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA7_CONF register
- */
-//@{
-#define HW_MIPI_HSI_RDMA7_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0x138)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA7_CONF           (*(volatile hw_mipi_hsi_rdma7_conf_t *) HW_MIPI_HSI_RDMA7_CONF_ADDR)
-#define HW_MIPI_HSI_RDMA7_CONF_RD()      (HW_MIPI_HSI_RDMA7_CONF.U)
-#define HW_MIPI_HSI_RDMA7_CONF_WR(v)     (HW_MIPI_HSI_RDMA7_CONF.U = (v))
-#define HW_MIPI_HSI_RDMA7_CONF_SET(v)    (HW_MIPI_HSI_RDMA7_CONF_WR(HW_MIPI_HSI_RDMA7_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA7_CONF_CLR(v)    (HW_MIPI_HSI_RDMA7_CONF_WR(HW_MIPI_HSI_RDMA7_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA7_CONF_TOG(v)    (HW_MIPI_HSI_RDMA7_CONF_WR(HW_MIPI_HSI_RDMA7_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA7_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA7_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA7_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA7_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_RDMA7_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA7_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA7_CONF_WR((HW_MIPI_HSI_RDMA7_CONF_RD() & ~BM_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA7_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA7_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_RDMA7_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA7_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_RDMA7_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA7_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_RDMA7_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA7_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA7_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA7_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA7_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA7_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA7_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA7_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_RDMA7_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA7_CONF_WR((HW_MIPI_HSI_RDMA7_CONF_RD() & ~BM_MIPI_HSI_RDMA7_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA7_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA7_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Rx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_RDMA7_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA7_CONF_ENABLE.
-#define BM_MIPI_HSI_RDMA7_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA7_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_RDMA7_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA7_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA7_CONF_ENABLE) >> BP_MIPI_HSI_RDMA7_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA7_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA7_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA7_CONF_ENABLE) & BM_MIPI_HSI_RDMA7_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_RDMA7_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA7_CONF_WR((HW_MIPI_HSI_RDMA7_CONF_RD() & ~BM_MIPI_HSI_RDMA7_CONF_ENABLE) | BF_MIPI_HSI_RDMA7_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA8_CONF - Rx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA8_CONF - Rx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Rx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_rdma8_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma8_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
-    } B;
-} hw_mipi_hsi_rdma8_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA8_CONF register
- */
-//@{
-#define HW_MIPI_HSI_RDMA8_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0x13c)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA8_CONF           (*(volatile hw_mipi_hsi_rdma8_conf_t *) HW_MIPI_HSI_RDMA8_CONF_ADDR)
-#define HW_MIPI_HSI_RDMA8_CONF_RD()      (HW_MIPI_HSI_RDMA8_CONF.U)
-#define HW_MIPI_HSI_RDMA8_CONF_WR(v)     (HW_MIPI_HSI_RDMA8_CONF.U = (v))
-#define HW_MIPI_HSI_RDMA8_CONF_SET(v)    (HW_MIPI_HSI_RDMA8_CONF_WR(HW_MIPI_HSI_RDMA8_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA8_CONF_CLR(v)    (HW_MIPI_HSI_RDMA8_CONF_WR(HW_MIPI_HSI_RDMA8_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA8_CONF_TOG(v)    (HW_MIPI_HSI_RDMA8_CONF_WR(HW_MIPI_HSI_RDMA8_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA8_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA8_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA8_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA8_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_RDMA8_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA8_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA8_CONF_WR((HW_MIPI_HSI_RDMA8_CONF_RD() & ~BM_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA8_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA8_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_RDMA8_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA8_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_RDMA8_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA8_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_RDMA8_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA8_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA8_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA8_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA8_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA8_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA8_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA8_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_RDMA8_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA8_CONF_WR((HW_MIPI_HSI_RDMA8_CONF_RD() & ~BM_MIPI_HSI_RDMA8_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA8_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA8_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Rx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_RDMA8_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA8_CONF_ENABLE.
-#define BM_MIPI_HSI_RDMA8_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA8_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_RDMA8_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA8_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA8_CONF_ENABLE) >> BP_MIPI_HSI_RDMA8_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA8_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA8_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA8_CONF_ENABLE) & BM_MIPI_HSI_RDMA8_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_RDMA8_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA8_CONF_WR((HW_MIPI_HSI_RDMA8_CONF_RD() & ~BM_MIPI_HSI_RDMA8_CONF_ENABLE) | BF_MIPI_HSI_RDMA8_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA9_CONF - Rx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA9_CONF - Rx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Rx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_rdma9_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma9_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
-    } B;
-} hw_mipi_hsi_rdma9_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA9_CONF register
- */
-//@{
-#define HW_MIPI_HSI_RDMA9_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0x140)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA9_CONF           (*(volatile hw_mipi_hsi_rdma9_conf_t *) HW_MIPI_HSI_RDMA9_CONF_ADDR)
-#define HW_MIPI_HSI_RDMA9_CONF_RD()      (HW_MIPI_HSI_RDMA9_CONF.U)
-#define HW_MIPI_HSI_RDMA9_CONF_WR(v)     (HW_MIPI_HSI_RDMA9_CONF.U = (v))
-#define HW_MIPI_HSI_RDMA9_CONF_SET(v)    (HW_MIPI_HSI_RDMA9_CONF_WR(HW_MIPI_HSI_RDMA9_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA9_CONF_CLR(v)    (HW_MIPI_HSI_RDMA9_CONF_WR(HW_MIPI_HSI_RDMA9_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA9_CONF_TOG(v)    (HW_MIPI_HSI_RDMA9_CONF_WR(HW_MIPI_HSI_RDMA9_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA9_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA9_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA9_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA9_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_RDMA9_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA9_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA9_CONF_WR((HW_MIPI_HSI_RDMA9_CONF_RD() & ~BM_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA9_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA9_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_RDMA9_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA9_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_RDMA9_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA9_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_RDMA9_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA9_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA9_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA9_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA9_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA9_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA9_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA9_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_RDMA9_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA9_CONF_WR((HW_MIPI_HSI_RDMA9_CONF_RD() & ~BM_MIPI_HSI_RDMA9_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA9_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA9_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Rx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_RDMA9_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA9_CONF_ENABLE.
-#define BM_MIPI_HSI_RDMA9_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA9_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_RDMA9_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA9_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA9_CONF_ENABLE) >> BP_MIPI_HSI_RDMA9_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA9_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA9_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA9_CONF_ENABLE) & BM_MIPI_HSI_RDMA9_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_RDMA9_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA9_CONF_WR((HW_MIPI_HSI_RDMA9_CONF_RD() & ~BM_MIPI_HSI_RDMA9_CONF_ENABLE) | BF_MIPI_HSI_RDMA9_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA10_CONF - Rx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA10_CONF - Rx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Rx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_rdma10_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma10_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
-    } B;
-} hw_mipi_hsi_rdma10_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA10_CONF register
- */
-//@{
-#define HW_MIPI_HSI_RDMA10_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0x144)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA10_CONF           (*(volatile hw_mipi_hsi_rdma10_conf_t *) HW_MIPI_HSI_RDMA10_CONF_ADDR)
-#define HW_MIPI_HSI_RDMA10_CONF_RD()      (HW_MIPI_HSI_RDMA10_CONF.U)
-#define HW_MIPI_HSI_RDMA10_CONF_WR(v)     (HW_MIPI_HSI_RDMA10_CONF.U = (v))
-#define HW_MIPI_HSI_RDMA10_CONF_SET(v)    (HW_MIPI_HSI_RDMA10_CONF_WR(HW_MIPI_HSI_RDMA10_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA10_CONF_CLR(v)    (HW_MIPI_HSI_RDMA10_CONF_WR(HW_MIPI_HSI_RDMA10_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA10_CONF_TOG(v)    (HW_MIPI_HSI_RDMA10_CONF_WR(HW_MIPI_HSI_RDMA10_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA10_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA10_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA10_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA10_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_RDMA10_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA10_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA10_CONF_WR((HW_MIPI_HSI_RDMA10_CONF_RD() & ~BM_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA10_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA10_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_RDMA10_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA10_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_RDMA10_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA10_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_RDMA10_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA10_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA10_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA10_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA10_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA10_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA10_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA10_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_RDMA10_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA10_CONF_WR((HW_MIPI_HSI_RDMA10_CONF_RD() & ~BM_MIPI_HSI_RDMA10_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA10_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA10_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Rx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_RDMA10_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA10_CONF_ENABLE.
-#define BM_MIPI_HSI_RDMA10_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA10_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_RDMA10_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA10_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA10_CONF_ENABLE) >> BP_MIPI_HSI_RDMA10_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA10_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA10_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA10_CONF_ENABLE) & BM_MIPI_HSI_RDMA10_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_RDMA10_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA10_CONF_WR((HW_MIPI_HSI_RDMA10_CONF_RD() & ~BM_MIPI_HSI_RDMA10_CONF_ENABLE) | BF_MIPI_HSI_RDMA10_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA11_CONF - Rx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA11_CONF - Rx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Rx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_rdma11_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma11_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
-    } B;
-} hw_mipi_hsi_rdma11_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA11_CONF register
- */
-//@{
-#define HW_MIPI_HSI_RDMA11_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0x148)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA11_CONF           (*(volatile hw_mipi_hsi_rdma11_conf_t *) HW_MIPI_HSI_RDMA11_CONF_ADDR)
-#define HW_MIPI_HSI_RDMA11_CONF_RD()      (HW_MIPI_HSI_RDMA11_CONF.U)
-#define HW_MIPI_HSI_RDMA11_CONF_WR(v)     (HW_MIPI_HSI_RDMA11_CONF.U = (v))
-#define HW_MIPI_HSI_RDMA11_CONF_SET(v)    (HW_MIPI_HSI_RDMA11_CONF_WR(HW_MIPI_HSI_RDMA11_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA11_CONF_CLR(v)    (HW_MIPI_HSI_RDMA11_CONF_WR(HW_MIPI_HSI_RDMA11_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA11_CONF_TOG(v)    (HW_MIPI_HSI_RDMA11_CONF_WR(HW_MIPI_HSI_RDMA11_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA11_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA11_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA11_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA11_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_RDMA11_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA11_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA11_CONF_WR((HW_MIPI_HSI_RDMA11_CONF_RD() & ~BM_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA11_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA11_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_RDMA11_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA11_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_RDMA11_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA11_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_RDMA11_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA11_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA11_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA11_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA11_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA11_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA11_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA11_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_RDMA11_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA11_CONF_WR((HW_MIPI_HSI_RDMA11_CONF_RD() & ~BM_MIPI_HSI_RDMA11_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA11_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA11_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Rx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_RDMA11_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA11_CONF_ENABLE.
-#define BM_MIPI_HSI_RDMA11_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA11_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_RDMA11_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA11_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA11_CONF_ENABLE) >> BP_MIPI_HSI_RDMA11_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA11_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA11_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA11_CONF_ENABLE) & BM_MIPI_HSI_RDMA11_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_RDMA11_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA11_CONF_WR((HW_MIPI_HSI_RDMA11_CONF_RD() & ~BM_MIPI_HSI_RDMA11_CONF_ENABLE) | BF_MIPI_HSI_RDMA11_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA12_CONF - Rx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA12_CONF - Rx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Rx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_rdma12_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma12_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
-    } B;
-} hw_mipi_hsi_rdma12_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA12_CONF register
- */
-//@{
-#define HW_MIPI_HSI_RDMA12_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0x14c)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA12_CONF           (*(volatile hw_mipi_hsi_rdma12_conf_t *) HW_MIPI_HSI_RDMA12_CONF_ADDR)
-#define HW_MIPI_HSI_RDMA12_CONF_RD()      (HW_MIPI_HSI_RDMA12_CONF.U)
-#define HW_MIPI_HSI_RDMA12_CONF_WR(v)     (HW_MIPI_HSI_RDMA12_CONF.U = (v))
-#define HW_MIPI_HSI_RDMA12_CONF_SET(v)    (HW_MIPI_HSI_RDMA12_CONF_WR(HW_MIPI_HSI_RDMA12_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA12_CONF_CLR(v)    (HW_MIPI_HSI_RDMA12_CONF_WR(HW_MIPI_HSI_RDMA12_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA12_CONF_TOG(v)    (HW_MIPI_HSI_RDMA12_CONF_WR(HW_MIPI_HSI_RDMA12_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA12_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA12_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA12_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA12_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_RDMA12_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA12_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA12_CONF_WR((HW_MIPI_HSI_RDMA12_CONF_RD() & ~BM_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA12_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA12_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_RDMA12_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA12_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_RDMA12_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA12_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_RDMA12_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA12_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA12_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA12_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA12_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA12_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA12_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA12_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_RDMA12_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA12_CONF_WR((HW_MIPI_HSI_RDMA12_CONF_RD() & ~BM_MIPI_HSI_RDMA12_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA12_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA12_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Rx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_RDMA12_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA12_CONF_ENABLE.
-#define BM_MIPI_HSI_RDMA12_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA12_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_RDMA12_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA12_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA12_CONF_ENABLE) >> BP_MIPI_HSI_RDMA12_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA12_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA12_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA12_CONF_ENABLE) & BM_MIPI_HSI_RDMA12_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_RDMA12_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA12_CONF_WR((HW_MIPI_HSI_RDMA12_CONF_RD() & ~BM_MIPI_HSI_RDMA12_CONF_ENABLE) | BF_MIPI_HSI_RDMA12_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA13_CONF - Rx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA13_CONF - Rx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Rx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_rdma13_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma13_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
-    } B;
-} hw_mipi_hsi_rdma13_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA13_CONF register
- */
-//@{
-#define HW_MIPI_HSI_RDMA13_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0x150)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA13_CONF           (*(volatile hw_mipi_hsi_rdma13_conf_t *) HW_MIPI_HSI_RDMA13_CONF_ADDR)
-#define HW_MIPI_HSI_RDMA13_CONF_RD()      (HW_MIPI_HSI_RDMA13_CONF.U)
-#define HW_MIPI_HSI_RDMA13_CONF_WR(v)     (HW_MIPI_HSI_RDMA13_CONF.U = (v))
-#define HW_MIPI_HSI_RDMA13_CONF_SET(v)    (HW_MIPI_HSI_RDMA13_CONF_WR(HW_MIPI_HSI_RDMA13_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA13_CONF_CLR(v)    (HW_MIPI_HSI_RDMA13_CONF_WR(HW_MIPI_HSI_RDMA13_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA13_CONF_TOG(v)    (HW_MIPI_HSI_RDMA13_CONF_WR(HW_MIPI_HSI_RDMA13_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA13_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA13_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA13_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA13_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_RDMA13_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA13_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA13_CONF_WR((HW_MIPI_HSI_RDMA13_CONF_RD() & ~BM_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA13_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA13_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_RDMA13_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA13_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_RDMA13_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA13_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_RDMA13_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA13_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA13_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA13_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA13_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA13_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA13_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA13_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_RDMA13_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA13_CONF_WR((HW_MIPI_HSI_RDMA13_CONF_RD() & ~BM_MIPI_HSI_RDMA13_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA13_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA13_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Rx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_RDMA13_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA13_CONF_ENABLE.
-#define BM_MIPI_HSI_RDMA13_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA13_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_RDMA13_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA13_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA13_CONF_ENABLE) >> BP_MIPI_HSI_RDMA13_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA13_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA13_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA13_CONF_ENABLE) & BM_MIPI_HSI_RDMA13_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_RDMA13_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA13_CONF_WR((HW_MIPI_HSI_RDMA13_CONF_RD() & ~BM_MIPI_HSI_RDMA13_CONF_ENABLE) | BF_MIPI_HSI_RDMA13_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA14_CONF - Rx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA14_CONF - Rx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Rx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_rdma14_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma14_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
-    } B;
-} hw_mipi_hsi_rdma14_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA14_CONF register
- */
-//@{
-#define HW_MIPI_HSI_RDMA14_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0x154)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA14_CONF           (*(volatile hw_mipi_hsi_rdma14_conf_t *) HW_MIPI_HSI_RDMA14_CONF_ADDR)
-#define HW_MIPI_HSI_RDMA14_CONF_RD()      (HW_MIPI_HSI_RDMA14_CONF.U)
-#define HW_MIPI_HSI_RDMA14_CONF_WR(v)     (HW_MIPI_HSI_RDMA14_CONF.U = (v))
-#define HW_MIPI_HSI_RDMA14_CONF_SET(v)    (HW_MIPI_HSI_RDMA14_CONF_WR(HW_MIPI_HSI_RDMA14_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA14_CONF_CLR(v)    (HW_MIPI_HSI_RDMA14_CONF_WR(HW_MIPI_HSI_RDMA14_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA14_CONF_TOG(v)    (HW_MIPI_HSI_RDMA14_CONF_WR(HW_MIPI_HSI_RDMA14_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA14_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA14_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA14_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA14_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_RDMA14_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA14_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA14_CONF_WR((HW_MIPI_HSI_RDMA14_CONF_RD() & ~BM_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA14_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA14_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_RDMA14_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA14_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_RDMA14_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA14_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_RDMA14_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA14_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA14_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA14_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA14_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA14_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA14_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA14_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_RDMA14_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA14_CONF_WR((HW_MIPI_HSI_RDMA14_CONF_RD() & ~BM_MIPI_HSI_RDMA14_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA14_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA14_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Rx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_RDMA14_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA14_CONF_ENABLE.
-#define BM_MIPI_HSI_RDMA14_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA14_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_RDMA14_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA14_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA14_CONF_ENABLE) >> BP_MIPI_HSI_RDMA14_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA14_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA14_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA14_CONF_ENABLE) & BM_MIPI_HSI_RDMA14_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_RDMA14_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA14_CONF_WR((HW_MIPI_HSI_RDMA14_CONF_RD() & ~BM_MIPI_HSI_RDMA14_CONF_ENABLE) | BF_MIPI_HSI_RDMA14_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA15_CONF - Rx DMA Channel n Configuration Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA15_CONF - Rx DMA Channel n Configuration Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This register contains the configurations of enable/disable, burst size and transfer count for Rx
- * DMA channel n.
- */
-typedef union _hw_mipi_hsi_rdma15_conf
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma15_conf_bitfields
-    {
-        unsigned RESERVED0 : 5; //!< [4:0] Reserved, always set to zero.
-        unsigned TRANS_LENGTH : 20; //!< [24:5] Transfer data length for Rx DMA channel 0.
-        unsigned BURST_SIZE : 4; //!< [28:25] Burst size for Rx DMA channel n.
-        unsigned RESERVED1 : 2; //!< [30:29] Reserved, always set to zero.
-        unsigned ENABLE : 1; //!< [31] Setting this bit enables the inernal Rx DMA channel n.
-    } B;
-} hw_mipi_hsi_rdma15_conf_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA15_CONF register
- */
-//@{
-#define HW_MIPI_HSI_RDMA15_CONF_ADDR      (REGS_MIPI_HSI_BASE + 0x158)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA15_CONF           (*(volatile hw_mipi_hsi_rdma15_conf_t *) HW_MIPI_HSI_RDMA15_CONF_ADDR)
-#define HW_MIPI_HSI_RDMA15_CONF_RD()      (HW_MIPI_HSI_RDMA15_CONF.U)
-#define HW_MIPI_HSI_RDMA15_CONF_WR(v)     (HW_MIPI_HSI_RDMA15_CONF.U = (v))
-#define HW_MIPI_HSI_RDMA15_CONF_SET(v)    (HW_MIPI_HSI_RDMA15_CONF_WR(HW_MIPI_HSI_RDMA15_CONF_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA15_CONF_CLR(v)    (HW_MIPI_HSI_RDMA15_CONF_WR(HW_MIPI_HSI_RDMA15_CONF_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA15_CONF_TOG(v)    (HW_MIPI_HSI_RDMA15_CONF_WR(HW_MIPI_HSI_RDMA15_CONF_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA15_CONF bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA15_CONF, field TRANS_LENGTH[24:5] (RW)
- *
- * Transfer data length for Rx DMA channel 0. The unit is Dword. h1 1Dword to transfer h2 2Dwords to
- * transfer hfffff 1048575Dwords to transfer
- */
-//@{
-#define BP_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH      (5)      //!< Bit position for MIPI_HSI_RDMA15_CONF_TRANS_LENGTH.
-#define BM_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH      (0x01ffffe0)  //!< Bit mask for MIPI_HSI_RDMA15_CONF_TRANS_LENGTH.
-
-//! @brief Get value of MIPI_HSI_RDMA15_CONF_TRANS_LENGTH from a register value.
-#define BG_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH) >> BP_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA15_CONF_TRANS_LENGTH.
-#define BF_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH) & BM_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the TRANS_LENGTH field to a new value.
-#define BW_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH(v)   (HW_MIPI_HSI_RDMA15_CONF_WR((HW_MIPI_HSI_RDMA15_CONF_RD() & ~BM_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH) | BF_MIPI_HSI_RDMA15_CONF_TRANS_LENGTH(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA15_CONF, field BURST_SIZE[28:25] (RW)
- *
- * Burst size for Rx DMA channel n. The unit is Dword. The burst size should not be larger than
- * relevant TRANS_LENGTH and FIFO_SIZE. h0 1Dword to transfer for each burst h1 2Dword to transfer
- * for each burst h2 4Dword to transfer for each burst h10 1024Dword to transfer for each burst
- */
-//@{
-#define BP_MIPI_HSI_RDMA15_CONF_BURST_SIZE      (25)      //!< Bit position for MIPI_HSI_RDMA15_CONF_BURST_SIZE.
-#define BM_MIPI_HSI_RDMA15_CONF_BURST_SIZE      (0x1e000000)  //!< Bit mask for MIPI_HSI_RDMA15_CONF_BURST_SIZE.
-
-//! @brief Get value of MIPI_HSI_RDMA15_CONF_BURST_SIZE from a register value.
-#define BG_MIPI_HSI_RDMA15_CONF_BURST_SIZE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA15_CONF_BURST_SIZE) >> BP_MIPI_HSI_RDMA15_CONF_BURST_SIZE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA15_CONF_BURST_SIZE.
-#define BF_MIPI_HSI_RDMA15_CONF_BURST_SIZE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA15_CONF_BURST_SIZE) & BM_MIPI_HSI_RDMA15_CONF_BURST_SIZE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the BURST_SIZE field to a new value.
-#define BW_MIPI_HSI_RDMA15_CONF_BURST_SIZE(v)   (HW_MIPI_HSI_RDMA15_CONF_WR((HW_MIPI_HSI_RDMA15_CONF_RD() & ~BM_MIPI_HSI_RDMA15_CONF_BURST_SIZE) | BF_MIPI_HSI_RDMA15_CONF_BURST_SIZE(v)))
-#endif
-//@}
-
-/*! @name Register MIPI_HSI_RDMA15_CONF, field ENABLE[31] (RW)
- *
- * Setting this bit enables the inernal Rx DMA channel n.
- */
-//@{
-#define BP_MIPI_HSI_RDMA15_CONF_ENABLE      (31)      //!< Bit position for MIPI_HSI_RDMA15_CONF_ENABLE.
-#define BM_MIPI_HSI_RDMA15_CONF_ENABLE      (0x80000000)  //!< Bit mask for MIPI_HSI_RDMA15_CONF_ENABLE.
-
-//! @brief Get value of MIPI_HSI_RDMA15_CONF_ENABLE from a register value.
-#define BG_MIPI_HSI_RDMA15_CONF_ENABLE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA15_CONF_ENABLE) >> BP_MIPI_HSI_RDMA15_CONF_ENABLE)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA15_CONF_ENABLE.
-#define BF_MIPI_HSI_RDMA15_CONF_ENABLE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA15_CONF_ENABLE) & BM_MIPI_HSI_RDMA15_CONF_ENABLE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ENABLE field to a new value.
-#define BW_MIPI_HSI_RDMA15_CONF_ENABLE(v)   (HW_MIPI_HSI_RDMA15_CONF_WR((HW_MIPI_HSI_RDMA15_CONF_RD() & ~BM_MIPI_HSI_RDMA15_CONF_ENABLE) | BF_MIPI_HSI_RDMA15_CONF_ENABLE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA0_STA_ADDR - Tx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA0_STA_ADDR - Tx DMA Channel n Start Address Register (RW)
+ * @brief HW_MIPI_HSI_TDMAn_STA_ADDR - Tx DMA Channel n Start Address Register (RW)
  *
  * Reset value: 0x00000000
  *
  * This Register containts the physical Start Address HSI for Tx DMA Channel n.
  */
-typedef union _hw_mipi_hsi_tdma0_sta_addr
+typedef union _hw_mipi_hsi_tdman_sta_addr
 {
     reg32_t U;
-    struct _hw_mipi_hsi_tdma0_sta_addr_bitfields
+    struct _hw_mipi_hsi_tdman_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
         unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
     } B;
-} hw_mipi_hsi_tdma0_sta_addr_t;
+} hw_mipi_hsi_tdman_sta_addr_t;
 #endif
 
 /*!
- * @name Constants and macros for entire MIPI_HSI_TDMA0_STA_ADDR register
+ * @name Constants and macros for entire MIPI_HSI_TDMAn_STA_ADDR register
  */
 //@{
-#define HW_MIPI_HSI_TDMA0_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x15c)
+//! @brief Number of instances of the MIPI_HSI_TDMAn_STA_ADDR register.
+#define HW_MIPI_HSI_TDMAn_STA_ADDR_COUNT     (16)
+
+#define HW_MIPI_HSI_TDMAn_STA_ADDR_ADDR(n)   (REGS_MIPI_HSI_BASE + 0x15c + (0x4 * (n)))
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA0_STA_ADDR           (*(volatile hw_mipi_hsi_tdma0_sta_addr_t *) HW_MIPI_HSI_TDMA0_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_TDMA0_STA_ADDR_RD()      (HW_MIPI_HSI_TDMA0_STA_ADDR.U)
-#define HW_MIPI_HSI_TDMA0_STA_ADDR_WR(v)     (HW_MIPI_HSI_TDMA0_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_TDMA0_STA_ADDR_SET(v)    (HW_MIPI_HSI_TDMA0_STA_ADDR_WR(HW_MIPI_HSI_TDMA0_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA0_STA_ADDR_CLR(v)    (HW_MIPI_HSI_TDMA0_STA_ADDR_WR(HW_MIPI_HSI_TDMA0_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA0_STA_ADDR_TOG(v)    (HW_MIPI_HSI_TDMA0_STA_ADDR_WR(HW_MIPI_HSI_TDMA0_STA_ADDR_RD() ^  (v)))
+#define HW_MIPI_HSI_TDMAn_STA_ADDR(n)        (*(volatile hw_mipi_hsi_tdman_sta_addr_t *) HW_MIPI_HSI_TDMAn_STA_ADDR_ADDR(n))
+#define HW_MIPI_HSI_TDMAn_STA_ADDR_RD(n)     (HW_MIPI_HSI_TDMAn_STA_ADDR(n).U)
+#define HW_MIPI_HSI_TDMAn_STA_ADDR_WR(n, v)  (HW_MIPI_HSI_TDMAn_STA_ADDR(n).U = (v))
+#define HW_MIPI_HSI_TDMAn_STA_ADDR_SET(n, v) (HW_MIPI_HSI_TDMAn_STA_ADDR_WR(n, HW_MIPI_HSI_TDMAn_STA_ADDR_RD(n) |  (v)))
+#define HW_MIPI_HSI_TDMAn_STA_ADDR_CLR(n, v) (HW_MIPI_HSI_TDMAn_STA_ADDR_WR(n, HW_MIPI_HSI_TDMAn_STA_ADDR_RD(n) & ~(v)))
+#define HW_MIPI_HSI_TDMAn_STA_ADDR_TOG(n, v) (HW_MIPI_HSI_TDMAn_STA_ADDR_WR(n, HW_MIPI_HSI_TDMAn_STA_ADDR_RD(n) ^  (v)))
 #endif
 //@}
 
 /*
- * constants & macros for individual MIPI_HSI_TDMA0_STA_ADDR bitfields
+ * constants & macros for individual MIPI_HSI_TDMAn_STA_ADDR bitfields
  */
 
-/*! @name Register MIPI_HSI_TDMA0_STA_ADDR, field DS_ADDR[31:2] (RW)
+/*! @name Register MIPI_HSI_TDMAn_STA_ADDR, field DS_ADDR[31:2] (RW)
  *
  * The Physical Start Address for Tx DMA Channel n. DWord aligned
  */
 //@{
-#define BP_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR.
+#define BP_MIPI_HSI_TDMAn_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMAn_STA_ADDR_DS_ADDR.
+#define BM_MIPI_HSI_TDMAn_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMAn_STA_ADDR_DS_ADDR.
 
-//! @brief Get value of MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR)
+//! @brief Get value of MIPI_HSI_TDMAn_STA_ADDR_DS_ADDR from a register value.
+#define BG_MIPI_HSI_TDMAn_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMAn_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMAn_STA_ADDR_DS_ADDR)
 
-//! @brief Format value for bitfield MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA0_STA_ADDR_WR((HW_MIPI_HSI_TDMA0_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA0_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA1_STA_ADDR - Tx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA1_STA_ADDR - Tx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Tx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_tdma1_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma1_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
-    } B;
-} hw_mipi_hsi_tdma1_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA1_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_TDMA1_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x160)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA1_STA_ADDR           (*(volatile hw_mipi_hsi_tdma1_sta_addr_t *) HW_MIPI_HSI_TDMA1_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_TDMA1_STA_ADDR_RD()      (HW_MIPI_HSI_TDMA1_STA_ADDR.U)
-#define HW_MIPI_HSI_TDMA1_STA_ADDR_WR(v)     (HW_MIPI_HSI_TDMA1_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_TDMA1_STA_ADDR_SET(v)    (HW_MIPI_HSI_TDMA1_STA_ADDR_WR(HW_MIPI_HSI_TDMA1_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA1_STA_ADDR_CLR(v)    (HW_MIPI_HSI_TDMA1_STA_ADDR_WR(HW_MIPI_HSI_TDMA1_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA1_STA_ADDR_TOG(v)    (HW_MIPI_HSI_TDMA1_STA_ADDR_WR(HW_MIPI_HSI_TDMA1_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA1_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA1_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Tx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR)
+//! @brief Format value for bitfield MIPI_HSI_TDMAn_STA_ADDR_DS_ADDR.
+#define BF_MIPI_HSI_TDMAn_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMAn_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMAn_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA1_STA_ADDR_WR((HW_MIPI_HSI_TDMA1_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA1_STA_ADDR_DS_ADDR(v)))
+#define BW_MIPI_HSI_TDMAn_STA_ADDR_DS_ADDR(n, v)   (HW_MIPI_HSI_TDMAn_STA_ADDR_WR(n, (HW_MIPI_HSI_TDMAn_STA_ADDR_RD(n) & ~BM_MIPI_HSI_TDMAn_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMAn_STA_ADDR_DS_ADDR(v)))
 #endif
 //@}
 
 //-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA2_STA_ADDR - Tx DMA Channel n Start Address Register
+// HW_MIPI_HSI_RDMAn_STA_ADDR - Rx DMA Channel n Start Address Register
 //-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_MIPI_HSI_TDMA2_STA_ADDR - Tx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Tx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_tdma2_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma2_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
-    } B;
-} hw_mipi_hsi_tdma2_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA2_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_TDMA2_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x164)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA2_STA_ADDR           (*(volatile hw_mipi_hsi_tdma2_sta_addr_t *) HW_MIPI_HSI_TDMA2_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_TDMA2_STA_ADDR_RD()      (HW_MIPI_HSI_TDMA2_STA_ADDR.U)
-#define HW_MIPI_HSI_TDMA2_STA_ADDR_WR(v)     (HW_MIPI_HSI_TDMA2_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_TDMA2_STA_ADDR_SET(v)    (HW_MIPI_HSI_TDMA2_STA_ADDR_WR(HW_MIPI_HSI_TDMA2_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA2_STA_ADDR_CLR(v)    (HW_MIPI_HSI_TDMA2_STA_ADDR_WR(HW_MIPI_HSI_TDMA2_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA2_STA_ADDR_TOG(v)    (HW_MIPI_HSI_TDMA2_STA_ADDR_WR(HW_MIPI_HSI_TDMA2_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA2_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA2_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Tx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA2_STA_ADDR_WR((HW_MIPI_HSI_TDMA2_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA2_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA3_STA_ADDR - Tx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA3_STA_ADDR - Tx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Tx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_tdma3_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma3_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
-    } B;
-} hw_mipi_hsi_tdma3_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA3_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_TDMA3_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x168)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA3_STA_ADDR           (*(volatile hw_mipi_hsi_tdma3_sta_addr_t *) HW_MIPI_HSI_TDMA3_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_TDMA3_STA_ADDR_RD()      (HW_MIPI_HSI_TDMA3_STA_ADDR.U)
-#define HW_MIPI_HSI_TDMA3_STA_ADDR_WR(v)     (HW_MIPI_HSI_TDMA3_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_TDMA3_STA_ADDR_SET(v)    (HW_MIPI_HSI_TDMA3_STA_ADDR_WR(HW_MIPI_HSI_TDMA3_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA3_STA_ADDR_CLR(v)    (HW_MIPI_HSI_TDMA3_STA_ADDR_WR(HW_MIPI_HSI_TDMA3_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA3_STA_ADDR_TOG(v)    (HW_MIPI_HSI_TDMA3_STA_ADDR_WR(HW_MIPI_HSI_TDMA3_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA3_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA3_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Tx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA3_STA_ADDR_WR((HW_MIPI_HSI_TDMA3_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA3_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA4_STA_ADDR - Tx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA4_STA_ADDR - Tx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Tx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_tdma4_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma4_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
-    } B;
-} hw_mipi_hsi_tdma4_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA4_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_TDMA4_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x16c)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA4_STA_ADDR           (*(volatile hw_mipi_hsi_tdma4_sta_addr_t *) HW_MIPI_HSI_TDMA4_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_TDMA4_STA_ADDR_RD()      (HW_MIPI_HSI_TDMA4_STA_ADDR.U)
-#define HW_MIPI_HSI_TDMA4_STA_ADDR_WR(v)     (HW_MIPI_HSI_TDMA4_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_TDMA4_STA_ADDR_SET(v)    (HW_MIPI_HSI_TDMA4_STA_ADDR_WR(HW_MIPI_HSI_TDMA4_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA4_STA_ADDR_CLR(v)    (HW_MIPI_HSI_TDMA4_STA_ADDR_WR(HW_MIPI_HSI_TDMA4_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA4_STA_ADDR_TOG(v)    (HW_MIPI_HSI_TDMA4_STA_ADDR_WR(HW_MIPI_HSI_TDMA4_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA4_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA4_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Tx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA4_STA_ADDR_WR((HW_MIPI_HSI_TDMA4_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA4_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA5_STA_ADDR - Tx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA5_STA_ADDR - Tx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Tx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_tdma5_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma5_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
-    } B;
-} hw_mipi_hsi_tdma5_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA5_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_TDMA5_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x170)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA5_STA_ADDR           (*(volatile hw_mipi_hsi_tdma5_sta_addr_t *) HW_MIPI_HSI_TDMA5_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_TDMA5_STA_ADDR_RD()      (HW_MIPI_HSI_TDMA5_STA_ADDR.U)
-#define HW_MIPI_HSI_TDMA5_STA_ADDR_WR(v)     (HW_MIPI_HSI_TDMA5_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_TDMA5_STA_ADDR_SET(v)    (HW_MIPI_HSI_TDMA5_STA_ADDR_WR(HW_MIPI_HSI_TDMA5_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA5_STA_ADDR_CLR(v)    (HW_MIPI_HSI_TDMA5_STA_ADDR_WR(HW_MIPI_HSI_TDMA5_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA5_STA_ADDR_TOG(v)    (HW_MIPI_HSI_TDMA5_STA_ADDR_WR(HW_MIPI_HSI_TDMA5_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA5_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA5_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Tx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA5_STA_ADDR_WR((HW_MIPI_HSI_TDMA5_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA5_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA6_STA_ADDR - Tx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA6_STA_ADDR - Tx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Tx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_tdma6_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma6_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
-    } B;
-} hw_mipi_hsi_tdma6_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA6_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_TDMA6_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x174)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA6_STA_ADDR           (*(volatile hw_mipi_hsi_tdma6_sta_addr_t *) HW_MIPI_HSI_TDMA6_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_TDMA6_STA_ADDR_RD()      (HW_MIPI_HSI_TDMA6_STA_ADDR.U)
-#define HW_MIPI_HSI_TDMA6_STA_ADDR_WR(v)     (HW_MIPI_HSI_TDMA6_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_TDMA6_STA_ADDR_SET(v)    (HW_MIPI_HSI_TDMA6_STA_ADDR_WR(HW_MIPI_HSI_TDMA6_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA6_STA_ADDR_CLR(v)    (HW_MIPI_HSI_TDMA6_STA_ADDR_WR(HW_MIPI_HSI_TDMA6_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA6_STA_ADDR_TOG(v)    (HW_MIPI_HSI_TDMA6_STA_ADDR_WR(HW_MIPI_HSI_TDMA6_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA6_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA6_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Tx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA6_STA_ADDR_WR((HW_MIPI_HSI_TDMA6_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA6_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA7_STA_ADDR - Tx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA7_STA_ADDR - Tx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Tx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_tdma7_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma7_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
-    } B;
-} hw_mipi_hsi_tdma7_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA7_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_TDMA7_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x178)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA7_STA_ADDR           (*(volatile hw_mipi_hsi_tdma7_sta_addr_t *) HW_MIPI_HSI_TDMA7_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_TDMA7_STA_ADDR_RD()      (HW_MIPI_HSI_TDMA7_STA_ADDR.U)
-#define HW_MIPI_HSI_TDMA7_STA_ADDR_WR(v)     (HW_MIPI_HSI_TDMA7_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_TDMA7_STA_ADDR_SET(v)    (HW_MIPI_HSI_TDMA7_STA_ADDR_WR(HW_MIPI_HSI_TDMA7_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA7_STA_ADDR_CLR(v)    (HW_MIPI_HSI_TDMA7_STA_ADDR_WR(HW_MIPI_HSI_TDMA7_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA7_STA_ADDR_TOG(v)    (HW_MIPI_HSI_TDMA7_STA_ADDR_WR(HW_MIPI_HSI_TDMA7_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA7_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA7_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Tx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA7_STA_ADDR_WR((HW_MIPI_HSI_TDMA7_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA7_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA8_STA_ADDR - Tx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA8_STA_ADDR - Tx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Tx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_tdma8_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma8_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
-    } B;
-} hw_mipi_hsi_tdma8_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA8_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_TDMA8_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x17c)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA8_STA_ADDR           (*(volatile hw_mipi_hsi_tdma8_sta_addr_t *) HW_MIPI_HSI_TDMA8_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_TDMA8_STA_ADDR_RD()      (HW_MIPI_HSI_TDMA8_STA_ADDR.U)
-#define HW_MIPI_HSI_TDMA8_STA_ADDR_WR(v)     (HW_MIPI_HSI_TDMA8_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_TDMA8_STA_ADDR_SET(v)    (HW_MIPI_HSI_TDMA8_STA_ADDR_WR(HW_MIPI_HSI_TDMA8_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA8_STA_ADDR_CLR(v)    (HW_MIPI_HSI_TDMA8_STA_ADDR_WR(HW_MIPI_HSI_TDMA8_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA8_STA_ADDR_TOG(v)    (HW_MIPI_HSI_TDMA8_STA_ADDR_WR(HW_MIPI_HSI_TDMA8_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA8_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA8_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Tx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA8_STA_ADDR_WR((HW_MIPI_HSI_TDMA8_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA8_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA9_STA_ADDR - Tx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA9_STA_ADDR - Tx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Tx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_tdma9_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma9_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
-    } B;
-} hw_mipi_hsi_tdma9_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA9_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_TDMA9_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x180)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA9_STA_ADDR           (*(volatile hw_mipi_hsi_tdma9_sta_addr_t *) HW_MIPI_HSI_TDMA9_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_TDMA9_STA_ADDR_RD()      (HW_MIPI_HSI_TDMA9_STA_ADDR.U)
-#define HW_MIPI_HSI_TDMA9_STA_ADDR_WR(v)     (HW_MIPI_HSI_TDMA9_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_TDMA9_STA_ADDR_SET(v)    (HW_MIPI_HSI_TDMA9_STA_ADDR_WR(HW_MIPI_HSI_TDMA9_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA9_STA_ADDR_CLR(v)    (HW_MIPI_HSI_TDMA9_STA_ADDR_WR(HW_MIPI_HSI_TDMA9_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA9_STA_ADDR_TOG(v)    (HW_MIPI_HSI_TDMA9_STA_ADDR_WR(HW_MIPI_HSI_TDMA9_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA9_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA9_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Tx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA9_STA_ADDR_WR((HW_MIPI_HSI_TDMA9_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA9_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA10_STA_ADDR - Tx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA10_STA_ADDR - Tx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Tx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_tdma10_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma10_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
-    } B;
-} hw_mipi_hsi_tdma10_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA10_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_TDMA10_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x184)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA10_STA_ADDR           (*(volatile hw_mipi_hsi_tdma10_sta_addr_t *) HW_MIPI_HSI_TDMA10_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_TDMA10_STA_ADDR_RD()      (HW_MIPI_HSI_TDMA10_STA_ADDR.U)
-#define HW_MIPI_HSI_TDMA10_STA_ADDR_WR(v)     (HW_MIPI_HSI_TDMA10_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_TDMA10_STA_ADDR_SET(v)    (HW_MIPI_HSI_TDMA10_STA_ADDR_WR(HW_MIPI_HSI_TDMA10_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA10_STA_ADDR_CLR(v)    (HW_MIPI_HSI_TDMA10_STA_ADDR_WR(HW_MIPI_HSI_TDMA10_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA10_STA_ADDR_TOG(v)    (HW_MIPI_HSI_TDMA10_STA_ADDR_WR(HW_MIPI_HSI_TDMA10_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA10_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA10_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Tx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA10_STA_ADDR_WR((HW_MIPI_HSI_TDMA10_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA10_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA11_STA_ADDR - Tx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA11_STA_ADDR - Tx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Tx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_tdma11_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma11_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
-    } B;
-} hw_mipi_hsi_tdma11_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA11_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_TDMA11_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x188)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA11_STA_ADDR           (*(volatile hw_mipi_hsi_tdma11_sta_addr_t *) HW_MIPI_HSI_TDMA11_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_TDMA11_STA_ADDR_RD()      (HW_MIPI_HSI_TDMA11_STA_ADDR.U)
-#define HW_MIPI_HSI_TDMA11_STA_ADDR_WR(v)     (HW_MIPI_HSI_TDMA11_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_TDMA11_STA_ADDR_SET(v)    (HW_MIPI_HSI_TDMA11_STA_ADDR_WR(HW_MIPI_HSI_TDMA11_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA11_STA_ADDR_CLR(v)    (HW_MIPI_HSI_TDMA11_STA_ADDR_WR(HW_MIPI_HSI_TDMA11_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA11_STA_ADDR_TOG(v)    (HW_MIPI_HSI_TDMA11_STA_ADDR_WR(HW_MIPI_HSI_TDMA11_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA11_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA11_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Tx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA11_STA_ADDR_WR((HW_MIPI_HSI_TDMA11_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA11_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA12_STA_ADDR - Tx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA12_STA_ADDR - Tx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Tx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_tdma12_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma12_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
-    } B;
-} hw_mipi_hsi_tdma12_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA12_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_TDMA12_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x18c)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA12_STA_ADDR           (*(volatile hw_mipi_hsi_tdma12_sta_addr_t *) HW_MIPI_HSI_TDMA12_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_TDMA12_STA_ADDR_RD()      (HW_MIPI_HSI_TDMA12_STA_ADDR.U)
-#define HW_MIPI_HSI_TDMA12_STA_ADDR_WR(v)     (HW_MIPI_HSI_TDMA12_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_TDMA12_STA_ADDR_SET(v)    (HW_MIPI_HSI_TDMA12_STA_ADDR_WR(HW_MIPI_HSI_TDMA12_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA12_STA_ADDR_CLR(v)    (HW_MIPI_HSI_TDMA12_STA_ADDR_WR(HW_MIPI_HSI_TDMA12_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA12_STA_ADDR_TOG(v)    (HW_MIPI_HSI_TDMA12_STA_ADDR_WR(HW_MIPI_HSI_TDMA12_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA12_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA12_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Tx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA12_STA_ADDR_WR((HW_MIPI_HSI_TDMA12_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA12_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA13_STA_ADDR - Tx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA13_STA_ADDR - Tx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Tx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_tdma13_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma13_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
-    } B;
-} hw_mipi_hsi_tdma13_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA13_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_TDMA13_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x190)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA13_STA_ADDR           (*(volatile hw_mipi_hsi_tdma13_sta_addr_t *) HW_MIPI_HSI_TDMA13_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_TDMA13_STA_ADDR_RD()      (HW_MIPI_HSI_TDMA13_STA_ADDR.U)
-#define HW_MIPI_HSI_TDMA13_STA_ADDR_WR(v)     (HW_MIPI_HSI_TDMA13_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_TDMA13_STA_ADDR_SET(v)    (HW_MIPI_HSI_TDMA13_STA_ADDR_WR(HW_MIPI_HSI_TDMA13_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA13_STA_ADDR_CLR(v)    (HW_MIPI_HSI_TDMA13_STA_ADDR_WR(HW_MIPI_HSI_TDMA13_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA13_STA_ADDR_TOG(v)    (HW_MIPI_HSI_TDMA13_STA_ADDR_WR(HW_MIPI_HSI_TDMA13_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA13_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA13_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Tx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA13_STA_ADDR_WR((HW_MIPI_HSI_TDMA13_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA13_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA14_STA_ADDR - Tx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA14_STA_ADDR - Tx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Tx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_tdma14_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma14_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
-    } B;
-} hw_mipi_hsi_tdma14_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA14_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_TDMA14_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x194)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA14_STA_ADDR           (*(volatile hw_mipi_hsi_tdma14_sta_addr_t *) HW_MIPI_HSI_TDMA14_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_TDMA14_STA_ADDR_RD()      (HW_MIPI_HSI_TDMA14_STA_ADDR.U)
-#define HW_MIPI_HSI_TDMA14_STA_ADDR_WR(v)     (HW_MIPI_HSI_TDMA14_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_TDMA14_STA_ADDR_SET(v)    (HW_MIPI_HSI_TDMA14_STA_ADDR_WR(HW_MIPI_HSI_TDMA14_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA14_STA_ADDR_CLR(v)    (HW_MIPI_HSI_TDMA14_STA_ADDR_WR(HW_MIPI_HSI_TDMA14_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA14_STA_ADDR_TOG(v)    (HW_MIPI_HSI_TDMA14_STA_ADDR_WR(HW_MIPI_HSI_TDMA14_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA14_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA14_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Tx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA14_STA_ADDR_WR((HW_MIPI_HSI_TDMA14_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA14_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_TDMA15_STA_ADDR - Tx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_TDMA15_STA_ADDR - Tx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Tx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_tdma15_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_tdma15_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Tx DMA Channel n.
-    } B;
-} hw_mipi_hsi_tdma15_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_TDMA15_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_TDMA15_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x198)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_TDMA15_STA_ADDR           (*(volatile hw_mipi_hsi_tdma15_sta_addr_t *) HW_MIPI_HSI_TDMA15_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_TDMA15_STA_ADDR_RD()      (HW_MIPI_HSI_TDMA15_STA_ADDR.U)
-#define HW_MIPI_HSI_TDMA15_STA_ADDR_WR(v)     (HW_MIPI_HSI_TDMA15_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_TDMA15_STA_ADDR_SET(v)    (HW_MIPI_HSI_TDMA15_STA_ADDR_WR(HW_MIPI_HSI_TDMA15_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_TDMA15_STA_ADDR_CLR(v)    (HW_MIPI_HSI_TDMA15_STA_ADDR_WR(HW_MIPI_HSI_TDMA15_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_TDMA15_STA_ADDR_TOG(v)    (HW_MIPI_HSI_TDMA15_STA_ADDR_WR(HW_MIPI_HSI_TDMA15_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_TDMA15_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_TDMA15_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Tx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_TDMA15_STA_ADDR_WR((HW_MIPI_HSI_TDMA15_STA_ADDR_RD() & ~BM_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_TDMA15_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA0_STA_ADDR - Rx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA0_STA_ADDR - Rx DMA Channel n Start Address Register (RW)
+ * @brief HW_MIPI_HSI_RDMAn_STA_ADDR - Rx DMA Channel n Start Address Register (RW)
  *
  * Reset value: 0x00000000
  *
  * This Register containts the physical Start Address HSI for Rx DMA Channel n.
  */
-typedef union _hw_mipi_hsi_rdma0_sta_addr
+typedef union _hw_mipi_hsi_rdman_sta_addr
 {
     reg32_t U;
-    struct _hw_mipi_hsi_rdma0_sta_addr_bitfields
+    struct _hw_mipi_hsi_rdman_sta_addr_bitfields
     {
         unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
         unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
     } B;
-} hw_mipi_hsi_rdma0_sta_addr_t;
+} hw_mipi_hsi_rdman_sta_addr_t;
 #endif
 
 /*!
- * @name Constants and macros for entire MIPI_HSI_RDMA0_STA_ADDR register
+ * @name Constants and macros for entire MIPI_HSI_RDMAn_STA_ADDR register
  */
 //@{
-#define HW_MIPI_HSI_RDMA0_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x19c)
+//! @brief Number of instances of the MIPI_HSI_RDMAn_STA_ADDR register.
+#define HW_MIPI_HSI_RDMAn_STA_ADDR_COUNT     (16)
+
+#define HW_MIPI_HSI_RDMAn_STA_ADDR_ADDR(n)   (REGS_MIPI_HSI_BASE + 0x19c + (0x4 * (n)))
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA0_STA_ADDR           (*(volatile hw_mipi_hsi_rdma0_sta_addr_t *) HW_MIPI_HSI_RDMA0_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_RDMA0_STA_ADDR_RD()      (HW_MIPI_HSI_RDMA0_STA_ADDR.U)
-#define HW_MIPI_HSI_RDMA0_STA_ADDR_WR(v)     (HW_MIPI_HSI_RDMA0_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_RDMA0_STA_ADDR_SET(v)    (HW_MIPI_HSI_RDMA0_STA_ADDR_WR(HW_MIPI_HSI_RDMA0_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA0_STA_ADDR_CLR(v)    (HW_MIPI_HSI_RDMA0_STA_ADDR_WR(HW_MIPI_HSI_RDMA0_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA0_STA_ADDR_TOG(v)    (HW_MIPI_HSI_RDMA0_STA_ADDR_WR(HW_MIPI_HSI_RDMA0_STA_ADDR_RD() ^  (v)))
+#define HW_MIPI_HSI_RDMAn_STA_ADDR(n)        (*(volatile hw_mipi_hsi_rdman_sta_addr_t *) HW_MIPI_HSI_RDMAn_STA_ADDR_ADDR(n))
+#define HW_MIPI_HSI_RDMAn_STA_ADDR_RD(n)     (HW_MIPI_HSI_RDMAn_STA_ADDR(n).U)
+#define HW_MIPI_HSI_RDMAn_STA_ADDR_WR(n, v)  (HW_MIPI_HSI_RDMAn_STA_ADDR(n).U = (v))
+#define HW_MIPI_HSI_RDMAn_STA_ADDR_SET(n, v) (HW_MIPI_HSI_RDMAn_STA_ADDR_WR(n, HW_MIPI_HSI_RDMAn_STA_ADDR_RD(n) |  (v)))
+#define HW_MIPI_HSI_RDMAn_STA_ADDR_CLR(n, v) (HW_MIPI_HSI_RDMAn_STA_ADDR_WR(n, HW_MIPI_HSI_RDMAn_STA_ADDR_RD(n) & ~(v)))
+#define HW_MIPI_HSI_RDMAn_STA_ADDR_TOG(n, v) (HW_MIPI_HSI_RDMAn_STA_ADDR_WR(n, HW_MIPI_HSI_RDMAn_STA_ADDR_RD(n) ^  (v)))
 #endif
 //@}
 
 /*
- * constants & macros for individual MIPI_HSI_RDMA0_STA_ADDR bitfields
+ * constants & macros for individual MIPI_HSI_RDMAn_STA_ADDR bitfields
  */
 
-/*! @name Register MIPI_HSI_RDMA0_STA_ADDR, field DS_ADDR[31:2] (RW)
+/*! @name Register MIPI_HSI_RDMAn_STA_ADDR, field DS_ADDR[31:2] (RW)
  *
  * The Physical Start Address for Rx DMA Channel n. DWord aligned
  */
 //@{
-#define BP_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR.
+#define BP_MIPI_HSI_RDMAn_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMAn_STA_ADDR_DS_ADDR.
+#define BM_MIPI_HSI_RDMAn_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMAn_STA_ADDR_DS_ADDR.
 
-//! @brief Get value of MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR)
+//! @brief Get value of MIPI_HSI_RDMAn_STA_ADDR_DS_ADDR from a register value.
+#define BG_MIPI_HSI_RDMAn_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMAn_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMAn_STA_ADDR_DS_ADDR)
 
-//! @brief Format value for bitfield MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA0_STA_ADDR_WR((HW_MIPI_HSI_RDMA0_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA0_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA1_STA_ADDR - Rx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA1_STA_ADDR - Rx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Rx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_rdma1_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma1_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
-    } B;
-} hw_mipi_hsi_rdma1_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA1_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_RDMA1_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x1a0)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA1_STA_ADDR           (*(volatile hw_mipi_hsi_rdma1_sta_addr_t *) HW_MIPI_HSI_RDMA1_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_RDMA1_STA_ADDR_RD()      (HW_MIPI_HSI_RDMA1_STA_ADDR.U)
-#define HW_MIPI_HSI_RDMA1_STA_ADDR_WR(v)     (HW_MIPI_HSI_RDMA1_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_RDMA1_STA_ADDR_SET(v)    (HW_MIPI_HSI_RDMA1_STA_ADDR_WR(HW_MIPI_HSI_RDMA1_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA1_STA_ADDR_CLR(v)    (HW_MIPI_HSI_RDMA1_STA_ADDR_WR(HW_MIPI_HSI_RDMA1_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA1_STA_ADDR_TOG(v)    (HW_MIPI_HSI_RDMA1_STA_ADDR_WR(HW_MIPI_HSI_RDMA1_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA1_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA1_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Rx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR)
+//! @brief Format value for bitfield MIPI_HSI_RDMAn_STA_ADDR_DS_ADDR.
+#define BF_MIPI_HSI_RDMAn_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMAn_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMAn_STA_ADDR_DS_ADDR)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA1_STA_ADDR_WR((HW_MIPI_HSI_RDMA1_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA1_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA2_STA_ADDR - Rx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA2_STA_ADDR - Rx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Rx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_rdma2_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma2_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
-    } B;
-} hw_mipi_hsi_rdma2_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA2_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_RDMA2_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x1a4)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA2_STA_ADDR           (*(volatile hw_mipi_hsi_rdma2_sta_addr_t *) HW_MIPI_HSI_RDMA2_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_RDMA2_STA_ADDR_RD()      (HW_MIPI_HSI_RDMA2_STA_ADDR.U)
-#define HW_MIPI_HSI_RDMA2_STA_ADDR_WR(v)     (HW_MIPI_HSI_RDMA2_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_RDMA2_STA_ADDR_SET(v)    (HW_MIPI_HSI_RDMA2_STA_ADDR_WR(HW_MIPI_HSI_RDMA2_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA2_STA_ADDR_CLR(v)    (HW_MIPI_HSI_RDMA2_STA_ADDR_WR(HW_MIPI_HSI_RDMA2_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA2_STA_ADDR_TOG(v)    (HW_MIPI_HSI_RDMA2_STA_ADDR_WR(HW_MIPI_HSI_RDMA2_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA2_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA2_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Rx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA2_STA_ADDR_WR((HW_MIPI_HSI_RDMA2_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA2_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA3_STA_ADDR - Rx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA3_STA_ADDR - Rx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Rx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_rdma3_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma3_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
-    } B;
-} hw_mipi_hsi_rdma3_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA3_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_RDMA3_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x1a8)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA3_STA_ADDR           (*(volatile hw_mipi_hsi_rdma3_sta_addr_t *) HW_MIPI_HSI_RDMA3_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_RDMA3_STA_ADDR_RD()      (HW_MIPI_HSI_RDMA3_STA_ADDR.U)
-#define HW_MIPI_HSI_RDMA3_STA_ADDR_WR(v)     (HW_MIPI_HSI_RDMA3_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_RDMA3_STA_ADDR_SET(v)    (HW_MIPI_HSI_RDMA3_STA_ADDR_WR(HW_MIPI_HSI_RDMA3_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA3_STA_ADDR_CLR(v)    (HW_MIPI_HSI_RDMA3_STA_ADDR_WR(HW_MIPI_HSI_RDMA3_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA3_STA_ADDR_TOG(v)    (HW_MIPI_HSI_RDMA3_STA_ADDR_WR(HW_MIPI_HSI_RDMA3_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA3_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA3_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Rx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA3_STA_ADDR_WR((HW_MIPI_HSI_RDMA3_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA3_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA4_STA_ADDR - Rx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA4_STA_ADDR - Rx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Rx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_rdma4_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma4_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
-    } B;
-} hw_mipi_hsi_rdma4_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA4_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_RDMA4_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x1ac)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA4_STA_ADDR           (*(volatile hw_mipi_hsi_rdma4_sta_addr_t *) HW_MIPI_HSI_RDMA4_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_RDMA4_STA_ADDR_RD()      (HW_MIPI_HSI_RDMA4_STA_ADDR.U)
-#define HW_MIPI_HSI_RDMA4_STA_ADDR_WR(v)     (HW_MIPI_HSI_RDMA4_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_RDMA4_STA_ADDR_SET(v)    (HW_MIPI_HSI_RDMA4_STA_ADDR_WR(HW_MIPI_HSI_RDMA4_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA4_STA_ADDR_CLR(v)    (HW_MIPI_HSI_RDMA4_STA_ADDR_WR(HW_MIPI_HSI_RDMA4_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA4_STA_ADDR_TOG(v)    (HW_MIPI_HSI_RDMA4_STA_ADDR_WR(HW_MIPI_HSI_RDMA4_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA4_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA4_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Rx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA4_STA_ADDR_WR((HW_MIPI_HSI_RDMA4_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA4_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA5_STA_ADDR - Rx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA5_STA_ADDR - Rx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Rx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_rdma5_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma5_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
-    } B;
-} hw_mipi_hsi_rdma5_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA5_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_RDMA5_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x1b0)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA5_STA_ADDR           (*(volatile hw_mipi_hsi_rdma5_sta_addr_t *) HW_MIPI_HSI_RDMA5_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_RDMA5_STA_ADDR_RD()      (HW_MIPI_HSI_RDMA5_STA_ADDR.U)
-#define HW_MIPI_HSI_RDMA5_STA_ADDR_WR(v)     (HW_MIPI_HSI_RDMA5_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_RDMA5_STA_ADDR_SET(v)    (HW_MIPI_HSI_RDMA5_STA_ADDR_WR(HW_MIPI_HSI_RDMA5_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA5_STA_ADDR_CLR(v)    (HW_MIPI_HSI_RDMA5_STA_ADDR_WR(HW_MIPI_HSI_RDMA5_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA5_STA_ADDR_TOG(v)    (HW_MIPI_HSI_RDMA5_STA_ADDR_WR(HW_MIPI_HSI_RDMA5_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA5_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA5_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Rx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA5_STA_ADDR_WR((HW_MIPI_HSI_RDMA5_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA5_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA6_STA_ADDR - Rx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA6_STA_ADDR - Rx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Rx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_rdma6_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma6_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
-    } B;
-} hw_mipi_hsi_rdma6_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA6_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_RDMA6_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x1b4)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA6_STA_ADDR           (*(volatile hw_mipi_hsi_rdma6_sta_addr_t *) HW_MIPI_HSI_RDMA6_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_RDMA6_STA_ADDR_RD()      (HW_MIPI_HSI_RDMA6_STA_ADDR.U)
-#define HW_MIPI_HSI_RDMA6_STA_ADDR_WR(v)     (HW_MIPI_HSI_RDMA6_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_RDMA6_STA_ADDR_SET(v)    (HW_MIPI_HSI_RDMA6_STA_ADDR_WR(HW_MIPI_HSI_RDMA6_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA6_STA_ADDR_CLR(v)    (HW_MIPI_HSI_RDMA6_STA_ADDR_WR(HW_MIPI_HSI_RDMA6_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA6_STA_ADDR_TOG(v)    (HW_MIPI_HSI_RDMA6_STA_ADDR_WR(HW_MIPI_HSI_RDMA6_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA6_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA6_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Rx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA6_STA_ADDR_WR((HW_MIPI_HSI_RDMA6_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA6_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA7_STA_ADDR - Rx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA7_STA_ADDR - Rx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Rx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_rdma7_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma7_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
-    } B;
-} hw_mipi_hsi_rdma7_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA7_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_RDMA7_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x1b8)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA7_STA_ADDR           (*(volatile hw_mipi_hsi_rdma7_sta_addr_t *) HW_MIPI_HSI_RDMA7_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_RDMA7_STA_ADDR_RD()      (HW_MIPI_HSI_RDMA7_STA_ADDR.U)
-#define HW_MIPI_HSI_RDMA7_STA_ADDR_WR(v)     (HW_MIPI_HSI_RDMA7_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_RDMA7_STA_ADDR_SET(v)    (HW_MIPI_HSI_RDMA7_STA_ADDR_WR(HW_MIPI_HSI_RDMA7_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA7_STA_ADDR_CLR(v)    (HW_MIPI_HSI_RDMA7_STA_ADDR_WR(HW_MIPI_HSI_RDMA7_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA7_STA_ADDR_TOG(v)    (HW_MIPI_HSI_RDMA7_STA_ADDR_WR(HW_MIPI_HSI_RDMA7_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA7_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA7_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Rx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA7_STA_ADDR_WR((HW_MIPI_HSI_RDMA7_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA7_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA8_STA_ADDR - Rx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA8_STA_ADDR - Rx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Rx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_rdma8_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma8_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
-    } B;
-} hw_mipi_hsi_rdma8_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA8_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_RDMA8_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x1bc)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA8_STA_ADDR           (*(volatile hw_mipi_hsi_rdma8_sta_addr_t *) HW_MIPI_HSI_RDMA8_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_RDMA8_STA_ADDR_RD()      (HW_MIPI_HSI_RDMA8_STA_ADDR.U)
-#define HW_MIPI_HSI_RDMA8_STA_ADDR_WR(v)     (HW_MIPI_HSI_RDMA8_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_RDMA8_STA_ADDR_SET(v)    (HW_MIPI_HSI_RDMA8_STA_ADDR_WR(HW_MIPI_HSI_RDMA8_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA8_STA_ADDR_CLR(v)    (HW_MIPI_HSI_RDMA8_STA_ADDR_WR(HW_MIPI_HSI_RDMA8_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA8_STA_ADDR_TOG(v)    (HW_MIPI_HSI_RDMA8_STA_ADDR_WR(HW_MIPI_HSI_RDMA8_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA8_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA8_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Rx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA8_STA_ADDR_WR((HW_MIPI_HSI_RDMA8_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA8_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA9_STA_ADDR - Rx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA9_STA_ADDR - Rx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Rx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_rdma9_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma9_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
-    } B;
-} hw_mipi_hsi_rdma9_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA9_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_RDMA9_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x1c0)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA9_STA_ADDR           (*(volatile hw_mipi_hsi_rdma9_sta_addr_t *) HW_MIPI_HSI_RDMA9_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_RDMA9_STA_ADDR_RD()      (HW_MIPI_HSI_RDMA9_STA_ADDR.U)
-#define HW_MIPI_HSI_RDMA9_STA_ADDR_WR(v)     (HW_MIPI_HSI_RDMA9_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_RDMA9_STA_ADDR_SET(v)    (HW_MIPI_HSI_RDMA9_STA_ADDR_WR(HW_MIPI_HSI_RDMA9_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA9_STA_ADDR_CLR(v)    (HW_MIPI_HSI_RDMA9_STA_ADDR_WR(HW_MIPI_HSI_RDMA9_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA9_STA_ADDR_TOG(v)    (HW_MIPI_HSI_RDMA9_STA_ADDR_WR(HW_MIPI_HSI_RDMA9_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA9_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA9_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Rx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA9_STA_ADDR_WR((HW_MIPI_HSI_RDMA9_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA9_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA10_STA_ADDR - Rx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA10_STA_ADDR - Rx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Rx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_rdma10_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma10_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
-    } B;
-} hw_mipi_hsi_rdma10_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA10_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_RDMA10_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x1c4)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA10_STA_ADDR           (*(volatile hw_mipi_hsi_rdma10_sta_addr_t *) HW_MIPI_HSI_RDMA10_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_RDMA10_STA_ADDR_RD()      (HW_MIPI_HSI_RDMA10_STA_ADDR.U)
-#define HW_MIPI_HSI_RDMA10_STA_ADDR_WR(v)     (HW_MIPI_HSI_RDMA10_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_RDMA10_STA_ADDR_SET(v)    (HW_MIPI_HSI_RDMA10_STA_ADDR_WR(HW_MIPI_HSI_RDMA10_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA10_STA_ADDR_CLR(v)    (HW_MIPI_HSI_RDMA10_STA_ADDR_WR(HW_MIPI_HSI_RDMA10_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA10_STA_ADDR_TOG(v)    (HW_MIPI_HSI_RDMA10_STA_ADDR_WR(HW_MIPI_HSI_RDMA10_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA10_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA10_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Rx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA10_STA_ADDR_WR((HW_MIPI_HSI_RDMA10_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA10_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA11_STA_ADDR - Rx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA11_STA_ADDR - Rx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Rx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_rdma11_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma11_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
-    } B;
-} hw_mipi_hsi_rdma11_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA11_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_RDMA11_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x1c8)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA11_STA_ADDR           (*(volatile hw_mipi_hsi_rdma11_sta_addr_t *) HW_MIPI_HSI_RDMA11_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_RDMA11_STA_ADDR_RD()      (HW_MIPI_HSI_RDMA11_STA_ADDR.U)
-#define HW_MIPI_HSI_RDMA11_STA_ADDR_WR(v)     (HW_MIPI_HSI_RDMA11_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_RDMA11_STA_ADDR_SET(v)    (HW_MIPI_HSI_RDMA11_STA_ADDR_WR(HW_MIPI_HSI_RDMA11_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA11_STA_ADDR_CLR(v)    (HW_MIPI_HSI_RDMA11_STA_ADDR_WR(HW_MIPI_HSI_RDMA11_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA11_STA_ADDR_TOG(v)    (HW_MIPI_HSI_RDMA11_STA_ADDR_WR(HW_MIPI_HSI_RDMA11_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA11_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA11_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Rx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA11_STA_ADDR_WR((HW_MIPI_HSI_RDMA11_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA11_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA12_STA_ADDR - Rx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA12_STA_ADDR - Rx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Rx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_rdma12_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma12_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
-    } B;
-} hw_mipi_hsi_rdma12_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA12_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_RDMA12_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x1cc)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA12_STA_ADDR           (*(volatile hw_mipi_hsi_rdma12_sta_addr_t *) HW_MIPI_HSI_RDMA12_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_RDMA12_STA_ADDR_RD()      (HW_MIPI_HSI_RDMA12_STA_ADDR.U)
-#define HW_MIPI_HSI_RDMA12_STA_ADDR_WR(v)     (HW_MIPI_HSI_RDMA12_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_RDMA12_STA_ADDR_SET(v)    (HW_MIPI_HSI_RDMA12_STA_ADDR_WR(HW_MIPI_HSI_RDMA12_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA12_STA_ADDR_CLR(v)    (HW_MIPI_HSI_RDMA12_STA_ADDR_WR(HW_MIPI_HSI_RDMA12_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA12_STA_ADDR_TOG(v)    (HW_MIPI_HSI_RDMA12_STA_ADDR_WR(HW_MIPI_HSI_RDMA12_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA12_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA12_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Rx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA12_STA_ADDR_WR((HW_MIPI_HSI_RDMA12_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA12_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA13_STA_ADDR - Rx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA13_STA_ADDR - Rx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Rx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_rdma13_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma13_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
-    } B;
-} hw_mipi_hsi_rdma13_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA13_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_RDMA13_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x1d0)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA13_STA_ADDR           (*(volatile hw_mipi_hsi_rdma13_sta_addr_t *) HW_MIPI_HSI_RDMA13_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_RDMA13_STA_ADDR_RD()      (HW_MIPI_HSI_RDMA13_STA_ADDR.U)
-#define HW_MIPI_HSI_RDMA13_STA_ADDR_WR(v)     (HW_MIPI_HSI_RDMA13_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_RDMA13_STA_ADDR_SET(v)    (HW_MIPI_HSI_RDMA13_STA_ADDR_WR(HW_MIPI_HSI_RDMA13_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA13_STA_ADDR_CLR(v)    (HW_MIPI_HSI_RDMA13_STA_ADDR_WR(HW_MIPI_HSI_RDMA13_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA13_STA_ADDR_TOG(v)    (HW_MIPI_HSI_RDMA13_STA_ADDR_WR(HW_MIPI_HSI_RDMA13_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA13_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA13_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Rx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA13_STA_ADDR_WR((HW_MIPI_HSI_RDMA13_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA13_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA14_STA_ADDR - Rx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA14_STA_ADDR - Rx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Rx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_rdma14_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma14_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
-    } B;
-} hw_mipi_hsi_rdma14_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA14_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_RDMA14_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x1d4)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA14_STA_ADDR           (*(volatile hw_mipi_hsi_rdma14_sta_addr_t *) HW_MIPI_HSI_RDMA14_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_RDMA14_STA_ADDR_RD()      (HW_MIPI_HSI_RDMA14_STA_ADDR.U)
-#define HW_MIPI_HSI_RDMA14_STA_ADDR_WR(v)     (HW_MIPI_HSI_RDMA14_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_RDMA14_STA_ADDR_SET(v)    (HW_MIPI_HSI_RDMA14_STA_ADDR_WR(HW_MIPI_HSI_RDMA14_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA14_STA_ADDR_CLR(v)    (HW_MIPI_HSI_RDMA14_STA_ADDR_WR(HW_MIPI_HSI_RDMA14_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA14_STA_ADDR_TOG(v)    (HW_MIPI_HSI_RDMA14_STA_ADDR_WR(HW_MIPI_HSI_RDMA14_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA14_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA14_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Rx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA14_STA_ADDR_WR((HW_MIPI_HSI_RDMA14_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA14_STA_ADDR_DS_ADDR(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_MIPI_HSI_RDMA15_STA_ADDR - Rx DMA Channel n Start Address Register
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_MIPI_HSI_RDMA15_STA_ADDR - Rx DMA Channel n Start Address Register (RW)
- *
- * Reset value: 0x00000000
- *
- * This Register containts the physical Start Address HSI for Rx DMA Channel n.
- */
-typedef union _hw_mipi_hsi_rdma15_sta_addr
-{
-    reg32_t U;
-    struct _hw_mipi_hsi_rdma15_sta_addr_bitfields
-    {
-        unsigned RESERVED0 : 2; //!< [1:0] Reserved, always set to zero.
-        unsigned DS_ADDR : 30; //!< [31:2] The Physical Start Address for Rx DMA Channel n.
-    } B;
-} hw_mipi_hsi_rdma15_sta_addr_t;
-#endif
-
-/*!
- * @name Constants and macros for entire MIPI_HSI_RDMA15_STA_ADDR register
- */
-//@{
-#define HW_MIPI_HSI_RDMA15_STA_ADDR_ADDR      (REGS_MIPI_HSI_BASE + 0x1d8)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_MIPI_HSI_RDMA15_STA_ADDR           (*(volatile hw_mipi_hsi_rdma15_sta_addr_t *) HW_MIPI_HSI_RDMA15_STA_ADDR_ADDR)
-#define HW_MIPI_HSI_RDMA15_STA_ADDR_RD()      (HW_MIPI_HSI_RDMA15_STA_ADDR.U)
-#define HW_MIPI_HSI_RDMA15_STA_ADDR_WR(v)     (HW_MIPI_HSI_RDMA15_STA_ADDR.U = (v))
-#define HW_MIPI_HSI_RDMA15_STA_ADDR_SET(v)    (HW_MIPI_HSI_RDMA15_STA_ADDR_WR(HW_MIPI_HSI_RDMA15_STA_ADDR_RD() |  (v)))
-#define HW_MIPI_HSI_RDMA15_STA_ADDR_CLR(v)    (HW_MIPI_HSI_RDMA15_STA_ADDR_WR(HW_MIPI_HSI_RDMA15_STA_ADDR_RD() & ~(v)))
-#define HW_MIPI_HSI_RDMA15_STA_ADDR_TOG(v)    (HW_MIPI_HSI_RDMA15_STA_ADDR_WR(HW_MIPI_HSI_RDMA15_STA_ADDR_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual MIPI_HSI_RDMA15_STA_ADDR bitfields
- */
-
-/*! @name Register MIPI_HSI_RDMA15_STA_ADDR, field DS_ADDR[31:2] (RW)
- *
- * The Physical Start Address for Rx DMA Channel n. DWord aligned
- */
-//@{
-#define BP_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR      (2)      //!< Bit position for MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR.
-#define BM_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR      (0xfffffffc)  //!< Bit mask for MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR.
-
-//! @brief Get value of MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR from a register value.
-#define BG_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR) >> BP_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR)
-
-//! @brief Format value for bitfield MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR.
-#define BF_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR) & BM_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the DS_ADDR field to a new value.
-#define BW_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR(v)   (HW_MIPI_HSI_RDMA15_STA_ADDR_WR((HW_MIPI_HSI_RDMA15_STA_ADDR_RD() & ~BM_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMA15_STA_ADDR_DS_ADDR(v)))
+#define BW_MIPI_HSI_RDMAn_STA_ADDR_DS_ADDR(n, v)   (HW_MIPI_HSI_RDMAn_STA_ADDR_WR(n, (HW_MIPI_HSI_RDMAn_STA_ADDR_RD(n) & ~BM_MIPI_HSI_RDMAn_STA_ADDR_DS_ADDR) | BF_MIPI_HSI_RDMAn_STA_ADDR_DS_ADDR(v)))
 #endif
 //@}
 
@@ -21777,8 +14375,6 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH0[1:0] (RO)
  *
-
- *
  * Values:
  * - 00 - Tx channel 0 fifo not Empty and Full;
  * - 01 - Tx channel 0 fifo Empty;
@@ -21794,8 +14390,6 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH1[3:2] (RO)
- *
-
  *
  * Values:
  * - 00 - Tx channel 1 fifo not Empty and Full;
@@ -21813,8 +14407,6 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH2[5:4] (RO)
  *
-
- *
  * Values:
  * - 00 - Tx channel 2 fifo not Empty and Full;
  * - 01 - Tx channel 2 fifo Empty;
@@ -21830,8 +14422,6 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH3[7:6] (RO)
- *
-
  *
  * Values:
  * - 00 - Tx channel 3 fifo not Empty and Full;
@@ -21849,8 +14439,6 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH4[9:8] (RO)
  *
-
- *
  * Values:
  * - 00 - Tx channel 4 fifo not Empty and Full;
  * - 01 - Tx channel 4 fifo Empty;
@@ -21866,8 +14454,6 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH5[11:10] (RO)
- *
-
  *
  * Values:
  * - 00 - Tx channel 5 fifo not Empty and Full;
@@ -21885,8 +14471,6 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH6[13:12] (RO)
  *
-
- *
  * Values:
  * - 00 - Tx channel 6 fifo not Empty and Full;
  * - 01 - Tx channel 6 fifo Empty;
@@ -21902,8 +14486,6 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH7[15:14] (RO)
- *
-
  *
  * Values:
  * - 00 - Tx channel 7 fifo not Empty and Full;
@@ -21921,8 +14503,6 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH8[17:16] (RO)
  *
-
- *
  * Values:
  * - 00 - Tx channel 8 fifo not Empty and Full;
  * - 01 - Tx channel 8 fifo Empty;
@@ -21938,8 +14518,6 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH9[19:18] (RO)
- *
-
  *
  * Values:
  * - 00 - Tx channel 9 fifo not Empty and Full;
@@ -21957,8 +14535,6 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH10[21:20] (RO)
  *
-
- *
  * Values:
  * - 00 - Tx channel 10 fifo not Empty and Full;
  * - 01 - Tx channel 10 fifo Empty;
@@ -21974,8 +14550,6 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH11[23:22] (RO)
- *
-
  *
  * Values:
  * - 00 - Tx channel 11 fifo not Empty and Full;
@@ -21993,8 +14567,6 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH12[25:24] (RO)
  *
-
- *
  * Values:
  * - 00 - Tx channel 12 fifo not Empty and Full;
  * - 01 - Tx channel 12 fifo Empty;
@@ -22010,8 +14582,6 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH13[27:26] (RO)
- *
-
  *
  * Values:
  * - 00 - Tx channel 13 fifo not Empty and Full;
@@ -22029,8 +14599,6 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH14[29:28] (RO)
  *
-
- *
  * Values:
  * - 00 - Tx channel 14 fifo not Empty and Full;
  * - 01 - Tx channel 14 fifo Empty;
@@ -22046,8 +14614,6 @@ typedef union _hw_mipi_hsi_tx_fifo_stat
 //@}
 
 /*! @name Register MIPI_HSI_TX_FIFO_STAT, field CH15[31:30] (RO)
- *
-
  *
  * Values:
  * - 00 - Tx channel 15 fifo not Empty and Full;
@@ -22118,8 +14684,6 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH0[1:0] (RO)
  *
-
- *
  * Values:
  * - 00 - Rx channel 0 fifo not Empty and Full;
  * - 01 - Rx channel 0 fifo Empty;
@@ -22135,8 +14699,6 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH1[3:2] (RO)
- *
-
  *
  * Values:
  * - 00 - Rx channel 1 fifo not Empty and Full;
@@ -22154,8 +14716,6 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH2[5:4] (RO)
  *
-
- *
  * Values:
  * - 00 - Rx channel 2 fifo not Empty and Full;
  * - 01 - Rx channel 2 fifo Empty;
@@ -22171,8 +14731,6 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH3[7:6] (RO)
- *
-
  *
  * Values:
  * - 00 - Rx channel 3 fifo not Empty and Full;
@@ -22190,8 +14748,6 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH4[9:8] (RO)
  *
-
- *
  * Values:
  * - 00 - Rx channel 4 fifo not Empty and Full;
  * - 01 - Rx channel 4 fifo Empty;
@@ -22207,8 +14763,6 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH5[11:10] (RO)
- *
-
  *
  * Values:
  * - 00 - Rx channel 5 fifo not Empty and Full;
@@ -22226,8 +14780,6 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH6[13:12] (RO)
  *
-
- *
  * Values:
  * - 00 - Rx channel 6 fifo not Empty and Full;
  * - 01 - Rx channel 6 fifo Empty;
@@ -22243,8 +14795,6 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH7[15:14] (RO)
- *
-
  *
  * Values:
  * - 00 - Rx channel 7 fifo not Empty and Full;
@@ -22262,8 +14812,6 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH8[17:16] (RO)
  *
-
- *
  * Values:
  * - 00 - Rx channel 8 fifo not Empty and Full;
  * - 01 - Rx channel 8 fifo Empty;
@@ -22279,8 +14827,6 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH9[19:18] (RO)
- *
-
  *
  * Values:
  * - 00 - Rx channel 9 fifo not Empty and Full;
@@ -22298,8 +14844,6 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH10[21:20] (RO)
  *
-
- *
  * Values:
  * - 00 - Rx channel 10 fifo not Empty and Full;
  * - 01 - Rx channel 10 fifo Empty;
@@ -22315,8 +14859,6 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH11[23:22] (RO)
- *
-
  *
  * Values:
  * - 00 - Rx channel 11 fifo not Empty and Full;
@@ -22334,8 +14876,6 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH12[25:24] (RO)
  *
-
- *
  * Values:
  * - 00 - Rx channel 12 fifo not Empty and Full;
  * - 01 - Rx channel 12 fifo Empty;
@@ -22351,8 +14891,6 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH13[27:26] (RO)
- *
-
  *
  * Values:
  * - 00 - Rx channel 13 fifo not Empty and Full;
@@ -22370,8 +14908,6 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH14[29:28] (RO)
  *
-
- *
  * Values:
  * - 00 - Rx channel 14 fifo not Empty and Full;
  * - 01 - Rx channel 14 fifo Empty;
@@ -22387,8 +14923,6 @@ typedef union _hw_mipi_hsi_rx_fifo_stat
 //@}
 
 /*! @name Register MIPI_HSI_RX_FIFO_STAT, field CH15[31:30] (RO)
- *
-
  *
  * Values:
  * - 00 - Rx channel 15 fifo not Empty and Full;
@@ -22470,8 +15004,6 @@ typedef union _hw_mipi_hsi_ahb_master_conf
 //@}
 
 /*! @name Register MIPI_HSI_AHB_MASTER_CONF, field DMA_MODE[5:4] (RW)
- *
-
  *
  * Values:
  * - 00 - Once AHB master get hgrant from bus, it will set htrans "IDLE" for serval ahb cycles.In the serval
@@ -22609,105 +15141,15 @@ typedef struct _hw_mipi_hsi
     volatile hw_mipi_hsi_fifo_thr_irqstat_en_t FIFO_THR_IRQSTAT_EN; //!< HSI FIFO Threshold Interrupt Status Enable Register
     volatile hw_mipi_hsi_fifo_thr_irqsig_en_t FIFO_THR_IRQSIG_EN; //!< HSI FIFO Threshold Interrupt Signal Enable Register
     reg32_t _reserved0[2];
-    volatile hw_mipi_hsi_tx_ch0_dp_t TX_CH0_DP; //!< Tx Channel n Data Port Register
-    volatile hw_mipi_hsi_tx_ch1_dp_t TX_CH1_DP; //!< Tx Channel n Data Port Register
-    volatile hw_mipi_hsi_tx_ch2_dp_t TX_CH2_DP; //!< Tx Channel n Data Port Register
-    volatile hw_mipi_hsi_tx_ch3_dp_t TX_CH3_DP; //!< Tx Channel n Data Port Register
-    volatile hw_mipi_hsi_tx_ch4_dp_t TX_CH4_DP; //!< Tx Channel n Data Port Register
-    volatile hw_mipi_hsi_tx_ch5_dp_t TX_CH5_DP; //!< Tx Channel n Data Port Register
-    volatile hw_mipi_hsi_tx_ch6_dp_t TX_CH6_DP; //!< Tx Channel n Data Port Register
-    volatile hw_mipi_hsi_tx_ch7_dp_t TX_CH7_DP; //!< Tx Channel n Data Port Register
-    volatile hw_mipi_hsi_tx_ch8_dp_t TX_CH8_DP; //!< Tx Channel n Data Port Register
-    volatile hw_mipi_hsi_tx_ch9_dp_t TX_CH9_DP; //!< Tx Channel n Data Port Register
-    volatile hw_mipi_hsi_tx_ch10_dp_t TX_CH10_DP; //!< Tx Channel n Data Port Register
-    volatile hw_mipi_hsi_tx_ch11_dp_t TX_CH11_DP; //!< Tx Channel n Data Port Register
-    volatile hw_mipi_hsi_tx_ch12_dp_t TX_CH12_DP; //!< Tx Channel n Data Port Register
-    volatile hw_mipi_hsi_tx_ch13_dp_t TX_CH13_DP; //!< Tx Channel n Data Port Register
-    volatile hw_mipi_hsi_tx_ch14_dp_t TX_CH14_DP; //!< Tx Channel n Data Port Register
-    volatile hw_mipi_hsi_tx_ch15_dp_t TX_CH15_DP; //!< Tx Channel n Data Port Register
-    volatile hw_mipi_hsi_rx_ch0_dp_t RX_CH0_DP; //!< Rx Channel n Data Port Register
-    volatile hw_mipi_hsi_rx_ch1_dp_t RX_CH1_DP; //!< Rx Channel n Data Port Register
-    volatile hw_mipi_hsi_rx_ch2_dp_t RX_CH2_DP; //!< Rx Channel n Data Port Register
-    volatile hw_mipi_hsi_rx_ch3_dp_t RX_CH3_DP; //!< Rx Channel n Data Port Register
-    volatile hw_mipi_hsi_rx_ch4_dp_t RX_CH4_DP; //!< Rx Channel n Data Port Register
-    volatile hw_mipi_hsi_rx_ch5_dp_t RX_CH5_DP; //!< Rx Channel n Data Port Register
-    volatile hw_mipi_hsi_rx_ch6_dp_t RX_CH6_DP; //!< Rx Channel n Data Port Register
-    volatile hw_mipi_hsi_rx_ch7_dp_t RX_CH7_DP; //!< Rx Channel n Data Port Register
-    volatile hw_mipi_hsi_rx_ch8_dp_t RX_CH8_DP; //!< Rx Channel n Data Port Register
-    volatile hw_mipi_hsi_rx_ch9_dp_t RX_CH9_DP; //!< Rx Channel n Data Port Register
-    volatile hw_mipi_hsi_rx_ch10_dp_t RX_CH10_DP; //!< Rx Channel n Data Port Register
-    volatile hw_mipi_hsi_rx_ch11_dp_t RX_CH11_DP; //!< Rx Channel n Data Port Register
-    volatile hw_mipi_hsi_rx_ch12_dp_t RX_CH12_DP; //!< Rx Channel n Data Port Register
-    volatile hw_mipi_hsi_rx_ch13_dp_t RX_CH13_DP; //!< Rx Channel n Data Port Register
-    volatile hw_mipi_hsi_rx_ch14_dp_t RX_CH14_DP; //!< Rx Channel n Data Port Register
-    volatile hw_mipi_hsi_rx_ch15_dp_t RX_CH15_DP; //!< Rx Channel n Data Port Register
+    volatile hw_mipi_hsi_tx_chn_dp_t TX_CHn_DP[16]; //!< Tx Channel n Data Port Register
+    volatile hw_mipi_hsi_rx_chn_dp_t RX_CHn_DP[16]; //!< Rx Channel n Data Port Register
     volatile hw_mipi_hsi_err_irqstat_t ERR_IRQSTAT; //!< HSI Error Interrupt Status Register
     volatile hw_mipi_hsi_err_irqstat_en_t ERR_IRQSTAT_EN; //!< HSI Error Interrupt Status Enable Register
     volatile hw_mipi_hsi_err_irqsig_en_t ERR_IRQSIG_EN; //!< HSI Error Interrupt Signal Enable Register
-    volatile hw_mipi_hsi_tdma0_conf_t TDMA0_CONF; //!< Tx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_tdma1_conf_t TDMA1_CONF; //!< Tx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_tdma2_conf_t TDMA2_CONF; //!< Tx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_tdma3_conf_t TDMA3_CONF; //!< Tx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_tdma4_conf_t TDMA4_CONF; //!< Tx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_tdma5_conf_t TDMA5_CONF; //!< Tx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_tdma6_conf_t TDMA6_CONF; //!< Tx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_tdma7_conf_t TDMA7_CONF; //!< Tx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_tdma8_conf_t TDMA8_CONF; //!< Tx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_tdma9_conf_t TDMA9_CONF; //!< Tx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_tdma10_conf_t TDMA10_CONF; //!< Tx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_tdma11_conf_t TDMA11_CONF; //!< Tx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_tdma12_conf_t TDMA12_CONF; //!< Tx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_tdma13_conf_t TDMA13_CONF; //!< Tx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_tdma14_conf_t TDMA14_CONF; //!< Tx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_tdma15_conf_t TDMA15_CONF; //!< Tx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_rdma0_conf_t RDMA0_CONF; //!< Rx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_rdma1_conf_t RDMA1_CONF; //!< Rx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_rdma2_conf_t RDMA2_CONF; //!< Rx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_rdma3_conf_t RDMA3_CONF; //!< Rx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_rdma4_conf_t RDMA4_CONF; //!< Rx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_rdma5_conf_t RDMA5_CONF; //!< Rx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_rdma6_conf_t RDMA6_CONF; //!< Rx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_rdma7_conf_t RDMA7_CONF; //!< Rx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_rdma8_conf_t RDMA8_CONF; //!< Rx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_rdma9_conf_t RDMA9_CONF; //!< Rx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_rdma10_conf_t RDMA10_CONF; //!< Rx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_rdma11_conf_t RDMA11_CONF; //!< Rx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_rdma12_conf_t RDMA12_CONF; //!< Rx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_rdma13_conf_t RDMA13_CONF; //!< Rx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_rdma14_conf_t RDMA14_CONF; //!< Rx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_rdma15_conf_t RDMA15_CONF; //!< Rx DMA Channel n Configuration Register
-    volatile hw_mipi_hsi_tdma0_sta_addr_t TDMA0_STA_ADDR; //!< Tx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_tdma1_sta_addr_t TDMA1_STA_ADDR; //!< Tx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_tdma2_sta_addr_t TDMA2_STA_ADDR; //!< Tx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_tdma3_sta_addr_t TDMA3_STA_ADDR; //!< Tx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_tdma4_sta_addr_t TDMA4_STA_ADDR; //!< Tx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_tdma5_sta_addr_t TDMA5_STA_ADDR; //!< Tx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_tdma6_sta_addr_t TDMA6_STA_ADDR; //!< Tx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_tdma7_sta_addr_t TDMA7_STA_ADDR; //!< Tx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_tdma8_sta_addr_t TDMA8_STA_ADDR; //!< Tx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_tdma9_sta_addr_t TDMA9_STA_ADDR; //!< Tx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_tdma10_sta_addr_t TDMA10_STA_ADDR; //!< Tx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_tdma11_sta_addr_t TDMA11_STA_ADDR; //!< Tx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_tdma12_sta_addr_t TDMA12_STA_ADDR; //!< Tx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_tdma13_sta_addr_t TDMA13_STA_ADDR; //!< Tx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_tdma14_sta_addr_t TDMA14_STA_ADDR; //!< Tx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_tdma15_sta_addr_t TDMA15_STA_ADDR; //!< Tx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_rdma0_sta_addr_t RDMA0_STA_ADDR; //!< Rx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_rdma1_sta_addr_t RDMA1_STA_ADDR; //!< Rx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_rdma2_sta_addr_t RDMA2_STA_ADDR; //!< Rx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_rdma3_sta_addr_t RDMA3_STA_ADDR; //!< Rx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_rdma4_sta_addr_t RDMA4_STA_ADDR; //!< Rx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_rdma5_sta_addr_t RDMA5_STA_ADDR; //!< Rx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_rdma6_sta_addr_t RDMA6_STA_ADDR; //!< Rx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_rdma7_sta_addr_t RDMA7_STA_ADDR; //!< Rx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_rdma8_sta_addr_t RDMA8_STA_ADDR; //!< Rx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_rdma9_sta_addr_t RDMA9_STA_ADDR; //!< Rx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_rdma10_sta_addr_t RDMA10_STA_ADDR; //!< Rx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_rdma11_sta_addr_t RDMA11_STA_ADDR; //!< Rx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_rdma12_sta_addr_t RDMA12_STA_ADDR; //!< Rx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_rdma13_sta_addr_t RDMA13_STA_ADDR; //!< Rx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_rdma14_sta_addr_t RDMA14_STA_ADDR; //!< Rx DMA Channel n Start Address Register
-    volatile hw_mipi_hsi_rdma15_sta_addr_t RDMA15_STA_ADDR; //!< Rx DMA Channel n Start Address Register
+    volatile hw_mipi_hsi_tdman_conf_t TDMAn_CONF[16]; //!< Tx DMA Channel n Configuration Register
+    volatile hw_mipi_hsi_rdman_conf_t RDMAn_CONF[16]; //!< Rx DMA Channel n Configuration Register
+    volatile hw_mipi_hsi_tdman_sta_addr_t TDMAn_STA_ADDR[16]; //!< Tx DMA Channel n Start Address Register
+    volatile hw_mipi_hsi_rdman_sta_addr_t RDMAn_STA_ADDR[16]; //!< Rx DMA Channel n Start Address Register
     volatile hw_mipi_hsi_dma_irqstat_t DMA_IRQSTAT; //!< DMA Interrupt Status Register
     volatile hw_mipi_hsi_dma_irqstat_en_t DMA_IRQSTAT_EN; //!< DMA Interrupt Enable Register
     volatile hw_mipi_hsi_dma_irqsig_en_t DMA_IRQSIG_EN; //!< DMA Interrupt Status Signal Enable Register
@@ -22735,5 +15177,5 @@ typedef struct _hw_mipi_hsi
 #endif
 
 #endif // __HW_MIPI_HSI_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

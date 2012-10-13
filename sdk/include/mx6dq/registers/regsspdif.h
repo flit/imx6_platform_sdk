@@ -68,8 +68,6 @@
  * @brief HW_SPDIF_SCR - SPDIF Configuration Register (RW)
  *
  * Reset value: 0x00000400
- *
-
  */
 typedef union _hw_spdif_scr
 {
@@ -120,8 +118,6 @@ typedef union _hw_spdif_scr
 
 /*! @name Register SPDIF_SCR, field USRC_SEL[1:0] (RW)
  *
-
- *
  * Values:
  * - 00 - No embedded U channel
  * - 01 - U channel from SPDIF receive block (CD mode)
@@ -146,8 +142,6 @@ typedef union _hw_spdif_scr
 
 /*! @name Register SPDIF_SCR, field TXSEL[4:2] (RW)
  *
-
- *
  * Values:
  * - 000 - Off and output 0
  * - 001 - Feed-through SPDIFIN
@@ -171,8 +165,6 @@ typedef union _hw_spdif_scr
 //@}
 
 /*! @name Register SPDIF_SCR, field VALCTRL[5] (RW)
- *
-
  *
  * Values:
  * - 0 - Outgoing Validity always set
@@ -235,8 +227,6 @@ typedef union _hw_spdif_scr
 //@}
 
 /*! @name Register SPDIF_SCR, field TXFIFO_CTRL[11:10] (RW)
- *
-
  *
  * Values:
  * - 00 - Send out digital zero on SPDIF Tx
@@ -304,8 +294,6 @@ typedef union _hw_spdif_scr
 
 /*! @name Register SPDIF_SCR, field TXFIFOEMPTY_SEL[16:15] (RW)
  *
-
- *
  * Values:
  * - 00 - Empty interrupt if 0 sample in Tx left and right FIFOs
  * - 01 - Empty interrupt if at most 4 sample in Tx left and right FIFOs
@@ -330,8 +318,6 @@ typedef union _hw_spdif_scr
 
 /*! @name Register SPDIF_SCR, field TXAUTOSYNC[17] (RW)
  *
-
- *
  * Values:
  * - 0 - Tx FIFO auto sync off
  * - 1 - Tx FIFO auto sync on
@@ -354,8 +340,6 @@ typedef union _hw_spdif_scr
 
 /*! @name Register SPDIF_SCR, field RXAUTOSYNC[18] (RW)
  *
-
- *
  * Values:
  * - 0 - Rx FIFO auto sync off
  * - 1 - RxFIFO auto sync on
@@ -377,8 +361,6 @@ typedef union _hw_spdif_scr
 //@}
 
 /*! @name Register SPDIF_SCR, field RXFIFOFULL_SEL[20:19] (RW)
- *
-
  *
  * Values:
  * - 00 - Full interrupt if at least 1 sample in Rx left and right FIFOs
@@ -404,8 +386,6 @@ typedef union _hw_spdif_scr
 
 /*! @name Register SPDIF_SCR, field RXFIFO_RST[21] (RW)
  *
-
- *
  * Values:
  * - 0 - Normal operation
  * - 1 - Reset register to 1 sample remaining
@@ -427,8 +407,6 @@ typedef union _hw_spdif_scr
 //@}
 
 /*! @name Register SPDIF_SCR, field RXFIFO_OFF[22] (RW)
- *
-
  *
  * Values:
  * - 0 - SPDIF Rx FIFO is on
@@ -452,8 +430,6 @@ typedef union _hw_spdif_scr
 
 /*! @name Register SPDIF_SCR, field RXFIFO_CTRL[23] (RW)
  *
-
- *
  * Values:
  * - 0 - Normal operation
  * - 1 - Always read zero from Rx data register
@@ -475,8 +451,6 @@ typedef union _hw_spdif_scr
 //@}
 
 /*! @name Register SPDIF_SCR, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_SPDIF_SCR_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_SCR_UNIMPLEMENTED.
@@ -495,8 +469,6 @@ typedef union _hw_spdif_scr
  * @brief HW_SPDIF_SRCD - CDText Control Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_spdif_srcd
 {
@@ -533,8 +505,6 @@ typedef union _hw_spdif_srcd
 
 /*! @name Register SPDIF_SRCD, field USYNCMODE[1] (RW)
  *
-
- *
  * Values:
  * - 0 - Non-CD data
  * - 1 - CD user channel subcode
@@ -556,8 +526,6 @@ typedef union _hw_spdif_srcd
 //@}
 
 /*! @name Register SPDIF_SRCD, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_SPDIF_SRCD_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_SRCD_UNIMPLEMENTED.
@@ -576,8 +544,6 @@ typedef union _hw_spdif_srcd
  * @brief HW_SPDIF_SRPC - PhaseConfig Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_spdif_srpc
 {
@@ -692,8 +658,6 @@ typedef union _hw_spdif_srpc
 //@}
 
 /*! @name Register SPDIF_SRPC, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_SPDIF_SRPC_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_SRPC_UNIMPLEMENTED.
@@ -1128,8 +1092,6 @@ typedef union _hw_spdif_sie
 //@}
 
 /*! @name Register SPDIF_SIE, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_SPDIF_SIE_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_SIE_UNIMPLEMENTED.
@@ -1417,8 +1379,6 @@ typedef union _hw_spdif_sis
 //@}
 
 /*! @name Register SPDIF_SIS, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_SPDIF_SIS_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_SIS_UNIMPLEMENTED.
@@ -1695,8 +1655,6 @@ typedef union _hw_spdif_sic
 //@}
 
 /*! @name Register SPDIF_SIC, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_SPDIF_SIC_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_SIC_UNIMPLEMENTED.
@@ -1758,8 +1716,6 @@ typedef union _hw_spdif_srl
 //@}
 
 /*! @name Register SPDIF_SRL, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_SPDIF_SRL_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_SRL_UNIMPLEMENTED.
@@ -1821,8 +1777,6 @@ typedef union _hw_spdif_srr
 //@}
 
 /*! @name Register SPDIF_SRR, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_SPDIF_SRR_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_SRR_UNIMPLEMENTED.
@@ -1884,8 +1838,6 @@ typedef union _hw_spdif_srcsh
 //@}
 
 /*! @name Register SPDIF_SRCSH, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_SPDIF_SRCSH_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_SRCSH_UNIMPLEMENTED.
@@ -1947,8 +1899,6 @@ typedef union _hw_spdif_srcsl
 //@}
 
 /*! @name Register SPDIF_SRCSL, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_SPDIF_SRCSL_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_SRCSL_UNIMPLEMENTED.
@@ -2073,8 +2023,6 @@ typedef union _hw_spdif_srq
 //@}
 
 /*! @name Register SPDIF_SRQ, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_SPDIF_SRQ_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_SRQ_UNIMPLEMENTED.
@@ -2281,8 +2229,6 @@ typedef union _hw_spdif_stcsch
 //@}
 
 /*! @name Register SPDIF_STCSCH, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_SPDIF_STCSCH_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_STCSCH_UNIMPLEMENTED.
@@ -2357,8 +2303,6 @@ typedef union _hw_spdif_stcscl
 //@}
 
 /*! @name Register SPDIF_STCSCL, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_SPDIF_STCSCL_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_STCSCL_UNIMPLEMENTED.
@@ -2377,8 +2321,6 @@ typedef union _hw_spdif_stcscl
  * @brief HW_SPDIF_SRFM - FreqMeas Register (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_spdif_srfm
 {
@@ -2420,8 +2362,6 @@ typedef union _hw_spdif_srfm
 //@}
 
 /*! @name Register SPDIF_SRFM, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_SPDIF_SRFM_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_SRFM_UNIMPLEMENTED.
@@ -2531,8 +2471,6 @@ typedef union _hw_spdif_stc
 
 /*! @name Register SPDIF_STC, field TXCLK_SOURCE[10:8] (RW)
  *
-
- *
  * Values:
  * - 000 - XTAL clk input
  * - 001 - CCM spdif0_clk_root input
@@ -2586,8 +2524,6 @@ typedef union _hw_spdif_stc
 //@}
 
 /*! @name Register SPDIF_STC, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_SPDIF_STC_UNIMPLEMENTED      (24)      //!< Bit position for SPDIF_STC_UNIMPLEMENTED.
@@ -2637,5 +2573,5 @@ typedef struct _hw_spdif
 #endif
 
 #endif // __HW_SPDIF_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

@@ -60,8 +60,6 @@
  * @brief HW_DBGMON_HW_DBGMON_CTRL - HW_DBGMON_CTRL (RW)
  *
  * Reset value: 0xc0000000
- *
-
  */
 typedef union _hw_dbgmon_hw_dbgmon_ctrl
 {
@@ -401,8 +399,6 @@ typedef union _hw_dbgmon_hw_dbgmon_ctrl
  * @brief HW_DBGMON_HW_DBGMON_MASTER_EN - HW_DBGMON_MASTER_EN (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_dbgmon_hw_dbgmon_master_en
 {
@@ -779,8 +775,6 @@ typedef union _hw_dbgmon_hw_dbgmon_master_en
  * @brief HW_DBGMON_HW_DBGMON_IRQ - HW_DBGMON_IRQ (RW)
  *
  * Reset value: 0x0000ffff
- *
-
  */
 typedef union _hw_dbgmon_hw_dbgmon_irq
 {
@@ -938,8 +932,6 @@ typedef union _hw_dbgmon_hw_dbgmon_irq
  * @brief HW_DBGMON_HW_DBGMON_TRAP_ADDR_LOW - HW_DBGMON_TRAP_ADDR_LOW (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_dbgmon_hw_dbgmon_trap_addr_low
 {
@@ -1000,8 +992,6 @@ typedef union _hw_dbgmon_hw_dbgmon_trap_addr_low
  * @brief HW_DBGMON_HW_DBGMON_TRAP_ADDR_HIGH - HW_DBGMON_TRAP_ADDR_HIGH (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_dbgmon_hw_dbgmon_trap_addr_high
 {
@@ -1062,8 +1052,6 @@ typedef union _hw_dbgmon_hw_dbgmon_trap_addr_high
  * @brief HW_DBGMON_HW_DBGMON_TRAP_ID - HW_DBGMON_TRAP_ID (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_dbgmon_hw_dbgmon_trap_id
 {
@@ -1145,8 +1133,6 @@ typedef union _hw_dbgmon_hw_dbgmon_trap_id
  * @brief HW_DBGMON_HW_DBGMON_SNVS_ADDR - HW_DBGMON_SNVS_ADDR (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_dbgmon_hw_dbgmon_snvs_addr
 {
@@ -1195,8 +1181,6 @@ typedef union _hw_dbgmon_hw_dbgmon_snvs_addr
  * @brief HW_DBGMON_HW_DBGMON_SNVS_DATA - HW_DBGMON_SNVS_DATA (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_dbgmon_hw_dbgmon_snvs_data
 {
@@ -1245,8 +1229,6 @@ typedef union _hw_dbgmon_hw_dbgmon_snvs_data
  * @brief HW_DBGMON_HW_DBGMON_SNVS_INFO - HW_DBGMON_SNVS_INFO (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_dbgmon_hw_dbgmon_snvs_info
 {
@@ -1323,8 +1305,6 @@ typedef union _hw_dbgmon_hw_dbgmon_snvs_info
  * @brief HW_DBGMON_HW_DBGMON_VERSION - HW_DBGMON_VERSION (RO)
  *
  * Reset value: 0x01010000
- *
-
  */
 typedef union _hw_dbgmon_hw_dbgmon_version
 {
@@ -1429,5 +1409,5 @@ typedef struct _hw_dbgmon
 #endif
 
 #endif // __HW_DBGMON_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

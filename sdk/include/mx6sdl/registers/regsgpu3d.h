@@ -170,8 +170,6 @@ typedef union _hw_gpu3d_aqh_clk_ctrl
 //@}
 
 /*! @name Register GPU3D_AQH_CLK_CTRL, field FSCALE_VAL[8:2] (RW)
- *
-
  */
 //@{
 #define BP_GPU3D_AQH_CLK_CTRL_FSCALE_VAL      (2)      //!< Bit position for GPU3D_AQH_CLK_CTRL_FSCALE_VAL.
@@ -190,8 +188,6 @@ typedef union _hw_gpu3d_aqh_clk_ctrl
 //@}
 
 /*! @name Register GPU3D_AQH_CLK_CTRL, field FSCALE_CMD_LOAD[9] (RW)
- *
-
  */
 //@{
 #define BP_GPU3D_AQH_CLK_CTRL_FSCALE_CMD_LOAD      (9)      //!< Bit position for GPU3D_AQH_CLK_CTRL_FSCALE_CMD_LOAD.
@@ -605,8 +601,6 @@ typedef union _hw_gpu3d_aqh_idle
  * @brief HW_GPU3D_AQA_CFG - AQAxiConfig (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_gpu3d_aqa_cfg
 {
@@ -643,8 +637,6 @@ typedef union _hw_gpu3d_aqa_cfg
  */
 
 /*! @name Register GPU3D_AQA_CFG, field AWID[3:0] (RW)
- *
-
  */
 //@{
 #define BP_GPU3D_AQA_CFG_AWID      (0)      //!< Bit position for GPU3D_AQA_CFG_AWID.
@@ -663,8 +655,6 @@ typedef union _hw_gpu3d_aqa_cfg
 //@}
 
 /*! @name Register GPU3D_AQA_CFG, field ARID[7:4] (RW)
- *
-
  */
 //@{
 #define BP_GPU3D_AQA_CFG_ARID      (4)      //!< Bit position for GPU3D_AQA_CFG_ARID.
@@ -683,8 +673,6 @@ typedef union _hw_gpu3d_aqa_cfg
 //@}
 
 /*! @name Register GPU3D_AQA_CFG, field AWCACHE[11:8] (RW)
- *
-
  */
 //@{
 #define BP_GPU3D_AQA_CFG_AWCACHE      (8)      //!< Bit position for GPU3D_AQA_CFG_AWCACHE.
@@ -703,8 +691,6 @@ typedef union _hw_gpu3d_aqa_cfg
 //@}
 
 /*! @name Register GPU3D_AQA_CFG, field ARCACHE[15:12] (RW)
- *
-
  */
 //@{
 #define BP_GPU3D_AQA_CFG_ARCACHE      (12)      //!< Bit position for GPU3D_AQA_CFG_ARCACHE.
@@ -731,8 +717,6 @@ typedef union _hw_gpu3d_aqa_cfg
  * @brief HW_GPU3D_AQA_STATUS - AQAxiStatus (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_gpu3d_aqa_status
 {
@@ -765,8 +749,6 @@ typedef union _hw_gpu3d_aqa_status
  */
 
 /*! @name Register GPU3D_AQA_STATUS, field WR_ERR_ID[3:0] (RO)
- *
-
  */
 //@{
 #define BP_GPU3D_AQA_STATUS_WR_ERR_ID      (0)      //!< Bit position for GPU3D_AQA_STATUS_WR_ERR_ID.
@@ -777,8 +759,6 @@ typedef union _hw_gpu3d_aqa_status
 //@}
 
 /*! @name Register GPU3D_AQA_STATUS, field RD_ERR_ID[7:4] (RO)
- *
-
  */
 //@{
 #define BP_GPU3D_AQA_STATUS_RD_ERR_ID      (4)      //!< Bit position for GPU3D_AQA_STATUS_RD_ERR_ID.
@@ -789,8 +769,6 @@ typedef union _hw_gpu3d_aqa_status
 //@}
 
 /*! @name Register GPU3D_AQA_STATUS, field DET_WR_ERR[8] (RO)
- *
-
  */
 //@{
 #define BP_GPU3D_AQA_STATUS_DET_WR_ERR      (8)      //!< Bit position for GPU3D_AQA_STATUS_DET_WR_ERR.
@@ -801,8 +779,6 @@ typedef union _hw_gpu3d_aqa_status
 //@}
 
 /*! @name Register GPU3D_AQA_STATUS, field DET_RD_ERR[9] (RO)
- *
-
  */
 //@{
 #define BP_GPU3D_AQA_STATUS_DET_RD_ERR      (9)      //!< Bit position for GPU3D_AQA_STATUS_DET_RD_ERR.
@@ -852,8 +828,6 @@ typedef union _hw_gpu3d_aqi_ack
  */
 
 /*! @name Register GPU3D_AQI_ACK, field INTR_VEC[31:0] (RO)
- *
-
  */
 //@{
 #define BP_GPU3D_AQI_ACK_INTR_VEC      (0)      //!< Bit position for GPU3D_AQI_ACK_INTR_VEC.
@@ -906,8 +880,6 @@ typedef union _hw_gpu3d_aqi_enbl
  */
 
 /*! @name Register GPU3D_AQI_ENBL, field INTR_ENBL_VEC[31:0] (RW)
- *
-
  */
 //@{
 #define BP_GPU3D_AQI_ENBL_INTR_ENBL_VEC      (0)      //!< Bit position for GPU3D_AQI_ENBL_INTR_ENBL_VEC.
@@ -2337,8 +2309,6 @@ typedef union _hw_gpu3d_gcm_feat_0
 
 /*! @name Register GPU3D_GCM_FEAT_0, field BUG_FIXES0[24] (RO)
  *
-
- *
  * Values:
  * - 0 - =>NONE
  * - 1 - =>AVAILABLE
@@ -2507,8 +2477,6 @@ typedef union _hw_gpu3d_gcc_crtl
  */
 
 /*! @name Register GPU3D_GCC_CRTL, field NOT_USED[31:0] (RW)
- *
-
  */
 //@{
 #define BP_GPU3D_GCC_CRTL_NOT_USED      (0)      //!< Bit position for GPU3D_GCC_CRTL_NOT_USED.
@@ -2570,8 +2538,6 @@ typedef union _hw_gpu3d_gcr_mem_ctrs
  */
 
 /*! @name Register GPU3D_GCR_MEM_CTRS, field RESET[31:0] (RW)
- *
-
  */
 //@{
 #define BP_GPU3D_GCR_MEM_CTRS_RESET      (0)      //!< Bit position for GPU3D_GCR_MEM_CTRS_RESET.
@@ -2628,8 +2594,6 @@ typedef union _hw_gpu3d_gct_reads
  */
 
 /*! @name Register GPU3D_GCT_READS, field COUNT[31:0] (RO)
- *
-
  */
 //@{
 #define BP_GPU3D_GCT_READS_COUNT      (0)      //!< Bit position for GPU3D_GCT_READS_COUNT.
@@ -2678,8 +2642,6 @@ typedef union _hw_gpu3d_gct_writes
  */
 
 /*! @name Register GPU3D_GCT_WRITES, field COUNT[31:0] (RO)
- *
-
  */
 //@{
 #define BP_GPU3D_GCT_WRITES_COUNT      (0)      //!< Bit position for GPU3D_GCT_WRITES_COUNT.
@@ -2857,8 +2819,6 @@ typedef union _hw_gpu3d_gct_write_bursts
  */
 
 /*! @name Register GPU3D_GCT_WRITE_BURSTS, field COUNT[31:0] (RO)
- *
-
  */
 //@{
 #define BP_GPU3D_GCT_WRITE_BURSTS_COUNT      (0)      //!< Bit position for GPU3D_GCT_WRITE_BURSTS_COUNT.
@@ -2907,8 +2867,6 @@ typedef union _hw_gpu3d_gct_write_reqs
  */
 
 /*! @name Register GPU3D_GCT_WRITE_REQS, field COUNT[31:0] (RO)
- *
-
  */
 //@{
 #define BP_GPU3D_GCT_WRITE_REQS_COUNT      (0)      //!< Bit position for GPU3D_GCT_WRITE_REQS_COUNT.
@@ -2957,8 +2915,6 @@ typedef union _hw_gpu3d_gct_write_lasts
  */
 
 /*! @name Register GPU3D_GCT_WRITE_LASTS, field COUNT[31:0] (RO)
- *
-
  */
 //@{
 #define BP_GPU3D_GCT_WRITE_LASTS_COUNT      (0)      //!< Bit position for GPU3D_GCT_WRITE_LASTS_COUNT.
@@ -3007,8 +2963,6 @@ typedef union _hw_gpu3d_gct_read_bursts
  */
 
 /*! @name Register GPU3D_GCT_READ_BURSTS, field COUNT[31:0] (RO)
- *
-
  */
 //@{
 #define BP_GPU3D_GCT_READ_BURSTS_COUNT      (0)      //!< Bit position for GPU3D_GCT_READ_BURSTS_COUNT.
@@ -3057,8 +3011,6 @@ typedef union _hw_gpu3d_gct_read_reqs
  */
 
 /*! @name Register GPU3D_GCT_READ_REQS, field COUNT[31:0] (RO)
- *
-
  */
 //@{
 #define BP_GPU3D_GCT_READ_REQS_COUNT      (0)      //!< Bit position for GPU3D_GCT_READ_REQS_COUNT.
@@ -3107,8 +3059,6 @@ typedef union _hw_gpu3d_gct_read_lasts
  */
 
 /*! @name Register GPU3D_GCT_READ_LASTS, field COUNT[31:0] (RO)
- *
-
  */
 //@{
 #define BP_GPU3D_GCT_READ_LASTS_COUNT      (0)      //!< Bit position for GPU3D_GCT_READ_LASTS_COUNT.
@@ -3161,8 +3111,6 @@ typedef union _hw_gpu3d_gcgpo_0
  */
 
 /*! @name Register GPU3D_GCGPO_0, field COUNT[31:0] (RW)
- *
-
  */
 //@{
 #define BP_GPU3D_GCGPO_0_COUNT      (0)      //!< Bit position for GPU3D_GCGPO_0_COUNT.
@@ -3223,8 +3171,6 @@ typedef union _hw_gpu3d_gcgpo_1
  */
 
 /*! @name Register GPU3D_GCGPO_1, field COUNT[31:0] (RW)
- *
-
  */
 //@{
 #define BP_GPU3D_GCGPO_1_COUNT      (0)      //!< Bit position for GPU3D_GCGPO_1_COUNT.
@@ -3285,8 +3231,6 @@ typedef union _hw_gpu3d_gcgpo_2
  */
 
 /*! @name Register GPU3D_GCGPO_2, field COUNT[31:0] (RW)
- *
-
  */
 //@{
 #define BP_GPU3D_GCGPO_2_COUNT      (0)      //!< Bit position for GPU3D_GCGPO_2_COUNT.
@@ -3348,8 +3292,6 @@ typedef union _hw_gpu3d_gca_crtl
  */
 
 /*! @name Register GPU3D_GCA_CRTL, field WR_FULL_BURST_MODE[0] (RW)
- *
-
  *
  * Values:
  * - 0 - =>NO_BURST_RESET_VALUE
@@ -3466,8 +3408,6 @@ typedef union _hw_gpu3d_gcm_feat_1
 
 /*! @name Register GPU3D_GCM_FEAT_1, field BUG_FIXES1[3] (RO)
  *
-
- *
  * Values:
  * - 0 - =>NONE
  * - 1 - =>AVAILABLE
@@ -3481,8 +3421,6 @@ typedef union _hw_gpu3d_gcm_feat_1
 //@}
 
 /*! @name Register GPU3D_GCM_FEAT_1, field BUG_FIXES2[4] (RO)
- *
-
  *
  * Values:
  * - 0 - =>NONE
@@ -3555,8 +3493,6 @@ typedef union _hw_gpu3d_gct_cycles
  */
 
 /*! @name Register GPU3D_GCT_CYCLES, field CYCLES[31:0] (RW)
- *
-
  */
 //@{
 #define BP_GPU3D_GCT_CYCLES_CYCLES      (0)      //!< Bit position for GPU3D_GCT_CYCLES_CYCLES.
@@ -3618,8 +3554,6 @@ typedef union _hw_gpu3d_gct_idle_cycles
  */
 
 /*! @name Register GPU3D_GCT_IDLE_CYCLES, field CYCLES[31:0] (RW)
- *
-
  */
 //@{
 #define BP_GPU3D_GCT_IDLE_CYCLES_CYCLES      (0)      //!< Bit position for GPU3D_GCT_IDLE_CYCLES_CYCLES.
@@ -3690,5 +3624,5 @@ typedef struct _hw_gpu3d
 #endif
 
 #endif // __HW_GPU3D_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

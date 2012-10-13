@@ -5567,8 +5567,6 @@ typedef union _hw_pxp_hist16_param3
  * @brief HW_PXP_POWER - PXP Power Control Register. (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_pxp_power
 {
@@ -5982,5 +5980,5 @@ typedef struct _hw_pxp
 #endif
 
 #endif // __HW_PXP_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

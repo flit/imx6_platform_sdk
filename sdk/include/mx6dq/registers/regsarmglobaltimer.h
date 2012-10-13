@@ -29,12 +29,10 @@
  * ARM Cortex-A9 Global Timer
  *
  * Registers defined in this header file:
- * - HW_ARMGLOBALTIMER_COUNTER0 - Global Timer Counter Registers
- * - HW_ARMGLOBALTIMER_COUNTER1 - Global Timer Counter Registers
+ * - HW_ARMGLOBALTIMER_COUNTERn - Global Timer Counter Registers
  * - HW_ARMGLOBALTIMER_CONTROL - Global Timer Control Register
  * - HW_ARMGLOBALTIMER_IRQSTATUS - Global Timer Interrupt Status Register
- * - HW_ARMGLOBALTIMER_COMPARATOR0 - Global Timer Comparator Value Registers
- * - HW_ARMGLOBALTIMER_COMPARATOR1 - Global Timer Comparator Value Registers
+ * - HW_ARMGLOBALTIMER_COMPARATORn - Global Timer Comparator Value Registers
  * - HW_ARMGLOBALTIMER_AUTOINCREMENT - Global Timer Auto-increment Register
  *
  * - hw_armglobaltimer_t - Struct containing all module registers.
@@ -49,128 +47,68 @@
 //@}
 
 //-------------------------------------------------------------------------------------------
-// HW_ARMGLOBALTIMER_COUNTER0 - Global Timer Counter Registers
+// HW_ARMGLOBALTIMER_COUNTERn - Global Timer Counter Registers
 //-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_ARMGLOBALTIMER_COUNTER0 - Global Timer Counter Registers (RW)
+ * @brief HW_ARMGLOBALTIMER_COUNTERn - Global Timer Counter Registers (RW)
  *
  * Reset value: 0x00000000
  *
  * There are two timer counter registers. They are the lower 32-bit timer counter at offset 0x00 and
  * the upper 32-bit timer counter at offset 0x04.
  */
-typedef union _hw_armglobaltimer_counter0
+typedef union _hw_armglobaltimer_countern
 {
     reg32_t U;
-    struct _hw_armglobaltimer_counter0_bitfields
+    struct _hw_armglobaltimer_countern_bitfields
     {
         unsigned VALUE : 32; //!< [31:0] 32-bits of the counter value.
     } B;
-} hw_armglobaltimer_counter0_t;
+} hw_armglobaltimer_countern_t;
 #endif
 
 /*!
- * @name Constants and macros for entire ARMGLOBALTIMER_COUNTER0 register
+ * @name Constants and macros for entire ARMGLOBALTIMER_COUNTERn register
  */
 //@{
-#define HW_ARMGLOBALTIMER_COUNTER0_ADDR      (REGS_ARMGLOBALTIMER_BASE + 0x200)
+//! @brief Number of instances of the ARMGLOBALTIMER_COUNTERn register.
+#define HW_ARMGLOBALTIMER_COUNTERn_COUNT     (2)
+
+#define HW_ARMGLOBALTIMER_COUNTERn_ADDR(n)   (REGS_ARMGLOBALTIMER_BASE + 0x200 + (0x4 * (n)))
 
 #ifndef __LANGUAGE_ASM__
-#define HW_ARMGLOBALTIMER_COUNTER0           (*(volatile hw_armglobaltimer_counter0_t *) HW_ARMGLOBALTIMER_COUNTER0_ADDR)
-#define HW_ARMGLOBALTIMER_COUNTER0_RD()      (HW_ARMGLOBALTIMER_COUNTER0.U)
-#define HW_ARMGLOBALTIMER_COUNTER0_WR(v)     (HW_ARMGLOBALTIMER_COUNTER0.U = (v))
-#define HW_ARMGLOBALTIMER_COUNTER0_SET(v)    (HW_ARMGLOBALTIMER_COUNTER0_WR(HW_ARMGLOBALTIMER_COUNTER0_RD() |  (v)))
-#define HW_ARMGLOBALTIMER_COUNTER0_CLR(v)    (HW_ARMGLOBALTIMER_COUNTER0_WR(HW_ARMGLOBALTIMER_COUNTER0_RD() & ~(v)))
-#define HW_ARMGLOBALTIMER_COUNTER0_TOG(v)    (HW_ARMGLOBALTIMER_COUNTER0_WR(HW_ARMGLOBALTIMER_COUNTER0_RD() ^  (v)))
+#define HW_ARMGLOBALTIMER_COUNTERn(n)        (*(volatile hw_armglobaltimer_countern_t *) HW_ARMGLOBALTIMER_COUNTERn_ADDR(n))
+#define HW_ARMGLOBALTIMER_COUNTERn_RD(n)     (HW_ARMGLOBALTIMER_COUNTERn(n).U)
+#define HW_ARMGLOBALTIMER_COUNTERn_WR(n, v)  (HW_ARMGLOBALTIMER_COUNTERn(n).U = (v))
+#define HW_ARMGLOBALTIMER_COUNTERn_SET(n, v) (HW_ARMGLOBALTIMER_COUNTERn_WR(n, HW_ARMGLOBALTIMER_COUNTERn_RD(n) |  (v)))
+#define HW_ARMGLOBALTIMER_COUNTERn_CLR(n, v) (HW_ARMGLOBALTIMER_COUNTERn_WR(n, HW_ARMGLOBALTIMER_COUNTERn_RD(n) & ~(v)))
+#define HW_ARMGLOBALTIMER_COUNTERn_TOG(n, v) (HW_ARMGLOBALTIMER_COUNTERn_WR(n, HW_ARMGLOBALTIMER_COUNTERn_RD(n) ^  (v)))
 #endif
 //@}
 
 /*
- * constants & macros for individual ARMGLOBALTIMER_COUNTER0 bitfields
+ * constants & macros for individual ARMGLOBALTIMER_COUNTERn bitfields
  */
 
-/*! @name Register ARMGLOBALTIMER_COUNTER0, field VALUE[31:0] (RW)
+/*! @name Register ARMGLOBALTIMER_COUNTERn, field VALUE[31:0] (RW)
  *
  * 32-bits of the counter value.
  */
 //@{
-#define BP_ARMGLOBALTIMER_COUNTER0_VALUE      (0)      //!< Bit position for ARMGLOBALTIMER_COUNTER0_VALUE.
-#define BM_ARMGLOBALTIMER_COUNTER0_VALUE      (0xffffffff)  //!< Bit mask for ARMGLOBALTIMER_COUNTER0_VALUE.
+#define BP_ARMGLOBALTIMER_COUNTERn_VALUE      (0)      //!< Bit position for ARMGLOBALTIMER_COUNTERn_VALUE.
+#define BM_ARMGLOBALTIMER_COUNTERn_VALUE      (0xffffffff)  //!< Bit mask for ARMGLOBALTIMER_COUNTERn_VALUE.
 
-//! @brief Get value of ARMGLOBALTIMER_COUNTER0_VALUE from a register value.
-#define BG_ARMGLOBALTIMER_COUNTER0_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ARMGLOBALTIMER_COUNTER0_VALUE) >> BP_ARMGLOBALTIMER_COUNTER0_VALUE)
+//! @brief Get value of ARMGLOBALTIMER_COUNTERn_VALUE from a register value.
+#define BG_ARMGLOBALTIMER_COUNTERn_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ARMGLOBALTIMER_COUNTERn_VALUE) >> BP_ARMGLOBALTIMER_COUNTERn_VALUE)
 
-//! @brief Format value for bitfield ARMGLOBALTIMER_COUNTER0_VALUE.
-#define BF_ARMGLOBALTIMER_COUNTER0_VALUE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ARMGLOBALTIMER_COUNTER0_VALUE) & BM_ARMGLOBALTIMER_COUNTER0_VALUE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the VALUE field to a new value.
-#define BW_ARMGLOBALTIMER_COUNTER0_VALUE(v)   (HW_ARMGLOBALTIMER_COUNTER0_WR((HW_ARMGLOBALTIMER_COUNTER0_RD() & ~BM_ARMGLOBALTIMER_COUNTER0_VALUE) | BF_ARMGLOBALTIMER_COUNTER0_VALUE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_ARMGLOBALTIMER_COUNTER1 - Global Timer Counter Registers
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_ARMGLOBALTIMER_COUNTER1 - Global Timer Counter Registers (RW)
- *
- * Reset value: 0x00000000
- *
- * There are two timer counter registers. They are the lower 32-bit timer counter at offset 0x00 and
- * the upper 32-bit timer counter at offset 0x04.
- */
-typedef union _hw_armglobaltimer_counter1
-{
-    reg32_t U;
-    struct _hw_armglobaltimer_counter1_bitfields
-    {
-        unsigned VALUE : 32; //!< [31:0] 32-bits of the counter value.
-    } B;
-} hw_armglobaltimer_counter1_t;
-#endif
-
-/*!
- * @name Constants and macros for entire ARMGLOBALTIMER_COUNTER1 register
- */
-//@{
-#define HW_ARMGLOBALTIMER_COUNTER1_ADDR      (REGS_ARMGLOBALTIMER_BASE + 0x204)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_ARMGLOBALTIMER_COUNTER1           (*(volatile hw_armglobaltimer_counter1_t *) HW_ARMGLOBALTIMER_COUNTER1_ADDR)
-#define HW_ARMGLOBALTIMER_COUNTER1_RD()      (HW_ARMGLOBALTIMER_COUNTER1.U)
-#define HW_ARMGLOBALTIMER_COUNTER1_WR(v)     (HW_ARMGLOBALTIMER_COUNTER1.U = (v))
-#define HW_ARMGLOBALTIMER_COUNTER1_SET(v)    (HW_ARMGLOBALTIMER_COUNTER1_WR(HW_ARMGLOBALTIMER_COUNTER1_RD() |  (v)))
-#define HW_ARMGLOBALTIMER_COUNTER1_CLR(v)    (HW_ARMGLOBALTIMER_COUNTER1_WR(HW_ARMGLOBALTIMER_COUNTER1_RD() & ~(v)))
-#define HW_ARMGLOBALTIMER_COUNTER1_TOG(v)    (HW_ARMGLOBALTIMER_COUNTER1_WR(HW_ARMGLOBALTIMER_COUNTER1_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual ARMGLOBALTIMER_COUNTER1 bitfields
- */
-
-/*! @name Register ARMGLOBALTIMER_COUNTER1, field VALUE[31:0] (RW)
- *
- * 32-bits of the counter value.
- */
-//@{
-#define BP_ARMGLOBALTIMER_COUNTER1_VALUE      (0)      //!< Bit position for ARMGLOBALTIMER_COUNTER1_VALUE.
-#define BM_ARMGLOBALTIMER_COUNTER1_VALUE      (0xffffffff)  //!< Bit mask for ARMGLOBALTIMER_COUNTER1_VALUE.
-
-//! @brief Get value of ARMGLOBALTIMER_COUNTER1_VALUE from a register value.
-#define BG_ARMGLOBALTIMER_COUNTER1_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ARMGLOBALTIMER_COUNTER1_VALUE) >> BP_ARMGLOBALTIMER_COUNTER1_VALUE)
-
-//! @brief Format value for bitfield ARMGLOBALTIMER_COUNTER1_VALUE.
-#define BF_ARMGLOBALTIMER_COUNTER1_VALUE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ARMGLOBALTIMER_COUNTER1_VALUE) & BM_ARMGLOBALTIMER_COUNTER1_VALUE)
+//! @brief Format value for bitfield ARMGLOBALTIMER_COUNTERn_VALUE.
+#define BF_ARMGLOBALTIMER_COUNTERn_VALUE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ARMGLOBALTIMER_COUNTERn_VALUE) & BM_ARMGLOBALTIMER_COUNTERn_VALUE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE field to a new value.
-#define BW_ARMGLOBALTIMER_COUNTER1_VALUE(v)   (HW_ARMGLOBALTIMER_COUNTER1_WR((HW_ARMGLOBALTIMER_COUNTER1_RD() & ~BM_ARMGLOBALTIMER_COUNTER1_VALUE) | BF_ARMGLOBALTIMER_COUNTER1_VALUE(v)))
+#define BW_ARMGLOBALTIMER_COUNTERn_VALUE(n, v)   (HW_ARMGLOBALTIMER_COUNTERn_WR(n, (HW_ARMGLOBALTIMER_COUNTERn_RD(n) & ~BM_ARMGLOBALTIMER_COUNTERn_VALUE) | BF_ARMGLOBALTIMER_COUNTERn_VALUE(v)))
 #endif
 //@}
 
@@ -435,128 +373,68 @@ typedef union _hw_armglobaltimer_irqstatus
 //@}
 
 //-------------------------------------------------------------------------------------------
-// HW_ARMGLOBALTIMER_COMPARATOR0 - Global Timer Comparator Value Registers
+// HW_ARMGLOBALTIMER_COMPARATORn - Global Timer Comparator Value Registers
 //-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_ARMGLOBALTIMER_COMPARATOR0 - Global Timer Comparator Value Registers (RW)
+ * @brief HW_ARMGLOBALTIMER_COMPARATORn - Global Timer Comparator Value Registers (RW)
  *
  * Reset value: 0x00000000
  *
  * There are two timer counter registers. They are the lower 32-bit timer counter at offset 0x00 and
  * the upper 32-bit timer counter at offset 0x04.
  */
-typedef union _hw_armglobaltimer_comparator0
+typedef union _hw_armglobaltimer_comparatorn
 {
     reg32_t U;
-    struct _hw_armglobaltimer_comparator0_bitfields
+    struct _hw_armglobaltimer_comparatorn_bitfields
     {
         unsigned VALUE : 32; //!< [31:0] 32-bits of the comparator value.
     } B;
-} hw_armglobaltimer_comparator0_t;
+} hw_armglobaltimer_comparatorn_t;
 #endif
 
 /*!
- * @name Constants and macros for entire ARMGLOBALTIMER_COMPARATOR0 register
+ * @name Constants and macros for entire ARMGLOBALTIMER_COMPARATORn register
  */
 //@{
-#define HW_ARMGLOBALTIMER_COMPARATOR0_ADDR      (REGS_ARMGLOBALTIMER_BASE + 0x210)
+//! @brief Number of instances of the ARMGLOBALTIMER_COMPARATORn register.
+#define HW_ARMGLOBALTIMER_COMPARATORn_COUNT     (2)
+
+#define HW_ARMGLOBALTIMER_COMPARATORn_ADDR(n)   (REGS_ARMGLOBALTIMER_BASE + 0x210 + (0x4 * (n)))
 
 #ifndef __LANGUAGE_ASM__
-#define HW_ARMGLOBALTIMER_COMPARATOR0           (*(volatile hw_armglobaltimer_comparator0_t *) HW_ARMGLOBALTIMER_COMPARATOR0_ADDR)
-#define HW_ARMGLOBALTIMER_COMPARATOR0_RD()      (HW_ARMGLOBALTIMER_COMPARATOR0.U)
-#define HW_ARMGLOBALTIMER_COMPARATOR0_WR(v)     (HW_ARMGLOBALTIMER_COMPARATOR0.U = (v))
-#define HW_ARMGLOBALTIMER_COMPARATOR0_SET(v)    (HW_ARMGLOBALTIMER_COMPARATOR0_WR(HW_ARMGLOBALTIMER_COMPARATOR0_RD() |  (v)))
-#define HW_ARMGLOBALTIMER_COMPARATOR0_CLR(v)    (HW_ARMGLOBALTIMER_COMPARATOR0_WR(HW_ARMGLOBALTIMER_COMPARATOR0_RD() & ~(v)))
-#define HW_ARMGLOBALTIMER_COMPARATOR0_TOG(v)    (HW_ARMGLOBALTIMER_COMPARATOR0_WR(HW_ARMGLOBALTIMER_COMPARATOR0_RD() ^  (v)))
+#define HW_ARMGLOBALTIMER_COMPARATORn(n)        (*(volatile hw_armglobaltimer_comparatorn_t *) HW_ARMGLOBALTIMER_COMPARATORn_ADDR(n))
+#define HW_ARMGLOBALTIMER_COMPARATORn_RD(n)     (HW_ARMGLOBALTIMER_COMPARATORn(n).U)
+#define HW_ARMGLOBALTIMER_COMPARATORn_WR(n, v)  (HW_ARMGLOBALTIMER_COMPARATORn(n).U = (v))
+#define HW_ARMGLOBALTIMER_COMPARATORn_SET(n, v) (HW_ARMGLOBALTIMER_COMPARATORn_WR(n, HW_ARMGLOBALTIMER_COMPARATORn_RD(n) |  (v)))
+#define HW_ARMGLOBALTIMER_COMPARATORn_CLR(n, v) (HW_ARMGLOBALTIMER_COMPARATORn_WR(n, HW_ARMGLOBALTIMER_COMPARATORn_RD(n) & ~(v)))
+#define HW_ARMGLOBALTIMER_COMPARATORn_TOG(n, v) (HW_ARMGLOBALTIMER_COMPARATORn_WR(n, HW_ARMGLOBALTIMER_COMPARATORn_RD(n) ^  (v)))
 #endif
 //@}
 
 /*
- * constants & macros for individual ARMGLOBALTIMER_COMPARATOR0 bitfields
+ * constants & macros for individual ARMGLOBALTIMER_COMPARATORn bitfields
  */
 
-/*! @name Register ARMGLOBALTIMER_COMPARATOR0, field VALUE[31:0] (RW)
+/*! @name Register ARMGLOBALTIMER_COMPARATORn, field VALUE[31:0] (RW)
  *
  * 32-bits of the comparator value.
  */
 //@{
-#define BP_ARMGLOBALTIMER_COMPARATOR0_VALUE      (0)      //!< Bit position for ARMGLOBALTIMER_COMPARATOR0_VALUE.
-#define BM_ARMGLOBALTIMER_COMPARATOR0_VALUE      (0xffffffff)  //!< Bit mask for ARMGLOBALTIMER_COMPARATOR0_VALUE.
+#define BP_ARMGLOBALTIMER_COMPARATORn_VALUE      (0)      //!< Bit position for ARMGLOBALTIMER_COMPARATORn_VALUE.
+#define BM_ARMGLOBALTIMER_COMPARATORn_VALUE      (0xffffffff)  //!< Bit mask for ARMGLOBALTIMER_COMPARATORn_VALUE.
 
-//! @brief Get value of ARMGLOBALTIMER_COMPARATOR0_VALUE from a register value.
-#define BG_ARMGLOBALTIMER_COMPARATOR0_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ARMGLOBALTIMER_COMPARATOR0_VALUE) >> BP_ARMGLOBALTIMER_COMPARATOR0_VALUE)
+//! @brief Get value of ARMGLOBALTIMER_COMPARATORn_VALUE from a register value.
+#define BG_ARMGLOBALTIMER_COMPARATORn_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ARMGLOBALTIMER_COMPARATORn_VALUE) >> BP_ARMGLOBALTIMER_COMPARATORn_VALUE)
 
-//! @brief Format value for bitfield ARMGLOBALTIMER_COMPARATOR0_VALUE.
-#define BF_ARMGLOBALTIMER_COMPARATOR0_VALUE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ARMGLOBALTIMER_COMPARATOR0_VALUE) & BM_ARMGLOBALTIMER_COMPARATOR0_VALUE)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the VALUE field to a new value.
-#define BW_ARMGLOBALTIMER_COMPARATOR0_VALUE(v)   (HW_ARMGLOBALTIMER_COMPARATOR0_WR((HW_ARMGLOBALTIMER_COMPARATOR0_RD() & ~BM_ARMGLOBALTIMER_COMPARATOR0_VALUE) | BF_ARMGLOBALTIMER_COMPARATOR0_VALUE(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_ARMGLOBALTIMER_COMPARATOR1 - Global Timer Comparator Value Registers
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_ARMGLOBALTIMER_COMPARATOR1 - Global Timer Comparator Value Registers (RW)
- *
- * Reset value: 0x00000000
- *
- * There are two timer counter registers. They are the lower 32-bit timer counter at offset 0x00 and
- * the upper 32-bit timer counter at offset 0x04.
- */
-typedef union _hw_armglobaltimer_comparator1
-{
-    reg32_t U;
-    struct _hw_armglobaltimer_comparator1_bitfields
-    {
-        unsigned VALUE : 32; //!< [31:0] 32-bits of the comparator value.
-    } B;
-} hw_armglobaltimer_comparator1_t;
-#endif
-
-/*!
- * @name Constants and macros for entire ARMGLOBALTIMER_COMPARATOR1 register
- */
-//@{
-#define HW_ARMGLOBALTIMER_COMPARATOR1_ADDR      (REGS_ARMGLOBALTIMER_BASE + 0x214)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_ARMGLOBALTIMER_COMPARATOR1           (*(volatile hw_armglobaltimer_comparator1_t *) HW_ARMGLOBALTIMER_COMPARATOR1_ADDR)
-#define HW_ARMGLOBALTIMER_COMPARATOR1_RD()      (HW_ARMGLOBALTIMER_COMPARATOR1.U)
-#define HW_ARMGLOBALTIMER_COMPARATOR1_WR(v)     (HW_ARMGLOBALTIMER_COMPARATOR1.U = (v))
-#define HW_ARMGLOBALTIMER_COMPARATOR1_SET(v)    (HW_ARMGLOBALTIMER_COMPARATOR1_WR(HW_ARMGLOBALTIMER_COMPARATOR1_RD() |  (v)))
-#define HW_ARMGLOBALTIMER_COMPARATOR1_CLR(v)    (HW_ARMGLOBALTIMER_COMPARATOR1_WR(HW_ARMGLOBALTIMER_COMPARATOR1_RD() & ~(v)))
-#define HW_ARMGLOBALTIMER_COMPARATOR1_TOG(v)    (HW_ARMGLOBALTIMER_COMPARATOR1_WR(HW_ARMGLOBALTIMER_COMPARATOR1_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual ARMGLOBALTIMER_COMPARATOR1 bitfields
- */
-
-/*! @name Register ARMGLOBALTIMER_COMPARATOR1, field VALUE[31:0] (RW)
- *
- * 32-bits of the comparator value.
- */
-//@{
-#define BP_ARMGLOBALTIMER_COMPARATOR1_VALUE      (0)      //!< Bit position for ARMGLOBALTIMER_COMPARATOR1_VALUE.
-#define BM_ARMGLOBALTIMER_COMPARATOR1_VALUE      (0xffffffff)  //!< Bit mask for ARMGLOBALTIMER_COMPARATOR1_VALUE.
-
-//! @brief Get value of ARMGLOBALTIMER_COMPARATOR1_VALUE from a register value.
-#define BG_ARMGLOBALTIMER_COMPARATOR1_VALUE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ARMGLOBALTIMER_COMPARATOR1_VALUE) >> BP_ARMGLOBALTIMER_COMPARATOR1_VALUE)
-
-//! @brief Format value for bitfield ARMGLOBALTIMER_COMPARATOR1_VALUE.
-#define BF_ARMGLOBALTIMER_COMPARATOR1_VALUE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ARMGLOBALTIMER_COMPARATOR1_VALUE) & BM_ARMGLOBALTIMER_COMPARATOR1_VALUE)
+//! @brief Format value for bitfield ARMGLOBALTIMER_COMPARATORn_VALUE.
+#define BF_ARMGLOBALTIMER_COMPARATORn_VALUE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ARMGLOBALTIMER_COMPARATORn_VALUE) & BM_ARMGLOBALTIMER_COMPARATORn_VALUE)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the VALUE field to a new value.
-#define BW_ARMGLOBALTIMER_COMPARATOR1_VALUE(v)   (HW_ARMGLOBALTIMER_COMPARATOR1_WR((HW_ARMGLOBALTIMER_COMPARATOR1_RD() & ~BM_ARMGLOBALTIMER_COMPARATOR1_VALUE) | BF_ARMGLOBALTIMER_COMPARATOR1_VALUE(v)))
+#define BW_ARMGLOBALTIMER_COMPARATORn_VALUE(n, v)   (HW_ARMGLOBALTIMER_COMPARATORn_WR(n, (HW_ARMGLOBALTIMER_COMPARATORn_RD(n) & ~BM_ARMGLOBALTIMER_COMPARATORn_VALUE) | BF_ARMGLOBALTIMER_COMPARATORn_VALUE(v)))
 #endif
 //@}
 
@@ -638,12 +516,10 @@ typedef union _hw_armglobaltimer_autoincrement
 typedef struct _hw_armglobaltimer
 {
     reg32_t _reserved0[128];
-    volatile hw_armglobaltimer_counter0_t COUNTER0; //!< Global Timer Counter Registers
-    volatile hw_armglobaltimer_counter1_t COUNTER1; //!< Global Timer Counter Registers
+    volatile hw_armglobaltimer_countern_t COUNTERn[2]; //!< Global Timer Counter Registers
     volatile hw_armglobaltimer_control_t CONTROL; //!< Global Timer Control Register
     volatile hw_armglobaltimer_irqstatus_t IRQSTATUS; //!< Global Timer Interrupt Status Register
-    volatile hw_armglobaltimer_comparator0_t COMPARATOR0; //!< Global Timer Comparator Value Registers
-    volatile hw_armglobaltimer_comparator1_t COMPARATOR1; //!< Global Timer Comparator Value Registers
+    volatile hw_armglobaltimer_comparatorn_t COMPARATORn[2]; //!< Global Timer Comparator Value Registers
     volatile hw_armglobaltimer_autoincrement_t AUTOINCREMENT; //!< Global Timer Auto-increment Register
 } hw_armglobaltimer_t;
 #pragma pack()
@@ -655,5 +531,5 @@ typedef struct _hw_armglobaltimer
 #endif
 
 #endif // __HW_ARMGLOBALTIMER_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

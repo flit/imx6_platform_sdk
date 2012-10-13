@@ -82,8 +82,6 @@
  * @brief HW_MLB150_MLBC0 - MediaLB Control 0 Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mlb150_mlbc0
 {
@@ -300,8 +298,6 @@ typedef union _hw_mlb150_mlbc0
  * @brief HW_MLB150_MLBPC0 - MediaLB 6-pin Control 0 Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mlb150_mlbpc0
 {
@@ -365,8 +361,6 @@ typedef union _hw_mlb150_mlbpc0
  * @brief HW_MLB150_MS0 - MediaLB Channel Status 0 Register (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mlb150_ms0
 {
@@ -417,8 +411,6 @@ typedef union _hw_mlb150_ms0
  * @brief HW_MLB150_MLBPC2 - MediaLB 6-pin Control 2 Register (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mlb150_mlbpc2
 {
@@ -523,8 +515,6 @@ typedef union _hw_mlb150_mlbpc2
  * @brief HW_MLB150_MS1 - MediaLB Channel Status1 Register (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mlb150_ms1
 {
@@ -575,8 +565,6 @@ typedef union _hw_mlb150_ms1
  * @brief HW_MLB150_MSS - MediaLB System Status Register (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mlb150_mss
 {
@@ -699,8 +687,6 @@ typedef union _hw_mlb150_mss
  * @brief HW_MLB150_MSD - MediaLB System Data Register (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mlb150_msd
 {
@@ -796,8 +782,6 @@ typedef union _hw_mlb150_msd
  * @brief HW_MLB150_MIEN - MediaLB Interrupt Enable Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mlb150_mien
 {
@@ -1171,8 +1155,6 @@ typedef union _hw_mlb150_mien
  * @brief HW_MLB150_MLBPC1 - MediaLB 6-pin Control 1 Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mlb150_mlbpc1
 {
@@ -1282,8 +1264,6 @@ typedef union _hw_mlb150_mlbpc1
  * @brief HW_MLB150_MLBC1 - MediaLB Control 1 Register (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mlb150_mlbc1
 {
@@ -1549,8 +1529,6 @@ typedef union _hw_mlb150_hcmr0
  * @brief HW_MLB150_HCMR1 - HBI Channel Mask 1 Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mlb150_hcmr1
 {
@@ -1776,8 +1754,6 @@ typedef union _hw_mlb150_hcbr0
  * @brief HW_MLB150_HCBR1 - HBI Channel Busy 1 Register (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mlb150_hcbr1
 {
@@ -1830,8 +1806,6 @@ typedef union _hw_mlb150_hcbr1
  * @brief HW_MLB150_MDAT0 - MIF Data 0 Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mlb150_mdat0
 {
@@ -1892,8 +1866,6 @@ typedef union _hw_mlb150_mdat0
  * @brief HW_MLB150_MDAT1 - MIF Data 1 Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mlb150_mdat1
 {
@@ -1954,8 +1926,6 @@ typedef union _hw_mlb150_mdat1
  * @brief HW_MLB150_MDAT2 - MIF Data 2 Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mlb150_mdat2
 {
@@ -2016,8 +1986,6 @@ typedef union _hw_mlb150_mdat2
  * @brief HW_MLB150_MDAT3 - MIF Data 3 Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mlb150_mdat3
 {
@@ -2078,8 +2046,6 @@ typedef union _hw_mlb150_mdat3
  * @brief HW_MLB150_MDWE0 - MIF Data Write Enable 0 Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mlb150_mdwe0
 {
@@ -2144,8 +2110,6 @@ typedef union _hw_mlb150_mdwe0
  * @brief HW_MLB150_MDWE1 - MIF Data Write Enable 1 Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mlb150_mdwe1
 {
@@ -2210,8 +2174,6 @@ typedef union _hw_mlb150_mdwe1
  * @brief HW_MLB150_MDWE2 - MIF Data Write Enable 2 Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mlb150_mdwe2
 {
@@ -2276,8 +2238,6 @@ typedef union _hw_mlb150_mdwe2
  * @brief HW_MLB150_MDWE3 - MIF Data Write Enable 3 Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mlb150_mdwe3
 {
@@ -2342,8 +2302,6 @@ typedef union _hw_mlb150_mdwe3
  * @brief HW_MLB150_MCTL - MIF Control Register (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mlb150_mctl
 {
@@ -2393,8 +2351,6 @@ typedef union _hw_mlb150_mctl
  * @brief HW_MLB150_MADR - MIF Address Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mlb150_madr
 {
@@ -2736,8 +2692,6 @@ typedef union _hw_mlb150_acsr0
  * @brief HW_MLB150_ACSR1 - AHB Channel Status 1 Register (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mlb150_acsr1
 {
@@ -2858,8 +2812,6 @@ typedef union _hw_mlb150_acmr0
  * @brief HW_MLB150_ACMR1 - AHB Channel Mask 1 Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mlb150_acmr1
 {
@@ -2976,5 +2928,5 @@ typedef struct _hw_mlb150
 #endif
 
 #endif // __HW_MLB150_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

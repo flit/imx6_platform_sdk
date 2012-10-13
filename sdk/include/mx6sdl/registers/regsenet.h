@@ -1206,8 +1206,6 @@ typedef union _hw_enet_ecr
 
 /*! @name Register ENET_ECR, field SLEEP[3] (RW)
  *
-
- *
  * Values:
  * - 0 - Normal operating mode.
  * - 1 - Sleep mode.
@@ -1719,8 +1717,6 @@ typedef union _hw_enet_mibc
  * @brief HW_ENET_RCR - Receive Control Register (RW)
  *
  * Reset value: 0x05ee0001
- *
-
  */
 typedef union _hw_enet_rcr
 {
@@ -1795,8 +1791,6 @@ typedef union _hw_enet_rcr
 //@}
 
 /*! @name Register ENET_RCR, field DRT[1] (RW)
- *
-
  *
  * Values:
  * - 0 - Receive path operates independently of transmit. Used for full-duplex or to monitor transmit
@@ -2285,8 +2279,6 @@ typedef union _hw_enet_tcr
 
 /*! @name Register ENET_TCR, field ADDINS[8] (RW)
  *
-
- *
  * Values:
  * - 0 - The source MAC address is not modified by the MAC.
  * - 1 - The MAC overwrites the source MAC address with the programmed MAC address according to ADDSEL.
@@ -2308,8 +2300,6 @@ typedef union _hw_enet_tcr
 //@}
 
 /*! @name Register ENET_TCR, field CRCFWD[9] (RW)
- *
-
  *
  * Values:
  * - 0 - TxBD[TC] controls whether the frame has a CRC from the application.
@@ -2905,8 +2895,6 @@ typedef union _hw_enet_tfwr
 
 /*! @name Register ENET_TFWR, field STRFWD[8] (RW)
  *
-
- *
  * Values:
  * - 0 - Disabled, the transmission start threshold is programmed in TFWR.
  * - 1 - Enabled.
@@ -3137,8 +3125,6 @@ typedef union _hw_enet_mrbr
  * @brief HW_ENET_RSFL - Receive FIFO Section Full Threshold (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_enet_rsfl
 {
@@ -3179,8 +3165,6 @@ typedef union _hw_enet_rsfl
  * @brief HW_ENET_RSEM - Receive FIFO Section Empty Threshold (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_enet_rsem
 {
@@ -3221,8 +3205,6 @@ typedef union _hw_enet_rsem
  * @brief HW_ENET_RAEM - Receive FIFO Almost Empty Threshold (RW)
  *
  * Reset value: 0x00000004
- *
-
  */
 typedef union _hw_enet_raem
 {
@@ -3263,8 +3245,6 @@ typedef union _hw_enet_raem
  * @brief HW_ENET_RAFL - Receive FIFO Almost Full Threshold (RW)
  *
  * Reset value: 0x00000004
- *
-
  */
 typedef union _hw_enet_rafl
 {
@@ -3305,8 +3285,6 @@ typedef union _hw_enet_rafl
  * @brief HW_ENET_TSEM - Transmit FIFO Section Empty Threshold (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_enet_tsem
 {
@@ -3347,8 +3325,6 @@ typedef union _hw_enet_tsem
  * @brief HW_ENET_TAEM - Transmit FIFO Almost Empty Threshold (RW)
  *
  * Reset value: 0x00000004
- *
-
  */
 typedef union _hw_enet_taem
 {
@@ -3389,8 +3365,6 @@ typedef union _hw_enet_taem
  * @brief HW_ENET_TAFL - Transmit FIFO Almost Full Threshold (RW)
  *
  * Reset value: 0x00000008
- *
-
  */
 typedef union _hw_enet_tafl
 {
@@ -3431,8 +3405,6 @@ typedef union _hw_enet_tafl
  * @brief HW_ENET_TIPG - Transmit Inter-Packet Gap (RW)
  *
  * Reset value: 0x0000000c
- *
-
  */
 typedef union _hw_enet_tipg
 {
@@ -3495,8 +3467,6 @@ typedef union _hw_enet_tipg
  * @brief HW_ENET_FTRL - Frame Truncation Length (RW)
  *
  * Reset value: 0x000007ff
- *
-
  */
 typedef union _hw_enet_ftrl
 {
@@ -3602,8 +3572,6 @@ typedef union _hw_enet_tacc
 
 /*! @name Register ENET_TACC, field SHIFT16[0] (RW)
  *
-
- *
  * Values:
  * - 0 - Disabled.
  * - 1 - Indicates to the transmit data FIFO that the written frames contain two additional octets before the
@@ -3686,8 +3654,6 @@ typedef union _hw_enet_tacc
  * @brief HW_ENET_RACC - Receive Accelerator Function Configuration (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_enet_racc
 {
@@ -3727,8 +3693,6 @@ typedef union _hw_enet_racc
 
 /*! @name Register ENET_RACC, field PADREM[0] (RW)
  *
-
- *
  * Values:
  * - 0 - Padding not removed.
  * - 1 - Any bytes following the IP payload section of the frame are removed from the frame.
@@ -3750,8 +3714,6 @@ typedef union _hw_enet_racc
 //@}
 
 /*! @name Register ENET_RACC, field IPDIS[1] (RW)
- *
-
  *
  * Values:
  * - 0 - Frames with wrong IPv4 header checksum are not discarded.
@@ -3777,8 +3739,6 @@ typedef union _hw_enet_racc
 
 /*! @name Register ENET_RACC, field PRODIS[2] (RW)
  *
-
- *
  * Values:
  * - 0 - Frames with wrong checksum are not discarded.
  * - 1 - If a TCP/IP, UDP/IP, or ICMP/IP frame is received that has a wrong TCP, UDP, or ICMP checksum, the
@@ -3802,8 +3762,6 @@ typedef union _hw_enet_racc
 //@}
 
 /*! @name Register ENET_RACC, field LINEDIS[6] (RW)
- *
-
  *
  * Values:
  * - 0 - Frames with errors are not discarded.
@@ -3912,8 +3870,6 @@ typedef union _hw_enet_atcr
 
 /*! @name Register ENET_ATCR, field EN[0] (RW)
  *
-
- *
  * Values:
  * - 0 - The timer stops at the current value.
  * - 1 - The timer starts incrementing.
@@ -3935,8 +3891,6 @@ typedef union _hw_enet_atcr
 //@}
 
 /*! @name Register ENET_ATCR, field OFFEN[2] (RW)
- *
-
  *
  * Values:
  * - 0 - Disable.
@@ -3962,8 +3916,6 @@ typedef union _hw_enet_atcr
 
 /*! @name Register ENET_ATCR, field OFFRST[3] (RW)
  *
-
- *
  * Values:
  * - 0 - The timer is not affected and no action occurs, besides clearing OFFEN, when the offset is reached.
  * - 1 - If OFFEN is set, the timer resets to zero when the offset setting is reached. The offset event does
@@ -3986,8 +3938,6 @@ typedef union _hw_enet_atcr
 //@}
 
 /*! @name Register ENET_ATCR, field PEREN[4] (RW)
- *
-
  *
  * Values:
  * - 0 - Disable.
@@ -4061,8 +4011,6 @@ typedef union _hw_enet_atcr
 
 /*! @name Register ENET_ATCR, field CAPTURE[11] (RW)
  *
-
- *
  * Values:
  * - 0 - No effect.
  * - 1 - The current time is captured and can be read from the ATVR register.
@@ -4084,8 +4032,6 @@ typedef union _hw_enet_atcr
 //@}
 
 /*! @name Register ENET_ATCR, field SLAVE[13] (RW)
- *
-
  *
  * Values:
  * - 0 - The timer is active and all configuration fields in this register are relevant.
@@ -4118,8 +4064,6 @@ typedef union _hw_enet_atcr
  * @brief HW_ENET_ATVR - Timer Value Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_enet_atvr
 {
@@ -4181,8 +4125,6 @@ typedef union _hw_enet_atvr
  * @brief HW_ENET_ATOFF - Timer Offset Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_enet_atoff
 {
@@ -4245,8 +4187,6 @@ typedef union _hw_enet_atoff
  * @brief HW_ENET_ATPER - Timer Period Register (RW)
  *
  * Reset value: 0x3b9aca00
- *
-
  */
 typedef union _hw_enet_atper
 {
@@ -4312,8 +4252,6 @@ typedef union _hw_enet_atper
  * @brief HW_ENET_ATCOR - Timer Correction Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_enet_atcor
 {
@@ -4378,8 +4316,6 @@ typedef union _hw_enet_atcor
  * @brief HW_ENET_ATINC - Time-Stamping Clock Period Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_enet_atinc
 {
@@ -4466,8 +4402,6 @@ typedef union _hw_enet_atinc
  * @brief HW_ENET_ATSTMP - Timestamp of Last Transmitted Frame (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_enet_atstmp
 {
@@ -4581,5 +4515,5 @@ typedef struct _hw_enet
 #endif
 
 #endif // __HW_ENET_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

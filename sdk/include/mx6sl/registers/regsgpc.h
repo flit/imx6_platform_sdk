@@ -60,8 +60,6 @@
  * @brief HW_GPC_CNTR - GPC Interface control register (RW)
  *
  * Reset value: 0x00100000
- *
-
  */
 typedef union _hw_gpc_cntr
 {
@@ -276,8 +274,6 @@ typedef union _hw_gpc_cntr
  * @brief HW_GPC_PGR - GPC Power Gating Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_gpc_pgr
 {
@@ -815,5 +811,5 @@ typedef struct _hw_gpc
 #endif
 
 #endif // __HW_GPC_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

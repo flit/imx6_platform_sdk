@@ -68,8 +68,6 @@
  * @brief HW_SPDC_DISP_TRIGGER - Display Trigger (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_spdc_disp_trigger
 {
@@ -178,8 +176,6 @@ typedef union _hw_spdc_disp_trigger
  * @brief HW_SPDC_UPDATE_X_Y - Display Coordinate (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_spdc_update_x_y
 {
@@ -264,8 +260,6 @@ typedef union _hw_spdc_update_x_y
  * @brief HW_SPDC_UPDATE_W_H - Display Area Size (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_spdc_update_w_h
 {
@@ -350,8 +344,6 @@ typedef union _hw_spdc_update_w_h
  * @brief HW_SPDC_LUT_PARA_UPDATE - LUT Parameter Update (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_spdc_lut_para_update
 {
@@ -434,8 +426,6 @@ typedef union _hw_spdc_lut_para_update
  * @brief HW_SPDC_OPERATE - Display Normal Operation (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_spdc_operate
 {
@@ -902,8 +892,6 @@ typedef union _hw_spdc_temper_setting
  * @brief HW_SPDC_NEXT_BUF - Next Frame Memory Address (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_spdc_next_buf
 {
@@ -965,8 +953,6 @@ typedef union _hw_spdc_next_buf
  * @brief HW_SPDC_CURRENT_BUF - Current Frame Memory Address (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_spdc_current_buf
 {
@@ -1028,8 +1014,6 @@ typedef union _hw_spdc_current_buf
  * @brief HW_SPDC_PREVIOUS_BUFF - Previous Frame Memory Address (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_spdc_previous_buff
 {
@@ -1091,8 +1075,6 @@ typedef union _hw_spdc_previous_buff
  * @brief HW_SPDC_FRM_CNT_BUFF - Counter Frame Memory Address (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_spdc_frm_cnt_buff
 {
@@ -1154,8 +1136,6 @@ typedef union _hw_spdc_frm_cnt_buff
  * @brief HW_SPDC_LUT_BUFF - LUT Memory Address (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_spdc_lut_buff
 {
@@ -1217,8 +1197,6 @@ typedef union _hw_spdc_lut_buff
  * @brief HW_SPDC_INT_EN - Interrupt Enable (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_spdc_int_en
 {
@@ -1349,8 +1327,6 @@ typedef union _hw_spdc_int_en
  * @brief HW_SPDC_INT_ST_CLR - Interrupt Status & Clear (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_spdc_int_st_clr
 {
@@ -1478,8 +1454,6 @@ typedef union _hw_spdc_int_st_clr
  * @brief HW_SPDC_STATUS - SPDC Operation Status (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_spdc_status
 {
@@ -1565,8 +1539,6 @@ typedef union _hw_spdc_status
  * @brief HW_SPDC_PANEL_TYPE_VER - Panel Type Related Information (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_spdc_panel_type_ver
 {
@@ -1645,8 +1617,6 @@ typedef union _hw_spdc_panel_type_ver
  * @brief HW_SPDC_TCON_VER - SPDC IP Version (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_spdc_tcon_ver
 {
@@ -1697,8 +1667,6 @@ typedef union _hw_spdc_tcon_ver
  * @brief HW_SPDC_SW_GATE_CLK - All Clock Gating Enable (RW)
  *
  * Reset value: 0x00000001
- *
-
  */
 typedef union _hw_spdc_sw_gate_clk
 {
@@ -1791,5 +1759,5 @@ typedef struct _hw_spdc
 #endif
 
 #endif // __HW_SPDC_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

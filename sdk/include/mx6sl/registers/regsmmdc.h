@@ -129,8 +129,6 @@
  * @brief HW_MMDC_MDCTL - MMDC Core Control Register (RW)
  *
  * Reset value: 0x03110000
- *
-
  */
 typedef union _hw_mmdc_mdctl
 {
@@ -843,8 +841,6 @@ typedef union _hw_mmdc_mdotc
  * @brief HW_MMDC_MDCFG0 - MMDC Core Timing Configuration Register 0 (RW)
  *
  * Reset value: 0x323622d3
- *
-
  */
 typedef union _hw_mmdc_mdcfg0
 {
@@ -1077,8 +1073,6 @@ typedef union _hw_mmdc_mdcfg0
  * @brief HW_MMDC_MDCFG1 - MMDC Core Timing Configuration Register 1 (RW)
  *
  * Reset value: 0xb6b18a23
- *
-
  */
 typedef union _hw_mmdc_mdcfg1
 {
@@ -1380,8 +1374,6 @@ typedef union _hw_mmdc_mdcfg1
  * @brief HW_MMDC_MDCFG2 - MMDC Core Timing Configuration Register 2 (RW)
  *
  * Reset value: 0x00c70092
- *
-
  */
 typedef union _hw_mmdc_mdcfg2
 {
@@ -1557,8 +1549,6 @@ typedef union _hw_mmdc_mdcfg2
  * @brief HW_MMDC_MDMISC - MMDC Core Miscellaneous Register (RW)
  *
  * Reset value: 0x00001600
- *
-
  */
 typedef union _hw_mmdc_mdmisc
 {
@@ -4003,8 +3993,6 @@ typedef union _hw_mmdc_maexidr1
  * @brief HW_MMDC_MADPCR0 - MMDC Core Debug and Profiling Control Register 0 (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mmdc_madpcr0
 {
@@ -4205,8 +4193,6 @@ typedef union _hw_mmdc_madpcr0
  * @brief HW_MMDC_MADPCR1 - MMDC Core Debug and Profiling Control Register 1 (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mmdc_madpcr1
 {
@@ -4293,8 +4279,6 @@ typedef union _hw_mmdc_madpcr1
  * @brief HW_MMDC_MADPSR0 - MMDC Core Debug and Profiling Status Register 0 (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mmdc_madpsr0
 {
@@ -4603,8 +4587,6 @@ typedef union _hw_mmdc_madpsr5
  * @brief HW_MMDC_MASBS0 - MMDC Core Step By Step Address Register (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mmdc_masbs0
 {
@@ -4654,8 +4636,6 @@ typedef union _hw_mmdc_masbs0
  * @brief HW_MMDC_MASBS1 - MMDC Core Step By Step Address Attributes Register (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mmdc_masbs1
 {
@@ -4906,8 +4886,6 @@ typedef union _hw_mmdc_magenp
  * @brief HW_MMDC_MPZQHWCTRL - MMDC PHY ZQ HW control register (RW)
  *
  * Reset value: 0xa1380000
- *
-
  */
 typedef union _hw_mmdc_mpzqhwctrl
 {
@@ -5207,8 +5185,6 @@ typedef union _hw_mmdc_mpzqhwctrl
  * @brief HW_MMDC_MPZQSWCTRL - MMDC PHY ZQ SW control register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mmdc_mpzqswctrl
 {
@@ -5423,8 +5399,6 @@ typedef union _hw_mmdc_mpzqswctrl
  * @brief HW_MMDC_MPWLGCR - MMDC PHY Write Leveling Configuration and Error Status Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mmdc_mpwlgcr
 {
@@ -5694,8 +5668,6 @@ typedef union _hw_mmdc_mpwlgcr
  * @brief HW_MMDC_MPWLDECTRL0 - MMDC PHY Write Leveling Delay Control Register 0 (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mmdc_mpwldectrl0
 {
@@ -5929,8 +5901,6 @@ typedef union _hw_mmdc_mpwldectrl0
  * @brief HW_MMDC_MPWLDECTRL1 - MMDC PHY Write Leveling Delay Control Register 1 (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mmdc_mpwldectrl1
 {
@@ -8968,8 +8938,6 @@ typedef union _hw_mmdc_mpwrdqby3dl
  * @brief HW_MMDC_MPDGCTRL0 - MMDC PHY Read DQS Gating Control Register 0 (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mmdc_mpdgctrl0
 {
@@ -9264,8 +9232,6 @@ typedef union _hw_mmdc_mpdgctrl0
  * @brief HW_MMDC_MPDGCTRL1 - MMDC PHY Read DQS Gating Control Register 1 (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mmdc_mpdgctrl1
 {
@@ -10266,8 +10232,6 @@ typedef union _hw_mmdc_mpzqlp2ctl
  * @brief HW_MMDC_MPRDDLHWCTL - MMDC PHY Read Delay HW Calibration Control Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mmdc_mprddlhwctl
 {
@@ -10443,8 +10407,6 @@ typedef union _hw_mmdc_mprddlhwctl
  * @brief HW_MMDC_MPWRDLHWCTL - MMDC PHY Write Delay HW Calibration Control Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mmdc_mpwrdlhwctl
 {
@@ -10611,8 +10573,6 @@ typedef union _hw_mmdc_mpwrdlhwctl
  * @brief HW_MMDC_MPRDDLHWST0 - MMDC PHY Read Delay HW Calibration Status Register 0 (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mmdc_mprddlhwst0
 {
@@ -10708,8 +10668,6 @@ typedef union _hw_mmdc_mprddlhwst0
  * @brief HW_MMDC_MPRDDLHWST1 - MMDC PHY Read Delay HW Calibration Status Register 1 (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mmdc_mprddlhwst1
 {
@@ -10805,8 +10763,6 @@ typedef union _hw_mmdc_mprddlhwst1
  * @brief HW_MMDC_MPWRDLHWST0 - MMDC PHY Write Delay HW Calibration Status Register 0 (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mmdc_mpwrdlhwst0
 {
@@ -10902,8 +10858,6 @@ typedef union _hw_mmdc_mpwrdlhwst0
  * @brief HW_MMDC_MPWRDLHWST1 - MMDC PHY Write Delay HW Calibration Status Register 1 (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mmdc_mpwrdlhwst1
 {
@@ -10999,8 +10953,6 @@ typedef union _hw_mmdc_mpwrdlhwst1
  * @brief HW_MMDC_MPWLHWERR - MMDC PHY Write Leveling HW Error Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mmdc_mpwlhwerr
 {
@@ -11104,8 +11056,6 @@ typedef union _hw_mmdc_mpwlhwerr
  * @brief HW_MMDC_MPDGHWST0 - MMDC PHY Read DQS Gating HW Status Register 0 (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mmdc_mpdghwst0
 {
@@ -11171,8 +11121,6 @@ typedef union _hw_mmdc_mpdghwst0
  * @brief HW_MMDC_MPDGHWST1 - MMDC PHY Read DQS Gating HW Status Register 1 (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mmdc_mpdghwst1
 {
@@ -11238,8 +11186,6 @@ typedef union _hw_mmdc_mpdghwst1
  * @brief HW_MMDC_MPDGHWST2 - MMDC PHY Read DQS Gating HW Status Register 2 (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mmdc_mpdghwst2
 {
@@ -11305,8 +11251,6 @@ typedef union _hw_mmdc_mpdghwst2
  * @brief HW_MMDC_MPDGHWST3 - MMDC PHY Read DQS Gating HW Status Register 3 (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mmdc_mpdghwst3
 {
@@ -11470,8 +11414,6 @@ typedef union _hw_mmdc_mppdcmpr1
  * @brief HW_MMDC_MPPDCMPR2 - MMDC PHY Pre-defined Compare and CA delay-line Configuration Register (RW)
  *
  * Reset value: 0x00400000
- *
-
  */
 typedef union _hw_mmdc_mppdcmpr2
 {
@@ -11628,8 +11570,6 @@ typedef union _hw_mmdc_mppdcmpr2
  * @brief HW_MMDC_MPSWDAR0 - MMDC PHY SW Dummy Access Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mmdc_mpswdar0
 {
@@ -11792,8 +11732,6 @@ typedef union _hw_mmdc_mpswdar0
  * @brief HW_MMDC_MPSWDRDR0 - MMDC PHY SW Dummy Read Data Register 0 (RO)
  *
  * Reset value: 0xffffffff
- *
-
  */
 typedef union _hw_mmdc_mpswdrdr0
 {
@@ -11843,8 +11781,6 @@ typedef union _hw_mmdc_mpswdrdr0
  * @brief HW_MMDC_MPSWDRDR1 - MMDC PHY SW Dummy Read Data Register 1 (RO)
  *
  * Reset value: 0xffffffff
- *
-
  */
 typedef union _hw_mmdc_mpswdrdr1
 {
@@ -11894,8 +11830,6 @@ typedef union _hw_mmdc_mpswdrdr1
  * @brief HW_MMDC_MPSWDRDR2 - MMDC PHY SW Dummy Read Data Register 2 (RO)
  *
  * Reset value: 0xffffffff
- *
-
  */
 typedef union _hw_mmdc_mpswdrdr2
 {
@@ -11945,8 +11879,6 @@ typedef union _hw_mmdc_mpswdrdr2
  * @brief HW_MMDC_MPSWDRDR3 - MMDC PHY SW Dummy Read Data Register 3 (RO)
  *
  * Reset value: 0xffffffff
- *
-
  */
 typedef union _hw_mmdc_mpswdrdr3
 {
@@ -11996,8 +11928,6 @@ typedef union _hw_mmdc_mpswdrdr3
  * @brief HW_MMDC_MPSWDRDR4 - MMDC PHY SW Dummy Read Data Register 4 (RO)
  *
  * Reset value: 0xffffffff
- *
-
  */
 typedef union _hw_mmdc_mpswdrdr4
 {
@@ -12048,8 +11978,6 @@ typedef union _hw_mmdc_mpswdrdr4
  * @brief HW_MMDC_MPSWDRDR5 - MMDC PHY SW Dummy Read Data Register 5 (RO)
  *
  * Reset value: 0xffffffff
- *
-
  */
 typedef union _hw_mmdc_mpswdrdr5
 {
@@ -12100,8 +12028,6 @@ typedef union _hw_mmdc_mpswdrdr5
  * @brief HW_MMDC_MPSWDRDR6 - MMDC PHY SW Dummy Read Data Register 6 (RO)
  *
  * Reset value: 0xffffffff
- *
-
  */
 typedef union _hw_mmdc_mpswdrdr6
 {
@@ -12152,8 +12078,6 @@ typedef union _hw_mmdc_mpswdrdr6
  * @brief HW_MMDC_MPSWDRDR7 - MMDC PHY SW Dummy Read Data Register 7 (RO)
  *
  * Reset value: 0xffffffff
- *
-
  */
 typedef union _hw_mmdc_mpswdrdr7
 {
@@ -12204,8 +12128,6 @@ typedef union _hw_mmdc_mpswdrdr7
  * @brief HW_MMDC_MPMUR0 - MMDC PHY Measure Unit Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_mmdc_mpmur0
 {
@@ -12992,5 +12914,5 @@ typedef struct _hw_mmdc
 #endif
 
 #endif // __HW_MMDC_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

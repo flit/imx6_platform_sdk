@@ -1088,8 +1088,6 @@ typedef union _hw_pmu_misc0
 
 /*! @name Register PMU_MISC0, field REFTOP_VBGADJ[6:4] (RW)
  *
-
- *
  * Values:
  * - 000 - Nominal VBG
  * - 001 - VBG+0.78%
@@ -2162,5 +2160,5 @@ typedef struct _hw_pmu
 #endif
 
 #endif // __HW_PMU_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

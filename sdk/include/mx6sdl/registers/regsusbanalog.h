@@ -281,8 +281,6 @@ typedef union _hw_usb_analog_usb1_chrg_detect
 
 /*! @name Register USB_ANALOG_USB1_CHRG_DETECT, field CHK_CONTACT[18] (RW)
  *
-
- *
  * Values:
  * - NO_CHECK = 0 - Do not check the contact of USB plug.
  * - CHECK = 1 - Check whether the USB plug has been in contact with each other
@@ -310,8 +308,6 @@ typedef union _hw_usb_analog_usb1_chrg_detect
 //@}
 
 /*! @name Register USB_ANALOG_USB1_CHRG_DETECT, field CHK_CHRG_B[19] (RW)
- *
-
  *
  * Values:
  * - CHECK = 0 - Check whether a charger (either a dedicated charger or a host charger) is connected to USB port.
@@ -913,8 +909,6 @@ typedef union _hw_usb_analog_usb2_chrg_detect
 
 /*! @name Register USB_ANALOG_USB2_CHRG_DETECT, field CHK_CONTACT[18] (RW)
  *
-
- *
  * Values:
  * - NO_CHECK = 0 - Do not check the contact of USB plug.
  * - CHECK = 1 - Check whether the USB plug has been in contact with each other
@@ -942,8 +936,6 @@ typedef union _hw_usb_analog_usb2_chrg_detect
 //@}
 
 /*! @name Register USB_ANALOG_USB2_CHRG_DETECT, field CHK_CHRG_B[19] (RW)
- *
-
  *
  * Values:
  * - CHECK = 0 - Check whether a charger (either a dedicated charger or a host charger) is connected to USB port.
@@ -1434,5 +1426,5 @@ typedef struct _hw_usb_analog
 #endif
 
 #endif // __HW_USB_ANALOG_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

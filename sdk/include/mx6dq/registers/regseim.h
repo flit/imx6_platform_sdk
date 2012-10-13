@@ -77,8 +77,6 @@
  * @brief HW_EIM_CS0GCR1 - Chip Select n General Configuration Register 1 (RW)
  *
  * Reset value: 0x00610088
- *
-
  */
 typedef union _hw_eim_cs0gcr1
 {
@@ -679,8 +677,6 @@ typedef union _hw_eim_cs0gcr1
  * @brief HW_EIM_CS0GCR2 - Chip Select n General Configuration Register 2 (RW)
  *
  * Reset value: 0x00001010
- *
-
  */
 typedef union _hw_eim_cs0gcr2
 {
@@ -866,8 +862,6 @@ typedef union _hw_eim_cs0gcr2
  * @brief HW_EIM_CS0RCR1 - Chip Select n Read Configuration Register 1 (RW)
  *
  * Reset value: 0x1c002000
- *
-
  */
 typedef union _hw_eim_cs0rcr1
 {
@@ -1152,8 +1146,6 @@ typedef union _hw_eim_cs0rcr1
  * @brief HW_EIM_CS0RCR2 - Chip Select n Read Configuration Register 2 (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_eim_cs0rcr2
 {
@@ -1367,8 +1359,6 @@ typedef union _hw_eim_cs0rcr2
  * @brief HW_EIM_CS0WCR1 - Chip Select n Write Configuration Register 1 (RW)
  *
  * Reset value: 0x1c000000
- *
-
  */
 typedef union _hw_eim_cs0wcr1
 {
@@ -1726,8 +1716,6 @@ typedef union _hw_eim_cs0wcr1
  * @brief HW_EIM_CS0WCR2 - Chip Select n Write Configuration Register 2 (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_eim_cs0wcr2
 {
@@ -1791,8 +1779,6 @@ typedef union _hw_eim_cs0wcr2
  * @brief HW_EIM_CS1GCR1 - Chip Select n General Configuration Register 1 (RW)
  *
  * Reset value: 0x00610088
- *
-
  */
 typedef union _hw_eim_cs1gcr1
 {
@@ -2393,8 +2379,6 @@ typedef union _hw_eim_cs1gcr1
  * @brief HW_EIM_CS1GCR2 - Chip Select n General Configuration Register 2 (RW)
  *
  * Reset value: 0x00001010
- *
-
  */
 typedef union _hw_eim_cs1gcr2
 {
@@ -2580,8 +2564,6 @@ typedef union _hw_eim_cs1gcr2
  * @brief HW_EIM_CS1RCR1 - Chip Select n Read Configuration Register 1 (RW)
  *
  * Reset value: 0x1c002000
- *
-
  */
 typedef union _hw_eim_cs1rcr1
 {
@@ -2866,8 +2848,6 @@ typedef union _hw_eim_cs1rcr1
  * @brief HW_EIM_CS1RCR2 - Chip Select n Read Configuration Register 2 (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_eim_cs1rcr2
 {
@@ -3081,8 +3061,6 @@ typedef union _hw_eim_cs1rcr2
  * @brief HW_EIM_CS1WCR1 - Chip Select n Write Configuration Register 1 (RW)
  *
  * Reset value: 0x1c000000
- *
-
  */
 typedef union _hw_eim_cs1wcr1
 {
@@ -3440,8 +3418,6 @@ typedef union _hw_eim_cs1wcr1
  * @brief HW_EIM_CS1WCR2 - Chip Select n Write Configuration Register 2 (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_eim_cs1wcr2
 {
@@ -3505,8 +3481,6 @@ typedef union _hw_eim_cs1wcr2
  * @brief HW_EIM_CS2GCR1 - Chip Select n General Configuration Register 1 (RW)
  *
  * Reset value: 0x00610088
- *
-
  */
 typedef union _hw_eim_cs2gcr1
 {
@@ -4107,8 +4081,6 @@ typedef union _hw_eim_cs2gcr1
  * @brief HW_EIM_CS2GCR2 - Chip Select n General Configuration Register 2 (RW)
  *
  * Reset value: 0x00001010
- *
-
  */
 typedef union _hw_eim_cs2gcr2
 {
@@ -4294,8 +4266,6 @@ typedef union _hw_eim_cs2gcr2
  * @brief HW_EIM_CS2RCR1 - Chip Select n Read Configuration Register 1 (RW)
  *
  * Reset value: 0x1c002000
- *
-
  */
 typedef union _hw_eim_cs2rcr1
 {
@@ -4580,8 +4550,6 @@ typedef union _hw_eim_cs2rcr1
  * @brief HW_EIM_CS2RCR2 - Chip Select n Read Configuration Register 2 (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_eim_cs2rcr2
 {
@@ -4795,8 +4763,6 @@ typedef union _hw_eim_cs2rcr2
  * @brief HW_EIM_CS2WCR1 - Chip Select n Write Configuration Register 1 (RW)
  *
  * Reset value: 0x1c000000
- *
-
  */
 typedef union _hw_eim_cs2wcr1
 {
@@ -5154,8 +5120,6 @@ typedef union _hw_eim_cs2wcr1
  * @brief HW_EIM_CS2WCR2 - Chip Select n Write Configuration Register 2 (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_eim_cs2wcr2
 {
@@ -5219,8 +5183,6 @@ typedef union _hw_eim_cs2wcr2
  * @brief HW_EIM_CS3GCR1 - Chip Select n General Configuration Register 1 (RW)
  *
  * Reset value: 0x00610088
- *
-
  */
 typedef union _hw_eim_cs3gcr1
 {
@@ -5821,8 +5783,6 @@ typedef union _hw_eim_cs3gcr1
  * @brief HW_EIM_CS3GCR2 - Chip Select n General Configuration Register 2 (RW)
  *
  * Reset value: 0x00001010
- *
-
  */
 typedef union _hw_eim_cs3gcr2
 {
@@ -6008,8 +5968,6 @@ typedef union _hw_eim_cs3gcr2
  * @brief HW_EIM_CS3RCR1 - Chip Select n Read Configuration Register 1 (RW)
  *
  * Reset value: 0x1c002000
- *
-
  */
 typedef union _hw_eim_cs3rcr1
 {
@@ -6294,8 +6252,6 @@ typedef union _hw_eim_cs3rcr1
  * @brief HW_EIM_CS3RCR2 - Chip Select n Read Configuration Register 2 (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_eim_cs3rcr2
 {
@@ -6509,8 +6465,6 @@ typedef union _hw_eim_cs3rcr2
  * @brief HW_EIM_CS3WCR1 - Chip Select n Write Configuration Register 1 (RW)
  *
  * Reset value: 0x1c000000
- *
-
  */
 typedef union _hw_eim_cs3wcr1
 {
@@ -6868,8 +6822,6 @@ typedef union _hw_eim_cs3wcr1
  * @brief HW_EIM_CS3WCR2 - Chip Select n Write Configuration Register 2 (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_eim_cs3wcr2
 {
@@ -6933,8 +6885,6 @@ typedef union _hw_eim_cs3wcr2
  * @brief HW_EIM_WCR - EIM Configuration Register (RW)
  *
  * Reset value: 0x00000020
- *
-
  */
 typedef union _hw_eim_wcr
 {
@@ -7145,8 +7095,6 @@ typedef union _hw_eim_wcr
  * @brief HW_EIM_WIAR - EIM IP Access Register (RW)
  *
  * Reset value: 0x00000010
- *
-
  */
 typedef union _hw_eim_wiar
 {
@@ -7319,8 +7267,6 @@ typedef union _hw_eim_wiar
  * @brief HW_EIM_EAR - Error Address Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_eim_ear
 {
@@ -7421,5 +7367,5 @@ typedef struct _hw_eim
 #endif
 
 #endif // __HW_EIM_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

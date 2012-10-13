@@ -56,14 +56,7 @@
  * - HW_SNVS_LPSMCLR - SNVS_LP Secure Monotonic Counter LSB Register
  * - HW_SNVS_LPPGDR - SNVS _LP Power Glitch Detector Register
  * - HW_SNVS_LPGPR - SNVS_LP General Purpose Register
- * - HW_SNVS_LPZMKR0 - SNVS_LP Zeroizable Master Key Register n
- * - HW_SNVS_LPZMKR1 - SNVS_LP Zeroizable Master Key Register n
- * - HW_SNVS_LPZMKR2 - SNVS_LP Zeroizable Master Key Register n
- * - HW_SNVS_LPZMKR3 - SNVS_LP Zeroizable Master Key Register n
- * - HW_SNVS_LPZMKR4 - SNVS_LP Zeroizable Master Key Register n
- * - HW_SNVS_LPZMKR5 - SNVS_LP Zeroizable Master Key Register n
- * - HW_SNVS_LPZMKR6 - SNVS_LP Zeroizable Master Key Register n
- * - HW_SNVS_LPZMKR7 - SNVS_LP Zeroizable Master Key Register n
+ * - HW_SNVS_LPZMKRn - SNVS_LP Zeroizable Master Key Register n
  * - HW_SNVS_HPVIDR1 - SNVS _HP Version ID Register 1
  * - HW_SNVS_HPVIDR2 - SNVS _HP Version ID Register 2
  *
@@ -4533,12 +4526,12 @@ typedef union _hw_snvs_lpgpr
 //@}
 
 //-------------------------------------------------------------------------------------------
-// HW_SNVS_LPZMKR0 - SNVS_LP Zeroizable Master Key Register n
+// HW_SNVS_LPZMKRn - SNVS_LP Zeroizable Master Key Register n
 //-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_SNVS_LPZMKR0 - SNVS_LP Zeroizable Master Key Register n (RW)
+ * @brief HW_SNVS_LPZMKRn - SNVS_LP Zeroizable Master Key Register n (RW)
  *
  * Reset value: 0x00000000
  *
@@ -4549,538 +4542,58 @@ typedef union _hw_snvs_lpgpr
  * programmed only by hardware. These registers cannot be read by software when the ZMK_HWP or ZMK
  * read lock bit is set.
  */
-typedef union _hw_snvs_lpzmkr0
+typedef union _hw_snvs_lpzmkrn
 {
     reg32_t U;
-    struct _hw_snvs_lpzmkr0_bitfields
+    struct _hw_snvs_lpzmkrn_bitfields
     {
         unsigned ZMK : 32; //!< [31:0] Zeroizable Master Key
     } B;
-} hw_snvs_lpzmkr0_t;
+} hw_snvs_lpzmkrn_t;
 #endif
 
 /*!
- * @name Constants and macros for entire SNVS_LPZMKR0 register
+ * @name Constants and macros for entire SNVS_LPZMKRn register
  */
 //@{
-#define HW_SNVS_LPZMKR0_ADDR      (REGS_SNVS_BASE + 0x6c)
+//! @brief Number of instances of the SNVS_LPZMKRn register.
+#define HW_SNVS_LPZMKRn_COUNT     (8)
+
+#define HW_SNVS_LPZMKRn_ADDR(n)   (REGS_SNVS_BASE + 0x6c + (0x4 * (n)))
 
 #ifndef __LANGUAGE_ASM__
-#define HW_SNVS_LPZMKR0           (*(volatile hw_snvs_lpzmkr0_t *) HW_SNVS_LPZMKR0_ADDR)
-#define HW_SNVS_LPZMKR0_RD()      (HW_SNVS_LPZMKR0.U)
-#define HW_SNVS_LPZMKR0_WR(v)     (HW_SNVS_LPZMKR0.U = (v))
-#define HW_SNVS_LPZMKR0_SET(v)    (HW_SNVS_LPZMKR0_WR(HW_SNVS_LPZMKR0_RD() |  (v)))
-#define HW_SNVS_LPZMKR0_CLR(v)    (HW_SNVS_LPZMKR0_WR(HW_SNVS_LPZMKR0_RD() & ~(v)))
-#define HW_SNVS_LPZMKR0_TOG(v)    (HW_SNVS_LPZMKR0_WR(HW_SNVS_LPZMKR0_RD() ^  (v)))
+#define HW_SNVS_LPZMKRn(n)        (*(volatile hw_snvs_lpzmkrn_t *) HW_SNVS_LPZMKRn_ADDR(n))
+#define HW_SNVS_LPZMKRn_RD(n)     (HW_SNVS_LPZMKRn(n).U)
+#define HW_SNVS_LPZMKRn_WR(n, v)  (HW_SNVS_LPZMKRn(n).U = (v))
+#define HW_SNVS_LPZMKRn_SET(n, v) (HW_SNVS_LPZMKRn_WR(n, HW_SNVS_LPZMKRn_RD(n) |  (v)))
+#define HW_SNVS_LPZMKRn_CLR(n, v) (HW_SNVS_LPZMKRn_WR(n, HW_SNVS_LPZMKRn_RD(n) & ~(v)))
+#define HW_SNVS_LPZMKRn_TOG(n, v) (HW_SNVS_LPZMKRn_WR(n, HW_SNVS_LPZMKRn_RD(n) ^  (v)))
 #endif
 //@}
 
 /*
- * constants & macros for individual SNVS_LPZMKR0 bitfields
+ * constants & macros for individual SNVS_LPZMKRn bitfields
  */
 
-/*! @name Register SNVS_LPZMKR0, field ZMK[31:0] (RW)
+/*! @name Register SNVS_LPZMKRn, field ZMK[31:0] (RW)
  *
  * Zeroizable Master Key Each of these registers contains part of the 256-bit ZMK value: LPZMKR0 -
  * ZMK[ 31-0 ] LPZMKR1 - ZMK[ 63-32 ] LPZMKR2 - ZMK[ 95-64 ] LPZMKR3 - ZMK[ 127-96 ] LPZMKR4 - ZMK[
  * 159-128 ] LPZMKR5 - ZMK[ 191-160 ] LPZMKR6 - ZMK[ 223-192 ] LPZMKR7 - ZMK[ 255-224 ]
  */
 //@{
-#define BP_SNVS_LPZMKR0_ZMK      (0)      //!< Bit position for SNVS_LPZMKR0_ZMK.
-#define BM_SNVS_LPZMKR0_ZMK      (0xffffffff)  //!< Bit mask for SNVS_LPZMKR0_ZMK.
+#define BP_SNVS_LPZMKRn_ZMK      (0)      //!< Bit position for SNVS_LPZMKRn_ZMK.
+#define BM_SNVS_LPZMKRn_ZMK      (0xffffffff)  //!< Bit mask for SNVS_LPZMKRn_ZMK.
 
-//! @brief Get value of SNVS_LPZMKR0_ZMK from a register value.
-#define BG_SNVS_LPZMKR0_ZMK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPZMKR0_ZMK) >> BP_SNVS_LPZMKR0_ZMK)
+//! @brief Get value of SNVS_LPZMKRn_ZMK from a register value.
+#define BG_SNVS_LPZMKRn_ZMK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPZMKRn_ZMK) >> BP_SNVS_LPZMKRn_ZMK)
 
-//! @brief Format value for bitfield SNVS_LPZMKR0_ZMK.
-#define BF_SNVS_LPZMKR0_ZMK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPZMKR0_ZMK) & BM_SNVS_LPZMKR0_ZMK)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ZMK field to a new value.
-#define BW_SNVS_LPZMKR0_ZMK(v)   (HW_SNVS_LPZMKR0_WR((HW_SNVS_LPZMKR0_RD() & ~BM_SNVS_LPZMKR0_ZMK) | BF_SNVS_LPZMKR0_ZMK(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_SNVS_LPZMKR1 - SNVS_LP Zeroizable Master Key Register n
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_SNVS_LPZMKR1 - SNVS_LP Zeroizable Master Key Register n (RW)
- *
- * Reset value: 0x00000000
- *
- * The SNVS _LP Zeroizable Master Key Registers contain the 256-bit zeroizable master key value.
- * These registers are programmable as follows: When ZMK write lock bit is set, they cannot be
- * programmed. When ZMK_HWP is not set, they are in software programming mode and can be programmed
- * only by software. When ZMK_HWP is set, they are in hardware programming mode and can be
- * programmed only by hardware. These registers cannot be read by software when the ZMK_HWP or ZMK
- * read lock bit is set.
- */
-typedef union _hw_snvs_lpzmkr1
-{
-    reg32_t U;
-    struct _hw_snvs_lpzmkr1_bitfields
-    {
-        unsigned ZMK : 32; //!< [31:0] Zeroizable Master Key
-    } B;
-} hw_snvs_lpzmkr1_t;
-#endif
-
-/*!
- * @name Constants and macros for entire SNVS_LPZMKR1 register
- */
-//@{
-#define HW_SNVS_LPZMKR1_ADDR      (REGS_SNVS_BASE + 0x70)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SNVS_LPZMKR1           (*(volatile hw_snvs_lpzmkr1_t *) HW_SNVS_LPZMKR1_ADDR)
-#define HW_SNVS_LPZMKR1_RD()      (HW_SNVS_LPZMKR1.U)
-#define HW_SNVS_LPZMKR1_WR(v)     (HW_SNVS_LPZMKR1.U = (v))
-#define HW_SNVS_LPZMKR1_SET(v)    (HW_SNVS_LPZMKR1_WR(HW_SNVS_LPZMKR1_RD() |  (v)))
-#define HW_SNVS_LPZMKR1_CLR(v)    (HW_SNVS_LPZMKR1_WR(HW_SNVS_LPZMKR1_RD() & ~(v)))
-#define HW_SNVS_LPZMKR1_TOG(v)    (HW_SNVS_LPZMKR1_WR(HW_SNVS_LPZMKR1_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual SNVS_LPZMKR1 bitfields
- */
-
-/*! @name Register SNVS_LPZMKR1, field ZMK[31:0] (RW)
- *
- * Zeroizable Master Key Each of these registers contains part of the 256-bit ZMK value: LPZMKR0 -
- * ZMK[ 31-0 ] LPZMKR1 - ZMK[ 63-32 ] LPZMKR2 - ZMK[ 95-64 ] LPZMKR3 - ZMK[ 127-96 ] LPZMKR4 - ZMK[
- * 159-128 ] LPZMKR5 - ZMK[ 191-160 ] LPZMKR6 - ZMK[ 223-192 ] LPZMKR7 - ZMK[ 255-224 ]
- */
-//@{
-#define BP_SNVS_LPZMKR1_ZMK      (0)      //!< Bit position for SNVS_LPZMKR1_ZMK.
-#define BM_SNVS_LPZMKR1_ZMK      (0xffffffff)  //!< Bit mask for SNVS_LPZMKR1_ZMK.
-
-//! @brief Get value of SNVS_LPZMKR1_ZMK from a register value.
-#define BG_SNVS_LPZMKR1_ZMK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPZMKR1_ZMK) >> BP_SNVS_LPZMKR1_ZMK)
-
-//! @brief Format value for bitfield SNVS_LPZMKR1_ZMK.
-#define BF_SNVS_LPZMKR1_ZMK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPZMKR1_ZMK) & BM_SNVS_LPZMKR1_ZMK)
+//! @brief Format value for bitfield SNVS_LPZMKRn_ZMK.
+#define BF_SNVS_LPZMKRn_ZMK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPZMKRn_ZMK) & BM_SNVS_LPZMKRn_ZMK)
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZMK field to a new value.
-#define BW_SNVS_LPZMKR1_ZMK(v)   (HW_SNVS_LPZMKR1_WR((HW_SNVS_LPZMKR1_RD() & ~BM_SNVS_LPZMKR1_ZMK) | BF_SNVS_LPZMKR1_ZMK(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_SNVS_LPZMKR2 - SNVS_LP Zeroizable Master Key Register n
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_SNVS_LPZMKR2 - SNVS_LP Zeroizable Master Key Register n (RW)
- *
- * Reset value: 0x00000000
- *
- * The SNVS _LP Zeroizable Master Key Registers contain the 256-bit zeroizable master key value.
- * These registers are programmable as follows: When ZMK write lock bit is set, they cannot be
- * programmed. When ZMK_HWP is not set, they are in software programming mode and can be programmed
- * only by software. When ZMK_HWP is set, they are in hardware programming mode and can be
- * programmed only by hardware. These registers cannot be read by software when the ZMK_HWP or ZMK
- * read lock bit is set.
- */
-typedef union _hw_snvs_lpzmkr2
-{
-    reg32_t U;
-    struct _hw_snvs_lpzmkr2_bitfields
-    {
-        unsigned ZMK : 32; //!< [31:0] Zeroizable Master Key
-    } B;
-} hw_snvs_lpzmkr2_t;
-#endif
-
-/*!
- * @name Constants and macros for entire SNVS_LPZMKR2 register
- */
-//@{
-#define HW_SNVS_LPZMKR2_ADDR      (REGS_SNVS_BASE + 0x74)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SNVS_LPZMKR2           (*(volatile hw_snvs_lpzmkr2_t *) HW_SNVS_LPZMKR2_ADDR)
-#define HW_SNVS_LPZMKR2_RD()      (HW_SNVS_LPZMKR2.U)
-#define HW_SNVS_LPZMKR2_WR(v)     (HW_SNVS_LPZMKR2.U = (v))
-#define HW_SNVS_LPZMKR2_SET(v)    (HW_SNVS_LPZMKR2_WR(HW_SNVS_LPZMKR2_RD() |  (v)))
-#define HW_SNVS_LPZMKR2_CLR(v)    (HW_SNVS_LPZMKR2_WR(HW_SNVS_LPZMKR2_RD() & ~(v)))
-#define HW_SNVS_LPZMKR2_TOG(v)    (HW_SNVS_LPZMKR2_WR(HW_SNVS_LPZMKR2_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual SNVS_LPZMKR2 bitfields
- */
-
-/*! @name Register SNVS_LPZMKR2, field ZMK[31:0] (RW)
- *
- * Zeroizable Master Key Each of these registers contains part of the 256-bit ZMK value: LPZMKR0 -
- * ZMK[ 31-0 ] LPZMKR1 - ZMK[ 63-32 ] LPZMKR2 - ZMK[ 95-64 ] LPZMKR3 - ZMK[ 127-96 ] LPZMKR4 - ZMK[
- * 159-128 ] LPZMKR5 - ZMK[ 191-160 ] LPZMKR6 - ZMK[ 223-192 ] LPZMKR7 - ZMK[ 255-224 ]
- */
-//@{
-#define BP_SNVS_LPZMKR2_ZMK      (0)      //!< Bit position for SNVS_LPZMKR2_ZMK.
-#define BM_SNVS_LPZMKR2_ZMK      (0xffffffff)  //!< Bit mask for SNVS_LPZMKR2_ZMK.
-
-//! @brief Get value of SNVS_LPZMKR2_ZMK from a register value.
-#define BG_SNVS_LPZMKR2_ZMK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPZMKR2_ZMK) >> BP_SNVS_LPZMKR2_ZMK)
-
-//! @brief Format value for bitfield SNVS_LPZMKR2_ZMK.
-#define BF_SNVS_LPZMKR2_ZMK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPZMKR2_ZMK) & BM_SNVS_LPZMKR2_ZMK)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ZMK field to a new value.
-#define BW_SNVS_LPZMKR2_ZMK(v)   (HW_SNVS_LPZMKR2_WR((HW_SNVS_LPZMKR2_RD() & ~BM_SNVS_LPZMKR2_ZMK) | BF_SNVS_LPZMKR2_ZMK(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_SNVS_LPZMKR3 - SNVS_LP Zeroizable Master Key Register n
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_SNVS_LPZMKR3 - SNVS_LP Zeroizable Master Key Register n (RW)
- *
- * Reset value: 0x00000000
- *
- * The SNVS _LP Zeroizable Master Key Registers contain the 256-bit zeroizable master key value.
- * These registers are programmable as follows: When ZMK write lock bit is set, they cannot be
- * programmed. When ZMK_HWP is not set, they are in software programming mode and can be programmed
- * only by software. When ZMK_HWP is set, they are in hardware programming mode and can be
- * programmed only by hardware. These registers cannot be read by software when the ZMK_HWP or ZMK
- * read lock bit is set.
- */
-typedef union _hw_snvs_lpzmkr3
-{
-    reg32_t U;
-    struct _hw_snvs_lpzmkr3_bitfields
-    {
-        unsigned ZMK : 32; //!< [31:0] Zeroizable Master Key
-    } B;
-} hw_snvs_lpzmkr3_t;
-#endif
-
-/*!
- * @name Constants and macros for entire SNVS_LPZMKR3 register
- */
-//@{
-#define HW_SNVS_LPZMKR3_ADDR      (REGS_SNVS_BASE + 0x78)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SNVS_LPZMKR3           (*(volatile hw_snvs_lpzmkr3_t *) HW_SNVS_LPZMKR3_ADDR)
-#define HW_SNVS_LPZMKR3_RD()      (HW_SNVS_LPZMKR3.U)
-#define HW_SNVS_LPZMKR3_WR(v)     (HW_SNVS_LPZMKR3.U = (v))
-#define HW_SNVS_LPZMKR3_SET(v)    (HW_SNVS_LPZMKR3_WR(HW_SNVS_LPZMKR3_RD() |  (v)))
-#define HW_SNVS_LPZMKR3_CLR(v)    (HW_SNVS_LPZMKR3_WR(HW_SNVS_LPZMKR3_RD() & ~(v)))
-#define HW_SNVS_LPZMKR3_TOG(v)    (HW_SNVS_LPZMKR3_WR(HW_SNVS_LPZMKR3_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual SNVS_LPZMKR3 bitfields
- */
-
-/*! @name Register SNVS_LPZMKR3, field ZMK[31:0] (RW)
- *
- * Zeroizable Master Key Each of these registers contains part of the 256-bit ZMK value: LPZMKR0 -
- * ZMK[ 31-0 ] LPZMKR1 - ZMK[ 63-32 ] LPZMKR2 - ZMK[ 95-64 ] LPZMKR3 - ZMK[ 127-96 ] LPZMKR4 - ZMK[
- * 159-128 ] LPZMKR5 - ZMK[ 191-160 ] LPZMKR6 - ZMK[ 223-192 ] LPZMKR7 - ZMK[ 255-224 ]
- */
-//@{
-#define BP_SNVS_LPZMKR3_ZMK      (0)      //!< Bit position for SNVS_LPZMKR3_ZMK.
-#define BM_SNVS_LPZMKR3_ZMK      (0xffffffff)  //!< Bit mask for SNVS_LPZMKR3_ZMK.
-
-//! @brief Get value of SNVS_LPZMKR3_ZMK from a register value.
-#define BG_SNVS_LPZMKR3_ZMK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPZMKR3_ZMK) >> BP_SNVS_LPZMKR3_ZMK)
-
-//! @brief Format value for bitfield SNVS_LPZMKR3_ZMK.
-#define BF_SNVS_LPZMKR3_ZMK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPZMKR3_ZMK) & BM_SNVS_LPZMKR3_ZMK)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ZMK field to a new value.
-#define BW_SNVS_LPZMKR3_ZMK(v)   (HW_SNVS_LPZMKR3_WR((HW_SNVS_LPZMKR3_RD() & ~BM_SNVS_LPZMKR3_ZMK) | BF_SNVS_LPZMKR3_ZMK(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_SNVS_LPZMKR4 - SNVS_LP Zeroizable Master Key Register n
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_SNVS_LPZMKR4 - SNVS_LP Zeroizable Master Key Register n (RW)
- *
- * Reset value: 0x00000000
- *
- * The SNVS _LP Zeroizable Master Key Registers contain the 256-bit zeroizable master key value.
- * These registers are programmable as follows: When ZMK write lock bit is set, they cannot be
- * programmed. When ZMK_HWP is not set, they are in software programming mode and can be programmed
- * only by software. When ZMK_HWP is set, they are in hardware programming mode and can be
- * programmed only by hardware. These registers cannot be read by software when the ZMK_HWP or ZMK
- * read lock bit is set.
- */
-typedef union _hw_snvs_lpzmkr4
-{
-    reg32_t U;
-    struct _hw_snvs_lpzmkr4_bitfields
-    {
-        unsigned ZMK : 32; //!< [31:0] Zeroizable Master Key
-    } B;
-} hw_snvs_lpzmkr4_t;
-#endif
-
-/*!
- * @name Constants and macros for entire SNVS_LPZMKR4 register
- */
-//@{
-#define HW_SNVS_LPZMKR4_ADDR      (REGS_SNVS_BASE + 0x7c)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SNVS_LPZMKR4           (*(volatile hw_snvs_lpzmkr4_t *) HW_SNVS_LPZMKR4_ADDR)
-#define HW_SNVS_LPZMKR4_RD()      (HW_SNVS_LPZMKR4.U)
-#define HW_SNVS_LPZMKR4_WR(v)     (HW_SNVS_LPZMKR4.U = (v))
-#define HW_SNVS_LPZMKR4_SET(v)    (HW_SNVS_LPZMKR4_WR(HW_SNVS_LPZMKR4_RD() |  (v)))
-#define HW_SNVS_LPZMKR4_CLR(v)    (HW_SNVS_LPZMKR4_WR(HW_SNVS_LPZMKR4_RD() & ~(v)))
-#define HW_SNVS_LPZMKR4_TOG(v)    (HW_SNVS_LPZMKR4_WR(HW_SNVS_LPZMKR4_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual SNVS_LPZMKR4 bitfields
- */
-
-/*! @name Register SNVS_LPZMKR4, field ZMK[31:0] (RW)
- *
- * Zeroizable Master Key Each of these registers contains part of the 256-bit ZMK value: LPZMKR0 -
- * ZMK[ 31-0 ] LPZMKR1 - ZMK[ 63-32 ] LPZMKR2 - ZMK[ 95-64 ] LPZMKR3 - ZMK[ 127-96 ] LPZMKR4 - ZMK[
- * 159-128 ] LPZMKR5 - ZMK[ 191-160 ] LPZMKR6 - ZMK[ 223-192 ] LPZMKR7 - ZMK[ 255-224 ]
- */
-//@{
-#define BP_SNVS_LPZMKR4_ZMK      (0)      //!< Bit position for SNVS_LPZMKR4_ZMK.
-#define BM_SNVS_LPZMKR4_ZMK      (0xffffffff)  //!< Bit mask for SNVS_LPZMKR4_ZMK.
-
-//! @brief Get value of SNVS_LPZMKR4_ZMK from a register value.
-#define BG_SNVS_LPZMKR4_ZMK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPZMKR4_ZMK) >> BP_SNVS_LPZMKR4_ZMK)
-
-//! @brief Format value for bitfield SNVS_LPZMKR4_ZMK.
-#define BF_SNVS_LPZMKR4_ZMK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPZMKR4_ZMK) & BM_SNVS_LPZMKR4_ZMK)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ZMK field to a new value.
-#define BW_SNVS_LPZMKR4_ZMK(v)   (HW_SNVS_LPZMKR4_WR((HW_SNVS_LPZMKR4_RD() & ~BM_SNVS_LPZMKR4_ZMK) | BF_SNVS_LPZMKR4_ZMK(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_SNVS_LPZMKR5 - SNVS_LP Zeroizable Master Key Register n
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_SNVS_LPZMKR5 - SNVS_LP Zeroizable Master Key Register n (RW)
- *
- * Reset value: 0x00000000
- *
- * The SNVS _LP Zeroizable Master Key Registers contain the 256-bit zeroizable master key value.
- * These registers are programmable as follows: When ZMK write lock bit is set, they cannot be
- * programmed. When ZMK_HWP is not set, they are in software programming mode and can be programmed
- * only by software. When ZMK_HWP is set, they are in hardware programming mode and can be
- * programmed only by hardware. These registers cannot be read by software when the ZMK_HWP or ZMK
- * read lock bit is set.
- */
-typedef union _hw_snvs_lpzmkr5
-{
-    reg32_t U;
-    struct _hw_snvs_lpzmkr5_bitfields
-    {
-        unsigned ZMK : 32; //!< [31:0] Zeroizable Master Key
-    } B;
-} hw_snvs_lpzmkr5_t;
-#endif
-
-/*!
- * @name Constants and macros for entire SNVS_LPZMKR5 register
- */
-//@{
-#define HW_SNVS_LPZMKR5_ADDR      (REGS_SNVS_BASE + 0x80)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SNVS_LPZMKR5           (*(volatile hw_snvs_lpzmkr5_t *) HW_SNVS_LPZMKR5_ADDR)
-#define HW_SNVS_LPZMKR5_RD()      (HW_SNVS_LPZMKR5.U)
-#define HW_SNVS_LPZMKR5_WR(v)     (HW_SNVS_LPZMKR5.U = (v))
-#define HW_SNVS_LPZMKR5_SET(v)    (HW_SNVS_LPZMKR5_WR(HW_SNVS_LPZMKR5_RD() |  (v)))
-#define HW_SNVS_LPZMKR5_CLR(v)    (HW_SNVS_LPZMKR5_WR(HW_SNVS_LPZMKR5_RD() & ~(v)))
-#define HW_SNVS_LPZMKR5_TOG(v)    (HW_SNVS_LPZMKR5_WR(HW_SNVS_LPZMKR5_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual SNVS_LPZMKR5 bitfields
- */
-
-/*! @name Register SNVS_LPZMKR5, field ZMK[31:0] (RW)
- *
- * Zeroizable Master Key Each of these registers contains part of the 256-bit ZMK value: LPZMKR0 -
- * ZMK[ 31-0 ] LPZMKR1 - ZMK[ 63-32 ] LPZMKR2 - ZMK[ 95-64 ] LPZMKR3 - ZMK[ 127-96 ] LPZMKR4 - ZMK[
- * 159-128 ] LPZMKR5 - ZMK[ 191-160 ] LPZMKR6 - ZMK[ 223-192 ] LPZMKR7 - ZMK[ 255-224 ]
- */
-//@{
-#define BP_SNVS_LPZMKR5_ZMK      (0)      //!< Bit position for SNVS_LPZMKR5_ZMK.
-#define BM_SNVS_LPZMKR5_ZMK      (0xffffffff)  //!< Bit mask for SNVS_LPZMKR5_ZMK.
-
-//! @brief Get value of SNVS_LPZMKR5_ZMK from a register value.
-#define BG_SNVS_LPZMKR5_ZMK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPZMKR5_ZMK) >> BP_SNVS_LPZMKR5_ZMK)
-
-//! @brief Format value for bitfield SNVS_LPZMKR5_ZMK.
-#define BF_SNVS_LPZMKR5_ZMK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPZMKR5_ZMK) & BM_SNVS_LPZMKR5_ZMK)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ZMK field to a new value.
-#define BW_SNVS_LPZMKR5_ZMK(v)   (HW_SNVS_LPZMKR5_WR((HW_SNVS_LPZMKR5_RD() & ~BM_SNVS_LPZMKR5_ZMK) | BF_SNVS_LPZMKR5_ZMK(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_SNVS_LPZMKR6 - SNVS_LP Zeroizable Master Key Register n
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_SNVS_LPZMKR6 - SNVS_LP Zeroizable Master Key Register n (RW)
- *
- * Reset value: 0x00000000
- *
- * The SNVS _LP Zeroizable Master Key Registers contain the 256-bit zeroizable master key value.
- * These registers are programmable as follows: When ZMK write lock bit is set, they cannot be
- * programmed. When ZMK_HWP is not set, they are in software programming mode and can be programmed
- * only by software. When ZMK_HWP is set, they are in hardware programming mode and can be
- * programmed only by hardware. These registers cannot be read by software when the ZMK_HWP or ZMK
- * read lock bit is set.
- */
-typedef union _hw_snvs_lpzmkr6
-{
-    reg32_t U;
-    struct _hw_snvs_lpzmkr6_bitfields
-    {
-        unsigned ZMK : 32; //!< [31:0] Zeroizable Master Key
-    } B;
-} hw_snvs_lpzmkr6_t;
-#endif
-
-/*!
- * @name Constants and macros for entire SNVS_LPZMKR6 register
- */
-//@{
-#define HW_SNVS_LPZMKR6_ADDR      (REGS_SNVS_BASE + 0x84)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SNVS_LPZMKR6           (*(volatile hw_snvs_lpzmkr6_t *) HW_SNVS_LPZMKR6_ADDR)
-#define HW_SNVS_LPZMKR6_RD()      (HW_SNVS_LPZMKR6.U)
-#define HW_SNVS_LPZMKR6_WR(v)     (HW_SNVS_LPZMKR6.U = (v))
-#define HW_SNVS_LPZMKR6_SET(v)    (HW_SNVS_LPZMKR6_WR(HW_SNVS_LPZMKR6_RD() |  (v)))
-#define HW_SNVS_LPZMKR6_CLR(v)    (HW_SNVS_LPZMKR6_WR(HW_SNVS_LPZMKR6_RD() & ~(v)))
-#define HW_SNVS_LPZMKR6_TOG(v)    (HW_SNVS_LPZMKR6_WR(HW_SNVS_LPZMKR6_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual SNVS_LPZMKR6 bitfields
- */
-
-/*! @name Register SNVS_LPZMKR6, field ZMK[31:0] (RW)
- *
- * Zeroizable Master Key Each of these registers contains part of the 256-bit ZMK value: LPZMKR0 -
- * ZMK[ 31-0 ] LPZMKR1 - ZMK[ 63-32 ] LPZMKR2 - ZMK[ 95-64 ] LPZMKR3 - ZMK[ 127-96 ] LPZMKR4 - ZMK[
- * 159-128 ] LPZMKR5 - ZMK[ 191-160 ] LPZMKR6 - ZMK[ 223-192 ] LPZMKR7 - ZMK[ 255-224 ]
- */
-//@{
-#define BP_SNVS_LPZMKR6_ZMK      (0)      //!< Bit position for SNVS_LPZMKR6_ZMK.
-#define BM_SNVS_LPZMKR6_ZMK      (0xffffffff)  //!< Bit mask for SNVS_LPZMKR6_ZMK.
-
-//! @brief Get value of SNVS_LPZMKR6_ZMK from a register value.
-#define BG_SNVS_LPZMKR6_ZMK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPZMKR6_ZMK) >> BP_SNVS_LPZMKR6_ZMK)
-
-//! @brief Format value for bitfield SNVS_LPZMKR6_ZMK.
-#define BF_SNVS_LPZMKR6_ZMK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPZMKR6_ZMK) & BM_SNVS_LPZMKR6_ZMK)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ZMK field to a new value.
-#define BW_SNVS_LPZMKR6_ZMK(v)   (HW_SNVS_LPZMKR6_WR((HW_SNVS_LPZMKR6_RD() & ~BM_SNVS_LPZMKR6_ZMK) | BF_SNVS_LPZMKR6_ZMK(v)))
-#endif
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_SNVS_LPZMKR7 - SNVS_LP Zeroizable Master Key Register n
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_SNVS_LPZMKR7 - SNVS_LP Zeroizable Master Key Register n (RW)
- *
- * Reset value: 0x00000000
- *
- * The SNVS _LP Zeroizable Master Key Registers contain the 256-bit zeroizable master key value.
- * These registers are programmable as follows: When ZMK write lock bit is set, they cannot be
- * programmed. When ZMK_HWP is not set, they are in software programming mode and can be programmed
- * only by software. When ZMK_HWP is set, they are in hardware programming mode and can be
- * programmed only by hardware. These registers cannot be read by software when the ZMK_HWP or ZMK
- * read lock bit is set.
- */
-typedef union _hw_snvs_lpzmkr7
-{
-    reg32_t U;
-    struct _hw_snvs_lpzmkr7_bitfields
-    {
-        unsigned ZMK : 32; //!< [31:0] Zeroizable Master Key
-    } B;
-} hw_snvs_lpzmkr7_t;
-#endif
-
-/*!
- * @name Constants and macros for entire SNVS_LPZMKR7 register
- */
-//@{
-#define HW_SNVS_LPZMKR7_ADDR      (REGS_SNVS_BASE + 0x88)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_SNVS_LPZMKR7           (*(volatile hw_snvs_lpzmkr7_t *) HW_SNVS_LPZMKR7_ADDR)
-#define HW_SNVS_LPZMKR7_RD()      (HW_SNVS_LPZMKR7.U)
-#define HW_SNVS_LPZMKR7_WR(v)     (HW_SNVS_LPZMKR7.U = (v))
-#define HW_SNVS_LPZMKR7_SET(v)    (HW_SNVS_LPZMKR7_WR(HW_SNVS_LPZMKR7_RD() |  (v)))
-#define HW_SNVS_LPZMKR7_CLR(v)    (HW_SNVS_LPZMKR7_WR(HW_SNVS_LPZMKR7_RD() & ~(v)))
-#define HW_SNVS_LPZMKR7_TOG(v)    (HW_SNVS_LPZMKR7_WR(HW_SNVS_LPZMKR7_RD() ^  (v)))
-#endif
-//@}
-
-/*
- * constants & macros for individual SNVS_LPZMKR7 bitfields
- */
-
-/*! @name Register SNVS_LPZMKR7, field ZMK[31:0] (RW)
- *
- * Zeroizable Master Key Each of these registers contains part of the 256-bit ZMK value: LPZMKR0 -
- * ZMK[ 31-0 ] LPZMKR1 - ZMK[ 63-32 ] LPZMKR2 - ZMK[ 95-64 ] LPZMKR3 - ZMK[ 127-96 ] LPZMKR4 - ZMK[
- * 159-128 ] LPZMKR5 - ZMK[ 191-160 ] LPZMKR6 - ZMK[ 223-192 ] LPZMKR7 - ZMK[ 255-224 ]
- */
-//@{
-#define BP_SNVS_LPZMKR7_ZMK      (0)      //!< Bit position for SNVS_LPZMKR7_ZMK.
-#define BM_SNVS_LPZMKR7_ZMK      (0xffffffff)  //!< Bit mask for SNVS_LPZMKR7_ZMK.
-
-//! @brief Get value of SNVS_LPZMKR7_ZMK from a register value.
-#define BG_SNVS_LPZMKR7_ZMK(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SNVS_LPZMKR7_ZMK) >> BP_SNVS_LPZMKR7_ZMK)
-
-//! @brief Format value for bitfield SNVS_LPZMKR7_ZMK.
-#define BF_SNVS_LPZMKR7_ZMK(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SNVS_LPZMKR7_ZMK) & BM_SNVS_LPZMKR7_ZMK)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the ZMK field to a new value.
-#define BW_SNVS_LPZMKR7_ZMK(v)   (HW_SNVS_LPZMKR7_WR((HW_SNVS_LPZMKR7_RD() & ~BM_SNVS_LPZMKR7_ZMK) | BF_SNVS_LPZMKR7_ZMK(v)))
+#define BW_SNVS_LPZMKRn_ZMK(n, v)   (HW_SNVS_LPZMKRn_WR(n, (HW_SNVS_LPZMKRn_RD(n) & ~BM_SNVS_LPZMKRn_ZMK) | BF_SNVS_LPZMKRn_ZMK(v)))
 #endif
 //@}
 
@@ -5278,14 +4791,7 @@ typedef struct _hw_snvs
     volatile hw_snvs_lpsmclr_t LPSMCLR; //!< SNVS_LP Secure Monotonic Counter LSB Register
     volatile hw_snvs_lppgdr_t LPPGDR; //!< SNVS _LP Power Glitch Detector Register
     volatile hw_snvs_lpgpr_t LPGPR; //!< SNVS_LP General Purpose Register
-    volatile hw_snvs_lpzmkr0_t LPZMKR0; //!< SNVS_LP Zeroizable Master Key Register n
-    volatile hw_snvs_lpzmkr1_t LPZMKR1; //!< SNVS_LP Zeroizable Master Key Register n
-    volatile hw_snvs_lpzmkr2_t LPZMKR2; //!< SNVS_LP Zeroizable Master Key Register n
-    volatile hw_snvs_lpzmkr3_t LPZMKR3; //!< SNVS_LP Zeroizable Master Key Register n
-    volatile hw_snvs_lpzmkr4_t LPZMKR4; //!< SNVS_LP Zeroizable Master Key Register n
-    volatile hw_snvs_lpzmkr5_t LPZMKR5; //!< SNVS_LP Zeroizable Master Key Register n
-    volatile hw_snvs_lpzmkr6_t LPZMKR6; //!< SNVS_LP Zeroizable Master Key Register n
-    volatile hw_snvs_lpzmkr7_t LPZMKR7; //!< SNVS_LP Zeroizable Master Key Register n
+    volatile hw_snvs_lpzmkrn_t LPZMKRn[8]; //!< SNVS_LP Zeroizable Master Key Register n
     reg32_t _reserved0[731];
     volatile hw_snvs_hpvidr1_t HPVIDR1; //!< SNVS _HP Version ID Register 1
     volatile hw_snvs_hpvidr2_t HPVIDR2; //!< SNVS _HP Version ID Register 2
@@ -5299,5 +4805,5 @@ typedef struct _hw_snvs
 #endif
 
 #endif // __HW_SNVS_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

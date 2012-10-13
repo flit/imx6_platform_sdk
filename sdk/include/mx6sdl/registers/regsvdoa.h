@@ -68,8 +68,6 @@
  * @brief HW_VDOA_VDOAC - VDOA Control Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_vdoa_vdoac
 {
@@ -301,8 +299,6 @@ typedef union _hw_vdoa_vdoac
  * @brief HW_VDOA_VDOASRR - VDOA Start and Reset (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_vdoa_vdoasrr
 {
@@ -397,8 +393,6 @@ typedef union _hw_vdoa_vdoasrr
  * @brief HW_VDOA_VDOAIE - VDOA Interrupt Enable Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_vdoa_vdoaie
 {
@@ -501,8 +495,6 @@ typedef union _hw_vdoa_vdoaie
  * @brief HW_VDOA_VDOAIST - VDOA Interrupt Status Register (W1C)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_vdoa_vdoaist
 {
@@ -586,8 +578,6 @@ typedef union _hw_vdoa_vdoaist
  * @brief HW_VDOA_VDOAFP - VDOA Frame Parameters Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_vdoa_vdoafp
 {
@@ -673,8 +663,6 @@ typedef union _hw_vdoa_vdoafp
  * @brief HW_VDOA_VDOAIEBA00 - VDOA IPU External Buffer 0 Frame 0 Address Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_vdoa_vdoaieba00
 {
@@ -736,8 +724,6 @@ typedef union _hw_vdoa_vdoaieba00
  * @brief HW_VDOA_VDOAIEBA01 - VDOA IPU External Buffer 0 Frame 1 Address Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_vdoa_vdoaieba01
 {
@@ -799,8 +785,6 @@ typedef union _hw_vdoa_vdoaieba01
  * @brief HW_VDOA_VDOAIEBA02 - VDOA IPU External Buffer 0 Frame 2 Address Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_vdoa_vdoaieba02
 {
@@ -862,8 +846,6 @@ typedef union _hw_vdoa_vdoaieba02
  * @brief HW_VDOA_VDOAIEBA10 - VDOA IPU External Buffer 1 Frame 0 Address Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_vdoa_vdoaieba10
 {
@@ -925,8 +907,6 @@ typedef union _hw_vdoa_vdoaieba10
  * @brief HW_VDOA_VDOAIEBA11 - VDOA IPU External Buffer 1 Frame 1 Address Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_vdoa_vdoaieba11
 {
@@ -988,8 +968,6 @@ typedef union _hw_vdoa_vdoaieba11
  * @brief HW_VDOA_VDOAIEBA12 - VDOA IPU External Buffer 1 Frame 2 Address Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_vdoa_vdoaieba12
 {
@@ -1051,8 +1029,6 @@ typedef union _hw_vdoa_vdoaieba12
  * @brief HW_VDOA_VDOASL - VDOA IPU Stride Line Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_vdoa_vdoasl
 {
@@ -1139,8 +1115,6 @@ typedef union _hw_vdoa_vdoasl
  * @brief HW_VDOA_VDOAIUBO - VDOA IPU U (Chroma) Buffer Offset Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_vdoa_vdoaiubo
 {
@@ -1204,8 +1178,6 @@ typedef union _hw_vdoa_vdoaiubo
  * @brief HW_VDOA_VDOAVEBA0 - VDOA VPU External Buffer 0 Address Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_vdoa_vdoaveba0
 {
@@ -1267,8 +1239,6 @@ typedef union _hw_vdoa_vdoaveba0
  * @brief HW_VDOA_VDOAVEBA1 - VDOA VPU External Buffer 1 Address Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_vdoa_vdoaveba1
 {
@@ -1330,8 +1300,6 @@ typedef union _hw_vdoa_vdoaveba1
  * @brief HW_VDOA_VDOAVEBA2 - VDOA VPU External Buffer 2 Address Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_vdoa_vdoaveba2
 {
@@ -1393,8 +1361,6 @@ typedef union _hw_vdoa_vdoaveba2
  * @brief HW_VDOA_VDOAVUBO - VDOA VPU U (Chroma) Buffer Offset Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_vdoa_vdoavubo
 {
@@ -1457,8 +1423,6 @@ typedef union _hw_vdoa_vdoavubo
  * @brief HW_VDOA_VDOASR - VDOA Status Register (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_vdoa_vdoasr
 {
@@ -1588,5 +1552,5 @@ typedef struct _hw_vdoa
 #endif
 
 #endif // __HW_VDOA_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

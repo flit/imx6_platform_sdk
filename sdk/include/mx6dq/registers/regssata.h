@@ -1991,8 +1991,6 @@ typedef union _hw_sata_versionr
  * @brief HW_SATA_P0CLB - Port0 Command List Base Address Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sata_p0clb
 {
@@ -2057,8 +2055,6 @@ typedef union _hw_sata_p0clb
  * @brief HW_SATA_P0FB - Port0 FIS Base Address Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sata_p0fb
 {
@@ -3412,8 +3408,6 @@ typedef union _hw_sata_p0tfd
  * @brief HW_SATA_P0SIG - Port0 Signature Register (RO)
  *
  * Reset value: 0xffffffff
- *
-
  */
 typedef union _hw_sata_p0sig
 {
@@ -4000,8 +3994,6 @@ typedef union _hw_sata_p0serr
  * @brief HW_SATA_P0SACT - Port0 Serial ATA Active Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sata_p0sact
 {
@@ -4071,8 +4063,6 @@ typedef union _hw_sata_p0sact
  * @brief HW_SATA_P0CI - Port0 Command Issue Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sata_p0ci
 {
@@ -4626,5 +4616,5 @@ typedef struct _hw_sata
 #endif
 
 #endif // __HW_SATA_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

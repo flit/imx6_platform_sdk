@@ -3010,5 +3010,5 @@ typedef union _hw_sata_phy_lane0_tx_ana_control
 //@}
 
 #endif // __HW_SATA_PHY_LANE0_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

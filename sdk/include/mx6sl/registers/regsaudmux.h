@@ -3204,5 +3204,5 @@ typedef struct _hw_audmux
 #endif
 
 #endif // __HW_AUDMUX_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

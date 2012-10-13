@@ -125,8 +125,6 @@
  * @brief HW_PCIE_PHY_IDCODE_LO - Register ID Low 16 bits (RO)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_idcode_lo
 {
@@ -170,8 +168,6 @@ typedef union _hw_pcie_phy_idcode_lo
  * @brief HW_PCIE_PHY_IDCODE_HI - Register ID High 16 bits (RO)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_idcode_hi
 {
@@ -215,8 +211,6 @@ typedef union _hw_pcie_phy_idcode_hi
  * @brief HW_PCIE_PHY_DEBUG - Debug Register (RW)
  *
  * Reset value: 0x000a
- *
-
  */
 typedef union _hw_pcie_phy_debug
 {
@@ -287,8 +281,6 @@ typedef union _hw_pcie_phy_debug
  * @brief HW_PCIE_PHY_RTUNE_DEBUG - Debug Register (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_rtune_debug
 {
@@ -411,8 +403,6 @@ typedef union _hw_pcie_phy_rtune_debug
  * @brief HW_PCIE_PHY_RTUNE_STAT -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_rtune_stat
 {
@@ -457,8 +447,6 @@ typedef union _hw_pcie_phy_rtune_stat
  * @brief HW_PCIE_PHY_SS_PHASE -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_ss_phase
 {
@@ -506,8 +494,6 @@ typedef union _hw_pcie_phy_ss_phase
  * @brief HW_PCIE_PHY_SS_FREQ -  (RW)
  *
  * Reset value: 0x3327
- *
-
  */
 typedef union _hw_pcie_phy_ss_freq
 {
@@ -590,8 +576,6 @@ typedef union _hw_pcie_phy_ss_freq
  * @brief HW_PCIE_PHY_ATEOVRD -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_ateovrd
 {
@@ -672,8 +656,6 @@ typedef union _hw_pcie_phy_ateovrd
  * @brief HW_PCIE_PHY_MPLL_OVRD_IN_LO -  (RW)
  *
  * Reset value: 0x004c
- *
-
  */
 typedef union _hw_pcie_phy_mpll_ovrd_in_lo
 {
@@ -864,8 +846,6 @@ typedef union _hw_pcie_phy_mpll_ovrd_in_lo
  * @brief HW_PCIE_PHY_MPLL_OVRD_IN_HI -  (RW)
  *
  * Reset value: 0x004c
- *
-
  */
 typedef union _hw_pcie_phy_mpll_ovrd_in_hi
 {
@@ -1042,8 +1022,6 @@ typedef union _hw_pcie_phy_mpll_ovrd_in_hi
  * @brief HW_PCIE_PHY_SSC_OVRD_IN -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_ssc_ovrd_in
 {
@@ -1139,8 +1117,6 @@ typedef union _hw_pcie_phy_ssc_ovrd_in
  * @brief HW_PCIE_PHY_BS_OVRD_IN -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_bs_ovrd_in
 {
@@ -1364,8 +1340,6 @@ typedef union _hw_pcie_phy_bs_ovrd_in
  * @brief HW_PCIE_PHY_LEVEL_OVRD_IN -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_level_ovrd_in
 {
@@ -1445,8 +1419,6 @@ typedef union _hw_pcie_phy_level_ovrd_in
  * @brief HW_PCIE_PHY_SUP_OVRD_OUT -  (RW)
  *
  * Reset value: 0x0101
- *
-
  */
 typedef union _hw_pcie_phy_sup_ovrd_out
 {
@@ -1638,8 +1610,6 @@ typedef union _hw_pcie_phy_sup_ovrd_out
  * @brief HW_PCIE_PHY_MPLL_ASIC_IN -  (RO)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_mpll_asic_in
 {
@@ -1775,8 +1745,6 @@ typedef union _hw_pcie_phy_mpll_asic_in
  * @brief HW_PCIE_PHY_BS_ASIC_IN -  (RO)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_bs_asic_in
 {
@@ -1951,8 +1919,6 @@ typedef union _hw_pcie_phy_bs_asic_in
  * @brief HW_PCIE_PHY_LEVEL_ASIC_IN -  (RO)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_level_asic_in
 {
@@ -2010,8 +1976,6 @@ typedef union _hw_pcie_phy_level_asic_in
  * @brief HW_PCIE_PHY_SSC_ASIC_IN -  (RO)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_ssc_asic_in
 {
@@ -2095,8 +2059,6 @@ typedef union _hw_pcie_phy_ssc_asic_in
  * @brief HW_PCIE_PHY_SUP_ASIC_OUT -  (RO)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_sup_asic_out
 {
@@ -2193,8 +2155,6 @@ typedef union _hw_pcie_phy_sup_asic_out
  * @brief HW_PCIE_PHY_ATEOVRD_STATUS -  (RO)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_ateovrd_status
 {
@@ -2343,8 +2303,6 @@ typedef union _hw_pcie_phy_ateovrd_status
  * @brief HW_PCIE_PHY_SCOPE_ENABLES -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_scope_enables
 {
@@ -2428,8 +2386,6 @@ typedef union _hw_pcie_phy_scope_enables
  * @brief HW_PCIE_PHY_SCOPE_SAMPLES -  (RW)
  *
  * Reset value: 0x0100
- *
-
  */
 typedef union _hw_pcie_phy_scope_samples
 {
@@ -2476,8 +2432,6 @@ typedef union _hw_pcie_phy_scope_samples
  * @brief HW_PCIE_PHY_SCOPE_COUNT -  (RW)
  *
  * Reset value: 0xffff
- *
-
  */
 typedef union _hw_pcie_phy_scope_count
 {
@@ -2525,8 +2479,6 @@ typedef union _hw_pcie_phy_scope_count
  * @brief HW_PCIE_PHY_SCOPE_CTL -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_scope_ctl
 {
@@ -2591,8 +2543,6 @@ typedef union _hw_pcie_phy_scope_ctl
  * @brief HW_PCIE_PHY_SCOPE_MASK_000 -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_scope_mask_000
 {
@@ -2640,8 +2590,6 @@ typedef union _hw_pcie_phy_scope_mask_000
  * @brief HW_PCIE_PHY_SCOPE_MASK_001 -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_scope_mask_001
 {
@@ -2689,8 +2637,6 @@ typedef union _hw_pcie_phy_scope_mask_001
  * @brief HW_PCIE_PHY_SCOPE_MASK_010 -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_scope_mask_010
 {
@@ -2738,8 +2684,6 @@ typedef union _hw_pcie_phy_scope_mask_010
  * @brief HW_PCIE_PHY_SCOPE_MASK_011 -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_scope_mask_011
 {
@@ -2787,8 +2731,6 @@ typedef union _hw_pcie_phy_scope_mask_011
  * @brief HW_PCIE_PHY_SCOPE_MASK_100 -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_scope_mask_100
 {
@@ -2836,8 +2778,6 @@ typedef union _hw_pcie_phy_scope_mask_100
  * @brief HW_PCIE_PHY_SCOPE_MASK_101 -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_scope_mask_101
 {
@@ -2885,8 +2825,6 @@ typedef union _hw_pcie_phy_scope_mask_101
  * @brief HW_PCIE_PHY_SCOPE_MASK_110 -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_scope_mask_110
 {
@@ -2934,8 +2872,6 @@ typedef union _hw_pcie_phy_scope_mask_110
  * @brief HW_PCIE_PHY_SCOPE_MASK_111 -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_scope_mask_111
 {
@@ -2983,8 +2919,6 @@ typedef union _hw_pcie_phy_scope_mask_111
  * @brief HW_PCIE_PHY_MPLL_LOOP_CTL -  (RW)
  *
  * Reset value: 0x00c0
- *
-
  */
 typedef union _hw_pcie_phy_mpll_loop_ctl
 {
@@ -3080,8 +3014,6 @@ typedef union _hw_pcie_phy_mpll_loop_ctl
  * @brief HW_PCIE_PHY_MPLL_ATB_MEAS2 -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_mpll_atb_meas2
 {
@@ -3241,8 +3173,6 @@ typedef union _hw_pcie_phy_mpll_atb_meas2
  * @brief HW_PCIE_PHY_MPLL_OVR -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_mpll_ovr
 {
@@ -3402,8 +3332,6 @@ typedef union _hw_pcie_phy_mpll_ovr
  * @brief HW_PCIE_PHY_RTUNE_RTUNE_CTRL -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_rtune_rtune_ctrl
 {
@@ -3565,8 +3493,6 @@ typedef union _hw_pcie_phy_rtune_rtune_ctrl
  * @brief HW_PCIE_PHY_TX_OVRD_IN_LO -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_tx_ovrd_in_lo
 {
@@ -3822,8 +3748,6 @@ typedef union _hw_pcie_phy_tx_ovrd_in_lo
  * @brief HW_PCIE_PHY_TX_OVRD_IN_HI -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_tx_ovrd_in_hi
 {
@@ -3967,8 +3891,6 @@ typedef union _hw_pcie_phy_tx_ovrd_in_hi
  * @brief HW_PCIE_PHY_TX_OVRD_DRV_LO -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_tx_ovrd_drv_lo
 {
@@ -4048,8 +3970,6 @@ typedef union _hw_pcie_phy_tx_ovrd_drv_lo
  * @brief HW_PCIE_PHY_TX_OVRD_OUT -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_tx_ovrd_out
 {
@@ -4209,8 +4129,6 @@ typedef union _hw_pcie_phy_tx_ovrd_out
  * @brief HW_PCIE_PHY_RX_OVRD_IN_LO -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_rx_ovrd_in_lo
 {
@@ -4466,8 +4384,6 @@ typedef union _hw_pcie_phy_rx_ovrd_in_lo
  * @brief HW_PCIE_PHY_RX_OVRD_IN_HI -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_rx_ovrd_in_hi
 {
@@ -4659,8 +4575,6 @@ typedef union _hw_pcie_phy_rx_ovrd_in_hi
  * @brief HW_PCIE_PHY_RX_OVRD_OUT -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_rx_ovrd_out
 {
@@ -4804,8 +4718,6 @@ typedef union _hw_pcie_phy_rx_ovrd_out
  * @brief HW_PCIE_PHY_TX_ASIC_IN -  (RO)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_tx_asic_in
 {
@@ -4967,8 +4879,6 @@ typedef union _hw_pcie_phy_tx_asic_in
  * @brief HW_PCIE_PHY_TX_ASIC_DRV_LO -  (RO)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_tx_asic_drv_lo
 {
@@ -5026,8 +4936,6 @@ typedef union _hw_pcie_phy_tx_asic_drv_lo
  * @brief HW_PCIE_PHY_TX_ASIC_DRV_HI -  (RO)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_tx_asic_drv_hi
 {
@@ -5072,8 +4980,6 @@ typedef union _hw_pcie_phy_tx_asic_drv_hi
  * @brief HW_PCIE_PHY_TX_ASIC_OUT -  (RO)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_tx_asic_out
 {
@@ -5158,8 +5064,6 @@ typedef union _hw_pcie_phy_tx_asic_out
  * @brief HW_PCIE_PHY_RX_ASIC_IN -  (RO)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_rx_asic_in
 {
@@ -5346,8 +5250,6 @@ typedef union _hw_pcie_phy_rx_asic_in
  * @brief HW_PCIE_PHY_RX_ASIC_OUT -  (RO)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_rx_asic_out
 {
@@ -5418,8 +5320,6 @@ typedef union _hw_pcie_phy_rx_asic_out
  * @brief HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_0 -  (RO)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_tx_vmd_fsm_tx_vcm_0
 {
@@ -5490,8 +5390,6 @@ typedef union _hw_pcie_phy_tx_vmd_fsm_tx_vcm_0
  * @brief HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_1 -  (RO)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_tx_vmd_fsm_tx_vcm_1
 {
@@ -5574,8 +5472,6 @@ typedef union _hw_pcie_phy_tx_vmd_fsm_tx_vcm_1
  * @brief HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_IN -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_tx_vmd_fsm_tx_vcm_debug_in
 {
@@ -5671,8 +5567,6 @@ typedef union _hw_pcie_phy_tx_vmd_fsm_tx_vcm_debug_in
  * @brief HW_PCIE_PHY_TX_VMD_FSM_TX_VCM_DEBUG_OUT -  (RO)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_tx_vmd_fsm_tx_vcm_debug_out
 {
@@ -5717,8 +5611,6 @@ typedef union _hw_pcie_phy_tx_vmd_fsm_tx_vcm_debug_out
  * @brief HW_PCIE_PHY_TX_LBERT_CTL -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_tx_lbert_ctl
 {
@@ -5807,8 +5699,6 @@ typedef union _hw_pcie_phy_tx_lbert_ctl
  * @brief HW_PCIE_PHY_RX_LBERT_CTL -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_rx_lbert_ctl
 {
@@ -5884,8 +5774,6 @@ typedef union _hw_pcie_phy_rx_lbert_ctl
  * @brief HW_PCIE_PHY_RX_LBERT_ERR -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_rx_lbert_err
 {
@@ -5949,8 +5837,6 @@ typedef union _hw_pcie_phy_rx_lbert_err
  * @brief HW_PCIE_PHY_RX_SCOPE_CTL -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_rx_scope_ctl
 {
@@ -6005,8 +5891,6 @@ typedef union _hw_pcie_phy_rx_scope_ctl
  * @brief HW_PCIE_PHY_RX_SCOPE_PHASE -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_rx_scope_phase
 {
@@ -6122,8 +6006,6 @@ typedef union _hw_pcie_phy_rx_scope_phase
  * @brief HW_PCIE_PHY_RX_DPLL_FREQ -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_rx_dpll_freq
 {
@@ -6187,8 +6069,6 @@ typedef union _hw_pcie_phy_rx_dpll_freq
  * @brief HW_PCIE_PHY_RX_CDR_CTL -  (RW)
  *
  * Reset value: 0x000f
- *
-
  */
 typedef union _hw_pcie_phy_rx_cdr_ctl
 {
@@ -6377,8 +6257,6 @@ typedef union _hw_pcie_phy_rx_cdr_ctl
  * @brief HW_PCIE_PHY_RX_CDR_CDR_FSM_DEBUG -  (RO)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_rx_cdr_cdr_fsm_debug
 {
@@ -6539,8 +6417,6 @@ typedef union _hw_pcie_phy_rx_cdr_cdr_fsm_debug
  * @brief HW_PCIE_PHY_RX_CDR_LOCK_VEC_OVRD -  (RW)
  *
  * Reset value: 0x8000
- *
-
  */
 typedef union _hw_pcie_phy_rx_cdr_lock_vec_ovrd
 {
@@ -6652,8 +6528,6 @@ typedef union _hw_pcie_phy_rx_cdr_lock_vec_ovrd
  * @brief HW_PCIE_PHY_RX_CDR_LOCK_VEC -  (RO)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_rx_cdr_lock_vec
 {
@@ -6724,8 +6598,6 @@ typedef union _hw_pcie_phy_rx_cdr_lock_vec
  * @brief HW_PCIE_PHY_RX_CDR_ADAP_FSM -  (RO)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_rx_cdr_adap_fsm
 {
@@ -6816,8 +6688,6 @@ typedef union _hw_pcie_phy_rx_cdr_adap_fsm
  * @brief HW_PCIE_PHY_RX_ATB0 -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_rx_atb0
 {
@@ -6977,8 +6847,6 @@ typedef union _hw_pcie_phy_rx_atb0
  * @brief HW_PCIE_PHY_RX_ATB1 -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_rx_atb1
 {
@@ -7140,8 +7008,6 @@ typedef union _hw_pcie_phy_rx_atb1
  * @brief HW_PCIE_PHY_RX_ENPWR0 -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_rx_enpwr0
 {
@@ -7301,8 +7167,6 @@ typedef union _hw_pcie_phy_rx_enpwr0
  * @brief HW_PCIE_PHY_RX_PMIX_PHASE -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_rx_pmix_phase
 {
@@ -7350,8 +7214,6 @@ typedef union _hw_pcie_phy_rx_pmix_phase
  * @brief HW_PCIE_PHY_RX_ENPWR1 -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_rx_enpwr1
 {
@@ -7479,8 +7341,6 @@ typedef union _hw_pcie_phy_rx_enpwr1
  * @brief HW_PCIE_PHY_RX_ENPWR2 -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_rx_enpwr2
 {
@@ -7640,8 +7500,6 @@ typedef union _hw_pcie_phy_rx_enpwr2
  * @brief HW_PCIE_PHY_RX_SCOPE -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_rx_scope
 {
@@ -7737,8 +7595,6 @@ typedef union _hw_pcie_phy_rx_scope
  * @brief HW_PCIE_PHY_TX_TXDRV_CNTRL -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_tx_txdrv_cntrl
 {
@@ -7893,8 +7749,6 @@ typedef union _hw_pcie_phy_tx_txdrv_cntrl
  * @brief HW_PCIE_PHY_TX_POWER_CTL -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_tx_power_ctl
 {
@@ -8054,8 +7908,6 @@ typedef union _hw_pcie_phy_tx_power_ctl
  * @brief HW_PCIE_PHY_TX_ALT_BLOCK -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_tx_alt_block
 {
@@ -8209,8 +8061,6 @@ typedef union _hw_pcie_phy_tx_alt_block
  * @brief HW_PCIE_PHY_TX_ALT_AND_LOOPBACK -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_tx_alt_and_loopback
 {
@@ -8356,8 +8206,6 @@ typedef union _hw_pcie_phy_tx_alt_and_loopback
  * @brief HW_PCIE_PHY_TX_TX_ATB_REG -  (RW)
  *
  * Reset value: 0x0000
- *
-
  */
 typedef union _hw_pcie_phy_tx_tx_atb_reg
 {
@@ -8510,5 +8358,5 @@ typedef union _hw_pcie_phy_tx_tx_atb_reg
 //@}
 
 #endif // __HW_PCIE_PHY_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

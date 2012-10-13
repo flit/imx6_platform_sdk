@@ -86,8 +86,6 @@
  * @brief HW_GPU2D_AQHICLOCKCONTROL - Clock Control Register (RW)
  *
  * Reset value: 0x00000100
- *
-
  */
 typedef union _hw_gpu2d_aqhiclockcontrol
 {
@@ -314,8 +312,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
 //@}
 
 /*! @name Register GPU2D_AQHICLOCKCONTROL, field FSCALE_CMD_LOAD[22] (RW)
- *
-
  */
 //@{
 #define BP_GPU2D_AQHICLOCKCONTROL_FSCALE_CMD_LOAD      (22)      //!< Bit position for GPU2D_AQHICLOCKCONTROL_FSCALE_CMD_LOAD.
@@ -334,8 +330,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
 //@}
 
 /*! @name Register GPU2D_AQHICLOCKCONTROL, field FSCALE_VAL[29:23] (RW)
- *
-
  */
 //@{
 #define BP_GPU2D_AQHICLOCKCONTROL_FSCALE_VAL      (23)      //!< Bit position for GPU2D_AQHICLOCKCONTROL_FSCALE_VAL.
@@ -402,8 +396,6 @@ typedef union _hw_gpu2d_aqhiclockcontrol
  * @brief HW_GPU2D_AQHIIDLE - Idle Status Register (RO)
  *
  * Reset value: 0x7fffffff
- *
-
  */
 typedef union _hw_gpu2d_aqhiidle
 {
@@ -609,8 +601,6 @@ typedef union _hw_gpu2d_aqhiidle
  * @brief HW_GPU2D_AQAXICONFIG - AXI Configuration Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_gpu2d_aqaxiconfig
 {
@@ -647,8 +637,6 @@ typedef union _hw_gpu2d_aqaxiconfig
  */
 
 /*! @name Register GPU2D_AQAXICONFIG, field ARCACHE[19:16] (RW)
- *
-
  */
 //@{
 #define BP_GPU2D_AQAXICONFIG_ARCACHE      (16)      //!< Bit position for GPU2D_AQAXICONFIG_ARCACHE.
@@ -667,8 +655,6 @@ typedef union _hw_gpu2d_aqaxiconfig
 //@}
 
 /*! @name Register GPU2D_AQAXICONFIG, field AWCACHE[23:20] (RW)
- *
-
  */
 //@{
 #define BP_GPU2D_AQAXICONFIG_AWCACHE      (20)      //!< Bit position for GPU2D_AQAXICONFIG_AWCACHE.
@@ -687,8 +673,6 @@ typedef union _hw_gpu2d_aqaxiconfig
 //@}
 
 /*! @name Register GPU2D_AQAXICONFIG, field ARID[27:24] (RW)
- *
-
  */
 //@{
 #define BP_GPU2D_AQAXICONFIG_ARID      (24)      //!< Bit position for GPU2D_AQAXICONFIG_ARID.
@@ -707,8 +691,6 @@ typedef union _hw_gpu2d_aqaxiconfig
 //@}
 
 /*! @name Register GPU2D_AQAXICONFIG, field AWID[31:28] (RW)
- *
-
  */
 //@{
 #define BP_GPU2D_AQAXICONFIG_AWID      (28)      //!< Bit position for GPU2D_AQAXICONFIG_AWID.
@@ -735,8 +717,6 @@ typedef union _hw_gpu2d_aqaxiconfig
  * @brief HW_GPU2D_AQAXISTATUS - AXI Status Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_gpu2d_aqaxistatus
 {
@@ -773,8 +753,6 @@ typedef union _hw_gpu2d_aqaxistatus
  */
 
 /*! @name Register GPU2D_AQAXISTATUS, field WR_ERR_ID[3:0] (RW)
- *
-
  */
 //@{
 #define BP_GPU2D_AQAXISTATUS_WR_ERR_ID      (0)      //!< Bit position for GPU2D_AQAXISTATUS_WR_ERR_ID.
@@ -793,8 +771,6 @@ typedef union _hw_gpu2d_aqaxistatus
 //@}
 
 /*! @name Register GPU2D_AQAXISTATUS, field RD_ERR_ID[7:4] (RW)
- *
-
  */
 //@{
 #define BP_GPU2D_AQAXISTATUS_RD_ERR_ID      (4)      //!< Bit position for GPU2D_AQAXISTATUS_RD_ERR_ID.
@@ -813,8 +789,6 @@ typedef union _hw_gpu2d_aqaxistatus
 //@}
 
 /*! @name Register GPU2D_AQAXISTATUS, field DET_WR_ERR[8] (RW)
- *
-
  */
 //@{
 #define BP_GPU2D_AQAXISTATUS_DET_WR_ERR      (8)      //!< Bit position for GPU2D_AQAXISTATUS_DET_WR_ERR.
@@ -833,8 +807,6 @@ typedef union _hw_gpu2d_aqaxistatus
 //@}
 
 /*! @name Register GPU2D_AQAXISTATUS, field DET_RD_ERR[9] (RW)
- *
-
  */
 //@{
 #define BP_GPU2D_AQAXISTATUS_DET_RD_ERR      (9)      //!< Bit position for GPU2D_AQAXISTATUS_DET_RD_ERR.
@@ -892,8 +864,6 @@ typedef union _hw_gpu2d_aqintracknowledge
  */
 
 /*! @name Register GPU2D_AQINTRACKNOWLEDGE, field INTR_VEC[31:0] (RO)
- *
-
  */
 //@{
 #define BP_GPU2D_AQINTRACKNOWLEDGE_INTR_VEC      (0)      //!< Bit position for GPU2D_AQINTRACKNOWLEDGE_INTR_VEC.
@@ -946,8 +916,6 @@ typedef union _hw_gpu2d_aqintrenbl
  */
 
 /*! @name Register GPU2D_AQINTRENBL, field INTR_ENBL_VEC[31:0] (RW)
- *
-
  */
 //@{
 #define BP_GPU2D_AQINTRENBL_INTR_ENBL_VEC      (0)      //!< Bit position for GPU2D_AQINTRENBL_INTR_ENBL_VEC.
@@ -2387,8 +2355,6 @@ typedef union _hw_gpu2d_minorfeatures0
 
 /*! @name Register GPU2D_MINORFEATURES0, field BUG_FIXES0[24] (RO)
  *
-
- *
  * Values:
  * - 0 - NONE
  * - 1 - AVAILABLE
@@ -2523,8 +2489,6 @@ typedef union _hw_gpu2d_minorfeatures0
  * @brief HW_GPU2D_CACHECONTROL - Cache Control Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_gpu2d_cachecontrol
 {
@@ -2616,8 +2580,6 @@ typedef union _hw_gpu2d_resetmemcounters
  */
 
 /*! @name Register GPU2D_RESETMEMCOUNTERS, field RESET[31:0] (WO)
- *
-
  */
 //@{
 #define BP_GPU2D_RESETMEMCOUNTERS_RESET      (0)      //!< Bit position for GPU2D_RESETMEMCOUNTERS_RESET.
@@ -2669,8 +2631,6 @@ typedef union _hw_gpu2d_totalreads
  */
 
 /*! @name Register GPU2D_TOTALREADS, field COUNT[31:0] (RO)
- *
-
  */
 //@{
 #define BP_GPU2D_TOTALREADS_COUNT      (0)      //!< Bit position for GPU2D_TOTALREADS_COUNT.
@@ -2719,8 +2679,6 @@ typedef union _hw_gpu2d_totalwrites
  */
 
 /*! @name Register GPU2D_TOTALWRITES, field COUNT[31:0] (RO)
- *
-
  */
 //@{
 #define BP_GPU2D_TOTALWRITES_COUNT      (0)      //!< Bit position for GPU2D_TOTALWRITES_COUNT.
@@ -2898,8 +2856,6 @@ typedef union _hw_gpu2d_totalwritebursts
  */
 
 /*! @name Register GPU2D_TOTALWRITEBURSTS, field COUNT[31:0] (RO)
- *
-
  */
 //@{
 #define BP_GPU2D_TOTALWRITEBURSTS_COUNT      (0)      //!< Bit position for GPU2D_TOTALWRITEBURSTS_COUNT.
@@ -2948,8 +2904,6 @@ typedef union _hw_gpu2d_totalwritereqs
  */
 
 /*! @name Register GPU2D_TOTALWRITEREQS, field COUNT[31:0] (RO)
- *
-
  */
 //@{
 #define BP_GPU2D_TOTALWRITEREQS_COUNT      (0)      //!< Bit position for GPU2D_TOTALWRITEREQS_COUNT.
@@ -2998,8 +2952,6 @@ typedef union _hw_gpu2d_totalwritelasts
  */
 
 /*! @name Register GPU2D_TOTALWRITELASTS, field COUNT[31:0] (RO)
- *
-
  */
 //@{
 #define BP_GPU2D_TOTALWRITELASTS_COUNT      (0)      //!< Bit position for GPU2D_TOTALWRITELASTS_COUNT.
@@ -3048,8 +3000,6 @@ typedef union _hw_gpu2d_totalreadbursts
  */
 
 /*! @name Register GPU2D_TOTALREADBURSTS, field COUNT[31:0] (RO)
- *
-
  */
 //@{
 #define BP_GPU2D_TOTALREADBURSTS_COUNT      (0)      //!< Bit position for GPU2D_TOTALREADBURSTS_COUNT.
@@ -3098,8 +3048,6 @@ typedef union _hw_gpu2d_totalreadreqs
  */
 
 /*! @name Register GPU2D_TOTALREADREQS, field COUNT[31:0] (RO)
- *
-
  */
 //@{
 #define BP_GPU2D_TOTALREADREQS_COUNT      (0)      //!< Bit position for GPU2D_TOTALREADREQS_COUNT.
@@ -3148,8 +3096,6 @@ typedef union _hw_gpu2d_totalreadlasts
  */
 
 /*! @name Register GPU2D_TOTALREADLASTS, field COUNT[31:0] (RO)
- *
-
  */
 //@{
 #define BP_GPU2D_TOTALREADLASTS_COUNT      (0)      //!< Bit position for GPU2D_TOTALREADLASTS_COUNT.
@@ -3202,8 +3148,6 @@ typedef union _hw_gpu2d_gpout0
  */
 
 /*! @name Register GPU2D_GPOUT0, field COUNT[31:0] (RW)
- *
-
  */
 //@{
 #define BP_GPU2D_GPOUT0_COUNT      (0)      //!< Bit position for GPU2D_GPOUT0_COUNT.
@@ -3264,8 +3208,6 @@ typedef union _hw_gpu2d_gpout1
  */
 
 /*! @name Register GPU2D_GPOUT1, field COUNT[31:0] (RW)
- *
-
  */
 //@{
 #define BP_GPU2D_GPOUT1_COUNT      (0)      //!< Bit position for GPU2D_GPOUT1_COUNT.
@@ -3326,8 +3268,6 @@ typedef union _hw_gpu2d_gpout2
  */
 
 /*! @name Register GPU2D_GPOUT2, field COUNT[31:0] (RW)
- *
-
  */
 //@{
 #define BP_GPU2D_GPOUT2_COUNT      (0)      //!< Bit position for GPU2D_GPOUT2_COUNT.
@@ -3388,8 +3328,6 @@ typedef union _hw_gpu2d_axicontrol
  */
 
 /*! @name Register GPU2D_AXICONTROL, field WR_FULL_BURST_MODE[31:0] (RW)
- *
-
  *
  * Values:
  * - 0 - NO_BURST_RESET_VALUE
@@ -3474,8 +3412,6 @@ typedef union _hw_gpu2d_minorfeatures1
 
 /*! @name Register GPU2D_MINORFEATURES1, field BUG_FIXES2[27] (RO)
  *
-
- *
  * Values:
  * - 0 - NONE
  * - 1 - AVAILABLE
@@ -3489,8 +3425,6 @@ typedef union _hw_gpu2d_minorfeatures1
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES1, field BUG_FIXES1[28] (RO)
- *
-
  *
  * Values:
  * - 0 - NONE
@@ -3595,8 +3529,6 @@ typedef union _hw_gpu2d_totalcycles
  */
 
 /*! @name Register GPU2D_TOTALCYCLES, field CYCLES[31:0] (RW)
- *
-
  */
 //@{
 #define BP_GPU2D_TOTALCYCLES_CYCLES      (0)      //!< Bit position for GPU2D_TOTALCYCLES_CYCLES.
@@ -3658,8 +3590,6 @@ typedef union _hw_gpu2d_totalidlecyles
  */
 
 /*! @name Register GPU2D_TOTALIDLECYLES, field CYCLES[31:0] (RW)
- *
-
  */
 //@{
 #define BP_GPU2D_TOTALIDLECYLES_CYCLES      (0)      //!< Bit position for GPU2D_TOTALIDLECYLES_CYCLES.
@@ -3720,8 +3650,6 @@ typedef union _hw_gpu2d_chipspecs2
  */
 
 /*! @name Register GPU2D_CHIPSPECS2, field CYCLES[31:0] (RW)
- *
-
  */
 //@{
 #define BP_GPU2D_CHIPSPECS2_CYCLES      (0)      //!< Bit position for GPU2D_CHIPSPECS2_CYCLES.
@@ -4434,5 +4362,5 @@ typedef struct _hw_gpu2d
 #endif
 
 #endif // __HW_GPU2D_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

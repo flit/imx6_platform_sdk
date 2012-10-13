@@ -847,8 +847,6 @@ typedef union _hw_src_srsr
  * @brief HW_SRC_SISR - SRC Interrupt Status Register (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_src_sisr
 {
@@ -980,8 +978,6 @@ typedef union _hw_src_sisr
  * @brief HW_SRC_SIMR - SRC Interrupt Mask Register (RW)
  *
  * Reset value: 0x0000001f
- *
-
  */
 typedef union _hw_src_simr
 {
@@ -1679,5 +1675,5 @@ typedef struct _hw_src
 #endif
 
 #endif // __HW_SRC_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

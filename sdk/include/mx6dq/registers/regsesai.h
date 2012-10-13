@@ -37,17 +37,9 @@
  * - HW_ESAI_TFSR - Transmit FIFO Status Register
  * - HW_ESAI_RFCR - Receive FIFO Configuration Register
  * - HW_ESAI_RFSR - Receive FIFO Status Register
- * - HW_ESAI_TX0 - Transmit Data Register n
- * - HW_ESAI_TX1 - Transmit Data Register n
- * - HW_ESAI_TX2 - Transmit Data Register n
- * - HW_ESAI_TX3 - Transmit Data Register n
- * - HW_ESAI_TX4 - Transmit Data Register n
- * - HW_ESAI_TX5 - Transmit Data Register n
+ * - HW_ESAI_TXn - Transmit Data Register n
  * - HW_ESAI_TSR - ESAI Transmit Slot Register
- * - HW_ESAI_RX0 - Receive Data Register n
- * - HW_ESAI_RX1 - Receive Data Register n
- * - HW_ESAI_RX2 - Receive Data Register n
- * - HW_ESAI_RX3 - Receive Data Register n
+ * - HW_ESAI_RXn - Receive Data Register n
  * - HW_ESAI_SAISR - Serial Audio Interface Status Register
  * - HW_ESAI_SAICR - Serial Audio Interface Control Register
  * - HW_ESAI_TCR - Transmit Control Register
@@ -81,8 +73,6 @@
  * @brief HW_ESAI_ETDR - ESAI Transmit Data Register (WORZ)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_esai_etdr
 {
@@ -141,8 +131,6 @@ typedef union _hw_esai_etdr
  * @brief HW_ESAI_ERDR - ESAI Receive Data Register (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_esai_erdr
 {
@@ -198,8 +186,6 @@ typedef union _hw_esai_erdr
  * @brief HW_ESAI_ECR - ESAI Control Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_esai_ecr
 {
@@ -394,8 +380,6 @@ typedef union _hw_esai_ecr
  * @brief HW_ESAI_ESR - ESAI Status Register (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_esai_esr
 {
@@ -630,8 +614,6 @@ typedef union _hw_esai_esr
  * @brief HW_ESAI_TFCR - Transmit FIFO Configuration Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_esai_tfcr
 {
@@ -960,8 +942,6 @@ typedef union _hw_esai_tfcr
  * @brief HW_ESAI_TFSR - Transmit FIFO Status Register (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_esai_tfsr
 {
@@ -1060,8 +1040,6 @@ typedef union _hw_esai_tfsr
  * @brief HW_ESAI_RFCR - Receive FIFO Configuration Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_esai_rfcr
 {
@@ -1338,8 +1316,6 @@ typedef union _hw_esai_rfcr
  * @brief HW_ESAI_RFSR - Receive FIFO Status Register (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_esai_rfsr
 {
@@ -1421,12 +1397,12 @@ typedef union _hw_esai_rfsr
 //@}
 
 //-------------------------------------------------------------------------------------------
-// HW_ESAI_TX0 - Transmit Data Register n
+// HW_ESAI_TXn - Transmit Data Register n
 //-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_ESAI_TX0 - Transmit Data Register n (WORZ)
+ * @brief HW_ESAI_TXn - Transmit Data Register n (WORZ)
  *
  * Reset value: 0x00000000
  *
@@ -1438,352 +1414,50 @@ typedef union _hw_esai_rfsr
  * bits. The Core is interrupted whenever the TXn becomes empty if the transmit data register empty
  * interrupt has been enabled.
  */
-typedef union _hw_esai_tx0
+typedef union _hw_esai_txn
 {
     reg32_t U;
-    struct _hw_esai_tx0_bitfields
+    struct _hw_esai_txn_bitfields
     {
         unsigned TXN : 24; //!< [23:0] Stores the data to be transmitted and is automatically transferred to the transmit shift registers.
         unsigned RESERVED0 : 8; //!< [31:24] Reserved
     } B;
-} hw_esai_tx0_t;
+} hw_esai_txn_t;
 #endif
 
 /*!
- * @name Constants and macros for entire ESAI_TX0 register
+ * @name Constants and macros for entire ESAI_TXn register
  */
 //@{
-#define HW_ESAI_TX0_ADDR      (REGS_ESAI_BASE + 0x80)
+//! @brief Number of instances of the ESAI_TXn register.
+#define HW_ESAI_TXn_COUNT     (6)
+
+#define HW_ESAI_TXn_ADDR(n)   (REGS_ESAI_BASE + 0x80 + (0x4 * (n)))
 
 #ifndef __LANGUAGE_ASM__
-#define HW_ESAI_TX0           (*(volatile hw_esai_tx0_t *) HW_ESAI_TX0_ADDR)
-#define HW_ESAI_TX0_WR(v)     (HW_ESAI_TX0.U = (v))
+#define HW_ESAI_TXn(n)        (*(volatile hw_esai_txn_t *) HW_ESAI_TXn_ADDR(n))
+#define HW_ESAI_TXn_WR(n, v)  (HW_ESAI_TXn(n).U = (v))
 #endif
 //@}
 
 /*
- * constants & macros for individual ESAI_TX0 bitfields
+ * constants & macros for individual ESAI_TXn bitfields
  */
 
-/*! @name Register ESAI_TX0, field TXN[23:0] (WORZ)
+/*! @name Register ESAI_TXn, field TXN[23:0] (WORZ)
  *
  * Stores the data to be transmitted and is automatically transferred to the transmit shift
  * registers. See .
  */
 //@{
-#define BP_ESAI_TX0_TXN      (0)      //!< Bit position for ESAI_TX0_TXN.
-#define BM_ESAI_TX0_TXN      (0x00ffffff)  //!< Bit mask for ESAI_TX0_TXN.
+#define BP_ESAI_TXn_TXN      (0)      //!< Bit position for ESAI_TXn_TXN.
+#define BM_ESAI_TXn_TXN      (0x00ffffff)  //!< Bit mask for ESAI_TXn_TXN.
 
-//! @brief Get value of ESAI_TX0_TXN from a register value.
-#define BG_ESAI_TX0_TXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TX0_TXN) >> BP_ESAI_TX0_TXN)
+//! @brief Get value of ESAI_TXn_TXN from a register value.
+#define BG_ESAI_TXn_TXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TXn_TXN) >> BP_ESAI_TXn_TXN)
 
-//! @brief Format value for bitfield ESAI_TX0_TXN.
-#define BF_ESAI_TX0_TXN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TX0_TXN) & BM_ESAI_TX0_TXN)
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_ESAI_TX1 - Transmit Data Register n
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_ESAI_TX1 - Transmit Data Register n (WORZ)
- *
- * Reset value: 0x00000000
- *
- * ESAI_TX5, ESAI_TX4, ESAI_TX3, ESAI_TX2, ESAI_TX1 and ESAI_TX0 are 32-bit write-only registers.
- * Data to be transmitted is written into these registers and is automatically transferred to the
- * transmit shift registers ( and ). The data written (8, 12, 16, 20, or 24 bits) should occupy the
- * most significant portion of the TXn according to the ALC control bit setting. The unused bits
- * (least significant portion and the 8 most significant bits when ALC=1) of the TXn are don't care
- * bits. The Core is interrupted whenever the TXn becomes empty if the transmit data register empty
- * interrupt has been enabled.
- */
-typedef union _hw_esai_tx1
-{
-    reg32_t U;
-    struct _hw_esai_tx1_bitfields
-    {
-        unsigned TXN : 24; //!< [23:0] Stores the data to be transmitted and is automatically transferred to the transmit shift registers.
-        unsigned RESERVED0 : 8; //!< [31:24] Reserved
-    } B;
-} hw_esai_tx1_t;
-#endif
-
-/*!
- * @name Constants and macros for entire ESAI_TX1 register
- */
-//@{
-#define HW_ESAI_TX1_ADDR      (REGS_ESAI_BASE + 0x84)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_ESAI_TX1           (*(volatile hw_esai_tx1_t *) HW_ESAI_TX1_ADDR)
-#define HW_ESAI_TX1_WR(v)     (HW_ESAI_TX1.U = (v))
-#endif
-//@}
-
-/*
- * constants & macros for individual ESAI_TX1 bitfields
- */
-
-/*! @name Register ESAI_TX1, field TXN[23:0] (WORZ)
- *
- * Stores the data to be transmitted and is automatically transferred to the transmit shift
- * registers. See .
- */
-//@{
-#define BP_ESAI_TX1_TXN      (0)      //!< Bit position for ESAI_TX1_TXN.
-#define BM_ESAI_TX1_TXN      (0x00ffffff)  //!< Bit mask for ESAI_TX1_TXN.
-
-//! @brief Get value of ESAI_TX1_TXN from a register value.
-#define BG_ESAI_TX1_TXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TX1_TXN) >> BP_ESAI_TX1_TXN)
-
-//! @brief Format value for bitfield ESAI_TX1_TXN.
-#define BF_ESAI_TX1_TXN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TX1_TXN) & BM_ESAI_TX1_TXN)
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_ESAI_TX2 - Transmit Data Register n
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_ESAI_TX2 - Transmit Data Register n (WORZ)
- *
- * Reset value: 0x00000000
- *
- * ESAI_TX5, ESAI_TX4, ESAI_TX3, ESAI_TX2, ESAI_TX1 and ESAI_TX0 are 32-bit write-only registers.
- * Data to be transmitted is written into these registers and is automatically transferred to the
- * transmit shift registers ( and ). The data written (8, 12, 16, 20, or 24 bits) should occupy the
- * most significant portion of the TXn according to the ALC control bit setting. The unused bits
- * (least significant portion and the 8 most significant bits when ALC=1) of the TXn are don't care
- * bits. The Core is interrupted whenever the TXn becomes empty if the transmit data register empty
- * interrupt has been enabled.
- */
-typedef union _hw_esai_tx2
-{
-    reg32_t U;
-    struct _hw_esai_tx2_bitfields
-    {
-        unsigned TXN : 24; //!< [23:0] Stores the data to be transmitted and is automatically transferred to the transmit shift registers.
-        unsigned RESERVED0 : 8; //!< [31:24] Reserved
-    } B;
-} hw_esai_tx2_t;
-#endif
-
-/*!
- * @name Constants and macros for entire ESAI_TX2 register
- */
-//@{
-#define HW_ESAI_TX2_ADDR      (REGS_ESAI_BASE + 0x88)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_ESAI_TX2           (*(volatile hw_esai_tx2_t *) HW_ESAI_TX2_ADDR)
-#define HW_ESAI_TX2_WR(v)     (HW_ESAI_TX2.U = (v))
-#endif
-//@}
-
-/*
- * constants & macros for individual ESAI_TX2 bitfields
- */
-
-/*! @name Register ESAI_TX2, field TXN[23:0] (WORZ)
- *
- * Stores the data to be transmitted and is automatically transferred to the transmit shift
- * registers. See .
- */
-//@{
-#define BP_ESAI_TX2_TXN      (0)      //!< Bit position for ESAI_TX2_TXN.
-#define BM_ESAI_TX2_TXN      (0x00ffffff)  //!< Bit mask for ESAI_TX2_TXN.
-
-//! @brief Get value of ESAI_TX2_TXN from a register value.
-#define BG_ESAI_TX2_TXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TX2_TXN) >> BP_ESAI_TX2_TXN)
-
-//! @brief Format value for bitfield ESAI_TX2_TXN.
-#define BF_ESAI_TX2_TXN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TX2_TXN) & BM_ESAI_TX2_TXN)
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_ESAI_TX3 - Transmit Data Register n
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_ESAI_TX3 - Transmit Data Register n (WORZ)
- *
- * Reset value: 0x00000000
- *
- * ESAI_TX5, ESAI_TX4, ESAI_TX3, ESAI_TX2, ESAI_TX1 and ESAI_TX0 are 32-bit write-only registers.
- * Data to be transmitted is written into these registers and is automatically transferred to the
- * transmit shift registers ( and ). The data written (8, 12, 16, 20, or 24 bits) should occupy the
- * most significant portion of the TXn according to the ALC control bit setting. The unused bits
- * (least significant portion and the 8 most significant bits when ALC=1) of the TXn are don't care
- * bits. The Core is interrupted whenever the TXn becomes empty if the transmit data register empty
- * interrupt has been enabled.
- */
-typedef union _hw_esai_tx3
-{
-    reg32_t U;
-    struct _hw_esai_tx3_bitfields
-    {
-        unsigned TXN : 24; //!< [23:0] Stores the data to be transmitted and is automatically transferred to the transmit shift registers.
-        unsigned RESERVED0 : 8; //!< [31:24] Reserved
-    } B;
-} hw_esai_tx3_t;
-#endif
-
-/*!
- * @name Constants and macros for entire ESAI_TX3 register
- */
-//@{
-#define HW_ESAI_TX3_ADDR      (REGS_ESAI_BASE + 0x8c)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_ESAI_TX3           (*(volatile hw_esai_tx3_t *) HW_ESAI_TX3_ADDR)
-#define HW_ESAI_TX3_WR(v)     (HW_ESAI_TX3.U = (v))
-#endif
-//@}
-
-/*
- * constants & macros for individual ESAI_TX3 bitfields
- */
-
-/*! @name Register ESAI_TX3, field TXN[23:0] (WORZ)
- *
- * Stores the data to be transmitted and is automatically transferred to the transmit shift
- * registers. See .
- */
-//@{
-#define BP_ESAI_TX3_TXN      (0)      //!< Bit position for ESAI_TX3_TXN.
-#define BM_ESAI_TX3_TXN      (0x00ffffff)  //!< Bit mask for ESAI_TX3_TXN.
-
-//! @brief Get value of ESAI_TX3_TXN from a register value.
-#define BG_ESAI_TX3_TXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TX3_TXN) >> BP_ESAI_TX3_TXN)
-
-//! @brief Format value for bitfield ESAI_TX3_TXN.
-#define BF_ESAI_TX3_TXN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TX3_TXN) & BM_ESAI_TX3_TXN)
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_ESAI_TX4 - Transmit Data Register n
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_ESAI_TX4 - Transmit Data Register n (WORZ)
- *
- * Reset value: 0x00000000
- *
- * ESAI_TX5, ESAI_TX4, ESAI_TX3, ESAI_TX2, ESAI_TX1 and ESAI_TX0 are 32-bit write-only registers.
- * Data to be transmitted is written into these registers and is automatically transferred to the
- * transmit shift registers ( and ). The data written (8, 12, 16, 20, or 24 bits) should occupy the
- * most significant portion of the TXn according to the ALC control bit setting. The unused bits
- * (least significant portion and the 8 most significant bits when ALC=1) of the TXn are don't care
- * bits. The Core is interrupted whenever the TXn becomes empty if the transmit data register empty
- * interrupt has been enabled.
- */
-typedef union _hw_esai_tx4
-{
-    reg32_t U;
-    struct _hw_esai_tx4_bitfields
-    {
-        unsigned TXN : 24; //!< [23:0] Stores the data to be transmitted and is automatically transferred to the transmit shift registers.
-        unsigned RESERVED0 : 8; //!< [31:24] Reserved
-    } B;
-} hw_esai_tx4_t;
-#endif
-
-/*!
- * @name Constants and macros for entire ESAI_TX4 register
- */
-//@{
-#define HW_ESAI_TX4_ADDR      (REGS_ESAI_BASE + 0x90)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_ESAI_TX4           (*(volatile hw_esai_tx4_t *) HW_ESAI_TX4_ADDR)
-#define HW_ESAI_TX4_WR(v)     (HW_ESAI_TX4.U = (v))
-#endif
-//@}
-
-/*
- * constants & macros for individual ESAI_TX4 bitfields
- */
-
-/*! @name Register ESAI_TX4, field TXN[23:0] (WORZ)
- *
- * Stores the data to be transmitted and is automatically transferred to the transmit shift
- * registers. See .
- */
-//@{
-#define BP_ESAI_TX4_TXN      (0)      //!< Bit position for ESAI_TX4_TXN.
-#define BM_ESAI_TX4_TXN      (0x00ffffff)  //!< Bit mask for ESAI_TX4_TXN.
-
-//! @brief Get value of ESAI_TX4_TXN from a register value.
-#define BG_ESAI_TX4_TXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TX4_TXN) >> BP_ESAI_TX4_TXN)
-
-//! @brief Format value for bitfield ESAI_TX4_TXN.
-#define BF_ESAI_TX4_TXN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TX4_TXN) & BM_ESAI_TX4_TXN)
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_ESAI_TX5 - Transmit Data Register n
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_ESAI_TX5 - Transmit Data Register n (WORZ)
- *
- * Reset value: 0x00000000
- *
- * ESAI_TX5, ESAI_TX4, ESAI_TX3, ESAI_TX2, ESAI_TX1 and ESAI_TX0 are 32-bit write-only registers.
- * Data to be transmitted is written into these registers and is automatically transferred to the
- * transmit shift registers ( and ). The data written (8, 12, 16, 20, or 24 bits) should occupy the
- * most significant portion of the TXn according to the ALC control bit setting. The unused bits
- * (least significant portion and the 8 most significant bits when ALC=1) of the TXn are don't care
- * bits. The Core is interrupted whenever the TXn becomes empty if the transmit data register empty
- * interrupt has been enabled.
- */
-typedef union _hw_esai_tx5
-{
-    reg32_t U;
-    struct _hw_esai_tx5_bitfields
-    {
-        unsigned TXN : 24; //!< [23:0] Stores the data to be transmitted and is automatically transferred to the transmit shift registers.
-        unsigned RESERVED0 : 8; //!< [31:24] Reserved
-    } B;
-} hw_esai_tx5_t;
-#endif
-
-/*!
- * @name Constants and macros for entire ESAI_TX5 register
- */
-//@{
-#define HW_ESAI_TX5_ADDR      (REGS_ESAI_BASE + 0x94)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_ESAI_TX5           (*(volatile hw_esai_tx5_t *) HW_ESAI_TX5_ADDR)
-#define HW_ESAI_TX5_WR(v)     (HW_ESAI_TX5.U = (v))
-#endif
-//@}
-
-/*
- * constants & macros for individual ESAI_TX5 bitfields
- */
-
-/*! @name Register ESAI_TX5, field TXN[23:0] (WORZ)
- *
- * Stores the data to be transmitted and is automatically transferred to the transmit shift
- * registers. See .
- */
-//@{
-#define BP_ESAI_TX5_TXN      (0)      //!< Bit position for ESAI_TX5_TXN.
-#define BM_ESAI_TX5_TXN      (0x00ffffff)  //!< Bit mask for ESAI_TX5_TXN.
-
-//! @brief Get value of ESAI_TX5_TXN from a register value.
-#define BG_ESAI_TX5_TXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_TX5_TXN) >> BP_ESAI_TX5_TXN)
-
-//! @brief Format value for bitfield ESAI_TX5_TXN.
-#define BF_ESAI_TX5_TXN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TX5_TXN) & BM_ESAI_TX5_TXN)
+//! @brief Format value for bitfield ESAI_TXn_TXN.
+#define BF_ESAI_TXn_TXN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_TXn_TXN) & BM_ESAI_TXn_TXN)
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -1795,8 +1469,6 @@ typedef union _hw_esai_tx5
  * @brief HW_ESAI_TSR - ESAI Transmit Slot Register (WORZ)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_esai_tsr
 {
@@ -1846,12 +1518,12 @@ typedef union _hw_esai_tsr
 //@}
 
 //-------------------------------------------------------------------------------------------
-// HW_ESAI_RX0 - Receive Data Register n
+// HW_ESAI_RXn - Receive Data Register n
 //-------------------------------------------------------------------------------------------
 
 #ifndef __LANGUAGE_ASM__
 /*!
- * @brief HW_ESAI_RX0 - Receive Data Register n (RO)
+ * @brief HW_ESAI_RXn - Receive Data Register n (RO)
  *
  * Reset value: 0x00000000
  *
@@ -1861,208 +1533,46 @@ typedef union _hw_esai_tsr
  * (least significant portion and 8 most significant bits when ALC=1) read as zeros. The Core is
  * interrupted whenever RXn becomes full if the associated interrupt is enabled.
  */
-typedef union _hw_esai_rx0
+typedef union _hw_esai_rxn
 {
     reg32_t U;
-    struct _hw_esai_rx0_bitfields
+    struct _hw_esai_rxn_bitfields
     {
         unsigned RXN : 24; //!< [23:0] Accept data from the receive shift registers when they become full
         unsigned RESERVED0 : 8; //!< [31:24] Reserved
     } B;
-} hw_esai_rx0_t;
+} hw_esai_rxn_t;
 #endif
 
 /*!
- * @name Constants and macros for entire ESAI_RX0 register
+ * @name Constants and macros for entire ESAI_RXn register
  */
 //@{
-#define HW_ESAI_RX0_ADDR      (REGS_ESAI_BASE + 0xa0)
+//! @brief Number of instances of the ESAI_RXn register.
+#define HW_ESAI_RXn_COUNT     (4)
+
+#define HW_ESAI_RXn_ADDR(n)   (REGS_ESAI_BASE + 0xa0 + (0x4 * (n)))
 
 #ifndef __LANGUAGE_ASM__
-#define HW_ESAI_RX0           (*(volatile hw_esai_rx0_t *) HW_ESAI_RX0_ADDR)
-#define HW_ESAI_RX0_RD()      (HW_ESAI_RX0.U)
+#define HW_ESAI_RXn(n)        (*(volatile hw_esai_rxn_t *) HW_ESAI_RXn_ADDR(n))
+#define HW_ESAI_RXn_RD(n)     (HW_ESAI_RXn(n).U)
 #endif
 //@}
 
 /*
- * constants & macros for individual ESAI_RX0 bitfields
+ * constants & macros for individual ESAI_RXn bitfields
  */
 
-/*! @name Register ESAI_RX0, field RXN[23:0] (RO)
+/*! @name Register ESAI_RXn, field RXN[23:0] (RO)
  *
  * Accept data from the receive shift registers when they become full See
  */
 //@{
-#define BP_ESAI_RX0_RXN      (0)      //!< Bit position for ESAI_RX0_RXN.
-#define BM_ESAI_RX0_RXN      (0x00ffffff)  //!< Bit mask for ESAI_RX0_RXN.
+#define BP_ESAI_RXn_RXN      (0)      //!< Bit position for ESAI_RXn_RXN.
+#define BM_ESAI_RXn_RXN      (0x00ffffff)  //!< Bit mask for ESAI_RXn_RXN.
 
-//! @brief Get value of ESAI_RX0_RXN from a register value.
-#define BG_ESAI_RX0_RXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RX0_RXN) >> BP_ESAI_RX0_RXN)
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_ESAI_RX1 - Receive Data Register n
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_ESAI_RX1 - Receive Data Register n (RO)
- *
- * Reset value: 0x00000000
- *
- * ESAI_RX3, ESAI_RX2, ESAI_RX1, and ESAI_RX0 are 32-bit read-only registers that accept data from
- * the receive shift registers when they become full ( and ). The data occupies the most significant
- * portion of the receive data registers, according to the ALC control bit setting. The unused bits
- * (least significant portion and 8 most significant bits when ALC=1) read as zeros. The Core is
- * interrupted whenever RXn becomes full if the associated interrupt is enabled.
- */
-typedef union _hw_esai_rx1
-{
-    reg32_t U;
-    struct _hw_esai_rx1_bitfields
-    {
-        unsigned RXN : 24; //!< [23:0] Accept data from the receive shift registers when they become full
-        unsigned RESERVED0 : 8; //!< [31:24] Reserved
-    } B;
-} hw_esai_rx1_t;
-#endif
-
-/*!
- * @name Constants and macros for entire ESAI_RX1 register
- */
-//@{
-#define HW_ESAI_RX1_ADDR      (REGS_ESAI_BASE + 0xa4)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_ESAI_RX1           (*(volatile hw_esai_rx1_t *) HW_ESAI_RX1_ADDR)
-#define HW_ESAI_RX1_RD()      (HW_ESAI_RX1.U)
-#endif
-//@}
-
-/*
- * constants & macros for individual ESAI_RX1 bitfields
- */
-
-/*! @name Register ESAI_RX1, field RXN[23:0] (RO)
- *
- * Accept data from the receive shift registers when they become full See
- */
-//@{
-#define BP_ESAI_RX1_RXN      (0)      //!< Bit position for ESAI_RX1_RXN.
-#define BM_ESAI_RX1_RXN      (0x00ffffff)  //!< Bit mask for ESAI_RX1_RXN.
-
-//! @brief Get value of ESAI_RX1_RXN from a register value.
-#define BG_ESAI_RX1_RXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RX1_RXN) >> BP_ESAI_RX1_RXN)
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_ESAI_RX2 - Receive Data Register n
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_ESAI_RX2 - Receive Data Register n (RO)
- *
- * Reset value: 0x00000000
- *
- * ESAI_RX3, ESAI_RX2, ESAI_RX1, and ESAI_RX0 are 32-bit read-only registers that accept data from
- * the receive shift registers when they become full ( and ). The data occupies the most significant
- * portion of the receive data registers, according to the ALC control bit setting. The unused bits
- * (least significant portion and 8 most significant bits when ALC=1) read as zeros. The Core is
- * interrupted whenever RXn becomes full if the associated interrupt is enabled.
- */
-typedef union _hw_esai_rx2
-{
-    reg32_t U;
-    struct _hw_esai_rx2_bitfields
-    {
-        unsigned RXN : 24; //!< [23:0] Accept data from the receive shift registers when they become full
-        unsigned RESERVED0 : 8; //!< [31:24] Reserved
-    } B;
-} hw_esai_rx2_t;
-#endif
-
-/*!
- * @name Constants and macros for entire ESAI_RX2 register
- */
-//@{
-#define HW_ESAI_RX2_ADDR      (REGS_ESAI_BASE + 0xa8)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_ESAI_RX2           (*(volatile hw_esai_rx2_t *) HW_ESAI_RX2_ADDR)
-#define HW_ESAI_RX2_RD()      (HW_ESAI_RX2.U)
-#endif
-//@}
-
-/*
- * constants & macros for individual ESAI_RX2 bitfields
- */
-
-/*! @name Register ESAI_RX2, field RXN[23:0] (RO)
- *
- * Accept data from the receive shift registers when they become full See
- */
-//@{
-#define BP_ESAI_RX2_RXN      (0)      //!< Bit position for ESAI_RX2_RXN.
-#define BM_ESAI_RX2_RXN      (0x00ffffff)  //!< Bit mask for ESAI_RX2_RXN.
-
-//! @brief Get value of ESAI_RX2_RXN from a register value.
-#define BG_ESAI_RX2_RXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RX2_RXN) >> BP_ESAI_RX2_RXN)
-//@}
-
-//-------------------------------------------------------------------------------------------
-// HW_ESAI_RX3 - Receive Data Register n
-//-------------------------------------------------------------------------------------------
-
-#ifndef __LANGUAGE_ASM__
-/*!
- * @brief HW_ESAI_RX3 - Receive Data Register n (RO)
- *
- * Reset value: 0x00000000
- *
- * ESAI_RX3, ESAI_RX2, ESAI_RX1, and ESAI_RX0 are 32-bit read-only registers that accept data from
- * the receive shift registers when they become full ( and ). The data occupies the most significant
- * portion of the receive data registers, according to the ALC control bit setting. The unused bits
- * (least significant portion and 8 most significant bits when ALC=1) read as zeros. The Core is
- * interrupted whenever RXn becomes full if the associated interrupt is enabled.
- */
-typedef union _hw_esai_rx3
-{
-    reg32_t U;
-    struct _hw_esai_rx3_bitfields
-    {
-        unsigned RXN : 24; //!< [23:0] Accept data from the receive shift registers when they become full
-        unsigned RESERVED0 : 8; //!< [31:24] Reserved
-    } B;
-} hw_esai_rx3_t;
-#endif
-
-/*!
- * @name Constants and macros for entire ESAI_RX3 register
- */
-//@{
-#define HW_ESAI_RX3_ADDR      (REGS_ESAI_BASE + 0xac)
-
-#ifndef __LANGUAGE_ASM__
-#define HW_ESAI_RX3           (*(volatile hw_esai_rx3_t *) HW_ESAI_RX3_ADDR)
-#define HW_ESAI_RX3_RD()      (HW_ESAI_RX3.U)
-#endif
-//@}
-
-/*
- * constants & macros for individual ESAI_RX3 bitfields
- */
-
-/*! @name Register ESAI_RX3, field RXN[23:0] (RO)
- *
- * Accept data from the receive shift registers when they become full See
- */
-//@{
-#define BP_ESAI_RX3_RXN      (0)      //!< Bit position for ESAI_RX3_RXN.
-#define BM_ESAI_RX3_RXN      (0x00ffffff)  //!< Bit mask for ESAI_RX3_RXN.
-
-//! @brief Get value of ESAI_RX3_RXN from a register value.
-#define BG_ESAI_RX3_RXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RX3_RXN) >> BP_ESAI_RX3_RXN)
+//! @brief Get value of ESAI_RXn_RXN from a register value.
+#define BG_ESAI_RXn_RXN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RXn_RXN) >> BP_ESAI_RXn_RXN)
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -4704,18 +4214,10 @@ typedef struct _hw_esai
     volatile hw_esai_rfcr_t RFCR; //!< Receive FIFO Configuration Register
     volatile hw_esai_rfsr_t RFSR; //!< Receive FIFO Status Register
     reg32_t _reserved0[24];
-    volatile hw_esai_tx0_t TX0; //!< Transmit Data Register n
-    volatile hw_esai_tx1_t TX1; //!< Transmit Data Register n
-    volatile hw_esai_tx2_t TX2; //!< Transmit Data Register n
-    volatile hw_esai_tx3_t TX3; //!< Transmit Data Register n
-    volatile hw_esai_tx4_t TX4; //!< Transmit Data Register n
-    volatile hw_esai_tx5_t TX5; //!< Transmit Data Register n
+    volatile hw_esai_txn_t TXn[6]; //!< Transmit Data Register n
     volatile hw_esai_tsr_t TSR; //!< ESAI Transmit Slot Register
     reg32_t _reserved1;
-    volatile hw_esai_rx0_t RX0; //!< Receive Data Register n
-    volatile hw_esai_rx1_t RX1; //!< Receive Data Register n
-    volatile hw_esai_rx2_t RX2; //!< Receive Data Register n
-    volatile hw_esai_rx3_t RX3; //!< Receive Data Register n
+    volatile hw_esai_rxn_t RXn[4]; //!< Receive Data Register n
     reg32_t _reserved2[7];
     volatile hw_esai_saisr_t SAISR; //!< Serial Audio Interface Status Register
     volatile hw_esai_saicr_t SAICR; //!< Serial Audio Interface Control Register
@@ -4740,5 +4242,5 @@ typedef struct _hw_esai
 #endif
 
 #endif // __HW_ESAI_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

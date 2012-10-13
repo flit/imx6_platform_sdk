@@ -450,8 +450,6 @@ typedef union _hw_asrc_asrctr
 //@}
 
 /*! @name Register ASRC_ASRCTR, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRCTR_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRCTR_UNIMPLEMENTED.
@@ -470,8 +468,6 @@ typedef union _hw_asrc_asrctr
  * @brief HW_ASRC_ASRIER - ASRC Interrupt Enable Register (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_asrc_asrier
 {
@@ -705,8 +701,6 @@ typedef union _hw_asrc_asrier
 //@}
 
 /*! @name Register ASRC_ASRIER, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRIER_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRIER_UNIMPLEMENTED.
@@ -871,8 +865,6 @@ typedef union _hw_asrc_asrcncr
 //@}
 
 /*! @name Register ASRC_ASRCNCR, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRCNCR_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRCNCR_UNIMPLEMENTED.
@@ -1224,8 +1216,6 @@ typedef union _hw_asrc_asrcfg
 //@}
 
 /*! @name Register ASRC_ASRCFG, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRCFG_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRCFG_UNIMPLEMENTED.
@@ -1520,8 +1510,6 @@ typedef union _hw_asrc_asrcsr
 //@}
 
 /*! @name Register ASRC_ASRCSR, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRCSR_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRCSR_UNIMPLEMENTED.
@@ -1751,8 +1739,6 @@ typedef union _hw_asrc_asrcdr1
 //@}
 
 /*! @name Register ASRC_ASRCDR1, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRCDR1_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRCDR1_UNIMPLEMENTED.
@@ -1895,8 +1881,6 @@ typedef union _hw_asrc_asrcdr2
 //@}
 
 /*! @name Register ASRC_ASRCDR2, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRCDR2_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRCDR2_UNIMPLEMENTED.
@@ -2297,8 +2281,6 @@ typedef union _hw_asrc_asrstr
 //@}
 
 /*! @name Register ASRC_ASRSTR, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRSTR_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRSTR_UNIMPLEMENTED.
@@ -2377,8 +2359,6 @@ typedef union _hw_asrc_asrpmn1
 //@}
 
 /*! @name Register ASRC_ASRPMN1, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRPMN1_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRPMN1_UNIMPLEMENTED.
@@ -2457,8 +2437,6 @@ typedef union _hw_asrc_asrpmn2
 //@}
 
 /*! @name Register ASRC_ASRPMN2, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRPMN2_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRPMN2_UNIMPLEMENTED.
@@ -2537,8 +2515,6 @@ typedef union _hw_asrc_asrpmn3
 //@}
 
 /*! @name Register ASRC_ASRPMN3, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRPMN3_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRPMN3_UNIMPLEMENTED.
@@ -2617,8 +2593,6 @@ typedef union _hw_asrc_asrpmn4
 //@}
 
 /*! @name Register ASRC_ASRPMN4, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRPMN4_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRPMN4_UNIMPLEMENTED.
@@ -2697,8 +2671,6 @@ typedef union _hw_asrc_asrpmn5
 //@}
 
 /*! @name Register ASRC_ASRPMN5, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRPMN5_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRPMN5_UNIMPLEMENTED.
@@ -2787,8 +2759,6 @@ typedef union _hw_asrc_asrtfr1
 //@}
 
 /*! @name Register ASRC_ASRTFR1, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRTFR1_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRTFR1_UNIMPLEMENTED.
@@ -2981,8 +2951,6 @@ typedef union _hw_asrc_asrccr
 //@}
 
 /*! @name Register ASRC_ASRCCR, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRCCR_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRCCR_UNIMPLEMENTED.
@@ -3048,8 +3016,6 @@ typedef union _hw_asrc_asrdia
 //@}
 
 /*! @name Register ASRC_ASRDIA, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRDIA_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRDIA_UNIMPLEMENTED.
@@ -3112,8 +3078,6 @@ typedef union _hw_asrc_asrdoa
 //@}
 
 /*! @name Register ASRC_ASRDOA, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRDOA_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRDOA_UNIMPLEMENTED.
@@ -3179,8 +3143,6 @@ typedef union _hw_asrc_asrdib
 //@}
 
 /*! @name Register ASRC_ASRDIB, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRDIB_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRDIB_UNIMPLEMENTED.
@@ -3243,8 +3205,6 @@ typedef union _hw_asrc_asrdob
 //@}
 
 /*! @name Register ASRC_ASRDOB, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRDOB_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRDOB_UNIMPLEMENTED.
@@ -3310,8 +3270,6 @@ typedef union _hw_asrc_asrdic
 //@}
 
 /*! @name Register ASRC_ASRDIC, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRDIC_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRDIC_UNIMPLEMENTED.
@@ -3374,8 +3332,6 @@ typedef union _hw_asrc_asrdoc
 //@}
 
 /*! @name Register ASRC_ASRDOC, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRDOC_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRDOC_UNIMPLEMENTED.
@@ -3452,8 +3408,6 @@ typedef union _hw_asrc_asridrha
 //@}
 
 /*! @name Register ASRC_ASRIDRHA, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRIDRHA_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRIDRHA_UNIMPLEMENTED.
@@ -3529,8 +3483,6 @@ typedef union _hw_asrc_asridrla
 //@}
 
 /*! @name Register ASRC_ASRIDRLA, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRIDRLA_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRIDRLA_UNIMPLEMENTED.
@@ -3607,8 +3559,6 @@ typedef union _hw_asrc_asridrhb
 //@}
 
 /*! @name Register ASRC_ASRIDRHB, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRIDRHB_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRIDRHB_UNIMPLEMENTED.
@@ -3684,8 +3634,6 @@ typedef union _hw_asrc_asridrlb
 //@}
 
 /*! @name Register ASRC_ASRIDRLB, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRIDRLB_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRIDRLB_UNIMPLEMENTED.
@@ -3762,8 +3710,6 @@ typedef union _hw_asrc_asridrhc
 //@}
 
 /*! @name Register ASRC_ASRIDRHC, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRIDRHC_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRIDRHC_UNIMPLEMENTED.
@@ -3839,8 +3785,6 @@ typedef union _hw_asrc_asridrlc
 //@}
 
 /*! @name Register ASRC_ASRIDRLC, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRIDRLC_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRIDRLC_UNIMPLEMENTED.
@@ -3920,8 +3864,6 @@ typedef union _hw_asrc_asr76k
 //@}
 
 /*! @name Register ASRC_ASR76K, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASR76K_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASR76K_UNIMPLEMENTED.
@@ -4001,8 +3943,6 @@ typedef union _hw_asrc_asr56k
 //@}
 
 /*! @name Register ASRC_ASR56K, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASR56K_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASR56K_UNIMPLEMENTED.
@@ -4259,8 +4199,6 @@ typedef union _hw_asrc_asrmcra
 //@}
 
 /*! @name Register ASRC_ASRMCRA, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRMCRA_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRMCRA_UNIMPLEMENTED.
@@ -4367,8 +4305,6 @@ typedef union _hw_asrc_asrfsta
 //@}
 
 /*! @name Register ASRC_ASRFSTA, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRFSTA_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRFSTA_UNIMPLEMENTED.
@@ -4625,8 +4561,6 @@ typedef union _hw_asrc_asrmcrb
 //@}
 
 /*! @name Register ASRC_ASRMCRB, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRMCRB_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRMCRB_UNIMPLEMENTED.
@@ -4733,8 +4667,6 @@ typedef union _hw_asrc_asrfstb
 //@}
 
 /*! @name Register ASRC_ASRFSTB, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRFSTB_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRFSTB_UNIMPLEMENTED.
@@ -4991,8 +4923,6 @@ typedef union _hw_asrc_asrmcrc
 //@}
 
 /*! @name Register ASRC_ASRMCRC, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRMCRC_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRMCRC_UNIMPLEMENTED.
@@ -5099,8 +5029,6 @@ typedef union _hw_asrc_asrfstc
 //@}
 
 /*! @name Register ASRC_ASRFSTC, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRFSTC_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRFSTC_UNIMPLEMENTED.
@@ -5281,8 +5209,6 @@ typedef union _hw_asrc_asrmcr1a
 //@}
 
 /*! @name Register ASRC_ASRMCR1A, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRMCR1A_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRMCR1A_UNIMPLEMENTED.
@@ -5463,8 +5389,6 @@ typedef union _hw_asrc_asrmcr1b
 //@}
 
 /*! @name Register ASRC_ASRMCR1B, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRMCR1B_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRMCR1B_UNIMPLEMENTED.
@@ -5645,8 +5569,6 @@ typedef union _hw_asrc_asrmcr1c
 //@}
 
 /*! @name Register ASRC_ASRMCR1C, field UNIMPLEMENTED[31:24] (RU)
- *
-
  */
 //@{
 #define BP_ASRC_ASRMCR1C_UNIMPLEMENTED      (24)      //!< Bit position for ASRC_ASRMCR1C_UNIMPLEMENTED.
@@ -5719,5 +5641,5 @@ typedef struct _hw_asrc
 #endif
 
 #endif // __HW_ASRC_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

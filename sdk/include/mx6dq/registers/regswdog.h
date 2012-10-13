@@ -714,5 +714,5 @@ typedef struct _hw_wdog
 #endif
 
 #endif // __HW_WDOG_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

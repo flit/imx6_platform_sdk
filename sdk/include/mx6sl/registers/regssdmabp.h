@@ -57,8 +57,6 @@
  * @brief HW_SDMABP_DC0PTR - Channel 0 Pointer (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sdmabp_dc0ptr
 {
@@ -123,8 +121,6 @@ typedef union _hw_sdmabp_dc0ptr
  * @brief HW_SDMABP_INTR - Channel Interrupts (W1C)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sdmabp_intr
 {
@@ -190,8 +186,6 @@ typedef union _hw_sdmabp_intr
  * @brief HW_SDMABP_STOP_STAT - Channel Stop/Channel Status (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sdmabp_stop_stat
 {
@@ -255,8 +249,6 @@ typedef union _hw_sdmabp_stop_stat
  * @brief HW_SDMABP_DSTART - Channel Start (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sdmabp_dstart
 {
@@ -315,8 +307,6 @@ typedef union _hw_sdmabp_dstart
  * @brief HW_SDMABP_EVTERR - DMA Request Error Register (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sdmabp_evterr
 {
@@ -372,8 +362,6 @@ typedef union _hw_sdmabp_evterr
  * @brief HW_SDMABP_INTRMASK - Channel DSP Interrupt Mask (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sdmabp_intrmask
 {
@@ -436,8 +424,6 @@ typedef union _hw_sdmabp_intrmask
  * @brief HW_SDMABP_EVTERRDBG - DMA Request Error Register (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sdmabp_evterrdbg
 {
@@ -508,5 +494,5 @@ typedef struct _hw_sdmabp
 #endif
 
 #endif // __HW_SDMABP_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

@@ -5353,5 +5353,5 @@ typedef struct _hw_mipi_dsi
 #endif
 
 #endif // __HW_MIPI_DSI_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

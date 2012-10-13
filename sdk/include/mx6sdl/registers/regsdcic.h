@@ -68,8 +68,6 @@
  * @brief HW_DCIC_DCICC - DCIC Control Register (RW)
  *
  * Reset value: 0x00000070
- *
-
  */
 typedef union _hw_dcic_dcicc
 {
@@ -236,8 +234,6 @@ typedef union _hw_dcic_dcicc
  * @brief HW_DCIC_DCICIC - DCIC Interrupt Control Register (RW)
  *
  * Reset value: 0x00000003
- *
-
  */
 typedef union _hw_dcic_dcicic
 {
@@ -380,8 +376,6 @@ typedef union _hw_dcic_dcicic
  * @brief HW_DCIC_DCICS - DCIC Status Register (W1C)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_dcic_dcics
 {
@@ -491,8 +485,6 @@ typedef union _hw_dcic_dcics
  * @brief HW_DCIC_DCICRC - DCIC ROI Config Register m (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_dcic_dcicrc
 {
@@ -627,8 +619,6 @@ typedef union _hw_dcic_dcicrc
  * @brief HW_DCIC_DCICRS - DCIC ROI Size Register m (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_dcic_dcicrs
 {
@@ -712,8 +702,6 @@ typedef union _hw_dcic_dcicrs
  * @brief HW_DCIC_DCICRRS - DCIC ROI Reference Signature Register m (RW)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_dcic_dcicrrs
 {
@@ -774,8 +762,6 @@ typedef union _hw_dcic_dcicrrs
  * @brief HW_DCIC_DCICRCS - DCIC ROI Calculated Signature m (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_dcic_dcicrcs
 {
@@ -845,5 +831,5 @@ typedef struct _hw_dcic
 #endif
 
 #endif // __HW_DCIC_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

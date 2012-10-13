@@ -1231,8 +1231,6 @@ typedef union _hw_hdmi_phy_cksymtxctrl
 //@}
 
 /*! @name Register HDMI_PHY_CKSYMTXCTRL, field OVERRIDE[15] (RW)
- *
-
  */
 //@{
 #define BP_HDMI_PHY_CKSYMTXCTRL_OVERRIDE      (15)      //!< Bit position for HDMI_PHY_CKSYMTXCTRL_OVERRIDE.
@@ -4239,5 +4237,5 @@ typedef union _hw_hdmi_phy_scopecntmsb2ck
 //@}
 
 #endif // __HW_HDMI_PHY_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

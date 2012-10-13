@@ -153,8 +153,6 @@ typedef union _hw_sjc_gpusr1
  * @brief HW_SJC_GPUSR2 - General Purpose Unsecured Status Register 2 (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sjc_gpusr2
 {
@@ -230,8 +228,6 @@ typedef union _hw_sjc_gpusr2
  * @brief HW_SJC_GPUSR3 - General Purpose Unsecured Status Register 3 (RO)
  *
  * Reset value: 0x00000000
- *
-
  */
 typedef union _hw_sjc_gpusr3
 {
@@ -534,8 +530,6 @@ typedef union _hw_sjc_dcr
  * @brief HW_SJC_SSR - Security Status Register (RO)
  *
  * Reset value: 0x100eeeaeefeceaecaeadefedbafade10feeeebfeddecfdeaadae
- *
-
  */
 typedef union _hw_sjc_ssr
 {
@@ -852,5 +846,5 @@ typedef struct _hw_sjc
 #endif
 
 #endif // __HW_SJC_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

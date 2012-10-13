@@ -1923,8 +1923,6 @@ typedef union _hw_usdhc_prot_ctrl
  * @brief HW_USDHC_SYS_CTRL - System Control (RW)
  *
  * Reset value: 0x8080800f
- *
-
  */
 typedef union _hw_usdhc_sys_ctrl
 {
@@ -7137,5 +7135,5 @@ typedef struct _hw_usdhc
 #endif
 
 #endif // __HW_USDHC_REGISTERS_H__
-// v16/121010/1.1.4
+// v17/121010/1.2.0
 // EOF

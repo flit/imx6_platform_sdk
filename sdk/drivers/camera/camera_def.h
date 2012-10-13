@@ -31,8 +31,8 @@ typedef struct {
     uint16_t addr;			//!< Sensor register address.
     uint16_t value;			//!< Data along with the register address.
     uint16_t is_16bits;		//!< If the @a value is a 16bit or 8bit
-    uint32_t delay_ms;		//!< Time delay needed after setting regiter
-    uint8_t verify;			//!< If need to verify the set operation is correctly
+    uint32_t delay_ms;		//!< Time delay needed after setting regiter, the unit is ms.
+    uint8_t verify;			//!< If need to verify the write operation is correctly
 } reg_param_t;
 
 //! @brief The register setting information for specific camera mode

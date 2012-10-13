@@ -240,18 +240,32 @@ enum {
 	MIPI_DCS_READ_DDB_CONTINUE	= 0xA8,
 };
 
+//! @brief The common structure for accessing mipi sensor I2C interface.
+//!
+//! @a address is a 16-bit sensor register address.
 typedef struct {
-    unsigned short addr;
-    unsigned short value;
-    unsigned char verify;
-    unsigned int delay_us;
+    unsigned short addr;	//!< Sensor register address.
+    unsigned short value;	//!< Data along with the register address.
+    unsigned char verify;	//!< If need to verify the write operation is correctly.
+    unsigned int delay_us;	//!< Time delay needed after setting regiter, the unit is us.
 } cam_firmware_t;
 
+//! @brief The register setting information for specific mipi camera mode
+//!
+//! When the mipi camera need to work at specific mode, a serie of regiter settings are need to be downloaded to sensor.
+//
+//!	The register setting should be hold in array.
+//
+//! @a setting is the start address of the register setting array.
+//! @a size if the size of the register setting array.
 typedef struct {
-    cam_firmware_t *setting;
-    int size;
+    cam_firmware_t *setting;	//!< Pointer to register setting array
+    int size;					//!< Size of register setting array
 } mipi_cam_mode_t;
 
+//! @brief MIPI sensor capture mode id
+//!
+//! The mode id is corresponding to index of @a mipi_camera_modes array.
 enum {
     OV5640_MODE_480X480_15FPS_RGB565,
     OV5640_MODE_VGA_640X480_15FPS_YUV422,
@@ -264,5 +278,33 @@ extern cam_firmware_t ov5640_mipi_VGA_640x480_30fps_YUV422_fm[];
 
 extern mipi_cam_mode_t mipi_cam_modes[];
 
+/*!
+ * @brief Set mipi sensor input clock
+ *
+ * MIPI sensor input clock comes from IPU. A typical camera sensor clock is 24MHz.
+ *
+ */
+void mipi_csi2_clock_set(void);
+
+/*!
+ * @brief Provide the mipi camera power and reset
+ */
+void mipi_cam_power_on(void);
+
+/*!
+ * @brief Initialize and setup mipi csi interface.
+ *
+ * Setup MIPI-CSI2 controller and mipi sensor according to recommended sequences.
+ *
+ */
+void mipi_csi2_config(void);
+
+/*!
+ * @brief Initialize mipi dsi interface.
+ *
+ * Setup MIPI DSI controller and the TRULY panel through
+ * generic data interface.
+ *
+ */
 void mipi_dsi_init(void);
 #endif

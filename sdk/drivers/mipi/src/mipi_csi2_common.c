@@ -20,13 +20,15 @@
 #define PREVIEW 1
 #define MIPI_SENSOR_ADDR 0x3C
 
-extern void mipi_cam_power_on(void);
-extern void mipi_ipu_csi_config(void);
-extern void mipi_sensor_config(unsigned int i2c_base);
-extern char receive_char(void);
-extern void mipi_csi2_clock_set(void);
-
-static void mipi_sensor_i2c_init(unsigned int base, unsigned int baud)
+/*!
+ * @brief initialize the i2c module for mipi camera sensor -- mainly enable the i2c clock, module itself and the i2c clock prescaler.
+ *
+ * @param   base        base address of i2c module (also assigned for i2cx_clk)
+ * @param   baud        the desired data rate in bps
+ *
+ * @return  0 if successful; non-zero otherwise
+ */
+static void mipi_sensor_i2c_init(uint32_t base, uint32_t baud)
 {
     int ret = 0;
     int i2c_delay = 500 * 100;
@@ -40,6 +42,15 @@ static void mipi_sensor_i2c_init(unsigned int base, unsigned int baud)
 
 }
 
+/*!
+ * @brief Perform I2C write operation for mipi camera sensor
+ *
+ * @param   i2c_base	sensor i2c master address
+ * @param   reg	 		sensor i2c register address
+ * @param	pval 		value write to i2c register
+ *
+ * @return  0 if successful; non-zero otherwise
+ */
 static int32_t mipi_sensor_write_reg(uint32_t i2c_base, uint16_t reg, uint8_t pval)
 {
     int ret = 0;
@@ -59,6 +70,15 @@ static int32_t mipi_sensor_write_reg(uint32_t i2c_base, uint16_t reg, uint8_t pv
     return ret;
 }
 
+/*!
+ * @brief Perform I2C read operation for mipi camera sensor
+ *
+ * @param   i2c_base	sensor i2c master address
+ * @param   reg	 		sensor i2c register address
+ * @param	pval 		value read from i2c register
+ *
+ * @return  0 if successful; non-zero otherwise
+ */
 static int32_t mipi_sensor_read_reg(uint32_t i2c_base, uint16_t reg, uint8_t * pval)
 {
     int ret = 0;
@@ -77,9 +97,17 @@ static int32_t mipi_sensor_read_reg(uint32_t i2c_base, uint16_t reg, uint8_t * p
     return ret;
 }
 
-/*for debug purpose*/
-static int dev_check_reg(unsigned int i2c_base, unsigned int slave_addr, unsigned char reg,
-                         unsigned char *pval)
+/* @brief Check I2C write and read function. This funtions is used for debug purpose. 
+ *
+ * @param   i2c_base	sensor i2c master address
+ * @param   slave_addr	sensor i2c slave device address
+ * @param   reg	 		sensor i2c register address
+ * @param	pval 		value read from i2c register
+ *
+ * @return  0 if successful; non-zero otherwise
+ */
+static int dev_check_reg(uint32_t i2c_base, uint32_t slave_addr, uint8_t reg,
+                         uint8_t *pval)
 {
     int ret = 0;
     struct imx_i2c_request rq = {0};
@@ -101,7 +129,31 @@ static int dev_check_reg(unsigned int i2c_base, unsigned int slave_addr, unsigne
     return ret;
 }
 
-void mipi_sensor_id_check(unsigned int i2c_base)
+/* @brief Dump a range of sensor registers. This funtions is used for debug purpose. 
+ *
+ * @param   i2c_base	sensor i2c master address
+ * @param   start		start of sensor i2c regigter address
+ * @param   end			end of sensor i2c regigter address
+ */
+static void mipi_sensor_regs_dump(uint32_t i2c_base, uint16_t start, uint16_t end)
+{
+    unsigned char data;
+    unsigned short i = start;
+    while (i <= end) {
+        mipi_sensor_read_reg(i2c_base, i, &data);
+        printf("reg@0x%04x:  0x%02x\n", i, data);
+        i++;
+    }
+}
+
+
+/* @brief Check mipi sensor id throught I2C interface.
+ *
+ * Only mipi ov5640 is support currently. So the expect mipi id is 5640.
+ *
+ * @param   i2c_base	sensor i2c master address
+ */
+static void mipi_sensor_id_check(uint32_t i2c_base)
 {
     unsigned char data_high, data_low;
     char revchar;
@@ -123,7 +175,12 @@ void mipi_sensor_id_check(unsigned int i2c_base)
     } while (1);
 }
 
-void mipi_sensor_load_firmware(unsigned int i2c_base, mipi_cam_mode_t * mipi_cam_fm)
+/* @brief Download firmware mipi setting array into mipi sensor.
+ *
+ * @param   i2c_base	sensor i2c master address
+ * @param	mipi_cam_fm	sensor mode register settings  
+ */
+static void mipi_sensor_load_firmware(uint32_t i2c_base, mipi_cam_mode_t * mipi_cam_fm)
 {
     int i = 0;
     unsigned char val = 0;
@@ -145,18 +202,12 @@ void mipi_sensor_load_firmware(unsigned int i2c_base, mipi_cam_mode_t * mipi_cam
     }
 }
 
-void mipi_sensor_regs_dump(unsigned int i2c_base, unsigned short start, unsigned short end)
-{
-    unsigned char data;
-    unsigned short i = start;
-    while (i <= end) {
-        mipi_sensor_read_reg(i2c_base, i, &data);
-        printf("reg@0x%04x:  0x%02x\n", i, data);
-        i++;
-    }
-}
-
-void mipi_sensor_config(unsigned int i2c_base)
+/*!
+ * @brief Configure and initialize mipi camera sensor
+ *
+ * @param   i2c_base	sensor i2c master address
+ */
+static void mipi_sensor_config(uint32_t i2c_base)
 {
     mipi_cam_mode_t *mipi_cam_fm = NULL;
 
@@ -170,7 +221,12 @@ void mipi_sensor_config(unsigned int i2c_base)
     printf("Download mipi sensor firmware done!\n");
 }
 
-void i2c2_sensor_off(unsigned int i2c_base)
+/*!
+ * @brief Turn mipi sensor into sleep mode through I2C
+ *
+ * @param   i2c_base	sensor i2c master address
+ */
+static void i2c2_sensor_off(uint32_t i2c_base)
 {
     mipi_sensor_write_reg(i2c_base, 0x3008, 0x42);  //sleep;   
     mipi_sensor_write_reg(i2c_base, 0x3503, 0x7);
@@ -179,7 +235,12 @@ void i2c2_sensor_off(unsigned int i2c_base)
 
 }
 
-void i2c2_sensor_on(unsigned int i2c_base)
+/*!
+ * @brief Wake up mipi sensor through I2C
+ *
+ * @param   i2c_base	sensor i2c master address
+ */
+static void i2c2_sensor_on(uint32_t i2c_base)
 {
     mipi_sensor_write_reg(i2c_base, 0x3008, 0x42);  //sleep;   
     mipi_sensor_write_reg(i2c_base, 0x3503, 0x7);
@@ -192,7 +253,12 @@ void i2c2_sensor_on(unsigned int i2c_base)
 
 }
 
-int32_t mipi_csi2_set_lanes(uint32_t lanes)
+/*!
+ * @brief Set number of active data lanes for MIPI-CSI2 controller
+ *
+ * @param   lanes	number of active data lanes
+ */
+static int32_t mipi_csi2_set_lanes(uint32_t lanes)
 {
     if (lanes > 4 || lanes < 1)
         return FALSE;
@@ -200,7 +266,14 @@ int32_t mipi_csi2_set_lanes(uint32_t lanes)
     return TRUE;
 }
 
-void mipi_csi2_controller_program(void)
+/*!
+ * @brief Setup MIPI-CSI2 controller.
+ *
+ * Read the PHY status register to confirm that the D-PHY is receiving a clock
+ * on the D-PHY clock lane;
+ *
+ */
+static void mipi_csi2_controller_program(void)
 {
     //ov5640 support 2 lanes. (using lane 0 and lane 1)
     mipi_csi2_set_lanes(2);
@@ -246,52 +319,6 @@ void mipi_csi2_controller_program(void)
 
     //raise csi2 reset
 	BW_MIPI_CSI_CSI2_RESETN_CSI2_RESETN(1);
-}
-
-/*!
- * Provide the mipi camera power and reset
- */
-void mipi_cam_power_on(void)
-{
-#if defined(BOARD_EVB)
-    /*reset of camera sensor, pin 27 */
-    max7310_set_gpio_output(0, 2, GPIO_LOW_LEVEL);
-    hal_delay_us(1000);
-    max7310_set_gpio_output(0, 2, GPIO_HIGH_LEVEL);
-
-    /*power supply through pin25 of connector, for cam_pdown, power down and then up */
-    max7310_set_gpio_output(0, 0, GPIO_LOW_LEVEL);
-    hal_delay_us(1000);
-    max7310_set_gpio_output(0, 0, GPIO_HIGH_LEVEL);
-//    max7310_set_gpio_output(1, 1, GPIO_HIGH_LEVEL);
-#endif
-
-#if defined(BOARD_SABRE_AI)
-    /*power supply through pin25 of connector, direct connected to P3V3_DELAY,
-       controlled by CPU_PER_RST_B */
-    /*reset of camera sensor, together with the reset button */
-    max7310_set_gpio_output(0, 2, GPIO_LOW_LEVEL);
-    hal_delay_us(1000);
-    max7310_set_gpio_output(0, 2, GPIO_HIGH_LEVEL);
-    max7310_set_gpio_output(0, 0, GPIO_HIGH_LEVEL);
-
-#endif
-
-#if defined(BOARD_SMART_DEVICE)
-    /*power supply through pin25 of connector, for cam_pdown */
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_WP_B, ALT5);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_WP_B, 0x1B0B0);
-    gpio_set_direction(GPIO_PORT6, 9, GPIO_GDIR_OUTPUT);
-    gpio_set_level(GPIO_PORT6, 9, GPIO_HIGH_LEVEL);
-
-    /*reset of camera sensor, pin 27 */
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_RB0, ALT5);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_RB0, 0x1B0B0);
-    gpio_set_direction(GPIO_PORT6, 10, GPIO_GDIR_OUTPUT);
-    gpio_set_level(GPIO_PORT6, 10, GPIO_LOW_LEVEL);
-    hal_delay_us(1000);
-    gpio_set_level(GPIO_PORT6, 10, GPIO_HIGH_LEVEL);
-#endif
 }
 
 void mipi_csi2_config(void)

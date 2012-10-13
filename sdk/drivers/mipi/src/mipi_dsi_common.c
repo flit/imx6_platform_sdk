@@ -17,7 +17,13 @@
 #include "ipu/ipu_common.h"
 #include "truly_hx8369.h"
 
-void dphy_write_control(unsigned long testcode, unsigned long testwrite)
+/*
+ * @brief Configure the DPHY PLL clock frequence through the TEST Interface.
+ *
+ * @param	testcode	test code number
+ * @param	testwrite	test datain
+ */
+static void dphy_write_control(unsigned long testcode, unsigned long testwrite)
 {
 	/* {phy_testclk, phy_testclr} = {0, 0} */
 	BW_MIPI_DSI_PHY_TST_CTRL0_PHY_TESTCLK(0);
@@ -44,23 +50,44 @@ void dphy_write_control(unsigned long testcode, unsigned long testwrite)
 	BW_MIPI_DSI_PHY_TST_CTRL0_PHY_TESTCLK(0);
 }
 
-void gen_write_cmd(unsigned long gen_hdr)
+/*
+ * @brief Configure the command through generic packet header register
+ *
+ * @param	gen_hdr	the value of packet data and type.(accoring to register structure)
+ */
+static void gen_write_cmd(unsigned long gen_hdr)
 {
 	HW_MIPI_DSI_GEN_HDR_WR(gen_hdr);
 	//while(!HW_MIPI_DSI_CMD_PKT_STATUS.B.GEN_CMD_EMPTY);
 }
 
-void gen_write_data(unsigned long gen_pld_data)
+/*
+ * @brief Write generic data through generic payload dta in/out register
+ *
+ * @param	gen_pld_data	generic packed data.
+ */
+static void gen_write_data(unsigned long gen_pld_data)
 {
 	HW_MIPI_DSI_GEN_PLD_DATA_WR(gen_pld_data);
 }
 
-int gen_read_data(void)
+/*
+ * @brief Read generic data through generic payload dta in/out register
+ *
+ * @param	gen_pld_data	generic packed data.
+ */
+static int gen_read_data(void)
 {
 	return HW_MIPI_DSI_GEN_PLD_DATA_RD();
 }
 
-void mipi_lcd_init(void)
+/*
+ * @brief Initialize mipi lcd panel.
+ *
+ * The supported panel is TRULY panel.
+ *
+ */
+static void mipi_lcd_init(void)
 {
 	int val = 0;
 	gen_write_data(HX8369_CMD_SETEXTC | (HX8369_CMD_SETEXTC_PARAM_1 << 8));

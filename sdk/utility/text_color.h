@@ -9,22 +9,22 @@
 #ifndef __TEXT_COLOR_H__
 #define __TEXT_COLOR_H__
 
-static const char* const TEXT_ATTRIB_DEFAULT   = "\033[00m";
-static const char* const TEXT_ATTRIB_BOLD      = "\033[01m";
-static const char* const TEXT_ATTRIB_DIM       = "\033[02m";
-static const char* const TEXT_ATTRIB_UNDERLINE = "\033[03m";
-static const char* const TEXT_ATTRIB_BLINK     = "\033[05m";
-static const char* const TEXT_ATTRIB_REVERSE   = "\033[07m";
-static const char* const TEXT_ATTRIB_HIDDEN    = "\033[08m";
+extern const char* const g_TextAttributeDefault;
+extern const char* const g_TextAttributeBold;
+extern const char* const g_TextAttributeDim;
+extern const char* const g_TextAttributeUnderline;
+extern const char* const g_TextAttributeBlink;
+extern const char* const g_TextAttributeReverse;
+extern const char* const g_TextAttributeHidden;
 
-static const char* const TEXT_COLOR_BLACK      = "\033[30m";
-static const char* const TEXT_COLOR_RED        = "\033[31m";
-static const char* const TEXT_COLOR_GREEN      = "\033[32m";
-static const char* const TEXT_COLOR_YELLOW     = "\033[33m";
-static const char* const TEXT_COLOR_BLUE       = "\033[34m";
-static const char* const TEXT_COLOR_MAGENTA    = "\033[35m";
-static const char* const TEXT_COLOR_CYAN       = "\033[36m";
-static const char* const TEXT_COLOR_WHITE      = "\033[37m";
+extern const char* const g_TextColorBlack;
+extern const char* const g_TextColorRed;
+extern const char* const g_TextColorGreen;
+extern const char* const g_TextColorYellow;
+extern const char* const g_TextColorBlue;
+extern const char* const g_TextColorMagenta;
+extern const char* const g_TextColorCyan;
+extern const char* const g_TextColorWhite;
 
 void printf_color(const char* const attrib, const char* const color, const char* format, ...);
 

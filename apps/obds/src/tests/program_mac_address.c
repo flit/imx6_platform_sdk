@@ -142,7 +142,7 @@ test_return_t program_mac_address_fuses(const char* const mac_data, const char* 
 }
 
 /* Program the Ethernet MAC Address fuses if not already done */
-menu_action_t program_mac_address(const menu_context_t* const context, void* const param)
+menu_action_t program_mac_address(const menu_context_t* context, void* param)
 {
 	test_return_t result = TEST_FAILED;
 	const char* const indent = menu_get_indent(context);
@@ -226,7 +226,7 @@ retry_enter_mac_address:
         printf("\n%sMAC address entered: %s\n", indent, mac_address_str(user_mac_addr));
 
         printf("\n");
-        printf_color(TEXT_ATTRIB_BOLD, TEXT_COLOR_RED,
+        printf_color(g_TextAttributeBold, g_TextColorRed,
         		"%sContinue with irreversible operation to program the MAC address?\n", indent);
         if (!is_input_char('y', indent))
         {

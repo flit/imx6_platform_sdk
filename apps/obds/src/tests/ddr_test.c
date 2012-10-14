@@ -46,7 +46,7 @@ static const char * const test_name = "DDR Test";
  *
  * @return      TEST_PASSED or TEST_FAILED
  */
-menu_action_t ddr_test(const menu_context_t* const context, void* const param)
+menu_action_t ddr_test(const menu_context_t* context, void* param)
 {
 	//
 	// TODO: Get DDR density and nnumber of chip selects from DDR driver?

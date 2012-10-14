@@ -19,6 +19,23 @@
 
 int is_color_supported = INVALID_PARAMETER;
 
+const char* const g_TextAttributeDefault   = "\033[00m";
+const char* const g_TextAttributeBold      = "\033[01m";
+const char* const g_TextAttributeDim       = "\033[02m";
+const char* const g_TextAttributeUnderline = "\033[03m";
+const char* const g_TextAttributeBlink     = "\033[05m";
+const char* const g_TextAttributeReverse   = "\033[07m";
+const char* const g_TextAttributeHidden    = "\033[08m";
+
+const char* const g_TextColorBlack         = "\033[30m";
+const char* const g_TextColorRed           = "\033[31m";
+const char* const g_TextColorGreen         = "\033[32m";
+const char* const g_TextColorYellow        = "\033[33m";
+const char* const g_TextColorBlue          = "\033[34m";
+const char* const g_TextColorMagenta       = "\033[35m";
+const char* const g_TextColorCyan          = "\033[36m";
+const char* const g_TextColorWhite         = "\033[37m";
+
 void printf_color(const char* const attrib, const char* const color, const char* format, ...)
 {
     if ( is_color_supported )
@@ -35,7 +52,7 @@ void printf_color(const char* const attrib, const char* const color, const char*
     va_end(args);
 
     if ( is_color_supported )
-    	printf(TEXT_ATTRIB_DEFAULT);
+    	printf(g_TextAttributeDefault);
 }
 
 int get_color_supported()

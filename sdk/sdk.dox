@@ -136,6 +136,9 @@ peripherals present on the i.MX6 Series SoCs.
 @defgroup atomics Atomic Operations
 @brief Atomic operation routines
 
+@defgroup menu Menu
+@brief Menu Framework API
+
 @defgroup spinlock Spinlock
 @brief Simple spinlock API
 

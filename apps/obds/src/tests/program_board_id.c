@@ -78,7 +78,7 @@ test_return_t program_board_id_fuses(const uint32_t board_type, const uint32_t b
 }
 
 /* Program the board ID fuses if not already done */
-menu_action_t program_board_id(const menu_context_t* const context, void* const param)
+menu_action_t program_board_id(const menu_context_t* context, void* param)
 {
 	const char* const indent = menu_get_indent(context);
 
@@ -145,7 +145,7 @@ menu_action_t program_board_id(const menu_context_t* const context, void* const 
         printf("%sThis OBDS binary will program Board ID to 0x%08X as detailed below:\n", indent, board_id.U);
         show_board_id(board_id, indent);
 
-        printf_color(TEXT_ATTRIB_BOLD, TEXT_COLOR_RED, "%sContinue with irreversible operation to program Board ID?\n", indent);
+        printf_color(g_TextAttributeBold, g_TextColorRed, "%sContinue with irreversible operation to program Board ID?\n", indent);
         if (!is_input_char('y', indent))
         {
             /* Do not program the suggested value to Board ID fuse bank */
@@ -182,7 +182,7 @@ menu_action_t program_board_id(const menu_context_t* const context, void* const 
         printf("%sThis OBDS binary will program Board ID to 0x%08X as detailed below:\n", indent, board_id.U);
         show_board_id(board_id, indent);
         printf("\n");
-        printf_color(TEXT_ATTRIB_BOLD, TEXT_COLOR_RED, "%sContinue with irreversible operation to program Board ID?\n", indent);
+        printf_color(g_TextAttributeBold, g_TextColorRed, "%sContinue with irreversible operation to program Board ID?\n", indent);
         if (!is_input_char('y', indent))
         {
             /* Do not program the suggested value to Board ID fuse bank */

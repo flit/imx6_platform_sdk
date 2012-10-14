@@ -80,7 +80,7 @@ void pf0100_enable_vgen6_2v8(void)
     pf0100_reg_write(113, 0x1A);
 }
 
-menu_action_t pf0100_i2c_device_id_check(const menu_context_t* const context, void* const param)
+menu_action_t pf0100_i2c_device_id_check(const menu_context_t* context, void* param)
 {
     unsigned char data;
 	const char* indent = menu_get_indent(context);

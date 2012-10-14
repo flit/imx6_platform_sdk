@@ -26,7 +26,7 @@ static const char * const test_name = "FLEXCAN1/2 LOOPBACK Test";
  *
  * @return      TEST_PASSED or TEST_FAILED
  */
-menu_action_t flexcan_test(const menu_context_t* const context, void* const param)
+menu_action_t flexcan_test(const menu_context_t* context, void* param)
 {
 	const char* indent = menu_get_indent(context);
 

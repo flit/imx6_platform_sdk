@@ -228,7 +228,7 @@ int32_t is_input_char(uint8_t c, const char* const indent)
         lc = c;
         uc = c - 'a' + 'A';
     } else {
-        printf_color(TEXT_ATTRIB_BOLD, TEXT_COLOR_RED, "%sError: not a valid letter: %c\n",
+        printf_color(g_TextAttributeBold, g_TextColorRed, "%sError: not a valid letter: %c\n",
         		indent == NULL ? "" : indent, c);
         return 0;
     }

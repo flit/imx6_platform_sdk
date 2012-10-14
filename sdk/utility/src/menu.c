@@ -1,23 +1,303 @@
+/*
+ * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
+ * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
+ * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
+ * Freescale Semiconductor, Inc.
+*/
+
+/*!
+ * @file menu.c
+ * @brief Menu Framework for application UI.
+ * @ingroup diag_utility
+ */
+
 #include <stdio.h>
 #include <string.h>
-//#include<ctype.h>
-//#include "sdk.h"
+#include "sdk.h"
 #include "text_color.h"
 #include "menu.h"
 
-#define NONE_CHAR 0xFF
-//static char* prompt = "@ ";
+////////////////////////////////////////////////////////////////////////////////
+// Private Menu Framework Definitions
+////////////////////////////////////////////////////////////////////////////////
+
+//! @brief Specialized menu_key_find() return values.
+//@{
+static const int MenuKeyFindNone = -2;         //!< menu_key_find() did not find any menuitems with a matching key.
+static const int MenuKeyFindMoreThanOne = -1;  //!< menu_key_find() found more than one menuitem with a matching key.
+//@}
+
+////////////////////////////////////////////////////////////////////////////////
+// Private Menu Framework Utility Functions
+////////////////////////////////////////////////////////////////////////////////
 
 /*!
- * @file  extra.c
- * @brief menu(); function
+ * @brief Returns the number of menuitems in the menu.
  *
- * @ingroup diag_init
+ * Counts all menuitems including MENUITEM_GROUP menuitems which are not
+ * selectable. The count does not include the terminating MENUITEM_NULL element.
+ *
+ * @param   menu  : A pointer to the menu structure holding the menuitems to be counted.
+ * @return  Number of menuitems.
  */
-menu_action_t menuitem_cmd_showmenu(const menu_context_t* const context, void* const param) { return MENU_SHOW; }
-menu_action_t menuitem_cmd_exitmenu(const menu_context_t* const context, void* const param) { return MENU_EXIT; }
+int menu_get_size(const menu_t* menu)
+{
+	int menuitem_count = 0;
 
-menu_action_t menu_present(const menu_t* const menu)
+	const menuitem_t* menuitem = menu->menuitems;
+	while ( menuitem->type != MENUITEM_NULL )
+	{
+		++menuitem_count;
+		++menuitem;
+	}
+
+	return menuitem_count;
+}
+
+/*!
+ * @brief Searches the menu for menuitems that start with the key parameter.
+ *
+ * @note Search is not case sensitive.
+ *
+ * @param   menu  : A pointer to the menu structure holding the menuitems to be searched.
+ * @param   key   : A pointer to search string used to identify a menuitem.
+ * @retval  Index of the only menuitem that starts with the key parameter.
+ * @retval  MenuKeyFindNone(-2) if a matching menuitem was not found.
+ * @return  MenuKeyFindMoreThanOne(-1) if more than one matching menuitem was found.
+ *          Call menu_key_find_first() to get the first matching index.
+ */
+int menu_key_find(const menu_t* menu, const char* key)
+{
+	int menuitem_found = MenuKeyFindNone;
+	int num_found = 0;
+	int menu_size = menu_get_size(menu);
+	int index = 0;
+
+	for ( index = 0; index < menu_size; ++index )
+	{
+		// Only consider selectable menuitems
+		if ( menu->menuitems[index].type != MENUITEM_FUNCTION &&
+			 menu->menuitems[index].type != MENUITEM_SUBMENU )
+			continue;
+
+		// Search is not case sensitive.
+		if ( strncasecmp(key, menu->menuitems[index].key, strlen(key)) == 0 )
+		{
+			if ( menuitem_found == MenuKeyFindNone )
+				menuitem_found = index;
+
+			++num_found;
+		}
+	}
+
+	return num_found == 0 ? MenuKeyFindNone : num_found > 1 ? MenuKeyFindMoreThanOne : menuitem_found;
+
+}
+
+/*!
+ * @brief Returns the index of the first menuitem that starts with the key parameter.
+ *
+ * @note Search is not case sensitive.
+ * @note This function would typically be called after menu_find_key() returned MenuKeyFindMoreThanOne.
+ *
+ * @param   menu  : A pointer to the menu structure holding the menuitems to be searched.
+ * @param   key   : A pointer to search string used to identify a menuitem.
+ * @retval  Index of the first menuitem that starts with the key parameter.
+ * @retval  MenuKeyFindNone(-2) if a matching menuitem was not found.
+ */
+int menu_key_find_first(const menu_t* menu, const char* key)
+{
+	int menuitem_found = MenuKeyFindNone;
+	int menu_size = menu_get_size(menu);
+	int index = 0;
+
+	for ( index = 0; index < menu_size; ++index )
+	{
+		// Only consider selectable menuitems
+		if ( menu->menuitems[index].type != MENUITEM_FUNCTION &&
+			 menu->menuitems[index].type != MENUITEM_SUBMENU )
+			continue;
+
+		// Search is not case sensitive.
+		if ( strncasecmp(key, menu->menuitems[index].key, strlen(key)) == 0 )
+		{
+			menuitem_found = index;
+			break;
+		}
+	}
+
+	return menuitem_found;
+
+}
+
+/*!
+ * @brief Default "Show Menu" handler.
+ *
+ * @param   context  : Menu context. Ignored.
+ * @param   param     : Function specific parameter. Ignored.
+ * @return  MENU_SHOW.
+ */
+menu_action_t menuitem_cmd_showmenu(const menu_context_t* context, void* param) { return MENU_SHOW; }
+
+/*!
+ * @brief Default "Exit Menu" handler.
+ *
+ * @param   context   : Menu context. Ignored.
+ * @param   param     : Function specific parameter. Ignored.
+ * @return  MENU_EXIT.
+ */
+menu_action_t menuitem_cmd_exitmenu(const menu_context_t* context, void* param) { return MENU_EXIT; }
+
+/*!
+ * @brief Print the menu description (header), all of the menuitems, and instructions to the user (footer).
+ *
+ * @param   indent   : String used to align text for the current menu level.
+ * @param   menu     : Pointer to the menu to print.
+ */
+void menu_print(const char* indent, const menu_t* menu)
+{
+	if ( menu->header )
+		printf("\n%s%s\n\n",  indent, menu->header);
+
+	const menuitem_t* menuitem = menu->menuitems;
+	while ( menuitem->type != MENUITEM_NULL )
+	{
+
+		switch (menuitem->type)
+		{
+			case MENUITEM_SUBMENU:
+			case MENUITEM_FUNCTION:
+			{
+				printf("%s%s%s%s%s - %s\n", indent, g_TextAttributeBold, g_TextColorMagenta, menuitem->key, g_TextAttributeDefault, menuitem->description);
+
+				break;
+			}
+
+			case MENUITEM_GROUP:
+			{
+				if ( menuitem->description )
+					printf("\n%s%s%s%s:%s\n", indent, g_TextAttributeBold, g_TextColorBlue, menuitem->description, g_TextAttributeDefault);
+				else
+					printf("\n");
+
+				break;
+			}
+
+			case MENUITEM_NULL:
+			default:
+			{
+				break;
+			}
+
+		} // switch(menuitem->type)
+
+		++menuitem;
+
+	} // while ( menuitem->type != MENUITEM_NULL )
+
+	if ( menu->footer )
+		printf("\n%s%s\n",  indent, menu->footer);
+
+} // menu_print()
+
+/*!
+ * @brief Print instructional text to help user execute the menu.
+ *
+ * @param   indent    : String used to align text for the current menu level.
+ * @param   menu      : Pointer to the menu struct that contains the footer member to print.
+ * @return  MENU_EXIT.
+ */
+void menu_print_footer(const char* indent, const menu_t* menu)
+{
+	if ( menu->footer )
+		printf("\n%s%s\n",  indent, menu->footer);
+	else
+		printf("\n");
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Public Menu API Implementations
+////////////////////////////////////////////////////////////////////////////////
+void menu_make_menu(menu_t* menu, const char* header, const menuitem_t* menuitems, const char* footer)
+{
+	menu->header    = header;
+	menu->menuitems = menuitems;
+	menu->footer    = footer;
+}
+
+void menu_make_menuitem(menuitem_t* menuitem, const char* key, const char* description, menu_function_t func, void* func_param)
+{
+	menuitem->type        = MENUITEM_FUNCTION;
+	menuitem->key         = key;
+	menuitem->description = description;
+	menuitem->submenu     = NULL;
+	menuitem->func        = func;
+	menuitem->param       = func_param;
+}
+
+void menu_make_menuitem_showmenu(menuitem_t* menuitem)
+{
+	menuitem->type        = MENUITEM_FUNCTION;
+	menuitem->key         = "m";
+	menuitem->description = "Display menu.";
+	menuitem->submenu     = NULL;
+	menuitem->func        = menuitem_cmd_showmenu;
+	menuitem->param       = NULL;
+}
+
+void menu_make_menuitem_exitmenu(menuitem_t* menuitem)
+{
+	menuitem->type        = MENUITEM_FUNCTION;
+	menuitem->key         = "q";
+	menuitem->description = "Exit menu.";
+	menuitem->submenu     = NULL;
+	menuitem->func        = menuitem_cmd_exitmenu;
+	menuitem->param       = NULL;
+}
+
+void menu_make_menuitem_submenu(menuitem_t* menuitem, const char* key, const char* description, const menu_t* menu)
+{
+	menuitem->type        = MENUITEM_SUBMENU;
+	menuitem->key         = key;
+	menuitem->description = description;
+	menuitem->submenu     = menu;
+	menuitem->func        = NULL;
+	menuitem->param       = NULL;
+}
+
+void menu_make_menuitem_group(menuitem_t* menuitem, const char* description)
+{
+	menuitem->type        = MENUITEM_GROUP;
+	menuitem->key         = NULL;
+	menuitem->description = description;
+	menuitem->submenu     = NULL;
+	menuitem->func        = NULL;
+	menuitem->param       = NULL;
+}
+
+void menu_make_menuitem_end(menuitem_t* menuitem)
+{
+	menuitem->type        = MENUITEM_NULL;
+	menuitem->key         = NULL;
+	menuitem->description = NULL;
+	menuitem->submenu     = NULL;
+	menuitem->func        = NULL;
+	menuitem->param       = NULL;
+}
+
+const char* const menu_get_indent(const menu_context_t* context)
+{
+	static char indent[INDENT_MAX+1];
+	memset(indent, ' ', INDENT_MAX);
+	if (context)
+		indent[INDENT * context->depth + 2] = '\0';
+	else
+		indent[0] = '\0';
+
+	return indent;
+}
+
+menu_action_t menu_present(const menu_t* menu)
 {
 	menu_action_t ret_val = MENU_EXIT;
 	static int depth = -1;
@@ -29,7 +309,7 @@ menu_action_t menu_present(const menu_t* const menu)
 	int indent_idx = INDENT * depth + 2;
 	if ( indent_idx > INDENT_MAX )
 	{
-		printf_color(TEXT_ATTRIB_BOLD, TEXT_COLOR_RED, "\nERROR: MENU depth is to large. Exiting menu_present().");
+		printf_color(g_TextAttributeBold, g_TextColorRed, "\nERROR: MENU depth is to large. Exiting menu_present().");
 		return MENU_EXIT;
 	}
 	indent[indent_idx] = '\0';
@@ -42,7 +322,7 @@ menu_action_t menu_present(const menu_t* const menu)
 		char key[KEY_MAX] = {'\0'};
 		int key_idx = 0;
 		char key_pressed = NONE_CHAR;
-		int menu_idx = MENU_KEY_FIND_NONE;
+		int menu_idx = MenuKeyFindNone;
 
 		while (1) // getting user input to specify which menu_idx to run
 		{
@@ -51,11 +331,13 @@ menu_action_t menu_present(const menu_t* const menu)
 
 			if ( key_pressed == '\n' || key_pressed == '\r' )
 			{
-				// User hit ENTER_KEY
+				///
+				/// User hit ENTER_KEY
+				///
 
-				// if previously MENU_KEY_FIND_MORE_THAN_ONE
+				// if previously MenuKeyFindMoreThanOne
 				// then run 1st matching menuitem
-				if ( menu_idx == MENU_KEY_FIND_MORE_THAN_ONE )
+				if ( menu_idx == MenuKeyFindMoreThanOne )
 				{
 					// we need to run menu_idx
 					menu_idx = menu_key_find_first(menu, key);
@@ -63,7 +345,7 @@ menu_action_t menu_present(const menu_t* const menu)
 				}
 				else
 				{
-					printf_color(NULL, TEXT_COLOR_YELLOW, "\n%sInvalid key.\n", indent);
+					printf_color(NULL, g_TextColorYellow, "\n%sInvalid key.\n", indent);
 					menu_print_footer(indent, menu);
 
 					// start over with user input
@@ -75,7 +357,9 @@ menu_action_t menu_present(const menu_t* const menu)
 			}
 			else
 			{
-				// User hit something other than ENTER_KEY
+				///
+				/// User hit something other than ENTER_KEY
+				///
 
 				// Echo the key
 				fputc(key_pressed, stdout);
@@ -84,9 +368,9 @@ menu_action_t menu_present(const menu_t* const menu)
 
 				menu_idx = menu_key_find(menu, key);
 				
-				if ( menu_idx == MENU_KEY_FIND_NONE )
+				if ( menu_idx == MenuKeyFindNone )
 				{
-					printf_color(NULL, TEXT_COLOR_YELLOW, "\n%sInvalid key.\n", indent);
+					printf_color(NULL, g_TextColorYellow, "\n%sInvalid key.\n", indent);
 					menu_print_footer(indent, menu);
 
 					// start over with user input
@@ -94,7 +378,7 @@ menu_action_t menu_present(const menu_t* const menu)
 						key[--key_idx] = '\0';
 					continue;
 				}
-				else if ( menu_idx == MENU_KEY_FIND_MORE_THAN_ONE )
+				else if ( menu_idx == MenuKeyFindMoreThanOne )
 				{
 					// we need more input
 					continue;
@@ -111,9 +395,9 @@ menu_action_t menu_present(const menu_t* const menu)
 		
 		printf("\n");
 
-		//
-		// Execute the menu item.
-		//
+		///
+		/// Execute the menu item.
+		///
 		const menuitem_t* menuitem = &menu->menuitems[menu_idx];
 
 		if ( menuitem->type == MENUITEM_SUBMENU )
@@ -126,9 +410,9 @@ menu_action_t menu_present(const menu_t* const menu)
 			ret_val = (*menuitem->func)(&context, menuitem->param);
 		}
 
-		//
-		// Evaluate the response.
-		//
+		///
+		/// Evaluate the response.
+		///
 		if ( ret_val == MENU_SHOW )
 		{
 			menu_print(indent, menu);
@@ -149,7 +433,7 @@ menu_action_t menu_present(const menu_t* const menu)
 		else if ( ret_val == MENU_EXIT )
 		{
 			if ( depth == 0 )
-				printf_color(NULL, TEXT_COLOR_YELLOW, "%s%sExiting menu.%s\n", indent);
+				printf_color(NULL, g_TextColorYellow, "%s%sExiting menu.%s\n", indent);
 			break;
 		}
 
@@ -161,211 +445,4 @@ menu_action_t menu_present(const menu_t* const menu)
 
 } // void menu(void)
 
-void menu_print(const char* const indent, const menu_t* const menu)
-{
-	if ( menu->header )
-		printf("\n%s%s\n\n",  indent, menu->header);
 
-	const menuitem_t* menuitem = menu->menuitems;
-	while ( menuitem->type != MENUITEM_NULL )
-	{
-
-		switch (menuitem->type)
-		{
-			case MENUITEM_SUBMENU:
-			case MENUITEM_FUNCTION:
-			{
-				printf("%s%s%s%s%s - %s\n", indent, TEXT_ATTRIB_BOLD, TEXT_COLOR_MAGENTA, menuitem->key, TEXT_ATTRIB_DEFAULT, menuitem->description);
-			
-				break;
-			}
-
-			case MENUITEM_GROUP:
-			{
-				if ( menuitem->description )
-					printf("\n%s%s%s%s:%s\n", indent, TEXT_ATTRIB_BOLD, TEXT_COLOR_BLUE, menuitem->description, TEXT_ATTRIB_DEFAULT);
-				else
-					printf("\n");
-			
-				break;
-			}
-
-			case MENUITEM_NULL:
-			default:
-			{
-				break;
-			}
-
-		} // switch(menuitem->type)
-
-		++menuitem;
-	
-	} // while ( menuitem->type != MENUITEM_NULL )
-
-	if ( menu->footer )
-		printf("\n%s%s\n",  indent, menu->footer);
-
-} // menu_print()
-
-void menu_print_footer(const char* const indent, const menu_t* const menu)
-{
-	if ( menu->footer )
-		printf("\n%s%s\n",  indent, menu->footer);
-	else
-		printf("\n");
-}
-
-const char* const menu_get_indent(const menu_context_t* const context)
-{
-	static char indent[INDENT_MAX+1];
-	memset(indent, ' ', INDENT_MAX);
-	if (context)
-		indent[INDENT * context->depth + 2] = '\0';
-	else
-		indent[0] = '\0';
-
-	return indent;
-}
-
-int menu_key_find(const menu_t* const menu, const char* const key)
-{
-	int menuitem_found = MENU_KEY_FIND_NONE;
-	int num_found = 0;
-	int menu_size = menu_get_size(menu);
-	int index = 0;
-
-	for ( index = 0; index < menu_size; ++index )
-	{
-		if ( menu->menuitems[index].type != MENUITEM_FUNCTION &&
-			 menu->menuitems[index].type != MENUITEM_SUBMENU )
-			continue;
-
-		if ( strncasecmp(key, menu->menuitems[index].key, strlen(key)) == 0 )
-		{
-//printf("found index %d\n", index);
-			if ( menuitem_found == MENU_KEY_FIND_NONE )
-				menuitem_found = index;
-
-			++num_found;
-		}
-	}
-
-	return num_found == 0 ? MENU_KEY_FIND_NONE : num_found > 1 ? MENU_KEY_FIND_MORE_THAN_ONE : menuitem_found;
-
-} // menu_key_find()
-
-int menu_key_find_first(const menu_t* const menu, const char* const key)
-{
-	int menuitem_found = MENU_KEY_FIND_NONE;
-	int menu_size = menu_get_size(menu);
-	int index = 0;
-
-	for ( index = 0; index < menu_size; ++index )
-	{
-		if ( menu->menuitems[index].type != MENUITEM_FUNCTION &&
-			 menu->menuitems[index].type != MENUITEM_SUBMENU )
-			continue;
-
-		if ( strncasecmp(key, menu->menuitems[index].key, strlen(key)) == 0 )
-		{
-//printf("found index %d\n", index);
-			menuitem_found = index;
-			break;
-		}
-	}
-
-	return menuitem_found;
-
-} // menu_key_find_first()
-
-//
-// Returns a count of the menu's menuitems.
-//
-int menu_get_size(const menu_t* const menu)
-{
-	int menuitem_count = 0;
-
-	const menuitem_t* menuitem = menu->menuitems;
-	while ( menuitem->type != MENUITEM_NULL )
-	{
-		++menuitem_count;
-		++menuitem;
-	}
-
-	return menuitem_count;
-}
-
-//#define MAKE_MENU(header, menuitems, footer)  { header, menuitems, footer }
-//#define MAKE_MENUITEM(key, desc, func, param) { MENUITEM_FUNCTION, key,  desc,            NULL,      func,                  param },
-//#define MAKE_CMD_SHOWMENU()                   { MENUITEM_FUNCTION, "m",  "Display menu.", NULL,      menuitem_cmd_showmenu, NULL  },
-//#define MAKE_CMD_EXITMENU()                   { MENUITEM_FUNCTION, "q",  "Exit menu.",    NULL,      menuitem_cmd_exitmenu, NULL  },
-//#define MAKE_SUBMENU(key, desc, menu)         { MENUITEM_SUBMENU,  key,  desc,            menu,      NULL,                  NULL  },
-//#define MAKE_GROUP(desc)                      { MENUITEM_GROUP,    NULL, desc,            NULL,      NULL,                  NULL  },
-//#define MAKE_END_MENU()                       { MENUITEM_NULL,     NULL, NULL,            NULL,      NULL,                  NULL  }
-
-void menu_make_menu(menu_t* const menu, const char* const header, const menuitem_t* const menuitems, const char* const footer)
-{
-	menu->header    = header;
-	menu->menuitems = menuitems;
-	menu->footer    = footer;
-}
-
-void menu_make_menuitem(menuitem_t* const menuitem, const char* const key, const char* const description, menu_function_t func, void* const func_param)
-{
-	menuitem->type        = MENUITEM_FUNCTION;
-	menuitem->key         = key;
-	menuitem->description = description;
-	menuitem->submenu     = NULL;
-	menuitem->func        = func;
-	menuitem->param       = func_param;
-}
-
-void menu_make_cmd_showmenu(menuitem_t* const menuitem)
-{
-	menuitem->type        = MENUITEM_FUNCTION;
-	menuitem->key         = "m";
-	menuitem->description = "Display menu.";
-	menuitem->submenu     = NULL;
-	menuitem->func        = menuitem_cmd_showmenu;
-	menuitem->param       = NULL;
-}
-
-void menu_make_cmd_exitmenu(menuitem_t* const menuitem)
-{
-	menuitem->type        = MENUITEM_FUNCTION;
-	menuitem->key         = "q";
-	menuitem->description = "Exit menu.";
-	menuitem->submenu     = NULL;
-	menuitem->func        = menuitem_cmd_exitmenu;
-	menuitem->param       = NULL;
-}
-
-void menu_make_submenu(menuitem_t* const menuitem, const char* const key, const char* const description, const menu_t* const menu)
-{
-	menuitem->type        = MENUITEM_SUBMENU;
-	menuitem->key         = key;
-	menuitem->description = description;
-	menuitem->submenu     = menu;
-	menuitem->func        = NULL;
-	menuitem->param       = NULL;
-}
-
-void menu_make_group(menuitem_t* const menuitem, const char* const description)
-{
-	menuitem->type        = MENUITEM_GROUP;
-	menuitem->key         = NULL;
-	menuitem->description = description;
-	menuitem->submenu     = NULL;
-	menuitem->func        = NULL;
-	menuitem->param       = NULL;
-}
-
-void menu_make_end_menuitem(menuitem_t* const menuitem)
-{
-	menuitem->type        = MENUITEM_NULL;
-	menuitem->key         = NULL;
-	menuitem->description = NULL;
-	menuitem->submenu     = NULL;
-	menuitem->func        = NULL;
-	menuitem->param       = NULL;
-}

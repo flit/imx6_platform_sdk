@@ -21,7 +21,7 @@ static const char * const test_name = "SNVS - SRTC Test";
 /*!
  * The SRTC test enables the SRTC of the SNVS and check if the SRTC LP counter toggles.
  */
-menu_action_t snvs_srtc_test(const menu_context_t* const context, void* const param)
+menu_action_t snvs_srtc_test(const menu_context_t* context, void* param)
 {
 	const char* indent = menu_get_indent(context);
 
@@ -42,12 +42,12 @@ menu_action_t snvs_srtc_test(const menu_context_t* const context, void* const pa
     reg = HW_OCOTP_CFG3_RD(); // readl(OCOTP_BASE_ADDR + 0x440);
     if ( (reg & 0x2) == 0 )
     {
-    	printf("%s%s%sWARNING!! SNVS SRTC TEST MAY FAIL BECAUSE DEVICE IS IN AN INVALID\n", indent, NULL, TEXT_COLOR_YELLOW);
+    	printf("%s%s%sWARNING!! SNVS SRTC TEST MAY FAIL BECAUSE DEVICE IS IN AN INVALID\n", indent, NULL, g_TextColorYellow);
     	printf(    "%sSECURITY MODE. FREESCALE DOES NOT DISTRIBUTE BOARDS IN THIS MODE.\n", indent);
     	printf(    "%sPLEASE CONTACT YOUR FREESCALE REPRESENTATIVE FOR INSTRUCTIONS TO\n", indent);
     	printf(    "%sRECONFIGURE THIS DEVICE TO A VALID SECURITY MODE.\n", indent);
 
-    	printf( "\n%s%s SKIPPED.%s\n", indent, test_name, TEXT_ATTRIB_DEFAULT);
+    	printf( "\n%s%s SKIPPED.%s\n", indent, test_name, g_TextAttributeDefault);
 
     	*(test_return_t*)param = TEST_BYPASSED;
         return MENU_CONTINUE;

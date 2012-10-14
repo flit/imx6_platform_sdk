@@ -41,7 +41,7 @@ int main(void)
     auto_run_enable = 1;
 
     platform_init();
-    printf(TEXT_ATTRIB_DEFAULT); // reset terminal colors to default
+    printf(g_TextAttributeDefault); // reset terminal colors to default
     print_version();
 
     show_freq();
@@ -77,7 +77,8 @@ int main(void)
 	//
 	// Create the main menu
 	//
-	menu_t main_menu = MAKE_MENU(main_menu_desc, main_menuitems,
+	menu_t main_menu;
+	menu_make_menu(&main_menu, main_menu_desc, main_menuitems,
 			"Enter test number followed by the enter key, 'm' for menu, or 'q' to exit.");
 
 	//
@@ -97,7 +98,7 @@ int main(void)
 
 test_return_t prompt_run_test(const char * const test_name, const char* const indent)
 {
-    printf_color(TEXT_ATTRIB_BOLD, NULL, "\n%s---- Running < %s >\n", indent, test_name);
+    printf_color(g_TextAttributeBold, NULL, "\n%s---- Running < %s >\n", indent, test_name);
     if (!auto_run_enable)
     {
         if (!is_input_char('y', indent))
@@ -114,22 +115,22 @@ test_return_t prompt_run_test(const char * const test_name, const char* const in
 
 void print_test_passed(const char* const test_name, const char* const indent)
 {
-	 printf_color(NULL, TEXT_COLOR_GREEN, "\n%s%s PASSED.\n", indent, test_name);
+	 printf_color(NULL, g_TextColorGreen, "\n%s%s PASSED.\n", indent, test_name);
 }
 
 void print_test_skipped(const char* const test_name, const char* const indent)
 {
-	 printf_color(NULL, TEXT_COLOR_YELLOW, "\n%s%s SKIPPED.\n", indent, test_name);
+	 printf_color(NULL, g_TextColorYellow, "\n%s%s SKIPPED.\n", indent, test_name);
 }
 
 void print_test_failed(const char* const test_name, const char* const indent)
 {
-	 printf_color(TEXT_ATTRIB_BOLD, TEXT_COLOR_RED, "\n%s%s FAILED.\n", indent, test_name);
+	 printf_color(g_TextAttributeBold, g_TextColorRed, "\n%s%s FAILED.\n", indent, test_name);
 }
 
 void print_test_not_implemented(const char* const test_name, const char* const indent)
 {
-	 printf_color(TEXT_ATTRIB_BOLD, TEXT_COLOR_RED, "\n%s%s is NOT IMPLEMENTED.\n", indent, test_name);
+	 printf_color(g_TextAttributeBold, g_TextColorRed, "\n%s%s is NOT IMPLEMENTED.\n", indent, test_name);
 }
 
 //
@@ -155,22 +156,22 @@ void report_test_results(void)
         }
     	else if (test_results[i] == TEST_PASSED)
         {
-            printf_color(TEXT_ATTRIB_BOLD, TEXT_COLOR_GREEN, "\t<%s> PASSED\n", main_menuitems[i].description);
+            printf_color(g_TextAttributeBold, g_TextColorGreen, "\t<%s> PASSED\n", main_menuitems[i].description);
             ++passed;
         }
         else if (test_results[i] == TEST_FAILED)
         {
-            printf_color(TEXT_ATTRIB_BOLD, TEXT_COLOR_RED, "\t<%s> FAILED\n", main_menuitems[i].description);
+            printf_color(g_TextAttributeBold, g_TextColorRed, "\t<%s> FAILED\n", main_menuitems[i].description);
             ++failed;
         }
         else if (test_results[i] == TEST_NOT_IMPLEMENTED)
         {
-            printf_color(TEXT_ATTRIB_BOLD, TEXT_COLOR_RED, "\t<%s> is NOT IMPLEMENTED\n", main_menuitems[i].description);
+            printf_color(g_TextAttributeBold, g_TextColorRed, "\t<%s> is NOT IMPLEMENTED\n", main_menuitems[i].description);
             ++not_implemented;
         }
         else if (test_results[i] == TEST_BYPASSED)
         {
-            printf_color(TEXT_ATTRIB_BOLD, TEXT_COLOR_YELLOW, "\t<%s> SKIPPED\n", main_menuitems[i].description);
+            printf_color(g_TextAttributeBold, g_TextColorYellow, "\t<%s> SKIPPED\n", main_menuitems[i].description);
             ++skipped;
         }
         else
@@ -236,7 +237,7 @@ void select_tests(menuitem_t* const menuitems, const select_tests_t select_tests
 #if defined(BOARD_TYPE_SABRE_AI)
 	if ( select_tests != SEL_MAIN_BOARD_ONLY_TESTS )
 	{
-		menu_make_group(&menuitems[menu_idx++], "CPU Board Tests");
+		menu_make_menuitem_group(&menuitems[menu_idx++], "CPU Board Tests");
 		menu_make_menuitem(&menuitems[menu_idx], "01", "BOARD ID Test", program_board_id, &test_results[menu_idx]);menu_idx++;
 		menu_make_menuitem(&menuitems[menu_idx], "02", "MAC Address Test", program_mac_address, &test_results[menu_idx]);menu_idx++;
 		menu_make_menuitem(&menuitems[menu_idx], "03", "DDR Test", ddr_test, &test_results[menu_idx]);menu_idx++;
@@ -264,7 +265,7 @@ void select_tests(menuitem_t* const menuitems, const select_tests_t select_tests
 
 	if ( select_tests != SEL_CPU_BOARD_ONLY_TESTS )
 	{
-		menu_make_group(&menuitems[menu_idx++], "Main Board Tests");
+		menu_make_menuitem_group(&menuitems[menu_idx++], "Main Board Tests");
 		menu_make_menuitem(&menuitems[menu_idx], "10", "ANDROID BUTTONS Test", android_buttons_test, &test_results[menu_idx]);menu_idx++;
 		menu_make_menuitem(&menuitems[menu_idx], "11", "FLEXCAN1/2 LOOPBACK Test", flexcan_test, &test_results[menu_idx]);menu_idx++;
 //		menu_make_menuitem(&menuitems[menu_idx], "12", "RGMII AR8031 G-Ethernet Test", ar8031_test_main, &test_results[menu_idx]);menu_idx++;
@@ -293,10 +294,10 @@ void select_tests(menuitem_t* const menuitems, const select_tests_t select_tests
 #endif
 #endif
 
-	menu_make_group(&menuitems[menu_idx++], "Menu functions");
-	menu_make_cmd_showmenu(&menuitems[menu_idx++]);
-	menu_make_cmd_exitmenu(&menuitems[menu_idx++]);
-	menu_make_end_menuitem(&menuitems[menu_idx]);
+	menu_make_menuitem_group(&menuitems[menu_idx++], "Menu functions");
+	menu_make_menuitem_showmenu(&menuitems[menu_idx++]);
+	menu_make_menuitem_exitmenu(&menuitems[menu_idx++]);
+	menu_make_menuitem_end(&menuitems[menu_idx]);
 }
 
 

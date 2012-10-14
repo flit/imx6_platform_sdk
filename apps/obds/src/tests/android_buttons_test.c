@@ -100,7 +100,7 @@ void check_android_button_status(const char* const indent)
 /*!
  * @return      TEST_PASSED or  TEST_FAILED    
  */
-menu_action_t android_buttons_test(const menu_context_t* const context, void* const param)
+menu_action_t android_buttons_test(const menu_context_t* context, void* param)
 {
 	const char* const indent = menu_get_indent(context);
 

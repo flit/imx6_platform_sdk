@@ -17,6 +17,7 @@
 #include "usb_defines.h"
 #include "usb_registers.h"
 
+//! @brief    USB cores for mx6dq/mx6dl
 enum usbController {
     OTG = 0,
     Host1,
@@ -24,30 +25,34 @@ enum usbController {
     Host3
 };
 
+//! @brief    USB phy types	
 enum usbPhyType {
-    Utmi,
-    Ulpi,
-    Serial,
-    Hsic
+    Utmi,	//! USB Transceiver Macrocell Interface 
+    Ulpi,	//! UTMI+ low pin interface
+    Serial,	//! Serial interface
+    Hsic	//! High-Speed Inter-Chip
 };
 
+//! @brief   USB bus speeds 
 typedef enum usbPortSpeed {
-    usbSpeedFull,
-    usbSpeedLow,
-    usbSpeedHigh,
+    usbSpeedFull,	//! Full speed, 12MHz
+    usbSpeedLow,	//! Low speed
+    usbSpeedHigh,	//! High speed, 480MHz
     usbSpeedUnknown,
 } usbPortSpeed_t;
 
+//! @brief    the types of usb periodic list
 typedef enum usbPeriodicListType {
-    listTypeIsochronous = 0,
-    listTypeQueueHead,
-    listTypeSplitTransaction,
-    listTypeFrameSpan
+    listTypeIsochronous = 0,	//! Isochronous Transfer
+    listTypeQueueHead,		//! Queue Head
+    listTypeSplitTransaction, 	//! Split Transaction Isochronous Transfer
+    listTypeFrameSpan		//! Periodic Frame Span Traversal Node
 } usbPeriodicListType_t;
 
+//! @brief    the data structure for USB core
 typedef struct usb_module {
     char *moduleName;
-    enum usbController controllerID;
+    enum usbController controllerID;	//! USB Core used 
     enum usbPhyType phyType;    // UTMI, ULPI, Serial, HSIC
 } usb_module_t;
 
@@ -57,14 +62,14 @@ typedef struct usb_module {
 
 /* USB host queue head structure */
 typedef struct usbhQueueHead {
-    uint32_t queueHeadLinkPointer;
-    uint32_t endpointCharacteristics;
-    uint32_t endpointCapabilities;
-    uint32_t currentQtd;
-    uint32_t nextQtd;
-    uint32_t alternateNextQtd;
-    uint32_t qtdToken;
-    uint32_t qtdBuffer[5];
+    uint32_t queueHeadLinkPointer;	//! Queue Head Horizontal Link Pointer
+    uint32_t endpointCharacteristics;	//! Characteristics
+    uint32_t endpointCapabilities;	//! Capabilities
+    uint32_t currentQtd;		//! Current qTD Pointer
+    uint32_t nextQtd;			//! Next qTD Pointer
+    uint32_t alternateNextQtd;		//! Alternate Next qTD pointer
+    uint32_t qtdToken;			//! Token
+    uint32_t qtdBuffer[5];		//! Buffer Pointers
     uint32_t mallocPointer;     /* Used to keep track of the
                                    memory block allocated for the data structure */
 } usbhQueueHead_t;
@@ -73,76 +78,75 @@ typedef struct usbhQueueHead {
  *  USB host queue element transfer descriptor
  */
 typedef struct usbhTransferDescriptor {
-    uint32_t nextQtd;
-    uint32_t alternateNextQtd;
-    uint32_t qtdToken;
-    uint32_t qtdBuffer[5];
+    uint32_t nextQtd;		//! Next qTD Pointer
+    uint32_t alternateNextQtd;	//! Alternate Next qTD Pointer
+    uint32_t qtdToken;		//! Token
+    uint32_t qtdBuffer[5];	//! Buffer Pointers
     uint32_t mallocPointer;     /* Used to keep track of the unaligned
                                    memory allocated for the data structure */
 
 } usbhTransferDescriptor_t;
 
 /*!
- * Protocol descriptor definitions
+ * Protocol descriptor definitions, pleeae refer USB specification 2.0 for details.
  */
-
 typedef struct usbDeviceDescriptor {
-    uint8_t bLength;
-    uint8_t bDescriptorType;
-    uint16_t bcdUSB;
-    uint8_t bDeviceClass;
-    uint8_t bDeviceSubClass;
-    uint8_t bDeviceProtocol;
-    uint8_t bMaxPacketSize;
-    uint16_t idVendor;
-    uint16_t idProduct;
-    uint16_t bcdDevice;
-    uint8_t iManufacturer;
-    uint8_t iProduct;
-    uint8_t iSerialNumber;
-    uint8_t bNumConfigurations;
+    uint8_t bLength;		//! Size of this descriptor in bytes
+    uint8_t bDescriptorType;	//! DEVICE Descriptor Type
+    uint16_t bcdUSB;		//! USB Specification Release Number
+    uint8_t bDeviceClass;	//! Class code
+    uint8_t bDeviceSubClass;	//! Subclass code
+    uint8_t bDeviceProtocol;	//! Protocol code
+    uint8_t bMaxPacketSize;	//! Maximum packet size for endpoint zero
+    uint16_t idVendor;          //! Vendor ID
+    uint16_t idProduct;         //! Product ID
+    uint16_t bcdDevice;         //! Device release number
+    uint8_t iManufacturer;      //! Index of string descriptor describing manufacturer
+    uint8_t iProduct;           //! Index of string descriptor describing product
+    uint8_t iSerialNumber; 	//! Index of string descriptor describing the device's serial number
+    uint8_t bNumConfigurations; //! Number of possible configurations
 } usbDeviceDescriptor_t;
 
 typedef struct usbConfigurationDescriptor {
-    uint8_t bLength;
-    uint8_t bDescriptorType;
-    uint16_t wTotalLength;
-    uint8_t bNumInterfaces;
-    uint8_t bConfigurationValue;
-    uint8_t iConfiguration;
-    uint8_t bmAttributes;
-    uint8_t MaxPower;
+    uint8_t bLength;			//! Size of descriptor	
+    uint8_t bDescriptorType;		//! CONFIGURATION Descriptor Type
+    uint16_t wTotalLength;              //! Total length of data returned for this configuration
+    uint8_t bNumInterfaces;             //! Number of interfaces supported by this configuration
+    uint8_t bConfigurationValue;        //! Value to use as an argument to the to select this configuration
+    uint8_t iConfiguration;             //! Index of string descriptor describing this configuration
+    uint8_t bmAttributes;		//! Configuration characteristics
+    uint8_t MaxPower;			//! Maximum power consumption of the USB device
 } usbConfigurationDescriptor_t;
 
 typedef struct usbInterfaceDescriptor {
-    uint8_t bLength;
-    uint8_t bDescriptorType;
-    uint8_t bInterfaceNumber;
-    uint8_t bAlternateSetting;
-    uint8_t bNumEndpoints;
-    uint8_t bInterfaceClass;
-    uint8_t bInterfaceSubClass;
-    uint8_t bInterfaceProtocol;
-    uint8_t iInterface;
+    uint8_t bLength;		//! Size of this descriptor in bytes 
+    uint8_t bDescriptorType;    //! INTERFACE Descriptor Type
+    uint8_t bInterfaceNumber;   //! Number of this interface
+    uint8_t bAlternateSetting;  //! Value used to select this alternate setting
+    uint8_t bNumEndpoints;      //! Number of endpoints used by this interface
+    uint8_t bInterfaceClass;    //! Class code
+    uint8_t bInterfaceSubClass; //! Subclass code
+    uint8_t bInterfaceProtocol; //! Protocol code
+    uint8_t iInterface;		//! Index of string descriptor describing this interface
 } usbInterfaceDescriptor_t;
 
-/* USB Descriptor Type */
-#define DEVICE_DESCRIPTOR             0x1
-#define CONFIG_DESCRIPTOR             0x2
-#define STRING_DESCRIPTOR             0x3
-#define INTERFACE_DESCRIPTOR          0x4
-#define ENDPOINT_DESCRIPTOR           0x5
-#define DEVICE_QUALIFIER_DESCRIPTOR   0x6
-#define OTHER_SPEED_CONFIG_DESCRIPTOR 0x7
-#define INTERFACE_POWER_DESCRIPTOR    0x8
+/* USB Descriptor Types */
+#define DEVICE_DESCRIPTOR             0x1	//! Type for Device Descriptor
+#define CONFIG_DESCRIPTOR             0x2	//! Type for Configuration Descriptor 
+#define STRING_DESCRIPTOR             0x3	//! Type for String Descriptor
+#define INTERFACE_DESCRIPTOR          0x4       //! Type for interface Descriptor
+#define ENDPOINT_DESCRIPTOR           0x5	//! Type for endpoint Descriptor
+#define DEVICE_QUALIFIER_DESCRIPTOR   0x6       //! Type for device qualifier descriptor
+#define OTHER_SPEED_CONFIG_DESCRIPTOR 0x7	//! Type for other speed configuration descriptor
+#define INTERFACE_POWER_DESCRIPTOR    0x8	//! Type for  interface power descriptor
 
 //HID class interface descriptor definitions
-#define CLASS_CODE_HID                     0x03
-#define SUBCLASS_CODE_HID_NOSUBCLASS       0x00
-#define SUBCLASS_CODE_HID_BOOT_INTERFACE   0x01
-#define PROTOCOL_CODE_HID_NONE             0x00
-#define PROTOCOL_CODE_HID_KEYBOARD         0x01
-#define PROTOCOL_CODE_HID_MOUSE            0x02
+#define CLASS_CODE_HID                     0x03	//! Class code for HID 
+#define SUBCLASS_CODE_HID_NOSUBCLASS       0x00	//! Subclass code
+#define SUBCLASS_CODE_HID_BOOT_INTERFACE   0x01	//! Subcalss code
+#define PROTOCOL_CODE_HID_NONE             0x00 //!
+#define PROTOCOL_CODE_HID_KEYBOARD         0x01 //! HID protocol code: Keyboard
+#define PROTOCOL_CODE_HID_MOUSE            0x02 //! HID protocol code: Mouse
 
 //MSC class interface descriptor definitions
 #define CLASS_CODE_MSC                     0x08
@@ -157,28 +161,28 @@ typedef struct usbInterfaceDescriptor {
 #define PROTOCOL_CODE_MSC_BOT              0x50 /*Bulk-Only Transport, popular in msc */
 
 //HUB class interface descriptor definitions
-#define CLASS_CODE_HUB                     0x09
-#define SUBCLASS_CODE_HUB                  0x00
+#define CLASS_CODE_HUB                     0x09	//! Class code for HUB
+#define SUBCLASS_CODE_HUB                  0x00	//! Subclass code for HUB
 #define PROTOCOL_CODE_HUB_NON_HIGHSPEED    0x00 /*for full/low speed hub */
 #define PROTOCOL_CODE_HUB_MULTI_TT         0x02 /*multiple TT */
 #define PROTOCOL_CODE_USB_SINGLE_TT        0x01 /*single TT */
 
 typedef struct usbEndpointDescriptor {
-    uint8_t bLength;
-    uint8_t bDescriptorType;
-    uint8_t bEndpointAddress;
-    uint8_t bmAttributes;
-    uint16_t wMaxPacketSize;
-    uint8_t bInterval;
+    uint8_t bLength;		//! Size of this descriptor in bytes 
+    uint8_t bDescriptorType;    //! ENDPOINT Descriptor Type
+    uint8_t bEndpointAddress;   //! The address of the endpoint on the USB device described by this descriptor
+    uint8_t bmAttributes;       //! The endpoint'ss attributes
+    uint16_t wMaxPacketSize;    //! Maximum packet size
+    uint8_t bInterval;          //! Interval for polling endpoint for data transfers
 } usbEndpointDescriptor_t;
 
 typedef struct usbHidDescriptor {
-    uint8_t bLength;
-    uint8_t bDescriptorType;
-    uint16_t bcdHID;
-    uint8_t bCountryCode;
-    uint8_t bNumDescriptors;
-    uint8_t bReportDescriptorType;
+    uint8_t bLength;			//! Size of this descriptor in bytes 
+    uint8_t bDescriptorType;            //! Descriptor Type
+    uint16_t bcdHID;                    //! Release number
+    uint8_t bCountryCode;               //! Country code
+    uint8_t bNumDescriptors;            //! Number of descriptors
+    uint8_t bReportDescriptorType;      //! The type of report descriptor
     uint8_t wDescriptorLength[2];   // !!!! Not aligned on 16-bit boundary  !!!
 } usbHidDescriptor_t;
 
@@ -197,28 +201,29 @@ typedef uint32_t endpointList_t[8];
  */
 
 typedef struct usbdSetupPacket {
-    uint8_t bRequestType;
-    uint8_t bRequest;
-    uint16_t wValue;
-    uint16_t wIndex;
-    uint16_t wLength;
-} usbdSetupPacket_t;
+    uint8_t bRequestType;	//! Characteristics of request 
+    uint8_t bRequest;           //! Specific request
+    uint16_t wValue;            //! Word-sized field that varies according to request
+    uint16_t wIndex;            //! Index
+    uint16_t wLength;           //! Number of bytes to transfer
+} usbdSetupPacket_t;            
 
 /*!
  *  USB device endpoint queue head structure
  */
 
 typedef struct usbdDeviceEndpointQueueHead {
-    uint32_t endpointCharacteristics;
-    uint32_t currentDtd;
-    uint32_t nextDtd;
-    uint32_t dtdToken;
-    uint32_t dtdBuffer[5];
+    uint32_t endpointCharacteristics;	//! Endpoint Capabilities/Characteristics
+    uint32_t currentDtd;		//! Current dTD Pointer
+    uint32_t nextDtd;			//! Next dTD Pointer
+    uint32_t dtdToken;			//! Token
+    uint32_t dtdBuffer[5];		//! Buffer Pointers
     uint32_t reserved;
-    usbdSetupPacket_t setupBuffer;
+    usbdSetupPacket_t setupBuffer;	//! Set-up Buffer
     uint32_t reserved1[4];
 } usbdDeviceEndpointQueueHead_t;
 
+//! brief    USB endpoint pair sturcture
 typedef struct usbdEndpointPair {
     usbdDeviceEndpointQueueHead_t out;
     usbdDeviceEndpointQueueHead_t in;
@@ -228,9 +233,9 @@ typedef struct usbdEndpointPair {
  *  USB device endpoint transfer descriptor
  */
 typedef struct usbdEndpointDtd {
-    uint32_t nextDtd;
-    uint32_t dtdToken;
-    uint32_t dtdBuffer[5];
+    uint32_t nextDtd;		//! Next data transfer descriptor
+    uint32_t dtdToken;		//! Token
+    uint32_t dtdBuffer[5];	//! Buffers for data to be transferred
     uint32_t mallocPointer;     /* Used to keep track of the memory allocated for the data structure */
 } usbdEndpointDtd_t;
 
@@ -242,13 +247,14 @@ typedef enum usbdEndpointDirection {
     OUT
 } usbdEndpointDirection_t;
 
+//! @brief    Structure to describle the endpoint
 typedef struct usbdEndpointInfo {
-    usbPortSpeed_t Speed;
-    uint32_t endpointNumber;
-    usbdEndpointDirection_t endpointDirection;
-    uint32_t mult;
-    uint32_t maxPacketLength;
-    bool interruptOnSetup;
+    usbPortSpeed_t Speed;	//! Speed of this endpoint, High/Low/Full
+    uint32_t endpointNumber;		//! Index of this endpoint
+    usbdEndpointDirection_t endpointDirection;	//! Direction, IN/OUT
+    uint32_t mult;		
+    uint32_t maxPacketLength;	//! Max packet length supported by this endpoint
+    bool interruptOnSetup;	//! Interupt issued when setup packet arrived
 } usbdEndpointInfo_t;
 
 /*!
@@ -319,6 +325,9 @@ int get_menu_item(char *menu_table[]);
 #define EPS_LOW	1
 #define EPS_HIGH 2
 
+/*!
+ * Memeory allocation configuration
+ */
 #define MAX_USB_BUFFER_SIZE 0x100
 #define MAX_USB_DESC_SIZE 	0x40
 

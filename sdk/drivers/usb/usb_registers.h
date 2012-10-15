@@ -17,6 +17,10 @@
 #ifndef __USB_CORE_REGISTERS__
 #define __USB_CORE_REGISTERS__
 
+
+/*
+ * Register access macros
+ */
 #if defined(CHIP_MX6DQ) || defined(CHIP_MX6SDL)
 #define USB_OTG		0
 #define USB_UH1		1
@@ -131,6 +135,10 @@
 #define HW_USBC_ENDPTCTRL6_WR(n, v)		USB_DEV_REGISTER_WR(n, ENDPTCTRL6, v)
 #define HW_USBC_ENDPTCTRL7_WR(n, v)		USB_DEV_REGISTER_WR(n, ENDPTCTRL7, v)
 
+
+/*
+ * Regiseter field value definitions
+ */
 #define USB_USBCMD_FS_1024               (0)
 #define USB_USBCMD_FS_512                (0x4)
 #define USB_USBCMD_FS_256                (0x8)

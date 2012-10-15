@@ -16,6 +16,9 @@
 
 /********************************************************************/
 
+/*
+ * Bit definitions for USB data structures.
+ */
 #define USB_QH_LINK_PTR_TYP_ITD		0x00000000
 #define USB_QH_LINK_PTR_TYP_QH		0x00000002
 #define USB_QH_LINK_PTR_TYP_SITD	0x00000004

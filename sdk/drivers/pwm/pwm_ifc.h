@@ -17,7 +17,7 @@
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
 
-//! @name Available PWM interrupts.
+//! @brief Available PWM interrupts.
 enum _pwm_interrupts
 {
     kPwmFifoEmptyIrq = 1 << 0,       //!< FIFO empty interrupt.
@@ -25,7 +25,7 @@ enum _pwm_interrupts
     kPwmCompareIrq = 1 << 2     //!< Compare interrupt. The counter value matches the current sample value
 };
 
-//! @name Clock sources for the PWM.
+//! @brief Clock sources for the PWM.
 //!
 //! Pass one of these values in the hw_module_t::freq member.
 enum _pwm_clksrc

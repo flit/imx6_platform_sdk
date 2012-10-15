@@ -5,51 +5,26 @@
  * Freescale Semiconductor, Inc.
 */
 
-/*!
- * @file hardware_modules.h
- * @brief Declarations for common hw_module structs.
- */
-
-#if !defined(__HARDWARE_MODULES_H__)
-#define __HARDWARE_MODULES_H__
-
 #include "sdk.h"
+#include "board_io_expanders.h"
+#include "registers/regsi2c.h"
+#include "registers/regsiomuxc.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Globals
 ////////////////////////////////////////////////////////////////////////////////
 
-//! @brief The UART to use for debug console prints.
-extern hw_module_t g_debug_uart;
-
-//! @brief Timer used for delays other other system timing tasks.
-extern hw_module_t g_system_timer;
-
-//! @brief Array of pointers to modules defined in this file.
-//!
-//! The array is terminated with a NULL entry.
-extern hw_module_t * g_imx_modules[];
+// imx_i2c_request_t max7310_i2c_req_array[MAX7310_NBR];
 
 ////////////////////////////////////////////////////////////////////////////////
-// Protoypes
+// Code
 ////////////////////////////////////////////////////////////////////////////////
 
-#if defined(__cplusplus)
-extern "C" {
-#endif
-
-
-/*!
- * @brief Fills in the frequency info in each module's structure.
- */
-void freq_populate(void);
-
-
-#if defined(__cplusplus)
+void board_ioexpander_init(void)
+{
+    // No expanders to init.
 }
-#endif
 
-#endif // __HARDWARE_MODULES_H__
 ////////////////////////////////////////////////////////////////////////////////
 // EOF
 ////////////////////////////////////////////////////////////////////////////////

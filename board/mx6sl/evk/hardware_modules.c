@@ -36,18 +36,7 @@ hw_module_t g_arm_core = {
     792000000,
 };
 
-#if  defined(BOARD_SABRE_LITE)
-// UART2 is the serial debug/console port for sabre_lite board
-hw_module_t g_debug_uart = {
-    "UART2 for debug",
-    2,
-    UART2_BASE_ADDR,
-    80000000,
-    IMX_INT_UART2,
-    &default_interrupt_routine,
-};
-#elif defined(BOARD_SMART_DEVICE)
-// UART1 is the serial debug/console port for smart_device board
+//! UART1 is the serial debug/console port for the mx6sl evk.
 hw_module_t g_debug_uart = {
     "UART1 for debug",
     1,
@@ -56,17 +45,6 @@ hw_module_t g_debug_uart = {
     IMX_INT_UART1,
     &default_interrupt_routine,
 };
-#else
-// UART4 is the serial debug/console port for EVB and ARD
-hw_module_t g_debug_uart = {
-    "UART4 for debug",
-    4,
-    UART4_BASE_ADDR,
-    80000000,
-    IMX_INT_UART4,
-    &default_interrupt_routine,
-};
-#endif
 
 /* EPIT1 used for time functions */
 hw_module_t g_system_timer = {
@@ -103,7 +81,7 @@ uint32_t get_module_freq(uint32_t module_base)
     else if (module_base == MMDC_P0_BASE_ADDR)
         return get_main_clock(MMDC_CH0_AXI_CLK);
     else if (module_base == g_debug_uart.base)
-        return get_peri_clock(UART4_BAUD);
+        return get_peri_clock(UART1_BAUD);
     else if (module_base == g_system_timer.base)
         /* value depends on how the timer is configured, 
            and this is actually initialized in system_time_init() */

@@ -6,7 +6,7 @@
 */
 
 #include "print_clock_info.h"
-#include "hardware_modules.h"
+#include "platform_init.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code

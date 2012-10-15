@@ -19,13 +19,13 @@ include $(SDK_ROOT)/mk/common.mk
 TARGET_LIB_NAME := board_$(BOARD_WITH_REV)
 
 SOURCES := \
-	$(SDK_ROOT)/board/common/hardware_modules.c \
-	$(SDK_ROOT)/board/common/board_io_expanders.c \
-	$(SDK_ROOT)/board/common/board_i2c.c \
-	$(SDK_ROOT)/board/common/board_audio.c \
-	$(SDK_ROOT)/board/common/board_camera.c \
-	$(SDK_ROOT)/board/common/board_network.c \
-	$(SDK_ROOT)/board/common/board_usb.c \
+	hardware_modules.c \
+	board_io_expanders.c \
+	board_i2c.c \
+	board_audio.c \
+	board_camera.c \
+	board_network.c \
+	board_usb.c \
 	$(SDK_ROOT)/board/$(TARGET)/$(BOARD)/dcd.c \
 	$(wildcard iomux/*.c)
 

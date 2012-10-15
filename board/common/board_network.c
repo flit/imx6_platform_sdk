@@ -14,11 +14,7 @@
 /* ENET iomux config */
 void imx_ar8031_iomux()
 {
-#if defined (CHIP_MX6SL)
-    fec_iomux_config();
-#else
     enet_iomux_config();        // iomux tool output
-#endif
 }
 
 /*CPU_PER_RST_B low to high*/
@@ -63,11 +59,8 @@ void imx_KSZ9021RN_reset(void)
  */
 void imx_enet_iomux(void)
 {
-#if defined (CHIP_MX6SL)
-    fec_iomux_config();
-#else
     enet_iomux_config();        // iomux tool output
-#endif
+
 #ifdef BOARD_SABRE_AI
     /* Select ENET, ENET_CAN1_STEER(PORT_EXP_B3) */
     max7310_set_gpio_output(1, 2, GPIO_LOW_LEVEL);

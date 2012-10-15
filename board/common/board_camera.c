@@ -10,11 +10,7 @@
 #include "registers/regsiomuxc.h"
 #include "registers/regsccm.h"
 
-#if defined (CHIP_MX6SL)
-#define CAMERA_I2C_PORT (3)
-#else
 #define CAMERA_I2C_PORT (1)
-#endif
 
 ////////////////////////////////////////////////////////////////////////////////
 // Variables
@@ -32,7 +28,6 @@ void camera_power_on(void)
 {
 }
 
-#if !defined(CHIP_MX6SL)
 /*IOMUX configuration for CSI port0*/
 void csi_port0_iomux_config(void)
 {
@@ -83,9 +78,6 @@ void csi_port0_iomux_config(void)
     tmpVal = reg32_read(IOMUXC_GPR1);
     reg32_write(IOMUXC_GPR1, tmpVal | (0x1 << 19));
 }
-#endif // !CHIP_MX6SL
-
-#if !defined(CHIP_MX6SL)
 
 /*!
  * reset camera sensor through GPIO on SMD board 
@@ -151,7 +143,6 @@ void sensor_clock_setting(void)
 
     hal_delay_us(clock_delay);
 }
-#endif // !defined(CHIP_MX6SL)
 
 ////////////////////////////////////////////////////////////////////////////////
 // EOF

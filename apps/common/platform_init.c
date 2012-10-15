@@ -7,11 +7,24 @@
 
 #include "sdk.h"
 #include "board_io_expanders.h"
-#include "hardware_modules.h"
+#include "platform_init.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code
 ////////////////////////////////////////////////////////////////////////////////
+
+//! @brief Fills in the frequency info in each module's structure.
+void freq_populate(void)
+{
+    int32_t i;
+    hw_module_t *tmp;
+
+    // Populate module frequency settings (important for UART driver)
+    for (i = 0; (tmp = g_imx_modules[i]) != NULL; i++)
+    {
+        tmp->freq = get_module_freq(tmp->base);
+    }
+}
 
 void platform_init(void)
 {

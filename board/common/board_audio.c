@@ -7,10 +7,7 @@
 
 #include "sdk.h"
 #include "registers/regsccm.h"
-
-#if !defined(CHIP_MX6SL)
 #include "registers/regsesai.h"
-#endif
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code
@@ -80,7 +77,6 @@ void spdif_clk_cfg(void)
     return;
 }
 
-#if !defined(CHIP_MX6SL)
 /*!
  * Power no esai codec.
  */
@@ -97,7 +93,6 @@ void esai_clk_sel_gate_on()
 
     clock_gating_config(REGS_ESAI_BASE, CLOCK_ON);
 }
-#endif // !defined(CHIP_MX6SL)
 
 ////////////////////////////////////////////////////////////////////////////////
 // EOF

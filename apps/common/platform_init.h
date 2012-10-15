@@ -22,6 +22,28 @@ extern "C" {
 //! board_ioexpander_init() is called.
 void platform_init(void);
 
+////////////////////////////////////////////////////////////////////////////////
+// Board support
+////////////////////////////////////////////////////////////////////////////////
+
+//! @name Board support
+//!
+//! Defined in the board support library and used from platform_init().
+//@{
+/*!
+ * @brief Retrieve the freq info based on the passed in module base address.
+ *
+ * @param   module_base     The base address of the module.
+ * @return  Frequency in Hz or 0 for an invalid module.
+ */
+uint32_t get_module_freq(uint32_t module_base);
+
+//! @brief Array of pointers to modules defined in this file.
+//!
+//! The array is terminated with a NULL entry.
+extern hw_module_t * g_imx_modules[];
+//@}
+
 #if defined(__cplusplus)
 }
 #endif

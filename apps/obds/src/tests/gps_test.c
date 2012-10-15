@@ -6,7 +6,6 @@
 */
 
 #include "obds.h"
-#include "hardware.h"
 #include "io.h"
 
 hw_module_t uart2 = {

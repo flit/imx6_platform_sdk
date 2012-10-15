@@ -18,7 +18,7 @@
 //#include <stdint.h>
 //#include <stdbool.h>
 //#include "common.h"
-#include "hardware.h"
+#include "sdk.h"
 
 /*binary data for a small audio sample.*/
 

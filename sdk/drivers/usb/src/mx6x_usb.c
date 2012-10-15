@@ -16,10 +16,11 @@
  * @ingroup diag_usb
  */
 
-#include "hardware.h"
+#include "sdk.h"
 #include "registers/regsccm.h"
 #include "registers/regsccmanalog.h"
 #include "registers/regsusbphy.h"
+#include "usb/usb.h"
 
 /*!
  * This function enables the clocks needed for USB operation.

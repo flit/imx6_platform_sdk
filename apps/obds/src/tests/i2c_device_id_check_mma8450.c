@@ -6,7 +6,6 @@
 */
 
 #include "obds.h"
-#include "hardware.h"
 
 #define REG_CTRL_REG1		0x38
 #define REG_XYZ_DATA_CFG	0x16

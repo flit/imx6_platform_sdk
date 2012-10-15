@@ -20,12 +20,16 @@
 #endif
 #include "registers/regspmu.h"
 #include "registers/regsccm.h"
-#include "hardware.h"
+#include "sdk.h"
 
 #define DUMMY_ARM_CORE_BASE_ADDR 0x12345789
 
+////////////////////////////////////////////////////////////////////////////////
+// Variables
+////////////////////////////////////////////////////////////////////////////////
+
 // ARM core.
-hw_module_t arm_core = {
+hw_module_t g_arm_core = {
     "Cortex A9 core",
     1,
     DUMMY_ARM_CORE_BASE_ADDR,
@@ -74,24 +78,29 @@ hw_module_t g_system_timer = {
     &default_interrupt_routine,
 };
 
-hw_module_t ddr = {
+hw_module_t g_ddr = {
     "DDR memory",
     1,
     MMDC_P0_BASE_ADDR,
 };
 
-hw_module_t *mx6dq_module[] = {
-    &arm_core,
-    &ddr,
+hw_module_t *g_imx_modules[] = {
+    &g_arm_core,
+    &g_ddr,
     &g_debug_uart,
     &g_system_timer,
     NULL,
 };
 
+////////////////////////////////////////////////////////////////////////////////
+// Code
+////////////////////////////////////////////////////////////////////////////////
+
 /*!
- * Retrieve the freq info based on the passed in module_base.
- * @param   module_base     the base address of the module
- * @return  frequency in Hz (0 means not a valid module)
+ * @brief Retrieve the freq info based on the passed in module base address.
+ *
+ * @param   module_base     The base address of the module.
+ * @return  Frequency in Hz or 0 for an invalid module.
  */
 uint32_t get_freq(uint32_t module_base)
 {
@@ -111,18 +120,18 @@ uint32_t get_freq(uint32_t module_base)
     }
 }
 
-/*!
- * Retrieve the clocks based on the hardware configuration and fill in the freq
- * info in each module's structure.
- */
 void freq_populate(void)
 {
     int32_t i;
     hw_module_t *tmp;
 
-    /* Populate module frequency settings (important for UART driver) */
-    for (i = 0; (tmp = mx6dq_module[i]) != NULL; i++) {
+    // Populate module frequency settings (important for UART driver)
+    for (i = 0; (tmp = g_imx_modules[i]) != NULL; i++)
+    {
         tmp->freq = get_freq(tmp->base);
     }
 }
 
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////

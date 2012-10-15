@@ -13,7 +13,7 @@
  */
 
 #include "mipi/mipi_common.h"
-#include "hardware.h"
+#include "sdk.h"
 #include <stdio.h>
 
 extern int32_t ips_mipi_wvga_rgb_stream(int32_t ipu_index);

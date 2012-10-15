@@ -11,7 +11,7 @@
  * @ingroup diag_gpio
  */
 
-#include "hardware.h"
+#include "sdk.h"
 #include "gpio/gpio.h"
 #include "registers/regsgpio.h"
 

@@ -14,7 +14,7 @@
 
 #include <stdio.h>
 
-#include "hardware.h"
+#include "sdk.h"
 #include "mipi/mipi_common.h"
 #include "ipu/ipu_common.h"
 #include "iomux_config.h"

@@ -5,7 +5,7 @@
  * Freescale Semiconductor, Inc.
 */
 #include "spi_test.h"
-#include "hardware.h"
+#include "sdk.h"
 #include "spi_nor_numonyx.h"
 #include "spi/ecspi_ifc.h"
 

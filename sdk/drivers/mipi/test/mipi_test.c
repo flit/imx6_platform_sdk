@@ -12,7 +12,7 @@
  */
 
 #include <stdio.h>
-#include "hardware.h"
+#include "sdk.h"
 
 extern int32_t mipi_csi2_test(void);
 extern int32_t mipi_dsi_test(void);

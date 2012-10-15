@@ -13,7 +13,6 @@
 
 #include <stdio.h>
 #include "sdk.h"
-#include "hardware.h"
 #include "audio/audio.h"
 
 extern audio_card_t snd_card_esai;

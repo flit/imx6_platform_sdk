@@ -5,7 +5,7 @@
  * Freescale Semiconductor, Inc.
 */
 
-#include "hardware.h"
+#include "sdk.h"
 #include "board_i2c.h"
 #include "registers/regsi2c.h"
 

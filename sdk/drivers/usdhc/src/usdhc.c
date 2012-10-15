@@ -12,16 +12,17 @@
 
 #include "usdhc/usdhc_ifc.h"
 #include "usdhc.h"
-#include "hardware.h"
+#include "sdk.h"
 #include "interrupt.h"
 #include "usdhc_host.h"
 #include "registers/regsusdhc.h"
+#include "buffers.h"
 
 /* Global Variables */
 
 usdhc_inst_t usdhc_device[USDHC_NUMBER_PORTS] = {
     {
-     USDHC1_BASE_ADDR,          //register base
+     REGS_USDHC1_BASE,          //register base
      USDHC_ADMA_BUFFER1,        //ADMA base
      usdhc1_isr,                //ISR
      0,                         //RCA
@@ -32,7 +33,7 @@ usdhc_inst_t usdhc_device[USDHC_NUMBER_PORTS] = {
     ,
 
     {
-     USDHC2_BASE_ADDR,          //register base
+     REGS_USDHC2_BASE,          //register base
      USDHC_ADMA_BUFFER2,        //ADMA base
      usdhc2_isr,                //ISR
      0,                         //RCA
@@ -43,7 +44,7 @@ usdhc_inst_t usdhc_device[USDHC_NUMBER_PORTS] = {
     ,
 
     {
-     USDHC3_BASE_ADDR,          //register base
+     REGS_USDHC3_BASE,          //register base
      USDHC_ADMA_BUFFER3,        //ADMA base
      usdhc3_isr,                //ISR
      0,                         //RCA
@@ -54,7 +55,7 @@ usdhc_inst_t usdhc_device[USDHC_NUMBER_PORTS] = {
     ,
 
     {
-     USDHC4_BASE_ADDR,          //register base
+     REGS_USDHC4_BASE,          //register base
      USDHC_ADMA_BUFFER4,        //ADMA base
      usdhc4_isr,                //ISR
      0,                         //RCA

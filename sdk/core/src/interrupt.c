@@ -11,7 +11,7 @@
  * @ingroup diag_init
  */
 
-#include "hardware.h"
+#include "sdk.h"
 
 /************************* Global Variables ***********************************/
 #define NUM_OF_INTERRUPTS 160

@@ -22,59 +22,34 @@
 #include "sdk_types.h"
 #include "io.h"
 
-////////////////////////////////////////////////////////////////////////////////
-// Definitions
-////////////////////////////////////////////////////////////////////////////////
+#include "soc_memory_map.h"
+#include "registers.h"
+#include "iomux_config.h"
+#include "iomux_define.h"
+#include "iomux_register.h"
+#include "utility/system_util.h"
+#include "gpio/gpio.h"
+#include "core/interrupt.h"
+#include "gic/gic.h"
+#include "ccm_pll.h"
+#include "ioexpander/max7310.h"
+#include "i2c/imx_i2c.h"
+#include "uart/imx_uart.h"
+#include "timer/timer.h"
+#include "usb/usb.h"
+#include "keypad/keypad_port.h"
+#include "spi/ecspi_ifc.h"
+#include "enet/enet.h"
+#include "board_id/board_id.h"
 
+#include "buffers.h"
 
-#define TRUE        1
-#define FALSE       0
+#include "board_io_expanders.h"
+#include "board_i2c.h"
 
-#define NONE_CHAR   (0xFF)
-
-//#define SUCCESS             0
-#define INVALID_PARAMETER (-1)
-
-//! @name Min/max macros
-//@{
-#if !defined(MIN)
-    #define MIN(a, b)   ((a) < (b) ? (a) : (b))
+#if defined(CHIP_MX6DQ)
+#include "sata/imx_sata.h"
 #endif
-
-#if !defined(MAX)
-    #define MAX(a, b)   ((a) > (b) ? (a) : (b))
-#endif
-//@}
-
-//! @brief Debug print utility.
-//!
-//! This print function will only output text when the @a DEBUG macro is defined.
-static inline void debug_printf(const char * format, ...)
-{
-#if defined(DEBUG)
-    va_list args;
-    va_start(args, format);
-    vprintf(format, args);
-    va_end(args);
-#endif
-}
-
-//! @name Test results
-typedef enum _test_return
-{
-	TEST_NOT_IMPLEMENTED = -2, // present in the menu, but not functional
-	TEST_FAILED          = -1,
-    TEST_PASSED          = 0,
-    TEST_BYPASSED        = 2,  // user elected to exit the test before it was run
-    TEST_NOT_PRESENT     = 3,  // not present in the menu.
-    TEST_CONTINUE        = 4   // proceed with the test. opposite of TEST_BYPASSED
-} test_return_t;
-
-//! @name Return codes
-//@{
-// #define SUCCESS (0)
-// #define ERROR (1)
-//@}
 
 #endif // __SDK_H__
 ////////////////////////////////////////////////////////////////////////////////

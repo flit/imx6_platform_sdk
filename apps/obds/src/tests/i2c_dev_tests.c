@@ -6,7 +6,6 @@
 */
 
 #include "obds.h"
-#include "hardware.h"
 
 extern int i2c_device_id_check_MMA8451(unsigned int i2c_base_addr);
 extern int i2c_device_id_check_isl29023(unsigned int i2c_base_addr);

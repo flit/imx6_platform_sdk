@@ -10,9 +10,11 @@
  *
  */
 #include "usdhc.h"
-#include "hardware.h"
+#include "usdhc/usdhc_ifc.h"
+#include "sdk.h"
 #include "usdhc_host.h"
 #include "registers/regsusdhc.h"
+#include "timer/timer.h"
 
 extern int SDHC_ADMA_mode;
 extern int SDHC_INTR_mode;

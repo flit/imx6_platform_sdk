@@ -10,8 +10,9 @@
  * @brief SDMA library
  */
 
-#include "hardware.h"
+#include "sdk.h"
 #include "sdma_priv.h"
+#include "core/interrupt.h"
 
 extern sdma_script_info_t script_info;
 

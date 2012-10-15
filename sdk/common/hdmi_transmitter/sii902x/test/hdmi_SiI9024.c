@@ -5,7 +5,7 @@
  * Freescale Semiconductor, Inc.
 */
 
-#include "hardware.h"
+#include "sdk.h"
 #include "siHdmiTx_902x_TPI.h"
 
 unsigned int hdmi_i2c_base = 0;

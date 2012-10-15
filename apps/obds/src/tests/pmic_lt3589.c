@@ -6,7 +6,6 @@
 */
 
 #include "obds.h"
-#include "hardware.h"
 //#include "imx_i2c.h"
 
 #define PMIC_LTC3589_I2C_NUM        1   // Which I2C used to interface with the PMIC; 0=I2C1, 1=I2C2

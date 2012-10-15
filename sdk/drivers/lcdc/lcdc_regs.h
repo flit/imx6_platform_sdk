@@ -8,7 +8,7 @@
 #ifndef _LCDC_REGS_H_
 #define _LCDC_REGS_H_
 
-#include "hardware.h"           // Hardware definitions
+#include "sdk.h"           // Hardware definitions
 #define 	LCDIF_CSC_ENABLE		1
 #define 	LCDIF_CSC_DISABLE		0
 

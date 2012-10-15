@@ -6,51 +6,50 @@
 */
 
 /*!
- * @file  system_util.h
- * @brief header file for the system utility functions.
- *
+ * @file hardware_modules.h
+ * @brief Declarations for common hw_module structs.
  */
 
-#ifndef _SYSTEM_UTIL_H_
-#define _SYSTEM_UTIL_H_
+#if !defined(__HARDWARE_MODULES_H__)
+#define __HARDWARE_MODULES_H__
 
 #include "sdk.h"
 
-//! @addtogroup diag_util
-//! @{
-
 ////////////////////////////////////////////////////////////////////////////////
-// Externs
+// Globals
 ////////////////////////////////////////////////////////////////////////////////
 
-//! @brief Hardware module for debug UART.
-//!
-//! This hw_module is used by the driver in order to factor out board
-//! specific functionality. It must be defined by the board support
-//! library or the application.
+//! @brief The UART to use for debug console prints.
 extern hw_module_t g_debug_uart;
 
+//! @brief Timer used for delays other other system timing tasks.
+extern hw_module_t g_system_timer;
+
+//! @brief Array of pointers to modules defined in this file.
+//!
+//! The array is terminated with a NULL entry.
+extern hw_module_t * g_imx_modules[];
+
 ////////////////////////////////////////////////////////////////////////////////
-// Prototypes
+// Protoypes
 ////////////////////////////////////////////////////////////////////////////////
 
 #if defined(__cplusplus)
 extern "C" {
 #endif
 
-void _sys_exit(int32_t return_code);
 
-int32_t is_input_char(uint8_t c, const char* const indent);
-uint32_t get_input_hex(void);
-int read_int(void);
+/*!
+ * @brief Fills in the frequency info in each module's structure.
+ */
+void freq_populate(void);
+
 
 #if defined(__cplusplus)
 }
 #endif
 
-//! @}
-
-#endif //_SYSTEM_UTIL_H_
+#endif // __HARDWARE_MODULES_H__
 ////////////////////////////////////////////////////////////////////////////////
 // EOF
 ////////////////////////////////////////////////////////////////////////////////

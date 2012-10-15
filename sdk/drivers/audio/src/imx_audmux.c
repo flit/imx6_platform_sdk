@@ -14,7 +14,6 @@
 
 #include <stdio.h>
 #include "sdk.h"
-#include "hardware.h"
 #include "audio/imx_audmux.h"
 #include "imx_audmux_priv.h"
 #include "registers/regsaudmux.h"

@@ -6,9 +6,7 @@
 */
 
 #include "print_clock_info.h"
-#include "hardware.h"
-
-extern hw_module_t *mx6dq_module[];
+#include "hardware_modules.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code
@@ -20,7 +18,7 @@ void show_freq(void)
     hw_module_t *tmp;
     printf("======== Clock frequencies(HZ) =========\n");
 
-    for (i = 0; (tmp = mx6dq_module[i]) != NULL; i++) {
+    for (i = 0; (tmp = g_imx_modules[i]) != NULL; i++) {
         printf("%s\t: %d,%03d,%03d\n", tmp->name, tmp->freq / 1000000,
                (tmp->freq % 1000000) / 1000, tmp->freq % 1000);
     }

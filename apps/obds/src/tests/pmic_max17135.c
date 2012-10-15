@@ -6,7 +6,6 @@
 */
 
 #include "obds.h"
-#include "hardware.h"
 
 #define PMIC_MAX17135_I2C_REG_BYTE    0x1   // Number of Bytes to transfer the PMIC reg number
 #define PMIC_MAX17135_I2C_DATA_BYTE   0x1   // Number of Bytes to transfer the PMIC reg data

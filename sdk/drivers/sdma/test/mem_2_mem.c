@@ -10,7 +10,7 @@
 
 #include "sdma/sdma.h"
 #include "sdma_test.h"
-#include "hardware.h"
+#include "sdk.h"
 #include "profile/profile.h"
 
 #define DDR_2_DDR	1

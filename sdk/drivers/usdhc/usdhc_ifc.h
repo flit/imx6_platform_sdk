@@ -158,6 +158,16 @@ extern int mmc_set_boot_partition(uint32_t instance, emmc_part_e part);
  */ 
 extern int mmc_set_boot_bus_width(uint32_t instance, emmc_bus_width_e width);
 
+//! @name Board support functions
+//!
+//! These functions are called by the driver in order to factor out board
+//! specific functionality. They must be defined by the board support
+//! library or the application.
+//@{
+//! @brief Configure IOMUX for the USDHC driver.
+void usdhc_iomux_config(int instance);
+//@}
+
 #if defined (__cplusplus)
 }
 #endif

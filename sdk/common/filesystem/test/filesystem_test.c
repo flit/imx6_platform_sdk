@@ -15,7 +15,6 @@
 #include "filesystem/fsapi.h"
 #include "filesystem/fat/fstypes.h"
 #include "filesystem/fat/fat_internal.h"
-#include "hardware.h"
 #include "timer/epit.h"
 #include "usdhc/usdhc_ifc.h"
 

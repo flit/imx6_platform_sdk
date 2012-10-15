@@ -12,7 +12,7 @@
  */
 
 #include <stdio.h>
-#include "hardware.h"
+#include "sdk.h"
 #include "ocotp/ocotp.h"
 
 /*! 

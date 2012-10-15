@@ -12,7 +12,7 @@
  * @ingroup diag_i2c
  */
 
-#include "hardware.h"
+#include "sdk.h"
 
 static struct imx_i2c_request at24cxx_i2c_req;
 

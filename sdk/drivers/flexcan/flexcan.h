@@ -8,7 +8,7 @@
 #ifndef __CAN_H__
 #define __CAN_H__
 
-#include "hardware.h"
+#include "sdk.h"
 
 #define CAN_TIMING_MASK  0x00C0FFF8  // to zero out presdiv, pseg1, pseg2, prop_seg
 #define CAN_NUMBER_OF_BUFFERS 64    // Define the number of MB

@@ -7,7 +7,7 @@
 #ifdef CHIP_MX6DQ
 
 //#include "imx_i2c.h"
-#include "hardware.h"
+#include "sdk.h"
 //#include "functions.h"
 
 #define ADP1650_I2C_ADDR    0x30

@@ -6,7 +6,7 @@
 */
 
 #include <stdio.h>
-#include "hardware.h"
+#include "sdk.h"
 #include "cfi_flash.h"
 #include "eim/eim_ifc.h"
 

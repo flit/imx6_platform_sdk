@@ -12,7 +12,7 @@
  * @ingroup diag_timer
  */
 
-//#include "hardware.h"
+#include "sdk.h"
 #include "rtc/rtc.h"
 #include "registers/regssnvs.h"
 #include "irq_numbers.h"

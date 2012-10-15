@@ -8,7 +8,7 @@
 #ifndef _VPU_TEST_H_
 #define _VPU_TEST_H_
 #include <filesystem/fsapi.h>
-#include "hardware.h"
+#include "sdk.h"
 #include "vpu/vpu_lib.h"
 #include "vpu/vpu_io.h"
 #include "vpu/vpu_util.h"

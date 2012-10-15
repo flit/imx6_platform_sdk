@@ -12,7 +12,7 @@
  * @ingroup diag_i2c
  */
 
-#include "hardware.h"
+#include "sdk.h"
 
 // I2C3 is used to be a slave port
 hw_module_t imx6_i2c_slave_port = {

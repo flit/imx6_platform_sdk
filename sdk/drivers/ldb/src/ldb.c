@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "hardware.h"
+#include "sdk.h"
 #include "ldb/ldb_def.h"
 #include "ipu/ipu_common.h"
 #include "registers/regsldb.h"

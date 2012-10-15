@@ -5,7 +5,7 @@
  * Freescale Semiconductor, Inc.
 */
 
-#include "hardware.h"
+#include "sdk.h"
 #include "platform_init.h"
 #include "timer/epit.h"
 

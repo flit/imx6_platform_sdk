@@ -7,7 +7,6 @@
 #if defined(BOARD_SMART_DEVICE)
 
 #include "obds.h"
-#include "hardware.h"
 
 #define TOUCHBUTTON_I2C_ADDR    0x5A
 

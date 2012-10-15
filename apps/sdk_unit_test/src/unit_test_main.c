@@ -6,7 +6,7 @@
 */
 
 #include <stdio.h>
-#include "hardware.h"
+#include "sdk.h"
 #include "platform_init.h"
 #include "cortex_a9.h"
 #include "mmu.h"

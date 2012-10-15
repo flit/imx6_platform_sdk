@@ -12,7 +12,7 @@
  * @ingroup diag_timer
  */
 
-#include "hardware.h"
+#include "sdk.h"
 
 static void tick_timer_interrupt_routine(void);
 static void epit_delay_test(void);

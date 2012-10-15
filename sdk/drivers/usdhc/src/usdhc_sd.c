@@ -11,9 +11,10 @@
  */
 
 #include "usdhc.h"
-#include "hardware.h"
+#include "sdk.h"
 #include "usdhc_host.h"
 #include "registers/regsusdhc.h"
+#include "timer/timer.h"
 
 const unsigned int sd_ocr_value[SD_OCR_VALUE_COUNT] = {
     SD_OCR_VALUE_HV_HC,

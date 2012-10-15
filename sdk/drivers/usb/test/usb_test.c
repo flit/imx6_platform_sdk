@@ -12,7 +12,7 @@
  * @ingroup diag_usb
  */
 
-#include "hardware.h"
+#include "sdk.h"
 #include <stdio.h>
 
 extern void usb0_host_test(usb_module_t *port);

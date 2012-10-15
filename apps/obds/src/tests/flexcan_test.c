@@ -12,7 +12,6 @@
  * @ingroup diag_can
  */
 
-#include "hardware.h"
 #include "obds.h"
 //#include "functions.h"
 //#include "can_common.h"

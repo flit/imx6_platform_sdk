@@ -7,6 +7,8 @@
 #ifndef __INTERRUPT_H__
 #define __INTERRUPT_H__
 
+#include "irq_numbers.h"
+
 //! @addtogroup diag_interrupt
 //! @{
 

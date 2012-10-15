@@ -14,7 +14,7 @@
 #ifndef __IPS_TEST__
 #define __IPS_TEST__
 
-#include "hardware.h"
+#include "sdk.h"
 #include "ipu/ipu_common.h"
 
 #define MEM_PRO_UNCACHEABLE

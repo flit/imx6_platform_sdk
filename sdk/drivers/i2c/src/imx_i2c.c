@@ -13,10 +13,12 @@
  * @ingroup diag_i2c
  */
 
-#include "hardware.h"
+#include "sdk.h"
 #include "i2c/imx_i2c.h"
 #include "imx_i2c_internal.h"
 #include "registers/regsi2c.h"
+#include "core/ccm_pll.h"
+#include "core/interrupt.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Constants

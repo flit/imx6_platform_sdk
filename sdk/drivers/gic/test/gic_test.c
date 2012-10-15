@@ -5,7 +5,7 @@
  * Freescale Semiconductor, Inc.
 */
 
-#include "hardware.h"
+#include "sdk.h"
 #include "registers/regssrc.h"
 
 //globals used for gic_test

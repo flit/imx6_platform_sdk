@@ -12,7 +12,6 @@
  * @ingroup diag_enet
  */
 
-#include "hardware.h"
 #include "sdk.h"
 #include "enet/enet.h"
 

@@ -13,7 +13,7 @@
  */
 
 #include <stdio.h>
-#include "hardware.h"
+#include "sdk.h"
 #include "rtc/rtc.h"
 #include "snvs_rtc_test.h"
 

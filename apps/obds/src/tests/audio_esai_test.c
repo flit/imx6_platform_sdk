@@ -10,7 +10,6 @@
 #include <stdio.h>
 #include "obds.h"
 #include "io.h"
-#include "hardware.h"
 #include "soc_memory_map.h"
 #include "audio/audio.h"
 

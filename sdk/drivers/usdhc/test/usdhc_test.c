@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "hardware.h"
+#include "sdk.h"
 #include "usdhc_test.h"
 #include "usdhc/usdhc_ifc.h"
 #include "registers/regsusdhc.h"

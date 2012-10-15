@@ -6,7 +6,6 @@
 */
 
 #include "obds.h"
-#include "hardware.h"
 
 #define SPI_NOR_XFER_SZ     512
 

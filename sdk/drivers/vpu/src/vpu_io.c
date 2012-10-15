@@ -22,7 +22,7 @@
 #include "vpu/vpu_io.h"
 #include "vpu/vpu_lib.h"
 #include "vpu/vpu_util.h"
-#include "hardware.h"
+#include "sdk.h"
 
 #define VPU_MEM_START_ADDR	(VIDEO_BUFFERS_START)
 #define VPU_MEM_END_ADDR	(VIDEO_BUFFERS_END)

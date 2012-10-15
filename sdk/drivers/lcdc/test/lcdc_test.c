@@ -11,7 +11,7 @@
 
 #include "lcdc/lcdc_common.h"
 #include "lcdc/lcdc_regs.h"
-#include "hardware.h"
+#include "sdk.h"
 #include "functions.h"
 #include "logo.h"
 

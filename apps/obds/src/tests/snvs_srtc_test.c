@@ -12,7 +12,6 @@
  */
 
 #include "obds.h"
-#include "hardware.h"
 #include "sdk.h"
 #include "registers/regsocotp.h"
 #include "registers/regssnvs.h"

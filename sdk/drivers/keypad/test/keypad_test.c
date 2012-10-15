@@ -6,7 +6,7 @@
 */
 
 #include <stdio.h>
-#include "hardware.h"
+#include "sdk.h"
 #include "keypad_test.h"
 
 void multiple_key_press_test(void);

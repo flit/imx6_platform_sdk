@@ -14,7 +14,7 @@
 #ifndef __IPU_COMMON_H__
 #define __IPU_COMMON_H__
 
-#include "hardware.h"
+#include "sdk.h"
 #include "ipu_reg_def.h"
 #include "buffers.h"
 #include "ldb/ldb_def.h"

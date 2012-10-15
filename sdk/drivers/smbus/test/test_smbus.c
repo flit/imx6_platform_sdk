@@ -5,8 +5,7 @@
  * Freescale Semiconductor, Inc.
 */
 #include "smbus/smbus.h"
-#include "hardware.h"
-#include "io.h"
+#include "sdk.h"
 
 extern int smbus_prepare_to_arp(void);
 extern int smbus_reset_device(uint8_t dev_addr);

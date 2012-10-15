@@ -13,10 +13,11 @@
  */
 
 #include <assert.h>
-#include "hardware.h"
+#include "sdk.h"
 #include "timer/epit.h"
 #include "timer/timer.h"
 #include "registers/regsarmglobaltimer.h"
+#include "core/ccm_pll.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Prototypes

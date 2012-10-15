@@ -6,7 +6,6 @@
 */
 
 #include "obds.h"
-#include "hardware.h"
 
 #define EMC1046_REG_DEVICE_ID_OFF	0xFD
 

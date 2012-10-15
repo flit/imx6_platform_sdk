@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "hardware.h"
+#include "sdk.h"
 #include "vpu/vpu_util.h"
 #include "vpu/vpu_io.h"
 #include "vpu/vpu_debug.h"

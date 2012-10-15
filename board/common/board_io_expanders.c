@@ -5,7 +5,7 @@
  * Freescale Semiconductor, Inc.
 */
 
-#include "hardware.h"
+#include "sdk.h"
 #include "board_io_expanders.h"
 #include "registers/regsi2c.h"
 #include "registers/regsiomuxc.h"

@@ -16,10 +16,8 @@
 #define _MIPI_COMMON_H_
 /* Standard testbench defines files */
 #include "i2c/imx_i2c.h"
-#include "hardware.h"
+#include "sdk.h"
 #include <math.h>
-
-#define ARRAY_SIZE(x)	(sizeof(x) / sizeof((x)[0]))
 
 #define DPI_MODE 1
 #define IO_EXPANDER_ADDR    (0x1b)

@@ -17,7 +17,7 @@
 #include "usb/usb.h"
 #include "soc_memory_map.h"
 #include "registers.h"
-#include "hardware.h"
+#include "sdk.h"
 #include <stdio.h>
 
 int get_menu_item(char *menu_table[]);

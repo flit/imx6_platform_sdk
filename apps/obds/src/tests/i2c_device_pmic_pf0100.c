@@ -6,7 +6,6 @@
 */
 
 #include "obds.h"
-#include "hardware.h"
 
 #if defined(BOARD_EVK)
 #define PMIC_PF0100_I2C_BASE       I2C1_BASE_ADDR 

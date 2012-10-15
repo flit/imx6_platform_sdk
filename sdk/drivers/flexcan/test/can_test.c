@@ -5,7 +5,7 @@
  * Freescale Semiconductor, Inc.
 */
 
-#include "hardware.h"
+#include "sdk.h"
 #include "flexcan/flexcan.h"
 
 void can2_rx_handler(void);

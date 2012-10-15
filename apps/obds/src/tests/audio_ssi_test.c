@@ -8,7 +8,6 @@
 #include <stdio.h>
 #include "obds.h"
 #include "sdk.h"
-#include "hardware.h"
 #include "audio/test/wav_data.data"
 #include "audio/imx_audmux.h"
 #include "audio/audio.h"

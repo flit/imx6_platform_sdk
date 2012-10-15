@@ -7,7 +7,6 @@
 
 #include <stdio.h>
 #include "sdk.h"
-#include "hardware.h"
 #include "audio/audio.h"
 #include "audio/imx_audmux.h"
 

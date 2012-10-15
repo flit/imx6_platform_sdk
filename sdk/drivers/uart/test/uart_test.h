@@ -11,7 +11,7 @@
  * @ingroup diag_uart
  */
 
-#include "hardware.h"
+#include "sdk.h"
 
 void uart_interrupt_handler(void);
 int32_t uart_test(void);

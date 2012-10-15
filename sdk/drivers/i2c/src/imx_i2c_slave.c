@@ -12,7 +12,7 @@
  * @ingroup diag_i2c
  */
 
-#include "hardware.h"
+#include "sdk.h"
 #include "imx_i2c_internal.h"
 
 ////////////////////////////////////////////////////////////////////////////////

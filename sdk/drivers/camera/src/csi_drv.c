@@ -6,9 +6,9 @@
 */
 #ifdef MX6SL
 
-#include "hardware.h"
+#include "sdk.h"
 #include "csi_regs.h"
-#include "../lcdc/lcdc_common.h"
+#include "lcdc/lcdc_common.h"
 
 void csi_setup(void)
 {

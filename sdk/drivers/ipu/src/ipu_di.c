@@ -15,7 +15,6 @@
 #include <string.h>
 #include "ipu/ipu_common.h"
 #include "sdk.h"
-#include "hardware.h"
 
 /*!
  * IPU display interface configuration, generating the timing for display devices.

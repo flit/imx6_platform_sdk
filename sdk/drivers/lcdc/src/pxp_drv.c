@@ -7,7 +7,7 @@
 
 #include "lcdc/lcdc_common.h"
 #include "lcdc/pxp_regs.h"
-#include "hardware.h"
+#include "sdk.h"
 //#include "functions.h"
 
 int pxp_sw_reset(void)

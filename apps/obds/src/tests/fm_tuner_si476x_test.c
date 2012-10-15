@@ -13,7 +13,6 @@
  */
 
 #include "obds.h"
-#include "hardware.h"
 //#include "imx_i2c.h"
 
 #define POWER_UP_CMD 0x01

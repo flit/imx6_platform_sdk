@@ -5,9 +5,8 @@
  *   Freescale Semiconductor, Inc.
  */
 #include <stdio.h>
-#include "hardware.h"
-#include "wdog/watchdog.h"
 #include "sdk.h"
+#include "wdog/watchdog.h"
 
 /************************************************** Static Function ***********************************************/
 static void watchdog_reset(void)

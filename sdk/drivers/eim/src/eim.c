@@ -8,9 +8,7 @@
 #include <stdio.h>
 #include "sdk.h"
 #include "eim.h"
-#include "hardware.h"
 
-//static eim_reg_p eim_reg_base;
 static eim_cfg_t cfg_table[] = {
 /*	ID						BOOL	SHF	   REGISTER		MASK 		*/
     {GCR1_CSEN, TRUE, 0, EIM_GCR1, BM_EIM_CS0GCR1_CSEN},

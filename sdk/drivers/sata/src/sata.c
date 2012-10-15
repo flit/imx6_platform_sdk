@@ -7,6 +7,12 @@
 #include "sata/imx_sata.h"
 #include "atapi.h"
 #include "registers/regsccm.h"
+#include "soc_memory_map.h"
+#include "timer/timer.h"
+#include "registers.h"
+#include "buffers.h"
+#include "iomux_define.h"
+#include "iomux_register.h"
 
 //////////////////////////////////////////////////////////////////////////////
 // Definitions

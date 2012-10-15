@@ -5,7 +5,7 @@
  * Freescale Semiconductor, Inc.
 */
 
-#include "hardware.h"
+#include "sdk.h"
 #include "SiIIIC.h"
 #include "siHdmiTx_902x_TPI.h"
 

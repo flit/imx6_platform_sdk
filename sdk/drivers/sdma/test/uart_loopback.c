@@ -11,7 +11,7 @@
 #include "sdma/sdma.h"
 #include "sdma_event.h"
 #include "sdma_test.h"
-#include "hardware.h"
+#include "sdk.h"
 
 #define UART_LOOPBACK_TEST_BUF_SZ 	1024
 #define UART_REF_FREQ 			27000000

@@ -5,7 +5,7 @@
  * Freescale Semiconductor, Inc.
 */
 
-#include "hardware.h"
+#include "sdk.h"
 #include "camera/camera_def.h"
 #include "registers/regsiomuxc.h"
 #include "registers/regsccm.h"

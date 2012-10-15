@@ -12,7 +12,7 @@
  * @ingroup diag_hdmi
  */
 
-#include "hardware.h"
+#include "sdk.h"
 #include "hdmi/src/hdmi_tx.h"
 #include "registers/regshdmi.h"
 

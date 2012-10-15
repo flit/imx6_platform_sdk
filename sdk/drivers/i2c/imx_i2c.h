@@ -8,7 +8,7 @@
 #ifndef __IMX_I2C_H__
 #define __IMX_I2C_H__
 
-#include "sdk.h"
+#include "sdk_types.h"
 
 //! @addtogroup diag_i2c
 
@@ -182,6 +182,16 @@ void i2c_slave_handler(const imx_i2c_request_t *rq);
  * @param   rq Pointer to #imx_i2c_request_t.
  */
 void i2c_slave_xfer(hw_module_t *port, imx_i2c_request_t *rq);
+
+//! @name Board support functions
+//!
+//! These functions are called by the driver in order to factor out board
+//! specific functionality. They must be defined by the board support
+//! library or the application.
+//@{
+//! @brief Configure IOMUX for the I2C driver.
+void i2c_iomux_config(int instance);
+//@}
 
 #if defined(__cplusplus)
 }

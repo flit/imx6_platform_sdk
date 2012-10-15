@@ -6,7 +6,6 @@
  */
 
 #include "obds.h"
-#include "hardware.h"
 
 // adv7180 functions
 extern void adv7180_i2c_init_obds(void);

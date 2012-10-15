@@ -8,7 +8,6 @@
 #include "stdio.h"
 #include "string.h"
 #include "obds.h"
-#include "hardware.h"
 #include "board_id/board_id.h"
 
 #define FAIL     1

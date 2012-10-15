@@ -19,7 +19,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "obds.h"
-#include "hardware.h"
 #include "gpio/gpio.h"
 #include "logo.h"
 #include "ldb/ldb_def.h"

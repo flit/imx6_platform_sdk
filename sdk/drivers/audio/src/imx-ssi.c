@@ -14,7 +14,6 @@
 
 #include <stdio.h>
 #include "sdk.h"
-#include "hardware.h"
 #include "audio/audio.h"
 #include "imx-ssi.h"
 #include "registers/regsssi.h"

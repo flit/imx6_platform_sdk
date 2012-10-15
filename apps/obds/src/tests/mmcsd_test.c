@@ -8,7 +8,6 @@
 #include "stdio.h"
 #include "string.h"
 #include "obds.h"
-#include "hardware.h"
 #include "registers/regsusdhc.h"
 
 extern int SDHC_ADMA_mode;

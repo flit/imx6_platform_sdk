@@ -13,7 +13,6 @@
  */
 
 #include "obds.h"
-#include "hardware.h"
 
 extern void adv7180_set_gpio_output(unsigned int, unsigned int);
 extern void adv7180_i2c_init_obds(void);

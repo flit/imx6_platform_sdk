@@ -9,7 +9,7 @@
 #include "epdc/epdc.h"
 #include "epdc/waveform_data.h"
 #include "epdc/fsl_image.h"
-#include "hardware.h"
+#include "sdk.h"
 //#include "functions.h"
 
 void check_waveform(unsigned int *wv_buf_orig, unsigned int *wv_buf_cur, unsigned int wv_buf_size)

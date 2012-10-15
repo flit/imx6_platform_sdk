@@ -511,6 +511,4 @@ int vpu_mx6q_hwreset();
 		(((uint32_t)(x) & (uint32_t)0x00ff0000UL) >>  8) | \
 		(((uint32_t)(x) & (uint32_t)0xff000000UL) >> 24) ))
 
-#define ARRAY_SIZE(x)	(sizeof(x) / sizeof((x)[0]))
-
 #endif

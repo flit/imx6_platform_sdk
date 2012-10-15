@@ -17,7 +17,6 @@
  */
 
 #include "obds.h"
-#include "hardware.h"
 
 /*!
  * Add the following defines to support a new NOR:

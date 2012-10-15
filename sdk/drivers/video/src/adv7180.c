@@ -12,7 +12,7 @@
  */
 
 #include "video/adv7180_def.h"
-#include "hardware.h"
+#include "sdk.h"
 #include "registers/regsiomuxc.h"
 
 /*! Description of video formats supported.

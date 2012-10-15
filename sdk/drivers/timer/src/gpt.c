@@ -12,10 +12,12 @@
  * @ingroup diag_timer
  */
 
-#include "hardware.h"
+#include "sdk.h"
 #include "timer/gpt.h"
 #include "timer/timer.h"
 #include "registers/regsgpt.h"
+#include "core/interrupt.h"
+#include "core/ccm_pll.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code

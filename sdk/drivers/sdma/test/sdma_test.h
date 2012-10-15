@@ -8,7 +8,7 @@
 #ifndef __SDMA_TEST__
 #define __SDMA_TEST__
 
-#include "hardware.h"
+#include "sdk.h"
 
 #define MEM_PRO_UNCACHEABLE
 #define MEM_PRO_UNBUFFERABEL

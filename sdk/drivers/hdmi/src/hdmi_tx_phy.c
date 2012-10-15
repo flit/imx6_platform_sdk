@@ -5,7 +5,7 @@
  * Freescale Semiconductor, Inc.
  */
 
-#include "hardware.h"
+#include "sdk.h"
 #include "hdmi_tx.h"
 #include "registers/regshdmi.h"
 

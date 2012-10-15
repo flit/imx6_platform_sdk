@@ -6,7 +6,7 @@
 */
 
 #include <stdio.h>
-#include "hardware.h"
+#include "sdk.h"
 #include "pwm/pwm_ifc.h"
 #include "iomux_config.h"
 

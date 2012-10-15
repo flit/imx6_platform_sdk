@@ -5,7 +5,7 @@
  * Freescale Semiconductor, Inc.
 */
 
-#include "hardware.h"
+#include "sdk.h"
 #include "pcie/pcie_common.h"
 #include "pcie/pcie_prot.h"
 

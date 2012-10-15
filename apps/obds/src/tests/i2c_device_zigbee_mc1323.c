@@ -6,7 +6,6 @@
 */
 
 #include "obds.h"
-#include "hardware.h"
 
 #define MC1323_REG_SDIDH	0x06
 #define MC1323_REG_SDIDL	0x07

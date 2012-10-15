@@ -13,7 +13,6 @@
  */
 
 #include "obds.h"
-#include "hardware.h"
 
 #define PMIC_READ                   1
 #define PMIC_WRITE                  0

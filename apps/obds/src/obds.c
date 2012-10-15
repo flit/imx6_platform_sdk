@@ -17,7 +17,7 @@
  */
 
 //#include <stdio.h>
-#include "hardware.h"
+#include "sdk.h"
 #include "board_id/board_id.h"
 #include "obds.h"
 #include "obds_utils.h"

@@ -10,7 +10,7 @@
 #include <string.h>
 
 #include "vdoa/vdoa.h"
-#include "hardware.h"
+#include "sdk.h"
 #include "registers/regsvdoa.h"
 #include <filesystem/fsapi.h>
 

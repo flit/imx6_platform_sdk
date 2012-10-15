@@ -13,7 +13,6 @@
  */
 
 #include "obds.h"
-#include "hardware.h"
 //#include "imx_i2c.h"
 
 #define IDENT_REG 0x11

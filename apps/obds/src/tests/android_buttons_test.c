@@ -6,7 +6,6 @@
  */
 
 #include "obds.h"
-#include "hardware.h"
 #include "gpio/gpio.h"
 #include "io.h"
 

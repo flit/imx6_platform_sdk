@@ -13,7 +13,6 @@
  */
 
 #include "sdk.h"
-#include "hardware.h"
 #include "audio/audio.h"
 #include "imx_esai.h"
 #include "imx_esai_priv.h"

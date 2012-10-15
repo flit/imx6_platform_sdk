@@ -12,7 +12,7 @@
  * @ingroup diag_timer
  */
 
-#include "hardware.h"
+#include "sdk.h"
 
 void gpt_interrupt_routine(void);
 int32_t gpt_test(void);

@@ -13,7 +13,6 @@
  */
 
 #include "obds.h"
-#include "hardware.h"
 
 static struct imx_i2c_request os81050_i2c_req;
 

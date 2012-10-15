@@ -14,10 +14,10 @@
 
 #include <sys/stat.h>
 #include <stdio.h>
-#include "sdk_types.h"
+#include "sdk.h"
 #include "uart/imx_uart.h"
 #include "text_color.h"
-#include "hardware.h"
+#include "sdk.h"
 
 /*!
  * __backspace must return the last char read to the stream

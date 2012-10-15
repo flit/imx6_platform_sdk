@@ -13,7 +13,7 @@
 
 #include <stdio.h>
 #include <stdbool.h>
-#include "hardware.h"
+#include "sdk.h"
 #include "ocotp/ocotp.h"
 #include "registers/regsocotp.h"
 

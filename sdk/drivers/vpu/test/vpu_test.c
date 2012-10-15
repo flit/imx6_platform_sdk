@@ -9,7 +9,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "vpu_test.h"
-#include "hardware.h"
+#include "sdk.h"
 #include "vpu/vpu_debug.h"
 #include "vpu/vpu_util.h"
 

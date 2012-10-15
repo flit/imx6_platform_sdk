@@ -11,11 +11,12 @@
  */
 
 #include "usdhc.h"
-#include "hardware.h"
+#include "sdk.h"
 #include "usdhc_host.h"
 #include "usdhc_mmc.h"
 #include "usdhc/usdhc_ifc.h"
 #include "registers/regsusdhc.h"
+#include "timer/timer.h"
 
 static struct csd_struct csd_reg;
 static uint32_t ext_csd_data[BLK_LEN / FOUR];

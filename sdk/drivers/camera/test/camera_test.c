@@ -12,7 +12,7 @@
  */
 
 #include <stdio.h>
-#include "hardware.h"
+#include "sdk.h"
 
 extern int32_t sensor_capture(void);
 extern int32_t adv7180_capture(void);

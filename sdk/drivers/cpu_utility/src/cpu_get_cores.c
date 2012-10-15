@@ -9,7 +9,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <stdio.h>
-#include "hardware.h"
+#include "sdk.h"
 #include "registers/regsocotp.h"
 #include "cpu_utility/cpu_utility.h"
 

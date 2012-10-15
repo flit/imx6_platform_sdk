@@ -12,6 +12,12 @@
  * GUID command and Assign address command.
 */
 #include "smbus/smbus.h"
+#include "registers.h"
+#include "soc_memory_map.h"
+#include "i2c/imx_i2c.h"
+#include "timer/timer.h"
+#include "core/ccm_pll.h"
+
 #define WAIT_RXAK_LOOPS     1000000
 #define SMBUS_CLK_FREQ      80000   /*80kHz */
 

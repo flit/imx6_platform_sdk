@@ -6,7 +6,6 @@
 */
 
 #include "obds.h"
-#include "hardware.h"
 
 #define PPL3115_REG_DEVICE_ID_OFF	0x0C
 

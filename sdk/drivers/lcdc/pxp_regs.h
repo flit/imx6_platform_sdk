@@ -8,7 +8,7 @@
 #ifndef _PXP_REGS_H_
 #define _PXP_REGS_H_
 
-#include "hardware.h"           // Hardware definitions
+#include "sdk.h"           // Hardware definitions
 
 #define PXP_BASE_ADDR				EPXP_BASE_ADDR
 

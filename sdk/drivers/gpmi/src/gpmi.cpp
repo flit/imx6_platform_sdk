@@ -17,11 +17,7 @@
 #include <string.h>
 #include <algorithm>
 #include <assert.h>
-
-extern "C" {
-#include "hardware.h"
-}
-
+#include "sdk.h"
 #include "gpmi/gpmi.h"
 #include "gpmi_internal.h"
 #include "registers/regsapbh.h"

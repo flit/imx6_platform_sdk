@@ -13,7 +13,6 @@
  */
 
 #include "sdk.h"
-#include "hardware.h"
 #include "audio/audio.h"
 #include "cs42888.h"
 

@@ -6,7 +6,6 @@
 */
 
 #include "obds.h"
-#include "hardware.h"
 
 #define REG_COMMAND_1 	0x00
 #define REG_COMMAND_2	0x01

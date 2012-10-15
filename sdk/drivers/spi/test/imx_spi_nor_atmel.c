@@ -5,7 +5,7 @@
  * Freescale Semiconductor, Inc.
 */
 
-#include "hardware.h"
+#include "sdk.h"
 #include "imx_spi_nor_atmel.h"
 #include "spi/ecspi_ifc.h"
 

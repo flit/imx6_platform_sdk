@@ -17,7 +17,6 @@
  */
 
 #include "obds.h"
-#include "hardware.h"
 #include "io.h"
 
 static const char * const enet_test_name = "Ethernet Test";

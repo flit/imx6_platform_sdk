@@ -5,7 +5,7 @@
  * Freescale Semiconductor, Inc.
 */
 
-#include "hardware.h"
+#include "sdk.h"
 #include "registers/regsccm.h"
 
 #if !defined(CHIP_MX6SL)

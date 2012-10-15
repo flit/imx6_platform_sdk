@@ -140,5 +140,16 @@ void uart_setup_interrupt(struct hw_module *port, uint8_t state);
  */
 uint32_t uart_get_reffreq(struct hw_module *port);
 
+//! @name Board support functions
+//!
+//! These functions are called by the driver in order to factor out board
+//! specific functionality. They must be defined by the board support
+//! library or the application.
+//@{
+//! @brief Configure IOMUX for the UART driver.
+void uart_iomux_config(int instance);
+//@}
+
 //! @}
+
 #endif //__IMX_UART_H__

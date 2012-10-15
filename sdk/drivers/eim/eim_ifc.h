@@ -138,6 +138,16 @@ extern uint32_t eim_init(uint32_t cs, uint32_t dsz, uint32_t mum, uint32_t aus);
  */
 extern uint32_t eim_cfg_set(uint32_t cs, uint32_t cfg, uint32_t value);
 
+//! @name Board support functions
+//!
+//! These functions are called by the driver in order to factor out board
+//! specific functionality. They must be defined by the board support
+//! library or the application.
+//@{
+//! @brief Configure IOMUX for the EIM driver.
+void weim_iomux_config(void);
+//@}
+
 #if defined (__cplusplus)
 }
 #endif

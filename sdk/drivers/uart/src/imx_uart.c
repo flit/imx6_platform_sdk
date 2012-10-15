@@ -12,9 +12,11 @@
  * @ingroup diag_uart
  */
 
-#include "hardware.h"
+#include "sdk.h"
 #include "registers/regsuart.h"
 #include "uart/imx_uart.h"
+#include "core/ccm_pll.h"
+#include "core/interrupt.h"
 
 #define UART_UFCR_RFDIV    BF_UART_UFCR_RFDIV(4) 
 //#define UART_UFCR_RFDIV     UART_UFCR_RFDIV_4

@@ -8,7 +8,6 @@
 #include "sdk.h"
 #include "mmu.h"
 #include "version.h"
-#include "hardware.h"
 #include "cortex_a9.h"
 #include "iomux_config.h"
 #include "platform_init.h"

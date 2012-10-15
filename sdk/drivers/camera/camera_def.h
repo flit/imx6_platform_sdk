@@ -15,13 +15,11 @@
 #define __CAMERA_DEF_H__
 
 #include "i2c/imx_i2c.h"
-#include "hardware.h"
+#include "sdk.h"
 
 //! @addtogroup diag_camera
 
 //! @{
-
-#define ARRAY_SIZE(x)	(sizeof(x) / sizeof((x)[0]))
 
 //! @brief The common structure for accessing camera sensor I2C interface.
 //!

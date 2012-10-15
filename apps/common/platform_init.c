@@ -5,8 +5,9 @@
  * Freescale Semiconductor, Inc.
 */
 
-#include "hardware.h"
+#include "sdk.h"
 #include "board_io_expanders.h"
+#include "hardware_modules.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code

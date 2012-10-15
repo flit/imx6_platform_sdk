@@ -6,8 +6,7 @@
 */
 #ifndef _SMBUS_H_
 #define _SMBUS_H_
-#include "hardware.h"
-#include "io.h"
+#include "sdk.h"
 
 ////////////////////////////////////////////////////////////
 //         Macro Defintions                               //

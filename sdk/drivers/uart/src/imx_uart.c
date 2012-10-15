@@ -8,21 +8,18 @@
 /*!
  * @file imx_uart.c
  * @brief UART driver.
+
  * @ingroup diag_uart
  */
 
 #include "hardware.h"
 #include "registers/regsuart.h"
+#include "uart/imx_uart.h"
 
 #define UART_UFCR_RFDIV    BF_UART_UFCR_RFDIV(4) 
 //#define UART_UFCR_RFDIV     UART_UFCR_RFDIV_4
 //#define UART_UFCR_RFDIV     UART_UFCR_RFDIV_7
-/*!
- * @brief   Obtain UART reference frequency
- *
- * @param   port - pointer to the UART module structure
- * @return  reference frequency in Hz
- */
+
 uint32_t uart_get_reffreq(struct hw_module *port)
 {
     uint32_t div = UART_UFCR_RFDIV;
@@ -38,13 +35,6 @@ uint32_t uart_get_reffreq(struct hw_module *port)
     return ret;
 }
 
-/*!
- * @brief   Output a character to UART port
- *
- * @param   port - pointer to the UART module structure
- * @param   ch - pointer to the character for output
- * @return  the character that has been sent
- */
 uint8_t uart_putchar(struct hw_module * port, uint8_t * ch)
 {
     uint32_t instance = port->instance;
@@ -57,13 +47,6 @@ uint8_t uart_putchar(struct hw_module * port, uint8_t * ch)
     return *ch;
 }
 
-/*!
- * @brief   Receive a character on the UART port
- *
- * @param   port - pointer to the UART module structure
- * @return  a character received from the UART port; if the RX FIFO
- *          is empty or errors are detected, it returns NONE_CHAR
- */
 uint8_t uart_getchar(struct hw_module * port)
 {
     uint32_t instance = port->instance;
@@ -82,15 +65,6 @@ uint8_t uart_getchar(struct hw_module * port)
     return (uint8_t) read_data;
 }
 
-/*!
- * @brief   Configure the RX or TX FIFO level and trigger mode
- *
- * @param   port - pointer to the UART module structure
- * @param   fifo - FIFO to configure: RX_FIFO or TX_FIFO.
- * @param   trigger_level - set the trigger level of the FIFO to generate
- *                          an IRQ or a DMA request: number of characters.
- * @param   service_mode - FIFO served with DMA or IRQ or polling (default).
- */
 void uart_set_FIFO_mode(struct hw_module *port, uint8_t fifo, uint8_t trigger_level,
                         uint8_t service_mode)
 {
@@ -120,12 +94,6 @@ void uart_set_FIFO_mode(struct hw_module *port, uint8_t fifo, uint8_t trigger_le
     }
 }
 
-/*!
- * @brief   Enables UART loopback test mode
- *
- * @param   port - pointer to the UART module structure
- * @param   state - enable/disable the loopback mode
- */
 void uart_set_loopback_mode(struct hw_module *port, uint8_t state)
 {
     uint32_t instance = port->instance;
@@ -135,13 +103,6 @@ void uart_set_loopback_mode(struct hw_module *port, uint8_t state)
         HW_UART_UTS_CLR(instance, BM_UART_UTS_LOOP);
 }
 
-/*!
- * @brief   Setup UART interrupt. It enables or disables the related HW module
- * interrupt, and attached the related sub-routine into the vector table.
- *
- * @param   port - pointer to the UART module structure.
- * @param   state - ENABLE or DISABLE the interrupt.
- */
 void uart_setup_interrupt(struct hw_module *port, uint8_t state)
 {
     if (state == TRUE) {
@@ -154,19 +115,6 @@ void uart_setup_interrupt(struct hw_module *port, uint8_t state)
         disable_interrupt(port->irq_id, CPU_0);
 }
 
-/*!
- * @brief   Initialize the UART port
- *
- * @param   port - pointer to the UART module structure.
- * @param   baudrate - serial baud rate such 9600, 57600, 115200, etc.
- * @param   parity - enable parity checking: PARITY_NONE, PARITY_EVEN,
- *                   PARITY_ODD.
- * @param   stopbits - number of stop bits: STOPBITS_ONE, STOPBITS_TWO.
- * @param   datasize - number of bits in a data: SEVENBITS, EIGHTBITS,
- *                     NINEBITS (like RS-485 but not supported).
- * @param   flowcontrol - enable (RTS/CTS) hardware flow control:
- *                        FLOWCTRL_ON, FLOWCTRL_OFF.
- */
 void uart_init(struct hw_module *port, uint32_t baudrate, uint8_t parity,
                uint8_t stopbits, uint8_t datasize, uint8_t flowcontrol)
 {

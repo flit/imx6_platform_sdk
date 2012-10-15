@@ -161,8 +161,8 @@ static void sdma_interrupt_handler(void)
  *    2. Setup configurations like AP DMA/SDMA clock ratio, CCB base address etc
  *    3. Use channel 0 script to load the RAM scripts into SDMA RAM
  *
- * @param    env_buf: un-cacheable and un-bufferable buffer allocated by user
- * @param    base_addr: base address of SDMA registers in AP
+ * @param    env_buf un-cacheable and un-bufferable buffer allocated by user
+ * @param    base_addr base address of SDMA registers in AP
  *
  * @return   0 on success, -1 when fail to download RAM scripts to SDMA RAM,
  *           -2 when environment pointer is NULL
@@ -251,7 +251,7 @@ void sdma_deinit(void)
  *    2. Channel started by the bit in HSTART(HE). In this case, there's no DMA event binding to
  *       the channel. Thus EO is set first, then set the HE
  *
- * @param channel:   the number of the channel to start
+ * @param channel the number of the channel to start
  * @return   0 on success, -1 when channel number is out of range(0-31) or channel is free
  */
 int32_t sdma_channel_start(uint32_t channel)
@@ -274,7 +274,7 @@ int32_t sdma_channel_start(uint32_t channel)
 /*!
  * Stop the channel selected. In this function just clear the HE.
  *
- * @param   channel:  the number of the channel to start
+ * @param   channel the number of the channel to start
  * @return   0 on success, -1 when channel number out of range(0-31)
  */
 int32_t sdma_channel_stop(uint32_t channel)
@@ -457,8 +457,8 @@ int32_t sdma_channel_release(uint32_t channel)
 /*! 
  * Get the channel's status had been started. 
  *
- * @param   channel: the channel which status to be check
- * @param   status: a pointer hold the status of the channel: ERROR, BUSY and DONE
+ * @param   channel the channel which status to be check
+ * @param   status a pointer hold the status of the channel: ERROR, BUSY and DONE
  *
  * @return   0 on success, -1 when failed 
  */
@@ -493,8 +493,8 @@ uint32_t sdma_channel_status(uint32_t channel, uint32_t *status)
 /*! 
  * Lookup the script's address mapped in the SDMA's memory. 
  *
- * @param    script: the script to be lookup
- * @param    addr: a pointer hold the script's address.
+ * @param    script the script to be lookup
+ * @param    addr a pointer hold the script's address.
  *
  * @return   0 on success, -1 when failed 
  */
@@ -539,8 +539,8 @@ void sdma_setup_interrupt(void)
 /*! 
  * This function attach isr for the channel to SDMA lib. The isr will be called  
  * in sdma_interrupt_handler.
- * @param    channel: channel number to be attached.	
- * @param    isr: the interrupt service routine for the channel
+ * @param    channel channel number to be attached.	
+ * @param    isr the interrupt service routine for the channel
  * @return   0 on success,
  *           -1 if invalid channel number
  *           -2 if isr is NULL

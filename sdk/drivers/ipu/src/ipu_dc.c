@@ -18,9 +18,9 @@
  * DC submodule is to control the data, and tranfer them to display.
  * @param	ipu_index:	ipu index
  * @param	channel:    ipu channel
- * @param   di: display interface 0 or 1
- * @param   width: display width
- * @param   colorimetry: colorimetry configuration
+ * @param   di display interface 0 or 1
+ * @param   width display width
+ * @param   colorimetry colorimetry configuration
  */
 void ipu_dc_config(uint32_t ipu_index, uint32_t channel, uint32_t di, uint32_t width,
                    uint32_t colorimetry)

@@ -16,8 +16,8 @@
 
 /*
  * set the CSI module to handle data from camera
- * @param width: frame width of camera input
- * @param height: frame height of camera input
+ * @param width frame width of camera input
+ * @param height frame height of camera input
  */
 void ipu_csi_config(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_width, uint32_t raw_height, uint32_t act_width, uint32_t act_height)
 {

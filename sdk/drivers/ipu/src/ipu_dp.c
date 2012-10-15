@@ -15,12 +15,12 @@
 
 /*!
  * config the DP module, mainly to perform blending, CSC and gamma correction
- * @param   ipu_index:  ipu index
- * @param   csc_type:   csc type
- * @param   dual_disp:  dual display mode
- * @param   fg_xp:  foreground x position
- * @param   fg_yp:  foreground y position
- * @param   alpha:  alpha value
+ * @param   ipu_index ipu index
+ * @param   csc_type csc type
+ * @param   dual_disp dual display mode
+ * @param   fg_xp foreground x position
+ * @param   fg_yp foreground y position
+ * @param   alpha alpha value
  */
 void ipu_dp_config(uint32_t ipu_index, uint32_t csc_type, uint32_t dual_disp, uint32_t fg_xp,
                    uint32_t fg_yp, uint32_t alpha)
@@ -31,9 +31,9 @@ void ipu_dp_config(uint32_t ipu_index, uint32_t csc_type, uint32_t dual_disp, ui
 
 /*!
  * this function is used to config the color space conversion task in the DP
- * @param   ipu_index:  ipu index, 1 or 2
- * @param   dp:         display
- * @param   csc_type:   csc type
+ * @param   ipu_index ipu index, 1 or 2
+ * @param   dp display
+ * @param   csc_type csc type
  */
 void ipu_dp_csc_config(uint32_t ipu_index, uint32_t dp, uint32_t csc_type)
 {
@@ -101,11 +101,11 @@ void ipu_dp_csc_config(uint32_t ipu_index, uint32_t dp, uint32_t csc_type)
 
 /*!
  * this function is used to config the foreground plane for combination in the DP
- * @param ipu_index: ipu index
- * @param   dual_disp:  dual display mode
- * @param   fg_xp:  foreground x position
- * @param   fg_yp:  foreground y position
- * @param   alpha:  alpha value
+ * @param ipu_index ipu index
+ * @param   dual_disp dual display mode
+ * @param   fg_xp foreground x position
+ * @param   fg_yp foreground y position
+ * @param   alpha alpha value
  */
 void ipu_dp_fg_config(uint32_t ipu_index, uint32_t dual_disp, uint32_t fg_xp, uint32_t fg_yp,
                       uint32_t alpha)

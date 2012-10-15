@@ -13,10 +13,10 @@ static perfmon_res_p last_stats[PERFMON_INST];
 /*!
  * Configure the PerfMon trap mode.
  *
- * @param   id - perfmon instance PERFMON_IDx.
- * @param   addr_low - lower address of the monitored range.
- * @param   addr_high - higher address of the monitored range.
- * @param   range_mode - monitor access inside or outside
+ * @param   id perfmon instance PERFMON_IDx.
+ * @param   addr_low lower address of the monitored range.
+ * @param   addr_high higher address of the monitored range.
+ * @param   range_mode monitor access inside or outside
  *                       the range (IN_RANGE/OUT_RANGE).
  */
 void perfmon_set_trap_mode(perfmon_id_e id, uint32_t addr_low,
@@ -46,8 +46,8 @@ void perfmon_set_trap_mode(perfmon_id_e id, uint32_t addr_low,
 /*!
  * Configure the PerfMon latency mode.
  *
- * @param   id - perfmon instance PERFMON_IDx.
- * @param   lat_threshold - latency threshold to generate an interrupt.
+ * @param   id perfmon instance PERFMON_IDx.
+ * @param   lat_threshold latency threshold to generate an interrupt.
  */
 void perfmon_set_latency_mode(perfmon_id_e id, uint32_t lat_threshold)
 {
@@ -69,9 +69,9 @@ void perfmon_set_latency_mode(perfmon_id_e id, uint32_t lat_threshold)
 /*!
  * Start monitoring the performance.
  *
- * @param   id - perfmon instance PERFMON_IDx.
- * @param   mid - monitored masters PERFMON_MIDx.
- * @param   trans - monitored direction : WRITE_TRANS / READ_TRANS.
+ * @param   id perfmon instance PERFMON_IDx.
+ * @param   mid monitored masters PERFMON_MIDx.
+ * @param   trans monitored direction : WRITE_TRANS / READ_TRANS.
  */
 void perfmon_start(perfmon_id_e id, perfmon_mid_e mid, perfmon_trans_e trans)
 {
@@ -106,7 +106,7 @@ void perfmon_start(perfmon_id_e id, perfmon_mid_e mid, perfmon_trans_e trans)
 /*!
  * Perform a snapshot of the monitored performances.
  *
- * @param   id - perfmon instance PERFMON_IDx.
+ * @param   id perfmon instance PERFMON_IDx.
  */
 void perfmon_do_snapshot(perfmon_id_e id)
 {
@@ -133,10 +133,10 @@ void perfmon_do_snapshot(perfmon_id_e id)
  * or from the last one possibly issued after the interrupt of
  * an event (trap, latency). It optionally clears the counters.
  *
- * @param   id - perfmon instance PERFMON_IDx.
- * @param   res - monitoring results.
- * @param   snapshot - perform a fresh snapshot TRUE/FALSE.
- * @param   clear_stat - clear the statistics TRUE/FALSE.
+ * @param   id perfmon instance PERFMON_IDx.
+ * @param   res monitoring results.
+ * @param   snapshot perform a fresh snapshot TRUE/FALSE.
+ * @param   clear_stat clear the statistics TRUE/FALSE.
  */
 void perfmon_get_performance(perfmon_id_e id, perfmon_res_p res,
                              uint8_t snapshot, uint8_t clear_stat)
@@ -163,8 +163,8 @@ void perfmon_get_performance(perfmon_id_e id, perfmon_res_p res,
 /*!
  * Stop monitoring the performance.
  *
- * @param   id - perfmon instance PERFMON_IDx.
- * @param   res - monitoring results.
+ * @param   id perfmon instance PERFMON_IDx.
+ * @param   res monitoring results.
  */
 void perfmon_stop(perfmon_id_e id, perfmon_res_p res)
 {
@@ -228,8 +228,8 @@ void perfmon_interrupt_routine(void)
  * Setup PerfMon interrupt. It enables or disables the related HW module
  * interrupt, and attached the related sub-routine into the vector table.
  *
- * @param   id - perfmon instance PERFMON_IDx.
- * @param   state - ENABLE or DISABLE the interrupt.
+ * @param   id perfmon instance PERFMON_IDx.
+ * @param   state ENABLE or DISABLE the interrupt.
  */
 void perfmon_setup_interrupt(perfmon_id_e id, uint8_t state)
 {
@@ -246,7 +246,7 @@ void perfmon_setup_interrupt(perfmon_id_e id, uint8_t state)
 /*!
  * Initialize a performance monitor.
  *
- * @param   id - perfmon instance PERFMON_IDx.
+ * @param   id perfmon instance PERFMON_IDx.
  */
 void perfmon_open(perfmon_id_e id)
 {
@@ -276,7 +276,7 @@ void perfmon_open(perfmon_id_e id)
 /*!
  * Properly disable a performance monitor.
  *
- * @param   id - perfmon instance PERFMON_IDx.
+ * @param   id perfmon instance PERFMON_IDx.
  */
 void perfmon_close(perfmon_id_e id)
 {

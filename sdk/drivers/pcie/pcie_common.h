@@ -131,7 +131,7 @@ typedef enum {
 /*! 
  * @brief This function initialized the PCIE controller.
  *
- * @param    dev_mode: the Mode of the PCIE controller, root complex or endpoint	
+ * @param    dev_mode the Mode of the PCIE controller, root complex or endpoint	
  *
  * @return   0 if succeed, -1 if failed
  */
@@ -140,8 +140,8 @@ int pcie_init(pcie_dm_mode_e dev_mode);
 /*! 
  * @brief Map endpoint's space to CPU side.
  *
- * @param    viewport:	the viewport number of iATU	
- * @param    tlp_type:	the type of the transaction layer package
+ * @param    viewport 	the viewport number of iATU	
+ * @param    tlp_type 	the type of the transaction layer package
  * @param	 addr_base_cpu_side: base address in CPU side
  * @param	 addr_base_pcie_side: base address in PCIE side
  * @param	 size: the size of the space to be mapped

@@ -36,11 +36,11 @@ peripherals present on the i.MX6 Series SoCs.
 
 @defgroup diag_ipu IPU
 @brief IPU driver
-@ingroup display
+@ingroup graphics
 
 @defgroup diag_hdmi HDMI
 @brief HDMI transmitter driver
-@ingroup display
+@ingroup graphics
 
 @defgroup diag_uart UART
 @brief UART driver
@@ -51,6 +51,7 @@ peripherals present on the i.MX6 Series SoCs.
 
 @defgroup diag_nand NAND
 @brief GPMI NAND driver
+@ingroup storage
 
 @defgroup bch BCH40 ECC
 @brief BCH ECC driver
@@ -64,14 +65,15 @@ peripherals present on the i.MX6 Series SoCs.
 
 @defgroup VPU VPU
 @brief VPU driver
-@ingroup display
+@ingroup graphics
 
 @defgroup diag_camera Camera Interface
 @brief Camera driver
+@ingroup graphics
 
 @defgroup diag_mipi MIPI DSI/CSI
 @brief MIPI display and camera driver
-@ingroup display
+@ingroup graphics
 
 @defgroup diag_ocotp OTP
 @brief One-time programmable memory driver
@@ -82,7 +84,7 @@ peripherals present on the i.MX6 Series SoCs.
 
 @defgroup diag_ldb LDB
 @brief LVDS Display Bridge driver
-@ingroup display
+@ingroup graphics
 
 @defgroup diag_enet Ethernet
 @brief Internal Ethernet MAC driver
@@ -125,16 +127,18 @@ peripherals present on the i.MX6 Series SoCs.
 
 @defgroup diag_usdhc USDHC
 @brief uSDHC SD/MMC driver
+@ingroup storage
 
 @defgroup diag_vdoa VDOA
 @brief Video Data Order Adapter driver
-@ingroup display
+@ingroup graphics
 
 @defgroup diag_pcie PCIe
 @brief PCIe driver
 
 @defgroup atomics Atomic Operations
 @brief Atomic operation routines
+@ingroup lowlevel
 
 @defgroup menu Menu
 @brief Menu Framework API
@@ -144,29 +148,46 @@ peripherals present on the i.MX6 Series SoCs.
 
 @defgroup diag_clocks Clocks
 @brief Clock management driver
+@ingroup lowlevel
 
 @defgroup cortexa9 Cortex-A9
 @brief CPU related functions
+@ingroup lowlevel
 
 @defgroup diag_interrupt Interrupts
 @brief Interrupt manager
+@ingroup lowlevel
 
 @defgroup diag_mmu MMU
 @brief MMU related routines
+@ingroup lowlevel
 
 @defgroup cpu_utility CPU Utility
 @brief Miscellaneous CPU utility routines
+@ingroup lowlevel
+
+@defgroup diag_adv7180 ADV7180
+@brief ADV7180 video decoder driver
+@ingroup graphics
+
+
+@defgroup lowlevel Low-level Services
+@brief
 
 
 @defgroup timers Timers
 @brief Timer drivers and services
 
 
-@defgroup display Display and Graphics Drivers
+@defgroup graphics Display and Graphics Drivers
 @brief
 
 
 @defgroup serial Serial Protocols
+@brief
+
+
+@defgroup storage Storage Media Drivers
 @brief
 
 

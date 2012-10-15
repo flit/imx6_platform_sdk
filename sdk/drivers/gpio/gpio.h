@@ -75,9 +75,9 @@ int32_t gpio_get_port_count(void);
 /*!
  * @brief Sets the GPIO direction for the specified pin.
  *
- * @param   port : GPIO module instance, GPIO_PORT1, GPIO_PORT2, ... gpio_get_port_count().
- * @param   pin  : GPIO pin 0 to 31.
- * @param   dir  : Direction for the pin. GPIO_GDIR_INPUT(0) or GPIO_GDIR_OUTPUT(1).
+ * @param   port GPIO module instance, GPIO_PORT1, GPIO_PORT2, ... gpio_get_port_count().
+ * @param   pin GPIO pin 0 to 31.
+ * @param   dir Direction for the pin. GPIO_GDIR_INPUT(0) or GPIO_GDIR_OUTPUT(1).
  * @return  INVALID_PARAMETER(-1)
  */
 int32_t gpio_set_direction(int32_t port, int32_t pin, int32_t dir);
@@ -87,9 +87,9 @@ int32_t gpio_set_direction(int32_t port, int32_t pin, int32_t dir);
  *
  * @warning Fails if pin is not configured as an output.
  *
- * @param   port  : GPIO module instance, GPIO_PORT1, GPIO_PORT2, ... gpio_get_port_count().
- * @param   pin   : GPIO pin 0 to 31.
- * @param   level : GPIO_LOW_LEVEL(0), GPIO_HIGH_LEVEL(1)
+ * @param   port GPIO module instance, GPIO_PORT1, GPIO_PORT2, ... gpio_get_port_count().
+ * @param   pin GPIO pin 0 to 31.
+ * @param   level GPIO_LOW_LEVEL(0), GPIO_HIGH_LEVEL(1)
  * @return  INVALID_PARAMETER(-1)
  */
 int32_t gpio_set_level(int32_t port, int32_t pin, uint32_t level);
@@ -99,8 +99,8 @@ int32_t gpio_set_level(int32_t port, int32_t pin, uint32_t level);
  *
  *	@note Returns level for both input and output configured pins.
  *
- * @param   port : GPIO module instance, GPIO_PORT1, GPIO_PORT2, ... gpio_get_port_count().
- * @param   pin  : GPIO pin 0 to 31.
+ * @param   port GPIO module instance, GPIO_PORT1, GPIO_PORT2, ... gpio_get_port_count().
+ * @param   pin GPIO pin 0 to 31.
  * @retval  INVALID_PARAMETER(-1),
  * @retval  GPIO_LOW_LEVEL(0),
  * @retval  GPIO_HIGH_LEVEL(1)
@@ -110,9 +110,9 @@ int32_t gpio_get_level(int32_t port, int32_t pin);
 /*!
  * @brief Configures the interrupt condition for the specified GPIO input pin.
  *
- * @param   port : GPIO module instance, GPIO_PORT1, GPIO_PORT2, ... gpio_get_port_count().
- * @param   pin : GPIO pin 0 to 31.
- * @param   config : Interrupt condition for the pin. GPIO_ICR_LOW_LEVEL(0), GPIO_ICR_HIGH_LEVEL(1),
+ * @param   port GPIO module instance, GPIO_PORT1, GPIO_PORT2, ... gpio_get_port_count().
+ * @param   pin GPIO pin 0 to 31.
+ * @param   config Interrupt condition for the pin. GPIO_ICR_LOW_LEVEL(0), GPIO_ICR_HIGH_LEVEL(1),
  *                   GPIO_ICR_RISE_EDGE(2), GPIO_ICR_FALL_EDGE(3)
  * @return INVALID_PARAMETER(-1)
  */
@@ -121,9 +121,9 @@ int32_t gpio_set_interrupt_config(int32_t port, int32_t pin, int32_t config);
 /*!
  * @brief Enables/Disables the interrupt for the specified GPIO input pin.
  *
- * @param   port : GPIO module instance, GPIO_PORT1, GPIO_PORT2, ... gpio_get_port_count().
- * @param   pin : GPIO pin 0 to 31.
- * @param   mask : interrupt mask for the pin. GPIO_IMR_MASKED(0), GPIO_IMR_UNMASKED(1)
+ * @param   port GPIO module instance, GPIO_PORT1, GPIO_PORT2, ... gpio_get_port_count().
+ * @param   pin GPIO pin 0 to 31.
+ * @param   mask interrupt mask for the pin. GPIO_IMR_MASKED(0), GPIO_IMR_UNMASKED(1)
  * @return  INVALID_PARAMETER(-1)
  */
 int32_t gpio_set_interrupt_mask(int32_t port, int32_t pin, int32_t mask);
@@ -131,8 +131,8 @@ int32_t gpio_set_interrupt_mask(int32_t port, int32_t pin, int32_t mask);
 /*!
  * @brief Gets the GPIO interrupt status for the specified pin.
  *
- * @param   port : GPIO module instance, GPIO_PORT1, GPIO_PORT2, ... gpio_get_port_count().
- * @param   pin : GPIO pin 0 to 31.
+ * @param   port GPIO module instance, GPIO_PORT1, GPIO_PORT2, ... gpio_get_port_count().
+ * @param   pin GPIO pin 0 to 31.
  * @return  INVALID_PARAMETER(-1), GPIO_ISR_NOT_ASSERTED(0), GPIO_ISR_ASSERTED(1)
  */
 int32_t gpio_get_interrupt_status(int32_t port, int32_t pin);
@@ -140,8 +140,8 @@ int32_t gpio_get_interrupt_status(int32_t port, int32_t pin);
 /*!
  * @brief Clears the GPIO interrupt for the specified pin.
  *
- * @param   port : GPIO module instance, GPIO_PORT1, GPIO_PORT2, ... gpio_get_port_count().
- * @param   pin : GPIO pin 0 to 31.
+ * @param   port GPIO module instance, GPIO_PORT1, GPIO_PORT2, ... gpio_get_port_count().
+ * @param   pin GPIO pin 0 to 31.
  * @return  INVALID_PARAMETER(-1)
  */
 int32_t gpio_clear_interrupt(int32_t port, int32_t pin);

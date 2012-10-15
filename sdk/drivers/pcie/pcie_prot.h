@@ -138,7 +138,7 @@ typedef struct {
 /*! 
  * @brief This function dump the PCIE configuration header 
  *
- * @param    header_base: the base address of the configuration header to be dumped	
+ * @param    header_base the base address of the configuration header to be dumped	
  *
  * @return   0 on success,
  *           -1 if failed
@@ -148,7 +148,7 @@ int pcie_dump_cfg_header(uint32_t * header_base);
 /*! 
  * @brief This function enumerate the PCIE endpoint's IO/memory recource 
  *
- * @param    header_base: the base address of the configuration header to be enumerated
+ * @param    header_base the base address of the configuration header to be enumerated
  * @param	 res:	the array to save the resources enumerated
  * @param	 num:	the number of the resources
  *
@@ -160,7 +160,7 @@ int pcie_enum_resources(uint32_t * header_base, pcie_resource_t res[], uint32_t 
 /*! 
  * @brief This function configure the endpoint's BARs 
  *
- * @param    header_base: the base address of the configuration header
+ * @param    header_base the base address of the configuration header
  * @param	 bar:	the index of the BAR to be configured
  * @param	 base:	the base address to be written to the BAR
  * @param	 base_msk:	the mask of the base

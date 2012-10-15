@@ -72,14 +72,14 @@ enum _uart_bits
 /*!
  * @brief   Initialize the UART port
  *
- * @param   port - pointer to the UART module structure.
- * @param   baudrate - serial baud rate such 9600, 57600, 115200, etc.
- * @param   parity - enable parity checking: PARITY_NONE, PARITY_EVEN,
+ * @param   port pointer to the UART module structure.
+ * @param   baudrate serial baud rate such 9600, 57600, 115200, etc.
+ * @param   parity enable parity checking: PARITY_NONE, PARITY_EVEN,
  *                   PARITY_ODD.
- * @param   stopbits - number of stop bits: STOPBITS_ONE, STOPBITS_TWO.
- * @param   datasize - number of bits in a data: SEVENBITS, EIGHTBITS,
+ * @param   stopbits number of stop bits: STOPBITS_ONE, STOPBITS_TWO.
+ * @param   datasize number of bits in a data: SEVENBITS, EIGHTBITS,
  *                     NINEBITS (like RS-485 but not supported).
- * @param   flowcontrol - enable (RTS/CTS) hardware flow control:
+ * @param   flowcontrol enable (RTS/CTS) hardware flow control:
  *                        FLOWCTRL_ON, FLOWCTRL_OFF.
  */
 void uart_init(struct hw_module *port, uint32_t baudrate, uint8_t parity,uint8_t stopbits, uint8_t datasize, uint8_t flowcontrol);
@@ -87,8 +87,8 @@ void uart_init(struct hw_module *port, uint32_t baudrate, uint8_t parity,uint8_t
 /*!
  * @brief   Output a character to UART port
  *
- * @param   port - pointer to the UART module structure
- * @param   ch - pointer to the character for output
+ * @param   port pointer to the UART module structure
+ * @param   ch pointer to the character for output
  * @return  the character that has been sent
  */
 uint8_t uart_putchar(struct hw_module *port, uint8_t * ch);
@@ -96,7 +96,7 @@ uint8_t uart_putchar(struct hw_module *port, uint8_t * ch);
 /*!
  * @brief   Receive a character on the UART port
  *
- * @param   port - pointer to the UART module structure
+ * @param   port pointer to the UART module structure
  * @return  a character received from the UART port; if the RX FIFO
  *          is empty or errors are detected, it returns NONE_CHAR
  */
@@ -105,11 +105,11 @@ uint8_t uart_getchar(struct hw_module *port);
 /*!
  * @brief   Configure the RX or TX FIFO level and trigger mode
  *
- * @param   port - pointer to the UART module structure
- * @param   fifo - FIFO to configure: RX_FIFO or TX_FIFO.
- * @param   trigger_level - set the trigger level of the FIFO to generate
+ * @param   port pointer to the UART module structure
+ * @param   fifo FIFO to configure: RX_FIFO or TX_FIFO.
+ * @param   trigger_level set the trigger level of the FIFO to generate
  *                          an IRQ or a DMA request: number of characters.
- * @param   service_mode - FIFO served with DMA or IRQ or polling (default).
+ * @param   service_mode FIFO served with DMA or IRQ or polling (default).
  */
 void uart_set_FIFO_mode(struct hw_module *port, uint8_t fifo, uint8_t trigger_level,
                         uint8_t service_mode);
@@ -117,8 +117,8 @@ void uart_set_FIFO_mode(struct hw_module *port, uint8_t fifo, uint8_t trigger_le
 /*!
  * @brief   Enables UART loopback test mode
  *
- * @param   port - pointer to the UART module structure
- * @param   state - enable/disable the loopback mode
+ * @param   port pointer to the UART module structure
+ * @param   state enable/disable the loopback mode
  */
 void uart_set_loopback_mode(struct hw_module *port, uint8_t state);
 
@@ -126,8 +126,8 @@ void uart_set_loopback_mode(struct hw_module *port, uint8_t state);
  * @brief   Setup UART interrupt. It enables or disables the related HW module
  * interrupt, and attached the related sub-routine into the vector table.
  *
- * @param   port - pointer to the UART module structure.
- * @param   state - ENABLE or DISABLE the interrupt.
+ * @param   port pointer to the UART module structure.
+ * @param   state ENABLE or DISABLE the interrupt.
  */
 void uart_setup_interrupt(struct hw_module *port, uint8_t state);
 
@@ -135,7 +135,7 @@ void uart_setup_interrupt(struct hw_module *port, uint8_t state);
 /*!
  * @brief   Obtain UART reference frequency
  *
- * @param   port - pointer to the UART module structure
+ * @param   port pointer to the UART module structure
  * @return  reference frequency in Hz
  */
 uint32_t uart_get_reffreq(struct hw_module *port);

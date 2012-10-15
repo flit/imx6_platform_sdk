@@ -37,7 +37,7 @@ static const int MenuKeyFindMoreThanOne = -1;  //!< menu_key_find() found more t
  * Counts all menuitems including MENUITEM_GROUP menuitems which are not
  * selectable. The count does not include the terminating MENUITEM_NULL element.
  *
- * @param   menu  : A pointer to the menu structure holding the menuitems to be counted.
+ * @param   menu A pointer to the menu structure holding the menuitems to be counted.
  * @return  Number of menuitems.
  */
 int menu_get_size(const menu_t* menu)
@@ -59,8 +59,8 @@ int menu_get_size(const menu_t* menu)
  *
  * @note Search is not case sensitive.
  *
- * @param   menu  : A pointer to the menu structure holding the menuitems to be searched.
- * @param   key   : A pointer to search string used to identify a menuitem.
+ * @param   menu A pointer to the menu structure holding the menuitems to be searched.
+ * @param   key A pointer to search string used to identify a menuitem.
  * @retval  Index of the only menuitem that starts with the key parameter.
  * @retval  MenuKeyFindNone(-2) if a matching menuitem was not found.
  * @return  MenuKeyFindMoreThanOne(-1) if more than one matching menuitem was found.
@@ -100,8 +100,8 @@ int menu_key_find(const menu_t* menu, const char* key)
  * @note Search is not case sensitive.
  * @note This function would typically be called after menu_find_key() returned MenuKeyFindMoreThanOne.
  *
- * @param   menu  : A pointer to the menu structure holding the menuitems to be searched.
- * @param   key   : A pointer to search string used to identify a menuitem.
+ * @param   menu A pointer to the menu structure holding the menuitems to be searched.
+ * @param   key A pointer to search string used to identify a menuitem.
  * @retval  Index of the first menuitem that starts with the key parameter.
  * @retval  MenuKeyFindNone(-2) if a matching menuitem was not found.
  */
@@ -133,8 +133,8 @@ int menu_key_find_first(const menu_t* menu, const char* key)
 /*!
  * @brief Default "Show Menu" handler.
  *
- * @param   context  : Menu context. Ignored.
- * @param   param     : Function specific parameter. Ignored.
+ * @param   context Menu context. Ignored.
+ * @param   param Function specific parameter. Ignored.
  * @return  MENU_SHOW.
  */
 menu_action_t menuitem_cmd_showmenu(const menu_context_t* context, void* param) { return MENU_SHOW; }
@@ -142,8 +142,8 @@ menu_action_t menuitem_cmd_showmenu(const menu_context_t* context, void* param) 
 /*!
  * @brief Default "Exit Menu" handler.
  *
- * @param   context   : Menu context. Ignored.
- * @param   param     : Function specific parameter. Ignored.
+ * @param   context Menu context. Ignored.
+ * @param   param Function specific parameter. Ignored.
  * @return  MENU_EXIT.
  */
 menu_action_t menuitem_cmd_exitmenu(const menu_context_t* context, void* param) { return MENU_EXIT; }
@@ -151,8 +151,8 @@ menu_action_t menuitem_cmd_exitmenu(const menu_context_t* context, void* param) 
 /*!
  * @brief Print the menu description (header), all of the menuitems, and instructions to the user (footer).
  *
- * @param   indent   : String used to align text for the current menu level.
- * @param   menu     : Pointer to the menu to print.
+ * @param   indent String used to align text for the current menu level.
+ * @param   menu Pointer to the menu to print.
  */
 void menu_print(const char* indent, const menu_t* menu)
 {
@@ -203,8 +203,8 @@ void menu_print(const char* indent, const menu_t* menu)
 /*!
  * @brief Print instructional text to help user execute the menu.
  *
- * @param   indent    : String used to align text for the current menu level.
- * @param   menu      : Pointer to the menu struct that contains the footer member to print.
+ * @param   indent String used to align text for the current menu level.
+ * @param   menu Pointer to the menu struct that contains the footer member to print.
  * @return  MENU_EXIT.
  */
 void menu_print_footer(const char* indent, const menu_t* menu)

@@ -106,10 +106,10 @@ int32_t ipu_sw_reset(int32_t ipu_index, int32_t timeout)
 /*!
  * display function HW configuration for IPU.
  *
- * @param   ipu_index:  ipu index
- * @param   panel:      ipu panel configuration data structure
- * @param   mem_colorimetry: colorimetry configuration
- * @param   csc_type: color space conversion type
+ * @param   ipu_index ipu index
+ * @param   panel ipu panel configuration data structure
+ * @param   mem_colorimetry colorimetry configuration
+ * @param   csc_type color space conversion type
  */
 void ipu_display_setup(uint32_t ipu_index, uint32_t mem_addr0, uint32_t mem_addr1,
                        uint32_t mem_colorimetry, ips_dev_panel_t * panel)
@@ -153,12 +153,12 @@ void ipu_display_setup(uint32_t ipu_index, uint32_t mem_addr0, uint32_t mem_addr
  *
  * @param	ipu_index:	ipu index
  * @param	panel:		ipu panel configuration data structure
- * @param   mem_colorimetry: colorimetry configuration
- * @param   fg_width: foreground width
- * @param   fg_height: foreground height
- * @param   fg_xp: foreground x position
- * @param   fg_yp: foreground y position
- * @param   alpha: alpha value
+ * @param   mem_colorimetry colorimetry configuration
+ * @param   fg_width foreground width
+ * @param   fg_height foreground height
+ * @param   fg_xp foreground x position
+ * @param   fg_yp foreground y position
+ * @param   alpha alpha value
  */
 void ipu_dual_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_t mem_colorimetry,
                             uint32_t fg_width, uint32_t fg_height, uint32_t fg_xp, uint32_t fg_yp,
@@ -287,7 +287,7 @@ void ipu_mipi_csi2_setup(uint32_t ipu_index, uint32_t csi_width, uint32_t csi_he
 
 /*! Set display parameters in IPU configuration structure according to your display panel name. There are only some displays are supported by this function. And you can set the display manually all by your self if the hardware is supported by IPU.
  *
- * @param panel_name:		panel name of your display
+ * @param panel_name 		panel name of your display
  */
 ips_dev_panel_t *search_panel(char *panel_name)
 {

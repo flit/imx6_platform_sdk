@@ -6,9 +6,9 @@
 */
 
 /*!
- * @file camera_def.h
+ * @file adv7180_def.h
  * @brief common macro and data structre defination of camera.
- * @ingroup diag_camera
+ * @ingroup diag_adv7180
  */
 
 #ifndef __ADV7180_DEF_H__

@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include "sdk_types.h"
 #include "board_id/board_id.h"
+#include "board_id_internal.h"
 
 void chip_name(char* const name, const uint32_t chip_id, const bool long_name_flag)
 {
@@ -165,11 +166,11 @@ fsl_board_id_t get_board_id(void)
 {
     fsl_board_id_t fsl_board_id = { 0 };
 
-    uint32_t anatop_chip_id = HW_USB_ANALOG_DIGPROG_RD();
-    fsl_board_id.B.CHIP_TYPE_ID = BG_USB_ANALOG_DIGPROG_CHIP_TYPE(anatop_chip_id);
-    fsl_board_id.B.CHIP_REV_MAJOR = BG_USB_ANALOG_DIGPROG_MAJOR_REV(anatop_chip_id);
-    fsl_board_id.B.CHIP_REV_MINOR = BG_USB_ANALOG_DIGPROG_MINOR(anatop_chip_id);
-//    printf("read 0x%08X from HW_USB_ANALOG_DIGPROG(0x%08X)\n", anatop_chip_id, HW_USB_ANALOG_DIGPROG_ADDR);
+    uint32_t chip_id = HW_USB_ANALOG_DIGPROG_RD();
+    fsl_board_id.B.CHIP_TYPE_ID = BG_USB_ANALOG_DIGPROG_CHIP_TYPE(chip_id);
+    fsl_board_id.B.CHIP_REV_MAJOR = BG_USB_ANALOG_DIGPROG_MAJOR_REV(chip_id);
+    fsl_board_id.B.CHIP_REV_MINOR = BG_USB_ANALOG_DIGPROG_MINOR(chip_id);
+//    printf("read 0x%08X from HW_USB_ANALOG_DIGPROG(0x%08X)\n", chip_id, HW_USB_ANALOG_DIGPROG_ADDR);
 
     uint32_t fused_board_id = HW_OCOTP_GP1_RD();
     fsl_board_id.B.BOARD_TYPE_ID = BG_OCOTP_GP1_BOARD_TYPE(fused_board_id);

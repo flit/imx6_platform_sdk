@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include "sdk_types.h"
 #include "board_id/board_id.h"
-#include "board_id_internal.h"
+#include "board_id/board_id_registers.h"
 
 void chip_name(char* const name, const uint32_t chip_id, const bool long_name_flag)
 {

@@ -15,6 +15,7 @@
 #define BOARD_ID_H_
 
 #include "sdk_types.h"
+#include "board_id_registers.h"
 
 /*!
  * @brief Fused Freescale Reference Board ID

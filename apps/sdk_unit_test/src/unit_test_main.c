@@ -10,9 +10,9 @@
 #include "platform_init.h"
 #include "cortex_a9.h"
 #include "mmu.h"
-#include "version.h"
+#include "sdk_version.h"
 #include "print_clock_info.h"
-//#include "board_id/board_id.h"
+#include "print_version.h"
 
 extern int SDK_TEST(void);
 

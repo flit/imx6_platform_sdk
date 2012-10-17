@@ -7,11 +7,11 @@
 
 #include "sdk.h"
 #include "mmu.h"
-#include "version.h"
+#include "sdk_version.h"
 #include "cortex_a9.h"
 #include "iomux_config.h"
 #include "platform_init.h"
-
+#include "print_version.h"
 #include "texture.h"
 #include "gpu_test_common.h"
 #include "sdk_gpu_utilities.h"

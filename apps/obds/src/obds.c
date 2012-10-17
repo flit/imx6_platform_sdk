@@ -23,8 +23,9 @@
 #include "obds_utils.h"
 #include "platform_init.h"
 #include "text_color.h"
-#include "version.h"
+#include "sdk_version.h"
 #include "print_clock_info.h"
+#include "print_version.h"
 
 int total_tests = 0;
 int auto_run_enable = 1; // global flag to indicate auto-run feature enabled or not

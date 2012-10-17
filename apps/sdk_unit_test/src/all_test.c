@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 #include "sdk.h"
-#include "version.h"
+#include "sdk_version.h"
 #include "cortex_a9.h"
 #include "mmu.h"
 

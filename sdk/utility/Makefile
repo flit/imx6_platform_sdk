@@ -6,7 +6,7 @@ SOURCES = \
 	src/spinlock.c \
 	src/system_util.c \
 	src/text_color.c \
-	src/version.c \
+	src/sdk_version.c \
 	src/atomics.s
 
 

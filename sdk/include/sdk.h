@@ -20,6 +20,7 @@
 #include <stdarg.h>
 
 #include "sdk_types.h"
+#include "sdk_version.h"
 #include "io.h"
 
 #include "soc_memory_map.h"

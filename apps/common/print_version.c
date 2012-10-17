@@ -6,15 +6,17 @@
 */
 
 /*!
- * @file  version.c
+ * @file  print_version.c
  * @brief Contains function to print out the app release version.
- *
- * @ingroup diag_init
  */
 
 #include "sdk.h"
-#include "version.h"
+#include "sdk_version.h"
 #include "board_id/board_id.h"
+
+////////////////////////////////////////////////////////////////////////////////
+// Code
+////////////////////////////////////////////////////////////////////////////////
 
 /*!
  * print out the diag release version info
@@ -36,9 +38,13 @@ void print_version(void)
 
     printf("\n\n\n\n");
     printf("**************************************************************************\n");
-    printf("    Platform SDK (%s) for %s %s %s %s\n", version_s, chip_str, chip_rev_str,
+    printf("    Platform SDK (%s) for %s %s %s %s\n", k_sdk_version, chip_str, chip_rev_str,
            board_str, board_rev_str);
     printf("    Build: %s, %s\n", __DATE__, __TIME__);
-    printf("    Freescale Semiconductor, Inc.\n");
+    printf("    %s\n", k_sdk_copyright);
     printf("**************************************************************************\n\n");
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////

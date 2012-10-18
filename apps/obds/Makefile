@@ -22,8 +22,7 @@ include $(SDK_ROOT)/mk/common.mk
 # Determine if the target is either the MX6DQ or MX6SDL.
 ifeq "$(TARGET)" "mx6dq"
 is_dq_or_sdl = 1
-endif
-ifeq "$(TARGET)" "mx6sdl"
+else ifeq "$(TARGET)" "mx6sdl"
 is_dq_or_sdl = 1
 endif
 
@@ -41,6 +40,7 @@ LINK_APP = 1
 define SOURCES
     $(APPS_ROOT)/common/platform_init.c
     $(APPS_ROOT)/common/print_clock_info.c
+    $(APPS_ROOT)/common/print_version.c
     $(SDK_LIB_ROOT)/drivers/spi/test/spi_nor_numonyx.c
     $(SDK_LIB_ROOT)/drivers/spi/test/imx_spi_nor_atmel.c
     $(SDK_LIB_ROOT)/drivers/usdhc/test/usdhc_test.c

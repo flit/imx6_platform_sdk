@@ -46,8 +46,7 @@ include mk/common.mk
 # Determine if the target is either the MX6DQ or MX6SDL.
 ifeq "$(TARGET)" "mx6dq"
 is_dq_or_sdl = 1
-endif
-ifeq "$(TARGET)" "mx6sdl"
+else ifeq "$(TARGET)" "mx6sdl"
 is_dq_or_sdl = 1
 endif
 
@@ -60,13 +59,14 @@ SUBDIRS = \
 ALL_APPS = \
     sdk_unit_test \
     power_modes_test \
-    obds \
-	caam_blob_gen
+    obds
 
+# Apps that are only built for MX6DQ and MX6SDL.
 ifdef is_dq_or_sdl
 ALL_APPS += \
     gpu_demo \
-    multicore_demo
+    multicore_demo \
+    caam_blob_gen
 endif
 
 # Default target.

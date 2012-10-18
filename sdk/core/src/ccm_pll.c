@@ -254,6 +254,10 @@ void clock_gating_config(uint32_t base_address, uint32_t gating_mode)
             cgx_offset = CG(8);
             break;
 #endif
+        case CAAM_BASE_ADDR:
+            ccm_ccgrx = HW_CCM_CCGR0_ADDR;
+            cgx_offset = CG(6) | CG(5) | CG(4);
+            break;
         default:
             break;
     }

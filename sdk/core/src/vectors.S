@@ -82,7 +82,7 @@ swi_handler:
 prefetch_handler:
         b       prefetch_handler
 abort_handler:
-        b       abort_handler
+        b       ABORT_HDLR
 irq_handler:
         b       IRQ_HDLR //only response to the IRQ
 fiq_handler:

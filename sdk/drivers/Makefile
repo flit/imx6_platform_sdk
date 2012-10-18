@@ -61,6 +61,7 @@ SOURCES += \
     audio/src/snd_card.c \
     audio/src/wm8958_dac.c \
     audio/src/wm8962.c \
+	caam/src/caam.c \
     camera/src/smd_sensor.c \
 	enet/src/enet_drv.c \
 	flexcan/src/can.c \

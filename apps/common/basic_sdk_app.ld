@@ -17,7 +17,7 @@ MEMORY
 SECTIONS
 {
     _start_image_add = ORIGIN(DDR);
-       
+
     .ivt :
     {
         . = . + 0x400;
@@ -29,9 +29,11 @@ SECTIONS
         __start_boot_data = .;
         *o(.boot_data)
     } 
-    
+
+    /* aligned to ease the hexdump read of generated binary */ 
     .dcd_hdr :
     {
+        . = ALIGN (16);
         __start_dcd = .;
         *o(.dcd_hdr)
     }
@@ -75,11 +77,14 @@ SECTIONS
     __exidx_end = .;
 
     . = ALIGN (4);
+    /* Reserve some space for HAB CSF data */
+    . = _start_image_add + 0x20000;
     __hab_data = .;
     . = . + 0x2000;
+    . = ALIGN (32);
     __hab_data_end = .;
-    _end_image_add = .;
-    _image_size = _end_image_add - _start_image_add;
+    _image_size = __hab_data_end - _start_image_add;
+    /* End of HAB reserved space (must place it before BSS section) */
 
     .bss :
     {

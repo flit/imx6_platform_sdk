@@ -60,7 +60,8 @@ SUBDIRS = \
 ALL_APPS = \
     sdk_unit_test \
     power_modes_test \
-    obds 
+    obds \
+	caam_blob_gen
 
 ifdef is_dq_or_sdl
 ALL_APPS += \

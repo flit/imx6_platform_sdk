@@ -80,6 +80,8 @@ endianness.
     (GEN_FIELD((maj), HAB_VER_MAJ_WIDTH, HAB_VER_MAJ_SHIFT)     \
      | GEN_FIELD((min), HAB_VER_MIN_WIDTH, HAB_VER_MIN_SHIFT))
 
+#define DCD_DATA(addr, data)    EXPAND_UINT32(addr), EXPAND_UINT32(data)
+
 /*
  *    CSF header
  */

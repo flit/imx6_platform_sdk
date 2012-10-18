@@ -2,6 +2,7 @@ include $(SDK_ROOT)/mk/common.mk
 
 
 SOURCES = \
+	src/abort_handler.c \
 	src/ccm_pll.c \
 	src/interrupt.c \
 	src/mmu.c \

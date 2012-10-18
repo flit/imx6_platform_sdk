@@ -25,6 +25,7 @@
 	.equ F_Bit, 0x40 @ /* when F bit is set EQU FIQ is disabled */
 
 	@ exception vector adddress holders at top of OCRAM for iMX6Quad/Dual
+	.equ ABORT_MEM_ADDR, 0x0093ffec
 	.equ IRQ_MEM_ADDR, 0x0093fff4
 	.equ FIQ_MEM_ADDR, 0x0093fff8
     
@@ -83,7 +84,10 @@ primary_cpu_init:
     ldr		r0, =IRQ_MEM_ADDR
     ldr		r1, =IRQ_HDLR
     str		r1, [r0]
-   
+    ldr		r0, =ABORT_MEM_ADDR
+    ldr		r1, =ABORT_HDLR
+    str		r1, [r0]
+
    	/* init .bss */
     /* clear the .bss section (zero init) */
     ldr     r1,=__bss_start__

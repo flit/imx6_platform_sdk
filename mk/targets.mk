@@ -50,7 +50,7 @@ OBJECTS_ASM := $(addprefix $(OBJS_ROOT)/,$(ASM_s_SOURCES:.s=.o))
 OBJECTS_ASM_S := $(addprefix $(OBJS_ROOT)/,$(ASM_S_SOURCES:.S=.o))
 
 # Complete list of all object files.
-OBJECTS_ALL := $(OBJECTS_C) $(OBJECTS_CXX) $(OBJECTS_ASM) $(OBJECTS_ASM_S)
+OBJECTS_ALL := $(sort $(OBJECTS_C) $(OBJECTS_CXX) $(OBJECTS_ASM) $(OBJECTS_ASM_S))
 
 #-------------------------------------------------------------------------------
 # Target library
@@ -179,20 +179,34 @@ endif
 app_bin = $(basename $(APP_ELF)).bin
 app_map = $(basename $(APP_ELF)).map
 
+# Preprocess the linker script.
+ifeq "$(filter %.S,$(LD_FILE))" ""
+the_ld_file = $(LD_FILE)
+else
+rel_ld_file = $(basename $(subst $(SDK_ROOT)/,,$(abspath $(LD_FILE))))
+the_ld_file = $(addprefix $(OBJS_ROOT)/,$(rel_ld_file))
+
+$(the_ld_file): $(LD_FILE)
+	@if [ -t 1 ]; then printf "$(color_asm)Preprocessing$(color_default) $(subst $(SDK_ROOT)/,,$<)\n" ; \
+	else printf "Preprocessing $(subst $(SDK_ROOT)/,,$<)\n" ; fi
+	$(at)cd $(dir $<) && $(CC) -E -P $(INCLUDES) $(DEFINES) -o $@ $<
+endif
+
 # Link the application.
 # Wrap the link objects in start/end group so that ld re-checks each
 # file for dependencies.  Otherwise linking static libs can be a pain
 # since order matters.
-$(APP_ELF): $(app_objs) $(LD_FILE) $(LIBRARIES) $(APP_LIBS)
+$(APP_ELF): $(app_objs) $(the_ld_file) $(LIBRARIES) $(APP_LIBS)
 	@if [ -t 1 ]; then printf "$(color_link)Linking$(color_default) $(APP_NAME)...\n" ; \
 	else printf "Linking $(APP_NAME)...\n" ; fi
 	$(at)$(LD) -Bstatic -nostartfiles -nostdlib $(LDFLAGS) \
-	      -T $(LD_FILE) \
+	      -T $(the_ld_file) \
+	      $(LDINC) \
 	      --start-group \
 	      $(app_objs) \
 	      $(LIBRARIES) \
 	      $(APP_LIBS) \
-	      $(LDADD) $(LDINC) \
+	      $(LDADD) \
 	      --end-group \
 	      -o $@ \
 	      -Map $(app_map)

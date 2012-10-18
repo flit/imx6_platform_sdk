@@ -43,10 +43,10 @@ LIBRARIES = \
     $(LIBBOARD)
 
 # Specify our linker script.
-LD_FILE = $(APPS_ROOT)/common/basic_sdk_app.ld
+LD_FILE = $(APPS_ROOT)/common/basic_sdk_app.ld.S
 
 # Add common to include paths.
-INCLUDES += -I$(APPS_ROOT)/common -I$(APPS_ROOT)/$(APP_NAME)
+INCLUDES += -I$(APPS_ROOT)/common
 
 # Standard targets.
 include $(SDK_ROOT)/mk/targets.mk

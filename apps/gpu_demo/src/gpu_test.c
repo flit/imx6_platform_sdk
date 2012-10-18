@@ -97,11 +97,11 @@ int gpu_test(void)
         panel->panel_init(&ipu_index);
         ipu_dual_display_setup(ipu_index, panel, INTERLEAVED_ARGB8888, width, height, 0, 0, 0x0);
         ipu_dma_update_buffer(ipu_index, 23, 0, BG_BUFFER_ADDR);
-		memset((void *)BG_BUFFER_ADDR, 0x00, width * height * pixel_format);
-		ipu_dma_update_buffer(ipu_index, 27, 0, FG_BUFFER_ADDR0);
-		memset((void *)FG_BUFFER_ADDR0, 0x00, width * height * pixel_format);
+        memset((void *)BG_BUFFER_ADDR, 0x00, width * height * pixel_format);
+        ipu_dma_update_buffer(ipu_index, 27, 0, FG_BUFFER_ADDR0);
+        memset((void *)FG_BUFFER_ADDR0, 0x00, width * height * pixel_format);
         ipu_dma_update_buffer(ipu_index, 27, 1, FG_BUFFER_ADDR1);
-		memset((void *)FG_BUFFER_ADDR1, 0x00, width * height * pixel_format);
+        memset((void *)FG_BUFFER_ADDR1, 0x00, width * height * pixel_format);
         ipu_enable_display(ipu_index);
         panel_init = 1;
     }
@@ -110,9 +110,12 @@ int gpu_test(void)
 
     printf("GPU test running, press any key to exit.\n");
     while (1) {
-        if (getchar() != (uint8_t) 0xFF) {
-            printf("GPU test exits.\n");
-            break;
+        int tloop = 0x400;      //drain the buffer
+        while (tloop--) {
+            if (getchar() != (uint8_t) 0xFF) {
+                printf("GPU test exits.\n");
+                return 0;
+            }
         }
         rotateTexture(CMD_BUFFER_ADDR);
     }

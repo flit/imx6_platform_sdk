@@ -70,7 +70,7 @@ typedef struct ipu_cpmem {
 } ipu_cpmem_t;
 
 #define ipu_cpmem_addr(ipu, ch) ({ \
-	uint32_t temp = (uint32_t)(((struct ipu_cpmem *)(REGS_IPU_BASE(1)+IPU_MEMORY_OFFSET)) + (ch)); \
+	uint32_t temp = (uint32_t)(((struct ipu_cpmem *)(REGS_IPU_BASE(ipu)+IPU_MEMORY_OFFSET)) + (ch)); \
 		temp;\
 })
 

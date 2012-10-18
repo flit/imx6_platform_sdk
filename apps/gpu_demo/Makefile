@@ -32,6 +32,9 @@ define SOURCES
 	src/texture.c
 	src/gpu_test.c
     $(APPS_ROOT)/common/platform_init.c
+    $(APPS_ROOT)/common/print_clock_info.c
+    $(APPS_ROOT)/common/print_version.c
+    $(APPS_ROOT)/common/ivt.c
 endef
 
 # Need to include the SDK library!

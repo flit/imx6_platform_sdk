@@ -91,44 +91,5 @@ typedef struct {
     sdma_bd_t chan0BD;          //channel 0 buffer descriptor reserved buffer
 } sdma_env_t, *sdma_env_p;
 
-typedef struct {
-    volatile unsigned int mc0ptr;
-    volatile unsigned int intr;
-    volatile unsigned int stop_stat;
-    volatile unsigned int hstart;
-    volatile unsigned int evtovr;
-    volatile unsigned int dspovr;
-    volatile unsigned int hostovr;
-    volatile unsigned int evtpend;
-    volatile unsigned int reserved0;
-    volatile unsigned int reset;
-    volatile unsigned int evterr;
-    volatile unsigned int intrmask;
-    volatile unsigned int psw;
-    volatile unsigned int evterrdbg;
-    volatile unsigned int config;
-    volatile unsigned int sdma_lock;
-    volatile unsigned int once_enb;
-    volatile unsigned int once_data;
-    volatile unsigned int once_instr;
-    volatile unsigned int once_stat;
-    volatile unsigned int once_cmd;
-    volatile unsigned int reserved1;
-    volatile unsigned int illinstaddr;
-    volatile unsigned int chn0addr;
-    volatile unsigned int evt_mirror;
-    volatile unsigned int evt_mirror2;
-    volatile unsigned int reserved2[2];
-    volatile unsigned int xtrig_conf1;
-    volatile unsigned int xtrig_conf2;
-    volatile unsigned int otb;
-    volatile unsigned int prf_cntx[6];
-    volatile unsigned int prf_cfg;
-    volatile unsigned int reserved3[26];
-    volatile unsigned int chnpri[SDMA_NUM_CHANNELS];
-    volatile unsigned int reserved4[32];
-    volatile unsigned int chnenbl[SDMA_NUM_REQUESTS];
-    volatile unsigned int reserved5[16];
-} sdma_reg_t, *sdma_reg_p;
 
 #endif

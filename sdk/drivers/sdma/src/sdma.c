@@ -8,15 +8,17 @@
 /*!
  * @file sdma.c
  * @brief SDMA library
+
+ * @ingroup diag_sdma
  */
 
 #include "sdk.h"
 #include "sdma_priv.h"
 #include "core/interrupt.h"
+#include "registers/regssdmaarm.h"
 
 extern sdma_script_info_t script_info;
 
-static sdma_reg_p sdma_base;
 static sdma_env_p sdma_envp;
 
 static int32_t sdma_initialized = FALSE;
@@ -25,24 +27,24 @@ static int32_t sdma_initialized = FALSE;
 static void set_channel_override(int32_t channel, int32_t hostovr, int32_t dspovr, int32_t evtovr)
 {
     if (hostovr == TRUE)
-        sdma_base->hostovr |= (1 << channel);
+        HW_SDMAARM_HOSTOVR_SET(1 << channel);
     else
-        sdma_base->hostovr &= ~(1 << channel);
+        HW_SDMAARM_HOSTOVR_CLR(1 << channel);
 
     if (dspovr == TRUE)
-        sdma_base->dspovr |= (1 << channel);
+        HW_SDMAARM_DSPOVR_SET(1 << channel);
     else
-        sdma_base->dspovr &= ~(1 << channel);
+        HW_SDMAARM_DSPOVR_CLR(1 << channel);
 
     if (evtovr == TRUE)
-        sdma_base->evtovr |= (1 << channel);
+        HW_SDMAARM_EVTOVR_SET(1 << channel);
     else
-        sdma_base->evtovr &= ~(1 << channel);
+        HW_SDMAARM_EVTOVR_CLR(1 << channel);
 }
 
 static int32_t sdma_load_init_script(uint32_t sdma_dst, uint32_t ram_src, uint32_t count)
 {
-    sdma_base->chnpri[0] = SDMA_CHANNEL_PRIORITY_HIGH;
+    HW_SDMAARM_SDMA_CHNPRIn_WR(0,SDMA_CHANNEL_PRIORITY_HIGH);
 
     /* Set up buffer descriptor */
     sdma_envp->chan0BD.mode = (SDMA_CMD_C0_SET_PM << SDMA_BD_MODE_CMD_SHIFT)
@@ -59,7 +61,7 @@ static int32_t sdma_load_init_script(uint32_t sdma_dst, uint32_t ram_src, uint32
     }
 
     /* Wait for channel transfer complete */
-    while (CHANNEL_STOP_STAT(0) != 0) ;
+    while ((HW_SDMAARM_STOP_STAT_RD()& 1) != 0) ;
 
     /* Check BD mode flags */
     if ((sdma_envp->chan0BD.mode & SDMA_FLAGS_BUSY) == SDMA_FLAGS_BUSY) {
@@ -70,7 +72,7 @@ static int32_t sdma_load_init_script(uint32_t sdma_dst, uint32_t ram_src, uint32
         return FALSE;
     }
 
-    sdma_base->chnpri[0] = SDMA_CHANNEL_PRIORITY_FREE;
+    HW_SDMAARM_SDMA_CHNPRIn_WR(0,SDMA_CHANNEL_PRIORITY_FREE);
 
     return TRUE;
 }
@@ -78,7 +80,7 @@ static int32_t sdma_load_init_script(uint32_t sdma_dst, uint32_t ram_src, uint32
 static int32_t sdma_write_channel_context(unsigned char channel, uint32_t source_addr)
 {
     /* Enable channel 0 */
-    sdma_base->chnpri[0] = SDMA_CHANNEL_PRIORITY_HIGH;
+    HW_SDMAARM_SDMA_CHNPRIn_WR(0,SDMA_CHANNEL_PRIORITY_HIGH);
 
     /* Setup BD, extended buffer not used */
     sdma_envp->chan0BD.mode = ((((channel << 3) | SDMA_CMD_C0_SETCTX) << SDMA_BD_MODE_CMD_SHIFT) |
@@ -94,7 +96,7 @@ static int32_t sdma_write_channel_context(unsigned char channel, uint32_t source
     }
 
     /* Wait for channel transfer complete */
-    while (CHANNEL_STOP_STAT(0) != 0) ;
+    while ((HW_SDMAARM_STOP_STAT_RD()& 1) != 0) ;
 
     /* Check BD mode flags */
     if ((sdma_envp->chan0BD.mode & SDMA_FLAGS_BUSY) == SDMA_FLAGS_BUSY) {
@@ -105,7 +107,7 @@ static int32_t sdma_write_channel_context(unsigned char channel, uint32_t source
         return FALSE;
     }
 
-    sdma_base->chnpri[0] = SDMA_CHANNEL_PRIORITY_FREE;
+    HW_SDMAARM_SDMA_CHNPRIn_WR(0,SDMA_CHANNEL_PRIORITY_FREE);
 
     return TRUE;
 }
@@ -139,7 +141,7 @@ static sdma_channel_isr sdma_channel_isr_list[SDMA_NUM_CHANNELS] = { NULL };
 
 static void sdma_interrupt_handler(void)
 {
-    uint32_t int_flag = sdma_base->intr;
+    uint32_t int_flag = HW_SDMAARM_INTR_RD();
 
     uint32_t i;
     for (i = 0; i < 32; i++) {
@@ -148,7 +150,7 @@ static void sdma_interrupt_handler(void)
                 sdma_channel_isr_list[i] (i);
             }
 
-            sdma_base->intr |= 0x01 << i;
+            HW_SDMAARM_INTR_SET(0x01 << i);
         }
     }
 }
@@ -181,20 +183,20 @@ int32_t sdma_init(uint32_t *env_buf, uint32_t base_addr)
     }
 
     sdma_envp = envp;
-    sdma_base = (sdma_reg_p) base_addr;
-
-    sdma_base->reset = SDMA_REG_RESET_BIT_RESET | SDMA_REG_RESET_BIT_RESCHED;   //Reset SDMA controller
-    sdma_base->config = SDMA_REG_CONFIG_VAL_ACR_TWICE;  //AP DMA/SDMA clock ratio: 2:1
-    sdma_base->mc0ptr = (uint32_t)sdma_envp->sdma_ccb;  //Set CCB base address
+    HW_SDMAARM_RESET.B.RESCHED = 1;
+    HW_SDMAARM_RESET.B.RESET = 1;
+    while(HW_SDMAARM_RESET.B.RESET == 1);
+    HW_SDMAARM_CONFIG.B.ACR = 0;//AP DMA/SDMA clock ratio: 2:1
+    HW_SDMAARM_MC0PTR_WR((uint32_t)sdma_envp->sdma_ccb);  //Set CCB base address    
 
     sdma_envp->sdma_ccb[0].baseBDptr = (uint32_t)&sdma_envp->chan0BD;
 
 #ifdef SDMA_SCRATCH_ENABLE
-    sdma_base->chn0addr |= SDMA_REG_CHN0ADDR_BIT_SMSZ;  //Enable scratch area
+    HW_SDMAARM_CHN0ADDR_SET(SDMA_REG_CHN0ADDR_BIT_SMSZ);  //Enable scratch area
 #endif
 
     for (idx = 0; idx < SDMA_NUM_REQUESTS; idx++) {
-        sdma_base->chnenbl[idx] = 0;
+    HW_SDMAARM_CHNENBLn_WR(idx,0);
     }
 
     /* Set overrides for channel 0 */
@@ -226,19 +228,18 @@ void sdma_deinit(void)
     /* Stop and free all channels */
     for (idx = 0; idx < SDMA_NUM_CHANNELS; idx++) {
         sdma_channel_stop(idx);
-        sdma_base->chnpri[idx] = SDMA_CHANNEL_PRIORITY_FREE;
+        HW_SDMAARM_SDMA_CHNPRIn_WR(idx,SDMA_CHANNEL_PRIORITY_FREE);
     }
 
     /* Clear all EP */
     for (idx = 0; idx < SDMA_NUM_REQUESTS; idx++) {
-        sdma_base->chnenbl[idx] = 0;
+    HW_SDMAARM_CHNENBLn_WR(idx,0);
     }
 
     /* Clear all overrides */
-    sdma_base->hostovr = 0;
-    sdma_base->dspovr = 0;
-    sdma_base->evtovr = 0;
-
+    HW_SDMAARM_HOSTOVR_WR(0);
+    HW_SDMAARM_DSPOVR_WR(0);
+    HW_SDMAARM_EVTOVR_WR(0);
     sdma_envp = NULL;
     sdma_initialized = FALSE;
 }
@@ -260,12 +261,12 @@ int32_t sdma_channel_start(uint32_t channel)
         return SDMA_RETV_FAIL;
     }
 
-    if (sdma_base->chnpri[channel] == SDMA_CHANNEL_PRIORITY_FREE) {
+    if (HW_SDMAARM_SDMA_CHNPRIn_RD(channel) == SDMA_CHANNEL_PRIORITY_FREE) {
         return SDMA_RETV_FAIL;
     }
 
-    if ((sdma_base->hstart & (1 << channel)) == 0) {
-        sdma_base->hstart |= (1 << channel);
+    if ((HW_SDMAARM_HSTART_RD() & (1 << channel)) == 0) {
+        HW_SDMAARM_HSTART_SET(1 << channel);
     }
 
     return SDMA_RETV_SUCCESS;
@@ -283,7 +284,7 @@ int32_t sdma_channel_stop(uint32_t channel)
         return SDMA_RETV_FAIL;
     }
 
-    sdma_base->stop_stat |= 1 << channel;
+    HW_SDMAARM_STOP_STAT_SET(1 << channel);
 
     return SDMA_RETV_SUCCESS;
 }
@@ -345,8 +346,8 @@ int32_t sdma_channel_request(sdma_chan_desc_p cdp, sdma_bd_p bdp)
 
     /* Allocate a free channel */
     for (channel = 1; channel < SDMA_NUM_CHANNELS; channel++) {
-        if (SDMA_CHANNEL_PRIORITY_FREE == sdma_base->chnpri[channel]) {
-            sdma_base->chnpri[channel] = cdp->priority;
+        if (SDMA_CHANNEL_PRIORITY_FREE == HW_SDMAARM_SDMA_CHNPRIn_RD(channel)) {
+        HW_SDMAARM_SDMA_CHNPRIn_WR(channel,cdp->priority);
             break;
         }
     }
@@ -364,14 +365,14 @@ int32_t sdma_channel_request(sdma_chan_desc_p cdp, sdma_bd_p bdp)
     } else {
         for (idx = 0; idx < 32; idx++) {
             if ((cdp->dma_mask[0] & (1 << idx)) != 0) {
-                sdma_base->chnenbl[idx] |= 1 << channel;
+                HW_SDMAARM_CHNENBLn_SET(idx,1 << channel);
             }
         }
 
         for (idx = 0; idx < (SDMA_NUM_REQUESTS - 32); idx++) {
             if ((cdp->dma_mask[1] & (1 << idx)) != 0) {
-                sdma_base->chnenbl[idx + 32] |= 1 << channel;
-            }
+            HW_SDMAARM_CHNENBLn_SET(idx+32,1 << channel);
+		}
         }
 
         set_channel_override(channel, FALSE, TRUE, FALSE);
@@ -422,7 +423,7 @@ int32_t sdma_channel_release(uint32_t channel)
         return SDMA_RETV_FAIL;
     }
 
-    if (sdma_base->chnpri[channel] == SDMA_CHANNEL_PRIORITY_FREE) {
+    if (HW_SDMAARM_SDMA_CHNPRIn_RD(channel) == SDMA_CHANNEL_PRIORITY_FREE) {
         return SDMA_RETV_SUCCESS;
     }
 
@@ -431,8 +432,8 @@ int32_t sdma_channel_release(uint32_t channel)
 
     /* Clear EP enable */
     for (idx = 0; idx < SDMA_NUM_REQUESTS; idx++) {
-        if ((sdma_base->chnenbl[idx] & (1 << channel)) != 0) {
-            sdma_base->chnenbl[idx] &= ~(1 << channel);
+        if ((HW_SDMAARM_CHNENBLn_RD(idx) & (1 << channel)) != 0) {
+            HW_SDMAARM_CHNENBLn_CLR(idx,(1 << channel));
             break;
         }
     }
@@ -449,8 +450,7 @@ int32_t sdma_channel_release(uint32_t channel)
     sdma_envp->sdma_bd_num[channel] = 0;
 
     /* Set priority to 0 */
-    sdma_base->chnpri[channel] = SDMA_CHANNEL_PRIORITY_FREE;
-
+    HW_SDMAARM_SDMA_CHNPRIn_WR(channel,SDMA_CHANNEL_PRIORITY_FREE);
     return SDMA_RETV_SUCCESS;
 }
 
@@ -471,7 +471,7 @@ uint32_t sdma_channel_status(uint32_t channel, uint32_t *status)
         return SDMA_RETV_FAIL;
     }
 
-    if (sdma_base->chnpri[channel] == SDMA_CHANNEL_PRIORITY_FREE) {
+    if (HW_SDMAARM_SDMA_CHNPRIn_RD(channel) == SDMA_CHANNEL_PRIORITY_FREE) {
         return SDMA_RETV_FAIL;
     }
 

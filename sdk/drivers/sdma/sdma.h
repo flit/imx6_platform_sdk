@@ -4,24 +4,20 @@
  * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
  * Freescale Semiconductor, Inc.
 */
-
 /*!
  * @file sdma.h
  * @brief SDMA library macros, structures and functions 
  */
-
 #ifndef SDMA_H
 #define SDMA_H
-
 #include "sdk.h"
-
 /*--------------------------------- macros --------------------------------------*/
 #define SDMA_ENV_BUF_SIZE		0x800
-
 #define SDMA_CHANNEL_PRIORITY_FREE	0
 #define SDMA_CHANNEL_PRIORITY_LOW	1
 #define SDMA_CHANNEL_PRIORITY_HIGH	7
 
+//! @brief List of scripts' names.
 typedef enum {
     SDMA_AP_2_AP = 0,
     SDMA_APP_2_MCU,
@@ -38,10 +34,10 @@ typedef enum {
     SDMA_P_2_P,
     SDMA_SSIAPP_2_MCU,
     SDMA_SSISH_2_MCU,
-
     SDMA_NUM_SCRIPTS
 } script_name_e;
 
+//! @brief SDMA buffer descriptor modes.
 typedef enum {
     SDMA_FLAGS_BUSY = (1 << 16),
     SDMA_FLAGS_WRAP = (1 << 17),
@@ -55,16 +51,17 @@ typedef enum {
     SDMA_FLAGS_BW32 = (0 << 24)
 } sdma_flag_e;
 
+//! @brief SDMA transfer information in buffer descriptor.
 typedef enum {
     SDMA_CHANNEL_STATUS_ERROR,
     SDMA_CHANNEL_STATUS_BUSY,
     SDMA_CHANNEL_STATUS_DONE
 } sdma_channel_status_e;
 
+//! @brief The return value of function.
 typedef enum {
     SDMA_RETV_SUCCESS = 0,
     SDMA_RETV_FAIL = -1,
-
     SDMA_RETV_NULLP = -2,
     SDMA_RETV_PRIORITY = -3,
     SDMA_RETV_NO_FREE_CHANNEL = -4,
@@ -73,12 +70,14 @@ typedef enum {
     SDMA_RETV_NOT_INITED = -7
 } sdma_error_e;
 
+//! @brief SDMA buffer descriptor structure.
 typedef struct {
     uint32_t mode;          //mode word, including count, command, flag...
     uint32_t buf_addr;      //buffer address, while peripheral address in channel context
     uint32_t ext_buf_addr;  //extended buffer address, not mandatory for scripts
 } sdma_bd_t, *sdma_bd_p;
 
+//! @brief SDMA channel descriptor.
 typedef struct {
     uint32_t script_addr;   //script to use
     uint32_t gpr[8];        //r0-r7, including DMA mask, watermark...
@@ -86,9 +85,7 @@ typedef struct {
     uint32_t priority;     //priority of channel(0-7)
     uint32_t nbd;           //number of buffer descriptors
 } sdma_chan_desc_t, *sdma_chan_desc_p;
-
 typedef void (*sdma_channel_isr) (uint32_t);
-
 /*--------------------------------- functions -------------------------------------*/
 int32_t sdma_init(uint32_t *, uint32_t);
 void sdma_deinit(void);
@@ -100,5 +97,5 @@ uint32_t sdma_channel_status(uint32_t, uint32_t *);
 int32_t sdma_lookup_script(script_name_e, uint32_t *);
 void sdma_setup_interrupt(void);
 int32_t sdma_channel_isr_attach(uint32_t, sdma_channel_isr isr);
-
 #endif
+

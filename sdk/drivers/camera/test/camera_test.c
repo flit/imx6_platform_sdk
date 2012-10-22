@@ -56,7 +56,7 @@ int32_t camera_test(void)
 
         if ((i >= 0) && (i < test_num)) {
             retv = camera_tests[i].test();
-            if (retv == TRUE) {
+            if (retv == TEST_PASSED) {
                 printf("\n%s test PASSED.\n", camera_tests[i].name);
             } else {
                 printf("\n%s test FAILED.\n", camera_tests[i].name);

@@ -22,5 +22,6 @@ int32_t mipi_dsi_test(void)
 {
     ips_mipi_wvga_rgb_stream(1);
     mipi_dsi_init();
-    return true;
+
+    return TEST_PASSED;
 }

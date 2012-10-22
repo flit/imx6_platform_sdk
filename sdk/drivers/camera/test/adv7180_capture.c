@@ -62,7 +62,7 @@ int32_t adv7180_capture(void)
         revchar = getchar();
     } while (revchar == (uint8_t) 0xFF);
     if (!(revchar == 'Y' || revchar == 'y'))
-        return FALSE;
+        return TEST_FAILED;
 
     return TEST_PASSED;
 }

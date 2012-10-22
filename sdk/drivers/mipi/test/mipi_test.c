@@ -52,7 +52,7 @@ int32_t mipi_test(void)
 
         if ((i >= 0) && (i < test_num)) {
             retv = mipi_tests[i].test();
-            if (retv == TRUE) {
+            if (retv == TEST_PASSED) {
                 printf("\n%s test PASSED.\n", mipi_tests[i].name);
             } else {
                 printf("\n%s test FAILED.\n", mipi_tests[i].name);

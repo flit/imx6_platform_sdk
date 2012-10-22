@@ -41,7 +41,7 @@ int32_t sensor_capture(void)
     /*step 3: setup sensor */
     sensor = sensor_search();
     if (sensor == NULL)
-        return FALSE;
+        return TEST_FAILED;
     sensor_config(sensor);
 
     /*step 4: enable ipu display channel */
@@ -53,7 +53,7 @@ int32_t sensor_capture(void)
         revchar = getchar();
     } while (revchar == (uint8_t) 0xFF);
     if (!(revchar == 'Y' || revchar == 'y'))
-        return FALSE;
+        return TEST_FAILED;
 
     /*test 2: sensor auto focus */
     if (sensor->auto_focus_enable) {

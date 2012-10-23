@@ -20,7 +20,7 @@ extern void usb0_host_testmodes_test(usb_module_t *port);
 extern void usb0_device_mouse_test(usb_module_t *port);
 
 void usb_test(void) {
-	int controller = -1, test = -1, b_menu_loop = 1, b_submenu_loop = 1;
+	int controller = -1, test = -1;
 	usb_module_t usbModuleInfo, *usbPort;
 
 	static char *ehci_controller_menu[] = {
@@ -44,7 +44,7 @@ void usb_test(void) {
 
 	usbPort = &usbModuleInfo;
 
-	while (b_menu_loop) {
+	while (1) {
 		controller = get_menu_item(ehci_controller_menu);
 		if(0 == controller) {
 #ifdef CHIP_MX6SL
@@ -67,11 +67,10 @@ void usb_test(void) {
 		}else{
 			printf("Invalid controller selection\n"); // should never get to this point
 			controller = -1;
-			b_menu_loop = 0;
+			break;
 		}
 
-		b_submenu_loop = 1;	
-		while (b_submenu_loop) {
+		while (1) {
 			test = get_menu_item(select_test_menu);
 			if(0 == test) {
 				printf("Running usb_host_test on %s\n", usbPort->moduleName);
@@ -82,9 +81,9 @@ void usb_test(void) {
 				usb0_host_testmodes_test(usbPort);
 			}else if(2 == test){
 #ifndef CHIP_MX6SL
-				if (usbPort->controllerID = OTG) {
+				if (usbPort->controllerID == OTG) {
 #else
-				if ((usbPort->controllerID = OTG1) || (usbPort->controllerID = OTG2)) {
+				if ((usbPort->controllerID == OTG1) || (usbPort->controllerID == OTG2)) {
 #endif
 					printf("Running usb_device_mouse_test on %s\n",
 							usbPort->moduleName);
@@ -94,7 +93,7 @@ void usb_test(void) {
 							"Invalid controller selection.\nOnly OTG controller can operate in device mode\n");
 				}
 			}else{
-				b_submenu_loop = 0;
+				break;
 			}
 		}
 	}

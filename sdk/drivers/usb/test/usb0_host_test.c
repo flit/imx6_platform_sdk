@@ -64,6 +64,7 @@ void usb0_host_test (usb_module_t *usbhModule)
 	//! Initialize the USB host controller.
 	usbh_init(usbhModule);
 								
+	printf("Waiting USB mouse connected...\n");
 	//! Wait for device connect.
         while(!(HW_USBC_PORTSC1_RD(core) & BM_USBC_UH1_PORTSC1_CCS));
 	printf("Connect detected.\n");	

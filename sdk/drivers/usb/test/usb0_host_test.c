@@ -655,7 +655,7 @@ void usbh_get_report_desc(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, uint
     }
     else
     {
-		#ifdef DEBUG_PRINT	
+	#ifdef DEBUG_PRINT	
 	     	printf("Report descriptor has been read!!\n\n");
         	printf("USBSTS = 0x%08x\n", HW_USBC_USBSTS_RD(core));
     	#endif

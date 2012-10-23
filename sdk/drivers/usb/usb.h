@@ -22,7 +22,10 @@ enum usbController {
     OTG = 0,
     Host1,
     Host2,
-    Host3
+    Host3,
+    OTG1,
+    OTG2,
+    HOST,
 };
 
 //! @brief    USB phy types	

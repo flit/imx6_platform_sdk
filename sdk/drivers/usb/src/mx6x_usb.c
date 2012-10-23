@@ -45,6 +45,7 @@ int usbEnableClocks(usb_module_t * port)
     case OTG:                  // OTG, Host2 and Host3 use the same PLL
     case Host2:
     case Host3:
+    case OTG1:		// MX6SL first OTG controller.
 	HW_CCM_ANALOG_PLL_USB1_SET(BM_CCM_ANALOG_PLL_USB1_POWER);	//! - Turn PLL power on.
 	HW_CCM_ANALOG_PLL_USB1_SET(BM_CCM_ANALOG_PLL_USB1_EN_USB_CLKS); //!Powers the 9-phase PLL outputs for USBPHY0
         while(!(HW_CCM_ANALOG_PLL_USB1_RD() & BM_CCM_ANALOG_PLL_USB1_LOCK));//! - Wait for PLL to lock
@@ -52,6 +53,7 @@ int usbEnableClocks(usb_module_t * port)
 	HW_CCM_ANALOG_PLL_USB1_SET(BM_CCM_ANALOG_PLL_USB1_ENABLE); 	//! - Enable PLL clock output for the PHY
         break;
     case Host1:
+    case OTG2:
 	HW_CCM_ANALOG_PLL_USB2_SET(BM_CCM_ANALOG_PLL_USB2_POWER);
 	HW_CCM_ANALOG_PLL_USB2_SET(BM_CCM_ANALOG_PLL_USB2_EN_USB_CLKS);
         while(!(HW_CCM_ANALOG_PLL_USB2_RD() & BM_CCM_ANALOG_PLL_USB2_LOCK));
@@ -77,9 +79,11 @@ int usbEnableTransceiver(usb_module_t * port)
 
     switch (port->controllerID) {
     case OTG:
+    case OTG1:	
 	instance = HW_USBPHY1;;
         break;
     case Host1:
+    case OTG2:	
 	instance = HW_USBPHY2;
         break;
     default:

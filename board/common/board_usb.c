@@ -22,6 +22,7 @@ void usbEnableVbus(usb_module_t * port)
 
     switch (port->controllerID) {
     case OTG:
+    case OTG1:
 #ifdef BOARD_SABRE_AI
         // Vbus control is on I2C port expander C1 for the ARD board.
         max7310_set_gpio_output(MAX7310_I2C_ID2, 1, 1);
@@ -31,9 +32,14 @@ void usbEnableVbus(usb_module_t * port)
         gpio_set_direction(GPIO_PORT3, 22, GPIO_GDIR_OUTPUT);
         gpio_set_level(GPIO_PORT3, 22, GPIO_HIGH_LEVEL);
 #endif
+#if defined(BOARD_EVK)
+        BW_USBNC_USB_OTG1_CTRL_PWR_POL(1);
+        reg32_write(IOMUXC_SW_MUX_CTL_PAD_KEY_COL4, ALT6);
+#endif
 
         break;
     case Host1:
+    case OTG2:
 #ifdef BOARD_SABRE_AI
         // Vbus control is on I2C port expander B7 for the ARD board.
         max7310_set_gpio_output(MAX7310_I2C_ID1, 7, 1);
@@ -48,6 +54,10 @@ void usbEnableVbus(usb_module_t * port)
         reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_D30, ALT5);
         gpio_set_direction(GPIO_PORT3, 30, GPIO_GDIR_OUTPUT);
         gpio_set_level(GPIO_PORT3, 30, GPIO_HIGH_LEVEL);
+#endif
+#if defined(BOARD_EVK)
+        BW_USBNC_USB_OTG2_CTRL_PWR_POL(1);
+        reg32_write(IOMUXC_SW_MUX_CTL_PAD_KEY_COL5, ALT6);
 #endif
 
         break;

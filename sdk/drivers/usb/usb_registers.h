@@ -39,9 +39,9 @@
 #endif
 
 #if defined(CHIP_MX6SL)
-#define USB_OTG1	0
-#define USB_OTG2	1
-#define USB_UH1		2
+#define USB_OTG1	4
+#define USB_OTG2	5
+#define USB_UH1		6
 #define USB_CORE_REGISTER_RD(n, reg)		((n) == USB_OTG1 ? HW_USBC_UOG1_##reg##_RD() : \
  						(n) == USB_OTG2 ? HW_USBC_UOG2_##reg##_RD(): \
  						HW_USBC_UH1_##reg##_RD())

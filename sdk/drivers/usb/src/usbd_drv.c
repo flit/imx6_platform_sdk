@@ -169,7 +169,7 @@ void usbd_get_setup_packet(usb_module_t * port, usbdEndpointPair_t * endpointLis
     enpointQueueHead = (usbdDeviceEndpointQueueHead_t *) & (endpointList[0].out);   // endpoint 0 out
 
     //! - Wait for setup packet to arrive
-    while(!HW_USBC_ENDPTSETUPSTAT_RD(core) & (USB_ENDPTSETUPSTAT_ENDPTSETUPSTAT(1)));
+    while(!(HW_USBC_ENDPTSETUPSTAT_RD(core) & (USB_ENDPTSETUPSTAT_ENDPTSETUPSTAT(1))));
 
     /*! copy setup data from queue head to buffer and check semaphore\n
      * SUTW will be cleared when a new setup packet arrives.\n

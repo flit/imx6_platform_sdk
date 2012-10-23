@@ -106,6 +106,10 @@ ifneq "$(BOARD)" "sabre_lite"
     SUBDIRS += $(SDK_LIB_ROOT)/drivers/pwm/test
 endif
 
+ifeq "$(BOARD)" "evk"
+    SUBDIRS += $(SDK_LIB_ROOT)/drivers/usb/test
+endif
+
 # SATA is only available on the mx6dq.
 ifeq "$(TARGET)" "mx6dq"
     SUBDIRS += $(SDK_LIB_ROOT)/drivers/sata/test

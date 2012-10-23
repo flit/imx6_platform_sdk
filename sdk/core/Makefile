@@ -8,7 +8,8 @@ SOURCES = \
 	src/mmu.c \
 	src/cortexA9.s \
 	src/startup.s \
-	src/vectors.S
+	src/vectors.S \
+	src/armv7_cache.c
 
 
 include $(SDK_ROOT)/mk/targets.mk

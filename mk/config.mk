@@ -81,4 +81,6 @@ endif
 # Set this define to 1 if we want to build thumb binaries, or 0 for ARM.
 USE_THUMB ?= 0
 
+# Enable debug build by default.
+DEBUG ?= 1
 

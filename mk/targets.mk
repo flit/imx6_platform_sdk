@@ -209,7 +209,7 @@ $(APP_ELF): $(app_objs) $(the_ld_file) $(LIBRARIES) $(APP_LIBS)
 	      $(LDADD) \
 	      --end-group \
 	      -o $@ \
-	      -Map $(app_map)
+	      -Map $(app_map) --cref
 	$(at)$(OBJCOPY) --gap-fill 0x00 -I elf32-little -O binary $@ $(app_bin)
 	@echo "Output ELF: $(APP_ELF)"
 	@echo "Output binary: $(app_bin)"

@@ -21,11 +21,7 @@
 # Add '-O0' at the end of this line to turn off optimizations.  This can make
 # debugging (especially asm) much easier but it greatly increases the size of
 # the code and reduces performance.
-CDEBUG = -g -O0
-#CDEBUG = -g
-
-# Multi-core build
-#CFLAGS += -j4
+CDEBUG = -g -O0 -DDEBUG=1
 
 # Turns on all -O2 except size increasers.
 # Any CDEBUG settings will come after this and can be used to override.
@@ -71,7 +67,7 @@ ifeq "$(USE_THUMB)" "1"
     # Allow mixed ARM and thumb code.  All C code will generate thumb instructions
     # but there is hand-written asm that requires ARM.
     ARM_FLAGS += -mthumb-interwork
-    # Indicate to MQX PSP that we're using thumb.
+    # Indicate that we're using thumb.
     ARM_FLAGS += -DUSE_THUMB
     CC_LIB_POST = thumb2
 else
@@ -93,7 +89,12 @@ ARM_FLAGS += -fno-signed-zeros
 ARM_FLAGS += -mfloat-abi=softfp
 
 # Build common flags shared by C and C++.
-COMMON_FLAGS += $(ARM_FLAGS) $(CDEBUG)
+COMMON_FLAGS += $(ARM_FLAGS)
+
+# Add debug flags for debug builds.
+ifeq "$(DEBUG)" "1"
+COMMON_FLAGS += $(CDEBUG)
+endif
 
 # C flags. Set C99 mode.
 CFLAGS += $(COMMON_FLAGS)

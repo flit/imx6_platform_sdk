@@ -1818,7 +1818,7 @@ typedef struct _hw_usbphy
     volatile reg32_t CTRL_TOG; //!< USB PHY General Control Register Toggle
     volatile hw_usbphy_status_t STATUS; //!< USB PHY Status Register
     reg32_t _reserved0[3];
-    volatile hw_usbphy_debug_t DEBUG; //!< USB PHY Debug Register
+    volatile hw_usbphy_debug_t DEBUG_; //!< USB PHY Debug Register
     volatile reg32_t DEBUG_SET; //!< USB PHY Debug Register Set
     volatile reg32_t DEBUG_CLR; //!< USB PHY Debug Register Clear
     volatile reg32_t DEBUG_TOG; //!< USB PHY Debug Register Toggle
@@ -1840,5 +1840,5 @@ typedef struct _hw_usbphy
 #endif
 
 #endif // __HW_USBPHY_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121010/1.2.1
 // EOF

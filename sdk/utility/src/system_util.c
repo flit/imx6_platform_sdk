@@ -19,204 +19,40 @@
 #include "text_color.h"
 #include "sdk.h"
 
-/*!
- * __backspace must return the last char read to the stream
- * fgetc() needs to keep a record of whether __backspace was
- * called directly before it
- */
-int last_char_read;
-int backspace_called;
-
-/*!
- * Put a char to a serial port
- *
- * @param	ch	char to send
- * @param	f	not use
- * @return  same as the char just sent
- */
-int fputc(int ch, FILE * f)
-{
-    uint8_t tempch = (uint8_t) ch;
-
-    return (int)uart_putchar(&g_debug_uart, &tempch);
-}
-
-/*!
- * Get a char from a serial port
- * @param	f	no use
- * @return  the char received through serial port
- */
-int fgetc(FILE * f)
-{
-    uint8_t ch;
-
-    /* if we just backspaced, then return the backspaced character */
-    /* otherwise output the next character in the stream */
-    if (backspace_called == TRUE) {
-        backspace_called = FALSE;
-        return last_char_read;
-    }
-
-    ch = uart_getchar(&g_debug_uart);
-    last_char_read = (int)ch;   /* backspace must return this value */
-    return last_char_read;
-}
-
-/*!
- * This function writes a character to the console which is the same as the serial port here.
- * @param   ch  character to send to serial port
- */
-void _ttywrch(int ch)
-{
-    uint8_t tempch = ch;
-
-    /* Replace line feed with '\r' */
-    if (tempch == '\n')
-        tempch = '\r';
-
-    uart_putchar(&g_debug_uart, &tempch);
-}
-
-/*!
- * The low level system call upon which malloc is built.
- * Here is a very simple implementation. We don't even check for exceeding available memory.
- * @param   nbytes  the number of bytes to be allocated from the heap
- * @return  the previous heap address
- */
-caddr_t _sbrk(int nbytes)
-{
-    static caddr_t heap_ptr = NULL;
-    caddr_t base;
-
-    if (heap_ptr == NULL) {
-        extern int free_memory_start;   //Defined in the linker script.
-        heap_ptr = (caddr_t) & free_memory_start;
-    }
-
-    base = heap_ptr;
-    heap_ptr += nbytes;
-    return base;
-}
-
-/*!
- * Check to see if a terminal device is connected or not.
- * @param   fd  not used
- * @return 1 always to indicate a serial port exists always
- */
-int _isatty(int fd)
-{
-    return 1;
-}
-
-/*!
- * Close a file descriptor.
- * @param   fd  not used
- * @return  0 always to indicate successful.
- */
-int _close(int fd)
-{
-    return 0;
-}
-
-/*!
- * Move read/write pointer. Since a serial port is non-seekable, we return -1 as error always.
- */
-off_t _lseek(int fd, off_t offset, int whence)
-{
-    return (off_t) - 1;
-}
-
-/*!
- * Get status of a file. Since we have no file system, we just return an error.
- * @param   fd      not used
- * @param   buf     not used
- * @return  -1 always
- */
-int _fstat(int fd, struct stat *buf)
-{
-    return -1;
-}
-
-/*!
- * This function read characters from the serial port. It reads up to nbytes data or
- * till a new line (someone hits enter).
- *
- * @param   fd      not used
- * @param   buf     pointer to the buffer for the receiving characters via serial port
- * @param   nbytes  number of characters plan to receive
- *
- * @return  the number of characters actually read
- */
-int _read(int fd, char *buf, int nbytes)
-{
-    int i = 0;
-
-    for (i = 0; i < nbytes; i++) {
-        *(buf + i) = fgetc(NULL);
-
-        if ((*(buf + i) == '\n') || (*(buf + i) == '\r')) {
-            (*(buf + i)) = 0;
-            break;
-        }
-    }
-
-    return i;
-}
-
-/*!
- * Write chars to the serial port. Ignore fd, since stdout and stderr are the same.
- * Since we have no filesystem, open will only return an error.
- *
- * @param   fd      not used
- * @param   buf     pointer to the buffer of data to the serial port
- * @param   nbytes  number of bytes to write to the serial port
- * @return  number of bytes to write to the serial port
- */
-int _write(int fd, char *buf, int nbytes)
-{
-    int i;
-
-    for (i = 0; i < nbytes; i++) {
-        if (*(buf + i) == '\n') {
-            fputc('\r', stdout);
-        }
-        fputc(*(buf + i), stdout);
-    }
-
-    return nbytes;
-}
+////////////////////////////////////////////////////////////////////////////////
+// Code
+////////////////////////////////////////////////////////////////////////////////
 
 /*!
  * Exception signaling and handling for C lib functions. This function never returns.
  * @param    return_code     not used
+ *
+ * @todo Why isn't the WFI instruction used here?
  */
-void _sys_exit(int32_t return_code)
+__attribute__ ((noreturn)) void _sys_exit(int32_t return_code)
 {
+    // Only go to sleep in release builds.
+#if !DEBUG
     // just put system into WFI mode
-    __asm volatile (
-            "mov r1, #0x0;"
-            "mcr p15, 0, r1, c7, c0, 4;"
-            );
+    asm volatile (
+        "mov r1, #0x0;"
+        "mcr p15, 0, r1, c7, c0, 4;"
+        );
+#endif
 
     while (1) ;
 }
 
-/*!
- * breakpoint function
- */
 void mybkpt(void)
 {
-    __asm volatile ("BKPT #0\n\t" "BX lr\n\t");
+#if DEBUG
+    asm volatile (
+        "bkpt #0        \n"
+        "bx lr          \n"
+        );
+#endif
 }
 
-/*!
- * This function waits for an input char to be received from the UART. Once a char is received,
- * it tests against the passed in char and return 0 if they don't match. 
- * @param   c        the input character to be expected (NOT case sensitive)
- * @param   indent   pointer to a character buffer to use for indenting text to screen
- * @return  0        if input char doesn't match with c
- *          non-zero otherwise
- */
 int32_t is_input_char(uint8_t c, const char* const indent)
 {
     uint8_t input, lc, uc;
@@ -292,7 +128,7 @@ int read_int(void)
     
     while (!isDone)
     {
-        char c = fgetc(NULL);
+        char c = fgetc(stdin);
         switch (c)
         {
             case NONE_CHAR:
@@ -328,19 +164,7 @@ int read_int(void)
     return result;
 }
 
-void _exit(int status)
-{
-    _sys_exit(status);
-    while (1) ;
-}
-
-void _kill()
-{
-    _exit(1);
-}
-
-pid_t _getpid()
-{
-    return 1;
-}
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////
 

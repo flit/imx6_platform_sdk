@@ -7,6 +7,7 @@ SOURCES = \
 	src/system_util.c \
 	src/text_color.c \
 	src/sdk_version.c \
+	src/runtime_support.c \
 	src/atomics.s
 
 

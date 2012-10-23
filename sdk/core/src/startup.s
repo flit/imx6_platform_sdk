@@ -25,10 +25,15 @@
 	.equ F_Bit, 0x40 @ /* when F bit is set EQU FIQ is disabled */
 
 	@ exception vector adddress holders at top of OCRAM for iMX6Quad/Dual
+#if defined(CHIP_MX6SDL)||defined(CHIP_MX6SL)
+	.equ ABORT_MEM_ADDR, 0x0091ffec
+	.equ IRQ_MEM_ADDR, 0x0091fff4
+	.equ FIQ_MEM_ADDR, 0x0091fff8
+#elif defined (CHIP_MX6DQ)
 	.equ ABORT_MEM_ADDR, 0x0093ffec
 	.equ IRQ_MEM_ADDR, 0x0093fff4
 	.equ FIQ_MEM_ADDR, 0x0093fff8
-    
+#endif    
     .global startup_imx6x
     .func startup_imx6x 
 startup_imx6x:

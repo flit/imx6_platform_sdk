@@ -23,7 +23,7 @@ startup:
 #ifdef PLATFORM_ASM_STARTUP
         PLATFORM_ASM_STARTUP            // start up code in assembly
 #endif
-#if defined(CHIP_MX6DQ)||defined(CHIP_MX6SDL)
+#if defined(CHIP_MX6DQ)||defined(CHIP_MX6SDL)||defined(CHIP_MX6SL)
         b startup_imx6x
 #endif
         ldr     r0, =top_of_stacks

@@ -82,7 +82,7 @@ SECTIONS
 
     . = ALIGN (4);
     /* Reserve some space for HAB CSF data */
-    . = _start_image_add + 0x20000;
+    . = _start_image_add + 0x40000;
     __hab_data = .;
     . = . + 0x2000;
     . = ALIGN (32);

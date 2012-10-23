@@ -276,10 +276,20 @@ void usb0_device_mouse_test(usb_module_t *port)
 
 	//! Continuously loop, adding 4 new descriptors to the list and wait for completion of the previous
 
+	printf("You should see the mouse cursor moving in a cricle, press 'x' to exit.\n");
+
 	i = 4;						// index for data buffer. we constantly re-use the buffers to keep it simple
 	usbdEndpointDtd_t *usbDtdTop;		// First dTD of the list of 4 to be added
 	usbdEndpointDtd_t *usbDtdPointer;	//
 	while (1){
+		int tloop = 0x400;      //drain the buffer
+		while (tloop--) {
+		    if (getchar() == 'x') {
+			printf("USB device test exits.\n");
+			return ;
+		    }
+		}
+
 		i = i % 8;					// Modulo 8 to loop through our 8 buffers
 
 		// Create first descriptor

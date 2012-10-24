@@ -1,9 +1,32 @@
 /*
- * Copyright (C) 2012, Freescale Semiconductor, Inc. All Rights Reserved
- * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
- * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
- * Freescale Semiconductor, Inc.
-*/
+ * Copyright (c) 2010-2012, Freescale Semiconductor, Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ * o Redistributions of source code must retain the above copyright notice, this list
+ *   of conditions and the following disclaimer.
+ *
+ * o Redistributions in binary form must reproduce the above copyright notice, this
+ *   list of conditions and the following disclaimer in the documentation and/or
+ *   other materials provided with the distribution.
+ *
+ * o Neither the name of Freescale Semiconductor, Inc. nor the names of its
+ *   contributors may be used to endorse or promote products derived from this
+ *   software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 
 #include "hab.h"
 #include "hab_types.h"
@@ -31,7 +54,6 @@ uint8_t input_dcd[] __attribute__ ((section (".dcd_data")))= {
     EXPAND_UINT32(IOMUXC_BASE_ADDR + 0x76c), EXPAND_UINT32(0x00000030),
     // Data Strobe
     EXPAND_UINT32(IOMUXC_BASE_ADDR + 0x750), EXPAND_UINT32(0x00020000),
-
     EXPAND_UINT32(IOMUXC_BASE_ADDR + 0x4bc), EXPAND_UINT32(0x00000030),
     EXPAND_UINT32(IOMUXC_BASE_ADDR + 0x4c0), EXPAND_UINT32(0x00000030),
     EXPAND_UINT32(IOMUXC_BASE_ADDR + 0x4c4), EXPAND_UINT32(0x00000030),
@@ -42,7 +64,6 @@ uint8_t input_dcd[] __attribute__ ((section (".dcd_data")))= {
     EXPAND_UINT32(IOMUXC_BASE_ADDR + 0x4d8), EXPAND_UINT32(0x00000030),
     // DATA
     EXPAND_UINT32(IOMUXC_BASE_ADDR + 0x760), EXPAND_UINT32(0x00020000),
-
     EXPAND_UINT32(IOMUXC_BASE_ADDR + 0x764), EXPAND_UINT32(0x00000030),
     EXPAND_UINT32(IOMUXC_BASE_ADDR + 0x770), EXPAND_UINT32(0x00000030),
     EXPAND_UINT32(IOMUXC_BASE_ADDR + 0x778), EXPAND_UINT32(0x00000030),
@@ -51,7 +72,6 @@ uint8_t input_dcd[] __attribute__ ((section (".dcd_data")))= {
     EXPAND_UINT32(IOMUXC_BASE_ADDR + 0x784), EXPAND_UINT32(0x00000030),
     EXPAND_UINT32(IOMUXC_BASE_ADDR + 0x78c), EXPAND_UINT32(0x00000030),
     EXPAND_UINT32(IOMUXC_BASE_ADDR + 0x748), EXPAND_UINT32(0x00000030),
-
     EXPAND_UINT32(IOMUXC_BASE_ADDR + 0x470), EXPAND_UINT32(0x00000030),
     EXPAND_UINT32(IOMUXC_BASE_ADDR + 0x474), EXPAND_UINT32(0x00000030),
     EXPAND_UINT32(IOMUXC_BASE_ADDR + 0x478), EXPAND_UINT32(0x00000030),
@@ -60,7 +80,6 @@ uint8_t input_dcd[] __attribute__ ((section (".dcd_data")))= {
     EXPAND_UINT32(IOMUXC_BASE_ADDR + 0x484), EXPAND_UINT32(0x00000030),
     EXPAND_UINT32(IOMUXC_BASE_ADDR + 0x488), EXPAND_UINT32(0x00000030),
     EXPAND_UINT32(IOMUXC_BASE_ADDR + 0x48c), EXPAND_UINT32(0x00000030),
-
     // Calibrations
     // ZQ
     EXPAND_UINT32(MMDC_P0_BASE_ADDR + 0x800), EXPAND_UINT32(0xa1390003),
@@ -96,10 +115,8 @@ uint8_t input_dcd[] __attribute__ ((section (".dcd_data")))= {
     // in DDR3, 64-bit mode, only MMDC0 is initiated:
     EXPAND_UINT32(MMDC_P0_BASE_ADDR + 0x004), EXPAND_UINT32(0x0002002d),
     EXPAND_UINT32(MMDC_P0_BASE_ADDR + 0x008), EXPAND_UINT32(0x00333030),
-
     EXPAND_UINT32(MMDC_P0_BASE_ADDR + 0x00c), EXPAND_UINT32(0x40445323),
     EXPAND_UINT32(MMDC_P0_BASE_ADDR + 0x010), EXPAND_UINT32(0xb66e8c63),
-
     EXPAND_UINT32(MMDC_P0_BASE_ADDR + 0x014), EXPAND_UINT32(0x01ff00db),
     EXPAND_UINT32(MMDC_P0_BASE_ADDR + 0x018), EXPAND_UINT32(0x00081740),
     EXPAND_UINT32(MMDC_P0_BASE_ADDR + 0x01c), EXPAND_UINT32(0x00008000),
@@ -107,7 +124,6 @@ uint8_t input_dcd[] __attribute__ ((section (".dcd_data")))= {
     EXPAND_UINT32(MMDC_P0_BASE_ADDR + 0x030), EXPAND_UINT32(0x00440e21),
     EXPAND_UINT32(MMDC_P0_BASE_ADDR + 0x040), EXPAND_UINT32(0x00000027),
     EXPAND_UINT32(MMDC_P0_BASE_ADDR + 0x000), EXPAND_UINT32(0xc31a0000),
-
     // Initialize 2GB DDR3 - Micron MT41J128M
     // MR2
     EXPAND_UINT32(MMDC_P0_BASE_ADDR + 0x01c), EXPAND_UINT32(0x04008032),

@@ -115,6 +115,11 @@ ifeq "$(TARGET)" "mx6dq"
     SUBDIRS += $(SDK_LIB_ROOT)/drivers/sata/test
 endif
 
+# available test only on the mx6sl.
+ifeq "$(TARGET)" "mx6sl"
+    SUBDIRS += $(SDK_LIB_ROOT)/drivers/lcdc/test
+endif
+
 # Local source files.
 define SOURCES
     $(APPS_ROOT)/common/platform_init.c

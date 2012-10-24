@@ -2,7 +2,8 @@ include $(SDK_ROOT)/mk/common.mk
 
 
 define SOURCES
-pxp_drv.c
+lcdc_test.c
+lcdc_display.c
 endef
 
 

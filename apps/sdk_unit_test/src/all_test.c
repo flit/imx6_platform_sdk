@@ -43,6 +43,10 @@ extern int sata_test(void);
 extern int pcie_test(void);
 #endif
 
+#if defined(CHIP_MX6SL)
+extern int lcdc_test(void);
+#endif
+
 void ALL_test(void)
 {
     while (1) {

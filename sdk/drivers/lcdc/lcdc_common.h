@@ -149,7 +149,11 @@ typedef struct lcdif_sync_waveform {
     unsigned int hValidDataCount;
 } lcdif_sync_waveform_t;
 
+void lcdif_clock_enable(void);
 void lcdif_display_delay(int cycles);
+void lcdif_display_setup(void);
+void image_center_copy(void);
+
 void pxp_csc_process();
 void pxp_disable(void);
 

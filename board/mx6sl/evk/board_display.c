@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010-2012, Freescale Semiconductor, Inc.
+ * Copyright (c) 2012, Freescale Semiconductor, Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -28,29 +28,41 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/*!
- * @defgroup diag_lcd LCD Test
- */
-
 #include "sdk.h"
-#include "lcdc/lcdc_common.h"
+#include "registers/regsccmanalog.h"
+#include "registers/regsccm.h"
 
-int32_t lcdc_display_test(void)
+////////////////////////////////////////////////////////////////////////////////
+// Code
+////////////////////////////////////////////////////////////////////////////////
+
+/*!
+ * @brief Configure lcdif pixel clock.
+ *
+ * lcdif pixel clock is derived from PLL5 and set as 33.5MHz
+ */
+void lcdif_clock_enable(void)
 {
-    char revchar;
+	/* select PLL3 (480MHz) as source of lcdif pixel clock */
+	HW_CCM_CSCDR2.B.LCDIF_PIX_CLK_SEL = 0x01;
 
-    lcdif_display_setup();
+	/* pixel clock is 34MHz*/
+	/* set pre divide: 2*/
+	HW_CCM_CSCDR2.B.LCDIF_PIX_PRED = 2 - 1;
 
-    image_center_copy();
+	/* set post divide: 7
+	 * CCM_CSCMR1[22:20], bit 22 and bit 21 are inverted.
+	 * 000 --- 110	div by 7
+	 * 001 --- 111	div by 8
+	 * 010 --- 100	div by 5
+	 * etc*/
+	HW_CCM_CSCMR1.B.LCDIF_PIX_PODF = (7 - 1) ^ 0x6;
 
-    printf("Do you see Freescale logo displayed on the WVGA panel?(Y/y for yes, other for no)\n");
-
-    do {
-        revchar = getchar();
-    }
-    while (revchar == (uint8_t)0xFF);
-    if (!(revchar == 'Y' || revchar == 'y'))
-        return TEST_FAILED;
-
-    return TEST_PASSED;
+	/* enable pixel clock and axi clock */
+	HW_CCM_CCGR3.B.CG4 = 0x3;
+	HW_CCM_CCGR3.B.CG3 = 0x3;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////

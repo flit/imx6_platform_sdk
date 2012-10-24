@@ -34,7 +34,7 @@ include $(SDK_ROOT)/mk/common.mk
 TARGET_LIB_NAME := board_$(BOARD_WITH_REV)
 
 SOURCES := \
-	$(SDK_ROOT)/board/common/board_display.c \
+	board_display.c \
 	hardware_modules.c \
 	board_io_expanders.c \
 	board_i2c.c \

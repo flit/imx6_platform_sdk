@@ -36,7 +36,6 @@
 // Code
 ////////////////////////////////////////////////////////////////////////////////
 
-#if !defined(CHIP_MX6SL)
 /*!
  * Provide the LVDS power through GPIO pins
  */
@@ -213,35 +212,6 @@ void ldb_clock_config(int freq, int ipu_index)
     }
 }
 
-#else // if !defined(CHIP_MX6SL)
-
-/*!
- * @brief Configure lcdif pixel clock.
- *
- * lcdif pixel clock is derived from PLL5 and set as 33.5MHz
- */
-void lcdif_clock_enable(void)
-{
-	/* select PLL3 (480MHz) as source of lcdif pixel clock */
-	HW_CCM_CSCDR2.B.LCDIF_PIX_CLK_SEL = 0x01;
-
-	/* pixel clock is 34MHz*/
-	/* set pre divide: 2*/
-	HW_CCM_CSCDR2.B.LCDIF_PIX_PRED = 2 - 1;
-
-	/* set post divide: 7
-	 * CCM_CSCMR1[22:20], bit 22 and bit 21 are inverted.
-	 * 000 --- 110	div by 7
-	 * 001 --- 111	div by 8
-	 * 010 --- 100	div by 5
-	 * etc*/
-	HW_CCM_CSCMR1.B.LCDIF_PIX_PODF = (7 - 1) ^ 0x6;
-
-	/* enable pixel clock and axi clock */
-	HW_CCM_CCGR3.B.CG4 = 0x3;
-	HW_CCM_CCGR3.B.CG3 = 0x3;
-}
-#endif // if !defined(CHIP_MX6SL)
 ////////////////////////////////////////////////////////////////////////////////
 // EOF
 ////////////////////////////////////////////////////////////////////////////////

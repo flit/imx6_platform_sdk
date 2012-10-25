@@ -42,6 +42,7 @@ LINK_APP = 1
 # Local source files.
 define SOURCES
     $(APPS_ROOT)/common/platform_init.c
+    $(APPS_ROOT)/common/ivt.c
     src/multicore.c
 endef
 

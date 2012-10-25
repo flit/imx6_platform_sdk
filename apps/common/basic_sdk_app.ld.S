@@ -56,7 +56,7 @@ INPUT (crtbegin.o crti.o crtend.o crtn.o)
 
 MEMORY
 {
-    OCRAM (rwx) : ORIGIN = 0x00900000, LENGTH = OCRAM_LEN
+    OCRAM (rwx) : ORIGIN = 0x00900000, LENGTH = OCRAM_LEN - 0x100
     DDR (rwx)   : ORIGIN = DDR_ORG, LENGTH = DDR_LEN
 }
 
@@ -76,8 +76,9 @@ SECTIONS
 
     _start_image_add = ORIGIN(DDR);
     
-    .ivt (ORIGIN(DDR) + 0x400) :
+    .ivt (ORIGIN(DDR)) :
     {
+        . = . + 0x400;
         *(.ivt)
     } > DDR
     

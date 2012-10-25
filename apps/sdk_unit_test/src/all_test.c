@@ -38,8 +38,10 @@ extern int wdog_test(void);
 extern int camera_test(void);
 extern void usb_test(void);
 
-#if CHIP_MX6DQ
+#ifdef CHIP_MX6DQ
 extern int sata_test(void);
+#endif
+#if defined(BOARD_EVB) 
 extern int pcie_test(void);
 #endif
 
@@ -72,8 +74,8 @@ void ALL_test(void)
 #endif /* BOARD_EVB || BOARD_SABRE_AI */
 
 #if defined(BOARD_EVB)
-#if defined(CHIP_MX6DQ)
         pcie_test();
+#if defined(CHIP_MX6DQ)
         sata_test();
 #endif
         wdog_test();

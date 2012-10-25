@@ -21,7 +21,8 @@ extern void (*pcie_func_card_rst) (void);
 
 extern void pcie_clk_setup(uint32_t enable);
 extern void pcie_card_pwr_setup(uint32_t enable);
-extern void enable_extrn_100mhz_clk(uint32_t enable);
+extern void pcie_enable_extrn_100mhz_clk(uint32_t enable);
+extern void pcie_enable_extrn_125mhz_clk(uint32_t enable);
 extern void pcie_card_rst(void);
 
 pcie_resource_t ep1_resources[6];
@@ -55,7 +56,7 @@ int pcie_test(void)
 
     pcie_func_clk_setup = pcie_clk_setup;
     pcie_func_card_rst = pcie_card_rst;
-    pcie_func_card_ref_clk_setup = enable_extrn_100mhz_clk;
+    pcie_func_card_ref_clk_setup = pcie_enable_extrn_100mhz_clk;
     pcie_func_card_pwr_setup = pcie_card_pwr_setup;
 
     if (0 != pcie_init(PCIE_DM_MODE_RC)) {

@@ -45,15 +45,32 @@ void pcie_card_pwr_setup(uint32_t enable)
     }
 }
 
-void enable_extrn_125mhz_clk(uint32_t enable)
+void pcie_enable_extrn_125mhz_clk(uint32_t enable)
 {
     if (enable) {
-        // Disable SATA clock gating used as external reference
-        HW_CCM_ANALOG_PLL_ENET_SET(BM_CCM_ANALOG_PLL_ENET_ENABLE_100M);
+	//Enable 125MHz output of Enet_PLL
+        HW_CCM_ANALOG_PLL_ENET_SET(BM_CCM_ANALOG_PLL_ENET_ENABLE_125M);
 
-        // Select PCIe clock source and switch to output buffer.
+        // Select PCIe clock source and switch to output buffer, ie, CLK1_N/CLK1_P
         HW_PMU_MISC1_CLR(BM_PMU_MISC1_LVDSCLK1_IBEN);
         HW_PMU_MISC1.B.LVDS1_CLK_SEL = BV_PMU_MISC1_LVDS1_CLK_SEL__PCIE_REF;
+        HW_PMU_MISC1_SET(BM_PMU_MISC1_LVDSCLK1_OBEN);
+    }
+}
+
+// The external 100 MHz clock
+void pcie_enable_extrn_100mhz_clk(uint32_t enable)
+{
+#if defined(CHIP_MX6SDL)
+#define BV_PMU_MISC1_LVDS1_CLK_SEL__SATA_REF	11
+#endif
+
+    if (enable) {
+	//Enable 100MHz output of Enet_PLL
+        HW_CCM_ANALOG_PLL_ENET_SET(BM_CCM_ANALOG_PLL_ENET_ENABLE_100M);
+
+        HW_PMU_MISC1_CLR(BM_PMU_MISC1_LVDSCLK1_IBEN);
+        HW_PMU_MISC1.B.LVDS1_CLK_SEL = BV_PMU_MISC1_LVDS1_CLK_SEL__SATA_REF;
         HW_PMU_MISC1_SET(BM_PMU_MISC1_LVDSCLK1_OBEN);
     }
 }

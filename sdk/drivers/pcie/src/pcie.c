@@ -19,6 +19,8 @@
 #include "pcie/pcie_common.h"
 #include "registers/regspcierc.h"
 #include "registers/regspciepl.h"
+#include "registers/regspciephy.h"
+#include "pcie/pcie_phy.h"
 
 #define DEBUG_ENABLE	1
 
@@ -30,10 +32,10 @@
 
 extern void hal_delay_us(uint32_t usecs);
 
-void (*pcie_func_clk_setup) (void) = NULL;
-void (*pcie_func_pwr_setup) (void) = NULL;
-void (*pcie_func_card_pwr_setup) (void) = NULL;
-void (*pcie_func_card_ref_clk_setup) (void) = NULL;
+void (*pcie_func_clk_setup) (uint32_t enable) = NULL;
+void (*pcie_func_pwr_setup) (uint32_t enable) = NULL;
+void (*pcie_func_card_pwr_setup) (uint32_t enable) = NULL;
+void (*pcie_func_card_ref_clk_setup) (uint32_t enable) = NULL;
 void (*pcie_func_card_rst) (void) = NULL;
 
 /********** IOMUX GPR variables and routines *******************/
@@ -92,15 +94,26 @@ static uint32_t pcie_gpr_read_field(pcie_iomux_gpr_field_type_e field)
 
 static int wait_link_up(int wait_ms)
 {
-    uint32_t val;
+    uint32_t val, rx_valid, ltssm;
     int count;
 
     count = wait_ms;
     do {
 	val = HW_PCIE_PL_DEBUG1_RD() & (0x01 << (36 - 32));	//link is debug bit 36 debug 1 start in bit 32
         count--;
-        hal_delay_us(1000);
-    } while (!val && (count || (wait_ms == 0)));
+        hal_delay_us(3000);
+
+	pcie_phy_cr_read(HW_PCIE_PHY_RX_ASIC_OUT_ADDR, &rx_valid);
+	ltssm = HW_PCIE_PL_DEBUG0_RD() & 0x3F;
+	/*
+    	 * If the link up stuck, reset the phy. This is recommonded by IP vendor.
+	 */
+	if ((ltssm == 0x0D) && ((rx_valid & 0x01) == 0)) {
+		pcie_phy_cr_write(HW_PCIE_PHY_RX_OVRD_IN_LO_ADDR, 0x0028);
+		hal_delay_us(3000);
+		pcie_phy_cr_write(HW_PCIE_PHY_RX_OVRD_IN_LO_ADDR, 0x0000);
+	}
+    } while (!val && (count > 0));
 
     if (!val)
         return -1;
@@ -137,27 +150,27 @@ int pcie_init(pcie_dm_mode_e dev_mode)
     pcie_gpr_write_field(device_type, dev_mode);
 
     pcie_gpr_write_field(los_level, 9); //phy Loss-Of-Signal detection level. process dependent.
-    pcie_gpr_write_field(tx_deemph_gen1, 21);   // typical setting for PCIe 1.1 operation - package dependen
-    pcie_gpr_write_field(tx_deemph_gen2_3p5db, 21); // setting for PCI2 2.0 operation with low de-emphasis setting - package dependen
-    pcie_gpr_write_field(tx_deemph_gen2_6db, 32);   // typical setting for PCIe 2.0 operation - package dependen
-    pcie_gpr_write_field(tx_swing_full, 115);   // For the default 1.0V amplitude - package dependent
-    pcie_gpr_write_field(tx_swing_low, 115);    // to support PCIe Mobile Mode
+    pcie_gpr_write_field(tx_deemph_gen1, 0);   // typical setting for PCIe 1.1 operation - package dependen
+    pcie_gpr_write_field(tx_deemph_gen2_3p5db, 0); // setting for PCI2 2.0 operation with low de-emphasis setting - package dependen
+    pcie_gpr_write_field(tx_deemph_gen2_6db, 20);   // typical setting for PCIe 2.0 operation - package dependen
+    pcie_gpr_write_field(tx_swing_full, 127);   // For the default 1.0V amplitude - package dependent
+    pcie_gpr_write_field(tx_swing_low, 127);    // to support PCIe Mobile Mode
 
     if (dev_mode == PCIE_DM_MODE_RC) {
         if (NULL != pcie_func_pwr_setup) {
-            pcie_func_pwr_setup();
+            pcie_func_pwr_setup(1);
         }
         if (NULL != pcie_func_clk_setup) {
-            pcie_func_clk_setup();
+            pcie_func_clk_setup(1);
         }
         if (NULL != pcie_func_card_pwr_setup) {
-            pcie_func_card_pwr_setup();
+            pcie_func_card_pwr_setup(1);
         }
         // wait for the power stable
         hal_delay_us(1000 * 10);
 
         if (NULL != pcie_func_card_ref_clk_setup) {
-            pcie_func_card_ref_clk_setup();
+            pcie_func_card_ref_clk_setup(1);
         }
         if (NULL != pcie_func_card_rst) {
             pcie_func_card_rst();
@@ -171,7 +184,7 @@ int pcie_init(pcie_dm_mode_e dev_mode)
     //start link up       
     pcie_gpr_write_field(app_ltssm_enable, 1);
 
-    if (0 != wait_link_up(10000)) {
+    if (0 != wait_link_up(2000)) {
         printf("Link timeout.\n");
         return -1;
     }

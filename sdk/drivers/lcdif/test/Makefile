@@ -2,8 +2,8 @@ include $(SDK_ROOT)/mk/common.mk
 
 
 define SOURCES
-lcdc_test.c
-lcdc_display.c
+lcdif_test.c
+lcdif_display.c
 endef
 
 

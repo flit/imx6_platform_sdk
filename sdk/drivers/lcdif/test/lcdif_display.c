@@ -33,9 +33,9 @@
  */
 
 #include "sdk.h"
-#include "lcdc/lcdc_common.h"
+#include "lcdif/lcdif_common.h"
 
-int32_t lcdc_display_test(void)
+int32_t lcdif_display_test(void)
 {
     char revchar;
 

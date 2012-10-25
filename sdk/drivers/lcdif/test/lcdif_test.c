@@ -35,28 +35,28 @@
 #include <stdio.h>
 #include "sdk.h"
 
-extern int32_t lcdc_display_test(void);
+extern int32_t lcdif_display_test(void);
 
 typedef struct {
     const char *name;
 	int32_t(*test) (void);
-} lcdc_test_t;
+} lcdif_test_t;
 
-static lcdc_test_t lcdc_tests[] = {
-    {"LCDC display", lcdc_display_test},
+static lcdif_test_t lcdif_tests[] = {
+    {"LCDC display", lcdif_display_test},
 };
 
-int32_t lcdc_test(void)
+int32_t lcdif_test(void)
 {
     int32_t retv = TEST_PASSED, i;
-    int32_t test_num = sizeof(lcdc_tests) / sizeof(lcdc_test_t);
+    int32_t test_num = sizeof(lcdif_tests) / sizeof(lcdif_test_t);
     uint8_t revchar;
 
     printf("\nStart LCDC test\n");
 
     do {
         for (i = 0; i < test_num; i++) {
-            printf("\t%d - %s\n", i, lcdc_tests[i].name);
+            printf("\t%d - %s\n", i, lcdif_tests[i].name);
         }
         printf("\tx - to exit.\n");
 
@@ -70,11 +70,11 @@ int32_t lcdc_test(void)
         i = revchar - '0';
 
         if ((i >= 0) && (i < test_num)) {
-            retv = lcdc_tests[i].test();
+            retv = lcdif_tests[i].test();
             if (retv == TEST_PASSED) {
-                printf("\n%s test PASSED.\n", lcdc_tests[i].name);
+                printf("\n%s test PASSED.\n", lcdif_tests[i].name);
             } else {
-                printf("\n%s test FAILED.\n", lcdc_tests[i].name);
+                printf("\n%s test FAILED.\n", lcdif_tests[i].name);
             }
 
         }

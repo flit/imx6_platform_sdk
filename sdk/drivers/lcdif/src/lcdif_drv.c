@@ -34,33 +34,10 @@
 
 #include "sdk.h"
 #include "logo.h"
-#include "lcdc/lcdc_common.h"
-#include "registers/regsiomuxc.h"
-#include "iomux_define.h"
+#include "lcdif/lcdif_common.h"
 #include "registers/regselcdif.h"
 
 static int lcdif_initialized = 0;
-
-void lcdif_power_on(void)
-{
-	/* turn on lcdif power on
-	 * (KEY_ROW5) ALT5: GPIO4_3 */
-	HW_IOMUXC_SW_MUX_CTL_PAD_KEY_ROW5.B.MUX_MODE = ALT5;
-
-	gpio_set_direction(GPIO_PORT4, 3, GPIO_GDIR_OUTPUT);
-
-	gpio_set_level(GPIO_PORT4, 3, GPIO_HIGH_LEVEL);
-}
-
-/* turn on lcdif backlight power supply:
- * 3V3_LCD_CONTRAST (pin 112) controls LED+ and LED- on imx28lcd board */
-void lcdif_backlight_on(void)
-{
-	HW_IOMUXC_SW_MUX_CTL_PAD_PWM1.B.MUX_MODE = ALT5;
-	gpio_set_direction(GPIO_PORT3, 23, GPIO_GDIR_OUTPUT);
-
-	gpio_set_level(GPIO_PORT3, 23, GPIO_HIGH_LEVEL);
-}
 
 /*!
  * Configure color space conversion(CSC) parameter, from RGB to YUV
@@ -105,11 +82,11 @@ static int lcdif_sw_reset(void)
  * @param   sync_waveform		lcd waveform setting, including hsync/vsync/drdy
  *													and blanking parameters
  */
-int lcdif_waveform_setting(lcdif_sync_waveform_t sync_waveform)
+static int lcdif_waveform_setting(lcdif_sync_waveform_t *sync_waveform)
 {
 	/* frame size setting: 800 * 480 */
-	HW_LCDIF_TRANSFER_COUNT.B.H_COUNT = sync_waveform.frameWidth;
-	HW_LCDIF_TRANSFER_COUNT.B.V_COUNT = sync_waveform.frameHeight;
+	HW_LCDIF_TRANSFER_COUNT.B.H_COUNT = sync_waveform->frameWidth;
+	HW_LCDIF_TRANSFER_COUNT.B.V_COUNT = sync_waveform->frameHeight;
 
 	/* timing setting */
 	HW_LCDIF_TIMING.B.DATA_SETUP = 0x01;
@@ -118,26 +95,26 @@ int lcdif_waveform_setting(lcdif_sync_waveform_t sync_waveform)
 	HW_LCDIF_TIMING.B.CMD_HOLD = 0x01;
 
 	/* VSYNC and Dotclk Mode control setting */
-	HW_LCDIF_VDCTRL0.B.VSYNC_PULSE_WIDTH = sync_waveform.vSyncPulseWidth;
-	HW_LCDIF_VDCTRL0.B.VSYNC_PULSE_WIDTH_UNIT = sync_waveform.vSyncPulseUnit;
-	HW_LCDIF_VDCTRL0.B.VSYNC_PERIOD_UNIT = sync_waveform.vSyncPeriodUnit;
-	HW_LCDIF_VDCTRL0.B.ENABLE_POL = sync_waveform.enablePol;
-	HW_LCDIF_VDCTRL0.B.DOTCLK_POL = sync_waveform.dotclkPol;
-	HW_LCDIF_VDCTRL0.B.HSYNC_POL = sync_waveform.hsyncPol;
-	HW_LCDIF_VDCTRL0.B.VSYNC_POL = sync_waveform.vSyncPol;
-	HW_LCDIF_VDCTRL0.B.ENABLE_PRESENT = sync_waveform.enPresent;
+	HW_LCDIF_VDCTRL0.B.VSYNC_PULSE_WIDTH = sync_waveform->vSyncPulseWidth;
+	HW_LCDIF_VDCTRL0.B.VSYNC_PULSE_WIDTH_UNIT = sync_waveform->vSyncPulseUnit;
+	HW_LCDIF_VDCTRL0.B.VSYNC_PERIOD_UNIT = sync_waveform->vSyncPeriodUnit;
+	HW_LCDIF_VDCTRL0.B.ENABLE_POL = sync_waveform->enablePol;
+	HW_LCDIF_VDCTRL0.B.DOTCLK_POL = sync_waveform->dotclkPol;
+	HW_LCDIF_VDCTRL0.B.HSYNC_POL = sync_waveform->hsyncPol;
+	HW_LCDIF_VDCTRL0.B.VSYNC_POL = sync_waveform->vSyncPol;
+	HW_LCDIF_VDCTRL0.B.ENABLE_PRESENT = sync_waveform->enPresent;
 
 	/* total vsync period */
-	HW_LCDIF_VDCTRL1.B.VSYNC_PERIOD = sync_waveform.vSyncPeriod;
+	HW_LCDIF_VDCTRL1.B.VSYNC_PERIOD = sync_waveform->vSyncPeriod;
 
 	/* total hsync setting */
-	HW_LCDIF_VDCTRL2.B.HSYNC_PERIOD = sync_waveform.hSyncPeriod;
-	HW_LCDIF_VDCTRL2.B.HSYNC_PULSE_WIDTH = sync_waveform.hSyncPulseWidth;
+	HW_LCDIF_VDCTRL2.B.HSYNC_PERIOD = sync_waveform->hSyncPeriod;
+	HW_LCDIF_VDCTRL2.B.HSYNC_PULSE_WIDTH = sync_waveform->hSyncPulseWidth;
 
-	HW_LCDIF_VDCTRL3.B.VERTICAL_WAIT_CNT = sync_waveform.vWaitCount;
-	HW_LCDIF_VDCTRL3.B.HORIZONTAL_WAIT_CNT = sync_waveform.hWaitCount;
+	HW_LCDIF_VDCTRL3.B.VERTICAL_WAIT_CNT = sync_waveform->vWaitCount;
+	HW_LCDIF_VDCTRL3.B.HORIZONTAL_WAIT_CNT = sync_waveform->hWaitCount;
 
-	HW_LCDIF_VDCTRL4.B.DOTCLK_H_VALID_DATA_CNT = sync_waveform.hValidDataCount;
+	HW_LCDIF_VDCTRL4.B.DOTCLK_H_VALID_DATA_CNT = sync_waveform->hValidDataCount;
 	HW_LCDIF_VDCTRL4.B.SYNC_SIGNALS_ON = 0x1;
 
     return 0;
@@ -202,7 +179,7 @@ static void lcdif_panel_init(void)
 	hal_delay_us(1*1000);
 }	
 
-void setup_panel_params(lcdif_sync_waveform_t * syncWave)
+static void setup_panel_params(lcdif_sync_waveform_t * syncWave)
 {
     syncWave->frameWidth = WVGA_FW;
     syncWave->frameHeight = WVGA_FH;
@@ -258,7 +235,7 @@ void lcdif_display_setup(void)
 
     /*DOTCLK or VSYNC mode control */
     setup_panel_params(&syncWave);
-    lcdif_waveform_setting(syncWave);
+    lcdif_waveform_setting(&syncWave);
 
     printf("Please select the LCD panel type: \n");
     printf("\t0 - SEIKO 70WVW1TZ3 WVGA Panel (MX28LCD 24-bit)\n");

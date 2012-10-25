@@ -99,8 +99,8 @@ SOURCES += \
 	vpu/src/vpu_util.c
 else
 SOURCES += \
-	lcdc/src/lcdc_drv.c \
-	lcdc/src/pxp_drv.c
+	lcdif/src/lcdif_drv.c \
+	lcdif/src/pxp_drv.c
 endif
 
 

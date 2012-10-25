@@ -31,15 +31,45 @@
 #include "sdk.h"
 #include "registers/regsccmanalog.h"
 #include "registers/regsccm.h"
+#include "registers/regsiomuxc.h"
+#include "iomux_define.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code
 ////////////////////////////////////////////////////////////////////////////////
 
 /*!
+ * @brief Turn on LCDIF power_en pin
+ *
+ * KEY_ROW5 (pin79) controls WVGA panel DISP pin, which is active high. 
+ * 
+ */
+void lcdif_power_on(void)
+{
+	/* turn on lcdif power on
+	 * (KEY_ROW5) ALT5: GPIO4_3 */
+	HW_IOMUXC_SW_MUX_CTL_PAD_KEY_ROW5.B.MUX_MODE = ALT5;
+
+	gpio_set_direction(GPIO_PORT4, 3, GPIO_GDIR_OUTPUT);
+
+	gpio_set_level(GPIO_PORT4, 3, GPIO_HIGH_LEVEL);
+}
+
+/* @brief Turn on lcdif backlight power supply
+ *
+ * 3V3_LCD_CONTRAST (pin 112) controls LED+ and LED- on imx28lcd board */
+void lcdif_backlight_on(void)
+{
+	HW_IOMUXC_SW_MUX_CTL_PAD_PWM1.B.MUX_MODE = ALT5;
+	gpio_set_direction(GPIO_PORT3, 23, GPIO_GDIR_OUTPUT);
+
+	gpio_set_level(GPIO_PORT3, 23, GPIO_HIGH_LEVEL);
+}
+
+/*!
  * @brief Configure lcdif pixel clock.
  *
- * lcdif pixel clock is derived from PLL5 and set as 33.5MHz
+ * lcdif pixel clock is derived from PLL3(480MHz) and set as 33.5MHz
  */
 void lcdif_clock_enable(void)
 {

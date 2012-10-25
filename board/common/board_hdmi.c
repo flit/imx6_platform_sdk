@@ -122,11 +122,10 @@ void hdmi_clock_set(int ipu_index, uint32_t pclk)
             HW_CCM_CSCDR2.B.IPU2_DI0_PODF = 5;  // div by 6
             HW_CCM_CSCDR2.B.IPU2_DI0_PRE_CLK_SEL = 5;   // derive clock from 540M PFD
         }
-
+#endif // CHIP_MX6DQ
         //config PFD1 of PLL3 to be 445MHz 
         BW_CCM_ANALOG_PFD_480_PFD1_FRAC(0x13);
         break;
-#endif // CHIP_MX6DQ
 
     default:
         printf("the hdmi pixel clock is not supported!\n");

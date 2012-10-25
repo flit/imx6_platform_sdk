@@ -25,6 +25,8 @@ void lcdif_power_on(void)
 	HW_IOMUXC_SW_MUX_CTL_PAD_KEY_ROW5.B.MUX_MODE = ALT5;
 
 	gpio_set_direction(GPIO_PORT4, 3, GPIO_GDIR_OUTPUT);
+
+	gpio_set_level(GPIO_PORT4, 3, GPIO_HIGH_LEVEL);
 }
 
 /* turn on lcdif backlight power supply:

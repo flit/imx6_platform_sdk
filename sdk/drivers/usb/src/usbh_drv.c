@@ -282,13 +282,13 @@ usbhTransferDescriptor_t *usbh_qtd_init(uint32_t transferSize, uint32_t ioc, uin
 
     usbhTransferDescriptor_t *usbhQtd;
 
-    int memoryPointer;
+    uint32_t memoryPointer;
     int i;
 
     /*!
      * Allocate memory for the transfer descriptor
      */
-    memoryPointer = (int)malloc(sizeof(usbhTransferDescriptor_t) + 63); // over-allocate to accommodate 64-byte alignment
+    memoryPointer = (uint32_t)malloc(sizeof(usbhTransferDescriptor_t) + 63); // over-allocate to accommodate 64-byte alignment
     if (memoryPointer == 0) {
         return NULL;            // No memory available
     }

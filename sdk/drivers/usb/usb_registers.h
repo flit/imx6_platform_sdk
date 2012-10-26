@@ -71,8 +71,8 @@
 #define USB_CORE_REGISTER_WR(n, reg, v)		(n) == USB_OTG1 ? HW_USBC_UOG1_##reg##_WR((v)) : \
 						(n) == USB_OTG2 ? HW_USBC_UOG2_##reg##_WR((v)): \
 						HW_USBC_UH1_##reg##_WR((v))
-#define USB_DEV_REGISTER_RD(n, reg)		(n) == USB_OTG1 ? HW_USBC_UOG1_##reg##_RD() : \
- 						HW_USBC_UOG2_##reg##_RD()
+#define USB_DEV_REGISTER_RD(n, reg)		((n) == USB_OTG1 ? HW_USBC_UOG1_##reg##_RD() : \
+ 						HW_USBC_UOG2_##reg##_RD())
 #define USB_DEV_REGISTER_WR(n, reg, v)		(n) == USB_OTG1 ? HW_USBC_UOG1_##reg##_WR((v)) : \
 						HW_USBC_UOG2_##reg##_WR((v))
 #endif

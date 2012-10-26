@@ -119,13 +119,15 @@ static void uart_loopback_init(struct hw_module *port, uint32_t baudrate)
     /* Initialize the UART port */
     uart_init(port, baudrate, PARITY_NONE, STOPBITS_ONE, EIGHTBITS, FLOWCTRL_OFF);
 
-    /* Set the DMA mode for the Tx FIFO */
-    uart_set_FIFO_mode(port, TX_FIFO, TX_FIFO_WATERMARK_LEVEL, DMA_MODE);
+    /* Enable loopback mode */
+    uart_set_loopback_mode(port, TRUE);
+
     /* Set the DMA mode for the Rx FIFO */
     uart_set_FIFO_mode(port, RX_FIFO, RX_FIFO_WATERMARK_LEVEL, DMA_MODE);
 
-    /* Enable loopback mode */
-    uart_set_loopback_mode(port, TRUE);
+    /* Set the DMA mode for the Tx FIFO */
+    uart_set_FIFO_mode(port, TX_FIFO, TX_FIFO_WATERMARK_LEVEL, DMA_MODE);
+
 
     return;
 }
@@ -217,12 +219,12 @@ int uart_app_test(void)
         return FALSE;
     }
 
+    uart_loopback_init(&uart5_sdma_test, 115200);
+
     /* Start channels */
     printf("Channel %d and Channel %d opened, starting transfer...\n", channel[0], channel[1]);
     sdma_channel_start(channel[0]);
     sdma_channel_start(channel[1]);
-
-    uart_loopback_init(&uart5_sdma_test, 115200);
 
     /* Wait channels stop */
     uint32_t status;

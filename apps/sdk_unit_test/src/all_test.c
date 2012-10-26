@@ -69,7 +69,7 @@ extern int pcie_test(void);
 #endif
 
 #if defined(CHIP_MX6SL)
-extern int lcdc_test(void);
+extern int lcdif_test(void);
 #endif
 
 void ALL_test(void)

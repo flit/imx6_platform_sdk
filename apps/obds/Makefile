@@ -56,6 +56,7 @@ define SOURCES
     $(APPS_ROOT)/common/platform_init.c
     $(APPS_ROOT)/common/print_clock_info.c
     $(APPS_ROOT)/common/print_version.c
+    $(APPS_ROOT)/common/ivt.c
     $(SDK_LIB_ROOT)/drivers/spi/test/spi_nor_numonyx.c
     $(SDK_LIB_ROOT)/drivers/spi/test/imx_spi_nor_atmel.c
     $(SDK_LIB_ROOT)/drivers/usdhc/test/usdhc_test.c

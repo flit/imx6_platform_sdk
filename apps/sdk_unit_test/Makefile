@@ -132,7 +132,7 @@ endif
 
 # available test only on the mx6sl.
 ifeq "$(TARGET)" "mx6sl"
-    SUBDIRS += $(SDK_LIB_ROOT)/drivers/lcdc/test
+    SUBDIRS += $(SDK_LIB_ROOT)/drivers/lcdif/test
 endif
 
 # Local source files.

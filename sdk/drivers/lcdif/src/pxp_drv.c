@@ -28,8 +28,8 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "lcdc/lcdc_common.h"
-#include "lcdc/pxp_regs.h"
+#include "lcdif/lcdif_common.h"
+#include "lcdif/pxp_regs.h"
 #include "sdk.h"
 //#include "functions.h"
 

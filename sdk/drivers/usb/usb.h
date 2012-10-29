@@ -131,7 +131,7 @@ typedef struct usbDeviceDescriptor {
     uint8_t iProduct;           //! Index of string descriptor describing product
     uint8_t iSerialNumber; 	//! Index of string descriptor describing the device's serial number
     uint8_t bNumConfigurations; //! Number of possible configurations
-} usbDeviceDescriptor_t;
+}  __attribute__ ((packed)) usbDeviceDescriptor_t;
 
 typedef struct usbConfigurationDescriptor {
     uint8_t bLength;			//! Size of descriptor	
@@ -142,7 +142,7 @@ typedef struct usbConfigurationDescriptor {
     uint8_t iConfiguration;             //! Index of string descriptor describing this configuration
     uint8_t bmAttributes;		//! Configuration characteristics
     uint8_t MaxPower;			//! Maximum power consumption of the USB device
-} usbConfigurationDescriptor_t;
+}  __attribute__ ((packed)) usbConfigurationDescriptor_t;
 
 typedef struct usbInterfaceDescriptor {
     uint8_t bLength;		//! Size of this descriptor in bytes 
@@ -154,7 +154,7 @@ typedef struct usbInterfaceDescriptor {
     uint8_t bInterfaceSubClass; //! Subclass code
     uint8_t bInterfaceProtocol; //! Protocol code
     uint8_t iInterface;		//! Index of string descriptor describing this interface
-} usbInterfaceDescriptor_t;
+}  __attribute__ ((packed)) usbInterfaceDescriptor_t;
 
 /* USB Descriptor Types */
 #define DEVICE_DESCRIPTOR             0x1	//! Type for Device Descriptor
@@ -200,7 +200,7 @@ typedef struct usbEndpointDescriptor {
     uint8_t bmAttributes;       //! The endpoint'ss attributes
     uint16_t wMaxPacketSize;    //! Maximum packet size
     uint8_t bInterval;          //! Interval for polling endpoint for data transfers
-} usbEndpointDescriptor_t;
+}  __attribute__ ((packed)) usbEndpointDescriptor_t;
 
 typedef struct usbHidDescriptor {
     uint8_t bLength;			//! Size of this descriptor in bytes 
@@ -210,7 +210,7 @@ typedef struct usbHidDescriptor {
     uint8_t bNumDescriptors;            //! Number of descriptors
     uint8_t bReportDescriptorType;      //! The type of report descriptor
     uint8_t wDescriptorLength[2];   // !!!! Not aligned on 16-bit boundary  !!!
-} usbHidDescriptor_t;
+}  __attribute__ ((packed)) usbHidDescriptor_t;
 
 /*!
  * Device driver definitions
@@ -232,7 +232,7 @@ typedef struct usbdSetupPacket {
     uint16_t wValue;            //! Word-sized field that varies according to request
     uint16_t wIndex;            //! Index
     uint16_t wLength;           //! Number of bytes to transfer
-} usbdSetupPacket_t;            
+}  __attribute__ ((packed)) usbdSetupPacket_t;            
 
 /*!
  *  USB device endpoint queue head structure

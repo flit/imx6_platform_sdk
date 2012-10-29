@@ -37,7 +37,6 @@
 #ifndef __CAMERA_DEF_H__
 #define __CAMERA_DEF_H__
 
-#include "i2c/imx_i2c.h"
 #include "sdk.h"
 
 //! @addtogroup diag_camera
@@ -236,6 +235,9 @@ int32_t sensor_af_trigger(camera_profile_t * sensor);
  */
 int32_t sensor_autofocus_init(camera_profile_t * sensor);
 
+void csi_setup(void);
+
+void csi_streamon(void);
 //@}
 
 //! @}

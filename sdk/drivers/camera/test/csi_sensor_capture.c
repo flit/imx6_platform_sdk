@@ -29,68 +29,45 @@
  */
 
 /*!
- * @file camera_test.c
- * @brief Main camera test.
+ * @file sensor_capture.c
+ * @brief camera sensor capture and display test.
  * @ingroup diag_camera
  */
 
 #include <stdio.h>
-#include "sdk.h"
+#include "camera/camera_def.h"
+#include "lcdif/lcdif_common.h"
 
-extern int32_t csi_sensor_capture(void);
-extern int32_t sensor_capture(void);
-extern int32_t adv7180_capture(void);
-
-typedef struct {
-    const char *name;
-     int32_t(*test) (void);
-} camera_test_t;
-
-static camera_test_t camera_tests[] = {
-#if defined(BOARD_SMART_DEVICE)
-    {"Sensor capture", sensor_capture},
-#endif
-#if defined(BOARD_EVB)
-	{"adv7180 capture", adv7180_capture},
-#endif
-#if defined(CHIP_MX6SL)
-    {"Sensor capture", csi_sensor_capture},
-#endif
-};
-
-int32_t camera_test(void)
+/*!
+ * camera sensor display and capture test.
+ *
+ * @return error information
+ */
+int32_t csi_sensor_capture(void)
 {
-    int32_t retv = TRUE, i;
-    int32_t test_num = sizeof(camera_tests) / sizeof(camera_test_t);
-    uint8_t revchar;
+	camera_profile_t *sensor;
+	uint8_t revchar;
+	
+	/*step 1: setup CSI: from csi --> pxp --> display */
+	lcdif_display_setup();
+	pxp_csc_process();
+	csi_setup();
 
-    printf("\nStart camera test\n");
+	/*step 2: setup sensor */
+	sensor = sensor_search();
+	if (sensor == NULL)
+		return TEST_FAILED;
+	sensor_config(sensor);
 
-    do {
-        for (i = 0; i < test_num; i++) {
-            printf("\t%d - %s\n", i, camera_tests[i].name);
-        }
-        printf("\tx - to exit.\n");
+	/*step 2: clear RxFIFO and stream on sensor */
+	csi_streamon();
 
-        do {
-            revchar = (uint8_t) getchar();
-        } while (revchar == (uint8_t) 0xFF);
-        if (revchar == 'x') {
-            printf("\nCamera test exit.\n");
-            break;
-        }
-        i = revchar - '0';
+	printf("Do you see the captured image (y or n)?\n");
+	do {
+		revchar = getchar();
+	} while (revchar == (uint8_t) 0xFF);
+	if (!(revchar == 'Y' || revchar == 'y'))
+		return TEST_FAILED;
 
-        if ((i >= 0) && (i < test_num)) {
-            retv = camera_tests[i].test();
-            if (retv == TEST_PASSED) {
-                printf("\n%s test PASSED.\n", camera_tests[i].name);
-            } else {
-                printf("\n%s test FAILED.\n", camera_tests[i].name);
-            }
-
-        }
-    } while (1);
-
-    return retv;
+    return TEST_PASSED;
 }

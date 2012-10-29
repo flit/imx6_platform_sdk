@@ -27,55 +27,78 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#ifdef MX6SL
+#include "lcdif/lcdif_common.h"
+#include "registers/regscsi.h"
 
-#include "sdk.h"
-#include "csi_regs.h"
-#include "lcdc/lcdc_common.h"
+static void csi_sw_reset(void)
+{
+	/* reset control registers */
+	HW_CSI_CSICR1.U = 0x40000800;
+	HW_CSI_CSICR2.U = 0x0;
+	HW_CSI_CSICR3.U = 0x0;
+
+	/* reset frame count */
+	HW_CSI_CSICR3.B.FRMCNT_RST = 1;
+}
 
 void csi_setup(void)
 {
-    volatile uint32_t regval = 0;
+	/* reset control registers */
+	csi_sw_reset();
+
+	/* Gated clock mode, extern VSYNC */
+	HW_CSI_CSICR1.B.GCLK_MODE = 1;
+
+	/* 8-bit data for each pixel */
+	HW_CSI_CSICR1.B.PIXEL_BIT = 0;
 
     /* Timing control */
-    reg32setbit(CSI_CSICR1, 30);    //VSYNC external generated on rising edge
-    reg32clrbit(CSI_CSICR1, 1); //Pixel data latched at falling edge of CSI_PIXCLK
-    reg32setbit(CSI_CSICR1, 4); //Gated clock mode
-    reg32setbit(CSI_CSICR1, 11);    //HSYNC is active high
-    reg32clrbit(CSI_CSICR1, 0); //8-bit
+	/* VSYNC external generated on failing edge */
+	HW_CSI_CSICR1.B.SOF_POL = 1;
+
+	/* Pixel data latched at falling edge of CSI_PIXCLK */
+	HW_CSI_CSICR1.B.REDGE = 1;
+
+	/* HSYNC is active high */
+	HW_CSI_CSICR1.B.HSYNC_POL = 1;
+
+	/* new added */
+	HW_CSI_CSICR1.B.FCC = 1;
+	HW_CSI_CSICR1.B.RESERVED1 = 1;
 
     /* FIFO control */
     /* sensor in:       Y0 U0 Y1 V0
      * before Rx FIFO:  Y0U0Y1V0
      * in Rx FIFO:      Y1VV0Y0U0*/
-    reg32setbit(CSI_CSICR1, 7); //little endian: pack from LSB first
-    reg32setbit(CSI_CSICR1, 31);    //enable 16-bit swapping
+	HW_CSI_CSICR1.B.PACK_DIR = 1; //little endian: pack from LSB first
+	HW_CSI_CSICR1.B.SWAP16_EN = 1; //enable 16-bit swapping
 
-    writel(0x25800, CSI_CSIRXCNT);
+	HW_CSI_CSICR1.B.EOF_INT_EN = 1;
 
-    /* buffer address: word aligned */
-#if 1
-    writel(DDR_PXP_PS_BASE1, CSI_CSIDMASA_FB1);
-    writel(DDR_PXP_PS_BASE2, CSI_CSIDMASA_FB2);
-#else
-    writel(DDR_LCD_BASE1, CSI_CSIDMASA_FB1);
-    writel(DDR_LCD_BASE2, CSI_CSIDMASA_FB2);
-#endif
+	/* RX count: after the count is reached, it will generate an EOF interrupt */
+	HW_CSI_CSIRXCNT_WR(640 * 480 * 2 / 4);
 
     /* image format */
     /* frame width * height (in pixel) */
-    writel((VGA_FW * 2) << 16 | (VGA_FH * 2), CSI_CSIIMAG_PARA);    //10bit 640*480 (*2pixels)
-    /* stride line (in word) */
-//    regval = readl(CSI_CSIFBUF_PARA) & (~0xFFFF);
-//    regval |= (WVGA_FW - VGA_FW) / 2;
-//    writel(regval, CSI_CSIFBUF_PARA);
+	HW_CSI_CSIIMAG_PARA.B.IMAGE_WIDTH = VGA_FW; // ?? VGA_FW * 2 works also??
+	HW_CSI_CSIIMAG_PARA.B.IMAGE_HEIGHT = VGA_FH * 2;
 
     /* DMA control */
-    regval = readl(CSI_CSICR3) & (~0x70);
-    regval |= 0x6 << 4;
-    writel(regval, CSI_CSICR3); //RxFIFO full level: 64 words
-    reg32setbit(CSI_CSICR3, 12);    //enable DMA_REQ_EN_REF, enable dma request
-    reg32setbit(CSI_CSICR3, 14);    //reflash embedded DMA controller
+	HW_CSI_CSICR3.B.RXFF_LEVEL = 0x1; //RxFIFO full level: 8 words
+	HW_CSI_CSICR3.B.STATFF_LEVEL = 0x1; //RxFIFO full level: 8 words
+	HW_CSI_CSICR3.B.DMA_REQ_EN_RFF = 1; //enable dma request
 }
 
-#endif
+void csi_streamon(void)
+{
+	/* wait for EOF and clear RxFIFO*/
+	HW_CSI_CSISR.B.EOF_INT = 1;
+	while (HW_CSI_CSISR.B.EOF_INT == 0);
+	HW_CSI_CSICR1.B.CLR_RXFIFO = 1;
+
+	/* buffer address: word aligned */
+	HW_CSI_CSIDMASA_FB1_WR(DDR_PXP_PS_BASE1);
+	HW_CSI_CSIDMASA_FB2_WR(DDR_PXP_PS_BASE1);
+
+	HW_CSI_CSICR3.B.DMA_REFLASH_RFF = 1;
+}

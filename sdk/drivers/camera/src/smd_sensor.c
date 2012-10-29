@@ -35,8 +35,6 @@
  */
 
 #include "camera/camera_def.h"
-#include "registers/regsiomuxc.h"
-#include "registers/regsccm.h"
 
 reg_param_t ov5642_strobe_on[] = {
     {0x3004, 0xff, 0, 0, 0},
@@ -150,7 +148,11 @@ int32_t sensor_config(camera_profile_t * sensor)
 {
     int32_t ret = 0;
 
-    csi_port0_iomux_config();   //config csi port
+#if defined(CHIP_MX6SL)
+    csi_iomux_config();   //config csi port
+#else
+	csi_port0_iomux_config();
+#endif
     ret = sensor_init(sensor);
 
     return ret;
@@ -162,14 +164,16 @@ camera_profile_t *sensor_search(void)
     uint16_t read_value, error;
     camera_profile_t *sensor_on;
 
+    camera_power_on();
+    sensor_reset();
+    sensor_clock_setting();
+    sensor_i2c_init(g_camera_i2c_port, 170000);
+
     for (i = 0; i < SENSOR_NUM; i++) {
         error = 0;
         sensor_on = &g_camera_profiles[i];
-        camera_power_on();
-        sensor_reset();
-        sensor_clock_setting();
-        sensor_i2c_init(g_camera_i2c_port, 170000);
-hal_delay_us(1000000);
+		hal_delay_us(10000);
+
         for (j = 0; j < sensor_on->sensor_detection_size; ++j) {
             reg_param_t *setting = &sensor_on->sensor_detection[j];
             sensor_read_reg(sensor_on->i2c_dev_addr, setting->addr, &read_value,

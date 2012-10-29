@@ -70,6 +70,7 @@ extern int pcie_test(void);
 
 #if defined(CHIP_MX6SL)
 extern int lcdif_test(void);
+extern int camera_test(void);
 #endif
 
 void ALL_test(void)

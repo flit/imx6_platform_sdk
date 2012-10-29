@@ -28,38 +28,45 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "lcdif/lcdif_common.h"
-#include "lcdif/pxp_regs.h"
 #include "sdk.h"
-//#include "functions.h"
+#include "lcdif/lcdif_common.h"
+#include "registers/regspxp.h"
+#include "registers/regsccm.h"
+
 
 int pxp_sw_reset(void)
 {
-    writel(0x80000000, HW_PXP_CTRL);
-    lcdif_display_delay(0x1000);
-    writel(0x00000000, HW_PXP_CTRL);
+	/* clear register */
+	HW_PXP_CTRL_CLR(0xFFFFFFFF);
+
+	BW_PXP_CTRL_SFTRST(1);
+	hal_delay_us(1000);
+
+	BW_PXP_CTRL_CLKGATE(0);
+	BW_PXP_CTRL_SFTRST(0);
 
     return 0;
 }
 
 void pxp_proc_timeout(int time)
 {
-    while ((readl(HW_PXP_STAT) & 0x1) == 0) {
+	while (HW_PXP_STAT.B.IRQ == 0) {
         time--;
         if (time == 0)
             break;
     };
-    writel(0x1, HW_PXP_STAT_CLR);
+	HW_PXP_STAT.B.IRQ = 0;
 }
 
 void pxp_clock_enable(void)
 {
     /* always on MX6SL */
+	HW_CCM_CCGR3.B.CG1 = 0x3;
 }
 
 void pxp_disable(void)
 {
-    writel(0x1, HW_PXP_CTRL_CLR);
+	HW_PXP_CTRL.B.ENABLE = 0;
 }
 
 void pxp_csc_process(void)
@@ -67,27 +74,50 @@ void pxp_csc_process(void)
     pxp_clock_enable();
     pxp_sw_reset();
 
-    writel(DDR_PXP_PS_BASE1, HW_PXP_PS_BUF);
-    writel(VGA_FW * 2, HW_PXP_PS_PITCH);    // bytes between two vertically adj pixels
-    writel(0xFFFFFF, HW_PXP_PS_BACKGROUND); //background is white
-    writel(0x10001000, HW_PXP_PS_SCALE);    //1:1 scale
+	/* Input and output buffer address */
+	//writel(DDR_PXP_PS_BASE1, HW_PXP_PS_BUF_ADDR);
+	writel(DDR_PXP_PS_BASE1, 0x20F00C0);
+	writel(DDR_LCD_BASE1, 0x20F0030);
+	//HW_PXP_PS_BUF_WR(DDR_PXP_PS_BASE1);
+	HW_PXP_OUT_BUF_WR(DDR_LCD_BASE1);
 
-    writel(DDR_LCD_BASE1, HW_PXP_OUT_BUF);
-    writel(FRAME_WIDTH * 2, HW_PXP_OUT_PITCH_WR);
-    writel(((FRAME_WIDTH - 1) << 16) | (FRAME_HEIGHT - 1), HW_PXP_OUT_LRC);
-    writel(0x0, HW_PXP_OUT_PS_ULC); //left upper corner (0, 0)
-    writel(((VGA_FW - 1) << 16) | (VGA_FH - 1), HW_PXP_OUT_PS_LRC); //low right corner (width-1, height-1)
+	/* Input and output pitch
+	 * bytes between two vertically adj pixels */
+	HW_PXP_PS_PITCH.B.PITCH = VGA_FW * 2;
+	HW_PXP_OUT_PITCH.B.PITCH = FRAME_WIDTH * 2;
 
-    writel(0x1F, HW_PXP_PS_CTRL_CLR);
-    writel(0x12, HW_PXP_PS_CTRL_SET);   /*U0Y0V0Y1 */
+	/* set output frame */
+	/* output frame size */
+	HW_PXP_OUT_LRC.B.X = FRAME_WIDTH - 1;
+	HW_PXP_OUT_LRC.B.Y = FRAME_HEIGHT - 1;
 
-    writel(0x1F, HW_PXP_OUT_CTRL_CLR);
-    writel(0xE, HW_PXP_OUT_CTRL_SET);   /*RGB565 */
+	/* left upper corner (0, 0) */
+	HW_PXP_OUT_PS_ULC.B.X = 0;
+	HW_PXP_OUT_PS_ULC.B.Y = 0;
 
-    // YCbCr->RGB coefficients
-    writel(0x84AB01F0, HW_PXP_CSC1_COEF0);
-    writel(0x01980204, HW_PXP_CSC1_COEF1);
-    writel(0x0730079C, HW_PXP_CSC1_COEF2);
+	/* low right corner (input_width-1, input_height-1) */
+	HW_PXP_OUT_PS_LRC.B.X = VGA_FW - 1;
+	HW_PXP_OUT_PS_LRC.B.Y = VGA_FH - 1;
 
-    writel(0x10000001, HW_PXP_CTRL_SET);
+	/* set backgroud as white */
+	HW_PXP_PS_BACKGROUND.B.COLOR = 0xFFFFFF;
+
+	/* 1:1 scale */
+	HW_PXP_PS_SCALE.B.XSCALE = 1 << 12;
+	HW_PXP_PS_SCALE.B.YSCALE = 1 << 12;
+
+	/* Input format U0Y0V0Y1 */
+	HW_PXP_PS_CTRL.B.FORMAT = 0x12;
+
+	/* Output format: RGB565 */
+	HW_PXP_OUT_CTRL.B.FORMAT = 0xE;
+
+    /* YCbCr->RGB coefficients */
+	HW_PXP_CSC1_COEF0_WR(0x84AB01F0);
+	HW_PXP_CSC1_COEF1_WR(0x01980204);
+	HW_PXP_CSC1_COEF2_WR(0x0730079C);
+
+	/* PXP run continuously */
+	HW_PXP_CTRL.B.EN_REPEAT = 1;
+	HW_PXP_CTRL.B.ENABLE = 1;
 }

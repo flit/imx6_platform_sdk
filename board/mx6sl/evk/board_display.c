@@ -93,6 +93,51 @@ void lcdif_clock_enable(void)
 	HW_CCM_CCGR3.B.CG3 = 0x3;
 }
 
+
+void epdc_clock_setting(int freq)
+{
+	HW_CCM_CSCDR2.B.EPDC_PIX_CLK_SEL = 0x5; //Use 540MPFD
+
+	HW_CCM_CSCDR2.B.EPDC_PIX_PRED = 0x5; //pred for EPDC
+
+	HW_CCM_CBCMR.B.EPDC_PIX_PODF = 0x4;
+
+    /*set the AXI clock, divided from MMDC clock */
+	HW_CCM_CHSCCDR.B.EPDC_AXI_CLK_SEL = 0x0;
+	HW_CCM_CHSCCDR.B.EPDC_AXI_PODF = 0x1;
+}
+
+void sipix_epd_clock_setting(int freq)
+{
+    /* set the EPD clock for Sipix EPD, this is not documented in the reg headers */
+    unsigned int reg_data = reg32_read(IOMUXC_GPR0);
+    reg32_write(IOMUXC_GPR0, (reg_data & (~0x100)) | 0x100);
+
+	HW_CCM_CSCDR2.B.EPDC_PIX_CLK_SEL = 0x5; //Use 540MPFD
+
+	HW_CCM_CSCDR2.B.EPDC_PIX_PRED = 0x2; //pred for EPDC
+
+	HW_CCM_CBCMR.B.EPDC_PIX_PODF = 0x3;
+}
+
+void epdc_power_supply(void)
+{
+	int i = 0;
+
+	//EN : pmic_wakeup gpio2.14
+	HW_IOMUXC_SW_MUX_CTL_PAD_EPDC_PWRWAKEUP.B.MUX_MODE = 0x5;
+	gpio_set_direction(GPIO_PORT2, 14, GPIO_GDIR_OUTPUT);
+	gpio_set_level(GPIO_PORT2, 14, GPIO_HIGH_LEVEL);
+
+    //CEN : pmic_vcom gpio2.3
+	HW_IOMUXC_SW_MUX_CTL_PAD_EPDC_VCOM0.B.MUX_MODE = 0x5;
+	gpio_set_direction(GPIO_PORT2, 3, GPIO_GDIR_OUTPUT);
+	gpio_set_level(GPIO_PORT2, 3, GPIO_HIGH_LEVEL);
+
+    for (i = 0; i < 1000000; i++)
+        __asm("nop");
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // EOF
 ////////////////////////////////////////////////////////////////////////////////

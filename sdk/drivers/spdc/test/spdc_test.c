@@ -30,12 +30,12 @@
 
 #include "spdc/spdc_regs.h"
 #include "spdc/spdc.h"
+#include "io.h"
 
 #define	WORKMODE	M0
 extern void sipix_epd_clock_setting(int freq);
 
 static int spdc_initialized = 0;
-int spdc_test_enable = 1;
 extern unsigned int fsl_gray_600x230[];
 
 void image_convert_8bpp_to_4bpp(int width, int height, uint8_t * in, uint8_t * out)
@@ -177,15 +177,11 @@ void epd_operation_start(int opt)
     }
 }
 
-int spdc_display_test(void)
+int spdc_test(void)
 {
     int ret = 0;
 
     char recvCh = NONE_CHAR;
-    if (!spdc_test_enable) {
-        return TEST_NOT_PRESENT;
-    }
-    PROMPT_RUN_TEST("Sipix EINK display test", NULL);
 
     spdc_iomux_config();
 
@@ -266,4 +262,3 @@ int spdc_display_test(void)
     return ret;
 }
 
-//RUN_TEST_INTERACTIVE("Sipix EINK Display Test", spdc_display_test)

@@ -38,7 +38,7 @@
 void check_waveform(unsigned int *wv_buf_orig, unsigned int *wv_buf_cur, unsigned int wv_buf_size)
 {
     int i;
-    bool is_mismatch = FALSE;
+    int is_mismatch = FALSE;
 
     for (i = 0; i < wv_buf_size; i++) {
         if (wv_buf_orig[i] != wv_buf_cur[i]) {
@@ -56,7 +56,7 @@ void check_waveform(unsigned int *wv_buf_orig, unsigned int *wv_buf_cur, unsigne
  * Start Low-Level EPDC Functions
  ********************************************************/
 
-void epdc_clk_gate(bool on_off)
+void epdc_clk_gate(int on_off)
 {
     /* zero for normal operation */
     if (on_off) {
@@ -100,7 +100,7 @@ void epdc_set_lut_swizzle(unsigned int lut_swizzle)
     writel(val, EPDC_CTRL_SET);
 }
 
-void epdc_lut_complete_intr(unsigned int lut_num, bool enable)
+void epdc_lut_complete_intr(unsigned int lut_num, int enable)
 {
     if (enable)
         writel(1 << lut_num, EPDC_IRQ_MASK_SET);
@@ -108,7 +108,7 @@ void epdc_lut_complete_intr(unsigned int lut_num, bool enable)
         writel(1 << lut_num, EPDC_IRQ_MASK_CLEAR);
 }
 
-void epdc_lut_collision_intr(bool enable)
+void epdc_lut_collision_intr(int enable)
 {
     if (enable)
         writel(EPDC_IRQ_LUT_COL_IRQ, EPDC_IRQ_MASK_SET);
@@ -116,7 +116,7 @@ void epdc_lut_collision_intr(bool enable)
         writel(EPDC_IRQ_LUT_COL_IRQ, EPDC_IRQ_MASK_CLEAR);
 }
 
-void epdc_working_buf_intr(bool enable)
+void epdc_working_buf_intr(int enable)
 {
     if (enable)
         writel(EPDC_IRQ_WB_CMPLT_IRQ, EPDC_IRQ_MASK_SET);
@@ -171,7 +171,7 @@ void epdc_set_update_dimensions(unsigned int width, unsigned int height)
 }
 
 void epdc_submit_update(unsigned int lut_num, unsigned int waveform_mode,
-                        unsigned int update_mode, bool use_test_mode, unsigned int np_val)
+                        unsigned int update_mode, int use_test_mode, unsigned int np_val)
 {
     unsigned int reg_val = 0;
 
@@ -198,10 +198,10 @@ void epdc_submit_update(unsigned int lut_num, unsigned int waveform_mode,
     writel(reg_val, EPDC_UPD_CTRL);
 }
 
-bool epdc_is_lut_complete(unsigned int lut_num)
+int epdc_is_lut_complete(unsigned int lut_num)
 {
     unsigned int val = readl(EPDC_IRQ);
-    bool is_compl = val & (1 << lut_num) ? TRUE : FALSE;
+    int is_compl = val & (1 << lut_num) ? TRUE : FALSE;
 
     return is_compl;
 }
@@ -211,24 +211,24 @@ void epdc_clear_lut_complete_irq(unsigned int lut_num)
     writel(1 << lut_num, EPDC_IRQ_CLEAR);
 }
 
-bool epdc_is_lut_active(unsigned int lut_num)
+int epdc_is_lut_active(unsigned int lut_num)
 {
     unsigned int val = readl(EPDC_STATUS_LUTS);
-    bool is_active = val & (1 << lut_num) ? TRUE : FALSE;
+    int is_active = val & (1 << lut_num) ? TRUE : FALSE;
 
     return is_active;
 }
 
-bool epdc_any_luts_active(void)
+int epdc_any_luts_active(void)
 {
-    bool any_active = readl(EPDC_STATUS_LUTS) ? TRUE : FALSE;
+    int any_active = readl(EPDC_STATUS_LUTS) ? TRUE : FALSE;
 
     return any_active;
 }
 
-bool epdc_any_luts_available(void)
+int epdc_any_luts_available(void)
 {
-    bool luts_available =
+    int luts_available =
         (readl(EPDC_STATUS_NEXTLUT) & EPDC_STATUS_NEXTLUT_NEXT_LUT_VALID) ? TRUE : FALSE;
     return luts_available;
 }
@@ -239,26 +239,26 @@ int epdc_get_next_lut(void)
     return val;
 }
 
-bool epdc_is_working_buffer_busy(void)
+int epdc_is_working_buffer_busy(void)
 {
     unsigned int val = readl(EPDC_STATUS);
-    bool is_busy = (val & EPDC_STATUS_WB_BUSY) ? TRUE : FALSE;
+    int is_busy = (val & EPDC_STATUS_WB_BUSY) ? TRUE : FALSE;
 
     return is_busy;
 }
 
-bool epdc_is_working_buffer_complete(void)
+int epdc_is_working_buffer_complete(void)
 {
     unsigned int val = readl(EPDC_IRQ);
-    bool is_compl = (val & EPDC_IRQ_WB_CMPLT_IRQ) ? TRUE : FALSE;
+    int is_compl = (val & EPDC_IRQ_WB_CMPLT_IRQ) ? TRUE : FALSE;
 
     return is_compl;
 }
 
-bool epdc_is_collision(void)
+int epdc_is_collision(void)
 {
     unsigned int val = readl(EPDC_IRQ);
-    bool is_compl = (val & EPDC_IRQ_LUT_COL_IRQ) ? TRUE : FALSE;
+    int is_compl = (val & EPDC_IRQ_LUT_COL_IRQ) ? TRUE : FALSE;
 
     return is_compl;
 }

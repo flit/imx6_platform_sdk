@@ -31,16 +31,6 @@
 #ifndef _SPDC_REGS_H_
 #define _SPDC_REGS_H_
 
-#include <hardware.h>           // Hardware definitions
-
-#if !defined(SPDC_BASE_ADDR)
-#if defined(CHIP_MX6SL)
-#define SPDC_BASE_ADDR 0x020E8000
-#else
-#error	SPDC is not supported on the platform!!!
-#endif 
-#endif
-
 //*************************************
 // Register addresses
 //*************************************

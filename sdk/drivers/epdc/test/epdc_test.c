@@ -30,6 +30,7 @@
 
 #include "epdc/epdc_regs.h"
 #include "epdc/epdc.h"
+#include "sdk_types.h"
 
 void epdc_pvi_svga_sdr_init(void);
 void epdc_pvi_svga_sdr_test(void);
@@ -40,37 +41,32 @@ void epdc_send_erase_to_color(unsigned int lut, unsigned int mode,
                               epdc_upd_area_t upzone, int color);
 
 extern void epdc_dump_registers(void);
-extern void mxc_epdc_iomux_config(void);
+extern void epdc_iomux_config(void);
 extern void epdc_clock_setting(int freq_mhz);
 extern void epdc_load_image(void);
 extern void epdc_power_supply(void);
 extern void epdc_reset(void);
 extern void epdc_buffer_init(void);
 extern void epdc_init_settings(void);
-extern bool epdc_is_working_buffer_busy(void);
+extern int epdc_is_working_buffer_busy(void);
 
 extern void epdc_set_update_addr(unsigned int addr);
 extern void epdc_set_update_coord(unsigned int x, unsigned int y);
 extern void epdc_set_update_dimensions(unsigned int width, unsigned int height);
 extern void epdc_submit_update(unsigned int lut_num, unsigned int waveform_mode,
-                               unsigned int update_mode, bool use_test_mode, unsigned int np_val);
+                               unsigned int update_mode, int use_test_mode, unsigned int np_val);
 extern int epdc_get_next_lut(void);
-extern bool epdc_is_lut_active(unsigned int lut_num);
+extern int epdc_is_lut_active(unsigned int lut_num);
 static int epdc_initialized = 0;
 
-int epd_test_enable;
-int epd_display_test(void)
+int epdc_test(void)
 {
     int ret = 0;
 
     char recvCh = NONE_CHAR;
-    if (!epd_test_enable) {
-        return TEST_NOT_PRESENT;
-    }
-    PROMPT_RUN_TEST("EINK display test", NULL);
 
     if (epdc_initialized == 0) {
-        mxc_epdc_iomux_config();
+        epdc_iomux_config();
 
         epdc_clock_setting(27);
 
@@ -88,9 +84,7 @@ int epd_display_test(void)
     printf("Do you see Freescale logo displayed on the e-ink panel?(Y/y for yes, other for no)\n");
 
     do {
-
         recvCh = getchar();
-
     }
     while (recvCh == NONE_CHAR);
 
@@ -187,4 +181,3 @@ void epdc_send_erase_to_color(unsigned int lut, unsigned int mode,
     epdc_submit_update(lut, mode, EPDC_UPD_UPDATE_MODE__PARTIAL, 0x1, color);   //0xf0
 }
 
-//RUN_TEST_INTERACTIVE("EINK Display Test", epd_display_test)

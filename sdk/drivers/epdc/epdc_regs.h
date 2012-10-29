@@ -31,16 +31,6 @@
 #ifndef _EPDC_REGS_H_
 #define _EPDC_REGS_H_
 
-#include <hardware.h>           // Hardware definitions
-
-#if !defined(EPDC_BASE_ADDR)
-#if defiend(CHIP_MX6SDL) || defiend(CHIP_MX6SL)
-#define EPDC_BASE_ADDR 0x020F4000
-#else
-#error	EPDC is not supported on the platform!!!
-#endif 
-#endif
-
 //*************************************
 // Register addresses
 //*************************************

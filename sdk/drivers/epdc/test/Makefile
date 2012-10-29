@@ -2,7 +2,7 @@ include $(SDK_ROOT)/mk/common.mk
 
 
 define SOURCES
-edpc_app.c
+epdc_test.c
 endef
 
 

@@ -31,6 +31,8 @@
 #ifndef _SPDC_H_
 #define _SPDC_H_
 
+#include "sdk_types.h"
+
 #define TRUE 1
 #define FALSE 0
 
@@ -49,7 +51,7 @@
 #define SPDC_VSIZE 600
 
 /*SPDC memory map*/
-#if defined(MX6SL)
+#if defined(CHIP_MX6SL)
 #define WV_DATA_ADDR			0x93000000
 #define EPD_NEXT_BUF_ADDR		0x93100000
 #define EPD_CUR_BUF_ADDR		0x93200000

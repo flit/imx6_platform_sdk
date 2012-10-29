@@ -100,7 +100,8 @@ SOURCES += \
 else
 SOURCES += \
 	lcdif/src/lcdif_drv.c \
-	lcdif/src/pxp_drv.c
+	lcdif/src/pxp_drv.c \
+	epdc/src/mxc_epdc.c
 endif
 
 

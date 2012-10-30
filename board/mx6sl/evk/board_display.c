@@ -39,7 +39,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 /*!
- * @brief Turn on LCDIF power_en pin
+ * Turn on LCDIF power_en pin
  *
  * KEY_ROW5 (pin79) controls WVGA panel DISP pin, which is active high. 
  * 
@@ -55,7 +55,8 @@ void lcdif_power_on(void)
 	gpio_set_level(GPIO_PORT4, 3, GPIO_HIGH_LEVEL);
 }
 
-/* @brief Turn on lcdif backlight power supply
+/* !
+ * Turn on lcdif backlight power supply
  *
  * 3V3_LCD_CONTRAST (pin 112) controls LED+ and LED- on imx28lcd board */
 void lcdif_backlight_on(void)
@@ -67,7 +68,7 @@ void lcdif_backlight_on(void)
 }
 
 /*!
- * @brief Configure lcdif pixel clock.
+ * Configure lcdif pixel clock.
  *
  * lcdif pixel clock is derived from PLL3(480MHz) and set as 33.5MHz
  */

@@ -30,6 +30,15 @@
 #include "lcdif/lcdif_common.h"
 #include "registers/regscsi.h"
 
+/*!
+ * @file csi_drv.c
+ * @brief common functions for sensor on mx6sl evk.
+ * @ingroup diag_camera
+ */
+
+/*!
+ * @brief Reset the csi controller by software mode
+ */
 static void csi_sw_reset(void)
 {
 	/* reset control registers */

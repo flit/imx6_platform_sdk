@@ -29,7 +29,11 @@
  */
 
 /*!
- * @defgroup diag_lcd LCD Test
+ * @file lcdif_drv.c
+ * @brief Main driver for the LCDIF controller. It initializes the controller
+ * and handle display mode.
+ *
+ * @ingroup diag_lcdif
  */
 
 #include "sdk.h"
@@ -39,11 +43,6 @@
 
 static int lcdif_initialized = 0;
 
-/*!
- * Configure color space conversion(CSC) parameter, from RGB to YUV
- *
- * @param   enable		enable or disable the CSC process
- */
 void lcdif_csc_config(int enable)
 {
     if (enable) {
@@ -61,7 +60,7 @@ void lcdif_csc_config(int enable)
 }
 
 /*!
- * Reset the LCD controller by Software Mode
+ * @brief Reset the LCD controller by software mode
  */
 static int lcdif_sw_reset(void)
 {
@@ -77,10 +76,9 @@ static int lcdif_sw_reset(void)
 }
 
 /*!
- * Set the LCD controller waveforms to driven the panel
+ * @brief Set the LCD controller waveforms to driven the panel
  *
- * @param   sync_waveform		lcd waveform setting, including hsync/vsync/drdy
- *													and blanking parameters
+ * @param   sync_waveform	lcd waveform setting, including hsync/vsync/drdy and blanking parameters
  */
 static int lcdif_waveform_setting(lcdif_sync_waveform_t *sync_waveform)
 {
@@ -120,6 +118,9 @@ static int lcdif_waveform_setting(lcdif_sync_waveform_t *sync_waveform)
     return 0;
 }
 
+/*!
+ * @brief Initialize lcdif controller
+ */
 static void lcdif_init(void)
 {
 	lcdif_power_on();
@@ -159,7 +160,11 @@ static void lcdif_init(void)
     lcdif_initialized = 1;
 }
 
-/* Make sure high - to - low transition to reset the panel */
+/*!
+ * @brief Initialize LCD panel.
+ *
+ * Make sure high - to - low transition to reset the panel
+ */
 static void lcdif_panel_init(void)
 {
 	/* low */
@@ -179,6 +184,11 @@ static void lcdif_panel_init(void)
 	hal_delay_us(1*1000);
 }	
 
+/*!
+ * @brief Configure waveform parameters according to the timing of LCD panel
+ *
+ * @param   sync_waveform	lcd waveform setting, including hsync/vsync/drdy and blanking parameters
+ */
 static void setup_panel_params(lcdif_sync_waveform_t * syncWave)
 {
     syncWave->frameWidth = WVGA_FW;
@@ -205,7 +215,6 @@ static void setup_panel_params(lcdif_sync_waveform_t * syncWave)
     syncWave->hValidDataCount = 800;
 }
 
-/* the default output format is RGB */
 void lcdif_display_setup(void)
 {
     lcdif_sync_waveform_t syncWave = { 0 };

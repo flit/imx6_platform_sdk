@@ -30,6 +30,10 @@
 #ifndef _LCDC_COMMON_H_
 #define _LCDC_COMMON_H_
 
+//! @addtogroup diag_lcdif
+
+//! @{
+
 #define VGA_FW 			640
 #define VGA_FH 			480
 
@@ -55,6 +59,7 @@
 #define DDR_PXP_PS_BASE1			0x90200000
 #define DDR_PXP_PS_BASE2			0x90300000
 
+//! @brief color space definition for csi and lcdif
 enum color_space {
     RGB = 0x0,
     GRAY = 0x8,
@@ -73,6 +78,7 @@ enum color_space {
     YUVA8888 = 0x120,
 };
 
+//! @brief output color space definition for pxp
 enum pxp_output_color {
     OARGB8888 = 0x0,
     ORGB888 = 0x1,
@@ -90,6 +96,7 @@ enum pxp_output_color {
     OYVU2P422 = 0xE,
 };
 
+/*
 enum tv_mode {
     TVPAL,
     TVNTSC,
@@ -151,35 +158,89 @@ typedef struct pxp_s0_proc_params {
     struct s0PlaneScale s0Plane;
     struct s0OverlayInfo Ol0Plane;
 } pxp_s0_proc_params_t;
+*/
 
+//! @brief The timing informations for lcd sync panel.
+//!
+//! The information include frame size, signal polarity and timing
 typedef struct lcdif_sync_waveform {
-    unsigned int frameWidth;
-    unsigned int frameHeight;
-    unsigned int enPresent;
-    unsigned int hsyncPol;
-    unsigned int vSyncPol;
-    unsigned int dotclkPol;
-    unsigned int enablePol;
-    unsigned int vSyncPulseUnit;
-    unsigned int vSyncPeriodUnit;
-    unsigned int vSyncPulseWidth;
-    unsigned int vSyncPeriod;
-    unsigned int hSyncPulseWidth;
-    unsigned int hSyncPeriod;
+	unsigned int frameWidth;		//!< Frame width
+	unsigned int frameHeight;		//!< Frame height
+	unsigned int enPresent;			//!< Whether to hardware generate the ENABLE signal
+	unsigned int hsyncPol;			//!< Polarity of hsync
+	unsigned int vSyncPol;			//!< Polarity of vsync
+	unsigned int dotclkPol;			//!< Edge of DOTCLK at which data is launched
+	unsigned int enablePol;			//!< Polarity of enable
+	unsigned int vSyncPulseUnit;	//!< Unit to count vsync pulse width. 1 to count in terms of horizontal lines, 0 to count in CLK_DIS_LCDIF cycles.
+	unsigned int vSyncPeriodUnit;	//!< Unit to count vsync [eropd. 1 to count in terms of horizontal lines, 0 to count in CLK_DIS_LCDIF cycles.
+	unsigned int vSyncPulseWidth;	//!< Vsync pulse width.
+	unsigned int vSyncPeriod;		//!< Vsync period.
+	unsigned int hSyncPulseWidth;	//!< Hsync pulse width.
+	unsigned int hSyncPeriod;		//!< Hsync period.
 
-    unsigned int hWaitCount;
-    unsigned int vWaitCount;
-    unsigned int hValidDataCount;
+	unsigned int hWaitCount;		//!< Horizontal back porch plus number of DOTCLKs before moving picture begins.
+	unsigned int vWaitCount;		//!< Vertical back porch line plus number of horizontal lines before moving picture begins.
+	unsigned int hValidDataCount;	//!< Number of horizontal lines that carry valid data
 } lcdif_sync_waveform_t;
 
+//! @name Board support functions
+//!
+//! These functions are called by the driver in order to factor out board
+//! specific functionality. They must be defined by the board support
+//! library or the application.
+//@{
+
+/*!
+ * @brief Enable power to the lcdif.
+ */
 void lcdif_power_on(void);
+
+/*!
+ * @brief Turn on lcdif backlight power supply
+ *
+ * 3V3_LCD_CONTRAST (pin 112) controls LED+ and LED- on imx28lcd board
+ */
 void lcdif_backlight_on(void);
+
+/*!
+ * @brief Configure lcdif pixel clock.
+ *
+ * lcdif pixel clock is derived from PLL3(480MHz) and set as 33.5MHz
+ */
 void lcdif_clock_enable(void);
-void lcdif_display_delay(int cycles);
+
+//@}
+
+//! @name Camera API
+//@{
+
+/*!
+ * @brief Configure lcdif controller for display.
+ */
 void lcdif_display_setup(void);
+
+/*!
+ * @brief Configure color space conversion(CSC) parameter, from RGB to YUV
+ *
+ * @param   enable	enable or disable the CSC process
+ */
+void lcdif_csc_config(int enable);
+/*!
+ * @brief Copy the image to center of the LCD panel.
+ */
 void image_center_copy(void);
 
-void pxp_csc_process();
+/*!
+ * @brief Setup and configure color space conversion functionality of pxp.
+ */
+void pxp_csc_process(void);
+
+/*!
+ * @brief Disable the pxp controller.
+ */
 void pxp_disable(void);
 
+//@}
+
+//! @}
 #endif

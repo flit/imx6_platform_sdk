@@ -33,8 +33,18 @@
 #include "registers/regspxp.h"
 #include "registers/regsccm.h"
 
+/*!
+ * @file pxp_drv.c
+ * @brief Main driver for the PXP controller. It initializes the controller
+ * and provide color space convertion functionality.
+ *
+ * @ingroup diag_lcdif
+ */
 
-int pxp_sw_reset(void)
+/*!
+ * @brief Reset the PXP controller by software mode
+ */
+static int pxp_sw_reset(void)
 {
 	/* clear register */
 	HW_PXP_CTRL_CLR(0xFFFFFFFF);
@@ -48,7 +58,10 @@ int pxp_sw_reset(void)
     return 0;
 }
 
-void pxp_proc_timeout(int time)
+/*!
+ * @brief Wait for PXP controller IRQ interrupt inside timeout time.
+ */
+static void pxp_proc_timeout(int time)
 {
 	while (HW_PXP_STAT.B.IRQ == 0) {
         time--;
@@ -58,7 +71,10 @@ void pxp_proc_timeout(int time)
 	HW_PXP_STAT.B.IRQ = 0;
 }
 
-void pxp_clock_enable(void)
+/*!
+ * @brief Enable pxp axi clock.
+ */
+static void pxp_clock_enable(void)
 {
     /* always on MX6SL */
 	HW_CCM_CCGR3.B.CG1 = 0x3;

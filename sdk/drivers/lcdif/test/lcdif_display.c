@@ -35,6 +35,13 @@
 #include "sdk.h"
 #include "lcdif/lcdif_common.h"
 
+/*!
+ * LCDIF controller display test.
+ *
+ * The Freescale logo will appear on the middle of LCD panel.
+ *
+ * @return error information
+ */
 int32_t lcdif_display_test(void)
 {
     char revchar;

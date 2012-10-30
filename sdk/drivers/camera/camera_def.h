@@ -197,9 +197,9 @@ void sensor_clock_setting(void);
 camera_profile_t *sensor_search(void);
 
 /*!
- * @brief Configure csi port and initialize camera sensor
+ * @brief configure csi port and initialize camera sensor
  *
- * @param	sensor: sensor profile information
+ * @param	sensor sensor profile information
  *
  * @return 0 on success; non-zero otherwise
  *
@@ -210,7 +210,7 @@ int32_t sensor_config(camera_profile_t * sensor);
 /*!
  * @brief Initialize camera sensor according to sensor profile
  *
- * @param	sensor: sensor profile information
+ * @param	sensor sensor profile information
  *
  * @return 0 on success; non-zero otherwise
  */
@@ -219,7 +219,7 @@ int32_t sensor_init(camera_profile_t * sensor);
 /*!
  * @brief configure camera sensor to af trigger mode
  *
- * @param	sensor: sensor profile information
+ * @param	sensor sensor profile information
  *
  * @return 0 on success; non-zero otherwise
  *
@@ -229,14 +229,26 @@ int32_t sensor_af_trigger(camera_profile_t * sensor);
 /*!
  * @brief configure camera sensor to auto focus mode
  *
- * @param	sensor: sensor profile information
+ * @param	sensor sensor profile information
  *
  * @return 0 on success; non-zero otherwise
  */
 int32_t sensor_autofocus_init(camera_profile_t * sensor);
 
+/* Funtions for MX6SL CSI */
+
+/*!
+ * @brief configure csi controller for mx6sl
+ *
+ */
 void csi_setup(void);
 
+/*!
+ * @brief stream on csi controller for mx6sl
+ *
+ * wait for EOF and clear RxFIFO before stream on DMA
+ *
+ */
 void csi_streamon(void);
 //@}
 

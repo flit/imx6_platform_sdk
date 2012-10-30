@@ -139,6 +139,52 @@ void epdc_power_supply(void)
         __asm("nop");
 }
 
+void spdc_power_up(void)
+{
+    int i = 0;
+
+    HW_IOMUXC_SW_MUX_CTL_PAD_EPDC_D10_WR(0x5);
+    gpio_set_direction(GPIO_PORT1, 17, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT1, 17, GPIO_LOW_LEVEL);
+
+    /* Using the MAX17135 as the power supplier 
+     * Panel connector are using the AXT334124
+     *
+     * Power Sequence:
+     * VDD_Panel -> VEE -> VGG -> VDNS -> VDPS -> Vcom
+     * 
+     * Pin Connections:
+     * Name         Pin# of MAX17135        Pin# of AXT334124   Comment
+     * VDD_Panel:   3V15(from mainboard)    5,7                 default enabled, comming from DCDC3V15
+     * VEE          6(DGVEE)                27,29
+     * VGG          4(DGVDD)                23,25
+     * VDNS         23(POS)                 1,3
+     * VDPS         24(NEG)                 2,4
+     * Vcom:        22(VCOM)                22,24
+     */
+    HW_IOMUXC_SW_PAD_CTL_PAD_EPDC_PWRCTRL0_WR(0x5);
+    gpio_set_direction(GPIO_PORT2, 7, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT2, 7, GPIO_HIGH_LEVEL);
+
+    //EN : pmic_wakeup gpio2.14
+    HW_IOMUXC_SW_MUX_CTL_PAD_EPDC_PWRWAKEUP_WR(0x05);    //  gpio2.GPIO[31]
+    gpio_set_direction(GPIO_PORT2, 14, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT2, 14, GPIO_HIGH_LEVEL);
+
+    //CEN : pmic_vcom gpio2.3 
+    HW_IOMUXC_SW_MUX_CTL_PAD_EPDC_VCOM0_WR(0x05);    //  gpio3.GPIO[17]
+    gpio_set_direction(GPIO_PORT2, 3, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT2, 3, GPIO_HIGH_LEVEL);
+
+    while (i++ < 10000)
+        __asm("nop");
+
+    HW_IOMUXC_SW_MUX_CTL_PAD_EPDC_D10_WR(0x5);
+    gpio_set_direction(GPIO_PORT1, 17, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT1, 17, GPIO_HIGH_LEVEL);
+}
+
+
 ////////////////////////////////////////////////////////////////////////////////
 // EOF
 ////////////////////////////////////////////////////////////////////////////////

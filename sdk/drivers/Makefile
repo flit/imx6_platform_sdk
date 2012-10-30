@@ -102,6 +102,7 @@ SOURCES += \
 	lcdif/src/lcdif_drv.c \
 	lcdif/src/pxp_drv.c \
 	epdc/src/mxc_epdc.c \
+	spdc/src/mxc_spdc.c \
 	camera/src/smd_sensor.c \
 	camera/src/csi_drv.c
 endif

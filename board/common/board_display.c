@@ -31,6 +31,7 @@
 #include "sdk.h"
 #include "registers/regsccmanalog.h"
 #include "registers/regsccm.h"
+#include "registers/regsiomuxc.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code
@@ -210,6 +211,76 @@ void ldb_clock_config(int freq, int ipu_index)
     } else {
         printf("The frequency %d for LDB is not supported yet.", freq);
     }
+}
+
+void epdc_clock_setting(int freq)
+{
+#if defined(CHIP_MX6SDL)
+    HW_CCM_CSCDR2.B.EPDC_PIX_PRE_CLK_SEL = 0x3; // 307M PFD
+
+    HW_CCM_CSCDR2.B.EPDC_PIX_CLK_SEL = 0x0;
+
+    /*set the output as 271M */
+    BW_CCM_ANALOG_PFD_528_PFD0_FRAC(0x23);
+
+    HW_CCM_CSCDR2.B.EPDC_PIX_PODF = 0x7;    // post divider
+
+//  HW_IOMUXC_SW_MUX_CTL_PAD_GPIO_3.B.MUX_MODE = 0x4; //set as clko
+#endif
+
+#if defined(CHIP_MX6SL)
+    HW_CCM_CSCDR2.B.EPDC_PIX_CLK_SEL = 0x5; //Use 540MPFD
+
+    HW_CCM_CSCDR2.B.EPDC_PIX_PRED = 0x5;    //pred for EPDC
+
+    HW_CCM_CBCMR.B.EPDC_PIX_PODF = 0x4;
+
+    /*set the AXI clock, divided from MMDC clock */
+    HW_CCM_CHSCCDR.B.EPDC_AXI_CLK_SEL = 0x0;
+    HW_CCM_CHSCCDR.B.EPDC_AXI_PODF = 0x1;
+#endif
+}
+
+void epdc_power_supply(void)
+{
+    int i = 0;
+#if defined(CHIP_MX6SDL)
+#if defined(BOARD_EVB)
+    /*PMIC wakeup */
+    HW_IOMUXC_SW_MUX_CTL_PAD_EIM_EB3.B.MUX_MODE = 0x5;
+    gpio_set_direction(GPIO_PORT2, 31, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT2, 31, GPIO_HIGH_LEVEL);
+
+    /*PMIC vcom */
+    HW_IOMUXC_SW_MUX_CTL_PAD_EIM_D17.B.MUX_MODE = 0x5;
+    gpio_set_direction(GPIO_PORT3, 17, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT3, 17, GPIO_HIGH_LEVEL);
+#elif defined(BOARD_SMART_DEVICE)
+    /*PMIC wakeup */
+    HW_IOMUXC_SW_MUX_CTL_PAD_EIM_D20.B.MUX_MODE = 0x5;
+    gpio_set_direction(GPIO_PORT3, 20, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT3, 20, GPIO_HIGH_LEVEL);
+
+    /*PMIC vcom */
+    HW_IOMUXC_SW_MUX_CTL_PAD_EIM_D17.B.MUX_MODE = 0x5;
+    gpio_set_direction(GPIO_PORT3, 17, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT3, 17, GPIO_HIGH_LEVEL);
+#endif
+#endif
+
+#if defined(CHIP_MX6SL)
+    //EN : pmic_wakeup gpio2.14
+    HW_IOMUXC_SW_MUX_CTL_PAD_EPDC_PWRWAKEUP.B.MUX_MODE = 0x5;
+    gpio_set_direction(GPIO_PORT2, 14, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT2, 14, GPIO_HIGH_LEVEL);
+
+    //CEN : pmic_vcom gpio2.3
+    HW_IOMUXC_SW_MUX_CTL_PAD_EPDC_VCOM0.B.MUX_MODE = 0x5;
+    gpio_set_direction(GPIO_PORT2, 3, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT2, 3, GPIO_HIGH_LEVEL);
+#endif
+    for (i = 0; i < 1000000; i++)
+        __asm("nop");
 }
 
 ////////////////////////////////////////////////////////////////////////////////

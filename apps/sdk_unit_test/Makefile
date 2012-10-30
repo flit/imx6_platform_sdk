@@ -128,12 +128,13 @@ endif
 # SATA is only available on the mx6dq.
 ifeq "$(TARGET)" "mx6dq"
     SUBDIRS += $(SDK_LIB_ROOT)/drivers/sata/test
+else # for mx6sdl and mx6sl
+    SUBDIRS += $(SDK_LIB_ROOT)/drivers/epdc/test
 endif
 
 # available test only on the mx6sl.
 ifeq "$(TARGET)" "mx6sl"
     SUBDIRS += $(SDK_LIB_ROOT)/drivers/lcdif/test
-    SUBDIRS += $(SDK_LIB_ROOT)/drivers/epdc/test
     SUBDIRS += $(SDK_LIB_ROOT)/drivers/spdc/test
     SUBDIRS += $(SDK_LIB_ROOT)/drivers/camera/test
 endif

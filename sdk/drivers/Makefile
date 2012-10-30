@@ -7,6 +7,10 @@ is_dq_or_sdl = 1
 endif
 ifeq "$(TARGET)" "mx6sdl"
 is_dq_or_sdl = 1
+is_sdl_or_sl = 1
+endif
+ifeq "$(TARGET)" "mx6sl"
+is_sdl_or_sl = 1
 endif
 
 define SOURCES
@@ -47,6 +51,11 @@ endef
 # Only the MX6DQ has SATA.
 ifeq "$(TARGET)" "mx6dq"
 SOURCES += sata/src/sata.c
+endif
+
+# only for MX6SDL and MX6SL
+ifdef is_sdl_or_sl
+SOURCES += epdc/src/mxc_epdc.c
 endif
 
 # Add drivers that are only available of mx6dq or mx6sdl.
@@ -101,7 +110,6 @@ else
 SOURCES += \
 	lcdif/src/lcdif_drv.c \
 	lcdif/src/pxp_drv.c \
-	epdc/src/mxc_epdc.c \
 	spdc/src/mxc_spdc.c \
 	camera/src/smd_sensor.c \
 	camera/src/csi_drv.c

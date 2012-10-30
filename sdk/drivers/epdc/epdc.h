@@ -31,14 +31,15 @@
 #ifndef _EPDC_H_
 #define _EPDC_H_
 
+//! @addtogroup diag_epdc
+//! @{
+
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
+
 #define TRUE 1
 #define FALSE 0
-
-/*
- * Enable this define to have a default panel
- * loaded during driver initialization
- */
-//#define DEFAULT_PANEL_HW_INIT
 
 #define NUM_SCREENS	2
 #define EPDC_NUM_LUTS 16
@@ -72,7 +73,6 @@
 #define EPDC_AXICLK_PRE_DIV 2
 #define EPDC_AXICLK_POST_DIV 1
 
-
 #define EPDC_UPD_UPDATE_MODE__PARTIAL  0x0
 #define EPDC_UPD_UPDATE_MODE__FULL     0x1
 
@@ -80,7 +80,6 @@
 #define 	EPDC_WV_MODE__DU 		1   // black and white
 #define 	EPDC_WV_MODE__GC16	2   // 16 level
 #define 	EPDC_WV_MODE__GC4		3   // 4 level, low fidelity
-
 
 /*EPDC memory map*/
 #if defined(CHIP_MX6SDL)
@@ -100,6 +99,7 @@
 #define IMAGE_STORE_0_ADDR     0x73400000
 #endif
 
+//! @brief Structure of waveform data header 
 struct waveform_data_header {
     unsigned int wi0;
     unsigned int wi1;
@@ -126,11 +126,13 @@ struct waveform_data_header {
     unsigned int cs2:8;
 };
 
+//! @brief Structure of waveform data file
 struct mxc_waveform_data_file {
     struct waveform_data_header wdh;
     unsigned int *data;         /* Temperature Range Table + Waveform Data */
 };
 
+//! @brief Structure for epdc updated area information
 typedef struct {
     struct {
         int x;
@@ -142,6 +144,7 @@ typedef struct {
     } size;
 } epdc_upd_area_t;
 
+//! @brief Structure for eink panel information
 typedef struct eink_panel_info {
     char name[32];
     unsigned int name_flag;
@@ -160,10 +163,12 @@ typedef struct eink_panel_info {
     unsigned int data_format;
 } eink_panel_info_t;
 
+//! @Enumeration for eink panel that are supported by the driver
 enum eink_panel_flag {
     EINK_ED060SC4,
 };
 
+//! @brief Enumeration for epd lut table
 enum epdc_lut {
     EPDC_LUT0 = 0,
     EPDC_LUT1 = 1,
@@ -183,4 +188,108 @@ enum epdc_lut {
     EPDC_LUT15 = 15,
 };
 
+////////////////////////////////////////////////////////////////////////////////
+// API
+////////////////////////////////////////////////////////////////////////////////
+
+/*!
+ * @brief Dump the EPDC registers for debug purpose
+ */
+void epdc_dump_registers(void);
+
+/*!
+ * @brief Configure the EPDC iomux
+ */
+void epdc_iomux_config(void);
+
+/*!
+ * @brief Configure the EPDC clock
+ *
+ * @param freq_mhz clock frequency in MHz unit
+ */
+void epdc_clock_setting(int freq_mhz);
+
+/*!
+ * @brief Load the GC image to EPDC data buffer
+ */
+void epdc_load_image(void);
+
+/*!
+ * @brief Provide the buffer supply for EPDC. it will use 
+ * external pmic
+ */
+void epdc_power_supply(void);
+
+/*!
+ * @brief Reset the EPD controller
+ */
+void epdc_reset(void);
+
+/*!
+ * @brief Intialize the EPDC buffers
+ */
+void epdc_buffer_init(void);
+
+/*!
+ * @brief Initialize the EPD controller
+ */
+void epdc_init_settings(void);
+
+/*!
+ * @brief Checi if the EPDC buffer is busy
+ *
+ * @return TRUE for busy and FALSE for idle
+ */
+int epdc_is_working_buffer_busy(void);
+
+/*!
+ * @brief Update the buffer address of EPDC
+ *
+ * @param addr buffer address
+ */
+void epdc_set_update_addr(unsigned int addr);
+
+/*!
+ * @brief Set the coordinate of EPDC update area
+ * 
+ * @param x x coordinate
+ * @param y y coordinate
+ */
+void epdc_set_update_coord(unsigned int x, unsigned int y);
+
+/*!
+ * @brief Set the dimensions of EPDC update area
+ *
+ * @param width width of the update area
+ * @param height height of the update area
+ */
+void epdc_set_update_dimensions(unsigned int width, unsigned int height);
+
+/*!
+ * @brief Summit the update request to the panel by EPDC
+ *
+ * @param lut_num LUT offset
+ * @param waveform_mode mode of the waveform
+ * @param update_mode mode of update
+ * @param use_test_mode test mode selection
+ * @param np_val fixed NP offset
+ */
+void epdc_submit_update(unsigned int lut_num, unsigned int waveform_mode,
+                        unsigned int update_mode, int use_test_mode, unsigned int np_val);
+
+/*!
+ * @brief EPDC get the next LUT unit
+ */
+int epdc_get_next_lut(void);
+
+/*!
+ * @brief Check if the lut is active
+ */
+int epdc_is_lut_active(unsigned int lut_num);
+
+//! @}
 #endif /*_EPDC_H_*/
+
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////

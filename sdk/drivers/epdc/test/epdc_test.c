@@ -40,23 +40,6 @@ void epdc_send_image_update(unsigned int lut, epdc_upd_area_t upzone, unsigned i
 void epdc_send_erase_to_color(unsigned int lut, unsigned int mode,
                               epdc_upd_area_t upzone, int color);
 
-extern void epdc_dump_registers(void);
-extern void epdc_iomux_config(void);
-extern void epdc_clock_setting(int freq_mhz);
-extern void epdc_load_image(void);
-extern void epdc_power_supply(void);
-extern void epdc_reset(void);
-extern void epdc_buffer_init(void);
-extern void epdc_init_settings(void);
-extern int epdc_is_working_buffer_busy(void);
-
-extern void epdc_set_update_addr(unsigned int addr);
-extern void epdc_set_update_coord(unsigned int x, unsigned int y);
-extern void epdc_set_update_dimensions(unsigned int width, unsigned int height);
-extern void epdc_submit_update(unsigned int lut_num, unsigned int waveform_mode,
-                               unsigned int update_mode, int use_test_mode, unsigned int np_val);
-extern int epdc_get_next_lut(void);
-extern int epdc_is_lut_active(unsigned int lut_num);
 static int epdc_initialized = 0;
 
 int epdc_test(void)
@@ -108,8 +91,8 @@ void epdc_pvi_svga_sdr_init(void)
     epdc_load_image();
 
     //epdc_dump_registers();
-    
-	/* Start commands */
+
+    /* Start commands */
     epdc_send_mode0_to_black_update();
 }
 
@@ -180,4 +163,3 @@ void epdc_send_erase_to_color(unsigned int lut, unsigned int mode,
     epdc_set_update_dimensions(upzone.size.width, upzone.size.height);  // 600x230
     epdc_submit_update(lut, mode, EPDC_UPD_UPDATE_MODE__PARTIAL, 0x1, color);   //0xf0
 }
-

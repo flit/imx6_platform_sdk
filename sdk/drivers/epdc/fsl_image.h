@@ -28,7 +28,17 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/*This data is used for EPD display*/
+#ifndef _EPDC_FSL_IMAGE_H_
+#define _EPDC_FSL_IMAGE_H_
+
+//! @addtogroup diag_epdc
+//! @{
+
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
+
+//! @brief GC4 image showing the freescale logo
 unsigned int fsl_gray_600x230[600 * 230 / 4] = {
     0xffffffff,
     0xffffffff,
@@ -34531,3 +34541,11 @@ unsigned int fsl_gray_600x230[600 * 230 / 4] = {
     0xffffffff,
     0xffffffff
 };
+
+//! @}
+
+#endif
+
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////

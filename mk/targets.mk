@@ -131,28 +131,24 @@ $(OBJECTS_ALL) $(TARGET_LIB) $(APP_ELF): $(this_makefile)
 
 # Compile C sources.
 $(OBJS_ROOT)/%.o: $(SDK_ROOT)/%.c
-	@if [ -t 1 ]; then printf "$(color_c)Compiling$(color_default) $(subst $(SDK_ROOT)/,,$<)\n" ; \
-	else printf "Compiling $(subst $(SDK_ROOT)/,,$<)\n" ; fi
+	@$(call printmessage,c,Compiling, $(subst $(SDK_ROOT)/,,$<))
 	$(at)cd $(dir $<) && $(CC) $(CFLAGS) $(SYSTEM_INC) $(INCLUDES) $(DEFINES) -MMD -MF $(basename $@).d -MP -o $@ -c $<
 
 # Compile C++ sources.
 $(OBJS_ROOT)/%.o: $(SDK_ROOT)/%.cpp
-	@if [ -t 1 ]; then printf "$(color_cpp)Compiling$(color_default) $(subst $(SDK_ROOT)/,,$<)\n" ; \
-	else printf "Compiling $(subst $(SDK_ROOT)/,,$<)\n" ; fi
+	@$(call printmessage,cxx,Compiling, $(subst $(SDK_ROOT)/,,$<))
 	$(at)cd $(dir $<) && $(CXX) $(CXXFLAGS) $(SYSTEM_INC) $(INCLUDES) $(DEFINES) -MMD -MF $(basename $@).d -MP -o $@ -c $<
 
 # For .S assembly files, first run through the C preprocessor then assemble.
 $(OBJS_ROOT)/%.o: $(SDK_ROOT)/%.S
-	@if [ -t 1 ]; then printf "$(color_asm)Assembling$(color_default) $(subst $(SDK_ROOT)/,,$<)\n" ; \
-	else printf "Assembling $(subst $(SDK_ROOT)/,,$<)\n" ; fi
+	@$(call printmessage,asm,Assembling, $(subst $(SDK_ROOT)/,,$<))
 	$(at)cd $(dir $<) \
 	&& $(CPP) -D__LANGUAGE_ASM__ $(INCLUDES) $(DEFINES) -o $(basename $@).s $< \
 	&& $(AS) $(ASFLAGS) $(INCLUDES) -MD $(OBJS_ROOT)/$*.d -o $@ $(basename $@).s
 
 # Assembler sources.
 $(OBJS_ROOT)/%.o: $(SDK_ROOT)/%.s
-	@if [ -t 1 ]; then printf "$(color_asm)Assembling$(color_default) $(subst $(SDK_ROOT)/,,$<)\n" ; \
-	else printf "Assembling $(subst $(SDK_ROOT)/,,$<)\n" ; fi
+	@$(call printmessage,asm,Assembling, $(subst $(SDK_ROOT)/,,$<))
 	$(at)cd $(dir $<) && $(AS) $(ASFLAGS) $(INCLUDES) -MD $(basename $@).d -o $@ $<
 
 # Add objects to the target library.
@@ -160,8 +156,7 @@ $(OBJS_ROOT)/%.o: $(SDK_ROOT)/%.s
 # Note that we're checking the archive's mod date and not each entry in the archive. This
 # lets us do a single update operation with all modified object files.
 $(TARGET_LIB): $(OBJECTS_ALL)
-	@if [ -t 1 ]; then printf "$(color_ar)Archiving$(color_default) $(shell echo $? | wc -w) files in $(@F)\n" ; \
-	else printf "Archiving $(shell echo $? | wc -w) files in $(@F)\n" ; fi
+	@$(call printmessage,ar,Archiving, $(shell echo $? | wc -w) files in $(@F))
 	$(at)$(AR) -rucs $@ $?
 
 #-------------------------------------------------------------------------------
@@ -202,8 +197,7 @@ rel_ld_file = $(basename $(subst $(SDK_ROOT)/,,$(abspath $(LD_FILE))))
 the_ld_file = $(addprefix $(OBJS_ROOT)/,$(rel_ld_file))
 
 $(the_ld_file): $(LD_FILE)
-	@if [ -t 1 ]; then printf "$(color_asm)Preprocessing$(color_default) $(subst $(SDK_ROOT)/,,$<)\n" ; \
-	else printf "Preprocessing $(subst $(SDK_ROOT)/,,$<)\n" ; fi
+	@$(call printmessage,cpp,Preprocessing, $(subst $(SDK_ROOT)/,,$<))
 	$(at)cd $(dir $<) && $(CC) -E -P $(INCLUDES) $(DEFINES) -o $@ $<
 endif
 
@@ -212,8 +206,7 @@ endif
 # file for dependencies.  Otherwise linking static libs can be a pain
 # since order matters.
 $(APP_ELF): $(app_objs) $(the_ld_file) $(LIBRARIES) $(APP_LIBS)
-	@if [ -t 1 ]; then printf "$(color_link)Linking$(color_default) $(APP_NAME)...\n" ; \
-	else printf "Linking $(APP_NAME)...\n" ; fi
+	@$(call printmessage,link,Linking, $(APP_NAME))
 	$(at)$(LD) -Bstatic -nostartfiles -nostdlib $(LDFLAGS) \
 	      -T $(the_ld_file) \
 	      $(LDINC) \
@@ -226,8 +219,8 @@ $(APP_ELF): $(app_objs) $(the_ld_file) $(LIBRARIES) $(APP_LIBS)
 	      -o $@ \
 	      -Map $(app_map) --cref
 	$(at)$(OBJCOPY) --gap-fill 0x00 -I elf32-little -O binary $@ $(app_bin)
-	@echo "Output ELF: $(APP_ELF)"
-	@echo "Output binary: $(app_bin)"
+	@echo "Output ELF:" ; echo "  $(APP_ELF)"
+	@echo "Output binary:" ; echo "  $(app_bin)"
 else
 # Empty target to prevent an error. Needed because $(APP) is a prereq for the 'all' target.
 $(APP_ELF): ;

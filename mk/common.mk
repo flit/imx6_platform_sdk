@@ -92,14 +92,50 @@ color_yellow = \033[33m
 color_blue = \033[34m
 color_magenta = \033[35m
 color_cyan = \033[36m
+color_orange = \033[38;5;172m
+color_light_blue = \033[38;5;039m
+color_gray = \033[38;5;008m
+color_purple = \033[38;5;097m
 
 ifeq "$(BUILD_SDK_COLOR)" "1"
-color_build := $(color_bold)$(color_blue)
+color_build := $(color_light_blue)
 color_c := $(color_green)
-color_cpp := $(color_green)
+color_cxx := $(color_green)
+color_cpp := $(color_orange)
 color_asm := $(color_magenta)
 color_ar := $(color_yellow)
-color_link := $(color_cyan)
+color_link := $(color_purple)
+endif
+
+# Used in printmessage if the color args are not present.
+color_ :=
+
+# Use in recipes to print color messages if printing to a terminal. If
+# BUILD_SDK_COLOR is not set to 1, this reverts to a simple uncolorized printf.
+# A newline is added to the end of the printed message.
+#
+# Arguments:
+#  1 - name of the color variable (see above), minus the "color_" prefix
+#  2 - first colorized part of the message
+#  3 - first uncolorized part of the message
+#  4 - color name for second colorized message
+#  5 - second colorized message
+#  6 - second uncolorized part of the message
+#  7 - uncolorized prefix on the whole line; this is last because it is expected to be used rarely
+#
+# All arguments are optional.
+#
+# Use like:
+#  $(call printmessage,cyan,Building, remainder of the message...)
+ifeq "$(BUILD_SDK_COLOR)" "1"
+define printmessage
+if [ -t 1 ]; then printf "$(7)$(color_$(1))$(2)$(color_default)$(3)$(color_$(4))$(5)$(color_default)$(6)\n" ; \
+else printf "$(7)$(2)$(3)$(5)$(6)\n" ; fi
+endef
+else
+define printmessage
+printf "$(7)$(2)$(3)$(5)$(6)\n" ; fi
+endef
 endif
 
 #-------------------------------------------------------------------------------

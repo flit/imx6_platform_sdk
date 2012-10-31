@@ -76,15 +76,12 @@ all: $(ALL_APPS) ;
 # App targets. All apps depend on the listed subdirectories.
 .PHONY: ALL_APPS
 $(ALL_APPS): $(SUBDIRS)
-	@if [ -t 1 ]; then printf "\n$(color_build)Building$(color_default) $@...\n" ; \
-	else printf "\nBuilding $@...\n" ; fi
+	@$(call printmessage,build,Building, $@ ,gray,[$(TARGET) $(BOARD) $(BOARD_REVISION)],,\n)
 	@$(MAKE) $(silent_make) -r -C apps/$@
-	@printf "\nBuild of $@ passed for $(TARGET) $(BOARD) rev $(BOARD_REVISION)!\n\n"
 
 # Print message before recursive into subdirs.
 $(SUBDIRS)::
-	@if [ -t 1 ]; then printf "\n$(color_build)Building$(color_default) $(@F)...\n" ; \
-	else printf "\nBuilding $(@F)...\n" ; fi
+	@$(call printmessage,build,Building, $(@F) ,gray,[$(TARGET) $(BOARD) $(BOARD_REVISION)],,\n)
 
 # Target with a simple name for building the board package.
 .PHONY: board

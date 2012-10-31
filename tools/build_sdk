@@ -121,6 +121,16 @@ valid_builds=( "mx6dq"  "sabre_ai"     "a"
                "mx6sdl" "smart_device" "b"
                "mx6sl"  "evk"          "a")
 
+if [ -t 1 ]; then
+    color_default=\\033[00m
+    color_passed=\\033[92m
+    color_failed=\\033[31m
+else
+    color_default=
+    color_passed=
+    color_failed=
+fi
+
 do_build()
 {
     # Run make if requested.
@@ -131,9 +141,9 @@ do_build()
         build_name="${soc_name} ${board_name} rev_${board_rev} ${test_name}"
         #echo
         if [ $result -eq 0 ]; then
-            echo "Build $build_name passed!"
+            printf "\n${color_passed}Build $build_name passed!${color_default}"
         else
-            echo "Build $build_name failed with return code $result!"
+            printf "\n${color_failed}Build $build_name failed with return code $result!${color_passed}\n\n"
             exit 1;
         fi
     else

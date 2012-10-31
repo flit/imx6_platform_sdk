@@ -7,7 +7,7 @@ SOURCES = \
 	src/interrupt.c \
 	src/mmu.c \
 	src/cortexA9.s \
-	src/startup.s \
+	src/startup.S \
 	src/vectors.S \
 	src/armv7_cache.c
 

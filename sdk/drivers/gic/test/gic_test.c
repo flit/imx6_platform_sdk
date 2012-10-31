@@ -34,9 +34,6 @@
 //globals used for gic_test
 unsigned int gicTestDone;
 
-extern void startup_imx6x(void);    // entry function, startup routine, defined in startup.s
-
-
 void gic_sgi_test_handler(void)
 {
     printf("In gic_sgi_test_handler()\n");

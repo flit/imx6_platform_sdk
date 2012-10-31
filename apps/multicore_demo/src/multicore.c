@@ -42,7 +42,7 @@
 // Externs
 ////////////////////////////////////////////////////////////////////////////////
 
-extern void startup_imx6x(void);    // entry function, startup routine, defined in startup.s
+extern void _start(void);    // entry function, startup routine, defined in startup.s
 
 ////////////////////////////////////////////////////////////////////////////////
 // Variables
@@ -80,7 +80,7 @@ void start_secondary_cpu(uint32_t cpu_num, void functPtr(void))
     switch (cpu_num)
     {
         case 1:
-            HW_SRC_GPR3_WR((uint32_t) & startup_imx6x);
+            HW_SRC_GPR3_WR((uint32_t) & _start);
             HW_SRC_GPR4_WR((uint32_t) functPtr);
     
             HW_SRC_SCR.B.CORE1_ENABLE = 1;
@@ -88,14 +88,14 @@ void start_secondary_cpu(uint32_t cpu_num, void functPtr(void))
 
 #if defined(CHIP_MX6DQ)
         case 2:
-            HW_SRC_GPR5_WR((uint32_t) & startup_imx6x);
+            HW_SRC_GPR5_WR((uint32_t) & _start);
             HW_SRC_GPR6_WR((uint32_t) functPtr);
     
             HW_SRC_SCR.B.CORE2_ENABLE = 1;
             break;
     
         case 3:
-            HW_SRC_GPR7_WR((uint32_t) & startup_imx6x);
+            HW_SRC_GPR7_WR((uint32_t) & _start);
             HW_SRC_GPR8_WR((uint32_t) functPtr);
     
             HW_SRC_SCR.B.CORE3_ENABLE = 1;

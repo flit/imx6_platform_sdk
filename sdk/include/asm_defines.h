@@ -30,7 +30,7 @@
 
 /*!
  * @file asm_defines.h
- * @brief         defines for startup assembly code
+ * @brief defines for startup assembly code
  *
  * @ingroup diag_util
  */
@@ -38,34 +38,42 @@
 #ifndef _ASM_DEFINES_H_
 #define _ASM_DEFINES_H_
 
-#define    MODE_USR     0X10
-#define    MODE_FIQ     0X11
-#define    MODE_IRQ     0X12
-#define    MODE_SVC     0X13
-#define    MODE_ABT     0X17
-#define    MODE_UND     0X1B
-#define    MODE_SYS     0X1F
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
 
-#define    I_BIT        0x80    /* when I bit is set, IRQ is disabled */
-#define    F_BIT        0x40    /* when F bit is set, FIQ is disabled */
+//! @name Mode bits in CPSR
+//@{
+#define MODE_USR     0x10   //!< User mode
+#define MODE_FIQ     0x11   //!< FIQ mode
+#define MODE_IRQ     0x12   //!< IRQ mode
+#define MODE_SVC     0x13   //!< Supervisor mode
+#define MODE_ABT     0x17   //!< Abort exception mode
+#define MODE_UND     0x1B   //!< Undefined instruction exception mode
+#define MODE_SYS     0x1F   //!< System mode
+//@}
 
-/* --- Amount of memory (in bytes) allocated for stacks */
-#define    LEN_FIQ_STACK  1024
-#define    LEN_IRQ_STACK  1024
-#define    LEN_ABT_STACK  1024
-#define    LEN_UND_STACK  1024
-#define    LEN_SVC_STACK  1024
-#define    LEN_USR_STACK  1024
+//! @name Interrupt enable bits in CPSR
+//@{
+#define I_BIT        0x80    //!< When I bit is set, IRQ is disabled
+#define F_BIT        0x40    //!< When F bit is set, FIQ is disabled
+//@}
 
-/*  Add lengths >0 for FIQ_Stack, ABT_Stack, UND_Stack if you need them.
- * Offsets will be loaded as immediate values.
- * Offsets must be 8 byte aligned.
-*/
-#define    OFFSET_FIQ_STACK   0
-#define    OFFSET_IRQ_STACK   (OFFSET_FIQ_STACK + LEN_FIQ_STACK)
-#define    OFFSET_ABT_STACK   (OFFSET_IRQ_STACK + LEN_IRQ_STACK)
-#define    OFFSET_UND_STACK   (OFFSET_ABT_STACK + LEN_ABT_STACK)
-#define    OFFSET_SVC_STACK   (OFFSET_UND_STACK + LEN_UND_STACK)
-#define    OFFSET_USR_STACK   (OFFSET_SVC_STACK + LEN_SVC_STACK)
+//! @name Stack sizes
+//@{
+
+//! @brief Size of stacks for exceptions.
+#define EXCEPTION_STACK_SIZE 2048
+
+//! @brief Supervisor mode stack size.
+//!
+//! This stack is much larger because most application code runs in
+//! Supervisor mode.
+#define SVC_STACK_SIZE 8192
+
+//@}
 
 #endif /*_ASM_DEFINES_H_ */
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////

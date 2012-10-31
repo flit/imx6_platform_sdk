@@ -39,7 +39,7 @@ extern unsigned * _image_size;
 
 extern uint8_t input_dcd_hdr[];
 
-extern void startup(void);
+extern void _start(void);
 
 struct hab_ivt input_ivt __attribute__ ((section (".ivt"))) ={
     /** @ref hdr word with tag #HAB_TAG_IVT, length and HAB version fields
@@ -49,7 +49,7 @@ struct hab_ivt input_ivt __attribute__ ((section (".ivt"))) ={
     /** Absolute address of the first instruction to execute from the
      *  image
      */
-    (hab_image_entry_f)startup,
+    (hab_image_entry_f)_start,
 
     /** Reserved in this version of HAB: should be NULL. */
     NULL,

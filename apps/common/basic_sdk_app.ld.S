@@ -1,13 +1,36 @@
 /*
- * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
- * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
- * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
- * Freescale Semiconductor, Inc.
-*/
+ * Copyright (c) 2010-2012, Freescale Semiconductor, Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ * o Redistributions of source code must retain the above copyright notice, this list
+ *   of conditions and the following disclaimer.
+ *
+ * o Redistributions in binary form must reproduce the above copyright notice, this
+ *   list of conditions and the following disclaimer in the documentation and/or
+ *   other materials provided with the distribution.
+ *
+ * o Neither the name of Freescale Semiconductor, Inc. nor the names of its
+ *   contributors may be used to endorse or promote products derived from this
+ *   software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 
 OUTPUT_FORMAT("elf32-littlearm")
 OUTPUT_ARCH(arm)
-ENTRY(startup)
+ENTRY(_start)
 
 /*
  * OCRAM
@@ -44,35 +67,71 @@ ENTRY(startup)
 #endif
 
 // Maximum size of the signed image
+#if !defined(MAX_IMAGE_SIZE)
 #define MAX_IMAGE_SIZE 256K
+#endif
 
 // Maximum size of HAB CSF data
+#if !defined(MAX_HAB_CSF_DATA_SIZE)
 #define MAX_HAB_CSF_DATA_SIZE 8K
+#endif
 
-// Size of exception stacks section
-#define EXCEPTIONS_STACK_SIZE 40K
+// Size of stacks section
+#if !defined(STACK_SIZE)
+#define STACK_SIZE 40K
+#endif
+
+// Size of the L1 page table.
+#define L1_PAGE_TABLE_SIZE 16K
+
+// Size of the RAM vectors table at the top of OCRAM.
+//
+// The vectors in ROM at address 0 point to these RAM vectors.
+#define RAM_VECTORS_SIZE 72
 
 INPUT (crtbegin.o crti.o crtend.o crtn.o)
 
 MEMORY
 {
-    OCRAM (rwx) : ORIGIN = 0x00900000, LENGTH = OCRAM_LEN - 0x100
+    OCRAM (rwx) : ORIGIN = 0x00900000, LENGTH = OCRAM_LEN
     DDR (rwx)   : ORIGIN = DDR_ORG, LENGTH = DDR_LEN
 }
 
 SECTIONS
 {
-/* -- OCRAM -- */
+/*
+ * -- OCRAM --
+ *
+ * Nothing in OCRAM can be loaded at boot, because the boot image must be a contiguous
+ * region of memory.
+ */
 
-    /* allocate a heap in ocram */
-    .heap.ocram :
+    /* MMU L1 page table */
+    .l1_page_table (NOLOAD) :
     {
-        __heap_ocram_start = .;
-        . += LENGTH(OCRAM) ;
-        __heap_ocram_end = .;
+        . += L1_PAGE_TABLE_SIZE;
     } > OCRAM
 
-/* -- DDR -- */
+    /* allocate a heap in ocram */
+    .heap.ocram (NOLOAD) : ALIGN(4)
+    {
+        __heap_ocram_start = .;
+        . += LENGTH(OCRAM) - L1_PAGE_TABLE_SIZE - RAM_VECTORS_SIZE ;
+        __heap_ocram_end = .;
+    } > OCRAM
+    
+    /* RAM vector table comes at the end of OCRAM */
+    .ram_vectors (ORIGIN(OCRAM) + LENGTH(OCRAM) - RAM_VECTORS_SIZE) (NOLOAD) :
+    {
+        __ram_vectors_start = .;
+        . += RAM_VECTORS_SIZE;
+        __ram_vectors_end = .;
+    } > OCRAM
+
+
+/*
+ * -- DDR --
+ */
 
     _start_image_add = ORIGIN(DDR);
     
@@ -102,11 +161,6 @@ SECTIONS
     {
         *(.dcd_data)
     } > DDR
-    
-    .vectors ALIGN(32) :
-    {
-        *(.vectors)
-    } > DDR
 
     .init :
     {
@@ -118,7 +172,7 @@ SECTIONS
         *(.startup)
         *(.text .text.*)
     } > DDR
-    
+
     .fini :
     {
         KEEP (*(.fini))
@@ -174,7 +228,6 @@ SECTIONS
     } > DDR
     PROVIDE_HIDDEN(__exidx_end = .);
 
-//    . = ALIGN (4);
     /* Reserve some space for HAB CSF data */
     .hab.data (_start_image_add + MAX_IMAGE_SIZE) : ALIGN(4)
     {
@@ -198,14 +251,11 @@ SECTIONS
     } > DDR
 
     /* Region to contain exception handler stacks */
-    .exc_stacks (NOLOAD) :
+    .stacks (NOLOAD) :
     {
-        . += EXCEPTIONS_STACK_SIZE;
+        . += STACK_SIZE;
         top_of_stacks = .;
     } > DDR
-    
-    . = ALIGN (4);
-    . += 8;
     
     /* define section for the malloc heap */
     .heap (NOLOAD) : ALIGN(32)
@@ -215,5 +265,5 @@ SECTIONS
         free_memory_end = .;
     } > DDR
 
-//    _end = .;
+    _end = .;
 }

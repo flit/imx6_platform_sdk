@@ -130,10 +130,12 @@ void show_board_id(const fsl_board_id_t board_id, const char* const indent);
 #error Need to define a board type
 #endif
 
-#if defined(BOARD_REV_B)
-#define BOARD_REVISION        BOARD_REVISION_B
-#elif defined(BOARD_REV_A)
+#if defined(BOARD_REV_A)
 #define BOARD_REVISION        BOARD_REVISION_A
+#elif defined(BOARD_REV_B)
+#define BOARD_REVISION        BOARD_REVISION_B
+#elif defined(BOARD_REV_C)
+#define BOARD_REVISION        BOARD_REVISION_C
 #else
 #error Need to define a board revision
 #endif

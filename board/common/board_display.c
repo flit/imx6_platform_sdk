@@ -110,7 +110,7 @@ void tftlcd_backlight_en(char *panel_name)
         // since TSC not used on SABRE AI
         reg32_write(IOMUXC_SW_MUX_CTL_PAD_DI0_PIN4, ALT5);
         gpio_set_direction(GPIO_PORT4, 20, GPIO_GDIR_INPUT);
-#elif defined (BOARD_REV_B)
+#elif defined (BOARD_REV_B) || defined(BOARD_REV_C)
         reg32_write(IOMUXC_SW_MUX_CTL_PAD_DI0_PIN4, ALT5);
         gpio_set_direction(GPIO_PORT4, 20, GPIO_GDIR_OUTPUT);
         gpio_set_level(GPIO_PORT4, 20, GPIO_HIGH_LEVEL);

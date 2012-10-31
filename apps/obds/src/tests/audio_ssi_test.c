@@ -37,10 +37,6 @@
 
 #define SSI_WRITE_TIMEOUT	0x400000
 
-#if (defined(CHIP_MX6SL) && defined(BOARD_EVB))
-//#define 	WM8962_I2C_UNSTABLE
-#endif
-
 static const char * const audio_ssi_test_name = "I2S Audio Test";
 
 //extern audio_pcm_para_t pcm_para;
@@ -87,7 +83,7 @@ int audio_test_init(void)
 #if defined(BOARD_REV_A)
     snd_card = &snd_card_ssi_wm8958;
 #endif
-#if defined(BOARD_REV_B)
+#if defined(BOARD_REV_B) || defined(BOARD_REV_C)
     snd_card = &snd_card_ssi_wm8962;
 #endif
 #endif
@@ -95,11 +91,11 @@ int audio_test_init(void)
 #if defined(BOARD_SABRE_LITE)
     snd_card = &snd_card_ssi_sgtl5000;
 #endif
-#if (defined(CHIP_MX6SL) && defined(BOARD_EVB))
+#if (defined(CHIP_MX6SL) && defined(BOARD_EVK))
     snd_card = &snd_card_ssi_wm8962;
 #endif
 
-#if defined(BOARD_SMART_DEVICE) || (defined(CHIP_MX6SL) && defined(BOARD_EVB))
+#if defined(BOARD_SMART_DEVICE) || (defined(CHIP_MX6SL) && defined(BOARD_EVK))
     audmux_route(AUDMUX_PORT_2, AUDMUX_PORT_3, AUDMUX_SSI_MASTER);
     dev_para.bus_mode = AUDIO_BUS_MODE_MASTER;
 #endif
@@ -218,8 +214,7 @@ menu_action_t i2s_audio_test(const menu_context_t* const context, void* const pa
         return MENU_CONTINUE;
     }
 
-#if (defined(CHIP_MX6SL) && defined(BOARD_EVB)) || (defined(BOARD_SMART_DEVICE) && defined(BOARD_REV_B))
-#if !defined(WM8962_I2C_UNSTABLE)
+#if (defined(CHIP_MX6SL) && defined(BOARD_EVK)) || (defined(BOARD_SMART_DEVICE) && (defined(BOARD_REV_B) || defined(BOARD_REV_C)))
     printf("%s Audio input: please ensure micphone is plugged in. Press 'y/Y' to confirm.\n", indent);
     do {
         recvCh = getchar();
@@ -267,7 +262,6 @@ menu_action_t i2s_audio_test(const menu_context_t* const context, void* const pa
             return MENU_CONTINUE;
         }
     }
-#endif
 #endif
 
     if (result == TEST_PASSED)
@@ -359,8 +353,7 @@ int i2s_audio_test(void)
         return TEST_FAILED;
     }
 
-#if (defined(CHIP_MX6SL) && defined(BOARD_EVB)) || (defined(BOARD_SMART_DEVICE) && defined(BOARD_REV_B))
-#if !defined(WM8962_I2C_UNSTABLE)
+#if (defined(CHIP_MX6SL) && defined(BOARD_EVK)) || (defined(BOARD_SMART_DEVICE) && (defined(BOARD_REV_B) || defined(BOARD_REV_C)))
     printf(" Audio input: please ensure micphone is plugged in. Press 'y/Y' to confirm.\n");
     do {
         recvCh = getchar();
@@ -393,7 +386,6 @@ int i2s_audio_test(void)
             return TEST_FAILED;
         }
     }
-#endif
 #endif
 
     return TEST_PASSED;

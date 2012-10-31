@@ -109,16 +109,20 @@ usage()
 
 valid_builds=( "mx6dq"  "sabre_ai"     "a"
                "mx6dq"  "sabre_ai"     "b"
+               "mx6dq"  "sabre_ai"     "c"
                "mx6dq"  "evb"          "a"
                "mx6dq"  "sabre_lite"   "a"
                "mx6dq"  "smart_device" "a"
                "mx6dq"  "smart_device" "b"
+               "mx6dq"  "smart_device" "c"
                "mx6sdl" "sabre_ai"     "a"
                "mx6sdl" "sabre_ai"     "b"
+               "mx6sdl" "sabre_ai"     "c"
                "mx6sdl" "evb"          "a"
                "mx6sdl" "sabre_lite"   "a"
                "mx6sdl" "smart_device" "a"
                "mx6sdl" "smart_device" "b"
+               "mx6sdl" "smart_device" "c"
                "mx6sl"  "evk"          "a")
 
 if [ -t 1 ]; then

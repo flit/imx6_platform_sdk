@@ -115,8 +115,19 @@
 //! @name Module base addresses
 //@{
 #ifndef REGS_MMDC_BASE
-#define HW_MMDC_INSTANCE_COUNT (0) //!< Number of instances of the MMDC module.
-#define REGS_MMDC_BASE (0x00000000) //!< Base address for MMDC.
+#define HW_MMDC_INSTANCE_COUNT (2) //!< Number of instances of the MMDC module.
+#define HW_MMDC1 (1) //!< Instance number for MMDC1.
+#define HW_MMDC2 (2) //!< Instance number for MMDC2.
+#define REGS_MMDC1_BASE (0x021b0000) //!< Base address for MMDC instance number 1.
+#define REGS_MMDC2_BASE (0x021b4000) //!< Base address for MMDC instance number 2.
+
+//! @brief Get the base address of MMDC by instance number.
+//! @param x MMDC instance number, from 1 through 2.
+#define REGS_MMDC_BASE(x) ( (x) == HW_MMDC1 ? REGS_MMDC1_BASE : (x) == HW_MMDC2 ? REGS_MMDC2_BASE : 0x00d00000)
+
+//! @brief Get the instance number given a base address.
+//! @param b Base address for an instance of MMDC.
+#define REGS_MMDC_INSTANCE(b) ( (b) == REGS_MMDC1_BASE ? HW_MMDC1 : (b) == REGS_MMDC2_BASE ? HW_MMDC2 : 0)
 #endif
 //@}
 
@@ -155,15 +166,15 @@ typedef union _hw_mmdc_mdctl
  * @name Constants and macros for entire MMDC_MDCTL register
  */
 //@{
-#define HW_MMDC_MDCTL_ADDR      (REGS_MMDC_BASE + 0x0)
+#define HW_MMDC_MDCTL_ADDR(x)      (REGS_MMDC_BASE(x) + 0x0)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MDCTL           (*(volatile hw_mmdc_mdctl_t *) HW_MMDC_MDCTL_ADDR)
-#define HW_MMDC_MDCTL_RD()      (HW_MMDC_MDCTL.U)
-#define HW_MMDC_MDCTL_WR(v)     (HW_MMDC_MDCTL.U = (v))
-#define HW_MMDC_MDCTL_SET(v)    (HW_MMDC_MDCTL_WR(HW_MMDC_MDCTL_RD() |  (v)))
-#define HW_MMDC_MDCTL_CLR(v)    (HW_MMDC_MDCTL_WR(HW_MMDC_MDCTL_RD() & ~(v)))
-#define HW_MMDC_MDCTL_TOG(v)    (HW_MMDC_MDCTL_WR(HW_MMDC_MDCTL_RD() ^  (v)))
+#define HW_MMDC_MDCTL(x)           (*(volatile hw_mmdc_mdctl_t *) HW_MMDC_MDCTL_ADDR(x))
+#define HW_MMDC_MDCTL_RD(x)        (HW_MMDC_MDCTL(x).U)
+#define HW_MMDC_MDCTL_WR(x, v)     (HW_MMDC_MDCTL(x).U = (v))
+#define HW_MMDC_MDCTL_SET(x, v)    (HW_MMDC_MDCTL_WR(x, HW_MMDC_MDCTL_RD(x) |  (v)))
+#define HW_MMDC_MDCTL_CLR(x, v)    (HW_MMDC_MDCTL_WR(x, HW_MMDC_MDCTL_RD(x) & ~(v)))
+#define HW_MMDC_MDCTL_TOG(x, v)    (HW_MMDC_MDCTL_WR(x, HW_MMDC_MDCTL_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -193,7 +204,7 @@ typedef union _hw_mmdc_mdctl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DSIZ field to a new value.
-#define BW_MMDC_MDCTL_DSIZ(v)   (HW_MMDC_MDCTL_WR((HW_MMDC_MDCTL_RD() & ~BM_MMDC_MDCTL_DSIZ) | BF_MMDC_MDCTL_DSIZ(v)))
+#define BW_MMDC_MDCTL_DSIZ(x, v)   (HW_MMDC_MDCTL_WR(x, (HW_MMDC_MDCTL_RD(x) & ~BM_MMDC_MDCTL_DSIZ) | BF_MMDC_MDCTL_DSIZ(v)))
 #endif
 //@}
 
@@ -218,7 +229,7 @@ typedef union _hw_mmdc_mdctl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BL field to a new value.
-#define BW_MMDC_MDCTL_BL(v)   (HW_MMDC_MDCTL_WR((HW_MMDC_MDCTL_RD() & ~BM_MMDC_MDCTL_BL) | BF_MMDC_MDCTL_BL(v)))
+#define BW_MMDC_MDCTL_BL(x, v)   (HW_MMDC_MDCTL_WR(x, (HW_MMDC_MDCTL_RD(x) & ~BM_MMDC_MDCTL_BL) | BF_MMDC_MDCTL_BL(v)))
 #endif
 //@}
 
@@ -247,7 +258,7 @@ typedef union _hw_mmdc_mdctl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the COL field to a new value.
-#define BW_MMDC_MDCTL_COL(v)   (HW_MMDC_MDCTL_WR((HW_MMDC_MDCTL_RD() & ~BM_MMDC_MDCTL_COL) | BF_MMDC_MDCTL_COL(v)))
+#define BW_MMDC_MDCTL_COL(x, v)   (HW_MMDC_MDCTL_WR(x, (HW_MMDC_MDCTL_RD(x) & ~BM_MMDC_MDCTL_COL) | BF_MMDC_MDCTL_COL(v)))
 #endif
 //@}
 
@@ -276,7 +287,7 @@ typedef union _hw_mmdc_mdctl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ROW field to a new value.
-#define BW_MMDC_MDCTL_ROW(v)   (HW_MMDC_MDCTL_WR((HW_MMDC_MDCTL_RD() & ~BM_MMDC_MDCTL_ROW) | BF_MMDC_MDCTL_ROW(v)))
+#define BW_MMDC_MDCTL_ROW(x, v)   (HW_MMDC_MDCTL_WR(x, (HW_MMDC_MDCTL_RD(x) & ~BM_MMDC_MDCTL_ROW) | BF_MMDC_MDCTL_ROW(v)))
 #endif
 //@}
 
@@ -303,7 +314,7 @@ typedef union _hw_mmdc_mdctl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDE_1 field to a new value.
-#define BW_MMDC_MDCTL_SDE_1(v)   (HW_MMDC_MDCTL_WR((HW_MMDC_MDCTL_RD() & ~BM_MMDC_MDCTL_SDE_1) | BF_MMDC_MDCTL_SDE_1(v)))
+#define BW_MMDC_MDCTL_SDE_1(x, v)   (HW_MMDC_MDCTL_WR(x, (HW_MMDC_MDCTL_RD(x) & ~BM_MMDC_MDCTL_SDE_1) | BF_MMDC_MDCTL_SDE_1(v)))
 #endif
 //@}
 
@@ -330,7 +341,7 @@ typedef union _hw_mmdc_mdctl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDE_0 field to a new value.
-#define BW_MMDC_MDCTL_SDE_0(v)   (HW_MMDC_MDCTL_WR((HW_MMDC_MDCTL_RD() & ~BM_MMDC_MDCTL_SDE_0) | BF_MMDC_MDCTL_SDE_0(v)))
+#define BW_MMDC_MDCTL_SDE_0(x, v)   (HW_MMDC_MDCTL_WR(x, (HW_MMDC_MDCTL_RD(x) & ~BM_MMDC_MDCTL_SDE_0) | BF_MMDC_MDCTL_SDE_0(v)))
 #endif
 //@}
 
@@ -376,15 +387,15 @@ typedef union _hw_mmdc_mdpdc
  * @name Constants and macros for entire MMDC_MDPDC register
  */
 //@{
-#define HW_MMDC_MDPDC_ADDR      (REGS_MMDC_BASE + 0x4)
+#define HW_MMDC_MDPDC_ADDR(x)      (REGS_MMDC_BASE(x) + 0x4)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MDPDC           (*(volatile hw_mmdc_mdpdc_t *) HW_MMDC_MDPDC_ADDR)
-#define HW_MMDC_MDPDC_RD()      (HW_MMDC_MDPDC.U)
-#define HW_MMDC_MDPDC_WR(v)     (HW_MMDC_MDPDC.U = (v))
-#define HW_MMDC_MDPDC_SET(v)    (HW_MMDC_MDPDC_WR(HW_MMDC_MDPDC_RD() |  (v)))
-#define HW_MMDC_MDPDC_CLR(v)    (HW_MMDC_MDPDC_WR(HW_MMDC_MDPDC_RD() & ~(v)))
-#define HW_MMDC_MDPDC_TOG(v)    (HW_MMDC_MDPDC_WR(HW_MMDC_MDPDC_RD() ^  (v)))
+#define HW_MMDC_MDPDC(x)           (*(volatile hw_mmdc_mdpdc_t *) HW_MMDC_MDPDC_ADDR(x))
+#define HW_MMDC_MDPDC_RD(x)        (HW_MMDC_MDPDC(x).U)
+#define HW_MMDC_MDPDC_WR(x, v)     (HW_MMDC_MDPDC(x).U = (v))
+#define HW_MMDC_MDPDC_SET(x, v)    (HW_MMDC_MDPDC_WR(x, HW_MMDC_MDPDC_RD(x) |  (v)))
+#define HW_MMDC_MDPDC_CLR(x, v)    (HW_MMDC_MDPDC_WR(x, HW_MMDC_MDPDC_RD(x) & ~(v)))
+#define HW_MMDC_MDPDC_TOG(x, v)    (HW_MMDC_MDPDC_WR(x, HW_MMDC_MDPDC_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -415,7 +426,7 @@ typedef union _hw_mmdc_mdpdc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCKSRE field to a new value.
-#define BW_MMDC_MDPDC_TCKSRE(v)   (HW_MMDC_MDPDC_WR((HW_MMDC_MDPDC_RD() & ~BM_MMDC_MDPDC_TCKSRE) | BF_MMDC_MDPDC_TCKSRE(v)))
+#define BW_MMDC_MDPDC_TCKSRE(x, v)   (HW_MMDC_MDPDC_WR(x, (HW_MMDC_MDPDC_RD(x) & ~BM_MMDC_MDPDC_TCKSRE) | BF_MMDC_MDPDC_TCKSRE(v)))
 #endif
 //@}
 
@@ -442,7 +453,7 @@ typedef union _hw_mmdc_mdpdc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCKSRX field to a new value.
-#define BW_MMDC_MDPDC_TCKSRX(v)   (HW_MMDC_MDPDC_WR((HW_MMDC_MDPDC_RD() & ~BM_MMDC_MDPDC_TCKSRX) | BF_MMDC_MDPDC_TCKSRX(v)))
+#define BW_MMDC_MDPDC_TCKSRX(x, v)   (HW_MMDC_MDPDC_WR(x, (HW_MMDC_MDPDC_RD(x) & ~BM_MMDC_MDPDC_TCKSRX) | BF_MMDC_MDPDC_TCKSRX(v)))
 #endif
 //@}
 
@@ -469,7 +480,7 @@ typedef union _hw_mmdc_mdpdc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BOTH_CS_PD field to a new value.
-#define BW_MMDC_MDPDC_BOTH_CS_PD(v)   (HW_MMDC_MDPDC_WR((HW_MMDC_MDPDC_RD() & ~BM_MMDC_MDPDC_BOTH_CS_PD) | BF_MMDC_MDPDC_BOTH_CS_PD(v)))
+#define BW_MMDC_MDPDC_BOTH_CS_PD(x, v)   (HW_MMDC_MDPDC_WR(x, (HW_MMDC_MDPDC_RD(x) & ~BM_MMDC_MDPDC_BOTH_CS_PD) | BF_MMDC_MDPDC_BOTH_CS_PD(v)))
 #endif
 //@}
 
@@ -495,7 +506,7 @@ typedef union _hw_mmdc_mdpdc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SLOW_PD field to a new value.
-#define BW_MMDC_MDPDC_SLOW_PD(v)   (HW_MMDC_MDPDC_WR((HW_MMDC_MDPDC_RD() & ~BM_MMDC_MDPDC_SLOW_PD) | BF_MMDC_MDPDC_SLOW_PD(v)))
+#define BW_MMDC_MDPDC_SLOW_PD(x, v)   (HW_MMDC_MDPDC_WR(x, (HW_MMDC_MDPDC_RD(x) & ~BM_MMDC_MDPDC_SLOW_PD) | BF_MMDC_MDPDC_SLOW_PD(v)))
 #endif
 //@}
 
@@ -517,7 +528,7 @@ typedef union _hw_mmdc_mdpdc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PWDT_0 field to a new value.
-#define BW_MMDC_MDPDC_PWDT_0(v)   (HW_MMDC_MDPDC_WR((HW_MMDC_MDPDC_RD() & ~BM_MMDC_MDPDC_PWDT_0) | BF_MMDC_MDPDC_PWDT_0(v)))
+#define BW_MMDC_MDPDC_PWDT_0(x, v)   (HW_MMDC_MDPDC_WR(x, (HW_MMDC_MDPDC_RD(x) & ~BM_MMDC_MDPDC_PWDT_0) | BF_MMDC_MDPDC_PWDT_0(v)))
 #endif
 //@}
 
@@ -539,7 +550,7 @@ typedef union _hw_mmdc_mdpdc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PWDT_1 field to a new value.
-#define BW_MMDC_MDPDC_PWDT_1(v)   (HW_MMDC_MDPDC_WR((HW_MMDC_MDPDC_RD() & ~BM_MMDC_MDPDC_PWDT_1) | BF_MMDC_MDPDC_PWDT_1(v)))
+#define BW_MMDC_MDPDC_PWDT_1(x, v)   (HW_MMDC_MDPDC_WR(x, (HW_MMDC_MDPDC_RD(x) & ~BM_MMDC_MDPDC_PWDT_1) | BF_MMDC_MDPDC_PWDT_1(v)))
 #endif
 //@}
 
@@ -565,7 +576,7 @@ typedef union _hw_mmdc_mdpdc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCKE field to a new value.
-#define BW_MMDC_MDPDC_TCKE(v)   (HW_MMDC_MDPDC_WR((HW_MMDC_MDPDC_RD() & ~BM_MMDC_MDPDC_TCKE) | BF_MMDC_MDPDC_TCKE(v)))
+#define BW_MMDC_MDPDC_TCKE(x, v)   (HW_MMDC_MDPDC_WR(x, (HW_MMDC_MDPDC_RD(x) & ~BM_MMDC_MDPDC_TCKE) | BF_MMDC_MDPDC_TCKE(v)))
 #endif
 //@}
 
@@ -587,7 +598,7 @@ typedef union _hw_mmdc_mdpdc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PRCT_0 field to a new value.
-#define BW_MMDC_MDPDC_PRCT_0(v)   (HW_MMDC_MDPDC_WR((HW_MMDC_MDPDC_RD() & ~BM_MMDC_MDPDC_PRCT_0) | BF_MMDC_MDPDC_PRCT_0(v)))
+#define BW_MMDC_MDPDC_PRCT_0(x, v)   (HW_MMDC_MDPDC_WR(x, (HW_MMDC_MDPDC_RD(x) & ~BM_MMDC_MDPDC_PRCT_0) | BF_MMDC_MDPDC_PRCT_0(v)))
 #endif
 //@}
 
@@ -609,7 +620,7 @@ typedef union _hw_mmdc_mdpdc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PRCT_1 field to a new value.
-#define BW_MMDC_MDPDC_PRCT_1(v)   (HW_MMDC_MDPDC_WR((HW_MMDC_MDPDC_RD() & ~BM_MMDC_MDPDC_PRCT_1) | BF_MMDC_MDPDC_PRCT_1(v)))
+#define BW_MMDC_MDPDC_PRCT_1(x, v)   (HW_MMDC_MDPDC_WR(x, (HW_MMDC_MDPDC_RD(x) & ~BM_MMDC_MDPDC_PRCT_1) | BF_MMDC_MDPDC_PRCT_1(v)))
 #endif
 //@}
 
@@ -649,15 +660,15 @@ typedef union _hw_mmdc_mdotc
  * @name Constants and macros for entire MMDC_MDOTC register
  */
 //@{
-#define HW_MMDC_MDOTC_ADDR      (REGS_MMDC_BASE + 0x8)
+#define HW_MMDC_MDOTC_ADDR(x)      (REGS_MMDC_BASE(x) + 0x8)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MDOTC           (*(volatile hw_mmdc_mdotc_t *) HW_MMDC_MDOTC_ADDR)
-#define HW_MMDC_MDOTC_RD()      (HW_MMDC_MDOTC.U)
-#define HW_MMDC_MDOTC_WR(v)     (HW_MMDC_MDOTC.U = (v))
-#define HW_MMDC_MDOTC_SET(v)    (HW_MMDC_MDOTC_WR(HW_MMDC_MDOTC_RD() |  (v)))
-#define HW_MMDC_MDOTC_CLR(v)    (HW_MMDC_MDOTC_WR(HW_MMDC_MDOTC_RD() & ~(v)))
-#define HW_MMDC_MDOTC_TOG(v)    (HW_MMDC_MDOTC_WR(HW_MMDC_MDOTC_RD() ^  (v)))
+#define HW_MMDC_MDOTC(x)           (*(volatile hw_mmdc_mdotc_t *) HW_MMDC_MDOTC_ADDR(x))
+#define HW_MMDC_MDOTC_RD(x)        (HW_MMDC_MDOTC(x).U)
+#define HW_MMDC_MDOTC_WR(x, v)     (HW_MMDC_MDOTC(x).U = (v))
+#define HW_MMDC_MDOTC_SET(x, v)    (HW_MMDC_MDOTC_WR(x, HW_MMDC_MDOTC_RD(x) |  (v)))
+#define HW_MMDC_MDOTC_CLR(x, v)    (HW_MMDC_MDOTC_WR(x, HW_MMDC_MDOTC_RD(x) & ~(v)))
+#define HW_MMDC_MDOTC_TOG(x, v)    (HW_MMDC_MDOTC_WR(x, HW_MMDC_MDOTC_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -689,7 +700,7 @@ typedef union _hw_mmdc_mdotc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TODT_IDLE_OFF field to a new value.
-#define BW_MMDC_MDOTC_TODT_IDLE_OFF(v)   (HW_MMDC_MDOTC_WR((HW_MMDC_MDOTC_RD() & ~BM_MMDC_MDOTC_TODT_IDLE_OFF) | BF_MMDC_MDOTC_TODT_IDLE_OFF(v)))
+#define BW_MMDC_MDOTC_TODT_IDLE_OFF(x, v)   (HW_MMDC_MDOTC_WR(x, (HW_MMDC_MDOTC_RD(x) & ~BM_MMDC_MDOTC_TODT_IDLE_OFF) | BF_MMDC_MDOTC_TODT_IDLE_OFF(v)))
 #endif
 //@}
 
@@ -721,7 +732,7 @@ typedef union _hw_mmdc_mdotc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TODTLON field to a new value.
-#define BW_MMDC_MDOTC_TODTLON(v)   (HW_MMDC_MDOTC_WR((HW_MMDC_MDOTC_RD() & ~BM_MMDC_MDOTC_TODTLON) | BF_MMDC_MDOTC_TODTLON(v)))
+#define BW_MMDC_MDOTC_TODTLON(x, v)   (HW_MMDC_MDOTC_WR(x, (HW_MMDC_MDOTC_RD(x) & ~BM_MMDC_MDOTC_TODTLON) | BF_MMDC_MDOTC_TODTLON(v)))
 #endif
 //@}
 
@@ -749,7 +760,7 @@ typedef union _hw_mmdc_mdotc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TAXPD field to a new value.
-#define BW_MMDC_MDOTC_TAXPD(v)   (HW_MMDC_MDOTC_WR((HW_MMDC_MDOTC_RD() & ~BM_MMDC_MDOTC_TAXPD) | BF_MMDC_MDOTC_TAXPD(v)))
+#define BW_MMDC_MDOTC_TAXPD(x, v)   (HW_MMDC_MDOTC_WR(x, (HW_MMDC_MDOTC_RD(x) & ~BM_MMDC_MDOTC_TAXPD) | BF_MMDC_MDOTC_TAXPD(v)))
 #endif
 //@}
 
@@ -777,7 +788,7 @@ typedef union _hw_mmdc_mdotc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TANPD field to a new value.
-#define BW_MMDC_MDOTC_TANPD(v)   (HW_MMDC_MDOTC_WR((HW_MMDC_MDOTC_RD() & ~BM_MMDC_MDOTC_TANPD) | BF_MMDC_MDOTC_TANPD(v)))
+#define BW_MMDC_MDOTC_TANPD(x, v)   (HW_MMDC_MDOTC_WR(x, (HW_MMDC_MDOTC_RD(x) & ~BM_MMDC_MDOTC_TANPD) | BF_MMDC_MDOTC_TANPD(v)))
 #endif
 //@}
 
@@ -806,7 +817,7 @@ typedef union _hw_mmdc_mdotc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TAONPD field to a new value.
-#define BW_MMDC_MDOTC_TAONPD(v)   (HW_MMDC_MDOTC_WR((HW_MMDC_MDOTC_RD() & ~BM_MMDC_MDOTC_TAONPD) | BF_MMDC_MDOTC_TAONPD(v)))
+#define BW_MMDC_MDOTC_TAONPD(x, v)   (HW_MMDC_MDOTC_WR(x, (HW_MMDC_MDOTC_RD(x) & ~BM_MMDC_MDOTC_TAONPD) | BF_MMDC_MDOTC_TAONPD(v)))
 #endif
 //@}
 
@@ -835,7 +846,7 @@ typedef union _hw_mmdc_mdotc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TAOFPD field to a new value.
-#define BW_MMDC_MDOTC_TAOFPD(v)   (HW_MMDC_MDOTC_WR((HW_MMDC_MDOTC_RD() & ~BM_MMDC_MDOTC_TAOFPD) | BF_MMDC_MDOTC_TAOFPD(v)))
+#define BW_MMDC_MDOTC_TAOFPD(x, v)   (HW_MMDC_MDOTC_WR(x, (HW_MMDC_MDOTC_RD(x) & ~BM_MMDC_MDOTC_TAOFPD) | BF_MMDC_MDOTC_TAOFPD(v)))
 #endif
 //@}
 
@@ -870,15 +881,15 @@ typedef union _hw_mmdc_mdcfg0
  * @name Constants and macros for entire MMDC_MDCFG0 register
  */
 //@{
-#define HW_MMDC_MDCFG0_ADDR      (REGS_MMDC_BASE + 0xc)
+#define HW_MMDC_MDCFG0_ADDR(x)      (REGS_MMDC_BASE(x) + 0xc)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MDCFG0           (*(volatile hw_mmdc_mdcfg0_t *) HW_MMDC_MDCFG0_ADDR)
-#define HW_MMDC_MDCFG0_RD()      (HW_MMDC_MDCFG0.U)
-#define HW_MMDC_MDCFG0_WR(v)     (HW_MMDC_MDCFG0.U = (v))
-#define HW_MMDC_MDCFG0_SET(v)    (HW_MMDC_MDCFG0_WR(HW_MMDC_MDCFG0_RD() |  (v)))
-#define HW_MMDC_MDCFG0_CLR(v)    (HW_MMDC_MDCFG0_WR(HW_MMDC_MDCFG0_RD() & ~(v)))
-#define HW_MMDC_MDCFG0_TOG(v)    (HW_MMDC_MDCFG0_WR(HW_MMDC_MDCFG0_RD() ^  (v)))
+#define HW_MMDC_MDCFG0(x)           (*(volatile hw_mmdc_mdcfg0_t *) HW_MMDC_MDCFG0_ADDR(x))
+#define HW_MMDC_MDCFG0_RD(x)        (HW_MMDC_MDCFG0(x).U)
+#define HW_MMDC_MDCFG0_WR(x, v)     (HW_MMDC_MDCFG0(x).U = (v))
+#define HW_MMDC_MDCFG0_SET(x, v)    (HW_MMDC_MDCFG0_WR(x, HW_MMDC_MDCFG0_RD(x) |  (v)))
+#define HW_MMDC_MDCFG0_CLR(x, v)    (HW_MMDC_MDCFG0_WR(x, HW_MMDC_MDCFG0_RD(x) & ~(v)))
+#define HW_MMDC_MDCFG0_TOG(x, v)    (HW_MMDC_MDCFG0_WR(x, HW_MMDC_MDCFG0_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -918,7 +929,7 @@ typedef union _hw_mmdc_mdcfg0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCL field to a new value.
-#define BW_MMDC_MDCFG0_TCL(v)   (HW_MMDC_MDCFG0_WR((HW_MMDC_MDCFG0_RD() & ~BM_MMDC_MDCFG0_TCL) | BF_MMDC_MDCFG0_TCL(v)))
+#define BW_MMDC_MDCFG0_TCL(x, v)   (HW_MMDC_MDCFG0_WR(x, (HW_MMDC_MDCFG0_RD(x) & ~BM_MMDC_MDCFG0_TCL) | BF_MMDC_MDCFG0_TCL(v)))
 #endif
 //@}
 
@@ -948,7 +959,7 @@ typedef union _hw_mmdc_mdcfg0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TFAW field to a new value.
-#define BW_MMDC_MDCFG0_TFAW(v)   (HW_MMDC_MDCFG0_WR((HW_MMDC_MDCFG0_RD() & ~BM_MMDC_MDCFG0_TFAW) | BF_MMDC_MDCFG0_TFAW(v)))
+#define BW_MMDC_MDCFG0_TFAW(x, v)   (HW_MMDC_MDCFG0_WR(x, (HW_MMDC_MDCFG0_RD(x) & ~BM_MMDC_MDCFG0_TFAW) | BF_MMDC_MDCFG0_TFAW(v)))
 #endif
 //@}
 
@@ -980,7 +991,7 @@ typedef union _hw_mmdc_mdcfg0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXPDLL field to a new value.
-#define BW_MMDC_MDCFG0_TXPDLL(v)   (HW_MMDC_MDCFG0_WR((HW_MMDC_MDCFG0_RD() & ~BM_MMDC_MDCFG0_TXPDLL) | BF_MMDC_MDCFG0_TXPDLL(v)))
+#define BW_MMDC_MDCFG0_TXPDLL(x, v)   (HW_MMDC_MDCFG0_WR(x, (HW_MMDC_MDCFG0_RD(x) & ~BM_MMDC_MDCFG0_TXPDLL) | BF_MMDC_MDCFG0_TXPDLL(v)))
 #endif
 //@}
 
@@ -1011,7 +1022,7 @@ typedef union _hw_mmdc_mdcfg0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXP field to a new value.
-#define BW_MMDC_MDCFG0_TXP(v)   (HW_MMDC_MDCFG0_WR((HW_MMDC_MDCFG0_RD() & ~BM_MMDC_MDCFG0_TXP) | BF_MMDC_MDCFG0_TXP(v)))
+#define BW_MMDC_MDCFG0_TXP(x, v)   (HW_MMDC_MDCFG0_WR(x, (HW_MMDC_MDCFG0_RD(x) & ~BM_MMDC_MDCFG0_TXP) | BF_MMDC_MDCFG0_TXP(v)))
 #endif
 //@}
 
@@ -1042,7 +1053,7 @@ typedef union _hw_mmdc_mdcfg0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXS field to a new value.
-#define BW_MMDC_MDCFG0_TXS(v)   (HW_MMDC_MDCFG0_WR((HW_MMDC_MDCFG0_RD() & ~BM_MMDC_MDCFG0_TXS) | BF_MMDC_MDCFG0_TXS(v)))
+#define BW_MMDC_MDCFG0_TXS(x, v)   (HW_MMDC_MDCFG0_WR(x, (HW_MMDC_MDCFG0_RD(x) & ~BM_MMDC_MDCFG0_TXS) | BF_MMDC_MDCFG0_TXS(v)))
 #endif
 //@}
 
@@ -1072,7 +1083,7 @@ typedef union _hw_mmdc_mdcfg0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRFC field to a new value.
-#define BW_MMDC_MDCFG0_TRFC(v)   (HW_MMDC_MDCFG0_WR((HW_MMDC_MDCFG0_RD() & ~BM_MMDC_MDCFG0_TRFC) | BF_MMDC_MDCFG0_TRFC(v)))
+#define BW_MMDC_MDCFG0_TRFC(x, v)   (HW_MMDC_MDCFG0_WR(x, (HW_MMDC_MDCFG0_RD(x) & ~BM_MMDC_MDCFG0_TRFC) | BF_MMDC_MDCFG0_TRFC(v)))
 #endif
 //@}
 
@@ -1111,15 +1122,15 @@ typedef union _hw_mmdc_mdcfg1
  * @name Constants and macros for entire MMDC_MDCFG1 register
  */
 //@{
-#define HW_MMDC_MDCFG1_ADDR      (REGS_MMDC_BASE + 0x10)
+#define HW_MMDC_MDCFG1_ADDR(x)      (REGS_MMDC_BASE(x) + 0x10)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MDCFG1           (*(volatile hw_mmdc_mdcfg1_t *) HW_MMDC_MDCFG1_ADDR)
-#define HW_MMDC_MDCFG1_RD()      (HW_MMDC_MDCFG1.U)
-#define HW_MMDC_MDCFG1_WR(v)     (HW_MMDC_MDCFG1.U = (v))
-#define HW_MMDC_MDCFG1_SET(v)    (HW_MMDC_MDCFG1_WR(HW_MMDC_MDCFG1_RD() |  (v)))
-#define HW_MMDC_MDCFG1_CLR(v)    (HW_MMDC_MDCFG1_WR(HW_MMDC_MDCFG1_RD() & ~(v)))
-#define HW_MMDC_MDCFG1_TOG(v)    (HW_MMDC_MDCFG1_WR(HW_MMDC_MDCFG1_RD() ^  (v)))
+#define HW_MMDC_MDCFG1(x)           (*(volatile hw_mmdc_mdcfg1_t *) HW_MMDC_MDCFG1_ADDR(x))
+#define HW_MMDC_MDCFG1_RD(x)        (HW_MMDC_MDCFG1(x).U)
+#define HW_MMDC_MDCFG1_WR(x, v)     (HW_MMDC_MDCFG1(x).U = (v))
+#define HW_MMDC_MDCFG1_SET(x, v)    (HW_MMDC_MDCFG1_WR(x, HW_MMDC_MDCFG1_RD(x) |  (v)))
+#define HW_MMDC_MDCFG1_CLR(x, v)    (HW_MMDC_MDCFG1_WR(x, HW_MMDC_MDCFG1_RD(x) & ~(v)))
+#define HW_MMDC_MDCFG1_TOG(x, v)    (HW_MMDC_MDCFG1_WR(x, HW_MMDC_MDCFG1_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -1154,7 +1165,7 @@ typedef union _hw_mmdc_mdcfg1
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TCWL field to a new value.
-#define BW_MMDC_MDCFG1_TCWL(v)   (HW_MMDC_MDCFG1_WR((HW_MMDC_MDCFG1_RD() & ~BM_MMDC_MDCFG1_TCWL) | BF_MMDC_MDCFG1_TCWL(v)))
+#define BW_MMDC_MDCFG1_TCWL(x, v)   (HW_MMDC_MDCFG1_WR(x, (HW_MMDC_MDCFG1_RD(x) & ~BM_MMDC_MDCFG1_TCWL) | BF_MMDC_MDCFG1_TCWL(v)))
 #endif
 //@}
 
@@ -1186,7 +1197,7 @@ typedef union _hw_mmdc_mdcfg1
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TMRD field to a new value.
-#define BW_MMDC_MDCFG1_TMRD(v)   (HW_MMDC_MDCFG1_WR((HW_MMDC_MDCFG1_RD() & ~BM_MMDC_MDCFG1_TMRD) | BF_MMDC_MDCFG1_TMRD(v)))
+#define BW_MMDC_MDCFG1_TMRD(x, v)   (HW_MMDC_MDCFG1_WR(x, (HW_MMDC_MDCFG1_RD(x) & ~BM_MMDC_MDCFG1_TMRD) | BF_MMDC_MDCFG1_TMRD(v)))
 #endif
 //@}
 
@@ -1219,7 +1230,7 @@ typedef union _hw_mmdc_mdcfg1
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TWR field to a new value.
-#define BW_MMDC_MDCFG1_TWR(v)   (HW_MMDC_MDCFG1_WR((HW_MMDC_MDCFG1_RD() & ~BM_MMDC_MDCFG1_TWR) | BF_MMDC_MDCFG1_TWR(v)))
+#define BW_MMDC_MDCFG1_TWR(x, v)   (HW_MMDC_MDCFG1_WR(x, (HW_MMDC_MDCFG1_RD(x) & ~BM_MMDC_MDCFG1_TWR) | BF_MMDC_MDCFG1_TWR(v)))
 #endif
 //@}
 
@@ -1247,7 +1258,7 @@ typedef union _hw_mmdc_mdcfg1
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRPA field to a new value.
-#define BW_MMDC_MDCFG1_TRPA(v)   (HW_MMDC_MDCFG1_WR((HW_MMDC_MDCFG1_RD() & ~BM_MMDC_MDCFG1_TRPA) | BF_MMDC_MDCFG1_TRPA(v)))
+#define BW_MMDC_MDCFG1_TRPA(x, v)   (HW_MMDC_MDCFG1_WR(x, (HW_MMDC_MDCFG1_RD(x) & ~BM_MMDC_MDCFG1_TRPA) | BF_MMDC_MDCFG1_TRPA(v)))
 #endif
 //@}
 
@@ -1277,7 +1288,7 @@ typedef union _hw_mmdc_mdcfg1
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRAS field to a new value.
-#define BW_MMDC_MDCFG1_TRAS(v)   (HW_MMDC_MDCFG1_WR((HW_MMDC_MDCFG1_RD() & ~BM_MMDC_MDCFG1_TRAS) | BF_MMDC_MDCFG1_TRAS(v)))
+#define BW_MMDC_MDCFG1_TRAS(x, v)   (HW_MMDC_MDCFG1_WR(x, (HW_MMDC_MDCFG1_RD(x) & ~BM_MMDC_MDCFG1_TRAS) | BF_MMDC_MDCFG1_TRAS(v)))
 #endif
 //@}
 
@@ -1308,7 +1319,7 @@ typedef union _hw_mmdc_mdcfg1
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRC field to a new value.
-#define BW_MMDC_MDCFG1_TRC(v)   (HW_MMDC_MDCFG1_WR((HW_MMDC_MDCFG1_RD() & ~BM_MMDC_MDCFG1_TRC) | BF_MMDC_MDCFG1_TRC(v)))
+#define BW_MMDC_MDCFG1_TRC(x, v)   (HW_MMDC_MDCFG1_WR(x, (HW_MMDC_MDCFG1_RD(x) & ~BM_MMDC_MDCFG1_TRC) | BF_MMDC_MDCFG1_TRC(v)))
 #endif
 //@}
 
@@ -1342,7 +1353,7 @@ typedef union _hw_mmdc_mdcfg1
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRP field to a new value.
-#define BW_MMDC_MDCFG1_TRP(v)   (HW_MMDC_MDCFG1_WR((HW_MMDC_MDCFG1_RD() & ~BM_MMDC_MDCFG1_TRP) | BF_MMDC_MDCFG1_TRP(v)))
+#define BW_MMDC_MDCFG1_TRP(x, v)   (HW_MMDC_MDCFG1_WR(x, (HW_MMDC_MDCFG1_RD(x) & ~BM_MMDC_MDCFG1_TRP) | BF_MMDC_MDCFG1_TRP(v)))
 #endif
 //@}
 
@@ -1376,7 +1387,7 @@ typedef union _hw_mmdc_mdcfg1
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRCD field to a new value.
-#define BW_MMDC_MDCFG1_TRCD(v)   (HW_MMDC_MDCFG1_WR((HW_MMDC_MDCFG1_RD() & ~BM_MMDC_MDCFG1_TRCD) | BF_MMDC_MDCFG1_TRCD(v)))
+#define BW_MMDC_MDCFG1_TRCD(x, v)   (HW_MMDC_MDCFG1_WR(x, (HW_MMDC_MDCFG1_RD(x) & ~BM_MMDC_MDCFG1_TRCD) | BF_MMDC_MDCFG1_TRCD(v)))
 #endif
 //@}
 
@@ -1411,15 +1422,15 @@ typedef union _hw_mmdc_mdcfg2
  * @name Constants and macros for entire MMDC_MDCFG2 register
  */
 //@{
-#define HW_MMDC_MDCFG2_ADDR      (REGS_MMDC_BASE + 0x14)
+#define HW_MMDC_MDCFG2_ADDR(x)      (REGS_MMDC_BASE(x) + 0x14)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MDCFG2           (*(volatile hw_mmdc_mdcfg2_t *) HW_MMDC_MDCFG2_ADDR)
-#define HW_MMDC_MDCFG2_RD()      (HW_MMDC_MDCFG2.U)
-#define HW_MMDC_MDCFG2_WR(v)     (HW_MMDC_MDCFG2.U = (v))
-#define HW_MMDC_MDCFG2_SET(v)    (HW_MMDC_MDCFG2_WR(HW_MMDC_MDCFG2_RD() |  (v)))
-#define HW_MMDC_MDCFG2_CLR(v)    (HW_MMDC_MDCFG2_WR(HW_MMDC_MDCFG2_RD() & ~(v)))
-#define HW_MMDC_MDCFG2_TOG(v)    (HW_MMDC_MDCFG2_WR(HW_MMDC_MDCFG2_RD() ^  (v)))
+#define HW_MMDC_MDCFG2(x)           (*(volatile hw_mmdc_mdcfg2_t *) HW_MMDC_MDCFG2_ADDR(x))
+#define HW_MMDC_MDCFG2_RD(x)        (HW_MMDC_MDCFG2(x).U)
+#define HW_MMDC_MDCFG2_WR(x, v)     (HW_MMDC_MDCFG2(x).U = (v))
+#define HW_MMDC_MDCFG2_SET(x, v)    (HW_MMDC_MDCFG2_WR(x, HW_MMDC_MDCFG2_RD(x) |  (v)))
+#define HW_MMDC_MDCFG2_CLR(x, v)    (HW_MMDC_MDCFG2_WR(x, HW_MMDC_MDCFG2_RD(x) & ~(v)))
+#define HW_MMDC_MDCFG2_TOG(x, v)    (HW_MMDC_MDCFG2_WR(x, HW_MMDC_MDCFG2_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -1456,7 +1467,7 @@ typedef union _hw_mmdc_mdcfg2
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRRD field to a new value.
-#define BW_MMDC_MDCFG2_TRRD(v)   (HW_MMDC_MDCFG2_WR((HW_MMDC_MDCFG2_RD() & ~BM_MMDC_MDCFG2_TRRD) | BF_MMDC_MDCFG2_TRRD(v)))
+#define BW_MMDC_MDCFG2_TRRD(x, v)   (HW_MMDC_MDCFG2_WR(x, (HW_MMDC_MDCFG2_RD(x) & ~BM_MMDC_MDCFG2_TRRD) | BF_MMDC_MDCFG2_TRRD(v)))
 #endif
 //@}
 
@@ -1489,7 +1500,7 @@ typedef union _hw_mmdc_mdcfg2
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TWTR field to a new value.
-#define BW_MMDC_MDCFG2_TWTR(v)   (HW_MMDC_MDCFG2_WR((HW_MMDC_MDCFG2_RD() & ~BM_MMDC_MDCFG2_TWTR) | BF_MMDC_MDCFG2_TWTR(v)))
+#define BW_MMDC_MDCFG2_TWTR(x, v)   (HW_MMDC_MDCFG2_WR(x, (HW_MMDC_MDCFG2_RD(x) & ~BM_MMDC_MDCFG2_TWTR) | BF_MMDC_MDCFG2_TWTR(v)))
 #endif
 //@}
 
@@ -1522,7 +1533,7 @@ typedef union _hw_mmdc_mdcfg2
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRTP field to a new value.
-#define BW_MMDC_MDCFG2_TRTP(v)   (HW_MMDC_MDCFG2_WR((HW_MMDC_MDCFG2_RD() & ~BM_MMDC_MDCFG2_TRTP) | BF_MMDC_MDCFG2_TRTP(v)))
+#define BW_MMDC_MDCFG2_TRTP(x, v)   (HW_MMDC_MDCFG2_WR(x, (HW_MMDC_MDCFG2_RD(x) & ~BM_MMDC_MDCFG2_TRTP) | BF_MMDC_MDCFG2_TRTP(v)))
 #endif
 //@}
 
@@ -1554,7 +1565,7 @@ typedef union _hw_mmdc_mdcfg2
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDLLK field to a new value.
-#define BW_MMDC_MDCFG2_TDLLK(v)   (HW_MMDC_MDCFG2_WR((HW_MMDC_MDCFG2_RD() & ~BM_MMDC_MDCFG2_TDLLK) | BF_MMDC_MDCFG2_TDLLK(v)))
+#define BW_MMDC_MDCFG2_TDLLK(x, v)   (HW_MMDC_MDCFG2_WR(x, (HW_MMDC_MDCFG2_RD(x) & ~BM_MMDC_MDCFG2_TDLLK) | BF_MMDC_MDCFG2_TDLLK(v)))
 #endif
 //@}
 
@@ -1600,15 +1611,15 @@ typedef union _hw_mmdc_mdmisc
  * @name Constants and macros for entire MMDC_MDMISC register
  */
 //@{
-#define HW_MMDC_MDMISC_ADDR      (REGS_MMDC_BASE + 0x18)
+#define HW_MMDC_MDMISC_ADDR(x)      (REGS_MMDC_BASE(x) + 0x18)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MDMISC           (*(volatile hw_mmdc_mdmisc_t *) HW_MMDC_MDMISC_ADDR)
-#define HW_MMDC_MDMISC_RD()      (HW_MMDC_MDMISC.U)
-#define HW_MMDC_MDMISC_WR(v)     (HW_MMDC_MDMISC.U = (v))
-#define HW_MMDC_MDMISC_SET(v)    (HW_MMDC_MDMISC_WR(HW_MMDC_MDMISC_RD() |  (v)))
-#define HW_MMDC_MDMISC_CLR(v)    (HW_MMDC_MDMISC_WR(HW_MMDC_MDMISC_RD() & ~(v)))
-#define HW_MMDC_MDMISC_TOG(v)    (HW_MMDC_MDMISC_WR(HW_MMDC_MDMISC_RD() ^  (v)))
+#define HW_MMDC_MDMISC(x)           (*(volatile hw_mmdc_mdmisc_t *) HW_MMDC_MDMISC_ADDR(x))
+#define HW_MMDC_MDMISC_RD(x)        (HW_MMDC_MDMISC(x).U)
+#define HW_MMDC_MDMISC_WR(x, v)     (HW_MMDC_MDMISC(x).U = (v))
+#define HW_MMDC_MDMISC_SET(x, v)    (HW_MMDC_MDMISC_WR(x, HW_MMDC_MDMISC_RD(x) |  (v)))
+#define HW_MMDC_MDMISC_CLR(x, v)    (HW_MMDC_MDMISC_WR(x, HW_MMDC_MDMISC_RD(x) & ~(v)))
+#define HW_MMDC_MDMISC_TOG(x, v)    (HW_MMDC_MDMISC_WR(x, HW_MMDC_MDMISC_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -1637,7 +1648,7 @@ typedef union _hw_mmdc_mdmisc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RST field to a new value.
-#define BW_MMDC_MDMISC_RST(v)   (HW_MMDC_MDMISC_WR((HW_MMDC_MDMISC_RD() & ~BM_MMDC_MDMISC_RST) | BF_MMDC_MDMISC_RST(v)))
+#define BW_MMDC_MDMISC_RST(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_RST) | BF_MMDC_MDMISC_RST(v)))
 #endif
 //@}
 
@@ -1662,7 +1673,7 @@ typedef union _hw_mmdc_mdmisc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LPDDR2_2CH field to a new value.
-#define BW_MMDC_MDMISC_LPDDR2_2CH(v)   (HW_MMDC_MDMISC_WR((HW_MMDC_MDMISC_RD() & ~BM_MMDC_MDMISC_LPDDR2_2CH) | BF_MMDC_MDMISC_LPDDR2_2CH(v)))
+#define BW_MMDC_MDMISC_LPDDR2_2CH(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_LPDDR2_2CH) | BF_MMDC_MDMISC_LPDDR2_2CH(v)))
 #endif
 //@}
 
@@ -1690,7 +1701,7 @@ typedef union _hw_mmdc_mdmisc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DDR_TYPE field to a new value.
-#define BW_MMDC_MDMISC_DDR_TYPE(v)   (HW_MMDC_MDMISC_WR((HW_MMDC_MDMISC_RD() & ~BM_MMDC_MDMISC_DDR_TYPE) | BF_MMDC_MDMISC_DDR_TYPE(v)))
+#define BW_MMDC_MDMISC_DDR_TYPE(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_DDR_TYPE) | BF_MMDC_MDMISC_DDR_TYPE(v)))
 #endif
 //@}
 
@@ -1715,7 +1726,7 @@ typedef union _hw_mmdc_mdmisc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DDR_4_BANK field to a new value.
-#define BW_MMDC_MDMISC_DDR_4_BANK(v)   (HW_MMDC_MDMISC_WR((HW_MMDC_MDMISC_RD() & ~BM_MMDC_MDMISC_DDR_4_BANK) | BF_MMDC_MDMISC_DDR_4_BANK(v)))
+#define BW_MMDC_MDMISC_DDR_4_BANK(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_DDR_4_BANK) | BF_MMDC_MDMISC_DDR_4_BANK(v)))
 #endif
 //@}
 
@@ -1748,7 +1759,7 @@ typedef union _hw_mmdc_mdmisc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RALAT field to a new value.
-#define BW_MMDC_MDMISC_RALAT(v)   (HW_MMDC_MDMISC_WR((HW_MMDC_MDMISC_RD() & ~BM_MMDC_MDMISC_RALAT) | BF_MMDC_MDMISC_RALAT(v)))
+#define BW_MMDC_MDMISC_RALAT(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_RALAT) | BF_MMDC_MDMISC_RALAT(v)))
 #endif
 //@}
 
@@ -1776,7 +1787,7 @@ typedef union _hw_mmdc_mdmisc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MIF3_MODE field to a new value.
-#define BW_MMDC_MDMISC_MIF3_MODE(v)   (HW_MMDC_MDMISC_WR((HW_MMDC_MDMISC_RD() & ~BM_MMDC_MDMISC_MIF3_MODE) | BF_MMDC_MDMISC_MIF3_MODE(v)))
+#define BW_MMDC_MDMISC_MIF3_MODE(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_MIF3_MODE) | BF_MMDC_MDMISC_MIF3_MODE(v)))
 #endif
 //@}
 
@@ -1801,7 +1812,7 @@ typedef union _hw_mmdc_mdmisc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LPDDR2_S2 field to a new value.
-#define BW_MMDC_MDMISC_LPDDR2_S2(v)   (HW_MMDC_MDMISC_WR((HW_MMDC_MDMISC_RD() & ~BM_MMDC_MDMISC_LPDDR2_S2) | BF_MMDC_MDMISC_LPDDR2_S2(v)))
+#define BW_MMDC_MDMISC_LPDDR2_S2(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_LPDDR2_S2) | BF_MMDC_MDMISC_LPDDR2_S2(v)))
 #endif
 //@}
 
@@ -1826,7 +1837,7 @@ typedef union _hw_mmdc_mdmisc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the BI_ON field to a new value.
-#define BW_MMDC_MDMISC_BI_ON(v)   (HW_MMDC_MDMISC_WR((HW_MMDC_MDMISC_RD() & ~BM_MMDC_MDMISC_BI_ON) | BF_MMDC_MDMISC_BI_ON(v)))
+#define BW_MMDC_MDMISC_BI_ON(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_BI_ON) | BF_MMDC_MDMISC_BI_ON(v)))
 #endif
 //@}
 
@@ -1855,7 +1866,7 @@ typedef union _hw_mmdc_mdmisc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WALAT field to a new value.
-#define BW_MMDC_MDMISC_WALAT(v)   (HW_MMDC_MDMISC_WR((HW_MMDC_MDMISC_RD() & ~BM_MMDC_MDMISC_WALAT) | BF_MMDC_MDMISC_WALAT(v)))
+#define BW_MMDC_MDMISC_WALAT(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_WALAT) | BF_MMDC_MDMISC_WALAT(v)))
 #endif
 //@}
 
@@ -1881,7 +1892,7 @@ typedef union _hw_mmdc_mdmisc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LHD field to a new value.
-#define BW_MMDC_MDMISC_LHD(v)   (HW_MMDC_MDMISC_WR((HW_MMDC_MDMISC_RD() & ~BM_MMDC_MDMISC_LHD) | BF_MMDC_MDMISC_LHD(v)))
+#define BW_MMDC_MDMISC_LHD(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_LHD) | BF_MMDC_MDMISC_LHD(v)))
 #endif
 //@}
 
@@ -1906,7 +1917,7 @@ typedef union _hw_mmdc_mdmisc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ADDR_MIRROR field to a new value.
-#define BW_MMDC_MDMISC_ADDR_MIRROR(v)   (HW_MMDC_MDMISC_WR((HW_MMDC_MDMISC_RD() & ~BM_MMDC_MDMISC_ADDR_MIRROR) | BF_MMDC_MDMISC_ADDR_MIRROR(v)))
+#define BW_MMDC_MDMISC_ADDR_MIRROR(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_ADDR_MIRROR) | BF_MMDC_MDMISC_ADDR_MIRROR(v)))
 #endif
 //@}
 
@@ -1932,7 +1943,7 @@ typedef union _hw_mmdc_mdmisc
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CALIB_PER_CS field to a new value.
-#define BW_MMDC_MDMISC_CALIB_PER_CS(v)   (HW_MMDC_MDMISC_WR((HW_MMDC_MDMISC_RD() & ~BM_MMDC_MDMISC_CALIB_PER_CS) | BF_MMDC_MDMISC_CALIB_PER_CS(v)))
+#define BW_MMDC_MDMISC_CALIB_PER_CS(x, v)   (HW_MMDC_MDMISC_WR(x, (HW_MMDC_MDMISC_RD(x) & ~BM_MMDC_MDMISC_CALIB_PER_CS) | BF_MMDC_MDMISC_CALIB_PER_CS(v)))
 #endif
 //@}
 
@@ -2011,15 +2022,15 @@ typedef union _hw_mmdc_mdscr
  * @name Constants and macros for entire MMDC_MDSCR register
  */
 //@{
-#define HW_MMDC_MDSCR_ADDR      (REGS_MMDC_BASE + 0x1c)
+#define HW_MMDC_MDSCR_ADDR(x)      (REGS_MMDC_BASE(x) + 0x1c)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MDSCR           (*(volatile hw_mmdc_mdscr_t *) HW_MMDC_MDSCR_ADDR)
-#define HW_MMDC_MDSCR_RD()      (HW_MMDC_MDSCR.U)
-#define HW_MMDC_MDSCR_WR(v)     (HW_MMDC_MDSCR.U = (v))
-#define HW_MMDC_MDSCR_SET(v)    (HW_MMDC_MDSCR_WR(HW_MMDC_MDSCR_RD() |  (v)))
-#define HW_MMDC_MDSCR_CLR(v)    (HW_MMDC_MDSCR_WR(HW_MMDC_MDSCR_RD() & ~(v)))
-#define HW_MMDC_MDSCR_TOG(v)    (HW_MMDC_MDSCR_WR(HW_MMDC_MDSCR_RD() ^  (v)))
+#define HW_MMDC_MDSCR(x)           (*(volatile hw_mmdc_mdscr_t *) HW_MMDC_MDSCR_ADDR(x))
+#define HW_MMDC_MDSCR_RD(x)        (HW_MMDC_MDSCR(x).U)
+#define HW_MMDC_MDSCR_WR(x, v)     (HW_MMDC_MDSCR(x).U = (v))
+#define HW_MMDC_MDSCR_SET(x, v)    (HW_MMDC_MDSCR_WR(x, HW_MMDC_MDSCR_RD(x) |  (v)))
+#define HW_MMDC_MDSCR_CLR(x, v)    (HW_MMDC_MDSCR_WR(x, HW_MMDC_MDSCR_RD(x) & ~(v)))
+#define HW_MMDC_MDSCR_TOG(x, v)    (HW_MMDC_MDSCR_WR(x, HW_MMDC_MDSCR_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -2050,7 +2061,7 @@ typedef union _hw_mmdc_mdscr
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CMD_BA field to a new value.
-#define BW_MMDC_MDSCR_CMD_BA(v)   (HW_MMDC_MDSCR_WR((HW_MMDC_MDSCR_RD() & ~BM_MMDC_MDSCR_CMD_BA) | BF_MMDC_MDSCR_CMD_BA(v)))
+#define BW_MMDC_MDSCR_CMD_BA(x, v)   (HW_MMDC_MDSCR_WR(x, (HW_MMDC_MDSCR_RD(x) & ~BM_MMDC_MDSCR_CMD_BA) | BF_MMDC_MDSCR_CMD_BA(v)))
 #endif
 //@}
 
@@ -2074,7 +2085,7 @@ typedef union _hw_mmdc_mdscr
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CMD_CS field to a new value.
-#define BW_MMDC_MDSCR_CMD_CS(v)   (HW_MMDC_MDSCR_WR((HW_MMDC_MDSCR_RD() & ~BM_MMDC_MDSCR_CMD_CS) | BF_MMDC_MDSCR_CMD_CS(v)))
+#define BW_MMDC_MDSCR_CMD_CS(x, v)   (HW_MMDC_MDSCR_WR(x, (HW_MMDC_MDSCR_RD(x) & ~BM_MMDC_MDSCR_CMD_CS) | BF_MMDC_MDSCR_CMD_CS(v)))
 #endif
 //@}
 
@@ -2107,7 +2118,7 @@ typedef union _hw_mmdc_mdscr
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CMD field to a new value.
-#define BW_MMDC_MDSCR_CMD(v)   (HW_MMDC_MDSCR_WR((HW_MMDC_MDSCR_RD() & ~BM_MMDC_MDSCR_CMD) | BF_MMDC_MDSCR_CMD(v)))
+#define BW_MMDC_MDSCR_CMD(x, v)   (HW_MMDC_MDSCR_WR(x, (HW_MMDC_MDSCR_RD(x) & ~BM_MMDC_MDSCR_CMD) | BF_MMDC_MDSCR_CMD(v)))
 #endif
 //@}
 
@@ -2133,7 +2144,7 @@ typedef union _hw_mmdc_mdscr
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WL_EN field to a new value.
-#define BW_MMDC_MDSCR_WL_EN(v)   (HW_MMDC_MDSCR_WR((HW_MMDC_MDSCR_RD() & ~BM_MMDC_MDSCR_WL_EN) | BF_MMDC_MDSCR_WL_EN(v)))
+#define BW_MMDC_MDSCR_WL_EN(x, v)   (HW_MMDC_MDSCR_WR(x, (HW_MMDC_MDSCR_RD(x) & ~BM_MMDC_MDSCR_WL_EN) | BF_MMDC_MDSCR_WL_EN(v)))
 #endif
 //@}
 
@@ -2200,7 +2211,7 @@ typedef union _hw_mmdc_mdscr
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CON_REQ field to a new value.
-#define BW_MMDC_MDSCR_CON_REQ(v)   (HW_MMDC_MDSCR_WR((HW_MMDC_MDSCR_RD() & ~BM_MMDC_MDSCR_CON_REQ) | BF_MMDC_MDSCR_CON_REQ(v)))
+#define BW_MMDC_MDSCR_CON_REQ(x, v)   (HW_MMDC_MDSCR_WR(x, (HW_MMDC_MDSCR_RD(x) & ~BM_MMDC_MDSCR_CON_REQ) | BF_MMDC_MDSCR_CON_REQ(v)))
 #endif
 //@}
 
@@ -2221,7 +2232,7 @@ typedef union _hw_mmdc_mdscr
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CMD_ADDR_LSB_MR_ADDR field to a new value.
-#define BW_MMDC_MDSCR_CMD_ADDR_LSB_MR_ADDR(v)   (HW_MMDC_MDSCR_WR((HW_MMDC_MDSCR_RD() & ~BM_MMDC_MDSCR_CMD_ADDR_LSB_MR_ADDR) | BF_MMDC_MDSCR_CMD_ADDR_LSB_MR_ADDR(v)))
+#define BW_MMDC_MDSCR_CMD_ADDR_LSB_MR_ADDR(x, v)   (HW_MMDC_MDSCR_WR(x, (HW_MMDC_MDSCR_RD(x) & ~BM_MMDC_MDSCR_CMD_ADDR_LSB_MR_ADDR) | BF_MMDC_MDSCR_CMD_ADDR_LSB_MR_ADDR(v)))
 #endif
 //@}
 
@@ -2242,7 +2253,7 @@ typedef union _hw_mmdc_mdscr
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CMD_ADDR_MSB field to a new value.
-#define BW_MMDC_MDSCR_CMD_ADDR_MSB(v)   (HW_MMDC_MDSCR_WR((HW_MMDC_MDSCR_RD() & ~BM_MMDC_MDSCR_CMD_ADDR_MSB) | BF_MMDC_MDSCR_CMD_ADDR_MSB(v)))
+#define BW_MMDC_MDSCR_CMD_ADDR_MSB(x, v)   (HW_MMDC_MDSCR_WR(x, (HW_MMDC_MDSCR_RD(x) & ~BM_MMDC_MDSCR_CMD_ADDR_MSB) | BF_MMDC_MDSCR_CMD_ADDR_MSB(v)))
 #endif
 //@}
 
@@ -2293,15 +2304,15 @@ typedef union _hw_mmdc_mdref
  * @name Constants and macros for entire MMDC_MDREF register
  */
 //@{
-#define HW_MMDC_MDREF_ADDR      (REGS_MMDC_BASE + 0x20)
+#define HW_MMDC_MDREF_ADDR(x)      (REGS_MMDC_BASE(x) + 0x20)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MDREF           (*(volatile hw_mmdc_mdref_t *) HW_MMDC_MDREF_ADDR)
-#define HW_MMDC_MDREF_RD()      (HW_MMDC_MDREF.U)
-#define HW_MMDC_MDREF_WR(v)     (HW_MMDC_MDREF.U = (v))
-#define HW_MMDC_MDREF_SET(v)    (HW_MMDC_MDREF_WR(HW_MMDC_MDREF_RD() |  (v)))
-#define HW_MMDC_MDREF_CLR(v)    (HW_MMDC_MDREF_WR(HW_MMDC_MDREF_RD() & ~(v)))
-#define HW_MMDC_MDREF_TOG(v)    (HW_MMDC_MDREF_WR(HW_MMDC_MDREF_RD() ^  (v)))
+#define HW_MMDC_MDREF(x)           (*(volatile hw_mmdc_mdref_t *) HW_MMDC_MDREF_ADDR(x))
+#define HW_MMDC_MDREF_RD(x)        (HW_MMDC_MDREF(x).U)
+#define HW_MMDC_MDREF_WR(x, v)     (HW_MMDC_MDREF(x).U = (v))
+#define HW_MMDC_MDREF_SET(x, v)    (HW_MMDC_MDREF_WR(x, HW_MMDC_MDREF_RD(x) |  (v)))
+#define HW_MMDC_MDREF_CLR(x, v)    (HW_MMDC_MDREF_WR(x, HW_MMDC_MDREF_RD(x) & ~(v)))
+#define HW_MMDC_MDREF_TOG(x, v)    (HW_MMDC_MDREF_WR(x, HW_MMDC_MDREF_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -2331,7 +2342,7 @@ typedef union _hw_mmdc_mdref
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the START_REF field to a new value.
-#define BW_MMDC_MDREF_START_REF(v)   (HW_MMDC_MDREF_WR((HW_MMDC_MDREF_RD() & ~BM_MMDC_MDREF_START_REF) | BF_MMDC_MDREF_START_REF(v)))
+#define BW_MMDC_MDREF_START_REF(x, v)   (HW_MMDC_MDREF_WR(x, (HW_MMDC_MDREF_RD(x) & ~BM_MMDC_MDREF_START_REF) | BF_MMDC_MDREF_START_REF(v)))
 #endif
 //@}
 
@@ -2363,7 +2374,7 @@ typedef union _hw_mmdc_mdref
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the REFR field to a new value.
-#define BW_MMDC_MDREF_REFR(v)   (HW_MMDC_MDREF_WR((HW_MMDC_MDREF_RD() & ~BM_MMDC_MDREF_REFR) | BF_MMDC_MDREF_REFR(v)))
+#define BW_MMDC_MDREF_REFR(x, v)   (HW_MMDC_MDREF_WR(x, (HW_MMDC_MDREF_RD(x) & ~BM_MMDC_MDREF_REFR) | BF_MMDC_MDREF_REFR(v)))
 #endif
 //@}
 
@@ -2390,7 +2401,7 @@ typedef union _hw_mmdc_mdref
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the REF_SEL field to a new value.
-#define BW_MMDC_MDREF_REF_SEL(v)   (HW_MMDC_MDREF_WR((HW_MMDC_MDREF_RD() & ~BM_MMDC_MDREF_REF_SEL) | BF_MMDC_MDREF_REF_SEL(v)))
+#define BW_MMDC_MDREF_REF_SEL(x, v)   (HW_MMDC_MDREF_WR(x, (HW_MMDC_MDREF_RD(x) & ~BM_MMDC_MDREF_REF_SEL) | BF_MMDC_MDREF_REF_SEL(v)))
 #endif
 //@}
 
@@ -2417,7 +2428,7 @@ typedef union _hw_mmdc_mdref
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the REF_CNT field to a new value.
-#define BW_MMDC_MDREF_REF_CNT(v)   (HW_MMDC_MDREF_WR((HW_MMDC_MDREF_RD() & ~BM_MMDC_MDREF_REF_CNT) | BF_MMDC_MDREF_REF_CNT(v)))
+#define BW_MMDC_MDREF_REF_CNT(x, v)   (HW_MMDC_MDREF_WR(x, (HW_MMDC_MDREF_RD(x) & ~BM_MMDC_MDREF_REF_CNT) | BF_MMDC_MDREF_REF_CNT(v)))
 #endif
 //@}
 
@@ -2457,15 +2468,15 @@ typedef union _hw_mmdc_mdrwd
  * @name Constants and macros for entire MMDC_MDRWD register
  */
 //@{
-#define HW_MMDC_MDRWD_ADDR      (REGS_MMDC_BASE + 0x2c)
+#define HW_MMDC_MDRWD_ADDR(x)      (REGS_MMDC_BASE(x) + 0x2c)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MDRWD           (*(volatile hw_mmdc_mdrwd_t *) HW_MMDC_MDRWD_ADDR)
-#define HW_MMDC_MDRWD_RD()      (HW_MMDC_MDRWD.U)
-#define HW_MMDC_MDRWD_WR(v)     (HW_MMDC_MDRWD.U = (v))
-#define HW_MMDC_MDRWD_SET(v)    (HW_MMDC_MDRWD_WR(HW_MMDC_MDRWD_RD() |  (v)))
-#define HW_MMDC_MDRWD_CLR(v)    (HW_MMDC_MDRWD_WR(HW_MMDC_MDRWD_RD() & ~(v)))
-#define HW_MMDC_MDRWD_TOG(v)    (HW_MMDC_MDRWD_WR(HW_MMDC_MDRWD_RD() ^  (v)))
+#define HW_MMDC_MDRWD(x)           (*(volatile hw_mmdc_mdrwd_t *) HW_MMDC_MDRWD_ADDR(x))
+#define HW_MMDC_MDRWD_RD(x)        (HW_MMDC_MDRWD(x).U)
+#define HW_MMDC_MDRWD_WR(x, v)     (HW_MMDC_MDRWD(x).U = (v))
+#define HW_MMDC_MDRWD_SET(x, v)    (HW_MMDC_MDRWD_WR(x, HW_MMDC_MDRWD_RD(x) |  (v)))
+#define HW_MMDC_MDRWD_CLR(x, v)    (HW_MMDC_MDRWD_WR(x, HW_MMDC_MDRWD_RD(x) & ~(v)))
+#define HW_MMDC_MDRWD_TOG(x, v)    (HW_MMDC_MDRWD_WR(x, HW_MMDC_MDRWD_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -2501,7 +2512,7 @@ typedef union _hw_mmdc_mdrwd
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RTR_DIFF field to a new value.
-#define BW_MMDC_MDRWD_RTR_DIFF(v)   (HW_MMDC_MDRWD_WR((HW_MMDC_MDRWD_RD() & ~BM_MMDC_MDRWD_RTR_DIFF) | BF_MMDC_MDRWD_RTR_DIFF(v)))
+#define BW_MMDC_MDRWD_RTR_DIFF(x, v)   (HW_MMDC_MDRWD_WR(x, (HW_MMDC_MDRWD_RD(x) & ~BM_MMDC_MDRWD_RTR_DIFF) | BF_MMDC_MDRWD_RTR_DIFF(v)))
 #endif
 //@}
 
@@ -2533,7 +2544,7 @@ typedef union _hw_mmdc_mdrwd
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RTW_DIFF field to a new value.
-#define BW_MMDC_MDRWD_RTW_DIFF(v)   (HW_MMDC_MDRWD_WR((HW_MMDC_MDRWD_RD() & ~BM_MMDC_MDRWD_RTW_DIFF) | BF_MMDC_MDRWD_RTW_DIFF(v)))
+#define BW_MMDC_MDRWD_RTW_DIFF(x, v)   (HW_MMDC_MDRWD_WR(x, (HW_MMDC_MDRWD_RD(x) & ~BM_MMDC_MDRWD_RTW_DIFF) | BF_MMDC_MDRWD_RTW_DIFF(v)))
 #endif
 //@}
 
@@ -2565,7 +2576,7 @@ typedef union _hw_mmdc_mdrwd
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WTW_DIFF field to a new value.
-#define BW_MMDC_MDRWD_WTW_DIFF(v)   (HW_MMDC_MDRWD_WR((HW_MMDC_MDRWD_RD() & ~BM_MMDC_MDRWD_WTW_DIFF) | BF_MMDC_MDRWD_WTW_DIFF(v)))
+#define BW_MMDC_MDRWD_WTW_DIFF(x, v)   (HW_MMDC_MDRWD_WR(x, (HW_MMDC_MDRWD_RD(x) & ~BM_MMDC_MDRWD_WTW_DIFF) | BF_MMDC_MDRWD_WTW_DIFF(v)))
 #endif
 //@}
 
@@ -2597,7 +2608,7 @@ typedef union _hw_mmdc_mdrwd
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WTR_DIFF field to a new value.
-#define BW_MMDC_MDRWD_WTR_DIFF(v)   (HW_MMDC_MDRWD_WR((HW_MMDC_MDRWD_RD() & ~BM_MMDC_MDRWD_WTR_DIFF) | BF_MMDC_MDRWD_WTR_DIFF(v)))
+#define BW_MMDC_MDRWD_WTR_DIFF(x, v)   (HW_MMDC_MDRWD_WR(x, (HW_MMDC_MDRWD_RD(x) & ~BM_MMDC_MDRWD_WTR_DIFF) | BF_MMDC_MDRWD_WTR_DIFF(v)))
 #endif
 //@}
 
@@ -2629,7 +2640,7 @@ typedef union _hw_mmdc_mdrwd
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RTW_SAME field to a new value.
-#define BW_MMDC_MDRWD_RTW_SAME(v)   (HW_MMDC_MDRWD_WR((HW_MMDC_MDRWD_RD() & ~BM_MMDC_MDRWD_RTW_SAME) | BF_MMDC_MDRWD_RTW_SAME(v)))
+#define BW_MMDC_MDRWD_RTW_SAME(x, v)   (HW_MMDC_MDRWD_WR(x, (HW_MMDC_MDRWD_RD(x) & ~BM_MMDC_MDRWD_RTW_SAME) | BF_MMDC_MDRWD_RTW_SAME(v)))
 #endif
 //@}
 
@@ -2654,7 +2665,7 @@ typedef union _hw_mmdc_mdrwd
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TDAI field to a new value.
-#define BW_MMDC_MDRWD_TDAI(v)   (HW_MMDC_MDRWD_WR((HW_MMDC_MDRWD_RD() & ~BM_MMDC_MDRWD_TDAI) | BF_MMDC_MDRWD_TDAI(v)))
+#define BW_MMDC_MDRWD_TDAI(x, v)   (HW_MMDC_MDRWD_WR(x, (HW_MMDC_MDRWD_RD(x) & ~BM_MMDC_MDRWD_TDAI) | BF_MMDC_MDRWD_TDAI(v)))
 #endif
 //@}
 
@@ -2690,15 +2701,15 @@ typedef union _hw_mmdc_mdor
  * @name Constants and macros for entire MMDC_MDOR register
  */
 //@{
-#define HW_MMDC_MDOR_ADDR      (REGS_MMDC_BASE + 0x30)
+#define HW_MMDC_MDOR_ADDR(x)      (REGS_MMDC_BASE(x) + 0x30)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MDOR           (*(volatile hw_mmdc_mdor_t *) HW_MMDC_MDOR_ADDR)
-#define HW_MMDC_MDOR_RD()      (HW_MMDC_MDOR.U)
-#define HW_MMDC_MDOR_WR(v)     (HW_MMDC_MDOR.U = (v))
-#define HW_MMDC_MDOR_SET(v)    (HW_MMDC_MDOR_WR(HW_MMDC_MDOR_RD() |  (v)))
-#define HW_MMDC_MDOR_CLR(v)    (HW_MMDC_MDOR_WR(HW_MMDC_MDOR_RD() & ~(v)))
-#define HW_MMDC_MDOR_TOG(v)    (HW_MMDC_MDOR_WR(HW_MMDC_MDOR_RD() ^  (v)))
+#define HW_MMDC_MDOR(x)           (*(volatile hw_mmdc_mdor_t *) HW_MMDC_MDOR_ADDR(x))
+#define HW_MMDC_MDOR_RD(x)        (HW_MMDC_MDOR(x).U)
+#define HW_MMDC_MDOR_WR(x, v)     (HW_MMDC_MDOR(x).U = (v))
+#define HW_MMDC_MDOR_SET(x, v)    (HW_MMDC_MDOR_WR(x, HW_MMDC_MDOR_RD(x) |  (v)))
+#define HW_MMDC_MDOR_CLR(x, v)    (HW_MMDC_MDOR_WR(x, HW_MMDC_MDOR_RD(x) & ~(v)))
+#define HW_MMDC_MDOR_TOG(x, v)    (HW_MMDC_MDOR_WR(x, HW_MMDC_MDOR_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -2735,7 +2746,7 @@ typedef union _hw_mmdc_mdor
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RST_TO_CKE field to a new value.
-#define BW_MMDC_MDOR_RST_TO_CKE(v)   (HW_MMDC_MDOR_WR((HW_MMDC_MDOR_RD() & ~BM_MMDC_MDOR_RST_TO_CKE) | BF_MMDC_MDOR_RST_TO_CKE(v)))
+#define BW_MMDC_MDOR_RST_TO_CKE(x, v)   (HW_MMDC_MDOR_WR(x, (HW_MMDC_MDOR_RD(x) & ~BM_MMDC_MDOR_RST_TO_CKE) | BF_MMDC_MDOR_RST_TO_CKE(v)))
 #endif
 //@}
 
@@ -2766,7 +2777,7 @@ typedef union _hw_mmdc_mdor
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDE_TO_RST field to a new value.
-#define BW_MMDC_MDOR_SDE_TO_RST(v)   (HW_MMDC_MDOR_WR((HW_MMDC_MDOR_RD() & ~BM_MMDC_MDOR_SDE_TO_RST) | BF_MMDC_MDOR_SDE_TO_RST(v)))
+#define BW_MMDC_MDOR_SDE_TO_RST(x, v)   (HW_MMDC_MDOR_WR(x, (HW_MMDC_MDOR_RD(x) & ~BM_MMDC_MDOR_SDE_TO_RST) | BF_MMDC_MDOR_SDE_TO_RST(v)))
 #endif
 //@}
 
@@ -2794,7 +2805,7 @@ typedef union _hw_mmdc_mdor
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXPR field to a new value.
-#define BW_MMDC_MDOR_TXPR(v)   (HW_MMDC_MDOR_WR((HW_MMDC_MDOR_RD() & ~BM_MMDC_MDOR_TXPR) | BF_MMDC_MDOR_TXPR(v)))
+#define BW_MMDC_MDOR_TXPR(x, v)   (HW_MMDC_MDOR_WR(x, (HW_MMDC_MDOR_RD(x) & ~BM_MMDC_MDOR_TXPR) | BF_MMDC_MDOR_TXPR(v)))
 #endif
 //@}
 
@@ -2830,11 +2841,11 @@ typedef union _hw_mmdc_mdmrr
  * @name Constants and macros for entire MMDC_MDMRR register
  */
 //@{
-#define HW_MMDC_MDMRR_ADDR      (REGS_MMDC_BASE + 0x34)
+#define HW_MMDC_MDMRR_ADDR(x)      (REGS_MMDC_BASE(x) + 0x34)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MDMRR           (*(volatile hw_mmdc_mdmrr_t *) HW_MMDC_MDMRR_ADDR)
-#define HW_MMDC_MDMRR_RD()      (HW_MMDC_MDMRR.U)
+#define HW_MMDC_MDMRR(x)           (*(volatile hw_mmdc_mdmrr_t *) HW_MMDC_MDMRR_ADDR(x))
+#define HW_MMDC_MDMRR_RD(x)        (HW_MMDC_MDMRR(x).U)
 #endif
 //@}
 
@@ -2922,15 +2933,15 @@ typedef union _hw_mmdc_mdcfg3lp
  * @name Constants and macros for entire MMDC_MDCFG3LP register
  */
 //@{
-#define HW_MMDC_MDCFG3LP_ADDR      (REGS_MMDC_BASE + 0x38)
+#define HW_MMDC_MDCFG3LP_ADDR(x)      (REGS_MMDC_BASE(x) + 0x38)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MDCFG3LP           (*(volatile hw_mmdc_mdcfg3lp_t *) HW_MMDC_MDCFG3LP_ADDR)
-#define HW_MMDC_MDCFG3LP_RD()      (HW_MMDC_MDCFG3LP.U)
-#define HW_MMDC_MDCFG3LP_WR(v)     (HW_MMDC_MDCFG3LP.U = (v))
-#define HW_MMDC_MDCFG3LP_SET(v)    (HW_MMDC_MDCFG3LP_WR(HW_MMDC_MDCFG3LP_RD() |  (v)))
-#define HW_MMDC_MDCFG3LP_CLR(v)    (HW_MMDC_MDCFG3LP_WR(HW_MMDC_MDCFG3LP_RD() & ~(v)))
-#define HW_MMDC_MDCFG3LP_TOG(v)    (HW_MMDC_MDCFG3LP_WR(HW_MMDC_MDCFG3LP_RD() ^  (v)))
+#define HW_MMDC_MDCFG3LP(x)           (*(volatile hw_mmdc_mdcfg3lp_t *) HW_MMDC_MDCFG3LP_ADDR(x))
+#define HW_MMDC_MDCFG3LP_RD(x)        (HW_MMDC_MDCFG3LP(x).U)
+#define HW_MMDC_MDCFG3LP_WR(x, v)     (HW_MMDC_MDCFG3LP(x).U = (v))
+#define HW_MMDC_MDCFG3LP_SET(x, v)    (HW_MMDC_MDCFG3LP_WR(x, HW_MMDC_MDCFG3LP_RD(x) |  (v)))
+#define HW_MMDC_MDCFG3LP_CLR(x, v)    (HW_MMDC_MDCFG3LP_WR(x, HW_MMDC_MDCFG3LP_RD(x) & ~(v)))
+#define HW_MMDC_MDCFG3LP_TOG(x, v)    (HW_MMDC_MDCFG3LP_WR(x, HW_MMDC_MDCFG3LP_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -2961,7 +2972,7 @@ typedef union _hw_mmdc_mdcfg3lp
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRPAB_LP field to a new value.
-#define BW_MMDC_MDCFG3LP_TRPAB_LP(v)   (HW_MMDC_MDCFG3LP_WR((HW_MMDC_MDCFG3LP_RD() & ~BM_MMDC_MDCFG3LP_TRPAB_LP) | BF_MMDC_MDCFG3LP_TRPAB_LP(v)))
+#define BW_MMDC_MDCFG3LP_TRPAB_LP(x, v)   (HW_MMDC_MDCFG3LP_WR(x, (HW_MMDC_MDCFG3LP_RD(x) & ~BM_MMDC_MDCFG3LP_TRPAB_LP) | BF_MMDC_MDCFG3LP_TRPAB_LP(v)))
 #endif
 //@}
 
@@ -2988,7 +2999,7 @@ typedef union _hw_mmdc_mdcfg3lp
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRPPB_LP field to a new value.
-#define BW_MMDC_MDCFG3LP_TRPPB_LP(v)   (HW_MMDC_MDCFG3LP_WR((HW_MMDC_MDCFG3LP_RD() & ~BM_MMDC_MDCFG3LP_TRPPB_LP) | BF_MMDC_MDCFG3LP_TRPPB_LP(v)))
+#define BW_MMDC_MDCFG3LP_TRPPB_LP(x, v)   (HW_MMDC_MDCFG3LP_WR(x, (HW_MMDC_MDCFG3LP_RD(x) & ~BM_MMDC_MDCFG3LP_TRPPB_LP) | BF_MMDC_MDCFG3LP_TRPPB_LP(v)))
 #endif
 //@}
 
@@ -3016,7 +3027,7 @@ typedef union _hw_mmdc_mdcfg3lp
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRCD_LP field to a new value.
-#define BW_MMDC_MDCFG3LP_TRCD_LP(v)   (HW_MMDC_MDCFG3LP_WR((HW_MMDC_MDCFG3LP_RD() & ~BM_MMDC_MDCFG3LP_TRCD_LP) | BF_MMDC_MDCFG3LP_TRCD_LP(v)))
+#define BW_MMDC_MDCFG3LP_TRCD_LP(x, v)   (HW_MMDC_MDCFG3LP_WR(x, (HW_MMDC_MDCFG3LP_RD(x) & ~BM_MMDC_MDCFG3LP_TRCD_LP) | BF_MMDC_MDCFG3LP_TRCD_LP(v)))
 #endif
 //@}
 
@@ -3044,7 +3055,7 @@ typedef union _hw_mmdc_mdcfg3lp
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RC_LP field to a new value.
-#define BW_MMDC_MDCFG3LP_RC_LP(v)   (HW_MMDC_MDCFG3LP_WR((HW_MMDC_MDCFG3LP_RD() & ~BM_MMDC_MDCFG3LP_RC_LP) | BF_MMDC_MDCFG3LP_RC_LP(v)))
+#define BW_MMDC_MDCFG3LP_RC_LP(x, v)   (HW_MMDC_MDCFG3LP_WR(x, (HW_MMDC_MDCFG3LP_RD(x) & ~BM_MMDC_MDCFG3LP_RC_LP) | BF_MMDC_MDCFG3LP_RC_LP(v)))
 #endif
 //@}
 
@@ -3084,15 +3095,15 @@ typedef union _hw_mmdc_mdmr4
  * @name Constants and macros for entire MMDC_MDMR4 register
  */
 //@{
-#define HW_MMDC_MDMR4_ADDR      (REGS_MMDC_BASE + 0x3c)
+#define HW_MMDC_MDMR4_ADDR(x)      (REGS_MMDC_BASE(x) + 0x3c)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MDMR4           (*(volatile hw_mmdc_mdmr4_t *) HW_MMDC_MDMR4_ADDR)
-#define HW_MMDC_MDMR4_RD()      (HW_MMDC_MDMR4.U)
-#define HW_MMDC_MDMR4_WR(v)     (HW_MMDC_MDMR4.U = (v))
-#define HW_MMDC_MDMR4_SET(v)    (HW_MMDC_MDMR4_WR(HW_MMDC_MDMR4_RD() |  (v)))
-#define HW_MMDC_MDMR4_CLR(v)    (HW_MMDC_MDMR4_WR(HW_MMDC_MDMR4_RD() & ~(v)))
-#define HW_MMDC_MDMR4_TOG(v)    (HW_MMDC_MDMR4_WR(HW_MMDC_MDMR4_RD() ^  (v)))
+#define HW_MMDC_MDMR4(x)           (*(volatile hw_mmdc_mdmr4_t *) HW_MMDC_MDMR4_ADDR(x))
+#define HW_MMDC_MDMR4_RD(x)        (HW_MMDC_MDMR4(x).U)
+#define HW_MMDC_MDMR4_WR(x, v)     (HW_MMDC_MDMR4(x).U = (v))
+#define HW_MMDC_MDMR4_SET(x, v)    (HW_MMDC_MDMR4_WR(x, HW_MMDC_MDMR4_RD(x) |  (v)))
+#define HW_MMDC_MDMR4_CLR(x, v)    (HW_MMDC_MDMR4_WR(x, HW_MMDC_MDMR4_RD(x) & ~(v)))
+#define HW_MMDC_MDMR4_TOG(x, v)    (HW_MMDC_MDMR4_WR(x, HW_MMDC_MDMR4_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -3122,7 +3133,7 @@ typedef union _hw_mmdc_mdmr4
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the UPDATE_DE_REQ field to a new value.
-#define BW_MMDC_MDMR4_UPDATE_DE_REQ(v)   (HW_MMDC_MDMR4_WR((HW_MMDC_MDMR4_RD() & ~BM_MMDC_MDMR4_UPDATE_DE_REQ) | BF_MMDC_MDMR4_UPDATE_DE_REQ(v)))
+#define BW_MMDC_MDMR4_UPDATE_DE_REQ(x, v)   (HW_MMDC_MDMR4_WR(x, (HW_MMDC_MDMR4_RD(x) & ~BM_MMDC_MDMR4_UPDATE_DE_REQ) | BF_MMDC_MDMR4_UPDATE_DE_REQ(v)))
 #endif
 //@}
 
@@ -3159,7 +3170,7 @@ typedef union _hw_mmdc_mdmr4
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRCD_DE field to a new value.
-#define BW_MMDC_MDMR4_TRCD_DE(v)   (HW_MMDC_MDMR4_WR((HW_MMDC_MDMR4_RD() & ~BM_MMDC_MDMR4_TRCD_DE) | BF_MMDC_MDMR4_TRCD_DE(v)))
+#define BW_MMDC_MDMR4_TRCD_DE(x, v)   (HW_MMDC_MDMR4_WR(x, (HW_MMDC_MDMR4_RD(x) & ~BM_MMDC_MDMR4_TRCD_DE) | BF_MMDC_MDMR4_TRCD_DE(v)))
 #endif
 //@}
 
@@ -3183,7 +3194,7 @@ typedef union _hw_mmdc_mdmr4
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRC_DE field to a new value.
-#define BW_MMDC_MDMR4_TRC_DE(v)   (HW_MMDC_MDMR4_WR((HW_MMDC_MDMR4_RD() & ~BM_MMDC_MDMR4_TRC_DE) | BF_MMDC_MDMR4_TRC_DE(v)))
+#define BW_MMDC_MDMR4_TRC_DE(x, v)   (HW_MMDC_MDMR4_WR(x, (HW_MMDC_MDMR4_RD(x) & ~BM_MMDC_MDMR4_TRC_DE) | BF_MMDC_MDMR4_TRC_DE(v)))
 #endif
 //@}
 
@@ -3207,7 +3218,7 @@ typedef union _hw_mmdc_mdmr4
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRAS_DE field to a new value.
-#define BW_MMDC_MDMR4_TRAS_DE(v)   (HW_MMDC_MDMR4_WR((HW_MMDC_MDMR4_RD() & ~BM_MMDC_MDMR4_TRAS_DE) | BF_MMDC_MDMR4_TRAS_DE(v)))
+#define BW_MMDC_MDMR4_TRAS_DE(x, v)   (HW_MMDC_MDMR4_WR(x, (HW_MMDC_MDMR4_RD(x) & ~BM_MMDC_MDMR4_TRAS_DE) | BF_MMDC_MDMR4_TRAS_DE(v)))
 #endif
 //@}
 
@@ -3231,7 +3242,7 @@ typedef union _hw_mmdc_mdmr4
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRP_DE field to a new value.
-#define BW_MMDC_MDMR4_TRP_DE(v)   (HW_MMDC_MDMR4_WR((HW_MMDC_MDMR4_RD() & ~BM_MMDC_MDMR4_TRP_DE) | BF_MMDC_MDMR4_TRP_DE(v)))
+#define BW_MMDC_MDMR4_TRP_DE(x, v)   (HW_MMDC_MDMR4_WR(x, (HW_MMDC_MDMR4_RD(x) & ~BM_MMDC_MDMR4_TRP_DE) | BF_MMDC_MDMR4_TRP_DE(v)))
 #endif
 //@}
 
@@ -3255,7 +3266,7 @@ typedef union _hw_mmdc_mdmr4
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TRRD_DE field to a new value.
-#define BW_MMDC_MDMR4_TRRD_DE(v)   (HW_MMDC_MDMR4_WR((HW_MMDC_MDMR4_RD() & ~BM_MMDC_MDMR4_TRRD_DE) | BF_MMDC_MDMR4_TRRD_DE(v)))
+#define BW_MMDC_MDMR4_TRRD_DE(x, v)   (HW_MMDC_MDMR4_WR(x, (HW_MMDC_MDMR4_RD(x) & ~BM_MMDC_MDMR4_TRRD_DE) | BF_MMDC_MDMR4_TRRD_DE(v)))
 #endif
 //@}
 
@@ -3288,15 +3299,15 @@ typedef union _hw_mmdc_mdasp
  * @name Constants and macros for entire MMDC_MDASP register
  */
 //@{
-#define HW_MMDC_MDASP_ADDR      (REGS_MMDC_BASE + 0x40)
+#define HW_MMDC_MDASP_ADDR(x)      (REGS_MMDC_BASE(x) + 0x40)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MDASP           (*(volatile hw_mmdc_mdasp_t *) HW_MMDC_MDASP_ADDR)
-#define HW_MMDC_MDASP_RD()      (HW_MMDC_MDASP.U)
-#define HW_MMDC_MDASP_WR(v)     (HW_MMDC_MDASP.U = (v))
-#define HW_MMDC_MDASP_SET(v)    (HW_MMDC_MDASP_WR(HW_MMDC_MDASP_RD() |  (v)))
-#define HW_MMDC_MDASP_CLR(v)    (HW_MMDC_MDASP_WR(HW_MMDC_MDASP_RD() & ~(v)))
-#define HW_MMDC_MDASP_TOG(v)    (HW_MMDC_MDASP_WR(HW_MMDC_MDASP_RD() ^  (v)))
+#define HW_MMDC_MDASP(x)           (*(volatile hw_mmdc_mdasp_t *) HW_MMDC_MDASP_ADDR(x))
+#define HW_MMDC_MDASP_RD(x)        (HW_MMDC_MDASP(x).U)
+#define HW_MMDC_MDASP_WR(x, v)     (HW_MMDC_MDASP(x).U = (v))
+#define HW_MMDC_MDASP_SET(x, v)    (HW_MMDC_MDASP_WR(x, HW_MMDC_MDASP_RD(x) |  (v)))
+#define HW_MMDC_MDASP_CLR(x, v)    (HW_MMDC_MDASP_WR(x, HW_MMDC_MDASP_RD(x) & ~(v)))
+#define HW_MMDC_MDASP_TOG(x, v)    (HW_MMDC_MDASP_WR(x, HW_MMDC_MDASP_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -3328,7 +3339,7 @@ typedef union _hw_mmdc_mdasp
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CS0_END field to a new value.
-#define BW_MMDC_MDASP_CS0_END(v)   (HW_MMDC_MDASP_WR((HW_MMDC_MDASP_RD() & ~BM_MMDC_MDASP_CS0_END) | BF_MMDC_MDASP_CS0_END(v)))
+#define BW_MMDC_MDASP_CS0_END(x, v)   (HW_MMDC_MDASP_WR(x, (HW_MMDC_MDASP_RD(x) & ~BM_MMDC_MDASP_CS0_END) | BF_MMDC_MDASP_CS0_END(v)))
 #endif
 //@}
 
@@ -3373,15 +3384,15 @@ typedef union _hw_mmdc_maarcr
  * @name Constants and macros for entire MMDC_MAARCR register
  */
 //@{
-#define HW_MMDC_MAARCR_ADDR      (REGS_MMDC_BASE + 0x400)
+#define HW_MMDC_MAARCR_ADDR(x)      (REGS_MMDC_BASE(x) + 0x400)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MAARCR           (*(volatile hw_mmdc_maarcr_t *) HW_MMDC_MAARCR_ADDR)
-#define HW_MMDC_MAARCR_RD()      (HW_MMDC_MAARCR.U)
-#define HW_MMDC_MAARCR_WR(v)     (HW_MMDC_MAARCR.U = (v))
-#define HW_MMDC_MAARCR_SET(v)    (HW_MMDC_MAARCR_WR(HW_MMDC_MAARCR_RD() |  (v)))
-#define HW_MMDC_MAARCR_CLR(v)    (HW_MMDC_MAARCR_WR(HW_MMDC_MAARCR_RD() & ~(v)))
-#define HW_MMDC_MAARCR_TOG(v)    (HW_MMDC_MAARCR_WR(HW_MMDC_MAARCR_RD() ^  (v)))
+#define HW_MMDC_MAARCR(x)           (*(volatile hw_mmdc_maarcr_t *) HW_MMDC_MAARCR_ADDR(x))
+#define HW_MMDC_MAARCR_RD(x)        (HW_MMDC_MAARCR(x).U)
+#define HW_MMDC_MAARCR_WR(x, v)     (HW_MMDC_MAARCR(x).U = (v))
+#define HW_MMDC_MAARCR_SET(x, v)    (HW_MMDC_MAARCR_WR(x, HW_MMDC_MAARCR_RD(x) |  (v)))
+#define HW_MMDC_MAARCR_CLR(x, v)    (HW_MMDC_MAARCR_WR(x, HW_MMDC_MAARCR_RD(x) & ~(v)))
+#define HW_MMDC_MAARCR_TOG(x, v)    (HW_MMDC_MAARCR_WR(x, HW_MMDC_MAARCR_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -3412,7 +3423,7 @@ typedef union _hw_mmdc_maarcr
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARCR_GUARD field to a new value.
-#define BW_MMDC_MAARCR_ARCR_GUARD(v)   (HW_MMDC_MAARCR_WR((HW_MMDC_MAARCR_RD() & ~BM_MMDC_MAARCR_ARCR_GUARD) | BF_MMDC_MAARCR_ARCR_GUARD(v)))
+#define BW_MMDC_MAARCR_ARCR_GUARD(x, v)   (HW_MMDC_MAARCR_WR(x, (HW_MMDC_MAARCR_RD(x) & ~BM_MMDC_MAARCR_ARCR_GUARD) | BF_MMDC_MAARCR_ARCR_GUARD(v)))
 #endif
 //@}
 
@@ -3438,7 +3449,7 @@ typedef union _hw_mmdc_maarcr
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARCR_DYN_MAX field to a new value.
-#define BW_MMDC_MAARCR_ARCR_DYN_MAX(v)   (HW_MMDC_MAARCR_WR((HW_MMDC_MAARCR_RD() & ~BM_MMDC_MAARCR_ARCR_DYN_MAX) | BF_MMDC_MAARCR_ARCR_DYN_MAX(v)))
+#define BW_MMDC_MAARCR_ARCR_DYN_MAX(x, v)   (HW_MMDC_MAARCR_WR(x, (HW_MMDC_MAARCR_RD(x) & ~BM_MMDC_MAARCR_ARCR_DYN_MAX) | BF_MMDC_MAARCR_ARCR_DYN_MAX(v)))
 #endif
 //@}
 
@@ -3461,7 +3472,7 @@ typedef union _hw_mmdc_maarcr
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARCR_DYN_JMP field to a new value.
-#define BW_MMDC_MAARCR_ARCR_DYN_JMP(v)   (HW_MMDC_MAARCR_WR((HW_MMDC_MAARCR_RD() & ~BM_MMDC_MAARCR_ARCR_DYN_JMP) | BF_MMDC_MAARCR_ARCR_DYN_JMP(v)))
+#define BW_MMDC_MAARCR_ARCR_DYN_JMP(x, v)   (HW_MMDC_MAARCR_WR(x, (HW_MMDC_MAARCR_RD(x) & ~BM_MMDC_MAARCR_ARCR_DYN_JMP) | BF_MMDC_MAARCR_ARCR_DYN_JMP(v)))
 #endif
 //@}
 
@@ -3483,7 +3494,7 @@ typedef union _hw_mmdc_maarcr
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARCR_ACC_HIT field to a new value.
-#define BW_MMDC_MAARCR_ARCR_ACC_HIT(v)   (HW_MMDC_MAARCR_WR((HW_MMDC_MAARCR_RD() & ~BM_MMDC_MAARCR_ARCR_ACC_HIT) | BF_MMDC_MAARCR_ARCR_ACC_HIT(v)))
+#define BW_MMDC_MAARCR_ARCR_ACC_HIT(x, v)   (HW_MMDC_MAARCR_WR(x, (HW_MMDC_MAARCR_RD(x) & ~BM_MMDC_MAARCR_ARCR_ACC_HIT) | BF_MMDC_MAARCR_ARCR_ACC_HIT(v)))
 #endif
 //@}
 
@@ -3505,7 +3516,7 @@ typedef union _hw_mmdc_maarcr
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARCR_PAG_HIT field to a new value.
-#define BW_MMDC_MAARCR_ARCR_PAG_HIT(v)   (HW_MMDC_MAARCR_WR((HW_MMDC_MAARCR_RD() & ~BM_MMDC_MAARCR_ARCR_PAG_HIT) | BF_MMDC_MAARCR_ARCR_PAG_HIT(v)))
+#define BW_MMDC_MAARCR_ARCR_PAG_HIT(x, v)   (HW_MMDC_MAARCR_WR(x, (HW_MMDC_MAARCR_RD(x) & ~BM_MMDC_MAARCR_ARCR_PAG_HIT) | BF_MMDC_MAARCR_ARCR_PAG_HIT(v)))
 #endif
 //@}
 
@@ -3531,7 +3542,7 @@ typedef union _hw_mmdc_maarcr
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARCR_RCH_EN field to a new value.
-#define BW_MMDC_MAARCR_ARCR_RCH_EN(v)   (HW_MMDC_MAARCR_WR((HW_MMDC_MAARCR_RD() & ~BM_MMDC_MAARCR_ARCR_RCH_EN) | BF_MMDC_MAARCR_ARCR_RCH_EN(v)))
+#define BW_MMDC_MAARCR_ARCR_RCH_EN(x, v)   (HW_MMDC_MAARCR_WR(x, (HW_MMDC_MAARCR_RD(x) & ~BM_MMDC_MAARCR_ARCR_RCH_EN) | BF_MMDC_MAARCR_ARCR_RCH_EN(v)))
 #endif
 //@}
 
@@ -3556,7 +3567,7 @@ typedef union _hw_mmdc_maarcr
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARCR_EXC_ERR_EN field to a new value.
-#define BW_MMDC_MAARCR_ARCR_EXC_ERR_EN(v)   (HW_MMDC_MAARCR_WR((HW_MMDC_MAARCR_RD() & ~BM_MMDC_MAARCR_ARCR_EXC_ERR_EN) | BF_MMDC_MAARCR_ARCR_EXC_ERR_EN(v)))
+#define BW_MMDC_MAARCR_ARCR_EXC_ERR_EN(x, v)   (HW_MMDC_MAARCR_WR(x, (HW_MMDC_MAARCR_RD(x) & ~BM_MMDC_MAARCR_ARCR_EXC_ERR_EN) | BF_MMDC_MAARCR_ARCR_EXC_ERR_EN(v)))
 #endif
 //@}
 
@@ -3581,7 +3592,7 @@ typedef union _hw_mmdc_maarcr
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARCR_SEC_ERR_EN field to a new value.
-#define BW_MMDC_MAARCR_ARCR_SEC_ERR_EN(v)   (HW_MMDC_MAARCR_WR((HW_MMDC_MAARCR_RD() & ~BM_MMDC_MAARCR_ARCR_SEC_ERR_EN) | BF_MMDC_MAARCR_ARCR_SEC_ERR_EN(v)))
+#define BW_MMDC_MAARCR_ARCR_SEC_ERR_EN(x, v)   (HW_MMDC_MAARCR_WR(x, (HW_MMDC_MAARCR_RD(x) & ~BM_MMDC_MAARCR_ARCR_SEC_ERR_EN) | BF_MMDC_MAARCR_ARCR_SEC_ERR_EN(v)))
 #endif
 //@}
 
@@ -3606,7 +3617,7 @@ typedef union _hw_mmdc_maarcr
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ARCR_SEC_ERR_LOCK field to a new value.
-#define BW_MMDC_MAARCR_ARCR_SEC_ERR_LOCK(v)   (HW_MMDC_MAARCR_WR((HW_MMDC_MAARCR_RD() & ~BM_MMDC_MAARCR_ARCR_SEC_ERR_LOCK) | BF_MMDC_MAARCR_ARCR_SEC_ERR_LOCK(v)))
+#define BW_MMDC_MAARCR_ARCR_SEC_ERR_LOCK(x, v)   (HW_MMDC_MAARCR_WR(x, (HW_MMDC_MAARCR_RD(x) & ~BM_MMDC_MAARCR_ARCR_SEC_ERR_LOCK) | BF_MMDC_MAARCR_ARCR_SEC_ERR_LOCK(v)))
 #endif
 //@}
 
@@ -3650,15 +3661,15 @@ typedef union _hw_mmdc_mapsr
  * @name Constants and macros for entire MMDC_MAPSR register
  */
 //@{
-#define HW_MMDC_MAPSR_ADDR      (REGS_MMDC_BASE + 0x404)
+#define HW_MMDC_MAPSR_ADDR(x)      (REGS_MMDC_BASE(x) + 0x404)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MAPSR           (*(volatile hw_mmdc_mapsr_t *) HW_MMDC_MAPSR_ADDR)
-#define HW_MMDC_MAPSR_RD()      (HW_MMDC_MAPSR.U)
-#define HW_MMDC_MAPSR_WR(v)     (HW_MMDC_MAPSR.U = (v))
-#define HW_MMDC_MAPSR_SET(v)    (HW_MMDC_MAPSR_WR(HW_MMDC_MAPSR_RD() |  (v)))
-#define HW_MMDC_MAPSR_CLR(v)    (HW_MMDC_MAPSR_WR(HW_MMDC_MAPSR_RD() & ~(v)))
-#define HW_MMDC_MAPSR_TOG(v)    (HW_MMDC_MAPSR_WR(HW_MMDC_MAPSR_RD() ^  (v)))
+#define HW_MMDC_MAPSR(x)           (*(volatile hw_mmdc_mapsr_t *) HW_MMDC_MAPSR_ADDR(x))
+#define HW_MMDC_MAPSR_RD(x)        (HW_MMDC_MAPSR(x).U)
+#define HW_MMDC_MAPSR_WR(x, v)     (HW_MMDC_MAPSR(x).U = (v))
+#define HW_MMDC_MAPSR_SET(x, v)    (HW_MMDC_MAPSR_WR(x, HW_MMDC_MAPSR_RD(x) |  (v)))
+#define HW_MMDC_MAPSR_CLR(x, v)    (HW_MMDC_MAPSR_WR(x, HW_MMDC_MAPSR_RD(x) & ~(v)))
+#define HW_MMDC_MAPSR_TOG(x, v)    (HW_MMDC_MAPSR_WR(x, HW_MMDC_MAPSR_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -3689,7 +3700,7 @@ typedef union _hw_mmdc_mapsr
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PSD field to a new value.
-#define BW_MMDC_MAPSR_PSD(v)   (HW_MMDC_MAPSR_WR((HW_MMDC_MAPSR_RD() & ~BM_MMDC_MAPSR_PSD) | BF_MMDC_MAPSR_PSD(v)))
+#define BW_MMDC_MAPSR_PSD(x, v)   (HW_MMDC_MAPSR_WR(x, (HW_MMDC_MAPSR_RD(x) & ~BM_MMDC_MAPSR_PSD) | BF_MMDC_MAPSR_PSD(v)))
 #endif
 //@}
 
@@ -3768,7 +3779,7 @@ typedef union _hw_mmdc_mapsr
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PST field to a new value.
-#define BW_MMDC_MAPSR_PST(v)   (HW_MMDC_MAPSR_WR((HW_MMDC_MAPSR_RD() & ~BM_MMDC_MAPSR_PST) | BF_MMDC_MAPSR_PST(v)))
+#define BW_MMDC_MAPSR_PST(x, v)   (HW_MMDC_MAPSR_WR(x, (HW_MMDC_MAPSR_RD(x) & ~BM_MMDC_MAPSR_PST) | BF_MMDC_MAPSR_PST(v)))
 #endif
 //@}
 
@@ -3793,7 +3804,7 @@ typedef union _hw_mmdc_mapsr
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the LPMD field to a new value.
-#define BW_MMDC_MAPSR_LPMD(v)   (HW_MMDC_MAPSR_WR((HW_MMDC_MAPSR_RD() & ~BM_MMDC_MAPSR_LPMD) | BF_MMDC_MAPSR_LPMD(v)))
+#define BW_MMDC_MAPSR_LPMD(x, v)   (HW_MMDC_MAPSR_WR(x, (HW_MMDC_MAPSR_RD(x) & ~BM_MMDC_MAPSR_LPMD) | BF_MMDC_MAPSR_LPMD(v)))
 #endif
 //@}
 
@@ -3818,7 +3829,7 @@ typedef union _hw_mmdc_mapsr
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DVFS field to a new value.
-#define BW_MMDC_MAPSR_DVFS(v)   (HW_MMDC_MAPSR_WR((HW_MMDC_MAPSR_RD() & ~BM_MMDC_MAPSR_DVFS) | BF_MMDC_MAPSR_DVFS(v)))
+#define BW_MMDC_MAPSR_DVFS(x, v)   (HW_MMDC_MAPSR_WR(x, (HW_MMDC_MAPSR_RD(x) & ~BM_MMDC_MAPSR_DVFS) | BF_MMDC_MAPSR_DVFS(v)))
 #endif
 //@}
 
@@ -3877,15 +3888,15 @@ typedef union _hw_mmdc_maexidr0
  * @name Constants and macros for entire MMDC_MAEXIDR0 register
  */
 //@{
-#define HW_MMDC_MAEXIDR0_ADDR      (REGS_MMDC_BASE + 0x408)
+#define HW_MMDC_MAEXIDR0_ADDR(x)      (REGS_MMDC_BASE(x) + 0x408)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MAEXIDR0           (*(volatile hw_mmdc_maexidr0_t *) HW_MMDC_MAEXIDR0_ADDR)
-#define HW_MMDC_MAEXIDR0_RD()      (HW_MMDC_MAEXIDR0.U)
-#define HW_MMDC_MAEXIDR0_WR(v)     (HW_MMDC_MAEXIDR0.U = (v))
-#define HW_MMDC_MAEXIDR0_SET(v)    (HW_MMDC_MAEXIDR0_WR(HW_MMDC_MAEXIDR0_RD() |  (v)))
-#define HW_MMDC_MAEXIDR0_CLR(v)    (HW_MMDC_MAEXIDR0_WR(HW_MMDC_MAEXIDR0_RD() & ~(v)))
-#define HW_MMDC_MAEXIDR0_TOG(v)    (HW_MMDC_MAEXIDR0_WR(HW_MMDC_MAEXIDR0_RD() ^  (v)))
+#define HW_MMDC_MAEXIDR0(x)           (*(volatile hw_mmdc_maexidr0_t *) HW_MMDC_MAEXIDR0_ADDR(x))
+#define HW_MMDC_MAEXIDR0_RD(x)        (HW_MMDC_MAEXIDR0(x).U)
+#define HW_MMDC_MAEXIDR0_WR(x, v)     (HW_MMDC_MAEXIDR0(x).U = (v))
+#define HW_MMDC_MAEXIDR0_SET(x, v)    (HW_MMDC_MAEXIDR0_WR(x, HW_MMDC_MAEXIDR0_RD(x) |  (v)))
+#define HW_MMDC_MAEXIDR0_CLR(x, v)    (HW_MMDC_MAEXIDR0_WR(x, HW_MMDC_MAEXIDR0_RD(x) & ~(v)))
+#define HW_MMDC_MAEXIDR0_TOG(x, v)    (HW_MMDC_MAEXIDR0_WR(x, HW_MMDC_MAEXIDR0_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -3909,7 +3920,7 @@ typedef union _hw_mmdc_maexidr0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EXC_ID_MONITOR0 field to a new value.
-#define BW_MMDC_MAEXIDR0_EXC_ID_MONITOR0(v)   (HW_MMDC_MAEXIDR0_WR((HW_MMDC_MAEXIDR0_RD() & ~BM_MMDC_MAEXIDR0_EXC_ID_MONITOR0) | BF_MMDC_MAEXIDR0_EXC_ID_MONITOR0(v)))
+#define BW_MMDC_MAEXIDR0_EXC_ID_MONITOR0(x, v)   (HW_MMDC_MAEXIDR0_WR(x, (HW_MMDC_MAEXIDR0_RD(x) & ~BM_MMDC_MAEXIDR0_EXC_ID_MONITOR0) | BF_MMDC_MAEXIDR0_EXC_ID_MONITOR0(v)))
 #endif
 //@}
 
@@ -3929,7 +3940,7 @@ typedef union _hw_mmdc_maexidr0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EXC_ID_MONITOR1 field to a new value.
-#define BW_MMDC_MAEXIDR0_EXC_ID_MONITOR1(v)   (HW_MMDC_MAEXIDR0_WR((HW_MMDC_MAEXIDR0_RD() & ~BM_MMDC_MAEXIDR0_EXC_ID_MONITOR1) | BF_MMDC_MAEXIDR0_EXC_ID_MONITOR1(v)))
+#define BW_MMDC_MAEXIDR0_EXC_ID_MONITOR1(x, v)   (HW_MMDC_MAEXIDR0_WR(x, (HW_MMDC_MAEXIDR0_RD(x) & ~BM_MMDC_MAEXIDR0_EXC_ID_MONITOR1) | BF_MMDC_MAEXIDR0_EXC_ID_MONITOR1(v)))
 #endif
 //@}
 
@@ -3962,15 +3973,15 @@ typedef union _hw_mmdc_maexidr1
  * @name Constants and macros for entire MMDC_MAEXIDR1 register
  */
 //@{
-#define HW_MMDC_MAEXIDR1_ADDR      (REGS_MMDC_BASE + 0x40c)
+#define HW_MMDC_MAEXIDR1_ADDR(x)      (REGS_MMDC_BASE(x) + 0x40c)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MAEXIDR1           (*(volatile hw_mmdc_maexidr1_t *) HW_MMDC_MAEXIDR1_ADDR)
-#define HW_MMDC_MAEXIDR1_RD()      (HW_MMDC_MAEXIDR1.U)
-#define HW_MMDC_MAEXIDR1_WR(v)     (HW_MMDC_MAEXIDR1.U = (v))
-#define HW_MMDC_MAEXIDR1_SET(v)    (HW_MMDC_MAEXIDR1_WR(HW_MMDC_MAEXIDR1_RD() |  (v)))
-#define HW_MMDC_MAEXIDR1_CLR(v)    (HW_MMDC_MAEXIDR1_WR(HW_MMDC_MAEXIDR1_RD() & ~(v)))
-#define HW_MMDC_MAEXIDR1_TOG(v)    (HW_MMDC_MAEXIDR1_WR(HW_MMDC_MAEXIDR1_RD() ^  (v)))
+#define HW_MMDC_MAEXIDR1(x)           (*(volatile hw_mmdc_maexidr1_t *) HW_MMDC_MAEXIDR1_ADDR(x))
+#define HW_MMDC_MAEXIDR1_RD(x)        (HW_MMDC_MAEXIDR1(x).U)
+#define HW_MMDC_MAEXIDR1_WR(x, v)     (HW_MMDC_MAEXIDR1(x).U = (v))
+#define HW_MMDC_MAEXIDR1_SET(x, v)    (HW_MMDC_MAEXIDR1_WR(x, HW_MMDC_MAEXIDR1_RD(x) |  (v)))
+#define HW_MMDC_MAEXIDR1_CLR(x, v)    (HW_MMDC_MAEXIDR1_WR(x, HW_MMDC_MAEXIDR1_RD(x) & ~(v)))
+#define HW_MMDC_MAEXIDR1_TOG(x, v)    (HW_MMDC_MAEXIDR1_WR(x, HW_MMDC_MAEXIDR1_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -3994,7 +4005,7 @@ typedef union _hw_mmdc_maexidr1
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EXC_ID_MONITOR2 field to a new value.
-#define BW_MMDC_MAEXIDR1_EXC_ID_MONITOR2(v)   (HW_MMDC_MAEXIDR1_WR((HW_MMDC_MAEXIDR1_RD() & ~BM_MMDC_MAEXIDR1_EXC_ID_MONITOR2) | BF_MMDC_MAEXIDR1_EXC_ID_MONITOR2(v)))
+#define BW_MMDC_MAEXIDR1_EXC_ID_MONITOR2(x, v)   (HW_MMDC_MAEXIDR1_WR(x, (HW_MMDC_MAEXIDR1_RD(x) & ~BM_MMDC_MAEXIDR1_EXC_ID_MONITOR2) | BF_MMDC_MAEXIDR1_EXC_ID_MONITOR2(v)))
 #endif
 //@}
 
@@ -4014,7 +4025,7 @@ typedef union _hw_mmdc_maexidr1
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the EXC_ID_MONITOR3 field to a new value.
-#define BW_MMDC_MAEXIDR1_EXC_ID_MONITOR3(v)   (HW_MMDC_MAEXIDR1_WR((HW_MMDC_MAEXIDR1_RD() & ~BM_MMDC_MAEXIDR1_EXC_ID_MONITOR3) | BF_MMDC_MAEXIDR1_EXC_ID_MONITOR3(v)))
+#define BW_MMDC_MAEXIDR1_EXC_ID_MONITOR3(x, v)   (HW_MMDC_MAEXIDR1_WR(x, (HW_MMDC_MAEXIDR1_RD(x) & ~BM_MMDC_MAEXIDR1_EXC_ID_MONITOR3) | BF_MMDC_MAEXIDR1_EXC_ID_MONITOR3(v)))
 #endif
 //@}
 
@@ -4051,15 +4062,15 @@ typedef union _hw_mmdc_madpcr0
  * @name Constants and macros for entire MMDC_MADPCR0 register
  */
 //@{
-#define HW_MMDC_MADPCR0_ADDR      (REGS_MMDC_BASE + 0x410)
+#define HW_MMDC_MADPCR0_ADDR(x)      (REGS_MMDC_BASE(x) + 0x410)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MADPCR0           (*(volatile hw_mmdc_madpcr0_t *) HW_MMDC_MADPCR0_ADDR)
-#define HW_MMDC_MADPCR0_RD()      (HW_MMDC_MADPCR0.U)
-#define HW_MMDC_MADPCR0_WR(v)     (HW_MMDC_MADPCR0.U = (v))
-#define HW_MMDC_MADPCR0_SET(v)    (HW_MMDC_MADPCR0_WR(HW_MMDC_MADPCR0_RD() |  (v)))
-#define HW_MMDC_MADPCR0_CLR(v)    (HW_MMDC_MADPCR0_WR(HW_MMDC_MADPCR0_RD() & ~(v)))
-#define HW_MMDC_MADPCR0_TOG(v)    (HW_MMDC_MADPCR0_WR(HW_MMDC_MADPCR0_RD() ^  (v)))
+#define HW_MMDC_MADPCR0(x)           (*(volatile hw_mmdc_madpcr0_t *) HW_MMDC_MADPCR0_ADDR(x))
+#define HW_MMDC_MADPCR0_RD(x)        (HW_MMDC_MADPCR0(x).U)
+#define HW_MMDC_MADPCR0_WR(x, v)     (HW_MMDC_MADPCR0(x).U = (v))
+#define HW_MMDC_MADPCR0_SET(x, v)    (HW_MMDC_MADPCR0_WR(x, HW_MMDC_MADPCR0_RD(x) |  (v)))
+#define HW_MMDC_MADPCR0_CLR(x, v)    (HW_MMDC_MADPCR0_WR(x, HW_MMDC_MADPCR0_RD(x) & ~(v)))
+#define HW_MMDC_MADPCR0_TOG(x, v)    (HW_MMDC_MADPCR0_WR(x, HW_MMDC_MADPCR0_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -4090,7 +4101,7 @@ typedef union _hw_mmdc_madpcr0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DBG_EN field to a new value.
-#define BW_MMDC_MADPCR0_DBG_EN(v)   (HW_MMDC_MADPCR0_WR((HW_MMDC_MADPCR0_RD() & ~BM_MMDC_MADPCR0_DBG_EN) | BF_MMDC_MADPCR0_DBG_EN(v)))
+#define BW_MMDC_MADPCR0_DBG_EN(x, v)   (HW_MMDC_MADPCR0_WR(x, (HW_MMDC_MADPCR0_RD(x) & ~BM_MMDC_MADPCR0_DBG_EN) | BF_MMDC_MADPCR0_DBG_EN(v)))
 #endif
 //@}
 
@@ -4114,7 +4125,7 @@ typedef union _hw_mmdc_madpcr0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DBG_RST field to a new value.
-#define BW_MMDC_MADPCR0_DBG_RST(v)   (HW_MMDC_MADPCR0_WR((HW_MMDC_MADPCR0_RD() & ~BM_MMDC_MADPCR0_DBG_RST) | BF_MMDC_MADPCR0_DBG_RST(v)))
+#define BW_MMDC_MADPCR0_DBG_RST(x, v)   (HW_MMDC_MADPCR0_WR(x, (HW_MMDC_MADPCR0_RD(x) & ~BM_MMDC_MADPCR0_DBG_RST) | BF_MMDC_MADPCR0_DBG_RST(v)))
 #endif
 //@}
 
@@ -4139,7 +4150,7 @@ typedef union _hw_mmdc_madpcr0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PRF_FRZ field to a new value.
-#define BW_MMDC_MADPCR0_PRF_FRZ(v)   (HW_MMDC_MADPCR0_WR((HW_MMDC_MADPCR0_RD() & ~BM_MMDC_MADPCR0_PRF_FRZ) | BF_MMDC_MADPCR0_PRF_FRZ(v)))
+#define BW_MMDC_MADPCR0_PRF_FRZ(x, v)   (HW_MMDC_MADPCR0_WR(x, (HW_MMDC_MADPCR0_RD(x) & ~BM_MMDC_MADPCR0_PRF_FRZ) | BF_MMDC_MADPCR0_PRF_FRZ(v)))
 #endif
 //@}
 
@@ -4164,7 +4175,7 @@ typedef union _hw_mmdc_madpcr0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CYC_OVF field to a new value.
-#define BW_MMDC_MADPCR0_CYC_OVF(v)   (HW_MMDC_MADPCR0_WR((HW_MMDC_MADPCR0_RD() & ~BM_MMDC_MADPCR0_CYC_OVF) | BF_MMDC_MADPCR0_CYC_OVF(v)))
+#define BW_MMDC_MADPCR0_CYC_OVF(x, v)   (HW_MMDC_MADPCR0_WR(x, (HW_MMDC_MADPCR0_RD(x) & ~BM_MMDC_MADPCR0_CYC_OVF) | BF_MMDC_MADPCR0_CYC_OVF(v)))
 #endif
 //@}
 
@@ -4190,7 +4201,7 @@ typedef union _hw_mmdc_madpcr0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SBS_EN field to a new value.
-#define BW_MMDC_MADPCR0_SBS_EN(v)   (HW_MMDC_MADPCR0_WR((HW_MMDC_MADPCR0_RD() & ~BM_MMDC_MADPCR0_SBS_EN) | BF_MMDC_MADPCR0_SBS_EN(v)))
+#define BW_MMDC_MADPCR0_SBS_EN(x, v)   (HW_MMDC_MADPCR0_WR(x, (HW_MMDC_MADPCR0_RD(x) & ~BM_MMDC_MADPCR0_SBS_EN) | BF_MMDC_MADPCR0_SBS_EN(v)))
 #endif
 //@}
 
@@ -4216,7 +4227,7 @@ typedef union _hw_mmdc_madpcr0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SBS field to a new value.
-#define BW_MMDC_MADPCR0_SBS(v)   (HW_MMDC_MADPCR0_WR((HW_MMDC_MADPCR0_RD() & ~BM_MMDC_MADPCR0_SBS) | BF_MMDC_MADPCR0_SBS(v)))
+#define BW_MMDC_MADPCR0_SBS(x, v)   (HW_MMDC_MADPCR0_WR(x, (HW_MMDC_MADPCR0_RD(x) & ~BM_MMDC_MADPCR0_SBS) | BF_MMDC_MADPCR0_SBS(v)))
 #endif
 //@}
 
@@ -4247,15 +4258,15 @@ typedef union _hw_mmdc_madpcr1
  * @name Constants and macros for entire MMDC_MADPCR1 register
  */
 //@{
-#define HW_MMDC_MADPCR1_ADDR      (REGS_MMDC_BASE + 0x414)
+#define HW_MMDC_MADPCR1_ADDR(x)      (REGS_MMDC_BASE(x) + 0x414)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MADPCR1           (*(volatile hw_mmdc_madpcr1_t *) HW_MMDC_MADPCR1_ADDR)
-#define HW_MMDC_MADPCR1_RD()      (HW_MMDC_MADPCR1.U)
-#define HW_MMDC_MADPCR1_WR(v)     (HW_MMDC_MADPCR1.U = (v))
-#define HW_MMDC_MADPCR1_SET(v)    (HW_MMDC_MADPCR1_WR(HW_MMDC_MADPCR1_RD() |  (v)))
-#define HW_MMDC_MADPCR1_CLR(v)    (HW_MMDC_MADPCR1_WR(HW_MMDC_MADPCR1_RD() & ~(v)))
-#define HW_MMDC_MADPCR1_TOG(v)    (HW_MMDC_MADPCR1_WR(HW_MMDC_MADPCR1_RD() ^  (v)))
+#define HW_MMDC_MADPCR1(x)           (*(volatile hw_mmdc_madpcr1_t *) HW_MMDC_MADPCR1_ADDR(x))
+#define HW_MMDC_MADPCR1_RD(x)        (HW_MMDC_MADPCR1(x).U)
+#define HW_MMDC_MADPCR1_WR(x, v)     (HW_MMDC_MADPCR1(x).U = (v))
+#define HW_MMDC_MADPCR1_SET(x, v)    (HW_MMDC_MADPCR1_WR(x, HW_MMDC_MADPCR1_RD(x) |  (v)))
+#define HW_MMDC_MADPCR1_CLR(x, v)    (HW_MMDC_MADPCR1_WR(x, HW_MMDC_MADPCR1_RD(x) & ~(v)))
+#define HW_MMDC_MADPCR1_TOG(x, v)    (HW_MMDC_MADPCR1_WR(x, HW_MMDC_MADPCR1_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -4280,7 +4291,7 @@ typedef union _hw_mmdc_madpcr1
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PRF_AXI_ID field to a new value.
-#define BW_MMDC_MADPCR1_PRF_AXI_ID(v)   (HW_MMDC_MADPCR1_WR((HW_MMDC_MADPCR1_RD() & ~BM_MMDC_MADPCR1_PRF_AXI_ID) | BF_MMDC_MADPCR1_PRF_AXI_ID(v)))
+#define BW_MMDC_MADPCR1_PRF_AXI_ID(x, v)   (HW_MMDC_MADPCR1_WR(x, (HW_MMDC_MADPCR1_RD(x) & ~BM_MMDC_MADPCR1_PRF_AXI_ID) | BF_MMDC_MADPCR1_PRF_AXI_ID(v)))
 #endif
 //@}
 
@@ -4304,7 +4315,7 @@ typedef union _hw_mmdc_madpcr1
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PRF_AXI_ID_MASK field to a new value.
-#define BW_MMDC_MADPCR1_PRF_AXI_ID_MASK(v)   (HW_MMDC_MADPCR1_WR((HW_MMDC_MADPCR1_RD() & ~BM_MMDC_MADPCR1_PRF_AXI_ID_MASK) | BF_MMDC_MADPCR1_PRF_AXI_ID_MASK(v)))
+#define BW_MMDC_MADPCR1_PRF_AXI_ID_MASK(x, v)   (HW_MMDC_MADPCR1_WR(x, (HW_MMDC_MADPCR1_RD(x) & ~BM_MMDC_MADPCR1_PRF_AXI_ID_MASK) | BF_MMDC_MADPCR1_PRF_AXI_ID_MASK(v)))
 #endif
 //@}
 
@@ -4334,11 +4345,11 @@ typedef union _hw_mmdc_madpsr0
  * @name Constants and macros for entire MMDC_MADPSR0 register
  */
 //@{
-#define HW_MMDC_MADPSR0_ADDR      (REGS_MMDC_BASE + 0x418)
+#define HW_MMDC_MADPSR0_ADDR(x)      (REGS_MMDC_BASE(x) + 0x418)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MADPSR0           (*(volatile hw_mmdc_madpsr0_t *) HW_MMDC_MADPSR0_ADDR)
-#define HW_MMDC_MADPSR0_RD()      (HW_MMDC_MADPSR0.U)
+#define HW_MMDC_MADPSR0(x)           (*(volatile hw_mmdc_madpsr0_t *) HW_MMDC_MADPSR0_ADDR(x))
+#define HW_MMDC_MADPSR0_RD(x)        (HW_MMDC_MADPSR0(x).U)
 #endif
 //@}
 
@@ -4387,11 +4398,11 @@ typedef union _hw_mmdc_madpsr1
  * @name Constants and macros for entire MMDC_MADPSR1 register
  */
 //@{
-#define HW_MMDC_MADPSR1_ADDR      (REGS_MMDC_BASE + 0x41c)
+#define HW_MMDC_MADPSR1_ADDR(x)      (REGS_MMDC_BASE(x) + 0x41c)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MADPSR1           (*(volatile hw_mmdc_madpsr1_t *) HW_MMDC_MADPSR1_ADDR)
-#define HW_MMDC_MADPSR1_RD()      (HW_MMDC_MADPSR1.U)
+#define HW_MMDC_MADPSR1(x)           (*(volatile hw_mmdc_madpsr1_t *) HW_MMDC_MADPSR1_ADDR(x))
+#define HW_MMDC_MADPSR1_RD(x)        (HW_MMDC_MADPSR1(x).U)
 #endif
 //@}
 
@@ -4440,11 +4451,11 @@ typedef union _hw_mmdc_madpsr2
  * @name Constants and macros for entire MMDC_MADPSR2 register
  */
 //@{
-#define HW_MMDC_MADPSR2_ADDR      (REGS_MMDC_BASE + 0x420)
+#define HW_MMDC_MADPSR2_ADDR(x)      (REGS_MMDC_BASE(x) + 0x420)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MADPSR2           (*(volatile hw_mmdc_madpsr2_t *) HW_MMDC_MADPSR2_ADDR)
-#define HW_MMDC_MADPSR2_RD()      (HW_MMDC_MADPSR2.U)
+#define HW_MMDC_MADPSR2(x)           (*(volatile hw_mmdc_madpsr2_t *) HW_MMDC_MADPSR2_ADDR(x))
+#define HW_MMDC_MADPSR2_RD(x)        (HW_MMDC_MADPSR2(x).U)
 #endif
 //@}
 
@@ -4492,11 +4503,11 @@ typedef union _hw_mmdc_madpsr3
  * @name Constants and macros for entire MMDC_MADPSR3 register
  */
 //@{
-#define HW_MMDC_MADPSR3_ADDR      (REGS_MMDC_BASE + 0x424)
+#define HW_MMDC_MADPSR3_ADDR(x)      (REGS_MMDC_BASE(x) + 0x424)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MADPSR3           (*(volatile hw_mmdc_madpsr3_t *) HW_MMDC_MADPSR3_ADDR)
-#define HW_MMDC_MADPSR3_RD()      (HW_MMDC_MADPSR3.U)
+#define HW_MMDC_MADPSR3(x)           (*(volatile hw_mmdc_madpsr3_t *) HW_MMDC_MADPSR3_ADDR(x))
+#define HW_MMDC_MADPSR3_RD(x)        (HW_MMDC_MADPSR3(x).U)
 #endif
 //@}
 
@@ -4545,11 +4556,11 @@ typedef union _hw_mmdc_madpsr4
  * @name Constants and macros for entire MMDC_MADPSR4 register
  */
 //@{
-#define HW_MMDC_MADPSR4_ADDR      (REGS_MMDC_BASE + 0x428)
+#define HW_MMDC_MADPSR4_ADDR(x)      (REGS_MMDC_BASE(x) + 0x428)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MADPSR4           (*(volatile hw_mmdc_madpsr4_t *) HW_MMDC_MADPSR4_ADDR)
-#define HW_MMDC_MADPSR4_RD()      (HW_MMDC_MADPSR4.U)
+#define HW_MMDC_MADPSR4(x)           (*(volatile hw_mmdc_madpsr4_t *) HW_MMDC_MADPSR4_ADDR(x))
+#define HW_MMDC_MADPSR4_RD(x)        (HW_MMDC_MADPSR4(x).U)
 #endif
 //@}
 
@@ -4598,11 +4609,11 @@ typedef union _hw_mmdc_madpsr5
  * @name Constants and macros for entire MMDC_MADPSR5 register
  */
 //@{
-#define HW_MMDC_MADPSR5_ADDR      (REGS_MMDC_BASE + 0x42c)
+#define HW_MMDC_MADPSR5_ADDR(x)      (REGS_MMDC_BASE(x) + 0x42c)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MADPSR5           (*(volatile hw_mmdc_madpsr5_t *) HW_MMDC_MADPSR5_ADDR)
-#define HW_MMDC_MADPSR5_RD()      (HW_MMDC_MADPSR5.U)
+#define HW_MMDC_MADPSR5(x)           (*(volatile hw_mmdc_madpsr5_t *) HW_MMDC_MADPSR5_ADDR(x))
+#define HW_MMDC_MADPSR5_RD(x)        (HW_MMDC_MADPSR5(x).U)
 #endif
 //@}
 
@@ -4649,11 +4660,11 @@ typedef union _hw_mmdc_masbs0
  * @name Constants and macros for entire MMDC_MASBS0 register
  */
 //@{
-#define HW_MMDC_MASBS0_ADDR      (REGS_MMDC_BASE + 0x430)
+#define HW_MMDC_MASBS0_ADDR(x)      (REGS_MMDC_BASE(x) + 0x430)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MASBS0           (*(volatile hw_mmdc_masbs0_t *) HW_MMDC_MASBS0_ADDR)
-#define HW_MMDC_MASBS0_RD()      (HW_MMDC_MASBS0.U)
+#define HW_MMDC_MASBS0(x)           (*(volatile hw_mmdc_masbs0_t *) HW_MMDC_MASBS0_ADDR(x))
+#define HW_MMDC_MASBS0_RD(x)        (HW_MMDC_MASBS0(x).U)
 #endif
 //@}
 
@@ -4708,11 +4719,11 @@ typedef union _hw_mmdc_masbs1
  * @name Constants and macros for entire MMDC_MASBS1 register
  */
 //@{
-#define HW_MMDC_MASBS1_ADDR      (REGS_MMDC_BASE + 0x434)
+#define HW_MMDC_MASBS1_ADDR(x)      (REGS_MMDC_BASE(x) + 0x434)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MASBS1           (*(volatile hw_mmdc_masbs1_t *) HW_MMDC_MASBS1_ADDR)
-#define HW_MMDC_MASBS1_RD()      (HW_MMDC_MASBS1.U)
+#define HW_MMDC_MASBS1(x)           (*(volatile hw_mmdc_masbs1_t *) HW_MMDC_MASBS1_ADDR(x))
+#define HW_MMDC_MASBS1_RD(x)        (HW_MMDC_MASBS1(x).U)
 #endif
 //@}
 
@@ -4891,15 +4902,15 @@ typedef union _hw_mmdc_magenp
  * @name Constants and macros for entire MMDC_MAGENP register
  */
 //@{
-#define HW_MMDC_MAGENP_ADDR      (REGS_MMDC_BASE + 0x440)
+#define HW_MMDC_MAGENP_ADDR(x)      (REGS_MMDC_BASE(x) + 0x440)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MAGENP           (*(volatile hw_mmdc_magenp_t *) HW_MMDC_MAGENP_ADDR)
-#define HW_MMDC_MAGENP_RD()      (HW_MMDC_MAGENP.U)
-#define HW_MMDC_MAGENP_WR(v)     (HW_MMDC_MAGENP.U = (v))
-#define HW_MMDC_MAGENP_SET(v)    (HW_MMDC_MAGENP_WR(HW_MMDC_MAGENP_RD() |  (v)))
-#define HW_MMDC_MAGENP_CLR(v)    (HW_MMDC_MAGENP_WR(HW_MMDC_MAGENP_RD() & ~(v)))
-#define HW_MMDC_MAGENP_TOG(v)    (HW_MMDC_MAGENP_WR(HW_MMDC_MAGENP_RD() ^  (v)))
+#define HW_MMDC_MAGENP(x)           (*(volatile hw_mmdc_magenp_t *) HW_MMDC_MAGENP_ADDR(x))
+#define HW_MMDC_MAGENP_RD(x)        (HW_MMDC_MAGENP(x).U)
+#define HW_MMDC_MAGENP_WR(x, v)     (HW_MMDC_MAGENP(x).U = (v))
+#define HW_MMDC_MAGENP_SET(x, v)    (HW_MMDC_MAGENP_WR(x, HW_MMDC_MAGENP_RD(x) |  (v)))
+#define HW_MMDC_MAGENP_CLR(x, v)    (HW_MMDC_MAGENP_WR(x, HW_MMDC_MAGENP_RD(x) & ~(v)))
+#define HW_MMDC_MAGENP_TOG(x, v)    (HW_MMDC_MAGENP_WR(x, HW_MMDC_MAGENP_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -4923,7 +4934,7 @@ typedef union _hw_mmdc_magenp
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the GP31_GP0 field to a new value.
-#define BW_MMDC_MAGENP_GP31_GP0(v)   (HW_MMDC_MAGENP_WR((HW_MMDC_MAGENP_RD() & ~BM_MMDC_MAGENP_GP31_GP0) | BF_MMDC_MAGENP_GP31_GP0(v)))
+#define BW_MMDC_MAGENP_GP31_GP0(x, v)   (HW_MMDC_MAGENP_WR(x, (HW_MMDC_MAGENP_RD(x) & ~BM_MMDC_MAGENP_GP31_GP0) | BF_MMDC_MAGENP_GP31_GP0(v)))
 #endif
 //@}
 
@@ -4963,15 +4974,15 @@ typedef union _hw_mmdc_mpzqhwctrl
  * @name Constants and macros for entire MMDC_MPZQHWCTRL register
  */
 //@{
-#define HW_MMDC_MPZQHWCTRL_ADDR      (REGS_MMDC_BASE + 0x800)
+#define HW_MMDC_MPZQHWCTRL_ADDR(x)      (REGS_MMDC_BASE(x) + 0x800)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPZQHWCTRL           (*(volatile hw_mmdc_mpzqhwctrl_t *) HW_MMDC_MPZQHWCTRL_ADDR)
-#define HW_MMDC_MPZQHWCTRL_RD()      (HW_MMDC_MPZQHWCTRL.U)
-#define HW_MMDC_MPZQHWCTRL_WR(v)     (HW_MMDC_MPZQHWCTRL.U = (v))
-#define HW_MMDC_MPZQHWCTRL_SET(v)    (HW_MMDC_MPZQHWCTRL_WR(HW_MMDC_MPZQHWCTRL_RD() |  (v)))
-#define HW_MMDC_MPZQHWCTRL_CLR(v)    (HW_MMDC_MPZQHWCTRL_WR(HW_MMDC_MPZQHWCTRL_RD() & ~(v)))
-#define HW_MMDC_MPZQHWCTRL_TOG(v)    (HW_MMDC_MPZQHWCTRL_WR(HW_MMDC_MPZQHWCTRL_RD() ^  (v)))
+#define HW_MMDC_MPZQHWCTRL(x)           (*(volatile hw_mmdc_mpzqhwctrl_t *) HW_MMDC_MPZQHWCTRL_ADDR(x))
+#define HW_MMDC_MPZQHWCTRL_RD(x)        (HW_MMDC_MPZQHWCTRL(x).U)
+#define HW_MMDC_MPZQHWCTRL_WR(x, v)     (HW_MMDC_MPZQHWCTRL(x).U = (v))
+#define HW_MMDC_MPZQHWCTRL_SET(x, v)    (HW_MMDC_MPZQHWCTRL_WR(x, HW_MMDC_MPZQHWCTRL_RD(x) |  (v)))
+#define HW_MMDC_MPZQHWCTRL_CLR(x, v)    (HW_MMDC_MPZQHWCTRL_WR(x, HW_MMDC_MPZQHWCTRL_RD(x) & ~(v)))
+#define HW_MMDC_MPZQHWCTRL_TOG(x, v)    (HW_MMDC_MPZQHWCTRL_WR(x, HW_MMDC_MPZQHWCTRL_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -5004,7 +5015,7 @@ typedef union _hw_mmdc_mpzqhwctrl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZQ_MODE field to a new value.
-#define BW_MMDC_MPZQHWCTRL_ZQ_MODE(v)   (HW_MMDC_MPZQHWCTRL_WR((HW_MMDC_MPZQHWCTRL_RD() & ~BM_MMDC_MPZQHWCTRL_ZQ_MODE) | BF_MMDC_MPZQHWCTRL_ZQ_MODE(v)))
+#define BW_MMDC_MPZQHWCTRL_ZQ_MODE(x, v)   (HW_MMDC_MPZQHWCTRL_WR(x, (HW_MMDC_MPZQHWCTRL_RD(x) & ~BM_MMDC_MPZQHWCTRL_ZQ_MODE) | BF_MMDC_MPZQHWCTRL_ZQ_MODE(v)))
 #endif
 //@}
 
@@ -5037,7 +5048,7 @@ typedef union _hw_mmdc_mpzqhwctrl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZQ_HW_PER field to a new value.
-#define BW_MMDC_MPZQHWCTRL_ZQ_HW_PER(v)   (HW_MMDC_MPZQHWCTRL_WR((HW_MMDC_MPZQHWCTRL_RD() & ~BM_MMDC_MPZQHWCTRL_ZQ_HW_PER) | BF_MMDC_MPZQHWCTRL_ZQ_HW_PER(v)))
+#define BW_MMDC_MPZQHWCTRL_ZQ_HW_PER(x, v)   (HW_MMDC_MPZQHWCTRL_WR(x, (HW_MMDC_MPZQHWCTRL_RD(x) & ~BM_MMDC_MPZQHWCTRL_ZQ_HW_PER) | BF_MMDC_MPZQHWCTRL_ZQ_HW_PER(v)))
 #endif
 //@}
 
@@ -5097,7 +5108,7 @@ typedef union _hw_mmdc_mpzqhwctrl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZQ_HW_FOR field to a new value.
-#define BW_MMDC_MPZQHWCTRL_ZQ_HW_FOR(v)   (HW_MMDC_MPZQHWCTRL_WR((HW_MMDC_MPZQHWCTRL_RD() & ~BM_MMDC_MPZQHWCTRL_ZQ_HW_FOR) | BF_MMDC_MPZQHWCTRL_ZQ_HW_FOR(v)))
+#define BW_MMDC_MPZQHWCTRL_ZQ_HW_FOR(x, v)   (HW_MMDC_MPZQHWCTRL_WR(x, (HW_MMDC_MPZQHWCTRL_RD(x) & ~BM_MMDC_MPZQHWCTRL_ZQ_HW_FOR) | BF_MMDC_MPZQHWCTRL_ZQ_HW_FOR(v)))
 #endif
 //@}
 
@@ -5130,7 +5141,7 @@ typedef union _hw_mmdc_mpzqhwctrl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TZQ_INIT field to a new value.
-#define BW_MMDC_MPZQHWCTRL_TZQ_INIT(v)   (HW_MMDC_MPZQHWCTRL_WR((HW_MMDC_MPZQHWCTRL_RD() & ~BM_MMDC_MPZQHWCTRL_TZQ_INIT) | BF_MMDC_MPZQHWCTRL_TZQ_INIT(v)))
+#define BW_MMDC_MPZQHWCTRL_TZQ_INIT(x, v)   (HW_MMDC_MPZQHWCTRL_WR(x, (HW_MMDC_MPZQHWCTRL_RD(x) & ~BM_MMDC_MPZQHWCTRL_TZQ_INIT) | BF_MMDC_MPZQHWCTRL_TZQ_INIT(v)))
 #endif
 //@}
 
@@ -5163,7 +5174,7 @@ typedef union _hw_mmdc_mpzqhwctrl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TZQ_OPER field to a new value.
-#define BW_MMDC_MPZQHWCTRL_TZQ_OPER(v)   (HW_MMDC_MPZQHWCTRL_WR((HW_MMDC_MPZQHWCTRL_RD() & ~BM_MMDC_MPZQHWCTRL_TZQ_OPER) | BF_MMDC_MPZQHWCTRL_TZQ_OPER(v)))
+#define BW_MMDC_MPZQHWCTRL_TZQ_OPER(x, v)   (HW_MMDC_MPZQHWCTRL_WR(x, (HW_MMDC_MPZQHWCTRL_RD(x) & ~BM_MMDC_MPZQHWCTRL_TZQ_OPER) | BF_MMDC_MPZQHWCTRL_TZQ_OPER(v)))
 #endif
 //@}
 
@@ -5196,7 +5207,7 @@ typedef union _hw_mmdc_mpzqhwctrl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TZQ_CS field to a new value.
-#define BW_MMDC_MPZQHWCTRL_TZQ_CS(v)   (HW_MMDC_MPZQHWCTRL_WR((HW_MMDC_MPZQHWCTRL_RD() & ~BM_MMDC_MPZQHWCTRL_TZQ_CS) | BF_MMDC_MPZQHWCTRL_TZQ_CS(v)))
+#define BW_MMDC_MPZQHWCTRL_TZQ_CS(x, v)   (HW_MMDC_MPZQHWCTRL_WR(x, (HW_MMDC_MPZQHWCTRL_RD(x) & ~BM_MMDC_MPZQHWCTRL_TZQ_CS) | BF_MMDC_MPZQHWCTRL_TZQ_CS(v)))
 #endif
 //@}
 
@@ -5225,7 +5236,7 @@ typedef union _hw_mmdc_mpzqhwctrl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZQ_EARLY_COMPARATOR_EN_TIMER field to a new value.
-#define BW_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER(v)   (HW_MMDC_MPZQHWCTRL_WR((HW_MMDC_MPZQHWCTRL_RD() & ~BM_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER) | BF_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER(v)))
+#define BW_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER(x, v)   (HW_MMDC_MPZQHWCTRL_WR(x, (HW_MMDC_MPZQHWCTRL_RD(x) & ~BM_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER) | BF_MMDC_MPZQHWCTRL_ZQ_EARLY_COMPARATOR_EN_TIMER(v)))
 #endif
 //@}
 
@@ -5263,15 +5274,15 @@ typedef union _hw_mmdc_mpzqswctrl
  * @name Constants and macros for entire MMDC_MPZQSWCTRL register
  */
 //@{
-#define HW_MMDC_MPZQSWCTRL_ADDR      (REGS_MMDC_BASE + 0x804)
+#define HW_MMDC_MPZQSWCTRL_ADDR(x)      (REGS_MMDC_BASE(x) + 0x804)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPZQSWCTRL           (*(volatile hw_mmdc_mpzqswctrl_t *) HW_MMDC_MPZQSWCTRL_ADDR)
-#define HW_MMDC_MPZQSWCTRL_RD()      (HW_MMDC_MPZQSWCTRL.U)
-#define HW_MMDC_MPZQSWCTRL_WR(v)     (HW_MMDC_MPZQSWCTRL.U = (v))
-#define HW_MMDC_MPZQSWCTRL_SET(v)    (HW_MMDC_MPZQSWCTRL_WR(HW_MMDC_MPZQSWCTRL_RD() |  (v)))
-#define HW_MMDC_MPZQSWCTRL_CLR(v)    (HW_MMDC_MPZQSWCTRL_WR(HW_MMDC_MPZQSWCTRL_RD() & ~(v)))
-#define HW_MMDC_MPZQSWCTRL_TOG(v)    (HW_MMDC_MPZQSWCTRL_WR(HW_MMDC_MPZQSWCTRL_RD() ^  (v)))
+#define HW_MMDC_MPZQSWCTRL(x)           (*(volatile hw_mmdc_mpzqswctrl_t *) HW_MMDC_MPZQSWCTRL_ADDR(x))
+#define HW_MMDC_MPZQSWCTRL_RD(x)        (HW_MMDC_MPZQSWCTRL(x).U)
+#define HW_MMDC_MPZQSWCTRL_WR(x, v)     (HW_MMDC_MPZQSWCTRL(x).U = (v))
+#define HW_MMDC_MPZQSWCTRL_SET(x, v)    (HW_MMDC_MPZQSWCTRL_WR(x, HW_MMDC_MPZQSWCTRL_RD(x) |  (v)))
+#define HW_MMDC_MPZQSWCTRL_CLR(x, v)    (HW_MMDC_MPZQSWCTRL_WR(x, HW_MMDC_MPZQSWCTRL_RD(x) & ~(v)))
+#define HW_MMDC_MPZQSWCTRL_TOG(x, v)    (HW_MMDC_MPZQSWCTRL_WR(x, HW_MMDC_MPZQSWCTRL_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -5297,7 +5308,7 @@ typedef union _hw_mmdc_mpzqswctrl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZQ_SW_FOR field to a new value.
-#define BW_MMDC_MPZQSWCTRL_ZQ_SW_FOR(v)   (HW_MMDC_MPZQSWCTRL_WR((HW_MMDC_MPZQSWCTRL_RD() & ~BM_MMDC_MPZQSWCTRL_ZQ_SW_FOR) | BF_MMDC_MPZQSWCTRL_ZQ_SW_FOR(v)))
+#define BW_MMDC_MPZQSWCTRL_ZQ_SW_FOR(x, v)   (HW_MMDC_MPZQSWCTRL_WR(x, (HW_MMDC_MPZQSWCTRL_RD(x) & ~BM_MMDC_MPZQSWCTRL_ZQ_SW_FOR) | BF_MMDC_MPZQSWCTRL_ZQ_SW_FOR(v)))
 #endif
 //@}
 
@@ -5338,7 +5349,7 @@ typedef union _hw_mmdc_mpzqswctrl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZQ_SW_PU_VAL field to a new value.
-#define BW_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL(v)   (HW_MMDC_MPZQSWCTRL_WR((HW_MMDC_MPZQSWCTRL_RD() & ~BM_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL) | BF_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL(v)))
+#define BW_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL(x, v)   (HW_MMDC_MPZQSWCTRL_WR(x, (HW_MMDC_MPZQSWCTRL_RD(x) & ~BM_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL) | BF_MMDC_MPZQSWCTRL_ZQ_SW_PU_VAL(v)))
 #endif
 //@}
 
@@ -5363,7 +5374,7 @@ typedef union _hw_mmdc_mpzqswctrl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZQ_SW_PD_VAL field to a new value.
-#define BW_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL(v)   (HW_MMDC_MPZQSWCTRL_WR((HW_MMDC_MPZQSWCTRL_RD() & ~BM_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL) | BF_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL(v)))
+#define BW_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL(x, v)   (HW_MMDC_MPZQSWCTRL_WR(x, (HW_MMDC_MPZQSWCTRL_RD(x) & ~BM_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL) | BF_MMDC_MPZQSWCTRL_ZQ_SW_PD_VAL(v)))
 #endif
 //@}
 
@@ -5387,7 +5398,7 @@ typedef union _hw_mmdc_mpzqswctrl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZQ_SW_PD field to a new value.
-#define BW_MMDC_MPZQSWCTRL_ZQ_SW_PD(v)   (HW_MMDC_MPZQSWCTRL_WR((HW_MMDC_MPZQSWCTRL_RD() & ~BM_MMDC_MPZQSWCTRL_ZQ_SW_PD) | BF_MMDC_MPZQSWCTRL_ZQ_SW_PD(v)))
+#define BW_MMDC_MPZQSWCTRL_ZQ_SW_PD(x, v)   (HW_MMDC_MPZQSWCTRL_WR(x, (HW_MMDC_MPZQSWCTRL_RD(x) & ~BM_MMDC_MPZQSWCTRL_ZQ_SW_PD) | BF_MMDC_MPZQSWCTRL_ZQ_SW_PD(v)))
 #endif
 //@}
 
@@ -5414,7 +5425,7 @@ typedef union _hw_mmdc_mpzqswctrl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the USE_ZQ_SW_VAL field to a new value.
-#define BW_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL(v)   (HW_MMDC_MPZQSWCTRL_WR((HW_MMDC_MPZQSWCTRL_RD() & ~BM_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL) | BF_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL(v)))
+#define BW_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL(x, v)   (HW_MMDC_MPZQSWCTRL_WR(x, (HW_MMDC_MPZQSWCTRL_RD(x) & ~BM_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL) | BF_MMDC_MPZQSWCTRL_USE_ZQ_SW_VAL(v)))
 #endif
 //@}
 
@@ -5441,7 +5452,7 @@ typedef union _hw_mmdc_mpzqswctrl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZQ_CMP_OUT_SMP field to a new value.
-#define BW_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP(v)   (HW_MMDC_MPZQSWCTRL_WR((HW_MMDC_MPZQSWCTRL_RD() & ~BM_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP) | BF_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP(v)))
+#define BW_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP(x, v)   (HW_MMDC_MPZQSWCTRL_WR(x, (HW_MMDC_MPZQSWCTRL_RD(x) & ~BM_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP) | BF_MMDC_MPZQSWCTRL_ZQ_CMP_OUT_SMP(v)))
 #endif
 //@}
 
@@ -5484,15 +5495,15 @@ typedef union _hw_mmdc_mpwlgcr
  * @name Constants and macros for entire MMDC_MPWLGCR register
  */
 //@{
-#define HW_MMDC_MPWLGCR_ADDR      (REGS_MMDC_BASE + 0x808)
+#define HW_MMDC_MPWLGCR_ADDR(x)      (REGS_MMDC_BASE(x) + 0x808)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPWLGCR           (*(volatile hw_mmdc_mpwlgcr_t *) HW_MMDC_MPWLGCR_ADDR)
-#define HW_MMDC_MPWLGCR_RD()      (HW_MMDC_MPWLGCR.U)
-#define HW_MMDC_MPWLGCR_WR(v)     (HW_MMDC_MPWLGCR.U = (v))
-#define HW_MMDC_MPWLGCR_SET(v)    (HW_MMDC_MPWLGCR_WR(HW_MMDC_MPWLGCR_RD() |  (v)))
-#define HW_MMDC_MPWLGCR_CLR(v)    (HW_MMDC_MPWLGCR_WR(HW_MMDC_MPWLGCR_RD() & ~(v)))
-#define HW_MMDC_MPWLGCR_TOG(v)    (HW_MMDC_MPWLGCR_WR(HW_MMDC_MPWLGCR_RD() ^  (v)))
+#define HW_MMDC_MPWLGCR(x)           (*(volatile hw_mmdc_mpwlgcr_t *) HW_MMDC_MPWLGCR_ADDR(x))
+#define HW_MMDC_MPWLGCR_RD(x)        (HW_MMDC_MPWLGCR(x).U)
+#define HW_MMDC_MPWLGCR_WR(x, v)     (HW_MMDC_MPWLGCR(x).U = (v))
+#define HW_MMDC_MPWLGCR_SET(x, v)    (HW_MMDC_MPWLGCR_WR(x, HW_MMDC_MPWLGCR_RD(x) |  (v)))
+#define HW_MMDC_MPWLGCR_CLR(x, v)    (HW_MMDC_MPWLGCR_WR(x, HW_MMDC_MPWLGCR_RD(x) & ~(v)))
+#define HW_MMDC_MPWLGCR_TOG(x, v)    (HW_MMDC_MPWLGCR_WR(x, HW_MMDC_MPWLGCR_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -5521,7 +5532,7 @@ typedef union _hw_mmdc_mpwlgcr
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HW_WL_EN field to a new value.
-#define BW_MMDC_MPWLGCR_HW_WL_EN(v)   (HW_MMDC_MPWLGCR_WR((HW_MMDC_MPWLGCR_RD() & ~BM_MMDC_MPWLGCR_HW_WL_EN) | BF_MMDC_MPWLGCR_HW_WL_EN(v)))
+#define BW_MMDC_MPWLGCR_HW_WL_EN(x, v)   (HW_MMDC_MPWLGCR_WR(x, (HW_MMDC_MPWLGCR_RD(x) & ~BM_MMDC_MPWLGCR_HW_WL_EN) | BF_MMDC_MPWLGCR_HW_WL_EN(v)))
 #endif
 //@}
 
@@ -5546,7 +5557,7 @@ typedef union _hw_mmdc_mpwlgcr
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SW_WL_EN field to a new value.
-#define BW_MMDC_MPWLGCR_SW_WL_EN(v)   (HW_MMDC_MPWLGCR_WR((HW_MMDC_MPWLGCR_RD() & ~BM_MMDC_MPWLGCR_SW_WL_EN) | BF_MMDC_MPWLGCR_SW_WL_EN(v)))
+#define BW_MMDC_MPWLGCR_SW_WL_EN(x, v)   (HW_MMDC_MPWLGCR_WR(x, (HW_MMDC_MPWLGCR_RD(x) & ~BM_MMDC_MPWLGCR_SW_WL_EN) | BF_MMDC_MPWLGCR_SW_WL_EN(v)))
 #endif
 //@}
 
@@ -5573,7 +5584,7 @@ typedef union _hw_mmdc_mpwlgcr
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SW_WL_CNT_EN field to a new value.
-#define BW_MMDC_MPWLGCR_SW_WL_CNT_EN(v)   (HW_MMDC_MPWLGCR_WR((HW_MMDC_MPWLGCR_RD() & ~BM_MMDC_MPWLGCR_SW_WL_CNT_EN) | BF_MMDC_MPWLGCR_SW_WL_CNT_EN(v)))
+#define BW_MMDC_MPWLGCR_SW_WL_CNT_EN(x, v)   (HW_MMDC_MPWLGCR_WR(x, (HW_MMDC_MPWLGCR_RD(x) & ~BM_MMDC_MPWLGCR_SW_WL_CNT_EN) | BF_MMDC_MPWLGCR_SW_WL_CNT_EN(v)))
 #endif
 //@}
 
@@ -5753,15 +5764,15 @@ typedef union _hw_mmdc_mpwldectrl0
  * @name Constants and macros for entire MMDC_MPWLDECTRL0 register
  */
 //@{
-#define HW_MMDC_MPWLDECTRL0_ADDR      (REGS_MMDC_BASE + 0x80c)
+#define HW_MMDC_MPWLDECTRL0_ADDR(x)      (REGS_MMDC_BASE(x) + 0x80c)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPWLDECTRL0           (*(volatile hw_mmdc_mpwldectrl0_t *) HW_MMDC_MPWLDECTRL0_ADDR)
-#define HW_MMDC_MPWLDECTRL0_RD()      (HW_MMDC_MPWLDECTRL0.U)
-#define HW_MMDC_MPWLDECTRL0_WR(v)     (HW_MMDC_MPWLDECTRL0.U = (v))
-#define HW_MMDC_MPWLDECTRL0_SET(v)    (HW_MMDC_MPWLDECTRL0_WR(HW_MMDC_MPWLDECTRL0_RD() |  (v)))
-#define HW_MMDC_MPWLDECTRL0_CLR(v)    (HW_MMDC_MPWLDECTRL0_WR(HW_MMDC_MPWLDECTRL0_RD() & ~(v)))
-#define HW_MMDC_MPWLDECTRL0_TOG(v)    (HW_MMDC_MPWLDECTRL0_WR(HW_MMDC_MPWLDECTRL0_RD() ^  (v)))
+#define HW_MMDC_MPWLDECTRL0(x)           (*(volatile hw_mmdc_mpwldectrl0_t *) HW_MMDC_MPWLDECTRL0_ADDR(x))
+#define HW_MMDC_MPWLDECTRL0_RD(x)        (HW_MMDC_MPWLDECTRL0(x).U)
+#define HW_MMDC_MPWLDECTRL0_WR(x, v)     (HW_MMDC_MPWLDECTRL0(x).U = (v))
+#define HW_MMDC_MPWLDECTRL0_SET(x, v)    (HW_MMDC_MPWLDECTRL0_WR(x, HW_MMDC_MPWLDECTRL0_RD(x) |  (v)))
+#define HW_MMDC_MPWLDECTRL0_CLR(x, v)    (HW_MMDC_MPWLDECTRL0_WR(x, HW_MMDC_MPWLDECTRL0_RD(x) & ~(v)))
+#define HW_MMDC_MPWLDECTRL0_TOG(x, v)    (HW_MMDC_MPWLDECTRL0_WR(x, HW_MMDC_MPWLDECTRL0_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -5793,7 +5804,7 @@ typedef union _hw_mmdc_mpwldectrl0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WL_DL_ABS_OFFSET0 field to a new value.
-#define BW_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0(v)   (HW_MMDC_MPWLDECTRL0_WR((HW_MMDC_MPWLDECTRL0_RD() & ~BM_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0) | BF_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0(v)))
+#define BW_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0(x, v)   (HW_MMDC_MPWLDECTRL0_WR(x, (HW_MMDC_MPWLDECTRL0_RD(x) & ~BM_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0) | BF_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET0(v)))
 #endif
 //@}
 
@@ -5824,7 +5835,7 @@ typedef union _hw_mmdc_mpwldectrl0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WL_HC_DEL0 field to a new value.
-#define BW_MMDC_MPWLDECTRL0_WL_HC_DEL0(v)   (HW_MMDC_MPWLDECTRL0_WR((HW_MMDC_MPWLDECTRL0_RD() & ~BM_MMDC_MPWLDECTRL0_WL_HC_DEL0) | BF_MMDC_MPWLDECTRL0_WL_HC_DEL0(v)))
+#define BW_MMDC_MPWLDECTRL0_WL_HC_DEL0(x, v)   (HW_MMDC_MPWLDECTRL0_WR(x, (HW_MMDC_MPWLDECTRL0_RD(x) & ~BM_MMDC_MPWLDECTRL0_WL_HC_DEL0) | BF_MMDC_MPWLDECTRL0_WL_HC_DEL0(v)))
 #endif
 //@}
 
@@ -5857,7 +5868,7 @@ typedef union _hw_mmdc_mpwldectrl0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WL_CYC_DEL0 field to a new value.
-#define BW_MMDC_MPWLDECTRL0_WL_CYC_DEL0(v)   (HW_MMDC_MPWLDECTRL0_WR((HW_MMDC_MPWLDECTRL0_RD() & ~BM_MMDC_MPWLDECTRL0_WL_CYC_DEL0) | BF_MMDC_MPWLDECTRL0_WL_CYC_DEL0(v)))
+#define BW_MMDC_MPWLDECTRL0_WL_CYC_DEL0(x, v)   (HW_MMDC_MPWLDECTRL0_WR(x, (HW_MMDC_MPWLDECTRL0_RD(x) & ~BM_MMDC_MPWLDECTRL0_WL_CYC_DEL0) | BF_MMDC_MPWLDECTRL0_WL_CYC_DEL0(v)))
 #endif
 //@}
 
@@ -5885,7 +5896,7 @@ typedef union _hw_mmdc_mpwldectrl0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WL_DL_ABS_OFFSET1 field to a new value.
-#define BW_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1(v)   (HW_MMDC_MPWLDECTRL0_WR((HW_MMDC_MPWLDECTRL0_RD() & ~BM_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1) | BF_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1(v)))
+#define BW_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1(x, v)   (HW_MMDC_MPWLDECTRL0_WR(x, (HW_MMDC_MPWLDECTRL0_RD(x) & ~BM_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1) | BF_MMDC_MPWLDECTRL0_WL_DL_ABS_OFFSET1(v)))
 #endif
 //@}
 
@@ -5916,7 +5927,7 @@ typedef union _hw_mmdc_mpwldectrl0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WL_HC_DEL1 field to a new value.
-#define BW_MMDC_MPWLDECTRL0_WL_HC_DEL1(v)   (HW_MMDC_MPWLDECTRL0_WR((HW_MMDC_MPWLDECTRL0_RD() & ~BM_MMDC_MPWLDECTRL0_WL_HC_DEL1) | BF_MMDC_MPWLDECTRL0_WL_HC_DEL1(v)))
+#define BW_MMDC_MPWLDECTRL0_WL_HC_DEL1(x, v)   (HW_MMDC_MPWLDECTRL0_WR(x, (HW_MMDC_MPWLDECTRL0_RD(x) & ~BM_MMDC_MPWLDECTRL0_WL_HC_DEL1) | BF_MMDC_MPWLDECTRL0_WL_HC_DEL1(v)))
 #endif
 //@}
 
@@ -5949,7 +5960,7 @@ typedef union _hw_mmdc_mpwldectrl0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WL_CYC_DEL1 field to a new value.
-#define BW_MMDC_MPWLDECTRL0_WL_CYC_DEL1(v)   (HW_MMDC_MPWLDECTRL0_WR((HW_MMDC_MPWLDECTRL0_RD() & ~BM_MMDC_MPWLDECTRL0_WL_CYC_DEL1) | BF_MMDC_MPWLDECTRL0_WL_CYC_DEL1(v)))
+#define BW_MMDC_MPWLDECTRL0_WL_CYC_DEL1(x, v)   (HW_MMDC_MPWLDECTRL0_WR(x, (HW_MMDC_MPWLDECTRL0_RD(x) & ~BM_MMDC_MPWLDECTRL0_WL_CYC_DEL1) | BF_MMDC_MPWLDECTRL0_WL_CYC_DEL1(v)))
 #endif
 //@}
 
@@ -5988,15 +5999,15 @@ typedef union _hw_mmdc_mpwldectrl1
  * @name Constants and macros for entire MMDC_MPWLDECTRL1 register
  */
 //@{
-#define HW_MMDC_MPWLDECTRL1_ADDR      (REGS_MMDC_BASE + 0x810)
+#define HW_MMDC_MPWLDECTRL1_ADDR(x)      (REGS_MMDC_BASE(x) + 0x810)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPWLDECTRL1           (*(volatile hw_mmdc_mpwldectrl1_t *) HW_MMDC_MPWLDECTRL1_ADDR)
-#define HW_MMDC_MPWLDECTRL1_RD()      (HW_MMDC_MPWLDECTRL1.U)
-#define HW_MMDC_MPWLDECTRL1_WR(v)     (HW_MMDC_MPWLDECTRL1.U = (v))
-#define HW_MMDC_MPWLDECTRL1_SET(v)    (HW_MMDC_MPWLDECTRL1_WR(HW_MMDC_MPWLDECTRL1_RD() |  (v)))
-#define HW_MMDC_MPWLDECTRL1_CLR(v)    (HW_MMDC_MPWLDECTRL1_WR(HW_MMDC_MPWLDECTRL1_RD() & ~(v)))
-#define HW_MMDC_MPWLDECTRL1_TOG(v)    (HW_MMDC_MPWLDECTRL1_WR(HW_MMDC_MPWLDECTRL1_RD() ^  (v)))
+#define HW_MMDC_MPWLDECTRL1(x)           (*(volatile hw_mmdc_mpwldectrl1_t *) HW_MMDC_MPWLDECTRL1_ADDR(x))
+#define HW_MMDC_MPWLDECTRL1_RD(x)        (HW_MMDC_MPWLDECTRL1(x).U)
+#define HW_MMDC_MPWLDECTRL1_WR(x, v)     (HW_MMDC_MPWLDECTRL1(x).U = (v))
+#define HW_MMDC_MPWLDECTRL1_SET(x, v)    (HW_MMDC_MPWLDECTRL1_WR(x, HW_MMDC_MPWLDECTRL1_RD(x) |  (v)))
+#define HW_MMDC_MPWLDECTRL1_CLR(x, v)    (HW_MMDC_MPWLDECTRL1_WR(x, HW_MMDC_MPWLDECTRL1_RD(x) & ~(v)))
+#define HW_MMDC_MPWLDECTRL1_TOG(x, v)    (HW_MMDC_MPWLDECTRL1_WR(x, HW_MMDC_MPWLDECTRL1_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -6028,7 +6039,7 @@ typedef union _hw_mmdc_mpwldectrl1
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WL_DL_ABS_OFFSET2 field to a new value.
-#define BW_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2(v)   (HW_MMDC_MPWLDECTRL1_WR((HW_MMDC_MPWLDECTRL1_RD() & ~BM_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2) | BF_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2(v)))
+#define BW_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2(x, v)   (HW_MMDC_MPWLDECTRL1_WR(x, (HW_MMDC_MPWLDECTRL1_RD(x) & ~BM_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2) | BF_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET2(v)))
 #endif
 //@}
 
@@ -6059,7 +6070,7 @@ typedef union _hw_mmdc_mpwldectrl1
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WL_HC_DEL2 field to a new value.
-#define BW_MMDC_MPWLDECTRL1_WL_HC_DEL2(v)   (HW_MMDC_MPWLDECTRL1_WR((HW_MMDC_MPWLDECTRL1_RD() & ~BM_MMDC_MPWLDECTRL1_WL_HC_DEL2) | BF_MMDC_MPWLDECTRL1_WL_HC_DEL2(v)))
+#define BW_MMDC_MPWLDECTRL1_WL_HC_DEL2(x, v)   (HW_MMDC_MPWLDECTRL1_WR(x, (HW_MMDC_MPWLDECTRL1_RD(x) & ~BM_MMDC_MPWLDECTRL1_WL_HC_DEL2) | BF_MMDC_MPWLDECTRL1_WL_HC_DEL2(v)))
 #endif
 //@}
 
@@ -6092,7 +6103,7 @@ typedef union _hw_mmdc_mpwldectrl1
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WL_CYC_DEL2 field to a new value.
-#define BW_MMDC_MPWLDECTRL1_WL_CYC_DEL2(v)   (HW_MMDC_MPWLDECTRL1_WR((HW_MMDC_MPWLDECTRL1_RD() & ~BM_MMDC_MPWLDECTRL1_WL_CYC_DEL2) | BF_MMDC_MPWLDECTRL1_WL_CYC_DEL2(v)))
+#define BW_MMDC_MPWLDECTRL1_WL_CYC_DEL2(x, v)   (HW_MMDC_MPWLDECTRL1_WR(x, (HW_MMDC_MPWLDECTRL1_RD(x) & ~BM_MMDC_MPWLDECTRL1_WL_CYC_DEL2) | BF_MMDC_MPWLDECTRL1_WL_CYC_DEL2(v)))
 #endif
 //@}
 
@@ -6120,7 +6131,7 @@ typedef union _hw_mmdc_mpwldectrl1
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WL_DL_ABS_OFFSET3 field to a new value.
-#define BW_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3(v)   (HW_MMDC_MPWLDECTRL1_WR((HW_MMDC_MPWLDECTRL1_RD() & ~BM_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3) | BF_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3(v)))
+#define BW_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3(x, v)   (HW_MMDC_MPWLDECTRL1_WR(x, (HW_MMDC_MPWLDECTRL1_RD(x) & ~BM_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3) | BF_MMDC_MPWLDECTRL1_WL_DL_ABS_OFFSET3(v)))
 #endif
 //@}
 
@@ -6151,7 +6162,7 @@ typedef union _hw_mmdc_mpwldectrl1
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WL_HC_DEL3 field to a new value.
-#define BW_MMDC_MPWLDECTRL1_WL_HC_DEL3(v)   (HW_MMDC_MPWLDECTRL1_WR((HW_MMDC_MPWLDECTRL1_RD() & ~BM_MMDC_MPWLDECTRL1_WL_HC_DEL3) | BF_MMDC_MPWLDECTRL1_WL_HC_DEL3(v)))
+#define BW_MMDC_MPWLDECTRL1_WL_HC_DEL3(x, v)   (HW_MMDC_MPWLDECTRL1_WR(x, (HW_MMDC_MPWLDECTRL1_RD(x) & ~BM_MMDC_MPWLDECTRL1_WL_HC_DEL3) | BF_MMDC_MPWLDECTRL1_WL_HC_DEL3(v)))
 #endif
 //@}
 
@@ -6184,7 +6195,7 @@ typedef union _hw_mmdc_mpwldectrl1
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WL_CYC_DEL3 field to a new value.
-#define BW_MMDC_MPWLDECTRL1_WL_CYC_DEL3(v)   (HW_MMDC_MPWLDECTRL1_WR((HW_MMDC_MPWLDECTRL1_RD() & ~BM_MMDC_MPWLDECTRL1_WL_CYC_DEL3) | BF_MMDC_MPWLDECTRL1_WL_CYC_DEL3(v)))
+#define BW_MMDC_MPWLDECTRL1_WL_CYC_DEL3(x, v)   (HW_MMDC_MPWLDECTRL1_WR(x, (HW_MMDC_MPWLDECTRL1_RD(x) & ~BM_MMDC_MPWLDECTRL1_WL_CYC_DEL3) | BF_MMDC_MPWLDECTRL1_WL_CYC_DEL3(v)))
 #endif
 //@}
 
@@ -6222,11 +6233,11 @@ typedef union _hw_mmdc_mpwldlst
  * @name Constants and macros for entire MMDC_MPWLDLST register
  */
 //@{
-#define HW_MMDC_MPWLDLST_ADDR      (REGS_MMDC_BASE + 0x814)
+#define HW_MMDC_MPWLDLST_ADDR(x)      (REGS_MMDC_BASE(x) + 0x814)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPWLDLST           (*(volatile hw_mmdc_mpwldlst_t *) HW_MMDC_MPWLDLST_ADDR)
-#define HW_MMDC_MPWLDLST_RD()      (HW_MMDC_MPWLDLST.U)
+#define HW_MMDC_MPWLDLST(x)           (*(volatile hw_mmdc_mpwldlst_t *) HW_MMDC_MPWLDLST_ADDR(x))
+#define HW_MMDC_MPWLDLST_RD(x)        (HW_MMDC_MPWLDLST(x).U)
 #endif
 //@}
 
@@ -6324,15 +6335,15 @@ typedef union _hw_mmdc_mpodtctrl
  * @name Constants and macros for entire MMDC_MPODTCTRL register
  */
 //@{
-#define HW_MMDC_MPODTCTRL_ADDR      (REGS_MMDC_BASE + 0x818)
+#define HW_MMDC_MPODTCTRL_ADDR(x)      (REGS_MMDC_BASE(x) + 0x818)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPODTCTRL           (*(volatile hw_mmdc_mpodtctrl_t *) HW_MMDC_MPODTCTRL_ADDR)
-#define HW_MMDC_MPODTCTRL_RD()      (HW_MMDC_MPODTCTRL.U)
-#define HW_MMDC_MPODTCTRL_WR(v)     (HW_MMDC_MPODTCTRL.U = (v))
-#define HW_MMDC_MPODTCTRL_SET(v)    (HW_MMDC_MPODTCTRL_WR(HW_MMDC_MPODTCTRL_RD() |  (v)))
-#define HW_MMDC_MPODTCTRL_CLR(v)    (HW_MMDC_MPODTCTRL_WR(HW_MMDC_MPODTCTRL_RD() & ~(v)))
-#define HW_MMDC_MPODTCTRL_TOG(v)    (HW_MMDC_MPODTCTRL_WR(HW_MMDC_MPODTCTRL_RD() ^  (v)))
+#define HW_MMDC_MPODTCTRL(x)           (*(volatile hw_mmdc_mpodtctrl_t *) HW_MMDC_MPODTCTRL_ADDR(x))
+#define HW_MMDC_MPODTCTRL_RD(x)        (HW_MMDC_MPODTCTRL(x).U)
+#define HW_MMDC_MPODTCTRL_WR(x, v)     (HW_MMDC_MPODTCTRL(x).U = (v))
+#define HW_MMDC_MPODTCTRL_SET(x, v)    (HW_MMDC_MPODTCTRL_WR(x, HW_MMDC_MPODTCTRL_RD(x) |  (v)))
+#define HW_MMDC_MPODTCTRL_CLR(x, v)    (HW_MMDC_MPODTCTRL_WR(x, HW_MMDC_MPODTCTRL_RD(x) & ~(v)))
+#define HW_MMDC_MPODTCTRL_TOG(x, v)    (HW_MMDC_MPODTCTRL_WR(x, HW_MMDC_MPODTCTRL_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -6361,7 +6372,7 @@ typedef union _hw_mmdc_mpodtctrl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ODT_WR_PAS_EN field to a new value.
-#define BW_MMDC_MPODTCTRL_ODT_WR_PAS_EN(v)   (HW_MMDC_MPODTCTRL_WR((HW_MMDC_MPODTCTRL_RD() & ~BM_MMDC_MPODTCTRL_ODT_WR_PAS_EN) | BF_MMDC_MPODTCTRL_ODT_WR_PAS_EN(v)))
+#define BW_MMDC_MPODTCTRL_ODT_WR_PAS_EN(x, v)   (HW_MMDC_MPODTCTRL_WR(x, (HW_MMDC_MPODTCTRL_RD(x) & ~BM_MMDC_MPODTCTRL_ODT_WR_PAS_EN) | BF_MMDC_MPODTCTRL_ODT_WR_PAS_EN(v)))
 #endif
 //@}
 
@@ -6386,7 +6397,7 @@ typedef union _hw_mmdc_mpodtctrl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ODT_WR_ACT_EN field to a new value.
-#define BW_MMDC_MPODTCTRL_ODT_WR_ACT_EN(v)   (HW_MMDC_MPODTCTRL_WR((HW_MMDC_MPODTCTRL_RD() & ~BM_MMDC_MPODTCTRL_ODT_WR_ACT_EN) | BF_MMDC_MPODTCTRL_ODT_WR_ACT_EN(v)))
+#define BW_MMDC_MPODTCTRL_ODT_WR_ACT_EN(x, v)   (HW_MMDC_MPODTCTRL_WR(x, (HW_MMDC_MPODTCTRL_RD(x) & ~BM_MMDC_MPODTCTRL_ODT_WR_ACT_EN) | BF_MMDC_MPODTCTRL_ODT_WR_ACT_EN(v)))
 #endif
 //@}
 
@@ -6411,7 +6422,7 @@ typedef union _hw_mmdc_mpodtctrl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ODT_RD_PAS_EN field to a new value.
-#define BW_MMDC_MPODTCTRL_ODT_RD_PAS_EN(v)   (HW_MMDC_MPODTCTRL_WR((HW_MMDC_MPODTCTRL_RD() & ~BM_MMDC_MPODTCTRL_ODT_RD_PAS_EN) | BF_MMDC_MPODTCTRL_ODT_RD_PAS_EN(v)))
+#define BW_MMDC_MPODTCTRL_ODT_RD_PAS_EN(x, v)   (HW_MMDC_MPODTCTRL_WR(x, (HW_MMDC_MPODTCTRL_RD(x) & ~BM_MMDC_MPODTCTRL_ODT_RD_PAS_EN) | BF_MMDC_MPODTCTRL_ODT_RD_PAS_EN(v)))
 #endif
 //@}
 
@@ -6436,7 +6447,7 @@ typedef union _hw_mmdc_mpodtctrl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ODT_RD_ACT_EN field to a new value.
-#define BW_MMDC_MPODTCTRL_ODT_RD_ACT_EN(v)   (HW_MMDC_MPODTCTRL_WR((HW_MMDC_MPODTCTRL_RD() & ~BM_MMDC_MPODTCTRL_ODT_RD_ACT_EN) | BF_MMDC_MPODTCTRL_ODT_RD_ACT_EN(v)))
+#define BW_MMDC_MPODTCTRL_ODT_RD_ACT_EN(x, v)   (HW_MMDC_MPODTCTRL_WR(x, (HW_MMDC_MPODTCTRL_RD(x) & ~BM_MMDC_MPODTCTRL_ODT_RD_ACT_EN) | BF_MMDC_MPODTCTRL_ODT_RD_ACT_EN(v)))
 #endif
 //@}
 
@@ -6467,7 +6478,7 @@ typedef union _hw_mmdc_mpodtctrl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ODT0_INT_RES field to a new value.
-#define BW_MMDC_MPODTCTRL_ODT0_INT_RES(v)   (HW_MMDC_MPODTCTRL_WR((HW_MMDC_MPODTCTRL_RD() & ~BM_MMDC_MPODTCTRL_ODT0_INT_RES) | BF_MMDC_MPODTCTRL_ODT0_INT_RES(v)))
+#define BW_MMDC_MPODTCTRL_ODT0_INT_RES(x, v)   (HW_MMDC_MPODTCTRL_WR(x, (HW_MMDC_MPODTCTRL_RD(x) & ~BM_MMDC_MPODTCTRL_ODT0_INT_RES) | BF_MMDC_MPODTCTRL_ODT0_INT_RES(v)))
 #endif
 //@}
 
@@ -6498,7 +6509,7 @@ typedef union _hw_mmdc_mpodtctrl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ODT1_INT_RES field to a new value.
-#define BW_MMDC_MPODTCTRL_ODT1_INT_RES(v)   (HW_MMDC_MPODTCTRL_WR((HW_MMDC_MPODTCTRL_RD() & ~BM_MMDC_MPODTCTRL_ODT1_INT_RES) | BF_MMDC_MPODTCTRL_ODT1_INT_RES(v)))
+#define BW_MMDC_MPODTCTRL_ODT1_INT_RES(x, v)   (HW_MMDC_MPODTCTRL_WR(x, (HW_MMDC_MPODTCTRL_RD(x) & ~BM_MMDC_MPODTCTRL_ODT1_INT_RES) | BF_MMDC_MPODTCTRL_ODT1_INT_RES(v)))
 #endif
 //@}
 
@@ -6529,7 +6540,7 @@ typedef union _hw_mmdc_mpodtctrl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ODT2_INT_RES field to a new value.
-#define BW_MMDC_MPODTCTRL_ODT2_INT_RES(v)   (HW_MMDC_MPODTCTRL_WR((HW_MMDC_MPODTCTRL_RD() & ~BM_MMDC_MPODTCTRL_ODT2_INT_RES) | BF_MMDC_MPODTCTRL_ODT2_INT_RES(v)))
+#define BW_MMDC_MPODTCTRL_ODT2_INT_RES(x, v)   (HW_MMDC_MPODTCTRL_WR(x, (HW_MMDC_MPODTCTRL_RD(x) & ~BM_MMDC_MPODTCTRL_ODT2_INT_RES) | BF_MMDC_MPODTCTRL_ODT2_INT_RES(v)))
 #endif
 //@}
 
@@ -6560,7 +6571,7 @@ typedef union _hw_mmdc_mpodtctrl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ODT3_INT_RES field to a new value.
-#define BW_MMDC_MPODTCTRL_ODT3_INT_RES(v)   (HW_MMDC_MPODTCTRL_WR((HW_MMDC_MPODTCTRL_RD() & ~BM_MMDC_MPODTCTRL_ODT3_INT_RES) | BF_MMDC_MPODTCTRL_ODT3_INT_RES(v)))
+#define BW_MMDC_MPODTCTRL_ODT3_INT_RES(x, v)   (HW_MMDC_MPODTCTRL_WR(x, (HW_MMDC_MPODTCTRL_RD(x) & ~BM_MMDC_MPODTCTRL_ODT3_INT_RES) | BF_MMDC_MPODTCTRL_ODT3_INT_RES(v)))
 #endif
 //@}
 
@@ -6608,15 +6619,15 @@ typedef union _hw_mmdc_mprddqby0dl
  * @name Constants and macros for entire MMDC_MPRDDQBY0DL register
  */
 //@{
-#define HW_MMDC_MPRDDQBY0DL_ADDR      (REGS_MMDC_BASE + 0x81c)
+#define HW_MMDC_MPRDDQBY0DL_ADDR(x)      (REGS_MMDC_BASE(x) + 0x81c)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPRDDQBY0DL           (*(volatile hw_mmdc_mprddqby0dl_t *) HW_MMDC_MPRDDQBY0DL_ADDR)
-#define HW_MMDC_MPRDDQBY0DL_RD()      (HW_MMDC_MPRDDQBY0DL.U)
-#define HW_MMDC_MPRDDQBY0DL_WR(v)     (HW_MMDC_MPRDDQBY0DL.U = (v))
-#define HW_MMDC_MPRDDQBY0DL_SET(v)    (HW_MMDC_MPRDDQBY0DL_WR(HW_MMDC_MPRDDQBY0DL_RD() |  (v)))
-#define HW_MMDC_MPRDDQBY0DL_CLR(v)    (HW_MMDC_MPRDDQBY0DL_WR(HW_MMDC_MPRDDQBY0DL_RD() & ~(v)))
-#define HW_MMDC_MPRDDQBY0DL_TOG(v)    (HW_MMDC_MPRDDQBY0DL_WR(HW_MMDC_MPRDDQBY0DL_RD() ^  (v)))
+#define HW_MMDC_MPRDDQBY0DL(x)           (*(volatile hw_mmdc_mprddqby0dl_t *) HW_MMDC_MPRDDQBY0DL_ADDR(x))
+#define HW_MMDC_MPRDDQBY0DL_RD(x)        (HW_MMDC_MPRDDQBY0DL(x).U)
+#define HW_MMDC_MPRDDQBY0DL_WR(x, v)     (HW_MMDC_MPRDDQBY0DL(x).U = (v))
+#define HW_MMDC_MPRDDQBY0DL_SET(x, v)    (HW_MMDC_MPRDDQBY0DL_WR(x, HW_MMDC_MPRDDQBY0DL_RD(x) |  (v)))
+#define HW_MMDC_MPRDDQBY0DL_CLR(x, v)    (HW_MMDC_MPRDDQBY0DL_WR(x, HW_MMDC_MPRDDQBY0DL_RD(x) & ~(v)))
+#define HW_MMDC_MPRDDQBY0DL_TOG(x, v)    (HW_MMDC_MPRDDQBY0DL_WR(x, HW_MMDC_MPRDDQBY0DL_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -6651,7 +6662,7 @@ typedef union _hw_mmdc_mprddqby0dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ0_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY0DL_RD_DQ0_DEL(v)   (HW_MMDC_MPRDDQBY0DL_WR((HW_MMDC_MPRDDQBY0DL_RD() & ~BM_MMDC_MPRDDQBY0DL_RD_DQ0_DEL) | BF_MMDC_MPRDDQBY0DL_RD_DQ0_DEL(v)))
+#define BW_MMDC_MPRDDQBY0DL_RD_DQ0_DEL(x, v)   (HW_MMDC_MPRDDQBY0DL_WR(x, (HW_MMDC_MPRDDQBY0DL_RD(x) & ~BM_MMDC_MPRDDQBY0DL_RD_DQ0_DEL) | BF_MMDC_MPRDDQBY0DL_RD_DQ0_DEL(v)))
 #endif
 //@}
 
@@ -6682,7 +6693,7 @@ typedef union _hw_mmdc_mprddqby0dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ1_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY0DL_RD_DQ1_DEL(v)   (HW_MMDC_MPRDDQBY0DL_WR((HW_MMDC_MPRDDQBY0DL_RD() & ~BM_MMDC_MPRDDQBY0DL_RD_DQ1_DEL) | BF_MMDC_MPRDDQBY0DL_RD_DQ1_DEL(v)))
+#define BW_MMDC_MPRDDQBY0DL_RD_DQ1_DEL(x, v)   (HW_MMDC_MPRDDQBY0DL_WR(x, (HW_MMDC_MPRDDQBY0DL_RD(x) & ~BM_MMDC_MPRDDQBY0DL_RD_DQ1_DEL) | BF_MMDC_MPRDDQBY0DL_RD_DQ1_DEL(v)))
 #endif
 //@}
 
@@ -6713,7 +6724,7 @@ typedef union _hw_mmdc_mprddqby0dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ2_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY0DL_RD_DQ2_DEL(v)   (HW_MMDC_MPRDDQBY0DL_WR((HW_MMDC_MPRDDQBY0DL_RD() & ~BM_MMDC_MPRDDQBY0DL_RD_DQ2_DEL) | BF_MMDC_MPRDDQBY0DL_RD_DQ2_DEL(v)))
+#define BW_MMDC_MPRDDQBY0DL_RD_DQ2_DEL(x, v)   (HW_MMDC_MPRDDQBY0DL_WR(x, (HW_MMDC_MPRDDQBY0DL_RD(x) & ~BM_MMDC_MPRDDQBY0DL_RD_DQ2_DEL) | BF_MMDC_MPRDDQBY0DL_RD_DQ2_DEL(v)))
 #endif
 //@}
 
@@ -6744,7 +6755,7 @@ typedef union _hw_mmdc_mprddqby0dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ3_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY0DL_RD_DQ3_DEL(v)   (HW_MMDC_MPRDDQBY0DL_WR((HW_MMDC_MPRDDQBY0DL_RD() & ~BM_MMDC_MPRDDQBY0DL_RD_DQ3_DEL) | BF_MMDC_MPRDDQBY0DL_RD_DQ3_DEL(v)))
+#define BW_MMDC_MPRDDQBY0DL_RD_DQ3_DEL(x, v)   (HW_MMDC_MPRDDQBY0DL_WR(x, (HW_MMDC_MPRDDQBY0DL_RD(x) & ~BM_MMDC_MPRDDQBY0DL_RD_DQ3_DEL) | BF_MMDC_MPRDDQBY0DL_RD_DQ3_DEL(v)))
 #endif
 //@}
 
@@ -6775,7 +6786,7 @@ typedef union _hw_mmdc_mprddqby0dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ4_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY0DL_RD_DQ4_DEL(v)   (HW_MMDC_MPRDDQBY0DL_WR((HW_MMDC_MPRDDQBY0DL_RD() & ~BM_MMDC_MPRDDQBY0DL_RD_DQ4_DEL) | BF_MMDC_MPRDDQBY0DL_RD_DQ4_DEL(v)))
+#define BW_MMDC_MPRDDQBY0DL_RD_DQ4_DEL(x, v)   (HW_MMDC_MPRDDQBY0DL_WR(x, (HW_MMDC_MPRDDQBY0DL_RD(x) & ~BM_MMDC_MPRDDQBY0DL_RD_DQ4_DEL) | BF_MMDC_MPRDDQBY0DL_RD_DQ4_DEL(v)))
 #endif
 //@}
 
@@ -6806,7 +6817,7 @@ typedef union _hw_mmdc_mprddqby0dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ5_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY0DL_RD_DQ5_DEL(v)   (HW_MMDC_MPRDDQBY0DL_WR((HW_MMDC_MPRDDQBY0DL_RD() & ~BM_MMDC_MPRDDQBY0DL_RD_DQ5_DEL) | BF_MMDC_MPRDDQBY0DL_RD_DQ5_DEL(v)))
+#define BW_MMDC_MPRDDQBY0DL_RD_DQ5_DEL(x, v)   (HW_MMDC_MPRDDQBY0DL_WR(x, (HW_MMDC_MPRDDQBY0DL_RD(x) & ~BM_MMDC_MPRDDQBY0DL_RD_DQ5_DEL) | BF_MMDC_MPRDDQBY0DL_RD_DQ5_DEL(v)))
 #endif
 //@}
 
@@ -6837,7 +6848,7 @@ typedef union _hw_mmdc_mprddqby0dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ6_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY0DL_RD_DQ6_DEL(v)   (HW_MMDC_MPRDDQBY0DL_WR((HW_MMDC_MPRDDQBY0DL_RD() & ~BM_MMDC_MPRDDQBY0DL_RD_DQ6_DEL) | BF_MMDC_MPRDDQBY0DL_RD_DQ6_DEL(v)))
+#define BW_MMDC_MPRDDQBY0DL_RD_DQ6_DEL(x, v)   (HW_MMDC_MPRDDQBY0DL_WR(x, (HW_MMDC_MPRDDQBY0DL_RD(x) & ~BM_MMDC_MPRDDQBY0DL_RD_DQ6_DEL) | BF_MMDC_MPRDDQBY0DL_RD_DQ6_DEL(v)))
 #endif
 //@}
 
@@ -6868,7 +6879,7 @@ typedef union _hw_mmdc_mprddqby0dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ7_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY0DL_RD_DQ7_DEL(v)   (HW_MMDC_MPRDDQBY0DL_WR((HW_MMDC_MPRDDQBY0DL_RD() & ~BM_MMDC_MPRDDQBY0DL_RD_DQ7_DEL) | BF_MMDC_MPRDDQBY0DL_RD_DQ7_DEL(v)))
+#define BW_MMDC_MPRDDQBY0DL_RD_DQ7_DEL(x, v)   (HW_MMDC_MPRDDQBY0DL_WR(x, (HW_MMDC_MPRDDQBY0DL_RD(x) & ~BM_MMDC_MPRDDQBY0DL_RD_DQ7_DEL) | BF_MMDC_MPRDDQBY0DL_RD_DQ7_DEL(v)))
 #endif
 //@}
 
@@ -6915,15 +6926,15 @@ typedef union _hw_mmdc_mprddqby1dl
  * @name Constants and macros for entire MMDC_MPRDDQBY1DL register
  */
 //@{
-#define HW_MMDC_MPRDDQBY1DL_ADDR      (REGS_MMDC_BASE + 0x820)
+#define HW_MMDC_MPRDDQBY1DL_ADDR(x)      (REGS_MMDC_BASE(x) + 0x820)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPRDDQBY1DL           (*(volatile hw_mmdc_mprddqby1dl_t *) HW_MMDC_MPRDDQBY1DL_ADDR)
-#define HW_MMDC_MPRDDQBY1DL_RD()      (HW_MMDC_MPRDDQBY1DL.U)
-#define HW_MMDC_MPRDDQBY1DL_WR(v)     (HW_MMDC_MPRDDQBY1DL.U = (v))
-#define HW_MMDC_MPRDDQBY1DL_SET(v)    (HW_MMDC_MPRDDQBY1DL_WR(HW_MMDC_MPRDDQBY1DL_RD() |  (v)))
-#define HW_MMDC_MPRDDQBY1DL_CLR(v)    (HW_MMDC_MPRDDQBY1DL_WR(HW_MMDC_MPRDDQBY1DL_RD() & ~(v)))
-#define HW_MMDC_MPRDDQBY1DL_TOG(v)    (HW_MMDC_MPRDDQBY1DL_WR(HW_MMDC_MPRDDQBY1DL_RD() ^  (v)))
+#define HW_MMDC_MPRDDQBY1DL(x)           (*(volatile hw_mmdc_mprddqby1dl_t *) HW_MMDC_MPRDDQBY1DL_ADDR(x))
+#define HW_MMDC_MPRDDQBY1DL_RD(x)        (HW_MMDC_MPRDDQBY1DL(x).U)
+#define HW_MMDC_MPRDDQBY1DL_WR(x, v)     (HW_MMDC_MPRDDQBY1DL(x).U = (v))
+#define HW_MMDC_MPRDDQBY1DL_SET(x, v)    (HW_MMDC_MPRDDQBY1DL_WR(x, HW_MMDC_MPRDDQBY1DL_RD(x) |  (v)))
+#define HW_MMDC_MPRDDQBY1DL_CLR(x, v)    (HW_MMDC_MPRDDQBY1DL_WR(x, HW_MMDC_MPRDDQBY1DL_RD(x) & ~(v)))
+#define HW_MMDC_MPRDDQBY1DL_TOG(x, v)    (HW_MMDC_MPRDDQBY1DL_WR(x, HW_MMDC_MPRDDQBY1DL_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -6958,7 +6969,7 @@ typedef union _hw_mmdc_mprddqby1dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ8_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY1DL_RD_DQ8_DEL(v)   (HW_MMDC_MPRDDQBY1DL_WR((HW_MMDC_MPRDDQBY1DL_RD() & ~BM_MMDC_MPRDDQBY1DL_RD_DQ8_DEL) | BF_MMDC_MPRDDQBY1DL_RD_DQ8_DEL(v)))
+#define BW_MMDC_MPRDDQBY1DL_RD_DQ8_DEL(x, v)   (HW_MMDC_MPRDDQBY1DL_WR(x, (HW_MMDC_MPRDDQBY1DL_RD(x) & ~BM_MMDC_MPRDDQBY1DL_RD_DQ8_DEL) | BF_MMDC_MPRDDQBY1DL_RD_DQ8_DEL(v)))
 #endif
 //@}
 
@@ -6989,7 +7000,7 @@ typedef union _hw_mmdc_mprddqby1dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ9_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY1DL_RD_DQ9_DEL(v)   (HW_MMDC_MPRDDQBY1DL_WR((HW_MMDC_MPRDDQBY1DL_RD() & ~BM_MMDC_MPRDDQBY1DL_RD_DQ9_DEL) | BF_MMDC_MPRDDQBY1DL_RD_DQ9_DEL(v)))
+#define BW_MMDC_MPRDDQBY1DL_RD_DQ9_DEL(x, v)   (HW_MMDC_MPRDDQBY1DL_WR(x, (HW_MMDC_MPRDDQBY1DL_RD(x) & ~BM_MMDC_MPRDDQBY1DL_RD_DQ9_DEL) | BF_MMDC_MPRDDQBY1DL_RD_DQ9_DEL(v)))
 #endif
 //@}
 
@@ -7020,7 +7031,7 @@ typedef union _hw_mmdc_mprddqby1dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ10_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY1DL_RD_DQ10_DEL(v)   (HW_MMDC_MPRDDQBY1DL_WR((HW_MMDC_MPRDDQBY1DL_RD() & ~BM_MMDC_MPRDDQBY1DL_RD_DQ10_DEL) | BF_MMDC_MPRDDQBY1DL_RD_DQ10_DEL(v)))
+#define BW_MMDC_MPRDDQBY1DL_RD_DQ10_DEL(x, v)   (HW_MMDC_MPRDDQBY1DL_WR(x, (HW_MMDC_MPRDDQBY1DL_RD(x) & ~BM_MMDC_MPRDDQBY1DL_RD_DQ10_DEL) | BF_MMDC_MPRDDQBY1DL_RD_DQ10_DEL(v)))
 #endif
 //@}
 
@@ -7051,7 +7062,7 @@ typedef union _hw_mmdc_mprddqby1dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ11_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY1DL_RD_DQ11_DEL(v)   (HW_MMDC_MPRDDQBY1DL_WR((HW_MMDC_MPRDDQBY1DL_RD() & ~BM_MMDC_MPRDDQBY1DL_RD_DQ11_DEL) | BF_MMDC_MPRDDQBY1DL_RD_DQ11_DEL(v)))
+#define BW_MMDC_MPRDDQBY1DL_RD_DQ11_DEL(x, v)   (HW_MMDC_MPRDDQBY1DL_WR(x, (HW_MMDC_MPRDDQBY1DL_RD(x) & ~BM_MMDC_MPRDDQBY1DL_RD_DQ11_DEL) | BF_MMDC_MPRDDQBY1DL_RD_DQ11_DEL(v)))
 #endif
 //@}
 
@@ -7082,7 +7093,7 @@ typedef union _hw_mmdc_mprddqby1dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ12_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY1DL_RD_DQ12_DEL(v)   (HW_MMDC_MPRDDQBY1DL_WR((HW_MMDC_MPRDDQBY1DL_RD() & ~BM_MMDC_MPRDDQBY1DL_RD_DQ12_DEL) | BF_MMDC_MPRDDQBY1DL_RD_DQ12_DEL(v)))
+#define BW_MMDC_MPRDDQBY1DL_RD_DQ12_DEL(x, v)   (HW_MMDC_MPRDDQBY1DL_WR(x, (HW_MMDC_MPRDDQBY1DL_RD(x) & ~BM_MMDC_MPRDDQBY1DL_RD_DQ12_DEL) | BF_MMDC_MPRDDQBY1DL_RD_DQ12_DEL(v)))
 #endif
 //@}
 
@@ -7113,7 +7124,7 @@ typedef union _hw_mmdc_mprddqby1dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ13_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY1DL_RD_DQ13_DEL(v)   (HW_MMDC_MPRDDQBY1DL_WR((HW_MMDC_MPRDDQBY1DL_RD() & ~BM_MMDC_MPRDDQBY1DL_RD_DQ13_DEL) | BF_MMDC_MPRDDQBY1DL_RD_DQ13_DEL(v)))
+#define BW_MMDC_MPRDDQBY1DL_RD_DQ13_DEL(x, v)   (HW_MMDC_MPRDDQBY1DL_WR(x, (HW_MMDC_MPRDDQBY1DL_RD(x) & ~BM_MMDC_MPRDDQBY1DL_RD_DQ13_DEL) | BF_MMDC_MPRDDQBY1DL_RD_DQ13_DEL(v)))
 #endif
 //@}
 
@@ -7144,7 +7155,7 @@ typedef union _hw_mmdc_mprddqby1dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ14_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY1DL_RD_DQ14_DEL(v)   (HW_MMDC_MPRDDQBY1DL_WR((HW_MMDC_MPRDDQBY1DL_RD() & ~BM_MMDC_MPRDDQBY1DL_RD_DQ14_DEL) | BF_MMDC_MPRDDQBY1DL_RD_DQ14_DEL(v)))
+#define BW_MMDC_MPRDDQBY1DL_RD_DQ14_DEL(x, v)   (HW_MMDC_MPRDDQBY1DL_WR(x, (HW_MMDC_MPRDDQBY1DL_RD(x) & ~BM_MMDC_MPRDDQBY1DL_RD_DQ14_DEL) | BF_MMDC_MPRDDQBY1DL_RD_DQ14_DEL(v)))
 #endif
 //@}
 
@@ -7175,7 +7186,7 @@ typedef union _hw_mmdc_mprddqby1dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ15_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY1DL_RD_DQ15_DEL(v)   (HW_MMDC_MPRDDQBY1DL_WR((HW_MMDC_MPRDDQBY1DL_RD() & ~BM_MMDC_MPRDDQBY1DL_RD_DQ15_DEL) | BF_MMDC_MPRDDQBY1DL_RD_DQ15_DEL(v)))
+#define BW_MMDC_MPRDDQBY1DL_RD_DQ15_DEL(x, v)   (HW_MMDC_MPRDDQBY1DL_WR(x, (HW_MMDC_MPRDDQBY1DL_RD(x) & ~BM_MMDC_MPRDDQBY1DL_RD_DQ15_DEL) | BF_MMDC_MPRDDQBY1DL_RD_DQ15_DEL(v)))
 #endif
 //@}
 
@@ -7222,15 +7233,15 @@ typedef union _hw_mmdc_mprddqby2dl
  * @name Constants and macros for entire MMDC_MPRDDQBY2DL register
  */
 //@{
-#define HW_MMDC_MPRDDQBY2DL_ADDR      (REGS_MMDC_BASE + 0x824)
+#define HW_MMDC_MPRDDQBY2DL_ADDR(x)      (REGS_MMDC_BASE(x) + 0x824)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPRDDQBY2DL           (*(volatile hw_mmdc_mprddqby2dl_t *) HW_MMDC_MPRDDQBY2DL_ADDR)
-#define HW_MMDC_MPRDDQBY2DL_RD()      (HW_MMDC_MPRDDQBY2DL.U)
-#define HW_MMDC_MPRDDQBY2DL_WR(v)     (HW_MMDC_MPRDDQBY2DL.U = (v))
-#define HW_MMDC_MPRDDQBY2DL_SET(v)    (HW_MMDC_MPRDDQBY2DL_WR(HW_MMDC_MPRDDQBY2DL_RD() |  (v)))
-#define HW_MMDC_MPRDDQBY2DL_CLR(v)    (HW_MMDC_MPRDDQBY2DL_WR(HW_MMDC_MPRDDQBY2DL_RD() & ~(v)))
-#define HW_MMDC_MPRDDQBY2DL_TOG(v)    (HW_MMDC_MPRDDQBY2DL_WR(HW_MMDC_MPRDDQBY2DL_RD() ^  (v)))
+#define HW_MMDC_MPRDDQBY2DL(x)           (*(volatile hw_mmdc_mprddqby2dl_t *) HW_MMDC_MPRDDQBY2DL_ADDR(x))
+#define HW_MMDC_MPRDDQBY2DL_RD(x)        (HW_MMDC_MPRDDQBY2DL(x).U)
+#define HW_MMDC_MPRDDQBY2DL_WR(x, v)     (HW_MMDC_MPRDDQBY2DL(x).U = (v))
+#define HW_MMDC_MPRDDQBY2DL_SET(x, v)    (HW_MMDC_MPRDDQBY2DL_WR(x, HW_MMDC_MPRDDQBY2DL_RD(x) |  (v)))
+#define HW_MMDC_MPRDDQBY2DL_CLR(x, v)    (HW_MMDC_MPRDDQBY2DL_WR(x, HW_MMDC_MPRDDQBY2DL_RD(x) & ~(v)))
+#define HW_MMDC_MPRDDQBY2DL_TOG(x, v)    (HW_MMDC_MPRDDQBY2DL_WR(x, HW_MMDC_MPRDDQBY2DL_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -7265,7 +7276,7 @@ typedef union _hw_mmdc_mprddqby2dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ16_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY2DL_RD_DQ16_DEL(v)   (HW_MMDC_MPRDDQBY2DL_WR((HW_MMDC_MPRDDQBY2DL_RD() & ~BM_MMDC_MPRDDQBY2DL_RD_DQ16_DEL) | BF_MMDC_MPRDDQBY2DL_RD_DQ16_DEL(v)))
+#define BW_MMDC_MPRDDQBY2DL_RD_DQ16_DEL(x, v)   (HW_MMDC_MPRDDQBY2DL_WR(x, (HW_MMDC_MPRDDQBY2DL_RD(x) & ~BM_MMDC_MPRDDQBY2DL_RD_DQ16_DEL) | BF_MMDC_MPRDDQBY2DL_RD_DQ16_DEL(v)))
 #endif
 //@}
 
@@ -7296,7 +7307,7 @@ typedef union _hw_mmdc_mprddqby2dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ17_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY2DL_RD_DQ17_DEL(v)   (HW_MMDC_MPRDDQBY2DL_WR((HW_MMDC_MPRDDQBY2DL_RD() & ~BM_MMDC_MPRDDQBY2DL_RD_DQ17_DEL) | BF_MMDC_MPRDDQBY2DL_RD_DQ17_DEL(v)))
+#define BW_MMDC_MPRDDQBY2DL_RD_DQ17_DEL(x, v)   (HW_MMDC_MPRDDQBY2DL_WR(x, (HW_MMDC_MPRDDQBY2DL_RD(x) & ~BM_MMDC_MPRDDQBY2DL_RD_DQ17_DEL) | BF_MMDC_MPRDDQBY2DL_RD_DQ17_DEL(v)))
 #endif
 //@}
 
@@ -7327,7 +7338,7 @@ typedef union _hw_mmdc_mprddqby2dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ18_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY2DL_RD_DQ18_DEL(v)   (HW_MMDC_MPRDDQBY2DL_WR((HW_MMDC_MPRDDQBY2DL_RD() & ~BM_MMDC_MPRDDQBY2DL_RD_DQ18_DEL) | BF_MMDC_MPRDDQBY2DL_RD_DQ18_DEL(v)))
+#define BW_MMDC_MPRDDQBY2DL_RD_DQ18_DEL(x, v)   (HW_MMDC_MPRDDQBY2DL_WR(x, (HW_MMDC_MPRDDQBY2DL_RD(x) & ~BM_MMDC_MPRDDQBY2DL_RD_DQ18_DEL) | BF_MMDC_MPRDDQBY2DL_RD_DQ18_DEL(v)))
 #endif
 //@}
 
@@ -7358,7 +7369,7 @@ typedef union _hw_mmdc_mprddqby2dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ19_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY2DL_RD_DQ19_DEL(v)   (HW_MMDC_MPRDDQBY2DL_WR((HW_MMDC_MPRDDQBY2DL_RD() & ~BM_MMDC_MPRDDQBY2DL_RD_DQ19_DEL) | BF_MMDC_MPRDDQBY2DL_RD_DQ19_DEL(v)))
+#define BW_MMDC_MPRDDQBY2DL_RD_DQ19_DEL(x, v)   (HW_MMDC_MPRDDQBY2DL_WR(x, (HW_MMDC_MPRDDQBY2DL_RD(x) & ~BM_MMDC_MPRDDQBY2DL_RD_DQ19_DEL) | BF_MMDC_MPRDDQBY2DL_RD_DQ19_DEL(v)))
 #endif
 //@}
 
@@ -7389,7 +7400,7 @@ typedef union _hw_mmdc_mprddqby2dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ20_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY2DL_RD_DQ20_DEL(v)   (HW_MMDC_MPRDDQBY2DL_WR((HW_MMDC_MPRDDQBY2DL_RD() & ~BM_MMDC_MPRDDQBY2DL_RD_DQ20_DEL) | BF_MMDC_MPRDDQBY2DL_RD_DQ20_DEL(v)))
+#define BW_MMDC_MPRDDQBY2DL_RD_DQ20_DEL(x, v)   (HW_MMDC_MPRDDQBY2DL_WR(x, (HW_MMDC_MPRDDQBY2DL_RD(x) & ~BM_MMDC_MPRDDQBY2DL_RD_DQ20_DEL) | BF_MMDC_MPRDDQBY2DL_RD_DQ20_DEL(v)))
 #endif
 //@}
 
@@ -7420,7 +7431,7 @@ typedef union _hw_mmdc_mprddqby2dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ21_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY2DL_RD_DQ21_DEL(v)   (HW_MMDC_MPRDDQBY2DL_WR((HW_MMDC_MPRDDQBY2DL_RD() & ~BM_MMDC_MPRDDQBY2DL_RD_DQ21_DEL) | BF_MMDC_MPRDDQBY2DL_RD_DQ21_DEL(v)))
+#define BW_MMDC_MPRDDQBY2DL_RD_DQ21_DEL(x, v)   (HW_MMDC_MPRDDQBY2DL_WR(x, (HW_MMDC_MPRDDQBY2DL_RD(x) & ~BM_MMDC_MPRDDQBY2DL_RD_DQ21_DEL) | BF_MMDC_MPRDDQBY2DL_RD_DQ21_DEL(v)))
 #endif
 //@}
 
@@ -7451,7 +7462,7 @@ typedef union _hw_mmdc_mprddqby2dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ22_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY2DL_RD_DQ22_DEL(v)   (HW_MMDC_MPRDDQBY2DL_WR((HW_MMDC_MPRDDQBY2DL_RD() & ~BM_MMDC_MPRDDQBY2DL_RD_DQ22_DEL) | BF_MMDC_MPRDDQBY2DL_RD_DQ22_DEL(v)))
+#define BW_MMDC_MPRDDQBY2DL_RD_DQ22_DEL(x, v)   (HW_MMDC_MPRDDQBY2DL_WR(x, (HW_MMDC_MPRDDQBY2DL_RD(x) & ~BM_MMDC_MPRDDQBY2DL_RD_DQ22_DEL) | BF_MMDC_MPRDDQBY2DL_RD_DQ22_DEL(v)))
 #endif
 //@}
 
@@ -7482,7 +7493,7 @@ typedef union _hw_mmdc_mprddqby2dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ23_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY2DL_RD_DQ23_DEL(v)   (HW_MMDC_MPRDDQBY2DL_WR((HW_MMDC_MPRDDQBY2DL_RD() & ~BM_MMDC_MPRDDQBY2DL_RD_DQ23_DEL) | BF_MMDC_MPRDDQBY2DL_RD_DQ23_DEL(v)))
+#define BW_MMDC_MPRDDQBY2DL_RD_DQ23_DEL(x, v)   (HW_MMDC_MPRDDQBY2DL_WR(x, (HW_MMDC_MPRDDQBY2DL_RD(x) & ~BM_MMDC_MPRDDQBY2DL_RD_DQ23_DEL) | BF_MMDC_MPRDDQBY2DL_RD_DQ23_DEL(v)))
 #endif
 //@}
 
@@ -7529,15 +7540,15 @@ typedef union _hw_mmdc_mprddqby3dl
  * @name Constants and macros for entire MMDC_MPRDDQBY3DL register
  */
 //@{
-#define HW_MMDC_MPRDDQBY3DL_ADDR      (REGS_MMDC_BASE + 0x828)
+#define HW_MMDC_MPRDDQBY3DL_ADDR(x)      (REGS_MMDC_BASE(x) + 0x828)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPRDDQBY3DL           (*(volatile hw_mmdc_mprddqby3dl_t *) HW_MMDC_MPRDDQBY3DL_ADDR)
-#define HW_MMDC_MPRDDQBY3DL_RD()      (HW_MMDC_MPRDDQBY3DL.U)
-#define HW_MMDC_MPRDDQBY3DL_WR(v)     (HW_MMDC_MPRDDQBY3DL.U = (v))
-#define HW_MMDC_MPRDDQBY3DL_SET(v)    (HW_MMDC_MPRDDQBY3DL_WR(HW_MMDC_MPRDDQBY3DL_RD() |  (v)))
-#define HW_MMDC_MPRDDQBY3DL_CLR(v)    (HW_MMDC_MPRDDQBY3DL_WR(HW_MMDC_MPRDDQBY3DL_RD() & ~(v)))
-#define HW_MMDC_MPRDDQBY3DL_TOG(v)    (HW_MMDC_MPRDDQBY3DL_WR(HW_MMDC_MPRDDQBY3DL_RD() ^  (v)))
+#define HW_MMDC_MPRDDQBY3DL(x)           (*(volatile hw_mmdc_mprddqby3dl_t *) HW_MMDC_MPRDDQBY3DL_ADDR(x))
+#define HW_MMDC_MPRDDQBY3DL_RD(x)        (HW_MMDC_MPRDDQBY3DL(x).U)
+#define HW_MMDC_MPRDDQBY3DL_WR(x, v)     (HW_MMDC_MPRDDQBY3DL(x).U = (v))
+#define HW_MMDC_MPRDDQBY3DL_SET(x, v)    (HW_MMDC_MPRDDQBY3DL_WR(x, HW_MMDC_MPRDDQBY3DL_RD(x) |  (v)))
+#define HW_MMDC_MPRDDQBY3DL_CLR(x, v)    (HW_MMDC_MPRDDQBY3DL_WR(x, HW_MMDC_MPRDDQBY3DL_RD(x) & ~(v)))
+#define HW_MMDC_MPRDDQBY3DL_TOG(x, v)    (HW_MMDC_MPRDDQBY3DL_WR(x, HW_MMDC_MPRDDQBY3DL_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -7572,7 +7583,7 @@ typedef union _hw_mmdc_mprddqby3dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ24_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY3DL_RD_DQ24_DEL(v)   (HW_MMDC_MPRDDQBY3DL_WR((HW_MMDC_MPRDDQBY3DL_RD() & ~BM_MMDC_MPRDDQBY3DL_RD_DQ24_DEL) | BF_MMDC_MPRDDQBY3DL_RD_DQ24_DEL(v)))
+#define BW_MMDC_MPRDDQBY3DL_RD_DQ24_DEL(x, v)   (HW_MMDC_MPRDDQBY3DL_WR(x, (HW_MMDC_MPRDDQBY3DL_RD(x) & ~BM_MMDC_MPRDDQBY3DL_RD_DQ24_DEL) | BF_MMDC_MPRDDQBY3DL_RD_DQ24_DEL(v)))
 #endif
 //@}
 
@@ -7603,7 +7614,7 @@ typedef union _hw_mmdc_mprddqby3dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ25_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY3DL_RD_DQ25_DEL(v)   (HW_MMDC_MPRDDQBY3DL_WR((HW_MMDC_MPRDDQBY3DL_RD() & ~BM_MMDC_MPRDDQBY3DL_RD_DQ25_DEL) | BF_MMDC_MPRDDQBY3DL_RD_DQ25_DEL(v)))
+#define BW_MMDC_MPRDDQBY3DL_RD_DQ25_DEL(x, v)   (HW_MMDC_MPRDDQBY3DL_WR(x, (HW_MMDC_MPRDDQBY3DL_RD(x) & ~BM_MMDC_MPRDDQBY3DL_RD_DQ25_DEL) | BF_MMDC_MPRDDQBY3DL_RD_DQ25_DEL(v)))
 #endif
 //@}
 
@@ -7634,7 +7645,7 @@ typedef union _hw_mmdc_mprddqby3dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ26_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY3DL_RD_DQ26_DEL(v)   (HW_MMDC_MPRDDQBY3DL_WR((HW_MMDC_MPRDDQBY3DL_RD() & ~BM_MMDC_MPRDDQBY3DL_RD_DQ26_DEL) | BF_MMDC_MPRDDQBY3DL_RD_DQ26_DEL(v)))
+#define BW_MMDC_MPRDDQBY3DL_RD_DQ26_DEL(x, v)   (HW_MMDC_MPRDDQBY3DL_WR(x, (HW_MMDC_MPRDDQBY3DL_RD(x) & ~BM_MMDC_MPRDDQBY3DL_RD_DQ26_DEL) | BF_MMDC_MPRDDQBY3DL_RD_DQ26_DEL(v)))
 #endif
 //@}
 
@@ -7665,7 +7676,7 @@ typedef union _hw_mmdc_mprddqby3dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ27_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY3DL_RD_DQ27_DEL(v)   (HW_MMDC_MPRDDQBY3DL_WR((HW_MMDC_MPRDDQBY3DL_RD() & ~BM_MMDC_MPRDDQBY3DL_RD_DQ27_DEL) | BF_MMDC_MPRDDQBY3DL_RD_DQ27_DEL(v)))
+#define BW_MMDC_MPRDDQBY3DL_RD_DQ27_DEL(x, v)   (HW_MMDC_MPRDDQBY3DL_WR(x, (HW_MMDC_MPRDDQBY3DL_RD(x) & ~BM_MMDC_MPRDDQBY3DL_RD_DQ27_DEL) | BF_MMDC_MPRDDQBY3DL_RD_DQ27_DEL(v)))
 #endif
 //@}
 
@@ -7696,7 +7707,7 @@ typedef union _hw_mmdc_mprddqby3dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ28_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY3DL_RD_DQ28_DEL(v)   (HW_MMDC_MPRDDQBY3DL_WR((HW_MMDC_MPRDDQBY3DL_RD() & ~BM_MMDC_MPRDDQBY3DL_RD_DQ28_DEL) | BF_MMDC_MPRDDQBY3DL_RD_DQ28_DEL(v)))
+#define BW_MMDC_MPRDDQBY3DL_RD_DQ28_DEL(x, v)   (HW_MMDC_MPRDDQBY3DL_WR(x, (HW_MMDC_MPRDDQBY3DL_RD(x) & ~BM_MMDC_MPRDDQBY3DL_RD_DQ28_DEL) | BF_MMDC_MPRDDQBY3DL_RD_DQ28_DEL(v)))
 #endif
 //@}
 
@@ -7727,7 +7738,7 @@ typedef union _hw_mmdc_mprddqby3dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ29_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY3DL_RD_DQ29_DEL(v)   (HW_MMDC_MPRDDQBY3DL_WR((HW_MMDC_MPRDDQBY3DL_RD() & ~BM_MMDC_MPRDDQBY3DL_RD_DQ29_DEL) | BF_MMDC_MPRDDQBY3DL_RD_DQ29_DEL(v)))
+#define BW_MMDC_MPRDDQBY3DL_RD_DQ29_DEL(x, v)   (HW_MMDC_MPRDDQBY3DL_WR(x, (HW_MMDC_MPRDDQBY3DL_RD(x) & ~BM_MMDC_MPRDDQBY3DL_RD_DQ29_DEL) | BF_MMDC_MPRDDQBY3DL_RD_DQ29_DEL(v)))
 #endif
 //@}
 
@@ -7758,7 +7769,7 @@ typedef union _hw_mmdc_mprddqby3dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ30_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY3DL_RD_DQ30_DEL(v)   (HW_MMDC_MPRDDQBY3DL_WR((HW_MMDC_MPRDDQBY3DL_RD() & ~BM_MMDC_MPRDDQBY3DL_RD_DQ30_DEL) | BF_MMDC_MPRDDQBY3DL_RD_DQ30_DEL(v)))
+#define BW_MMDC_MPRDDQBY3DL_RD_DQ30_DEL(x, v)   (HW_MMDC_MPRDDQBY3DL_WR(x, (HW_MMDC_MPRDDQBY3DL_RD(x) & ~BM_MMDC_MPRDDQBY3DL_RD_DQ30_DEL) | BF_MMDC_MPRDDQBY3DL_RD_DQ30_DEL(v)))
 #endif
 //@}
 
@@ -7789,7 +7800,7 @@ typedef union _hw_mmdc_mprddqby3dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DQ31_DEL field to a new value.
-#define BW_MMDC_MPRDDQBY3DL_RD_DQ31_DEL(v)   (HW_MMDC_MPRDDQBY3DL_WR((HW_MMDC_MPRDDQBY3DL_RD() & ~BM_MMDC_MPRDDQBY3DL_RD_DQ31_DEL) | BF_MMDC_MPRDDQBY3DL_RD_DQ31_DEL(v)))
+#define BW_MMDC_MPRDDQBY3DL_RD_DQ31_DEL(x, v)   (HW_MMDC_MPRDDQBY3DL_WR(x, (HW_MMDC_MPRDDQBY3DL_RD(x) & ~BM_MMDC_MPRDDQBY3DL_RD_DQ31_DEL) | BF_MMDC_MPRDDQBY3DL_RD_DQ31_DEL(v)))
 #endif
 //@}
 
@@ -7836,15 +7847,15 @@ typedef union _hw_mmdc_mpwrdqby0dl
  * @name Constants and macros for entire MMDC_MPWRDQBY0DL register
  */
 //@{
-#define HW_MMDC_MPWRDQBY0DL_ADDR      (REGS_MMDC_BASE + 0x82c)
+#define HW_MMDC_MPWRDQBY0DL_ADDR(x)      (REGS_MMDC_BASE(x) + 0x82c)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPWRDQBY0DL           (*(volatile hw_mmdc_mpwrdqby0dl_t *) HW_MMDC_MPWRDQBY0DL_ADDR)
-#define HW_MMDC_MPWRDQBY0DL_RD()      (HW_MMDC_MPWRDQBY0DL.U)
-#define HW_MMDC_MPWRDQBY0DL_WR(v)     (HW_MMDC_MPWRDQBY0DL.U = (v))
-#define HW_MMDC_MPWRDQBY0DL_SET(v)    (HW_MMDC_MPWRDQBY0DL_WR(HW_MMDC_MPWRDQBY0DL_RD() |  (v)))
-#define HW_MMDC_MPWRDQBY0DL_CLR(v)    (HW_MMDC_MPWRDQBY0DL_WR(HW_MMDC_MPWRDQBY0DL_RD() & ~(v)))
-#define HW_MMDC_MPWRDQBY0DL_TOG(v)    (HW_MMDC_MPWRDQBY0DL_WR(HW_MMDC_MPWRDQBY0DL_RD() ^  (v)))
+#define HW_MMDC_MPWRDQBY0DL(x)           (*(volatile hw_mmdc_mpwrdqby0dl_t *) HW_MMDC_MPWRDQBY0DL_ADDR(x))
+#define HW_MMDC_MPWRDQBY0DL_RD(x)        (HW_MMDC_MPWRDQBY0DL(x).U)
+#define HW_MMDC_MPWRDQBY0DL_WR(x, v)     (HW_MMDC_MPWRDQBY0DL(x).U = (v))
+#define HW_MMDC_MPWRDQBY0DL_SET(x, v)    (HW_MMDC_MPWRDQBY0DL_WR(x, HW_MMDC_MPWRDQBY0DL_RD(x) |  (v)))
+#define HW_MMDC_MPWRDQBY0DL_CLR(x, v)    (HW_MMDC_MPWRDQBY0DL_WR(x, HW_MMDC_MPWRDQBY0DL_RD(x) & ~(v)))
+#define HW_MMDC_MPWRDQBY0DL_TOG(x, v)    (HW_MMDC_MPWRDQBY0DL_WR(x, HW_MMDC_MPWRDQBY0DL_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -7875,7 +7886,7 @@ typedef union _hw_mmdc_mpwrdqby0dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ0_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY0DL_WR_DQ0_DEL(v)   (HW_MMDC_MPWRDQBY0DL_WR((HW_MMDC_MPWRDQBY0DL_RD() & ~BM_MMDC_MPWRDQBY0DL_WR_DQ0_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DQ0_DEL(v)))
+#define BW_MMDC_MPWRDQBY0DL_WR_DQ0_DEL(x, v)   (HW_MMDC_MPWRDQBY0DL_WR(x, (HW_MMDC_MPWRDQBY0DL_RD(x) & ~BM_MMDC_MPWRDQBY0DL_WR_DQ0_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DQ0_DEL(v)))
 #endif
 //@}
 
@@ -7902,7 +7913,7 @@ typedef union _hw_mmdc_mpwrdqby0dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ1_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY0DL_WR_DQ1_DEL(v)   (HW_MMDC_MPWRDQBY0DL_WR((HW_MMDC_MPWRDQBY0DL_RD() & ~BM_MMDC_MPWRDQBY0DL_WR_DQ1_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DQ1_DEL(v)))
+#define BW_MMDC_MPWRDQBY0DL_WR_DQ1_DEL(x, v)   (HW_MMDC_MPWRDQBY0DL_WR(x, (HW_MMDC_MPWRDQBY0DL_RD(x) & ~BM_MMDC_MPWRDQBY0DL_WR_DQ1_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DQ1_DEL(v)))
 #endif
 //@}
 
@@ -7929,7 +7940,7 @@ typedef union _hw_mmdc_mpwrdqby0dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ2_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY0DL_WR_DQ2_DEL(v)   (HW_MMDC_MPWRDQBY0DL_WR((HW_MMDC_MPWRDQBY0DL_RD() & ~BM_MMDC_MPWRDQBY0DL_WR_DQ2_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DQ2_DEL(v)))
+#define BW_MMDC_MPWRDQBY0DL_WR_DQ2_DEL(x, v)   (HW_MMDC_MPWRDQBY0DL_WR(x, (HW_MMDC_MPWRDQBY0DL_RD(x) & ~BM_MMDC_MPWRDQBY0DL_WR_DQ2_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DQ2_DEL(v)))
 #endif
 //@}
 
@@ -7956,7 +7967,7 @@ typedef union _hw_mmdc_mpwrdqby0dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ3_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY0DL_WR_DQ3_DEL(v)   (HW_MMDC_MPWRDQBY0DL_WR((HW_MMDC_MPWRDQBY0DL_RD() & ~BM_MMDC_MPWRDQBY0DL_WR_DQ3_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DQ3_DEL(v)))
+#define BW_MMDC_MPWRDQBY0DL_WR_DQ3_DEL(x, v)   (HW_MMDC_MPWRDQBY0DL_WR(x, (HW_MMDC_MPWRDQBY0DL_RD(x) & ~BM_MMDC_MPWRDQBY0DL_WR_DQ3_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DQ3_DEL(v)))
 #endif
 //@}
 
@@ -7983,7 +7994,7 @@ typedef union _hw_mmdc_mpwrdqby0dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ4_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY0DL_WR_DQ4_DEL(v)   (HW_MMDC_MPWRDQBY0DL_WR((HW_MMDC_MPWRDQBY0DL_RD() & ~BM_MMDC_MPWRDQBY0DL_WR_DQ4_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DQ4_DEL(v)))
+#define BW_MMDC_MPWRDQBY0DL_WR_DQ4_DEL(x, v)   (HW_MMDC_MPWRDQBY0DL_WR(x, (HW_MMDC_MPWRDQBY0DL_RD(x) & ~BM_MMDC_MPWRDQBY0DL_WR_DQ4_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DQ4_DEL(v)))
 #endif
 //@}
 
@@ -8010,7 +8021,7 @@ typedef union _hw_mmdc_mpwrdqby0dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ5_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY0DL_WR_DQ5_DEL(v)   (HW_MMDC_MPWRDQBY0DL_WR((HW_MMDC_MPWRDQBY0DL_RD() & ~BM_MMDC_MPWRDQBY0DL_WR_DQ5_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DQ5_DEL(v)))
+#define BW_MMDC_MPWRDQBY0DL_WR_DQ5_DEL(x, v)   (HW_MMDC_MPWRDQBY0DL_WR(x, (HW_MMDC_MPWRDQBY0DL_RD(x) & ~BM_MMDC_MPWRDQBY0DL_WR_DQ5_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DQ5_DEL(v)))
 #endif
 //@}
 
@@ -8037,7 +8048,7 @@ typedef union _hw_mmdc_mpwrdqby0dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ6_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY0DL_WR_DQ6_DEL(v)   (HW_MMDC_MPWRDQBY0DL_WR((HW_MMDC_MPWRDQBY0DL_RD() & ~BM_MMDC_MPWRDQBY0DL_WR_DQ6_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DQ6_DEL(v)))
+#define BW_MMDC_MPWRDQBY0DL_WR_DQ6_DEL(x, v)   (HW_MMDC_MPWRDQBY0DL_WR(x, (HW_MMDC_MPWRDQBY0DL_RD(x) & ~BM_MMDC_MPWRDQBY0DL_WR_DQ6_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DQ6_DEL(v)))
 #endif
 //@}
 
@@ -8064,7 +8075,7 @@ typedef union _hw_mmdc_mpwrdqby0dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ7_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY0DL_WR_DQ7_DEL(v)   (HW_MMDC_MPWRDQBY0DL_WR((HW_MMDC_MPWRDQBY0DL_RD() & ~BM_MMDC_MPWRDQBY0DL_WR_DQ7_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DQ7_DEL(v)))
+#define BW_MMDC_MPWRDQBY0DL_WR_DQ7_DEL(x, v)   (HW_MMDC_MPWRDQBY0DL_WR(x, (HW_MMDC_MPWRDQBY0DL_RD(x) & ~BM_MMDC_MPWRDQBY0DL_WR_DQ7_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DQ7_DEL(v)))
 #endif
 //@}
 
@@ -8091,7 +8102,7 @@ typedef union _hw_mmdc_mpwrdqby0dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DM0_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY0DL_WR_DM0_DEL(v)   (HW_MMDC_MPWRDQBY0DL_WR((HW_MMDC_MPWRDQBY0DL_RD() & ~BM_MMDC_MPWRDQBY0DL_WR_DM0_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DM0_DEL(v)))
+#define BW_MMDC_MPWRDQBY0DL_WR_DM0_DEL(x, v)   (HW_MMDC_MPWRDQBY0DL_WR(x, (HW_MMDC_MPWRDQBY0DL_RD(x) & ~BM_MMDC_MPWRDQBY0DL_WR_DM0_DEL) | BF_MMDC_MPWRDQBY0DL_WR_DM0_DEL(v)))
 #endif
 //@}
 
@@ -8138,15 +8149,15 @@ typedef union _hw_mmdc_mpwrdqby1dl
  * @name Constants and macros for entire MMDC_MPWRDQBY1DL register
  */
 //@{
-#define HW_MMDC_MPWRDQBY1DL_ADDR      (REGS_MMDC_BASE + 0x830)
+#define HW_MMDC_MPWRDQBY1DL_ADDR(x)      (REGS_MMDC_BASE(x) + 0x830)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPWRDQBY1DL           (*(volatile hw_mmdc_mpwrdqby1dl_t *) HW_MMDC_MPWRDQBY1DL_ADDR)
-#define HW_MMDC_MPWRDQBY1DL_RD()      (HW_MMDC_MPWRDQBY1DL.U)
-#define HW_MMDC_MPWRDQBY1DL_WR(v)     (HW_MMDC_MPWRDQBY1DL.U = (v))
-#define HW_MMDC_MPWRDQBY1DL_SET(v)    (HW_MMDC_MPWRDQBY1DL_WR(HW_MMDC_MPWRDQBY1DL_RD() |  (v)))
-#define HW_MMDC_MPWRDQBY1DL_CLR(v)    (HW_MMDC_MPWRDQBY1DL_WR(HW_MMDC_MPWRDQBY1DL_RD() & ~(v)))
-#define HW_MMDC_MPWRDQBY1DL_TOG(v)    (HW_MMDC_MPWRDQBY1DL_WR(HW_MMDC_MPWRDQBY1DL_RD() ^  (v)))
+#define HW_MMDC_MPWRDQBY1DL(x)           (*(volatile hw_mmdc_mpwrdqby1dl_t *) HW_MMDC_MPWRDQBY1DL_ADDR(x))
+#define HW_MMDC_MPWRDQBY1DL_RD(x)        (HW_MMDC_MPWRDQBY1DL(x).U)
+#define HW_MMDC_MPWRDQBY1DL_WR(x, v)     (HW_MMDC_MPWRDQBY1DL(x).U = (v))
+#define HW_MMDC_MPWRDQBY1DL_SET(x, v)    (HW_MMDC_MPWRDQBY1DL_WR(x, HW_MMDC_MPWRDQBY1DL_RD(x) |  (v)))
+#define HW_MMDC_MPWRDQBY1DL_CLR(x, v)    (HW_MMDC_MPWRDQBY1DL_WR(x, HW_MMDC_MPWRDQBY1DL_RD(x) & ~(v)))
+#define HW_MMDC_MPWRDQBY1DL_TOG(x, v)    (HW_MMDC_MPWRDQBY1DL_WR(x, HW_MMDC_MPWRDQBY1DL_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -8177,7 +8188,7 @@ typedef union _hw_mmdc_mpwrdqby1dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ8_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY1DL_WR_DQ8_DEL(v)   (HW_MMDC_MPWRDQBY1DL_WR((HW_MMDC_MPWRDQBY1DL_RD() & ~BM_MMDC_MPWRDQBY1DL_WR_DQ8_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DQ8_DEL(v)))
+#define BW_MMDC_MPWRDQBY1DL_WR_DQ8_DEL(x, v)   (HW_MMDC_MPWRDQBY1DL_WR(x, (HW_MMDC_MPWRDQBY1DL_RD(x) & ~BM_MMDC_MPWRDQBY1DL_WR_DQ8_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DQ8_DEL(v)))
 #endif
 //@}
 
@@ -8204,7 +8215,7 @@ typedef union _hw_mmdc_mpwrdqby1dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ9_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY1DL_WR_DQ9_DEL(v)   (HW_MMDC_MPWRDQBY1DL_WR((HW_MMDC_MPWRDQBY1DL_RD() & ~BM_MMDC_MPWRDQBY1DL_WR_DQ9_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DQ9_DEL(v)))
+#define BW_MMDC_MPWRDQBY1DL_WR_DQ9_DEL(x, v)   (HW_MMDC_MPWRDQBY1DL_WR(x, (HW_MMDC_MPWRDQBY1DL_RD(x) & ~BM_MMDC_MPWRDQBY1DL_WR_DQ9_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DQ9_DEL(v)))
 #endif
 //@}
 
@@ -8231,7 +8242,7 @@ typedef union _hw_mmdc_mpwrdqby1dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ10_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY1DL_WR_DQ10_DEL(v)   (HW_MMDC_MPWRDQBY1DL_WR((HW_MMDC_MPWRDQBY1DL_RD() & ~BM_MMDC_MPWRDQBY1DL_WR_DQ10_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DQ10_DEL(v)))
+#define BW_MMDC_MPWRDQBY1DL_WR_DQ10_DEL(x, v)   (HW_MMDC_MPWRDQBY1DL_WR(x, (HW_MMDC_MPWRDQBY1DL_RD(x) & ~BM_MMDC_MPWRDQBY1DL_WR_DQ10_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DQ10_DEL(v)))
 #endif
 //@}
 
@@ -8258,7 +8269,7 @@ typedef union _hw_mmdc_mpwrdqby1dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ11_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY1DL_WR_DQ11_DEL(v)   (HW_MMDC_MPWRDQBY1DL_WR((HW_MMDC_MPWRDQBY1DL_RD() & ~BM_MMDC_MPWRDQBY1DL_WR_DQ11_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DQ11_DEL(v)))
+#define BW_MMDC_MPWRDQBY1DL_WR_DQ11_DEL(x, v)   (HW_MMDC_MPWRDQBY1DL_WR(x, (HW_MMDC_MPWRDQBY1DL_RD(x) & ~BM_MMDC_MPWRDQBY1DL_WR_DQ11_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DQ11_DEL(v)))
 #endif
 //@}
 
@@ -8285,7 +8296,7 @@ typedef union _hw_mmdc_mpwrdqby1dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ12_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY1DL_WR_DQ12_DEL(v)   (HW_MMDC_MPWRDQBY1DL_WR((HW_MMDC_MPWRDQBY1DL_RD() & ~BM_MMDC_MPWRDQBY1DL_WR_DQ12_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DQ12_DEL(v)))
+#define BW_MMDC_MPWRDQBY1DL_WR_DQ12_DEL(x, v)   (HW_MMDC_MPWRDQBY1DL_WR(x, (HW_MMDC_MPWRDQBY1DL_RD(x) & ~BM_MMDC_MPWRDQBY1DL_WR_DQ12_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DQ12_DEL(v)))
 #endif
 //@}
 
@@ -8312,7 +8323,7 @@ typedef union _hw_mmdc_mpwrdqby1dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ13_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY1DL_WR_DQ13_DEL(v)   (HW_MMDC_MPWRDQBY1DL_WR((HW_MMDC_MPWRDQBY1DL_RD() & ~BM_MMDC_MPWRDQBY1DL_WR_DQ13_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DQ13_DEL(v)))
+#define BW_MMDC_MPWRDQBY1DL_WR_DQ13_DEL(x, v)   (HW_MMDC_MPWRDQBY1DL_WR(x, (HW_MMDC_MPWRDQBY1DL_RD(x) & ~BM_MMDC_MPWRDQBY1DL_WR_DQ13_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DQ13_DEL(v)))
 #endif
 //@}
 
@@ -8339,7 +8350,7 @@ typedef union _hw_mmdc_mpwrdqby1dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ14_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY1DL_WR_DQ14_DEL(v)   (HW_MMDC_MPWRDQBY1DL_WR((HW_MMDC_MPWRDQBY1DL_RD() & ~BM_MMDC_MPWRDQBY1DL_WR_DQ14_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DQ14_DEL(v)))
+#define BW_MMDC_MPWRDQBY1DL_WR_DQ14_DEL(x, v)   (HW_MMDC_MPWRDQBY1DL_WR(x, (HW_MMDC_MPWRDQBY1DL_RD(x) & ~BM_MMDC_MPWRDQBY1DL_WR_DQ14_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DQ14_DEL(v)))
 #endif
 //@}
 
@@ -8366,7 +8377,7 @@ typedef union _hw_mmdc_mpwrdqby1dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ15_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY1DL_WR_DQ15_DEL(v)   (HW_MMDC_MPWRDQBY1DL_WR((HW_MMDC_MPWRDQBY1DL_RD() & ~BM_MMDC_MPWRDQBY1DL_WR_DQ15_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DQ15_DEL(v)))
+#define BW_MMDC_MPWRDQBY1DL_WR_DQ15_DEL(x, v)   (HW_MMDC_MPWRDQBY1DL_WR(x, (HW_MMDC_MPWRDQBY1DL_RD(x) & ~BM_MMDC_MPWRDQBY1DL_WR_DQ15_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DQ15_DEL(v)))
 #endif
 //@}
 
@@ -8393,7 +8404,7 @@ typedef union _hw_mmdc_mpwrdqby1dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DM1_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY1DL_WR_DM1_DEL(v)   (HW_MMDC_MPWRDQBY1DL_WR((HW_MMDC_MPWRDQBY1DL_RD() & ~BM_MMDC_MPWRDQBY1DL_WR_DM1_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DM1_DEL(v)))
+#define BW_MMDC_MPWRDQBY1DL_WR_DM1_DEL(x, v)   (HW_MMDC_MPWRDQBY1DL_WR(x, (HW_MMDC_MPWRDQBY1DL_RD(x) & ~BM_MMDC_MPWRDQBY1DL_WR_DM1_DEL) | BF_MMDC_MPWRDQBY1DL_WR_DM1_DEL(v)))
 #endif
 //@}
 
@@ -8440,15 +8451,15 @@ typedef union _hw_mmdc_mpwrdqby2dl
  * @name Constants and macros for entire MMDC_MPWRDQBY2DL register
  */
 //@{
-#define HW_MMDC_MPWRDQBY2DL_ADDR      (REGS_MMDC_BASE + 0x834)
+#define HW_MMDC_MPWRDQBY2DL_ADDR(x)      (REGS_MMDC_BASE(x) + 0x834)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPWRDQBY2DL           (*(volatile hw_mmdc_mpwrdqby2dl_t *) HW_MMDC_MPWRDQBY2DL_ADDR)
-#define HW_MMDC_MPWRDQBY2DL_RD()      (HW_MMDC_MPWRDQBY2DL.U)
-#define HW_MMDC_MPWRDQBY2DL_WR(v)     (HW_MMDC_MPWRDQBY2DL.U = (v))
-#define HW_MMDC_MPWRDQBY2DL_SET(v)    (HW_MMDC_MPWRDQBY2DL_WR(HW_MMDC_MPWRDQBY2DL_RD() |  (v)))
-#define HW_MMDC_MPWRDQBY2DL_CLR(v)    (HW_MMDC_MPWRDQBY2DL_WR(HW_MMDC_MPWRDQBY2DL_RD() & ~(v)))
-#define HW_MMDC_MPWRDQBY2DL_TOG(v)    (HW_MMDC_MPWRDQBY2DL_WR(HW_MMDC_MPWRDQBY2DL_RD() ^  (v)))
+#define HW_MMDC_MPWRDQBY2DL(x)           (*(volatile hw_mmdc_mpwrdqby2dl_t *) HW_MMDC_MPWRDQBY2DL_ADDR(x))
+#define HW_MMDC_MPWRDQBY2DL_RD(x)        (HW_MMDC_MPWRDQBY2DL(x).U)
+#define HW_MMDC_MPWRDQBY2DL_WR(x, v)     (HW_MMDC_MPWRDQBY2DL(x).U = (v))
+#define HW_MMDC_MPWRDQBY2DL_SET(x, v)    (HW_MMDC_MPWRDQBY2DL_WR(x, HW_MMDC_MPWRDQBY2DL_RD(x) |  (v)))
+#define HW_MMDC_MPWRDQBY2DL_CLR(x, v)    (HW_MMDC_MPWRDQBY2DL_WR(x, HW_MMDC_MPWRDQBY2DL_RD(x) & ~(v)))
+#define HW_MMDC_MPWRDQBY2DL_TOG(x, v)    (HW_MMDC_MPWRDQBY2DL_WR(x, HW_MMDC_MPWRDQBY2DL_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -8479,7 +8490,7 @@ typedef union _hw_mmdc_mpwrdqby2dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ16_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY2DL_WR_DQ16_DEL(v)   (HW_MMDC_MPWRDQBY2DL_WR((HW_MMDC_MPWRDQBY2DL_RD() & ~BM_MMDC_MPWRDQBY2DL_WR_DQ16_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DQ16_DEL(v)))
+#define BW_MMDC_MPWRDQBY2DL_WR_DQ16_DEL(x, v)   (HW_MMDC_MPWRDQBY2DL_WR(x, (HW_MMDC_MPWRDQBY2DL_RD(x) & ~BM_MMDC_MPWRDQBY2DL_WR_DQ16_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DQ16_DEL(v)))
 #endif
 //@}
 
@@ -8506,7 +8517,7 @@ typedef union _hw_mmdc_mpwrdqby2dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ17_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY2DL_WR_DQ17_DEL(v)   (HW_MMDC_MPWRDQBY2DL_WR((HW_MMDC_MPWRDQBY2DL_RD() & ~BM_MMDC_MPWRDQBY2DL_WR_DQ17_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DQ17_DEL(v)))
+#define BW_MMDC_MPWRDQBY2DL_WR_DQ17_DEL(x, v)   (HW_MMDC_MPWRDQBY2DL_WR(x, (HW_MMDC_MPWRDQBY2DL_RD(x) & ~BM_MMDC_MPWRDQBY2DL_WR_DQ17_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DQ17_DEL(v)))
 #endif
 //@}
 
@@ -8533,7 +8544,7 @@ typedef union _hw_mmdc_mpwrdqby2dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ18_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY2DL_WR_DQ18_DEL(v)   (HW_MMDC_MPWRDQBY2DL_WR((HW_MMDC_MPWRDQBY2DL_RD() & ~BM_MMDC_MPWRDQBY2DL_WR_DQ18_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DQ18_DEL(v)))
+#define BW_MMDC_MPWRDQBY2DL_WR_DQ18_DEL(x, v)   (HW_MMDC_MPWRDQBY2DL_WR(x, (HW_MMDC_MPWRDQBY2DL_RD(x) & ~BM_MMDC_MPWRDQBY2DL_WR_DQ18_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DQ18_DEL(v)))
 #endif
 //@}
 
@@ -8560,7 +8571,7 @@ typedef union _hw_mmdc_mpwrdqby2dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ19_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY2DL_WR_DQ19_DEL(v)   (HW_MMDC_MPWRDQBY2DL_WR((HW_MMDC_MPWRDQBY2DL_RD() & ~BM_MMDC_MPWRDQBY2DL_WR_DQ19_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DQ19_DEL(v)))
+#define BW_MMDC_MPWRDQBY2DL_WR_DQ19_DEL(x, v)   (HW_MMDC_MPWRDQBY2DL_WR(x, (HW_MMDC_MPWRDQBY2DL_RD(x) & ~BM_MMDC_MPWRDQBY2DL_WR_DQ19_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DQ19_DEL(v)))
 #endif
 //@}
 
@@ -8587,7 +8598,7 @@ typedef union _hw_mmdc_mpwrdqby2dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ20_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY2DL_WR_DQ20_DEL(v)   (HW_MMDC_MPWRDQBY2DL_WR((HW_MMDC_MPWRDQBY2DL_RD() & ~BM_MMDC_MPWRDQBY2DL_WR_DQ20_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DQ20_DEL(v)))
+#define BW_MMDC_MPWRDQBY2DL_WR_DQ20_DEL(x, v)   (HW_MMDC_MPWRDQBY2DL_WR(x, (HW_MMDC_MPWRDQBY2DL_RD(x) & ~BM_MMDC_MPWRDQBY2DL_WR_DQ20_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DQ20_DEL(v)))
 #endif
 //@}
 
@@ -8614,7 +8625,7 @@ typedef union _hw_mmdc_mpwrdqby2dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ21_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY2DL_WR_DQ21_DEL(v)   (HW_MMDC_MPWRDQBY2DL_WR((HW_MMDC_MPWRDQBY2DL_RD() & ~BM_MMDC_MPWRDQBY2DL_WR_DQ21_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DQ21_DEL(v)))
+#define BW_MMDC_MPWRDQBY2DL_WR_DQ21_DEL(x, v)   (HW_MMDC_MPWRDQBY2DL_WR(x, (HW_MMDC_MPWRDQBY2DL_RD(x) & ~BM_MMDC_MPWRDQBY2DL_WR_DQ21_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DQ21_DEL(v)))
 #endif
 //@}
 
@@ -8641,7 +8652,7 @@ typedef union _hw_mmdc_mpwrdqby2dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ22_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY2DL_WR_DQ22_DEL(v)   (HW_MMDC_MPWRDQBY2DL_WR((HW_MMDC_MPWRDQBY2DL_RD() & ~BM_MMDC_MPWRDQBY2DL_WR_DQ22_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DQ22_DEL(v)))
+#define BW_MMDC_MPWRDQBY2DL_WR_DQ22_DEL(x, v)   (HW_MMDC_MPWRDQBY2DL_WR(x, (HW_MMDC_MPWRDQBY2DL_RD(x) & ~BM_MMDC_MPWRDQBY2DL_WR_DQ22_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DQ22_DEL(v)))
 #endif
 //@}
 
@@ -8668,7 +8679,7 @@ typedef union _hw_mmdc_mpwrdqby2dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ23_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY2DL_WR_DQ23_DEL(v)   (HW_MMDC_MPWRDQBY2DL_WR((HW_MMDC_MPWRDQBY2DL_RD() & ~BM_MMDC_MPWRDQBY2DL_WR_DQ23_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DQ23_DEL(v)))
+#define BW_MMDC_MPWRDQBY2DL_WR_DQ23_DEL(x, v)   (HW_MMDC_MPWRDQBY2DL_WR(x, (HW_MMDC_MPWRDQBY2DL_RD(x) & ~BM_MMDC_MPWRDQBY2DL_WR_DQ23_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DQ23_DEL(v)))
 #endif
 //@}
 
@@ -8695,7 +8706,7 @@ typedef union _hw_mmdc_mpwrdqby2dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DM2_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY2DL_WR_DM2_DEL(v)   (HW_MMDC_MPWRDQBY2DL_WR((HW_MMDC_MPWRDQBY2DL_RD() & ~BM_MMDC_MPWRDQBY2DL_WR_DM2_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DM2_DEL(v)))
+#define BW_MMDC_MPWRDQBY2DL_WR_DM2_DEL(x, v)   (HW_MMDC_MPWRDQBY2DL_WR(x, (HW_MMDC_MPWRDQBY2DL_RD(x) & ~BM_MMDC_MPWRDQBY2DL_WR_DM2_DEL) | BF_MMDC_MPWRDQBY2DL_WR_DM2_DEL(v)))
 #endif
 //@}
 
@@ -8742,15 +8753,15 @@ typedef union _hw_mmdc_mpwrdqby3dl
  * @name Constants and macros for entire MMDC_MPWRDQBY3DL register
  */
 //@{
-#define HW_MMDC_MPWRDQBY3DL_ADDR      (REGS_MMDC_BASE + 0x838)
+#define HW_MMDC_MPWRDQBY3DL_ADDR(x)      (REGS_MMDC_BASE(x) + 0x838)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPWRDQBY3DL           (*(volatile hw_mmdc_mpwrdqby3dl_t *) HW_MMDC_MPWRDQBY3DL_ADDR)
-#define HW_MMDC_MPWRDQBY3DL_RD()      (HW_MMDC_MPWRDQBY3DL.U)
-#define HW_MMDC_MPWRDQBY3DL_WR(v)     (HW_MMDC_MPWRDQBY3DL.U = (v))
-#define HW_MMDC_MPWRDQBY3DL_SET(v)    (HW_MMDC_MPWRDQBY3DL_WR(HW_MMDC_MPWRDQBY3DL_RD() |  (v)))
-#define HW_MMDC_MPWRDQBY3DL_CLR(v)    (HW_MMDC_MPWRDQBY3DL_WR(HW_MMDC_MPWRDQBY3DL_RD() & ~(v)))
-#define HW_MMDC_MPWRDQBY3DL_TOG(v)    (HW_MMDC_MPWRDQBY3DL_WR(HW_MMDC_MPWRDQBY3DL_RD() ^  (v)))
+#define HW_MMDC_MPWRDQBY3DL(x)           (*(volatile hw_mmdc_mpwrdqby3dl_t *) HW_MMDC_MPWRDQBY3DL_ADDR(x))
+#define HW_MMDC_MPWRDQBY3DL_RD(x)        (HW_MMDC_MPWRDQBY3DL(x).U)
+#define HW_MMDC_MPWRDQBY3DL_WR(x, v)     (HW_MMDC_MPWRDQBY3DL(x).U = (v))
+#define HW_MMDC_MPWRDQBY3DL_SET(x, v)    (HW_MMDC_MPWRDQBY3DL_WR(x, HW_MMDC_MPWRDQBY3DL_RD(x) |  (v)))
+#define HW_MMDC_MPWRDQBY3DL_CLR(x, v)    (HW_MMDC_MPWRDQBY3DL_WR(x, HW_MMDC_MPWRDQBY3DL_RD(x) & ~(v)))
+#define HW_MMDC_MPWRDQBY3DL_TOG(x, v)    (HW_MMDC_MPWRDQBY3DL_WR(x, HW_MMDC_MPWRDQBY3DL_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -8781,7 +8792,7 @@ typedef union _hw_mmdc_mpwrdqby3dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ24_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY3DL_WR_DQ24_DEL(v)   (HW_MMDC_MPWRDQBY3DL_WR((HW_MMDC_MPWRDQBY3DL_RD() & ~BM_MMDC_MPWRDQBY3DL_WR_DQ24_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DQ24_DEL(v)))
+#define BW_MMDC_MPWRDQBY3DL_WR_DQ24_DEL(x, v)   (HW_MMDC_MPWRDQBY3DL_WR(x, (HW_MMDC_MPWRDQBY3DL_RD(x) & ~BM_MMDC_MPWRDQBY3DL_WR_DQ24_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DQ24_DEL(v)))
 #endif
 //@}
 
@@ -8808,7 +8819,7 @@ typedef union _hw_mmdc_mpwrdqby3dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ25_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY3DL_WR_DQ25_DEL(v)   (HW_MMDC_MPWRDQBY3DL_WR((HW_MMDC_MPWRDQBY3DL_RD() & ~BM_MMDC_MPWRDQBY3DL_WR_DQ25_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DQ25_DEL(v)))
+#define BW_MMDC_MPWRDQBY3DL_WR_DQ25_DEL(x, v)   (HW_MMDC_MPWRDQBY3DL_WR(x, (HW_MMDC_MPWRDQBY3DL_RD(x) & ~BM_MMDC_MPWRDQBY3DL_WR_DQ25_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DQ25_DEL(v)))
 #endif
 //@}
 
@@ -8835,7 +8846,7 @@ typedef union _hw_mmdc_mpwrdqby3dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ26_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY3DL_WR_DQ26_DEL(v)   (HW_MMDC_MPWRDQBY3DL_WR((HW_MMDC_MPWRDQBY3DL_RD() & ~BM_MMDC_MPWRDQBY3DL_WR_DQ26_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DQ26_DEL(v)))
+#define BW_MMDC_MPWRDQBY3DL_WR_DQ26_DEL(x, v)   (HW_MMDC_MPWRDQBY3DL_WR(x, (HW_MMDC_MPWRDQBY3DL_RD(x) & ~BM_MMDC_MPWRDQBY3DL_WR_DQ26_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DQ26_DEL(v)))
 #endif
 //@}
 
@@ -8862,7 +8873,7 @@ typedef union _hw_mmdc_mpwrdqby3dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ27_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY3DL_WR_DQ27_DEL(v)   (HW_MMDC_MPWRDQBY3DL_WR((HW_MMDC_MPWRDQBY3DL_RD() & ~BM_MMDC_MPWRDQBY3DL_WR_DQ27_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DQ27_DEL(v)))
+#define BW_MMDC_MPWRDQBY3DL_WR_DQ27_DEL(x, v)   (HW_MMDC_MPWRDQBY3DL_WR(x, (HW_MMDC_MPWRDQBY3DL_RD(x) & ~BM_MMDC_MPWRDQBY3DL_WR_DQ27_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DQ27_DEL(v)))
 #endif
 //@}
 
@@ -8889,7 +8900,7 @@ typedef union _hw_mmdc_mpwrdqby3dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ28_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY3DL_WR_DQ28_DEL(v)   (HW_MMDC_MPWRDQBY3DL_WR((HW_MMDC_MPWRDQBY3DL_RD() & ~BM_MMDC_MPWRDQBY3DL_WR_DQ28_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DQ28_DEL(v)))
+#define BW_MMDC_MPWRDQBY3DL_WR_DQ28_DEL(x, v)   (HW_MMDC_MPWRDQBY3DL_WR(x, (HW_MMDC_MPWRDQBY3DL_RD(x) & ~BM_MMDC_MPWRDQBY3DL_WR_DQ28_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DQ28_DEL(v)))
 #endif
 //@}
 
@@ -8916,7 +8927,7 @@ typedef union _hw_mmdc_mpwrdqby3dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ29_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY3DL_WR_DQ29_DEL(v)   (HW_MMDC_MPWRDQBY3DL_WR((HW_MMDC_MPWRDQBY3DL_RD() & ~BM_MMDC_MPWRDQBY3DL_WR_DQ29_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DQ29_DEL(v)))
+#define BW_MMDC_MPWRDQBY3DL_WR_DQ29_DEL(x, v)   (HW_MMDC_MPWRDQBY3DL_WR(x, (HW_MMDC_MPWRDQBY3DL_RD(x) & ~BM_MMDC_MPWRDQBY3DL_WR_DQ29_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DQ29_DEL(v)))
 #endif
 //@}
 
@@ -8943,7 +8954,7 @@ typedef union _hw_mmdc_mpwrdqby3dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ30_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY3DL_WR_DQ30_DEL(v)   (HW_MMDC_MPWRDQBY3DL_WR((HW_MMDC_MPWRDQBY3DL_RD() & ~BM_MMDC_MPWRDQBY3DL_WR_DQ30_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DQ30_DEL(v)))
+#define BW_MMDC_MPWRDQBY3DL_WR_DQ30_DEL(x, v)   (HW_MMDC_MPWRDQBY3DL_WR(x, (HW_MMDC_MPWRDQBY3DL_RD(x) & ~BM_MMDC_MPWRDQBY3DL_WR_DQ30_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DQ30_DEL(v)))
 #endif
 //@}
 
@@ -8970,7 +8981,7 @@ typedef union _hw_mmdc_mpwrdqby3dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DQ31_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY3DL_WR_DQ31_DEL(v)   (HW_MMDC_MPWRDQBY3DL_WR((HW_MMDC_MPWRDQBY3DL_RD() & ~BM_MMDC_MPWRDQBY3DL_WR_DQ31_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DQ31_DEL(v)))
+#define BW_MMDC_MPWRDQBY3DL_WR_DQ31_DEL(x, v)   (HW_MMDC_MPWRDQBY3DL_WR(x, (HW_MMDC_MPWRDQBY3DL_RD(x) & ~BM_MMDC_MPWRDQBY3DL_WR_DQ31_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DQ31_DEL(v)))
 #endif
 //@}
 
@@ -8997,7 +9008,7 @@ typedef union _hw_mmdc_mpwrdqby3dl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DM3_DEL field to a new value.
-#define BW_MMDC_MPWRDQBY3DL_WR_DM3_DEL(v)   (HW_MMDC_MPWRDQBY3DL_WR((HW_MMDC_MPWRDQBY3DL_RD() & ~BM_MMDC_MPWRDQBY3DL_WR_DM3_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DM3_DEL(v)))
+#define BW_MMDC_MPWRDQBY3DL_WR_DM3_DEL(x, v)   (HW_MMDC_MPWRDQBY3DL_WR(x, (HW_MMDC_MPWRDQBY3DL_RD(x) & ~BM_MMDC_MPWRDQBY3DL_WR_DM3_DEL) | BF_MMDC_MPWRDQBY3DL_WR_DM3_DEL(v)))
 #endif
 //@}
 
@@ -9038,15 +9049,15 @@ typedef union _hw_mmdc_mpdgctrl0
  * @name Constants and macros for entire MMDC_MPDGCTRL0 register
  */
 //@{
-#define HW_MMDC_MPDGCTRL0_ADDR      (REGS_MMDC_BASE + 0x83c)
+#define HW_MMDC_MPDGCTRL0_ADDR(x)      (REGS_MMDC_BASE(x) + 0x83c)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPDGCTRL0           (*(volatile hw_mmdc_mpdgctrl0_t *) HW_MMDC_MPDGCTRL0_ADDR)
-#define HW_MMDC_MPDGCTRL0_RD()      (HW_MMDC_MPDGCTRL0.U)
-#define HW_MMDC_MPDGCTRL0_WR(v)     (HW_MMDC_MPDGCTRL0.U = (v))
-#define HW_MMDC_MPDGCTRL0_SET(v)    (HW_MMDC_MPDGCTRL0_WR(HW_MMDC_MPDGCTRL0_RD() |  (v)))
-#define HW_MMDC_MPDGCTRL0_CLR(v)    (HW_MMDC_MPDGCTRL0_WR(HW_MMDC_MPDGCTRL0_RD() & ~(v)))
-#define HW_MMDC_MPDGCTRL0_TOG(v)    (HW_MMDC_MPDGCTRL0_WR(HW_MMDC_MPDGCTRL0_RD() ^  (v)))
+#define HW_MMDC_MPDGCTRL0(x)           (*(volatile hw_mmdc_mpdgctrl0_t *) HW_MMDC_MPDGCTRL0_ADDR(x))
+#define HW_MMDC_MPDGCTRL0_RD(x)        (HW_MMDC_MPDGCTRL0(x).U)
+#define HW_MMDC_MPDGCTRL0_WR(x, v)     (HW_MMDC_MPDGCTRL0(x).U = (v))
+#define HW_MMDC_MPDGCTRL0_SET(x, v)    (HW_MMDC_MPDGCTRL0_WR(x, HW_MMDC_MPDGCTRL0_RD(x) |  (v)))
+#define HW_MMDC_MPDGCTRL0_CLR(x, v)    (HW_MMDC_MPDGCTRL0_WR(x, HW_MMDC_MPDGCTRL0_RD(x) & ~(v)))
+#define HW_MMDC_MPDGCTRL0_TOG(x, v)    (HW_MMDC_MPDGCTRL0_WR(x, HW_MMDC_MPDGCTRL0_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -9076,7 +9087,7 @@ typedef union _hw_mmdc_mpdgctrl0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DG_DL_ABS_OFFSET0 field to a new value.
-#define BW_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0(v)   (HW_MMDC_MPDGCTRL0_WR((HW_MMDC_MPDGCTRL0_RD() & ~BM_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0) | BF_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0(v)))
+#define BW_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0(x, v)   (HW_MMDC_MPDGCTRL0_WR(x, (HW_MMDC_MPDGCTRL0_RD(x) & ~BM_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0) | BF_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET0(v)))
 #endif
 //@}
 
@@ -9109,7 +9120,7 @@ typedef union _hw_mmdc_mpdgctrl0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DG_HC_DEL0 field to a new value.
-#define BW_MMDC_MPDGCTRL0_DG_HC_DEL0(v)   (HW_MMDC_MPDGCTRL0_WR((HW_MMDC_MPDGCTRL0_RD() & ~BM_MMDC_MPDGCTRL0_DG_HC_DEL0) | BF_MMDC_MPDGCTRL0_DG_HC_DEL0(v)))
+#define BW_MMDC_MPDGCTRL0_DG_HC_DEL0(x, v)   (HW_MMDC_MPDGCTRL0_WR(x, (HW_MMDC_MPDGCTRL0_RD(x) & ~BM_MMDC_MPDGCTRL0_DG_HC_DEL0) | BF_MMDC_MPDGCTRL0_DG_HC_DEL0(v)))
 #endif
 //@}
 
@@ -9153,7 +9164,7 @@ typedef union _hw_mmdc_mpdgctrl0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DG_DL_ABS_OFFSET1 field to a new value.
-#define BW_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1(v)   (HW_MMDC_MPDGCTRL0_WR((HW_MMDC_MPDGCTRL0_RD() & ~BM_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1) | BF_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1(v)))
+#define BW_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1(x, v)   (HW_MMDC_MPDGCTRL0_WR(x, (HW_MMDC_MPDGCTRL0_RD(x) & ~BM_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1) | BF_MMDC_MPDGCTRL0_DG_DL_ABS_OFFSET1(v)))
 #endif
 //@}
 
@@ -9175,7 +9186,7 @@ typedef union _hw_mmdc_mpdgctrl0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DG_EXT_UP field to a new value.
-#define BW_MMDC_MPDGCTRL0_DG_EXT_UP(v)   (HW_MMDC_MPDGCTRL0_WR((HW_MMDC_MPDGCTRL0_RD() & ~BM_MMDC_MPDGCTRL0_DG_EXT_UP) | BF_MMDC_MPDGCTRL0_DG_EXT_UP(v)))
+#define BW_MMDC_MPDGCTRL0_DG_EXT_UP(x, v)   (HW_MMDC_MPDGCTRL0_WR(x, (HW_MMDC_MPDGCTRL0_RD(x) & ~BM_MMDC_MPDGCTRL0_DG_EXT_UP) | BF_MMDC_MPDGCTRL0_DG_EXT_UP(v)))
 #endif
 //@}
 
@@ -9208,7 +9219,7 @@ typedef union _hw_mmdc_mpdgctrl0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DG_HC_DEL1 field to a new value.
-#define BW_MMDC_MPDGCTRL0_DG_HC_DEL1(v)   (HW_MMDC_MPDGCTRL0_WR((HW_MMDC_MPDGCTRL0_RD() & ~BM_MMDC_MPDGCTRL0_DG_HC_DEL1) | BF_MMDC_MPDGCTRL0_DG_HC_DEL1(v)))
+#define BW_MMDC_MPDGCTRL0_DG_HC_DEL1(x, v)   (HW_MMDC_MPDGCTRL0_WR(x, (HW_MMDC_MPDGCTRL0_RD(x) & ~BM_MMDC_MPDGCTRL0_DG_HC_DEL1) | BF_MMDC_MPDGCTRL0_DG_HC_DEL1(v)))
 #endif
 //@}
 
@@ -9236,7 +9247,7 @@ typedef union _hw_mmdc_mpdgctrl0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HW_DG_EN field to a new value.
-#define BW_MMDC_MPDGCTRL0_HW_DG_EN(v)   (HW_MMDC_MPDGCTRL0_WR((HW_MMDC_MPDGCTRL0_RD() & ~BM_MMDC_MPDGCTRL0_HW_DG_EN) | BF_MMDC_MPDGCTRL0_HW_DG_EN(v)))
+#define BW_MMDC_MPDGCTRL0_HW_DG_EN(x, v)   (HW_MMDC_MPDGCTRL0_WR(x, (HW_MMDC_MPDGCTRL0_RD(x) & ~BM_MMDC_MPDGCTRL0_HW_DG_EN) | BF_MMDC_MPDGCTRL0_HW_DG_EN(v)))
 #endif
 //@}
 
@@ -9293,7 +9304,7 @@ typedef union _hw_mmdc_mpdgctrl0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RST_RD_FIFO field to a new value.
-#define BW_MMDC_MPDGCTRL0_RST_RD_FIFO(v)   (HW_MMDC_MPDGCTRL0_WR((HW_MMDC_MPDGCTRL0_RD() & ~BM_MMDC_MPDGCTRL0_RST_RD_FIFO) | BF_MMDC_MPDGCTRL0_RST_RD_FIFO(v)))
+#define BW_MMDC_MPDGCTRL0_RST_RD_FIFO(x, v)   (HW_MMDC_MPDGCTRL0_WR(x, (HW_MMDC_MPDGCTRL0_RD(x) & ~BM_MMDC_MPDGCTRL0_RST_RD_FIFO) | BF_MMDC_MPDGCTRL0_RST_RD_FIFO(v)))
 #endif
 //@}
 
@@ -9330,15 +9341,15 @@ typedef union _hw_mmdc_mpdgctrl1
  * @name Constants and macros for entire MMDC_MPDGCTRL1 register
  */
 //@{
-#define HW_MMDC_MPDGCTRL1_ADDR      (REGS_MMDC_BASE + 0x840)
+#define HW_MMDC_MPDGCTRL1_ADDR(x)      (REGS_MMDC_BASE(x) + 0x840)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPDGCTRL1           (*(volatile hw_mmdc_mpdgctrl1_t *) HW_MMDC_MPDGCTRL1_ADDR)
-#define HW_MMDC_MPDGCTRL1_RD()      (HW_MMDC_MPDGCTRL1.U)
-#define HW_MMDC_MPDGCTRL1_WR(v)     (HW_MMDC_MPDGCTRL1.U = (v))
-#define HW_MMDC_MPDGCTRL1_SET(v)    (HW_MMDC_MPDGCTRL1_WR(HW_MMDC_MPDGCTRL1_RD() |  (v)))
-#define HW_MMDC_MPDGCTRL1_CLR(v)    (HW_MMDC_MPDGCTRL1_WR(HW_MMDC_MPDGCTRL1_RD() & ~(v)))
-#define HW_MMDC_MPDGCTRL1_TOG(v)    (HW_MMDC_MPDGCTRL1_WR(HW_MMDC_MPDGCTRL1_RD() ^  (v)))
+#define HW_MMDC_MPDGCTRL1(x)           (*(volatile hw_mmdc_mpdgctrl1_t *) HW_MMDC_MPDGCTRL1_ADDR(x))
+#define HW_MMDC_MPDGCTRL1_RD(x)        (HW_MMDC_MPDGCTRL1(x).U)
+#define HW_MMDC_MPDGCTRL1_WR(x, v)     (HW_MMDC_MPDGCTRL1(x).U = (v))
+#define HW_MMDC_MPDGCTRL1_SET(x, v)    (HW_MMDC_MPDGCTRL1_WR(x, HW_MMDC_MPDGCTRL1_RD(x) |  (v)))
+#define HW_MMDC_MPDGCTRL1_CLR(x, v)    (HW_MMDC_MPDGCTRL1_WR(x, HW_MMDC_MPDGCTRL1_RD(x) & ~(v)))
+#define HW_MMDC_MPDGCTRL1_TOG(x, v)    (HW_MMDC_MPDGCTRL1_WR(x, HW_MMDC_MPDGCTRL1_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -9368,7 +9379,7 @@ typedef union _hw_mmdc_mpdgctrl1
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DG_DL_ABS_OFFSET2 field to a new value.
-#define BW_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2(v)   (HW_MMDC_MPDGCTRL1_WR((HW_MMDC_MPDGCTRL1_RD() & ~BM_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2) | BF_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2(v)))
+#define BW_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2(x, v)   (HW_MMDC_MPDGCTRL1_WR(x, (HW_MMDC_MPDGCTRL1_RD(x) & ~BM_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2) | BF_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET2(v)))
 #endif
 //@}
 
@@ -9401,7 +9412,7 @@ typedef union _hw_mmdc_mpdgctrl1
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DG_HC_DEL2 field to a new value.
-#define BW_MMDC_MPDGCTRL1_DG_HC_DEL2(v)   (HW_MMDC_MPDGCTRL1_WR((HW_MMDC_MPDGCTRL1_RD() & ~BM_MMDC_MPDGCTRL1_DG_HC_DEL2) | BF_MMDC_MPDGCTRL1_DG_HC_DEL2(v)))
+#define BW_MMDC_MPDGCTRL1_DG_HC_DEL2(x, v)   (HW_MMDC_MPDGCTRL1_WR(x, (HW_MMDC_MPDGCTRL1_RD(x) & ~BM_MMDC_MPDGCTRL1_DG_HC_DEL2) | BF_MMDC_MPDGCTRL1_DG_HC_DEL2(v)))
 #endif
 //@}
 
@@ -9427,7 +9438,7 @@ typedef union _hw_mmdc_mpdgctrl1
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DG_DL_ABS_OFFSET3 field to a new value.
-#define BW_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3(v)   (HW_MMDC_MPDGCTRL1_WR((HW_MMDC_MPDGCTRL1_RD() & ~BM_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3) | BF_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3(v)))
+#define BW_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3(x, v)   (HW_MMDC_MPDGCTRL1_WR(x, (HW_MMDC_MPDGCTRL1_RD(x) & ~BM_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3) | BF_MMDC_MPDGCTRL1_DG_DL_ABS_OFFSET3(v)))
 #endif
 //@}
 
@@ -9460,7 +9471,7 @@ typedef union _hw_mmdc_mpdgctrl1
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the DG_HC_DEL3 field to a new value.
-#define BW_MMDC_MPDGCTRL1_DG_HC_DEL3(v)   (HW_MMDC_MPDGCTRL1_WR((HW_MMDC_MPDGCTRL1_RD() & ~BM_MMDC_MPDGCTRL1_DG_HC_DEL3) | BF_MMDC_MPDGCTRL1_DG_HC_DEL3(v)))
+#define BW_MMDC_MPDGCTRL1_DG_HC_DEL3(x, v)   (HW_MMDC_MPDGCTRL1_WR(x, (HW_MMDC_MPDGCTRL1_RD(x) & ~BM_MMDC_MPDGCTRL1_DG_HC_DEL3) | BF_MMDC_MPDGCTRL1_DG_HC_DEL3(v)))
 #endif
 //@}
 
@@ -9498,11 +9509,11 @@ typedef union _hw_mmdc_mpdgdlst0
  * @name Constants and macros for entire MMDC_MPDGDLST0 register
  */
 //@{
-#define HW_MMDC_MPDGDLST0_ADDR      (REGS_MMDC_BASE + 0x844)
+#define HW_MMDC_MPDGDLST0_ADDR(x)      (REGS_MMDC_BASE(x) + 0x844)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPDGDLST0           (*(volatile hw_mmdc_mpdgdlst0_t *) HW_MMDC_MPDGDLST0_ADDR)
-#define HW_MMDC_MPDGDLST0_RD()      (HW_MMDC_MPDGDLST0.U)
+#define HW_MMDC_MPDGDLST0(x)           (*(volatile hw_mmdc_mpdgdlst0_t *) HW_MMDC_MPDGDLST0_ADDR(x))
+#define HW_MMDC_MPDGDLST0_RD(x)        (HW_MMDC_MPDGDLST0(x).U)
 #endif
 //@}
 
@@ -9598,15 +9609,15 @@ typedef union _hw_mmdc_mprddlctl
  * @name Constants and macros for entire MMDC_MPRDDLCTL register
  */
 //@{
-#define HW_MMDC_MPRDDLCTL_ADDR      (REGS_MMDC_BASE + 0x848)
+#define HW_MMDC_MPRDDLCTL_ADDR(x)      (REGS_MMDC_BASE(x) + 0x848)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPRDDLCTL           (*(volatile hw_mmdc_mprddlctl_t *) HW_MMDC_MPRDDLCTL_ADDR)
-#define HW_MMDC_MPRDDLCTL_RD()      (HW_MMDC_MPRDDLCTL.U)
-#define HW_MMDC_MPRDDLCTL_WR(v)     (HW_MMDC_MPRDDLCTL.U = (v))
-#define HW_MMDC_MPRDDLCTL_SET(v)    (HW_MMDC_MPRDDLCTL_WR(HW_MMDC_MPRDDLCTL_RD() |  (v)))
-#define HW_MMDC_MPRDDLCTL_CLR(v)    (HW_MMDC_MPRDDLCTL_WR(HW_MMDC_MPRDDLCTL_RD() & ~(v)))
-#define HW_MMDC_MPRDDLCTL_TOG(v)    (HW_MMDC_MPRDDLCTL_WR(HW_MMDC_MPRDDLCTL_RD() ^  (v)))
+#define HW_MMDC_MPRDDLCTL(x)           (*(volatile hw_mmdc_mprddlctl_t *) HW_MMDC_MPRDDLCTL_ADDR(x))
+#define HW_MMDC_MPRDDLCTL_RD(x)        (HW_MMDC_MPRDDLCTL(x).U)
+#define HW_MMDC_MPRDDLCTL_WR(x, v)     (HW_MMDC_MPRDDLCTL(x).U = (v))
+#define HW_MMDC_MPRDDLCTL_SET(x, v)    (HW_MMDC_MPRDDLCTL_WR(x, HW_MMDC_MPRDDLCTL_RD(x) |  (v)))
+#define HW_MMDC_MPRDDLCTL_CLR(x, v)    (HW_MMDC_MPRDDLCTL_WR(x, HW_MMDC_MPRDDLCTL_RD(x) & ~(v)))
+#define HW_MMDC_MPRDDLCTL_TOG(x, v)    (HW_MMDC_MPRDDLCTL_WR(x, HW_MMDC_MPRDDLCTL_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -9637,7 +9648,7 @@ typedef union _hw_mmdc_mprddlctl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DL_ABS_OFFSET0 field to a new value.
-#define BW_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0(v)   (HW_MMDC_MPRDDLCTL_WR((HW_MMDC_MPRDDLCTL_RD() & ~BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0) | BF_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0(v)))
+#define BW_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0(x, v)   (HW_MMDC_MPRDDLCTL_WR(x, (HW_MMDC_MPRDDLCTL_RD(x) & ~BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0) | BF_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET0(v)))
 #endif
 //@}
 
@@ -9664,7 +9675,7 @@ typedef union _hw_mmdc_mprddlctl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DL_ABS_OFFSET1 field to a new value.
-#define BW_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1(v)   (HW_MMDC_MPRDDLCTL_WR((HW_MMDC_MPRDDLCTL_RD() & ~BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1) | BF_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1(v)))
+#define BW_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1(x, v)   (HW_MMDC_MPRDDLCTL_WR(x, (HW_MMDC_MPRDDLCTL_RD(x) & ~BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1) | BF_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET1(v)))
 #endif
 //@}
 
@@ -9691,7 +9702,7 @@ typedef union _hw_mmdc_mprddlctl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DL_ABS_OFFSET2 field to a new value.
-#define BW_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2(v)   (HW_MMDC_MPRDDLCTL_WR((HW_MMDC_MPRDDLCTL_RD() & ~BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2) | BF_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2(v)))
+#define BW_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2(x, v)   (HW_MMDC_MPRDDLCTL_WR(x, (HW_MMDC_MPRDDLCTL_RD(x) & ~BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2) | BF_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET2(v)))
 #endif
 //@}
 
@@ -9718,7 +9729,7 @@ typedef union _hw_mmdc_mprddlctl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the RD_DL_ABS_OFFSET3 field to a new value.
-#define BW_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3(v)   (HW_MMDC_MPRDDLCTL_WR((HW_MMDC_MPRDDLCTL_RD() & ~BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3) | BF_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3(v)))
+#define BW_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3(x, v)   (HW_MMDC_MPRDDLCTL_WR(x, (HW_MMDC_MPRDDLCTL_RD(x) & ~BM_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3) | BF_MMDC_MPRDDLCTL_RD_DL_ABS_OFFSET3(v)))
 #endif
 //@}
 
@@ -9756,11 +9767,11 @@ typedef union _hw_mmdc_mprddlst
  * @name Constants and macros for entire MMDC_MPRDDLST register
  */
 //@{
-#define HW_MMDC_MPRDDLST_ADDR      (REGS_MMDC_BASE + 0x84c)
+#define HW_MMDC_MPRDDLST_ADDR(x)      (REGS_MMDC_BASE(x) + 0x84c)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPRDDLST           (*(volatile hw_mmdc_mprddlst_t *) HW_MMDC_MPRDDLST_ADDR)
-#define HW_MMDC_MPRDDLST_RD()      (HW_MMDC_MPRDDLST.U)
+#define HW_MMDC_MPRDDLST(x)           (*(volatile hw_mmdc_mprddlst_t *) HW_MMDC_MPRDDLST_ADDR(x))
+#define HW_MMDC_MPRDDLST_RD(x)        (HW_MMDC_MPRDDLST(x).U)
 #endif
 //@}
 
@@ -9852,15 +9863,15 @@ typedef union _hw_mmdc_mpwrdlctl
  * @name Constants and macros for entire MMDC_MPWRDLCTL register
  */
 //@{
-#define HW_MMDC_MPWRDLCTL_ADDR      (REGS_MMDC_BASE + 0x850)
+#define HW_MMDC_MPWRDLCTL_ADDR(x)      (REGS_MMDC_BASE(x) + 0x850)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPWRDLCTL           (*(volatile hw_mmdc_mpwrdlctl_t *) HW_MMDC_MPWRDLCTL_ADDR)
-#define HW_MMDC_MPWRDLCTL_RD()      (HW_MMDC_MPWRDLCTL.U)
-#define HW_MMDC_MPWRDLCTL_WR(v)     (HW_MMDC_MPWRDLCTL.U = (v))
-#define HW_MMDC_MPWRDLCTL_SET(v)    (HW_MMDC_MPWRDLCTL_WR(HW_MMDC_MPWRDLCTL_RD() |  (v)))
-#define HW_MMDC_MPWRDLCTL_CLR(v)    (HW_MMDC_MPWRDLCTL_WR(HW_MMDC_MPWRDLCTL_RD() & ~(v)))
-#define HW_MMDC_MPWRDLCTL_TOG(v)    (HW_MMDC_MPWRDLCTL_WR(HW_MMDC_MPWRDLCTL_RD() ^  (v)))
+#define HW_MMDC_MPWRDLCTL(x)           (*(volatile hw_mmdc_mpwrdlctl_t *) HW_MMDC_MPWRDLCTL_ADDR(x))
+#define HW_MMDC_MPWRDLCTL_RD(x)        (HW_MMDC_MPWRDLCTL(x).U)
+#define HW_MMDC_MPWRDLCTL_WR(x, v)     (HW_MMDC_MPWRDLCTL(x).U = (v))
+#define HW_MMDC_MPWRDLCTL_SET(x, v)    (HW_MMDC_MPWRDLCTL_WR(x, HW_MMDC_MPWRDLCTL_RD(x) |  (v)))
+#define HW_MMDC_MPWRDLCTL_CLR(x, v)    (HW_MMDC_MPWRDLCTL_WR(x, HW_MMDC_MPWRDLCTL_RD(x) & ~(v)))
+#define HW_MMDC_MPWRDLCTL_TOG(x, v)    (HW_MMDC_MPWRDLCTL_WR(x, HW_MMDC_MPWRDLCTL_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -9891,7 +9902,7 @@ typedef union _hw_mmdc_mpwrdlctl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DL_ABS_OFFSET0 field to a new value.
-#define BW_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0(v)   (HW_MMDC_MPWRDLCTL_WR((HW_MMDC_MPWRDLCTL_RD() & ~BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0) | BF_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0(v)))
+#define BW_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0(x, v)   (HW_MMDC_MPWRDLCTL_WR(x, (HW_MMDC_MPWRDLCTL_RD(x) & ~BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0) | BF_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET0(v)))
 #endif
 //@}
 
@@ -9918,7 +9929,7 @@ typedef union _hw_mmdc_mpwrdlctl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DL_ABS_OFFSET1 field to a new value.
-#define BW_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1(v)   (HW_MMDC_MPWRDLCTL_WR((HW_MMDC_MPWRDLCTL_RD() & ~BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1) | BF_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1(v)))
+#define BW_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1(x, v)   (HW_MMDC_MPWRDLCTL_WR(x, (HW_MMDC_MPWRDLCTL_RD(x) & ~BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1) | BF_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET1(v)))
 #endif
 //@}
 
@@ -9945,7 +9956,7 @@ typedef union _hw_mmdc_mpwrdlctl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DL_ABS_OFFSET2 field to a new value.
-#define BW_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2(v)   (HW_MMDC_MPWRDLCTL_WR((HW_MMDC_MPWRDLCTL_RD() & ~BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2) | BF_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2(v)))
+#define BW_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2(x, v)   (HW_MMDC_MPWRDLCTL_WR(x, (HW_MMDC_MPWRDLCTL_RD(x) & ~BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2) | BF_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET2(v)))
 #endif
 //@}
 
@@ -9972,7 +9983,7 @@ typedef union _hw_mmdc_mpwrdlctl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_DL_ABS_OFFSET3 field to a new value.
-#define BW_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3(v)   (HW_MMDC_MPWRDLCTL_WR((HW_MMDC_MPWRDLCTL_RD() & ~BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3) | BF_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3(v)))
+#define BW_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3(x, v)   (HW_MMDC_MPWRDLCTL_WR(x, (HW_MMDC_MPWRDLCTL_RD(x) & ~BM_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3) | BF_MMDC_MPWRDLCTL_WR_DL_ABS_OFFSET3(v)))
 #endif
 //@}
 
@@ -10010,11 +10021,11 @@ typedef union _hw_mmdc_mpwrdlst
  * @name Constants and macros for entire MMDC_MPWRDLST register
  */
 //@{
-#define HW_MMDC_MPWRDLST_ADDR      (REGS_MMDC_BASE + 0x854)
+#define HW_MMDC_MPWRDLST_ADDR(x)      (REGS_MMDC_BASE(x) + 0x854)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPWRDLST           (*(volatile hw_mmdc_mpwrdlst_t *) HW_MMDC_MPWRDLST_ADDR)
-#define HW_MMDC_MPWRDLST_RD()      (HW_MMDC_MPWRDLST.U)
+#define HW_MMDC_MPWRDLST(x)           (*(volatile hw_mmdc_mpwrdlst_t *) HW_MMDC_MPWRDLST_ADDR(x))
+#define HW_MMDC_MPWRDLST_RD(x)        (HW_MMDC_MPWRDLST(x).U)
 #endif
 //@}
 
@@ -10099,15 +10110,15 @@ typedef union _hw_mmdc_mpsdctrl
  * @name Constants and macros for entire MMDC_MPSDCTRL register
  */
 //@{
-#define HW_MMDC_MPSDCTRL_ADDR      (REGS_MMDC_BASE + 0x858)
+#define HW_MMDC_MPSDCTRL_ADDR(x)      (REGS_MMDC_BASE(x) + 0x858)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPSDCTRL           (*(volatile hw_mmdc_mpsdctrl_t *) HW_MMDC_MPSDCTRL_ADDR)
-#define HW_MMDC_MPSDCTRL_RD()      (HW_MMDC_MPSDCTRL.U)
-#define HW_MMDC_MPSDCTRL_WR(v)     (HW_MMDC_MPSDCTRL.U = (v))
-#define HW_MMDC_MPSDCTRL_SET(v)    (HW_MMDC_MPSDCTRL_WR(HW_MMDC_MPSDCTRL_RD() |  (v)))
-#define HW_MMDC_MPSDCTRL_CLR(v)    (HW_MMDC_MPSDCTRL_WR(HW_MMDC_MPSDCTRL_RD() & ~(v)))
-#define HW_MMDC_MPSDCTRL_TOG(v)    (HW_MMDC_MPSDCTRL_WR(HW_MMDC_MPSDCTRL_RD() ^  (v)))
+#define HW_MMDC_MPSDCTRL(x)           (*(volatile hw_mmdc_mpsdctrl_t *) HW_MMDC_MPSDCTRL_ADDR(x))
+#define HW_MMDC_MPSDCTRL_RD(x)        (HW_MMDC_MPSDCTRL(x).U)
+#define HW_MMDC_MPSDCTRL_WR(x, v)     (HW_MMDC_MPSDCTRL(x).U = (v))
+#define HW_MMDC_MPSDCTRL_SET(x, v)    (HW_MMDC_MPSDCTRL_WR(x, HW_MMDC_MPSDCTRL_RD(x) |  (v)))
+#define HW_MMDC_MPSDCTRL_CLR(x, v)    (HW_MMDC_MPSDCTRL_WR(x, HW_MMDC_MPSDCTRL_RD(x) & ~(v)))
+#define HW_MMDC_MPSDCTRL_TOG(x, v)    (HW_MMDC_MPSDCTRL_WR(x, HW_MMDC_MPSDCTRL_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -10140,7 +10151,7 @@ typedef union _hw_mmdc_mpsdctrl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SDCLK0_DEL field to a new value.
-#define BW_MMDC_MPSDCTRL_SDCLK0_DEL(v)   (HW_MMDC_MPSDCTRL_WR((HW_MMDC_MPSDCTRL_RD() & ~BM_MMDC_MPSDCTRL_SDCLK0_DEL) | BF_MMDC_MPSDCTRL_SDCLK0_DEL(v)))
+#define BW_MMDC_MPSDCTRL_SDCLK0_DEL(x, v)   (HW_MMDC_MPSDCTRL_WR(x, (HW_MMDC_MPSDCTRL_RD(x) & ~BM_MMDC_MPSDCTRL_SDCLK0_DEL) | BF_MMDC_MPSDCTRL_SDCLK0_DEL(v)))
 #endif
 //@}
 
@@ -10176,15 +10187,15 @@ typedef union _hw_mmdc_mpzqlp2ctl
  * @name Constants and macros for entire MMDC_MPZQLP2CTL register
  */
 //@{
-#define HW_MMDC_MPZQLP2CTL_ADDR      (REGS_MMDC_BASE + 0x85c)
+#define HW_MMDC_MPZQLP2CTL_ADDR(x)      (REGS_MMDC_BASE(x) + 0x85c)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPZQLP2CTL           (*(volatile hw_mmdc_mpzqlp2ctl_t *) HW_MMDC_MPZQLP2CTL_ADDR)
-#define HW_MMDC_MPZQLP2CTL_RD()      (HW_MMDC_MPZQLP2CTL.U)
-#define HW_MMDC_MPZQLP2CTL_WR(v)     (HW_MMDC_MPZQLP2CTL.U = (v))
-#define HW_MMDC_MPZQLP2CTL_SET(v)    (HW_MMDC_MPZQLP2CTL_WR(HW_MMDC_MPZQLP2CTL_RD() |  (v)))
-#define HW_MMDC_MPZQLP2CTL_CLR(v)    (HW_MMDC_MPZQLP2CTL_WR(HW_MMDC_MPZQLP2CTL_RD() & ~(v)))
-#define HW_MMDC_MPZQLP2CTL_TOG(v)    (HW_MMDC_MPZQLP2CTL_WR(HW_MMDC_MPZQLP2CTL_RD() ^  (v)))
+#define HW_MMDC_MPZQLP2CTL(x)           (*(volatile hw_mmdc_mpzqlp2ctl_t *) HW_MMDC_MPZQLP2CTL_ADDR(x))
+#define HW_MMDC_MPZQLP2CTL_RD(x)        (HW_MMDC_MPZQLP2CTL(x).U)
+#define HW_MMDC_MPZQLP2CTL_WR(x, v)     (HW_MMDC_MPZQLP2CTL(x).U = (v))
+#define HW_MMDC_MPZQLP2CTL_SET(x, v)    (HW_MMDC_MPZQLP2CTL_WR(x, HW_MMDC_MPZQLP2CTL_RD(x) |  (v)))
+#define HW_MMDC_MPZQLP2CTL_CLR(x, v)    (HW_MMDC_MPZQLP2CTL_WR(x, HW_MMDC_MPZQLP2CTL_RD(x) & ~(v)))
+#define HW_MMDC_MPZQLP2CTL_TOG(x, v)    (HW_MMDC_MPZQLP2CTL_WR(x, HW_MMDC_MPZQLP2CTL_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -10218,7 +10229,7 @@ typedef union _hw_mmdc_mpzqlp2ctl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZQ_LP2_HW_ZQINIT field to a new value.
-#define BW_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT(v)   (HW_MMDC_MPZQLP2CTL_WR((HW_MMDC_MPZQLP2CTL_RD() & ~BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT) | BF_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT(v)))
+#define BW_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT(x, v)   (HW_MMDC_MPZQLP2CTL_WR(x, (HW_MMDC_MPZQLP2CTL_RD(x) & ~BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT) | BF_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQINIT(v)))
 #endif
 //@}
 
@@ -10248,7 +10259,7 @@ typedef union _hw_mmdc_mpzqlp2ctl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZQ_LP2_HW_ZQCL field to a new value.
-#define BW_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL(v)   (HW_MMDC_MPZQLP2CTL_WR((HW_MMDC_MPZQLP2CTL_RD() & ~BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL) | BF_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL(v)))
+#define BW_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL(x, v)   (HW_MMDC_MPZQLP2CTL_WR(x, (HW_MMDC_MPZQLP2CTL_RD(x) & ~BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL) | BF_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCL(v)))
 #endif
 //@}
 
@@ -10277,7 +10288,7 @@ typedef union _hw_mmdc_mpzqlp2ctl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the ZQ_LP2_HW_ZQCS field to a new value.
-#define BW_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS(v)   (HW_MMDC_MPZQLP2CTL_WR((HW_MMDC_MPZQLP2CTL_RD() & ~BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS) | BF_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS(v)))
+#define BW_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS(x, v)   (HW_MMDC_MPZQLP2CTL_WR(x, (HW_MMDC_MPZQLP2CTL_RD(x) & ~BM_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS) | BF_MMDC_MPZQLP2CTL_ZQ_LP2_HW_ZQCS(v)))
 #endif
 //@}
 
@@ -10314,15 +10325,15 @@ typedef union _hw_mmdc_mprddlhwctl
  * @name Constants and macros for entire MMDC_MPRDDLHWCTL register
  */
 //@{
-#define HW_MMDC_MPRDDLHWCTL_ADDR      (REGS_MMDC_BASE + 0x860)
+#define HW_MMDC_MPRDDLHWCTL_ADDR(x)      (REGS_MMDC_BASE(x) + 0x860)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPRDDLHWCTL           (*(volatile hw_mmdc_mprddlhwctl_t *) HW_MMDC_MPRDDLHWCTL_ADDR)
-#define HW_MMDC_MPRDDLHWCTL_RD()      (HW_MMDC_MPRDDLHWCTL.U)
-#define HW_MMDC_MPRDDLHWCTL_WR(v)     (HW_MMDC_MPRDDLHWCTL.U = (v))
-#define HW_MMDC_MPRDDLHWCTL_SET(v)    (HW_MMDC_MPRDDLHWCTL_WR(HW_MMDC_MPRDDLHWCTL_RD() |  (v)))
-#define HW_MMDC_MPRDDLHWCTL_CLR(v)    (HW_MMDC_MPRDDLHWCTL_WR(HW_MMDC_MPRDDLHWCTL_RD() & ~(v)))
-#define HW_MMDC_MPRDDLHWCTL_TOG(v)    (HW_MMDC_MPRDDLHWCTL_WR(HW_MMDC_MPRDDLHWCTL_RD() ^  (v)))
+#define HW_MMDC_MPRDDLHWCTL(x)           (*(volatile hw_mmdc_mprddlhwctl_t *) HW_MMDC_MPRDDLHWCTL_ADDR(x))
+#define HW_MMDC_MPRDDLHWCTL_RD(x)        (HW_MMDC_MPRDDLHWCTL(x).U)
+#define HW_MMDC_MPRDDLHWCTL_WR(x, v)     (HW_MMDC_MPRDDLHWCTL(x).U = (v))
+#define HW_MMDC_MPRDDLHWCTL_SET(x, v)    (HW_MMDC_MPRDDLHWCTL_WR(x, HW_MMDC_MPRDDLHWCTL_RD(x) |  (v)))
+#define HW_MMDC_MPRDDLHWCTL_CLR(x, v)    (HW_MMDC_MPRDDLHWCTL_WR(x, HW_MMDC_MPRDDLHWCTL_RD(x) & ~(v)))
+#define HW_MMDC_MPRDDLHWCTL_TOG(x, v)    (HW_MMDC_MPRDDLHWCTL_WR(x, HW_MMDC_MPRDDLHWCTL_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -10433,7 +10444,7 @@ typedef union _hw_mmdc_mprddlhwctl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HW_RD_DL_EN field to a new value.
-#define BW_MMDC_MPRDDLHWCTL_HW_RD_DL_EN(v)   (HW_MMDC_MPRDDLHWCTL_WR((HW_MMDC_MPRDDLHWCTL_RD() & ~BM_MMDC_MPRDDLHWCTL_HW_RD_DL_EN) | BF_MMDC_MPRDDLHWCTL_HW_RD_DL_EN(v)))
+#define BW_MMDC_MPRDDLHWCTL_HW_RD_DL_EN(x, v)   (HW_MMDC_MPRDDLHWCTL_WR(x, (HW_MMDC_MPRDDLHWCTL_RD(x) & ~BM_MMDC_MPRDDLHWCTL_HW_RD_DL_EN) | BF_MMDC_MPRDDLHWCTL_HW_RD_DL_EN(v)))
 #endif
 //@}
 
@@ -10455,7 +10466,7 @@ typedef union _hw_mmdc_mprddlhwctl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HW_RD_DL_CMP_CYC field to a new value.
-#define BW_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC(v)   (HW_MMDC_MPRDDLHWCTL_WR((HW_MMDC_MPRDDLHWCTL_RD() & ~BM_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC) | BF_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC(v)))
+#define BW_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC(x, v)   (HW_MMDC_MPRDDLHWCTL_WR(x, (HW_MMDC_MPRDDLHWCTL_RD(x) & ~BM_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC) | BF_MMDC_MPRDDLHWCTL_HW_RD_DL_CMP_CYC(v)))
 #endif
 //@}
 
@@ -10492,15 +10503,15 @@ typedef union _hw_mmdc_mpwrdlhwctl
  * @name Constants and macros for entire MMDC_MPWRDLHWCTL register
  */
 //@{
-#define HW_MMDC_MPWRDLHWCTL_ADDR      (REGS_MMDC_BASE + 0x864)
+#define HW_MMDC_MPWRDLHWCTL_ADDR(x)      (REGS_MMDC_BASE(x) + 0x864)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPWRDLHWCTL           (*(volatile hw_mmdc_mpwrdlhwctl_t *) HW_MMDC_MPWRDLHWCTL_ADDR)
-#define HW_MMDC_MPWRDLHWCTL_RD()      (HW_MMDC_MPWRDLHWCTL.U)
-#define HW_MMDC_MPWRDLHWCTL_WR(v)     (HW_MMDC_MPWRDLHWCTL.U = (v))
-#define HW_MMDC_MPWRDLHWCTL_SET(v)    (HW_MMDC_MPWRDLHWCTL_WR(HW_MMDC_MPWRDLHWCTL_RD() |  (v)))
-#define HW_MMDC_MPWRDLHWCTL_CLR(v)    (HW_MMDC_MPWRDLHWCTL_WR(HW_MMDC_MPWRDLHWCTL_RD() & ~(v)))
-#define HW_MMDC_MPWRDLHWCTL_TOG(v)    (HW_MMDC_MPWRDLHWCTL_WR(HW_MMDC_MPWRDLHWCTL_RD() ^  (v)))
+#define HW_MMDC_MPWRDLHWCTL(x)           (*(volatile hw_mmdc_mpwrdlhwctl_t *) HW_MMDC_MPWRDLHWCTL_ADDR(x))
+#define HW_MMDC_MPWRDLHWCTL_RD(x)        (HW_MMDC_MPWRDLHWCTL(x).U)
+#define HW_MMDC_MPWRDLHWCTL_WR(x, v)     (HW_MMDC_MPWRDLHWCTL(x).U = (v))
+#define HW_MMDC_MPWRDLHWCTL_SET(x, v)    (HW_MMDC_MPWRDLHWCTL_WR(x, HW_MMDC_MPWRDLHWCTL_RD(x) |  (v)))
+#define HW_MMDC_MPWRDLHWCTL_CLR(x, v)    (HW_MMDC_MPWRDLHWCTL_WR(x, HW_MMDC_MPWRDLHWCTL_RD(x) & ~(v)))
+#define HW_MMDC_MPWRDLHWCTL_TOG(x, v)    (HW_MMDC_MPWRDLHWCTL_WR(x, HW_MMDC_MPWRDLHWCTL_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -10603,7 +10614,7 @@ typedef union _hw_mmdc_mpwrdlhwctl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HW_WR_DL_EN field to a new value.
-#define BW_MMDC_MPWRDLHWCTL_HW_WR_DL_EN(v)   (HW_MMDC_MPWRDLHWCTL_WR((HW_MMDC_MPWRDLHWCTL_RD() & ~BM_MMDC_MPWRDLHWCTL_HW_WR_DL_EN) | BF_MMDC_MPWRDLHWCTL_HW_WR_DL_EN(v)))
+#define BW_MMDC_MPWRDLHWCTL_HW_WR_DL_EN(x, v)   (HW_MMDC_MPWRDLHWCTL_WR(x, (HW_MMDC_MPWRDLHWCTL_RD(x) & ~BM_MMDC_MPWRDLHWCTL_HW_WR_DL_EN) | BF_MMDC_MPWRDLHWCTL_HW_WR_DL_EN(v)))
 #endif
 //@}
 
@@ -10624,7 +10635,7 @@ typedef union _hw_mmdc_mpwrdlhwctl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the HW_WR_DL_CMP_CYC field to a new value.
-#define BW_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC(v)   (HW_MMDC_MPWRDLHWCTL_WR((HW_MMDC_MPWRDLHWCTL_RD() & ~BM_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC) | BF_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC(v)))
+#define BW_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC(x, v)   (HW_MMDC_MPWRDLHWCTL_WR(x, (HW_MMDC_MPWRDLHWCTL_RD(x) & ~BM_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC) | BF_MMDC_MPWRDLHWCTL_HW_WR_DL_CMP_CYC(v)))
 #endif
 //@}
 
@@ -10662,11 +10673,11 @@ typedef union _hw_mmdc_mprddlhwst0
  * @name Constants and macros for entire MMDC_MPRDDLHWST0 register
  */
 //@{
-#define HW_MMDC_MPRDDLHWST0_ADDR      (REGS_MMDC_BASE + 0x868)
+#define HW_MMDC_MPRDDLHWST0_ADDR(x)      (REGS_MMDC_BASE(x) + 0x868)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPRDDLHWST0           (*(volatile hw_mmdc_mprddlhwst0_t *) HW_MMDC_MPRDDLHWST0_ADDR)
-#define HW_MMDC_MPRDDLHWST0_RD()      (HW_MMDC_MPRDDLHWST0.U)
+#define HW_MMDC_MPRDDLHWST0(x)           (*(volatile hw_mmdc_mprddlhwst0_t *) HW_MMDC_MPRDDLHWST0_ADDR(x))
+#define HW_MMDC_MPRDDLHWST0_RD(x)        (HW_MMDC_MPRDDLHWST0(x).U)
 #endif
 //@}
 
@@ -10760,11 +10771,11 @@ typedef union _hw_mmdc_mprddlhwst1
  * @name Constants and macros for entire MMDC_MPRDDLHWST1 register
  */
 //@{
-#define HW_MMDC_MPRDDLHWST1_ADDR      (REGS_MMDC_BASE + 0x86c)
+#define HW_MMDC_MPRDDLHWST1_ADDR(x)      (REGS_MMDC_BASE(x) + 0x86c)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPRDDLHWST1           (*(volatile hw_mmdc_mprddlhwst1_t *) HW_MMDC_MPRDDLHWST1_ADDR)
-#define HW_MMDC_MPRDDLHWST1_RD()      (HW_MMDC_MPRDDLHWST1.U)
+#define HW_MMDC_MPRDDLHWST1(x)           (*(volatile hw_mmdc_mprddlhwst1_t *) HW_MMDC_MPRDDLHWST1_ADDR(x))
+#define HW_MMDC_MPRDDLHWST1_RD(x)        (HW_MMDC_MPRDDLHWST1(x).U)
 #endif
 //@}
 
@@ -10858,11 +10869,11 @@ typedef union _hw_mmdc_mpwrdlhwst0
  * @name Constants and macros for entire MMDC_MPWRDLHWST0 register
  */
 //@{
-#define HW_MMDC_MPWRDLHWST0_ADDR      (REGS_MMDC_BASE + 0x870)
+#define HW_MMDC_MPWRDLHWST0_ADDR(x)      (REGS_MMDC_BASE(x) + 0x870)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPWRDLHWST0           (*(volatile hw_mmdc_mpwrdlhwst0_t *) HW_MMDC_MPWRDLHWST0_ADDR)
-#define HW_MMDC_MPWRDLHWST0_RD()      (HW_MMDC_MPWRDLHWST0.U)
+#define HW_MMDC_MPWRDLHWST0(x)           (*(volatile hw_mmdc_mpwrdlhwst0_t *) HW_MMDC_MPWRDLHWST0_ADDR(x))
+#define HW_MMDC_MPWRDLHWST0_RD(x)        (HW_MMDC_MPWRDLHWST0(x).U)
 #endif
 //@}
 
@@ -10955,11 +10966,11 @@ typedef union _hw_mmdc_mpwrdlhwst1
  * @name Constants and macros for entire MMDC_MPWRDLHWST1 register
  */
 //@{
-#define HW_MMDC_MPWRDLHWST1_ADDR      (REGS_MMDC_BASE + 0x874)
+#define HW_MMDC_MPWRDLHWST1_ADDR(x)      (REGS_MMDC_BASE(x) + 0x874)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPWRDLHWST1           (*(volatile hw_mmdc_mpwrdlhwst1_t *) HW_MMDC_MPWRDLHWST1_ADDR)
-#define HW_MMDC_MPWRDLHWST1_RD()      (HW_MMDC_MPWRDLHWST1.U)
+#define HW_MMDC_MPWRDLHWST1(x)           (*(volatile hw_mmdc_mpwrdlhwst1_t *) HW_MMDC_MPWRDLHWST1_ADDR(x))
+#define HW_MMDC_MPWRDLHWST1_RD(x)        (HW_MMDC_MPWRDLHWST1(x).U)
 #endif
 //@}
 
@@ -11049,15 +11060,15 @@ typedef union _hw_mmdc_mpwlhwerr
  * @name Constants and macros for entire MMDC_MPWLHWERR register
  */
 //@{
-#define HW_MMDC_MPWLHWERR_ADDR      (REGS_MMDC_BASE + 0x878)
+#define HW_MMDC_MPWLHWERR_ADDR(x)      (REGS_MMDC_BASE(x) + 0x878)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPWLHWERR           (*(volatile hw_mmdc_mpwlhwerr_t *) HW_MMDC_MPWLHWERR_ADDR)
-#define HW_MMDC_MPWLHWERR_RD()      (HW_MMDC_MPWLHWERR.U)
-#define HW_MMDC_MPWLHWERR_WR(v)     (HW_MMDC_MPWLHWERR.U = (v))
-#define HW_MMDC_MPWLHWERR_SET(v)    (HW_MMDC_MPWLHWERR_WR(HW_MMDC_MPWLHWERR_RD() |  (v)))
-#define HW_MMDC_MPWLHWERR_CLR(v)    (HW_MMDC_MPWLHWERR_WR(HW_MMDC_MPWLHWERR_RD() & ~(v)))
-#define HW_MMDC_MPWLHWERR_TOG(v)    (HW_MMDC_MPWLHWERR_WR(HW_MMDC_MPWLHWERR_RD() ^  (v)))
+#define HW_MMDC_MPWLHWERR(x)           (*(volatile hw_mmdc_mpwlhwerr_t *) HW_MMDC_MPWLHWERR_ADDR(x))
+#define HW_MMDC_MPWLHWERR_RD(x)        (HW_MMDC_MPWLHWERR(x).U)
+#define HW_MMDC_MPWLHWERR_WR(x, v)     (HW_MMDC_MPWLHWERR(x).U = (v))
+#define HW_MMDC_MPWLHWERR_SET(x, v)    (HW_MMDC_MPWLHWERR_WR(x, HW_MMDC_MPWLHWERR_RD(x) |  (v)))
+#define HW_MMDC_MPWLHWERR_CLR(x, v)    (HW_MMDC_MPWLHWERR_WR(x, HW_MMDC_MPWLHWERR_RD(x) & ~(v)))
+#define HW_MMDC_MPWLHWERR_TOG(x, v)    (HW_MMDC_MPWLHWERR_WR(x, HW_MMDC_MPWLHWERR_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -11154,11 +11165,11 @@ typedef union _hw_mmdc_mpdghwst0
  * @name Constants and macros for entire MMDC_MPDGHWST0 register
  */
 //@{
-#define HW_MMDC_MPDGHWST0_ADDR      (REGS_MMDC_BASE + 0x87c)
+#define HW_MMDC_MPDGHWST0_ADDR(x)      (REGS_MMDC_BASE(x) + 0x87c)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPDGHWST0           (*(volatile hw_mmdc_mpdghwst0_t *) HW_MMDC_MPDGHWST0_ADDR)
-#define HW_MMDC_MPDGHWST0_RD()      (HW_MMDC_MPDGHWST0.U)
+#define HW_MMDC_MPDGHWST0(x)           (*(volatile hw_mmdc_mpdghwst0_t *) HW_MMDC_MPDGHWST0_ADDR(x))
+#define HW_MMDC_MPDGHWST0_RD(x)        (HW_MMDC_MPDGHWST0(x).U)
 #endif
 //@}
 
@@ -11221,11 +11232,11 @@ typedef union _hw_mmdc_mpdghwst1
  * @name Constants and macros for entire MMDC_MPDGHWST1 register
  */
 //@{
-#define HW_MMDC_MPDGHWST1_ADDR      (REGS_MMDC_BASE + 0x880)
+#define HW_MMDC_MPDGHWST1_ADDR(x)      (REGS_MMDC_BASE(x) + 0x880)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPDGHWST1           (*(volatile hw_mmdc_mpdghwst1_t *) HW_MMDC_MPDGHWST1_ADDR)
-#define HW_MMDC_MPDGHWST1_RD()      (HW_MMDC_MPDGHWST1.U)
+#define HW_MMDC_MPDGHWST1(x)           (*(volatile hw_mmdc_mpdghwst1_t *) HW_MMDC_MPDGHWST1_ADDR(x))
+#define HW_MMDC_MPDGHWST1_RD(x)        (HW_MMDC_MPDGHWST1(x).U)
 #endif
 //@}
 
@@ -11288,11 +11299,11 @@ typedef union _hw_mmdc_mpdghwst2
  * @name Constants and macros for entire MMDC_MPDGHWST2 register
  */
 //@{
-#define HW_MMDC_MPDGHWST2_ADDR      (REGS_MMDC_BASE + 0x884)
+#define HW_MMDC_MPDGHWST2_ADDR(x)      (REGS_MMDC_BASE(x) + 0x884)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPDGHWST2           (*(volatile hw_mmdc_mpdghwst2_t *) HW_MMDC_MPDGHWST2_ADDR)
-#define HW_MMDC_MPDGHWST2_RD()      (HW_MMDC_MPDGHWST2.U)
+#define HW_MMDC_MPDGHWST2(x)           (*(volatile hw_mmdc_mpdghwst2_t *) HW_MMDC_MPDGHWST2_ADDR(x))
+#define HW_MMDC_MPDGHWST2_RD(x)        (HW_MMDC_MPDGHWST2(x).U)
 #endif
 //@}
 
@@ -11355,11 +11366,11 @@ typedef union _hw_mmdc_mpdghwst3
  * @name Constants and macros for entire MMDC_MPDGHWST3 register
  */
 //@{
-#define HW_MMDC_MPDGHWST3_ADDR      (REGS_MMDC_BASE + 0x888)
+#define HW_MMDC_MPDGHWST3_ADDR(x)      (REGS_MMDC_BASE(x) + 0x888)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPDGHWST3           (*(volatile hw_mmdc_mpdghwst3_t *) HW_MMDC_MPDGHWST3_ADDR)
-#define HW_MMDC_MPDGHWST3_RD()      (HW_MMDC_MPDGHWST3.U)
+#define HW_MMDC_MPDGHWST3(x)           (*(volatile hw_mmdc_mpdghwst3_t *) HW_MMDC_MPDGHWST3_ADDR(x))
+#define HW_MMDC_MPDGHWST3_RD(x)        (HW_MMDC_MPDGHWST3(x).U)
 #endif
 //@}
 
@@ -11424,15 +11435,15 @@ typedef union _hw_mmdc_mppdcmpr1
  * @name Constants and macros for entire MMDC_MPPDCMPR1 register
  */
 //@{
-#define HW_MMDC_MPPDCMPR1_ADDR      (REGS_MMDC_BASE + 0x88c)
+#define HW_MMDC_MPPDCMPR1_ADDR(x)      (REGS_MMDC_BASE(x) + 0x88c)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPPDCMPR1           (*(volatile hw_mmdc_mppdcmpr1_t *) HW_MMDC_MPPDCMPR1_ADDR)
-#define HW_MMDC_MPPDCMPR1_RD()      (HW_MMDC_MPPDCMPR1.U)
-#define HW_MMDC_MPPDCMPR1_WR(v)     (HW_MMDC_MPPDCMPR1.U = (v))
-#define HW_MMDC_MPPDCMPR1_SET(v)    (HW_MMDC_MPPDCMPR1_WR(HW_MMDC_MPPDCMPR1_RD() |  (v)))
-#define HW_MMDC_MPPDCMPR1_CLR(v)    (HW_MMDC_MPPDCMPR1_WR(HW_MMDC_MPPDCMPR1_RD() & ~(v)))
-#define HW_MMDC_MPPDCMPR1_TOG(v)    (HW_MMDC_MPPDCMPR1_WR(HW_MMDC_MPPDCMPR1_RD() ^  (v)))
+#define HW_MMDC_MPPDCMPR1(x)           (*(volatile hw_mmdc_mppdcmpr1_t *) HW_MMDC_MPPDCMPR1_ADDR(x))
+#define HW_MMDC_MPPDCMPR1_RD(x)        (HW_MMDC_MPPDCMPR1(x).U)
+#define HW_MMDC_MPPDCMPR1_WR(x, v)     (HW_MMDC_MPPDCMPR1(x).U = (v))
+#define HW_MMDC_MPPDCMPR1_SET(x, v)    (HW_MMDC_MPPDCMPR1_WR(x, HW_MMDC_MPPDCMPR1_RD(x) |  (v)))
+#define HW_MMDC_MPPDCMPR1_CLR(x, v)    (HW_MMDC_MPPDCMPR1_WR(x, HW_MMDC_MPPDCMPR1_RD(x) & ~(v)))
+#define HW_MMDC_MPPDCMPR1_TOG(x, v)    (HW_MMDC_MPPDCMPR1_WR(x, HW_MMDC_MPPDCMPR1_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -11461,7 +11472,7 @@ typedef union _hw_mmdc_mppdcmpr1
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PDV1 field to a new value.
-#define BW_MMDC_MPPDCMPR1_PDV1(v)   (HW_MMDC_MPPDCMPR1_WR((HW_MMDC_MPPDCMPR1_RD() & ~BM_MMDC_MPPDCMPR1_PDV1) | BF_MMDC_MPPDCMPR1_PDV1(v)))
+#define BW_MMDC_MPPDCMPR1_PDV1(x, v)   (HW_MMDC_MPPDCMPR1_WR(x, (HW_MMDC_MPPDCMPR1_RD(x) & ~BM_MMDC_MPPDCMPR1_PDV1) | BF_MMDC_MPPDCMPR1_PDV1(v)))
 #endif
 //@}
 
@@ -11488,7 +11499,7 @@ typedef union _hw_mmdc_mppdcmpr1
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the PDV2 field to a new value.
-#define BW_MMDC_MPPDCMPR1_PDV2(v)   (HW_MMDC_MPPDCMPR1_WR((HW_MMDC_MPPDCMPR1_RD() & ~BM_MMDC_MPPDCMPR1_PDV2) | BF_MMDC_MPPDCMPR1_PDV2(v)))
+#define BW_MMDC_MPPDCMPR1_PDV2(x, v)   (HW_MMDC_MPPDCMPR1_WR(x, (HW_MMDC_MPPDCMPR1_RD(x) & ~BM_MMDC_MPPDCMPR1_PDV2) | BF_MMDC_MPPDCMPR1_PDV2(v)))
 #endif
 //@}
 
@@ -11525,15 +11536,15 @@ typedef union _hw_mmdc_mppdcmpr2
  * @name Constants and macros for entire MMDC_MPPDCMPR2 register
  */
 //@{
-#define HW_MMDC_MPPDCMPR2_ADDR      (REGS_MMDC_BASE + 0x890)
+#define HW_MMDC_MPPDCMPR2_ADDR(x)      (REGS_MMDC_BASE(x) + 0x890)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPPDCMPR2           (*(volatile hw_mmdc_mppdcmpr2_t *) HW_MMDC_MPPDCMPR2_ADDR)
-#define HW_MMDC_MPPDCMPR2_RD()      (HW_MMDC_MPPDCMPR2.U)
-#define HW_MMDC_MPPDCMPR2_WR(v)     (HW_MMDC_MPPDCMPR2.U = (v))
-#define HW_MMDC_MPPDCMPR2_SET(v)    (HW_MMDC_MPPDCMPR2_WR(HW_MMDC_MPPDCMPR2_RD() |  (v)))
-#define HW_MMDC_MPPDCMPR2_CLR(v)    (HW_MMDC_MPPDCMPR2_WR(HW_MMDC_MPPDCMPR2_RD() & ~(v)))
-#define HW_MMDC_MPPDCMPR2_TOG(v)    (HW_MMDC_MPPDCMPR2_WR(HW_MMDC_MPPDCMPR2_RD() ^  (v)))
+#define HW_MMDC_MPPDCMPR2(x)           (*(volatile hw_mmdc_mppdcmpr2_t *) HW_MMDC_MPPDCMPR2_ADDR(x))
+#define HW_MMDC_MPPDCMPR2_RD(x)        (HW_MMDC_MPPDCMPR2(x).U)
+#define HW_MMDC_MPPDCMPR2_WR(x, v)     (HW_MMDC_MPPDCMPR2(x).U = (v))
+#define HW_MMDC_MPPDCMPR2_SET(x, v)    (HW_MMDC_MPPDCMPR2_WR(x, HW_MMDC_MPPDCMPR2_RD(x) |  (v)))
+#define HW_MMDC_MPPDCMPR2_CLR(x, v)    (HW_MMDC_MPPDCMPR2_WR(x, HW_MMDC_MPPDCMPR2_RD(x) & ~(v)))
+#define HW_MMDC_MPPDCMPR2_TOG(x, v)    (HW_MMDC_MPPDCMPR2_WR(x, HW_MMDC_MPPDCMPR2_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -11561,7 +11572,7 @@ typedef union _hw_mmdc_mppdcmpr2
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MPR_CMP field to a new value.
-#define BW_MMDC_MPPDCMPR2_MPR_CMP(v)   (HW_MMDC_MPPDCMPR2_WR((HW_MMDC_MPPDCMPR2_RD() & ~BM_MMDC_MPPDCMPR2_MPR_CMP) | BF_MMDC_MPPDCMPR2_MPR_CMP(v)))
+#define BW_MMDC_MPPDCMPR2_MPR_CMP(x, v)   (HW_MMDC_MPPDCMPR2_WR(x, (HW_MMDC_MPPDCMPR2_RD(x) & ~BM_MMDC_MPPDCMPR2_MPR_CMP) | BF_MMDC_MPPDCMPR2_MPR_CMP(v)))
 #endif
 //@}
 
@@ -11584,7 +11595,7 @@ typedef union _hw_mmdc_mppdcmpr2
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MPR_FULL_CMP field to a new value.
-#define BW_MMDC_MPPDCMPR2_MPR_FULL_CMP(v)   (HW_MMDC_MPPDCMPR2_WR((HW_MMDC_MPPDCMPR2_RD() & ~BM_MMDC_MPPDCMPR2_MPR_FULL_CMP) | BF_MMDC_MPPDCMPR2_MPR_FULL_CMP(v)))
+#define BW_MMDC_MPPDCMPR2_MPR_FULL_CMP(x, v)   (HW_MMDC_MPPDCMPR2_WR(x, (HW_MMDC_MPPDCMPR2_RD(x) & ~BM_MMDC_MPPDCMPR2_MPR_FULL_CMP) | BF_MMDC_MPPDCMPR2_MPR_FULL_CMP(v)))
 #endif
 //@}
 
@@ -11610,7 +11621,7 @@ typedef union _hw_mmdc_mppdcmpr2
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the READ_LEVEL_PATTERN field to a new value.
-#define BW_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN(v)   (HW_MMDC_MPPDCMPR2_WR((HW_MMDC_MPPDCMPR2_RD() & ~BM_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN) | BF_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN(v)))
+#define BW_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN(x, v)   (HW_MMDC_MPPDCMPR2_WR(x, (HW_MMDC_MPPDCMPR2_RD(x) & ~BM_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN) | BF_MMDC_MPPDCMPR2_READ_LEVEL_PATTERN(v)))
 #endif
 //@}
 
@@ -11633,7 +11644,7 @@ typedef union _hw_mmdc_mppdcmpr2
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CA_DL_ABS_OFFSET field to a new value.
-#define BW_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET(v)   (HW_MMDC_MPPDCMPR2_WR((HW_MMDC_MPPDCMPR2_RD() & ~BM_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET) | BF_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET(v)))
+#define BW_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET(x, v)   (HW_MMDC_MPPDCMPR2_WR(x, (HW_MMDC_MPPDCMPR2_RD(x) & ~BM_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET) | BF_MMDC_MPPDCMPR2_CA_DL_ABS_OFFSET(v)))
 #endif
 //@}
 
@@ -11683,15 +11694,15 @@ typedef union _hw_mmdc_mpswdar0
  * @name Constants and macros for entire MMDC_MPSWDAR0 register
  */
 //@{
-#define HW_MMDC_MPSWDAR0_ADDR      (REGS_MMDC_BASE + 0x894)
+#define HW_MMDC_MPSWDAR0_ADDR(x)      (REGS_MMDC_BASE(x) + 0x894)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPSWDAR0           (*(volatile hw_mmdc_mpswdar0_t *) HW_MMDC_MPSWDAR0_ADDR)
-#define HW_MMDC_MPSWDAR0_RD()      (HW_MMDC_MPSWDAR0.U)
-#define HW_MMDC_MPSWDAR0_WR(v)     (HW_MMDC_MPSWDAR0.U = (v))
-#define HW_MMDC_MPSWDAR0_SET(v)    (HW_MMDC_MPSWDAR0_WR(HW_MMDC_MPSWDAR0_RD() |  (v)))
-#define HW_MMDC_MPSWDAR0_CLR(v)    (HW_MMDC_MPSWDAR0_WR(HW_MMDC_MPSWDAR0_RD() & ~(v)))
-#define HW_MMDC_MPSWDAR0_TOG(v)    (HW_MMDC_MPSWDAR0_WR(HW_MMDC_MPSWDAR0_RD() ^  (v)))
+#define HW_MMDC_MPSWDAR0(x)           (*(volatile hw_mmdc_mpswdar0_t *) HW_MMDC_MPSWDAR0_ADDR(x))
+#define HW_MMDC_MPSWDAR0_RD(x)        (HW_MMDC_MPSWDAR0(x).U)
+#define HW_MMDC_MPSWDAR0_WR(x, v)     (HW_MMDC_MPSWDAR0(x).U = (v))
+#define HW_MMDC_MPSWDAR0_SET(x, v)    (HW_MMDC_MPSWDAR0_WR(x, HW_MMDC_MPSWDAR0_RD(x) |  (v)))
+#define HW_MMDC_MPSWDAR0_CLR(x, v)    (HW_MMDC_MPSWDAR0_WR(x, HW_MMDC_MPSWDAR0_RD(x) & ~(v)))
+#define HW_MMDC_MPSWDAR0_TOG(x, v)    (HW_MMDC_MPSWDAR0_WR(x, HW_MMDC_MPSWDAR0_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -11718,7 +11729,7 @@ typedef union _hw_mmdc_mpswdar0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SW_DUMMY_WR field to a new value.
-#define BW_MMDC_MPSWDAR0_SW_DUMMY_WR(v)   (HW_MMDC_MPSWDAR0_WR((HW_MMDC_MPSWDAR0_RD() & ~BM_MMDC_MPSWDAR0_SW_DUMMY_WR) | BF_MMDC_MPSWDAR0_SW_DUMMY_WR(v)))
+#define BW_MMDC_MPSWDAR0_SW_DUMMY_WR(x, v)   (HW_MMDC_MPSWDAR0_WR(x, (HW_MMDC_MPSWDAR0_RD(x) & ~BM_MMDC_MPSWDAR0_SW_DUMMY_WR) | BF_MMDC_MPSWDAR0_SW_DUMMY_WR(v)))
 #endif
 //@}
 
@@ -11743,7 +11754,7 @@ typedef union _hw_mmdc_mpswdar0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the SW_DUMMY_RD field to a new value.
-#define BW_MMDC_MPSWDAR0_SW_DUMMY_RD(v)   (HW_MMDC_MPSWDAR0_WR((HW_MMDC_MPSWDAR0_RD() & ~BM_MMDC_MPSWDAR0_SW_DUMMY_RD) | BF_MMDC_MPSWDAR0_SW_DUMMY_RD(v)))
+#define BW_MMDC_MPSWDAR0_SW_DUMMY_RD(x, v)   (HW_MMDC_MPSWDAR0_WR(x, (HW_MMDC_MPSWDAR0_RD(x) & ~BM_MMDC_MPSWDAR0_SW_DUMMY_RD) | BF_MMDC_MPSWDAR0_SW_DUMMY_RD(v)))
 #endif
 //@}
 
@@ -11842,11 +11853,11 @@ typedef union _hw_mmdc_mpswdrdr0
  * @name Constants and macros for entire MMDC_MPSWDRDR0 register
  */
 //@{
-#define HW_MMDC_MPSWDRDR0_ADDR      (REGS_MMDC_BASE + 0x898)
+#define HW_MMDC_MPSWDRDR0_ADDR(x)      (REGS_MMDC_BASE(x) + 0x898)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPSWDRDR0           (*(volatile hw_mmdc_mpswdrdr0_t *) HW_MMDC_MPSWDRDR0_ADDR)
-#define HW_MMDC_MPSWDRDR0_RD()      (HW_MMDC_MPSWDRDR0.U)
+#define HW_MMDC_MPSWDRDR0(x)           (*(volatile hw_mmdc_mpswdrdr0_t *) HW_MMDC_MPSWDRDR0_ADDR(x))
+#define HW_MMDC_MPSWDRDR0_RD(x)        (HW_MMDC_MPSWDRDR0(x).U)
 #endif
 //@}
 
@@ -11894,11 +11905,11 @@ typedef union _hw_mmdc_mpswdrdr1
  * @name Constants and macros for entire MMDC_MPSWDRDR1 register
  */
 //@{
-#define HW_MMDC_MPSWDRDR1_ADDR      (REGS_MMDC_BASE + 0x89c)
+#define HW_MMDC_MPSWDRDR1_ADDR(x)      (REGS_MMDC_BASE(x) + 0x89c)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPSWDRDR1           (*(volatile hw_mmdc_mpswdrdr1_t *) HW_MMDC_MPSWDRDR1_ADDR)
-#define HW_MMDC_MPSWDRDR1_RD()      (HW_MMDC_MPSWDRDR1.U)
+#define HW_MMDC_MPSWDRDR1(x)           (*(volatile hw_mmdc_mpswdrdr1_t *) HW_MMDC_MPSWDRDR1_ADDR(x))
+#define HW_MMDC_MPSWDRDR1_RD(x)        (HW_MMDC_MPSWDRDR1(x).U)
 #endif
 //@}
 
@@ -11946,11 +11957,11 @@ typedef union _hw_mmdc_mpswdrdr2
  * @name Constants and macros for entire MMDC_MPSWDRDR2 register
  */
 //@{
-#define HW_MMDC_MPSWDRDR2_ADDR      (REGS_MMDC_BASE + 0x8a0)
+#define HW_MMDC_MPSWDRDR2_ADDR(x)      (REGS_MMDC_BASE(x) + 0x8a0)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPSWDRDR2           (*(volatile hw_mmdc_mpswdrdr2_t *) HW_MMDC_MPSWDRDR2_ADDR)
-#define HW_MMDC_MPSWDRDR2_RD()      (HW_MMDC_MPSWDRDR2.U)
+#define HW_MMDC_MPSWDRDR2(x)           (*(volatile hw_mmdc_mpswdrdr2_t *) HW_MMDC_MPSWDRDR2_ADDR(x))
+#define HW_MMDC_MPSWDRDR2_RD(x)        (HW_MMDC_MPSWDRDR2(x).U)
 #endif
 //@}
 
@@ -11998,11 +12009,11 @@ typedef union _hw_mmdc_mpswdrdr3
  * @name Constants and macros for entire MMDC_MPSWDRDR3 register
  */
 //@{
-#define HW_MMDC_MPSWDRDR3_ADDR      (REGS_MMDC_BASE + 0x8a4)
+#define HW_MMDC_MPSWDRDR3_ADDR(x)      (REGS_MMDC_BASE(x) + 0x8a4)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPSWDRDR3           (*(volatile hw_mmdc_mpswdrdr3_t *) HW_MMDC_MPSWDRDR3_ADDR)
-#define HW_MMDC_MPSWDRDR3_RD()      (HW_MMDC_MPSWDRDR3.U)
+#define HW_MMDC_MPSWDRDR3(x)           (*(volatile hw_mmdc_mpswdrdr3_t *) HW_MMDC_MPSWDRDR3_ADDR(x))
+#define HW_MMDC_MPSWDRDR3_RD(x)        (HW_MMDC_MPSWDRDR3(x).U)
 #endif
 //@}
 
@@ -12050,11 +12061,11 @@ typedef union _hw_mmdc_mpswdrdr4
  * @name Constants and macros for entire MMDC_MPSWDRDR4 register
  */
 //@{
-#define HW_MMDC_MPSWDRDR4_ADDR      (REGS_MMDC_BASE + 0x8a8)
+#define HW_MMDC_MPSWDRDR4_ADDR(x)      (REGS_MMDC_BASE(x) + 0x8a8)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPSWDRDR4           (*(volatile hw_mmdc_mpswdrdr4_t *) HW_MMDC_MPSWDRDR4_ADDR)
-#define HW_MMDC_MPSWDRDR4_RD()      (HW_MMDC_MPSWDRDR4.U)
+#define HW_MMDC_MPSWDRDR4(x)           (*(volatile hw_mmdc_mpswdrdr4_t *) HW_MMDC_MPSWDRDR4_ADDR(x))
+#define HW_MMDC_MPSWDRDR4_RD(x)        (HW_MMDC_MPSWDRDR4(x).U)
 #endif
 //@}
 
@@ -12103,11 +12114,11 @@ typedef union _hw_mmdc_mpswdrdr5
  * @name Constants and macros for entire MMDC_MPSWDRDR5 register
  */
 //@{
-#define HW_MMDC_MPSWDRDR5_ADDR      (REGS_MMDC_BASE + 0x8ac)
+#define HW_MMDC_MPSWDRDR5_ADDR(x)      (REGS_MMDC_BASE(x) + 0x8ac)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPSWDRDR5           (*(volatile hw_mmdc_mpswdrdr5_t *) HW_MMDC_MPSWDRDR5_ADDR)
-#define HW_MMDC_MPSWDRDR5_RD()      (HW_MMDC_MPSWDRDR5.U)
+#define HW_MMDC_MPSWDRDR5(x)           (*(volatile hw_mmdc_mpswdrdr5_t *) HW_MMDC_MPSWDRDR5_ADDR(x))
+#define HW_MMDC_MPSWDRDR5_RD(x)        (HW_MMDC_MPSWDRDR5(x).U)
 #endif
 //@}
 
@@ -12156,11 +12167,11 @@ typedef union _hw_mmdc_mpswdrdr6
  * @name Constants and macros for entire MMDC_MPSWDRDR6 register
  */
 //@{
-#define HW_MMDC_MPSWDRDR6_ADDR      (REGS_MMDC_BASE + 0x8b0)
+#define HW_MMDC_MPSWDRDR6_ADDR(x)      (REGS_MMDC_BASE(x) + 0x8b0)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPSWDRDR6           (*(volatile hw_mmdc_mpswdrdr6_t *) HW_MMDC_MPSWDRDR6_ADDR)
-#define HW_MMDC_MPSWDRDR6_RD()      (HW_MMDC_MPSWDRDR6.U)
+#define HW_MMDC_MPSWDRDR6(x)           (*(volatile hw_mmdc_mpswdrdr6_t *) HW_MMDC_MPSWDRDR6_ADDR(x))
+#define HW_MMDC_MPSWDRDR6_RD(x)        (HW_MMDC_MPSWDRDR6(x).U)
 #endif
 //@}
 
@@ -12209,11 +12220,11 @@ typedef union _hw_mmdc_mpswdrdr7
  * @name Constants and macros for entire MMDC_MPSWDRDR7 register
  */
 //@{
-#define HW_MMDC_MPSWDRDR7_ADDR      (REGS_MMDC_BASE + 0x8b4)
+#define HW_MMDC_MPSWDRDR7_ADDR(x)      (REGS_MMDC_BASE(x) + 0x8b4)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPSWDRDR7           (*(volatile hw_mmdc_mpswdrdr7_t *) HW_MMDC_MPSWDRDR7_ADDR)
-#define HW_MMDC_MPSWDRDR7_RD()      (HW_MMDC_MPSWDRDR7.U)
+#define HW_MMDC_MPSWDRDR7(x)           (*(volatile hw_mmdc_mpswdrdr7_t *) HW_MMDC_MPSWDRDR7_ADDR(x))
+#define HW_MMDC_MPSWDRDR7_RD(x)        (HW_MMDC_MPSWDRDR7(x).U)
 #endif
 //@}
 
@@ -12266,15 +12277,15 @@ typedef union _hw_mmdc_mpmur0
  * @name Constants and macros for entire MMDC_MPMUR0 register
  */
 //@{
-#define HW_MMDC_MPMUR0_ADDR      (REGS_MMDC_BASE + 0x8b8)
+#define HW_MMDC_MPMUR0_ADDR(x)      (REGS_MMDC_BASE(x) + 0x8b8)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPMUR0           (*(volatile hw_mmdc_mpmur0_t *) HW_MMDC_MPMUR0_ADDR)
-#define HW_MMDC_MPMUR0_RD()      (HW_MMDC_MPMUR0.U)
-#define HW_MMDC_MPMUR0_WR(v)     (HW_MMDC_MPMUR0.U = (v))
-#define HW_MMDC_MPMUR0_SET(v)    (HW_MMDC_MPMUR0_WR(HW_MMDC_MPMUR0_RD() |  (v)))
-#define HW_MMDC_MPMUR0_CLR(v)    (HW_MMDC_MPMUR0_WR(HW_MMDC_MPMUR0_RD() & ~(v)))
-#define HW_MMDC_MPMUR0_TOG(v)    (HW_MMDC_MPMUR0_WR(HW_MMDC_MPMUR0_RD() ^  (v)))
+#define HW_MMDC_MPMUR0(x)           (*(volatile hw_mmdc_mpmur0_t *) HW_MMDC_MPMUR0_ADDR(x))
+#define HW_MMDC_MPMUR0_RD(x)        (HW_MMDC_MPMUR0(x).U)
+#define HW_MMDC_MPMUR0_WR(x, v)     (HW_MMDC_MPMUR0(x).U = (v))
+#define HW_MMDC_MPMUR0_SET(x, v)    (HW_MMDC_MPMUR0_WR(x, HW_MMDC_MPMUR0_RD(x) |  (v)))
+#define HW_MMDC_MPMUR0_CLR(x, v)    (HW_MMDC_MPMUR0_WR(x, HW_MMDC_MPMUR0_RD(x) & ~(v)))
+#define HW_MMDC_MPMUR0_TOG(x, v)    (HW_MMDC_MPMUR0_WR(x, HW_MMDC_MPMUR0_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -12299,7 +12310,7 @@ typedef union _hw_mmdc_mpmur0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MU_BYP_VAL field to a new value.
-#define BW_MMDC_MPMUR0_MU_BYP_VAL(v)   (HW_MMDC_MPMUR0_WR((HW_MMDC_MPMUR0_RD() & ~BM_MMDC_MPMUR0_MU_BYP_VAL) | BF_MMDC_MPMUR0_MU_BYP_VAL(v)))
+#define BW_MMDC_MPMUR0_MU_BYP_VAL(x, v)   (HW_MMDC_MPMUR0_WR(x, (HW_MMDC_MPMUR0_RD(x) & ~BM_MMDC_MPMUR0_MU_BYP_VAL) | BF_MMDC_MPMUR0_MU_BYP_VAL(v)))
 #endif
 //@}
 
@@ -12326,7 +12337,7 @@ typedef union _hw_mmdc_mpmur0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MU_BYP_EN field to a new value.
-#define BW_MMDC_MPMUR0_MU_BYP_EN(v)   (HW_MMDC_MPMUR0_WR((HW_MMDC_MPMUR0_RD() & ~BM_MMDC_MPMUR0_MU_BYP_EN) | BF_MMDC_MPMUR0_MU_BYP_EN(v)))
+#define BW_MMDC_MPMUR0_MU_BYP_EN(x, v)   (HW_MMDC_MPMUR0_WR(x, (HW_MMDC_MPMUR0_RD(x) & ~BM_MMDC_MPMUR0_MU_BYP_EN) | BF_MMDC_MPMUR0_MU_BYP_EN(v)))
 #endif
 //@}
 
@@ -12357,7 +12368,7 @@ typedef union _hw_mmdc_mpmur0
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the FRC_MSR field to a new value.
-#define BW_MMDC_MPMUR0_FRC_MSR(v)   (HW_MMDC_MPMUR0_WR((HW_MMDC_MPMUR0_RD() & ~BM_MMDC_MPMUR0_FRC_MSR) | BF_MMDC_MPMUR0_FRC_MSR(v)))
+#define BW_MMDC_MPMUR0_FRC_MSR(x, v)   (HW_MMDC_MPMUR0_WR(x, (HW_MMDC_MPMUR0_RD(x) & ~BM_MMDC_MPMUR0_FRC_MSR) | BF_MMDC_MPMUR0_FRC_MSR(v)))
 #endif
 //@}
 
@@ -12413,15 +12424,15 @@ typedef union _hw_mmdc_mpwrcadl
  * @name Constants and macros for entire MMDC_MPWRCADL register
  */
 //@{
-#define HW_MMDC_MPWRCADL_ADDR      (REGS_MMDC_BASE + 0x8bc)
+#define HW_MMDC_MPWRCADL_ADDR(x)      (REGS_MMDC_BASE(x) + 0x8bc)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPWRCADL           (*(volatile hw_mmdc_mpwrcadl_t *) HW_MMDC_MPWRCADL_ADDR)
-#define HW_MMDC_MPWRCADL_RD()      (HW_MMDC_MPWRCADL.U)
-#define HW_MMDC_MPWRCADL_WR(v)     (HW_MMDC_MPWRCADL.U = (v))
-#define HW_MMDC_MPWRCADL_SET(v)    (HW_MMDC_MPWRCADL_WR(HW_MMDC_MPWRCADL_RD() |  (v)))
-#define HW_MMDC_MPWRCADL_CLR(v)    (HW_MMDC_MPWRCADL_WR(HW_MMDC_MPWRCADL_RD() & ~(v)))
-#define HW_MMDC_MPWRCADL_TOG(v)    (HW_MMDC_MPWRCADL_WR(HW_MMDC_MPWRCADL_RD() ^  (v)))
+#define HW_MMDC_MPWRCADL(x)           (*(volatile hw_mmdc_mpwrcadl_t *) HW_MMDC_MPWRCADL_ADDR(x))
+#define HW_MMDC_MPWRCADL_RD(x)        (HW_MMDC_MPWRCADL(x).U)
+#define HW_MMDC_MPWRCADL_WR(x, v)     (HW_MMDC_MPWRCADL(x).U = (v))
+#define HW_MMDC_MPWRCADL_SET(x, v)    (HW_MMDC_MPWRCADL_WR(x, HW_MMDC_MPWRCADL_RD(x) |  (v)))
+#define HW_MMDC_MPWRCADL_CLR(x, v)    (HW_MMDC_MPWRCADL_WR(x, HW_MMDC_MPWRCADL_RD(x) & ~(v)))
+#define HW_MMDC_MPWRCADL_TOG(x, v)    (HW_MMDC_MPWRCADL_WR(x, HW_MMDC_MPWRCADL_RD(x) ^  (v)))
 #endif
 //@}
 
@@ -12452,7 +12463,7 @@ typedef union _hw_mmdc_mpwrcadl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_CA0_DEL field to a new value.
-#define BW_MMDC_MPWRCADL_WR_CA0_DEL(v)   (HW_MMDC_MPWRCADL_WR((HW_MMDC_MPWRCADL_RD() & ~BM_MMDC_MPWRCADL_WR_CA0_DEL) | BF_MMDC_MPWRCADL_WR_CA0_DEL(v)))
+#define BW_MMDC_MPWRCADL_WR_CA0_DEL(x, v)   (HW_MMDC_MPWRCADL_WR(x, (HW_MMDC_MPWRCADL_RD(x) & ~BM_MMDC_MPWRCADL_WR_CA0_DEL) | BF_MMDC_MPWRCADL_WR_CA0_DEL(v)))
 #endif
 //@}
 
@@ -12479,7 +12490,7 @@ typedef union _hw_mmdc_mpwrcadl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_CA1_DEL field to a new value.
-#define BW_MMDC_MPWRCADL_WR_CA1_DEL(v)   (HW_MMDC_MPWRCADL_WR((HW_MMDC_MPWRCADL_RD() & ~BM_MMDC_MPWRCADL_WR_CA1_DEL) | BF_MMDC_MPWRCADL_WR_CA1_DEL(v)))
+#define BW_MMDC_MPWRCADL_WR_CA1_DEL(x, v)   (HW_MMDC_MPWRCADL_WR(x, (HW_MMDC_MPWRCADL_RD(x) & ~BM_MMDC_MPWRCADL_WR_CA1_DEL) | BF_MMDC_MPWRCADL_WR_CA1_DEL(v)))
 #endif
 //@}
 
@@ -12506,7 +12517,7 @@ typedef union _hw_mmdc_mpwrcadl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_CA2_DEL field to a new value.
-#define BW_MMDC_MPWRCADL_WR_CA2_DEL(v)   (HW_MMDC_MPWRCADL_WR((HW_MMDC_MPWRCADL_RD() & ~BM_MMDC_MPWRCADL_WR_CA2_DEL) | BF_MMDC_MPWRCADL_WR_CA2_DEL(v)))
+#define BW_MMDC_MPWRCADL_WR_CA2_DEL(x, v)   (HW_MMDC_MPWRCADL_WR(x, (HW_MMDC_MPWRCADL_RD(x) & ~BM_MMDC_MPWRCADL_WR_CA2_DEL) | BF_MMDC_MPWRCADL_WR_CA2_DEL(v)))
 #endif
 //@}
 
@@ -12533,7 +12544,7 @@ typedef union _hw_mmdc_mpwrcadl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_CA3_DEL field to a new value.
-#define BW_MMDC_MPWRCADL_WR_CA3_DEL(v)   (HW_MMDC_MPWRCADL_WR((HW_MMDC_MPWRCADL_RD() & ~BM_MMDC_MPWRCADL_WR_CA3_DEL) | BF_MMDC_MPWRCADL_WR_CA3_DEL(v)))
+#define BW_MMDC_MPWRCADL_WR_CA3_DEL(x, v)   (HW_MMDC_MPWRCADL_WR(x, (HW_MMDC_MPWRCADL_RD(x) & ~BM_MMDC_MPWRCADL_WR_CA3_DEL) | BF_MMDC_MPWRCADL_WR_CA3_DEL(v)))
 #endif
 //@}
 
@@ -12560,7 +12571,7 @@ typedef union _hw_mmdc_mpwrcadl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_CA4_DEL field to a new value.
-#define BW_MMDC_MPWRCADL_WR_CA4_DEL(v)   (HW_MMDC_MPWRCADL_WR((HW_MMDC_MPWRCADL_RD() & ~BM_MMDC_MPWRCADL_WR_CA4_DEL) | BF_MMDC_MPWRCADL_WR_CA4_DEL(v)))
+#define BW_MMDC_MPWRCADL_WR_CA4_DEL(x, v)   (HW_MMDC_MPWRCADL_WR(x, (HW_MMDC_MPWRCADL_RD(x) & ~BM_MMDC_MPWRCADL_WR_CA4_DEL) | BF_MMDC_MPWRCADL_WR_CA4_DEL(v)))
 #endif
 //@}
 
@@ -12587,7 +12598,7 @@ typedef union _hw_mmdc_mpwrcadl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_CA5_DEL field to a new value.
-#define BW_MMDC_MPWRCADL_WR_CA5_DEL(v)   (HW_MMDC_MPWRCADL_WR((HW_MMDC_MPWRCADL_RD() & ~BM_MMDC_MPWRCADL_WR_CA5_DEL) | BF_MMDC_MPWRCADL_WR_CA5_DEL(v)))
+#define BW_MMDC_MPWRCADL_WR_CA5_DEL(x, v)   (HW_MMDC_MPWRCADL_WR(x, (HW_MMDC_MPWRCADL_RD(x) & ~BM_MMDC_MPWRCADL_WR_CA5_DEL) | BF_MMDC_MPWRCADL_WR_CA5_DEL(v)))
 #endif
 //@}
 
@@ -12614,7 +12625,7 @@ typedef union _hw_mmdc_mpwrcadl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_CA6_DEL field to a new value.
-#define BW_MMDC_MPWRCADL_WR_CA6_DEL(v)   (HW_MMDC_MPWRCADL_WR((HW_MMDC_MPWRCADL_RD() & ~BM_MMDC_MPWRCADL_WR_CA6_DEL) | BF_MMDC_MPWRCADL_WR_CA6_DEL(v)))
+#define BW_MMDC_MPWRCADL_WR_CA6_DEL(x, v)   (HW_MMDC_MPWRCADL_WR(x, (HW_MMDC_MPWRCADL_RD(x) & ~BM_MMDC_MPWRCADL_WR_CA6_DEL) | BF_MMDC_MPWRCADL_WR_CA6_DEL(v)))
 #endif
 //@}
 
@@ -12641,7 +12652,7 @@ typedef union _hw_mmdc_mpwrcadl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_CA7_DEL field to a new value.
-#define BW_MMDC_MPWRCADL_WR_CA7_DEL(v)   (HW_MMDC_MPWRCADL_WR((HW_MMDC_MPWRCADL_RD() & ~BM_MMDC_MPWRCADL_WR_CA7_DEL) | BF_MMDC_MPWRCADL_WR_CA7_DEL(v)))
+#define BW_MMDC_MPWRCADL_WR_CA7_DEL(x, v)   (HW_MMDC_MPWRCADL_WR(x, (HW_MMDC_MPWRCADL_RD(x) & ~BM_MMDC_MPWRCADL_WR_CA7_DEL) | BF_MMDC_MPWRCADL_WR_CA7_DEL(v)))
 #endif
 //@}
 
@@ -12668,7 +12679,7 @@ typedef union _hw_mmdc_mpwrcadl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_CA8_DEL field to a new value.
-#define BW_MMDC_MPWRCADL_WR_CA8_DEL(v)   (HW_MMDC_MPWRCADL_WR((HW_MMDC_MPWRCADL_RD() & ~BM_MMDC_MPWRCADL_WR_CA8_DEL) | BF_MMDC_MPWRCADL_WR_CA8_DEL(v)))
+#define BW_MMDC_MPWRCADL_WR_CA8_DEL(x, v)   (HW_MMDC_MPWRCADL_WR(x, (HW_MMDC_MPWRCADL_RD(x) & ~BM_MMDC_MPWRCADL_WR_CA8_DEL) | BF_MMDC_MPWRCADL_WR_CA8_DEL(v)))
 #endif
 //@}
 
@@ -12695,7 +12706,7 @@ typedef union _hw_mmdc_mpwrcadl
 
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the WR_CA9_DEL field to a new value.
-#define BW_MMDC_MPWRCADL_WR_CA9_DEL(v)   (HW_MMDC_MPWRCADL_WR((HW_MMDC_MPWRCADL_RD() & ~BM_MMDC_MPWRCADL_WR_CA9_DEL) | BF_MMDC_MPWRCADL_WR_CA9_DEL(v)))
+#define BW_MMDC_MPWRCADL_WR_CA9_DEL(x, v)   (HW_MMDC_MPWRCADL_WR(x, (HW_MMDC_MPWRCADL_RD(x) & ~BM_MMDC_MPWRCADL_WR_CA9_DEL) | BF_MMDC_MPWRCADL_WR_CA9_DEL(v)))
 #endif
 //@}
 
@@ -12739,11 +12750,11 @@ typedef union _hw_mmdc_mpdccr
  * @name Constants and macros for entire MMDC_MPDCCR register
  */
 //@{
-#define HW_MMDC_MPDCCR_ADDR      (REGS_MMDC_BASE + 0x8c0)
+#define HW_MMDC_MPDCCR_ADDR(x)      (REGS_MMDC_BASE(x) + 0x8c0)
 
 #ifndef __LANGUAGE_ASM__
-#define HW_MMDC_MPDCCR           (*(volatile hw_mmdc_mpdccr_t *) HW_MMDC_MPDCCR_ADDR)
-#define HW_MMDC_MPDCCR_RD()      (HW_MMDC_MPDCCR.U)
+#define HW_MMDC_MPDCCR(x)           (*(volatile hw_mmdc_mpdccr_t *) HW_MMDC_MPDCCR_ADDR(x))
+#define HW_MMDC_MPDCCR_RD(x)        (HW_MMDC_MPDCCR(x).U)
 #endif
 //@}
 
@@ -13028,11 +13039,12 @@ typedef struct _hw_mmdc
 #pragma pack()
 
 //! @brief Macro to access all MMDC registers.
+//! @param x MMDC instance number.
 //! @return Reference (not a pointer) to the registers struct. To get a pointer to the struct,
-//!     use the '&' operator, like <code>&HW_MMDC</code>.
-#define HW_MMDC     (*(hw_mmdc_t *) REGS_MMDC_BASE)
+//!     use the '&' operator, like <code>&HW_MMDC(0)</code>.
+#define HW_MMDC(x)     (*(hw_mmdc_t *) REGS_MMDC_BASE(x))
 #endif
 
 #endif // __HW_MMDC_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121010/1.2.1
 // EOF

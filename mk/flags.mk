@@ -47,7 +47,7 @@ COMMON_FLAGS += -mno-unaligned-access
 COMMON_FLAGS += -fdce
 
 # Enables all warnings and treat them as errors except those preceded with -Wno-
-C_FLAGS_WARNINGS = -Wall -Werror -Wno-uninitialized -Wno-unused-function -fdiagnostics-show-option
+C_FLAGS_WARNINGS = -Wall -Werror -Wno-uninitialized -Wno-strict-aliasing -Wno-unused-function -fdiagnostics-show-option
 C_FLAGS_WARNINGS += -Wno-unused-but-set-variable -Wno-format
 
 # Turn on all warnings.

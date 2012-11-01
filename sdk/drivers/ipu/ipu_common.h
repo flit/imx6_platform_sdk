@@ -83,6 +83,34 @@ enum {
 #define CSC_ENABLE				1
 #define CSC_DISABLE				0
 
+enum {
+    VDI_C_CH_420 = 0x00000000,
+    VDI_C_CH_422 = 0x00000002,
+    VDI_C_MOT_SEL_FULL = 0x00000008,
+    VDI_C_MOT_SEL_LOW = 0x00000004,
+    VDI_C_MOT_SEL_MED = 0x00000000,
+    VDI_C_BURST_SIZE1_4 = 0x00000030,
+    VDI_C_BURST_SIZE2_4 = 0x00000300,
+    VDI_C_BURST_SIZE3_4 = 0x00003000,
+    VDI_C_VWM1_SET_1 = 0x00000000,
+    VDI_C_VWM1_CLR_2 = 0x00080000,
+    VDI_C_VWM3_SET_1 = 0x00000000,
+    VDI_C_VWM3_CLR_2 = 0x02000000,
+    VDI_C_TOP_FIELD_MAN_1 = 0x40000000,
+    VDI_C_TOP_FIELD_AUTO_1 = 0x80000000,
+};
+
+typedef enum {
+    VDI_MED_MOTION = 0,
+    VDI_LOW_MOTION = 1,
+    VDI_HIGH_MOTION = 2,
+} ips_motion_sel_e;
+
+typedef enum {
+    IPS_FIELD_INTERLACED_TB,
+    IPS_FIELD_INTERLACED_BT,
+} ips_field_mode_e;
+
 struct ipu_cpmem_word {
     uint32_t data[5];
     uint32_t res[3];
@@ -332,9 +360,9 @@ typedef enum {
     PARTIAL_INTERLEAVED_YUV420 = 0x4,
     INTERLEAVED_LUT = 0x5,
     INTERLEAVED_GENERIC = 0x6,
-    INTERLEAVED_ARGB8888 = 0x7|(0<<4),
+    INTERLEAVED_ARGB8888 = 0x7 | (0 << 4),
     INTERLEAVED_RGB = 0x7,
-	INTERLEAVED_RGB565 = 0x7|(1<<4),
+    INTERLEAVED_RGB565 = 0x7 | (1 << 4),
     INTERLEAVED_Y1U1Y2V1 = 0x8,
     INTERLEAVED_Y2U1Y1V1 = 0x9,
     INTERLEAVED_U1Y1V1Y2 = 0xA,
@@ -368,14 +396,14 @@ typedef enum {
 } ips_csi_colorimetry_e;
 
 typedef enum {
-	CSI_CLK_MODE_GATED_CLK = 0,
-	CSI_CLK_MODE_NONGATED_CLK,
-	CSI_CLK_MODE_BT656_PROGRESSIVE,
-	CSI_CLK_MODE_BT656_INTERLACED,
-	CSI_CLK_MODE_BT1120_PROGRESSIVE_DDR,
-	CSI_CLK_MODE_BT1120_PROGRESSIVE_SDR,
-	CSI_CLK_MODE_BT1120_INTERLACED_DDR,
-	CSI_CLK_MODE_BT1120_INTERLACED_SDR,
+    CSI_CLK_MODE_GATED_CLK = 0,
+    CSI_CLK_MODE_NONGATED_CLK,
+    CSI_CLK_MODE_BT656_PROGRESSIVE,
+    CSI_CLK_MODE_BT656_INTERLACED,
+    CSI_CLK_MODE_BT1120_PROGRESSIVE_DDR,
+    CSI_CLK_MODE_BT1120_PROGRESSIVE_SDR,
+    CSI_CLK_MODE_BT1120_INTERLACED_DDR,
+    CSI_CLK_MODE_BT1120_INTERLACED_SDR,
 } ips_csi_clk_mode_e;
 
 enum disp_dev_flag {
@@ -456,8 +484,8 @@ typedef struct {
     uint32_t vsync_pol;
     uint32_t drdy_pol;
     uint32_t data_pol;
-    int32_t(*panel_init) (int32_t *arg);
-    int32_t(*panel_deinit) (void);
+     int32_t(*panel_init) (int32_t * arg);
+     int32_t(*panel_deinit) (void);
 } ips_dev_panel_t;
 
 typedef struct {
@@ -495,6 +523,25 @@ typedef struct ipu_res_info {
     uint32_t pixel_format_in;
     uint32_t pixel_format_out;
 } ipu_res_info_t;
+
+typedef struct ipu_vdi_info {
+    uint32_t addr0_in;
+    uint32_t addr1_in;
+    uint32_t addr0_out;
+    uint32_t addr1_out;
+    uint32_t width_in;
+    uint32_t height_in;
+    uint32_t width_out;
+    uint32_t height_out;
+    uint32_t strideline_in;     //sl for interleaved mode, sly for non-interleaved mode
+    uint32_t strideline_out;
+    uint32_t u_offset_in;
+    uint32_t u_offset_out;
+    uint32_t pixel_format_in;
+    uint32_t pixel_format_out;
+    uint32_t field_mode;
+    uint32_t motion_sel;
+} ipu_vdi_info_t;
 
 typedef struct ipu_rot_info {
     uint32_t addr0_in;
@@ -616,7 +663,9 @@ void ipu_display_setup(uint32_t ipu_index, uint32_t mem_addr0, uint32_t mem_addr
 void ipu_dual_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_t mem_colorimetry,
                             uint32_t fg_width, uint32_t fg_height, uint32_t fp_xp, uint32_t fp_yp,
                             uint32_t alpha);
-void ipu_capture_setup(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_width, uint32_t raw_height, uint32_t act_width, uint32_t act_height, ips_dev_panel_t * panel);
+void ipu_capture_setup(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_width,
+                       uint32_t raw_height, uint32_t act_width, uint32_t act_height,
+                       ips_dev_panel_t * panel);
 
 void ipu_mipi_csi2_setup(uint32_t ipu_index, uint32_t csi_width, uint32_t csi_height,
                          ips_dev_panel_t * panel);
@@ -637,7 +686,10 @@ void ipu_rotate_idmac_config(uint32_t ipu_index, uint32_t channel_in, uint32_t c
                              ipu_rot_info_t rot_info);
 void ipu_resize_idmac_config(uint32_t ipu_index, uint32_t channel_in, uint32_t channel_out,
                              ipu_res_info_t res_info);
-void ipu_idma_pixel_format_config(uint32_t ipu_index, uint32_t channel, uint32_t pixel_format, uint32_t so, uint32_t sl, uint32_t ubo);
+void ipu_deinterlace_idmac_config(uint32_t ipu_index, uint32_t channel_in, uint32_t channel_out,
+                                  ipu_vdi_info_t res_info);
+void ipu_idma_pixel_format_config(uint32_t ipu_index, uint32_t channel, uint32_t pixel_format,
+                                  uint32_t so, uint32_t sl, uint32_t ubo);
 int32_t ipu_idmac_channel_busy(int32_t ipu_index, int32_t channel);
 void ipu_idmac_channel_enable(int32_t ipu_index, int32_t channel, int32_t enable);
 void ipu_channel_buf_ready(int32_t ipu_index, int32_t channel, int32_t buf);
@@ -681,6 +733,7 @@ void ipu_di_interface_set(uint32_t ipu_index, uint32_t di, ips_dev_panel_t * pan
 void ipu_ic_rotation_config(int32_t ipu_index, int32_t taskType, int32_t rot, int32_t hf,
                             int32_t vf);
 void ipu_ic_resize_config(int32_t ipu_index, int32_t taskType, ipu_res_info_t res_info);
+void ipu_ic_deinterlace_config(int32_t ipu_index, ipu_vdi_info_t vdi_info);
 void ipu_ic_enable(int32_t ipu_index, int32_t ic_enable, int32_t irt_enable);
 int32_t ipu_ic_calc_resize_coeffs(int32_t in_size, int32_t out_size, int32_t * resize_coeff,
                                   int32_t * downsize_coeff);
@@ -691,8 +744,11 @@ int32_t ipu_ic_csc_config(int32_t ipu_index, int32_t csc_set_index, ic_csc_param
 int32_t ipu_ic_task_enable(int32_t ipu_index, int32_t task_type, int32_t task, int32_t enable);
 
 void ipu_write_field(int32_t ipu_index, uint32_t ID_addr, uint32_t ID_mask, uint32_t data);
+void ipu_write(int32_t ipu_index, uint32_t ID_addr, uint32_t data);
+uint32_t ipu_read(int32_t ipu_index, uint32_t ID_addr);
 
-void ipu_csi_config(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_width, uint32_t raw_height, uint32_t act_width, uint32_t act_height);
+void ipu_csi_config(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_width,
+                    uint32_t raw_height, uint32_t act_width, uint32_t act_height);
 uint32_t ipu_smfc_fifo_allocate(uint32_t ipu_index, uint32_t channel, uint32_t map,
                                 uint32_t burst_size);
 void ipu_capture_disp_link(uint32_t ipu_index, uint32_t smfc);
@@ -705,6 +761,8 @@ void set_background_margin(ips_dev_panel_t * panel, uint32_t width, uint32_t hei
 void load_horiz_image(uint32_t addr, uint32_t width, uint32_t height);
 void ipu_dma_update_buffer(uint32_t ipu_index, uint32_t channel, uint32_t buffer_index,
                            uint32_t buffer_addr);
+void ipu_vdi_init(int ipu_index, int fmt, int field_mode, int width, int height,
+                  ips_motion_sel_e motion_sel);
 
 extern ips_dev_panel_t disp_dev_list[];
 extern uint32_t num_of_panels;

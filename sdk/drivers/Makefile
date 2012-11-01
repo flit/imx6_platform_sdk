@@ -87,6 +87,7 @@ SOURCES += \
 	ipu/src/ips_disp_panel.c \
 	ipu/src/ipu_common.c \
 	ipu/src/ipu_csi.c \
+	ipu/src/ipu_vdi.c \
 	ipu/src/ipu_dc.c \
 	ipu/src/ipu_di.c \
 	ipu/src/ipu_dmfc.c \

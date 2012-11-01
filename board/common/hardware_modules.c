@@ -105,6 +105,11 @@ hw_module_t g_ddr = {
     "DDR memory",
     1,
     MMDC_P0_BASE_ADDR,
+#if defined(CHIP_MX6DQ)
+    528000000,
+#else
+    400000000,
+#endif
 };
 
 hw_module_t *g_imx_modules[] = {

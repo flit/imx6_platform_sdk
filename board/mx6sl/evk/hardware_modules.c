@@ -83,6 +83,7 @@ hw_module_t g_ddr = {
     "DDR memory",
     1,
     MMDC_P0_BASE_ADDR,
+    400000000,
 };
 
 hw_module_t *g_imx_modules[] = {

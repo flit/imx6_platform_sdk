@@ -115,5 +115,9 @@ SOURCES += \
 	camera/src/csi_drv.c
 endif
 
+ifeq "$(TARGET)" "mx6sl"
+SOURCES += \
+	dcp/src/dcp.c
+endif
 
 include $(SDK_ROOT)/mk/targets.mk

@@ -1,8 +1,31 @@
 /*
- * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
- * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
- * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
- * Freescale Semiconductor, Inc.
+ * Copyright (c) 2010-2012, Freescale Semiconductor, Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ * o Redistributions of source code must retain the above copyright notice, this list
+ *   of conditions and the following disclaimer.
+ *
+ * o Redistributions in binary form must reproduce the above copyright notice, this
+ *   list of conditions and the following disclaimer in the documentation and/or
+ *   other materials provided with the distribution.
+ *
+ * o Neither the name of Freescale Semiconductor, Inc. nor the names of its
+ *   contributors may be used to endorse or promote products derived from this
+ *   software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 /*!
@@ -19,52 +42,54 @@
  * @param width frame width of camera input
  * @param height frame height of camera input
  */
-void ipu_csi_config(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_width, uint32_t raw_height, uint32_t act_width, uint32_t act_height)
+void ipu_csi_config(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_width,
+                    uint32_t raw_height, uint32_t act_width, uint32_t act_height)
 {
-	int hsync_pol, vsync_pol, clock_mode, data_fmt;
-	int hsc, vsc;
-	
-	if (csi_interface == CSI_PARALLEL){
-		hsync_pol = 0;
-		vsync_pol = 0;
-		hsc = 0;
-		vsc = 0x0;
-		clock_mode = CSI_CLK_MODE_GATED_CLK;
-		data_fmt = CSI_YUYV;
-	} else if (csi_interface == CSI_MIPI) {
-		hsync_pol = 0;
-		vsync_pol = 0;
-		hsc = 0;
-		vsc = 0x0;
-		clock_mode = CSI_CLK_MODE_NONGATED_CLK;
-		data_fmt = CSI_UYVY;
-	} else if (csi_interface == CSI_BT656_NTSC_INTERLACED) {
-		hsync_pol = 1;
-		vsync_pol = 0;
-		hsc = 0;
-		vsc = 0xD;
-		clock_mode = CSI_CLK_MODE_BT656_INTERLACED;
-		data_fmt = CSI_UYVY;
-	} else if (csi_interface == CSI_BT656_PAL_INTERLACED) {
-		hsync_pol = 1;
-		vsync_pol = 0;
-		hsc = 0;
-		vsc = 0x0;
-		clock_mode = CSI_CLK_MODE_BT656_INTERLACED;
-		data_fmt = CSI_UYVY;
-	} else if (csi_interface == CSI_BT656_NTSC_PROGRESSIVE || csi_interface == CSI_BT656_PAL_PROGRESSIVE){
-		hsync_pol = 1;
-		vsync_pol = 0;
-		hsc = 0;
-		vsc = 0x0;
-		clock_mode = CSI_CLK_MODE_BT656_PROGRESSIVE;
-		data_fmt = CSI_UYVY;
-	} else {
-		printf("Unsupport CSI interface\n");
-	}
+    int hsync_pol, vsync_pol, clock_mode, data_fmt;
+    int hsc, vsc;
+
+    if (csi_interface == CSI_PARALLEL) {
+        hsync_pol = 0;
+        vsync_pol = 0;
+        hsc = 0;
+        vsc = 0x0;
+        clock_mode = CSI_CLK_MODE_GATED_CLK;
+        data_fmt = CSI_YUYV;
+    } else if (csi_interface == CSI_MIPI) {
+        hsync_pol = 0;
+        vsync_pol = 0;
+        hsc = 0;
+        vsc = 0x0;
+        clock_mode = CSI_CLK_MODE_NONGATED_CLK;
+        data_fmt = CSI_UYVY;
+    } else if (csi_interface == CSI_BT656_NTSC_INTERLACED) {
+        hsync_pol = 1;
+        vsync_pol = 0;
+        hsc = 0;
+        vsc = 0xD;
+        clock_mode = CSI_CLK_MODE_BT656_INTERLACED;
+        data_fmt = CSI_UYVY;
+    } else if (csi_interface == CSI_BT656_PAL_INTERLACED) {
+        hsync_pol = 1;
+        vsync_pol = 0;
+        hsc = 0;
+        vsc = 0x0;
+        clock_mode = CSI_CLK_MODE_BT656_INTERLACED;
+        data_fmt = CSI_UYVY;
+    } else if (csi_interface == CSI_BT656_NTSC_PROGRESSIVE
+               || csi_interface == CSI_BT656_PAL_PROGRESSIVE) {
+        hsync_pol = 1;
+        vsync_pol = 0;
+        hsc = 0;
+        vsc = 0x0;
+        clock_mode = CSI_CLK_MODE_BT656_PROGRESSIVE;
+        data_fmt = CSI_UYVY;
+    } else {
+        printf("Unsupport CSI interface\n");
+    }
 
     /* setting CSI data source, default is from parallel interface */
-   if (csi_interface == CSI_MIPI) {
+    if (csi_interface == CSI_MIPI) {
         ipu_write_field(ipu_index, IPU_IPU_CONF__CSI0_DATA_SOURCE, 1);  //csi0 data souce is mipi
         switch (data_fmt) {
         case CSI_UYVY:
@@ -90,21 +115,21 @@ void ipu_csi_config(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_wid
     }
 
     ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_DEST, 4);  //destination is IDMAC
-    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_SENS_PRTCL, clock_mode); // Gated clock mode
+    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_SENS_PRTCL, clock_mode);    // Gated clock mode
     ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DIV_RATIO, 0);  //division ratio of HSP_CLK into SENSOR_MCLK
     ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_WIDTH, 1); //8bits per color
     ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_PACK_TIGHT, 0); //only when data format is RGB/YUV, and data_width > 8
-    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_SENS_DATA_FORMAT, data_fmt); // YUV422
+    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_SENS_DATA_FORMAT, data_fmt);    // YUV422
 
-	/* set parallel interface information */
-	if (csi_interface != CSI_MIPI) {
-		ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_EN_POL, 0);
-		ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_EXT_VSYNC, 1);
-		ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_SENS_PIX_CLK_POL, 0);   // pos edge
-		ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_POL, 0);
-		ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_HSYNC_POL, hsync_pol);
-		ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_VSYNC_POL, vsync_pol);
-	}
+    /* set parallel interface information */
+    if (csi_interface != CSI_MIPI) {
+        ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_EN_POL, 0);
+        ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_EXT_VSYNC, 1);
+        ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_SENS_PIX_CLK_POL, 0);   // pos edge
+        ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_POL, 0);
+        ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_HSYNC_POL, hsync_pol);
+        ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_VSYNC_POL, vsync_pol);
+    }
 
     /*CSI0 common sensor configuration for PApa */
     /*set sensor frame size */
@@ -124,23 +149,23 @@ void ipu_csi_config(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_wid
     ipu_write_field(ipu_index, IPU_IPU_CONF__CSI_SEL, 0);
     ipu_write_field(ipu_index, IPU_IPU_CONF__CSI0_EN, 1);
 
-	if (clock_mode == CSI_CLK_MODE_BT656_PROGRESSIVE) {
-		ipu_write_field(ipu_index, IPU_CSI0_CCIR_CODE_1__FULL, 0x40030);
-		ipu_write_field(ipu_index, IPU_CSI0_CCIR_CODE_3__FULL, 0xFF0000);
-	} else if (clock_mode == CSI_CLK_MODE_BT656_INTERLACED) {
-		/*
-		 * Field0BlankEnd = 0x6 (FVH 0x3), Field0BlankStart = 0x2 (FVH 0x2),
-		 * Field0ActiveEnd = 0x4 (FVH 0x1), Field0ActiveStart = 0 (FVH 0x0)
-		 */
-		ipu_write_field(ipu_index, IPU_CSI0_CCIR_CODE_1__FULL, 0xD07DF);
-		/*
-		 * Field0BlankEnd = 0x7 (FVH 0x7), Field0BlankStart = 0x3 (FVH 0x6),
-		 * Field0ActiveEnd = 0x5 (FVH 0x5), Field0ActiveStart = 0x1 (FVH 0x4)
-		 */
-		ipu_write_field(ipu_index, IPU_CSI0_CCIR_CODE_2__FULL, 0x40596);
-		ipu_write_field(ipu_index, IPU_CSI0_CCIR_CODE_3__FULL, 0xFF0000);
-		ipu_write_field(ipu_index, IPU_CSI0_CCIR_CODE_1__CSI0_CCIR_ERR_DET_EN, 1);
-	}
+    if (clock_mode == CSI_CLK_MODE_BT656_PROGRESSIVE) {
+        ipu_write_field(ipu_index, IPU_CSI0_CCIR_CODE_1__FULL, 0x40030);
+        ipu_write_field(ipu_index, IPU_CSI0_CCIR_CODE_3__FULL, 0xFF0000);
+    } else if (clock_mode == CSI_CLK_MODE_BT656_INTERLACED) {
+        /*
+         * Field0BlankEnd = 0x6 (FVH 0x3), Field0BlankStart = 0x2 (FVH 0x2),
+         * Field0ActiveEnd = 0x4 (FVH 0x1), Field0ActiveStart = 0 (FVH 0x0)
+         */
+        ipu_write_field(ipu_index, IPU_CSI0_CCIR_CODE_1__FULL, 0xD07DF);
+        /*
+         * Field0BlankEnd = 0x7 (FVH 0x7), Field0BlankStart = 0x3 (FVH 0x6),
+         * Field0ActiveEnd = 0x5 (FVH 0x5), Field0ActiveStart = 0x1 (FVH 0x4)
+         */
+        ipu_write_field(ipu_index, IPU_CSI0_CCIR_CODE_2__FULL, 0x40596);
+        ipu_write_field(ipu_index, IPU_CSI0_CCIR_CODE_3__FULL, 0xFF0000);
+        ipu_write_field(ipu_index, IPU_CSI0_CCIR_CODE_1__CSI0_CCIR_ERR_DET_EN, 1);
+    }
 }
 
 /*!

@@ -48,7 +48,8 @@ void ipu_ic_enable(int32_t ipu_index, int32_t ic_enable, int32_t irt_enable)
     ipu_write_field(ipu_index, IPU_IPU_CONF__IRT_EN, irt_enable);
 }
 
-void ipu_ic_rotation_config(int32_t ipu_index, int32_t taskType, int32_t rot, int32_t hf, int32_t vf)
+void ipu_ic_rotation_config(int32_t ipu_index, int32_t taskType, int32_t rot, int32_t hf,
+                            int32_t vf)
 {
     switch (taskType) {
     case PP_TASK:
@@ -80,7 +81,7 @@ void ipu_ic_rotation_config(int32_t ipu_index, int32_t taskType, int32_t rot, in
         ipu_write_field(ipu_index, IPU_IC_IDMAC_1__T2_ROT, rot);
         break;
     default:
-		printf ("Wrong ic task type!\n");
+        printf("Wrong ic task type!\n");
         break;
     }
 }
@@ -97,24 +98,24 @@ void ipu_ic_resize_config(int32_t ipu_index, int32_t taskType, ipu_res_info_t re
         ipu_write_field(ipu_index, IPU_IPU_FS_PROC_FLOW1__ENC_IN_VALID, 1);
 
         if (res_info.width_in % 16 == 0) {
-            ipu_write_field(ipu_index, IPU_IC_IDMAC_1__CB0_BURST_16, 1);   // set to 16bps
+            ipu_write_field(ipu_index, IPU_IC_IDMAC_1__CB0_BURST_16, 1);    // set to 16bps
             ipu_write_field(ipu_index, IPU_IC_IDMAC_1__CB6_BURST_16, 1);
         } else {
-            ipu_write_field(ipu_index, IPU_IC_IDMAC_1__CB0_BURST_16, 0);   // set to 8bps
+            ipu_write_field(ipu_index, IPU_IC_IDMAC_1__CB0_BURST_16, 0);    // set to 8bps
             ipu_write_field(ipu_index, IPU_IC_IDMAC_1__CB6_BURST_16, 0);
         }
 
-		ipu_write_field(ipu_index, IPU_IC_IDMAC_2__T1_FR_HEIGHT, res_info.height_out - 1);
-		ipu_write_field(ipu_index, IPU_IC_IDMAC_3__T1_FR_WIDTH, res_info.width_out - 1);
+        ipu_write_field(ipu_index, IPU_IC_IDMAC_2__T1_FR_HEIGHT, res_info.height_out - 1);
+        ipu_write_field(ipu_index, IPU_IC_IDMAC_3__T1_FR_WIDTH, res_info.width_out - 1);
 
-		ipu_ic_calc_resize_coeffs(res_info.width_in, res_info.width_out, &resCoff, &downsCoff);
-		ipu_write_field(ipu_index, IPU_IC_PRP_ENC_RSC__PRPENC_DS_R_H, downsCoff);
-		ipu_write_field(ipu_index, IPU_IC_PRP_ENC_RSC__PRPENC_RS_R_H, resCoff);
+        ipu_ic_calc_resize_coeffs(res_info.width_in, res_info.width_out, &resCoff, &downsCoff);
+        ipu_write_field(ipu_index, IPU_IC_PRP_ENC_RSC__PRPENC_DS_R_H, downsCoff);
+        ipu_write_field(ipu_index, IPU_IC_PRP_ENC_RSC__PRPENC_RS_R_H, resCoff);
 
-		ipu_ic_calc_resize_coeffs(res_info.height_in, res_info.height_out, &resCoff, &downsCoff);
-		ipu_write_field(ipu_index, IPU_IC_PRP_ENC_RSC__PRPENC_DS_R_V, downsCoff);
-		ipu_write_field(ipu_index, IPU_IC_PRP_ENC_RSC__PRPENC_RS_R_V, resCoff);
-		break;
+        ipu_ic_calc_resize_coeffs(res_info.height_in, res_info.height_out, &resCoff, &downsCoff);
+        ipu_write_field(ipu_index, IPU_IC_PRP_ENC_RSC__PRPENC_DS_R_V, downsCoff);
+        ipu_write_field(ipu_index, IPU_IC_PRP_ENC_RSC__PRPENC_RS_R_V, resCoff);
+        break;
     case PrP_VF_TASK:
         ipu_write_field(ipu_index, IPU_IC_CONF__PRPVF_EN, 0);
         ipu_write_field(ipu_index, IPU_IC_CONF__RWS_EN, 1);
@@ -122,23 +123,23 @@ void ipu_ic_resize_config(int32_t ipu_index, int32_t taskType, ipu_res_info_t re
         ipu_write_field(ipu_index, IPU_IPU_FS_PROC_FLOW1__VF_IN_VALID, 1);
 
         if (res_info.width_in % 16 == 0) {
-            ipu_write_field(ipu_index, IPU_IC_IDMAC_1__CB1_BURST_16, 1);   // set to 16bps
+            ipu_write_field(ipu_index, IPU_IC_IDMAC_1__CB1_BURST_16, 1);    // set to 16bps
             ipu_write_field(ipu_index, IPU_IC_IDMAC_1__CB6_BURST_16, 1);
         } else {
-            ipu_write_field(ipu_index, IPU_IC_IDMAC_1__CB1_BURST_16, 0);   // set to 8bps
+            ipu_write_field(ipu_index, IPU_IC_IDMAC_1__CB1_BURST_16, 0);    // set to 8bps
             ipu_write_field(ipu_index, IPU_IC_IDMAC_1__CB6_BURST_16, 0);
         }
-		ipu_write_field(ipu_index, IPU_IC_IDMAC_2__T2_FR_HEIGHT, res_info.height_out - 1);
-		ipu_write_field(ipu_index, IPU_IC_IDMAC_3__T2_FR_WIDTH, res_info.width_out - 1);
+        ipu_write_field(ipu_index, IPU_IC_IDMAC_2__T2_FR_HEIGHT, res_info.height_out - 1);
+        ipu_write_field(ipu_index, IPU_IC_IDMAC_3__T2_FR_WIDTH, res_info.width_out - 1);
 
-		ipu_ic_calc_resize_coeffs(res_info.width_in, res_info.width_out, &resCoff, &downsCoff);
-		ipu_write_field(ipu_index, IPU_IC_PRP_VF_RSC__PRPVF_DS_R_H, downsCoff);
-		ipu_write_field(ipu_index, IPU_IC_PRP_VF_RSC__PRPVF_RS_R_H, resCoff);
+        ipu_ic_calc_resize_coeffs(res_info.width_in, res_info.width_out, &resCoff, &downsCoff);
+        ipu_write_field(ipu_index, IPU_IC_PRP_VF_RSC__PRPVF_DS_R_H, downsCoff);
+        ipu_write_field(ipu_index, IPU_IC_PRP_VF_RSC__PRPVF_RS_R_H, resCoff);
 
-		ipu_ic_calc_resize_coeffs(res_info.height_in, res_info.height_out, &resCoff, &downsCoff);
-		ipu_write_field(ipu_index, IPU_IC_PRP_VF_RSC__PRPVF_DS_R_V, downsCoff);
-		ipu_write_field(ipu_index, IPU_IC_PRP_VF_RSC__PRPVF_RS_R_V, resCoff);
-		break;
+        ipu_ic_calc_resize_coeffs(res_info.height_in, res_info.height_out, &resCoff, &downsCoff);
+        ipu_write_field(ipu_index, IPU_IC_PRP_VF_RSC__PRPVF_DS_R_V, downsCoff);
+        ipu_write_field(ipu_index, IPU_IC_PRP_VF_RSC__PRPVF_RS_R_V, resCoff);
+        break;
     case PP_TASK:
         ipu_write_field(ipu_index, IPU_IC_CONF__PP_EN, 0);
         ipu_write_field(ipu_index, IPU_IC_CONF__PP_CSC1, 0);
@@ -165,15 +166,44 @@ void ipu_ic_resize_config(int32_t ipu_index, int32_t taskType, ipu_res_info_t re
         ipu_write_field(ipu_index, IPU_IC_PP_RSC__PP_RS_R_V, resCoff);  // FROM (1536/2 -1)->479 *8192 = 13117
         break;
     default:
-		printf ("Wrong ic task type!\n");
+        printf("Wrong ic task type!\n");
         break;
     }
+}
+
+void ipu_ic_deinterlace_config(int32_t ipu_index, ipu_vdi_info_t vdi_info)
+{
+    int32_t resCoff = 0, downsCoff = 0;
+
+    ipu_write_field(ipu_index, IPU_IC_CONF__PRPVF_EN, 0);
+    ipu_write_field(ipu_index, IPU_IC_CONF__RWS_EN, 1);
+    ipu_write_field(ipu_index, IPU_IC_CONF__CSI_MEM_WR_EN, 0);
+    ipu_write_field(ipu_index, IPU_IPU_FS_PROC_FLOW1__VF_IN_VALID, 1);
+
+    if (vdi_info.width_in % 16 == 0) {
+        ipu_write_field(ipu_index, IPU_IC_IDMAC_1__CB1_BURST_16, 1);    // set to 16bps
+        ipu_write_field(ipu_index, IPU_IC_IDMAC_1__CB6_BURST_16, 1);
+    } else {
+        ipu_write_field(ipu_index, IPU_IC_IDMAC_1__CB1_BURST_16, 0);    // set to 8bps
+        ipu_write_field(ipu_index, IPU_IC_IDMAC_1__CB6_BURST_16, 0);
+    }
+    ipu_write_field(ipu_index, IPU_IC_IDMAC_2__T2_FR_HEIGHT, vdi_info.height_out - 1);
+    ipu_write_field(ipu_index, IPU_IC_IDMAC_3__T2_FR_WIDTH, vdi_info.width_out - 1);
+
+    ipu_ic_calc_resize_coeffs(vdi_info.width_in, vdi_info.width_out, &resCoff, &downsCoff);
+    ipu_write_field(ipu_index, IPU_IC_PRP_VF_RSC__PRPVF_DS_R_H, downsCoff);
+    ipu_write_field(ipu_index, IPU_IC_PRP_VF_RSC__PRPVF_RS_R_H, resCoff);
+
+    ipu_ic_calc_resize_coeffs(vdi_info.height_in, vdi_info.height_out, &resCoff, &downsCoff);
+    ipu_write_field(ipu_index, IPU_IC_PRP_VF_RSC__PRPVF_DS_R_V, downsCoff);
+    ipu_write_field(ipu_index, IPU_IC_PRP_VF_RSC__PRPVF_RS_R_V, resCoff);
 }
 
 /*
 * this function is used to calculate the params for resizing
 */
-int32_t ipu_ic_calc_resize_coeffs(int32_t in_size, int32_t out_size, int32_t *resize_coeff, int32_t *downsize_coeff)
+int32_t ipu_ic_calc_resize_coeffs(int32_t in_size, int32_t out_size, int32_t * resize_coeff,
+                                  int32_t * downsize_coeff)
 {
     int32_t tempSize;
     int32_t tempDownsize;
@@ -211,8 +241,7 @@ int32_t ipu_ic_calc_resize_coeffs(int32_t in_size, int32_t out_size, int32_t *re
 * this function is used to set the resizing parameters
 */
 int32_t ipu_ic_config_resize_rate(int32_t ipu_index, char *task_type, uint32_t res_vert,
-                              uint32_t down_vert, uint32_t res_horiz,
-                              uint32_t down_horiz)
+                                  uint32_t down_vert, uint32_t res_horiz, uint32_t down_horiz)
 {
     uint32_t val;
     uint32_t ipu_base_addr = REGS_IPU_BASE(ipu_index);

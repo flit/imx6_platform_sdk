@@ -38,7 +38,7 @@
 #include "iomux_config.h"
 #include "registers/regsipu.h"
 
-static int32_t claa_wvga_panel_init(int32_t *arg)
+static int32_t claa_wvga_panel_init(int32_t * arg)
 {
     return true;
 }
@@ -52,7 +52,7 @@ extern void ldb_iomux_config(void);
 extern void ldb_clock_config(int32_t freq, int32_t ipu_index);
 extern void lvds_power_on(void);
 
-static int32_t hannstar_lvds_panel_init(int32_t *ipu_index)
+static int32_t hannstar_lvds_panel_init(int32_t * ipu_index)
 {
     ldb_iomux_config();
     ldb_clock_config(65000000, *ipu_index);
@@ -71,7 +71,7 @@ static int32_t hannstar_lvds_panel_deinit(void)
 
 extern void hdmi_pgm_iomux(void);
 extern void hdmi_clock_set(int32_t ipu_index, uint32_t pclk);
-static int32_t hdmi_1080p60_init(int32_t *ipu_index)
+static int32_t hdmi_1080p60_init(int32_t * ipu_index)
 {
     hdmi_pgm_iomux();
     hdmi_clock_set(*ipu_index, 148500000);
@@ -84,7 +84,7 @@ static int32_t hdmi_1080p60_deinit(void)
     return true;
 }
 
-static int32_t hdmi_720p60_init(int32_t *ipu_index)
+static int32_t hdmi_720p60_init(int32_t * ipu_index)
 {
     hdmi_pgm_iomux();
     hdmi_clock_set(*ipu_index, 74250000);
@@ -98,7 +98,7 @@ static int32_t hdmi_720p60_deinit(void)
 }
 
 extern void ext_hdmi_transmitter_power_on(void);
-static int32_t ext_hdmi_transmitter_1080p60_init(int32_t *ipu_index)
+static int32_t ext_hdmi_transmitter_1080p60_init(int32_t * ipu_index)
 {
     /*ext_hdmi_transmitter is connected to the parallel interface */
     ipu1_iomux_config();
@@ -116,7 +116,7 @@ extern void mipi_backlight_en(void);
 extern void mipi_display_reset(void);
 extern void mipi_clock_set(void);
 
-static int32_t mipi_display_init(int32_t *ipu_index)
+static int32_t mipi_display_init(int32_t * ipu_index)
 {
     mipi_backlight_en();
     mipi_display_reset();

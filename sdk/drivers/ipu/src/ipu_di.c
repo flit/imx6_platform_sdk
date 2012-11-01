@@ -66,7 +66,7 @@ void ipu_di_config(uint32_t ipu_index, uint32_t di, ips_dev_panel_t * panel)
     int32_t delayH2V;
     int32_t vDisp, vSyncStartWidth, vSyncWidth, vSyncEndWidth;
     int32_t hTotal, vTotal;
-    int32_t dw_set;                 // data waveform set
+    int32_t dw_set;             // data waveform set
     int32_t de_pointer = 0;
     int32_t pt[7];
     di_sync_wave_gen_t syncWaveformGen = {
@@ -97,7 +97,7 @@ void ipu_di_config(uint32_t ipu_index, uint32_t di, ips_dev_panel_t * panel)
     else
         ipuClk = IPU_DEFAULT_WORK_CLOCK;    // for imx6dqel->pixel_clock;
 
-    div = (int32_t)((float)ipuClk / (float)typPixClk + 0.5);    // get the nearest value of typical pixel clock
+    div = (int32_t) ((float)ipuClk / (float)typPixClk + 0.5);   // get the nearest value of typical pixel clock
     ipu_di_screen_set(ipu_index, di, vTotal - 1);
 
     /* config PIN_15(DRDY signal)
@@ -208,7 +208,8 @@ void ipu_di_config(uint32_t ipu_index, uint32_t di, ips_dev_panel_t * panel)
  * @param   up raising edge
  * @param   down falling edge
  */
-void ipu_di_waveform_config(int32_t ipu_index, int32_t di, int32_t pointer, int32_t set, int32_t up, int32_t down)
+void ipu_di_waveform_config(int32_t ipu_index, int32_t di, int32_t pointer, int32_t set, int32_t up,
+                            int32_t down)
 {
     ipu_write_field(ipu_index, DI_WAVESET_UP(di, pointer, set), up);
     ipu_write_field(ipu_index, DI_WAVESET_DOWN(di, pointer, set), down);
@@ -252,8 +253,8 @@ int32_t ipu_di_screen_set(int32_t ipu_index, int32_t di, int32_t screen_height)
  * @param   cst chip select pointer
  * @param   pt pointer to the waveform
  */
-void ipu_di_pointer_config(int32_t ipu_index, int32_t di, int32_t pointer, int32_t access, int32_t component,
-                           int32_t cst, int32_t *pt)
+void ipu_di_pointer_config(int32_t ipu_index, int32_t di, int32_t pointer, int32_t access,
+                           int32_t component, int32_t cst, int32_t * pt)
 {
     uint32_t regVal = 0;
     uint32_t ipu_base_addr = REGS_IPU_BASE(ipu_index);
@@ -316,7 +317,8 @@ int32_t ipu_di_bsclk_gen(int32_t ipu_index, int32_t di, int32_t division, int32_
  * @param	pointer:		waveform pointer
  * @param	sync_waveform_gen:		waveform information
  */
-void ipu_di_sync_config(int32_t ipu_index, int32_t di, int32_t pointer, di_sync_wave_gen_t sync_waveform_gen)
+void ipu_di_sync_config(int32_t ipu_index, int32_t di, int32_t pointer,
+                        di_sync_wave_gen_t sync_waveform_gen)
 {
     ipu_write_field(ipu_index, DI_SWGEN0_RUN_VALUE_M1(di, pointer), sync_waveform_gen.runValue);
     ipu_write_field(ipu_index, DI_SWGEN0_RUN_RESOL(di, pointer), sync_waveform_gen.runResolution);

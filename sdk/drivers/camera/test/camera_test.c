@@ -72,13 +72,7 @@ int32_t camera_test(void)
         }
         printf("\tx - to exit.\n");
 
-        do {
-            revchar = (uint8_t) getchar();
-        } while (revchar == (uint8_t) 0xFF);
-        if (revchar == 'x') {
-            printf("\nCamera test exit.\n");
-            break;
-        }
+	revchar = '0';
         i = revchar - '0';
 
         if ((i >= 0) && (i < test_num)) {

@@ -68,16 +68,17 @@ usage()
     echo "Valid target and board combinations:"
     echo
     echo "  target=mx6dq boards:"
-    echo "       evb              rev a (MX6QCPUDDR3)"
-    echo "       sabre_ai         rev a, b"
-    echo "       sabre_lite       rev a"
-    echo "       smart_device     rev a, b"
+    echo "       evb              rev a            (labeled MX6QCPUDDR3)"
+    echo "       sabre_ai         rev a, b, c"
+    echo "       smart_device     rev a, b, c"
     echo
     echo "  target=mx6sdl boards:"
-    echo "       evb              rev a (MX6QCPUDDR3)"
-    echo "       sabre_ai         rev a, b"
-    echo "       sabre_lite       rev a"
-    echo "       smart_device     rev a, b"
+    echo "       evb              rev a            (labeled MX6QCPUDDR3)"
+    echo "       sabre_ai         rev a, b, c"
+    echo "       smart_device     rev a, b, c"
+    echo
+    echo "  target=mx6sl boards:"
+    echo "       evk              rev a"
     echo
     echo "  target=all"
     echo "       builds all valid combinations of target, board, and board_rev"
@@ -111,7 +112,6 @@ valid_builds=( "mx6dq"  "sabre_ai"     "a"
                "mx6dq"  "sabre_ai"     "b"
                "mx6dq"  "sabre_ai"     "c"
                "mx6dq"  "evb"          "a"
-               "mx6dq"  "sabre_lite"   "a"
                "mx6dq"  "smart_device" "a"
                "mx6dq"  "smart_device" "b"
                "mx6dq"  "smart_device" "c"
@@ -119,12 +119,12 @@ valid_builds=( "mx6dq"  "sabre_ai"     "a"
                "mx6sdl" "sabre_ai"     "b"
                "mx6sdl" "sabre_ai"     "c"
                "mx6sdl" "evb"          "a"
-               "mx6sdl" "sabre_lite"   "a"
                "mx6sdl" "smart_device" "a"
                "mx6sdl" "smart_device" "b"
                "mx6sdl" "smart_device" "c"
                "mx6sl"  "evk"          "a")
 
+# Set color variables if outputting to a terminal.
 if [ -t 1 ]; then
     color_default=\\033[00m
     color_passed=\\033[92m
@@ -143,7 +143,7 @@ do_build()
         result=$?
         
         build_name="${soc_name} ${board_name} rev_${board_rev} ${test_name}"
-        #echo
+        
         if [ $result -eq 0 ]; then
             printf "\n${color_passed}Build $build_name passed!${color_default}"
         else
@@ -156,14 +156,9 @@ do_build()
 }
 
 # ENTRY POINT
-#if [ $# -lt 1 ]; then
-#    echo "Need to specify at least -target and -board as arguments"
-#    echo
-#    usage
-#fi
 
 if echo "$@"|egrep -sq '\-(h|H)'; then
-    eval usage
+    usage
 fi
 
 sdk_dir=$PWD
@@ -308,8 +303,6 @@ if [ "$list_flag" = n ]; then
         
         # Add newline between builds
         echo
-
-#        echo "Build ${soc_name}_${board_name}_rev_${board_rev} test=${test_name}"
     done
 fi
 

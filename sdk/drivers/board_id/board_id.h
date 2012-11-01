@@ -92,7 +92,6 @@ void show_board_id(const fsl_board_id_t board_id, const char* const indent);
 #define BOARD_TYPE_DEFAULT      0x0
 #define BOARD_TYPE_SABRE_AI     0x1
 #define BOARD_TYPE_SMART_DEVICE 0x2
-#define BOARD_TYPE_SABRE_LITE   0x3
 #define BOARD_TYPE_EVB          0x4
 #define BOARD_TYPE_EVK          0x5
 //@}
@@ -120,8 +119,6 @@ void show_board_id(const fsl_board_id_t board_id, const char* const indent);
 #define BOARD_TYPE            BOARD_TYPE_SABRE_AI
 #elif defined(BOARD_SMART_DEVICE)
 #define BOARD_TYPE            BOARD_TYPE_SMART_DEVICE
-#elif defined(BOARD_SABRE_LITE)
-#define BOARD_TYPE            BOARD_TYPE_SABRE_LITE
 #elif defined(BOARD_EVB)
 #define BOARD_TYPE            BOARD_TYPE_EVB
 #elif defined(BOARD_EVK)

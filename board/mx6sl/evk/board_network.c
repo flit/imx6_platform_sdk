@@ -47,11 +47,6 @@ void imx_ar8031_reset(void)
 {
 }
 
-/*CPU_PER_RST_B low to high*/
-// void imx_KSZ9021RN_reset(void)
-// {
-// }
-
 /*! From obds
  * ENET iomux config
  */

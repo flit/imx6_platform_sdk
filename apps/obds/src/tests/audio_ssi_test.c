@@ -88,9 +88,6 @@ int audio_test_init(void)
 #endif
 #endif
 
-#if defined(BOARD_SABRE_LITE)
-    snd_card = &snd_card_ssi_sgtl5000;
-#endif
 #if (defined(CHIP_MX6SL) && defined(BOARD_EVK))
     snd_card = &snd_card_ssi_wm8962;
 #endif
@@ -100,11 +97,6 @@ int audio_test_init(void)
     dev_para.bus_mode = AUDIO_BUS_MODE_MASTER;
 #endif
 
-#if defined(BOARD_SABRE_LITE)
-    /*SABRE_LITE board used audumx_port4 to conncet sgtl500 */
-    audmux_route(AUDMUX_PORT_2, AUDMUX_PORT_4, AUDMUX_SSI_SLAVE);
-    dev_para.bus_mode = AUDIO_BUS_MODE_SLAVE;
-#endif
     //Config SSI 
     dev_para.bus_protocol = AUDIO_BUS_PROTOCOL_I2S;
     dev_para.sample_rate = SAMPLERATE_48KHz;

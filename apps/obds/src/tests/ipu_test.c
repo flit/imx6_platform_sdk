@@ -173,7 +173,7 @@ this is not defined for MX6SL and it is an empty function for the other MX6 proc
         lvds_power_on();
         ldb_config_ipu(bit_mode);
     }
-#if defined(BOARD_SABRE_AI) || defined(BOARD_SABRE_LITE) || defined(BOARD_SMART_DEVICE) || (!defined(CHIP_MX6SL) && defined(BOARD_EVB))
+#if defined(BOARD_SABRE_AI) || defined(BOARD_SMART_DEVICE) || (!defined(CHIP_MX6SL) && defined(BOARD_EVB))
     else if (panel_type_sel == DISP_DEV_HDMI) {
         hdmi_pgm_iomux();
         hdmi_clock_set(1, 74250000);

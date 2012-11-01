@@ -64,11 +64,7 @@ const i2c_device_info_t g_adv7180_i2c_device = { HW_I2C3, (0x42 >> 1), 50000 };
 const i2c_device_info_t g_os81050_i2c_device = { HW_I2C3, (0x40 >> 1), 50000 };
 
 
-#if defined(BOARD_SABRE_LITE)
-const i2c_device_info_t g_p1003_tsc_i2c_device = { HW_I2C3, 4 };
-#else
 const i2c_device_info_t g_p1003_tsc_i2c_device = { HW_I2C2, 4 };
-#endif
 
 
 const i2c_device_info_t g_at24cx_i2c_device = { HW_I2C3, (0xa0 >> 1), 170000 };

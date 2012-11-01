@@ -273,7 +273,6 @@ void select_tests(menuitem_t* const menuitems, const select_tests_t select_tests
     // use Atheros ethernet for all other revs (rev B)
 	menu_make_menuitem(&menuitems[menu_idx], "05", "Ethernet Test", enet_test_main, &test_results[menu_idx]);menu_idx++;    
 	menu_make_menuitem(&menuitems[menu_idx], "06", "RGMII AR8031 G-Ethernet Test", ar8031_test_main, &test_results[menu_idx]);menu_idx++;
-	menu_make_menuitem(&menuitems[menu_idx], "07", "RGMII AR8031 G-Ethernet Test", KSZ9021RN_test_main, &test_results[menu_idx]);menu_idx++;
 	menu_make_menuitem(&menuitems[menu_idx], "08", "I2C Device ID Test", i2c_device_id_check, &test_results[menu_idx]);menu_idx++;		
 	menu_make_menuitem(&menuitems[menu_idx], "09", "I2S Audio Test", i2s_audio_test, &test_results[menu_idx]);menu_idx++;
 	menu_make_menuitem(&menuitems[menu_idx], "12", "UART Test", uart_test, &test_results[menu_idx]);menu_idx++;
@@ -300,10 +299,6 @@ void select_tests(menuitem_t* const menuitems, const select_tests_t select_tests
 	}
 
 #elif defined(BOARD_TYPE_SMART_DEVICE)
-#if defined(CHIP_MX6DQ)
-//    sata_test_enable = 1;
-#endif
-#elif defined(BOARD_TYPE_SABRE_LITE)
 #if defined(CHIP_MX6DQ)
 //    sata_test_enable = 1;
 #endif
@@ -475,33 +470,6 @@ void select_tests(SELECT_TESTS tests)
         // touch_button_test_enable = 1;
 
     }                           // if (BOARD_TYPE == BOARD_TYPE_SMART_DEVICE)
-
-    if (BOARD_TYPE == BOARD_TYPE_SABRE_LITE) {
-        KSZ9021RN_test_enable = 1;  // micrel ethernet
-
-        sata_test_enable = 1;
-
-        ipu_display_panel[display++] = DISP_DEV_TFTLCD;
-        ipu_display_panel[display++] = DISP_DEV_LVDS;
-        ipu_display_panel[display++] = DISP_DEV_HDMI;
-
-        i2c_device_id_check_p1003_test_enable = 1;  // lvds display touch firmware ID test
-
-        // spi_nor_test_enable = 1;
-        // spi_nor_flash_type = M25P32;
-
-        //usbh_dev_enum_test_base = USBH1_BASE_ADDR;
-        //usbh_dev_enum_test_enable = 1;  // will return HUB info
-        usbh_hub251x_test_base = USBH1_BASE_ADDR;
-        usbh_hub251x_test_enable = 1;   // will return device info connected to hub
-
-        mmcsd_test_enable = 1;
-        mmcsd_bus_width = 8;
-        mmc_sd_base_address = USDHC3_BASE_ADDR;
-
-        i2s_audio_test_enable = 1;  // sabre-lite audio out of sgtl5000
-
-    }                           // if (BOARD_TYPE == BOARD_TYPE_SABRE_LITE)
 
     if (BOARD_TYPE == BOARD_TYPE_EVB) {
         // these tests apply to EVB CPU board
@@ -739,31 +707,6 @@ void select_tests(SELECT_TESTS tests)
         // touch_button_test_enable = 1;
 
     }                           // if (BOARD_TYPE == BOARD_TYPE_SMART_DEVICE)
-
-    if (BOARD_TYPE == BOARD_TYPE_SABRE_LITE) {
-        KSZ9021RN_test_enable = 1;  // micrel ethernet
-
-        ipu_display_panel[display++] = DISP_DEV_TFTLCD;
-        ipu_display_panel[display++] = DISP_DEV_LVDS;
-        ipu_display_panel[display++] = DISP_DEV_HDMI;
-
-        i2c_device_id_check_p1003_test_enable = 1;  // lvds display touch firmware ID test
-
-        // spi_nor_test_enable = 1;
-        // spi_nor_flash_type = M25P32;
-
-        //usbh_dev_enum_test_base = USBH1_BASE_ADDR;
-        //usbh_dev_enum_test_enable = 1;  // will return HUB info
-        usbh_hub251x_test_base = USBH1_BASE_ADDR;
-        usbh_hub251x_test_enable = 1;   // will return device info connected to hub
-
-        mmcsd_test_enable = 1;
-        mmcsd_bus_width = 8;
-        mmc_sd_base_address = USDHC3_BASE_ADDR;
-
-        i2s_audio_test_enable = 1;  // sabre-lite audio out of sgtl5000
-
-    }                           // if (BOARD_TYPE == BOARD_TYPE_SABRE_LITE)
 
     if (BOARD_TYPE == BOARD_TYPE_EVB) {
         // these tests apply to EVB CPU board

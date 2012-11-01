@@ -116,9 +116,6 @@ void board_name(char* const name, const uint32_t board_id)
 		case BOARD_TYPE_SMART_DEVICE:
 			sprintf(name, "Smart Device (SD)");
 			break;
-		case BOARD_TYPE_SABRE_LITE:
-			sprintf(name, "Sabre Lite (QSB)");
-			break;
 		case BOARD_TYPE_EVB:
 			sprintf(name, "EVB");
 			break;

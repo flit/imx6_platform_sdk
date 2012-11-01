@@ -104,9 +104,7 @@ void ALL_test(void)
 #endif
         wdog_test();
 #endif
-#ifndef BOARD_SABRE_LITE
         pwm_test();
-#endif
         sdma_test();
         snvs_rtc_test();
         snvs_srtc_test();

@@ -65,8 +65,6 @@ else ifeq "$(BOARD)" "evk"
 DEFINES += -DBOARD_EVK
 else ifeq "$(BOARD)" "sabre_ai"
 DEFINES += -DBOARD_SABRE_AI
-else ifeq "$(BOARD)" "sabre_lite"
-DEFINES += -DBOARD_SABRE_LITE
 else ifeq "$(BOARD)" "smart_device"
 DEFINES += -DBOARD_SMART_DEVICE
 else ifdef BOARD

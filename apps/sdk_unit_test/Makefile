@@ -72,6 +72,7 @@ define SUBDIRS
     $(SDK_LIB_ROOT)/drivers/timer/test
     $(SDK_LIB_ROOT)/drivers/uart/test
     $(SDK_LIB_ROOT)/drivers/usdhc/test
+    $(SDK_LIB_ROOT)/drivers/pwm/test
 endef
 
 # Tests that are not available for CHIP_MX6SL only.
@@ -114,11 +115,6 @@ ifeq "$(BOARD)" "smart_device"
     SUBDIRS += \
         $(SDK_LIB_ROOT)/drivers/camera/test \
         $(SDK_LIB_ROOT)/drivers/keypad/test
-endif
-
-# PWM is available on all but sabre_lite.
-ifneq "$(BOARD)" "sabre_lite"
-    SUBDIRS += $(SDK_LIB_ROOT)/drivers/pwm/test
 endif
 
 ifeq "$(BOARD)" "evk"

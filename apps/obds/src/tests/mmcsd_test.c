@@ -140,7 +140,7 @@ menu_action_t mmcsd_test(const menu_context_t* const context, void* const param)
 
     /* Always try maximum bus width */
     mmcsd_bus_width = 8;
-#if ((!defined(CHIP_MX6SL) && defined(BOARD_EVB)) || defined(BOARD_SMART_DEVICE) || defined(BOARD_SABRE_LITE) )
+#if ((!defined(CHIP_MX6SL) && defined(BOARD_EVB)) || defined(BOARD_SMART_DEVICE) )
     printf("Please make sure to insert an MMC/SD card into SD slot #3\n");
     printf("Please enter y or Y to confirm\n");
     if (!is_input_char('y', indent)) {

@@ -59,17 +59,7 @@ hw_module_t g_arm_core = {
     792000000,
 };
 
-#if  defined(BOARD_SABRE_LITE)
-// UART2 is the serial debug/console port for sabre_lite board
-hw_module_t g_debug_uart = {
-    "UART2 for debug",
-    2,
-    UART2_BASE_ADDR,
-    80000000,
-    IMX_INT_UART2,
-    &default_interrupt_routine,
-};
-#elif defined(BOARD_SMART_DEVICE)
+#if defined(BOARD_SMART_DEVICE)
 // UART1 is the serial debug/console port for smart_device board
 hw_module_t g_debug_uart = {
     "UART1 for debug",
@@ -80,7 +70,7 @@ hw_module_t g_debug_uart = {
     &default_interrupt_routine,
 };
 #else
-// UART4 is the serial debug/console port for EVB and ARD
+// UART4 is the serial debug/console port for EVB and sabre_ai
 hw_module_t g_debug_uart = {
     "UART4 for debug",
     4,

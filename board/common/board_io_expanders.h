@@ -35,9 +35,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 /* 
- * BOARD_SMART_DEVICE/BOARD_SABRE_LITE for compile error
+ * BOARD_SMART_DEVICE for compile error
  */
-#if defined(BOARD_SMART_DEVICE) || defined(BOARD_SABRE_LITE)
+#if defined(BOARD_SMART_DEVICE)
 #define MAX7310_NBR 0
 #endif
 

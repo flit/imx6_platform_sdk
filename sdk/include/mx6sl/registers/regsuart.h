@@ -60,10 +60,10 @@
 #define HW_UART4 (4) //!< Instance number for UART4.
 #define HW_UART5 (5) //!< Instance number for UART5.
 #define REGS_UART1_BASE (0x02020000) //!< Base address for UART instance number 1.
-#define REGS_UART2_BASE (0x021e8000) //!< Base address for UART instance number 2.
-#define REGS_UART3_BASE (0x021ec000) //!< Base address for UART instance number 3.
-#define REGS_UART4_BASE (0x021f0000) //!< Base address for UART instance number 4.
-#define REGS_UART5_BASE (0x021f4000) //!< Base address for UART instance number 5.
+#define REGS_UART2_BASE (0x02024000) //!< Base address for UART instance number 2.
+#define REGS_UART3_BASE (0x02034000) //!< Base address for UART instance number 3.
+#define REGS_UART4_BASE (0x02038000) //!< Base address for UART instance number 4.
+#define REGS_UART5_BASE (0x02018000) //!< Base address for UART instance number 5.
 
 //! @brief Get the base address of UART by instance number.
 //! @param x UART instance number, from 1 through 5.

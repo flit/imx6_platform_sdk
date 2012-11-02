@@ -95,5 +95,5 @@ endif
 USE_THUMB ?= 0
 
 # Enable debug build by default.
-DEBUG ?= 0
+DEBUG ?= 1
 

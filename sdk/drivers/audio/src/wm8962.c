@@ -44,10 +44,6 @@ struct imx_i2c_request wm8962_i2c_req;
 #define TRACE(fmt, args...)
 #endif
 
-#if (defined(CHIP_MX6SL) && defined(BOARD_EVB))
-//#define 	WM8962_I2C_UNSTABLE
-#endif
-
 #define WM8962_REG_WRITE(codec, reg_addr, reg_val)	\
  	do{     \
 		if(0 != WM8962_i2c_write(codec, reg_addr, reg_val)){   \
@@ -195,11 +191,7 @@ int32_t WM8962_DAC_configure(void *priv, audio_dev_para_p para)
     /* Software reset and brings up VMID */
     WM8962_REG_WRITE(codec, 0x81, 0x0001); //Disable all PLLs and OSC
     WM8962_REG_WRITE(codec, 0x1C, 0x001C); //STARTUP_BIAS_ENA=1, VMID_BUF_ENA=1, VMID_RAMP=1
-#if !defined(WM8962_I2C_UNSTABLE)
     WM8962_REG_WRITE(codec, 0x19, 0x00D6); //DMIC_ENA=0, OPCLK_ENA=0, VMID_SEL=01, BIAS_ENA=1, INL_ENA=0, INR_ENA=1, ADCL_ENA=0, ADCR_ENA=1, MICBIAS_ENA=1
-#else
-    WM8962_REG_WRITE(codec, 0x19, 0x00C0); //DMIC_ENA=0, OPCLK_ENA=0, VMID_SEL=1, BIAS_ENA=1, INL_ENA=0, INR_ENA=0, ADCL_ENA=0, ADCR_ENA=0, MICBIAS_ENA=0
-#endif
 
     /* Clocking configuration */
     WM8962_reg_modify(codec, 0x08, 0x0800, 0x0820);    //CLKREG_OVD=1, SYSCLK_ENA=0
@@ -232,7 +224,6 @@ int32_t WM8962_DAC_configure(void *priv, audio_dev_para_p para)
     WM8962_REG_WRITE(codec, 0x29, 0x01F9); //SPKL PGA volume = 0dB, Zero-cross enabled, Volume update
     WM8962_REG_WRITE(codec, 0x31, 0x00D0); //Enable Class D
 
-#if !defined(WM8962_I2C_UNSTABLE)
     /* Recording path configuration */
     WM8962_REG_WRITE(codec, 0x25, 0x0002); // IN3L->INPGAL
     WM8962_REG_WRITE(codec, 0x26, 0x0002); // IN3R->INPGAR
@@ -242,7 +233,6 @@ int32_t WM8962_DAC_configure(void *priv, audio_dev_para_p para)
     WM8962_reg_modify(codec, 0x21, 0x0000, 0x0038);    //INPGAR->MIXINR vol=0dB
     WM8962_REG_WRITE(codec, 0x00, 0x0027); // INPGAL vol=6dB
     WM8962_REG_WRITE(codec, 0x01, 0x0127); // INPGAR vol=6dB and update
-#endif
     WM8962_REG_WRITE(codec, 0x1A, 0x1F8);  //Enable headphone PGAs and DACs, Speaker PGSs, Unmute headphone PGAs 
     WM8962_reg_modify(codec, 0x05, 0x0000, 0x0008);    //DAC Unmute 
 

@@ -42,7 +42,7 @@ static const char * const mmcsd_test_name = "MMC/SD Test";
 extern int mmc_sd_test(unsigned int bus_width, uint32_t instance);
 
 uint32_t mmcsd_bus_width, instance;
-#if defined(CHIP_MX6SL) && defined(BOARD_EVB)
+#if defined(CHIP_MX6SL) && defined(BOARD_EVK)
 menu_action_t mmcsd_test(const menu_context_t* const context, void* const param)
 {
  	const char* indent = menu_get_indent(context);

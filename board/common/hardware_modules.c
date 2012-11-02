@@ -37,10 +37,8 @@
 
 #include <math.h>
 #include "registers/regsccmanalog.h"
-#if !defined (CHIP_MX6SL)
 #include "registers/regsflexcan.h"
 #include "registers/regsipu.h"
-#endif
 #include "registers/regspmu.h"
 #include "registers/regsccm.h"
 #include "sdk.h"

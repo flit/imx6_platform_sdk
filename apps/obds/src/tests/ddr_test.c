@@ -47,8 +47,6 @@
 * CSD1_BASE_ADDR are properly defined.
 */
 #if defined(CHIP_MX6SL)
-#define MMDC0_ARB_BASE_ADDR			0x80000000
-#define MMDC1_ARB_BASE_ADDR			NULL
 #define CSD0_BASE_ADDR      MMDC0_ARB_BASE_ADDR
 #define CSD1_BASE_ADDR      MMDC1_ARB_BASE_ADDR
 #else

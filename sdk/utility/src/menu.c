@@ -310,12 +310,12 @@ void menu_make_menuitem_end(menuitem_t* menuitem)
 
 const char* const menu_get_indent(const menu_context_t* context)
 {
-	static char indent[INDENT_MAX+1];
-	memset(indent, ' ', INDENT_MAX);
-	if (context)
-		indent[INDENT * context->depth + 2] = '\0';
-	else
-		indent[0] = '\0';
+	static char indent[INDENT_MAX+1] = "  ";
+// 	memset(indent, ' ', INDENT_MAX);
+// 	if (context)
+// 		indent[INDENT * context->depth + 2] = '\0';
+// 	else
+// 		indent[2] = '\0';
 
 	return indent;
 }
@@ -329,7 +329,7 @@ menu_action_t menu_present(const menu_t* menu)
 
 	++depth;
 
-	int indent_idx = INDENT * depth + 2;
+	int indent_idx = 2; //INDENT * depth + 2;
 	if ( indent_idx > INDENT_MAX )
 	{
 		printf_color(g_TextAttributeBold, g_TextColorRed, "\nERROR: MENU depth is to large. Exiting menu_present().");
@@ -456,7 +456,7 @@ menu_action_t menu_present(const menu_t* menu)
 		else if ( ret_val == MENU_EXIT )
 		{
 			if ( depth == 0 )
-				printf_color(NULL, g_TextColorYellow, "%s%sExiting menu.%s\n", indent);
+				printf_color(NULL, g_TextColorYellow, "\n%sExiting menu.\n", indent);
 			break;
 		}
 

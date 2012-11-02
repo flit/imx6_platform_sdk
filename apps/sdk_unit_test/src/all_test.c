@@ -31,10 +31,13 @@
 #include <stdio.h>
 #include "sdk.h"
 #include "sdk_version.h"
-#include "cortex_a9.h"
-#include "mmu.h"
+#include "menu.h"
 
 #ifdef ALL_TEST_ENABLE
+
+////////////////////////////////////////////////////////////////////////////////
+// Externs
+////////////////////////////////////////////////////////////////////////////////
 
 extern void sdma_test(void);
 extern void ipu_test(void);
@@ -60,6 +63,7 @@ extern int camera_test(void);
 extern int wdog_test(void);
 extern int camera_test(void);
 extern void usb_test(void);
+extern void microseconds_test(void);
 
 #ifdef CHIP_MX6DQ
 extern int sata_test(void);
@@ -71,71 +75,120 @@ extern int pcie_test(void);
 #if defined(CHIP_MX6SL)
 extern int lcdif_test(void);
 extern int camera_test(void);
+extern void epdc_test(void);
+extern void spdc_test(void);
 #endif
+
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
+
+//! @brief Macro to help create test menu items.
+#define DEFINE_TEST_MENU_ITEM(k, m, t) { MENUITEM_FUNCTION, k, m, NULL, run_test, t }
+
+//! @brief Typedef for one of the test functions.
+typedef void (*test_function_t)(void);
+
+////////////////////////////////////////////////////////////////////////////////
+// Prototypes
+////////////////////////////////////////////////////////////////////////////////
+
+menu_action_t run_test(const menu_context_t* context, void* param);
+menu_action_t exit_test(const menu_context_t* context, void* param);
+
+////////////////////////////////////////////////////////////////////////////////
+// Variables
+////////////////////////////////////////////////////////////////////////////////
+
+//! @brief Menu items for the test selection menu.
+const menuitem_t k_menuItems[] = {
+        // Common tests for all chips and boards
+        DEFINE_TEST_MENU_ITEM("e",  "epit test",        epit_test),
+        DEFINE_TEST_MENU_ITEM("g",  "gpt test",         gpt_test),
+        DEFINE_TEST_MENU_ITEM("i",  "i2c test",         i2c_test),
+        DEFINE_TEST_MENU_ITEM("w",  "pwm test",         pwm_test),
+        DEFINE_TEST_MENU_ITEM("s",  "sdma test",        sdma_test),
+        DEFINE_TEST_MENU_ITEM("r",  "snvs rtc test",    snvs_rtc_test),
+        DEFINE_TEST_MENU_ITEM("v",  "snvs srtc test",   snvs_srtc_test),
+        DEFINE_TEST_MENU_ITEM("t",  "tempmon test",     tempmon_test),
+        DEFINE_TEST_MENU_ITEM("u",  "uart test",        uart_test),
+        DEFINE_TEST_MENU_ITEM("d",  "usdhc test",       usdhc_test),
+        DEFINE_TEST_MENU_ITEM("c",  "gic test",         gic_test),
+        DEFINE_TEST_MENU_ITEM("m",  "microseconds timer test", microseconds_test),
+        
+        // mx6dq and mx6sdl are grouped together because they share the same boards.
+#if defined(CHIP_MX6DQ) || defined(CHIP_MX6SDL)
+        // Tests for all boards of mx6dq and mx6sdl.
+        DEFINE_TEST_MENU_ITEM("h",  "hdmi test",        hdmi_test),
+        DEFINE_TEST_MENU_ITEM("ip", "ipu test",         ipu_test),
+        
+#if defined(CHIP_MX6DQ)
+        // The sata test only applies to the mx6dq.
+        DEFINE_TEST_MENU_ITEM("sa", "sata test",        sata_test),
+#endif // defined(CHIP_MX6DQ)
+        
+        // Tests that apply only to particular boards for either the mx6dq or mx6sdl.
+#if defined(BOARD_EVB)
+        DEFINE_TEST_MENU_ITEM("a",  "audio test",       audio_test),
+        DEFINE_TEST_MENU_ITEM("mi", "mipi test",        mipi_test),
+        DEFINE_TEST_MENU_ITEM("pc", "pcie test",        pcie_test),
+        DEFINE_TEST_MENU_ITEM("wa", "watchdog test",    wdog_test),
+        DEFINE_TEST_MENU_ITEM("gp", "gpmi test",        gpmi_test),
+        DEFINE_TEST_MENU_ITEM("n",  "spi nor test",     spi_test),
+#elif defined(BOARD_SABRE_AI)
+        DEFINE_TEST_MENU_ITEM("ei",  "eim test",         eim_test),
+        DEFINE_TEST_MENU_ITEM("mi", "mipi test",        mipi_test),
+        DEFINE_TEST_MENU_ITEM("f",  "flexcan test",     flexcan_test),
+#elif defined(BOARD_SMART_DEVICE)
+        DEFINE_TEST_MENU_ITEM("ca", "camera test",      camera_test),
+#endif // defined(BOARD_SMART_DEVICE)
+
+#elif defined(CHIP_MX6SL)
+        // Tests for mx6sl evk.
+        DEFINE_TEST_MENU_ITEM("ca", "camera test",      camera_test),
+        DEFINE_TEST_MENU_ITEM("l",  "lcdif test",       lcdif_test),
+        DEFINE_TEST_MENU_ITEM("e",  "epdc test",        epdc_test),
+        DEFINE_TEST_MENU_ITEM("sp", "spdc test",        spdc_test),
+#endif // defined(CHIP_MX6SL)
+        
+        // Quit menu item
+        { MENUITEM_FUNCTION, "q", "quit test system", NULL, exit_test, 0 },
+        
+        // Menu terminator
+        { MENUITEM_NULL }
+    };
+
+//! @brief The test selection menu.
+const menu_t k_mainMenu = {
+        .header = "SDK Unit Tests\n"
+                  "  --------------",
+        .menuitems = k_menuItems,
+        .footer = "Select test to run:"
+    };
+
+//! @brief Action function to call the test function passed in as a parameter.
+menu_action_t run_test(const menu_context_t* context, void* param)
+{
+    test_function_t testFunction = (test_function_t)param;
+    testFunction();
+    
+    return MENU_SHOW;
+}
+
+//! @brief Action function to exit the menu.
+menu_action_t exit_test(const menu_context_t* context, void* param)
+{
+    return MENU_EXIT;
+}
 
 void ALL_test(void)
 {
-    while (1) {
-        printf("Starting the tests suite...\n");
-#if defined(BOARD_EVB)
-        audio_test();
-#endif
-
-#ifdef BOARD_SABRE_AI
-        eim_test();
-#endif /* BOARD_SABRE_AI */
-        epit_test();
-
-        gpt_test();
-#if !defined (CHIP_MX6SL)
-        hdmi_test();
-        ipu_test();
-#endif
-        i2c_test();
-
-#if defined(BOARD_EVB) || defined(BOARD_SABRE_AI)
-        mipi_test();
-#endif /* BOARD_EVB || BOARD_SABRE_AI */
-
-#if defined(BOARD_EVB)
-        pcie_test();
-#if defined(CHIP_MX6DQ)
-        sata_test();
-#endif
-        wdog_test();
-#endif
-        pwm_test();
-        sdma_test();
-        snvs_rtc_test();
-        snvs_srtc_test();
-#if defined(BOARD_EVB) || defined(BOARD_SMART_DEVICE)
-//        vpu_test();
-#endif
-#ifdef BOARD_EVB
-        gpmi_test();
-        spi_test();
-#endif /* BOARD_EVB */
-        tempmon_test();
-        uart_test();
-        usdhc_test();
-#if defined(BOARD_SMART_DEVICE) && defined(BOARD_REV_B)
-// 		usb_test();
-#endif
-
-        gic_test();
-
-#ifdef BOARD_SABRE_AI
-    /* need to be here */
-        flexcan_test();
-#endif /* BOARD_SABRE_AI */
-
-#if defined(BOARD_SMART_DEVICE)
-        camera_test();
-#endif
-
-        printf("\n...end of the tests suite.\n");
-    }
+    // Just run the test selection menu.
+    menu_present(&k_mainMenu);
 }
 
-#endif /* ALL_TEST_ENABLE */
+#endif // ALL_TEST_ENABLE
 
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////

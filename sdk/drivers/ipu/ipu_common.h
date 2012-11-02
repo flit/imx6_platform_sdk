@@ -764,6 +764,7 @@ void ipu_dma_update_buffer(uint32_t ipu_index, uint32_t channel, uint32_t buffer
 void ipu_vdi_init(int ipu_index, int fmt, int field_mode, int width, int height,
                   ips_motion_sel_e motion_sel);
 
+extern int csi_vdi_direct_path;
 extern ips_dev_panel_t disp_dev_list[];
 extern uint32_t num_of_panels;
 

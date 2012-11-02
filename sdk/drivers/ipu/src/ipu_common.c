@@ -216,6 +216,8 @@ void ipu_dual_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_
     ipu_di_config(ipu_index, di, panel);
 }
 
+extern int32_t ips_deinterlace_proc(int width, int height, ips_dev_panel_t * panel);
+int csi_vdi_direct_path = 0;
 void ipu_capture_setup(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_width,
                        uint32_t raw_height, uint32_t act_width, uint32_t act_height,
                        ips_dev_panel_t * panel)
@@ -245,16 +247,20 @@ void ipu_capture_setup(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_
         idmac_info.u_offset = panel->width * panel->height;
     }
     idmac_info.npb = 15;
-    ipu_general_idmac_config(ipu_index, &idmac_info);
 
-    /*step2: allocate smfc fifo for CSI input channel */
-    ipu_smfc_fifo_allocate(ipu_index, 0, 0, 3);
+    if (csi_vdi_direct_path == 0)   // put csi captured image into memory first
+    {
+        ipu_general_idmac_config(ipu_index, &idmac_info);
+
+        /*step2: allocate smfc fifo for CSI input channel */
+        ipu_smfc_fifo_allocate(ipu_index, 0, 0, 3);
+    }
 
     /*step3: config csi for IPU */
     ipu_csi_config(ipu_index, csi_interface, raw_width, raw_height, act_width, act_height);
 
     /*step4: config display channel: idma, dmfc, dc, dp, di */
-    ipu_display_setup(ipu_index, csi_mem0, csi_mem1, csi_pixel_format, panel);
+    ipu_display_setup(ipu_index, csi_mem0, csi_mem1, NON_INTERLEAVED_YUV420, panel);
 
     /*step5: link csi and display */
     ipu_capture_disp_link(ipu_index, 0);
@@ -267,6 +273,9 @@ void ipu_capture_setup(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_
     memset((void *)CH23_EBA1, 0xFF, panel->width * panel->height);
     memset((void *)(CH23_EBA1 + panel->width * panel->height), 0x80,
            panel->width * panel->height / 2);
+
+    if (csi_vdi_direct_path == 1)
+        ips_deinterlace_proc(act_width, act_height, panel);
 
     ipu_channel_buf_ready(ipu_index, csi_in_channel, 0);
     ipu_channel_buf_ready(ipu_index, csi_in_channel, 1);

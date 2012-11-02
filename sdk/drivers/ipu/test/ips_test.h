@@ -48,7 +48,7 @@
 
 typedef struct {
     const char *name;
-    int32_t (*test) (ips_dev_panel_t *);
+     int32_t(*test) (ips_dev_panel_t *);
 } ipu_test_t;
 
 int32_t ips_display_test(ips_dev_panel_t * panel);

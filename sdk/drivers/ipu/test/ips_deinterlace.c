@@ -29,8 +29,8 @@
  */
 
 /*!
- * @file ips_resize.c
- * @brief IPU resize test.
+ * @file ips_deinterlace.c
+ * @brief IPU deinterlace test, called in camera test.
  * @ingroup diag_ipu
  */
 
@@ -39,7 +39,6 @@
 
 #include "ips_test.h"
 
-/*the test is using only one field for high motion interlaced video. it will be called in tvdac test with csi capture*/
 int32_t ips_deinterlace_proc(int width, int height, ips_dev_panel_t * panel)
 {
     uint32_t ipu_index = 1;     // use ipu 1
@@ -50,14 +49,14 @@ int32_t ips_deinterlace_proc(int width, int height, ips_dev_panel_t * panel)
     memset(&vdi_info, 0x00, sizeof(ipu_vdi_info_t));
     vdi_info.width_in = width;
     vdi_info.height_in = height;
-    vdi_info.width_out = panel->width;
-    vdi_info.height_out = panel->height;
-    vdi_info.strideline_in = panel->width * 2;
-    vdi_info.strideline_out = vdi_info.width_out;
-    vdi_info.pixel_format_in = NON_INTERLEAVED_YUV420;
-    vdi_info.pixel_format_out = NON_INTERLEAVED_YUV420;
-    vdi_info.u_offset_in = panel->width * panel->height;
+    vdi_info.width_out = width;
+    vdi_info.height_out = height;
+    vdi_info.strideline_in = vdi_info.width_in * 2;
+    vdi_info.strideline_out = panel->width;
+    vdi_info.u_offset_in = vdi_info.width_in * vdi_info.height_in;
     vdi_info.u_offset_out = panel->width * panel->height;
+    vdi_info.pixel_format_in = NON_INTERLEAVED_YUV422;
+    vdi_info.pixel_format_out = NON_INTERLEAVED_YUV420;
     vdi_info.addr0_in = vdi_in_mem;
     vdi_info.addr0_out = vdi_out_mem;
 

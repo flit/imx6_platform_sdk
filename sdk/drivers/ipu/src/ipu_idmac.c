@@ -412,21 +412,24 @@ void ipu_deinterlace_idmac_config(uint32_t ipu_index, uint32_t channel_in, uint3
 {
     ipu_idmac_info_t idmac_info;
 
-    /*setup input idmac channel */
-    memset(&idmac_info, 0, sizeof(ipu_idmac_info_t));
-    idmac_info.channel = channel_in;
-    idmac_info.addr0 = res_info.addr0_in;
-    idmac_info.addr1 = res_info.addr1_in;
-    idmac_info.width = res_info.width_in;
-    idmac_info.height = res_info.height_in / 2;
-    idmac_info.pixel_format = res_info.pixel_format_in;
-    idmac_info.sl = res_info.strideline_in;
-    idmac_info.u_offset = res_info.u_offset_in;
-    if (res_info.width_in % 16 == 0)
-        idmac_info.npb = 15;    //number of pixels per burst
-    else
-        idmac_info.npb = 7;
-    ipu_general_idmac_config(ipu_index, &idmac_info);
+    if (csi_vdi_direct_path == 0)   // data direct from CSI, no input channel needed
+    {
+        /*setup input idmac channel */
+        memset(&idmac_info, 0, sizeof(ipu_idmac_info_t));
+        idmac_info.channel = channel_in;
+        idmac_info.addr0 = res_info.addr0_in;
+        idmac_info.addr1 = res_info.addr1_in;
+        idmac_info.width = res_info.width_in;
+        idmac_info.height = res_info.height_in / 2;
+        idmac_info.pixel_format = res_info.pixel_format_in;
+        idmac_info.sl = res_info.strideline_in;
+        idmac_info.u_offset = res_info.u_offset_in;
+        if (res_info.width_in % 16 == 0)
+            idmac_info.npb = 15;    //number of pixels per burst
+        else
+            idmac_info.npb = 7;
+        ipu_general_idmac_config(ipu_index, &idmac_info);
+    }
 
     /*setup output idmac channel */
     memset(&idmac_info, 0, sizeof(ipu_idmac_info_t));

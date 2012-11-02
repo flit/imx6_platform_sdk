@@ -114,7 +114,11 @@ void ipu_csi_config(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_wid
         ipu_write_field(ipu_index, IPU_CSI0_DI__CSI0_MIPI_DI3, 0);
     }
 
-    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_DEST, 4);  //destination is IDMAC
+    if (csi_vdi_direct_path == 1)
+        ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_DEST, 2);  //destination is VDI
+    else
+        ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_DEST, 4);  //destination is IDMAC
+
     ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_SENS_PRTCL, clock_mode);    // Gated clock mode
     ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DIV_RATIO, 0);  //division ratio of HSP_CLK into SENSOR_MCLK
     ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_WIDTH, 1); //8bits per color
@@ -221,17 +225,23 @@ uint32_t ipu_smfc_fifo_allocate(uint32_t ipu_index, uint32_t channel, uint32_t m
  */
 void ipu_capture_disp_link(uint32_t ipu_index, uint32_t smfc)
 {
-    switch (smfc) {
-    case 0:
-        ipu_write_field(ipu_index, IPU_IPU_FS_PROC_FLOW3__SMFC0_DEST_SEL, 0x9); // smfc0 -> chan23
-        ipu_write_field(ipu_index, IPU_IPU_FS_DISP_FLOW1__DP_SYNC0_SRC_SEL, 0x1);   // MG source from capture 0
-        break;
-    case 2:
-        ipu_write_field(ipu_index, IPU_IPU_FS_PROC_FLOW3__SMFC2_DEST_SEL, 0x9); // smfc2 -> chan23
-        ipu_write_field(ipu_index, IPU_IPU_FS_DISP_FLOW1__DP_SYNC0_SRC_SEL, 0x2);   // MG source from capture 2
-        break;
-    default:
-        printf("Wrong smfc selected!!\n");
-        break;
+    if (csi_vdi_direct_path == 0) {
+        switch (smfc) {
+        case 0:
+            ipu_write_field(ipu_index, IPU_IPU_FS_PROC_FLOW3__SMFC0_DEST_SEL, 0x9); // smfc0 -> chan23
+            ipu_write_field(ipu_index, IPU_IPU_FS_DISP_FLOW1__DP_SYNC0_SRC_SEL, 0x1);   // MG source from capture 0
+            break;
+        case 2:
+            ipu_write_field(ipu_index, IPU_IPU_FS_PROC_FLOW3__SMFC2_DEST_SEL, 0x9); // smfc2 -> chan23
+            ipu_write_field(ipu_index, IPU_IPU_FS_DISP_FLOW1__DP_SYNC0_SRC_SEL, 0x2);   // MG source from capture 2
+            break;
+        default:
+            printf("Wrong smfc selected!!\n");
+            break;
+        }
+    } else {
+        ipu_write_field(ipu_index, IPU_IPU_FS_PROC_FLOW1__VDI_SRC_SEL, 0x01);   // csi
+        ipu_write_field(ipu_index, IPU_IPU_FS_PROC_FLOW2__PRPVF_DEST_SEL, 0x09);    // DP sync0     
+        ipu_write_field(ipu_index, IPU_IPU_FS_DISP_FLOW1__DP_SYNC0_SRC_SEL, 0x04);  // VF
     }
 }

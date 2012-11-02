@@ -7,7 +7,6 @@ ips_csc.c
 ips_display.c
 ips_resize.c
 ips_rotate.c
-ips_deinterlace.c
 ips_test.c
 ipu_image.c
 endef

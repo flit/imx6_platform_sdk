@@ -43,6 +43,9 @@
 #include "core/ccm_pll.h"
 #include "core/interrupt.h"
 
+//! Set this macro to 1 to enable tracing of data send and receive.
+#define TRACE_I2C 0
+
 ////////////////////////////////////////////////////////////////////////////////
 // Constants
 ////////////////////////////////////////////////////////////////////////////////
@@ -230,7 +233,9 @@ static int wait_op_done(uint32_t instance, int is_tx)
  */
 static int tx_byte(uint8_t * data, uint32_t instance)
 {
+#if TRACE_I2C
     debug_printf("%s(data=0x%02x, instance=%d)\n", __FUNCTION__, *data, instance);
+#endif // TRACE_I2C
 
     // clear both IAL and IIF bits 
     HW_I2C_I2SR_WR(instance, 0);
@@ -276,7 +281,10 @@ static int rx_bytes(uint8_t * data, uint32_t instance, int sz)
         
         // read the true data 
         data[i] = HW_I2C_I2DR_RD(instance);
+#if TRACE_I2C
+
         debug_printf("OK 0x%02x\n", data[i]);
+#endif // TRACE_I2C
     }
 
     return 0;
@@ -378,7 +386,10 @@ int i2c_xfer(const imx_i2c_request_t *rq, int dir)
 
     for (i = 0; i < rq->reg_addr_sz; i++, reg >>= 8) {
         data = reg & 0xFF;
+        
+#if TRACE_I2C
         debug_printf("sending I2C=%d device register: data=0x%x, byte %d\n", instance, data, i);
+#endif // TRACE_I2C
 
         if (tx_byte(&data, instance) != 0) {
             return -1;

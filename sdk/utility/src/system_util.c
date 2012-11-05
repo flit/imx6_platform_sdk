@@ -91,7 +91,7 @@ int32_t is_input_char(uint8_t c, const char* const indent)
         		indent == NULL ? "" : indent, c);
         return 0;
     }
-    printf("%sPlease enter %c or %c to confirm. ", indent == NULL ? "" : indent, lc, uc);
+    printf("%sPlease enter %c or %c to confirm.\n", indent == NULL ? "" : indent, lc, uc);
     do {
         input = uart_getchar(&g_debug_uart);
     } while (input == NONE_CHAR);

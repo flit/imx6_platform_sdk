@@ -144,6 +144,7 @@ const menuitem_t k_menuItems[] = {
         DEFINE_TEST_MENU_ITEM("f",  "flexcan test",     flexcan_test),
         DEFINE_TEST_MENU_ITEM("us", "usb test",     	usb_test),
 #elif defined(BOARD_SMART_DEVICE)
+        DEFINE_TEST_MENU_ITEM("a",  "audio test",       audio_test),
         DEFINE_TEST_MENU_ITEM("ca", "camera test",      camera_test),
 #endif // defined(BOARD_SMART_DEVICE)
 

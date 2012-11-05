@@ -31,6 +31,7 @@
 #include "sdk.h"
 #include "registers/regsccm.h"
 
+extern void pf0100_enable_vgen3_1v8();
 ////////////////////////////////////////////////////////////////////////////////
 // Code
 ////////////////////////////////////////////////////////////////////////////////
@@ -61,6 +62,8 @@ void spdif_clk_cfg(void)
  */
 void audio_codec_power_on (void)
 {
+	//EVK board
+	pf0100_enable_vgen3_1v8();
 }
 
 /*! From obds

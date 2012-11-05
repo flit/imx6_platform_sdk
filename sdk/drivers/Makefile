@@ -46,6 +46,12 @@ usdhc/src/usdhc_host.c
 usdhc/src/usdhc_mmc.c
 usdhc/src/usdhc_sd.c
 usdhc/src/usdhc.c
+audio/src/cs42888.c 
+audio/src/imx_audmux.c 
+audio/src/imx_spdif.c 
+audio/src/imx-ssi.c 
+audio/src/snd_card.c 
+audio/src/wm8962.c 
 endef
 
 # Only the MX6DQ has SATA.
@@ -61,16 +67,10 @@ endif
 # Add drivers that are only available of mx6dq or mx6sdl.
 ifdef is_dq_or_sdl
 SOURCES += \
-    audio/src/cs42888.c \
-    audio/src/imx_audmux.c \
-    audio/src/imx_esai.c \
-    audio/src/imx_spdif.c \
-    audio/src/imx-ssi.c \
-    audio/src/sgtl5000.c \
-    audio/src/snd_card.c \
-    audio/src/wm8958_dac.c \
-    audio/src/wm8962.c \
-	caam/src/caam.c \
+	audio/src/wm8958_dac.c \
+	audio/src/sgtl5000.c \
+	audio/src/imx_esai.c \
+    caam/src/caam.c \
     camera/src/smd_sensor.c \
 	enet/src/enet_drv.c \
 	flexcan/src/can.c \

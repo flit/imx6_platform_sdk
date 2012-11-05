@@ -181,6 +181,7 @@ audio_card_t snd_card_spdif = {
     .ops = &snd_card_ops,
 };
 
+#if !defined (CHIP_MX6SL)
 audio_card_t snd_card_ssi_sgtl5000 = {
     .name = "i.MX SSI sound card - sgtl5000",
     .codec = &sgtl5000,
@@ -194,7 +195,7 @@ audio_card_t snd_card_ssi_wm8958 = {
     .ctrl = &imx_ssi_2,
     .ops = &snd_card_ops,
 };
-
+#endif
 audio_card_t snd_card_ssi_wm8962 = {
     .name = "i.MX SSI sound card - wm8962",
     .codec = &wm8962,

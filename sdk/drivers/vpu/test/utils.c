@@ -26,7 +26,7 @@ int32_t vpu_stream_read(struct cmd_line *cmd, char *buf, int32_t n)
         /* if SD is currently busy, it means that the other video instance has requested a buffer fill, */
         /* return without doing anything, the video driver will request a buffer fill again next frame */
         int usdhc_status = 0;
-        card_xfer_result(SD_PORT_BASE_ADDR, &usdhc_status);
+        card_xfer_result(g_usdhc_instance, &usdhc_status);
         if (usdhc_status != 1)
             return -1;          //now SD card is busy
         res = Fread_FAT(cmd->input, (uint8_t *) buf, n);

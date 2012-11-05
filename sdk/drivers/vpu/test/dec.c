@@ -752,7 +752,7 @@ int32_t decoder_setup(void *arg)
                             dec->phy_bsbuf_addr, fillsize);
     while (1) {
         int usdhc_status = 0;
-        card_xfer_result(SD_PORT_BASE_ADDR, &usdhc_status);
+        card_xfer_result(SD_PORT_INDEX, &usdhc_status);
         if (usdhc_status == 1)
             break;              //wait untill the SD read finished!
         else

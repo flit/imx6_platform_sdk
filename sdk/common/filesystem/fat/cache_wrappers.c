@@ -21,7 +21,7 @@
 #include "usdhc/usdhc_ifc.h"
 #include <assert.h>
 
-extern uint32_t g_usdhc_base_addr;
+extern uint32_t g_usdhc_instance;
 
 typedef struct {
     uint8_t * buffer;
@@ -82,7 +82,7 @@ RtStatus_t FSWriteSector(int32_t deviceNumber, int32_t sectorNumber, int32_t des
     {
         buffer = (uint8_t *)malloc(sectorSize);
 
-        status = card_data_read(g_usdhc_base_addr, (int *)buffer, sectorSize, sectorNumber * sectorSize);
+        status = card_data_read(g_usdhc_instance, (int *)buffer, sectorSize, sectorNumber * sectorSize);
 
         memcpy((uint8_t *)(buffer + destOffset), (uint8_t *)(sourceBuffer + sourceOffset), numBytesToWrite);
 
@@ -166,7 +166,7 @@ int32_t * FSReadSector(int32_t deviceNumber, int32_t sectorNumber, int32_t write
 		buffer = (uint8_t *)malloc(sectorSize);
     }
 
-    status = card_data_read(g_usdhc_base_addr, (int *)buffer, sectorSize,
+    status = card_data_read(g_usdhc_instance, (int *)buffer, sectorSize,
                        actualSectorNumber * sectorSize);
 
     // Give the caller the token so they can release the cache entry.
@@ -206,7 +206,7 @@ int32_t * FSReadMultiSectors(int32_t deviceNumber, int32_t sectorNumber, int32_t
     uint32_t actualSectorNumber = sectorNumber + g_u32MbrStartSector;
     uint32_t sectorSize = MediaTable[deviceNumber].BytesPerSector;
 
-    status = card_data_read(g_usdhc_base_addr, (int *)buffer, size,
+    status = card_data_read(g_usdhc_instance, (int *)buffer, size,
                        actualSectorNumber * sectorSize);
 
 	return (int32_t *) (buffer);
@@ -288,7 +288,7 @@ RtStatus_t FSDataDriveInit(DriveTag_t tag)
     uint32_t token;
 
 	/*Note by Ray: in this function, intialize the uSDHC controller*/
-    retval = card_init(g_usdhc_base_addr, 8);
+    retval = card_init(g_usdhc_instance, 8);
     /*now enable the INTERRUPT mode of usdhc */
     SDHC_INTR_mode = 0;
     SDHC_ADMA_mode = 0;

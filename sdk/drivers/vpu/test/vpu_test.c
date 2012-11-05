@@ -17,7 +17,7 @@ extern void print_media_fat_info(uint32_t);
 
 #define DeviceNum 0
 
-uint32_t g_usdhc_base_addr = SD_PORT_BASE_ADDR;
+uint32_t g_usdhc_instance = SD_PORT_INDEX;
 vpu_resource_t vpu_resource = { 0 };
 struct decode *gDecInstance[MAX_NUM_INSTANCE];
 struct encode *gEncInstance[MAX_NUM_INSTANCE];
@@ -40,7 +40,9 @@ int vpu_test(void)
     config_system_parameters();
 
     /* initialize SD card and FAT driver */
-    enable_L1_cache();
+#if defined(CHIP_MX6DQ)
+	enable_L1_cache();
+#endif
 
     /* FAT filesystem setup from SD card */
     if (FSInit(NULL, bufy, maxdevices, maxhandles, maxcaches) != SUCCESS) {

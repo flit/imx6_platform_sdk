@@ -15,6 +15,7 @@
 #include "ipu/ipu_common.h"
 #include "vdoa/vdoa.h"
 #include "usdhc/usdhc_ifc.h"
+#include "registers/regsusdhc.h"
 
 #define MAX_FIFO_SIZE 		32
 #define NUM_FRAME_BUFS	64
@@ -25,11 +26,7 @@ enum {
     VIDEO_FILE_PLAY,
 };
 
-#if defined(BOARD_SMART_DEVICE)
-#define SD_PORT_BASE_ADDR	USDHC3_BASE_ADDR
-#else
-#define SD_PORT_BASE_ADDR	USDHC3_BASE_ADDR
-#endif
+#define SD_PORT_INDEX	HW_USDHC3
 #define SZ_4K			4 * 1024
 
 #define STREAM_BUF_SIZE		0x200000
@@ -320,12 +317,6 @@ extern void ipu_dma_update_buffer(uint32_t ipu_index, uint32_t channel, uint32_t
 extern int32_t ipu_idmac_chan_cur_buff(uint32_t ipu_index, uint32_t channel);
 extern void ipu_channel_buf_ready(int32_t ipu_index, int32_t channel, int32_t buf);
 
-static inline int32_t is_mx6q_mjpg(int32_t fmt)
-{
-    if (cpu_is_mx6q() && (fmt == STD_MJPG))
-        return true;
-    else
-        return false;
-}
+extern uint32_t g_usdhc_instance;
 
 #endif

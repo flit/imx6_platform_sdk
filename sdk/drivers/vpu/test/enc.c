@@ -345,7 +345,7 @@ static int32_t encoder_start(struct encode *enc)
         //wait untill the SD read finished
         while (1) {
             int usdhc_status = 0;
-            card_xfer_result(SD_PORT_BASE_ADDR, &usdhc_status);
+            card_xfer_result(g_usdhc_instance, &usdhc_status);
             if (usdhc_status == 1)
                 break;          //wait untill the SD read finished!
             else

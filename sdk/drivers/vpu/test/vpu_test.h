@@ -310,7 +310,6 @@ extern int32_t config_hdmi_si9022(int32_t ipu_index, int32_t ipu_di);
 extern void hdmi_1080P60_video_output(int32_t ipu_index, int32_t ipu_di);
 extern int32_t ips_hdmi_1080P60_stream(int32_t ipu_index);
 extern void hdmi_720P60_video_output(int32_t ipu_index, int32_t ipu_di);
-extern void enable_L1_cache(void);
 extern int32_t ips_hannstar_xga_yuv_stream(int32_t ipu_index);
 extern void ipu_dma_update_buffer(uint32_t ipu_index, uint32_t channel, uint32_t buffer_index,
                                   uint32_t buffer_addr);

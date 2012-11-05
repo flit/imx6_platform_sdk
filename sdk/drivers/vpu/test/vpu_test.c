@@ -12,6 +12,8 @@
 #include "sdk.h"
 #include "vpu/vpu_debug.h"
 #include "vpu/vpu_util.h"
+#include "core/cortex_a9.h"
+#include "core/mmu.h"
 
 extern void print_media_fat_info(uint32_t);
 
@@ -41,7 +43,9 @@ int vpu_test(void)
 
     /* initialize SD card and FAT driver */
 #if defined(CHIP_MX6DQ)
-	enable_L1_cache();
+	arm_dcache_invalidate();
+	mmu_enable();
+	arm_dcache_enable();
 #endif
 
     /* FAT filesystem setup from SD card */

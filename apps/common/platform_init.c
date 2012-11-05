@@ -31,6 +31,8 @@
 #include "sdk.h"
 #include "board_io_expanders.h"
 #include "platform_init.h"
+#include "core/cortex_a9.h"
+#include "core/mmu.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code
@@ -51,6 +53,17 @@ void freq_populate(void)
 
 void platform_init(void)
 {
+    enable_neon_fpu();
+    disable_strict_align_check();
+    mmu_init();
+
+    // Map some SDRAM for DMA
+#if defined(BOARD_EVB)
+    mmu_map_l1_range(0x30000000, 0x30000000, 0x70000000, kNoncacheable, kShareable, kRWAccess);
+#elif defined(BOARD_SMART_DEVICE)
+    mmu_map_l1_range(0x20000000, 0x20000000, 0x30000000, kNoncacheable, kShareable, kRWAccess);
+#endif
+
     // Enable interrupts.
     gic_set_cpu_priority_mask(0xff);
     gic_cpu_enable(true);

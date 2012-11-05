@@ -42,12 +42,12 @@
 
 //! @name Instruction macros
 //@{
-#define _ARM_NOP()  asm volatile ("nop\n")
-#define _ARM_WFI()  asm volatile ("wfi\n")
-#define _ARM_WFE()  asm volatile ("wfe\n")
-#define _ARM_SEV()  asm volatile ("sev\n")
-#define _ARM_DSB()	asm volatile ("dsb\n")
-#define _ARM_ISB()	asm volatile ("isb\n")
+#define _ARM_NOP()  asm volatile ("nop\n\t")
+#define _ARM_WFI()  asm volatile ("wfi\n\t")
+#define _ARM_WFE()  asm volatile ("wfe\n\t")
+#define _ARM_SEV()  asm volatile ("sev\n\t")
+#define _ARM_DSB()  asm volatile ("dsb\n\t")
+#define _ARM_ISB()  asm volatile ("isb\n\t")
 
 #define _ARM_MRC(coproc, opcode1, Rt, CRn, CRm, opcode2)	\
     asm volatile ("mrc p" #coproc ", " #opcode1 ", %[output], c" #CRn ", c" #CRm ", " #opcode2 "\n" : [output] "=r" (Rt))
@@ -80,9 +80,6 @@ void enable_neon_fpu(void);
 
 //! @brief Disable aborts on unaligned accesses.
 void disable_strict_align_check(void);
-
-//! @brief Enable the L1 cache.
-void enable_L1_cache(void);
 
 //! @brief Get base address of private perpherial space.
 //! 

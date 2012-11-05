@@ -46,13 +46,6 @@ extern int SDK_TEST(void);
  */
 int main(void)
 {
-    enable_neon_fpu();
-
-#if defined(BOARD_EVB)||defined(BOARD_SMART_DEVICE)
-    system_memory_arrange();
-    disable_strict_align_check();
-#endif
-
     platform_init();
     
     print_version();
@@ -60,7 +53,7 @@ int main(void)
     show_freq();
     show_ddr_config();
 
-
+    // Run the unit test function.
     SDK_TEST();
 
     _sys_exit(0);

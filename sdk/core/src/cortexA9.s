@@ -110,58 +110,6 @@ disable_L1_cache:
     pop {r0-r6, pc}
 
   .endfunc
-  
-  .global enable_L1_cache
-  .func enable_L1_cache
-enable_L1_cache:
-    push	{r0-r6, lr}
-    mov     r0, #0
-    mcr		p15, 0, r0, c7, c5,6  @ invalidate btac
-    mcr		p15, 0, r0, c7, c5,0  @ invalidate icache
-
-    mov     r0, #0
-    mcr		p15, 2, r0, c0, c0, 0  @ cache size selection register, select dcache
-    mrc		p15, 1, r0, c0, c0, 0  @ cache size ID register
-    mov     r0, r0, ASR #13
-    ldr     r3, =0xfff
-    and     r0, r0, r3
-    cmp     r0, #0x7f
-    moveq   r6, #0x1000
-    beq     size_done
-    cmp     r0, #0xff
-    moveq   r6, #0x2000
-    movne   r6, #0x4000
-
-size_done:      
-    mov     r2, #0
-    mov     r3, #0x40000000
-    mov     r4, #0x80000000
-    mov     r5, #0xc0000000
-
-d_inv_loop:     
-    mcr	p15, 0, r2, c7, c6, 2  @ invalidate dcache by set / way
-    mcr	p15, 0, r3, c7, c6, 2  @ invalidate dcache by set / way
-    mcr	p15, 0, r4, c7, c6, 2  @ invalidate dcache by set / way
-    mcr	p15, 0, r5, c7, c6, 2  @ invalidate dcache by set / way
-    add r2, r2, #0x20
-    add r3, r3, #0x20
-    add r4, r4, #0x20
-    add r5, r5, #0x20
-
-    cmp     r2, r6
-    bne     d_inv_loop
-
-	/*before the Cache is enabled, system_memory_arrange must be run*/
-    mrc     p15, 0, r0, c1, c0, 0    @ read CP15 register 1 into r0
-    orr     r0, r0, #(0x1<<12)     @ enable I Cache
-    orr     r0, r0, #(0x1<<11)     @ turn on BP
-    orr     r0, r0, #(0x1<<2)      @ enable D Cache
-    orr     r0, r0, #(0x1<<0)      @ enable MMU
-    mcr     p15, 0, r0, c1, c0, 0    @ write CP15 register 1
-
-    pop {r0-r6, pc}
-
-  .endfunc
 
   .global get_arm_private_peripheral_base
   @ uint32_t get_arm_private_peripheral_base(void)@
@@ -184,6 +132,7 @@ get_arm_private_peripheral_base:
 arm_unified_tlb_invalidate:
   mov     r0, #1
   mcr     p15, 0, r0, c8, c7, 0                 @ TLBIALL - Invalidate entire unified TLB
+  dsb
   bx      lr
   .endfunc
 
@@ -193,6 +142,7 @@ arm_unified_tlb_invalidate:
 arm_unified_tlb_invalidate_is:
   mov     r0, #1
   mcr     p15, 0, r0, c8, c3, 0                 @ TLBIALLIS - Invalidate entire unified TLB Inner Shareable
+  dsb
   bx      lr
   .endfunc
 

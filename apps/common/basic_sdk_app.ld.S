@@ -78,7 +78,7 @@ ENTRY(_start)
 
 // Size of stacks section
 #if !defined(STACK_SIZE)
-#define STACK_SIZE 40K
+#define STACK_SIZE 48K
 #endif
 
 // Size of the L1 page table.

@@ -77,6 +77,7 @@ define SUBDIRS
     $(SDK_LIB_ROOT)/drivers/uart/test
     $(SDK_LIB_ROOT)/drivers/usdhc/test
     $(SDK_LIB_ROOT)/drivers/pwm/test
+    $(SDK_LIB_ROOT)/drivers/wdog/test
 endef
 
 # Tests that are not available for CHIP_MX6SL only.
@@ -96,7 +97,6 @@ ifeq "$(BOARD)" "evb"
         $(SDK_LIB_ROOT)/drivers/keypad/test \
         $(SDK_LIB_ROOT)/drivers/pcie/test \
         $(SDK_LIB_ROOT)/drivers/spi/test \
-        $(SDK_LIB_ROOT)/drivers/wdog/test \
         $(SDK_LIB_ROOT)/drivers/camera/test
 endif
 
@@ -122,7 +122,9 @@ ifeq "$(BOARD)" "smart_device"
 endif
 
 ifeq "$(BOARD)" "evk"
-    SUBDIRS += $(SDK_LIB_ROOT)/drivers/usb/test
+    SUBDIRS += \
+	$(SDK_LIB_ROOT)/drivers/usb/test \
+       	$(SDK_LIB_ROOT)/drivers/spi/test 
 endif
 
 # SATA is only available on the mx6dq.

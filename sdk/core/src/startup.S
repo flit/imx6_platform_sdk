@@ -43,6 +43,7 @@
     .global __bss_start__
     .global __bss_end__
     .global main
+    .global _sys_exit
     
     .code 32
     .section ".startup","ax"
@@ -94,7 +95,11 @@ _start:
     
     @ check cpu id - cpu0 is primary cpu
     cmp     r5, #0
-    bxne    r4     @ for secondary cpus, jump to argument function pointer passed in by ROM 
+    beq     primary_cpu_init
+    bx      r4     @ for secondary cpus, jump to argument function pointer passed in by ROM
+    
+    @ control should not return from the secondary cpu entry point
+    b       startup_exit
 
 primary_cpu_init:
     /*
@@ -123,6 +128,13 @@ primary_cpu_init:
     @ branch to c library entry point 
     ldr     r12, =main               /* save this in register for possible long jump */
     bx      r12                         /* branch to __main */ 
+
+    @ if either main() or the secondary cpu entry point return, which they should not,
+    @ then call _sys_exit().
+startup_exit:
+    mov     r0,#0
+    ldr     r12,=_sys_exit
+    bx      r12
 
     .endfunc    @ _start()
 

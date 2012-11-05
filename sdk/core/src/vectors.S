@@ -85,8 +85,13 @@ vectors:
     .global exception_handler
     .func exception_handler
     // Just loop infinitely for exceptions we don't explicitly handle.
+    // For debug builds, we cause a breakpoint first so a debugger will halt.
 exception_handler:
-        b       exception_handler
+#if DEBUG
+        bkpt    #0
+#endif
+1:
+        b       1b
     .endfunc
 
     .end

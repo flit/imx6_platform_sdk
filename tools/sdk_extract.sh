@@ -163,6 +163,7 @@ cat > "$ExcludesFile" <<***DONE-EXCLUDES***
 - *.pyc
 - *.tmp
 - ._*
+- *.orig
 
 - .git
 - .gitignore
@@ -170,9 +171,8 @@ cat > "$ExcludesFile" <<***DONE-EXCLUDES***
 # exclude the output directory
 - /output
 
-# exclude mx6sl stuff from this release
-#- **/mx6sl/
-#- mx6sl.*
+# exclude obds for now
+- apps/obds
 
 # Exclude mx53 stuff
 - sdma_script_code_mx53.h

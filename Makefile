@@ -24,7 +24,6 @@
 #  - board
 #  - sdk_unit_test
 #  - power_modes_test
-#  - obds
 #  - gpu_demo
 #  - multicore_demo
 #  - clean
@@ -32,7 +31,6 @@
 #  - clean_board
 #  - clean_sdk_unit_test
 #  - clean_power_modes_test
-#  - clean_obds
 #  - clean_gpu_demo
 #  - clean_multicore_demo
 #
@@ -58,8 +56,7 @@ SUBDIRS = \
 # List of all applications to build. Applications must reside in the apps directory.
 ALL_APPS = \
     sdk_unit_test \
-    power_modes_test \
-    obds
+    power_modes_test
 
 # Apps that are only built for MX6DQ and MX6SDL.
 ifdef is_dq_or_sdl

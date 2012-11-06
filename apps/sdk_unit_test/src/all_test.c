@@ -152,7 +152,7 @@ const menuitem_t k_menuItems[] = {
         // Tests for mx6sl evk.
         DEFINE_TEST_MENU_ITEM("ca", "camera test",      camera_test),
         DEFINE_TEST_MENU_ITEM("l",  "lcdif test",       lcdif_test),
-        DEFINE_TEST_MENU_ITEM("e",  "epdc test",        epdc_test),
+        DEFINE_TEST_MENU_ITEM("ep",  "epdc test",        epdc_test),
         DEFINE_TEST_MENU_ITEM("sp", "spdc test",        spdc_test),
         DEFINE_TEST_MENU_ITEM("us", "usb test",     	usb_test),
         DEFINE_TEST_MENU_ITEM("n",  "spi nor test",     spi_test),

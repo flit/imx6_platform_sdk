@@ -63,7 +63,11 @@
 #include "usb/usb.h"
 #include "keypad/keypad_port.h"
 #include "spi/ecspi_ifc.h"
+#if !defined(CHIP_MX6SL)
 #include "enet/enet.h"
+#else
+#include "fec/fec.h"
+#endif
 #include "board_id/board_id.h"
 
 #include "buffers.h"

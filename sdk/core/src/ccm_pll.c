@@ -71,7 +71,11 @@ void ccm_init(void)
     HW_CCM_ANALOG_PLL_ENET_CLR(BM_CCM_ANALOG_PLL_ENET_POWERDOWN);
     HW_CCM_ANALOG_PLL_ENET_SET(BM_CCM_ANALOG_PLL_ENET_ENABLE);
     HW_CCM_ANALOG_PLL_ENET_CLR(BM_CCM_ANALOG_PLL_ENET_BYPASS);
+#if !defined (CHIP_MX6SL)
     HW_CCM_ANALOG_PLL_ENET.B.DIV_SELECT = 0x3;
+#else
+	HW_CCM_ANALOG_PLL_ENET.B.DIV_SELECT = 0x1;
+#endif
 
     // Ungate clocks that are not enabled in a driver - need to be updated 
     HW_CCM_CCGR0_WR(0xffffffff);

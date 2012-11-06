@@ -64,12 +64,10 @@ int vpu_test(void)
     /*instance attached to display interface */
     config_system_parameters();
 
-    /* initialize SD card and FAT driver */
-//#if defined(CHIP_MX6DQ)
+    /* enable L1 cache for mx6dq and mx6sdl */
     arm_dcache_invalidate();
     mmu_enable();
     arm_dcache_enable();
-//#endif
 
     /* FAT filesystem setup from SD card */
     if (FSInit(NULL, bufy, maxdevices, maxhandles, maxcaches) != SUCCESS) {

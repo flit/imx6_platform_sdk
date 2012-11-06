@@ -113,6 +113,7 @@ void mmu_init()
 {
     // Get the L1 page table base address.
     uint32_t * table = (uint32_t *)&__l1_page_table_start;
+    uint32_t share_attr = kShareable;
 
     // write table address to TTBR0
     _ARM_MCR(15, 0, table, 2, 0, 0);
@@ -128,11 +129,18 @@ void mmu_init()
     mmu_map_l1_range(0x00000000, 0x00000000, 0x00900000, kStronglyOrdered, kShareable, kRWAccess); // ROM and peripherals
     mmu_map_l1_range(0x00900000, 0x00900000, 0x00100000, kStronglyOrdered, kShareable, kRWAccess); // OCRAM
     mmu_map_l1_range(0x00a00000, 0x00a00000, 0x0f600000, kStronglyOrdered, kShareable, kRWAccess); // More peripherals
-    
+   
+    uint32_t actlr = 0x0;
+    _ARM_MRC(15, 0, actlr, 1, 0, 1);
+    if((actlr & (1 << 6)) != 0) // SMP enalbed
+        share_attr = kShareable;
+    else
+        share_attr = kNonshareable;
+
 #if defined(CHIP_MX6DQ) || defined(CHIP_MX6SDL)
-    mmu_map_l1_range(0x10000000, 0x10000000, 0x80000000, kOuterInner_WB_WA, kShareable, kRWAccess); // 2GB SDRAM
+    mmu_map_l1_range(0x10000000, 0x10000000, 0x80000000, kOuterInner_WB_WA, share_attr, kRWAccess); // 2GB SDRAM
 #elif defined(CHIP_MX6SL)
-    mmu_map_l1_range(0x80000000, 0x80000000, 0x40000000, kOuterInner_WB_WA, kShareable, kRWAccess); // 1GB SDRAM
+    mmu_map_l1_range(0x80000000, 0x80000000, 0x40000000, kOuterInner_WB_WA, share_attr, kRWAccess); // 1GB SDRAM
 #else
 #error Unknown chip type!
 #endif

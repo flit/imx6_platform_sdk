@@ -43,6 +43,7 @@
     .global __bss_start__
     .global __bss_end__
     .global main
+    .global _sys_exit
     
     .code 32
     .section ".startup","ax"
@@ -68,33 +69,37 @@ _start:
            
     @ set stacks for all other modes 
     msr     CPSR_c, #MODE_FIQ | I_BIT | F_BIT
-    sub     r0, r0, r1 
     mov     sp, r0
+    sub     r0, r0, r1 
     
     msr     CPSR_c, #MODE_IRQ | I_BIT | F_BIT
-    sub     r0, r0, r1 
     mov     sp, r0
+    sub     r0, r0, r1 
     
     msr     CPSR_c, #MODE_ABT | I_BIT | F_BIT
-    sub     r0, r0, r1 
     mov     sp, r0
+    sub     r0, r0, r1 
     
     msr     CPSR_c, #MODE_UND | I_BIT | F_BIT
-    sub     r0, r0, r1 
     mov     sp, r0
+    sub     r0, r0, r1 
     
     msr     CPSR_c, #MODE_SYS | I_BIT | F_BIT
-    sub     r0, r0, r1 
     mov     sp, r0
+    sub     r0, r0, r1 
     
     @ Set SVC mode stack with interrupts enabled 
     msr     CPSR_c, #MODE_SVC
-    sub     r0, r0, r1 
     mov     sp, r0
+    sub     r0, r0, r1 
     
     @ check cpu id - cpu0 is primary cpu
     cmp     r5, #0
-    bxne    r4     @ for secondary cpus, jump to argument function pointer passed in by ROM 
+    beq     primary_cpu_init
+    bx      r4     @ for secondary cpus, jump to argument function pointer passed in by ROM
+    
+    @ control should not return from the secondary cpu entry point
+    b       startup_exit
 
 primary_cpu_init:
     /*
@@ -123,6 +128,13 @@ primary_cpu_init:
     @ branch to c library entry point 
     ldr     r12, =main               /* save this in register for possible long jump */
     bx      r12                         /* branch to __main */ 
+
+    @ if either main() or the secondary cpu entry point return, which they should not,
+    @ then call _sys_exit().
+startup_exit:
+    mov     r0,#0
+    ldr     r12,=_sys_exit
+    bx      r12
 
     .endfunc    @ _start()
 

@@ -63,17 +63,22 @@ __attribute__ ((noreturn)) void _sys_exit(int32_t return_code)
         );
 #endif
 
+#if DEBUG
+    // For debug builds, stop in a debugger.
+    mybkpt();
+#endif
+
     while (1) ;
 }
 
-void mybkpt(void)
+__attribute__ ((naked)) void mybkpt(void)
 {
-#if DEBUG
     asm volatile (
+#if DEBUG
         "bkpt #0        \n"
+#endif
         "bx lr          \n"
         );
-#endif
 }
 
 int32_t is_input_char(uint8_t c, const char* const indent)
@@ -91,7 +96,7 @@ int32_t is_input_char(uint8_t c, const char* const indent)
         		indent == NULL ? "" : indent, c);
         return 0;
     }
-    printf("%sPlease enter %c or %c to confirm. ", indent == NULL ? "" : indent, lc, uc);
+    printf("%sPlease enter %c or %c to confirm.\n", indent == NULL ? "" : indent, lc, uc);
     do {
         input = uart_getchar(&g_debug_uart);
     } while (input == NONE_CHAR);

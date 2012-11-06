@@ -1,8 +1,31 @@
 /*
- * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
- * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
- * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
- * Freescale Semiconductor, Inc.
+ * Copyright (c) 2011-2012, Freescale Semiconductor, Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ * o Redistributions of source code must retain the above copyright notice, this list
+ *   of conditions and the following disclaimer.
+ *
+ * o Redistributions in binary form must reproduce the above copyright notice, this
+ *   list of conditions and the following disclaimer in the documentation and/or
+ *   other materials provided with the distribution.
+ *
+ * o Neither the name of Freescale Semiconductor, Inc. nor the names of its
+ *   contributors may be used to endorse or promote products derived from this
+ *   software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #include <stdio.h>
@@ -11,14 +34,14 @@
 #include "vpu_test.h"
 #include "vpu/vpu_debug.h"
 
-int32_t vpu_stream_read(struct cmd_line *cmd, char *buf, int32_t n)
+int32_t vpu_stream_read(struct codec_control *cmd, char *buf, int32_t n)
 {
     if (cmd->src_scheme == PATH_MEM) {
-        int32_t bs_left = (bsmem.bs_end - bsmem.bs_start) - bsmem.bs_offset;
+        int32_t bs_left = (g_bs_memory.bs_end - g_bs_memory.bs_start) - g_bs_memory.bs_offset;
         int32_t copy_size = (bs_left > n) ? n : bs_left;
         /*bitstream is stored in memory */
-        memcpy(buf, (void *)(bsmem.bs_start + bsmem.bs_offset), copy_size);
-        bsmem.bs_offset += copy_size;
+        memcpy(buf, (void *)(g_bs_memory.bs_start + g_bs_memory.bs_offset), copy_size);
+        g_bs_memory.bs_offset += copy_size;
         return copy_size;
     } else if (cmd->src_scheme == PATH_FILE) {
         int32_t res;
@@ -26,7 +49,7 @@ int32_t vpu_stream_read(struct cmd_line *cmd, char *buf, int32_t n)
         /* if SD is currently busy, it means that the other video instance has requested a buffer fill, */
         /* return without doing anything, the video driver will request a buffer fill again next frame */
         int usdhc_status = 0;
-        card_xfer_result(SD_PORT_BASE_ADDR, &usdhc_status);
+        card_xfer_result(g_usdhc_instance, &usdhc_status);
         if (usdhc_status != 1)
             return -1;          //now SD card is busy
         res = Fread_FAT(cmd->input, (uint8_t *) buf, n);
@@ -42,18 +65,18 @@ int32_t vpu_stream_read(struct cmd_line *cmd, char *buf, int32_t n)
 
 }
 
-int32_t vpu_stream_write(struct cmd_line * cmd, char *buf, int32_t n)
+int32_t vpu_stream_write(struct codec_control * cmd, char *buf, int32_t n)
 {
     if (cmd->dst_scheme == PATH_MEM) {
-        memcpy((void *)bsmem.bs_end, buf, n);
-        bsmem.bs_end += n;
+        memcpy((void *)g_bs_memory.bs_end, buf, n);
+        g_bs_memory.bs_end += n;
     } else if (cmd->dst_scheme == PATH_FILE) {
         /*TBD, currently the file storage is not supported in the file system */
     }
     return n;
 }
 
-int32_t ipu_refresh(uint32_t ipu_index, uint32_t buffer)
+int32_t ipu_render_refresh(uint32_t ipu_index, uint32_t buffer)
 {
     ipu_dma_update_buffer(ipu_index, 23, 0, buffer);
     ipu_channel_buf_ready(ipu_index, 23, 0);

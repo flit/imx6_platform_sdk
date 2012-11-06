@@ -41,8 +41,9 @@
  * Mode: master
  * pre_div, post_div: 2 - clock: 60M/4 = 15MHz
  */
+#if defined(BOARD_SMART_DEVICE) || defined(BOARD_EVK)
 #define NUMONYX_INIT_PARAM { \
-    .channel = 1, \
+    .channel = 0, \
     .mode = 1, \
     .ss_pol = 0, \
     .sclk_pol = 0, \
@@ -50,8 +51,17 @@
     .pre_div = 0, \
     .post_div = 3 \
     }
-
-
+#else
+#define NUMONYX_INIT_PARAM { \
+    .channel = 1, \
+    .mode = 1, \
+    .ss_pol = 0, \
+    .sclk_pol = 0, \
+    .sclk_pha = 0, \
+    .pre_div = 3, \
+    .post_div = 0 \
+    }
+#endif
 // ((uint32_t)0x00000445)
 
 struct chip_id {

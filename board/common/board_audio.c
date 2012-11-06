@@ -68,7 +68,7 @@ void audio_codec_power_on (void)
  */
 void audio_clock_config(void)
 {
-#if defined(CHIP_MX6DQ) && defined(BOARD_SMART_DEVICE) 
+#if defined(BOARD_SMART_DEVICE) 
     uint32_t val = 0;
     
     ccm_iomux_config();

@@ -78,7 +78,7 @@ ENTRY(_start)
 
 // Size of stacks section
 #if !defined(STACK_SIZE)
-#define STACK_SIZE 40K
+#define STACK_SIZE 48K
 #endif
 
 // Size of the L1 page table.
@@ -109,6 +109,7 @@ SECTIONS
     /* MMU L1 page table */
     .l1_page_table (NOLOAD) :
     {
+        __l1_page_table_start = .;
         . += L1_PAGE_TABLE_SIZE;
     } > OCRAM
 
@@ -133,6 +134,8 @@ SECTIONS
  * -- DDR --
  */
 
+    /* -- read-only sections -- */
+    
     _start_image_add = ORIGIN(DDR);
     
     .ivt (ORIGIN(DDR)) :
@@ -208,12 +211,6 @@ SECTIONS
         KEEP (*(.dtors))
     } > DDR
 
-    .data :
-    {
-        *(.data .data.*)
-        SORT(CONSTRUCTORS)
-    } > DDR
-
     .rodata :
     {
         *(.rodata .rodata.*)
@@ -227,6 +224,14 @@ SECTIONS
         *(.ARM.exidx* .gnu.linkonce.armexidx.*)
     } > DDR
     PROVIDE_HIDDEN(__exidx_end = .);
+
+    /* -- read-write sections -- */
+    
+    .data :
+    {
+        *(.data .data.*)
+        SORT(CONSTRUCTORS)
+    } > DDR
 
     /* Reserve some space for HAB CSF data */
     .hab.data (_start_image_add + MAX_IMAGE_SIZE) : ALIGN(4)

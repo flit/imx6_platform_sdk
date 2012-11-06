@@ -66,6 +66,10 @@ static audio_test_t audio_tests[] = {
 #if defined(BOARD_SMART_DEVICE) && defined(BOARD_REV_B)
     {"SSI playback", ssi_playback},
 #endif
+
+#if defined(BOARD_EVK)
+	{"I2S AUDIO", ssi_playback},
+#endif
 };
 
 int32_t audio_test(void)

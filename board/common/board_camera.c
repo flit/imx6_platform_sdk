@@ -98,8 +98,14 @@ void csi_port0_iomux_config(void)
      * IPU1 CSI1 directly connect to mipi CSI2, virtual channel is fixed to 1
      * IPU2 CSI0 directly connect to mipi CSI2, virtual channel is fixed to 2
      */
-    tmpVal = reg32_read(IOMUXC_GPR1);
+#if defined(CHIP_MX6DQ)
+	tmpVal = reg32_read(IOMUXC_GPR1);
     reg32_write(IOMUXC_GPR1, tmpVal | (0x1 << 19));
+#endif
+#if defined(CHIP_MX6SDL)
+	tmpVal = reg32_read(IOMUXC_GPR13);
+    reg32_write(IOMUXC_GPR13, tmpVal | (0x1 << 2));
+#endif
 }
 
 /*!

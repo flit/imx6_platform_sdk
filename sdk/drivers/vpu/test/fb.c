@@ -1,8 +1,31 @@
 /*
- * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
- * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
- * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
- * Freescale Semiconductor, Inc.
+ * Copyright (c) 2011-2012, Freescale Semiconductor, Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ * o Redistributions of source code must retain the above copyright notice, this list
+ *   of conditions and the following disclaimer.
+ *
+ * o Redistributions in binary form must reproduce the above copyright notice, this
+ *   list of conditions and the following disclaimer in the documentation and/or
+ *   other materials provided with the distribution.
+ *
+ * o Neither the name of Freescale Semiconductor, Inc. nor the names of its
+ *   contributors may be used to endorse or promote products derived from this
+ *   software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #include <stdio.h>
@@ -14,8 +37,8 @@
 static int32_t fb_index;
 static struct frame_buf *fbarray[NUM_FRAME_BUFS];
 static struct frame_buf fbpool[NUM_FRAME_BUFS];
-vdec_frame_buffer_t gDecFifo[NUM_FRAME_BUFS];
-uint32_t gBsBuffer[NUM_FRAME_BUFS];
+vdec_frame_buffer_t g_dec_fifo[NUM_FRAME_BUFS];
+uint32_t g_bs_buffer[NUM_FRAME_BUFS];
 
 void framebuf_init(void)
 {
@@ -26,7 +49,7 @@ void framebuf_init(void)
     }
 
     for (i = 0; i < MAX_NUM_INSTANCE; i++)
-        disp_clr_index[i] = -1;
+        g_disp_clr_index[i] = -1;
 }
 
 struct frame_buf *get_framebuf(void)
@@ -124,7 +147,7 @@ struct frame_buf *framebuf_alloc(int32_t stdMode, int32_t format, int32_t stride
     if (mvCol)
         fb->desc.size += strideY / divX * height / divY;
 
-    err = IOGetMem(&fb->desc);
+    err = vpu_malloc(&fb->desc);
     if (err) {
         printf("Frame buffer allocation failure\n");
         memset(&(fb->desc), 0, sizeof(vpu_mem_desc));
@@ -144,7 +167,7 @@ struct frame_buf *framebuf_alloc(int32_t stdMode, int32_t format, int32_t stride
     memset((void *)fb->addrCr, 0x80, strideY * height >> 2);
     memset((void *)fb->addrCb, 0x80, strideY * height >> 2);
     if (mvCol) {
-        fb->desc.virt_uaddr = fb->desc.phy_addr;
+        fb->desc.virt_addr = fb->desc.phy_addr;
         fb->mvColBuf = fb->addrCr + strideY / divX * height / divY;
     }
     return fb;
@@ -196,7 +219,7 @@ struct frame_buf *tiled_framebuf_alloc(int32_t stdMode, int32_t format, int32_t 
     if (mvCol)
         fb->desc.size += strideY / divX * height / divY;
 
-    err = IOGetMem(&fb->desc);
+    err = vpu_malloc(&fb->desc);
     if (err) {
         printf("Frame buffer allocation failure\n");
         memset(&(fb->desc), 0, sizeof(vpu_mem_desc));

@@ -1,8 +1,31 @@
 /*
- * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
- * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
- * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
- * Freescale Semiconductor, Inc.
+ * Copyright (c) 2011-2012, Freescale Semiconductor, Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ * o Redistributions of source code must retain the above copyright notice, this list
+ *   of conditions and the following disclaimer.
+ *
+ * o Redistributions in binary form must reproduce the above copyright notice, this
+ *   list of conditions and the following disclaimer in the documentation and/or
+ *   other materials provided with the distribution.
+ *
+ * o Neither the name of Freescale Semiconductor, Inc. nor the names of its
+ *   contributors may be used to endorse or promote products derived from this
+ *   software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #include <stdio.h>
@@ -12,17 +35,19 @@
 #include "sdk.h"
 #include "vpu/vpu_debug.h"
 #include "vpu/vpu_util.h"
+#include "core/cortex_a9.h"
+#include "core/mmu.h"
 
 extern void print_media_fat_info(uint32_t);
 
 #define DeviceNum 0
 
-uint32_t g_usdhc_base_addr = SD_PORT_BASE_ADDR;
+uint32_t g_usdhc_instance = SD_PORT_INDEX;
 vpu_resource_t vpu_resource = { 0 };
-struct decode *gDecInstance[MAX_NUM_INSTANCE];
-struct encode *gEncInstance[MAX_NUM_INSTANCE];
-int32_t disp_clr_index[MAX_NUM_INSTANCE];
-int32_t multi_instance = 1;
+struct decode *g_dec_instance[MAX_NUM_INSTANCE];
+struct encode *g_enc_instance[MAX_NUM_INSTANCE];
+int32_t g_disp_clr_index[MAX_NUM_INSTANCE];
+int32_t g_multi_instance = 1;
 
 static vpu_test_t vpu_tests[] = {
     {"VPU DECODER TEST", decode_test},
@@ -40,7 +65,11 @@ int vpu_test(void)
     config_system_parameters();
 
     /* initialize SD card and FAT driver */
-    enable_L1_cache();
+//#if defined(CHIP_MX6DQ)
+    arm_dcache_invalidate();
+    mmu_enable();
+    arm_dcache_enable();
+//#endif
 
     /* FAT filesystem setup from SD card */
     if (FSInit(NULL, bufy, maxdevices, maxhandles, maxcaches) != SUCCESS) {
@@ -51,7 +80,7 @@ int vpu_test(void)
     FSDriveInit(DeviceNum);
     SetCWDHandle(DeviceNum);
 
-    gCurrentActiveInstance = 0;
+    g_current_active_instance = 0;
 
     /* initialize VPU */
     framebuf_init();
@@ -90,7 +119,7 @@ int vpu_test(void)
         if ((i >= 0) && (i < test_num)) {
             printf("\n");
             err = vpu_tests[i].test(NULL);
-            IOCodecCleanup();
+            vpu_codec_io_deinit();
         }
     } while (1);
 

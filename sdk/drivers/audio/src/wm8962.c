@@ -284,9 +284,6 @@ audio_dev_ops_t wm8962_ops = {
 audio_codec_t wm8962 = {
     .name = "wm8962",
     .device = &g_wm8962_i2c_device,
-//     .i2c_base = WM8962_I2C_BASE_ADDR,
-//     .i2c_freq = 48000,
-//     .i2c_dev_addr = WM8962_I2C_DEV_ADDR,
     .ops = &wm8962_ops,
 };
 

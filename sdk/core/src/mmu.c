@@ -31,36 +31,243 @@
 /*!
  * @file  mmu.c
  * @brief System memory arangement.
- *
- * @ingroup diag_init
  */
-#include "buffers.h"
+#include "cortex_a9.h"
 #include "mmu.h"
 
-#define TTB_BASE_ADDR TLB_ENTRY_START
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
 
-void system_memory_arrange(void)
+#define MMU_L1_PAGE_TABLE_SIZE (16 * 1024)
+
+#define SCTLR_MMU_ENABLE (1 << 0)
+#define SCTLR_AFE (1 << 29)
+
+//! @brief First-level 1MB section descriptor entry.
+typedef union mmu_l1_section {
+    uint32_t u;
+    struct {
+        uint32_t id:2;  //!< ID
+        uint32_t b:1;   //!< Bufferable
+        uint32_t c:1;   //!< Cacheable
+        uint32_t xn:1;  //!< Execute-not
+        uint32_t domain:4;  //!< Domain
+        uint32_t _impl_defined:1;   //!< Implementation defined, should be zero.
+        uint32_t ap1_0:2;  //!< Access permissions AP[1:0]
+        uint32_t tex:3; //!< TEX remap
+        uint32_t ap2:1; //!< Access permissions AP[2] 
+        uint32_t s:1;   //!< Shareable
+        uint32_t ng:1;  //!< Not-global
+        uint32_t _zero:1;   //!< Should be zero.
+        uint32_t ns:1;  //!< Non-secure
+        uint32_t address:12;   //!< Physical base address
+    };
+} mmu_l1_section_t;
+
+enum {
+    kMMU_L1_Section_ID = 2,  //!< ID value for a 1MB section first-level entry.
+    kMMU_L1_Section_Address_Shift = 20  //!< Bit offset of the physical base address field.
+};
+
+////////////////////////////////////////////////////////////////////////////////
+// Externs
+////////////////////////////////////////////////////////////////////////////////
+
+extern char __l1_page_table_start;
+
+////////////////////////////////////////////////////////////////////////////////
+// Code
+////////////////////////////////////////////////////////////////////////////////
+
+void mmu_enable()
 {
-    /*using section to partition the external memory. pay attention using 
-       section as partition unit we will need 16KB as the TLB memory. */
-    uint32_t ttb_base = TTB_BASE_ADDR;
-    uint32_t domain_access = 0x55555555;
-  __asm("MCR	p15, 0, %0, c2, c0, 0": :"r"(ttb_base));
-    //set TTB register
-  __asm("MCR	p15, 0, %0, c3, c0, 0": :"r"(domain_access));
-    //set DACR register
+    // invalidate all tlb 
+    arm_unified_tlb_invalidate();
 
-    /*ckear all TLB entries */
-    memset((void *)ttb_base, 0, ARM_FIRST_LEVEL_PAGE_TABLE_SIZE);
-#if defined(BOARD_EVB)
-    /*params:  ttb_base  phy    virt   size     memory_type         permission */
-//  MMU_CONFIG(ttb_base, 0x000, 0x000, 0x001,   OUTER_INNER_WB_WA,  ARM_ACCESS_PERM_RW_RW); /* ROM */
-    MMU_CONFIG(ttb_base, 0x000, 0x000, 0x100, STRONGLY_ORDERED, ARM_ACCESS_PERM_RW_RW); /* peripherals */
-    MMU_CONFIG(ttb_base, 0x100, 0x100, 0x200, OUTER_INNER_WB_WA, ARM_ACCESS_PERM_RW_RW);    /* SDRAM */
-    MMU_CONFIG(ttb_base, 0x300, 0x300, 0x700, NON_CACHABLE, ARM_ACCESS_PERM_RW_RW); /* SDRAM reserved for DMA Access */
-#elif defined(BOARD_SMART_DEVICE)
-    MMU_CONFIG(ttb_base, 0x000, 0x000, 0x100, STRONGLY_ORDERED, ARM_ACCESS_PERM_RW_RW); /* peripherals */
-    MMU_CONFIG(ttb_base, 0x100, 0x100, 0x100, OUTER_INNER_WB_WA, ARM_ACCESS_PERM_RW_RW);    /* SDRAM */
-    MMU_CONFIG(ttb_base, 0x200, 0x200, 0x300, NON_CACHABLE, ARM_ACCESS_PERM_RW_RW); /* SDRAM reserved for DMA Access */
+    // read SCTLR 
+    uint32_t sctlr;
+    _ARM_MRC(15, 0, sctlr, 1, 0, 0);
+    
+    // set MMU enable bit 
+    sctlr |= SCTLR_MMU_ENABLE;
+
+    // write modified SCTLR
+    _ARM_MCR(15, 0, sctlr, 1, 0, 0);
+}
+
+void mmu_disable()
+{
+    // read current SCTLR 
+    uint32_t sctlr;
+    _ARM_MRC(15, 0, sctlr, 1, 0, 0);
+    
+    // clear MMU enable bit 
+    sctlr &=~ SCTLR_MMU_ENABLE;
+
+    // write modified SCTLR
+    _ARM_MCR(15, 0, sctlr, 1, 0, 0);
+}
+
+void mmu_init()
+{
+    // Get the L1 page table base address.
+    uint32_t * table = (uint32_t *)&__l1_page_table_start;
+
+    // write table address to TTBR0
+    _ARM_MCR(15, 0, table, 2, 0, 0);
+
+    // set Client mode for all Domains
+    uint32_t dacr = 0x55555555; 
+    _ARM_MCR(15, 0, dacr, 3, 0, 0); // MCR p15, 0, <Rd>, c3, c0, 0 ; Write DACR
+
+    // Clear the L1 table.
+    bzero(table, MMU_L1_PAGE_TABLE_SIZE);
+    
+    // Create default mappings.
+    mmu_map_l1_range(0x00000000, 0x00000000, 0x00900000, kStronglyOrdered, kShareable, kRWAccess); // ROM and peripherals
+    mmu_map_l1_range(0x00900000, 0x00900000, 0x00100000, kStronglyOrdered, kShareable, kRWAccess); // OCRAM
+    mmu_map_l1_range(0x00a00000, 0x00a00000, 0x0f600000, kStronglyOrdered, kShareable, kRWAccess); // More peripherals
+    
+#if defined(CHIP_MX6DQ) || defined(CHIP_MX6SDL)
+    mmu_map_l1_range(0x10000000, 0x10000000, 0x80000000, kOuterInner_WB_WA, kShareable, kRWAccess); // 2GB SDRAM
+#elif defined(CHIP_MX6SL)
+    mmu_map_l1_range(0x80000000, 0x80000000, 0x40000000, kOuterInner_WB_WA, kShareable, kRWAccess); // 1GB SDRAM
+#else
+#error Unknown chip type!
 #endif
 }
+
+void mmu_map_l1_range(uint32_t pa, uint32_t va, uint32_t length, mmu_memory_type_t memoryType, mmu_shareability_t isShareable, mmu_access_t access)
+{
+    register mmu_l1_section_t entry;
+    entry.u = 0;
+    
+    // Set constant attributes.
+    entry.id = kMMU_L1_Section_ID;
+    entry.xn = 0; // Allow execution
+    entry.domain = 0; // Domain 0
+    entry.ng = 0; // Global
+    entry.ns = 0; // Secure
+    
+    // Set attributes based on the selected memory type.
+    switch (memoryType)
+    {
+        case kStronglyOrdered:
+            entry.c = 0;
+            entry.b = 0;
+            entry.tex = 0;
+            entry.s = 1; // Ignored
+            break;
+        case kDevice:
+            if (isShareable)
+            {
+                entry.c = 0;
+                entry.b = 1;
+                entry.tex = 0;
+                entry.s = 1; // Ignored
+            }
+            else
+            {
+                entry.c = 0;
+                entry.b = 0;
+                entry.tex = 2;
+                entry.s = 0; // Ignored
+            }
+            break;
+        case kOuterInner_WB_WA:
+            entry.c = 1;
+            entry.b = 1;
+            entry.tex = 1;
+            entry.s = isShareable;
+            break;
+        case kOuterInner_WT:
+            entry.c = 1;
+            entry.b = 0;
+            entry.tex = 0;
+            entry.s = isShareable;
+            break;
+        case kNoncacheable:
+            entry.c = 0;
+            entry.b = 0;
+            entry.tex = 1;
+            entry.s = isShareable;
+            break;
+    }
+    
+    // Set attributes from specified access mode.
+    switch (access)
+    {
+        case kNoAccess:
+            entry.ap2 = 0;
+            entry.ap1_0 = 0;
+            break;
+        case kROAccess:
+            entry.ap2 = 1;
+            entry.ap1_0 = 3;
+            break;
+        case kRWAccess:
+            entry.ap2 = 0;
+            entry.ap1_0 = 3;
+            break;
+    }
+    
+    // Get the L1 page table base address.
+    uint32_t * table = (uint32_t *)&__l1_page_table_start;
+    
+    // Convert addresses to 12-bit bases.
+    uint32_t vbase = va >> kMMU_L1_Section_Address_Shift;
+    uint32_t pbase = pa >> kMMU_L1_Section_Address_Shift;
+    uint32_t entries = length >> kMMU_L1_Section_Address_Shift;
+
+    // Fill in L1 page table entries.
+    for (; entries > 0; ++pbase, ++vbase, --entries)
+    {
+        entry.address = pbase;
+        table[vbase] = entry.u;
+    }
+    
+    // Invalidate TLB
+    arm_unified_tlb_invalidate();
+}
+
+bool mmu_virtual_to_physical(uint32_t virtualAddress, uint32_t * physicalAddress)
+{
+    uint32_t pa = 0;
+    
+    // VA to PA translation with privileged read permission check  
+    _ARM_MCR(15, 0, virtualAddress & 0xfffffc00, 7, 8, 0);
+    
+    // Read PA register 
+    _ARM_MRC(15, 0, pa, 7, 4, 0);
+    
+    // First bit of returned value is Result of conversion (0 is successful translation) 
+    if (pa & 1)
+    {
+        // We can try write permission also 
+        // VA to PA translation with privileged write permission check  
+        _ARM_MCR(15, 0, virtualAddress & 0xfffffc00, 7, 8, 1);
+        
+        // Read PA register 
+        _ARM_MRC(15, 0, pa, 7, 4, 0);
+        
+        // First bit of returned value is Result of conversion (0 is successful translation) 
+        if (pa & 1)
+        {
+            return false;
+        }
+    }
+    
+    if (physicalAddress)
+    {
+        // complete address returning base + offset
+        pa = (pa & 0xfffff000) | (virtualAddress & 0x00000fff);
+        *physicalAddress = pa;
+    }
+    
+    return true;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////

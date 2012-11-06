@@ -64,6 +64,7 @@ extern int wdog_test(void);
 extern int camera_test(void);
 extern void usb_test(void);
 extern void microseconds_test(void);
+extern void enet_test(void);
 
 #ifdef CHIP_MX6DQ
 extern int sata_test(void);
@@ -115,6 +116,7 @@ const menuitem_t k_menuItems[] = {
         DEFINE_TEST_MENU_ITEM("d",  "usdhc test",       usdhc_test),
         DEFINE_TEST_MENU_ITEM("c",  "gic test",         gic_test),
         DEFINE_TEST_MENU_ITEM("m",  "microseconds timer test", microseconds_test),
+        DEFINE_TEST_MENU_ITEM("wa", "watchdog test",    wdog_test),
         
         // mx6dq and mx6sdl are grouped together because they share the same boards.
 #if defined(CHIP_MX6DQ) || defined(CHIP_MX6SDL)
@@ -132,14 +134,17 @@ const menuitem_t k_menuItems[] = {
         DEFINE_TEST_MENU_ITEM("a",  "audio test",       audio_test),
         DEFINE_TEST_MENU_ITEM("mi", "mipi test",        mipi_test),
         DEFINE_TEST_MENU_ITEM("pc", "pcie test",        pcie_test),
-        DEFINE_TEST_MENU_ITEM("wa", "watchdog test",    wdog_test),
         DEFINE_TEST_MENU_ITEM("gp", "gpmi test",        gpmi_test),
         DEFINE_TEST_MENU_ITEM("n",  "spi nor test",     spi_test),
+        DEFINE_TEST_MENU_ITEM("en", "enet test",    	enet_test),
+        DEFINE_TEST_MENU_ITEM("us", "usb test",     	usb_test),
 #elif defined(BOARD_SABRE_AI)
-        DEFINE_TEST_MENU_ITEM("ei",  "eim test",         eim_test),
+        DEFINE_TEST_MENU_ITEM("ei",  "eim test",        eim_test),
         DEFINE_TEST_MENU_ITEM("mi", "mipi test",        mipi_test),
         DEFINE_TEST_MENU_ITEM("f",  "flexcan test",     flexcan_test),
+        DEFINE_TEST_MENU_ITEM("us", "usb test",     	usb_test),
 #elif defined(BOARD_SMART_DEVICE)
+        DEFINE_TEST_MENU_ITEM("a",  "audio test",       audio_test),
         DEFINE_TEST_MENU_ITEM("ca", "camera test",      camera_test),
 #endif // defined(BOARD_SMART_DEVICE)
 
@@ -147,8 +152,11 @@ const menuitem_t k_menuItems[] = {
         // Tests for mx6sl evk.
         DEFINE_TEST_MENU_ITEM("ca", "camera test",      camera_test),
         DEFINE_TEST_MENU_ITEM("l",  "lcdif test",       lcdif_test),
-        DEFINE_TEST_MENU_ITEM("e",  "epdc test",        epdc_test),
+        DEFINE_TEST_MENU_ITEM("ep",  "epdc test",        epdc_test),
         DEFINE_TEST_MENU_ITEM("sp", "spdc test",        spdc_test),
+        DEFINE_TEST_MENU_ITEM("us", "usb test",     	usb_test),
+        DEFINE_TEST_MENU_ITEM("n",  "spi nor test",     spi_test),
+        DEFINE_TEST_MENU_ITEM("a",  "audio test",       audio_test),
 #endif // defined(CHIP_MX6SL)
         
         // Quit menu item

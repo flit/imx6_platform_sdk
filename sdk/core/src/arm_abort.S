@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2012, Freescale Semiconductor, Inc.
+ * Copyright (c) 2010-2012, Freescale Semiconductor, Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -28,30 +28,36 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/*!
- * @file snd_card.h
- * @brief Sound card instances 
- *
- * @ingroup diag_audio
+    .code 32
+    .section ".text","ax"
+
+    .extern  dump_regs
+
+/*
+ * A very simple impletement of the abort handler.
+ * Just dump the registers before this exception occured, to make the debugging easier.
  */
-#ifndef _SND_CARD_H_
-#define _SND_CARD_H_
+  .global  ABORT_HDLR
+  .func  ABORT_HDLR
+ ABORT_HDLR: 
+	push {r0-r12} ;	//push the general registers to this exception's stack
+	mrs r7, cpsr;
+	mrs r6, spsr;
+	mov r5, sp;
+	msr cpsr, r6; //go to the mode before this exception
+	dsb;
+	stmfd r5!, {sp, lr}; //push sp/lr to this exception's stack
+	msr cpsr, r7;
+	dsb;
+	mov sp, r5;
+	push {r6, lr};
+	mov r0, sp;
+	bl  dump_regs; //dumping
+	pop {r0-r12};
+	add sp, sp, #16; //adjust the sp pointer, just like 'pop {lr, r6}'
+1:
+	b 1b;	        
+	sub pc, lr, #4; //abort handler's standard return, although never reach here.
+  .endfunc   
 
-#include "audio.h"
-
-//! @brief i.MX SSI sound card - sgtl5000
-extern audio_card_t snd_card_ssi_sgtl5000;
-
-//! @brief i.MX SSI sound card - wm8958
-extern audio_card_t snd_card_ssi_wm8958;
-
-//! @brief i.MX SSI sound card - wm8962
-extern audio_card_t snd_card_ssi_wm8962;
-
-//! @brief i.MX ESAI sound card - cs42888
-extern audio_card_t snd_card_esai;
-
-//! @brief i.MX SPDIF sound card
-extern audio_card_t snd_card_spdif;
-
-#endif //_SND_CARD_H_
+    .end

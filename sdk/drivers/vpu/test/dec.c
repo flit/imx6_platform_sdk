@@ -1,8 +1,31 @@
 /*
- * Copyright (C) 2011-2012, Freescale Semiconductor, Inc. All Rights Reserved
- * THIS SOURCE CODE IS CONFIDENTIAL AND PROPRIETARY AND MAY NOT
- * BE USED OR DISTRIBUTED WITHOUT THE WRITTEN PERMISSION OF
- * Freescale Semiconductor, Inc.
+ * Copyright (c) 2011-2012, Freescale Semiconductor, Inc.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *
+ * o Redistributions of source code must retain the above copyright notice, this list
+ *   of conditions and the following disclaimer.
+ *
+ * o Redistributions in binary form must reproduce the above copyright notice, this
+ *   list of conditions and the following disclaimer in the documentation and/or
+ *   other materials provided with the distribution.
+ *
+ * o Neither the name of Freescale Semiconductor, Inc. nor the names of its
+ *   contributors may be used to endorse or promote products derived from this
+ *   software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #include <stdio.h>
@@ -13,26 +36,23 @@
 #include "vpu/vpu_lib.h"
 #include "timer/epit.h"
 
-bs_mem_t bsmem;
-int32_t gCurrentActiveInstance = 0;
-int32_t gTotalActiveInstance = 0;
+bs_mem_t g_bs_memory;
+int32_t g_current_active_instance = 0;
+int32_t g_total_active_instance = 0;
 
-static int32_t isInterlacedMPEG4 = 0;
-static int32_t isFrameDrop[MAX_NUM_INSTANCE];
+static int32_t g_is_interlaced_MPEG4 = 0;
+static int32_t g_is_frame_drop[MAX_NUM_INSTANCE];
 
-uint8_t in_dec_file_1[] = "indir/clip_1.264";
-uint8_t in_dec_file_2[] = "indir/clip_2.264";
-
-#define FRAME_TO_DECODE 10000
+/*This is to choose the display HDMI video mode*/
 //#define HDMI_RESOLUTION_720P60
 #define HDMI_RESOLUTION_1080P60
 
-static int bufSwitchIndex[MAX_NUM_INSTANCE];
+static int g_buf_switch_index[MAX_NUM_INSTANCE];
 
 /*
  * Fill the bitstream to VPU ring buffer
  */
-int32_t dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
+int32_t dec_fill_bsbuffer(DecHandle handle, struct codec_control *cmd,
                           uint32_t bs_va_startaddr, uint32_t bs_va_endaddr,
                           uint32_t bs_pa_startaddr, int32_t defaultsize)
 {
@@ -103,17 +123,16 @@ int32_t dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
 int32_t decoder_start(struct decode * dec)
 {
     DecHandle handle = dec->handle;
-    int32_t rot_en = dec->cmdl->rot_en, rot_stride, fwidth, fheight;
-    int32_t rot_angle = dec->cmdl->rot_angle;
-    int32_t dering_en = dec->cmdl->dering_en;
+    int32_t rot_en = dec->codecctrl->rot_en, rot_stride, fwidth, fheight;
+    int32_t rot_angle = dec->codecctrl->rot_angle;
+    int32_t dering_en = dec->codecctrl->dering_en;
     int32_t mirror;
     int32_t tiled2LinearEnable = dec->tiled2LinearEnable;
-    //DecOutputInfo outinfo = {0};
 
     fwidth = ((dec->picwidth + 15) & ~15);
     fheight = ((dec->picheight + 15) & ~15);
 
-    if (rot_en || dering_en || tiled2LinearEnable || (dec->cmdl->format == STD_MJPG)) {
+    if (rot_en || dering_en || tiled2LinearEnable || (dec->codecctrl->format == STD_MJPG)) {
         /*
          * VPU is setting the rotation angle by counter-clockwise.
          * We convert it to clockwise 
@@ -125,7 +144,7 @@ int32_t decoder_start(struct decode * dec)
             rot_angle = 0;
         VPU_DecGiveCommand(handle, SET_ROTATION_ANGLE, &rot_angle);
 
-        mirror = dec->cmdl->mirror;
+        mirror = dec->codecctrl->mirror;
         VPU_DecGiveCommand(handle, SET_MIRROR_DIRECTION, &mirror);
 
         if (rot_en || dering_en) {
@@ -168,9 +187,9 @@ int32_t decoder_allocate_framebuffer(struct decode * dec)
 {
     DecBufInfo bufinfo;
     int32_t i, regfbcount = dec->regfbcount, totalfb;
-    int32_t dst_scheme = dec->cmdl->dst_scheme, rot_en = dec->cmdl->rot_en;
-    int32_t deblock_en = dec->cmdl->deblock_en;
-    int32_t dering_en = dec->cmdl->dering_en;
+    int32_t dst_scheme = dec->codecctrl->dst_scheme, rot_en = dec->codecctrl->rot_en;
+    int32_t deblock_en = dec->codecctrl->deblock_en;
+    int32_t dering_en = dec->codecctrl->dering_en;
     int32_t tiled2LinearEnable = dec->tiled2LinearEnable;
     RetCode ret;
     DecHandle handle = dec->handle;
@@ -183,7 +202,7 @@ int32_t decoder_allocate_framebuffer(struct decode * dec)
          * At least 1 extra fb for rotation(or dering) is needed, two extrafb
          * are allocated for rotation 
          */
-        dec->rot_buf_count = (dec->cmdl->dst_scheme == PATH_IPU) ? 2 : 1;
+        dec->rot_buf_count = (dec->codecctrl->dst_scheme == PATH_IPU) ? 2 : 1;
         dec->extrafb += dec->rot_buf_count;
     }
 
@@ -208,11 +227,11 @@ int32_t decoder_allocate_framebuffer(struct decode * dec)
     }
 
     if ((dst_scheme != PATH_IPU) || ((dst_scheme == PATH_IPU) && deblock_en)) {
-        if (dec->cmdl->mapType == LINEAR_FRAME_MAP) {
+        if (dec->codecctrl->mapType == LINEAR_FRAME_MAP) {
             /* All buffers are linear */
             for (i = 0; i < totalfb; i++) {
                 /*Note by Ray: set the strideline and height to max, to support direct rendering one any display panel */
-                pfbpool[i] = framebuf_alloc(dec->cmdl->format, dec->mjpg_fmt,
+                pfbpool[i] = framebuf_alloc(dec->codecctrl->format, dec->mjpg_fmt,
                                             FRAME_MAX_WIDTH, FRAME_MAX_HEIGHT, 1);
                 if (pfbpool[i] == NULL)
                     goto err;
@@ -220,9 +239,9 @@ int32_t decoder_allocate_framebuffer(struct decode * dec)
         } else {
             /* decoded buffers are tiled */
             for (i = 0; i < regfbcount; i++) {
-                pfbpool[i] = tiled_framebuf_alloc(dec->cmdl->format, dec->mjpg_fmt,
+                pfbpool[i] = tiled_framebuf_alloc(dec->codecctrl->format, dec->mjpg_fmt,
                                                   dec->stride, dec->picheight, 1,
-                                                  dec->cmdl->mapType);
+                                                  dec->codecctrl->mapType);
                 if (pfbpool[i] == NULL)
                     goto err;
             }
@@ -231,12 +250,12 @@ int32_t decoder_allocate_framebuffer(struct decode * dec)
                 /* if tiled2LinearEnable == 1, post processing buffer is linear,
                  * otherwise, the buffer is tiled */
                 if (dec->tiled2LinearEnable)
-                    pfbpool[i] = framebuf_alloc(dec->cmdl->format, dec->mjpg_fmt,
+                    pfbpool[i] = framebuf_alloc(dec->codecctrl->format, dec->mjpg_fmt,
                                                 dec->stride, dec->picheight, 1);
                 else
-                    pfbpool[i] = tiled_framebuf_alloc(dec->cmdl->format, dec->mjpg_fmt,
+                    pfbpool[i] = tiled_framebuf_alloc(dec->codecctrl->format, dec->mjpg_fmt,
                                                       dec->stride, dec->picheight, 1,
-                                                      dec->cmdl->mapType);
+                                                      dec->codecctrl->mapType);
                 if (pfbpool[i] == NULL)
                     goto err;
             }
@@ -251,14 +270,14 @@ int32_t decoder_allocate_framebuffer(struct decode * dec)
         }
 
         /*initialize the decoder fifo */
-        dec_fifo_init(&gDecFifo[dec->handle->instIndex], totalfb);
+        dec_fifo_init(&g_dec_fifo[dec->handle->instIndex], totalfb);
     }
 
     stride = ((dec->stride + 15) & ~15);
-    if (dec->cmdl->format == STD_AVC) {
+    if (dec->codecctrl->format == STD_AVC) {
         bufinfo.avcSliceBufInfo.bufferBase = dec->phy_slice_buf;
         bufinfo.avcSliceBufInfo.bufferSize = dec->phy_slicebuf_size;
-    } else if (dec->cmdl->format == STD_VP8) {
+    } else if (dec->codecctrl->format == STD_VP8) {
         bufinfo.vp8MbDataBufInfo.bufferBase = dec->phy_vp8_mbparam_buf;
         bufinfo.vp8MbDataBufInfo.bufferSize = dec->phy_vp8_mbparam_size;
     }
@@ -307,7 +326,7 @@ int32_t decoder_parse(struct decode * dec)
     }
 
     if (initinfo.streamInfoObtained) {
-        switch (dec->cmdl->format) {
+        switch (dec->codecctrl->format) {
         case STD_AVC:
             info_msg("H.264 Profile: %d Level: %d Interlace: %d\n",
                      initinfo.profile, initinfo.level, initinfo.interlace);
@@ -404,7 +423,7 @@ int32_t decoder_parse(struct decode * dec)
                     break;
                 }
             }
-            isInterlacedMPEG4 = initinfo.interlace;
+            g_is_interlaced_MPEG4 = initinfo.interlace;
 
             info_msg("Mpeg4 Profile: %d Level: %d Interlaced: %d\n",
                      profile, level, initinfo.interlace);
@@ -483,9 +502,10 @@ int32_t decoder_parse(struct decode * dec)
 
     align = 16;
 
-    if ((dec->cmdl->format == STD_MPEG2 ||
-         dec->cmdl->format == STD_VC1 ||
-         dec->cmdl->format == STD_AVC || dec->cmdl->format == STD_VP8) && initinfo.interlace == 1)
+    if ((dec->codecctrl->format == STD_MPEG2 ||
+         dec->codecctrl->format == STD_VC1 ||
+         dec->codecctrl->format == STD_AVC || dec->codecctrl->format == STD_VP8)
+        && initinfo.interlace == 1)
         align = 32;
 
     dec->picheight = ((initinfo.picHeight + align - 1) & ~(align - 1));
@@ -527,12 +547,12 @@ int32_t decoder_parse(struct decode * dec)
     /* worstSliceSize is in kilo-byte unit */
     dec->phy_slicebuf_size = initinfo.worstSliceSize * 1024;
     /*Note by Ray: to support direct rendering */
-    if (dec->cmdl->mapType != LINEAR_FRAME_MAP)
+    if (dec->codecctrl->mapType != LINEAR_FRAME_MAP)
         dec->stride = dec->picwidth;
     else
         dec->stride = FRAME_MAX_WIDTH;
 
-    info_msg("Display fps will be %d\n", dec->cmdl->fps);
+    info_msg("Display fps will be %d\n", dec->codecctrl->fps);
 
     return 0;
 }
@@ -542,28 +562,28 @@ int32_t decoder_open(struct decode * dec)
     RetCode ret;
     DecHandle handle = { 0 };
     DecOpenParam oparam = { 0 };
-    if (dec->cmdl->mapType == LINEAR_FRAME_MAP)
+    if (dec->codecctrl->mapType == LINEAR_FRAME_MAP)
         dec->tiled2LinearEnable = 0;
     else
         /* CbCr interleave must be enabled for tiled map */
-        dec->cmdl->chromaInterleave = 1;
+        dec->codecctrl->chromaInterleave = 1;
 
-    oparam.bitstreamFormat = dec->cmdl->format;
+    oparam.bitstreamFormat = dec->codecctrl->format;
     oparam.bitstreamBuffer = dec->phy_bsbuf_addr;
     oparam.bitstreamBufferSize = STREAM_BUF_SIZE;
     oparam.pBitStream = (uint8_t *) dec->virt_bsbuf_addr;
     oparam.reorderEnable = dec->reorderEnable;
-    oparam.mp4DeblkEnable = dec->cmdl->deblock_en;
-    oparam.chromaInterleave = dec->cmdl->chromaInterleave;
-    oparam.mp4Class = dec->cmdl->mp4_h264Class;
-    oparam.avcExtension = dec->cmdl->mp4_h264Class;
+    oparam.mp4DeblkEnable = dec->codecctrl->deblock_en;
+    oparam.chromaInterleave = dec->codecctrl->chromaInterleave;
+    oparam.mp4Class = dec->codecctrl->mp4_h264Class;
+    oparam.avcExtension = dec->codecctrl->mp4_h264Class;
     oparam.mjpg_thumbNailDecEnable = 0;
-    oparam.mapType = dec->cmdl->mapType;
+    oparam.mapType = dec->codecctrl->mapType;
     oparam.tiled2LinearEnable = dec->tiled2LinearEnable;
-    oparam.bitstreamMode = dec->cmdl->bs_mode;
+    oparam.bitstreamMode = dec->codecctrl->bs_mode;
 
     if (oparam.mp4DeblkEnable == 1) {
-        dec->cmdl->deblock_en = 0;
+        dec->codecctrl->deblock_en = 0;
     }
 
     oparam.psSaveBuffer = dec->phy_ps_buf;
@@ -602,15 +622,15 @@ void decoder_frame_display(void)
     uint32_t proc_buffer, disp_buffer;
 
     for (i = 0; i < MAX_NUM_INSTANCE; i++) {
-        if (vpu_hw_map->codecInstPool[i].inUse && vpu_hw_map->codecInstPool[i].initDone) {
-            if (dec_fifo_pop(&gDecFifo[i], &display_buffer, &id) != -1) {
-                bufSwitchIndex[i] = (bufSwitchIndex[i] + 1) % 2;
-                VPU_DecClrDispFlag(gDecInstance[i]->handle, disp_clr_index[i]);
-                disp_clr_index[i] = id;
+        if (g_vpu_hw_map->codecInstPool[i].inUse && g_vpu_hw_map->codecInstPool[i].initDone) {
+            if (dec_fifo_pop(&g_dec_fifo[i], &display_buffer, &id) != -1) {
+                g_buf_switch_index[i] = (g_buf_switch_index[i] + 1) % 2;
+                VPU_DecClrDispFlag(g_dec_instance[i]->handle, g_disp_clr_index[i]);
+                g_disp_clr_index[i] = id;
 
-                if (gDecInstance[i]->cmdl->mapType != LINEAR_FRAME_MAP) {
+                if (g_dec_instance[i]->codecctrl->mapType != LINEAR_FRAME_MAP) {
                     if (i % 2 == 0) {
-                        if (bufSwitchIndex[i] % 2) {
+                        if (g_buf_switch_index[i] % 2) {
                             proc_buffer = IPU1_CH23_EBA0;
                             disp_buffer = IPU1_CH23_EBA0;
                         } else {
@@ -618,7 +638,7 @@ void decoder_frame_display(void)
                             disp_buffer = IPU1_CH23_EBA1;
                         }
                     } else {
-                        if (bufSwitchIndex[i] % 2) {
+                        if (g_buf_switch_index[i] % 2) {
                             proc_buffer = IPU2_CH23_EBA0;
                             disp_buffer = IPU2_CH23_EBA0;
                         } else {
@@ -626,12 +646,12 @@ void decoder_frame_display(void)
                             disp_buffer = IPU2_CH23_EBA1;
                         }
                     }
-                    if (gDecInstance[i]->cmdl->mapType == TILED_FRAME_MB_RASTER_MAP) {
+                    if (g_dec_instance[i]->codecctrl->mapType == TILED_FRAME_MB_RASTER_MAP) {
                         vdoa_clear_interrupt();
-                        vdoa_setup(gDecInstance[i]->picwidth, gDecInstance[i]->picheight,
-                                   gDecInstance[i]->stride, FRAME_MAX_WIDTH, 0, 0, 16, 0);
+                        vdoa_setup(g_dec_instance[i]->picwidth, g_dec_instance[i]->picheight,
+                                   g_dec_instance[i]->stride, FRAME_MAX_WIDTH, 0, 0, 16, 0);
                         vdoa_start(display_buffer->addrY & 0xFFFFF000,
-                                   gDecInstance[i]->picwidth * gDecInstance[i]->picheight,
+                                   g_dec_instance[i]->picwidth * g_dec_instance[i]->picheight,
                                    proc_buffer, FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT);
                         while (!vdoa_check_tx_eot()) ;
                         vdoa_clear_interrupt();
@@ -641,32 +661,32 @@ void decoder_frame_display(void)
 
                         top_field = display_buffer->addrY & 0xFFFFF000;
                         bot_field = (display_buffer->addrCb & 0x00FFFFF0) << 8;
-                        vdoa_setup(gDecInstance[i]->orig_picwidth,
-                                   gDecInstance[i]->orig_picheight / 2, gDecInstance[i]->stride,
+                        vdoa_setup(g_dec_instance[i]->orig_picwidth,
+                                   g_dec_instance[i]->orig_picheight / 2, g_dec_instance[i]->stride,
                                    FRAME_MAX_WIDTH * 2, 1, 0, 8, 0);
                         vdoa_start(top_field & 0xFFFFF000,
-                                   gDecInstance[i]->picwidth * gDecInstance[i]->picheight / 2,
+                                   g_dec_instance[i]->picwidth * g_dec_instance[i]->picheight / 2,
                                    proc_buffer, FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT);
                         while (!vdoa_check_tx_eot()) ;
                         vdoa_clear_interrupt();
 
-                        vdoa_setup(gDecInstance[i]->orig_picwidth,
-                                   gDecInstance[i]->orig_picheight / 2, gDecInstance[i]->stride,
+                        vdoa_setup(g_dec_instance[i]->orig_picwidth,
+                                   g_dec_instance[i]->orig_picheight / 2, g_dec_instance[i]->stride,
                                    FRAME_MAX_WIDTH * 2, 1, 0, 8, 0);
                         vdoa_start(bot_field & 0xFFFFF000,
-                                   gDecInstance[i]->picwidth * gDecInstance[i]->picheight / 2,
-                                   proc_buffer + gDecInstance[i]->stride,
+                                   g_dec_instance[i]->picwidth * g_dec_instance[i]->picheight / 2,
+                                   proc_buffer + g_dec_instance[i]->stride,
                                    FRAME_MAX_WIDTH * FRAME_MAX_HEIGHT);
                         while (!vdoa_check_tx_eot()) ;
                         vdoa_clear_interrupt();
 
                     }
-                    ipu_refresh(i % 2 + 1, disp_buffer);    // totally support two instance, inst0 on ipu1, inst2 on ipu2
+                    ipu_render_refresh(i % 2 + 1, disp_buffer); // totally support two instance, inst0 on ipu1, inst2 on ipu2
                 } else {
-                    ipu_refresh(i % 2 + 1, display_buffer->addrY);  // totally support two instance, inst0 on ipu1, inst2 on ipu2
+                    ipu_render_refresh(i % 2 + 1, display_buffer->addrY);   // totally support two instance, inst0 on ipu1, inst2 on ipu2
                 }
             } else {
-                isFrameDrop[i]++;   // time stamp reached but no frame available to display
+                g_is_frame_drop[i]++;   // time stamp reached but no frame available to display
             }
         }
     }
@@ -675,12 +695,12 @@ void decoder_frame_display(void)
 int counter = 0;
 void epit_isr_frame_control(void)
 {
-    epit_get_compare_event(&hw_epit2);
+    epit_get_compare_event(&g_hw_epit2);
 
     decoder_frame_display();
 }
 
-hw_module_t hw_epit2 = {
+hw_module_t g_hw_epit2 = {
     "EPIT for video control",
     2,
     EPIT2_BASE_ADDR,
@@ -691,14 +711,14 @@ hw_module_t hw_epit2 = {
 
 int32_t decoder_setup(void *arg)
 {
-    struct cmd_line *cmdl;
+    struct codec_control *codecctrl;
     vpu_mem_desc mem_desc = { 0 };
     vpu_mem_desc ps_mem_desc = { 0 };
     vpu_mem_desc slice_mem_desc = { 0 };
     struct decode *dec;
     int32_t ret, fillsize = 0;
 
-    cmdl = (struct cmd_line *)arg;
+    codecctrl = (struct codec_control *)arg;
 
     dec = (struct decode *)calloc(1, sizeof(struct decode));
     if (dec == NULL) {
@@ -708,7 +728,7 @@ int32_t decoder_setup(void *arg)
 
     /*get bitstream buffer for the video clip */
     mem_desc.size = STREAM_BUF_SIZE;
-    ret = IOGetMem(&mem_desc);
+    ret = vpu_malloc(&mem_desc);
     if (ret) {
         err_msg("Unable to obtain physical mem\n");
         return -1;
@@ -716,7 +736,7 @@ int32_t decoder_setup(void *arg)
 
     /*in OS the phy and virt address could be different */
     dec->phy_bsbuf_addr = mem_desc.phy_addr;
-    dec->virt_bsbuf_addr = mem_desc.virt_uaddr;
+    dec->virt_bsbuf_addr = mem_desc.virt_addr;
     dec->reorderEnable = 1;
     dec->tiled2LinearEnable = 0;
     dec->mbInfo.enable = 0;
@@ -724,12 +744,12 @@ int32_t decoder_setup(void *arg)
     dec->frameBufStat.enable = 0;
     dec->userData.enable = 0;
     dec->totalFrameDecoded = 0;
-    dec->cmdl = cmdl;
+    dec->codecctrl = codecctrl;
 
     /*get PS save memory for AVC decoder */
-    if (cmdl->format == STD_AVC) {
+    if (codecctrl->format == STD_AVC) {
         ps_mem_desc.size = PS_SAVE_SIZE;
-        ret = IOGetMem(&ps_mem_desc);
+        ret = vpu_malloc(&ps_mem_desc);
         if (ret) {
             err_msg("Unable to obtain physical ps save mem\n");
             goto err;
@@ -743,16 +763,16 @@ int32_t decoder_setup(void *arg)
         goto err;
 
     /*attach to the global decoder instance */
-    gDecInstance[dec->handle->instIndex] = dec;
-    gBsBuffer[dec->handle->instIndex] = dec->phy_bsbuf_addr;
+    g_dec_instance[dec->handle->instIndex] = dec;
+    g_bs_buffer[dec->handle->instIndex] = dec->phy_bsbuf_addr;
 
-    ret = dec_fill_bsbuffer(dec->handle, cmdl,
+    ret = dec_fill_bsbuffer(dec->handle, codecctrl,
                             dec->virt_bsbuf_addr,
                             (dec->virt_bsbuf_addr + STREAM_BUF_SIZE),
                             dec->phy_bsbuf_addr, fillsize);
     while (1) {
         int usdhc_status = 0;
-        card_xfer_result(SD_PORT_BASE_ADDR, &usdhc_status);
+        card_xfer_result(SD_PORT_INDEX, &usdhc_status);
         if (usdhc_status == 1)
             break;              //wait untill the SD read finished!
         else
@@ -771,9 +791,9 @@ int32_t decoder_setup(void *arg)
     }
 
     /* allocate slice buf */
-    if (cmdl->format == STD_AVC) {
+    if (codecctrl->format == STD_AVC) {
         slice_mem_desc.size = dec->phy_slicebuf_size;
-        ret = IOGetMem(&slice_mem_desc);
+        ret = vpu_malloc(&slice_mem_desc);
         if (ret) {
             err_msg("Unable to obtain physical slice save mem\n");
             goto err1;
@@ -813,12 +833,14 @@ int32_t decode_test(void *arg)
     int32_t active_inst_num = 0;
     int32_t map_type = LINEAR_FRAME_MAP;
     int32_t vplay_mode = VPLAY_30FPS;
-    struct cmd_line *cmdl;
+    struct codec_control *codecctrl;
     int32_t file_in_1 = 0, file_in_2 = 0;
+    uint8_t g_dec_file_1[] = "indir/clip_1.264";
+    uint8_t g_dec_file_2[] = "indir/clip_2.264";
 
     while (i < MAX_NUM_INSTANCE) {
-        isFrameDrop[i] = 0;     //initialize the frame drop flag
-        bufSwitchIndex[i] = 0;  //initialize the buffer switch index
+        g_is_frame_drop[i] = 0; //initialize the frame drop flag
+        g_buf_switch_index[i] = 0;  //initialize the buffer switch index
         i++;
     }
 
@@ -833,9 +855,9 @@ int32_t decode_test(void *arg)
 
     switch (revchar) {
     case '1':
-        multi_instance = 0;
-        if ((file_in_1 = Fopen(in_dec_file_1, (uint8_t *) "r")) < 0) {
-            printf("Can't open the file: %s !\n", in_dec_file_1);
+        g_multi_instance = 0;
+        if ((file_in_1 = Fopen(g_dec_file_1, (uint8_t *) "r")) < 0) {
+            printf("Can't open the file: %s !\n", g_dec_file_1);
             err = 1;
         }
         printf("please choose the display device: (1 for Hannstar LVDS panel, or 2 for HDMI)\n");
@@ -850,22 +872,22 @@ int32_t decode_test(void *arg)
         }
         break;
     case '2':
-        multi_instance = 1;
-        if ((file_in_1 = Fopen(in_dec_file_1, (uint8_t *) "r")) < 0) {
-            printf("Can't open the file: %s !\n", in_dec_file_1);
+        g_multi_instance = 1;
+        if ((file_in_1 = Fopen(g_dec_file_1, (uint8_t *) "r")) < 0) {
+            printf("Can't open the file: %s !\n", g_dec_file_1);
             err = 1;
         }
-        if ((file_in_2 = Fopen(in_dec_file_2, (uint8_t *) "r")) < 0) {
-            printf("Can't open the file: %s !\n", in_dec_file_2);
+        if ((file_in_2 = Fopen(g_dec_file_2, (uint8_t *) "r")) < 0) {
+            printf("Can't open the file: %s !\n", g_dec_file_2);
             err = 1;
         }
         primary_disp = 1;
         break;
     default:
         printf("Wrong Input! select 1 as default!\n");
-        multi_instance = 0;
-        if ((file_in_1 = Fopen(in_dec_file_1, (uint8_t *) "r")) < 0) {
-            printf("Can't open the file: %s !\n", in_dec_file_1);
+        g_multi_instance = 0;
+        if ((file_in_1 = Fopen(g_dec_file_1, (uint8_t *) "r")) < 0) {
+            printf("Can't open the file: %s !\n", g_dec_file_1);
             err = 1;
         }
     }
@@ -928,62 +950,62 @@ int32_t decode_test(void *arg)
         hdmi_720P60_video_output(1, 0);
 #endif
     }
-    cmdl = (struct cmd_line *)calloc(1, sizeof(struct cmd_line));
-    if (cmdl == NULL) {
+    codecctrl = (struct codec_control *)calloc(1, sizeof(struct codec_control));
+    if (codecctrl == NULL) {
         err_msg("Failed to allocate command structure\n");
         return -1;
     }
     /*set the decoder command args */
-    cmdl->input = file_in_1;    /* Input file name */
-    cmdl->format = STD_AVC;
-    cmdl->src_scheme = PATH_FILE;
-    cmdl->dst_scheme = PATH_MEM;
-    cmdl->dering_en = 0;
-    cmdl->deblock_en = 0;
-    cmdl->chromaInterleave = 1; //partial interleaved mode
-    cmdl->mapType = map_type;
-    cmdl->bs_mode = 0;          /*disable pre-scan */
-    cmdl->read_mode = bs_read_mode;
-    cmdl->fps = 30;
+    codecctrl->input = file_in_1;   /* Input file name */
+    codecctrl->format = STD_AVC;
+    codecctrl->src_scheme = PATH_FILE;
+    codecctrl->dst_scheme = PATH_MEM;
+    codecctrl->dering_en = 0;
+    codecctrl->deblock_en = 0;
+    codecctrl->chromaInterleave = 1;    //partial interleaved mode
+    codecctrl->mapType = map_type;
+    codecctrl->bs_mode = 0;     /*disable pre-scan */
+    codecctrl->read_mode = bs_read_mode;
+    codecctrl->fps = 30;
     active_inst_num++;
-    decoder_setup((void *)cmdl);
+    decoder_setup((void *)codecctrl);
 
-    if (multi_instance) {
+    if (g_multi_instance) {
 #ifdef HDMI_RESOLUTION_1080P60
         hdmi_1080P60_video_output(2, 0);
 #else
         hdmi_720P60_video_output(2, 0);
 #endif
-        cmdl = (struct cmd_line *)calloc(1, sizeof(struct cmd_line));
-        if (cmdl == NULL) {
+        codecctrl = (struct codec_control *)calloc(1, sizeof(struct codec_control));
+        if (codecctrl == NULL) {
             err_msg("Failed to allocate command structure\n");
             return -1;
         }
         /*set the decoder command args */
-        cmdl->input = file_in_2;    /* Input file name */
-        cmdl->format = STD_AVC;
-        cmdl->src_scheme = PATH_FILE;
-        cmdl->dst_scheme = PATH_MEM;
-        cmdl->dering_en = 0;
-        cmdl->deblock_en = 0;
-        cmdl->chromaInterleave = 1; //partial interleaved mode
-        cmdl->mapType = map_type;
-        cmdl->bs_mode = 0;      /*disable pre-scan */
-        cmdl->read_mode = bs_read_mode;
-        cmdl->fps = 30;
+        codecctrl->input = file_in_2;   /* Input file name */
+        codecctrl->format = STD_AVC;
+        codecctrl->src_scheme = PATH_FILE;
+        codecctrl->dst_scheme = PATH_MEM;
+        codecctrl->dering_en = 0;
+        codecctrl->deblock_en = 0;
+        codecctrl->chromaInterleave = 1;    //partial interleaved mode
+        codecctrl->mapType = map_type;
+        codecctrl->bs_mode = 0; /*disable pre-scan */
+        codecctrl->read_mode = bs_read_mode;
+        codecctrl->fps = 30;
         active_inst_num++;
-        decoder_setup((void *)cmdl);
+        decoder_setup((void *)codecctrl);
 
     }
 
     printf("Now start decoding test ... \n");
 
     if (vplay_mode != VPLAY_FREE_RUN) { /*Frame control used */
-        hw_epit2.freq = get_main_clock(IPG_CLK);
-        epit_init(&hw_epit2, CLKSRC_IPG_CLK, hw_epit2.freq / 1000000, SET_AND_FORGET, 0, 0);
-        register_interrupt_routine(hw_epit2.irq_id, hw_epit2.irq_subroutine);
-        epit_setup_interrupt(&hw_epit2, TRUE);
-        epit_counter_enable(&hw_epit2, 1000000 / vplay_mode, IRQ_MODE);
+        g_hw_epit2.freq = get_main_clock(IPG_CLK);
+        epit_init(&g_hw_epit2, CLKSRC_IPG_CLK, g_hw_epit2.freq / 1000000, SET_AND_FORGET, 0, 0);
+        register_interrupt_routine(g_hw_epit2.irq_id, g_hw_epit2.irq_subroutine);
+        epit_setup_interrupt(&g_hw_epit2, TRUE);
+        epit_counter_enable(&g_hw_epit2, 1000000 / vplay_mode, IRQ_MODE);
     }
 
     while (1) {
@@ -993,42 +1015,43 @@ int32_t decode_test(void *arg)
         /*get the next active instance */
         for (i = 1; i <= MAX_NUM_INSTANCE; i++) {
             temp = (inst + i) % MAX_NUM_INSTANCE;
-            if (vpu_hw_map->codecInstPool[temp].inUse && vpu_hw_map->codecInstPool[temp].initDone) {
+            if (g_vpu_hw_map->codecInstPool[temp].inUse
+                && g_vpu_hw_map->codecInstPool[temp].initDone) {
                 inst = temp;
                 break;
             }
         }
         decparam.dispReorderBuf = 0;
 
-        decparam.prescanEnable = gDecInstance[inst]->cmdl->prescan;
+        decparam.prescanEnable = g_dec_instance[inst]->codecctrl->prescan;
         decparam.prescanMode = 0;
 
         decparam.skipframeMode = 0;
         decparam.skipframeNum = 0;
         decparam.iframeSearchEnable = 0;
 
-        if (!VPU_IsBusy() && !dec_fifo_is_full(&gDecFifo[inst]) &&
-            (VPU_DecBufferCheck(gDecInstance[inst]->handle) == RETCODE_SUCCESS)) {
-            VPU_DecStartOneFrame(gDecInstance[inst]->handle, &decparam);
+        if (!VPU_IsBusy() && !dec_fifo_is_full(&g_dec_fifo[inst]) &&
+            (VPU_DecBufferCheck(g_dec_instance[inst]->handle) == RETCODE_SUCCESS)) {
+            VPU_DecStartOneFrame(g_dec_instance[inst]->handle, &decparam);
             while (VPU_IsBusy()) {
                 /*If there is enough space, read the bitstream from the SD card to the bitstream buffer */
                 err =
-                    dec_fill_bsbuffer(gDecInstance[inst]->handle, gDecInstance[inst]->cmdl,
-                                      gBsBuffer[inst], gBsBuffer[inst] + STREAM_BUF_SIZE,
-                                      gBsBuffer[inst], STREAM_BUF_SIZE >> 2);
+                    dec_fill_bsbuffer(g_dec_instance[inst]->handle, g_dec_instance[inst]->codecctrl,
+                                      g_bs_buffer[inst], g_bs_buffer[inst] + STREAM_BUF_SIZE,
+                                      g_bs_buffer[inst], STREAM_BUF_SIZE >> 2);
             };
 
-            VPU_DecGetOutputInfo(gDecInstance[inst]->handle, &outinfo);
+            VPU_DecGetOutputInfo(g_dec_instance[inst]->handle, &outinfo);
 
             if (outinfo.indexFrameDisplay >= 0) {
-                gDecInstance[inst]->totalFrameDecoded++;
+                g_dec_instance[inst]->totalFrameDecoded++;
 
                 /*push the decoded frame into fifo */
-                dec_fifo_push(&gDecFifo[inst],
-                              &(gDecInstance[inst]->pfbpool[outinfo.indexFrameDisplay]),
+                dec_fifo_push(&g_dec_fifo[inst],
+                              &(g_dec_instance[inst]->pfbpool[outinfo.indexFrameDisplay]),
                               outinfo.indexFrameDisplay);
             } else if (outinfo.indexFrameDisplay == -1) {
-                vpu_hw_map->codecInstPool[inst].inUse = 0;
+                g_vpu_hw_map->codecInstPool[inst].inUse = 0;
                 info_msg("Decode instance %d finished!\n", inst);
                 active_inst_num--;
             }
@@ -1036,31 +1059,31 @@ int32_t decode_test(void *arg)
 
         if (vplay_mode == VPLAY_FREE_RUN) {
             decoder_frame_display();
-        } else if (isFrameDrop[inst]) {
+        } else if (g_is_frame_drop[inst]) {
             decoder_frame_display();
-            isFrameDrop[inst]--;
+            g_is_frame_drop[inst]--;
         }
     }
 
 /*release all the buffers*/
     for (i = 0; i < MAX_NUM_INSTANCE; i++) {
-        if (vpu_hw_map->codecInstPool[i].initDone) {
+        if (g_vpu_hw_map->codecInstPool[i].initDone) {
             printf("Total frames decoded in instance %d is %d\n", i,
-                   gDecInstance[i]->totalFrameDecoded);
-            decoder_close(gDecInstance[i]);
+                   g_dec_instance[i]->totalFrameDecoded);
+            decoder_close(g_dec_instance[i]);
 
             /* free the frame buffers */
-            decoder_free_framebuffer(gDecInstance[i]);
+            decoder_free_framebuffer(g_dec_instance[i]);
 
-            free(gDecInstance[i]->cmdl);
-            free(gDecInstance[i]->fb);
-            free(gDecInstance[i]->pfbpool);
-            gDecInstance[i]->fb = NULL;
-            gDecInstance[i]->pfbpool = NULL;
-            free(gDecInstance[i]);
+            free(g_dec_instance[i]->codecctrl);
+            free(g_dec_instance[i]->fb);
+            free(g_dec_instance[i]->pfbpool);
+            g_dec_instance[i]->fb = NULL;
+            g_dec_instance[i]->pfbpool = NULL;
+            free(g_dec_instance[i]);
 
-            disp_clr_index[i] = -1;
-            vpu_hw_map->codecInstPool[i].initDone = 0;
+            g_disp_clr_index[i] = -1;
+            g_vpu_hw_map->codecInstPool[i].initDone = 0;
         }
     }
 
@@ -1070,7 +1093,7 @@ int32_t decode_test(void *arg)
         Fclose(file_in_2);
 
     if (vplay_mode != VPLAY_FREE_RUN) { /*disable the timer for frame control */
-        epit_counter_disable(&hw_epit2);
+        epit_counter_disable(&g_hw_epit2);
     }
 
     return 0;

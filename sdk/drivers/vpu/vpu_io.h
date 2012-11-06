@@ -47,8 +47,7 @@
 typedef struct vpu_mem_desc {
     int size;                   /*!requested memory size */
     unsigned long phy_addr;     /*!physical memory address allocated */
-    unsigned long cpu_addr;     /*!cpu addr for system free usage */
-    unsigned long virt_uaddr;   /*!virtual user space address */
+    unsigned long virt_addr;    /*!virtual user space address */
 } vpu_mem_desc;
 
 typedef struct iram_t {
@@ -56,10 +55,10 @@ typedef struct iram_t {
     unsigned long end;
 } iram_t;
 
-int IOSystemInit(void);
-int IOSystemShutdown(void);
-int IOGetMem(vpu_mem_desc * buff);
-int IOCodecCleanup(void);
+int vpu_io_init(void);
+int vpu_io_uninit(void);
+int vpu_malloc(vpu_mem_desc * buff);
+int vpu_codec_io_deinit(void);
 int IOWaitForInt(int timeout_in_ms);
 int IOGetIramBase(iram_t * iram);
 int IOGetPhyShareMem(vpu_mem_desc * buff);
@@ -67,10 +66,10 @@ int IOFreePhyPicParaMem(vpu_mem_desc * buff);
 int IOFreePhyUserDataMem(vpu_mem_desc * buff);
 int IOSysSWReset(void);
 
-unsigned long VpuWriteReg(unsigned long addr, unsigned int data);
-unsigned long VpuReadReg(unsigned long addr);
+unsigned long vpu_reg_write(unsigned long addr, unsigned int data);
+unsigned long vpu_reg_read(unsigned long addr);
 
-void ResetVpu(void);
-int isVpuInitialized(void);
+void vpu_reset(void);
+int vpu_is_initialized(void);
 
 #endif

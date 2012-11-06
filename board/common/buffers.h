@@ -33,11 +33,11 @@
  */
 
 #define IPU_DEFAULT_WORK_CLOCK 264000000
-#define IPU_DMA_MEMORY_START	0x40000000
-#define IPU_DMA_MEMORY_END		0x4FFFFFFF
+#define IPU_DMA_MEMORY_START	0x20000000
+#define IPU_DMA_MEMORY_END		0x23FFFFFF
 
-#define HDMI_AUDIO_BUF_START  0x3fff0000
-#define HDMI_AUDIO_BUF_END    0x3fff4000
+#define HDMI_AUDIO_BUF_START  0x2fff0000
+#define HDMI_AUDIO_BUF_END    0x2fff4000
 
 #define CH23_EBA0 	(IPU_DMA_MEMORY_START + 0x00000000)
 #define CH23_EBA1 	(IPU_DMA_MEMORY_START + 0x00400000)
@@ -66,31 +66,14 @@
 /* put the TWO video instance on different CS to
    improve the performance.
  */
-#if defined(BOARD_EVB)
-#define FAT_DRIVER_BUFFER       (0x60000000)
-#define VPU_WORK_BUFFERS        (0x60100000)
-#define VIDEO_BUFFERS_START     (0x70000000)
-#define VIDEO_BUFFERS_END       (0x90000000)
-#elif defined(BOARD_SMART_DEVICE) || defined(BOARD_SABRE_AI)
-#define FAT_DRIVER_BUFFER       (0x30000000)
-#define VPU_WORK_BUFFERS        (0x30100000)
-#define VIDEO_BUFFERS_START     (0x20000000)
+#define FAT_DRIVER_BUFFER       (0x24000000)
+#define VPU_WORK_BUFFERS        (0x24100000)
+#define VIDEO_BUFFERS_START     (0x28000000)
 #define VIDEO_BUFFERS_END       (0x30000000)
-#endif
 
 /*OCRAM partition table*/
-#if defined(CHIP_MX6DQ)
-#define VPU_SEC_AXI_START	0x00910000
-#define VPU_SEC_AXI_END		0x0092FFFF
-#elif defined(CHIP_MX6SDL)
 #define VPU_SEC_AXI_START	0x00910000
 #define VPU_SEC_AXI_END		0x0091FFFF
-#elif defined(CHIP_MX6SL)
-#define VPU_SEC_AXI_START	0x00910000
-#define VPU_SEC_AXI_END		0x0091FFFF
-#else
-#error need to add defines
-#endif
 
 /* OCRAM ADMA buffer */
 #define USDHC_ADMA_BUFFER1 0x00907000

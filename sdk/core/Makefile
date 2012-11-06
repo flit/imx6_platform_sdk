@@ -9,7 +9,8 @@ SOURCES = \
 	src/cortexA9.s \
 	src/startup.S \
 	src/vectors.S \
-	src/armv7_cache.c
+	src/armv7_cache.c \
+	src/arm_abort.S
 
 
 include $(SDK_ROOT)/mk/targets.mk

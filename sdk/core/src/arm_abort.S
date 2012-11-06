@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009-2012, Freescale Semiconductor, Inc.
+ * Copyright (c) 2010-2012, Freescale Semiconductor, Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -28,56 +28,36 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/*!
- * @file  abort_handler.c
- *
- * @ingroup diag_init
+    .code 32
+    .section ".text","ax"
+
+    .extern  dump_regs
+
+/*
+ * A very simple impletement of the abort handler.
+ * Just dump the registers before this exception occured, to make the debugging easier.
  */
+  .global  ABORT_HDLR
+  .func  ABORT_HDLR
+ ABORT_HDLR: 
+	push {r0-r12} ;	//push the general registers to this exception's stack
+	mrs r7, cpsr;
+	mrs r6, spsr;
+	mov r5, sp;
+	msr cpsr, r6; //go to the mode before this exception
+	dsb;
+	stmfd r5!, {sp, lr}; //push sp/lr to this exception's stack
+	msr cpsr, r7;
+	dsb;
+	mov sp, r5;
+	push {r6, lr};
+	mov r0, sp;
+	bl  dump_regs; //dumping
+	pop {r0-r12};
+	add sp, sp, #16; //adjust the sp pointer, just like 'pop {lr, r6}'
+1:
+	b 1b;	        
+	sub pc, lr, #4; //abort handler's standard return, although never reach here.
+  .endfunc   
 
-#include "sdk.h"
-
-typedef struct {
-    uint32_t cpsr;
-    uint32_t pc;
-    uint32_t sp;
-    uint32_t lr;
-    uint32_t r0;
-    uint32_t r1;
-    uint32_t r2;
-    uint32_t r3;
-    uint32_t r4;
-    uint32_t r5;
-    uint32_t r6;
-    uint32_t r7;
-    uint32_t r8;
-    uint32_t r9;
-    uint32_t r10;
-    uint32_t r11;
-    uint32_t r12;
-} arm_regs_t, *arm_regs_p;
-
-/**************************** Functions ***************************************/
-int dump_regs(arm_regs_p regs)
-{
-    printf("Opps, data abort! The registers right before this exception hanppened were dumped as:\n");
-
-    printf("R0: 0x%08x\n", regs->r0);
-    printf("R1: 0x%08x\n", regs->r1);
-    printf("R2: 0x%08x\n", regs->r2);
-    printf("R3: 0x%08x\n", regs->r3);
-    printf("R4: 0x%08x\n", regs->r4);
-    printf("R5: 0x%08x\n", regs->r5);
-    printf("R6: 0x%08x\n", regs->r6);
-    printf("R7: 0x%08x\n", regs->r7);
-    printf("R8: 0x%08x\n", regs->r8);
-    printf("R9: 0x%08x\n", regs->r9);
-    printf("R10: 0x%08x\n", regs->r10);
-    printf("R11: 0x%08x\n", regs->r11);
-    printf("R12: 0x%08x\n", regs->r12);
-    printf("SP: 0x%08x\n", regs->sp);
-    printf("LR: 0x%08x\n", regs->lr);
-    printf("PC: 0x%08x\n", regs->pc);
-    printf("CPSR: 0x%08x\n", regs->cpsr);
-
-    return 0;
-}
+    .end

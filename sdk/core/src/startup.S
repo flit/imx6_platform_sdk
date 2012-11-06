@@ -69,29 +69,29 @@ _start:
            
     @ set stacks for all other modes 
     msr     CPSR_c, #MODE_FIQ | I_BIT | F_BIT
-    sub     r0, r0, r1 
     mov     sp, r0
+    sub     r0, r0, r1 
     
     msr     CPSR_c, #MODE_IRQ | I_BIT | F_BIT
-    sub     r0, r0, r1 
     mov     sp, r0
+    sub     r0, r0, r1 
     
     msr     CPSR_c, #MODE_ABT | I_BIT | F_BIT
-    sub     r0, r0, r1 
     mov     sp, r0
+    sub     r0, r0, r1 
     
     msr     CPSR_c, #MODE_UND | I_BIT | F_BIT
-    sub     r0, r0, r1 
     mov     sp, r0
+    sub     r0, r0, r1 
     
     msr     CPSR_c, #MODE_SYS | I_BIT | F_BIT
-    sub     r0, r0, r1 
     mov     sp, r0
+    sub     r0, r0, r1 
     
     @ Set SVC mode stack with interrupts enabled 
     msr     CPSR_c, #MODE_SVC
-    sub     r0, r0, r1 
     mov     sp, r0
+    sub     r0, r0, r1 
     
     @ check cpu id - cpu0 is primary cpu
     cmp     r5, #0

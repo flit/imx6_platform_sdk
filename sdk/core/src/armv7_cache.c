@@ -40,15 +40,18 @@ void arm_dcache_enable()
     
     // read sctlr 
     _ARM_MRC(15, 0, sctlr, 1, 0, 0);
-
-    // set  C bit (data caching enable) 
-    sctlr |= 0x1 << 2; // |= sctlr_C_MASK
-
-    // write modified sctlr
-    _ARM_MCR(15, 0, sctlr, 1, 0, 0);
-    
-    // All Cache, Branch predictor and TLB maintenance operations before followed instruction complete
-    _ARM_DSB();
+        
+    if(!(sctlr & (0x1 << 2)))
+    {
+        // set  C bit (data caching enable) 
+        sctlr |= 0x1 << 2; // |= sctlr_C_MASK
+        
+        // write modified sctlr
+        _ARM_MCR(15, 0, sctlr, 1, 0, 0);
+        
+        // All Cache, Branch predictor and TLB maintenance operations before followed instruction complete
+        _ARM_DSB();
+    }
 }
 
 void arm_dcache_disable()
@@ -191,14 +194,18 @@ void arm_icache_enable()
     // read sctlr 
     _ARM_MRC(15, 0, sctlr, 1, 0, 0);
     
-    // set  I bit (instruction caching enable) 
-    sctlr |= 0x1 << 12;  // |= sctlr_I_MASK
-
-    // write modified sctlr
-    _ARM_MCR(15, 0, sctlr, 1, 0, 0);
-    
-    // synchronize context on this processor 
-    _ARM_ISB();
+    // ignore the operation if I is enabled already
+    if(!(sctlr & (0x1 << 12)))
+    {	
+        // set  I bit (instruction caching enable)
+        sctlr |= 0x1 << 12;  // |= sctlr_I_MASK
+        
+        // write modified sctlr
+        _ARM_MCR(15, 0, sctlr, 1, 0, 0);
+        
+        // synchronize context on this processor 
+        _ARM_ISB();
+    }
 }
 
 void arm_icache_disable()

@@ -65,6 +65,7 @@ int vpu_test(void)
     config_system_parameters();
 
     /* enable L1 cache for mx6dq and mx6sdl */
+    arm_icache_enable();
     arm_dcache_invalidate();
     mmu_enable();
     arm_dcache_enable();

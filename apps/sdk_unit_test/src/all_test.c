@@ -69,7 +69,7 @@ extern void enet_test(void);
 #ifdef CHIP_MX6DQ
 extern int sata_test(void);
 #endif
-#if defined(BOARD_EVB) 
+#if defined(BOARD_EVB) || defined(BOARD_SMART_DEVICE)  
 extern int pcie_test(void);
 #endif
 
@@ -146,6 +146,9 @@ const menuitem_t k_menuItems[] = {
 #elif defined(BOARD_SMART_DEVICE)
         DEFINE_TEST_MENU_ITEM("a",  "audio test",       audio_test),
         DEFINE_TEST_MENU_ITEM("ca", "camera test",      camera_test),
+        DEFINE_TEST_MENU_ITEM("us", "usb test",     	usb_test),
+        DEFINE_TEST_MENU_ITEM("n",  "spi nor test",     spi_test),
+        DEFINE_TEST_MENU_ITEM("pc", "pcie test",        pcie_test),
 #endif // defined(BOARD_SMART_DEVICE)
 
 #elif defined(CHIP_MX6SL)

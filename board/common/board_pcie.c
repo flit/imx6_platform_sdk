@@ -32,6 +32,7 @@
 #include "registers/regsccm.h"
 #include "registers/regsccmanalog.h"
 #include "registers/regspmu.h"
+#include "registers/regsiomuxc.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code
@@ -58,6 +59,7 @@ void pcie_clk_setup(uint32_t enable)
 
 void pcie_card_pwr_setup(uint32_t enable)
 {
+#if defined(BOARD_EVB)
     i2c_init(I2C3_BASE_ADDR, 100000);
 
     if (enable) {
@@ -66,6 +68,18 @@ void pcie_card_pwr_setup(uint32_t enable)
     } else {
         max7310_set_gpio_output(1, 2, 0);
     }
+#endif
+
+#if defined(BOARD_SMART_DEVICE)
+   HW_IOMUXC_SW_MUX_CTL_PAD_EIM_D19_WR(ALT5); 
+   gpio_set_direction(GPIO_PORT3, 19, GPIO_GDIR_OUTPUT); 
+
+   if(enable){
+	gpio_set_level(GPIO_PORT3, 19, GPIO_HIGH_LEVEL);
+   }else{
+	gpio_set_level(GPIO_PORT3, 19, GPIO_LOW_LEVEL);
+   } 
+#endif
 }
 
 void pcie_enable_extrn_125mhz_clk(uint32_t enable)
@@ -100,6 +114,7 @@ void pcie_enable_extrn_100mhz_clk(uint32_t enable)
 
 void pcie_card_rst(void)
 {
+#if defined(BOARD_EVB)
     i2c_init(I2C3_BASE_ADDR, 100000);
 
     max7310_set_gpio_output(0, 2, 0);
@@ -107,6 +122,16 @@ void pcie_card_rst(void)
     hal_delay_us(200 * 1000);
 
     max7310_set_gpio_output(0, 2, 1);
+#endif
+
+#if defined(BOARD_SMART_DEVICE)
+    HW_IOMUXC_SW_MUX_CTL_PAD_GPIO_19_WR(ALT5); 
+    gpio_set_direction(GPIO_PORT4, 5, GPIO_GDIR_OUTPUT); 
+
+    gpio_set_level(GPIO_PORT4, 5, GPIO_LOW_LEVEL);
+    hal_delay_us(200 * 1000);
+    gpio_set_level(GPIO_PORT4, 5, GPIO_HIGH_LEVEL);
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////

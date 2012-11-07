@@ -143,6 +143,8 @@ void usb0_host_test (usb_module_t *usbhModule)
 
     }
 
+	printf("\nMove mouse, and the mouse reports will be printed on the terminal.\n Press left button to exit.\n");	
+
 	//! if we have a mouse connected.
 	//! Initialize the periodic schedule for the interrupt endpoint
 	periodic_base = usbh_periodic_schedule_init(usbhModule, FRAME_LIST_SIZE, (&frame_list[0]));

@@ -45,31 +45,36 @@
  */
 int32_t csi_sensor_capture(void)
 {
-	camera_profile_t *sensor;
-	uint8_t revchar;
-	
-	/*step 1: setup CSI: from csi --> pxp --> display */
-	lcdif_display_setup();
-	pxp_csc_process();
-	csi_setup();
+    camera_profile_t *sensor;
+    uint8_t revchar;
+    int32_t ret = TEST_PASSED;
 
-	/*step 2: setup sensor */
-	sensor = sensor_search();
-	if (sensor == NULL)
-		return TEST_FAILED;
-	sensor_config(sensor);
+    /*step 1: setup CSI: from csi --> pxp --> display */
+    lcdif_display_setup();
+    pxp_csc_process();
+    csi_setup();
 
-	/*step 2: clear RxFIFO and stream on sensor */
-	csi_streamon();
+    /*step 2: setup sensor */
+    sensor = sensor_search();
+    if (sensor == NULL)
+        return TEST_FAILED;
+    sensor_config(sensor);
 
-	printf("Do you see the captured image (y or n)?\n");
-	do {
-		revchar = getchar();
-	} while (revchar == (uint8_t) 0xFF);
-	if (!(revchar == 'Y' || revchar == 'y'))
-		return TEST_FAILED;
+    /*step 3: clear RxFIFO and stream on sensor */
+    csi_streamon();
 
-	pxp_disable();
+    printf("Do you see the captured image (y or n)?\n");
+    do {
+        revchar = getchar();
+    } while (revchar == (uint8_t) 0xFF);
+    if (!(revchar == 'Y' || revchar == 'y')) {
+        ret = TEST_FAILED;
+        goto err;
+    }
 
-    return TEST_PASSED;
+  err:
+    /* step4: before exiting test, make sensor to standby and disable pxp */
+    pxp_disable();
+    csi_streamoff();
+    return ret;
 }

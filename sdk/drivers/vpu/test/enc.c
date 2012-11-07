@@ -405,7 +405,7 @@ static int32_t encoder_start(struct encode *enc)
         }
 
         if (outinfo.skipEncoded)
-            info_msg("Skip encoding one Frame!\n");
+            printf("Skip encoding one Frame!\n");
 
         if (enc->ringBufferEnable == 0) {
             ret = enc_read_line_buffer(enc, outinfo.bitstreamBuffer, outinfo.bitstreamSize);
@@ -419,7 +419,7 @@ static int32_t encoder_start(struct encode *enc)
 
         frame_id++;
         if (encode_end == 1) {
-            info_msg("Total encoded %d frames\n", frame_id);
+            printf("Total encoded %d frames\n", frame_id);
             break;
         }
     }
@@ -683,7 +683,7 @@ int32_t encoder_setup(void *arg)
     /* start encoding */
     ret = encoder_start(enc);
 
-    info_msg("Encoded output is stored from 0x%08x to 0x%08x\n", g_bs_memory.bs_start,
+    printf("Encoded output is stored from 0x%08x to 0x%08x\n", g_bs_memory.bs_start,
              g_bs_memory.bs_end);
 
     /* free the allocated framebuffers */
@@ -737,9 +737,9 @@ int32_t encode_test(void *arg)
     codecctrl->read_mode = 0;
     encoder_setup(codecctrl);
 
-    info_msg("Do you want to play the encoded bitstream??\n");
-    info_msg("Y/y - play the video from memory.\n");
-    info_msg("N/n - exit the encoder test, will check the data on host PC.\n");
+    printf("Do you want to play the encoded bitstream??\n");
+    printf("Y/y - play the video from memory.\n");
+    printf("N/n - exit the encoder test, will check the data on host PC.\n");
 
     do {
         revchar = getchar();

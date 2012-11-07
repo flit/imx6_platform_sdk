@@ -62,7 +62,7 @@ static void watchdog_reset(void)
     /* Infinite loop */
     while (1) {
         stop_feeding = getchar();
-        if (stop_feeding != 'Y') {
+        if (stop_feeding!='Y' && stop_feeding!='y') {
             if (i % 2 == 0)
                 base->wsr = 0x5555;
             else

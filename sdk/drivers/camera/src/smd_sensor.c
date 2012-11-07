@@ -42,6 +42,7 @@ reg_param_t ov5642_strobe_on[] = {
     {0x3B00, 0x8c, 0, 0, }
 };
 
+extern void audio_codec_power_on (void);
 /*!
  * @brief initialize the i2c module for camera sensor -- mainly enable the i2c clock, module itself and the i2c clock prescaler.
  *
@@ -165,6 +166,14 @@ camera_profile_t *sensor_search(void)
     camera_profile_t *sensor_on;
 
     camera_power_on();
+#if defined(CHIP_MX6SDL)
+	/* For some mx6sdl board, if audio isn't power_en, the i2c voltage is 1.2V,
+	 * I2C will lost arbitration.
+	 * Add fix here, by open audio power_en
+	 */
+	audio_codec_power_on();
+#endif
+
     sensor_reset();
     sensor_clock_setting();
     sensor_i2c_init(g_camera_i2c_port, 170000);

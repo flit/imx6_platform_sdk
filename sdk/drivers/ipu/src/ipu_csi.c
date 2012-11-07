@@ -245,3 +245,27 @@ void ipu_capture_disp_link(uint32_t ipu_index, uint32_t smfc)
         ipu_write_field(ipu_index, IPU_IPU_FS_DISP_FLOW1__DP_SYNC0_SRC_SEL, 0x04);  // VF
     }
 }
+
+/*!
+ * Disable csi module
+ *
+ * @param	csi: csi id
+ *
+ */
+void ipu_disable_csi(uint32_t ipu_index, uint32_t csi)
+{
+    if (csi == 0) {
+	ipu_write_field(ipu_index, IPU_IPU_CONF__CSI0_EN, 0);
+    } else if (csi == 1) {
+	ipu_write_field(ipu_index, IPU_IPU_CONF__CSI1_EN, 0);
+    }
+}
+
+/*!
+ * Disable smfc module
+ *
+ */
+void ipu_disable_smfc(uint32_t ipu_index)
+{
+    ipu_write_field(ipu_index, IPU_IPU_CONF__SMFC_EN, 0);
+}

@@ -15614,7 +15614,7 @@ camera_profile_t g_camera_profiles[SENSOR_NUM] = {
        ARRAY_SIZE(g_ov5642_sensor_detection),
        OV5642_MODE_VGA_640_480_30FPS,
        g_camera_modes,
-       1,
+       0,
        g_ov5642_af_firmware,
        ARRAY_SIZE(g_ov5642_af_firmware),
        g_ov5642_af_trigger,

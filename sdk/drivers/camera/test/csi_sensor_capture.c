@@ -69,5 +69,7 @@ int32_t csi_sensor_capture(void)
 	if (!(revchar == 'Y' || revchar == 'y'))
 		return TEST_FAILED;
 
+	pxp_disable();
+
     return TEST_PASSED;
 }

@@ -113,7 +113,8 @@ SOURCES += \
 	lcdif/src/pxp_drv.c \
 	spdc/src/mxc_spdc.c \
 	camera/src/smd_sensor.c \
-	camera/src/csi_drv.c
+	camera/src/csi_drv.c \
+	fec/src/fec_drv.c
 endif
 
 ifeq "$(TARGET)" "mx6sl"

@@ -91,10 +91,7 @@ void pxp_csc_process(void)
     pxp_sw_reset();
 
 	/* Input and output buffer address */
-	//writel(DDR_PXP_PS_BASE1, HW_PXP_PS_BUF_ADDR);
-	writel(DDR_PXP_PS_BASE1, 0x20F00C0);
-	writel(DDR_LCD_BASE1, 0x20F0030);
-	//HW_PXP_PS_BUF_WR(DDR_PXP_PS_BASE1);
+	HW_PXP_PS_BUF_WR(DDR_PXP_PS_BASE1);
 	HW_PXP_OUT_BUF_WR(DDR_LCD_BASE1);
 
 	/* Input and output pitch

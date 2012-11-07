@@ -844,6 +844,7 @@ int32_t decode_test(void *arg)
         i++;
     }
 
+#if defined(CHIP_MX6DQ)
     printf("please select decoder instance:(1 or 2)\n");
     printf("\t1 - Single decoder with single display\n");
     printf
@@ -852,6 +853,9 @@ int32_t decode_test(void *arg)
     do {
         revchar = getchar();
     } while (revchar == (uint8_t) 0xFF);
+#else
+	revchar = '1';
+#endif
 
     switch (revchar) {
     case '1':

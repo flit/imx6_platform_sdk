@@ -33,11 +33,11 @@
  */
 
 #define IPU_DEFAULT_WORK_CLOCK 264000000
-#define IPU_DMA_MEMORY_START	0x20000000
-#define IPU_DMA_MEMORY_END		0x23FFFFFF
+#define IPU_DMA_MEMORY_START	0x40000000
+#define IPU_DMA_MEMORY_END		0x43FFFFFF
 
-#define HDMI_AUDIO_BUF_START  0x2fff0000
-#define HDMI_AUDIO_BUF_END    0x2fff4000
+#define HDMI_AUDIO_BUF_START  0x4fff0000
+#define HDMI_AUDIO_BUF_END    0x4fff4000
 
 #define CH23_EBA0 	(IPU_DMA_MEMORY_START + 0x00000000)
 #define CH23_EBA1 	(IPU_DMA_MEMORY_START + 0x00400000)
@@ -66,10 +66,10 @@
 /* put the TWO video instance on different CS to
    improve the performance.
  */
-#define FAT_DRIVER_BUFFER       (0x24000000)
-#define VPU_WORK_BUFFERS        (0x24100000)
-#define VIDEO_BUFFERS_START     (0x28000000)
-#define VIDEO_BUFFERS_END       (0x30000000)
+#define FAT_DRIVER_BUFFER       (0x44000000)
+#define VPU_WORK_BUFFERS        (0x44100000)
+#define VIDEO_BUFFERS_START     (0x48000000)
+#define VIDEO_BUFFERS_END       (0x4FFFFFFF)
 
 /*OCRAM partition table*/
 #define VPU_SEC_AXI_START	0x00910000

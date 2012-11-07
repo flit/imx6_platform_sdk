@@ -142,6 +142,7 @@ ifeq "$(TARGET)" "mx6sl"
     SUBDIRS += $(SDK_LIB_ROOT)/drivers/spdc/test
     SUBDIRS += $(SDK_LIB_ROOT)/drivers/camera/test
     SUBDIRS += $(SDK_LIB_ROOT)/drivers/dcp/test
+    SUBDIRS += $(SDK_LIB_ROOT)/drivers/fec/test	
 endif
 
 # Local source files.

@@ -59,7 +59,7 @@ typedef struct {
 /**************************** Functions ***************************************/
 int dump_regs(arm_regs_p regs)
 {
-    printf("Opps, data abort! The registers right before this exception hanppened were dumped as:\n");
+    printf("Opps, data abort! The registers right before this exception happened were dumped as:\n");
 
     printf("R0: 0x%08x\n", regs->r0);
     printf("R1: 0x%08x\n", regs->r1);

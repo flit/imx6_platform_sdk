@@ -141,7 +141,7 @@ int pcie_test(void)
             ep_base = &ep_mem_base;
             tlp_type = TLP_TYPE_MemRdWr;
             str = str_space[1];
-	    // 64Kbytes alligned on cpu side.
+            // 64Kbytes alligned on cpu side.
             base_cpu_side = (base_cpu_side + 0xFFFF) & (~0xFFFF);
             *ep_base = (*ep_base + 0xFFFF) & (~0xFFFF);
         }
@@ -170,8 +170,7 @@ int pcie_test(void)
     for (i = 0; i < res_num; i++) {
         if (ep1_resources[i].is_mapped) {
             space_ptr = (volatile uint32_t *)ep1_resources[i].base;
-            printf("Dump the first word of Resource%d as : 0x%08x\n", i, ep1_resources[i].base,
-                   *space_ptr);
+            printf("Dump the first word of Resource%d as : 0x%08x\n", i, *space_ptr);
         }
     }
 

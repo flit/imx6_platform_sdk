@@ -247,9 +247,9 @@ void ipu_capture_disp_link(uint32_t ipu_index, uint32_t smfc)
 }
 
 /*!
- * Disable csi module
+ * @brief Disable csi module
  *
- * @param	csi: csi id
+ * @param	csi csi id
  *
  */
 void ipu_disable_csi(uint32_t ipu_index, uint32_t csi)
@@ -262,7 +262,7 @@ void ipu_disable_csi(uint32_t ipu_index, uint32_t csi)
 }
 
 /*!
- * Disable smfc module
+ * @brief Disable smfc module
  *
  */
 void ipu_disable_smfc(uint32_t ipu_index)

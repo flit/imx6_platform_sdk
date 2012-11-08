@@ -141,7 +141,7 @@ int pcie_test(void)
             ep_base = &ep_mem_base;
             tlp_type = TLP_TYPE_MemRdWr;
             str = str_space[1];
-            // 64Kbytes alligned on cpu side.
+            // 64Kbytes aligned on cpu side.
             base_cpu_side = (base_cpu_side + 0xFFFF) & (~0xFFFF);
             *ep_base = (*ep_base + 0xFFFF) & (~0xFFFF);
         }
@@ -164,7 +164,7 @@ int pcie_test(void)
 #endif
 
     printf("Accessing every IO/Mem space one by one.\n");
-    //All the space should support 32bits read access.
+    //All the space should support 32bit read access.
     volatile uint32_t *space_ptr = NULL;
 
     for (i = 0; i < res_num; i++) {

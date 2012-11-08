@@ -233,6 +233,7 @@ SECTIONS
         SORT(CONSTRUCTORS)
     } > DDR
 
+#if ENABLE_HAB_CSF
     /* Reserve some space for HAB CSF data */
     .hab.data (_start_image_add + MAX_IMAGE_SIZE) : ALIGN(4)
     {
@@ -241,8 +242,9 @@ SECTIONS
         . = ALIGN (32);
         __hab_data_end = .;
     } > DDR
-    _image_size = __hab_data_end - _start_image_add;
     /* End of HAB reserved space (must place it before BSS section) */
+#endif
+    _image_size = . - _start_image_add;
 
     /* The .bss section comes after the hab data because it is not signed */
     .bss :

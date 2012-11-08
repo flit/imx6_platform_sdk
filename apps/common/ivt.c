@@ -34,8 +34,11 @@
 
 extern unsigned * _start_image_add;
 extern unsigned * __start_boot_data;
-extern unsigned * __hab_data;
 extern unsigned * _image_size;
+
+#if ENABLE_HAB_CSF
+extern unsigned * __hab_data;
+#endif
 
 extern uint8_t input_dcd_hdr[];
 
@@ -61,8 +64,14 @@ struct hab_ivt input_ivt __attribute__ ((section (".ivt"))) ={
     &__start_boot_data,
     /** Absolute address of the IVT.*/
     (const void*) (&input_ivt),
+    
     /** Absolute address of the image CSF.*/
+#if ENABLE_HAB_CSF
     (const void*) &__hab_data,
+#else
+    0,
+#endif
+
     /** Reserved in this version of HAB: should be zero. */
     0
 };

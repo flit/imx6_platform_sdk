@@ -1035,7 +1035,8 @@ RtStatus_t DeleteContent(int32_t HandleNumber,int32_t bUseVestigialClusterEraser
     pb.mode = WRITE_TYPE_RANDOM;
     pb.weight = kMediaCacheWeight_High;
     pb.flags = kMediaCacheFlag_ApplyWeight;
-
+    pb.buffer = malloc(MediaTable[Device].BytesPerSector); // sectorSize
+    
     if (media_cache_pinned_write(&pb) != SUCCESS)
     {
         LeaveNonReentrantSection();
@@ -1190,6 +1191,7 @@ RtStatus_t DeleteContent(int32_t HandleNumber,int32_t bUseVestigialClusterEraser
     
     LeaveNonReentrantSection();
 
+    free(pb.buffer);
     return SUCCESS;
 }
 

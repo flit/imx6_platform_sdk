@@ -854,7 +854,7 @@ int32_t decode_test(void *arg)
         revchar = getchar();
     } while (revchar == (uint8_t) 0xFF);
 #else
-	revchar = '1';
+    revchar = '1';
 #endif
 
     switch (revchar) {
@@ -1069,7 +1069,7 @@ int32_t decode_test(void *arg)
         }
     }
 
-    /*release all the buffers*/
+    /*release all the buffers */
     for (i = 0; i < MAX_NUM_INSTANCE; i++) {
         if (g_vpu_hw_map->codecInstPool[i].initDone) {
             printf("Total frames decoded in instance %d is %d\n", i,

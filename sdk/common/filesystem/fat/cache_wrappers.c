@@ -92,47 +92,110 @@ void print_media_fat_info(uint32_t DeviceNum)
     printf("FSInfoSector = %X\n",       MediaTable[DeviceNum].FSInfoSector);
 }
 
+/*this is only for single sector!!*/
 RtStatus_t FSWriteSector(int32_t deviceNumber, int32_t sectorNumber, int32_t destOffset, uint8_t * sourceBuffer, int32_t sourceOffset, int32_t numBytesToWrite, int32_t writeType)
 {
     assert(deviceNumber == 0);
     RtStatus_t status;
     uint32_t sectorSize = MediaTable[deviceNumber].BytesPerSector;
     uint8_t * buffer;
+    int writeSize = 0;
+    int destAddrOffset = (sectorNumber  + g_u32MbrStartSector ) * sectorSize;
+        int usdhc_status = 0; 
 
-#ifndef RAM_FS
-//printf("s %X l %X d %X of %X\n",sourceBuffer + sourceOffset, numBytesToWrite, sectorNumber * sectorSize, destOffset);
-    if(destOffset != 0)
+#if 0
+    // Handle FAT cache.
+    bool isFat = false;
+	isFat = IsFATSector(deviceNumber, sectorNumber  + g_u32MbrStartSector);
+   
+    /*Note:  destination and write size should be align with the sector size*/
+    if((numBytesToWrite % sectorSize) || destOffset)
     {
-        buffer = (uint8_t *)malloc(sectorSize);
+        writeSize = sectorSize; // this is for single sector reading
 
-        status = card_data_read(g_usdhc_instance, (int *)buffer, sectorSize, sectorNumber * sectorSize);
+        if(isFat && g_fatCache.isValid ) {
+            g_fatCache.isValid = false;
+            if (g_fatCache.sector == sectorNumber  + g_u32MbrStartSector)
+            {
+                // do nothing, reuse the fat cache buffer
+                buffer = (uint8_t *)g_fatCache.buffer;
+            } else { 
+                /*put the fat buffer back to SD card and refetch FAT table*/
+                 while(1) {
+                    card_xfer_result(g_usdhc_instance, &usdhc_status);
+                    if (usdhc_status == 1)
+                        break;
+                }
+                status = card_data_write(g_usdhc_instance, (int *)g_fatCache.buffer, writeSize, destAddrOffset);
+               
+                while(1) {
+                    card_xfer_result(g_usdhc_instance, &usdhc_status);
+                    if (usdhc_status == 1)
+                        break;
+                }
+                status = card_data_read(g_usdhc_instance, (int *)g_fatCache.buffer, writeSize, destAddrOffset);
+                buffer = (uint8_t *)g_fatCache.buffer;            
+                g_fatCache.isValid = true;
+            }
+            memcpy((uint8_t *)((uint32_t)buffer + destOffset), (uint8_t *)(sourceBuffer + sourceOffset), numBytesToWrite);            
+        }else {
+            buffer = (uint8_t *)malloc(sectorSize);
+            if(!buffer)
+                return FAIL;
+            status = card_data_read(g_usdhc_instance, (int *)buffer, writeSize, destAddrOffset);
 
-        memcpy((uint8_t *)(buffer + destOffset), (uint8_t *)(sourceBuffer + sourceOffset), numBytesToWrite);
+            memcpy((uint8_t *)((uint32_t)buffer + destOffset), (uint8_t *)(sourceBuffer + sourceOffset), numBytesToWrite);
+            status = card_data_write(g_usdhc_instance, (int *)buffer, writeSize, destAddrOffset);
 
-//        status = card_data_write(g_usdhc_base_addr, (int *)buffer, sectorSize, sectorNumber * sectorSize);
+            //wait write done then we can release the buffer
+            while(1) {
+                card_xfer_result(g_usdhc_instance, &usdhc_status);
+                if (usdhc_status == 1)
+                    break;
+            }
+            free(buffer);
+        }
 
-        // Let go of the sector buffer.
+    }
+    else {
+        writeSize = numBytesToWrite;
+        while(1) {
+            card_xfer_result(g_usdhc_instance, &usdhc_status);
+            if (usdhc_status == 1)
+                break;
+        }               
+        status = card_data_write(g_usdhc_instance, (int *)(sourceBuffer + sourceOffset), writeSize, destAddrOffset);
+ 
+    }
+#else   
+    if((numBytesToWrite % sectorSize) || destOffset)
+    {
+        writeSize = ((destOffset + numBytesToWrite) / sectorSize + 
+            ((destOffset + numBytesToWrite) % sectorSize ? 1 : 0)) * sectorSize; // this is for single sector reading
+
+        buffer = (uint8_t *)malloc(writeSize);
+        if(!buffer)
+            return FAIL;
+        status = card_data_read(g_usdhc_instance, (int *)buffer, writeSize, destAddrOffset);
+
+        memcpy((uint8_t *)((uint32_t)buffer + destOffset), (uint8_t *)(sourceBuffer + sourceOffset), numBytesToWrite);
+        status = card_data_write(g_usdhc_instance, (int *)buffer, writeSize, destAddrOffset);
+
+        //wait write done then we can release the buffer
+        while(1) {
+            card_xfer_result(g_usdhc_instance, &usdhc_status);
+            if (usdhc_status == 1)
+                break;
+        }
         free(buffer);
     }
-    else
-//        status = card_data_write(g_usdhc_base_addr, (int *)(sourceBuffer + sourceOffset), numBytesToWrite, sectorNumber * sectorSize);
-        status = SUCCESS;
-#else
-    buffer = (uint8_t *) RAM_FS_ADDR;
-//    printf("s %X l %X d %X of %X\n",sourceBuffer + sourceOffset, numBytesToWrite, sectorNumber * sectorSize, destOffset);
-    if(numBytesToWrite < 21)
-    {
-        uint8_t cnt;
-        for(cnt = 0;cnt < numBytesToWrite;cnt++)
-            printf("%02X",*(uint8_t *)(sourceBuffer + cnt));
-        printf("\n");
-        for(cnt = 0;cnt < numBytesToWrite;cnt++)
-            printf("%02X",*(uint8_t *)(sourceBuffer + sourceOffset + cnt));
-        printf("\n");
+    else {
+        writeSize = numBytesToWrite;           
+        status = card_data_write(g_usdhc_instance, (int *)(sourceBuffer + sourceOffset), writeSize, destAddrOffset);
+ 
     }
-    memcpy((uint8_t *)(buffer + (sectorNumber * sectorSize) + destOffset), (uint8_t *)(sourceBuffer + sourceOffset), numBytesToWrite);
-    status = SUCCESS;
 #endif
+    status = SUCCESS;
 
     return status;
 }
@@ -338,14 +401,16 @@ RtStatus_t FSDataDriveInit(DriveTag_t tag)
 
     // First, extract the assumed start sector. We don't want to set the g_u32MbrStartSector
     // global yet, because ReadSector() uses MediaRead(), which offsets based on that global's
-    // value. Thus, we'd get a double offset when trying to read the PBS.
+    // value. Thus, we'd get a double offset when trying to read the PBS. maybe this is not enough
+    // to determine if a sector is MBR or DBR, need to investigate more!!!
 	/* Check the first sector is DBR or MBR. for removable disk there might be no MBR section */
-	if((pSectorData[0x00] == 0xEB) && (pSectorData[0x02] == 0x90)) // JMP NOP indicates this is DBR
+	if((pSectorData[0x00] == 0xEB) && (pSectorData[0x02] == 0x90) && (pSectorData[0x1c6] == 0)) // JMP NOP indicates this is DBR
 	{
 		pbsOffset = 0x0;
 	} else {
 		pbsOffset = pSectorData[0x1c6] + (pSectorData[0x1c7] << 8) + (pSectorData[0x1c8] << 16) + (pSectorData[0x1c9] << 24);
 	}
+
     FSReleaseSector(token);
 
     // Now read what may be the first sector of the first partition

@@ -71,7 +71,7 @@ int32_t vpu_stream_write(struct codec_control * cmd, char *buf, int32_t n)
         memcpy((void *)g_bs_memory.bs_end, buf, n);
         g_bs_memory.bs_end += n;
     } else if (cmd->dst_scheme == PATH_FILE) {
-        /*TBD, currently the file storage is not supported in the file system */
+        Fwrite_FAT(cmd->output, (uint8_t *) buf, n);
     }
     return n;
 }

@@ -33,9 +33,15 @@
 #include "audio/audio.h"
 #include "wav_data.data"
 
+#define WAVE_SUPPORT
+#define WAVE_CHUNK_DATA_OFFSET	44
+
 extern int32_t ssi_playback(audio_pcm_p);
 extern int32_t esai_playback(audio_pcm_p);
 extern int32_t spdif_playback(audio_pcm_p);
+
+extern uint8_t wavefile_start[];
+extern uint8_t wavefile_end[];
 
 typedef struct {
     const char *name;
@@ -43,8 +49,13 @@ typedef struct {
 } audio_test_t;
 
 audio_pcm_para_t pcm_para = {
+#ifdef WAVE_SUPPORT
+    .sample_rate = SAMPLERATE_16KHz,
+    .channel_number = 1,
+#else
     .sample_rate = SAMPLERATE_44_1KHz,
     .channel_number = 2,
+#endif
     .word_length = WL_16,
 };
 
@@ -76,6 +87,33 @@ int32_t audio_test(void)
 {
     int32_t retv=-1, idx, num;
     uint8_t sel;
+
+#ifdef WAVE_SUPPORT
+    pcm_music.name = "nice musci";
+    /*
+     * Audio driver supports 2 channels only. Converte the mono wav to two channels.
+     */
+    uint32_t chunk_data_len = (uint32_t)wavefile_end - (uint32_t)wavefile_start - WAVE_CHUNK_DATA_OFFSET;
+    uint16_t *src_ptr = (uint16_t *) ((uint32_t)wavefile_start + WAVE_CHUNK_DATA_OFFSET);
+    uint16_t *buf = NULL;
+
+    if(pcm_music.para->channel_number == 1){
+	buf = (uint16_t *)malloc(2*chunk_data_len);
+	uint16_t *dst_ptr = buf;
+
+	for(idx =0; idx < chunk_data_len/2; idx++, src_ptr++, dst_ptr+=2){
+		*dst_ptr = *src_ptr;
+		*(dst_ptr + 1) = *src_ptr;
+	}
+	
+	pcm_music.buf = (uint8_t *) buf;
+	pcm_music.size = chunk_data_len * 2;
+	pcm_music.para->channel_number = 2;
+    }else{
+    	pcm_music.buf = (uint8_t *)src_ptr;
+    	pcm_music.size = chunk_data_len;
+    }
+#endif
 
     num = sizeof(audio_tests)/sizeof(audio_test_t);
 
@@ -113,6 +151,12 @@ int32_t audio_test(void)
 
         }
     } while (1);
+
+#ifdef WAVE_SUPPORT
+    if(buf != NULL){
+	free(buf);
+    }
+#endif
 
     return retv;
 }

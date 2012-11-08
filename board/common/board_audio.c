@@ -77,7 +77,6 @@ void audio_clock_config(void)
           (0x05 << 21) |     //div 6
           (0x13 << 16) |     //ssi2 root clk
           (0x01 << 8);       //CKO1 output drives cko2 clock
-//    writel(val, CCM_CCOSR);
     writel(val, (CCM_BASE_ADDR + CCM_CCOSR_OFFSET));
 #endif
 }

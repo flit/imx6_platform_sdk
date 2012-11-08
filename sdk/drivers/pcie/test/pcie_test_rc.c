@@ -53,7 +53,7 @@ uint32_t res_num = 6;
 
 int pcie_test(void)
 {
-    uint32_t i, j;
+    uint32_t i;
     uint8_t ch;
 
     printf("\n---- Running PCIE test. Type 'y' to continue.\n");
@@ -112,8 +112,14 @@ int pcie_test(void)
             printf("Memory\t");
         }
         printf("%dbyte\t", ep1_resources[i].size);
+        printf("%dbits\t", ep1_resources[i].bits);
         printf("\n");
     }
+
+#if 0
+    printf("Dump the endpoint's configuration header.\n");
+    pcie_dump_cfg_header((uint32_t *) cfg_hdr_base);
+#endif
 
     printf("Allocate resources for the endpoint.\n");
     uint32_t viewport = PCIE_IATU_VIEWPORT_1;
@@ -135,15 +141,19 @@ int pcie_test(void)
             ep_base = &ep_mem_base;
             tlp_type = TLP_TYPE_MemRdWr;
             str = str_space[1];
-            // 4 Kbyre alligned
-            base_cpu_side = (base_cpu_side + 0xFFF) & (~0xFFF);
-            *ep_base = (*ep_base + 0xFFF) & (~0xFFF);
+	    // 64Kbytes alligned on cpu side.
+            base_cpu_side = (base_cpu_side + 0xFFFF) & (~0xFFFF);
+            *ep_base = (*ep_base + 0xFFFF) & (~0xFFFF);
         }
 
+        /*
+         * Actually, all the IO spaces can be mapped using one iATU, and all MEM spaces using another one.
+         */
         printf("Map endpoint's bar%d %s space %d byte to CPU memory base 0x%x.\n ", bar, str, size,
                base_cpu_side);
         pcie_cfg_ep_bar(cfg_hdr_base, bar, *ep_base, ~(size - 1));
         ep1_resources[i].base = pcie_map_space(viewport, tlp_type, base_cpu_side, *ep_base, size);
+        ep1_resources[i].is_mapped = 1;
         *ep_base += size;
         base_cpu_side += size;
     }
@@ -153,25 +163,15 @@ int pcie_test(void)
     pcie_dump_cfg_header((uint32_t *) cfg_hdr_base);
 #endif
 
-    printf("Verify the access to endpoint's first space.\n");
-    volatile uint8_t *space_ptr = NULL;
-    space_ptr = (volatile uint8_t *)ep1_resources[0].base;
-    if (ep1_resources[0].type == RESOURCE_TYPE_IO) {
-        printf
-            ("Since the endpoint's io space maybe read-only, this program just dump the first, please check they are correct or not.\n");
-        printf("Dump the first 4 bytes of the io space:");
-        for (j = 0; j < 4; j++, space_ptr++) {
-            printf("0x%02x\t", *space_ptr);
-        }
-        printf("\n");
-    } else {
-        *space_ptr = PCIE_VERIFY_PATTERN;
-        if (*space_ptr == PCIE_VERIFY_PATTERN) {
-            printf("The memory space access succeed.\n");
-        } else {
-            printf("The memory space access failed, 0x%08x vs 0x%08x.\n", PCIE_VERIFY_PATTERN,
+    printf("Accessing every IO/Mem space one by one.\n");
+    //All the space should support 32bits read access.
+    volatile uint32_t *space_ptr = NULL;
+
+    for (i = 0; i < res_num; i++) {
+        if (ep1_resources[i].is_mapped) {
+            space_ptr = (volatile uint32_t *)ep1_resources[i].base;
+            printf("Dump the first word of Resource%d as : 0x%08x\n", i, ep1_resources[i].base,
                    *space_ptr);
-            return -1;
         }
     }
 

@@ -152,6 +152,7 @@ typedef struct {
     uint32_t bits;
     uint32_t base;
     uint32_t size;
+    uint32_t is_mapped;
 } pcie_resource_t, *pcie_resource_p;
 
 ////////////////////////////////////////////////////////////////////////////////

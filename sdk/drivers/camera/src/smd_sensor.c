@@ -166,13 +166,11 @@ camera_profile_t *sensor_search(void)
     camera_profile_t *sensor_on;
 
     camera_power_on();
-#if defined(CHIP_MX6SDL)
-	/* For some mx6sdl board, if audio isn't power_en, the i2c voltage is 1.2V,
-	 * I2C will lost arbitration.
-	 * Add fix here, by open audio power_en
-	 */
-	audio_codec_power_on();
-#endif
+    /* For some mx6sdl board, if audio isn't power_en, the i2c voltage is 1.2V,
+     * I2C will lost arbitration.
+     * Add fix here, by open audio power_en
+     */
+    audio_codec_power_on();
 
     sensor_reset();
     sensor_clock_setting();

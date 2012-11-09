@@ -376,7 +376,7 @@ typedef union _hw_ccm_csr
     reg32_t U;
     struct _hw_ccm_csr_bitfields
     {
-        unsigned REF_EN_B : 1; //!< [0] Status of the value of ref_en_b output of ccm
+        unsigned REF_EN_B : 1; //!< [0] Status of the value of CCM_REF_EN_B output of ccm
         unsigned RESERVED0 : 4; //!< [4:1] Reserved.
         unsigned COSC_READY : 1; //!< [5] Status indication of on board oscillator.
         unsigned RESERVED1 : 26; //!< [31:6] Reserved
@@ -402,11 +402,11 @@ typedef union _hw_ccm_csr
 
 /*! @name Register CCM_CSR, field REF_EN_B[0] (RO)
  *
- * Status of the value of ref_en_b output of ccm
+ * Status of the value of CCM_REF_EN_B output of ccm
  *
  * Values:
- * - 0 - value of ref_en_b is '0'
- * - 1 - value of ref_en_b is '1'
+ * - 0 - value of CCM_REF_EN_B is '0'
+ * - 1 - value of CCM_REF_EN_B is '1'
  */
 //@{
 #define BP_CCM_CSR_REF_EN_B      (0)      //!< Bit position for CCM_CSR_REF_EN_B.
@@ -1051,8 +1051,8 @@ typedef union _hw_ccm_cbcdr
  * Values:
  * - 000 - divide by 1
  * - 001 - divide by 2
- * - 010 - divide by 3
- * - 011 - divide by 4 (default)
+ * - 010 - divide by 3 (default)
+ * - 011 - divide by 4
  * - 100 - divide by 5
  * - 101 - divide by 6
  * - 110 - divide by 7
@@ -1192,7 +1192,7 @@ typedef union _hw_ccm_cbcdr
 /*!
  * @brief HW_CCM_CBCMR - CCM Bus Clock Multiplexer Register (RW)
  *
- * Reset value: 0x04862324
+ * Reset value: 0x04862224
  *
  * The figure below represents the CCM Bus Clock Multiplexer Register (CBCMR). The CBCMR register
  * contains bits to control the multiplexers that generate the bus clocks. The table below provides
@@ -1540,9 +1540,9 @@ typedef union _hw_ccm_cscmr1
         unsigned USDHC3_CLK_SEL : 1; //!< [18] Selector for usdhc3 clock multiplexer
         unsigned USDHC4_CLK_SEL : 1; //!< [19] Selector for usdhc4 clock multiplexer
         unsigned LCDIF_PIX_PODF : 3; //!< [22:20] Post divider for LCDIF_PIX.
-        unsigned ACLK_EMI_SLOW_PODF : 3; //!< [25:23] Divider for aclk_emi_slow clock root.
+        unsigned ACLK_EIM_SLOW_PODF : 3; //!< [25:23] Divider for aclk_eim_slow clock root.
         unsigned RESERVED1 : 3; //!< [28:26] Reserved.
-        unsigned ACLK_EMI_SLOW_SEL : 2; //!< [30:29] Selector for aclk_emi_slow root clock multiplexer
+        unsigned ACLK_EIM_SLOW_SEL : 2; //!< [30:29] Selector for aclk_eim_slow root clock multiplexer
         unsigned RESERVED2 : 1; //!< [31] Reserved.
     } B;
 } hw_ccm_cscmr1_t;
@@ -1826,9 +1826,9 @@ typedef union _hw_ccm_cscmr1
 #endif
 //@}
 
-/*! @name Register CCM_CSCMR1, field ACLK_EMI_SLOW_PODF[25:23] (RW)
+/*! @name Register CCM_CSCMR1, field ACLK_EIM_SLOW_PODF[25:23] (RW)
  *
- * Divider for aclk_emi_slow clock root.
+ * Divider for aclk_eim_slow clock root.
  *
  * Values:
  * - 000 - divide by 1
@@ -1836,24 +1836,24 @@ typedef union _hw_ccm_cscmr1
  * - 111 - divide by 8
  */
 //@{
-#define BP_CCM_CSCMR1_ACLK_EMI_SLOW_PODF      (23)      //!< Bit position for CCM_CSCMR1_ACLK_EMI_SLOW_PODF.
-#define BM_CCM_CSCMR1_ACLK_EMI_SLOW_PODF      (0x03800000)  //!< Bit mask for CCM_CSCMR1_ACLK_EMI_SLOW_PODF.
+#define BP_CCM_CSCMR1_ACLK_EIM_SLOW_PODF      (23)      //!< Bit position for CCM_CSCMR1_ACLK_EIM_SLOW_PODF.
+#define BM_CCM_CSCMR1_ACLK_EIM_SLOW_PODF      (0x03800000)  //!< Bit mask for CCM_CSCMR1_ACLK_EIM_SLOW_PODF.
 
-//! @brief Get value of CCM_CSCMR1_ACLK_EMI_SLOW_PODF from a register value.
-#define BG_CCM_CSCMR1_ACLK_EMI_SLOW_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCMR1_ACLK_EMI_SLOW_PODF) >> BP_CCM_CSCMR1_ACLK_EMI_SLOW_PODF)
+//! @brief Get value of CCM_CSCMR1_ACLK_EIM_SLOW_PODF from a register value.
+#define BG_CCM_CSCMR1_ACLK_EIM_SLOW_PODF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCMR1_ACLK_EIM_SLOW_PODF) >> BP_CCM_CSCMR1_ACLK_EIM_SLOW_PODF)
 
-//! @brief Format value for bitfield CCM_CSCMR1_ACLK_EMI_SLOW_PODF.
-#define BF_CCM_CSCMR1_ACLK_EMI_SLOW_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCMR1_ACLK_EMI_SLOW_PODF) & BM_CCM_CSCMR1_ACLK_EMI_SLOW_PODF)
+//! @brief Format value for bitfield CCM_CSCMR1_ACLK_EIM_SLOW_PODF.
+#define BF_CCM_CSCMR1_ACLK_EIM_SLOW_PODF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCMR1_ACLK_EIM_SLOW_PODF) & BM_CCM_CSCMR1_ACLK_EIM_SLOW_PODF)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the ACLK_EMI_SLOW_PODF field to a new value.
-#define BW_CCM_CSCMR1_ACLK_EMI_SLOW_PODF(v)   (HW_CCM_CSCMR1_WR((HW_CCM_CSCMR1_RD() & ~BM_CCM_CSCMR1_ACLK_EMI_SLOW_PODF) | BF_CCM_CSCMR1_ACLK_EMI_SLOW_PODF(v)))
+//! @brief Set the ACLK_EIM_SLOW_PODF field to a new value.
+#define BW_CCM_CSCMR1_ACLK_EIM_SLOW_PODF(v)   (HW_CCM_CSCMR1_WR((HW_CCM_CSCMR1_RD() & ~BM_CCM_CSCMR1_ACLK_EIM_SLOW_PODF) | BF_CCM_CSCMR1_ACLK_EIM_SLOW_PODF(v)))
 #endif
 //@}
 
-/*! @name Register CCM_CSCMR1, field ACLK_EMI_SLOW_SEL[30:29] (RW)
+/*! @name Register CCM_CSCMR1, field ACLK_EIM_SLOW_SEL[30:29] (RW)
  *
- * Selector for aclk_emi_slow root clock multiplexer
+ * Selector for aclk_eim_slow root clock multiplexer
  *
  * Values:
  * - 00 - derive clock from AXI clk root (default)
@@ -1862,18 +1862,18 @@ typedef union _hw_ccm_cscmr1
  * - 11 - derive clock from 352M PFD
  */
 //@{
-#define BP_CCM_CSCMR1_ACLK_EMI_SLOW_SEL      (29)      //!< Bit position for CCM_CSCMR1_ACLK_EMI_SLOW_SEL.
-#define BM_CCM_CSCMR1_ACLK_EMI_SLOW_SEL      (0x60000000)  //!< Bit mask for CCM_CSCMR1_ACLK_EMI_SLOW_SEL.
+#define BP_CCM_CSCMR1_ACLK_EIM_SLOW_SEL      (29)      //!< Bit position for CCM_CSCMR1_ACLK_EIM_SLOW_SEL.
+#define BM_CCM_CSCMR1_ACLK_EIM_SLOW_SEL      (0x60000000)  //!< Bit mask for CCM_CSCMR1_ACLK_EIM_SLOW_SEL.
 
-//! @brief Get value of CCM_CSCMR1_ACLK_EMI_SLOW_SEL from a register value.
-#define BG_CCM_CSCMR1_ACLK_EMI_SLOW_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCMR1_ACLK_EMI_SLOW_SEL) >> BP_CCM_CSCMR1_ACLK_EMI_SLOW_SEL)
+//! @brief Get value of CCM_CSCMR1_ACLK_EIM_SLOW_SEL from a register value.
+#define BG_CCM_CSCMR1_ACLK_EIM_SLOW_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CSCMR1_ACLK_EIM_SLOW_SEL) >> BP_CCM_CSCMR1_ACLK_EIM_SLOW_SEL)
 
-//! @brief Format value for bitfield CCM_CSCMR1_ACLK_EMI_SLOW_SEL.
-#define BF_CCM_CSCMR1_ACLK_EMI_SLOW_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCMR1_ACLK_EMI_SLOW_SEL) & BM_CCM_CSCMR1_ACLK_EMI_SLOW_SEL)
+//! @brief Format value for bitfield CCM_CSCMR1_ACLK_EIM_SLOW_SEL.
+#define BF_CCM_CSCMR1_ACLK_EIM_SLOW_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CSCMR1_ACLK_EIM_SLOW_SEL) & BM_CCM_CSCMR1_ACLK_EIM_SLOW_SEL)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the ACLK_EMI_SLOW_SEL field to a new value.
-#define BW_CCM_CSCMR1_ACLK_EMI_SLOW_SEL(v)   (HW_CCM_CSCMR1_WR((HW_CCM_CSCMR1_RD() & ~BM_CCM_CSCMR1_ACLK_EMI_SLOW_SEL) | BF_CCM_CSCMR1_ACLK_EMI_SLOW_SEL(v)))
+//! @brief Set the ACLK_EIM_SLOW_SEL field to a new value.
+#define BW_CCM_CSCMR1_ACLK_EIM_SLOW_SEL(v)   (HW_CCM_CSCMR1_WR((HW_CCM_CSCMR1_RD() & ~BM_CCM_CSCMR1_ACLK_EIM_SLOW_SEL) | BF_CCM_CSCMR1_ACLK_EIM_SLOW_SEL(v)))
 #endif
 //@}
 
@@ -3627,7 +3627,7 @@ typedef union _hw_ccm_ctor
  * - 0101 - Reserved
  * - 0110 - dpll_en_dpllip
  * - 0111 - ccm_pdn_4all_req
- * - 1000 - emi_freq_change_ack
+ * - 1000 - eim_freq_change_ack
  * - 1001 - ipu_freq_change_ack
  * - 1010 - pll_lrf_sticky4
  * - 1011 - Reserved
@@ -3882,9 +3882,9 @@ typedef union _hw_ccm_clpcr
  * chip oscillator.
  *
  * Values:
- * - 0 - on chip oscillator will not be powered down, after next entrance to stop mode. (ref_en_b will remain
- *     asserted - '0' and cosc_pwrdown will remain de asserted - '0')
- * - 1 - on chip oscillator will be powered down, after next entrance to stop mode. (ref_en_b will be
+ * - 0 - on chip oscillator will not be powered down, after next entrance to stop mode. (CCM_REF_EN_B will
+ *     remain asserted - '0' and cosc_pwrdown will remain de asserted - '0')
+ * - 1 - on chip oscillator will be powered down, after next entrance to stop mode. (CCM_REF_EN_B will be
  *     deasserted - '1' and cosc_pwrdown will be asserted - '1'). (default). When returning from
  *     stop mode, external oscillator will be enabled again, on chip oscillator will return to
  *     oscillator mode , and after oscnt count ccm will continue with the exit from stop mode
@@ -3909,17 +3909,17 @@ typedef union _hw_ccm_clpcr
 /*! @name Register CCM_CLPCR, field DIS_REF_OSC[7] (RW)
  *
  * dis_ref_osc - in run mode, software can manually control closing of external reference oscillator
- * clock, i.e. generating '1' on ref_en_b signal. If software closed manually the external reference
- * clock, then sbyos functionality will be bypassed. The manual closing of external reference
- * oscilator should be performed only in case the reference oscilator is not the source of any clock
- * generation. Note: When returning from stop mode, the PMIC_VSTBY_REQ will be deasserted (if it was
- * asserted when entering stop mode), and CCM will wait for indication that functional voltage is
- * ready (by sampling the assertion of pmic_vfuncional_ready) before continuing the process of
- * exiting from stop mode. Please refer to stby_count bits.
+ * clock, i.e. generating '1' on CCM_REF_EN_B signal. If software closed manually the external
+ * reference clock, then sbyos functionality will be bypassed. The manual closing of external
+ * reference oscilator should be performed only in case the reference oscilator is not the source of
+ * any clock generation. Note: When returning from stop mode, the PMIC_VSTBY_REQ will be deasserted
+ * (if it was asserted when entering stop mode), and CCM will wait for indication that functional
+ * voltage is ready (by sampling the assertion of pmic_vfuncional_ready) before continuing the
+ * process of exiting from stop mode. Please refer to stby_count bits.
  *
  * Values:
- * - 0 - external high frequency oscillator will be enabled, i.e. ref_en_b = '0'.(default)
- * - 1 - external high frequency oscillator will be disabled, i.e. ref_en_b = '1'
+ * - 0 - external high frequency oscillator will be enabled, i.e. CCM_REF_EN_B = '0'.(default)
+ * - 1 - external high frequency oscillator will be disabled, i.e. CCM_REF_EN_B = '1'
  */
 //@{
 #define BP_CCM_CLPCR_DIS_REF_OSC      (7)      //!< Bit position for CCM_CLPCR_DIS_REF_OSC.
@@ -4763,22 +4763,22 @@ typedef union _hw_ccm_cimr
  * Reset value: 0x000a0001
  *
  * The figure below represents the CCM Clock Output Source Register (CCOSR). The CCOSR register
- * contains bits to control the clocks that will be generated on the output ipp_do_clko1 and
- * ipp_do_clko2.The table below provides its field descriptions.
+ * contains bits to control the clock that will be generated on the output ipp_do_clko1 (CCM_CLKO)
+ * .The table below provides its field descriptions.
  */
 typedef union _hw_ccm_ccosr
 {
     reg32_t U;
     struct _hw_ccm_ccosr_bitfields
     {
-        unsigned CLKO1_SEL : 4; //!< [3:0] Selection of the clock to be generated on clko1
-        unsigned CLKO1_DIV : 3; //!< [6:4] Setting the divider of CLKO1
-        unsigned CLKO1_EN : 1; //!< [7] Enable of CLKO1 clock
-        unsigned CLKO1_CLKO2_SEL : 1; //!< [8] CLKO1 output to reflect clko1 or clko2 clocks
+        unsigned CLKO_SEL : 4; //!< [3:0] Selection of the clock to be generated on CCM_CLKO1
+        unsigned CLKO1_DIV : 3; //!< [6:4] Setting the divider of CCM_CLKO1
+        unsigned CLKO1_EN : 1; //!< [7] Enable of CCM_CLKO1 clock
+        unsigned CLKO_SEL1 : 1; //!< [8] CCM_CLKO1 output to reflect CCM_CLKO1 or CCM_CLKO2 clocks
         unsigned RESERVED0 : 7; //!< [15:9] Reserved
-        unsigned CLKO2_SEL : 5; //!< [20:16] Selection of the clock to be generated on clko2
-        unsigned CLKO2_DIV : 3; //!< [23:21] Setting the divider of CLKO2
-        unsigned CLKO2_EN : 1; //!< [24] Enable of CLKO2 clock
+        unsigned CLKO2_SEL : 5; //!< [20:16] Selection of the clock to be generated on CCM_CLKO2
+        unsigned CLKO2_DIV : 3; //!< [23:21] Setting the divider of CCM_CLKO2
+        unsigned CLKO2_EN : 1; //!< [24] Enable of CCM_CLKO2 clock
         unsigned RESERVED1 : 7; //!< [31:25] Reserved
     } B;
 } hw_ccm_ccosr_t;
@@ -4804,9 +4804,9 @@ typedef union _hw_ccm_ccosr
  * constants & macros for individual CCM_CCOSR bitfields
  */
 
-/*! @name Register CCM_CCOSR, field CLKO1_SEL[3:0] (RW)
+/*! @name Register CCM_CCOSR, field CLKO_SEL[3:0] (RW)
  *
- * Selection of the clock to be generated on clko1
+ * Selection of the clock to be generated on CCM_CLKO1
  *
  * Values:
  * - 0000 - pll3_sw_clk (this inputs has additional constant division /2)
@@ -4825,24 +4825,24 @@ typedef union _hw_ccm_ccosr
  * - 1111 - pll4_main_clk
  */
 //@{
-#define BP_CCM_CCOSR_CLKO1_SEL      (0)      //!< Bit position for CCM_CCOSR_CLKO1_SEL.
-#define BM_CCM_CCOSR_CLKO1_SEL      (0x0000000f)  //!< Bit mask for CCM_CCOSR_CLKO1_SEL.
+#define BP_CCM_CCOSR_CLKO_SEL      (0)      //!< Bit position for CCM_CCOSR_CLKO_SEL.
+#define BM_CCM_CCOSR_CLKO_SEL      (0x0000000f)  //!< Bit mask for CCM_CCOSR_CLKO_SEL.
 
-//! @brief Get value of CCM_CCOSR_CLKO1_SEL from a register value.
-#define BG_CCM_CCOSR_CLKO1_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCOSR_CLKO1_SEL) >> BP_CCM_CCOSR_CLKO1_SEL)
+//! @brief Get value of CCM_CCOSR_CLKO_SEL from a register value.
+#define BG_CCM_CCOSR_CLKO_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCOSR_CLKO_SEL) >> BP_CCM_CCOSR_CLKO_SEL)
 
-//! @brief Format value for bitfield CCM_CCOSR_CLKO1_SEL.
-#define BF_CCM_CCOSR_CLKO1_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCOSR_CLKO1_SEL) & BM_CCM_CCOSR_CLKO1_SEL)
+//! @brief Format value for bitfield CCM_CCOSR_CLKO_SEL.
+#define BF_CCM_CCOSR_CLKO_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCOSR_CLKO_SEL) & BM_CCM_CCOSR_CLKO_SEL)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CLKO1_SEL field to a new value.
-#define BW_CCM_CCOSR_CLKO1_SEL(v)   (HW_CCM_CCOSR_WR((HW_CCM_CCOSR_RD() & ~BM_CCM_CCOSR_CLKO1_SEL) | BF_CCM_CCOSR_CLKO1_SEL(v)))
+//! @brief Set the CLKO_SEL field to a new value.
+#define BW_CCM_CCOSR_CLKO_SEL(v)   (HW_CCM_CCOSR_WR((HW_CCM_CCOSR_RD() & ~BM_CCM_CCOSR_CLKO_SEL) | BF_CCM_CCOSR_CLKO_SEL(v)))
 #endif
 //@}
 
 /*! @name Register CCM_CCOSR, field CLKO1_DIV[6:4] (RW)
  *
- * Setting the divider of CLKO1
+ * Setting the divider of CCM_CLKO1
  *
  * Values:
  * - 000 - divide by 1(default)
@@ -4872,11 +4872,11 @@ typedef union _hw_ccm_ccosr
 
 /*! @name Register CCM_CCOSR, field CLKO1_EN[7] (RW)
  *
- * Enable of CLKO1 clock
+ * Enable of CCM_CLKO1 clock
  *
  * Values:
- * - 0 - CLKO1 disabled.
- * - 1 - CLKO1 enabled.
+ * - 0 - CCM_CLKO1 disabled.
+ * - 1 - CCM_CLKO1 enabled.
  */
 //@{
 #define BP_CCM_CCOSR_CLKO1_EN      (7)      //!< Bit position for CCM_CCOSR_CLKO1_EN.
@@ -4894,33 +4894,33 @@ typedef union _hw_ccm_ccosr
 #endif
 //@}
 
-/*! @name Register CCM_CCOSR, field CLKO1_CLKO2_SEL[8] (RW)
+/*! @name Register CCM_CCOSR, field CLKO_SEL1[8] (RW)
  *
- * CLKO1 output to reflect clko1 or clko2 clocks
+ * CCM_CLKO1 output to reflect CCM_CLKO1 or CCM_CLKO2 clocks
  *
  * Values:
- * - 0 - CLKO1 output drives clko1 clock
- * - 1 - CLKO1 output drives clko2 clock
+ * - 0 - CCM_CLKO1 output drives CCM_CLKO1 clock
+ * - 1 - CCM_CLKO1 output drives CCM_CLKO2 clock
  */
 //@{
-#define BP_CCM_CCOSR_CLKO1_CLKO2_SEL      (8)      //!< Bit position for CCM_CCOSR_CLKO1_CLKO2_SEL.
-#define BM_CCM_CCOSR_CLKO1_CLKO2_SEL      (0x00000100)  //!< Bit mask for CCM_CCOSR_CLKO1_CLKO2_SEL.
+#define BP_CCM_CCOSR_CLKO_SEL1      (8)      //!< Bit position for CCM_CCOSR_CLKO_SEL1.
+#define BM_CCM_CCOSR_CLKO_SEL1      (0x00000100)  //!< Bit mask for CCM_CCOSR_CLKO_SEL1.
 
-//! @brief Get value of CCM_CCOSR_CLKO1_CLKO2_SEL from a register value.
-#define BG_CCM_CCOSR_CLKO1_CLKO2_SEL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCOSR_CLKO1_CLKO2_SEL) >> BP_CCM_CCOSR_CLKO1_CLKO2_SEL)
+//! @brief Get value of CCM_CCOSR_CLKO_SEL1 from a register value.
+#define BG_CCM_CCOSR_CLKO_SEL1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CCOSR_CLKO_SEL1) >> BP_CCM_CCOSR_CLKO_SEL1)
 
-//! @brief Format value for bitfield CCM_CCOSR_CLKO1_CLKO2_SEL.
-#define BF_CCM_CCOSR_CLKO1_CLKO2_SEL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCOSR_CLKO1_CLKO2_SEL) & BM_CCM_CCOSR_CLKO1_CLKO2_SEL)
+//! @brief Format value for bitfield CCM_CCOSR_CLKO_SEL1.
+#define BF_CCM_CCOSR_CLKO_SEL1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CCOSR_CLKO_SEL1) & BM_CCM_CCOSR_CLKO_SEL1)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CLKO1_CLKO2_SEL field to a new value.
-#define BW_CCM_CCOSR_CLKO1_CLKO2_SEL(v)   (HW_CCM_CCOSR_WR((HW_CCM_CCOSR_RD() & ~BM_CCM_CCOSR_CLKO1_CLKO2_SEL) | BF_CCM_CCOSR_CLKO1_CLKO2_SEL(v)))
+//! @brief Set the CLKO_SEL1 field to a new value.
+#define BW_CCM_CCOSR_CLKO_SEL1(v)   (HW_CCM_CCOSR_WR((HW_CCM_CCOSR_RD() & ~BM_CCM_CCOSR_CLKO_SEL1) | BF_CCM_CCOSR_CLKO_SEL1(v)))
 #endif
 //@}
 
 /*! @name Register CCM_CCOSR, field CLKO2_SEL[20:16] (RW)
  *
- * Selection of the clock to be generated on clko2
+ * Selection of the clock to be generated on CCM_CLKO2
  *
  * Values:
  * - 00000 - mmdc_ch0_axi_clk_root
@@ -4942,7 +4942,7 @@ typedef union _hw_ccm_ccosr
  * - 10100 - ssi3_clk_root
  * - 10101 - gpu2d_core_clk_root
  * - 11010 - extern_audio_clk_root
- * - 11011 - aclk_emi_slow_clk_root
+ * - 11011 - aclk_eim_slow_clk_root
  * - 11100 - uart_clk_root
  * - 11101 - spdif0_clk_root
  * - 11110 - spdif1_clk_root
@@ -4966,7 +4966,7 @@ typedef union _hw_ccm_ccosr
 
 /*! @name Register CCM_CCOSR, field CLKO2_DIV[23:21] (RW)
  *
- * Setting the divider of CLKO2
+ * Setting the divider of CCM_CLKO2
  *
  * Values:
  * - 000 - divide by 1 (default)
@@ -4996,11 +4996,11 @@ typedef union _hw_ccm_ccosr
 
 /*! @name Register CCM_CCOSR, field CLKO2_EN[24] (RW)
  *
- * Enable of CLKO2 clock
+ * Enable of CCM_CLKO2 clock
  *
  * Values:
- * - 0 - CLKO2 disabled.
- * - 1 - CLKO2 enabled.
+ * - 0 - CCM_CLKO2 disabled.
+ * - 1 - CCM_CLKO2 enabled.
  */
 //@{
 #define BP_CCM_CCOSR_CLKO2_EN      (24)      //!< Bit position for CCM_CCOSR_CLKO2_EN.
@@ -5038,11 +5038,11 @@ typedef union _hw_ccm_cgpr
         unsigned PMIC_DELAY_SCALER : 1; //!< [0] Defines clock dividion of clock for stby_count (pmic delay counter)
         unsigned MEM_IGP_STOP_MASK : 1; //!< [1] Clear this bit to disallow putting the ARM cache into low power mode.
         unsigned MMDC_EXT_CLK_DIS : 1; //!< [2] Disable external clock driver of MMDC during STOP mode
-        unsigned RESERVED0 : 1; //!< [3] Reserved for future use.
+        unsigned RESERVED0 : 1; //!< [3] Reserved
         unsigned EFUSE_PROG_SUPPLY_GATE : 1; //!< [4] Defines the value of the output signal cgpr_dout[4].
         unsigned RESERVED2 : 11; //!< [15:5] Reserved.
-        unsigned FPL : 1; //!< [16] 
-        unsigned RESERVED3 : 15; //!< [31:17] Reserved for future use.
+        unsigned FPL : 1; //!< [16] Fast PLL enable.
+        unsigned RESERVED3 : 15; //!< [31:17] Reserved
     } B;
 } hw_ccm_cgpr_t;
 #endif
@@ -5137,7 +5137,7 @@ typedef union _hw_ccm_cgpr
 
 /*! @name Register CCM_CGPR, field EFUSE_PROG_SUPPLY_GATE[4] (RW)
  *
- * Defines the value of the output signal cgpr_dout[4]. Gate of programe supply for efuse programing
+ * Defines the value of the output signal cgpr_dout[4]. Gate of program supply for efuse programing
  *
  * Values:
  * - 0 - fuse programing supply voltage is gated off to the efuse module
@@ -5192,17 +5192,18 @@ typedef union _hw_ccm_cgpr
  *
  * Reset value: 0xffffffff
  *
- * CG(i) bits CCGR 0-7 These bits are used to turn on/off the clock to each module independently.The
- * following table details the possible clock activity conditions for each module CGR value Clock
- * Activity Description 00 clock is off during all modes. stop enter hardware handshake is disabled.
- * 01 clock is on in run mode, but off in wait and stop modes 10 Not applicable (Reserved). 11 clock
- * is on during all modes, except stop mode. Module should be stopped, before set it's bits to "0",
- * since clocks to the module will be stopped immediately. The tables above show the register
- * mapings for the different CGR's. The clock connectivity table should be used to match the "CCM
- * output affected" to the actual clocks going into the modules. The figure below represents the CCM
- * Clock Gating Register 0 (CCM_CCGR0). The clock gating Registers define the clock gating for power
- * reduction of each clock (CG(i) bits). There are 8 CGR registers. The number of registers required
- * is according to the number of peripherals in the system.
+ * CG(i) bits CCGR 0- 6 These bits are used to turn on/off the clock to each module
+ * independently.The following table details the possible clock activity conditions for each module
+ * CGR value Clock Activity Description 00 clock is off during all modes. stop enter hardware
+ * handshake is disabled. 01 clock is on in run mode, but off in wait and stop modes 10 Not
+ * applicable (Reserved). 11 clock is on during all modes, except stop mode. Module should be
+ * stopped, before set it's bits to "0", since clocks to the module will be stopped immediately. The
+ * tables above show the register mapings for the different CGR's. The clock connectivity table
+ * should be used to match the "CCM output affected" to the actual clocks going into the modules.
+ * The figure below represents the CCM Clock Gating Register 0 (CCM_CCGR0). The clock gating
+ * Registers define the clock gating for power reduction of each clock (CG(i) bits). There are 7 CGR
+ * registers. The number of registers required is according to the number of peripherals in the
+ * system.
  */
 typedef union _hw_ccm_ccgr0
 {
@@ -5220,7 +5221,7 @@ typedef union _hw_ccm_ccgr0
         unsigned CG8 : 2; //!< [17:16] Reserved
         unsigned CG9 : 2; //!< [19:18] Reserved
         unsigned CG10 : 2; //!< [21:20] Reserved
-        unsigned CG11 : 2; //!< [23:22] CPU debug clocks (cheetah_dbg_clk_enable)
+        unsigned CG11 : 2; //!< [23:22] CPU debug clocks (arm_dbg_clk_enable)
         unsigned CG12 : 2; //!< [25:24] Reserved
         unsigned CG13 : 2; //!< [27:26] Reserved
         unsigned CG14 : 2; //!< [29:28] Reserved
@@ -5471,7 +5472,7 @@ typedef union _hw_ccm_ccgr0
 
 /*! @name Register CCM_CCGR0, field CG11[23:22] (RW)
  *
- * CPU debug clocks (cheetah_dbg_clk_enable)
+ * CPU debug clocks (arm_dbg_clk_enable)
  */
 //@{
 #define BP_CCM_CCGR0_CG11      (22)      //!< Bit position for CCM_CCGR0_CG11.
@@ -7494,7 +7495,7 @@ typedef union _hw_ccm_ccgr6
         unsigned CG2 : 2; //!< [5:4] usdhc2 clocks (usdhc2_clk_enable)
         unsigned CG3 : 2; //!< [7:6] usdhc3 clocks (usdhc3_clk_enable)
         unsigned CG4 : 2; //!< [9:8] usdhc4 clocks (usdhc4_clk_enable)
-        unsigned CG5 : 2; //!< [11:10] emi_slow clocks (emi_slow_clk_enable)
+        unsigned CG5 : 2; //!< [11:10] eim_slow clocks (eim_slow_clk_enable)
         unsigned CG6 : 2; //!< [13:12] vdoaxiclk root clock (vdoaxiclk_clk_enable)
         unsigned CG7 : 2; //!< [15:14] vpu clocks (vpu_clk_enable)
         unsigned CG8 : 2; //!< [17:16] Reserved
@@ -7631,7 +7632,7 @@ typedef union _hw_ccm_ccgr6
 
 /*! @name Register CCM_CCGR6, field CG5[11:10] (RW)
  *
- * emi_slow clocks (emi_slow_clk_enable)
+ * eim_slow clocks (eim_slow_clk_enable)
  */
 //@{
 #define BP_CCM_CCGR6_CG5      (10)      //!< Bit position for CCM_CCGR6_CG5.
@@ -7870,20 +7871,13 @@ typedef union _hw_ccm_cmeor
     reg32_t U;
     struct _hw_ccm_cmeor_bitfields
     {
-        unsigned RESERVED0 : 4; //!< [3:0] Reserved
-        unsigned MOD_EN_OV_VDOA : 1; //!< [4] overide clock enable signal from vdoa - clock will not be gated based on vdoa signal.
+        unsigned RESERVED0 : 5; //!< [4:0] Reserved
         unsigned MOD_EN_OV_GPT : 1; //!< [5] overide clock enable signal from gpt - clock will not be gated based on gpt's signal 'ipg_enable_clk' .
         unsigned MOD_EN_OV_EPIT : 1; //!< [6] overide clock enable signal from epit - clock will not be gated based on epit's signal 'ipg_enable_clk' .
         unsigned MOD_EN_USDHC : 1; //!< [7] overide clock enable signal from usdhc.
-        unsigned MOD_EN_OV_DAP : 1; //!< [8] overide clock enable signal from dap- clock will not be gated based on dap's signal 'dap_dbgen' .
-        unsigned MOD_EN_OV_VPU : 1; //!< [9] overide clock enable signal from vpu- clock will not be gated based on vpu's signal 'vpu_idle' .
+        unsigned RESERVED1 : 2; //!< [9:8] Reserved
         unsigned MOD_EN_OV_GPU2D : 1; //!< [10] overide clock enable signal from gpu2d - clock will not be gated based on gpu2d's signal 'gpu2d_busy' .
-        unsigned MOD_EN_OV_GPU3D : 1; //!< [11] overide clock enable signal from gpu3d - clock will not be gated based on gpu3d's signal.
-        unsigned RESERVED1 : 16; //!< [27:12] Reserved
-        unsigned MOD_EN_OV_CAN2_CPI : 1; //!< [28] overide clock enable signal from can2 - clock will not be gated based on can's signal 'enable_clk_cpi'.
-        unsigned RESERVED2 : 1; //!< [29] Reserved
-        unsigned MOD_EN_OV_CAN1_CPI : 1; //!< [30] overide clock enable signal from can1 - clock will not be gated based on can's signal 'enable_clk_cpi'.
-        unsigned RESERVED3 : 1; //!< [31] Reserved
+        unsigned RESERVED2 : 21; //!< [31:11] Reserved
     } B;
 } hw_ccm_cmeor_t;
 #endif
@@ -7907,30 +7901,6 @@ typedef union _hw_ccm_cmeor
 /*
  * constants & macros for individual CCM_CMEOR bitfields
  */
-
-/*! @name Register CCM_CMEOR, field MOD_EN_OV_VDOA[4] (RW)
- *
- * overide clock enable signal from vdoa - clock will not be gated based on vdoa signal.
- *
- * Values:
- * - 0 - dont override module enable signal
- * - 1 - override module enable signal
- */
-//@{
-#define BP_CCM_CMEOR_MOD_EN_OV_VDOA      (4)      //!< Bit position for CCM_CMEOR_MOD_EN_OV_VDOA.
-#define BM_CCM_CMEOR_MOD_EN_OV_VDOA      (0x00000010)  //!< Bit mask for CCM_CMEOR_MOD_EN_OV_VDOA.
-
-//! @brief Get value of CCM_CMEOR_MOD_EN_OV_VDOA from a register value.
-#define BG_CCM_CMEOR_MOD_EN_OV_VDOA(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CMEOR_MOD_EN_OV_VDOA) >> BP_CCM_CMEOR_MOD_EN_OV_VDOA)
-
-//! @brief Format value for bitfield CCM_CMEOR_MOD_EN_OV_VDOA.
-#define BF_CCM_CMEOR_MOD_EN_OV_VDOA(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CMEOR_MOD_EN_OV_VDOA) & BM_CCM_CMEOR_MOD_EN_OV_VDOA)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the MOD_EN_OV_VDOA field to a new value.
-#define BW_CCM_CMEOR_MOD_EN_OV_VDOA(v)   (HW_CCM_CMEOR_WR((HW_CCM_CMEOR_RD() & ~BM_CCM_CMEOR_MOD_EN_OV_VDOA) | BF_CCM_CMEOR_MOD_EN_OV_VDOA(v)))
-#endif
-//@}
 
 /*! @name Register CCM_CMEOR, field MOD_EN_OV_GPT[5] (RW)
  *
@@ -8006,54 +7976,6 @@ typedef union _hw_ccm_cmeor
 #endif
 //@}
 
-/*! @name Register CCM_CMEOR, field MOD_EN_OV_DAP[8] (RW)
- *
- * overide clock enable signal from dap- clock will not be gated based on dap's signal 'dap_dbgen' .
- *
- * Values:
- * - 0 - dont override module enable signal
- * - 1 - override module enable signal
- */
-//@{
-#define BP_CCM_CMEOR_MOD_EN_OV_DAP      (8)      //!< Bit position for CCM_CMEOR_MOD_EN_OV_DAP.
-#define BM_CCM_CMEOR_MOD_EN_OV_DAP      (0x00000100)  //!< Bit mask for CCM_CMEOR_MOD_EN_OV_DAP.
-
-//! @brief Get value of CCM_CMEOR_MOD_EN_OV_DAP from a register value.
-#define BG_CCM_CMEOR_MOD_EN_OV_DAP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CMEOR_MOD_EN_OV_DAP) >> BP_CCM_CMEOR_MOD_EN_OV_DAP)
-
-//! @brief Format value for bitfield CCM_CMEOR_MOD_EN_OV_DAP.
-#define BF_CCM_CMEOR_MOD_EN_OV_DAP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CMEOR_MOD_EN_OV_DAP) & BM_CCM_CMEOR_MOD_EN_OV_DAP)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the MOD_EN_OV_DAP field to a new value.
-#define BW_CCM_CMEOR_MOD_EN_OV_DAP(v)   (HW_CCM_CMEOR_WR((HW_CCM_CMEOR_RD() & ~BM_CCM_CMEOR_MOD_EN_OV_DAP) | BF_CCM_CMEOR_MOD_EN_OV_DAP(v)))
-#endif
-//@}
-
-/*! @name Register CCM_CMEOR, field MOD_EN_OV_VPU[9] (RW)
- *
- * overide clock enable signal from vpu- clock will not be gated based on vpu's signal 'vpu_idle' .
- *
- * Values:
- * - 0 - dont override module enable signal
- * - 1 - override module enable signal
- */
-//@{
-#define BP_CCM_CMEOR_MOD_EN_OV_VPU      (9)      //!< Bit position for CCM_CMEOR_MOD_EN_OV_VPU.
-#define BM_CCM_CMEOR_MOD_EN_OV_VPU      (0x00000200)  //!< Bit mask for CCM_CMEOR_MOD_EN_OV_VPU.
-
-//! @brief Get value of CCM_CMEOR_MOD_EN_OV_VPU from a register value.
-#define BG_CCM_CMEOR_MOD_EN_OV_VPU(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CMEOR_MOD_EN_OV_VPU) >> BP_CCM_CMEOR_MOD_EN_OV_VPU)
-
-//! @brief Format value for bitfield CCM_CMEOR_MOD_EN_OV_VPU.
-#define BF_CCM_CMEOR_MOD_EN_OV_VPU(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CMEOR_MOD_EN_OV_VPU) & BM_CCM_CMEOR_MOD_EN_OV_VPU)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the MOD_EN_OV_VPU field to a new value.
-#define BW_CCM_CMEOR_MOD_EN_OV_VPU(v)   (HW_CCM_CMEOR_WR((HW_CCM_CMEOR_RD() & ~BM_CCM_CMEOR_MOD_EN_OV_VPU) | BF_CCM_CMEOR_MOD_EN_OV_VPU(v)))
-#endif
-//@}
-
 /*! @name Register CCM_CMEOR, field MOD_EN_OV_GPU2D[10] (RW)
  *
  * overide clock enable signal from gpu2d - clock will not be gated based on gpu2d's signal
@@ -8076,80 +7998,6 @@ typedef union _hw_ccm_cmeor
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the MOD_EN_OV_GPU2D field to a new value.
 #define BW_CCM_CMEOR_MOD_EN_OV_GPU2D(v)   (HW_CCM_CMEOR_WR((HW_CCM_CMEOR_RD() & ~BM_CCM_CMEOR_MOD_EN_OV_GPU2D) | BF_CCM_CMEOR_MOD_EN_OV_GPU2D(v)))
-#endif
-//@}
-
-/*! @name Register CCM_CMEOR, field MOD_EN_OV_GPU3D[11] (RW)
- *
- * overide clock enable signal from gpu3d - clock will not be gated based on gpu3d's signal.
- *
- * Values:
- * - 0 - dont override module enable signal
- * - 1 - override module enable signal
- */
-//@{
-#define BP_CCM_CMEOR_MOD_EN_OV_GPU3D      (11)      //!< Bit position for CCM_CMEOR_MOD_EN_OV_GPU3D.
-#define BM_CCM_CMEOR_MOD_EN_OV_GPU3D      (0x00000800)  //!< Bit mask for CCM_CMEOR_MOD_EN_OV_GPU3D.
-
-//! @brief Get value of CCM_CMEOR_MOD_EN_OV_GPU3D from a register value.
-#define BG_CCM_CMEOR_MOD_EN_OV_GPU3D(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CMEOR_MOD_EN_OV_GPU3D) >> BP_CCM_CMEOR_MOD_EN_OV_GPU3D)
-
-//! @brief Format value for bitfield CCM_CMEOR_MOD_EN_OV_GPU3D.
-#define BF_CCM_CMEOR_MOD_EN_OV_GPU3D(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CMEOR_MOD_EN_OV_GPU3D) & BM_CCM_CMEOR_MOD_EN_OV_GPU3D)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the MOD_EN_OV_GPU3D field to a new value.
-#define BW_CCM_CMEOR_MOD_EN_OV_GPU3D(v)   (HW_CCM_CMEOR_WR((HW_CCM_CMEOR_RD() & ~BM_CCM_CMEOR_MOD_EN_OV_GPU3D) | BF_CCM_CMEOR_MOD_EN_OV_GPU3D(v)))
-#endif
-//@}
-
-/*! @name Register CCM_CMEOR, field MOD_EN_OV_CAN2_CPI[28] (RW)
- *
- * overide clock enable signal from can2 - clock will not be gated based on can's signal
- * 'enable_clk_cpi'.
- *
- * Values:
- * - 0 - dont override module enable signal
- * - 1 - override module enable signal
- */
-//@{
-#define BP_CCM_CMEOR_MOD_EN_OV_CAN2_CPI      (28)      //!< Bit position for CCM_CMEOR_MOD_EN_OV_CAN2_CPI.
-#define BM_CCM_CMEOR_MOD_EN_OV_CAN2_CPI      (0x10000000)  //!< Bit mask for CCM_CMEOR_MOD_EN_OV_CAN2_CPI.
-
-//! @brief Get value of CCM_CMEOR_MOD_EN_OV_CAN2_CPI from a register value.
-#define BG_CCM_CMEOR_MOD_EN_OV_CAN2_CPI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CMEOR_MOD_EN_OV_CAN2_CPI) >> BP_CCM_CMEOR_MOD_EN_OV_CAN2_CPI)
-
-//! @brief Format value for bitfield CCM_CMEOR_MOD_EN_OV_CAN2_CPI.
-#define BF_CCM_CMEOR_MOD_EN_OV_CAN2_CPI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CMEOR_MOD_EN_OV_CAN2_CPI) & BM_CCM_CMEOR_MOD_EN_OV_CAN2_CPI)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the MOD_EN_OV_CAN2_CPI field to a new value.
-#define BW_CCM_CMEOR_MOD_EN_OV_CAN2_CPI(v)   (HW_CCM_CMEOR_WR((HW_CCM_CMEOR_RD() & ~BM_CCM_CMEOR_MOD_EN_OV_CAN2_CPI) | BF_CCM_CMEOR_MOD_EN_OV_CAN2_CPI(v)))
-#endif
-//@}
-
-/*! @name Register CCM_CMEOR, field MOD_EN_OV_CAN1_CPI[30] (RW)
- *
- * overide clock enable signal from can1 - clock will not be gated based on can's signal
- * 'enable_clk_cpi'.
- *
- * Values:
- * - 0 - dont overide module enable signal
- * - 1 - overide module enable signal
- */
-//@{
-#define BP_CCM_CMEOR_MOD_EN_OV_CAN1_CPI      (30)      //!< Bit position for CCM_CMEOR_MOD_EN_OV_CAN1_CPI.
-#define BM_CCM_CMEOR_MOD_EN_OV_CAN1_CPI      (0x40000000)  //!< Bit mask for CCM_CMEOR_MOD_EN_OV_CAN1_CPI.
-
-//! @brief Get value of CCM_CMEOR_MOD_EN_OV_CAN1_CPI from a register value.
-#define BG_CCM_CMEOR_MOD_EN_OV_CAN1_CPI(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_CCM_CMEOR_MOD_EN_OV_CAN1_CPI) >> BP_CCM_CMEOR_MOD_EN_OV_CAN1_CPI)
-
-//! @brief Format value for bitfield CCM_CMEOR_MOD_EN_OV_CAN1_CPI.
-#define BF_CCM_CMEOR_MOD_EN_OV_CAN1_CPI(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_CCM_CMEOR_MOD_EN_OV_CAN1_CPI) & BM_CCM_CMEOR_MOD_EN_OV_CAN1_CPI)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the MOD_EN_OV_CAN1_CPI field to a new value.
-#define BW_CCM_CMEOR_MOD_EN_OV_CAN1_CPI(v)   (HW_CCM_CMEOR_WR((HW_CCM_CMEOR_RD() & ~BM_CCM_CMEOR_MOD_EN_OV_CAN1_CPI) | BF_CCM_CMEOR_MOD_EN_OV_CAN1_CPI(v)))
 #endif
 //@}
 
@@ -8208,5 +8056,5 @@ typedef struct _hw_ccm
 #endif
 
 #endif // __HW_CCM_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

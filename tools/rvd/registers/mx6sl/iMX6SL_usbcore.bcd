@@ -217,8 +217,8 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_USBC_UOG1_USBCMD_RST={\
         gui_name="RST":position=1:size=1:read_only=false\
       }\
-      :bit_fields.B_USBC_UOG1_USBCMD_FS={\
-        gui_name="FS":position=2:size=2:read_only=false\
+      :bit_fields.B_USBC_UOG1_USBCMD_FS_1={\
+        gui_name="FS_1":position=2:size=2:read_only=false\
       }\
       :bit_fields.B_USBC_UOG1_USBCMD_PSE={\
         gui_name="PSE":position=4:size=1:read_only=false\
@@ -241,8 +241,8 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_USBC_UOG1_USBCMD_ATDTW={\
         gui_name="ATDTW":position=14:size=1:read_only=false\
       }\
-      :bit_fields.B_USBC_UOG1_USBCMD_FS1={\
-        gui_name="FS1":position=15:size=1:read_only=false\
+      :bit_fields.B_USBC_UOG1_USBCMD_FS_2={\
+        gui_name="FS_2":position=15:size=1:read_only=false\
       }\
       :bit_fields.B_USBC_UOG1_USBCMD_ITC={\
         gui_name="ITC":position=16:size=8:read_only=false\
@@ -503,8 +503,8 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_USBC_UOG1_PORTSC1_PFSC={\
         gui_name="PFSC":position=24:size=1:read_only=false\
       }\
-      :bit_fields.B_USBC_UOG1_PORTSC1_PTS={\
-        gui_name="PTS":position=25:size=1:read_only=false\
+      :bit_fields.B_USBC_UOG1_PORTSC1_PTS_2={\
+        gui_name="PTS_2":position=25:size=1:read_only=false\
       }\
       :bit_fields.B_USBC_UOG1_PORTSC1_PSPD={\
         gui_name="PSPD":position=26:size=2:read_only=false\
@@ -515,8 +515,8 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_USBC_UOG1_PORTSC1_STS={\
         gui_name="STS":position=29:size=1:read_only=false\
       }\
-      :bit_fields.B_USBC_UOG1_PORTSC1_PTS1={\
-        gui_name="PTS1":position=30:size=2:read_only=false\
+      :bit_fields.B_USBC_UOG1_PORTSC1_PTS_1={\
+        gui_name="PTS_1":position=30:size=2:read_only=false\
       }\
     }\
     :Register.G_USBC_UOG1_OTGSC={\
@@ -1172,8 +1172,8 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_USBC_UOG2_USBCMD_RST={\
         gui_name="RST":position=1:size=1:read_only=false\
       }\
-      :bit_fields.B_USBC_UOG2_USBCMD_FS={\
-        gui_name="FS":position=2:size=2:read_only=false\
+      :bit_fields.B_USBC_UOG2_USBCMD_FS_1={\
+        gui_name="FS_1":position=2:size=2:read_only=false\
       }\
       :bit_fields.B_USBC_UOG2_USBCMD_PSE={\
         gui_name="PSE":position=4:size=1:read_only=false\
@@ -1196,8 +1196,8 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_USBC_UOG2_USBCMD_ATDTW={\
         gui_name="ATDTW":position=14:size=1:read_only=false\
       }\
-      :bit_fields.B_USBC_UOG2_USBCMD_FS1={\
-        gui_name="FS1":position=15:size=1:read_only=false\
+      :bit_fields.B_USBC_UOG2_USBCMD_FS_2={\
+        gui_name="FS_2":position=15:size=1:read_only=false\
       }\
       :bit_fields.B_USBC_UOG2_USBCMD_ITC={\
         gui_name="ITC":position=16:size=8:read_only=false\
@@ -1458,8 +1458,8 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_USBC_UOG2_PORTSC1_PFSC={\
         gui_name="PFSC":position=24:size=1:read_only=false\
       }\
-      :bit_fields.B_USBC_UOG2_PORTSC1_PTS={\
-        gui_name="PTS":position=25:size=1:read_only=false\
+      :bit_fields.B_USBC_UOG2_PORTSC1_PTS_2={\
+        gui_name="PTS_2":position=25:size=1:read_only=false\
       }\
       :bit_fields.B_USBC_UOG2_PORTSC1_PSPD={\
         gui_name="PSPD":position=26:size=2:read_only=false\
@@ -1470,8 +1470,8 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_USBC_UOG2_PORTSC1_STS={\
         gui_name="STS":position=29:size=1:read_only=false\
       }\
-      :bit_fields.B_USBC_UOG2_PORTSC1_PTS1={\
-        gui_name="PTS1":position=30:size=2:read_only=false\
+      :bit_fields.B_USBC_UOG2_PORTSC1_PTS_1={\
+        gui_name="PTS_1":position=30:size=2:read_only=false\
       }\
     }\
     :Register.G_USBC_UOG2_OTGSC={\
@@ -2097,8 +2097,8 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_USBC_UH1_USBCMD_RST={\
         gui_name="RST":position=1:size=1:read_only=false\
       }\
-      :bit_fields.B_USBC_UH1_USBCMD_FS={\
-        gui_name="FS":position=2:size=2:read_only=false\
+      :bit_fields.B_USBC_UH1_USBCMD_FS_1={\
+        gui_name="FS_1":position=2:size=2:read_only=false\
       }\
       :bit_fields.B_USBC_UH1_USBCMD_PSE={\
         gui_name="PSE":position=4:size=1:read_only=false\
@@ -2121,8 +2121,8 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_USBC_UH1_USBCMD_ATDTW={\
         gui_name="ATDTW":position=14:size=1:read_only=false\
       }\
-      :bit_fields.B_USBC_UH1_USBCMD_FS1={\
-        gui_name="FS1":position=15:size=1:read_only=false\
+      :bit_fields.B_USBC_UH1_USBCMD_FS_2={\
+        gui_name="FS_2":position=15:size=1:read_only=false\
       }\
       :bit_fields.B_USBC_UH1_USBCMD_ITC={\
         gui_name="ITC":position=16:size=8:read_only=false\
@@ -2346,8 +2346,8 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_USBC_UH1_PORTSC1_PFSC={\
         gui_name="PFSC":position=24:size=1:read_only=false\
       }\
-      :bit_fields.B_USBC_UH1_PORTSC1_PTS={\
-        gui_name="PTS":position=25:size=1:read_only=false\
+      :bit_fields.B_USBC_UH1_PORTSC1_PTS_2={\
+        gui_name="PTS_2":position=25:size=1:read_only=false\
       }\
       :bit_fields.B_USBC_UH1_PORTSC1_PSPD={\
         gui_name="PSPD":position=26:size=2:read_only=false\
@@ -2358,8 +2358,8 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_USBC_UH1_PORTSC1_STS={\
         gui_name="STS":position=29:size=1:read_only=false\
       }\
-      :bit_fields.B_USBC_UH1_PORTSC1_PTS1={\
-        gui_name="PTS1":position=30:size=2:read_only=false\
+      :bit_fields.B_USBC_UH1_PORTSC1_PTS_1={\
+        gui_name="PTS_1":position=30:size=2:read_only=false\
       }\
     }\
     :Register.G_USBC_UH1_USBMODE={\
@@ -2478,7 +2478,7 @@ Advanced_Information.Cortex-A9={\
     line="=G_USBC_UOG1_USBCMD":\
     line="B_USBC_UOG1_USBCMD_RS":\
     line="B_USBC_UOG1_USBCMD_RST":\
-    line="B_USBC_UOG1_USBCMD_FS":\
+    line="B_USBC_UOG1_USBCMD_FS_1":\
     line="B_USBC_UOG1_USBCMD_PSE":\
     line="B_USBC_UOG1_USBCMD_ASE":\
     line="B_USBC_UOG1_USBCMD_IAA":\
@@ -2486,7 +2486,7 @@ Advanced_Information.Cortex-A9={\
     line="B_USBC_UOG1_USBCMD_ASPE":\
     line="B_USBC_UOG1_USBCMD_SUTW":\
     line="B_USBC_UOG1_USBCMD_ATDTW":\
-    line="B_USBC_UOG1_USBCMD_FS1":\
+    line="B_USBC_UOG1_USBCMD_FS_2":\
     line="B_USBC_UOG1_USBCMD_ITC":\
     line="$$":\
     line="$+":\
@@ -2595,11 +2595,11 @@ Advanced_Information.Cortex-A9={\
     line="B_USBC_UOG1_PORTSC1_WKOC":\
     line="B_USBC_UOG1_PORTSC1_PHCD":\
     line="B_USBC_UOG1_PORTSC1_PFSC":\
-    line="B_USBC_UOG1_PORTSC1_PTS":\
+    line="B_USBC_UOG1_PORTSC1_PTS_2":\
     line="B_USBC_UOG1_PORTSC1_PSPD":\
     line="B_USBC_UOG1_PORTSC1_PTW":\
     line="B_USBC_UOG1_PORTSC1_STS":\
-    line="B_USBC_UOG1_PORTSC1_PTS1":\
+    line="B_USBC_UOG1_PORTSC1_PTS_1":\
     line="$$":\
     line="$+":\
     line="=G_USBC_UOG1_OTGSC":\
@@ -2873,7 +2873,7 @@ Advanced_Information.Cortex-A9={\
     line="=G_USBC_UOG2_USBCMD":\
     line="B_USBC_UOG2_USBCMD_RS":\
     line="B_USBC_UOG2_USBCMD_RST":\
-    line="B_USBC_UOG2_USBCMD_FS":\
+    line="B_USBC_UOG2_USBCMD_FS_1":\
     line="B_USBC_UOG2_USBCMD_PSE":\
     line="B_USBC_UOG2_USBCMD_ASE":\
     line="B_USBC_UOG2_USBCMD_IAA":\
@@ -2881,7 +2881,7 @@ Advanced_Information.Cortex-A9={\
     line="B_USBC_UOG2_USBCMD_ASPE":\
     line="B_USBC_UOG2_USBCMD_SUTW":\
     line="B_USBC_UOG2_USBCMD_ATDTW":\
-    line="B_USBC_UOG2_USBCMD_FS1":\
+    line="B_USBC_UOG2_USBCMD_FS_2":\
     line="B_USBC_UOG2_USBCMD_ITC":\
     line="$$":\
     line="$+":\
@@ -2990,11 +2990,11 @@ Advanced_Information.Cortex-A9={\
     line="B_USBC_UOG2_PORTSC1_WKOC":\
     line="B_USBC_UOG2_PORTSC1_PHCD":\
     line="B_USBC_UOG2_PORTSC1_PFSC":\
-    line="B_USBC_UOG2_PORTSC1_PTS":\
+    line="B_USBC_UOG2_PORTSC1_PTS_2":\
     line="B_USBC_UOG2_PORTSC1_PSPD":\
     line="B_USBC_UOG2_PORTSC1_PTW":\
     line="B_USBC_UOG2_PORTSC1_STS":\
-    line="B_USBC_UOG2_PORTSC1_PTS1":\
+    line="B_USBC_UOG2_PORTSC1_PTS_1":\
     line="$$":\
     line="$+":\
     line="=G_USBC_UOG2_OTGSC":\
@@ -3253,7 +3253,7 @@ Advanced_Information.Cortex-A9={\
     line="=G_USBC_UH1_USBCMD":\
     line="B_USBC_UH1_USBCMD_RS":\
     line="B_USBC_UH1_USBCMD_RST":\
-    line="B_USBC_UH1_USBCMD_FS":\
+    line="B_USBC_UH1_USBCMD_FS_1":\
     line="B_USBC_UH1_USBCMD_PSE":\
     line="B_USBC_UH1_USBCMD_ASE":\
     line="B_USBC_UH1_USBCMD_IAA":\
@@ -3261,7 +3261,7 @@ Advanced_Information.Cortex-A9={\
     line="B_USBC_UH1_USBCMD_ASPE":\
     line="B_USBC_UH1_USBCMD_SUTW":\
     line="B_USBC_UH1_USBCMD_ATDTW":\
-    line="B_USBC_UH1_USBCMD_FS1":\
+    line="B_USBC_UH1_USBCMD_FS_2":\
     line="B_USBC_UH1_USBCMD_ITC":\
     line="$$":\
     line="$+":\
@@ -3351,11 +3351,11 @@ Advanced_Information.Cortex-A9={\
     line="B_USBC_UH1_PORTSC1_WKOC":\
     line="B_USBC_UH1_PORTSC1_PHCD":\
     line="B_USBC_UH1_PORTSC1_PFSC":\
-    line="B_USBC_UH1_PORTSC1_PTS":\
+    line="B_USBC_UH1_PORTSC1_PTS_2":\
     line="B_USBC_UH1_PORTSC1_PSPD":\
     line="B_USBC_UH1_PORTSC1_PTW":\
     line="B_USBC_UH1_PORTSC1_STS":\
-    line="B_USBC_UH1_PORTSC1_PTS1":\
+    line="B_USBC_UH1_PORTSC1_PTS_1":\
     line="$$":\
     line="$+":\
     line="=G_USBC_UH1_USBMODE":\

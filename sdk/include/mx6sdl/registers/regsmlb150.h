@@ -90,7 +90,7 @@ typedef union _hw_mlb150_mlbc0
     {
         unsigned MLBEN : 1; //!< [0] MediaLB enable.
         unsigned RESERVED0 : 1; //!< [1] Reserved
-        unsigned MLBCLK_2_0 : 3; //!< [4:2] MediaLB clock speed select.
+        unsigned MLBCLK_2_0 : 3; //!< [4:2] MLB_CLK (MediaLB clock) speed select.
         unsigned MLBPEN : 1; //!< [5] MediaLB 6-pin enable.
         unsigned RESERVED1 : 1; //!< [6] Reserved
         unsigned MLBLK : 1; //!< [7] MediaLB lock status.
@@ -126,8 +126,8 @@ typedef union _hw_mlb150_mlbc0
 
 /*! @name Register MLB150_MLBC0, field MLBEN[0] (RW)
  *
- * MediaLB enable. When set, MediaLB clock, signal, and data are received and transmitted on the
- * appropriate MediaLB pins.
+ * MediaLB enable. When set, MLB_CLK (MediaLB clock), MLB_SIG (signal), and MLB_DATA (data) are
+ * received and transmitted on the appropriate MediaLB pins.
  */
 //@{
 #define BP_MLB150_MLBC0_MLBEN      (0)      //!< Bit position for MLB150_MLBC0_MLBEN.
@@ -147,7 +147,7 @@ typedef union _hw_mlb150_mlbc0
 
 /*! @name Register MLB150_MLBC0, field MLBCLK_2_0[4:2] (RW)
  *
- * MediaLB clock speed select.
+ * MLB_CLK (MediaLB clock) speed select.
  *
  * Values:
  * - 000 - 256xFs (for MLBPEN = 0)
@@ -333,8 +333,8 @@ typedef union _hw_mlb150_mlbpc0
 
 /*! @name Register MLB150_MLBPC0, field MCLKHYS[11] (RW)
  *
- * MediaLB (6-pin) hysteresis enable. When set, enables hysteresis on the MediaLB clock. This value
- * is driven on mlb_clk_hys_enable output pin and has no internal function.
+ * MediaLB (6-pin) hysteresis enable. When set, enables hysteresis on the MLB_CLK (MediaLB clock).
+ * This value is driven on mlb_clk_hys_enable output pin and has no internal function.
  */
 //@{
 #define BP_MLB150_MLBPC0_MCLKHYS      (11)      //!< Bit position for MLB150_MLBPC0_MCLKHYS.
@@ -448,8 +448,8 @@ typedef union _hw_mlb150_mlbpc2
  * MLB 3-pin interface: Signal/Data output phase control.
  *
  * Values:
- * - 0 - MLB signal/data launch at rising edge of MLB clock(default)
- * - 1 - MLB signal/data launch at falling edge of MLB clock
+ * - 0 - MLB_SIG / MLB_DATA launch at rising edge of MLB_CLK(default)
+ * - 1 - MLB_SIG / MLB_DATA launch at falling edge of MLB_CLK
  */
 //@{
 #define BP_MLB150_MLBPC2_SDOPC      (0)      //!< Bit position for MLB150_MLBPC2_SDOPC.
@@ -1193,7 +1193,7 @@ typedef union _hw_mlb150_mlbpc1
  *
  * Signal/Data receiver bias control (for MediaLB 6-pin interface). Must be written to 0xC when
  * MediaLB 6-pin is initialized (final value needs to be determined through characterization). This
- * value is driven on mlb_sig_data_rx_bias_ctl[3:0] output pin and has no internal function.
+ * value is driven on MLB_SIG, MLB_SIG_N and MLB_SIG_P output pins and has no internal function.
  */
 //@{
 #define BP_MLB150_MLBPC1_SDRCVBIAS_3_0      (0)      //!< Bit position for MLB150_MLBPC1_SDRCVBIAS_3_0.
@@ -1215,7 +1215,7 @@ typedef union _hw_mlb150_mlbpc1
  *
  * Signal/Data transmitter bias control (for MediaLB 6-pin interface). Must be written to 0xC when
  * MediaLB 6-pin is initialized (final value needs to be determined through characterization). This
- * value is driven on mlb_sig_data_tx_bias_ctl[3:0] output pin and has no internal function.
+ * value is driven on MLB_DATA, MLB_DATA_N and MLB_DATA_P output pins and has no internal function.
  */
 //@{
 #define BP_MLB150_MLBPC1_SDXMTBIAS_3_0      (4)      //!< Bit position for MLB150_MLBPC1_SDXMTBIAS_3_0.
@@ -1237,7 +1237,7 @@ typedef union _hw_mlb150_mlbpc1
  *
  * Clock receiver bias control (for MediaLB 6-pin interface). Must be written to 0xC when MediaLB
  * 6-pin is initialized (final value needs to be determined through characterization). This value is
- * driven on mlb_clk_rx_bias_ctl[3:0] output pin and has no internal function.
+ * driven on MLB_CLK, MLB_CLK_N and MLB_CLK_P output pins and has no internal function.
  */
 //@{
 #define BP_MLB150_MLBPC1_CKRCVBIAS_3_0      (8)      //!< Bit position for MLB150_MLBPC1_CKRCVBIAS_3_0.
@@ -1309,8 +1309,8 @@ typedef union _hw_mlb150_mlbc1
 
 /*! @name Register MLB150_MLBC1, field CLKM[7] (RO)
  *
- * MediaLB clock missing status. Set when MediaLB clock is not toggling at the pin; cleared by
- * software.
+ * MediaLB clock missing status. Set when MLB_CLK (MediaLB clock) is not toggling at the pin;
+ * cleared by software.
  */
 //@{
 #define BP_MLB150_MLBC1_CLKM      (7)      //!< Bit position for MLB150_MLBC1_CLKM.
@@ -2928,5 +2928,5 @@ typedef struct _hw_mlb150
 #endif
 
 #endif // __HW_MLB150_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

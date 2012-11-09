@@ -225,8 +225,8 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_MMDC_MDSCR_CMD_ADDR_LSB_MR_AD1={\
         gui_name="CMD_ADDR_LSB_MR_ADDR":position=16:size=8:read_only=false\
       }\
-      :bit_fields.B_MMDC_MDSCR_CMD_ADDR_MSB={\
-        gui_name="CMD_ADDR_MSB":position=24:size=8:read_only=false\
+      :bit_fields.B_MMDC_MDSCR_CMD_ADDR_MSB_MR_OP={\
+        gui_name="CMD_ADDR_MSB_MR_OP":position=24:size=8:read_only=false\
       }\
     }\
     :Register.G_MMDC_MDREF={\
@@ -1556,7 +1556,7 @@ Advanced_Information.Cortex-A9={\
     line="B_MMDC_MDSCR_CON_ACK":\
     line="B_MMDC_MDSCR_CON_REQ":\
     line="B_MMDC_MDSCR_CMD_ADDR_LSB_MR_AD1":\
-    line="B_MMDC_MDSCR_CMD_ADDR_MSB":\
+    line="B_MMDC_MDSCR_CMD_ADDR_MSB_MR_OP":\
     line="$$":\
     line="$+":\
     line="=G_MMDC_MDREF":\

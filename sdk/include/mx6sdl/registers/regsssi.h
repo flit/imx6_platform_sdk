@@ -292,22 +292,22 @@ typedef union _hw_ssi_scr
 
 /*! @name Register SSI_SCR, field TE[1] (RW)
  *
- * Transmit Enable. This control bit enables the transmit section of the It enables the transfer of
- * the contents of the STX registers to the TXSR and also enables the internal transmit clock. The
- * transmit section is enabled when this bit is set and a frame boundary is detected. When this bit
- * is cleared, the transmitter continues to send data until the end of the current frame and then
- * stops. Data can be written to the STX registers with the TE bit cleared (the corresponding TDE
- * bit will be cleared). If the TE bit is cleared and then set again before the second to last bit
- * of the last time slot in the current frame, data transmission continues without interruption. The
- * normal transmit enable sequence is to write data to the STX register(s) and then set the TE bit.
- * The normal disable sequence is to clear the TE and TIE bits after the TDE bit is set. In gated
- * clock mode, clearing the TE bit results in the clock stopping after the data currently in TXSR
- * has shifted out. When the TE bit is set, the clock starts immediately (for internal gated clock
- * mode). TE should not be toggled in the same frame. After enabling/disabling transmission, SSI
- * expects 4 setup clock cycles before arrival of frame-sync for frame-sync to be accepted/rejected
- * by In case of fewer clock cycles, there is high probability of the frame-sync to get missed.
- * Note: If continuos clock is not provided, SSI expects 6 clock cycles before arrival of frame-sync
- * for frame-sync to be accepted by
+ * Transmit Enable. This control bit enables the transmit section of the SSI. It enables the
+ * transfer of the contents of the STX registers to the TXSR and also enables the internal transmit
+ * clock. The transmit section is enabled when this bit is set and a frame boundary is detected.
+ * When this bit is cleared, the transmitter continues to send data until the end of the current
+ * frame and then stops. Data can be written to the STX registers with the TE bit cleared (the
+ * corresponding TDE bit will be cleared). If the TE bit is cleared and then set again before the
+ * second to last bit of the last time slot in the current frame, data transmission continues
+ * without interruption. The normal transmit enable sequence is to write data to the STX register(s)
+ * and then set the TE bit. The normal disable sequence is to clear the TE and TIE bits after the
+ * TDE bit is set. In gated clock mode, clearing the TE bit results in the clock stopping after the
+ * data currently in TXSR has shifted out. When the TE bit is set, the clock starts immediately (for
+ * internal gated clock mode). TE should not be toggled in the same frame. After enabling/disabling
+ * transmission, SSI expects 4 setup clock cycles before arrival of frame-sync for frame-sync to be
+ * accepted/rejected by In case of fewer clock cycles, there is high probability of the frame-sync
+ * to get missed. Note: If continuos clock is not provided, SSI expects 6 clock cycles before
+ * arrival of frame-sync for frame-sync to be accepted by
  *
  * Values:
  * - DISABLED = 0 - Transmit section disabled.
@@ -4118,5 +4118,5 @@ typedef struct _hw_ssi
 #endif
 
 #endif // __HW_SSI_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

@@ -103,8 +103,8 @@ typedef union _hw_gpu2d_aqhiclockcontrol
         unsigned SOFT_RESET : 1; //!< [19] Soft resets the IP.
         unsigned DISABLE_DEBUG_REGISTERS : 1; //!< [20] Disable debug registers.
         unsigned DISABLE_RAM_CLOCK_GATING : 1; //!< [21] Disables clock gating for rams.
-        unsigned FSCALE_CMD_LOAD : 1; //!< [22] 
-        unsigned FSCALE_VAL : 7; //!< [29:23] 
+        unsigned FSCALE_CMD_LOAD : 1; //!< [22] FSCALE Command Load bit
+        unsigned FSCALE_VAL : 7; //!< [29:23] FSCALE Val
         unsigned CLK2D_DIS : 1; //!< [30] Disable 2D clock.
         unsigned CLK3D_DIS : 1; //!< [31] Disable 3D clock.
     } B;
@@ -312,6 +312,8 @@ typedef union _hw_gpu2d_aqhiclockcontrol
 //@}
 
 /*! @name Register GPU2D_AQHICLOCKCONTROL, field FSCALE_CMD_LOAD[22] (RW)
+ *
+ * FSCALE Command Load bit
  */
 //@{
 #define BP_GPU2D_AQHICLOCKCONTROL_FSCALE_CMD_LOAD      (22)      //!< Bit position for GPU2D_AQHICLOCKCONTROL_FSCALE_CMD_LOAD.
@@ -330,6 +332,8 @@ typedef union _hw_gpu2d_aqhiclockcontrol
 //@}
 
 /*! @name Register GPU2D_AQHICLOCKCONTROL, field FSCALE_VAL[29:23] (RW)
+ *
+ * FSCALE Val
  */
 //@{
 #define BP_GPU2D_AQHICLOCKCONTROL_FSCALE_VAL      (23)      //!< Bit position for GPU2D_AQHICLOCKCONTROL_FSCALE_VAL.
@@ -608,10 +612,10 @@ typedef union _hw_gpu2d_aqaxiconfig
     struct _hw_gpu2d_aqaxiconfig_bitfields
     {
         unsigned RESERVED0 : 16; //!< [15:0] Reserved
-        unsigned ARCACHE : 4; //!< [19:16] 
-        unsigned AWCACHE : 4; //!< [23:20] 
-        unsigned ARID : 4; //!< [27:24] 
-        unsigned AWID : 4; //!< [31:28] 
+        unsigned ARCACHE : 4; //!< [19:16] AR Cache
+        unsigned AWCACHE : 4; //!< [23:20] AW Cache
+        unsigned ARID : 4; //!< [27:24] AR ID
+        unsigned AWID : 4; //!< [31:28] AW ID
     } B;
 } hw_gpu2d_aqaxiconfig_t;
 #endif
@@ -637,6 +641,8 @@ typedef union _hw_gpu2d_aqaxiconfig
  */
 
 /*! @name Register GPU2D_AQAXICONFIG, field ARCACHE[19:16] (RW)
+ *
+ * AR Cache
  */
 //@{
 #define BP_GPU2D_AQAXICONFIG_ARCACHE      (16)      //!< Bit position for GPU2D_AQAXICONFIG_ARCACHE.
@@ -655,6 +661,8 @@ typedef union _hw_gpu2d_aqaxiconfig
 //@}
 
 /*! @name Register GPU2D_AQAXICONFIG, field AWCACHE[23:20] (RW)
+ *
+ * AW Cache
  */
 //@{
 #define BP_GPU2D_AQAXICONFIG_AWCACHE      (20)      //!< Bit position for GPU2D_AQAXICONFIG_AWCACHE.
@@ -673,6 +681,8 @@ typedef union _hw_gpu2d_aqaxiconfig
 //@}
 
 /*! @name Register GPU2D_AQAXICONFIG, field ARID[27:24] (RW)
+ *
+ * AR ID
  */
 //@{
 #define BP_GPU2D_AQAXICONFIG_ARID      (24)      //!< Bit position for GPU2D_AQAXICONFIG_ARID.
@@ -691,6 +701,8 @@ typedef union _hw_gpu2d_aqaxiconfig
 //@}
 
 /*! @name Register GPU2D_AQAXICONFIG, field AWID[31:28] (RW)
+ *
+ * AW ID
  */
 //@{
 #define BP_GPU2D_AQAXICONFIG_AWID      (28)      //!< Bit position for GPU2D_AQAXICONFIG_AWID.
@@ -723,10 +735,10 @@ typedef union _hw_gpu2d_aqaxistatus
     reg32_t U;
     struct _hw_gpu2d_aqaxistatus_bitfields
     {
-        unsigned WR_ERR_ID : 4; //!< [3:0] 
-        unsigned RD_ERR_ID : 4; //!< [7:4] 
-        unsigned DET_WR_ERR : 1; //!< [8] 
-        unsigned DET_RD_ERR : 1; //!< [9] 
+        unsigned WR_ERR_ID : 4; //!< [3:0] WR_ERR_ID bit
+        unsigned RD_ERR_ID : 4; //!< [7:4] RD_ERR_ID bit
+        unsigned DET_WR_ERR : 1; //!< [8] DET_WR_ERR bit
+        unsigned DET_RD_ERR : 1; //!< [9] DET_RD_ERR bit
         unsigned RESERVED0 : 22; //!< [31:10] Reserved
     } B;
 } hw_gpu2d_aqaxistatus_t;
@@ -753,6 +765,8 @@ typedef union _hw_gpu2d_aqaxistatus
  */
 
 /*! @name Register GPU2D_AQAXISTATUS, field WR_ERR_ID[3:0] (RW)
+ *
+ * WR_ERR_ID bit
  */
 //@{
 #define BP_GPU2D_AQAXISTATUS_WR_ERR_ID      (0)      //!< Bit position for GPU2D_AQAXISTATUS_WR_ERR_ID.
@@ -771,6 +785,8 @@ typedef union _hw_gpu2d_aqaxistatus
 //@}
 
 /*! @name Register GPU2D_AQAXISTATUS, field RD_ERR_ID[7:4] (RW)
+ *
+ * RD_ERR_ID bit
  */
 //@{
 #define BP_GPU2D_AQAXISTATUS_RD_ERR_ID      (4)      //!< Bit position for GPU2D_AQAXISTATUS_RD_ERR_ID.
@@ -789,6 +805,8 @@ typedef union _hw_gpu2d_aqaxistatus
 //@}
 
 /*! @name Register GPU2D_AQAXISTATUS, field DET_WR_ERR[8] (RW)
+ *
+ * DET_WR_ERR bit
  */
 //@{
 #define BP_GPU2D_AQAXISTATUS_DET_WR_ERR      (8)      //!< Bit position for GPU2D_AQAXISTATUS_DET_WR_ERR.
@@ -807,6 +825,8 @@ typedef union _hw_gpu2d_aqaxistatus
 //@}
 
 /*! @name Register GPU2D_AQAXISTATUS, field DET_RD_ERR[9] (RW)
+ *
+ * DET_RD_ERR bit
  */
 //@{
 #define BP_GPU2D_AQAXISTATUS_DET_RD_ERR      (9)      //!< Bit position for GPU2D_AQAXISTATUS_DET_RD_ERR.
@@ -842,7 +862,7 @@ typedef union _hw_gpu2d_aqintracknowledge
     reg32_t U;
     struct _hw_gpu2d_aqintracknowledge_bitfields
     {
-        unsigned INTR_VEC : 32; //!< [31:0] 
+        unsigned INTR_VEC : 32; //!< [31:0] Interrupt VEC
     } B;
 } hw_gpu2d_aqintracknowledge_t;
 #endif
@@ -864,6 +884,8 @@ typedef union _hw_gpu2d_aqintracknowledge
  */
 
 /*! @name Register GPU2D_AQINTRACKNOWLEDGE, field INTR_VEC[31:0] (RO)
+ *
+ * Interrupt VEC
  */
 //@{
 #define BP_GPU2D_AQINTRACKNOWLEDGE_INTR_VEC      (0)      //!< Bit position for GPU2D_AQINTRACKNOWLEDGE_INTR_VEC.
@@ -890,7 +912,7 @@ typedef union _hw_gpu2d_aqintrenbl
     reg32_t U;
     struct _hw_gpu2d_aqintrenbl_bitfields
     {
-        unsigned INTR_ENBL_VEC : 32; //!< [31:0] 
+        unsigned INTR_ENBL_VEC : 32; //!< [31:0] Interrupt enable VEC
     } B;
 } hw_gpu2d_aqintrenbl_t;
 #endif
@@ -916,6 +938,8 @@ typedef union _hw_gpu2d_aqintrenbl
  */
 
 /*! @name Register GPU2D_AQINTRENBL, field INTR_ENBL_VEC[31:0] (RW)
+ *
+ * Interrupt enable VEC
  */
 //@{
 #define BP_GPU2D_AQINTRENBL_INTR_ENBL_VEC      (0)      //!< Bit position for GPU2D_AQINTRENBL_INTR_ENBL_VEC.
@@ -1941,7 +1965,7 @@ typedef union _hw_gpu2d_minorfeatures0
         unsigned DEFAULT_REG0 : 1; //!< [21] Unavailable registers will return 0.
         unsigned MC_20 : 1; //!< [22] New style MC with separate paths for color and depth.
         unsigned SHADER_MSAA_SIDEBAND : 1; //!< [23] Put the MSAA data into sideband fifo.
-        unsigned BUG_FIXES0 : 1; //!< [24] 
+        unsigned BUG_FIXES0 : 1; //!< [24] Bug fix bit 0
         unsigned VAA : 1; //!< [25] VAA is available or not.
         unsigned BYPASS_IN_MSAA : 1; //!< [26] Shader supports bypass mode when MSAA is enabled.
         unsigned HIERARCHICAL_Z : 1; //!< [27] Hierarchiccal Z is supported.
@@ -2355,6 +2379,8 @@ typedef union _hw_gpu2d_minorfeatures0
 
 /*! @name Register GPU2D_MINORFEATURES0, field BUG_FIXES0[24] (RO)
  *
+ * Bug fix bit 0
+ *
  * Values:
  * - 0 - NONE
  * - 1 - AVAILABLE
@@ -2558,7 +2584,7 @@ typedef union _hw_gpu2d_resetmemcounters
     reg32_t U;
     struct _hw_gpu2d_resetmemcounters_bitfields
     {
-        unsigned RESET : 32; //!< [31:0] 
+        unsigned RESET : 32; //!< [31:0] Reset
     } B;
 } hw_gpu2d_resetmemcounters_t;
 #endif
@@ -2580,6 +2606,8 @@ typedef union _hw_gpu2d_resetmemcounters
  */
 
 /*! @name Register GPU2D_RESETMEMCOUNTERS, field RESET[31:0] (WO)
+ *
+ * Reset
  */
 //@{
 #define BP_GPU2D_RESETMEMCOUNTERS_RESET      (0)      //!< Bit position for GPU2D_RESETMEMCOUNTERS_RESET.
@@ -2609,7 +2637,7 @@ typedef union _hw_gpu2d_totalreads
     reg32_t U;
     struct _hw_gpu2d_totalreads_bitfields
     {
-        unsigned COUNT : 32; //!< [31:0] 
+        unsigned COUNT : 32; //!< [31:0] Count
     } B;
 } hw_gpu2d_totalreads_t;
 #endif
@@ -2631,6 +2659,8 @@ typedef union _hw_gpu2d_totalreads
  */
 
 /*! @name Register GPU2D_TOTALREADS, field COUNT[31:0] (RO)
+ *
+ * Count
  */
 //@{
 #define BP_GPU2D_TOTALREADS_COUNT      (0)      //!< Bit position for GPU2D_TOTALREADS_COUNT.
@@ -2657,7 +2687,7 @@ typedef union _hw_gpu2d_totalwrites
     reg32_t U;
     struct _hw_gpu2d_totalwrites_bitfields
     {
-        unsigned COUNT : 32; //!< [31:0] 
+        unsigned COUNT : 32; //!< [31:0] Count
     } B;
 } hw_gpu2d_totalwrites_t;
 #endif
@@ -2679,6 +2709,8 @@ typedef union _hw_gpu2d_totalwrites
  */
 
 /*! @name Register GPU2D_TOTALWRITES, field COUNT[31:0] (RO)
+ *
+ * Count
  */
 //@{
 #define BP_GPU2D_TOTALWRITES_COUNT      (0)      //!< Bit position for GPU2D_TOTALWRITES_COUNT.
@@ -2834,7 +2866,7 @@ typedef union _hw_gpu2d_totalwritebursts
     reg32_t U;
     struct _hw_gpu2d_totalwritebursts_bitfields
     {
-        unsigned COUNT : 32; //!< [31:0] 
+        unsigned COUNT : 32; //!< [31:0] Count
     } B;
 } hw_gpu2d_totalwritebursts_t;
 #endif
@@ -2856,6 +2888,8 @@ typedef union _hw_gpu2d_totalwritebursts
  */
 
 /*! @name Register GPU2D_TOTALWRITEBURSTS, field COUNT[31:0] (RO)
+ *
+ * Count
  */
 //@{
 #define BP_GPU2D_TOTALWRITEBURSTS_COUNT      (0)      //!< Bit position for GPU2D_TOTALWRITEBURSTS_COUNT.
@@ -2882,7 +2916,7 @@ typedef union _hw_gpu2d_totalwritereqs
     reg32_t U;
     struct _hw_gpu2d_totalwritereqs_bitfields
     {
-        unsigned COUNT : 32; //!< [31:0] 
+        unsigned COUNT : 32; //!< [31:0] Count
     } B;
 } hw_gpu2d_totalwritereqs_t;
 #endif
@@ -2904,6 +2938,8 @@ typedef union _hw_gpu2d_totalwritereqs
  */
 
 /*! @name Register GPU2D_TOTALWRITEREQS, field COUNT[31:0] (RO)
+ *
+ * Count
  */
 //@{
 #define BP_GPU2D_TOTALWRITEREQS_COUNT      (0)      //!< Bit position for GPU2D_TOTALWRITEREQS_COUNT.
@@ -2930,7 +2966,7 @@ typedef union _hw_gpu2d_totalwritelasts
     reg32_t U;
     struct _hw_gpu2d_totalwritelasts_bitfields
     {
-        unsigned COUNT : 32; //!< [31:0] 
+        unsigned COUNT : 32; //!< [31:0] Count
     } B;
 } hw_gpu2d_totalwritelasts_t;
 #endif
@@ -2952,6 +2988,8 @@ typedef union _hw_gpu2d_totalwritelasts
  */
 
 /*! @name Register GPU2D_TOTALWRITELASTS, field COUNT[31:0] (RO)
+ *
+ * Count
  */
 //@{
 #define BP_GPU2D_TOTALWRITELASTS_COUNT      (0)      //!< Bit position for GPU2D_TOTALWRITELASTS_COUNT.
@@ -2978,7 +3016,7 @@ typedef union _hw_gpu2d_totalreadbursts
     reg32_t U;
     struct _hw_gpu2d_totalreadbursts_bitfields
     {
-        unsigned COUNT : 32; //!< [31:0] 
+        unsigned COUNT : 32; //!< [31:0] Count
     } B;
 } hw_gpu2d_totalreadbursts_t;
 #endif
@@ -3000,6 +3038,8 @@ typedef union _hw_gpu2d_totalreadbursts
  */
 
 /*! @name Register GPU2D_TOTALREADBURSTS, field COUNT[31:0] (RO)
+ *
+ * Count
  */
 //@{
 #define BP_GPU2D_TOTALREADBURSTS_COUNT      (0)      //!< Bit position for GPU2D_TOTALREADBURSTS_COUNT.
@@ -3026,7 +3066,7 @@ typedef union _hw_gpu2d_totalreadreqs
     reg32_t U;
     struct _hw_gpu2d_totalreadreqs_bitfields
     {
-        unsigned COUNT : 32; //!< [31:0] 
+        unsigned COUNT : 32; //!< [31:0] Count
     } B;
 } hw_gpu2d_totalreadreqs_t;
 #endif
@@ -3048,6 +3088,8 @@ typedef union _hw_gpu2d_totalreadreqs
  */
 
 /*! @name Register GPU2D_TOTALREADREQS, field COUNT[31:0] (RO)
+ *
+ * Count
  */
 //@{
 #define BP_GPU2D_TOTALREADREQS_COUNT      (0)      //!< Bit position for GPU2D_TOTALREADREQS_COUNT.
@@ -3074,7 +3116,7 @@ typedef union _hw_gpu2d_totalreadlasts
     reg32_t U;
     struct _hw_gpu2d_totalreadlasts_bitfields
     {
-        unsigned COUNT : 32; //!< [31:0] 
+        unsigned COUNT : 32; //!< [31:0] Count
     } B;
 } hw_gpu2d_totalreadlasts_t;
 #endif
@@ -3096,6 +3138,8 @@ typedef union _hw_gpu2d_totalreadlasts
  */
 
 /*! @name Register GPU2D_TOTALREADLASTS, field COUNT[31:0] (RO)
+ *
+ * Count
  */
 //@{
 #define BP_GPU2D_TOTALREADLASTS_COUNT      (0)      //!< Bit position for GPU2D_TOTALREADLASTS_COUNT.
@@ -3122,7 +3166,7 @@ typedef union _hw_gpu2d_gpout0
     reg32_t U;
     struct _hw_gpu2d_gpout0_bitfields
     {
-        unsigned COUNT : 32; //!< [31:0] 
+        unsigned COUNT : 32; //!< [31:0] Count
     } B;
 } hw_gpu2d_gpout0_t;
 #endif
@@ -3148,6 +3192,8 @@ typedef union _hw_gpu2d_gpout0
  */
 
 /*! @name Register GPU2D_GPOUT0, field COUNT[31:0] (RW)
+ *
+ * Count
  */
 //@{
 #define BP_GPU2D_GPOUT0_COUNT      (0)      //!< Bit position for GPU2D_GPOUT0_COUNT.
@@ -3182,7 +3228,7 @@ typedef union _hw_gpu2d_gpout1
     reg32_t U;
     struct _hw_gpu2d_gpout1_bitfields
     {
-        unsigned COUNT : 32; //!< [31:0] 
+        unsigned COUNT : 32; //!< [31:0] Count
     } B;
 } hw_gpu2d_gpout1_t;
 #endif
@@ -3208,6 +3254,8 @@ typedef union _hw_gpu2d_gpout1
  */
 
 /*! @name Register GPU2D_GPOUT1, field COUNT[31:0] (RW)
+ *
+ * Count
  */
 //@{
 #define BP_GPU2D_GPOUT1_COUNT      (0)      //!< Bit position for GPU2D_GPOUT1_COUNT.
@@ -3242,7 +3290,7 @@ typedef union _hw_gpu2d_gpout2
     reg32_t U;
     struct _hw_gpu2d_gpout2_bitfields
     {
-        unsigned COUNT : 32; //!< [31:0] 
+        unsigned COUNT : 32; //!< [31:0] Count
     } B;
 } hw_gpu2d_gpout2_t;
 #endif
@@ -3268,6 +3316,8 @@ typedef union _hw_gpu2d_gpout2
  */
 
 /*! @name Register GPU2D_GPOUT2, field COUNT[31:0] (RW)
+ *
+ * Count
  */
 //@{
 #define BP_GPU2D_GPOUT2_COUNT      (0)      //!< Bit position for GPU2D_GPOUT2_COUNT.
@@ -3302,7 +3352,7 @@ typedef union _hw_gpu2d_axicontrol
     reg32_t U;
     struct _hw_gpu2d_axicontrol_bitfields
     {
-        unsigned WR_FULL_BURST_MODE : 32; //!< [31:0] 
+        unsigned WR_FULL_BURST_MODE : 32; //!< [31:0] WR_FULL_BURST_MODE
     } B;
 } hw_gpu2d_axicontrol_t;
 #endif
@@ -3328,6 +3378,8 @@ typedef union _hw_gpu2d_axicontrol
  */
 
 /*! @name Register GPU2D_AXICONTROL, field WR_FULL_BURST_MODE[31:0] (RW)
+ *
+ * WR_FULL_BURST_MODE
  *
  * Values:
  * - 0 - NO_BURST_RESET_VALUE
@@ -3369,8 +3421,8 @@ typedef union _hw_gpu2d_minorfeatures1
     {
         unsigned RESERVED0 : 26; //!< [25:0] Reserved
         unsigned TEXTURE_STRIDE : 1; //!< [26] Texture has stride and memory addressing.
-        unsigned BUG_FIXES2 : 1; //!< [27] 
-        unsigned BUG_FIXES1 : 1; //!< [28] 
+        unsigned BUG_FIXES2 : 1; //!< [27] Bug fixes bit 2
+        unsigned BUG_FIXES1 : 1; //!< [28] Bug fixes bit 1
         unsigned VG_DOUBLE_BUFFER : 1; //!< [29] Double buffering support for VG (second TS-->VG semaphore is present).
         unsigned V2_COMPRESSION : 1; //!< [30] V2 compression.
         unsigned RSUV_SWIZZLE : 1; //!< [31] Resolve UV swizzle.
@@ -3412,6 +3464,8 @@ typedef union _hw_gpu2d_minorfeatures1
 
 /*! @name Register GPU2D_MINORFEATURES1, field BUG_FIXES2[27] (RO)
  *
+ * Bug fixes bit 2
+ *
  * Values:
  * - 0 - NONE
  * - 1 - AVAILABLE
@@ -3425,6 +3479,8 @@ typedef union _hw_gpu2d_minorfeatures1
 //@}
 
 /*! @name Register GPU2D_MINORFEATURES1, field BUG_FIXES1[28] (RO)
+ *
+ * Bug fixes bit 1
  *
  * Values:
  * - 0 - NONE
@@ -3503,7 +3559,7 @@ typedef union _hw_gpu2d_totalcycles
     reg32_t U;
     struct _hw_gpu2d_totalcycles_bitfields
     {
-        unsigned CYCLES : 32; //!< [31:0] 
+        unsigned CYCLES : 32; //!< [31:0] Total cycles
     } B;
 } hw_gpu2d_totalcycles_t;
 #endif
@@ -3529,6 +3585,8 @@ typedef union _hw_gpu2d_totalcycles
  */
 
 /*! @name Register GPU2D_TOTALCYCLES, field CYCLES[31:0] (RW)
+ *
+ * Total cycles
  */
 //@{
 #define BP_GPU2D_TOTALCYCLES_CYCLES      (0)      //!< Bit position for GPU2D_TOTALCYCLES_CYCLES.
@@ -3564,7 +3622,7 @@ typedef union _hw_gpu2d_totalidlecyles
     reg32_t U;
     struct _hw_gpu2d_totalidlecyles_bitfields
     {
-        unsigned CYCLES : 32; //!< [31:0] 
+        unsigned CYCLES : 32; //!< [31:0] Total cycles
     } B;
 } hw_gpu2d_totalidlecyles_t;
 #endif
@@ -3590,6 +3648,8 @@ typedef union _hw_gpu2d_totalidlecyles
  */
 
 /*! @name Register GPU2D_TOTALIDLECYLES, field CYCLES[31:0] (RW)
+ *
+ * Total cycles
  */
 //@{
 #define BP_GPU2D_TOTALIDLECYLES_CYCLES      (0)      //!< Bit position for GPU2D_TOTALIDLECYLES_CYCLES.
@@ -3624,7 +3684,7 @@ typedef union _hw_gpu2d_chipspecs2
     reg32_t U;
     struct _hw_gpu2d_chipspecs2_bitfields
     {
-        unsigned CYCLES : 32; //!< [31:0] 
+        unsigned CYCLES : 32; //!< [31:0] Total cycles
     } B;
 } hw_gpu2d_chipspecs2_t;
 #endif
@@ -3650,6 +3710,8 @@ typedef union _hw_gpu2d_chipspecs2
  */
 
 /*! @name Register GPU2D_CHIPSPECS2, field CYCLES[31:0] (RW)
+ *
+ * Total cycles
  */
 //@{
 #define BP_GPU2D_CHIPSPECS2_CYCLES      (0)      //!< Bit position for GPU2D_CHIPSPECS2_CYCLES.
@@ -4362,5 +4424,5 @@ typedef struct _hw_gpu2d
 #endif
 
 #endif // __HW_GPU2D_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

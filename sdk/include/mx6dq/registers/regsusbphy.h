@@ -298,7 +298,9 @@ typedef union _hw_usbphy_tx
         unsigned TXCAL45DN : 4; //!< [11:8] Decode to select a 45-Ohm resistance to the USB_DN output pin.
         unsigned RESERVED1 : 4; //!< [15:12] Reserved.
         unsigned TXCAL45DP : 4; //!< [19:16] Decode to select a 45-Ohm resistance to the USB_DP output pin.
-        unsigned RESERVED2 : 12; //!< [31:20] Reserved.
+        unsigned RESERVED2 : 6; //!< [25:20] Reserved.
+        unsigned USBPHY_TX_EDGECTRL : 3; //!< [28:26] Controls the edge-rate of the current sensing transistors used in HS transmit.
+        unsigned RESERVED3 : 3; //!< [31:29] Reserved.
     } B;
 } hw_usbphy_tx_t;
 #endif
@@ -385,6 +387,27 @@ typedef union _hw_usbphy_tx
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the TXCAL45DP field to a new value.
 #define BW_USBPHY_TX_TXCAL45DP(x, v)   BFn_CS1((x), USBPHY_TX, TXCAL45DP, v)
+#endif
+//@}
+
+/*! @name Register USBPHY_TX, field USBPHY_TX_EDGECTRL[28:26] (RW)
+ *
+ * Controls the edge-rate of the current sensing transistors used in HS transmit. NOT FOR CUSTOMER
+ * USE.
+ */
+//@{
+#define BP_USBPHY_TX_USBPHY_TX_EDGECTRL      (26)      //!< Bit position for USBPHY_TX_USBPHY_TX_EDGECTRL.
+#define BM_USBPHY_TX_USBPHY_TX_EDGECTRL      (0x1c000000)  //!< Bit mask for USBPHY_TX_USBPHY_TX_EDGECTRL.
+
+//! @brief Get value of USBPHY_TX_USBPHY_TX_EDGECTRL from a register value.
+#define BG_USBPHY_TX_USBPHY_TX_EDGECTRL(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBPHY_TX_USBPHY_TX_EDGECTRL) >> BP_USBPHY_TX_USBPHY_TX_EDGECTRL)
+
+//! @brief Format value for bitfield USBPHY_TX_USBPHY_TX_EDGECTRL.
+#define BF_USBPHY_TX_USBPHY_TX_EDGECTRL(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBPHY_TX_USBPHY_TX_EDGECTRL) & BM_USBPHY_TX_USBPHY_TX_EDGECTRL)
+
+#ifndef __LANGUAGE_ASM__
+//! @brief Set the USBPHY_TX_EDGECTRL field to a new value.
+#define BW_USBPHY_TX_USBPHY_TX_EDGECTRL(x, v)   BFn_CS1((x), USBPHY_TX, USBPHY_TX_EDGECTRL, v)
 #endif
 //@}
 
@@ -1840,5 +1863,5 @@ typedef struct _hw_usbphy
 #endif
 
 #endif // __HW_USBPHY_REGISTERS_H__
-// v18/121010/1.2.1
+// v18/121106/1.2.2
 // EOF

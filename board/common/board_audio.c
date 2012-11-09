@@ -74,7 +74,7 @@ void audio_clock_config(void)
     HW_CCM_CCOSR_WR(BF_CCM_CCOSR_CLKO2_EN(1)
                     | BF_CCM_CCOSR_CLKO2_DIV(6)
                     | BF_CCM_CCOSR_CLKO2_SEL(0x13)
-                    | BF_CCM_CCOSR_CLKO1_CLKO2_SEL(1));
+                    | BF_CCM_CCOSR_CLKO_SEL(1));
 #endif
 }
 

@@ -437,7 +437,7 @@ Advanced_Information.Cortex-A9={\
   :Peripherals.UART2={\
     base=Absolute:description=""\
     :Register.G_2UART_URXD={\
-      gui_name="URXD":start=0x21e8000:length=4:\
+      gui_name="URXD":start=0x2024000:length=4:\
       read_only=true:write_only=false\
       :bit_fields.B_2UART_URXD_RX_DATA={\
         gui_name="RX_DATA":position=0:size=8:read_only=true\
@@ -462,14 +462,14 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_2UART_UTXD={\
-      gui_name="UTXD":start=0x21e8040:length=4:\
+      gui_name="UTXD":start=0x2024040:length=4:\
       read_only=false:write_only=true\
       :bit_fields.B_2UART_UTXD_TX_DATA={\
         gui_name="TX_DATA":position=0:size=8:read_only=false\
       }\
     }\
     :Register.G_2UART_UCR1={\
-      gui_name="UCR1":start=0x21e8080:length=4:\
+      gui_name="UCR1":start=0x2024080:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_2UART_UCR1_UARTEN={\
         gui_name="UARTEN":position=0:size=1:read_only=false\
@@ -518,7 +518,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_2UART_UCR2={\
-      gui_name="UCR2":start=0x21e8084:length=4:\
+      gui_name="UCR2":start=0x2024084:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_2UART_UCR2_SRST={\
         gui_name="SRST":position=0:size=1:read_only=false\
@@ -567,7 +567,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_2UART_UCR3={\
-      gui_name="UCR3":start=0x21e8088:length=4:\
+      gui_name="UCR3":start=0x2024088:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_2UART_UCR3_ACIEN={\
         gui_name="ACIEN":position=0:size=1:read_only=false\
@@ -616,7 +616,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_2UART_UCR4={\
-      gui_name="UCR4":start=0x21e808c:length=4:\
+      gui_name="UCR4":start=0x202408c:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_2UART_UCR4_DREN={\
         gui_name="DREN":position=0:size=1:read_only=false\
@@ -653,7 +653,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_2UART_UFCR={\
-      gui_name="UFCR":start=0x21e8090:length=4:\
+      gui_name="UFCR":start=0x2024090:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_2UART_UFCR_RXTL={\
         gui_name="RXTL":position=0:size=6:read_only=false\
@@ -669,7 +669,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_2UART_USR1={\
-      gui_name="USR1":start=0x21e8094:length=4:\
+      gui_name="USR1":start=0x2024094:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_2UART_USR1_SAD={\
         gui_name="SAD":position=3:size=1:read_only=false\
@@ -712,7 +712,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_2UART_USR2={\
-      gui_name="USR2":start=0x21e8098:length=4:\
+      gui_name="USR2":start=0x2024098:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_2UART_USR2_RDR={\
         gui_name="RDR":position=0:size=1:read_only=true\
@@ -764,49 +764,49 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_2UART_UESC={\
-      gui_name="UESC":start=0x21e809c:length=4:\
+      gui_name="UESC":start=0x202409c:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_2UART_UESC_ESC_CHAR={\
         gui_name="ESC_CHAR":position=0:size=8:read_only=false\
       }\
     }\
     :Register.G_2UART_UTIM={\
-      gui_name="UTIM":start=0x21e80a0:length=4:\
+      gui_name="UTIM":start=0x20240a0:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_2UART_UTIM_TIM={\
         gui_name="TIM":position=0:size=12:read_only=false\
       }\
     }\
     :Register.G_2UART_UBIR={\
-      gui_name="UBIR":start=0x21e80a4:length=4:\
+      gui_name="UBIR":start=0x20240a4:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_2UART_UBIR_INC={\
         gui_name="INC":position=0:size=16:read_only=false\
       }\
     }\
     :Register.G_2UART_UBMR={\
-      gui_name="UBMR":start=0x21e80a8:length=4:\
+      gui_name="UBMR":start=0x20240a8:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_2UART_UBMR_MOD={\
         gui_name="MOD":position=0:size=16:read_only=false\
       }\
     }\
     :Register.G_2UART_UBRC={\
-      gui_name="UBRC":start=0x21e80ac:length=4:\
+      gui_name="UBRC":start=0x20240ac:length=4:\
       read_only=true:write_only=false\
       :bit_fields.B_2UART_UBRC_BCNT={\
         gui_name="BCNT":position=0:size=16:read_only=true\
       }\
     }\
     :Register.G_2UART_ONEMS={\
-      gui_name="ONEMS":start=0x21e80b0:length=4:\
+      gui_name="ONEMS":start=0x20240b0:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_2UART_ONEMS_ONEMS={\
         gui_name="ONEMS":position=0:size=24:read_only=false\
       }\
     }\
     :Register.G_2UART_UTS={\
-      gui_name="UTS":start=0x21e80b4:length=4:\
+      gui_name="UTS":start=0x20240b4:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_2UART_UTS_SOFTRST={\
         gui_name="SOFTRST":position=0:size=1:read_only=false\
@@ -840,7 +840,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_2UART_UMCR={\
-      gui_name="UMCR":start=0x21e80b8:length=4:\
+      gui_name="UMCR":start=0x20240b8:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_2UART_UMCR_MDEN={\
         gui_name="MDEN":position=0:size=1:read_only=false\
@@ -862,7 +862,7 @@ Advanced_Information.Cortex-A9={\
   :Peripherals.UART3={\
     base=Absolute:description=""\
     :Register.G_3UART_URXD={\
-      gui_name="URXD":start=0x21ec000:length=4:\
+      gui_name="URXD":start=0x2034000:length=4:\
       read_only=true:write_only=false\
       :bit_fields.B_3UART_URXD_RX_DATA={\
         gui_name="RX_DATA":position=0:size=8:read_only=true\
@@ -887,14 +887,14 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_3UART_UTXD={\
-      gui_name="UTXD":start=0x21ec040:length=4:\
+      gui_name="UTXD":start=0x2034040:length=4:\
       read_only=false:write_only=true\
       :bit_fields.B_3UART_UTXD_TX_DATA={\
         gui_name="TX_DATA":position=0:size=8:read_only=false\
       }\
     }\
     :Register.G_3UART_UCR1={\
-      gui_name="UCR1":start=0x21ec080:length=4:\
+      gui_name="UCR1":start=0x2034080:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_3UART_UCR1_UARTEN={\
         gui_name="UARTEN":position=0:size=1:read_only=false\
@@ -943,7 +943,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_3UART_UCR2={\
-      gui_name="UCR2":start=0x21ec084:length=4:\
+      gui_name="UCR2":start=0x2034084:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_3UART_UCR2_SRST={\
         gui_name="SRST":position=0:size=1:read_only=false\
@@ -992,7 +992,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_3UART_UCR3={\
-      gui_name="UCR3":start=0x21ec088:length=4:\
+      gui_name="UCR3":start=0x2034088:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_3UART_UCR3_ACIEN={\
         gui_name="ACIEN":position=0:size=1:read_only=false\
@@ -1041,7 +1041,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_3UART_UCR4={\
-      gui_name="UCR4":start=0x21ec08c:length=4:\
+      gui_name="UCR4":start=0x203408c:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_3UART_UCR4_DREN={\
         gui_name="DREN":position=0:size=1:read_only=false\
@@ -1078,7 +1078,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_3UART_UFCR={\
-      gui_name="UFCR":start=0x21ec090:length=4:\
+      gui_name="UFCR":start=0x2034090:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_3UART_UFCR_RXTL={\
         gui_name="RXTL":position=0:size=6:read_only=false\
@@ -1094,7 +1094,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_3UART_USR1={\
-      gui_name="USR1":start=0x21ec094:length=4:\
+      gui_name="USR1":start=0x2034094:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_3UART_USR1_SAD={\
         gui_name="SAD":position=3:size=1:read_only=false\
@@ -1137,7 +1137,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_3UART_USR2={\
-      gui_name="USR2":start=0x21ec098:length=4:\
+      gui_name="USR2":start=0x2034098:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_3UART_USR2_RDR={\
         gui_name="RDR":position=0:size=1:read_only=true\
@@ -1189,49 +1189,49 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_3UART_UESC={\
-      gui_name="UESC":start=0x21ec09c:length=4:\
+      gui_name="UESC":start=0x203409c:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_3UART_UESC_ESC_CHAR={\
         gui_name="ESC_CHAR":position=0:size=8:read_only=false\
       }\
     }\
     :Register.G_3UART_UTIM={\
-      gui_name="UTIM":start=0x21ec0a0:length=4:\
+      gui_name="UTIM":start=0x20340a0:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_3UART_UTIM_TIM={\
         gui_name="TIM":position=0:size=12:read_only=false\
       }\
     }\
     :Register.G_3UART_UBIR={\
-      gui_name="UBIR":start=0x21ec0a4:length=4:\
+      gui_name="UBIR":start=0x20340a4:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_3UART_UBIR_INC={\
         gui_name="INC":position=0:size=16:read_only=false\
       }\
     }\
     :Register.G_3UART_UBMR={\
-      gui_name="UBMR":start=0x21ec0a8:length=4:\
+      gui_name="UBMR":start=0x20340a8:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_3UART_UBMR_MOD={\
         gui_name="MOD":position=0:size=16:read_only=false\
       }\
     }\
     :Register.G_3UART_UBRC={\
-      gui_name="UBRC":start=0x21ec0ac:length=4:\
+      gui_name="UBRC":start=0x20340ac:length=4:\
       read_only=true:write_only=false\
       :bit_fields.B_3UART_UBRC_BCNT={\
         gui_name="BCNT":position=0:size=16:read_only=true\
       }\
     }\
     :Register.G_3UART_ONEMS={\
-      gui_name="ONEMS":start=0x21ec0b0:length=4:\
+      gui_name="ONEMS":start=0x20340b0:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_3UART_ONEMS_ONEMS={\
         gui_name="ONEMS":position=0:size=24:read_only=false\
       }\
     }\
     :Register.G_3UART_UTS={\
-      gui_name="UTS":start=0x21ec0b4:length=4:\
+      gui_name="UTS":start=0x20340b4:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_3UART_UTS_SOFTRST={\
         gui_name="SOFTRST":position=0:size=1:read_only=false\
@@ -1265,7 +1265,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_3UART_UMCR={\
-      gui_name="UMCR":start=0x21ec0b8:length=4:\
+      gui_name="UMCR":start=0x20340b8:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_3UART_UMCR_MDEN={\
         gui_name="MDEN":position=0:size=1:read_only=false\
@@ -1287,7 +1287,7 @@ Advanced_Information.Cortex-A9={\
   :Peripherals.UART4={\
     base=Absolute:description=""\
     :Register.G_4UART_URXD={\
-      gui_name="URXD":start=0x21f0000:length=4:\
+      gui_name="URXD":start=0x2038000:length=4:\
       read_only=true:write_only=false\
       :bit_fields.B_4UART_URXD_RX_DATA={\
         gui_name="RX_DATA":position=0:size=8:read_only=true\
@@ -1312,14 +1312,14 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_4UART_UTXD={\
-      gui_name="UTXD":start=0x21f0040:length=4:\
+      gui_name="UTXD":start=0x2038040:length=4:\
       read_only=false:write_only=true\
       :bit_fields.B_4UART_UTXD_TX_DATA={\
         gui_name="TX_DATA":position=0:size=8:read_only=false\
       }\
     }\
     :Register.G_4UART_UCR1={\
-      gui_name="UCR1":start=0x21f0080:length=4:\
+      gui_name="UCR1":start=0x2038080:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_4UART_UCR1_UARTEN={\
         gui_name="UARTEN":position=0:size=1:read_only=false\
@@ -1368,7 +1368,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_4UART_UCR2={\
-      gui_name="UCR2":start=0x21f0084:length=4:\
+      gui_name="UCR2":start=0x2038084:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_4UART_UCR2_SRST={\
         gui_name="SRST":position=0:size=1:read_only=false\
@@ -1417,7 +1417,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_4UART_UCR3={\
-      gui_name="UCR3":start=0x21f0088:length=4:\
+      gui_name="UCR3":start=0x2038088:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_4UART_UCR3_ACIEN={\
         gui_name="ACIEN":position=0:size=1:read_only=false\
@@ -1466,7 +1466,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_4UART_UCR4={\
-      gui_name="UCR4":start=0x21f008c:length=4:\
+      gui_name="UCR4":start=0x203808c:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_4UART_UCR4_DREN={\
         gui_name="DREN":position=0:size=1:read_only=false\
@@ -1503,7 +1503,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_4UART_UFCR={\
-      gui_name="UFCR":start=0x21f0090:length=4:\
+      gui_name="UFCR":start=0x2038090:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_4UART_UFCR_RXTL={\
         gui_name="RXTL":position=0:size=6:read_only=false\
@@ -1519,7 +1519,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_4UART_USR1={\
-      gui_name="USR1":start=0x21f0094:length=4:\
+      gui_name="USR1":start=0x2038094:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_4UART_USR1_SAD={\
         gui_name="SAD":position=3:size=1:read_only=false\
@@ -1562,7 +1562,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_4UART_USR2={\
-      gui_name="USR2":start=0x21f0098:length=4:\
+      gui_name="USR2":start=0x2038098:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_4UART_USR2_RDR={\
         gui_name="RDR":position=0:size=1:read_only=true\
@@ -1614,49 +1614,49 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_4UART_UESC={\
-      gui_name="UESC":start=0x21f009c:length=4:\
+      gui_name="UESC":start=0x203809c:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_4UART_UESC_ESC_CHAR={\
         gui_name="ESC_CHAR":position=0:size=8:read_only=false\
       }\
     }\
     :Register.G_4UART_UTIM={\
-      gui_name="UTIM":start=0x21f00a0:length=4:\
+      gui_name="UTIM":start=0x20380a0:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_4UART_UTIM_TIM={\
         gui_name="TIM":position=0:size=12:read_only=false\
       }\
     }\
     :Register.G_4UART_UBIR={\
-      gui_name="UBIR":start=0x21f00a4:length=4:\
+      gui_name="UBIR":start=0x20380a4:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_4UART_UBIR_INC={\
         gui_name="INC":position=0:size=16:read_only=false\
       }\
     }\
     :Register.G_4UART_UBMR={\
-      gui_name="UBMR":start=0x21f00a8:length=4:\
+      gui_name="UBMR":start=0x20380a8:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_4UART_UBMR_MOD={\
         gui_name="MOD":position=0:size=16:read_only=false\
       }\
     }\
     :Register.G_4UART_UBRC={\
-      gui_name="UBRC":start=0x21f00ac:length=4:\
+      gui_name="UBRC":start=0x20380ac:length=4:\
       read_only=true:write_only=false\
       :bit_fields.B_4UART_UBRC_BCNT={\
         gui_name="BCNT":position=0:size=16:read_only=true\
       }\
     }\
     :Register.G_4UART_ONEMS={\
-      gui_name="ONEMS":start=0x21f00b0:length=4:\
+      gui_name="ONEMS":start=0x20380b0:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_4UART_ONEMS_ONEMS={\
         gui_name="ONEMS":position=0:size=24:read_only=false\
       }\
     }\
     :Register.G_4UART_UTS={\
-      gui_name="UTS":start=0x21f00b4:length=4:\
+      gui_name="UTS":start=0x20380b4:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_4UART_UTS_SOFTRST={\
         gui_name="SOFTRST":position=0:size=1:read_only=false\
@@ -1690,7 +1690,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_4UART_UMCR={\
-      gui_name="UMCR":start=0x21f00b8:length=4:\
+      gui_name="UMCR":start=0x20380b8:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_4UART_UMCR_MDEN={\
         gui_name="MDEN":position=0:size=1:read_only=false\
@@ -1712,7 +1712,7 @@ Advanced_Information.Cortex-A9={\
   :Peripherals.UART5={\
     base=Absolute:description=""\
     :Register.G_5UART_URXD={\
-      gui_name="URXD":start=0x21f4000:length=4:\
+      gui_name="URXD":start=0x2018000:length=4:\
       read_only=true:write_only=false\
       :bit_fields.B_5UART_URXD_RX_DATA={\
         gui_name="RX_DATA":position=0:size=8:read_only=true\
@@ -1737,14 +1737,14 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_5UART_UTXD={\
-      gui_name="UTXD":start=0x21f4040:length=4:\
+      gui_name="UTXD":start=0x2018040:length=4:\
       read_only=false:write_only=true\
       :bit_fields.B_5UART_UTXD_TX_DATA={\
         gui_name="TX_DATA":position=0:size=8:read_only=false\
       }\
     }\
     :Register.G_5UART_UCR1={\
-      gui_name="UCR1":start=0x21f4080:length=4:\
+      gui_name="UCR1":start=0x2018080:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_5UART_UCR1_UARTEN={\
         gui_name="UARTEN":position=0:size=1:read_only=false\
@@ -1793,7 +1793,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_5UART_UCR2={\
-      gui_name="UCR2":start=0x21f4084:length=4:\
+      gui_name="UCR2":start=0x2018084:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_5UART_UCR2_SRST={\
         gui_name="SRST":position=0:size=1:read_only=false\
@@ -1842,7 +1842,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_5UART_UCR3={\
-      gui_name="UCR3":start=0x21f4088:length=4:\
+      gui_name="UCR3":start=0x2018088:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_5UART_UCR3_ACIEN={\
         gui_name="ACIEN":position=0:size=1:read_only=false\
@@ -1891,7 +1891,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_5UART_UCR4={\
-      gui_name="UCR4":start=0x21f408c:length=4:\
+      gui_name="UCR4":start=0x201808c:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_5UART_UCR4_DREN={\
         gui_name="DREN":position=0:size=1:read_only=false\
@@ -1928,7 +1928,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_5UART_UFCR={\
-      gui_name="UFCR":start=0x21f4090:length=4:\
+      gui_name="UFCR":start=0x2018090:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_5UART_UFCR_RXTL={\
         gui_name="RXTL":position=0:size=6:read_only=false\
@@ -1944,7 +1944,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_5UART_USR1={\
-      gui_name="USR1":start=0x21f4094:length=4:\
+      gui_name="USR1":start=0x2018094:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_5UART_USR1_SAD={\
         gui_name="SAD":position=3:size=1:read_only=false\
@@ -1987,7 +1987,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_5UART_USR2={\
-      gui_name="USR2":start=0x21f4098:length=4:\
+      gui_name="USR2":start=0x2018098:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_5UART_USR2_RDR={\
         gui_name="RDR":position=0:size=1:read_only=true\
@@ -2039,49 +2039,49 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_5UART_UESC={\
-      gui_name="UESC":start=0x21f409c:length=4:\
+      gui_name="UESC":start=0x201809c:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_5UART_UESC_ESC_CHAR={\
         gui_name="ESC_CHAR":position=0:size=8:read_only=false\
       }\
     }\
     :Register.G_5UART_UTIM={\
-      gui_name="UTIM":start=0x21f40a0:length=4:\
+      gui_name="UTIM":start=0x20180a0:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_5UART_UTIM_TIM={\
         gui_name="TIM":position=0:size=12:read_only=false\
       }\
     }\
     :Register.G_5UART_UBIR={\
-      gui_name="UBIR":start=0x21f40a4:length=4:\
+      gui_name="UBIR":start=0x20180a4:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_5UART_UBIR_INC={\
         gui_name="INC":position=0:size=16:read_only=false\
       }\
     }\
     :Register.G_5UART_UBMR={\
-      gui_name="UBMR":start=0x21f40a8:length=4:\
+      gui_name="UBMR":start=0x20180a8:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_5UART_UBMR_MOD={\
         gui_name="MOD":position=0:size=16:read_only=false\
       }\
     }\
     :Register.G_5UART_UBRC={\
-      gui_name="UBRC":start=0x21f40ac:length=4:\
+      gui_name="UBRC":start=0x20180ac:length=4:\
       read_only=true:write_only=false\
       :bit_fields.B_5UART_UBRC_BCNT={\
         gui_name="BCNT":position=0:size=16:read_only=true\
       }\
     }\
     :Register.G_5UART_ONEMS={\
-      gui_name="ONEMS":start=0x21f40b0:length=4:\
+      gui_name="ONEMS":start=0x20180b0:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_5UART_ONEMS_ONEMS={\
         gui_name="ONEMS":position=0:size=24:read_only=false\
       }\
     }\
     :Register.G_5UART_UTS={\
-      gui_name="UTS":start=0x21f40b4:length=4:\
+      gui_name="UTS":start=0x20180b4:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_5UART_UTS_SOFTRST={\
         gui_name="SOFTRST":position=0:size=1:read_only=false\
@@ -2115,7 +2115,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_5UART_UMCR={\
-      gui_name="UMCR":start=0x21f40b8:length=4:\
+      gui_name="UMCR":start=0x20180b8:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_5UART_UMCR_MDEN={\
         gui_name="MDEN":position=0:size=1:read_only=false\

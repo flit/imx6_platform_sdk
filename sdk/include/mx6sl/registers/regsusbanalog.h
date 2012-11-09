@@ -75,8 +75,7 @@ typedef union _hw_usb_analog_usb1_vbus_detect
         unsigned RESERVED1 : 5; //!< [25:21] Reserved.
         unsigned DISCHARGE_VBUS : 1; //!< [26] USB OTG discharge VBUS.
         unsigned CHARGE_VBUS : 1; //!< [27] USB OTG charge VBUS.
-        unsigned RESERVED2 : 3; //!< [30:28] Reserved.
-        unsigned EN_CHARGER_RESISTOR : 1; //!< [31] Enable 125k pullup on USB_DP and 375k on USB_DN to provide USB_CHARGER functionality for USB.
+        unsigned RESERVED2 : 4; //!< [31:28] Reserved.
     } B;
 } hw_usb_analog_usb1_vbus_detect_t;
 #endif
@@ -206,27 +205,6 @@ typedef union _hw_usb_analog_usb1_vbus_detect
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHARGE_VBUS field to a new value.
 #define BW_USB_ANALOG_USB1_VBUS_DETECT_CHARGE_VBUS(v)   BF_CS1(USB_ANALOG_USB1_VBUS_DETECT, CHARGE_VBUS, v)
-#endif
-//@}
-
-/*! @name Register USB_ANALOG_USB1_VBUS_DETECT, field EN_CHARGER_RESISTOR[31] (RW)
- *
- * Enable 125k pullup on USB_DP and 375k on USB_DN to provide USB_CHARGER functionality for USB.
- * This functionality is a new USB spec and should not be enabled unless recommended by Freescale.
- */
-//@{
-#define BP_USB_ANALOG_USB1_VBUS_DETECT_EN_CHARGER_RESISTOR      (31)      //!< Bit position for USB_ANALOG_USB1_VBUS_DETECT_EN_CHARGER_RESISTOR.
-#define BM_USB_ANALOG_USB1_VBUS_DETECT_EN_CHARGER_RESISTOR      (0x80000000)  //!< Bit mask for USB_ANALOG_USB1_VBUS_DETECT_EN_CHARGER_RESISTOR.
-
-//! @brief Get value of USB_ANALOG_USB1_VBUS_DETECT_EN_CHARGER_RESISTOR from a register value.
-#define BG_USB_ANALOG_USB1_VBUS_DETECT_EN_CHARGER_RESISTOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USB_ANALOG_USB1_VBUS_DETECT_EN_CHARGER_RESISTOR) >> BP_USB_ANALOG_USB1_VBUS_DETECT_EN_CHARGER_RESISTOR)
-
-//! @brief Format value for bitfield USB_ANALOG_USB1_VBUS_DETECT_EN_CHARGER_RESISTOR.
-#define BF_USB_ANALOG_USB1_VBUS_DETECT_EN_CHARGER_RESISTOR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USB_ANALOG_USB1_VBUS_DETECT_EN_CHARGER_RESISTOR) & BM_USB_ANALOG_USB1_VBUS_DETECT_EN_CHARGER_RESISTOR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the EN_CHARGER_RESISTOR field to a new value.
-#define BW_USB_ANALOG_USB1_VBUS_DETECT_EN_CHARGER_RESISTOR(v)   BF_CS1(USB_ANALOG_USB1_VBUS_DETECT, EN_CHARGER_RESISTOR, v)
 #endif
 //@}
 
@@ -703,8 +681,7 @@ typedef union _hw_usb_analog_usb2_vbus_detect
         unsigned RESERVED1 : 5; //!< [25:21] Reserved.
         unsigned DISCHARGE_VBUS : 1; //!< [26] USB OTG discharge VBUS.
         unsigned CHARGE_VBUS : 1; //!< [27] USB OTG charge VBUS.
-        unsigned RESERVED2 : 3; //!< [30:28] Reserved.
-        unsigned EN_CHARGER_RESISTOR : 1; //!< [31] Enable 125k pullup on USB_DP and 375k on USB_DN to provide USB_CHARGER functionality for USB.
+        unsigned RESERVED2 : 4; //!< [31:28] Reserved.
     } B;
 } hw_usb_analog_usb2_vbus_detect_t;
 #endif
@@ -834,27 +811,6 @@ typedef union _hw_usb_analog_usb2_vbus_detect
 #ifndef __LANGUAGE_ASM__
 //! @brief Set the CHARGE_VBUS field to a new value.
 #define BW_USB_ANALOG_USB2_VBUS_DETECT_CHARGE_VBUS(v)   BF_CS1(USB_ANALOG_USB2_VBUS_DETECT, CHARGE_VBUS, v)
-#endif
-//@}
-
-/*! @name Register USB_ANALOG_USB2_VBUS_DETECT, field EN_CHARGER_RESISTOR[31] (RW)
- *
- * Enable 125k pullup on USB_DP and 375k on USB_DN to provide USB_CHARGER functionality for USB.
- * This functionality is a new USB spec and should not be enabled unless recommended by Freescale.
- */
-//@{
-#define BP_USB_ANALOG_USB2_VBUS_DETECT_EN_CHARGER_RESISTOR      (31)      //!< Bit position for USB_ANALOG_USB2_VBUS_DETECT_EN_CHARGER_RESISTOR.
-#define BM_USB_ANALOG_USB2_VBUS_DETECT_EN_CHARGER_RESISTOR      (0x80000000)  //!< Bit mask for USB_ANALOG_USB2_VBUS_DETECT_EN_CHARGER_RESISTOR.
-
-//! @brief Get value of USB_ANALOG_USB2_VBUS_DETECT_EN_CHARGER_RESISTOR from a register value.
-#define BG_USB_ANALOG_USB2_VBUS_DETECT_EN_CHARGER_RESISTOR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USB_ANALOG_USB2_VBUS_DETECT_EN_CHARGER_RESISTOR) >> BP_USB_ANALOG_USB2_VBUS_DETECT_EN_CHARGER_RESISTOR)
-
-//! @brief Format value for bitfield USB_ANALOG_USB2_VBUS_DETECT_EN_CHARGER_RESISTOR.
-#define BF_USB_ANALOG_USB2_VBUS_DETECT_EN_CHARGER_RESISTOR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USB_ANALOG_USB2_VBUS_DETECT_EN_CHARGER_RESISTOR) & BM_USB_ANALOG_USB2_VBUS_DETECT_EN_CHARGER_RESISTOR)
-
-#ifndef __LANGUAGE_ASM__
-//! @brief Set the EN_CHARGER_RESISTOR field to a new value.
-#define BW_USB_ANALOG_USB2_VBUS_DETECT_EN_CHARGER_RESISTOR(v)   BF_CS1(USB_ANALOG_USB2_VBUS_DETECT, EN_CHARGER_RESISTOR, v)
 #endif
 //@}
 
@@ -1427,5 +1383,5 @@ typedef struct _hw_usb_analog
 #endif
 
 #endif // __HW_USB_ANALOG_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

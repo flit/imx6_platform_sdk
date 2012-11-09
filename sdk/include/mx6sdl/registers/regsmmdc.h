@@ -901,9 +901,9 @@ typedef union _hw_mmdc_mdcfg0
  *
  * CAS Read Latency. In DDR3 mode this field is referred to CL. In LPDDR2 /DDR2 mode this field is
  * referred to RL. In LPDDR2 mode only the RL/WL pairs are allowed as specified in MR2 register See
- * DDR2 SDRAM Specification JESD79-2E (April 2008) , to DDR3 SDRAM Specification JESD79-3E (July
- * 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of
- * this parameter.
+ * DDR2 SDRAM Specification JESD79-2E (April 2008) , DDR3 SDRAM Specification JESD79-3E (July 2010)
+ * and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of this
+ * parameter.
  *
  * Values:
  * - 0x0 - 3 cycles
@@ -935,10 +935,9 @@ typedef union _hw_mmdc_mdcfg0
 
 /*! @name Register MMDC_MDCFG0, field TFAW[8:4] (RW)
  *
- * Four Active Window (all banks). See DDR2 SDRAM Specification JESD79-2E (April 2008), to DDR3
- * SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February
- * 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of
- * this parameter.
+ * Four Active Window (all banks). See DDR2 SDRAM Specification JESD79-2E (April 2008), DDR3 SDRAM
+ * Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for
+ * a detailed description of this parameter.
  *
  * Values:
  * - 0x0 - 1 clock
@@ -968,9 +967,8 @@ typedef union _hw_mmdc_mdcfg0
  * Exit precharge power down with DLL frozen to commands requiring DLL. This field is not relevant
  * in LPDDR2 mode. In DDR2 mode this field is referred to the time from exit active power down to
  * read commands(tXARD/tXARDS depending to memory configuration) See DDR2 SDRAM Specification
- * JESD79-2E (April 2008) , to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM
- * Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February
- * 2010) for a detailed description of this parameter.
+ * JESD79-2E (April 2008) , DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM
+ * Specification JESD209-2B (February 2010) for a detailed description of this parameter.
  *
  * Values:
  * - 0x0 - 1 clock
@@ -1000,9 +998,9 @@ typedef union _hw_mmdc_mdcfg0
  * Exit power down with DLL-on to any valid command. Exit power down with DLL-frozen to commands not
  * requiring a locked DLL In DDR2 mode this field is referred to Exit precharge power down to any
  * command. In LPDDR2 mode this field is referred to Exit power-down to next valid command delay.
- * See DDR2 SDRAM Specification JESD79-2E (April 2008), to DDR3 SDRAM Specification JESD79-3E (July
- * 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification
- * JESD209-2B (February 2010) for a detailed description of this parameter.
+ * See DDR2 SDRAM Specification JESD79-2E (April 2008), DDR3 SDRAM Specification JESD79-3E (July
+ * 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of
+ * this parameter.
  *
  * Values:
  * - 0x0 - 1 cycle
@@ -1030,9 +1028,8 @@ typedef union _hw_mmdc_mdcfg0
  *
  * Exit self refresh to non READ command. (Named tXSNR in DDR2 devices) In LPDDR2 it is called tXSR,
  * self-refresh exit to next valid command delay. See DDR2 SDRAM Specification JESD79-2E (April
- * 2008), to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification
- * JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a
- * detailed description of this parameter.
+ * 2008), DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B
+ * (February 2010) for a detailed description of this parameter.
  *
  * Values:
  * - 0x0 - - 0x15 reserved
@@ -1060,9 +1057,8 @@ typedef union _hw_mmdc_mdcfg0
 /*! @name Register MMDC_MDCFG0, field TRFC[31:24] (RW)
  *
  * Refresh command to Active or Refresh command time. See DDR2 SDRAM Specification JESD79-2E (April
- * 2008) , to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification
- * JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a
- * detailed description of this parameter.
+ * 2008) , DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B
+ * (February 2010) for a detailed description of this parameter.
  *
  * Values:
  * - 0x0 - 1 clock
@@ -1173,10 +1169,9 @@ typedef union _hw_mmdc_mdcfg1
  *
  * Mode Register Set command cycle (all banks). In DDR3 mode this field shoud be set to max
  * (tMRD,tMOD). In DDR2 mode this field is Set to tMRD. In LPDDR2 mode this field should be set to
- * max(tMRR,tMRW) See DDR2 SDRAM Specification JESD79-2E (April 2008) and to DDR3 SDRAM
- * Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) and
- * LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of this
- * parameter.
+ * max(tMRR,tMRW) See DDR2 SDRAM Specification JESD79-2E (April 2008), DDR3 SDRAM Specification
+ * JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed
+ * description of this parameter.
  *
  * Values:
  * - 0x0 - 1 clock
@@ -1203,10 +1198,9 @@ typedef union _hw_mmdc_mdcfg1
 
 /*! @name Register MMDC_MDCFG1, field TWR[11:9] (RW)
  *
- * WRITE recovery time (same bank). See DDR2 SDRAM Specification JESD79-2E (April 2008) and to DDR3
- * SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February
- * 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of
- * this parameter.
+ * WRITE recovery time (same bank). See DDR2 SDRAM Specification JESD79-2E (April 2008), DDR3 SDRAM
+ * Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for
+ * a detailed description of this parameter.
  *
  * Values:
  * - 0x0 - 1cycle
@@ -1238,9 +1232,8 @@ typedef union _hw_mmdc_mdcfg1
  *
  * Precharge-all command period. (This field is valid only for DDR2/ DDR3 memories) In LPDDR2 mode
  * this parameter should be configured at tRPab_LP. See DDR2 SDRAM Specification JESD79-2E (April
- * 2008) and to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification
- * JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a
- * detailed description of this parameter.
+ * 2008), DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B
+ * (February 2010) for a detailed description of this parameter.
  *
  * Values:
  * - 0 - Will be equal to: tRP.
@@ -1265,9 +1258,8 @@ typedef union _hw_mmdc_mdcfg1
 /*! @name Register MMDC_MDCFG1, field TRAS[20:16] (RW)
  *
  * Active to Precharge command period (same bank). See DDR2 SDRAM Specification JESD79-2E (April
- * 2008) and to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification
- * JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a
- * detailed description of this parameter.
+ * 2008), DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B
+ * (February 2010) for a detailed description of this parameter.
  *
  * Values:
  * - 0x0 - 1 clock
@@ -1296,9 +1288,8 @@ typedef union _hw_mmdc_mdcfg1
  *
  * Active to Active or Refresh command period (same bank). (This field is valid only for DDR2/ DDR3
  * memories) In LPDDR2 mode this parameter should be configured at tRC_LP. See DDR2 SDRAM
- * Specification JESD79-2E (April 2008) and to DDR3 SDRAM Specification JESD79-3E (July 2010) and
- * LPDDR2 SDRAM Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B
- * (February 2010) for a detailed description of this parameter.
+ * Specification JESD79-2E (April 2008), DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2
+ * SDRAM Specification JESD209-2B (February 2010) for a detailed description of this parameter.
  *
  * Values:
  * - 0x0 - 1 clock
@@ -1327,9 +1318,8 @@ typedef union _hw_mmdc_mdcfg1
  *
  * Precharge command period (same bank). (This field is valid only for DDR2/ DDR3 memories) IIn
  * LPDDR2 mode this parameter should be configured at tRPpb_LP. See DDR2 SDRAM Specification
- * JESD79-2E (April 2008) and to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM
- * Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February
- * 2010) for a detailed description of this parameter.
+ * JESD79-2E (April 2008), DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM
+ * Specification JESD209-2B (February 2010) for a detailed description of this parameter.
  *
  * Values:
  * - 0x0 - 1 clock
@@ -1361,9 +1351,9 @@ typedef union _hw_mmdc_mdcfg1
  *
  * Active command to internal read or write delay time (same bank). (This field is valid only for
  * DDR2/ DDR3 memories) In LPDDR2 mode this parameter should be configured at tRCD_LP. See DDR2
- * SDRAM Specification JESD79-2E (April 2008) and to DDR3 SDRAM Specification JESD79-3E (July 2010)
- * and LPDDR2 SDRAM Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification
- * JESD209-2B (February 2010) for a detailed description of this parameter.
+ * SDRAM Specification JESD79-2E (April 2008), DDR3 SDRAM Specification JESD79-3E (July 2010) and
+ * LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed description of this
+ * parameter.
  *
  * Values:
  * - 0x0 - 1 clock
@@ -1440,10 +1430,9 @@ typedef union _hw_mmdc_mdcfg2
 
 /*! @name Register MMDC_MDCFG2, field TRRD[2:0] (RW)
  *
- * Active to Active command period (all banks). See DDR2 SDRAM Specification JESD79-2E (April 2008)
- * and to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B
- * (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed
- * description of this parameter.
+ * Active to Active command period (all banks). See DDR2 SDRAM Specification JESD79-2E (April 2008),
+ * DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B
+ * (February 2010) for a detailed description of this parameter.
  *
  * Values:
  * - 0x0 - 1cycle
@@ -1474,9 +1463,8 @@ typedef union _hw_mmdc_mdcfg2
 /*! @name Register MMDC_MDCFG2, field TWTR[5:3] (RW)
  *
  * Internal WRITE to READ command delay (same bank). See DDR2 SDRAM Specification JESD79-2E (April
- * 2008) and to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification
- * JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a
- * detailed description of this parameter.
+ * 2008), DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B
+ * (February 2010) for a detailed description of this parameter.
  *
  * Values:
  * - 0x0 - 1cycle
@@ -1507,9 +1495,8 @@ typedef union _hw_mmdc_mdcfg2
 /*! @name Register MMDC_MDCFG2, field TRTP[8:6] (RW)
  *
  * Internal READ command to Precharge command delay (same bank). See DDR2 SDRAM Specification
- * JESD79-2E (April 2008) and to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM
- * Specification JESD209-2B (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February
- * 2010) for a detailed description of this parameter.
+ * JESD79-2E (April 2008), DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM
+ * Specification JESD209-2B (February 2010) for a detailed description of this parameter.
  *
  * Values:
  * - 0x0 - 1cycle
@@ -1540,10 +1527,9 @@ typedef union _hw_mmdc_mdcfg2
 /*! @name Register MMDC_MDCFG2, field TDLLK[24:16] (RW)
  *
  * DLL locking time. In DDR2 mode this field is called tXSRD, exit self refresh to read command.
- * This field is not relevant in LPDDR2 mode. See DDR2 SDRAM Specification JESD79-2E (April 2008)
- * and to DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B
- * (February 2010) and LPDDR2 SDRAM Specification JESD209-2B (February 2010) for a detailed
- * description of this parameter.
+ * This field is not relevant in LPDDR2 mode. See DDR2 SDRAM Specification JESD79-2E (April 2008),
+ * DDR3 SDRAM Specification JESD79-3E (July 2010) and LPDDR2 SDRAM Specification JESD209-2B
+ * (February 2010) for a detailed description of this parameter.
  *
  * Values:
  * - 0x0 - 1 cycle.
@@ -1600,7 +1586,7 @@ typedef union _hw_mmdc_mdmisc
         unsigned LHD : 1; //!< [18] Latency hiding disable.
         unsigned ADDR_MIRROR : 1; //!< [19] Address mirroring.
         unsigned CALIB_PER_CS : 1; //!< [20] Number of chip-select for calibration process.
-        unsigned RESERVED2 : 9; //!< [29:21] Reserved.
+        unsigned RESERVED2 : 9; //!< [29:21] Reserved
         unsigned CS1_RDY : 1; //!< [30] External status device on CS1.
         unsigned CS0_RDY : 1; //!< [31] External status device on CS0.
     } B;
@@ -2013,7 +1999,7 @@ typedef union _hw_mmdc_mdscr
         unsigned CON_ACK : 1; //!< [14] Configuration acknowledge.
         unsigned CON_REQ : 1; //!< [15] Configuration request.
         unsigned CMD_ADDR_LSB_MR_ADDR : 8; //!< [23:16] Command/Address LSB.
-        unsigned CMD_ADDR_MSB : 8; //!< [31:24] Command/Address MSB.
+        unsigned CMD_ADDR_MSB_MR_OP : 8; //!< [31:24] Command/Address MSB.
     } B;
 } hw_mmdc_mdscr_t;
 #endif
@@ -2236,24 +2222,24 @@ typedef union _hw_mmdc_mdscr
 #endif
 //@}
 
-/*! @name Register MMDC_MDSCR, field CMD_ADDR_MSB[31:24] (RW)
+/*! @name Register MMDC_MDSCR, field CMD_ADDR_MSB_MR_OP[31:24] (RW)
  *
  * Command/Address MSB. This field indicates the MSB of the command/Address. In LPDDR2 this field
  * indicates the MRW operand
  */
 //@{
-#define BP_MMDC_MDSCR_CMD_ADDR_MSB      (24)      //!< Bit position for MMDC_MDSCR_CMD_ADDR_MSB.
-#define BM_MMDC_MDSCR_CMD_ADDR_MSB      (0xff000000)  //!< Bit mask for MMDC_MDSCR_CMD_ADDR_MSB.
+#define BP_MMDC_MDSCR_CMD_ADDR_MSB_MR_OP      (24)      //!< Bit position for MMDC_MDSCR_CMD_ADDR_MSB_MR_OP.
+#define BM_MMDC_MDSCR_CMD_ADDR_MSB_MR_OP      (0xff000000)  //!< Bit mask for MMDC_MDSCR_CMD_ADDR_MSB_MR_OP.
 
-//! @brief Get value of MMDC_MDSCR_CMD_ADDR_MSB from a register value.
-#define BG_MMDC_MDSCR_CMD_ADDR_MSB(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDSCR_CMD_ADDR_MSB) >> BP_MMDC_MDSCR_CMD_ADDR_MSB)
+//! @brief Get value of MMDC_MDSCR_CMD_ADDR_MSB_MR_OP from a register value.
+#define BG_MMDC_MDSCR_CMD_ADDR_MSB_MR_OP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_MMDC_MDSCR_CMD_ADDR_MSB_MR_OP) >> BP_MMDC_MDSCR_CMD_ADDR_MSB_MR_OP)
 
-//! @brief Format value for bitfield MMDC_MDSCR_CMD_ADDR_MSB.
-#define BF_MMDC_MDSCR_CMD_ADDR_MSB(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDSCR_CMD_ADDR_MSB) & BM_MMDC_MDSCR_CMD_ADDR_MSB)
+//! @brief Format value for bitfield MMDC_MDSCR_CMD_ADDR_MSB_MR_OP.
+#define BF_MMDC_MDSCR_CMD_ADDR_MSB_MR_OP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_MMDC_MDSCR_CMD_ADDR_MSB_MR_OP) & BM_MMDC_MDSCR_CMD_ADDR_MSB_MR_OP)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the CMD_ADDR_MSB field to a new value.
-#define BW_MMDC_MDSCR_CMD_ADDR_MSB(x, v)   (HW_MMDC_MDSCR_WR(x, (HW_MMDC_MDSCR_RD(x) & ~BM_MMDC_MDSCR_CMD_ADDR_MSB) | BF_MMDC_MDSCR_CMD_ADDR_MSB(v)))
+//! @brief Set the CMD_ADDR_MSB_MR_OP field to a new value.
+#define BW_MMDC_MDSCR_CMD_ADDR_MSB_MR_OP(x, v)   (HW_MMDC_MDSCR_WR(x, (HW_MMDC_MDSCR_RD(x) & ~BM_MMDC_MDSCR_CMD_ADDR_MSB_MR_OP) | BF_MMDC_MDSCR_CMD_ADDR_MSB_MR_OP(v)))
 #endif
 //@}
 
@@ -2753,7 +2739,7 @@ typedef union _hw_mmdc_mdor
 /*! @name Register MMDC_MDOR, field SDE_TO_RST[13:8] (RW)
  *
  * DDR3: Time from SDE enable until DDR reset# is high. In DDR2/ LPDDR2 mode this field is not
- * relevant . Each cycle in this field is 15.625 us.
+ * relevant . Each cycle in this field is 15.258 us.
  *
  * Values:
  * - 0x0 - Reserved
@@ -2761,7 +2747,7 @@ typedef union _hw_mmdc_mdor
  * - 0x2 - Reserved
  * - 0x3 - 1 cycles
  * - 0x4 - 2 cycles
- * - 0xF - 13 cycles (Jedec value for DDR3) - total of 200 us
+ * - 0x10 - 14 cycles (Jedec value for DDR3) - total of 200 us
  * - 0x3E - 60 cycles
  * - 0x3F - 61 cycles
  */
@@ -3351,7 +3337,7 @@ typedef union _hw_mmdc_mdasp
 /*!
  * @brief HW_MMDC_MAARCR - MMDC Core AXI Reordering Control Regsiter (RW)
  *
- * Reset value: 0x809901a3
+ * Reset value: 0x514201f0
  *
  * This register determines the values of the weights used for the re-ordering arbitration engine.
  * For further information see . Supported Mode Of Operations: For Channel 0: All For Channel 1:
@@ -3629,7 +3615,7 @@ typedef union _hw_mmdc_maarcr
 /*!
  * @brief HW_MMDC_MAPSR - MMDC Core Power Saving Control and Status Register (RW)
  *
- * Reset value: 0x00011007
+ * Reset value: 0x00001007
  *
  * The MAPSR determines the power saving features of MMDC. For further information see . Supported
  * Mode Of Operations: For Channel 0: All For Channel 1: LP2_2ch_x16, LP2_2ch_x32
@@ -7516,7 +7502,7 @@ typedef union _hw_mmdc_mprddqby3dl
     reg32_t U;
     struct _hw_mmdc_mprddqby3dl_bitfields
     {
-        unsigned RD_DQ24_DEL : 3; //!< [2:0] Supported Mode Of Operations: All
+        unsigned RD_DQ24_DEL : 3; //!< [2:0] Read dqs3 to dq24 delay fine-tuning.
         unsigned RESERVED0 : 1; //!< [3] Reserved
         unsigned RD_DQ25_DEL : 3; //!< [6:4] Read dqs3 to dq25 delay fine-tuning.
         unsigned RESERVED1 : 1; //!< [7] Reserved
@@ -8125,7 +8111,7 @@ typedef union _hw_mmdc_mpwrdqby1dl
     reg32_t U;
     struct _hw_mmdc_mpwrdqby1dl_bitfields
     {
-        unsigned WR_DQ8_DEL : 2; //!< [1:0] Supported Mode Of Operations: All
+        unsigned WR_DQ8_DEL : 2; //!< [1:0] Write dq8 delay fine-tuning.
         unsigned RESERVED0 : 2; //!< [3:2] Reserved
         unsigned WR_DQ9_DEL : 2; //!< [5:4] Write dq9 delay fine-tuning.
         unsigned RESERVED1 : 2; //!< [7:6] Reserved
@@ -8729,7 +8715,7 @@ typedef union _hw_mmdc_mpwrdqby3dl
     reg32_t U;
     struct _hw_mmdc_mpwrdqby3dl_bitfields
     {
-        unsigned WR_DQ24_DEL : 2; //!< [1:0] Supported Mode Of Operations: All
+        unsigned WR_DQ24_DEL : 2; //!< [1:0] Write dq24 delay fine tuning.
         unsigned RESERVED0 : 2; //!< [3:2] Reserved
         unsigned WR_DQ25_DEL : 2; //!< [5:4] Write dq25 delay fine tuning.
         unsigned RESERVED1 : 2; //!< [7:6] Reserved
@@ -13046,5 +13032,5 @@ typedef struct _hw_mmdc
 #endif
 
 #endif // __HW_MMDC_REGISTERS_H__
-// v18/121010/1.2.1
+// v18/121106/1.2.2
 // EOF

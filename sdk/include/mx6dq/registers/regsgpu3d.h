@@ -92,8 +92,8 @@ typedef union _hw_gpu3d_aqh_clk_ctrl
     {
         unsigned CLK3D_DIS : 1; //!< [0] Disable 3D clock.
         unsigned CLK2D_DIS : 1; //!< [1] Disable 2D clock.
-        unsigned FSCALE_VAL : 7; //!< [8:2] 
-        unsigned FSCALE_CMD_LOAD : 1; //!< [9] 
+        unsigned FSCALE_VAL : 7; //!< [8:2] -
+        unsigned FSCALE_CMD_LOAD : 1; //!< [9] -
         unsigned DISABLE_RAM_CLOCK_GATING : 1; //!< [10] Disables clock gating for rams.
         unsigned DISABLE_DEBUG_REGISTERS : 1; //!< [11] Disable debug registers.
         unsigned SOFT_RESET : 1; //!< [12] Soft resets the IP.
@@ -170,6 +170,8 @@ typedef union _hw_gpu3d_aqh_clk_ctrl
 //@}
 
 /*! @name Register GPU3D_AQH_CLK_CTRL, field FSCALE_VAL[8:2] (RW)
+ *
+ * -
  */
 //@{
 #define BP_GPU3D_AQH_CLK_CTRL_FSCALE_VAL      (2)      //!< Bit position for GPU3D_AQH_CLK_CTRL_FSCALE_VAL.
@@ -188,6 +190,8 @@ typedef union _hw_gpu3d_aqh_clk_ctrl
 //@}
 
 /*! @name Register GPU3D_AQH_CLK_CTRL, field FSCALE_CMD_LOAD[9] (RW)
+ *
+ * -
  */
 //@{
 #define BP_GPU3D_AQH_CLK_CTRL_FSCALE_CMD_LOAD      (9)      //!< Bit position for GPU3D_AQH_CLK_CTRL_FSCALE_CMD_LOAD.
@@ -607,10 +611,10 @@ typedef union _hw_gpu3d_aqa_cfg
     reg32_t U;
     struct _hw_gpu3d_aqa_cfg_bitfields
     {
-        unsigned AWID : 4; //!< [3:0] 
-        unsigned ARID : 4; //!< [7:4] 
-        unsigned AWCACHE : 4; //!< [11:8] 
-        unsigned ARCACHE : 4; //!< [15:12] 
+        unsigned AWID : 4; //!< [3:0] AW ID
+        unsigned ARID : 4; //!< [7:4] AR ID
+        unsigned AWCACHE : 4; //!< [11:8] AW Cache
+        unsigned ARCACHE : 4; //!< [15:12] AR Cache
         unsigned RESERVED0 : 16; //!< [31:16] Reserved
     } B;
 } hw_gpu3d_aqa_cfg_t;
@@ -637,6 +641,8 @@ typedef union _hw_gpu3d_aqa_cfg
  */
 
 /*! @name Register GPU3D_AQA_CFG, field AWID[3:0] (RW)
+ *
+ * AW ID
  */
 //@{
 #define BP_GPU3D_AQA_CFG_AWID      (0)      //!< Bit position for GPU3D_AQA_CFG_AWID.
@@ -655,6 +661,8 @@ typedef union _hw_gpu3d_aqa_cfg
 //@}
 
 /*! @name Register GPU3D_AQA_CFG, field ARID[7:4] (RW)
+ *
+ * AR ID
  */
 //@{
 #define BP_GPU3D_AQA_CFG_ARID      (4)      //!< Bit position for GPU3D_AQA_CFG_ARID.
@@ -673,6 +681,8 @@ typedef union _hw_gpu3d_aqa_cfg
 //@}
 
 /*! @name Register GPU3D_AQA_CFG, field AWCACHE[11:8] (RW)
+ *
+ * AW Cache
  */
 //@{
 #define BP_GPU3D_AQA_CFG_AWCACHE      (8)      //!< Bit position for GPU3D_AQA_CFG_AWCACHE.
@@ -691,6 +701,8 @@ typedef union _hw_gpu3d_aqa_cfg
 //@}
 
 /*! @name Register GPU3D_AQA_CFG, field ARCACHE[15:12] (RW)
+ *
+ * AR Cache
  */
 //@{
 #define BP_GPU3D_AQA_CFG_ARCACHE      (12)      //!< Bit position for GPU3D_AQA_CFG_ARCACHE.
@@ -723,10 +735,10 @@ typedef union _hw_gpu3d_aqa_status
     reg32_t U;
     struct _hw_gpu3d_aqa_status_bitfields
     {
-        unsigned WR_ERR_ID : 4; //!< [3:0] 
-        unsigned RD_ERR_ID : 4; //!< [7:4] 
-        unsigned DET_WR_ERR : 1; //!< [8] 
-        unsigned DET_RD_ERR : 1; //!< [9] 
+        unsigned WR_ERR_ID : 4; //!< [3:0] -
+        unsigned RD_ERR_ID : 4; //!< [7:4] -
+        unsigned DET_WR_ERR : 1; //!< [8] -
+        unsigned DET_RD_ERR : 1; //!< [9] -
         unsigned RESERVED0 : 22; //!< [31:10] Reserved
     } B;
 } hw_gpu3d_aqa_status_t;
@@ -749,6 +761,8 @@ typedef union _hw_gpu3d_aqa_status
  */
 
 /*! @name Register GPU3D_AQA_STATUS, field WR_ERR_ID[3:0] (RO)
+ *
+ * -
  */
 //@{
 #define BP_GPU3D_AQA_STATUS_WR_ERR_ID      (0)      //!< Bit position for GPU3D_AQA_STATUS_WR_ERR_ID.
@@ -759,6 +773,8 @@ typedef union _hw_gpu3d_aqa_status
 //@}
 
 /*! @name Register GPU3D_AQA_STATUS, field RD_ERR_ID[7:4] (RO)
+ *
+ * -
  */
 //@{
 #define BP_GPU3D_AQA_STATUS_RD_ERR_ID      (4)      //!< Bit position for GPU3D_AQA_STATUS_RD_ERR_ID.
@@ -769,6 +785,8 @@ typedef union _hw_gpu3d_aqa_status
 //@}
 
 /*! @name Register GPU3D_AQA_STATUS, field DET_WR_ERR[8] (RO)
+ *
+ * -
  */
 //@{
 #define BP_GPU3D_AQA_STATUS_DET_WR_ERR      (8)      //!< Bit position for GPU3D_AQA_STATUS_DET_WR_ERR.
@@ -779,6 +797,8 @@ typedef union _hw_gpu3d_aqa_status
 //@}
 
 /*! @name Register GPU3D_AQA_STATUS, field DET_RD_ERR[9] (RO)
+ *
+ * -
  */
 //@{
 #define BP_GPU3D_AQA_STATUS_DET_RD_ERR      (9)      //!< Bit position for GPU3D_AQA_STATUS_DET_RD_ERR.
@@ -806,7 +826,7 @@ typedef union _hw_gpu3d_aqi_ack
     reg32_t U;
     struct _hw_gpu3d_aqi_ack_bitfields
     {
-        unsigned INTR_VEC : 32; //!< [31:0] 
+        unsigned INTR_VEC : 32; //!< [31:0] -
     } B;
 } hw_gpu3d_aqi_ack_t;
 #endif
@@ -828,6 +848,8 @@ typedef union _hw_gpu3d_aqi_ack
  */
 
 /*! @name Register GPU3D_AQI_ACK, field INTR_VEC[31:0] (RO)
+ *
+ * -
  */
 //@{
 #define BP_GPU3D_AQI_ACK_INTR_VEC      (0)      //!< Bit position for GPU3D_AQI_ACK_INTR_VEC.
@@ -854,7 +876,7 @@ typedef union _hw_gpu3d_aqi_enbl
     reg32_t U;
     struct _hw_gpu3d_aqi_enbl_bitfields
     {
-        unsigned INTR_ENBL_VEC : 32; //!< [31:0] 
+        unsigned INTR_ENBL_VEC : 32; //!< [31:0] -
     } B;
 } hw_gpu3d_aqi_enbl_t;
 #endif
@@ -880,6 +902,8 @@ typedef union _hw_gpu3d_aqi_enbl
  */
 
 /*! @name Register GPU3D_AQI_ENBL, field INTR_ENBL_VEC[31:0] (RW)
+ *
+ * -
  */
 //@{
 #define BP_GPU3D_AQI_ENBL_INTR_ENBL_VEC      (0)      //!< Bit position for GPU3D_AQI_ENBL_INTR_ENBL_VEC.
@@ -1895,7 +1919,7 @@ typedef union _hw_gpu3d_gcm_feat_0
         unsigned DEFAULT_REG0 : 1; //!< [21] Unavailable registers will return 0.
         unsigned MC_20 : 1; //!< [22] New stlye MC with separate paths for color and depth.
         unsigned SHADER_MSAA_SIDEBAND : 1; //!< [23] Put the MSAA data into sideband fifo.
-        unsigned BUG_FIXES0 : 1; //!< [24] 
+        unsigned BUG_FIXES0 : 1; //!< [24] Bug fixes bit 0
         unsigned VAA : 1; //!< [25] VAA is available or not.
         unsigned BYPASS_IN_MSAA : 1; //!< [26] Shader supports bypass modew when MSAA is enabled.
         unsigned HIERARCHICAL_Z : 1; //!< [27] Hierarchical Z is supported.
@@ -2309,6 +2333,8 @@ typedef union _hw_gpu3d_gcm_feat_0
 
 /*! @name Register GPU3D_GCM_FEAT_0, field BUG_FIXES0[24] (RO)
  *
+ * Bug fixes bit 0
+ *
  * Values:
  * - 0 - =>NONE
  * - 1 - =>AVAILABLE
@@ -2451,7 +2477,7 @@ typedef union _hw_gpu3d_gcc_crtl
     reg32_t U;
     struct _hw_gpu3d_gcc_crtl_bitfields
     {
-        unsigned NOT_USED : 32; //!< [31:0] 
+        unsigned NOT_USED : 32; //!< [31:0] -
     } B;
 } hw_gpu3d_gcc_crtl_t;
 #endif
@@ -2477,6 +2503,8 @@ typedef union _hw_gpu3d_gcc_crtl
  */
 
 /*! @name Register GPU3D_GCC_CRTL, field NOT_USED[31:0] (RW)
+ *
+ * -
  */
 //@{
 #define BP_GPU3D_GCC_CRTL_NOT_USED      (0)      //!< Bit position for GPU3D_GCC_CRTL_NOT_USED.
@@ -2512,7 +2540,7 @@ typedef union _hw_gpu3d_gcr_mem_ctrs
     reg32_t U;
     struct _hw_gpu3d_gcr_mem_ctrs_bitfields
     {
-        unsigned RESET : 32; //!< [31:0] 
+        unsigned RESET : 32; //!< [31:0] Reset
     } B;
 } hw_gpu3d_gcr_mem_ctrs_t;
 #endif
@@ -2538,6 +2566,8 @@ typedef union _hw_gpu3d_gcr_mem_ctrs
  */
 
 /*! @name Register GPU3D_GCR_MEM_CTRS, field RESET[31:0] (RW)
+ *
+ * Reset
  */
 //@{
 #define BP_GPU3D_GCR_MEM_CTRS_RESET      (0)      //!< Bit position for GPU3D_GCR_MEM_CTRS_RESET.
@@ -2572,7 +2602,7 @@ typedef union _hw_gpu3d_gct_reads
     reg32_t U;
     struct _hw_gpu3d_gct_reads_bitfields
     {
-        unsigned COUNT : 32; //!< [31:0] 
+        unsigned COUNT : 32; //!< [31:0] Count
     } B;
 } hw_gpu3d_gct_reads_t;
 #endif
@@ -2594,6 +2624,8 @@ typedef union _hw_gpu3d_gct_reads
  */
 
 /*! @name Register GPU3D_GCT_READS, field COUNT[31:0] (RO)
+ *
+ * Count
  */
 //@{
 #define BP_GPU3D_GCT_READS_COUNT      (0)      //!< Bit position for GPU3D_GCT_READS_COUNT.
@@ -2620,7 +2652,7 @@ typedef union _hw_gpu3d_gct_writes
     reg32_t U;
     struct _hw_gpu3d_gct_writes_bitfields
     {
-        unsigned COUNT : 32; //!< [31:0] 
+        unsigned COUNT : 32; //!< [31:0] Count
     } B;
 } hw_gpu3d_gct_writes_t;
 #endif
@@ -2642,6 +2674,8 @@ typedef union _hw_gpu3d_gct_writes
  */
 
 /*! @name Register GPU3D_GCT_WRITES, field COUNT[31:0] (RO)
+ *
+ * Count
  */
 //@{
 #define BP_GPU3D_GCT_WRITES_COUNT      (0)      //!< Bit position for GPU3D_GCT_WRITES_COUNT.
@@ -2797,7 +2831,7 @@ typedef union _hw_gpu3d_gct_write_bursts
     reg32_t U;
     struct _hw_gpu3d_gct_write_bursts_bitfields
     {
-        unsigned COUNT : 32; //!< [31:0] 
+        unsigned COUNT : 32; //!< [31:0] Count
     } B;
 } hw_gpu3d_gct_write_bursts_t;
 #endif
@@ -2819,6 +2853,8 @@ typedef union _hw_gpu3d_gct_write_bursts
  */
 
 /*! @name Register GPU3D_GCT_WRITE_BURSTS, field COUNT[31:0] (RO)
+ *
+ * Count
  */
 //@{
 #define BP_GPU3D_GCT_WRITE_BURSTS_COUNT      (0)      //!< Bit position for GPU3D_GCT_WRITE_BURSTS_COUNT.
@@ -2845,7 +2881,7 @@ typedef union _hw_gpu3d_gct_write_reqs
     reg32_t U;
     struct _hw_gpu3d_gct_write_reqs_bitfields
     {
-        unsigned COUNT : 32; //!< [31:0] 
+        unsigned COUNT : 32; //!< [31:0] Count
     } B;
 } hw_gpu3d_gct_write_reqs_t;
 #endif
@@ -2867,6 +2903,8 @@ typedef union _hw_gpu3d_gct_write_reqs
  */
 
 /*! @name Register GPU3D_GCT_WRITE_REQS, field COUNT[31:0] (RO)
+ *
+ * Count
  */
 //@{
 #define BP_GPU3D_GCT_WRITE_REQS_COUNT      (0)      //!< Bit position for GPU3D_GCT_WRITE_REQS_COUNT.
@@ -2893,7 +2931,7 @@ typedef union _hw_gpu3d_gct_write_lasts
     reg32_t U;
     struct _hw_gpu3d_gct_write_lasts_bitfields
     {
-        unsigned COUNT : 32; //!< [31:0] 
+        unsigned COUNT : 32; //!< [31:0] Count
     } B;
 } hw_gpu3d_gct_write_lasts_t;
 #endif
@@ -2915,6 +2953,8 @@ typedef union _hw_gpu3d_gct_write_lasts
  */
 
 /*! @name Register GPU3D_GCT_WRITE_LASTS, field COUNT[31:0] (RO)
+ *
+ * Count
  */
 //@{
 #define BP_GPU3D_GCT_WRITE_LASTS_COUNT      (0)      //!< Bit position for GPU3D_GCT_WRITE_LASTS_COUNT.
@@ -2941,7 +2981,7 @@ typedef union _hw_gpu3d_gct_read_bursts
     reg32_t U;
     struct _hw_gpu3d_gct_read_bursts_bitfields
     {
-        unsigned COUNT : 32; //!< [31:0] 
+        unsigned COUNT : 32; //!< [31:0] Count
     } B;
 } hw_gpu3d_gct_read_bursts_t;
 #endif
@@ -2963,6 +3003,8 @@ typedef union _hw_gpu3d_gct_read_bursts
  */
 
 /*! @name Register GPU3D_GCT_READ_BURSTS, field COUNT[31:0] (RO)
+ *
+ * Count
  */
 //@{
 #define BP_GPU3D_GCT_READ_BURSTS_COUNT      (0)      //!< Bit position for GPU3D_GCT_READ_BURSTS_COUNT.
@@ -2989,7 +3031,7 @@ typedef union _hw_gpu3d_gct_read_reqs
     reg32_t U;
     struct _hw_gpu3d_gct_read_reqs_bitfields
     {
-        unsigned COUNT : 32; //!< [31:0] 
+        unsigned COUNT : 32; //!< [31:0] Count
     } B;
 } hw_gpu3d_gct_read_reqs_t;
 #endif
@@ -3011,6 +3053,8 @@ typedef union _hw_gpu3d_gct_read_reqs
  */
 
 /*! @name Register GPU3D_GCT_READ_REQS, field COUNT[31:0] (RO)
+ *
+ * Count
  */
 //@{
 #define BP_GPU3D_GCT_READ_REQS_COUNT      (0)      //!< Bit position for GPU3D_GCT_READ_REQS_COUNT.
@@ -3037,7 +3081,7 @@ typedef union _hw_gpu3d_gct_read_lasts
     reg32_t U;
     struct _hw_gpu3d_gct_read_lasts_bitfields
     {
-        unsigned COUNT : 32; //!< [31:0] 
+        unsigned COUNT : 32; //!< [31:0] Count
     } B;
 } hw_gpu3d_gct_read_lasts_t;
 #endif
@@ -3059,6 +3103,8 @@ typedef union _hw_gpu3d_gct_read_lasts
  */
 
 /*! @name Register GPU3D_GCT_READ_LASTS, field COUNT[31:0] (RO)
+ *
+ * Count
  */
 //@{
 #define BP_GPU3D_GCT_READ_LASTS_COUNT      (0)      //!< Bit position for GPU3D_GCT_READ_LASTS_COUNT.
@@ -3085,7 +3131,7 @@ typedef union _hw_gpu3d_gcgpo_0
     reg32_t U;
     struct _hw_gpu3d_gcgpo_0_bitfields
     {
-        unsigned COUNT : 32; //!< [31:0] 
+        unsigned COUNT : 32; //!< [31:0] Count
     } B;
 } hw_gpu3d_gcgpo_0_t;
 #endif
@@ -3111,6 +3157,8 @@ typedef union _hw_gpu3d_gcgpo_0
  */
 
 /*! @name Register GPU3D_GCGPO_0, field COUNT[31:0] (RW)
+ *
+ * Count
  */
 //@{
 #define BP_GPU3D_GCGPO_0_COUNT      (0)      //!< Bit position for GPU3D_GCGPO_0_COUNT.
@@ -3145,7 +3193,7 @@ typedef union _hw_gpu3d_gcgpo_1
     reg32_t U;
     struct _hw_gpu3d_gcgpo_1_bitfields
     {
-        unsigned COUNT : 32; //!< [31:0] 
+        unsigned COUNT : 32; //!< [31:0] Count
     } B;
 } hw_gpu3d_gcgpo_1_t;
 #endif
@@ -3171,6 +3219,8 @@ typedef union _hw_gpu3d_gcgpo_1
  */
 
 /*! @name Register GPU3D_GCGPO_1, field COUNT[31:0] (RW)
+ *
+ * Count
  */
 //@{
 #define BP_GPU3D_GCGPO_1_COUNT      (0)      //!< Bit position for GPU3D_GCGPO_1_COUNT.
@@ -3205,7 +3255,7 @@ typedef union _hw_gpu3d_gcgpo_2
     reg32_t U;
     struct _hw_gpu3d_gcgpo_2_bitfields
     {
-        unsigned COUNT : 32; //!< [31:0] 
+        unsigned COUNT : 32; //!< [31:0] Count
     } B;
 } hw_gpu3d_gcgpo_2_t;
 #endif
@@ -3231,6 +3281,8 @@ typedef union _hw_gpu3d_gcgpo_2
  */
 
 /*! @name Register GPU3D_GCGPO_2, field COUNT[31:0] (RW)
+ *
+ * Count
  */
 //@{
 #define BP_GPU3D_GCGPO_2_COUNT      (0)      //!< Bit position for GPU3D_GCGPO_2_COUNT.
@@ -3265,7 +3317,7 @@ typedef union _hw_gpu3d_gca_crtl
     reg32_t U;
     struct _hw_gpu3d_gca_crtl_bitfields
     {
-        unsigned WR_FULL_BURST_MODE : 1; //!< [0] 
+        unsigned WR_FULL_BURST_MODE : 1; //!< [0] -
         unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
 } hw_gpu3d_gca_crtl_t;
@@ -3292,6 +3344,8 @@ typedef union _hw_gpu3d_gca_crtl
  */
 
 /*! @name Register GPU3D_GCA_CRTL, field WR_FULL_BURST_MODE[0] (RW)
+ *
+ * -
  *
  * Values:
  * - 0 - =>NO_BURST_RESET_VALUE
@@ -3334,8 +3388,8 @@ typedef union _hw_gpu3d_gcm_feat_1
         unsigned RSUV_SWIZZLE : 1; //!< [0] Resolve UV swizzle.
         unsigned V2_COMPRESSION : 1; //!< [1] V2 compression.
         unsigned VG_DOUBLE_BUFFER : 1; //!< [2] Double buffering support for VG (second TS-->VG semaphore is present).
-        unsigned BUG_FIXES1 : 1; //!< [3] 
-        unsigned BUG_FIXES2 : 1; //!< [4] 
+        unsigned BUG_FIXES1 : 1; //!< [3] Bug fixes bit 1
+        unsigned BUG_FIXES2 : 1; //!< [4] Bug fixes bit 2
         unsigned TEXTURE_STRIDE : 1; //!< [5] Texture has stride and memory addressing.
         unsigned RESERVED0 : 26; //!< [31:6] Reserved
     } B;
@@ -3408,6 +3462,8 @@ typedef union _hw_gpu3d_gcm_feat_1
 
 /*! @name Register GPU3D_GCM_FEAT_1, field BUG_FIXES1[3] (RO)
  *
+ * Bug fixes bit 1
+ *
  * Values:
  * - 0 - =>NONE
  * - 1 - =>AVAILABLE
@@ -3421,6 +3477,8 @@ typedef union _hw_gpu3d_gcm_feat_1
 //@}
 
 /*! @name Register GPU3D_GCM_FEAT_1, field BUG_FIXES2[4] (RO)
+ *
+ * Bug fixes bit 2
  *
  * Values:
  * - 0 - =>NONE
@@ -3467,7 +3525,7 @@ typedef union _hw_gpu3d_gct_cycles
     reg32_t U;
     struct _hw_gpu3d_gct_cycles_bitfields
     {
-        unsigned CYCLES : 32; //!< [31:0] 
+        unsigned CYCLES : 32; //!< [31:0] Cycles
     } B;
 } hw_gpu3d_gct_cycles_t;
 #endif
@@ -3493,6 +3551,8 @@ typedef union _hw_gpu3d_gct_cycles
  */
 
 /*! @name Register GPU3D_GCT_CYCLES, field CYCLES[31:0] (RW)
+ *
+ * Cycles
  */
 //@{
 #define BP_GPU3D_GCT_CYCLES_CYCLES      (0)      //!< Bit position for GPU3D_GCT_CYCLES_CYCLES.
@@ -3528,7 +3588,7 @@ typedef union _hw_gpu3d_gct_idle_cycles
     reg32_t U;
     struct _hw_gpu3d_gct_idle_cycles_bitfields
     {
-        unsigned CYCLES : 32; //!< [31:0] 
+        unsigned CYCLES : 32; //!< [31:0] Cycles
     } B;
 } hw_gpu3d_gct_idle_cycles_t;
 #endif
@@ -3554,6 +3614,8 @@ typedef union _hw_gpu3d_gct_idle_cycles
  */
 
 /*! @name Register GPU3D_GCT_IDLE_CYCLES, field CYCLES[31:0] (RW)
+ *
+ * Cycles
  */
 //@{
 #define BP_GPU3D_GCT_IDLE_CYCLES_CYCLES      (0)      //!< Bit position for GPU3D_GCT_IDLE_CYCLES_CYCLES.
@@ -3624,5 +3686,5 @@ typedef struct _hw_gpu3d
 #endif
 
 #endif // __HW_GPU3D_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

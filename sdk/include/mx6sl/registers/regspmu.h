@@ -274,12 +274,12 @@ typedef union _hw_pmu_reg_3p0
     reg32_t U;
     struct _hw_pmu_reg_3p0_bitfields
     {
-        unsigned ENABLE_LINREG : 1; //!< [0] Control bit to enable the regulator output.
+        unsigned ENABLE_LINREG : 1; //!< [0] Control bit to enable the regulator output to be set by the programmed target voltage setting and internal bandgap reference.
         unsigned ENABLE_BO : 1; //!< [1] Control bit to enable the brown-out circuitry in the regulator.
         unsigned ENABLE_ILIMIT : 1; //!< [2] Control bit to enable the current-limit circuitry in the regulator.
         unsigned RESERVED0 : 1; //!< [3] Reserved
         unsigned BO_OFFSET : 3; //!< [6:4] Control bits to adjust the regulator brown-out offset voltage in 25mV steps.
-        unsigned VBUS_SEL : 1; //!< [7] Select input voltage source for LDO_3P0 from either USB OTG1 or USB OTG2.
+        unsigned VBUS_SEL : 1; //!< [7] Select input voltage source for LDO_3P0 from either USB_OTG1_VBUS or USB_OTG2_VBUS.
         unsigned OUTPUT_TRG : 5; //!< [12:8] Control bits to adjust the regulator output voltage.
         unsigned RESERVED1 : 3; //!< [15:13] Reserved.
         unsigned BO_VDD3P0 : 1; //!< [16] Status bit that signals when a brown-out is detected on the regulator output.
@@ -311,7 +311,8 @@ typedef union _hw_pmu_reg_3p0
 
 /*! @name Register PMU_REG_3P0, field ENABLE_LINREG[0] (RW)
  *
- * Control bit to enable the regulator output.
+ * Control bit to enable the regulator output to be set by the programmed target voltage setting and
+ * internal bandgap reference.
  */
 //@{
 #define BP_PMU_REG_3P0_ENABLE_LINREG      (0)      //!< Bit position for PMU_REG_3P0_ENABLE_LINREG.
@@ -393,12 +394,12 @@ typedef union _hw_pmu_reg_3p0
 
 /*! @name Register PMU_REG_3P0, field VBUS_SEL[7] (RW)
  *
- * Select input voltage source for LDO_3P0 from either USB OTG1 or USB OTG2. If only one of the two
- * VBUS voltages is present, it will automatically be selected.
+ * Select input voltage source for LDO_3P0 from either USB_OTG1_VBUS or USB_OTG2_VBUS. If only one
+ * of the two VBUS voltages is present, it will automatically be selected.
  *
  * Values:
- * - OTG1 = 0 - Utilize VBUS OTG1 for power
- * - OTG2 = 1 - Utilize VBUS OTG2 power
+ * - USB_OTG1_VBUS = 0 - Utilize VBUS OTG1 for power
+ * - USB_OTG2_VBUS = 1 - Utilize VBUS OTG2 power
  */
 //@{
 #define BP_PMU_REG_3P0_VBUS_SEL      (7)      //!< Bit position for PMU_REG_3P0_VBUS_SEL.
@@ -418,8 +419,8 @@ typedef union _hw_pmu_reg_3p0
 //! @brief Macro to simplify usage of value macros.
 #define BF_PMU_REG_3P0_VBUS_SEL_V(v) BF_PMU_REG_3P0_VBUS_SEL(BV_PMU_REG_3P0_VBUS_SEL__##v)
 
-#define BV_PMU_REG_3P0_VBUS_SEL__OTG1 (0x0) //!< Utilize VBUS OTG1 for power
-#define BV_PMU_REG_3P0_VBUS_SEL__OTG2 (0x1) //!< Utilize VBUS OTG2 power
+#define BV_PMU_REG_3P0_VBUS_SEL__USB_OTG1_VBUS (0x0) //!< Utilize VBUS OTG1 for power
+#define BV_PMU_REG_3P0_VBUS_SEL__USB_OTG2_VBUS (0x1) //!< Utilize VBUS OTG2 power
 //@}
 
 /*! @name Register PMU_REG_3P0, field OUTPUT_TRG[12:8] (RW)
@@ -635,9 +636,9 @@ typedef union _hw_pmu_reg_2p5
  * may be reduced chip functionality or reliability at the extremes of the programming range.
  *
  * Values:
- * - 0x00 - 2.00V
+ * - 0x00 - 2.10V
  * - 0x10 - 2.50V
- * - 0x1f - 2.75V
+ * - 0x1f - 2.875V
  */
 //@{
 #define BP_PMU_REG_2P5_OUTPUT_TRG      (8)      //!< Bit position for PMU_REG_2P5_OUTPUT_TRG.
@@ -1141,10 +1142,11 @@ typedef union _hw_pmu_misc0
  *
  * Values:
  * - DEEP = 0x0 - Deep Stop Mode - All analog except rtc powered down on stop mode assertion
- * - LIGHT = 0x1 - Light Stop Mode - Certain analog functions such as certain regulators left up
- * - LOW_POWER_LIGHT = 0x2 - Low Power Light Stop Mode - Crystal Osc.:on, 24MHz RC Osc:on, and Band Gap reference : normal power.
- * - VERY_LOW_POWER_LIGHT = 0x3 - Very Low Power Light Stop Mode - Crystal Osc.:off, 24MHz RC Osc:on, and Band Gap reference: low
- *     power.
+ * - LIGHT = 0x1 - Light Stop Mode - All the analog domain except the LDO_1P1, LDO_2P5, and PLL3 are powered down on
+ *     STOP mode assertion. If required the CCM can be configured not to power down the oscillator
+ *     (XTALOSC). PLL3 can be disabled with register settings if desired.
+ * - 0x2 - Reserved
+ * - 0x3 - Reserved
  */
 //@{
 #define BP_PMU_MISC0_STOP_MODE_CONFIG      (11)      //!< Bit position for PMU_MISC0_STOP_MODE_CONFIG.
@@ -1165,9 +1167,7 @@ typedef union _hw_pmu_misc0
 #define BF_PMU_MISC0_STOP_MODE_CONFIG_V(v) BF_PMU_MISC0_STOP_MODE_CONFIG(BV_PMU_MISC0_STOP_MODE_CONFIG__##v)
 
 #define BV_PMU_MISC0_STOP_MODE_CONFIG__DEEP (0x0) //!< Deep Stop Mode - All analog except rtc powered down on stop mode assertion
-#define BV_PMU_MISC0_STOP_MODE_CONFIG__LIGHT (0x1) //!< Light Stop Mode - Certain analog functions such as certain regulators left up
-#define BV_PMU_MISC0_STOP_MODE_CONFIG__LOW_POWER_LIGHT (0x2) //!< Low Power Light Stop Mode - Crystal Osc.:on, 24MHz RC Osc:on, and Band Gap reference : normal power.
-#define BV_PMU_MISC0_STOP_MODE_CONFIG__VERY_LOW_POWER_LIGHT (0x3) //!< Very Low Power Light Stop Mode - Crystal Osc.:off, 24MHz RC Osc:on, and Band Gap reference: low power.
+#define BV_PMU_MISC0_STOP_MODE_CONFIG__LIGHT (0x1) //!< Light Stop Mode - All the analog domain except the LDO_1P1, LDO_2P5, and PLL3 are powered down on STOP mode assertion. If required the CCM can be configured not to power down the oscillator (XTALOSC). PLL3 can be disabled with register settings if desired.
 //@}
 
 /*! @name Register PMU_MISC0, field DISCON_HIGH_SNVS[13] (RW)
@@ -1242,8 +1242,8 @@ typedef union _hw_pmu_misc0
 
 /*! @name Register PMU_MISC0, field OSC_XTALOK_EN[17] (RW)
  *
- * This bit is asserted when the 24MHz oscillator is close to its operating frequency. Not related
- * to PMU, Clocking content
+ * This bit enables the detector which signals when the 24MHz crystal oscillator is stable. Not
+ * related to PMU, Clocking content
  */
 //@{
 #define BP_PMU_MISC0_OSC_XTALOK_EN      (17)      //!< Bit position for PMU_MISC0_OSC_XTALOK_EN.
@@ -2417,5 +2417,5 @@ typedef struct _hw_pmu
 #endif
 
 #endif // __HW_PMU_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

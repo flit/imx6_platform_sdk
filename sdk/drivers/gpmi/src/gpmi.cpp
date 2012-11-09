@@ -210,7 +210,7 @@ int gpmi_init(uint32_t minDelay, uint32_t maxDelay)
     g_gpmi.propDelayMax_ns = maxDelay;
     
     // Configure GPMI pins.
-    rawnand_iomux_config();
+    gpmi_iomux_config();
 
     // Init APBH DMA controller.
     gpmi_init_apbh();

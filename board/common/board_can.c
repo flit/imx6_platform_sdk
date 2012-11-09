@@ -52,7 +52,7 @@ void hw_can_iomux_config(uint32_t module_instance)
     max7310_set_gpio_output(1, 5, GPIO_HIGH_LEVEL); //expander b, io5 
 #endif
 
-    can_iomux_config(module_instance);
+    flexcan_iomux_config(module_instance);
 
 #ifdef BOARD_SABRE_AI
     switch (module_instance)

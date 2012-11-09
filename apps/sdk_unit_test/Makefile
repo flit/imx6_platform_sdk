@@ -113,7 +113,8 @@ ifeq "$(BOARD)" "sabre_ai"
         $(SDK_LIB_ROOT)/drivers/flexcan/test \
         $(SDK_LIB_ROOT)/drivers/eim/test \
         $(SDK_LIB_ROOT)/drivers/pcie/test \
-       	$(SDK_LIB_ROOT)/drivers/spi/test 
+       	$(SDK_LIB_ROOT)/drivers/spi/test \
+	$(SDK_LIB_ROOT)/drivers/enet/test
 endif
 
 # Tests only available on the smart_device board.

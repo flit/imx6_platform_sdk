@@ -309,6 +309,9 @@ void usb0_device_mouse_test(usb_module_t *port)
 		while (tloop--) {
 		    if (getchar() == 'x') {
 			printf("USB device test exits.\n");
+    			//! Stop controller
+   			HW_USBC_USBCMD_WR(core, HW_USBC_USBCMD_RD(core) & (!BM_USBC_UH1_USBCMD_RS));
+
 			return ;
 		    }
 		}

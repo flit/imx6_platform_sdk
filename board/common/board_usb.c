@@ -48,7 +48,7 @@ void usbEnableVbus(usb_module_t * port)
     case OTG1:
 #ifdef BOARD_SABRE_AI
         // Vbus control is on I2C port expander C1 for the ARD board.
-        max7310_set_gpio_output(MAX7310_I2C_ID2, 1, 1);
+        max7310_set_gpio_output(2, 1, 1);
 #endif
 #if defined(BOARD_EVB) || defined(BOARD_SMART_DEVICE)
         reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_D22, ALT5);
@@ -65,7 +65,7 @@ void usbEnableVbus(usb_module_t * port)
     case OTG2:
 #ifdef BOARD_SABRE_AI
         // Vbus control is on I2C port expander B7 for the ARD board.
-        max7310_set_gpio_output(MAX7310_I2C_ID1, 7, 1);
+        max7310_set_gpio_output(1, 7, 1);
 #endif
 
 #ifdef BOARD_EVB
@@ -110,7 +110,7 @@ void usbDisableVbus(usb_module_t * port)
     switch (port->controllerID) {
     case OTG:
 #ifdef BOARD_SABRE_AI
-        max7310_set_gpio_output(MAX7310_I2C_ID2, 1, 0);
+        max7310_set_gpio_output(2, 1, 0);
 #endif
 #if defined(BOARD_EVB) || defined(BOARD_SMART_DEVICE)
         gpio_set_level(GPIO_PORT3, 22, GPIO_LOW_LEVEL);
@@ -118,7 +118,7 @@ void usbDisableVbus(usb_module_t * port)
         break;
     case Host1:
 #ifdef BOARD_SABRE_AI
-        max7310_set_gpio_output(MAX7310_I2C_ID1, 7, 0);
+        max7310_set_gpio_output(1, 7, 0);
 #endif
 #ifdef BOARD_EVB
         gpio_set_level(GPIO_PORT3, 31, GPIO_LOW_LEVEL);

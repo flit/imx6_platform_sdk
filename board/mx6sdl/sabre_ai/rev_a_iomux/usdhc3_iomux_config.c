@@ -36,6 +36,7 @@ void usdhc3_iomux_config(void)
     // Config usdhc3.SD3_CLK to pad SD3_CLK(D14)
     // HW_IOMUXC_SW_MUX_CTL_PAD_SD3_CLK_WR(0x00000000);
     // HW_IOMUXC_SW_PAD_CTL_PAD_SD3_CLK_WR(0x0001B0B0);
+    // HW_IOMUXC_USDHC3_CARD_CLK_IN_SELECT_INPUT_WR(0x00000000);
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_SD3_CLK(0x020E030C)
     //   SION [4] - Software Input On Field Reset: DISABLED
@@ -98,6 +99,15 @@ void usdhc3_iomux_config(void)
             BF_IOMUXC_SW_PAD_CTL_PAD_SD3_CLK_SPEED_V(100MHZ) | 
             BF_IOMUXC_SW_PAD_CTL_PAD_SD3_CLK_DSE_V(40_OHM) | 
             BF_IOMUXC_SW_PAD_CTL_PAD_SD3_CLK_SRE_V(SLOW));
+    // Pad SD3_CLK is involved in Daisy Chain.
+    // Input Select Register:
+    // IOMUXC_USDHC3_CARD_CLK_IN_SELECT_INPUT(0x020E0934)
+    //   DAISY [0] - MUX Mode Select Field Reset: RESERVED0
+    //               Selecting Pads Involved in Daisy Chain.
+    //     RESERVED0 (0) - This field value is reserved.
+    //     SD3_CLK_ALT0 (1) - Select signal usdhc3 SD3_CLK as input from pad SD3_CLK(ALT0).
+    HW_IOMUXC_USDHC3_CARD_CLK_IN_SELECT_INPUT_WR(
+            BF_IOMUXC_USDHC3_CARD_CLK_IN_SELECT_INPUT_DAISY_V(RESERVED0));
 
     // Config usdhc3.SD3_CMD to pad SD3_CMD(B13)
     // HW_IOMUXC_SW_MUX_CTL_PAD_SD3_CMD_WR(0x00000000);

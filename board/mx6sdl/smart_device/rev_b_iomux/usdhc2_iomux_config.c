@@ -102,12 +102,12 @@ void usdhc2_iomux_config(void)
     // Pad SD2_CLK is involved in Daisy Chain.
     // Input Select Register:
     // IOMUXC_USDHC2_CARD_CLK_IN_SELECT_INPUT(0x020E0930)
-    //   DAISY [0] - MUX Mode Select Field Reset: NAND_CS3_B_ALT8
+    //   DAISY [0] - MUX Mode Select Field Reset: RESERVED0
     //               Selecting Pads Involved in Daisy Chain.
-    //     NAND_CS3_B_ALT8 (0) - Select signal usdhc2 SD2_CLKI as input from pad NAND_CS3_B(ALT8).
+    //     RESERVED0 (0) - This field value is reserved.
     //     SD2_CLK_ALT0 (1) - Select signal usdhc2 SD2_CLK as input from pad SD2_CLK(ALT0).
-//    HW_IOMUXC_USDHC2_CARD_CLK_IN_SELECT_INPUT_WR(
-//            BF_IOMUXC_USDHC2_CARD_CLK_IN_SELECT_INPUT_DAISY_V(SD2_CLK_ALT0));
+    HW_IOMUXC_USDHC2_CARD_CLK_IN_SELECT_INPUT_WR(
+            BF_IOMUXC_USDHC2_CARD_CLK_IN_SELECT_INPUT_DAISY_V(SD2_CLK_ALT0));
 
     // Config usdhc2.SD2_CMD to pad SD2_CMD(F19)
     // HW_IOMUXC_SW_MUX_CTL_PAD_SD2_CMD_WR(0x00000000);

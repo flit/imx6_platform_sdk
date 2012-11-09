@@ -102,12 +102,12 @@ void usdhc3_iomux_config(void)
     // Pad SD3_CLK is involved in Daisy Chain.
     // Input Select Register:
     // IOMUXC_USDHC3_CARD_CLK_IN_SELECT_INPUT(0x020E0934)
-    //   DAISY [0] - MUX Mode Select Field Reset: NAND_ALE_ALT8
+    //   DAISY [0] - MUX Mode Select Field Reset: RESERVED0
     //               Selecting Pads Involved in Daisy Chain.
-    //     NAND_ALE_ALT8 (0) - Select signal usdhc3 SD3_CLKI as input from pad NAND_ALE(ALT8).
+    //     RESERVED0 (0) - This field value is reserved.
     //     SD3_CLK_ALT0 (1) - Select signal usdhc3 SD3_CLK as input from pad SD3_CLK(ALT0).
-//    HW_IOMUXC_USDHC3_CARD_CLK_IN_SELECT_INPUT_WR(
-//            BF_IOMUXC_USDHC3_CARD_CLK_IN_SELECT_INPUT_DAISY_V(SD3_CLK_ALT0));
+    HW_IOMUXC_USDHC3_CARD_CLK_IN_SELECT_INPUT_WR(
+            BF_IOMUXC_USDHC3_CARD_CLK_IN_SELECT_INPUT_DAISY_V(SD3_CLK_ALT0));
 
     // Config usdhc3.SD3_CMD to pad SD3_CMD(B13)
     // HW_IOMUXC_SW_MUX_CTL_PAD_SD3_CMD_WR(0x00000000);

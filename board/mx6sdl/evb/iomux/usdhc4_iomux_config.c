@@ -106,8 +106,8 @@ void usdhc4_iomux_config(void)
     //               Selecting Pads Involved in Daisy Chain.
     //     NAND_READY_ALT8 (0) - Select signal usdhc4 SD4_CLKI as input from pad NAND_READY(ALT8).
     //     SD4_CLK_ALT0 (1) - Select signal usdhc4 SD4_CLK as input from pad SD4_CLK(ALT0).
-    HW_IOMUXC_USDHC4_CARD_CLK_IN_SELECT_INPUT_WR(
-            BF_IOMUXC_USDHC4_CARD_CLK_IN_SELECT_INPUT_DAISY_V(SD4_CLK_ALT0));
+//    HW_IOMUXC_USDHC4_CARD_CLK_IN_SELECT_INPUT_WR(
+//            BF_IOMUXC_USDHC4_CARD_CLK_IN_SELECT_INPUT_DAISY_V(SD4_CLK_ALT0));
 
     // Config usdhc4.SD4_CMD to pad SD4_CMD(B17)
     // HW_IOMUXC_SW_MUX_CTL_PAD_SD4_CMD_WR(0x00000000);

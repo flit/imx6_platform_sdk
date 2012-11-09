@@ -105,7 +105,6 @@ void usdhc1_iomux_config(void)
     // Config usdhc1.SD1_CLK to pad SD1_CLK(D20)
     // HW_IOMUXC_SW_MUX_CTL_PAD_SD1_CLK_WR(0x00000000);
     // HW_IOMUXC_SW_PAD_CTL_PAD_SD1_CLK_WR(0x0001B0B0);
-    // HW_IOMUXC_USDHC1_CARD_CLK_IN_SELECT_INPUT_WR(0x00000000);
     // Mux Register:
     // IOMUXC_SW_MUX_CTL_PAD_SD1_CLK(0x020E02DC)
     //   SION [4] - Software Input On Field Reset: DISABLED
@@ -167,15 +166,6 @@ void usdhc1_iomux_config(void)
             BF_IOMUXC_SW_PAD_CTL_PAD_SD1_CLK_SPEED_V(100MHZ) | 
             BF_IOMUXC_SW_PAD_CTL_PAD_SD1_CLK_DSE_V(40_OHM) | 
             BF_IOMUXC_SW_PAD_CTL_PAD_SD1_CLK_SRE_V(SLOW));
-    // Pad SD1_CLK is involved in Daisy Chain.
-    // Input Select Register:
-    // IOMUXC_USDHC1_CARD_CLK_IN_SELECT_INPUT(0x020E0928)
-    //   DAISY [0] - MUX Mode Select Field Reset: NAND_CS1_B_ALT8
-    //               Selecting Pads Involved in Daisy Chain.
-    //     NAND_CS1_B_ALT8 (0) - Select signal usdhc1 SD1_CLKI as input from pad NAND_CS1_B(ALT8).
-    //     SD1_CLK_ALT0 (1) - Select signal usdhc1 SD1_CLK as input from pad SD1_CLK(ALT0).
-    HW_IOMUXC_USDHC1_CARD_CLK_IN_SELECT_INPUT_WR(
-            BF_IOMUXC_USDHC1_CARD_CLK_IN_SELECT_INPUT_DAISY_V(NAND_CS1_B_ALT8));
 
     // Config usdhc1.SD1_CMD to pad SD1_CMD(B21)
     // HW_IOMUXC_SW_MUX_CTL_PAD_SD1_CMD_WR(0x00000000);

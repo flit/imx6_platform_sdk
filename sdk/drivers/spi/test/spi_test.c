@@ -60,7 +60,8 @@ static int numonyx_spi_nor_test(void)
     if(!is_input_char('y', NULL))
 	return FALSE;
 
-    HW_IOMUXC_SW_MUX_CTL_PAD_EIM_A24_WR(ALT5);
+    HW_IOMUXC_SW_MUX_CTL_PAD_EIM_ADDR24_WR(
+    		BF_IOMUXC_SW_MUX_CTL_PAD_EIM_ADDR24_MUX_MODE_V(ALT5));
     gpio_set_direction(GPIO_PORT5, 4, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT5, 4, GPIO_LOW_LEVEL);
 #endif

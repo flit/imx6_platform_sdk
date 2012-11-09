@@ -145,7 +145,7 @@ uint32_t eim_init(uint32_t cs, uint32_t dsz, uint32_t mum, uint32_t aus)
     HW_EIM_CS_REGS[cs].GCR1.B.CSEN = 1;
 
     /*! Init IOMUX */
-    weim_iomux_config();
+    eim_iomux_config();
 
     return TRUE;
 }
@@ -190,7 +190,7 @@ uint32_t eim_init(uint32_t cs, uint32_t dsz, uint32_t mum, uint32_t aus)
 //    eim_reg_base->reg_cs[cs].gcr1 |= REG_CSCFG_MSK_CSEN;
 //
 //    /* Init IOMUX */
-//    weim_iomux_config();
+//    eim_iomux_config();
 //
 //    return TRUE;
 //}

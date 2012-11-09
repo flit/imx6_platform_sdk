@@ -126,7 +126,7 @@ static void lcdif_init(void)
     lcdif_backlight_on();
 
     /* pin muxing for LCD */
-    lcdif_iomux_config();
+    lcd_iomux_config();
 
 	/* reset controller */
     lcdif_sw_reset();

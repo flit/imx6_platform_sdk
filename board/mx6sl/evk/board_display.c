@@ -126,7 +126,7 @@ void epdc_power_supply(void)
 	int i = 0;
 
 	//EN : pmic_wakeup gpio2.14
-	HW_IOMUXC_SW_MUX_CTL_PAD_EPDC_PWRWAKEUP.B.MUX_MODE = 0x5;
+	HW_IOMUXC_SW_MUX_CTL_PAD_EPDC_PWR_WAKE.B.MUX_MODE = 0x5;
 	gpio_set_direction(GPIO_PORT2, 14, GPIO_GDIR_OUTPUT);
 	gpio_set_level(GPIO_PORT2, 14, GPIO_HIGH_LEVEL);
 
@@ -143,7 +143,7 @@ void spdc_power_up(void)
 {
     int i = 0;
 
-    HW_IOMUXC_SW_MUX_CTL_PAD_EPDC_D10_WR(0x5);
+    HW_IOMUXC_SW_MUX_CTL_PAD_EPDC_DATA10_WR(0x5);
     gpio_set_direction(GPIO_PORT1, 17, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT1, 17, GPIO_LOW_LEVEL);
 
@@ -162,12 +162,12 @@ void spdc_power_up(void)
      * VDPS         24(NEG)                 2,4
      * Vcom:        22(VCOM)                22,24
      */
-    HW_IOMUXC_SW_PAD_CTL_PAD_EPDC_PWRCTRL0_WR(0x5);
+    HW_IOMUXC_SW_PAD_CTL_PAD_EPDC_PWR_CTRL0_WR(0x5);
     gpio_set_direction(GPIO_PORT2, 7, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT2, 7, GPIO_HIGH_LEVEL);
 
     //EN : pmic_wakeup gpio2.14
-    HW_IOMUXC_SW_MUX_CTL_PAD_EPDC_PWRWAKEUP_WR(0x05);    //  gpio2.GPIO[31]
+    HW_IOMUXC_SW_MUX_CTL_PAD_EPDC_PWR_WAKE_WR(0x05);    //  gpio2.GPIO[31]
     gpio_set_direction(GPIO_PORT2, 14, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT2, 14, GPIO_HIGH_LEVEL);
 
@@ -179,7 +179,7 @@ void spdc_power_up(void)
     while (i++ < 10000)
         __asm("nop");
 
-    HW_IOMUXC_SW_MUX_CTL_PAD_EPDC_D10_WR(0x5);
+    HW_IOMUXC_SW_MUX_CTL_PAD_EPDC_DATA10_WR(0x5);
     gpio_set_direction(GPIO_PORT1, 17, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT1, 17, GPIO_HIGH_LEVEL);
 }

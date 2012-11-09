@@ -106,8 +106,8 @@ void usdhc2_iomux_config(void)
     //               Selecting Pads Involved in Daisy Chain.
     //     NAND_CS3_B_ALT8 (0) - Select signal usdhc2 SD2_CLKI as input from pad NAND_CS3_B(ALT8).
     //     SD2_CLK_ALT0 (1) - Select signal usdhc2 SD2_CLK as input from pad SD2_CLK(ALT0).
-    HW_IOMUXC_USDHC2_CARD_CLK_IN_SELECT_INPUT_WR(
-            BF_IOMUXC_USDHC2_CARD_CLK_IN_SELECT_INPUT_DAISY_V(SD2_CLK_ALT0));
+//    HW_IOMUXC_USDHC2_CARD_CLK_IN_SELECT_INPUT_WR(
+//            BF_IOMUXC_USDHC2_CARD_CLK_IN_SELECT_INPUT_DAISY_V(SD2_CLK_ALT0));
 
     // Config usdhc2.SD2_CMD to pad SD2_CMD(F19)
     // HW_IOMUXC_SW_MUX_CTL_PAD_SD2_CMD_WR(0x00000000);

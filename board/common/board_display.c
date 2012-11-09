@@ -252,17 +252,17 @@ void epdc_power_supply(void)
     gpio_set_level(GPIO_PORT2, 31, GPIO_HIGH_LEVEL);
 
     /*PMIC vcom */
-    HW_IOMUXC_SW_MUX_CTL_PAD_EIM_D17.B.MUX_MODE = 0x5;
+    HW_IOMUXC_SW_MUX_CTL_PAD_EIM_DATA17.B.MUX_MODE = 0x5;
     gpio_set_direction(GPIO_PORT3, 17, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT3, 17, GPIO_HIGH_LEVEL);
 #elif defined(BOARD_SMART_DEVICE)
     /*PMIC wakeup */
-    HW_IOMUXC_SW_MUX_CTL_PAD_EIM_D20.B.MUX_MODE = 0x5;
+    HW_IOMUXC_SW_MUX_CTL_PAD_EIM_DATA20.B.MUX_MODE = 0x5;
     gpio_set_direction(GPIO_PORT3, 20, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT3, 20, GPIO_HIGH_LEVEL);
 
     /*PMIC vcom */
-    HW_IOMUXC_SW_MUX_CTL_PAD_EIM_D17.B.MUX_MODE = 0x5;
+    HW_IOMUXC_SW_MUX_CTL_PAD_EIM_DATA17.B.MUX_MODE = 0x5;
     gpio_set_direction(GPIO_PORT3, 17, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT3, 17, GPIO_HIGH_LEVEL);
 #endif
@@ -270,7 +270,7 @@ void epdc_power_supply(void)
 
 #if defined(CHIP_MX6SL)
     //EN : pmic_wakeup gpio2.14
-    HW_IOMUXC_SW_MUX_CTL_PAD_EPDC_PWRWAKEUP.B.MUX_MODE = 0x5;
+    HW_IOMUXC_SW_MUX_CTL_PAD_EPDC_PWR_WAKE.B.MUX_MODE = 0x5;
     gpio_set_direction(GPIO_PORT2, 14, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT2, 14, GPIO_HIGH_LEVEL);
 

@@ -67,27 +67,8 @@ static int imx_fec_setup(void)
 	reg &= ~(BM_IOMUXC_GPR1_ENET_CLK_SEL);
 	HW_IOMUXC_GPR1_WR(reg);
 	
-#if 0
-	/* Enable PLLs */
-	reg = HW_CCM_ANALOG_PLL_ENET_RD();	/* ENET PLL */
-	if ((reg & BM_CCM_ANALOG_PLL_ENET_POWERDOWN) || (!(reg & BM_CCM_ANALOG_PLL_ENET_LOCK))) {
-		reg &= ~BM_CCM_ANALOG_PLL_ENET_POWERDOWN;
-		HW_CCM_ANALOG_PLL_ENET_WR(reg);
-		while (timeout--) {
-			if (HW_CCM_ANALOG_PLL_ENET_RD() & BM_CCM_ANALOG_PLL_ENET_LOCK)
-				break;
-		}
-		if (timeout <= 0){
-			printf("FEC: enabling ENET PLL failed");
-			return -1;
-		}	
-	}
-	
-	/* Enable FEC clock */
-	reg |= BM_CCM_ANALOG_PLL_ENET_ENABLE;
-	reg &= ~BM_CCM_ANALOG_PLL_ENET_BYPASS;
-	HW_CCM_ANALOG_PLL_ENET_WR(reg);
-#endif
+	/* Enable ENET PLLs */
+	/* already done in ccm_init() */
 
 	return 0;
 }

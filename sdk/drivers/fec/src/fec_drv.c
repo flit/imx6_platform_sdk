@@ -225,7 +225,9 @@ void imx_fec_phy_init(imx_fec_priv_t * dev)
     }
 
 	/* re-start Auto Neg */
-    imx_fec_mii_write(dev->fec_reg, dev->phy_addr, PHY_CTRL_REG, 0x1200);
+    imx_fec_mii_read(dev->fec_reg, dev->phy_addr, PHY_CTRL_REG, &value);
+	value |= 0x1200;
+    imx_fec_mii_write(dev->fec_reg, dev->phy_addr, PHY_CTRL_REG, value);
 	
 	/* read phy status */
     imx_fec_mii_read(dev->fec_reg, dev->phy_addr, PHY_STATUS_REG, &value);

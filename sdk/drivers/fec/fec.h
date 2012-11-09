@@ -225,12 +225,6 @@ typedef struct imx_fec_priv_s {
 #define FEC_STATUS_10M		0x8000000
 #define FEC_STATUS_100M		0x10000000
 #define FEC_STATUS_1000M		0x20000000
-/*The defines about PHY */
-#ifndef FEC_PHY_ADDR
-#define PHY_PORT_ADDR		0x01
-#else
-#define PHY_PORT_ADDR		FEC_PHY_ADDR
-#endif
 
 #define PHY_CTRL_REG		0x00
 

@@ -78,6 +78,7 @@ extern int lcdif_test(void);
 extern int camera_test(void);
 extern void epdc_test(void);
 extern void spdc_test(void);
+extern int fec_test(void);
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -149,6 +150,7 @@ const menuitem_t k_menuItems[] = {
         DEFINE_TEST_MENU_ITEM("us", "usb test",     	usb_test),
         DEFINE_TEST_MENU_ITEM("n",  "spi nor test",     spi_test),
         DEFINE_TEST_MENU_ITEM("pc", "pcie test",        pcie_test),
+		DEFINE_TEST_MENU_ITEM("en", "enet test",		enet_test),
 #endif // defined(BOARD_SMART_DEVICE)
 
 #elif defined(CHIP_MX6SL)
@@ -160,6 +162,7 @@ const menuitem_t k_menuItems[] = {
         DEFINE_TEST_MENU_ITEM("us", "usb test",     	usb_test),
         DEFINE_TEST_MENU_ITEM("n",  "spi nor test",     spi_test),
         DEFINE_TEST_MENU_ITEM("a",  "audio test",       audio_test),
+		DEFINE_TEST_MENU_ITEM("f",	"fec test",			fec_test),
 #endif // defined(CHIP_MX6SL)
         
         // Quit menu item

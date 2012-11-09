@@ -52,7 +52,7 @@ void gic_test(void)
     gicTestDone = 1;
 
     printf("Sending SGI\n");
-    gic_send_sgi(SW_INTERRUPT_3, 1, 0);
+    gic_send_sgi(SW_INTERRUPT_3, 1, kGicSgiFilter_UseTargetList);
 
     printf("Waiting\n");
     while (gicTestDone) ;

@@ -202,7 +202,8 @@ enum _imx_interrupts
     IMX_INT_INTERRUPT_156 = 156,    //!< Reserved.
     IMX_INT_INTERRUPT_157 = 157,    //!< Reserved.
     IMX_INT_INTERRUPT_158 = 158, //!< Reserved.
-    IMX_INT_PMU_DIG_BO = 159    //!< //!< PMU digital regulator brown-out interrupt request.
+    IMX_INT_PMU_DIG_BO = 159,    //!< //!< PMU digital regulator brown-out interrupt request.
+    IMX_INTERRUPT_COUNT = 160   //!< Total number of interrupts.
 };
 
 

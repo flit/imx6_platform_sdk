@@ -18,7 +18,6 @@ board_id/src/board_id.c
 camera/src/camera_profile.c
 cpu_utility/src/cpu_get_cores.c
 eim/src/eim.c
-gic/src/gic.c
 gpio/src/gpio.c
 i2c/src/imx_i2c_slave.c
 i2c/src/imx_i2c.c

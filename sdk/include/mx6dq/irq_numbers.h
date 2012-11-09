@@ -224,7 +224,8 @@ enum _imx_interrupts
     IMX_INT_DCIC1 = 156,    //!< Logical OR of DCIC1 interrupt requests.
     IMX_INT_DCIC2 = 157,    //!< Logical OR of DCIC2 interrupt requests.
     IMX_INT_MLB_AHB1 = 158, //!< Logical OR of channel[63:32] interrupt requests.
-    IMX_INT_PMU_DIG_BO = 159    //!< //!< PMU digital regulator brown-out interrupt request.
+    IMX_INT_PMU_DIG_BO = 159,    //!< //!< PMU digital regulator brown-out interrupt request.
+    IMX_INTERRUPT_COUNT = 160   //!< Total number of interrupts.
 };
 
 

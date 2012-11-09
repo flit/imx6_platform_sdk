@@ -28,9 +28,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #include <assert.h>
-#include "gic/gic.h"
+#include "core/gic.h"
 #include "gic_registers.h"
-#include "cortex_a9.h"
+#include "core/cortex_a9.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Prototypes

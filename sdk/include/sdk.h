@@ -54,7 +54,7 @@
 #include "utility/system_util.h"
 #include "gpio/gpio.h"
 #include "core/interrupt.h"
-#include "gic/gic.h"
+#include "core/gic.h"
 #include "ccm_pll.h"
 #include "ioexpander/max7310.h"
 #include "i2c/imx_i2c.h"

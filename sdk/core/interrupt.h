@@ -30,17 +30,22 @@
 #ifndef __INTERRUPT_H__
 #define __INTERRUPT_H__
 
+#include "sdk_types.h"
 #include "irq_numbers.h"
 
 //! @addtogroup diag_interrupt
 //! @{
 
 /*!
- * @file  interrupt.h
+ * @file interrupt.h
+ * @brief Interface for the interrupt manager.
  */
 
-#define ATTACH_INTERRUPT(index,routine) ( g_interrupt_handlers[index] = routine )
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
 
+//! @brief
 typedef enum {
     CPU_0,
     CPU_1,
@@ -48,9 +53,7 @@ typedef enum {
     CPU_3,
 } cpuid_e;
 
-extern void (*g_interrupt_handlers[]) (void);
-extern volatile uint32_t g_vectNum[4];
-
+//! @brief Interrupt service routine.
 typedef void (*irq_hdlr_t) (void);
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -61,12 +64,30 @@ typedef void (*irq_hdlr_t) (void);
 extern "C" {
 #endif
 
-void disable_interrupt(uint32_t irq_id, uint32_t cpu_id);
+//! @brief Enable an interrupt.
+//!
+//! Sets the interrupt priority and makes it non-secure. Then the interrupt is
+//! enabled on the CPU specified by @a cpu_id.
+//!
+//! @param irq_id The interrupt number to enable.
+//! @param cpu_id The index of the CPU for which the interrupt will be enabled.
+//! @param priority The interrupt priority, from 0-255. Lower numbers have higher priority.
 void enable_interrupt(uint32_t irq_id, uint32_t cpu_id, uint32_t priority);
-void register_interrupt_routine(uint32_t irq_id, irq_hdlr_t isr);
-void default_interrupt_routine(void);
 
-void enableALL_interrupts_non_secure(void);
+//! @brief Disable an interrupt on the specified CPU.
+//!
+//! @param irq_id The interrupt number to disabled.
+//! @param cpu_id The index of the CPU for which the interrupt will be disabled.
+void disable_interrupt(uint32_t irq_id, uint32_t cpu_id);
+
+//! @brief Set the interrupt service routine for the specified interrupt.
+//!
+//! @param irq_id The interrupt number.
+//! @param isr Function that will be called to handle the interrupt.
+void register_interrupt_routine(uint32_t irq_id, irq_hdlr_t isr);
+
+//! @brief Interrupt handler that simply prints a message.
+void default_interrupt_routine(void);
 
 #if defined(__cplusplus)
 }

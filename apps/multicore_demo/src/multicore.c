@@ -34,7 +34,7 @@
 #include "registers/regssrc.h"
 #include "cpu_utility/cpu_utility.h"
 #include "core/cortex_a9.h"
-#include "gic/gic.h"
+#include "core/gic.h"
 #include "core/interrupt.h"
 #include "utility/system_util.h"
 
@@ -65,12 +65,14 @@ void SGI3_ISR(void)
 
     if (cpu_id < (cpuCount - 1))
     {
-        gic_send_sgi(SW_INTERRUPT_3, (1 << (cpu_id + 1)), 0);   // send to next core to start sgi loop;
+        // send to next core to start sgi loop
+        gic_send_sgi(SW_INTERRUPT_3, (1 << (cpu_id + 1)), kGicSgiFilter_UseTargetList);
     }
 
     if (cpu_id == (cpuCount - 1))
     {
-        isTestDone = 0;        // test complete
+        // test complete
+        isTestDone = 0;
     }
 }
 
@@ -134,7 +136,8 @@ void multicore_test(void)
     {
         isTestDone = 1;
 
-        register_interrupt_routine(SW_INTERRUPT_3, SGI3_ISR);   // register sgi isr
+        // register sgi isr
+        register_interrupt_routine(SW_INTERRUPT_3, SGI3_ISR);
 
         printf("Running the GIC Multicore Test \n");
         printf("Starting and sending SGIs to secondary CPUs for \"hello world\" \n\n");
@@ -142,9 +145,8 @@ void multicore_test(void)
         // start second cpu
         start_secondary_cpu(1, &multicore_test);
 
-        while (isTestDone) ;   //cpu0 wait until test is done, that is until cpu3 completes its SGI.
-        //writel((readl(SRC_BASE_ADDR + SRC_SCR_OFFSET) & ~(7 << 22)),
-        //       (SRC_BASE_ADDR + SRC_SCR_OFFSET));
+        // cpu0 wait until test is done, that is until cpu3 completes its SGI.
+        while (isTestDone);
         
         // put other cores back into reset with SRC module
         HW_SRC_SCR.B.CORE1_ENABLE = 0;
@@ -163,15 +165,16 @@ void multicore_test(void)
 
         if (cpu_id == (cpuCount - 1))
         {
-            //void send_sgi(unsigned int ID, unsigned int target_list, unsigned int filter_list);
-            gic_send_sgi(SW_INTERRUPT_3, 1, 0); // send to cpu_0 to start sgi loop;
+            // send to cpu_0 to start sgi loop
+            gic_send_sgi(SW_INTERRUPT_3, 1, kGicSgiFilter_UseTargetList);
         }
         else
         {
             start_secondary_cpu(cpu_id + 1, &multicore_test);
         }
         
-        while (1) ;             //do nothing wait to be interrupted
+        // do nothing wait to be interrupted
+        while (1);
     }
 }
 

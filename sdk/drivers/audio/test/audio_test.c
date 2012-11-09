@@ -31,9 +31,7 @@
 #include <stdio.h>
 #include "sdk.h"
 #include "audio/audio.h"
-#include "wav_data.data"
 
-#define WAVE_SUPPORT
 #define WAVE_CHUNK_DATA_OFFSET	44
 
 extern int32_t ssi_playback(audio_pcm_p);
@@ -49,21 +47,13 @@ typedef struct {
 } audio_test_t;
 
 audio_pcm_para_t pcm_para = {
-#ifdef WAVE_SUPPORT
     .sample_rate = SAMPLERATE_16KHz,
     .channel_number = 1,
-#else
-    .sample_rate = SAMPLERATE_44_1KHz,
-    .channel_number = 2,
-#endif
     .word_length = WL_16,
 };
 
 audio_pcm_t pcm_music = {
-    .name = "some noise",
     .para = &pcm_para,
-    .buf = (uint8_t *) wav_data,
-    .size = sizeof(wav_data),
 };
 
 static audio_test_t audio_tests[] = {
@@ -88,10 +78,11 @@ int32_t audio_test(void)
     int32_t retv=-1, idx, num;
     uint8_t sel;
 
-#ifdef WAVE_SUPPORT
     pcm_music.name = "nice musci";
     /*
      * Audio driver supports 2 channels only. Converte the mono wav to two channels.
+     * While esai driver support 44.1/48KHz only since CS42888's issue, the esai dirver 
+     * will convert it to 48Khz.
      */
     uint32_t chunk_data_len = (uint32_t)wavefile_end - (uint32_t)wavefile_start - WAVE_CHUNK_DATA_OFFSET;
     uint16_t *src_ptr = (uint16_t *) ((uint32_t)wavefile_start + WAVE_CHUNK_DATA_OFFSET);
@@ -113,7 +104,6 @@ int32_t audio_test(void)
     	pcm_music.buf = (uint8_t *)src_ptr;
     	pcm_music.size = chunk_data_len;
     }
-#endif
 
     num = sizeof(audio_tests)/sizeof(audio_test_t);
 
@@ -152,11 +142,9 @@ int32_t audio_test(void)
         }
     } while (1);
 
-#ifdef WAVE_SUPPORT
     if(buf != NULL){
 	free(buf);
     }
-#endif
 
     return retv;
 }

@@ -50,7 +50,8 @@ int32_t esai_playback(audio_pcm_p pcm_file)
 
     dev_para.bus_mode = AUDIO_BUS_MODE_MASTER;
     dev_para.trans_dir = AUDIO_TRANS_DIR_TX;
-    dev_para.sample_rate = pcm_file->para->sample_rate;
+    /* ESAI driver supports 48KHz only because of CS42888 issue */
+    dev_para.sample_rate = SAMPLERATE_48KHz;
     dev_para.word_length = pcm_file->para->word_length;
     dev_para.channel_number = pcm_file->para->channel_number;
 

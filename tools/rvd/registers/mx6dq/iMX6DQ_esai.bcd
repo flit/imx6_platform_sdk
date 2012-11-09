@@ -467,8 +467,8 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_ESAI_RCCR_RPM={\
         gui_name="RPM":position=0:size=8:read_only=false\
       }\
-      :bit_fields.B_ESAI_RCCR_RPSP={\
-        gui_name="RPSP":position=8:size=1:read_only=false\
+      :bit_fields.B_ESAI_RCCR_RPSR={\
+        gui_name="RPSR":position=8:size=1:read_only=false\
       }\
       :bit_fields.B_ESAI_RCCR_RDC={\
         gui_name="RDC":position=9:size=5:read_only=false\
@@ -732,7 +732,7 @@ Advanced_Information.Cortex-A9={\
     line="$+":\
     line="=G_ESAI_RCCR":\
     line="B_ESAI_RCCR_RPM":\
-    line="B_ESAI_RCCR_RPSP":\
+    line="B_ESAI_RCCR_RPSR":\
     line="B_ESAI_RCCR_RDC":\
     line="B_ESAI_RCCR_RFP":\
     line="B_ESAI_RCCR_RCKP":\

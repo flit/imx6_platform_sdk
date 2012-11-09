@@ -26,7 +26,7 @@
 /*
  * i.MX6DQ KPP
  *
-
+ * KPP Registers
  *
  * Registers defined in this header file:
  * - HW_KPP_KPCR - Keypad Control Register
@@ -596,5 +596,5 @@ typedef struct _hw_kpp
 #endif
 
 #endif // __HW_KPP_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

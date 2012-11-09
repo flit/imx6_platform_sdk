@@ -195,8 +195,13 @@ int32_t WM8962_DAC_configure(void *priv, audio_dev_para_p para)
 
     /* Clocking configuration */
     WM8962_reg_modify(codec, 0x08, 0x0800, 0x0820);    //CLKREG_OVD=1, SYSCLK_ENA=0
-    WM8962_REG_WRITE(codec, 0x1B, 0x0010); //Set sample rate to 48kHz
-    WM8962_reg_modify(codec, 0x38, 0x0006, 0x001E);    //MCLK_RATE=0011 (256fs)
+    if(SAMPLERATE_44_1KHz == para->sample_rate) {
+    	WM8962_REG_WRITE(codec, 0x1B, 0x0000); //Set sample rate to 44.1kHz
+    	WM8962_reg_modify(codec, 0x38, 0x0006, 0x001E);    //MCLK_RATE=0011 (256fs)
+    }else if(SAMPLERATE_16KHz == para->sample_rate){
+    	WM8962_REG_WRITE(codec, 0x1B, 0x0013); //Set sample rate to 16K
+    	WM8962_reg_modify(codec, 0x38, 0x0006, 0x001E);    //MCLK_RATE=0011 (256fs)
+    }
     WM8962_reg_modify(codec, 0x08, 0x0020, 0x0620);    //MCLK_SRC=00 (MCLK pin), SYSCLK_ENA=1 
 
     /* ADC->HP path configuration */

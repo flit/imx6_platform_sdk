@@ -26,7 +26,7 @@
 /*
  * i.MX6DQ MIPI_HSI
  *
-
+ * MIPI HSI Registers
  *
  * Registers defined in this header file:
  * - HW_MIPI_HSI_CTRL - HSI Control Register
@@ -171,7 +171,7 @@ typedef union _hw_mipi_hsi_ctrl
 /*! @name Register MIPI_HSI_CTRL, field TX_BREAK[4] (RW)
  *
  * Seeting this bit to one trigger a transmission break at HSI Tx. Once this bit is set to one, the
- * HSI controller will send a serise zeros on "tx_data" port according to the tx break co unt. It
+ * HSI controller will send a serise zeros on HSI_TX_DATA port according to the tx break co unt. It
  * will be automatically cleared, when the send is finished.
  */
 //@{
@@ -385,7 +385,7 @@ typedef union _hw_mipi_hsi_tx_conf
     struct _hw_mipi_hsi_tx_conf_bitfields
     {
         unsigned TRANS_MODE : 1; //!< [0] 
-        unsigned WAKEUP : 1; //!< [1] When this bit gets set to one, HSI transmitter sends "tx_wake" signal to Rx of other device.
+        unsigned WAKEUP : 1; //!< [1] When this bit gets set to one, HSI transmitter sends HSI_TX_WAKE signal to Rx of other device.
         unsigned RESERVED0 : 6; //!< [7:2] Reserved.
         unsigned TIMEOUT_CNT : 4; //!< [11:8] 
         unsigned RESERVED1 : 4; //!< [15:12] Reserved.
@@ -453,8 +453,8 @@ typedef union _hw_mipi_hsi_tx_conf
 
 /*! @name Register MIPI_HSI_TX_CONF, field WAKEUP[1] (RW)
  *
- * When this bit gets set to one, HSI transmitter sends "tx_wake" signal to Rx of other device. For
- * a transmit operation this bit should be one.
+ * When this bit gets set to one, HSI transmitter sends HSI_TX_WAKE signal to Rx of other device.
+ * For a transmit operation this bit should be one.
  *
  * Values:
  * - 0 - Transmitter is in Sleep State
@@ -1013,7 +1013,7 @@ typedef union _hw_mipi_hsi_rx_conf
  *
  * Receive Frame Timeout Counter: The counter shall be started when the first bit of the Frame has
  * been found. The counter shall be stopped once the receiver has received the correct number of
- * bits for a Frame. If the counter expires before Frame reception is completed, the receiver shall
+ * bits for a Frame. If the counter expires before Frame reception is completed, the receiver will
  * signal to the protocol layer that it has found an incomplete Frame and asserts Rx Error
  * Interrupt. 7'h0 14800 ---> tx_refclk 7'h1 16400 ---> tx_refclk 7'h2 18000 ---> tx_refclk 7'h4
  * 19600 ---> tx_refclk 7'h8 21200 ---> tx_refclk 7'h10 22800 ---> tx_refclk 7'h20 24400 --->
@@ -15177,5 +15177,5 @@ typedef struct _hw_mipi_hsi
 #endif
 
 #endif // __HW_MIPI_HSI_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

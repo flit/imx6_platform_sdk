@@ -784,32 +784,32 @@ typedef union _hw_pcie_ep_bist
  * In addition, you can configure each BAR to have its incoming Requests routed to either: RTRGT1
  * The following sections describe how to set up the BAR types and sizes by programming values into
  * the base address registers. For more information about routing Requests to either RTRGT1 on a
- * BAR-by- BAR basis, see îReceive Filteringî on page 85. The contents of the six BARs determine the
- * BAR configuration. The reset values of the BARs are determined by hardware configuration options.
- * At runtime, application software can overwrite the BAR contents to reconfigure the BARs (unless
- * the affected BAR is removed during hardware configuration). Application software must observe the
- * rules listed below when writing to the BARs. The rules for BAR configuration are the same for all
- * three pairs. Using BARs 0 and 1 as the example pair, the rules for BAR configuration are: Any
- * pair (for example, BARs 0 and 1) can be configured as one 64-bit BAR, two 32-bit BARs, or one
- * 32-bit BAR. BAR pairs cannot overlap to form a 64-bit BAR. For example, you cannot combine BARs 1
- * and 2 to form a 64-bit BAR. An I/O BAR must be a 32-bit BAR and cannot be prefetchable. If the
- * device is configured as a PCI Express Endpoint (not a Legacy Endpoint), then any memory that is
- * configured as prefetchable must be a 64-bit memory BAR. If BAR 0 is configured as a 64-bit BAR:
- * BAR 1 is the upper 32 bits of the combined 64-bit BAR formed by BARs 0 and 1. Therefore, BAR 1
- * must be disabled and cannot be configured independently. BAR 0 must be a memory BAR and can be
- * either prefetchable or non-prefetchable. The contents of the BAR 0 Mask register determine the
- * number of writable bits in the 64-bit BAR, subject to the restrictions described in îBAR Mask
- * Registersî on page 536. The BAR 1 Mask register contains the upper 32 bits of the BAR 0 Mask
- * value. BAR 0 can be disabled by writing 0 to bit 0 of the BAR 0 Mask register If BAR 0 is
- * configured as a 32-bit BAR: You can configure BAR 1 as an independent 32-bit BAR BAR 0 can be
- * configured as a memory BAR or an I/O BAR. The contents of the BAR 0 Mask register determine the
- * number of writable bits in the 32-bit BAR 0, subject to the restrictions described in îBAR Mask
- * Registersî on page 536. BAR 0 can be disabled by writing 0 to bit 0 of the BAR 0 Mask register
- * When BAR 0 is configured as a 32-bit BAR, BAR 1 is available as an independent 32-bit BAR
- * according to the following rules: BAR 1 can be configured as a memory BAR or an I/O BAR. The
- * contents of the BAR 1 Mask register determine the number of writable bits in the 32-bit BAR 1,
- * subject to the restrictions described in îBAR Mask Registersî on page 536. The same rules apply
- * for pairs 2/3 and 4/5. Offset: 0x10 (if included in the core hardware configuration)
+ * BAR-by- BAR basis, see . The contents of the six BARs determine the BAR configuration. The reset
+ * values of the BARs are determined by hardware configuration options. At runtime, application
+ * software can overwrite the BAR contents to reconfigure the BARs (unless the affected BAR is
+ * removed during hardware configuration). Application software must observe the rules listed below
+ * when writing to the BARs. The rules for BAR configuration are the same for all three pairs. Using
+ * BARs 0 and 1 as the example pair, the rules for BAR configuration are: Any pair (for example,
+ * BARs 0 and 1) can be configured as one 64-bit BAR, two 32-bit BARs, or one 32-bit BAR. BAR pairs
+ * cannot overlap to form a 64-bit BAR. For example, you cannot combine BARs 1 and 2 to form a
+ * 64-bit BAR. An I/O BAR must be a 32-bit BAR and cannot be prefetchable. If the device is
+ * configured as a PCI Express Endpoint (not a Legacy Endpoint), then any memory that is configured
+ * as prefetchable must be a 64-bit memory BAR. If BAR 0 is configured as a 64-bit BAR: BAR 1 is the
+ * upper 32 bits of the combined 64-bit BAR formed by BARs 0 and 1. Therefore, BAR 1 must be
+ * disabled and cannot be configured independently. BAR 0 must be a memory BAR and can be either
+ * prefetchable or non-prefetchable. The contents of the BAR 0 Mask register determine the number of
+ * writable bits in the 64-bit BAR, subject to the restrictions described in îBAR Mask Registersî on
+ * page 536. The BAR 1 Mask register contains the upper 32 bits of the BAR 0 Mask value. BAR 0 can
+ * be disabled by writing 0 to bit 0 of the BAR 0 Mask register If BAR 0 is configured as a 32-bit
+ * BAR: You can configure BAR 1 as an independent 32-bit BAR BAR 0 can be configured as a memory BAR
+ * or an I/O BAR. The contents of the BAR 0 Mask register determine the number of writable bits in
+ * the 32-bit BAR 0, subject to the restrictions described in îBAR Mask Registersî on page 536. BAR
+ * 0 can be disabled by writing 0 to bit 0 of the BAR 0 Mask register When BAR 0 is configured as a
+ * 32-bit BAR, BAR 1 is available as an independent 32-bit BAR according to the following rules: BAR
+ * 1 can be configured as a memory BAR or an I/O BAR. The contents of the BAR 1 Mask register
+ * determine the number of writable bits in the 32-bit BAR 1, subject to the restrictions described
+ * in îBAR Mask Registersî on page 536. The same rules apply for pairs 2/3 and 4/5. Offset: 0x10 (if
+ * included in the core hardware configuration)
  */
 typedef union _hw_pcie_ep_bar0
 {
@@ -925,31 +925,30 @@ typedef union _hw_pcie_ep_bar0
  * the BAR Mask value for a disabled BAR, the application must first enable the BAR by writing 1 to
  * bit 0. After enabling the BAR, the application can then write a new value to the BAR Mask
  * register. The BAR Mask registers are accessible through the same address as the corresponding BAR
- * registers, but requires dbi_cs2 assertions instead i.e. bit address 12 must be set (see Table
- * 1-18 AHB/AXI DBI Address Bus Layout (Single Function)) . The BAR Mask registers are writable
- * only, not readable. If the BAR Mask value for a BAR is less than that required for the BAR type,
- * the core automatically uses the minimum value for the BAR type: BAR bits [11:0] are always masked
- * for a memory BAR. The core requires each memory BAR to claim at least 4 KB. The PCI Express Base
- * Specification states that the minimum memory address range requested by a BAR is 128 bytes. In
- * the PCI Local Bus Specification, Rev 3.0 it is recommended that devices that need less than 4 KB
- * of Address Space should still consume 4 KB of address space in order to minimize the number of
- * bits in the address decoder. A Memory BAR size of 256 bytes can be achieved by using a DBI2 write
- * to BAR Mask. BAR bits [7:0] are always masked for an I/O BAR. The core requires each I/O BAR to
- * claim at least 256 bytes. The PCI Local Bus Specification, Rev 3.0 allows I/O BARs to consume
- * between 4 bytes and 256 bytes of address space. The core only permits I/O BARs to consume 256
- * bytes of address space. This restriction is used in order to minimize the number of bits in the
- * address decoder. The aperture of the BAR is actually the larger of the written sizeor the system
- * page size (set by the operating system). In the case where the system page size is larger than
- * the requested bar size, the BAR is actually sized to the system page size . This means that when
- * the OS writes all 1s then reads back to determine the size of the BAR, the OS will see the BAR
- * size to be the system page size. The application logic, most likely, will only have the original
- * requested amount of physical memory. A transaction will receive a UR if the transaction is from
- * the RC and it targets an address that is within the range of the allocated system page size but
- * above the implemented application memory. The figure below shows an example configuration of the
- * six BARs and their corresponding BAR Mask registers. The example configuration includes: One
- * 64-bit memory BAR (non-prefetchable) One 32-bit memory BAR (non-prefetchable) One 32-bit I/O BAR
- * Example Base Address Register Configuration Offset: 0x10 (same as Base Address Register 0, but
- * requires dbi_cs2 for write access)
+ * registers, but requires dbi_cs2 assertions instead i.e. bit address 12 must be set. The BAR Mask
+ * registers are writable only, not readable. If the BAR Mask value for a BAR is less than that
+ * required for the BAR type, the core automatically uses the minimum value for the BAR type: BAR
+ * bits [11:0] are always masked for a memory BAR. The core requires each memory BAR to claim at
+ * least 4 KB. The PCI Express Base Specification states that the minimum memory address range
+ * requested by a BAR is 128 bytes. In the PCI Local Bus Specification, Rev 3.0 it is recommended
+ * that devices that need less than 4 KB of Address Space should still consume 4 KB of address space
+ * in order to minimize the number of bits in the address decoder. A Memory BAR size of 256 bytes
+ * can be achieved by using a DBI2 write to BAR Mask. BAR bits [7:0] are always masked for an I/O
+ * BAR. The core requires each I/O BAR to claim at least 256 bytes. The PCI Local Bus Specification,
+ * Rev 3.0 allows I/O BARs to consume between 4 bytes and 256 bytes of address space. The core only
+ * permits I/O BARs to consume 256 bytes of address space. This restriction is used in order to
+ * minimize the number of bits in the address decoder. The aperture of the BAR is actually the
+ * larger of the written sizeor the system page size (set by the operating system). In the case
+ * where the system page size is larger than the requested bar size, the BAR is actually sized to
+ * the system page size . This means that when the OS writes all 1s then reads back to determine the
+ * size of the BAR, the OS will see the BAR size to be the system page size. The application logic,
+ * most likely, will only have the original requested amount of physical memory. A transaction will
+ * receive a UR if the transaction is from the RC and it targets an address that is within the range
+ * of the allocated system page size but above the implemented application memory. The figure below
+ * shows an example configuration of the six BARs and their corresponding BAR Mask registers. The
+ * example configuration includes: One 64-bit memory BAR (non-prefetchable) One 32-bit memory BAR
+ * (non-prefetchable) One 32-bit I/O BAR Example Base Address Register Configuration Offset: 0x10
+ * (same as Base Address Register 0, but requires dbi_cs2 for write access)
  */
 typedef union _hw_pcie_ep_mask0
 {
@@ -1714,7 +1713,7 @@ typedef union _hw_pcie_ep_aer
 
 /*! @name Register PCIE_EP_AER, field NEXT_CAPABILITY_OFFSET[31:20] (RW)
  *
- * Next Capability Offset See Table 5-222 on page 641.
+ * Next Capability Offset
  */
 //@{
 #define BP_PCIE_EP_AER_NEXT_CAPABILITY_OFFSET      (20)      //!< Bit position for PCIE_EP_AER_NEXT_CAPABILITY_OFFSET.
@@ -3150,7 +3149,7 @@ typedef union _hw_pcie_ep_vcechr
 
 /*! @name Register PCIE_EP_VCECHR, field NEXT_CAPABILITY_OFFSET[31:20] (RO)
  *
- * Next Capability Offset See Table 5-222 on page 641.
+ * Next Capability Offset
  */
 //@{
 #define BP_PCIE_EP_VCECHR_NEXT_CAPABILITY_OFFSET      (20)      //!< Bit position for PCIE_EP_VCECHR_NEXT_CAPABILITY_OFFSET.
@@ -3784,5 +3783,5 @@ typedef struct _hw_pcie_ep
 #endif
 
 #endif // __HW_PCIE_EP_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

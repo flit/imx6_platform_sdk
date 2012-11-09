@@ -591,11 +591,11 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_1USDHC_FORCE_EVENT_FEVTCNIBAC18={\
         gui_name="FEVTCNIBAC12E":position=7:size=1:read_only=false\
       }\
-      :bit_fields.B_1USDHC_FORCE_EVENT_FEVTCCE={\
-        gui_name="FEVTCCE":position=16:size=1:read_only=false\
+      :bit_fields.B_1USDHC_FORCE_EVENT_FEVTCTOE={\
+        gui_name="FEVTCTOE":position=16:size=1:read_only=false\
       }\
-      :bit_fields.B_1USDHC_FORCE_EVENT_FEVTCCE1={\
-        gui_name="FEVTCCE1":position=17:size=1:read_only=false\
+      :bit_fields.B_1USDHC_FORCE_EVENT_FEVTCCE={\
+        gui_name="FEVTCCE":position=17:size=1:read_only=false\
       }\
       :bit_fields.B_1USDHC_FORCE_EVENT_FEVTCEBE={\
         gui_name="FEVTCEBE":position=18:size=1:read_only=false\
@@ -658,7 +658,7 @@ Advanced_Information.Cortex-A9={\
         gui_name="DLL_CTRL_SLV_FORCE_UPD":position=2:size=1:read_only=false\
       }\
       :bit_fields.B_1USDHC_DLL_CTRL_DLL_CTRL_SLV_20={\
-        gui_name="DLL_CTRL_SLV_DLY_TARGET":position=3:size=4:read_only=false\
+        gui_name="DLL_CTRL_SLV_DLY_TARGET0":position=3:size=4:read_only=false\
       }\
       :bit_fields.B_1USDHC_DLL_CTRL_DLL_CTRL_GATE21={\
         gui_name="DLL_CTRL_GATE_UPDATE":position=7:size=1:read_only=false\
@@ -1427,11 +1427,11 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_2USDHC_FORCE_EVENT_FEVTCNIBAC73={\
         gui_name="FEVTCNIBAC12E":position=7:size=1:read_only=false\
       }\
-      :bit_fields.B_2USDHC_FORCE_EVENT_FEVTCCE={\
-        gui_name="FEVTCCE":position=16:size=1:read_only=false\
+      :bit_fields.B_2USDHC_FORCE_EVENT_FEVTCTOE={\
+        gui_name="FEVTCTOE":position=16:size=1:read_only=false\
       }\
-      :bit_fields.B_2USDHC_FORCE_EVENT_FEVTCCE1={\
-        gui_name="FEVTCCE1":position=17:size=1:read_only=false\
+      :bit_fields.B_2USDHC_FORCE_EVENT_FEVTCCE={\
+        gui_name="FEVTCCE":position=17:size=1:read_only=false\
       }\
       :bit_fields.B_2USDHC_FORCE_EVENT_FEVTCEBE={\
         gui_name="FEVTCEBE":position=18:size=1:read_only=false\
@@ -1494,7 +1494,7 @@ Advanced_Information.Cortex-A9={\
         gui_name="DLL_CTRL_SLV_FORCE_UPD":position=2:size=1:read_only=false\
       }\
       :bit_fields.B_2USDHC_DLL_CTRL_DLL_CTRL_SLV_75={\
-        gui_name="DLL_CTRL_SLV_DLY_TARGET":position=3:size=4:read_only=false\
+        gui_name="DLL_CTRL_SLV_DLY_TARGET0":position=3:size=4:read_only=false\
       }\
       :bit_fields.B_2USDHC_DLL_CTRL_DLL_CTRL_GATE76={\
         gui_name="DLL_CTRL_GATE_UPDATE":position=7:size=1:read_only=false\
@@ -2263,11 +2263,11 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_3USDHC_FORCE_EVENT_FEVTCNIBA128={\
         gui_name="FEVTCNIBAC12E":position=7:size=1:read_only=false\
       }\
-      :bit_fields.B_3USDHC_FORCE_EVENT_FEVTCCE={\
-        gui_name="FEVTCCE":position=16:size=1:read_only=false\
+      :bit_fields.B_3USDHC_FORCE_EVENT_FEVTCTOE={\
+        gui_name="FEVTCTOE":position=16:size=1:read_only=false\
       }\
-      :bit_fields.B_3USDHC_FORCE_EVENT_FEVTCCE1={\
-        gui_name="FEVTCCE1":position=17:size=1:read_only=false\
+      :bit_fields.B_3USDHC_FORCE_EVENT_FEVTCCE={\
+        gui_name="FEVTCCE":position=17:size=1:read_only=false\
       }\
       :bit_fields.B_3USDHC_FORCE_EVENT_FEVTCEBE={\
         gui_name="FEVTCEBE":position=18:size=1:read_only=false\
@@ -2330,7 +2330,7 @@ Advanced_Information.Cortex-A9={\
         gui_name="DLL_CTRL_SLV_FORCE_UPD":position=2:size=1:read_only=false\
       }\
       :bit_fields.B_3USDHC_DLL_CTRL_DLL_CTRL_SLV130={\
-        gui_name="DLL_CTRL_SLV_DLY_TARGET":position=3:size=4:read_only=false\
+        gui_name="DLL_CTRL_SLV_DLY_TARGET0":position=3:size=4:read_only=false\
       }\
       :bit_fields.B_3USDHC_DLL_CTRL_DLL_CTRL_GAT131={\
         gui_name="DLL_CTRL_GATE_UPDATE":position=7:size=1:read_only=false\
@@ -3099,11 +3099,11 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_4USDHC_FORCE_EVENT_FEVTCNIBA183={\
         gui_name="FEVTCNIBAC12E":position=7:size=1:read_only=false\
       }\
-      :bit_fields.B_4USDHC_FORCE_EVENT_FEVTCCE={\
-        gui_name="FEVTCCE":position=16:size=1:read_only=false\
+      :bit_fields.B_4USDHC_FORCE_EVENT_FEVTCTOE={\
+        gui_name="FEVTCTOE":position=16:size=1:read_only=false\
       }\
-      :bit_fields.B_4USDHC_FORCE_EVENT_FEVTCCE1={\
-        gui_name="FEVTCCE1":position=17:size=1:read_only=false\
+      :bit_fields.B_4USDHC_FORCE_EVENT_FEVTCCE={\
+        gui_name="FEVTCCE":position=17:size=1:read_only=false\
       }\
       :bit_fields.B_4USDHC_FORCE_EVENT_FEVTCEBE={\
         gui_name="FEVTCEBE":position=18:size=1:read_only=false\
@@ -3166,7 +3166,7 @@ Advanced_Information.Cortex-A9={\
         gui_name="DLL_CTRL_SLV_FORCE_UPD":position=2:size=1:read_only=false\
       }\
       :bit_fields.B_4USDHC_DLL_CTRL_DLL_CTRL_SLV185={\
-        gui_name="DLL_CTRL_SLV_DLY_TARGET":position=3:size=4:read_only=false\
+        gui_name="DLL_CTRL_SLV_DLY_TARGET0":position=3:size=4:read_only=false\
       }\
       :bit_fields.B_4USDHC_DLL_CTRL_DLL_CTRL_GAT186={\
         gui_name="DLL_CTRL_GATE_UPDATE":position=7:size=1:read_only=false\
@@ -3580,8 +3580,8 @@ Advanced_Information.Cortex-A9={\
     line="B_1USDHC_FORCE_EVENT_FEVTAC12EBE":\
     line="B_1USDHC_FORCE_EVENT_FEVTAC12IE":\
     line="B_1USDHC_FORCE_EVENT_FEVTCNIBA183":\
+    line="B_1USDHC_FORCE_EVENT_FEVTCTOE":\
     line="B_1USDHC_FORCE_EVENT_FEVTCCE":\
-    line="B_1USDHC_FORCE_EVENT_FEVTCCE1":\
     line="B_1USDHC_FORCE_EVENT_FEVTCEBE":\
     line="B_1USDHC_FORCE_EVENT_FEVTCIE":\
     line="B_1USDHC_FORCE_EVENT_FEVTDTOE":\
@@ -3908,8 +3908,8 @@ Advanced_Information.Cortex-A9={\
     line="B_2USDHC_FORCE_EVENT_FEVTAC12EBE":\
     line="B_2USDHC_FORCE_EVENT_FEVTAC12IE":\
     line="B_2USDHC_FORCE_EVENT_FEVTCNIBA183":\
+    line="B_2USDHC_FORCE_EVENT_FEVTCTOE":\
     line="B_2USDHC_FORCE_EVENT_FEVTCCE":\
-    line="B_2USDHC_FORCE_EVENT_FEVTCCE1":\
     line="B_2USDHC_FORCE_EVENT_FEVTCEBE":\
     line="B_2USDHC_FORCE_EVENT_FEVTCIE":\
     line="B_2USDHC_FORCE_EVENT_FEVTDTOE":\
@@ -4236,8 +4236,8 @@ Advanced_Information.Cortex-A9={\
     line="B_3USDHC_FORCE_EVENT_FEVTAC12EBE":\
     line="B_3USDHC_FORCE_EVENT_FEVTAC12IE":\
     line="B_3USDHC_FORCE_EVENT_FEVTCNIBA183":\
+    line="B_3USDHC_FORCE_EVENT_FEVTCTOE":\
     line="B_3USDHC_FORCE_EVENT_FEVTCCE":\
-    line="B_3USDHC_FORCE_EVENT_FEVTCCE1":\
     line="B_3USDHC_FORCE_EVENT_FEVTCEBE":\
     line="B_3USDHC_FORCE_EVENT_FEVTCIE":\
     line="B_3USDHC_FORCE_EVENT_FEVTDTOE":\
@@ -4564,8 +4564,8 @@ Advanced_Information.Cortex-A9={\
     line="B_4USDHC_FORCE_EVENT_FEVTAC12EBE":\
     line="B_4USDHC_FORCE_EVENT_FEVTAC12IE":\
     line="B_4USDHC_FORCE_EVENT_FEVTCNIBA183":\
+    line="B_4USDHC_FORCE_EVENT_FEVTCTOE":\
     line="B_4USDHC_FORCE_EVENT_FEVTCCE":\
-    line="B_4USDHC_FORCE_EVENT_FEVTCCE1":\
     line="B_4USDHC_FORCE_EVENT_FEVTCEBE":\
     line="B_4USDHC_FORCE_EVENT_FEVTCIE":\
     line="B_4USDHC_FORCE_EVENT_FEVTDTOE":\

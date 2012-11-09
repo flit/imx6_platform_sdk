@@ -4237,5 +4237,5 @@ typedef union _hw_hdmi_phy_scopecntmsb2ck
 //@}
 
 #endif // __HW_HDMI_PHY_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

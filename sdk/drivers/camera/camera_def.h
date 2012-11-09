@@ -250,6 +250,14 @@ void csi_setup(void);
  *
  */
 void csi_streamon(void);
+
+/*!
+ * @brief stream off csi controller for mx6sl
+ *
+ * wait for EOF and stream off DMA
+ *
+ */
+void csi_streamoff(void);
 //@}
 
 //! @}

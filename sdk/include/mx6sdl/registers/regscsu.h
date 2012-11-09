@@ -26,7 +26,7 @@
 /*
  * i.MX6SDL CSU
  *
-
+ * CSU Registers
  *
  * Registers defined in this header file:
  * - HW_CSU_CSLn - Config security level register
@@ -3245,5 +3245,5 @@ typedef struct _hw_csu
 #endif
 
 #endif // __HW_CSU_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

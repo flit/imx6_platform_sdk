@@ -46,14 +46,12 @@
  */
 static int pxp_sw_reset(void)
 {
-	/* clear register */
-	HW_PXP_CTRL_CLR(0xFFFFFFFF);
+    /* clear register */
+    BW_PXP_CTRL_SFTRST(1);
+    hal_delay_us(1000);
 
-	BW_PXP_CTRL_SFTRST(1);
-	hal_delay_us(1000);
-
-	BW_PXP_CTRL_CLKGATE(0);
-	BW_PXP_CTRL_SFTRST(0);
+    BW_PXP_CTRL_CLKGATE(0);
+    BW_PXP_CTRL_SFTRST(0);
 
     return 0;
 }
@@ -63,12 +61,12 @@ static int pxp_sw_reset(void)
  */
 static void pxp_proc_timeout(int time)
 {
-	while (HW_PXP_STAT.B.IRQ == 0) {
+    while (HW_PXP_STAT.B.IRQ == 0) {
         time--;
         if (time == 0)
             break;
     };
-	HW_PXP_STAT.B.IRQ = 0;
+    HW_PXP_STAT.B.IRQ = 0;
 }
 
 /*!
@@ -77,12 +75,18 @@ static void pxp_proc_timeout(int time)
 static void pxp_clock_enable(void)
 {
     /* always on MX6SL */
-	HW_CCM_CCGR3.B.CG1 = 0x3;
+    HW_CCM_CCGR3.B.CG1 = 0x3;
 }
 
+/*!
+ * @brief Diable PXP after completing the single operation.
+ */
 void pxp_disable(void)
 {
-	HW_PXP_CTRL.B.ENABLE = 0;
+    /* The ENABLE bit will be cleared once the current operation completes 
+     * If the Repeat mode is open, disable it. */
+    if (HW_PXP_CTRL.B.EN_REPEAT)
+        HW_PXP_CTRL.B.EN_REPEAT = 0;
 }
 
 void pxp_csc_process(void)
@@ -90,47 +94,47 @@ void pxp_csc_process(void)
     pxp_clock_enable();
     pxp_sw_reset();
 
-	/* Input and output buffer address */
-	HW_PXP_PS_BUF_WR(DDR_PXP_PS_BASE1);
-	HW_PXP_OUT_BUF_WR(DDR_LCD_BASE1);
+    /* Input and output buffer address */
+    HW_PXP_PS_BUF_WR(DDR_PXP_PS_BASE1);
+    HW_PXP_OUT_BUF_WR(DDR_LCD_BASE1);
 
-	/* Input and output pitch
-	 * bytes between two vertically adj pixels */
-	HW_PXP_PS_PITCH.B.PITCH = VGA_FW * 2;
-	HW_PXP_OUT_PITCH.B.PITCH = FRAME_WIDTH * 2;
+    /* Input and output pitch
+     * bytes between two vertically adj pixels */
+    HW_PXP_PS_PITCH.B.PITCH = VGA_FW * 2;
+    HW_PXP_OUT_PITCH.B.PITCH = FRAME_WIDTH * 2;
 
-	/* set output frame */
-	/* output frame size */
-	HW_PXP_OUT_LRC.B.X = FRAME_WIDTH - 1;
-	HW_PXP_OUT_LRC.B.Y = FRAME_HEIGHT - 1;
+    /* set output frame */
+    /* output frame size */
+    HW_PXP_OUT_LRC.B.X = FRAME_WIDTH - 1;
+    HW_PXP_OUT_LRC.B.Y = FRAME_HEIGHT - 1;
 
-	/* left upper corner (0, 0) */
-	HW_PXP_OUT_PS_ULC.B.X = 0;
-	HW_PXP_OUT_PS_ULC.B.Y = 0;
+    /* left upper corner (0, 0) */
+    HW_PXP_OUT_PS_ULC.B.X = 0;
+    HW_PXP_OUT_PS_ULC.B.Y = 0;
 
-	/* low right corner (input_width-1, input_height-1) */
-	HW_PXP_OUT_PS_LRC.B.X = VGA_FW - 1;
-	HW_PXP_OUT_PS_LRC.B.Y = VGA_FH - 1;
+    /* low right corner (input_width-1, input_height-1) */
+    HW_PXP_OUT_PS_LRC.B.X = VGA_FW - 1;
+    HW_PXP_OUT_PS_LRC.B.Y = VGA_FH - 1;
 
-	/* set backgroud as white */
-	HW_PXP_PS_BACKGROUND.B.COLOR = 0xFFFFFF;
+    /* set backgroud as white */
+    HW_PXP_PS_BACKGROUND.B.COLOR = 0xFFFFFF;
 
-	/* 1:1 scale */
-	HW_PXP_PS_SCALE.B.XSCALE = 1 << 12;
-	HW_PXP_PS_SCALE.B.YSCALE = 1 << 12;
+    /* 1:1 scale */
+    HW_PXP_PS_SCALE.B.XSCALE = 1 << 12;
+    HW_PXP_PS_SCALE.B.YSCALE = 1 << 12;
 
-	/* Input format U0Y0V0Y1 */
-	HW_PXP_PS_CTRL.B.FORMAT = 0x12;
+    /* Input format U0Y0V0Y1 */
+    HW_PXP_PS_CTRL.B.FORMAT = 0x12;
 
-	/* Output format: RGB565 */
-	HW_PXP_OUT_CTRL.B.FORMAT = 0xE;
+    /* Output format: RGB565 */
+    HW_PXP_OUT_CTRL.B.FORMAT = 0xE;
 
     /* YCbCr->RGB coefficients */
-	HW_PXP_CSC1_COEF0_WR(0x84AB01F0);
-	HW_PXP_CSC1_COEF1_WR(0x01980204);
-	HW_PXP_CSC1_COEF2_WR(0x0730079C);
+    HW_PXP_CSC1_COEF0_WR(0x84AB01F0);
+    HW_PXP_CSC1_COEF1_WR(0x01980204);
+    HW_PXP_CSC1_COEF2_WR(0x0730079C);
 
-	/* PXP run continuously */
-	HW_PXP_CTRL.B.EN_REPEAT = 1;
-	HW_PXP_CTRL.B.ENABLE = 1;
+    /* PXP run continuously */
+    HW_PXP_CTRL.B.EN_REPEAT = 1;
+    HW_PXP_CTRL.B.ENABLE = 1;
 }

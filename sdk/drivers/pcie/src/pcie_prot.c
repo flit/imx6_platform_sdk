@@ -109,7 +109,7 @@ int pcie_enum_resources(uint32_t * header_base, pcie_resource_t res[], uint32_t 
                 } else {
                     res[index].type = RESOURCE_TYPE_MEM;
                     j = 4;
-                    *cmd |= 0x01 << 1;
+                    *cmd |= (0x01 << 1);
                 }
                 for (; j < 32; j++) {
                     if (tmp_val & (0x01 << j))

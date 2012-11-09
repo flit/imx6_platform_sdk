@@ -4854,8 +4854,8 @@ typedef union _hw_usdhc_force_event
         unsigned RESERVED0 : 2; //!< [6:5] Reserved
         unsigned FEVTCNIBAC12E : 1; //!< [7] Force Event Command Not Executed By Auto Command 12 Error:
         unsigned RESERVED1 : 8; //!< [15:8] Reserved
-        unsigned FEVTCCE : 1; //!< [16] Force Event Command Time Out Error:
-        unsigned FEVTCCE1 : 1; //!< [17] Force Event Command CRC Error:
+        unsigned FEVTCTOE : 1; //!< [16] Force Event Command Time Out Error:
+        unsigned FEVTCCE : 1; //!< [17] Force Event Command CRC Error:
         unsigned FEVTCEBE : 1; //!< [18] Force Event Command End Bit Error:
         unsigned FEVTCIE : 1; //!< [19] Force Event Command Index Error:
         unsigned FEVTDTOE : 1; //!< [20] Force Event Data Time Out Error:
@@ -4985,34 +4985,34 @@ typedef union _hw_usdhc_force_event
 #define BF_USDHC_FORCE_EVENT_FEVTCNIBAC12E(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_FORCE_EVENT_FEVTCNIBAC12E) & BM_USDHC_FORCE_EVENT_FEVTCNIBAC12E)
 //@}
 
-/*! @name Register USDHC_FORCE_EVENT, field FEVTCCE[16] (WORZ)
+/*! @name Register USDHC_FORCE_EVENT, field FEVTCTOE[16] (WORZ)
  *
  * Force Event Command Time Out Error: Forces the CTOE bit of Interrupt Status Register to be set
  */
 //@{
-#define BP_USDHC_FORCE_EVENT_FEVTCCE      (16)      //!< Bit position for USDHC_FORCE_EVENT_FEVTCCE.
-#define BM_USDHC_FORCE_EVENT_FEVTCCE      (0x00010000)  //!< Bit mask for USDHC_FORCE_EVENT_FEVTCCE.
+#define BP_USDHC_FORCE_EVENT_FEVTCTOE      (16)      //!< Bit position for USDHC_FORCE_EVENT_FEVTCTOE.
+#define BM_USDHC_FORCE_EVENT_FEVTCTOE      (0x00010000)  //!< Bit mask for USDHC_FORCE_EVENT_FEVTCTOE.
+
+//! @brief Get value of USDHC_FORCE_EVENT_FEVTCTOE from a register value.
+#define BG_USDHC_FORCE_EVENT_FEVTCTOE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_FORCE_EVENT_FEVTCTOE) >> BP_USDHC_FORCE_EVENT_FEVTCTOE)
+
+//! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTCTOE.
+#define BF_USDHC_FORCE_EVENT_FEVTCTOE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_FORCE_EVENT_FEVTCTOE) & BM_USDHC_FORCE_EVENT_FEVTCTOE)
+//@}
+
+/*! @name Register USDHC_FORCE_EVENT, field FEVTCCE[17] (WORZ)
+ *
+ * Force Event Command CRC Error: Forces the CCE bit of Interrupt Status Register to be set
+ */
+//@{
+#define BP_USDHC_FORCE_EVENT_FEVTCCE      (17)      //!< Bit position for USDHC_FORCE_EVENT_FEVTCCE.
+#define BM_USDHC_FORCE_EVENT_FEVTCCE      (0x00020000)  //!< Bit mask for USDHC_FORCE_EVENT_FEVTCCE.
 
 //! @brief Get value of USDHC_FORCE_EVENT_FEVTCCE from a register value.
 #define BG_USDHC_FORCE_EVENT_FEVTCCE(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_FORCE_EVENT_FEVTCCE) >> BP_USDHC_FORCE_EVENT_FEVTCCE)
 
 //! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTCCE.
 #define BF_USDHC_FORCE_EVENT_FEVTCCE(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_FORCE_EVENT_FEVTCCE) & BM_USDHC_FORCE_EVENT_FEVTCCE)
-//@}
-
-/*! @name Register USDHC_FORCE_EVENT, field FEVTCCE1[17] (WORZ)
- *
- * Force Event Command CRC Error: Forces the CCE bit of Interrupt Status Register to be set
- */
-//@{
-#define BP_USDHC_FORCE_EVENT_FEVTCCE1      (17)      //!< Bit position for USDHC_FORCE_EVENT_FEVTCCE1.
-#define BM_USDHC_FORCE_EVENT_FEVTCCE1      (0x00020000)  //!< Bit mask for USDHC_FORCE_EVENT_FEVTCCE1.
-
-//! @brief Get value of USDHC_FORCE_EVENT_FEVTCCE1 from a register value.
-#define BG_USDHC_FORCE_EVENT_FEVTCCE1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_FORCE_EVENT_FEVTCCE1) >> BP_USDHC_FORCE_EVENT_FEVTCCE1)
-
-//! @brief Format value for bitfield USDHC_FORCE_EVENT_FEVTCCE1.
-#define BF_USDHC_FORCE_EVENT_FEVTCCE1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_FORCE_EVENT_FEVTCCE1) & BM_USDHC_FORCE_EVENT_FEVTCCE1)
 //@}
 
 /*! @name Register USDHC_FORCE_EVENT, field FEVTCEBE[18] (WORZ)
@@ -5350,11 +5350,11 @@ typedef union _hw_usdhc_dll_ctrl
         unsigned DLL_CTRL_ENABLE : 1; //!< [0] Set this bit to 1 to enable the DLL and delay chain; otherwise; set to 0 to bypasses DLL.
         unsigned DLL_CTRL_RESET : 1; //!< [1] Setting this bit to 1 force a reset on DLL.
         unsigned DLL_CTRL_SLV_FORCE_UPD : 1; //!< [2] Setting this bit to 1, forces the slave delay line to update to the DLL calibrated value immediately.
-        unsigned DLL_CTRL_SLV_DLY_TARGET : 4; //!< [6:3] The delay target for the uSDHC loopback read clock can be programmed in 1/16th increments of an ref_clock half-period.
+        unsigned DLL_CTRL_SLV_DLY_TARGET0 : 4; //!< [6:3] The delay target for the uSDHC loopback read clock can be programmed in 1/16th increments of an ref_clock half-period.
         unsigned DLL_CTRL_GATE_UPDATE : 1; //!< [7] Set this bit to 1 to prevent the DLL from updating (since when clock_in exists, glitches may appear during DLL updates).
         unsigned DLL_CTRL_SLV_OVERRIDE : 1; //!< [8] Set this bit to 1 to Enable manual override for slave delay chain using SLV_OVERRIDE_VAL; to set 0 to disable manual override.
         unsigned DLL_CTRL_SLV_OVERRIDE_VAL : 7; //!< [15:9] When SLV_OVERRIDE=1 This field is used to select 1 of 128 physical taps manually.
-        unsigned DLL_CTRL_SLV_DLY_TARGET1 : 3; //!< [18:16] Refer to DLL_CTRL_SLV_DLY_TARGET[3:0] below.
+        unsigned DLL_CTRL_SLV_DLY_TARGET1 : 3; //!< [18:16] Refer to DLL_CTRL_SLV_DLY_TARGET0 below.
         unsigned RESERVED0 : 1; //!< [19] Reserved
         unsigned DLL_CTRL_SLV_UPDATE_INT : 8; //!< [27:20] Slave delay line update interval.
         unsigned DLL_CTRL_REF_UPDATE_INT : 4; //!< [31:28] DLL control loop update interval.
@@ -5450,25 +5450,25 @@ typedef union _hw_usdhc_dll_ctrl
 #endif
 //@}
 
-/*! @name Register USDHC_DLL_CTRL, field DLL_CTRL_SLV_DLY_TARGET[6:3] (RW)
+/*! @name Register USDHC_DLL_CTRL, field DLL_CTRL_SLV_DLY_TARGET0[6:3] (RW)
  *
  * The delay target for the uSDHC loopback read clock can be programmed in 1/16th increments of an
- * ref_clock half-period. The delay is ((DLL_CTRL_SLV_DLY_TARGET[6:0] +1)* ref_clock/2)/16 So the
- * input read-clock can be delayed relative input data from (ref_clock/2)/16 to ref_clock*4
+ * ref_clock half-period. The delay is ((DLL_CTRL_SLV_DLY_TARGET1 +1)* ref_clock/2)/16 So the input
+ * read-clock can be delayed relative input data from (ref_clock/2)/16 to ref_clock*4
  */
 //@{
-#define BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET      (3)      //!< Bit position for USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET.
-#define BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET      (0x00000078)  //!< Bit mask for USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET.
+#define BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET0      (3)      //!< Bit position for USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET0.
+#define BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET0      (0x00000078)  //!< Bit mask for USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET0.
 
-//! @brief Get value of USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET from a register value.
-#define BG_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET) >> BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET)
+//! @brief Get value of USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET0 from a register value.
+#define BG_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET0(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET0) >> BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET0)
 
-//! @brief Format value for bitfield USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET.
-#define BF_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET)
+//! @brief Format value for bitfield USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET0.
+#define BF_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET0(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET0) & BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET0)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the DLL_CTRL_SLV_DLY_TARGET field to a new value.
-#define BW_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET(x, v)   (HW_USDHC_DLL_CTRL_WR(x, (HW_USDHC_DLL_CTRL_RD(x) & ~BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET) | BF_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET(v)))
+//! @brief Set the DLL_CTRL_SLV_DLY_TARGET0 field to a new value.
+#define BW_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET0(x, v)   (HW_USDHC_DLL_CTRL_WR(x, (HW_USDHC_DLL_CTRL_RD(x) & ~BM_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET0) | BF_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET0(v)))
 #endif
 //@}
 
@@ -5540,7 +5540,7 @@ typedef union _hw_usdhc_dll_ctrl
 
 /*! @name Register USDHC_DLL_CTRL, field DLL_CTRL_SLV_DLY_TARGET1[18:16] (RW)
  *
- * Refer to DLL_CTRL_SLV_DLY_TARGET[3:0] below.
+ * Refer to DLL_CTRL_SLV_DLY_TARGET0 below.
  */
 //@{
 #define BP_USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1      (16)      //!< Bit position for USDHC_DLL_CTRL_DLL_CTRL_SLV_DLY_TARGET1.
@@ -6799,5 +6799,5 @@ typedef struct _hw_usdhc
 #endif
 
 #endif // __HW_USDHC_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

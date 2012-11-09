@@ -180,9 +180,9 @@ typedef union _hw_i2c_ifdr
 
 /*! @name Register I2C_IFDR, field IC[5:0] (RW)
  *
- * I2C clock rate. Pre-scales the clock for bit-rate selection. Due to potentially slow SCL and SDA
- * rise and fall times, bus signals are sampled at the prescaler frequency. The serial bit clock
- * frequency may be lower than IPG_CLK_ROOT divided by the divider shown in the I2C Data I/O
+ * I2C clock rate. Pre-scales the clock for bit-rate selection. Due to potentially slow I2Cn_SCL and
+ * I2Cn_SDA rise and fall times, bus signals are sampled at the prescaler frequency. The serial bit
+ * clock frequency may be lower than IPG_CLK_ROOT divided by the divider shown in the I2C Data I/O
  * Register. The IC value should not be changed during the data transfer, however, it can be changed
  * before REPEAT START or START programming sequence in I2C. The I2C protocol supports bit rates up
  * to 400 kbps. The IC bits need to be programmed in accordance with this constraint.
@@ -275,8 +275,8 @@ typedef union _hw_i2c_i2cr
 
 /*! @name Register I2C_I2CR, field TXAK[3] (RW)
  *
- * Transmit acknowledge enable. Specifies the value driven onto SDA during acknowledge cycles for
- * both master and slave receivers. Writing TXAK applies only when the I2C bus is a receiver.
+ * Transmit acknowledge enable. Specifies the value driven onto I2Cn_SDA during acknowledge cycles
+ * for both master and slave receivers. Writing TXAK applies only when the I2C bus is a receiver.
  *
  * Values:
  * - 0 - An acknowledge signal is sent to the bus at the ninth clock bit after receiving one byte of data.
@@ -460,8 +460,8 @@ typedef union _hw_i2c_i2sr
 
 /*! @name Register I2C_I2SR, field RXAK[0] (RO)
  *
- * Received acknowledge. This is the value received of the SDA input for the acknowledge bit during
- * a bus cycle.
+ * Received acknowledge. This is the value received of the I2Cn_SDA input for the acknowledge bit
+ * during a bus cycle.
  *
  * Values:
  * - 0 - An "acknowledge" signal was received after the completion of an 8-bit data transmission on the bus.
@@ -526,12 +526,12 @@ typedef union _hw_i2c_i2sr
 /*! @name Register I2C_I2SR, field IAL[4] (RW)
  *
  * Arbitration lost. Set by hardware in the following circumstances (IAL must be cleared by software
- * by writing a "0" to it at the start of the interrupt service routine): SDA input sampled low when
- * the master drives high during an address or data-transmit cycle. SDA input sampled low when the
- * master drives high during the acknowledge bit of a data-receive cycle. For the above two cases,
- * the bit is set at the falling edge of 9th SCL clock during the ACK cycle. A start cycle is
- * attempted when the bus is busy. A repeated start cycle is requested in slave mode. A stop
- * condition is detected when the master did not request it. Software cannot set the bit.
+ * by writing a "0" to it at the start of the interrupt service routine): I2Cn_SDA input sampled low
+ * when the master drives high during an address or data-transmit cycle. I2Cn_SDA input sampled low
+ * when the master drives high during the acknowledge bit of a data-receive cycle. For the above two
+ * cases, the bit is set at the falling edge of 9th I2Cn_SCL clock during the ACK cycle. A start
+ * cycle is attempted when the bus is busy. A repeated start cycle is requested in slave mode. A
+ * stop condition is detected when the master did not request it. Software cannot set the bit.
  *
  * Values:
  * - 0 - No arbitration lost.
@@ -703,5 +703,5 @@ typedef struct _hw_i2c
 #endif
 
 #endif // __HW_I2C_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

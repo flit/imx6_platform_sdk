@@ -54,6 +54,7 @@ static vpu_test_t vpu_tests[] = {
     {"VPU ENCODER TEST", encode_test},
 };
 
+extern int fat_write_speed_test(void);
 int vpu_test(void)
 {
     int32_t err = 0, i = 0;
@@ -65,6 +66,7 @@ int vpu_test(void)
     config_system_parameters();
 
     /* enable L1 cache for mx6dq and mx6sdl */
+    arm_icache_enable();
     arm_dcache_invalidate();
     mmu_enable();
     arm_dcache_enable();

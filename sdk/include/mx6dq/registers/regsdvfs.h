@@ -54,7 +54,7 @@
 //@{
 #ifndef REGS_DVFSC_BASE
 #define HW_DVFSC_INSTANCE_COUNT (1) //!< Number of instances of the DVFSC module.
-#define REGS_DVFSC_BASE (0x020dc000) //!< Base address for DVFSC.
+#define REGS_DVFSC_BASE (0x020dc180) //!< Base address for DVFSC.
 #endif
 //@}
 
@@ -2980,5 +2980,5 @@ typedef struct _hw_dvfsc
 #endif
 
 #endif // __HW_DVFSC_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

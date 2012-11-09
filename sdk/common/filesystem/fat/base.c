@@ -453,7 +453,6 @@ RtStatus_t Fwrite_FAT(int32_t HandleNumber,
     int32_t Device,BytesPerSector,RemainBytesInSector,Mode;
     int32_t BuffOffset=0,clusterno;
     int32_t RemainBytesToWrite = NumBytesToWrite, FileSize=0;
-printf("Fw1\n");      
     if((HandleNumber < 0) || (HandleNumber >= maxhandles))
     {
         // Error - ERROR_OS_FILESYSTEM_MAX_HANDLES_EXCEEDED
@@ -464,19 +463,16 @@ printf("Fw1\n");
 
     Device = Handle[HandleNumber].Device;
     BytesPerSector = MediaTable[Device].BytesPerSector;
-printf("Fw2\n");
     if((RetValue = Handleactive(HandleNumber)) < 0)
     {
         Handle[HandleNumber].ErrorCode = RetValue;
         return 0;
     }    
-printf("Fw3\n");
     if(((Handle[HandleNumber].Mode)& WRITE_MODE)!=WRITE_MODE )
     {
         Handle[HandleNumber].ErrorCode = ERROR_OS_FILESYSTEM_INVALID_MODE;
         return 0;
     }
-printf("Fw4\n");
     ddi_ldl_push_media_task("Fwrite_FAT");
 
     /* If zero length file is opened, its starting cluster is zero, so we have to
@@ -491,7 +487,6 @@ printf("Fw4\n");
         Handle[HandleNumber].StartingCluster    = clusterno;
         Handle[HandleNumber].CurrentCluster    = clusterno;
         Handle[HandleNumber].CurrentSector= Firstsectorofcluster(Device,clusterno);
-printf("Fw5\n");
         clusterlo = clusterno & 0x00ffff;
         clusterhi = (int32_t)( (clusterno >> 16 ) & 0x00ffff);
 
@@ -507,7 +502,6 @@ printf("Fw5\n");
             ddi_ldl_pop_media_task();
             return RetValue;
         }
-printf("Fw6\n");
         //if((RetValue = myFSWriteSector(Device,
         if((RetValue = FSWriteSector(Device,
                                Handle[HandleNumber].DirSector,
@@ -530,7 +524,6 @@ printf("Fw6\n");
     {
         FileSize = GET_FILE_SIZE(HandleNumber);
     }
-printf("Fw7\n");
     //In append mode seek to the end of file and write at the end
     if(((Handle[HandleNumber].Mode)& APPEND_MODE)==APPEND_MODE )
     {
@@ -547,12 +540,14 @@ printf("Fw7\n");
     
         if ((RetValue = UpdateHandleOffsets(HandleNumber)))
         {   
+#if 0 // By Ray        
             if(RetValue == ERROR_OS_FILESYSTEM_INVALID_CLUSTER_NO)
             {
                 Handle[HandleNumber].ErrorCode = ERROR_OS_FILESYSTEM_INVALID_CLUSTER_NO;
                 ddi_ldl_pop_media_task();
                 return 0;
             }
+#endif
 
             if((RetValue = GetNewcluster(HandleNumber)) < 0)
             {

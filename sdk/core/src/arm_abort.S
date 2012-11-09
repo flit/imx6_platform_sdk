@@ -34,30 +34,78 @@
     .extern  dump_regs
 
 /*
- * A very simple impletement of the abort handler.
- * Just dump the registers before this exception occured, to make the debugging easier.
+ * A very simple implementation of the data abort handler.
+ *
+ * It just dumps the registers before this exception occured, to make the debugging easier.
  */
-  .global  ABORT_HDLR
-  .func  ABORT_HDLR
- ABORT_HDLR: 
-	push {r0-r12} ;	//push the general registers to this exception's stack
-	mrs r7, cpsr;
-	mrs r6, spsr;
-	mov r5, sp;
-	msr cpsr, r6; //go to the mode before this exception
-	dsb;
-	stmfd r5!, {sp, lr}; //push sp/lr to this exception's stack
-	msr cpsr, r7;
-	dsb;
-	mov sp, r5;
-	push {r6, lr};
-	mov r0, sp;
-	bl  dump_regs; //dumping
-	pop {r0-r12};
-	add sp, sp, #16; //adjust the sp pointer, just like 'pop {lr, r6}'
+    .global  common_abort_handler
+    .func  common_abort_handler
+common_abort_handler: 
+	push    {r0-r12}	// push the general registers to this exception's stack
+	mrs     r7, cpsr
+	mrs     r6, spsr
+	mov     r5, sp
+	msr     cpsr, r6    // go to the mode before this exception so we can get its sp and pc
+	dsb
+	stmfd   r5!, {sp, lr} // push sp/lr to this exception's stack
+	msr     cpsr, r7    // switch back to abort mode
+	dsb
+	mov     sp, r5      // restore our stack pointer
+	push    {r6, lr}    // r6 is exception's cpsr, lr is the exception's pc
+	
+	// save coprocessor abort info registers
+	mrc     p15, 0, r4, c5, c0, 0   // read DFSR
+	mrc     p15, 0, r3, c6, c0, 0   // read DFAR
+	mrc     p15, 0, r2, c5, c0, 1   // read IFSR
+	mrc     p15, 0, r1, c6, c0, 2   // read IFAR
+	push    {r1-r4}        // save DFSR, DFAR, IFSR, IFAR to stack
+	
+	ldr     r1,=.Labort_type
+	ldr     r0,[r1]     // put abort type in r0
+	mov     r1, sp      // put address to saved registers into r1
+	bl      dump_regs   // call a C function to print the register values
+	
+	// clean up
+	pop     {r0-r12}
+	add     sp, sp, #16 // adjust the sp pointer, just like 'pop {lr, r6}'
+
+    // Loop forever.
 1:
-	b 1b;	        
-	sub pc, lr, #4; //abort handler's standard return, although never reach here.
-  .endfunc   
+	b       1b
+	
+	sub     pc, lr, #4 // abort handler's standard return, although never reach here.
+    .endfunc
+
+    .global data_abort_handler
+    .func data_abort_handler
+data_abort_handler:
+    push    {r0-r1}
+    ldr     r1,=.Labort_type
+    mov     r0,#0
+    str     r0,[r1]
+    pop     {r0-r1}
+    b       common_abort_handler
+    .endfunc
+
+    .global prefetch_abort_handler
+    .func prefetch_abort_handler
+prefetch_abort_handler:
+    push    {r0-r1}
+    ldr     r1,=.Labort_type
+    mov     r0,#1
+    str     r0,[r1]
+    pop     {r0-r1}
+    b       common_abort_handler
+    .endfunc
+
+
+    // Switch to data section
+    .data
+
+    // Place to store whether we got a prefetch or data abort.
+    // 0=data abort
+    // 1=prefetch abort
+.Labort_type:
+    .word   0
 
     .end

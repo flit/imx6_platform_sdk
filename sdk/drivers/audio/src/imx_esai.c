@@ -369,13 +369,25 @@ int32_t esai_config(void *priv, audio_dev_para_p para)
             BM_ESAI_TCCR_TCKP |    //tX clock polarity bit 18, clock out on falling edge
             ESAI_TCCR_TDC(para->channel_number - 1);    //frame rate devider
         if (SAMPLERATE_44_1KHz == para->sample_rate) {
-            //This parameters should be set according the frequency of Fsys or the HCKT
+  	    /*
+             * So the Tx_CLK = Fsys/2/((TPM+1) + (TFP+1)) = 133/2/(6*4) = 2.771MHz.
+             * the HCKT = Fsys/2/((TPM+1) = 133/2/6 = 11.08MHz.
+             * The Tx_CLK is not very accurate for 44.1K sample rate(2.822MHz).
+             */
             val |= ESAI_TCCR_TFP(3) |   // clk div 4
                 ESAI_TCCR_TPSR_BYPASS | //bypass
-                ESAI_TCCR_TPM(4);
-        } else {
-            //TODO
-        }
+                ESAI_TCCR_TPM(5);
+        } else if(SAMPLERATE_16KHz == para->sample_rate){
+	    /*
+ 	     * So the Tx_CLK = Fsys/2/((TPM+1) + (TFP+1)) = 133/2/(6*11) = 1.008MHz(1.024MHz was expected for 16KHz)
+	     * The HCKT = Fsys/2/((TPM+1) = 133/2/6 = 11.08MHz.
+	     */
+            val |= ESAI_TCCR_TFP(10) |   // clk div 11
+		ESAI_TCCR_TPSR_BYPASS | //bypass
+		ESAI_TCCR_TPM(5);
+        }else{
+	    //TODO
+	}
     } else {
         val = BM_ESAI_TCCR_TCKP | ESAI_TCCR_TDC(para->channel_number - 1); //frame rate devider
     }

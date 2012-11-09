@@ -26,7 +26,7 @@
 /*
  * i.MX6SL CSU
  *
-
+ * CSU Registers
  *
  * Registers defined in this header file:
  * - HW_CSU_CSLn - Config security level register
@@ -67,18 +67,20 @@
  * [7:0] WDOG2 CSL5 [23:16] CCM SNVS_HP SRC GPC CSL6 [7:0] ANATOP CSL6 [23:16] IOMUXC CSL7 [7:0] CSI
  * TCON CSL7 [23:16] SDMA CSL8 [7:0] USB CSL8 [23:16] FEC CSL9 [7:0] MSHC CSL9 [23:16] USDHC1 CSL10
  * [7:0] USDHC2 CSL10 [23:16] USDHC3 CSL11 [7:0] USDHC4 CSL11 [23:16] I2C1 CSL12 [7:0] I2C2 CSL12
- * [23:16] I2C3 CSL13 [7:0] ROMCP CSL13 [23:16] DCP MMDC CSL14 [7:0] WEIM CSL14 [23:16] OCOTP_CTRL
- * CSL15 [7:0] ---- CSL15 [23:16] PERFMON1 PERFMON2 CSL16 [7:0] TZASC1 CSL16 [23:16] RNGB CSL17
- * [7:0] AUDMUX CSL17 [23:16] ---- CSL18 [7:0] SPDIF CSL18 [23:16] eCSPI1 CSL19 [7:0] eCSPI2 CSL19
- * [23:16] eCSPI3 CSL20 [7:0] eCSPI4 CSL20 [23:16] UART5 CSL21 [7:0] UART1 CSL21 [23:16] UART2 CSL22
- * [7:0] SSI1 CSL22 [23:16] SSI2 CSL23 [7:0] SSI3 CSL23 [23:16] UART3 CSL24 [7:0] ---- CSL24 [23:16]
- * ROMCP CSL25 [7:0] ---- CSL25 [23:16] ---- CSL26 [7:0] OCRAM CSL26 [23:16] ---- CSL27 [7:0] ----
- * CSL27 [23:16] ---- CSL28 [7:0] ---- CSL28 [23:16] PXP CSL29 [7:0] OPENVG CSL29 [23:16] ARM CSL30
- * [7:0] EPDC CSL30 [23:16] ---- CSL31 [7:0] LCDIF CSL31 [23:16] WEIM CSL32 [7:0] ---- CSL32 [23:16]
- * GPU2D CSL33 [7:0] ---- CSL33 [23:16] ---- CSL34 [7:0] ---- CSL34 [23:16] ---- CSL35 [7:0] ----
- * CSL35 [23:16] ---- CSL36 [7:0] ---- CSL36 [23:16] ---- CSL37 [7:0] ---- CSL37 [23:16] ---- CSL38
- * [7:0] ---- CSL38 [23:16] UART4 CSL39 [7:0] SPBA CSL39 [23:16] ---- Do not modify the following
- * peripherals' CSL register bits while they are being accessed through the AHB/AXI slave bus: EIM,.
+ * [23:16] I2C3 CSL13 [7:0] ROMCP CSL13 [23:16] DCP MMDC CSL14 [7:0] EIM Do not modify the EIM
+ * peripherals' CSL register bits while they are being accessed through the AHB/AXI slave bus. CSL14
+ * [23:16] OCOTP_CTRL CSL15 [7:0] ---- CSL15 [23:16] PERFMON1 PERFMON2 CSL16 [7:0] TZASC1 CSL16
+ * [23:16] RNGB CSL17 [7:0] AUDMUX CSL17 [23:16] ---- CSL18 [7:0] SPDIF CSL18 [23:16] eCSPI1 CSL19
+ * [7:0] eCSPI2 CSL19 [23:16] eCSPI3 CSL20 [7:0] eCSPI4 CSL20 [23:16] UART5 CSL21 [7:0] UART1 CSL21
+ * [23:16] UART2 CSL22 [7:0] SSI1 CSL22 [23:16] SSI2 CSL23 [7:0] SSI3 CSL23 [23:16] UART3 CSL24
+ * [7:0] ---- CSL24 [23:16] ROMCP CSL25 [7:0] ---- CSL25 [23:16] ---- CSL26 [7:0] OCRAM CSL26
+ * [23:16] ---- CSL27 [7:0] ---- CSL27 [23:16] ---- CSL28 [7:0] ---- CSL28 [23:16] PXP CSL29 [7:0]
+ * OPENVG CSL29 [23:16] ARM CSL30 [7:0] EPDC CSL30 [23:16] ---- CSL31 [7:0] LCDIF CSL31 [23:16] EIM
+ * CSL32 [7:0] ---- CSL32 [23:16] GPU2D CSL33 [7:0] ---- CSL33 [23:16] ---- CSL34 [7:0] ---- CSL34
+ * [23:16] ---- CSL35 [7:0] ---- CSL35 [23:16] ---- CSL36 [7:0] ---- CSL36 [23:16] ---- CSL37 [7:0]
+ * ---- CSL37 [23:16] ---- CSL38 [7:0] ---- CSL38 [23:16] UART4 CSL39 [7:0] SPBA CSL39 [23:16] ----
+ * Do not modify the EIM peripherals' CSL register bits while they are being accessed through the
+ * AHB/AXI slave bus.
  */
 typedef union _hw_csu_csln
 {
@@ -2291,5 +2293,5 @@ typedef struct _hw_csu
 #endif
 
 #endif // __HW_CSU_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

@@ -34,15 +34,14 @@
  */
 #include "cortex_a9.h"
 #include "mmu.h"
+#include "arm_cp_registers.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
 
+//! @brief Size in bytes of the first-level page table.
 #define MMU_L1_PAGE_TABLE_SIZE (16 * 1024)
-
-#define SCTLR_MMU_ENABLE (1 << 0)
-#define SCTLR_AFE (1 << 29)
 
 //! @brief First-level 1MB section descriptor entry.
 typedef union mmu_l1_section {
@@ -90,7 +89,7 @@ void mmu_enable()
     _ARM_MRC(15, 0, sctlr, 1, 0, 0);
     
     // set MMU enable bit 
-    sctlr |= SCTLR_MMU_ENABLE;
+    sctlr |= BM_SCTLR_M;
 
     // write modified SCTLR
     _ARM_MCR(15, 0, sctlr, 1, 0, 0);
@@ -103,7 +102,7 @@ void mmu_disable()
     _ARM_MRC(15, 0, sctlr, 1, 0, 0);
     
     // clear MMU enable bit 
-    sctlr &=~ SCTLR_MMU_ENABLE;
+    sctlr &=~ BM_SCTLR_M;
 
     // write modified SCTLR
     _ARM_MCR(15, 0, sctlr, 1, 0, 0);
@@ -130,17 +129,22 @@ void mmu_init()
     mmu_map_l1_range(0x00900000, 0x00900000, 0x00100000, kStronglyOrdered, kShareable, kRWAccess); // OCRAM
     mmu_map_l1_range(0x00a00000, 0x00a00000, 0x0f600000, kStronglyOrdered, kShareable, kRWAccess); // More peripherals
    
+    // Check whether SMP is enabled. If it is not, then we don't want to make SDRAM shareable.
     uint32_t actlr = 0x0;
     _ARM_MRC(15, 0, actlr, 1, 0, 1);
-    if((actlr & (1 << 6)) != 0) // SMP enalbed
+    if (actlr & BM_ACTLR_SMP)
+    {
         share_attr = kShareable;
+    }
     else
+    {
         share_attr = kNonshareable;
+    }
 
 #if defined(CHIP_MX6DQ) || defined(CHIP_MX6SDL)
-    mmu_map_l1_range(0x10000000, 0x10000000, 0x80000000, kOuterInner_WB_WA, share_attr, kRWAccess); // 2GB SDRAM
+    mmu_map_l1_range(0x10000000, 0x10000000, 0x80000000, kOuterInner_WB_WA, share_attr, kRWAccess); // 2GB DDR
 #elif defined(CHIP_MX6SL)
-    mmu_map_l1_range(0x80000000, 0x80000000, 0x40000000, kOuterInner_WB_WA, share_attr, kRWAccess); // 1GB SDRAM
+    mmu_map_l1_range(0x80000000, 0x80000000, 0x40000000, kOuterInner_WB_WA, share_attr, kRWAccess); // 1GB DDR
 #else
 #error Unknown chip type!
 #endif

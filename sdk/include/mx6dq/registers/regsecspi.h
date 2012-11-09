@@ -267,7 +267,7 @@ typedef union _hw_ecspi_conreg
 /*! @name Register ECSPI_CONREG, field HT[1] (RW)
  *
  * Hardware Trigger Enable. This bit is used in master mode only. It enables hardware trigger (HT)
- * mode.
+ * mode. Note, HT mode is not supported by this product.
  *
  * Values:
  * - 0 - Disable HT mode.
@@ -379,6 +379,7 @@ typedef union _hw_ecspi_conreg
  *
  * Values:
  * - 0000 - Divide by 1.
+ * - ... - 
  * - 0001 - Divide by 2.
  * - 0010 - Divide by 4.
  * - 1110 - Divide by 2 14 .
@@ -407,6 +408,7 @@ typedef union _hw_ecspi_conreg
  *
  * Values:
  * - 0000 - Divide by 1.
+ * - ... - 
  * - 0001 - Divide by 2.
  * - 0010 - Divide by 3.
  * - 1101 - Divide by 14.
@@ -497,6 +499,8 @@ typedef union _hw_ecspi_conreg
  *
  * Values:
  * - 0x000 - A SPI burst contains the 1 LSB in a word.
+ * - ... - 
+ * - ... - 
  * - 0x001 - A SPI burst contains the 2 LSB in a word.
  * - 0x002 - A SPI burst contains the 3 LSB in a word.
  * - 0x01F - A SPI burst contains all 32 bits in a word.
@@ -533,7 +537,7 @@ typedef union _hw_ecspi_conreg
  *
  * The Config Register (ECSPI_CONFIGREG) allows software to configure each SPI channel, configure
  * its operating modes, specify the phase and polarity of the clock, configure the Chip Select (SS),
- * and define the HT transfer length.
+ * and define the HT transfer length. Note, HT mode is not supported by this product.
  */
 typedef union _hw_ecspi_configreg
 {
@@ -601,8 +605,8 @@ typedef union _hw_ecspi_configreg
 /*! @name Register ECSPI_CONFIGREG, field SCLK_POL[7:4] (RW)
  *
  * SPI Clock Polarity Control. This field controls the polarity of the SCLK signal. See for more
- * information. SCLK POL[3] is for SPI channel 3. SCLK POL[2] is for SPI channel 2. SCLK POL[1] is
- * for SPI channel 1. SCLK POL[0] is for SPI channel 0.
+ * information. SCLK_POL[3] is for SPI channel 3. SCLK_POL[2] is for SPI channel 2. SCLK_POL[1] is
+ * for SPI channel 1. SCLK_POL[0] is for SPI channel 0.
  *
  * Values:
  * - 0 - Active high polarity (0 = Idle).
@@ -742,8 +746,8 @@ typedef union _hw_ecspi_configreg
 
 /*! @name Register ECSPI_CONFIGREG, field HT_LENGTH[28:24] (RW)
  *
- * HT LENGTH. This field defines the message length in HT Mode. The length in bits of one message is
- * (HT LENGTH + 1).
+ * HT LENGTH. This field defines the message length in HT Mode. Note, HT mode is not supported by
+ * this product. The length in bits of one message is (HT LENGTH + 1).
  */
 //@{
 #define BP_ECSPI_CONFIGREG_HT_LENGTH      (24)      //!< Bit position for ECSPI_CONFIGREG_HT_LENGTH.
@@ -839,7 +843,7 @@ typedef union _hw_ecspi_intreg
 /*! @name Register ECSPI_INTREG, field TDREN[1] (RW)
  *
  * TXFIFO Data Request Interrupt enable. This bit enables the TXFIFO Data Request Interrupt when the
- * number of data entries in the TXFIFO is less than or equal to TX THRESHOLD.
+ * number of data entries in the TXFIFO is less than or equal to TX_THRESHOLD.
  *
  * Values:
  * - 0 - Disable
@@ -912,7 +916,7 @@ typedef union _hw_ecspi_intreg
 /*! @name Register ECSPI_INTREG, field RDREN[4] (RW)
  *
  * RXFIFO Data Request Interrupt enable. This bit enables the RXFIFO Data Request Interrupt when the
- * number of data entries in the RXFIFO is greater than RX THRESHOLD.
+ * number of data entries in the RXFIFO is greater than RX_THRESHOLD.
  *
  * Values:
  * - 0 - Disable
@@ -1063,8 +1067,8 @@ typedef union _hw_ecspi_dmareg
 /*! @name Register ECSPI_DMAREG, field TX_THRESHOLD[5:0] (RW)
  *
  * TX THRESHOLD. This field defines the FIFO threshold that triggers a TX DMA/INT request. A TX
- * DMA/INT request is issued when the number of data entries in the TXFIFO is greater than TX
- * THRESHOLD.
+ * DMA/INT request is issued when the number of data entries in the TXFIFO is greater than
+ * TX_THRESHOLD.
  */
 //@{
 #define BP_ECSPI_DMAREG_TX_THRESHOLD      (0)      //!< Bit position for ECSPI_DMAREG_TX_THRESHOLD.
@@ -1109,8 +1113,8 @@ typedef union _hw_ecspi_dmareg
 /*! @name Register ECSPI_DMAREG, field RX_THRESHOLD[21:16] (RW)
  *
  * RX THRESHOLD. This field defines the FIFO threshold that triggers a RX DMA/INT request. A RX
- * DMA/INT request is issued when the number of data entries in the RXFIFO is greater than RX
- * THRESHOLD.
+ * DMA/INT request is issued when the number of data entries in the RXFIFO is greater than
+ * RX_THRESHOLD.
  */
 //@{
 #define BP_ECSPI_DMAREG_RX_THRESHOLD      (16)      //!< Bit position for ECSPI_DMAREG_RX_THRESHOLD.
@@ -1178,7 +1182,7 @@ typedef union _hw_ecspi_dmareg
  * RXFIFO TAIL DMA Request Enable. This bit enables an internal counter that is increased at each
  * read of the RXFIFO. This counter is cleared automatically when it reaches RX DMA LENGTH. If the
  * number of words remaining in the RXFIFO is greater than or equal to RX DMA LENGTH, a DMA request
- * is generated even if it is less than or equal to RX THRESHOLD.
+ * is generated even if it is less than or equal to RX_THRESHOLD.
  *
  * Values:
  * - 0 - Disable
@@ -1272,8 +1276,8 @@ typedef union _hw_ecspi_statreg
  * TXFIFO Data Request.
  *
  * Values:
- * - 0 - Number of empty slots in TXFIFO is greater than TX THRESHOLD.
- * - 1 - Number of empty slots in TXFIFO is not greater than TX THRESHOLD.
+ * - 0 - Number of empty slots in TXFIFO is greater than TX_THRESHOLD.
+ * - 1 - Number of empty slots in TXFIFO is not greater than TX_THRESHOLD.
  */
 //@{
 #define BP_ECSPI_STATREG_TDR      (1)      //!< Bit position for ECSPI_STATREG_TDR.
@@ -1320,11 +1324,11 @@ typedef union _hw_ecspi_statreg
  * RXFIFO Data Request.
  *
  * Values:
- * - 0 - When RXTDE is set - Number of data entries in the RXFIFO is not greater than RX THRESHOLD.
- * - 0 - When RXTDE is clear - Number of data entries in the RXFIFO is not greater than RX THRESHOLD.
- * - 1 - When RXTDE is set - Number of data entries in the RXFIFO is greater than RX THRESHOLD or a DMA TAIL
+ * - 0 - When RXTDE is set - Number of data entries in the RXFIFO is not greater than RX_THRESHOLD.
+ * - 0 - When RXTDE is clear - Number of data entries in the RXFIFO is not greater than RX_THRESHOLD.
+ * - 1 - When RXTDE is set - Number of data entries in the RXFIFO is greater than RX_THRESHOLD or a DMA TAIL
  *     DMA condition exists.
- * - 1 - When RXTDE is clear - Number of data entries in the RXFIFO is greater than RX THRESHOLD.
+ * - 1 - When RXTDE is clear - Number of data entries in the RXFIFO is greater than RX_THRESHOLD.
  */
 //@{
 #define BP_ECSPI_STATREG_RDR      (4)      //!< Bit position for ECSPI_STATREG_RDR.
@@ -1652,7 +1656,7 @@ typedef union _hw_ecspi_testreg
  *
  * The Message Data Register (ECSPI_MSGDATA) forms the top word of the 16 x 32 MSG Data FIFO. Only
  * word-size accesses are allowed for this register. Reads to this register return zero, and writes
- * to this register store data in the MSG Data FIFO. See .
+ * to this register store data in the MSG Data FIFO.
  */
 typedef union _hw_ecspi_msgdata
 {
@@ -1729,5 +1733,5 @@ typedef struct _hw_ecspi
 #endif
 
 #endif // __HW_ECSPI_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

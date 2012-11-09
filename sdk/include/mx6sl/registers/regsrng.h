@@ -874,5 +874,5 @@ typedef struct _hw_rng
 #endif
 
 #endif // __HW_RNG_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

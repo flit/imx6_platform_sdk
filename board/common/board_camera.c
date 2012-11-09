@@ -166,7 +166,7 @@ void sensor_clock_setting(void)
 			BF_CCM_CCOSR_CLKO2_EN(1) |
 			BF_CCM_CCOSR_CLKO2_DIV(0) | /*div 1*/
 			BF_CCM_CCOSR_CLKO2_SEL(0xe) | /*osc_clk*/
-			BF_CCM_CCOSR_CLKO1_CLKO2_SEL(1) |
+			BF_CCM_CCOSR_CLKO_SEL(1) |
 			BF_CCM_CCOSR_CLKO1_EN(1) |
 			BF_CCM_CCOSR_CLKO1_DIV(0)); /*div 1*/
 

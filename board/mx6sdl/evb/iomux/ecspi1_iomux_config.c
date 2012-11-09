@@ -71,7 +71,7 @@ void ecspi1_iomux_config(void)
     //     SEL_EIM_D17_ALT1 (2) - Selecting Pad: EIM_D17 for Mode: ALT1.
     //     SEL_KEY_COL1_ALT0 (3) - Selecting Pad: KEY_COL1 for Mode: ALT0.
     HW_IOMUXC_ECSPI1_IPP_IND_MISO_SELECT_INPUT_WR(
-            BF_IOMUXC_ECSPI1_IPP_IND_MISO_SELECT_INPUT_DAISY(SEL_CSI0_DAT6_ALT2));
+            BF_IOMUXC_ECSPI1_IPP_IND_MISO_SELECT_INPUT_DAISY(SEL_EIM_D17_ALT1));
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_EIM_D17(0x020E0518)
     //   HYS [16] - Hysteresis Enable Field Reset: HYS_ENABLED
@@ -163,7 +163,7 @@ void ecspi1_iomux_config(void)
     //     SEL_EIM_D18_ALT1 (2) - Selecting Pad: EIM_D18 for Mode: ALT1.
     //     SEL_KEY_ROW0_ALT0 (3) - Selecting Pad: KEY_ROW0 for Mode: ALT0.
     HW_IOMUXC_ECSPI1_IPP_IND_MOSI_SELECT_INPUT_WR(
-            BF_IOMUXC_ECSPI1_IPP_IND_MOSI_SELECT_INPUT_DAISY(SEL_CSI0_DAT5_ALT2));
+            BF_IOMUXC_ECSPI1_IPP_IND_MOSI_SELECT_INPUT_DAISY(SEL_EIM_D18_ALT1));
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_EIM_D18(0x020E051C)
     //   HYS [16] - Hysteresis Enable Field Reset: HYS_ENABLED
@@ -256,7 +256,7 @@ void ecspi1_iomux_config(void)
     //     SEL_EIM_D16_ALT1 (2) - Selecting Pad: EIM_D16 for Mode: ALT1.
     //     SEL_KEY_COL0_ALT0 (3) - Selecting Pad: KEY_COL0 for Mode: ALT0.
     HW_IOMUXC_ECSPI1_IPP_CSPI_CLK_IN_SELECT_INPUT_WR(
-            BF_IOMUXC_ECSPI1_IPP_CSPI_CLK_IN_SELECT_INPUT_DAISY(SEL_CSI0_DAT4_ALT2));
+            BF_IOMUXC_ECSPI1_IPP_CSPI_CLK_IN_SELECT_INPUT_DAISY(SEL_EIM_D16_ALT1));
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_EIM_D16(0x020E0514)
     //   HYS [16] - Hysteresis Enable Field Reset: HYS_ENABLED
@@ -351,7 +351,7 @@ void ecspi1_iomux_config(void)
     //     SEL_EIM_EB2_ALT1 (2) - Selecting Pad: EIM_EB2 for Mode: ALT1.
     //     SEL_KEY_ROW1_ALT0 (3) - Selecting Pad: KEY_ROW1 for Mode: ALT0.
     HW_IOMUXC_ECSPI1_IPP_IND_SS_B_0_SELECT_INPUT_WR(
-            BF_IOMUXC_ECSPI1_IPP_IND_SS_B_0_SELECT_INPUT_DAISY(SEL_CSI0_DAT7_ALT2));
+            BF_IOMUXC_ECSPI1_IPP_IND_SS_B_0_SELECT_INPUT_DAISY(SEL_EIM_EB2_ALT1));
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_EIM_EB2(0x020E059C)
     //   HYS [16] - Hysteresis Enable Field Reset: HYS_ENABLED
@@ -442,7 +442,7 @@ void ecspi1_iomux_config(void)
     //     SEL_EIM_D19_ALT1 (1) - Selecting Pad: EIM_D19 for Mode: ALT1.
     //     SEL_KEY_COL2_ALT0 (2) - Selecting Pad: KEY_COL2 for Mode: ALT0.
     HW_IOMUXC_ECSPI1_IPP_IND_SS_B_1_SELECT_INPUT_WR(
-            BF_IOMUXC_ECSPI1_IPP_IND_SS_B_1_SELECT_INPUT_DAISY(SEL_DISP0_DAT15_ALT2));
+            BF_IOMUXC_ECSPI1_IPP_IND_SS_B_1_SELECT_INPUT_DAISY(SEL_EIM_D19_ALT1));
     // Pad Control Register:
     // IOMUXC_SW_PAD_CTL_PAD_EIM_D19(0x020E0520)
     //   HYS [16] - Hysteresis Enable Field Reset: HYS_ENABLED

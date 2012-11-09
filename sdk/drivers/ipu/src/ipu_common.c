@@ -307,6 +307,29 @@ void ipu_capture_setup(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_
     ipu_channel_buf_ready(ipu_index, disp_channel, 1);
 }
 
+void ipu_capture_streamoff(uint32_t ipu_index)
+{
+    int timeout = 5000;
+
+    /*wait for idmac eof and disable csi-->smfc-->idmac */
+
+    /* enable idmac channel 0 eof and wait for eof */
+    ipu_write_field(ipu_index, IPU_IPU_INT_CTRL_1__IDMAC_EOF_EN_0, 1);
+    ipu_write_field(ipu_index, IPU_IPU_INT_STAT_1__IDMAC_EOF_0, 1);
+
+    while (!(ipu_read(ipu_index, IPU_IPU_INT_STAT_1__ADDR) & 0x1)) {
+	hal_delay_us(10);
+	if (timeout <= 0)
+	    break;
+	timeout--;
+    }
+
+    ipu_disable_csi(ipu_index, 0);
+    ipu_disable_smfc(ipu_index);
+
+    ipu_idmac_channel_enable(ipu_index, CSI_TO_MEM_CH0, 0);
+}
+
 void ipu_mipi_csi2_setup(uint32_t ipu_index, uint32_t csi_width, uint32_t csi_height,
                          ips_dev_panel_t * panel)
 {

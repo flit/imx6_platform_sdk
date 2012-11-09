@@ -1653,7 +1653,7 @@ typedef union _hw_usbc_uog_usbcmd
     {
         unsigned RS : 1; //!< [0] Run/Stop (RS) - Read/Write.
         unsigned RST : 1; //!< [1] Controller Reset (RESET) - Read/Write.
-        unsigned FS : 2; //!< [3:2] See description at bit 15
+        unsigned FS_1 : 2; //!< [3:2] See description at bit 15
         unsigned PSE : 1; //!< [4] Periodic Schedule Enable- Read/Write.
         unsigned ASE : 1; //!< [5] Asynchronous Schedule Enable - Read/Write.
         unsigned IAA : 1; //!< [6] Interrupt on Async Advance Doorbell - Read/Write.
@@ -1664,7 +1664,7 @@ typedef union _hw_usbc_uog_usbcmd
         unsigned RESERVED2 : 1; //!< [12] Reserved
         unsigned SUTW : 1; //!< [13] Setup TripWire - Read/Write.
         unsigned ATDTW : 1; //!< [14] Add dTD TripWire - Read/Write.
-        unsigned FS1 : 1; //!< [15] See also bits 3-2
+        unsigned FS_2 : 1; //!< [15] See also bits 3-2
         unsigned ITC : 8; //!< [23:16] Interrupt Threshold Control -Read/Write.
         unsigned RESERVED3 : 8; //!< [31:24] Reserved
     } B;
@@ -1755,23 +1755,23 @@ typedef union _hw_usbc_uog_usbcmd
 #endif
 //@}
 
-/*! @name Register USBC_UOG_USBCMD, field FS[3:2] (RW)
+/*! @name Register USBC_UOG_USBCMD, field FS_1[3:2] (RW)
  *
  * See description at bit 15
  */
 //@{
-#define BP_USBC_UOG_USBCMD_FS      (2)      //!< Bit position for USBC_UOG_USBCMD_FS.
-#define BM_USBC_UOG_USBCMD_FS      (0x0000000c)  //!< Bit mask for USBC_UOG_USBCMD_FS.
+#define BP_USBC_UOG_USBCMD_FS_1      (2)      //!< Bit position for USBC_UOG_USBCMD_FS_1.
+#define BM_USBC_UOG_USBCMD_FS_1      (0x0000000c)  //!< Bit mask for USBC_UOG_USBCMD_FS_1.
 
-//! @brief Get value of USBC_UOG_USBCMD_FS from a register value.
-#define BG_USBC_UOG_USBCMD_FS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG_USBCMD_FS) >> BP_USBC_UOG_USBCMD_FS)
+//! @brief Get value of USBC_UOG_USBCMD_FS_1 from a register value.
+#define BG_USBC_UOG_USBCMD_FS_1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG_USBCMD_FS_1) >> BP_USBC_UOG_USBCMD_FS_1)
 
-//! @brief Format value for bitfield USBC_UOG_USBCMD_FS.
-#define BF_USBC_UOG_USBCMD_FS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UOG_USBCMD_FS) & BM_USBC_UOG_USBCMD_FS)
+//! @brief Format value for bitfield USBC_UOG_USBCMD_FS_1.
+#define BF_USBC_UOG_USBCMD_FS_1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UOG_USBCMD_FS_1) & BM_USBC_UOG_USBCMD_FS_1)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the FS field to a new value.
-#define BW_USBC_UOG_USBCMD_FS(v)   (HW_USBC_UOG_USBCMD_WR((HW_USBC_UOG_USBCMD_RD() & ~BM_USBC_UOG_USBCMD_FS) | BF_USBC_UOG_USBCMD_FS(v)))
+//! @brief Set the FS_1 field to a new value.
+#define BW_USBC_UOG_USBCMD_FS_1(v)   (HW_USBC_UOG_USBCMD_WR((HW_USBC_UOG_USBCMD_RD() & ~BM_USBC_UOG_USBCMD_FS_1) | BF_USBC_UOG_USBCMD_FS_1(v)))
 #endif
 //@}
 
@@ -1953,7 +1953,7 @@ typedef union _hw_usbc_uog_usbcmd
 #endif
 //@}
 
-/*! @name Register USBC_UOG_USBCMD, field FS1[15] (RW)
+/*! @name Register USBC_UOG_USBCMD, field FS_2[15] (RW)
  *
  * See also bits 3-2 Frame List Size - (Read/Write or Read Only). [host mode only] This field is
  * Read/Write only if Programmable Frame List Flag in the HCCPARAMS registers is set to one. This
@@ -1972,18 +1972,18 @@ typedef union _hw_usbc_uog_usbcmd
  * - 111 - 8 elements (32 bytes)
  */
 //@{
-#define BP_USBC_UOG_USBCMD_FS1      (15)      //!< Bit position for USBC_UOG_USBCMD_FS1.
-#define BM_USBC_UOG_USBCMD_FS1      (0x00008000)  //!< Bit mask for USBC_UOG_USBCMD_FS1.
+#define BP_USBC_UOG_USBCMD_FS_2      (15)      //!< Bit position for USBC_UOG_USBCMD_FS_2.
+#define BM_USBC_UOG_USBCMD_FS_2      (0x00008000)  //!< Bit mask for USBC_UOG_USBCMD_FS_2.
 
-//! @brief Get value of USBC_UOG_USBCMD_FS1 from a register value.
-#define BG_USBC_UOG_USBCMD_FS1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG_USBCMD_FS1) >> BP_USBC_UOG_USBCMD_FS1)
+//! @brief Get value of USBC_UOG_USBCMD_FS_2 from a register value.
+#define BG_USBC_UOG_USBCMD_FS_2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG_USBCMD_FS_2) >> BP_USBC_UOG_USBCMD_FS_2)
 
-//! @brief Format value for bitfield USBC_UOG_USBCMD_FS1.
-#define BF_USBC_UOG_USBCMD_FS1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UOG_USBCMD_FS1) & BM_USBC_UOG_USBCMD_FS1)
+//! @brief Format value for bitfield USBC_UOG_USBCMD_FS_2.
+#define BF_USBC_UOG_USBCMD_FS_2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UOG_USBCMD_FS_2) & BM_USBC_UOG_USBCMD_FS_2)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the FS1 field to a new value.
-#define BW_USBC_UOG_USBCMD_FS1(v)   (HW_USBC_UOG_USBCMD_WR((HW_USBC_UOG_USBCMD_RD() & ~BM_USBC_UOG_USBCMD_FS1) | BF_USBC_UOG_USBCMD_FS1(v)))
+//! @brief Set the FS_2 field to a new value.
+#define BW_USBC_UOG_USBCMD_FS_2(v)   (HW_USBC_UOG_USBCMD_WR((HW_USBC_UOG_USBCMD_RD() & ~BM_USBC_UOG_USBCMD_FS_2) | BF_USBC_UOG_USBCMD_FS_2(v)))
 #endif
 //@}
 
@@ -3753,11 +3753,11 @@ typedef union _hw_usbc_uog_portsc1
         unsigned WKOC : 1; //!< [22] Wake on Over-current Enable (WKOC_E) - Read/Write.
         unsigned PHCD : 1; //!< [23] PHY Low Power Suspend - Clock Disable (PLPSCD) - Read/Write.
         unsigned PFSC : 1; //!< [24] Port Force Full Speed Connect - Read/Write.
-        unsigned PTS : 1; //!< [25] See description at bits 31-30
+        unsigned PTS_2 : 1; //!< [25] See description at bits 31-30
         unsigned PSPD : 2; //!< [27:26] Port Speed - Read Only.
         unsigned PTW : 1; //!< [28] Parallel Transceiver Width
         unsigned STS : 1; //!< [29] Serial Transceiver Select - Read Only
-        unsigned PTS1 : 2; //!< [31:30] Bit field {bit25, bit31, bit30}:
+        unsigned PTS_1 : 2; //!< [31:30] Bit field {bit25, bit31, bit30}:
     } B;
 } hw_usbc_uog_portsc1_t;
 #endif
@@ -4305,23 +4305,23 @@ typedef union _hw_usbc_uog_portsc1
 #endif
 //@}
 
-/*! @name Register USBC_UOG_PORTSC1, field PTS[25] (RW)
+/*! @name Register USBC_UOG_PORTSC1, field PTS_2[25] (RW)
  *
  * See description at bits 31-30
  */
 //@{
-#define BP_USBC_UOG_PORTSC1_PTS      (25)      //!< Bit position for USBC_UOG_PORTSC1_PTS.
-#define BM_USBC_UOG_PORTSC1_PTS      (0x02000000)  //!< Bit mask for USBC_UOG_PORTSC1_PTS.
+#define BP_USBC_UOG_PORTSC1_PTS_2      (25)      //!< Bit position for USBC_UOG_PORTSC1_PTS_2.
+#define BM_USBC_UOG_PORTSC1_PTS_2      (0x02000000)  //!< Bit mask for USBC_UOG_PORTSC1_PTS_2.
 
-//! @brief Get value of USBC_UOG_PORTSC1_PTS from a register value.
-#define BG_USBC_UOG_PORTSC1_PTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG_PORTSC1_PTS) >> BP_USBC_UOG_PORTSC1_PTS)
+//! @brief Get value of USBC_UOG_PORTSC1_PTS_2 from a register value.
+#define BG_USBC_UOG_PORTSC1_PTS_2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG_PORTSC1_PTS_2) >> BP_USBC_UOG_PORTSC1_PTS_2)
 
-//! @brief Format value for bitfield USBC_UOG_PORTSC1_PTS.
-#define BF_USBC_UOG_PORTSC1_PTS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UOG_PORTSC1_PTS) & BM_USBC_UOG_PORTSC1_PTS)
+//! @brief Format value for bitfield USBC_UOG_PORTSC1_PTS_2.
+#define BF_USBC_UOG_PORTSC1_PTS_2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UOG_PORTSC1_PTS_2) & BM_USBC_UOG_PORTSC1_PTS_2)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the PTS field to a new value.
-#define BW_USBC_UOG_PORTSC1_PTS(v)   (HW_USBC_UOG_PORTSC1_WR((HW_USBC_UOG_PORTSC1_RD() & ~BM_USBC_UOG_PORTSC1_PTS) | BF_USBC_UOG_PORTSC1_PTS(v)))
+//! @brief Set the PTS_2 field to a new value.
+#define BW_USBC_UOG_PORTSC1_PTS_2(v)   (HW_USBC_UOG_PORTSC1_WR((HW_USBC_UOG_PORTSC1_RD() & ~BM_USBC_UOG_PORTSC1_PTS_2) | BF_USBC_UOG_PORTSC1_PTS_2(v)))
 #endif
 //@}
 
@@ -4402,7 +4402,7 @@ typedef union _hw_usbc_uog_portsc1
 #endif
 //@}
 
-/*! @name Register USBC_UOG_PORTSC1, field PTS1[31:30] (RW)
+/*! @name Register USBC_UOG_PORTSC1, field PTS_1[31:30] (RW)
  *
  * Bit field {bit25, bit31, bit30}: "000b" UTMI/UTMI+ "001b" Reserved "010b" ULPI "011b" Serial/USB
  * 1.1 PHY/IC-USB (FS Only) "100b" HSIC Parallel Transceiver Select (bit25, bit31, bi30). For OTG
@@ -4412,18 +4412,18 @@ typedef union _hw_usbc_uog_portsc1
  * unsupported interface mode is selected.
  */
 //@{
-#define BP_USBC_UOG_PORTSC1_PTS1      (30)      //!< Bit position for USBC_UOG_PORTSC1_PTS1.
-#define BM_USBC_UOG_PORTSC1_PTS1      (0xc0000000)  //!< Bit mask for USBC_UOG_PORTSC1_PTS1.
+#define BP_USBC_UOG_PORTSC1_PTS_1      (30)      //!< Bit position for USBC_UOG_PORTSC1_PTS_1.
+#define BM_USBC_UOG_PORTSC1_PTS_1      (0xc0000000)  //!< Bit mask for USBC_UOG_PORTSC1_PTS_1.
 
-//! @brief Get value of USBC_UOG_PORTSC1_PTS1 from a register value.
-#define BG_USBC_UOG_PORTSC1_PTS1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG_PORTSC1_PTS1) >> BP_USBC_UOG_PORTSC1_PTS1)
+//! @brief Get value of USBC_UOG_PORTSC1_PTS_1 from a register value.
+#define BG_USBC_UOG_PORTSC1_PTS_1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UOG_PORTSC1_PTS_1) >> BP_USBC_UOG_PORTSC1_PTS_1)
 
-//! @brief Format value for bitfield USBC_UOG_PORTSC1_PTS1.
-#define BF_USBC_UOG_PORTSC1_PTS1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UOG_PORTSC1_PTS1) & BM_USBC_UOG_PORTSC1_PTS1)
+//! @brief Format value for bitfield USBC_UOG_PORTSC1_PTS_1.
+#define BF_USBC_UOG_PORTSC1_PTS_1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UOG_PORTSC1_PTS_1) & BM_USBC_UOG_PORTSC1_PTS_1)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the PTS1 field to a new value.
-#define BW_USBC_UOG_PORTSC1_PTS1(v)   (HW_USBC_UOG_PORTSC1_WR((HW_USBC_UOG_PORTSC1_RD() & ~BM_USBC_UOG_PORTSC1_PTS1) | BF_USBC_UOG_PORTSC1_PTS1(v)))
+//! @brief Set the PTS_1 field to a new value.
+#define BW_USBC_UOG_PORTSC1_PTS_1(v)   (HW_USBC_UOG_PORTSC1_WR((HW_USBC_UOG_PORTSC1_RD() & ~BM_USBC_UOG_PORTSC1_PTS_1) | BF_USBC_UOG_PORTSC1_PTS_1(v)))
 #endif
 //@}
 
@@ -9343,7 +9343,7 @@ typedef union _hw_usbc_uh1_usbcmd
     {
         unsigned RS : 1; //!< [0] Run/Stop (RS) - Read/Write.
         unsigned RST : 1; //!< [1] Controller Reset (RESET) - Read/Write.
-        unsigned FS : 2; //!< [3:2] See description at bit 15
+        unsigned FS_1 : 2; //!< [3:2] See description at bit 15
         unsigned PSE : 1; //!< [4] Periodic Schedule Enable- Read/Write.
         unsigned ASE : 1; //!< [5] Asynchronous Schedule Enable - Read/Write.
         unsigned IAA : 1; //!< [6] Interrupt on Async Advance Doorbell - Read/Write.
@@ -9354,7 +9354,7 @@ typedef union _hw_usbc_uh1_usbcmd
         unsigned RESERVED2 : 1; //!< [12] Reserved
         unsigned SUTW : 1; //!< [13] Setup TripWire - Read/Write.
         unsigned ATDTW : 1; //!< [14] Add dTD TripWire - Read/Write.
-        unsigned FS1 : 1; //!< [15] See also bits 3-2
+        unsigned FS_2 : 1; //!< [15] See also bits 3-2
         unsigned ITC : 8; //!< [23:16] Interrupt Threshold Control -Read/Write.
         unsigned RESERVED3 : 8; //!< [31:24] Reserved
     } B;
@@ -9445,23 +9445,23 @@ typedef union _hw_usbc_uh1_usbcmd
 #endif
 //@}
 
-/*! @name Register USBC_UH1_USBCMD, field FS[3:2] (RW)
+/*! @name Register USBC_UH1_USBCMD, field FS_1[3:2] (RW)
  *
  * See description at bit 15
  */
 //@{
-#define BP_USBC_UH1_USBCMD_FS      (2)      //!< Bit position for USBC_UH1_USBCMD_FS.
-#define BM_USBC_UH1_USBCMD_FS      (0x0000000c)  //!< Bit mask for USBC_UH1_USBCMD_FS.
+#define BP_USBC_UH1_USBCMD_FS_1      (2)      //!< Bit position for USBC_UH1_USBCMD_FS_1.
+#define BM_USBC_UH1_USBCMD_FS_1      (0x0000000c)  //!< Bit mask for USBC_UH1_USBCMD_FS_1.
 
-//! @brief Get value of USBC_UH1_USBCMD_FS from a register value.
-#define BG_USBC_UH1_USBCMD_FS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_USBCMD_FS) >> BP_USBC_UH1_USBCMD_FS)
+//! @brief Get value of USBC_UH1_USBCMD_FS_1 from a register value.
+#define BG_USBC_UH1_USBCMD_FS_1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_USBCMD_FS_1) >> BP_USBC_UH1_USBCMD_FS_1)
 
-//! @brief Format value for bitfield USBC_UH1_USBCMD_FS.
-#define BF_USBC_UH1_USBCMD_FS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UH1_USBCMD_FS) & BM_USBC_UH1_USBCMD_FS)
+//! @brief Format value for bitfield USBC_UH1_USBCMD_FS_1.
+#define BF_USBC_UH1_USBCMD_FS_1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UH1_USBCMD_FS_1) & BM_USBC_UH1_USBCMD_FS_1)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the FS field to a new value.
-#define BW_USBC_UH1_USBCMD_FS(v)   (HW_USBC_UH1_USBCMD_WR((HW_USBC_UH1_USBCMD_RD() & ~BM_USBC_UH1_USBCMD_FS) | BF_USBC_UH1_USBCMD_FS(v)))
+//! @brief Set the FS_1 field to a new value.
+#define BW_USBC_UH1_USBCMD_FS_1(v)   (HW_USBC_UH1_USBCMD_WR((HW_USBC_UH1_USBCMD_RD() & ~BM_USBC_UH1_USBCMD_FS_1) | BF_USBC_UH1_USBCMD_FS_1(v)))
 #endif
 //@}
 
@@ -9643,7 +9643,7 @@ typedef union _hw_usbc_uh1_usbcmd
 #endif
 //@}
 
-/*! @name Register USBC_UH1_USBCMD, field FS1[15] (RW)
+/*! @name Register USBC_UH1_USBCMD, field FS_2[15] (RW)
  *
  * See also bits 3-2 Frame List Size - (Read/Write or Read Only). [host mode only] This field is
  * Read/Write only if Programmable Frame List Flag in the HCCPARAMS registers is set to one. This
@@ -9662,18 +9662,18 @@ typedef union _hw_usbc_uh1_usbcmd
  * - 111 - 8 elements (32 bytes)
  */
 //@{
-#define BP_USBC_UH1_USBCMD_FS1      (15)      //!< Bit position for USBC_UH1_USBCMD_FS1.
-#define BM_USBC_UH1_USBCMD_FS1      (0x00008000)  //!< Bit mask for USBC_UH1_USBCMD_FS1.
+#define BP_USBC_UH1_USBCMD_FS_2      (15)      //!< Bit position for USBC_UH1_USBCMD_FS_2.
+#define BM_USBC_UH1_USBCMD_FS_2      (0x00008000)  //!< Bit mask for USBC_UH1_USBCMD_FS_2.
 
-//! @brief Get value of USBC_UH1_USBCMD_FS1 from a register value.
-#define BG_USBC_UH1_USBCMD_FS1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_USBCMD_FS1) >> BP_USBC_UH1_USBCMD_FS1)
+//! @brief Get value of USBC_UH1_USBCMD_FS_2 from a register value.
+#define BG_USBC_UH1_USBCMD_FS_2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_USBCMD_FS_2) >> BP_USBC_UH1_USBCMD_FS_2)
 
-//! @brief Format value for bitfield USBC_UH1_USBCMD_FS1.
-#define BF_USBC_UH1_USBCMD_FS1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UH1_USBCMD_FS1) & BM_USBC_UH1_USBCMD_FS1)
+//! @brief Format value for bitfield USBC_UH1_USBCMD_FS_2.
+#define BF_USBC_UH1_USBCMD_FS_2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UH1_USBCMD_FS_2) & BM_USBC_UH1_USBCMD_FS_2)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the FS1 field to a new value.
-#define BW_USBC_UH1_USBCMD_FS1(v)   (HW_USBC_UH1_USBCMD_WR((HW_USBC_UH1_USBCMD_RD() & ~BM_USBC_UH1_USBCMD_FS1) | BF_USBC_UH1_USBCMD_FS1(v)))
+//! @brief Set the FS_2 field to a new value.
+#define BW_USBC_UH1_USBCMD_FS_2(v)   (HW_USBC_UH1_USBCMD_WR((HW_USBC_UH1_USBCMD_RD() & ~BM_USBC_UH1_USBCMD_FS_2) | BF_USBC_UH1_USBCMD_FS_2(v)))
 #endif
 //@}
 
@@ -11103,11 +11103,11 @@ typedef union _hw_usbc_uh1_portsc1
         unsigned WKOC : 1; //!< [22] Wake on Over-current Enable (WKOC_E) - Read/Write.
         unsigned PHCD : 1; //!< [23] PHY Low Power Suspend - Clock Disable (PLPSCD) - Read/Write.
         unsigned PFSC : 1; //!< [24] Port Force Full Speed Connect - Read/Write.
-        unsigned PTS : 1; //!< [25] See description at bits 31-30
+        unsigned PTS_2 : 1; //!< [25] See description at bits 31-30
         unsigned PSPD : 2; //!< [27:26] Port Speed - Read Only.
         unsigned PTW : 1; //!< [28] Parallel Transceiver Width
         unsigned STS : 1; //!< [29] Serial Transceiver Select - Read Only
-        unsigned PTS1 : 2; //!< [31:30] Bit field {bit25, bit31, bit30}:
+        unsigned PTS_1 : 2; //!< [31:30] Bit field {bit25, bit31, bit30}:
     } B;
 } hw_usbc_uh1_portsc1_t;
 #endif
@@ -11655,23 +11655,23 @@ typedef union _hw_usbc_uh1_portsc1
 #endif
 //@}
 
-/*! @name Register USBC_UH1_PORTSC1, field PTS[25] (RW)
+/*! @name Register USBC_UH1_PORTSC1, field PTS_2[25] (RW)
  *
  * See description at bits 31-30
  */
 //@{
-#define BP_USBC_UH1_PORTSC1_PTS      (25)      //!< Bit position for USBC_UH1_PORTSC1_PTS.
-#define BM_USBC_UH1_PORTSC1_PTS      (0x02000000)  //!< Bit mask for USBC_UH1_PORTSC1_PTS.
+#define BP_USBC_UH1_PORTSC1_PTS_2      (25)      //!< Bit position for USBC_UH1_PORTSC1_PTS_2.
+#define BM_USBC_UH1_PORTSC1_PTS_2      (0x02000000)  //!< Bit mask for USBC_UH1_PORTSC1_PTS_2.
 
-//! @brief Get value of USBC_UH1_PORTSC1_PTS from a register value.
-#define BG_USBC_UH1_PORTSC1_PTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_PORTSC1_PTS) >> BP_USBC_UH1_PORTSC1_PTS)
+//! @brief Get value of USBC_UH1_PORTSC1_PTS_2 from a register value.
+#define BG_USBC_UH1_PORTSC1_PTS_2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_PORTSC1_PTS_2) >> BP_USBC_UH1_PORTSC1_PTS_2)
 
-//! @brief Format value for bitfield USBC_UH1_PORTSC1_PTS.
-#define BF_USBC_UH1_PORTSC1_PTS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UH1_PORTSC1_PTS) & BM_USBC_UH1_PORTSC1_PTS)
+//! @brief Format value for bitfield USBC_UH1_PORTSC1_PTS_2.
+#define BF_USBC_UH1_PORTSC1_PTS_2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UH1_PORTSC1_PTS_2) & BM_USBC_UH1_PORTSC1_PTS_2)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the PTS field to a new value.
-#define BW_USBC_UH1_PORTSC1_PTS(v)   (HW_USBC_UH1_PORTSC1_WR((HW_USBC_UH1_PORTSC1_RD() & ~BM_USBC_UH1_PORTSC1_PTS) | BF_USBC_UH1_PORTSC1_PTS(v)))
+//! @brief Set the PTS_2 field to a new value.
+#define BW_USBC_UH1_PORTSC1_PTS_2(v)   (HW_USBC_UH1_PORTSC1_WR((HW_USBC_UH1_PORTSC1_RD() & ~BM_USBC_UH1_PORTSC1_PTS_2) | BF_USBC_UH1_PORTSC1_PTS_2(v)))
 #endif
 //@}
 
@@ -11752,7 +11752,7 @@ typedef union _hw_usbc_uh1_portsc1
 #endif
 //@}
 
-/*! @name Register USBC_UH1_PORTSC1, field PTS1[31:30] (RW)
+/*! @name Register USBC_UH1_PORTSC1, field PTS_1[31:30] (RW)
  *
  * Bit field {bit25, bit31, bit30}: "000b" UTMI/UTMI+ "001b" Reserved "010b" ULPI "011b" Serial/USB
  * 1.1 PHY/IC-USB (FS Only) "100b" HSIC Parallel Transceiver Select (bit25, bit31, bi30). For OTG
@@ -11762,18 +11762,18 @@ typedef union _hw_usbc_uh1_portsc1
  * unsupported interface mode is selected.
  */
 //@{
-#define BP_USBC_UH1_PORTSC1_PTS1      (30)      //!< Bit position for USBC_UH1_PORTSC1_PTS1.
-#define BM_USBC_UH1_PORTSC1_PTS1      (0xc0000000)  //!< Bit mask for USBC_UH1_PORTSC1_PTS1.
+#define BP_USBC_UH1_PORTSC1_PTS_1      (30)      //!< Bit position for USBC_UH1_PORTSC1_PTS_1.
+#define BM_USBC_UH1_PORTSC1_PTS_1      (0xc0000000)  //!< Bit mask for USBC_UH1_PORTSC1_PTS_1.
 
-//! @brief Get value of USBC_UH1_PORTSC1_PTS1 from a register value.
-#define BG_USBC_UH1_PORTSC1_PTS1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_PORTSC1_PTS1) >> BP_USBC_UH1_PORTSC1_PTS1)
+//! @brief Get value of USBC_UH1_PORTSC1_PTS_1 from a register value.
+#define BG_USBC_UH1_PORTSC1_PTS_1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH1_PORTSC1_PTS_1) >> BP_USBC_UH1_PORTSC1_PTS_1)
 
-//! @brief Format value for bitfield USBC_UH1_PORTSC1_PTS1.
-#define BF_USBC_UH1_PORTSC1_PTS1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UH1_PORTSC1_PTS1) & BM_USBC_UH1_PORTSC1_PTS1)
+//! @brief Format value for bitfield USBC_UH1_PORTSC1_PTS_1.
+#define BF_USBC_UH1_PORTSC1_PTS_1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UH1_PORTSC1_PTS_1) & BM_USBC_UH1_PORTSC1_PTS_1)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the PTS1 field to a new value.
-#define BW_USBC_UH1_PORTSC1_PTS1(v)   (HW_USBC_UH1_PORTSC1_WR((HW_USBC_UH1_PORTSC1_RD() & ~BM_USBC_UH1_PORTSC1_PTS1) | BF_USBC_UH1_PORTSC1_PTS1(v)))
+//! @brief Set the PTS_1 field to a new value.
+#define BW_USBC_UH1_PORTSC1_PTS_1(v)   (HW_USBC_UH1_PORTSC1_WR((HW_USBC_UH1_PORTSC1_RD() & ~BM_USBC_UH1_PORTSC1_PTS_1) | BF_USBC_UH1_PORTSC1_PTS_1(v)))
 #endif
 //@}
 
@@ -13225,7 +13225,7 @@ typedef union _hw_usbc_uh2_usbcmd
     {
         unsigned RS : 1; //!< [0] Run/Stop (RS) - Read/Write.
         unsigned RST : 1; //!< [1] Controller Reset (RESET) - Read/Write.
-        unsigned FS : 2; //!< [3:2] See description at bit 15
+        unsigned FS_1 : 2; //!< [3:2] See description at bit 15
         unsigned PSE : 1; //!< [4] Periodic Schedule Enable- Read/Write.
         unsigned ASE : 1; //!< [5] Asynchronous Schedule Enable - Read/Write.
         unsigned IAA : 1; //!< [6] Interrupt on Async Advance Doorbell - Read/Write.
@@ -13236,7 +13236,7 @@ typedef union _hw_usbc_uh2_usbcmd
         unsigned RESERVED2 : 1; //!< [12] Reserved
         unsigned SUTW : 1; //!< [13] Setup TripWire - Read/Write.
         unsigned ATDTW : 1; //!< [14] Add dTD TripWire - Read/Write.
-        unsigned FS1 : 1; //!< [15] See also bits 3-2
+        unsigned FS_2 : 1; //!< [15] See also bits 3-2
         unsigned ITC : 8; //!< [23:16] Interrupt Threshold Control -Read/Write.
         unsigned RESERVED3 : 8; //!< [31:24] Reserved
     } B;
@@ -13327,23 +13327,23 @@ typedef union _hw_usbc_uh2_usbcmd
 #endif
 //@}
 
-/*! @name Register USBC_UH2_USBCMD, field FS[3:2] (RW)
+/*! @name Register USBC_UH2_USBCMD, field FS_1[3:2] (RW)
  *
  * See description at bit 15
  */
 //@{
-#define BP_USBC_UH2_USBCMD_FS      (2)      //!< Bit position for USBC_UH2_USBCMD_FS.
-#define BM_USBC_UH2_USBCMD_FS      (0x0000000c)  //!< Bit mask for USBC_UH2_USBCMD_FS.
+#define BP_USBC_UH2_USBCMD_FS_1      (2)      //!< Bit position for USBC_UH2_USBCMD_FS_1.
+#define BM_USBC_UH2_USBCMD_FS_1      (0x0000000c)  //!< Bit mask for USBC_UH2_USBCMD_FS_1.
 
-//! @brief Get value of USBC_UH2_USBCMD_FS from a register value.
-#define BG_USBC_UH2_USBCMD_FS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH2_USBCMD_FS) >> BP_USBC_UH2_USBCMD_FS)
+//! @brief Get value of USBC_UH2_USBCMD_FS_1 from a register value.
+#define BG_USBC_UH2_USBCMD_FS_1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH2_USBCMD_FS_1) >> BP_USBC_UH2_USBCMD_FS_1)
 
-//! @brief Format value for bitfield USBC_UH2_USBCMD_FS.
-#define BF_USBC_UH2_USBCMD_FS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UH2_USBCMD_FS) & BM_USBC_UH2_USBCMD_FS)
+//! @brief Format value for bitfield USBC_UH2_USBCMD_FS_1.
+#define BF_USBC_UH2_USBCMD_FS_1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UH2_USBCMD_FS_1) & BM_USBC_UH2_USBCMD_FS_1)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the FS field to a new value.
-#define BW_USBC_UH2_USBCMD_FS(v)   (HW_USBC_UH2_USBCMD_WR((HW_USBC_UH2_USBCMD_RD() & ~BM_USBC_UH2_USBCMD_FS) | BF_USBC_UH2_USBCMD_FS(v)))
+//! @brief Set the FS_1 field to a new value.
+#define BW_USBC_UH2_USBCMD_FS_1(v)   (HW_USBC_UH2_USBCMD_WR((HW_USBC_UH2_USBCMD_RD() & ~BM_USBC_UH2_USBCMD_FS_1) | BF_USBC_UH2_USBCMD_FS_1(v)))
 #endif
 //@}
 
@@ -13525,7 +13525,7 @@ typedef union _hw_usbc_uh2_usbcmd
 #endif
 //@}
 
-/*! @name Register USBC_UH2_USBCMD, field FS1[15] (RW)
+/*! @name Register USBC_UH2_USBCMD, field FS_2[15] (RW)
  *
  * See also bits 3-2 Frame List Size - (Read/Write or Read Only). [host mode only] This field is
  * Read/Write only if Programmable Frame List Flag in the HCCPARAMS registers is set to one. This
@@ -13544,18 +13544,18 @@ typedef union _hw_usbc_uh2_usbcmd
  * - 111 - 8 elements (32 bytes)
  */
 //@{
-#define BP_USBC_UH2_USBCMD_FS1      (15)      //!< Bit position for USBC_UH2_USBCMD_FS1.
-#define BM_USBC_UH2_USBCMD_FS1      (0x00008000)  //!< Bit mask for USBC_UH2_USBCMD_FS1.
+#define BP_USBC_UH2_USBCMD_FS_2      (15)      //!< Bit position for USBC_UH2_USBCMD_FS_2.
+#define BM_USBC_UH2_USBCMD_FS_2      (0x00008000)  //!< Bit mask for USBC_UH2_USBCMD_FS_2.
 
-//! @brief Get value of USBC_UH2_USBCMD_FS1 from a register value.
-#define BG_USBC_UH2_USBCMD_FS1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH2_USBCMD_FS1) >> BP_USBC_UH2_USBCMD_FS1)
+//! @brief Get value of USBC_UH2_USBCMD_FS_2 from a register value.
+#define BG_USBC_UH2_USBCMD_FS_2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH2_USBCMD_FS_2) >> BP_USBC_UH2_USBCMD_FS_2)
 
-//! @brief Format value for bitfield USBC_UH2_USBCMD_FS1.
-#define BF_USBC_UH2_USBCMD_FS1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UH2_USBCMD_FS1) & BM_USBC_UH2_USBCMD_FS1)
+//! @brief Format value for bitfield USBC_UH2_USBCMD_FS_2.
+#define BF_USBC_UH2_USBCMD_FS_2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UH2_USBCMD_FS_2) & BM_USBC_UH2_USBCMD_FS_2)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the FS1 field to a new value.
-#define BW_USBC_UH2_USBCMD_FS1(v)   (HW_USBC_UH2_USBCMD_WR((HW_USBC_UH2_USBCMD_RD() & ~BM_USBC_UH2_USBCMD_FS1) | BF_USBC_UH2_USBCMD_FS1(v)))
+//! @brief Set the FS_2 field to a new value.
+#define BW_USBC_UH2_USBCMD_FS_2(v)   (HW_USBC_UH2_USBCMD_WR((HW_USBC_UH2_USBCMD_RD() & ~BM_USBC_UH2_USBCMD_FS_2) | BF_USBC_UH2_USBCMD_FS_2(v)))
 #endif
 //@}
 
@@ -14985,11 +14985,11 @@ typedef union _hw_usbc_uh2_portsc1
         unsigned WKOC : 1; //!< [22] Wake on Over-current Enable (WKOC_E) - Read/Write.
         unsigned PHCD : 1; //!< [23] PHY Low Power Suspend - Clock Disable (PLPSCD) - Read/Write.
         unsigned PFSC : 1; //!< [24] Port Force Full Speed Connect - Read/Write.
-        unsigned PTS : 1; //!< [25] See description at bits 31-30
+        unsigned PTS_2 : 1; //!< [25] See description at bits 31-30
         unsigned PSPD : 2; //!< [27:26] Port Speed - Read Only.
         unsigned PTW : 1; //!< [28] Parallel Transceiver Width
         unsigned STS : 1; //!< [29] Serial Transceiver Select - Read Only
-        unsigned PTS1 : 2; //!< [31:30] Bit field {bit25, bit31, bit30}:
+        unsigned PTS_1 : 2; //!< [31:30] Bit field {bit25, bit31, bit30}:
     } B;
 } hw_usbc_uh2_portsc1_t;
 #endif
@@ -15537,23 +15537,23 @@ typedef union _hw_usbc_uh2_portsc1
 #endif
 //@}
 
-/*! @name Register USBC_UH2_PORTSC1, field PTS[25] (RW)
+/*! @name Register USBC_UH2_PORTSC1, field PTS_2[25] (RW)
  *
  * See description at bits 31-30
  */
 //@{
-#define BP_USBC_UH2_PORTSC1_PTS      (25)      //!< Bit position for USBC_UH2_PORTSC1_PTS.
-#define BM_USBC_UH2_PORTSC1_PTS      (0x02000000)  //!< Bit mask for USBC_UH2_PORTSC1_PTS.
+#define BP_USBC_UH2_PORTSC1_PTS_2      (25)      //!< Bit position for USBC_UH2_PORTSC1_PTS_2.
+#define BM_USBC_UH2_PORTSC1_PTS_2      (0x02000000)  //!< Bit mask for USBC_UH2_PORTSC1_PTS_2.
 
-//! @brief Get value of USBC_UH2_PORTSC1_PTS from a register value.
-#define BG_USBC_UH2_PORTSC1_PTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH2_PORTSC1_PTS) >> BP_USBC_UH2_PORTSC1_PTS)
+//! @brief Get value of USBC_UH2_PORTSC1_PTS_2 from a register value.
+#define BG_USBC_UH2_PORTSC1_PTS_2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH2_PORTSC1_PTS_2) >> BP_USBC_UH2_PORTSC1_PTS_2)
 
-//! @brief Format value for bitfield USBC_UH2_PORTSC1_PTS.
-#define BF_USBC_UH2_PORTSC1_PTS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UH2_PORTSC1_PTS) & BM_USBC_UH2_PORTSC1_PTS)
+//! @brief Format value for bitfield USBC_UH2_PORTSC1_PTS_2.
+#define BF_USBC_UH2_PORTSC1_PTS_2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UH2_PORTSC1_PTS_2) & BM_USBC_UH2_PORTSC1_PTS_2)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the PTS field to a new value.
-#define BW_USBC_UH2_PORTSC1_PTS(v)   (HW_USBC_UH2_PORTSC1_WR((HW_USBC_UH2_PORTSC1_RD() & ~BM_USBC_UH2_PORTSC1_PTS) | BF_USBC_UH2_PORTSC1_PTS(v)))
+//! @brief Set the PTS_2 field to a new value.
+#define BW_USBC_UH2_PORTSC1_PTS_2(v)   (HW_USBC_UH2_PORTSC1_WR((HW_USBC_UH2_PORTSC1_RD() & ~BM_USBC_UH2_PORTSC1_PTS_2) | BF_USBC_UH2_PORTSC1_PTS_2(v)))
 #endif
 //@}
 
@@ -15634,7 +15634,7 @@ typedef union _hw_usbc_uh2_portsc1
 #endif
 //@}
 
-/*! @name Register USBC_UH2_PORTSC1, field PTS1[31:30] (RW)
+/*! @name Register USBC_UH2_PORTSC1, field PTS_1[31:30] (RW)
  *
  * Bit field {bit25, bit31, bit30}: "000b" UTMI/UTMI+ "001b" Reserved "010b" ULPI "011b" Serial/USB
  * 1.1 PHY/IC-USB (FS Only) "100b" HSIC Parallel Transceiver Select (bit25, bit31, bi30). For OTG
@@ -15644,18 +15644,18 @@ typedef union _hw_usbc_uh2_portsc1
  * unsupported interface mode is selected.
  */
 //@{
-#define BP_USBC_UH2_PORTSC1_PTS1      (30)      //!< Bit position for USBC_UH2_PORTSC1_PTS1.
-#define BM_USBC_UH2_PORTSC1_PTS1      (0xc0000000)  //!< Bit mask for USBC_UH2_PORTSC1_PTS1.
+#define BP_USBC_UH2_PORTSC1_PTS_1      (30)      //!< Bit position for USBC_UH2_PORTSC1_PTS_1.
+#define BM_USBC_UH2_PORTSC1_PTS_1      (0xc0000000)  //!< Bit mask for USBC_UH2_PORTSC1_PTS_1.
 
-//! @brief Get value of USBC_UH2_PORTSC1_PTS1 from a register value.
-#define BG_USBC_UH2_PORTSC1_PTS1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH2_PORTSC1_PTS1) >> BP_USBC_UH2_PORTSC1_PTS1)
+//! @brief Get value of USBC_UH2_PORTSC1_PTS_1 from a register value.
+#define BG_USBC_UH2_PORTSC1_PTS_1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH2_PORTSC1_PTS_1) >> BP_USBC_UH2_PORTSC1_PTS_1)
 
-//! @brief Format value for bitfield USBC_UH2_PORTSC1_PTS1.
-#define BF_USBC_UH2_PORTSC1_PTS1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UH2_PORTSC1_PTS1) & BM_USBC_UH2_PORTSC1_PTS1)
+//! @brief Format value for bitfield USBC_UH2_PORTSC1_PTS_1.
+#define BF_USBC_UH2_PORTSC1_PTS_1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UH2_PORTSC1_PTS_1) & BM_USBC_UH2_PORTSC1_PTS_1)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the PTS1 field to a new value.
-#define BW_USBC_UH2_PORTSC1_PTS1(v)   (HW_USBC_UH2_PORTSC1_WR((HW_USBC_UH2_PORTSC1_RD() & ~BM_USBC_UH2_PORTSC1_PTS1) | BF_USBC_UH2_PORTSC1_PTS1(v)))
+//! @brief Set the PTS_1 field to a new value.
+#define BW_USBC_UH2_PORTSC1_PTS_1(v)   (HW_USBC_UH2_PORTSC1_WR((HW_USBC_UH2_PORTSC1_RD() & ~BM_USBC_UH2_PORTSC1_PTS_1) | BF_USBC_UH2_PORTSC1_PTS_1(v)))
 #endif
 //@}
 
@@ -17107,7 +17107,7 @@ typedef union _hw_usbc_uh3_usbcmd
     {
         unsigned RS : 1; //!< [0] Run/Stop (RS) - Read/Write.
         unsigned RST : 1; //!< [1] Controller Reset (RESET) - Read/Write.
-        unsigned FS : 2; //!< [3:2] See description at bit 15
+        unsigned FS_1 : 2; //!< [3:2] See description at bit 15
         unsigned PSE : 1; //!< [4] Periodic Schedule Enable- Read/Write.
         unsigned ASE : 1; //!< [5] Asynchronous Schedule Enable - Read/Write.
         unsigned IAA : 1; //!< [6] Interrupt on Async Advance Doorbell - Read/Write.
@@ -17118,7 +17118,7 @@ typedef union _hw_usbc_uh3_usbcmd
         unsigned RESERVED2 : 1; //!< [12] Reserved
         unsigned SUTW : 1; //!< [13] Setup TripWire - Read/Write.
         unsigned ATDTW : 1; //!< [14] Add dTD TripWire - Read/Write.
-        unsigned FS1 : 1; //!< [15] See also bits 3-2
+        unsigned FS_2 : 1; //!< [15] See also bits 3-2
         unsigned ITC : 8; //!< [23:16] Interrupt Threshold Control -Read/Write.
         unsigned RESERVED3 : 8; //!< [31:24] Reserved
     } B;
@@ -17209,23 +17209,23 @@ typedef union _hw_usbc_uh3_usbcmd
 #endif
 //@}
 
-/*! @name Register USBC_UH3_USBCMD, field FS[3:2] (RW)
+/*! @name Register USBC_UH3_USBCMD, field FS_1[3:2] (RW)
  *
  * See description at bit 15
  */
 //@{
-#define BP_USBC_UH3_USBCMD_FS      (2)      //!< Bit position for USBC_UH3_USBCMD_FS.
-#define BM_USBC_UH3_USBCMD_FS      (0x0000000c)  //!< Bit mask for USBC_UH3_USBCMD_FS.
+#define BP_USBC_UH3_USBCMD_FS_1      (2)      //!< Bit position for USBC_UH3_USBCMD_FS_1.
+#define BM_USBC_UH3_USBCMD_FS_1      (0x0000000c)  //!< Bit mask for USBC_UH3_USBCMD_FS_1.
 
-//! @brief Get value of USBC_UH3_USBCMD_FS from a register value.
-#define BG_USBC_UH3_USBCMD_FS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH3_USBCMD_FS) >> BP_USBC_UH3_USBCMD_FS)
+//! @brief Get value of USBC_UH3_USBCMD_FS_1 from a register value.
+#define BG_USBC_UH3_USBCMD_FS_1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH3_USBCMD_FS_1) >> BP_USBC_UH3_USBCMD_FS_1)
 
-//! @brief Format value for bitfield USBC_UH3_USBCMD_FS.
-#define BF_USBC_UH3_USBCMD_FS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UH3_USBCMD_FS) & BM_USBC_UH3_USBCMD_FS)
+//! @brief Format value for bitfield USBC_UH3_USBCMD_FS_1.
+#define BF_USBC_UH3_USBCMD_FS_1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UH3_USBCMD_FS_1) & BM_USBC_UH3_USBCMD_FS_1)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the FS field to a new value.
-#define BW_USBC_UH3_USBCMD_FS(v)   (HW_USBC_UH3_USBCMD_WR((HW_USBC_UH3_USBCMD_RD() & ~BM_USBC_UH3_USBCMD_FS) | BF_USBC_UH3_USBCMD_FS(v)))
+//! @brief Set the FS_1 field to a new value.
+#define BW_USBC_UH3_USBCMD_FS_1(v)   (HW_USBC_UH3_USBCMD_WR((HW_USBC_UH3_USBCMD_RD() & ~BM_USBC_UH3_USBCMD_FS_1) | BF_USBC_UH3_USBCMD_FS_1(v)))
 #endif
 //@}
 
@@ -17407,7 +17407,7 @@ typedef union _hw_usbc_uh3_usbcmd
 #endif
 //@}
 
-/*! @name Register USBC_UH3_USBCMD, field FS1[15] (RW)
+/*! @name Register USBC_UH3_USBCMD, field FS_2[15] (RW)
  *
  * See also bits 3-2 Frame List Size - (Read/Write or Read Only). [host mode only] This field is
  * Read/Write only if Programmable Frame List Flag in the HCCPARAMS registers is set to one. This
@@ -17426,18 +17426,18 @@ typedef union _hw_usbc_uh3_usbcmd
  * - 111 - 8 elements (32 bytes)
  */
 //@{
-#define BP_USBC_UH3_USBCMD_FS1      (15)      //!< Bit position for USBC_UH3_USBCMD_FS1.
-#define BM_USBC_UH3_USBCMD_FS1      (0x00008000)  //!< Bit mask for USBC_UH3_USBCMD_FS1.
+#define BP_USBC_UH3_USBCMD_FS_2      (15)      //!< Bit position for USBC_UH3_USBCMD_FS_2.
+#define BM_USBC_UH3_USBCMD_FS_2      (0x00008000)  //!< Bit mask for USBC_UH3_USBCMD_FS_2.
 
-//! @brief Get value of USBC_UH3_USBCMD_FS1 from a register value.
-#define BG_USBC_UH3_USBCMD_FS1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH3_USBCMD_FS1) >> BP_USBC_UH3_USBCMD_FS1)
+//! @brief Get value of USBC_UH3_USBCMD_FS_2 from a register value.
+#define BG_USBC_UH3_USBCMD_FS_2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH3_USBCMD_FS_2) >> BP_USBC_UH3_USBCMD_FS_2)
 
-//! @brief Format value for bitfield USBC_UH3_USBCMD_FS1.
-#define BF_USBC_UH3_USBCMD_FS1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UH3_USBCMD_FS1) & BM_USBC_UH3_USBCMD_FS1)
+//! @brief Format value for bitfield USBC_UH3_USBCMD_FS_2.
+#define BF_USBC_UH3_USBCMD_FS_2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UH3_USBCMD_FS_2) & BM_USBC_UH3_USBCMD_FS_2)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the FS1 field to a new value.
-#define BW_USBC_UH3_USBCMD_FS1(v)   (HW_USBC_UH3_USBCMD_WR((HW_USBC_UH3_USBCMD_RD() & ~BM_USBC_UH3_USBCMD_FS1) | BF_USBC_UH3_USBCMD_FS1(v)))
+//! @brief Set the FS_2 field to a new value.
+#define BW_USBC_UH3_USBCMD_FS_2(v)   (HW_USBC_UH3_USBCMD_WR((HW_USBC_UH3_USBCMD_RD() & ~BM_USBC_UH3_USBCMD_FS_2) | BF_USBC_UH3_USBCMD_FS_2(v)))
 #endif
 //@}
 
@@ -18867,11 +18867,11 @@ typedef union _hw_usbc_uh3_portsc1
         unsigned WKOC : 1; //!< [22] Wake on Over-current Enable (WKOC_E) - Read/Write.
         unsigned PHCD : 1; //!< [23] PHY Low Power Suspend - Clock Disable (PLPSCD) - Read/Write.
         unsigned PFSC : 1; //!< [24] Port Force Full Speed Connect - Read/Write.
-        unsigned PTS : 1; //!< [25] See description at bits 31-30
+        unsigned PTS_2 : 1; //!< [25] See description at bits 31-30
         unsigned PSPD : 2; //!< [27:26] Port Speed - Read Only.
         unsigned PTW : 1; //!< [28] Parallel Transceiver Width
         unsigned STS : 1; //!< [29] Serial Transceiver Select - Read Only
-        unsigned PTS1 : 2; //!< [31:30] Bit field {bit25, bit31, bit30}:
+        unsigned PTS_1 : 2; //!< [31:30] Bit field {bit25, bit31, bit30}:
     } B;
 } hw_usbc_uh3_portsc1_t;
 #endif
@@ -19419,23 +19419,23 @@ typedef union _hw_usbc_uh3_portsc1
 #endif
 //@}
 
-/*! @name Register USBC_UH3_PORTSC1, field PTS[25] (RW)
+/*! @name Register USBC_UH3_PORTSC1, field PTS_2[25] (RW)
  *
  * See description at bits 31-30
  */
 //@{
-#define BP_USBC_UH3_PORTSC1_PTS      (25)      //!< Bit position for USBC_UH3_PORTSC1_PTS.
-#define BM_USBC_UH3_PORTSC1_PTS      (0x02000000)  //!< Bit mask for USBC_UH3_PORTSC1_PTS.
+#define BP_USBC_UH3_PORTSC1_PTS_2      (25)      //!< Bit position for USBC_UH3_PORTSC1_PTS_2.
+#define BM_USBC_UH3_PORTSC1_PTS_2      (0x02000000)  //!< Bit mask for USBC_UH3_PORTSC1_PTS_2.
 
-//! @brief Get value of USBC_UH3_PORTSC1_PTS from a register value.
-#define BG_USBC_UH3_PORTSC1_PTS(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH3_PORTSC1_PTS) >> BP_USBC_UH3_PORTSC1_PTS)
+//! @brief Get value of USBC_UH3_PORTSC1_PTS_2 from a register value.
+#define BG_USBC_UH3_PORTSC1_PTS_2(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH3_PORTSC1_PTS_2) >> BP_USBC_UH3_PORTSC1_PTS_2)
 
-//! @brief Format value for bitfield USBC_UH3_PORTSC1_PTS.
-#define BF_USBC_UH3_PORTSC1_PTS(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UH3_PORTSC1_PTS) & BM_USBC_UH3_PORTSC1_PTS)
+//! @brief Format value for bitfield USBC_UH3_PORTSC1_PTS_2.
+#define BF_USBC_UH3_PORTSC1_PTS_2(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UH3_PORTSC1_PTS_2) & BM_USBC_UH3_PORTSC1_PTS_2)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the PTS field to a new value.
-#define BW_USBC_UH3_PORTSC1_PTS(v)   (HW_USBC_UH3_PORTSC1_WR((HW_USBC_UH3_PORTSC1_RD() & ~BM_USBC_UH3_PORTSC1_PTS) | BF_USBC_UH3_PORTSC1_PTS(v)))
+//! @brief Set the PTS_2 field to a new value.
+#define BW_USBC_UH3_PORTSC1_PTS_2(v)   (HW_USBC_UH3_PORTSC1_WR((HW_USBC_UH3_PORTSC1_RD() & ~BM_USBC_UH3_PORTSC1_PTS_2) | BF_USBC_UH3_PORTSC1_PTS_2(v)))
 #endif
 //@}
 
@@ -19516,7 +19516,7 @@ typedef union _hw_usbc_uh3_portsc1
 #endif
 //@}
 
-/*! @name Register USBC_UH3_PORTSC1, field PTS1[31:30] (RW)
+/*! @name Register USBC_UH3_PORTSC1, field PTS_1[31:30] (RW)
  *
  * Bit field {bit25, bit31, bit30}: "000b" UTMI/UTMI+ "001b" Reserved "010b" ULPI "011b" Serial/USB
  * 1.1 PHY/IC-USB (FS Only) "100b" HSIC Parallel Transceiver Select (bit25, bit31, bi30). For OTG
@@ -19526,18 +19526,18 @@ typedef union _hw_usbc_uh3_portsc1
  * unsupported interface mode is selected.
  */
 //@{
-#define BP_USBC_UH3_PORTSC1_PTS1      (30)      //!< Bit position for USBC_UH3_PORTSC1_PTS1.
-#define BM_USBC_UH3_PORTSC1_PTS1      (0xc0000000)  //!< Bit mask for USBC_UH3_PORTSC1_PTS1.
+#define BP_USBC_UH3_PORTSC1_PTS_1      (30)      //!< Bit position for USBC_UH3_PORTSC1_PTS_1.
+#define BM_USBC_UH3_PORTSC1_PTS_1      (0xc0000000)  //!< Bit mask for USBC_UH3_PORTSC1_PTS_1.
 
-//! @brief Get value of USBC_UH3_PORTSC1_PTS1 from a register value.
-#define BG_USBC_UH3_PORTSC1_PTS1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH3_PORTSC1_PTS1) >> BP_USBC_UH3_PORTSC1_PTS1)
+//! @brief Get value of USBC_UH3_PORTSC1_PTS_1 from a register value.
+#define BG_USBC_UH3_PORTSC1_PTS_1(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_USBC_UH3_PORTSC1_PTS_1) >> BP_USBC_UH3_PORTSC1_PTS_1)
 
-//! @brief Format value for bitfield USBC_UH3_PORTSC1_PTS1.
-#define BF_USBC_UH3_PORTSC1_PTS1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UH3_PORTSC1_PTS1) & BM_USBC_UH3_PORTSC1_PTS1)
+//! @brief Format value for bitfield USBC_UH3_PORTSC1_PTS_1.
+#define BF_USBC_UH3_PORTSC1_PTS_1(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_USBC_UH3_PORTSC1_PTS_1) & BM_USBC_UH3_PORTSC1_PTS_1)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the PTS1 field to a new value.
-#define BW_USBC_UH3_PORTSC1_PTS1(v)   (HW_USBC_UH3_PORTSC1_WR((HW_USBC_UH3_PORTSC1_RD() & ~BM_USBC_UH3_PORTSC1_PTS1) | BF_USBC_UH3_PORTSC1_PTS1(v)))
+//! @brief Set the PTS_1 field to a new value.
+#define BW_USBC_UH3_PORTSC1_PTS_1(v)   (HW_USBC_UH3_PORTSC1_WR((HW_USBC_UH3_PORTSC1_RD() & ~BM_USBC_UH3_PORTSC1_PTS_1) | BF_USBC_UH3_PORTSC1_PTS_1(v)))
 #endif
 //@}
 
@@ -19879,5 +19879,5 @@ typedef struct _hw_usbc
 #endif
 
 #endif // __HW_USBC_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

@@ -88,8 +88,8 @@
 //! @name Module base addresses
 //@{
 #ifndef REGS_PXP_BASE
-#define HW_PXP_INSTANCE_COUNT (0) //!< Number of instances of the PXP module.
-#define REGS_PXP_BASE (0x00000000) //!< Base address for PXP.
+#define HW_PXP_INSTANCE_COUNT (1) //!< Number of instances of the PXP module.
+#define REGS_PXP_BASE (0x020f0000) //!< Base address for PXP.
 #endif
 //@}
 
@@ -5980,5 +5980,5 @@ typedef struct _hw_pxp
 #endif
 
 #endif // __HW_PXP_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

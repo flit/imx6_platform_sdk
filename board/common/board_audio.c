@@ -69,16 +69,12 @@ void audio_codec_power_on (void)
 void audio_clock_config(void)
 {
 #if defined(BOARD_SMART_DEVICE) 
-    uint32_t val = 0;
-    
     ccm_iomux_config();
 
-    val = (0x01 << 24) |      //clko2 en
-          (0x05 << 21) |     //div 6
-          (0x13 << 16) |     //ssi2 root clk
-          (0x01 << 8);       //CKO1 output drives cko2 clock
-//    writel(val, CCM_CCOSR);
-    writel(val, (CCM_BASE_ADDR + CCM_CCOSR_OFFSET));
+    HW_CCM_CCOSR_WR(BF_CCM_CCOSR_CLKO2_EN(1)
+                    | BF_CCM_CCOSR_CLKO2_DIV(6)
+                    | BF_CCM_CCOSR_CLKO2_SEL(0x13)
+                    | BF_CCM_CCOSR_CLKO_SEL(1));
 #endif
 }
 

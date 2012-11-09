@@ -99,7 +99,7 @@ typedef union _hw_enet_eir
     reg32_t U;
     struct _hw_enet_eir_bitfields
     {
-        unsigned RESERVED0 : 15; //!< [14:0] 
+        unsigned RESERVED0 : 15; //!< [14:0] Reserved.
         unsigned TS_TIMER : 1; //!< [15] Timestamp Timer
         unsigned TS_AVAIL : 1; //!< [16] Transmit Timestamp Available
         unsigned WAKEUP : 1; //!< [17] Node Wakeup Request Indication
@@ -293,7 +293,7 @@ typedef union _hw_enet_eir
 /*! @name Register ENET_EIR, field EBERR[22] (W1C)
  *
  * Indicates a system bus error occurred when a uDMA transaction is underway. When this bit is set,
- * ECR[ETHER_EN] is cleared, halting frame processing by the MAC. When this occurs, software must
+ * ECR[ETHEREN] is cleared, halting frame processing by the MAC. When this occurs, software must
  * ensure proper actions, possibly resetting the system, to resume normal operation.
  */
 //@{
@@ -941,13 +941,6 @@ typedef union _hw_enet_eimr
  *
  * RDAR is a command register, written by the user, to indicate that the receive descriptor ring has
  * been updated, that is, that the driver produced empty receive buffers with the empty bit set.
- * When the register is written, the RDAR bit is set. This is independent of the data actually
- * written by the user. When set, the MAC polls the receive descriptor ring and processes receive
- * frames, provided ECR[ETHER_EN] is also set. After the MAC polls a receive descriptor whose empty
- * bit is not set, MAC clears RDAR and ceases receive descriptor ring polling until the user sets
- * the bit again, signifying that additional descriptors have been placed into the receive
- * descriptor ring. The RDAR register is cleared at reset and when ECR[ETHER_EN] transitions from
- * set to cleared or when ECR[RESET] is set.
  */
 typedef union _hw_enet_rdar
 {
@@ -985,7 +978,7 @@ typedef union _hw_enet_rdar
  *
  * Always set to 1 when this register is written, regardless of the value written. This field is
  * cleared by the MAC device when no additional empty descriptors remain in the receive ring. It is
- * also cleared when ECR[ETHER_EN] transitions from set to cleared or when ECR[RESET] is set.
+ * also cleared when ECR[ETHEREN] transitions from set to cleared or when ECR[RESET] is set.
  */
 //@{
 #define BP_ENET_RDAR_RDAR      (24)      //!< Bit position for ENET_RDAR_RDAR.
@@ -1015,13 +1008,8 @@ typedef union _hw_enet_rdar
  *
  * The TDAR is a command register that the user writes to indicate that the transmit descriptor ring
  * has been updated, that is, that transmit buffers have been produced by the driver with the ready
- * bit set in the buffer descriptor. When the register is written, the TDAR bit is set. This value
- * is independent of the data actually written by the user. When set, the MAC polls the transmit
- * descriptor ring and processes transmit frames, provided ECR[ETHER_EN] is also set. After the MAC
- * polls a transmit descriptor that contains a ready bit that is not set, the MAC clears TDAR and
- * ceases transmit descriptor ring polling until the user sets the bit again, signifying additional
- * descriptors have been placed into the transmit descriptor ring. The TDAR register is cleared at
- * reset, when ECR[ETHER_EN] transitions from set to cleared, or when ECR[RESET] is set.
+ * bit set in the buffer descriptor. The TDAR register is cleared at reset, when ECR[ETHEREN]
+ * transitions from set to cleared, or when ECR[RESET] is set.
  */
 typedef union _hw_enet_tdar
 {
@@ -1059,7 +1047,7 @@ typedef union _hw_enet_tdar
  *
  * Always set to 1 when this register is written, regardless of the value written. This bit is
  * cleared by the MAC device when no additional ready descriptors remain in the transmit ring. Also
- * cleared when ECR[ETHER_EN] transitions from set to cleared or when ECR[RESET] is set.
+ * cleared when ECR[ETHEREN] transitions from set to cleared or when ECR[RESET] is set.
  */
 //@{
 #define BP_ENET_TDAR_TDAR      (24)      //!< Bit position for ENET_TDAR_TDAR.
@@ -1131,7 +1119,7 @@ typedef union _hw_enet_ecr
 
 /*! @name Register ENET_ECR, field RESET[0] (RW)
  *
- * When this field is set, it clears the ETHER_EN field.
+ * When this field is set, it clears the ETHEREN field.
  */
 //@{
 #define BP_ENET_ECR_RESET      (0)      //!< Bit position for ENET_ECR_RESET.
@@ -2123,7 +2111,7 @@ typedef union _hw_enet_rcr
  * Reset value: 0x00000000
  *
  * TCR is read/write and configures the transmit block. This register is cleared at system reset.
- * FDEN can only be modified when ECR[ETHER_EN] is cleared.
+ * FDEN can only be modified when ECR[ETHEREN] is cleared.
  */
 typedef union _hw_enet_tcr
 {
@@ -2171,7 +2159,7 @@ typedef union _hw_enet_tcr
  * transmit FIFO is then transmitted. If an early collision occurs during transmission when GTS is
  * set, transmission stops after the collision. The frame is transmitted again after GTS is cleared.
  * There may be old frames in the transmit FIFO that transmit when GTS is reasserted. To avoid this,
- * clear ECR[ETHER_EN] following the GRA interrupt.
+ * clear ECR[ETHEREN] following the GRA interrupt.
  */
 //@{
 #define BP_ENET_TCR_GTS      (0)      //!< Bit position for ENET_TCR_GTS.
@@ -2192,7 +2180,7 @@ typedef union _hw_enet_tcr
 /*! @name Register ENET_TCR, field FDEN[2] (RW)
  *
  * If this field is set, frames transmit independent of carrier sense and collision inputs. Only
- * modify this bit when ECR[ETHER_EN] is cleared.
+ * modify this bit when ECR[ETHEREN] is cleared.
  */
 //@{
 #define BP_ENET_TCR_FDEN      (2)      //!< Bit position for ENET_TCR_FDEN.
@@ -2865,16 +2853,19 @@ typedef union _hw_enet_tfwr
 
 /*! @name Register ENET_TFWR, field TFWR[5:0] (RW)
  *
- * If STRFWD is cleared, indicates the number of bytes written to the transmit FIFO before
- * transmission of a frame begins. If a frame with less than the threshold is written,it is still
- * sent, independently of this threshold setting. The threshold is only relevant if the frame is
- * larger than the threshold given.
+ * If STRFWD is cleared, this field indicates the number of bytes written to the transmit FIFO
+ * before transmission of a frame begins. If a frame with less than the threshold is written, it is
+ * still sent independently of this threshold setting. The threshold is relevant only if the frame
+ * is larger than the threshold given. This chip may not support the maximum number of bytes written
+ * shown below. See the chip-specific information for the ENET module for this value.
  *
  * Values:
  * - 000000 - 64 bytes written.
+ * - ... - ...
  * - 000001 - 64 bytes written.
  * - 000010 - 128 bytes written.
  * - 000011 - 192 bytes written.
+ * - 111110 - 3968 bytes written.
  * - 111111 - 4032 bytes written.
  */
 //@{
@@ -2926,9 +2917,8 @@ typedef union _hw_enet_tfwr
  * Reset value: 0x00000000
  *
  * RDSR points to the beginning of the circular receive buffer descriptor queue in external memory.
- * This pointer must be 64-bit aligned (bits 2–0 must be zero); however, it is recommended to be
- * 128-bit aligned, that is, evenly divisible by 16. This register is not reset and must be
- * initialized prior to operation.
+ * This pointer must be 64-bit aligned (bits 2–0 must be zero); however, This register must be
+ * initialized prior to operation
  */
 typedef union _hw_enet_rdsr
 {
@@ -2992,9 +2982,8 @@ typedef union _hw_enet_rdsr
  * Reset value: 0x00000000
  *
  * TDSR provides a pointer to the beginning of the circular transmit buffer descriptor queue in
- * external memory. This pointer must be 64-bit aligned (bits 2–0 must be zero); however, it is
- * recommended to be 128-bit aligned, that is, evenly divisible by 16. This register is undefined at
- * reset and must be initialized prior to operation.
+ * external memory. This pointer must be 64-bit aligned (bits 2–0 must be zero); however, This
+ * register must be initialized prior to operation.
  */
 typedef union _hw_enet_tdsr
 {
@@ -3060,9 +3049,9 @@ typedef union _hw_enet_tdsr
  * The MRBR is a user-programmable register that dictates the maximum size of all receive buffers.
  * This value should take into consideration that the receive CRC is always written into the last
  * receive buffer. To allow one maximum size frame per buffer, MRBR must be set to RCR[MAX_FL] or
- * larger. To properly align the buffer, MRBR must be evenly divisible by 16. To ensure this, bits
- * 3–0 are forced low. To minimize bus usage (descriptor fetches), set MRBR greater than or equal to
- * 256 bytes. The MRBR register is undefined at reset and must be initialized by the user.
+ * larger. To properly align the buffer, MRBR must be evenly divisible by To minimize bus usage
+ * (descriptor fetches), set MRBR greater than or equal to 256 bytes. This register must be
+ * initialized before operation.
  */
 typedef union _hw_enet_mrbr
 {
@@ -3943,8 +3932,8 @@ typedef union _hw_enet_atcr
  * - 0 - Disable.
  * - 1 - A period event interrupt can be generated (EIR[TS_TIMER]) and the event signal output is asserted
  *     when the timer wraps around according to the periodic setting ATPER. The timer period value
- *     must be set before setting this bit.  Not all devices contain the event signal output. See
- *     the chip configuration details.
+ *     must be set before setting this bit. Not all devices contain the event signal output. See the
+ *     chip configuration details.
  */
 //@{
 #define BP_ENET_ATCR_PEREN      (4)      //!< Bit position for ENET_ATCR_PEREN.
@@ -4515,5 +4504,5 @@ typedef struct _hw_enet
 #endif
 
 #endif // __HW_ENET_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

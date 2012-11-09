@@ -66,7 +66,7 @@ typedef union _hw_vpu_coderun
     reg32_t U;
     struct _hw_vpu_coderun_bitfields
     {
-        unsigned VPU_CODERUN : 1; //!< [0] VPU_CodeRun.
+        unsigned CODERUN : 1; //!< [0] VPU_CodeRun.
         unsigned RESERVED0 : 31; //!< [31:1] Reserved
     } B;
 } hw_vpu_coderun_t;
@@ -88,7 +88,7 @@ typedef union _hw_vpu_coderun
  * constants & macros for individual VPU_CODERUN bitfields
  */
 
-/*! @name Register VPU_CODERUN, field VPU_CODERUN[0] (WO)
+/*! @name Register VPU_CODERUN, field CODERUN[0] (WO)
  *
  * VPU_CodeRun. BIT processor run start bit.
  *
@@ -97,14 +97,14 @@ typedef union _hw_vpu_coderun
  * - 1 - BIT Processor start execution.
  */
 //@{
-#define BP_VPU_CODERUN_VPU_CODERUN      (0)      //!< Bit position for VPU_CODERUN_VPU_CODERUN.
-#define BM_VPU_CODERUN_VPU_CODERUN      (0x00000001)  //!< Bit mask for VPU_CODERUN_VPU_CODERUN.
+#define BP_VPU_CODERUN_CODERUN      (0)      //!< Bit position for VPU_CODERUN_CODERUN.
+#define BM_VPU_CODERUN_CODERUN      (0x00000001)  //!< Bit mask for VPU_CODERUN_CODERUN.
 
-//! @brief Get value of VPU_CODERUN_VPU_CODERUN from a register value.
-#define BG_VPU_CODERUN_VPU_CODERUN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VPU_CODERUN_VPU_CODERUN) >> BP_VPU_CODERUN_VPU_CODERUN)
+//! @brief Get value of VPU_CODERUN_CODERUN from a register value.
+#define BG_VPU_CODERUN_CODERUN(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_VPU_CODERUN_CODERUN) >> BP_VPU_CODERUN_CODERUN)
 
-//! @brief Format value for bitfield VPU_CODERUN_VPU_CODERUN.
-#define BF_VPU_CODERUN_VPU_CODERUN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VPU_CODERUN_VPU_CODERUN) & BM_VPU_CODERUN_VPU_CODERUN)
+//! @brief Format value for bitfield VPU_CODERUN_CODERUN.
+#define BF_VPU_CODERUN_CODERUN(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_VPU_CODERUN_CODERUN) & BM_VPU_CODERUN_CODERUN)
 //@}
 
 //-------------------------------------------------------------------------------------------
@@ -489,5 +489,5 @@ typedef struct _hw_vpu
 #endif
 
 #endif // __HW_VPU_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

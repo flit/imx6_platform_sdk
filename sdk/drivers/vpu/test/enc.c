@@ -35,8 +35,6 @@
 
 static int32_t frameRateInfo = 0;
 
-uint8_t in_enc_file[] = "indir/raw_nv12.yuv";
-
 /*get the output of encoder to the destination*/
 static int32_t enc_read_line_buffer(struct encode *enc, PhysicalAddress paBsBufAddr,
                                     int32_t bsBufsize)
@@ -405,7 +403,7 @@ static int32_t encoder_start(struct encode *enc)
         }
 
         if (outinfo.skipEncoded)
-            info_msg("Skip encoding one Frame!\n");
+            printf("Skip encoding one Frame!\n");
 
         if (enc->ringBufferEnable == 0) {
             ret = enc_read_line_buffer(enc, outinfo.bitstreamBuffer, outinfo.bitstreamSize);
@@ -418,8 +416,9 @@ static int32_t encoder_start(struct encode *enc)
                                    virt_bsbuf_end, phy_bsbuf_start, 0);
 
         frame_id++;
+        printf("encoded frame %05d\n", frame_id);
         if (encode_end == 1) {
-            info_msg("Total encoded %d frames\n", frame_id);
+            printf("Total encoded %d frames\n", frame_id);
             break;
         }
     }
@@ -683,8 +682,9 @@ int32_t encoder_setup(void *arg)
     /* start encoding */
     ret = encoder_start(enc);
 
-    info_msg("Encoded output is stored from 0x%08x to 0x%08x\n", g_bs_memory.bs_start,
-             g_bs_memory.bs_end);
+    if (enc->codecctrl->dst_scheme == PATH_MEM)
+        printf("Encoded output is stored from 0x%08x to 0x%08x\n", g_bs_memory.bs_start,
+               g_bs_memory.bs_end);
 
     /* free the allocated framebuffers */
     encoder_free_framebuffer(enc);
@@ -698,11 +698,11 @@ int32_t encoder_setup(void *arg)
 
 int32_t encode_test(void *arg)
 {
-    uint8_t revchar = 0xFF;
-    int32_t count = 0;
     struct codec_control *codecctrl;
-    int32_t err = 0;
-    int32_t file_in;
+    int32_t file_in, file_out;
+
+    uint8_t in_enc_file[] = "indir/raw_nv12.yuv";
+    uint8_t out_enc_file[] = "out.264";
 
     codecctrl = (struct codec_control *)calloc(1, sizeof(struct codec_control));
     if (codecctrl == NULL) {
@@ -712,7 +712,12 @@ int32_t encode_test(void *arg)
 
     if ((file_in = Fopen(in_enc_file, (uint8_t *) "r")) < 0) {
         printf("Can't open the file: %s !\n", in_enc_file);
-        err = 0;
+        goto err2;
+    }
+
+    if ((file_out = Fopen(out_enc_file, (uint8_t *) "w")) < 0) {
+        printf("Can't open the file: %s !\n", out_enc_file);
+        goto err1;
     }
 
     /*now enable the INTERRUPT mode of usdhc */
@@ -720,9 +725,10 @@ int32_t encode_test(void *arg)
     SDHC_ADMA_mode = 0;
     memset((void *)&g_bs_memory, 0, sizeof(bs_mem_t));
     codecctrl->input = file_in; /* Input file name */
+    codecctrl->output = file_out;   /* Output file name */
     codecctrl->format = STD_AVC;
     codecctrl->src_scheme = PATH_FILE;
-    codecctrl->dst_scheme = PATH_MEM;
+    codecctrl->dst_scheme = PATH_FILE;
     codecctrl->dering_en = 0;
     codecctrl->deblock_en = 0;
     codecctrl->chromaInterleave = 0;    //partial interleaved mode
@@ -737,79 +743,11 @@ int32_t encode_test(void *arg)
     codecctrl->read_mode = 0;
     encoder_setup(codecctrl);
 
-    info_msg("Do you want to play the encoded bitstream??\n");
-    info_msg("Y/y - play the video from memory.\n");
-    info_msg("N/n - exit the encoder test, will check the data on host PC.\n");
+  err1:
+    Fclose(file_out);
 
-    do {
-        revchar = getchar();
-    } while (revchar == (uint8_t) 0xFF);
-    if ((revchar == 'Y') || (revchar == 'y')) {
-        g_multi_instance = 0;
+  err2:
+    Fclose(file_in);
 
-        /* initialize video streams and configure IPUs */
-        ips_hannstar_xga_yuv_stream(1);
-        if (codecctrl != NULL) {
-            free(codecctrl);
-            codecctrl = NULL;
-        }
-        codecctrl = (struct codec_control *)calloc(1, sizeof(struct codec_control));
-        if (codecctrl == NULL) {
-            err_msg("Failed to allocate command structure\n");
-            return -1;
-        }
-        /*set the decoder command args */
-        codecctrl->input = 0;   /* Input file name */
-        codecctrl->format = STD_AVC;
-        codecctrl->src_scheme = PATH_MEM;
-        codecctrl->dst_scheme = PATH_MEM;
-        codecctrl->dering_en = 0;
-        codecctrl->deblock_en = 0;
-        codecctrl->chromaInterleave = 1;    //partial interleaved mode
-        codecctrl->mapType = LINEAR_FRAME_MAP;
-        codecctrl->bs_mode = 0; /*disable pre-scan */
-        codecctrl->fps = 30;
-        decoder_setup((void *)codecctrl);
-
-        printf("Now start decoding test ... \n");
-
-        while (1) {
-            DecOutputInfo outinfo = { 0 };
-            DecParam decparam = { 0 };
-            decparam.dispReorderBuf = 0;
-
-            decparam.prescanEnable = 0;
-            decparam.prescanMode = 0;
-
-            decparam.skipframeMode = 0;
-            decparam.skipframeNum = 0;
-            decparam.iframeSearchEnable = 0;
-
-            if (!VPU_IsBusy() && !dec_fifo_is_full(&g_dec_fifo[0])) {
-                VPU_DecStartOneFrame(g_dec_instance[0]->handle, &decparam);
-                while (VPU_IsBusy()) {
-                    /*If there is enough space, read the bitstream from the SD card to the bitstream buffer */
-                    dec_fill_bsbuffer(g_dec_instance[0]->handle, g_dec_instance[0]->codecctrl,
-                                      g_bs_buffer[0], g_bs_buffer[0] + STREAM_BUF_SIZE,
-                                      g_bs_buffer[0], STREAM_BUF_SIZE >> 2);
-                };
-
-                VPU_DecGetOutputInfo(g_dec_instance[0]->handle, &outinfo);
-                if (outinfo.indexFrameDisplay >= 0) {
-                    count++;
-                    /*push the decoded frame into fifo */
-                    dec_fifo_push(&g_dec_fifo[0],
-                                  &(g_dec_instance[0]->pfbpool[outinfo.indexFrameDisplay]),
-                                  outinfo.indexFrameDisplay);
-                } else if (outinfo.indexFrameDisplay == -1) {
-                    printf("Video play to the end, total %d frames!\n", count);
-                    break;
-                }
-            }
-
-            decoder_frame_display();
-        }
-
-    }
     return 0;
 }

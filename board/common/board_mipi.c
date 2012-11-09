@@ -147,8 +147,6 @@ void mipi_csi2_clock_set(void)
 {
     //set VIDPLL(PLL5) to 596MHz 
     HW_CCM_ANALOG_PLL_VIDEO_WR(BF_CCM_ANALOG_PLL_VIDEO_DIV_SELECT(0) |
-                               BF_CCM_ANALOG_PLL_VIDEO_HALF_LF(1) |
-                               BF_CCM_ANALOG_PLL_VIDEO_DOUBLE_LF(1) |
                                BF_CCM_ANALOG_PLL_VIDEO_ENABLE(1));
     HW_CCM_ANALOG_PLL_VIDEO_NUM_WR(0x00000000);
     HW_CCM_ANALOG_PLL_VIDEO_DENOM_WR(0x00000001);
@@ -168,7 +166,7 @@ void mipi_csi2_clock_set(void)
                     BF_CCM_CCOSR_CLKO1_SEL(0) |
                     BF_CCM_CCOSR_CLKO1_DIV(0) |
                     BF_CCM_CCOSR_CLKO1_EN(1) |
-                    BF_CCM_CCOSR_CLKO1_CLKO2_SEL(1) | // select cko2 for cko1 output
+                    BF_CCM_CCOSR_CLKO_SEL(1) | // select cko2 for cko1 output
                     BF_CCM_CCOSR_CLKO2_SEL(0xe) |    // osc_clk
                     BF_CCM_CCOSR_CLKO2_DIV(0) |  // div 1
                     BF_CCM_CCOSR_CLKO2_EN(1));

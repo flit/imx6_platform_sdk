@@ -398,7 +398,15 @@ int32_t ssi_config(void *priv, audio_dev_para_p para)
 
 	val = HW_SSI_STCCR_RD(instance);
         val &= ~BM_SSI_STCCR_DIV2;
-	val |= BF_SSI_STCCR_DC4_DC0(1) | BF_SSI_STCCR_PM7_PM0(0xA);
+	val |= BF_SSI_STCCR_DC4_DC0(1);
+	val &= ~BM_SSI_STCCR_PM7_PM0;
+	if(SAMPLERATE_44_1KHz == para->sample_rate){
+	    val |= BF_SSI_STCCR_PM7_PM0(0xA);
+	}else if(SAMPLERATE_16KHz == para->sample_rate){
+	   val |= BF_SSI_STCCR_PM7_PM0(0x1E);
+	}else{
+		//TODO
+	}
 	HW_SSI_STCCR_WR(instance, val);
     } else {
         //TODO

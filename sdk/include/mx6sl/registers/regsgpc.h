@@ -153,8 +153,8 @@ typedef union _hw_gpc_cntr
 
 /*! @name Register GPC_CNTR, field DISPLAY_PDN_REQ[4] (RW)
  *
- * Display Power Down request. Self-cleared bit. * Note: software may directly control display power
- * gate and utilize hardware control for reset sequence
+ * Display Power Down request. Self-cleared bit. Software may directly control display power gate
+ * and utilize hardware control for reset sequence
  *
  * Values:
  * - 0 - no request
@@ -178,8 +178,8 @@ typedef union _hw_gpc_cntr
 
 /*! @name Register GPC_CNTR, field DISPLAY_PUP_REQ[5] (RW)
  *
- * Display Power Up request. Self-cleared bit. * Note: software may directly control display power
- * gate and utilize hardware control for reset sequence
+ * Display Power Up request. Self-cleared bit. Software may directly control display power gate and
+ * utilize hardware control for reset sequence
  *
  * Values:
  * - 0 - no request
@@ -811,5 +811,5 @@ typedef struct _hw_gpc
 #endif
 
 #endif // __HW_GPC_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

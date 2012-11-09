@@ -50,10 +50,6 @@ endif
 # Pass the selected test name to the unit test app.
 DEFINES +=-DSTANDALONE -DSDK_TEST=$(TEST)_test
 
-# Override the image size used in the linker script to provide a fixed
-# address for the HAB CSF data.
-DEFINES += -DMAX_IMAGE_SIZE=1024K
-
 # Set up to link application.
 export APP_NAME = sdk_unit_test
 LINK_APP = 1
@@ -66,7 +62,7 @@ define SUBDIRS
     $(SDK_LIB_ROOT)/drivers/caam/test
     $(SDK_LIB_ROOT)/drivers/cpu_utility/test
     $(SDK_LIB_ROOT)/common/filesystem/test
-    $(SDK_LIB_ROOT)/drivers/gic/test
+    $(SDK_LIB_ROOT)/core/test
     $(SDK_LIB_ROOT)/drivers/i2c/test
     $(SDK_LIB_ROOT)/drivers/ocotp/test
     $(SDK_LIB_ROOT)/drivers/pmu/test

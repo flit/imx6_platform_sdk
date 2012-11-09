@@ -70,8 +70,6 @@ struct imx_i2c_request cs42888_i2c_req;
 static void cs42888_i2c_init(audio_codec_p codec)
 {
     /* this init is needed only once */
-//     cs42888_i2c_req.ctl_addr = codec->i2c_base;      // the I2C controller base address
-//     cs42888_i2c_req.dev_addr = codec->i2c_dev_addr;  // the I2C DEVICE address
     cs42888_i2c_req.device = codec->device;
     cs42888_i2c_req.reg_addr_sz = 1;         // number of bytes of I2C device register's address
     cs42888_i2c_req.buffer_sz = 1;           // number of data bytes
@@ -118,9 +116,20 @@ int32_t cs42888_config(void *priv, audio_dev_para_p para)
     CS42888_REG_WRITE(codec, CS42888_REG_PWR_CTRL, CS42888_REG_PWR_CTRL_BIT_PDN_EN);    // Power up dac, and enter low power mode
 
     if (AUDIO_BUS_MODE_MASTER == para->bus_mode) {
-        CS42888_REG_WRITE(codec, CS42888_REG_FUNC_MODE, CS42888_REG_FUNC_MODE_BITS_DAC_FM_MASTER_4_50K | CS42888_REG_FUNC_MODE_BITS_ADC_FM_MASTER_4_50K | CS42888_REG_FUNC_MODE_BITS_ADC_MCLK_512FS);   // X512 (32*2*4), master
+        CS42888_REG_WRITE(codec, CS42888_REG_FUNC_MODE, CS42888_REG_FUNC_MODE_BITS_DAC_FM_MASTER_4_50K | 
+				CS42888_REG_FUNC_MODE_BITS_ADC_FM_MASTER_4_50K | 
+				CS42888_REG_FUNC_MODE_BITS_ADC_MCLK_512FS);   // SSM mode, X512 (32*2*4), master
     } else {
-        CS42888_REG_WRITE(codec, CS42888_REG_FUNC_MODE, CS42888_REG_FUNC_MODE_BITS_DAC_FM_SLAVE_AUTO | CS42888_REG_FUNC_MODE_BITS_ADC_FM_SLAVE_AUTO | CS42888_REG_FUNC_MODE_BITS_ADC_MCLK_256FS);   // X256 (32*2*4), slave
+	printf("CS42888 configured as slave.\n");
+	if((SAMPLERATE_44_1KHz == para->sample_rate) || (SAMPLERATE_48KHz == para->sample_rate)){
+        	CS42888_REG_WRITE(codec, CS42888_REG_FUNC_MODE, CS42888_REG_FUNC_MODE_BITS_DAC_FM_SLAVE_AUTO | 
+				CS42888_REG_FUNC_MODE_BITS_ADC_FM_SLAVE_AUTO | 
+				CS42888_REG_FUNC_MODE_BITS_ADC_MCLK_256FS);   //  X256 (32*2*4), slave
+	}else if((SAMPLERATE_32KHz == para->sample_rate) || (SAMPLERATE_16KHz == para->sample_rate)){
+        	CS42888_REG_WRITE(codec, CS42888_REG_FUNC_MODE, CS42888_REG_FUNC_MODE_BITS_DAC_FM_SLAVE_AUTO | 
+				CS42888_REG_FUNC_MODE_BITS_ADC_FM_SLAVE_AUTO | 
+				CS42888_REG_FUNC_MODE_BITS_ADC_MCLK_384FS);  
+	}
     }
     //Interface Format Setting
     CS42888_REG_WRITE(codec, CS42888_REG_INF_FMT, CS42888_REG_INF_FMT_BIT_AUX_DIF_I2S |
@@ -158,8 +167,5 @@ audio_dev_ops_t cs42888_ops = {
 audio_codec_t cs42888 = {
     .name = "cs42888",
     .device = &g_cs42888_i2c_device,
-//     .i2c_base = CS42888_I2C_BASE,
-//     .i2c_freq = 100000,
-//     .i2c_dev_addr = CS42888_I2C_ID,
     .ops = &cs42888_ops,
 };

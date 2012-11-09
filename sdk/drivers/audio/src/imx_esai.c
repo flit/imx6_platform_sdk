@@ -362,6 +362,11 @@ int32_t esai_config(void *priv, audio_dev_para_p para)
         ESAI_TCR_TMOD_NETWORK;  //network mode
     esai_set_hw_para(ctrl, ESAI_HW_PARA_TCR, val);
 
+    /*
+     * FixMe: CS42888 driver supports 48/44.1KHz only, although it was 
+     * expected to support all sample rates.  When lower sample rate used,
+     * no audio input.
+     */
     if (AUDIO_BUS_MODE_MASTER == para->bus_mode) {
         val = BM_ESAI_TCCR_THCKD | //HCKT is output (bit23=1)
             BM_ESAI_TCCR_TFSD |    //FST is output (bit22=1) 
@@ -379,14 +384,25 @@ int32_t esai_config(void *priv, audio_dev_para_p para)
                 ESAI_TCCR_TPM(5);
         } else if(SAMPLERATE_16KHz == para->sample_rate){
 	    /*
- 	     * So the Tx_CLK = Fsys/2/((TPM+1) + (TFP+1)) = 133/2/(6*11) = 1.008MHz(1.024MHz was expected for 16KHz)
-	     * The HCKT = Fsys/2/((TPM+1) = 133/2/6 = 11.08MHz.
-	     */
-            val |= ESAI_TCCR_TFP(10) |   // clk div 11
+	     * Tx_Clk = 133/2/(13*5) = 1.023MHz(1.024MHz expected), HCKT = 133/2/5 = 13.2MHz 
+             */
+            val |= ESAI_TCCR_TFP(12) |   // clk div 11
 		ESAI_TCCR_TPSR_BYPASS | //bypass
-		ESAI_TCCR_TPM(5);
-        }else{
-	    //TODO
+		ESAI_TCCR_TPM(4);
+        }else if(SAMPLERATE_32KHz == para->sample_rate){
+	    /*
+ 	     * Tx_Clk = 133/2/(4*8) = 2.031MHz(32*2*32 = 2.048MHz was expected). HCKT = 133/2/4 = 16.625MHz
+	     */
+	    val |= ESAI_TCCR_TFP(7) |   
+                ESAI_TCCR_TPSR_BYPASS |
+                ESAI_TCCR_TPM(3);
+	}else if(SAMPLERATE_48KHz == para->sample_rate){
+            /*
+             * Tx_Clk = 133/2/(5*4) = 3.3MHz(48*2*32 = 3.08MHz was expected). HCKT = 133/2/5 = 13.3MHz
+             */
+            val |= ESAI_TCCR_TFP(3) |
+                ESAI_TCCR_TPSR_BYPASS |
+                ESAI_TCCR_TPM(4);
 	}
     } else {
         val = BM_ESAI_TCCR_TCKP | ESAI_TCCR_TDC(para->channel_number - 1); //frame rate devider
@@ -458,6 +474,14 @@ int32_t esai_write_fifo(void *priv, uint8_t * buf, uint32_t size, uint32_t * byt
 
     UNUSED_VARIABLE(instance);
 
+    /*
+     * FixMe: CS42888 driver supports 48/44.1KHz only, although it was 
+     * expected to support all sample rates.  When lower sample rate used,
+     * no audio input.
+     * It is supposed that the pcm was 16KHz, and we should convert it to 48KHz,
+     * just as a workround.
+     */
+
     wl = esai_get_hw_para(ctrl, ESAI_HW_PARA_TX_WL);
 
     while (i < size) {
@@ -477,6 +501,9 @@ int32_t esai_write_fifo(void *priv, uint8_t * buf, uint32_t size, uint32_t * byt
             i = i + 4;
         }
 
+        HW_ESAI_ETDR_WR(val);
+	/* A workaround to convert the 16KHz PCM to 48KHz */
+        HW_ESAI_ETDR_WR(val);
         HW_ESAI_ETDR_WR(val);
     }
     *bytes_written = size;

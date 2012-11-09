@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008-2012, Freescale Semiconductor, Inc.
+ * Copyright (c) 2012, Freescale Semiconductor, Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -28,67 +28,58 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+//! @addtogroup cortexa9
+//! @{
+
 /*!
- * @file asm_defines.h
- * @brief defines for startup assembly code
- *
- * @ingroup diag_util
+ * @file  arm_cp_registers.h
+ * @brief Definitions for ARM coprocessor registers.
  */
 
-#ifndef _ASM_DEFINES_H_
-#define _ASM_DEFINES_H_
+#ifndef __ARM_CP_REGISTERS_H__
+#define __ARM_CP_REGISTERS_H__
 
 ////////////////////////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
 
-//! @name CPSR fields
+//! @name ACTLR
 //@{
-#define CPSR_N (1 << 31)    //!< Negative
-#define CPSR_Z (1 << 30)    //!< Zero
-#define CPSR_C (1 << 29)    //!< Carry
-#define CPSR_V (1 << 28)    //!< Overflow
-#define CPSR_Q (1 << 27)    //!< Saturation
-#define CPSR_E (1 << 9)     //!< Endianness
-#define CPSR_A (1 << 8)     //!< Async abort mask
-#define CPSR_I (1 << 7)     //!< IRQ mask
-#define CPSR_F (1 << 6)     //!< FIQ mask
-#define CPSR_T (1 << 5)     //!< Thumb mode
-#define CPSR_MODE   (0x1f)  //!< Current processor mode
+#define BM_ACTLR_SMP (1 << 6)
 //@}
 
-//! @name Mode bits in CPSR
+//! @name DFSR
 //@{
-#define MODE_USR     0x10   //!< User mode
-#define MODE_FIQ     0x11   //!< FIQ mode
-#define MODE_IRQ     0x12   //!< IRQ mode
-#define MODE_SVC     0x13   //!< Supervisor mode
-#define MODE_ABT     0x17   //!< Abort exception mode
-#define MODE_UND     0x1B   //!< Undefined instruction exception mode
-#define MODE_SYS     0x1F   //!< System mode
+#define BM_DFSR_WNR (1 << 11)   //!< Write not Read bit. 0=read, 1=write.
+#define BM_DFSR_FS4 (0x400)      //!< Fault status bit 4..
+#define BP_DFSR_FS4 (10)        //!< Bit position for FS[4].
+#define BM_DFSR_FS (0xf)      //!< Fault status bits [3:0].
 //@}
 
-//! @name Interrupt enable bits in CPSR
+//! @name SCTLR
 //@{
-#define I_BIT        0x80    //!< When I bit is set, IRQ is disabled
-#define F_BIT        0x40    //!< When F bit is set, FIQ is disabled
+#define BM_SCTLR_TE (1 << 30)  //!< Thumb exception enable.
+#define BM_SCTLR_AFE (1 << 29) //!< Access flag enable.
+#define BM_SCTLR_TRE (1 << 28) //!< TEX remap enable.
+#define BM_SCTLR_NMFI (1 << 27)    //!< Non-maskable FIQ support.
+#define BM_SCTLR_EE (1 << 25)  //!< Exception endianess.
+#define BM_SCTLR_VE (1 << 24)  //!< Interrupt vectors enable.
+#define BM_SCTLR_FI (1 << 21)   //!< Fast interrupt configurable enable.
+#define BM_SCTLR_RR (1 << 14)  //!< Round Robin
+#define BM_SCTLR_V (1 << 13)   //!< Vectors
+#define BM_SCTLR_I (1 << 12)   //!< Instruction cache enable
+#define BM_SCTLR_Z (1 << 11)   //!< Branch prediction enable
+#define BM_SCTLR_SW (1 << 10)  //!< SWP and SWPB enable
+#define BM_SCTLR_CP15BEN (1 << 5)  //!< CP15 barrier enable
+#define BM_SCTLR_C (1 << 2)    //!< Data cache enable
+#define BM_SCTLR_A (1 << 1)    //!< Alignment check enable
+#define BM_SCTLR_M (1 << 0)    //!< MMU enable
 //@}
 
-//! @name Stack sizes
-//@{
+//! @}
 
-//! @brief Size of stacks for exceptions.
-#define EXCEPTION_STACK_SIZE 2048
-
-//! @brief Supervisor mode stack size.
-//!
-//! This stack is much larger because most application code runs in
-//! Supervisor mode.
-#define SVC_STACK_SIZE 8192
-
-//@}
-
-#endif /*_ASM_DEFINES_H_ */
+#endif // __ARM_CP_REGISTERS_H__
 ////////////////////////////////////////////////////////////////////////////////
 // EOF
 ////////////////////////////////////////////////////////////////////////////////
+

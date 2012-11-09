@@ -52,8 +52,7 @@ static unsigned char mac_addr0[6] = { 0x00, 0x04, 0x9f, 0x00, 0x00, 0x01 };
 
 extern int imx_enet_mii_type(imx_enet_priv_t * dev, enum imx_mii_type mii_type);
 extern void imx_enet_iomux(void);
-extern void imx_ar8031_iomux(void);
-extern void imx_ar8031_reset(void);
+extern void imx_enet_phy_reset(void);
 static void pkt_fill(unsigned char *packet, unsigned char *eth_addr, unsigned char seed, int length)
 {
     unsigned char *pkt = packet;
@@ -110,8 +109,8 @@ int enet_test(void)
         return TEST_BYPASSED;
     }
     //setup iomux for ENET
-    imx_ar8031_reset();
-    imx_ar8031_iomux();
+    imx_enet_iomux();
+    imx_enet_phy_reset();
 
     //init enet0
     imx_enet_init(dev0, ENET_BASE_ADDR, ENET_PHY_ADDR);

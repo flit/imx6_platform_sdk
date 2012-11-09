@@ -39,32 +39,32 @@
 // Externs
 ////////////////////////////////////////////////////////////////////////////////
 
-extern void sdma_test(void);
-extern void ipu_test(void);
-extern void uart_test(void);
-extern void gpt_test(void);
-extern void epit_test(void);
-extern void usdhc_test(void);
-extern void hdmi_test(void);
-extern void audio_test(void);
-extern void i2c_test(void);
-extern void gic_test(void);
-extern void snvs_rtc_test(void);
-extern void snvs_srtc_test(void);
-extern void flexcan_test(void);
-extern int spi_test(void);
-extern void tempmon_test(void);
-extern int vpu_test(void);
+extern int camera_test(void);
+extern int eim_test();
 extern int gpmi_test(void);
 extern int mipi_test();
 extern int pwm_test();
-extern int eim_test();
-extern int camera_test(void);
+extern int spi_test(void);
+extern int vpu_test(void);
 extern int wdog_test(void);
-extern int camera_test(void);
-extern void usb_test(void);
-extern void microseconds_test(void);
+extern void audio_test(void);
 extern void enet_test(void);
+extern void epit_test(void);
+extern void flexcan_test(void);
+extern void gic_test(void);
+extern void gpt_test(void);
+extern void hdmi_test(void);
+extern void i2c_test(void);
+extern void ipu_test(void);
+extern void microseconds_test(void);
+extern void ocotp_test(void);
+extern void sdma_test(void);
+extern void snvs_rtc_test(void);
+extern void snvs_srtc_test(void);
+extern void tempmon_test(void);
+extern void uart_test(void);
+extern void usb_test(void);
+extern void usdhc_test(void);
 
 #ifdef CHIP_MX6DQ
 extern int sata_test(void);
@@ -74,11 +74,11 @@ extern int pcie_test(void);
 #endif
 
 #if defined(CHIP_MX6SL)
-extern int lcdif_test(void);
 extern int camera_test(void);
+extern int fec_test(void);
+extern int lcdif_test(void);
 extern void epdc_test(void);
 extern void spdc_test(void);
-extern int fec_test(void);
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -118,6 +118,7 @@ const menuitem_t k_menuItems[] = {
         DEFINE_TEST_MENU_ITEM("c",  "gic test",         gic_test),
         DEFINE_TEST_MENU_ITEM("m",  "microseconds timer test", microseconds_test),
         DEFINE_TEST_MENU_ITEM("wa", "watchdog test",    wdog_test),
+        DEFINE_TEST_MENU_ITEM("o",  "ocotp test",       ocotp_test),
         
         // mx6dq and mx6sdl are grouped together because they share the same boards.
 #if defined(CHIP_MX6DQ) || defined(CHIP_MX6SDL)

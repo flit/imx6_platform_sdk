@@ -43,7 +43,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 //! @brief Current version of the SDK.
-#define SDK_VERSION_STRING	"1.0b2"
+#define SDK_VERSION_STRING	"1.0"
 
 //! @name SDK version number components
 //@{

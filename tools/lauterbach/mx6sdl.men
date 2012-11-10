@@ -10,6 +10,7 @@ menu
 		menuitem "IOMUXC"							"per , ""IOMUXC"""
 		menuitem "PXP"							"per , ""PXP"""
 		menuitem "ASRC"							"per , ""ASRC"""
+		menuitem "CSI2IPU"							"per , ""CSI2IPU"""
 		menuitem "DCIC"							"per , ""DCIC"""
 		menuitem "ENET"							"per , ""ENET"""
 		menuitem "ESAI"							"per , ""ESAI"""

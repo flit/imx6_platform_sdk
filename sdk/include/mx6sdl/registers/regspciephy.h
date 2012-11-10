@@ -8358,5 +8358,5 @@ typedef union _hw_pcie_phy_tx_tx_atb_reg
 //@}
 
 #endif // __HW_PCIE_PHY_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

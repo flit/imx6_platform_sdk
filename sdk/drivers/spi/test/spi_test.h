@@ -58,8 +58,8 @@
     .ss_pol = 0, \
     .sclk_pol = 0, \
     .sclk_pha = 0, \
-    .pre_div = 3, \
-    .post_div = 0 \
+    .pre_div = 0, \
+    .post_div = 3 \
     }
 #endif
 // ((uint32_t)0x00000445)

@@ -1603,7 +1603,7 @@ typedef union _hw_esai_saisr
         unsigned REDF : 1; //!< [9] ESAI_SAISR Receive Even-Data Register Full.
         unsigned RODF : 1; //!< [10] ESAI_SAISR Receive Odd-Data Register Full.
         unsigned RESERVED1 : 2; //!< [12:11] Reserved.
-        unsigned TFS : 1; //!< [13] ESAI_SAISR Transmit Frame Sync Flar.
+        unsigned TFS : 1; //!< [13] ESAI_SAISR Transmit Frame Sync Flag.
         unsigned TUE : 1; //!< [14] ESAI_SAISR Transmit Underrun Error Flag.
         unsigned TDE : 1; //!< [15] ESAI_SAISR Transmit Data Register Empty.
         unsigned TEDE : 1; //!< [16] ESAI_SAISR Transmit Even-DataRegister Empty.
@@ -1770,7 +1770,7 @@ typedef union _hw_esai_saisr
 
 /*! @name Register ESAI_SAISR, field TFS[13] (RO)
  *
- * ESAI_SAISR Transmit Frame Sync Flar. When set, TFS indicates that a transmit frame sync occurred
+ * ESAI_SAISR Transmit Frame Sync Flag. When set, TFS indicates that a transmit frame sync occurred
  * in the current time slot. TFS is set at the start of the first time slot in the frame and cleared
  * during all other time slots. Data written to a transmit data register during the time slot when
  * TFS is set is transmitted (in network mode), if the transmitter is enabled, during the second
@@ -3439,7 +3439,7 @@ typedef union _hw_esai_rccr
     struct _hw_esai_rccr_bitfields
     {
         unsigned RPM : 8; //!< [7:0] ESAI_RCCR Receiver Prescale Modulus Select.
-        unsigned RPSP : 1; //!< [8] ESAI_RCCR Receiver Prescaler Range.
+        unsigned RPSR : 1; //!< [8] ESAI_RCCR Receiver Prescaler Range.
         unsigned RDC : 5; //!< [13:9] ESAI_RCCR Rx Frame Rate Divider Control.
         unsigned RFP : 4; //!< [17:14] ESAI_RCCR Rx High Frequency Clock Divider.
         unsigned RCKP : 1; //!< [18] The Receiver Clock Polarity (RCKP) bit controls on which bit clock edge data and frame sync are clocked out and latched in.
@@ -3498,7 +3498,7 @@ typedef union _hw_esai_rccr
 #endif
 //@}
 
-/*! @name Register ESAI_RCCR, field RPSP[8] (RW)
+/*! @name Register ESAI_RCCR, field RPSR[8] (RW)
  *
  * ESAI_RCCR Receiver Prescaler Range. The RPSR controls a fixed divide-by-eight prescaler in series
  * with the variable prescaler. This bit is used to extend the range of the prescaler for those
@@ -3510,18 +3510,18 @@ typedef union _hw_esai_rccr
  * (RHCKD=1 or RCKD=1))
  */
 //@{
-#define BP_ESAI_RCCR_RPSP      (8)      //!< Bit position for ESAI_RCCR_RPSP.
-#define BM_ESAI_RCCR_RPSP      (0x00000100)  //!< Bit mask for ESAI_RCCR_RPSP.
+#define BP_ESAI_RCCR_RPSR      (8)      //!< Bit position for ESAI_RCCR_RPSR.
+#define BM_ESAI_RCCR_RPSR      (0x00000100)  //!< Bit mask for ESAI_RCCR_RPSR.
 
-//! @brief Get value of ESAI_RCCR_RPSP from a register value.
-#define BG_ESAI_RCCR_RPSP(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCCR_RPSP) >> BP_ESAI_RCCR_RPSP)
+//! @brief Get value of ESAI_RCCR_RPSR from a register value.
+#define BG_ESAI_RCCR_RPSR(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_ESAI_RCCR_RPSR) >> BP_ESAI_RCCR_RPSR)
 
-//! @brief Format value for bitfield ESAI_RCCR_RPSP.
-#define BF_ESAI_RCCR_RPSP(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCCR_RPSP) & BM_ESAI_RCCR_RPSP)
+//! @brief Format value for bitfield ESAI_RCCR_RPSR.
+#define BF_ESAI_RCCR_RPSR(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_ESAI_RCCR_RPSR) & BM_ESAI_RCCR_RPSR)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the RPSP field to a new value.
-#define BW_ESAI_RCCR_RPSP(v)   (HW_ESAI_RCCR_WR((HW_ESAI_RCCR_RD() & ~BM_ESAI_RCCR_RPSP) | BF_ESAI_RCCR_RPSP(v)))
+//! @brief Set the RPSR field to a new value.
+#define BW_ESAI_RCCR_RPSR(v)   (HW_ESAI_RCCR_WR((HW_ESAI_RCCR_RD() & ~BM_ESAI_RCCR_RPSR) | BF_ESAI_RCCR_RPSR(v)))
 #endif
 //@}
 
@@ -4242,5 +4242,5 @@ typedef struct _hw_esai
 #endif
 
 #endif // __HW_ESAI_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

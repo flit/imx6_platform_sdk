@@ -18,7 +18,6 @@ board_id/src/board_id.c
 camera/src/camera_profile.c
 cpu_utility/src/cpu_get_cores.c
 eim/src/eim.c
-gic/src/gic.c
 gpio/src/gpio.c
 i2c/src/imx_i2c_slave.c
 i2c/src/imx_i2c.c
@@ -113,7 +112,8 @@ SOURCES += \
 	lcdif/src/pxp_drv.c \
 	spdc/src/mxc_spdc.c \
 	camera/src/smd_sensor.c \
-	camera/src/csi_drv.c
+	camera/src/csi_drv.c \
+	fec/src/fec_drv.c
 endif
 
 ifeq "$(TARGET)" "mx6sl"

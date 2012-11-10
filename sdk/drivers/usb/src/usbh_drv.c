@@ -66,11 +66,11 @@ int usbh_init(usb_module_t * port)
     }
 
     if (port->phyType == Ulpi) {
-	HW_USBC_PORTSC1_WR(core, (HW_USBC_PORTSC1_RD(core) & (~(BF_USBC_UH1_PORTSC1_PTS(3)))) | (BF_USBC_UH1_PORTSC1_PTS(2)));
+        HW_USBC_PORTSC1_WR(core, (HW_USBC_PORTSC1_RD(core) & (~(BF_USBC_UH1_PORTSC1_PTS_1(3) | BF_USBC_UH1_PORTSC1_PTS_2(1)))) | (BF_USBC_UH1_PORTSC1_PTS_1(2)));
     } else if (port->phyType == Utmi) {
-	HW_USBC_PORTSC1_WR(core, HW_USBC_PORTSC1_RD(core) & (~(BF_USBC_UH1_PORTSC1_PTS(3))));
+        HW_USBC_PORTSC1_WR(core, HW_USBC_PORTSC1_RD(core) & (~(BF_USBC_UH1_PORTSC1_PTS_1(3) | BF_USBC_UH1_PORTSC1_PTS_2(1))));
     } else if (port->phyType == Serial) {
-	HW_USBC_PORTSC1_WR(core, HW_USBC_PORTSC1_RD(core) | (BF_USBC_UH1_PORTSC1_PTS(3)));
+        HW_USBC_PORTSC1_WR(core, ((HW_USBC_PORTSC1_RD(core)) | (BF_USBC_UH1_PORTSC1_PTS_1(3))) & (~BF_USBC_UH1_PORTSC1_PTS_2(1)));
     } else {
         /* Invalid PHY type */
         return (-1);
@@ -129,7 +129,7 @@ uint32_t usbh_periodic_schedule_init(struct usb_module * port, uint32_t frame_li
     //! Initialize the USBCMD register for the desired frame list size
 
     //! Clear all FS bits before we start
-    HW_USBC_USBCMD_WR(core, HW_USBC_USBCMD_RD(core) & (~(BM_USBC_UH1_USBCMD_FS | BM_USBC_UH1_USBCMD_FS1)));
+    HW_USBC_USBCMD_WR(core, HW_USBC_USBCMD_RD(core) & (~(BM_USBC_UH1_USBCMD_FS_1 | BM_USBC_UH1_USBCMD_FS_2)));
 
     //! Set the new size
     switch (frame_list_size) {

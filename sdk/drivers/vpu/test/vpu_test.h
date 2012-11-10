@@ -140,15 +140,13 @@ struct rot {
 };
 
 #define MAX_PATH	256
-struct cmd_line {
+typedef struct codec_control {
     int32_t input;              /* Input file name */
-    uint32_t input_mem_addr;    /*active if the input is stored in memory */
+    uint32_t input_mem_addr;    /*active only if the input is stored in memory */
     int32_t output;             /* Output file name */
     uint32_t output_mem_addr;
     int32_t src_scheme;
     int32_t dst_scheme;
-    int32_t src_fd;
-    int32_t dst_fd;
     int32_t width;
     int32_t height;
     int32_t enc_width;
@@ -169,19 +167,11 @@ struct cmd_line {
     int32_t count;
     int32_t prescan;
     int32_t bs_mode;
-    char *nbuf;                 /* network buffer */
-    int32_t nlen;               /* remaining data in network buffer */
-    int32_t noffset;            /* offset into network buffer */
-    int32_t seq_no;             /* seq numbering to detect skipped frames */
-    uint16_t port;              /* udp port number */
-    uint16_t complete;          /* wait for the requested buf to be filled completely */
-    int32_t iframe;
     int32_t mp4_h264Class;
-    char vdi_motion;            /* VDI motion algorithm */
     int32_t fps;
     int32_t mapType;
     int32_t read_mode;
-};
+} codec_control_t;
 
 typedef struct {
     const char *name;
@@ -219,7 +209,7 @@ struct decode {
     DecReportInfo frameBufStat;
     DecReportInfo userData;
 
-    struct cmd_line *cmdl;
+    struct codec_control *codecctrl;
 };
 
 struct encode {
@@ -247,7 +237,7 @@ struct encode {
     EncReportInfo mvInfo;
     EncReportInfo sliceInfo;
 
-    struct cmd_line *cmdl;      /* command line */
+    struct codec_control *codecctrl;    /* command line */
     uint8_t *huffTable;
     uint8_t *qMatTable;
 };
@@ -273,30 +263,22 @@ typedef struct {
     uint32_t timer_elapsed_ms;
 } vpu_frame_timer_t;
 
-extern uint32_t usdhc_busy;
-extern struct decode *gDecInstance[];
-extern struct encode *gEncInstance[];
-extern vdec_frame_buffer_t gDecFifo[];
-extern uint32_t gBsBuffer[];
-extern int32_t gCurrentActiveInstance;
-extern int32_t gTotalActiveInstance;
-extern vpu_resource_t *vpu_hw_map;
-extern hw_module_t hw_vpu;
-extern hw_module_t hw_epit2;
-extern int32_t disp_clr_index[];
-extern int32_t multi_instance;
-extern bs_mem_t bsmem;
-extern int32_t ipu_initialized[];
+extern struct decode *g_dec_instance[];
+extern struct encode *g_enc_instance[];
+extern vdec_frame_buffer_t g_dec_fifo[];
+extern uint32_t g_bs_buffer[];
+extern int32_t g_current_active_instance;
+extern int32_t g_total_active_instance;
+extern vpu_resource_t *g_vpu_hw_map;
+extern hw_module_t g_hw_epit2;
+extern int32_t g_disp_clr_index[];
+extern int32_t g_multi_instance;
+extern bs_mem_t g_bs_memory;
+extern uint32_t g_usdhc_instance;
 
 void framebuf_init(void);
-int32_t vpu_stream_read(struct cmd_line *cmd, char *buf, int32_t n);
-int32_t vpu_stream_write(struct cmd_line *cmd, char *buf, int32_t n);
-void get_arg(char *buf, int32_t * argc, char *argv[]);
-int32_t open_files(struct cmd_line *cmd);
-void close_files(struct cmd_line *cmd);
-int32_t check_params(struct cmd_line *cmd, int32_t op);
-char *skip_unwanted(char *ptr);
-int32_t parse_options(char *buf, struct cmd_line *cmd, int32_t * mode);
+int32_t vpu_stream_read(struct codec_control *cmd, char *buf, int32_t n);
+int32_t vpu_stream_write(struct codec_control *cmd, char *buf, int32_t n);
 struct frame_buf *framebuf_alloc(int32_t stdMode, int32_t format, int32_t strideY, int32_t height,
                                  int32_t mvCol);
 struct frame_buf *tiled_framebuf_alloc(int32_t stdMode, int32_t format, int32_t strideY,
@@ -316,7 +298,7 @@ void decoder_free_framebuffer(struct decode *dec);
 int32_t video_data_cmp(unsigned char *src, unsigned char *dst, int32_t size);
 int32_t decoder_setup(void *arg);
 int32_t encoder_setup(void *arg);
-int32_t ipu_refresh(uint32_t ipu_index, uint32_t buffer);
+int32_t ipu_render_refresh(uint32_t ipu_index, uint32_t buffer);
 void config_system_parameters(void);
 void dec_fifo_init(vdec_frame_buffer_t * fifo, int32_t size);
 int32_t dec_fifo_push(vdec_frame_buffer_t * fifo, struct frame_buf **frame, uint32_t id);
@@ -326,7 +308,7 @@ int32_t dec_fifo_is_full(vdec_frame_buffer_t * fifo);
 void decoder_frame_display(void);
 int32_t decode_test(void *arg);
 int32_t encode_test(void *arg);
-int32_t dec_fill_bsbuffer(DecHandle handle, struct cmd_line *cmd,
+int32_t dec_fill_bsbuffer(DecHandle handle, struct codec_control *cmd,
                           uint32_t bs_va_startaddr, uint32_t bs_va_endaddr,
                           uint32_t bs_pa_startaddr, int32_t defaultsize);
 extern int32_t config_hdmi_si9022(int32_t ipu_index, int32_t ipu_di);
@@ -338,7 +320,5 @@ extern void ipu_dma_update_buffer(uint32_t ipu_index, uint32_t channel, uint32_t
                                   uint32_t buffer_addr);
 extern int32_t ipu_idmac_chan_cur_buff(uint32_t ipu_index, uint32_t channel);
 extern void ipu_channel_buf_ready(int32_t ipu_index, int32_t channel, int32_t buf);
-
-extern uint32_t g_usdhc_instance;
 
 #endif

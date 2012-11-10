@@ -2762,5 +2762,5 @@ typedef union _hw_sata_phy_clock_reset
 //@}
 
 #endif // __HW_SATA_PHY_CLOCK_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

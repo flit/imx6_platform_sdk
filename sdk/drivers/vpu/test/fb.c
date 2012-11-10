@@ -37,8 +37,8 @@
 static int32_t fb_index;
 static struct frame_buf *fbarray[NUM_FRAME_BUFS];
 static struct frame_buf fbpool[NUM_FRAME_BUFS];
-vdec_frame_buffer_t gDecFifo[NUM_FRAME_BUFS];
-uint32_t gBsBuffer[NUM_FRAME_BUFS];
+vdec_frame_buffer_t g_dec_fifo[NUM_FRAME_BUFS];
+uint32_t g_bs_buffer[NUM_FRAME_BUFS];
 
 void framebuf_init(void)
 {
@@ -49,7 +49,7 @@ void framebuf_init(void)
     }
 
     for (i = 0; i < MAX_NUM_INSTANCE; i++)
-        disp_clr_index[i] = -1;
+        g_disp_clr_index[i] = -1;
 }
 
 struct frame_buf *get_framebuf(void)
@@ -147,7 +147,7 @@ struct frame_buf *framebuf_alloc(int32_t stdMode, int32_t format, int32_t stride
     if (mvCol)
         fb->desc.size += strideY / divX * height / divY;
 
-    err = IOGetMem(&fb->desc);
+    err = vpu_malloc(&fb->desc);
     if (err) {
         printf("Frame buffer allocation failure\n");
         memset(&(fb->desc), 0, sizeof(vpu_mem_desc));
@@ -167,7 +167,7 @@ struct frame_buf *framebuf_alloc(int32_t stdMode, int32_t format, int32_t stride
     memset((void *)fb->addrCr, 0x80, strideY * height >> 2);
     memset((void *)fb->addrCb, 0x80, strideY * height >> 2);
     if (mvCol) {
-        fb->desc.virt_uaddr = fb->desc.phy_addr;
+        fb->desc.virt_addr = fb->desc.phy_addr;
         fb->mvColBuf = fb->addrCr + strideY / divX * height / divY;
     }
     return fb;
@@ -219,7 +219,7 @@ struct frame_buf *tiled_framebuf_alloc(int32_t stdMode, int32_t format, int32_t 
     if (mvCol)
         fb->desc.size += strideY / divX * height / divY;
 
-    err = IOGetMem(&fb->desc);
+    err = vpu_malloc(&fb->desc);
     if (err) {
         printf("Frame buffer allocation failure\n");
         memset(&(fb->desc), 0, sizeof(vpu_mem_desc));

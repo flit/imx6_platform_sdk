@@ -666,6 +666,7 @@ void ipu_dual_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_
 void ipu_capture_setup(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_width,
                        uint32_t raw_height, uint32_t act_width, uint32_t act_height,
                        ips_dev_panel_t * panel);
+void ipu_capture_streamoff(uint32_t ipu_index);
 
 void ipu_mipi_csi2_setup(uint32_t ipu_index, uint32_t csi_width, uint32_t csi_height,
                          ips_dev_panel_t * panel);
@@ -752,6 +753,8 @@ void ipu_csi_config(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_wid
 uint32_t ipu_smfc_fifo_allocate(uint32_t ipu_index, uint32_t channel, uint32_t map,
                                 uint32_t burst_size);
 void ipu_capture_disp_link(uint32_t ipu_index, uint32_t smfc);
+void ipu_disable_csi(uint32_t ipu_index, uint32_t csi);
+void ipu_disable_smfc(uint32_t ipu_index);
 
 ips_dev_panel_t *search_panel(char *panel_name);
 void load_centralized_image(uint32_t addr, ips_dev_panel_t * panel);

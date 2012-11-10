@@ -68,7 +68,7 @@ ENTRY(_start)
 
 // Maximum size of the signed image
 #if !defined(MAX_IMAGE_SIZE)
-#define MAX_IMAGE_SIZE 256K
+#define MAX_IMAGE_SIZE 4M
 #endif
 
 // Maximum size of HAB CSF data
@@ -241,8 +241,9 @@ SECTIONS
         . = ALIGN (32);
         __hab_data_end = .;
     } > DDR
-    _image_size = __hab_data_end - _start_image_add;
     /* End of HAB reserved space (must place it before BSS section) */
+
+    _image_size = . - _start_image_add;
 
     /* The .bss section comes after the hab data because it is not signed */
     .bss :

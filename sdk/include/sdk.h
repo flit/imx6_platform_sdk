@@ -54,7 +54,7 @@
 #include "utility/system_util.h"
 #include "gpio/gpio.h"
 #include "core/interrupt.h"
-#include "gic/gic.h"
+#include "core/gic.h"
 #include "ccm_pll.h"
 #include "ioexpander/max7310.h"
 #include "i2c/imx_i2c.h"
@@ -63,7 +63,11 @@
 #include "usb/usb.h"
 #include "keypad/keypad_port.h"
 #include "spi/ecspi_ifc.h"
+#if !defined(CHIP_MX6SL)
 #include "enet/enet.h"
+#else
+#include "fec/fec.h"
+#endif
 #include "board_id/board_id.h"
 
 #include "buffers.h"

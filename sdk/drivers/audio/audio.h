@@ -75,6 +75,7 @@ typedef enum {
 //! @brief Sample rates
 typedef enum {
     SAMPLERATE_8KHz = 8000,
+    SAMPLERATE_16KHz = 16000,
     SAMPLERATE_32KHz = 32000,
     SAMPLERATE_44_1KHz = 44100,
     SAMPLERATE_48KHz = 48000,

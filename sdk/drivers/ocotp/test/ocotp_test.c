@@ -70,7 +70,7 @@ int32_t ocotp_test(void)
         if (sel == '2')
             printf("Go to blow function...\n");
 
-        printf("Please set the bank (1,2,...): \n");
+        printf("Please set the bank (0,1,2,...): \n");
         do {
             bank = getchar();
         } while (bank == NONE_CHAR);
@@ -78,7 +78,7 @@ int32_t ocotp_test(void)
         bank -= 0x30;
         printf("  %d\n",bank);
 
-        printf("Please set the row (1,2,...): \n");
+        printf("Please set the row (0,1,2,...): \n");
         do {
             row = getchar();
         } while (row == NONE_CHAR);

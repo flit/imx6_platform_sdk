@@ -12,7 +12,7 @@ Advanced_Information.Cortex-A9={\
   :Peripherals.DVFSC={\
     base=Absolute:description=""\
     :Register.G_DVFSC_THRS={\
-      gui_name="THRS":start=0x20dc000:length=4:\
+      gui_name="THRS":start=0x20dc180:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_DVFSC_THRS_PNCTHR={\
         gui_name="PNCTHR":position=0:size=6:read_only=false\
@@ -25,7 +25,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_DVFSC_COUN={\
-      gui_name="COUN":start=0x20dc004:length=4:\
+      gui_name="COUN":start=0x20dc184:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_DVFSC_COUN_UPCNT={\
         gui_name="UPCNT":position=0:size=8:read_only=false\
@@ -35,7 +35,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_DVFSC_SIG1={\
-      gui_name="SIG1":start=0x20dc008:length=4:\
+      gui_name="SIG1":start=0x20dc188:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_DVFSC_SIG1_WSW6={\
         gui_name="WSW6":position=2:size=3:read_only=false\
@@ -69,7 +69,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_DVFSC_DVFSSIG0={\
-      gui_name="DVFSSIG0":start=0x20dc00c:length=4:\
+      gui_name="DVFSSIG0":start=0x20dc18c:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_DVFSC_DVFSSIG0_WSW0={\
         gui_name="WSW0":position=0:size=6:read_only=false\
@@ -91,7 +91,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_DVFSC_DVFSGPC0={\
-      gui_name="DVFSGPC0":start=0x20dc010:length=4:\
+      gui_name="DVFSGPC0":start=0x20dc190:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_DVFSC_DVFSGPC0_GPBC0={\
         gui_name="GPBC0":position=0:size=17:read_only=false\
@@ -104,7 +104,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_DVFSC_DVFSGPC1={\
-      gui_name="DVFSGPC1":start=0x20dc014:length=4:\
+      gui_name="DVFSGPC1":start=0x20dc194:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_DVFSC_DVFSGPC1_GPBC1={\
         gui_name="GPBC1":position=0:size=17:read_only=false\
@@ -117,7 +117,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_DVFSC_DVFSGPBT={\
-      gui_name="DVFSGPBT":start=0x20dc018:length=4:\
+      gui_name="DVFSGPBT":start=0x20dc198:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_DVFSC_DVFSGPBT_GPB0={\
         gui_name="GPB0":position=0:size=1:read_only=false\
@@ -169,7 +169,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_DVFSC_DVFSEMAC={\
-      gui_name="DVFSEMAC":start=0x20dc01c:length=4:\
+      gui_name="DVFSEMAC":start=0x20dc19c:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_DVFSC_DVFSEMAC_EMAC={\
         gui_name="EMAC":position=0:size=9:read_only=false\
@@ -185,7 +185,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_DVFSC_CNTR={\
-      gui_name="CNTR":start=0x20dc020:length=4:\
+      gui_name="CNTR":start=0x20dc1a0:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_DVFSC_CNTR_LTBRSR={\
         gui_name="LTBRSR":position=3:size=2:read_only=false\
@@ -237,7 +237,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_DVFSC_DVFSLTR0_0={\
-      gui_name="DVFSLTR0_0":start=0x20dc024:length=4:\
+      gui_name="DVFSLTR0_0":start=0x20dc1a4:length=4:\
       read_only=true:write_only=false\
       :bit_fields.B_DVFSC_DVFSLTR0_0_LTS0_0={\
         gui_name="LTS0_0":position=0:size=4:read_only=true\
@@ -265,7 +265,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_DVFSC_DVFSLTR0_1={\
-      gui_name="DVFSLTR0_1":start=0x20dc028:length=4:\
+      gui_name="DVFSLTR0_1":start=0x20dc1a8:length=4:\
       read_only=true:write_only=false\
       :bit_fields.B_DVFSC_DVFSLTR0_1_LTS0_8={\
         gui_name="LTS0_8":position=0:size=4:read_only=true\
@@ -293,7 +293,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_DVFSC_DVFSLTR1_0={\
-      gui_name="DVFSLTR1_0":start=0x20dc02c:length=4:\
+      gui_name="DVFSLTR1_0":start=0x20dc1ac:length=4:\
       read_only=true:write_only=false\
       :bit_fields.B_DVFSC_DVFSLTR1_0_LTS1_0={\
         gui_name="LTS1_0":position=0:size=4:read_only=true\
@@ -321,7 +321,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_DVFSC_DVFSLTR1_1={\
-      gui_name="DVFSLTR1_1":start=0x20dc030:length=4:\
+      gui_name="DVFSLTR1_1":start=0x20dc1b0:length=4:\
       read_only=true:write_only=false\
       :bit_fields.B_DVFSC_DVFSLTR1_1_LTS1_8={\
         gui_name="LTS1_8":position=0:size=4:read_only=true\
@@ -349,7 +349,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_DVFSC_DVFSPT0={\
-      gui_name="DVFSPT0":start=0x20dc034:length=4:\
+      gui_name="DVFSPT0":start=0x20dc1b4:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_DVFSC_DVFSPT0_FPTN0={\
         gui_name="FPTN0":position=0:size=17:read_only=false\
@@ -359,7 +359,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_DVFSC_DVFSPT1={\
-      gui_name="DVFSPT1":start=0x20dc038:length=4:\
+      gui_name="DVFSPT1":start=0x20dc1b8:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_DVFSC_DVFSPT1_FPTN1={\
         gui_name="FPTN1":position=0:size=17:read_only=false\
@@ -369,7 +369,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_DVFSC_DVFSPT2={\
-      gui_name="DVFSPT2":start=0x20dc03c:length=4:\
+      gui_name="DVFSPT2":start=0x20dc1bc:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_DVFSC_DVFSPT2_FPTN2={\
         gui_name="FPTN2":position=0:size=17:read_only=false\
@@ -382,7 +382,7 @@ Advanced_Information.Cortex-A9={\
       }\
     }\
     :Register.G_DVFSC_DVFSPT3={\
-      gui_name="DVFSPT3":start=0x20dc040:length=4:\
+      gui_name="DVFSPT3":start=0x20dc1c0:length=4:\
       read_only=false:write_only=false\
       :bit_fields.B_DVFSC_DVFSPT3_FPTN3={\
         gui_name="FPTN3":position=0:size=17:read_only=false\

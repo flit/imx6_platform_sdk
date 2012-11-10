@@ -44,16 +44,17 @@ extern void print_media_fat_info(uint32_t);
 
 uint32_t g_usdhc_instance = SD_PORT_INDEX;
 vpu_resource_t vpu_resource = { 0 };
-struct decode *gDecInstance[MAX_NUM_INSTANCE];
-struct encode *gEncInstance[MAX_NUM_INSTANCE];
-int32_t disp_clr_index[MAX_NUM_INSTANCE];
-int32_t multi_instance = 1;
+struct decode *g_dec_instance[MAX_NUM_INSTANCE];
+struct encode *g_enc_instance[MAX_NUM_INSTANCE];
+int32_t g_disp_clr_index[MAX_NUM_INSTANCE];
+int32_t g_multi_instance = 1;
 
 static vpu_test_t vpu_tests[] = {
     {"VPU DECODER TEST", decode_test},
     {"VPU ENCODER TEST", encode_test},
 };
 
+extern int fat_write_speed_test(void);
 int vpu_test(void)
 {
     int32_t err = 0, i = 0;
@@ -64,12 +65,11 @@ int vpu_test(void)
     /*instance attached to display interface */
     config_system_parameters();
 
-    /* initialize SD card and FAT driver */
-#if defined(CHIP_MX6DQ)
-	arm_dcache_invalidate();
-	mmu_enable();
-	arm_dcache_enable();
-#endif
+    /* enable L1 cache for mx6dq and mx6sdl */
+    arm_icache_enable();
+    arm_dcache_invalidate();
+    mmu_enable();
+    arm_dcache_enable();
 
     /* FAT filesystem setup from SD card */
     if (FSInit(NULL, bufy, maxdevices, maxhandles, maxcaches) != SUCCESS) {
@@ -80,7 +80,7 @@ int vpu_test(void)
     FSDriveInit(DeviceNum);
     SetCWDHandle(DeviceNum);
 
-    gCurrentActiveInstance = 0;
+    g_current_active_instance = 0;
 
     /* initialize VPU */
     framebuf_init();
@@ -119,7 +119,7 @@ int vpu_test(void)
         if ((i >= 0) && (i < test_num)) {
             printf("\n");
             err = vpu_tests[i].test(NULL);
-            IOCodecCleanup();
+            vpu_codec_io_deinit();
         }
     } while (1);
 

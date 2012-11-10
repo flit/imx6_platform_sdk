@@ -48,6 +48,9 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_1USBPHY_TX_TXCAL45DP={\
         gui_name="TXCAL45DP":position=16:size=4:read_only=false\
       }\
+      :bit_fields.B_1USBPHY_TX_USBPHY_TX_EDGECTRL={\
+        gui_name="USBPHY_TX_EDGECTRL":position=26:size=3:read_only=false\
+      }\
     }\
     :Register.G_1USBPHY_RX={\
       gui_name="RX":start=0x20c9020:length=4:\
@@ -279,6 +282,9 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_2USBPHY_TX_TXCAL45DP={\
         gui_name="TXCAL45DP":position=16:size=4:read_only=false\
       }\
+      :bit_fields.B_2USBPHY_TX_USBPHY_TX_EDGECTRL={\
+        gui_name="USBPHY_TX_EDGECTRL":position=26:size=3:read_only=false\
+      }\
     }\
     :Register.G_2USBPHY_RX={\
       gui_name="RX":start=0x20ca020:length=4:\
@@ -487,6 +493,7 @@ Advanced_Information.Cortex-A9={\
     line="B_1USBPHY_TX_D_CAL":\
     line="B_1USBPHY_TX_TXCAL45DN":\
     line="B_1USBPHY_TX_TXCAL45DP":\
+    line="B_1USBPHY_TX_USBPHY_TX_EDGECTRL":\
     line="$$":\
     line="$+":\
     line="=G_1USBPHY_RX":\
@@ -580,6 +587,7 @@ Advanced_Information.Cortex-A9={\
     line="B_2USBPHY_TX_D_CAL":\
     line="B_2USBPHY_TX_TXCAL45DN":\
     line="B_2USBPHY_TX_TXCAL45DP":\
+    line="B_2USBPHY_TX_USBPHY_TX_EDGECTRL":\
     line="$$":\
     line="$+":\
     line="=G_2USBPHY_RX":\

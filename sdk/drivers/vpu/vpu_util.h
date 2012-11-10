@@ -486,7 +486,7 @@ typedef struct {
     CodecInst *pendingInst;
 } vpu_resource_t;
 
-extern int vpu_system_mem_size;
+extern int g_vpu_system_mem_size;
 
 void BitIssueCommand(CodecInst * pCodecInst, int cmd);
 void BitIssueCommandEx(CodecInst * pCodecInst, int cmd);

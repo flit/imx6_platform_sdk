@@ -138,7 +138,7 @@ static void imx_enet_bd_init(imx_enet_priv_t * dev, int dev_idx)
         p->status = BD_RX_ST_EMPTY;
         p->length = 0;
         p->data = (unsigned char *)imx_enet_rx_buf[i + dev_idx * ENET_BD_RX_NUM];
-        printf("rx bd %x, buffer is %x\n", (unsigned int)p, (unsigned int)p->data);
+        //printf("rx bd %x, buffer is %x\n", (unsigned int)p, (unsigned int)p->data);
     }
 
     dev->rx_bd[i - 1].status |= BD_RX_ST_WRAP;
@@ -150,7 +150,7 @@ static void imx_enet_bd_init(imx_enet_priv_t * dev, int dev_idx)
         p->status = 0;
         p->length = 0;
         p->data = (unsigned char *)imx_enet_tx_buf[i + dev_idx * ENET_BD_TX_NUM];
-        printf("tx bd %x, buffer is %x\n", (unsigned int)p, (unsigned int)p->data);
+        //printf("tx bd %x, buffer is %x\n", (unsigned int)p, (unsigned int)p->data);
     }
 
     dev->tx_bd[i - 1].status |= BD_TX_ST_WRAP;
@@ -165,6 +165,7 @@ static void imx_enet_bd_init(imx_enet_priv_t * dev, int dev_idx)
 static void imx_enet_chip_init(imx_enet_priv_t * dev)
 {
     volatile hw_enet_t *enet_reg = (hw_enet_t *) dev->enet_reg;
+	unsigned int ipg_clk;
 
     enet_reg->ECR.U = ENET_RESET;
 
@@ -188,36 +189,45 @@ static void imx_enet_chip_init(imx_enet_priv_t * dev)
     enet_reg->GALR.U = 0;
 
     /*TODO:: Use MII_SPEED(IPG_CLK) to get the value */
-    enet_reg->MSCR.U = (enet_reg->MSCR.U & (~0x7e)) | (1 << 8) | (40 << 1);
+	ipg_clk = get_main_clock(IPG_CLK);
+    enet_reg->MSCR.U = (enet_reg->MSCR.U & (~0x7e)) | (((ipg_clk + 499999) / 5000000) << 1); 
 
     /*Enable ETHER_EN */
     enet_reg->MRBR.U = 2048 - 16;
     enet_reg->RDSR.U = (unsigned long)dev->rx_bd;
     enet_reg->TDSR.U = (unsigned long)dev->tx_bd;
+
+#if 0//defined(CHIP_MX6DQ) || defined(CHIP_MX6SDL)
+	/* Enable Swap to support little-endian device */
+	enet_reg->ECR.U |= (0x1 << 8); //BM_ENET_ECR_DBSWP;
+	/* set ENET tx at store and forward mode */
+	enet_reg->TFWR.U |= BM_ENET_TFWR_STRFWD; //(0x1 << 8);
+#endif	
 }
 
-void imx_enet_phy_clock_output_125M(imx_enet_priv_t * dev)
+void enet_phy_rework_ar8031(imx_enet_priv_t * dev)
 {
     unsigned short val = 0;
-    int i;
+#if 1
+	int i;
     imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1d, 0x1F);
     imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0x1e, &val);
-    printf("debug before 0x1F val = 0x%x\n", val);
+    //printf("debug before 0x1F val = 0x%x\n", val);
     val |= 0x4;
     imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1e, val);
     imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0x1e, &val);
-    printf("debug after 0x1F val = 0x%x\n", val);
+    //printf("debug after 0x1F val = 0x%x\n", val);
 
     imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0xd, 0x7);
     imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0xe, 0x8016);
     imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0xd, 0x4007);
     imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0xe, &val);
-    printf("debug read from 0x8016 val = 0x%x\n", val);
+    //printf("debug read from 0x8016 val = 0x%x\n", val);
     val &= 0xffe3;
     val |= 0x18;
     imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0xe, val);
     imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0xe, &val);
-    printf("debug after read from 0x8016 val = 0x%x\n", val);
+    //printf("debug after read from 0x8016 val = 0x%x\n", val);
     for (i = 0; i < 100000; i++) ;
 
     //debug register 0x5[8]=1'b1 - suggest add 2ns GTX_CLK delay
@@ -236,14 +246,45 @@ void imx_enet_phy_clock_output_125M(imx_enet_priv_t * dev)
     val |= 0x0001;
     imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1e, val);
 
-    // PHY AR8031 Integrated 10/100/1000 Gigabit
-    // Reset & full duplex
-    // Use default speed - after Pwer on reset - 1000Mbs
-    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0, 0x8140);
-    imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0, &val);
-    while (val == 0x8140)
-        imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0, &val);
+	// PHY AR8031 Integrated 10/100/1000 Gigabit
+	// Reset & full duplex
+	// Use default speed - after Pwer on reset - 1000Mbs
+	imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0, 0x8140);
+	imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0, &val);
+	while (val == 0x8140)
+		imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0, &val);
+#else
+	/* To enable AR8031 ouput a 125MHz clk from CLK_25M */
+	imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0xd, 0x7);
+	imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0xe, 0x8016);
+	imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0xd, 0x4007);
+	imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0xe, &val);
 
+	val &= 0xffe3;
+	val |= 0x18;
+	imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0xe, val);
+
+	/* introduce tx clock delay */
+	imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1d, 0x5);
+	imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0x1e, &val);
+	val |= 0x0100;
+	imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1e, val);
+#endif
+
+}
+
+void enet_phy_rework_ksz9021(imx_enet_priv_t * dev)
+{
+	imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x9, 0x1c00);
+	
+	/* min rx data delay */
+	imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x0b, 0x8105);
+	imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x0c, 0x0000);
+	
+	/* max rx/tx clock delay, min rx/tx control delay */
+	imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x0b, 0x8104);
+	imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x0c, 0xf0f0);
+	imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x0b, 0x104);
 }
 
 /*!
@@ -251,44 +292,52 @@ void imx_enet_phy_clock_output_125M(imx_enet_priv_t * dev)
  */
 void imx_enet_phy_init(imx_enet_priv_t * dev)
 {
-    unsigned short value = 0;
+    unsigned short value = 0, phy_type=0;
     unsigned long id = 0, timeout = 50;
+	
     imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_IDENTIFY_1, &value);
     id = (value & PHY_ID1_MASK) << PHY_ID1_SHIFT;
     imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_IDENTIFY_2, &value);
     id |= (value & PHY_ID2_MASK) << PHY_ID2_SHIFT;
-
     switch (id & 0xfffffff0) {
     case 0x00540088:
         break;
     case 0x0007c0c0:
         printf("ENET LAN8700 PHY: ID=%lx\n", id);
+		phy_type = 0x10;
         break;
     case 0x0007c0f0:
         printf("ENET LAN8720 PHY: ID=%lx\n", id);
         break;
     case 0x004dd070:
         printf("ENET AR8031 PHY: ID=%lx\n", id);
+		enet_phy_rework_ar8031(dev);
+		phy_type = 0x20;
         break;
     case 0x00221610:
         printf("ENET KSZ9021RN PHY: ID=%lx\n", id);
+		enet_phy_rework_ksz9021(dev);
+		phy_type = 0x30;
         break;
     default:
         printf("[Warning] ENET not connect right PHY: ID=%lx\n", id);
     }
 
+	/* restart auto-negotiation */
+#if 0	
+#if 1	
+	imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_CTRL_REG, &value);
+	value |= 0x1200;
+	imx_enet_mii_write(dev->enet_reg, dev->phy_addr, PHY_CTRL_REG, value);
+#else
     value = 0x8100;
     imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1f, value);
-    imx_enet_phy_clock_output_125M(dev);
-    for (id = 0x0; id <= 0x1f; id++) {
-        imx_enet_mii_read(dev->enet_reg, dev->phy_addr, id, &value);
-        printf("ENET phy reg %lx is %x\n", id, value);
-    }
+#endif
+#endif
 
     imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_STATUS_REG, &value);
     printf("ENET phy status %x\n", value);
     timeout = 5;
-
     while ((0 == (value & PHY_STATUS_LINK_ST)) && (timeout > 0)) {
         hal_delay_us(500000);
         imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_STATUS_REG, &value);
@@ -300,45 +349,60 @@ void imx_enet_phy_init(imx_enet_priv_t * dev)
     } else {
         dev->status &= ~ENET_STATUS_LINK_ON;
     }
-    for (id = 0x0; id <= 0x1f; id++) {
-        imx_enet_mii_read(dev->enet_reg, dev->phy_addr, id, &value);
-        printf("ENET phy reg %lx is %x\n", id, value);
-    }
-    imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0x1b, &value);
-    if (value & (1 << 2))
-        dev->status |= ENET_STATUS_FULL_DPLX;
-    else
-        dev->status &= ~ENET_STATUS_FULL_DPLX;
+	if(phy_type == 0x20) {
+#if 0
+	    imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0x1b, &value);
+	    if (value & (1 << 2))
+	        dev->status |= ENET_STATUS_FULL_DPLX;
+	    else
+	        dev->status &= ~ENET_STATUS_FULL_DPLX;
 
-    if (value & 0x2)
-        dev->status |= ENET_STATUS_1000M;
-    else if (value & 0x1)
-        dev->status |= ENET_STATUS_100M;
-    else
-        dev->status |= ENET_STATUS_10M;
-
-/*    imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_AUTO_NEG_REG, &value);
-    printf("enet phy reg 0x5 is %x\n",value);
-    if (value & PHY_AUTO_10BASET) {
-        dev->status &= ~ENET_STATUS_100M;
-
-        if (value & PHY_AUTO_10BASET_DPLX) {
-            dev->status |= ENET_STATUS_FULL_DPLX;
-        } else {
-            dev->status &= ~ENET_STATUS_FULL_DPLX;
-        }
-    }
-
-    if (value & PHY_AUTO_100BASET) {
-        dev->status |= ENET_STATUS_100M;
-
-        if (value & PHY_AUTO_100BASET_DPLX) {
-            dev->status |= ENET_STATUS_FULL_DPLX;
-        } else {
-            dev->status &= ~ENET_STATUS_FULL_DPLX;
-        }
-    }
-*/
+	    if (value & 0x2)
+	        dev->status |= ENET_STATUS_1000M;
+	    else if (value & 0x1)
+	        dev->status |= ENET_STATUS_100M;
+	    else
+	        dev->status |= ENET_STATUS_10M;
+#else
+		imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0x11, &value);
+		printf("AR8031 reg 0x11 = %04x\n", value);
+		if(value & (1<<13))
+			dev->status |= ENET_STATUS_FULL_DPLX;
+		else
+			dev->status &= ~ENET_STATUS_FULL_DPLX;
+	    if (((value>>14)&0x3) == 0x2)
+	        dev->status |= ENET_STATUS_1000M;
+	    else if (((value>>14)&0x3) == 0x2)
+	        dev->status |= ENET_STATUS_100M;
+	    else
+	        dev->status |= ENET_STATUS_10M;
+#endif
+	}
+	else if (phy_type == 0x30) {
+		imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0x1f, &value);
+		printf("KSZ9021 reg 0x1f = %04x\n", value);
+		if (value & (1 << 3))
+			dev->status |= ENET_STATUS_FULL_DPLX;
+		else
+			dev->status &= ~ENET_STATUS_FULL_DPLX;
+		if (value & (1 << 6))
+	        dev->status |= ENET_STATUS_1000M;
+		else if (value & (1 << 5))
+			dev->status |= ENET_STATUS_100M;
+		else
+			dev->status |= ENET_STATUS_10M;
+	}
+	else {
+		if (value & 0xe000)
+			dev->status |= ENET_STATUS_100M;
+		else
+			dev->status |= ENET_STATUS_10M;
+		if (value & 0x5000)
+			dev->status |= ENET_STATUS_FULL_DPLX;
+		else
+			dev->status &= ~ENET_STATUS_FULL_DPLX;
+	}	
+	
     printf("ENET %0d: [ %s ] [ %s ] [ %s ]:\n", dev->phy_addr,
            (dev->status & ENET_STATUS_FULL_DPLX) ? "FULL_DUPLEX" : "HALF_DUPLEX",
            (dev->status & ENET_STATUS_LINK_ON) ? "connected" : "disconnected",

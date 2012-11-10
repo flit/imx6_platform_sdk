@@ -31,11 +31,15 @@
 #include <stdio.h>
 #include "sdk.h"
 #include "audio/audio.h"
-#include "wav_data.data"
+
+#define WAVE_CHUNK_DATA_OFFSET	44
 
 extern int32_t ssi_playback(audio_pcm_p);
 extern int32_t esai_playback(audio_pcm_p);
 extern int32_t spdif_playback(audio_pcm_p);
+
+extern uint8_t wavefile_start[];
+extern uint8_t wavefile_end[];
 
 typedef struct {
     const char *name;
@@ -43,16 +47,13 @@ typedef struct {
 } audio_test_t;
 
 audio_pcm_para_t pcm_para = {
-    .sample_rate = SAMPLERATE_44_1KHz,
-    .channel_number = 2,
+    .sample_rate = SAMPLERATE_16KHz,
+    .channel_number = 1,
     .word_length = WL_16,
 };
 
 audio_pcm_t pcm_music = {
-    .name = "some noise",
     .para = &pcm_para,
-    .buf = (uint8_t *) wav_data,
-    .size = sizeof(wav_data),
 };
 
 static audio_test_t audio_tests[] = {
@@ -76,6 +77,33 @@ int32_t audio_test(void)
 {
     int32_t retv=-1, idx, num;
     uint8_t sel;
+
+    pcm_music.name = "nice musci";
+    /*
+     * Audio driver supports 2 channels only. Converte the mono wav to two channels.
+     * While esai driver support 44.1/48KHz only since CS42888's issue, the esai dirver 
+     * will convert it to 48Khz.
+     */
+    uint32_t chunk_data_len = (uint32_t)wavefile_end - (uint32_t)wavefile_start - WAVE_CHUNK_DATA_OFFSET;
+    uint16_t *src_ptr = (uint16_t *) ((uint32_t)wavefile_start + WAVE_CHUNK_DATA_OFFSET);
+    uint16_t *buf = NULL;
+
+    if(pcm_music.para->channel_number == 1){
+	buf = (uint16_t *)malloc(2*chunk_data_len);
+	uint16_t *dst_ptr = buf;
+
+	for(idx =0; idx < chunk_data_len/2; idx++, src_ptr++, dst_ptr+=2){
+		*dst_ptr = *src_ptr;
+		*(dst_ptr + 1) = *src_ptr;
+	}
+	
+	pcm_music.buf = (uint8_t *) buf;
+	pcm_music.size = chunk_data_len * 2;
+	pcm_music.para->channel_number = 2;
+    }else{
+    	pcm_music.buf = (uint8_t *)src_ptr;
+    	pcm_music.size = chunk_data_len;
+    }
 
     num = sizeof(audio_tests)/sizeof(audio_test_t);
 
@@ -113,6 +141,10 @@ int32_t audio_test(void)
 
         }
     } while (1);
+
+    if(buf != NULL){
+	free(buf);
+    }
 
     return retv;
 }

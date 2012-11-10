@@ -34,14 +34,14 @@
 #include "vpu_test.h"
 #include "vpu/vpu_debug.h"
 
-int32_t vpu_stream_read(struct cmd_line *cmd, char *buf, int32_t n)
+int32_t vpu_stream_read(struct codec_control *cmd, char *buf, int32_t n)
 {
     if (cmd->src_scheme == PATH_MEM) {
-        int32_t bs_left = (bsmem.bs_end - bsmem.bs_start) - bsmem.bs_offset;
+        int32_t bs_left = (g_bs_memory.bs_end - g_bs_memory.bs_start) - g_bs_memory.bs_offset;
         int32_t copy_size = (bs_left > n) ? n : bs_left;
         /*bitstream is stored in memory */
-        memcpy(buf, (void *)(bsmem.bs_start + bsmem.bs_offset), copy_size);
-        bsmem.bs_offset += copy_size;
+        memcpy(buf, (void *)(g_bs_memory.bs_start + g_bs_memory.bs_offset), copy_size);
+        g_bs_memory.bs_offset += copy_size;
         return copy_size;
     } else if (cmd->src_scheme == PATH_FILE) {
         int32_t res;
@@ -65,18 +65,18 @@ int32_t vpu_stream_read(struct cmd_line *cmd, char *buf, int32_t n)
 
 }
 
-int32_t vpu_stream_write(struct cmd_line * cmd, char *buf, int32_t n)
+int32_t vpu_stream_write(struct codec_control * cmd, char *buf, int32_t n)
 {
     if (cmd->dst_scheme == PATH_MEM) {
-        memcpy((void *)bsmem.bs_end, buf, n);
-        bsmem.bs_end += n;
+        memcpy((void *)g_bs_memory.bs_end, buf, n);
+        g_bs_memory.bs_end += n;
     } else if (cmd->dst_scheme == PATH_FILE) {
-        /*TBD, currently the file storage is not supported in the file system */
+        Fwrite_FAT(cmd->output, (uint8_t *) buf, n);
     }
     return n;
 }
 
-int32_t ipu_refresh(uint32_t ipu_index, uint32_t buffer)
+int32_t ipu_render_refresh(uint32_t ipu_index, uint32_t buffer)
 {
     ipu_dma_update_buffer(ipu_index, 23, 0, buffer);
     ipu_channel_buf_ready(ipu_index, 23, 0);

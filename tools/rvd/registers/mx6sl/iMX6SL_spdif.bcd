@@ -53,8 +53,8 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_SPDIF_SCR_RXFIFO_RST={\
         gui_name="RXFIFO_RST":position=21:size=1:read_only=false\
       }\
-      :bit_fields.B_SPDIF_SCR_RXFIFO_OFF={\
-        gui_name="RXFIFO_OFF":position=22:size=1:read_only=false\
+      :bit_fields.B_SPDIF_SCR_RXFIFO_OFF_ON={\
+        gui_name="RXFIFO_OFF_ON":position=22:size=1:read_only=false\
       }\
       :bit_fields.B_SPDIF_SCR_RXFIFO_CTRL={\
         gui_name="RXFIFO_CTRL":position=23:size=1:read_only=false\
@@ -406,7 +406,7 @@ Advanced_Information.Cortex-A9={\
     line="B_SPDIF_SCR_RXAUTOSYNC":\
     line="B_SPDIF_SCR_RXFIFOFULL_SEL":\
     line="B_SPDIF_SCR_RXFIFO_RST":\
-    line="B_SPDIF_SCR_RXFIFO_OFF":\
+    line="B_SPDIF_SCR_RXFIFO_OFF_ON":\
     line="B_SPDIF_SCR_RXFIFO_CTRL":\
     line="B_SPDIF_SCR_UNIMPLEMENTED":\
     line="$$":\

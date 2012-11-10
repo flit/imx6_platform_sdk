@@ -75,9 +75,9 @@ uint32_t usbd_device_init(usb_module_t * port, usbdEndpointPair_t * endpointList
 
     //! - Select PHY type for this hardware
     if (port->phyType == Ulpi) {
-        HW_USBC_PORTSC1_WR(core, (HW_USBC_PORTSC1_RD(core) & (~BF_USBC_UH1_PORTSC1_PTS(3))) | BF_USBC_UH1_PORTSC1_PTS(2));
+        HW_USBC_PORTSC1_WR(core, (HW_USBC_PORTSC1_RD(core) & (~(BF_USBC_UH1_PORTSC1_PTS_1(3) | BF_USBC_UH1_PORTSC1_PTS_2(1)))) | BF_USBC_UH1_PORTSC1_PTS_1(2));
     } else {
-        HW_USBC_PORTSC1_WR(core, HW_USBC_PORTSC1_RD(core) & (~BF_USBC_UH1_PORTSC1_PTS(3)));
+        HW_USBC_PORTSC1_WR(core, HW_USBC_PORTSC1_RD(core) & (~(BF_USBC_UH1_PORTSC1_PTS_1(3) | BF_USBC_UH1_PORTSC1_PTS_2(1))));
     }
 
     // Reset controller after switching PHY's

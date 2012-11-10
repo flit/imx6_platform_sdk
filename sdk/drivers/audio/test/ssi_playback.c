@@ -62,8 +62,8 @@ int32_t ssi_playback(audio_pcm_p pcm_file)
     dev_para.bus_mode = AUDIO_BUS_MODE_MASTER;
 
     dev_para.bus_protocol = AUDIO_BUS_PROTOCOL_I2S;
-    dev_para.sample_rate = SAMPLERATE_48KHz;
-    dev_para.word_length = WL_16;
+    dev_para.sample_rate = pcm_file->para->sample_rate;
+    dev_para.word_length = pcm_file->para->word_length;
     dev_para.trans_dir = AUDIO_TRANS_DIR_TX;
 
     if (0 != snd_card->ops->init(snd_card)) {

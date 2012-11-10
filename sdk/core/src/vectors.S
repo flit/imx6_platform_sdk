@@ -33,7 +33,8 @@
     .code 32
     
     .global _start
-    .global ABORT_HDLR
+    .global data_abort_handler
+    .global prefetch_abort_handler
     .global IRQ_HDLR
 
 /*
@@ -64,9 +65,9 @@ vectors:
 .Lswi_addr:
     .word     exception_handler
 .Lprefetch_abort_addr:
-    .word     exception_handler
+    .word     prefetch_abort_handler
 .Ldata_abort_addr:
-    .word     ABORT_HDLR
+    .word     data_abort_handler
 .Lreserved_addr:
     .word     exception_handler
 .Lirq_addr:

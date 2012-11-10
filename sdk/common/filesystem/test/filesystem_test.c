@@ -42,9 +42,9 @@
 #include "usdhc/usdhc_ifc.h"
 
 uint8_t readfile[] = "indir/fsproj.h";
-uint8_t writefile[] = "fs_test.dat";
+uint8_t writefile[] = "fs_test1.dat";
 
-#define TEST_FILE_SIZE (1024*1024*16)
+#define TEST_FILE_SIZE (1024*16)
 #define DeviceNum 0
 
 extern void print_media_fat_info(uint32_t);
@@ -94,7 +94,7 @@ int fat_write_speed_test(void)
         return ERROR_GENERIC;
     }
 	for(i = 0; i < ClusterSize; i++){
-		*WriteBuffer = (uint8_t)i;
+		*(WriteBuffer + i) = (uint8_t)i;
 	}
 
     count_timer.freq = get_main_clock(IPG_CLK);

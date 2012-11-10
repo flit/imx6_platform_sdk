@@ -42,6 +42,21 @@
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
 
+//! @name CPSR fields
+//@{
+#define CPSR_N (1 << 31)    //!< Negative
+#define CPSR_Z (1 << 30)    //!< Zero
+#define CPSR_C (1 << 29)    //!< Carry
+#define CPSR_V (1 << 28)    //!< Overflow
+#define CPSR_Q (1 << 27)    //!< Saturation
+#define CPSR_E (1 << 9)     //!< Endianness
+#define CPSR_A (1 << 8)     //!< Async abort mask
+#define CPSR_I (1 << 7)     //!< IRQ mask
+#define CPSR_F (1 << 6)     //!< FIQ mask
+#define CPSR_T (1 << 5)     //!< Thumb mode
+#define CPSR_MODE   (0x1f)  //!< Current processor mode
+//@}
+
 //! @name Mode bits in CPSR
 //@{
 #define MODE_USR     0x10   //!< User mode

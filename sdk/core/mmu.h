@@ -33,7 +33,7 @@
 
 /*!
  * @file  mmu.h
- * @brief System memory arangement.
+ * @brief System memory arrangement.
  */
 
 #ifndef _MMU_H_
@@ -45,7 +45,7 @@
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
 
-//! @brief
+//! @brief Memory region attributes.
 typedef enum _mmu_memory_type
 {
     kStronglyOrdered,
@@ -97,8 +97,11 @@ void mmu_disable();
  * Initializes the L1 page table with the following regions:
  *  - 0x00000000...0x00900000 : ROM and peripherals, strongly-ordered
  *  - 0x00900000...0x00a00000 : OCRAM, strongly-ordered
- *  - For MX6DQ or MX6SDL: 0x10000000...0x90000000 : SDRAM, normal, outer inner, write-back, write-allocate
- *  - For MX6SL: 0x80000000...0xc0000000 : SDRAM, normal, outer inner, write-back, write-allocate
+ *  - For MX6DQ or MX6SDL: 0x10000000...0x90000000 : DDR, normal, outer inner, write-back, write-allocate
+ *  - For MX6SL: 0x80000000...0xc0000000 : DDR, normal, outer inner, write-back, write-allocate
+ *
+ * If the CPU is participating in SMP, then the DDR regions are made shareable. Otherwise they
+ * are marked as non-shareable.
  *
  * The TTBR0 register is set to the base of the L1 table.
  *

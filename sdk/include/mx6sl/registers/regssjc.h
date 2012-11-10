@@ -26,7 +26,7 @@
 /*
  * i.MX6SL SJC
  *
-
+ * SJC Registers
  *
  * Registers defined in this header file:
  * - HW_SJC_GPUSR1 - General Purpose Unsecured Status Register 1
@@ -846,5 +846,5 @@ typedef struct _hw_sjc
 #endif
 
 #endif // __HW_SJC_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

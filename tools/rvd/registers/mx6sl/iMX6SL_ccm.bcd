@@ -195,11 +195,11 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_CCM_CSCMR1_LCDIF_PIX_PODF={\
         gui_name="LCDIF_PIX_PODF":position=20:size=3:read_only=false\
       }\
-      :bit_fields.B_CCM_CSCMR1_ACLK_EMI_SLOW_PODF={\
-        gui_name="ACLK_EMI_SLOW_PODF":position=23:size=3:read_only=false\
+      :bit_fields.B_CCM_CSCMR1_ACLK_EIM_SLOW_PODF={\
+        gui_name="ACLK_EIM_SLOW_PODF":position=23:size=3:read_only=false\
       }\
-      :bit_fields.B_CCM_CSCMR1_ACLK_EMI_SLOW_SEL={\
-        gui_name="ACLK_EMI_SLOW_SEL":position=29:size=2:read_only=false\
+      :bit_fields.B_CCM_CSCMR1_ACLK_EIM_SLOW_SEL={\
+        gui_name="ACLK_EIM_SLOW_SEL":position=29:size=2:read_only=false\
       }\
     }\
     :Register.G_CCM_CSCMR2={\
@@ -507,8 +507,8 @@ Advanced_Information.Cortex-A9={\
     :Register.G_CCM_CCOSR={\
       gui_name="CCOSR":start=0x20c4060:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_CCM_CCOSR_CLKO1_SEL={\
-        gui_name="CLKO1_SEL":position=0:size=4:read_only=false\
+      :bit_fields.B_CCM_CCOSR_CLKO_SEL={\
+        gui_name="CLKO_SEL":position=0:size=4:read_only=false\
       }\
       :bit_fields.B_CCM_CCOSR_CLKO1_DIV={\
         gui_name="CLKO1_DIV":position=4:size=3:read_only=false\
@@ -516,8 +516,8 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_CCM_CCOSR_CLKO1_EN={\
         gui_name="CLKO1_EN":position=7:size=1:read_only=false\
       }\
-      :bit_fields.B_CCM_CCOSR_CLKO1_CLKO2_SEL={\
-        gui_name="CLKO1_CLKO2_SEL":position=8:size=1:read_only=false\
+      :bit_fields.B_CCM_CCOSR_CLKO_SEL1={\
+        gui_name="CLKO_SEL1":position=8:size=1:read_only=false\
       }\
       :bit_fields.B_CCM_CCOSR_CLKO2_SEL={\
         gui_name="CLKO2_SEL":position=16:size=5:read_only=false\
@@ -915,9 +915,6 @@ Advanced_Information.Cortex-A9={\
     :Register.G_CCM_CMEOR={\
       gui_name="CMEOR":start=0x20c4088:length=4:\
       read_only=false:write_only=false\
-      :bit_fields.B_CCM_CMEOR_MOD_EN_OV_VDOA={\
-        gui_name="MOD_EN_OV_VDOA":position=4:size=1:read_only=false\
-      }\
       :bit_fields.B_CCM_CMEOR_MOD_EN_OV_GPT={\
         gui_name="MOD_EN_OV_GPT":position=5:size=1:read_only=false\
       }\
@@ -927,23 +924,8 @@ Advanced_Information.Cortex-A9={\
       :bit_fields.B_CCM_CMEOR_MOD_EN_USDHC={\
         gui_name="MOD_EN_USDHC":position=7:size=1:read_only=false\
       }\
-      :bit_fields.B_CCM_CMEOR_MOD_EN_OV_DAP={\
-        gui_name="MOD_EN_OV_DAP":position=8:size=1:read_only=false\
-      }\
-      :bit_fields.B_CCM_CMEOR_MOD_EN_OV_VPU={\
-        gui_name="MOD_EN_OV_VPU":position=9:size=1:read_only=false\
-      }\
       :bit_fields.B_CCM_CMEOR_MOD_EN_OV_GPU2D={\
         gui_name="MOD_EN_OV_GPU2D":position=10:size=1:read_only=false\
-      }\
-      :bit_fields.B_CCM_CMEOR_MOD_EN_OV_GPU3D={\
-        gui_name="MOD_EN_OV_GPU3D":position=11:size=1:read_only=false\
-      }\
-      :bit_fields.B_CCM_CMEOR_MOD_EN_OV_CAN2_CPI={\
-        gui_name="MOD_EN_OV_CAN2_CPI":position=28:size=1:read_only=false\
-      }\
-      :bit_fields.B_CCM_CMEOR_MOD_EN_OV_CAN1_CPI={\
-        gui_name="MOD_EN_OV_CAN1_CPI":position=30:size=1:read_only=false\
       }\
     }\
   }\
@@ -1022,8 +1004,8 @@ Advanced_Information.Cortex-A9={\
     line="B_CCM_CSCMR1_USDHC3_CLK_SEL":\
     line="B_CCM_CSCMR1_USDHC4_CLK_SEL":\
     line="B_CCM_CSCMR1_LCDIF_PIX_PODF":\
-    line="B_CCM_CSCMR1_ACLK_EMI_SLOW_PODF":\
-    line="B_CCM_CSCMR1_ACLK_EMI_SLOW_SEL":\
+    line="B_CCM_CSCMR1_ACLK_EIM_SLOW_PODF":\
+    line="B_CCM_CSCMR1_ACLK_EIM_SLOW_SEL":\
     line="$$":\
     line="$+":\
     line="=G_CCM_CSCMR2":\
@@ -1151,10 +1133,10 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_CCM_CCOSR":\
-    line="B_CCM_CCOSR_CLKO1_SEL":\
+    line="B_CCM_CCOSR_CLKO_SEL":\
     line="B_CCM_CCOSR_CLKO1_DIV":\
     line="B_CCM_CCOSR_CLKO1_EN":\
-    line="B_CCM_CCOSR_CLKO1_CLKO2_SEL":\
+    line="B_CCM_CCOSR_CLKO_SEL1":\
     line="B_CCM_CCOSR_CLKO2_SEL":\
     line="B_CCM_CCOSR_CLKO2_DIV":\
     line="B_CCM_CCOSR_CLKO2_EN":\
@@ -1302,16 +1284,10 @@ Advanced_Information.Cortex-A9={\
     line="$$":\
     line="$+":\
     line="=G_CCM_CMEOR":\
-    line="B_CCM_CMEOR_MOD_EN_OV_VDOA":\
     line="B_CCM_CMEOR_MOD_EN_OV_GPT":\
     line="B_CCM_CMEOR_MOD_EN_OV_EPIT":\
     line="B_CCM_CMEOR_MOD_EN_USDHC":\
-    line="B_CCM_CMEOR_MOD_EN_OV_DAP":\
-    line="B_CCM_CMEOR_MOD_EN_OV_VPU":\
     line="B_CCM_CMEOR_MOD_EN_OV_GPU2D":\
-    line="B_CCM_CMEOR_MOD_EN_OV_GPU3D":\
-    line="B_CCM_CMEOR_MOD_EN_OV_CAN2_CPI":\
-    line="B_CCM_CMEOR_MOD_EN_OV_CAN1_CPI":\
     line="$$":\
   }\
   :ARM_config={}\

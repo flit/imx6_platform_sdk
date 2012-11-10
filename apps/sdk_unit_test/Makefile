@@ -50,10 +50,6 @@ endif
 # Pass the selected test name to the unit test app.
 DEFINES +=-DSTANDALONE -DSDK_TEST=$(TEST)_test
 
-# Override the image size used in the linker script to provide a fixed
-# address for the HAB CSF data.
-DEFINES += -DMAX_IMAGE_SIZE=1024K
-
 # Set up to link application.
 export APP_NAME = sdk_unit_test
 LINK_APP = 1
@@ -66,7 +62,7 @@ define SUBDIRS
     $(SDK_LIB_ROOT)/drivers/caam/test
     $(SDK_LIB_ROOT)/drivers/cpu_utility/test
     $(SDK_LIB_ROOT)/common/filesystem/test
-    $(SDK_LIB_ROOT)/drivers/gic/test
+    $(SDK_LIB_ROOT)/core/test
     $(SDK_LIB_ROOT)/drivers/i2c/test
     $(SDK_LIB_ROOT)/drivers/ocotp/test
     $(SDK_LIB_ROOT)/drivers/pmu/test
@@ -111,14 +107,21 @@ endif
 ifeq "$(BOARD)" "sabre_ai"
     SUBDIRS += \
         $(SDK_LIB_ROOT)/drivers/flexcan/test \
-        $(SDK_LIB_ROOT)/drivers/eim/test
+        $(SDK_LIB_ROOT)/drivers/eim/test \
+        $(SDK_LIB_ROOT)/drivers/pcie/test \
+       	$(SDK_LIB_ROOT)/drivers/spi/test \
+	$(SDK_LIB_ROOT)/drivers/enet/test
 endif
 
 # Tests only available on the smart_device board.
 ifeq "$(BOARD)" "smart_device"
     SUBDIRS += \
         $(SDK_LIB_ROOT)/drivers/camera/test \
-        $(SDK_LIB_ROOT)/drivers/keypad/test
+        $(SDK_LIB_ROOT)/drivers/keypad/test \
+	$(SDK_LIB_ROOT)/drivers/usb/test \
+        $(SDK_LIB_ROOT)/drivers/pcie/test \
+       	$(SDK_LIB_ROOT)/drivers/spi/test \
+        $(SDK_LIB_ROOT)/drivers/enet/test 
 endif
 
 ifeq "$(BOARD)" "evk"
@@ -140,6 +143,7 @@ ifeq "$(TARGET)" "mx6sl"
     SUBDIRS += $(SDK_LIB_ROOT)/drivers/spdc/test
     SUBDIRS += $(SDK_LIB_ROOT)/drivers/camera/test
     SUBDIRS += $(SDK_LIB_ROOT)/drivers/dcp/test
+    SUBDIRS += $(SDK_LIB_ROOT)/drivers/fec/test	
 endif
 
 # Local source files.

@@ -51,6 +51,7 @@ int32_t sensor_capture(void)
     ips_dev_panel_t *panel;
     camera_profile_t *sensor;
     uint8_t revchar;
+	int32_t ret = TEST_PASSED;
 
     /*step 1: enable panel */
     panel = search_panel("HannStar XGA LVDS");
@@ -75,8 +76,10 @@ int32_t sensor_capture(void)
     do {
         revchar = getchar();
     } while (revchar == (uint8_t) 0xFF);
-    if (!(revchar == 'Y' || revchar == 'y'))
-        return TEST_FAILED;
+    if (!(revchar == 'Y' || revchar == 'y')) {
+	ret = TEST_FAILED;
+	goto err;
+    }
 
     /*test 2: sensor auto focus */
     if (sensor->auto_focus_enable) {
@@ -87,7 +90,8 @@ int32_t sensor_capture(void)
                 sensor_af_trigger(sensor);
                 printf("Do you see the viewfiner in the middle of camera?[y/n]\n");
                 if (!is_input_char('y', NULL)) {
-                    return TEST_FAILED;
+		    ret = TEST_FAILED;
+		    goto err;
                 }
                 printf("Trigger more? [y/n]\n");
             }
@@ -101,12 +105,15 @@ int32_t sensor_capture(void)
         if (read_value == 1) {
             printf("Do you see the still camera image? [y/n]\n");
             if (!is_input_char('y', NULL)) {
-                return TEST_FAILED;
+		ret = TEST_FAILED;
+		goto err;
             }
         }
         read_value = 1 - read_value;
         printf("Trigger more? [y/n]\n");
     }
 
-    return TEST_PASSED;
+err:
+    ipu_capture_streamoff(ipu_index);
+    return ret;
 }

@@ -41,8 +41,6 @@
 #include "lcdif/lcdif_common.h"
 #include "registers/regselcdif.h"
 
-static int lcdif_initialized = 0;
-
 void lcdif_csc_config(int enable)
 {
     if (enable) {
@@ -128,9 +126,7 @@ static void lcdif_init(void)
     lcdif_backlight_on();
 
     /* pin muxing for LCD */
-    if (lcdif_initialized == 0) {
-        lcdif_iomux_config();
-	}
+    lcd_iomux_config();
 
 	/* reset controller */
     lcdif_sw_reset();
@@ -156,8 +152,6 @@ static void lcdif_init(void)
 	BW_LCDIF_CTRL1_FIFO_CLEAR(1);
 	hal_delay_us(1000);
 	BW_LCDIF_CTRL1_FIFO_CLEAR(0);
-
-    lcdif_initialized = 1;
 }
 
 /*!

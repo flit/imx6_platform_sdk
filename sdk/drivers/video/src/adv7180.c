@@ -227,7 +227,7 @@ static int32_t adv7180_read_reg(uint8_t reg)
 static void adv7180_pwdn(int32_t pwdn)
 {
 	/*Tvin power down: PORT2_P97 -- CSI0_DAT5 (GPIO5_23) */
-	BW_IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT5_MUX_MODE(ALT5);
+	BW_IOMUXC_SW_MUX_CTL_PAD_CSI0_DATA05_MUX_MODE(BV_IOMUXC_SW_MUX_CTL_PAD_CSI0_DATA05_MUX_MODE__ALT5);
 	gpio_set_direction(GPIO_PORT5, 23, GPIO_GDIR_OUTPUT);
 
 	if (pwdn == 1)
@@ -247,7 +247,7 @@ static void adv7180_reset(void)
 	int32_t reset_delay = 100000;
 
 	/*Tvin reset: PORT2_P95 -- CSI0_DAT7 ALT5 (GPIO5-25) */
-	BW_IOMUXC_SW_MUX_CTL_PAD_CSI0_DAT7_MUX_MODE(ALT5);
+	BW_IOMUXC_SW_MUX_CTL_PAD_CSI0_DATA07_MUX_MODE(BV_IOMUXC_SW_MUX_CTL_PAD_CSI0_DATA07_MUX_MODE__ALT5);
 	gpio_set_direction(GPIO_PORT5, 25, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT5, 25, GPIO_HIGH_LEVEL);
 

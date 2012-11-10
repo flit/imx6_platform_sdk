@@ -104,6 +104,11 @@ typedef union _hw_xtalosc24m_misc0
  * Control bit to power-down the analog bandgap reference circuitry. Not related to oscillator.
  * CAUTION - The bandgap reference is necessary for correct operation of most of the LDOs, PLLs, and
  * other analog functions on the die.
+ *
+ * Values:
+ * - 0 - Bandgap reference is enabled.
+ * - 1 - Bandgap reference is disabled. Current consumption is removed from the supply via internal
+ *     configuration.
  */
 //@{
 #define BP_XTALOSC24M_MISC0_REFTOP_PWD      (0)      //!< Bit position for XTALOSC24M_MISC0_REFTOP_PWD.
@@ -202,9 +207,12 @@ typedef union _hw_xtalosc24m_misc0
 
 /*! @name Register XTALOSC24M_MISC0, field STOP_MODE_CONFIG[12] (RW)
  *
- * Configure the analog behavior in stop mode. 0 - all analog except RTC powered down on stop mode
- * assertion 1 - certain analog functions such as certain regulators are left powered-up Not related
- * to oscillator.
+ * Configure the analog behavior in stop mode.
+ *
+ * Values:
+ * - 0 - All the analog domain except the RTC is powered down on STOP mode assertion
+ * - 1 - All the analog domain except the LDO_1P1 and LDO_2P5 regulators are powered down on STOP mode
+ *     assertion. If required the CCM can be configured to not power down the oscillator (XTALOSC).
  */
 //@{
 #define BP_XTALOSC24M_MISC0_STOP_MODE_CONFIG      (12)      //!< Bit position for XTALOSC24M_MISC0_STOP_MODE_CONFIG.
@@ -226,6 +234,11 @@ typedef union _hw_xtalosc24m_misc0
  *
  * This bit field determines the bias current in the 24MHz oscillator. The idea is to start up with
  * the highest bias current which can be decreased after startup if determined to be acceptable.
+ * Acceptable meaning that the oscillation signal amplitudes are still substantially full scale over
+ * the product operating conditions. It only makes sense to lower the current to the oscillator if
+ * the oscillator's power consumption is significant relative to the consumption of the system as a
+ * whole. If the oscillator is subsequently powered down by programming or removal of its supply,
+ * this field must be returned to the nominal value to guarantee proper startup.
  *
  * Values:
  * - 00 - Nominal
@@ -253,6 +266,10 @@ typedef union _hw_xtalosc24m_misc0
  *
  * Status bit which signals that the output of the 24MHz crystal oscillator is stable. Generated
  * from a timer and active detection of the actual frequency.
+ *
+ * Values:
+ * - 0 - Xtal clock not ok for use.
+ * - 1 - Xtal clock ok for use.
  */
 //@{
 #define BP_XTALOSC24M_MISC0_OSC_XTALOK      (16)      //!< Bit position for XTALOSC24M_MISC0_OSC_XTALOK.
@@ -265,6 +282,10 @@ typedef union _hw_xtalosc24m_misc0
 /*! @name Register XTALOSC24M_MISC0, field OSC_XTALOK_EN[17] (RW)
  *
  * Enable bit for the xtal_ok module(24 MHz)
+ *
+ * Values:
+ * - 0 - Xtal_ok function disabled
+ * - 1 - Xtal_ok function enabled
  */
 //@{
 #define BP_XTALOSC24M_MISC0_OSC_XTALOK_EN      (17)      //!< Bit position for XTALOSC24M_MISC0_OSC_XTALOK_EN.
@@ -389,5 +410,5 @@ typedef struct _hw_xtalosc24m
 #endif
 
 #endif // __HW_XTALOSC24M_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

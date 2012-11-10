@@ -29,6 +29,7 @@
  */
 
 #include "core/cortex_a9.h"
+#include "arm_cp_registers.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code
@@ -36,30 +37,33 @@
 
 void arm_dcache_enable()
 {
-    uint32_t sctlr;// System Control Register 
+    uint32_t sctlr; // System Control Register 
     
     // read sctlr 
     _ARM_MRC(15, 0, sctlr, 1, 0, 0);
-
-    // set  C bit (data caching enable) 
-    sctlr |= 0x1 << 2; // |= sctlr_C_MASK
-
-    // write modified sctlr
-    _ARM_MCR(15, 0, sctlr, 1, 0, 0);
-    
-    // All Cache, Branch predictor and TLB maintenance operations before followed instruction complete
-    _ARM_DSB();
+        
+    if (!(sctlr & BM_SCTLR_C))
+    {
+        // set  C bit (data caching enable) 
+        sctlr |= BM_SCTLR_C;
+        
+        // write modified sctlr
+        _ARM_MCR(15, 0, sctlr, 1, 0, 0);
+        
+        // All Cache, Branch predictor and TLB maintenance operations before followed instruction complete
+        _ARM_DSB();
+    }
 }
 
 void arm_dcache_disable()
 {
-    uint32_t sctlr;// System Control Register 
+    uint32_t sctlr; // System Control Register 
     
     // read sctlr 
     _ARM_MRC(15, 0, sctlr, 1, 0, 0);
     
     // set  C bit (data caching enable) 
-    sctlr &= ~(0x1 << 2);   //&= ~(sctlr_C_MASK)
+    sctlr &= ~BM_SCTLR_C;
 
     // write modified sctlr
     _ARM_MCR(15, 0, sctlr, 1, 0, 0);
@@ -176,6 +180,7 @@ void arm_dcache_flush_mlines(const void * addr, size_t length)
         // Clean data cache line to PoC (Point of Coherence) by va. 
         va = (uint32_t) ((uint32_t)addr & 0xfffffff0); //addr & va_VIRTUAL_ADDRESS_MASK
         _ARM_MCR(15, 0, va, 7, 10, 1);
+        
         // increment addres to next line and decrement lenght 
         addr = (const void *) ((uint32_t)addr + L1_CACHE_LINE_SIZE);
     } while (addr < end_addr);
@@ -191,14 +196,18 @@ void arm_icache_enable()
     // read sctlr 
     _ARM_MRC(15, 0, sctlr, 1, 0, 0);
     
-    // set  I bit (instruction caching enable) 
-    sctlr |= 0x1 << 12;  // |= sctlr_I_MASK
-
-    // write modified sctlr
-    _ARM_MCR(15, 0, sctlr, 1, 0, 0);
-    
-    // synchronize context on this processor 
-    _ARM_ISB();
+    // ignore the operation if I is enabled already
+    if(!(sctlr & BM_SCTLR_I))
+    {	
+        // set  I bit (instruction caching enable)
+        sctlr |= BM_SCTLR_I;
+        
+        // write modified sctlr
+        _ARM_MCR(15, 0, sctlr, 1, 0, 0);
+        
+        // synchronize context on this processor 
+        _ARM_ISB();
+    }
 }
 
 void arm_icache_disable()
@@ -209,7 +218,7 @@ void arm_icache_disable()
     _ARM_MRC(15, 0, sctlr, 1, 0, 0);
     
     // Clear  I bit (instruction caching enable) 
-    sctlr &= ~(0x1 << 12); // &= ~sctlr_I_MASK
+    sctlr &= ~BM_SCTLR_I;
 
     // write modified sctlr
     _ARM_MCR(15, 0, sctlr, 1, 0, 0);

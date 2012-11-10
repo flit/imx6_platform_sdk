@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008-2012, Freescale Semiconductor, Inc.
+ * Copyright (c) 2011-2012, Freescale Semiconductor, Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -28,24 +28,31 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-//#include "hardware.h"
+/*!
+ * @file pf0100.c
+ * @brief Driver and test for pf0100 through I2C controller.
+ *
+ * @ingroup pmic
+ */
+
 #include "i2c/imx_i2c.h"
 #include "soc_memory_map.h"
+#include "sdk.h"
 
-#define PMIC_PF0100_I2C_NUM        1    // Which I2C used to interface with the PMIC; 0=I2C1, 1=I2C2
-#define PMIC_PF0100_I2C_REG_BYTE   0x1  // Number of Bytes to transfer the PMIC reg number
-#define PMIC_PF0100_I2C_DATA_BYTE  0x1  // Number of Bytes to transfer the PMIC reg data
-
-#define PMIC_PF0100_I2C_ID         (0x10 >> 1)  //0x08
-#define PMIC_PF0100_I2C_BASE      I2C1_BASE_ADDR
-
+/*!
+ * Function to read a register of pf0100.
+ *
+ * @param reg_addr register address
+ *
+ * @return the value of the read register
+ */
 unsigned char pf0100_reg_read(unsigned char reg_addr)
 {
     struct imx_i2c_request rq = {0};
     unsigned char buf;
 
-    rq.ctl_addr = PMIC_PF0100_I2C_BASE;
-    rq.dev_addr = PMIC_PF0100_I2C_ID;
+    rq.ctl_addr = g_pmic_pf0100_i2c_device.port;
+    rq.dev_addr = g_pmic_pf0100_i2c_device.address;
     rq.reg_addr = reg_addr;
     rq.reg_addr_sz = 1;
     rq.buffer_sz = 1;
@@ -56,12 +63,20 @@ unsigned char pf0100_reg_read(unsigned char reg_addr)
     return buf;
 }
 
+/*!
+ * Function to write a register of pf0100.
+ *
+ * @param reg_addr register address
+ *
+ * @param reg_data written data
+ *
+ */
 void pf0100_reg_write(unsigned char reg_addr, unsigned char reg_data)
 {
     struct imx_i2c_request rq = {0};
 
-    rq.ctl_addr = PMIC_PF0100_I2C_BASE;
-    rq.dev_addr = PMIC_PF0100_I2C_ID;
+    rq.ctl_addr = g_pmic_pf0100_i2c_device.port;
+    rq.dev_addr = g_pmic_pf0100_i2c_device.address;
     rq.reg_addr = reg_addr;
     rq.reg_addr_sz = 1;
     rq.buffer_sz = 1;
@@ -70,56 +85,74 @@ void pf0100_reg_write(unsigned char reg_addr, unsigned char reg_data)
     i2c_xfer(&rq, I2C_WRITE);
 }
 
+/*!
+ * Function to generate vgen1--1.2V
+ */
 void pf0100_enable_vgen1_1v2(void)
 {
     unsigned char data;
 
-    i2c_init(PMIC_PF0100_I2C_BASE, 170000);
+    i2c_init(g_pmic_pf0100_i2c_device.port, 170000);
     data = pf0100_reg_read(108);
     pf0100_reg_write(108, 0x18);
 }
 
+/*!
+ * Function to generate vgen2--1.5V
+ */
 void pf0100_enable_vgen2_1v5(void)
 {
     unsigned char data;
 
-    i2c_init(PMIC_PF0100_I2C_BASE, 170000);
+    i2c_init(g_pmic_pf0100_i2c_device.port, 170000);
     data = pf0100_reg_read(109);
     pf0100_reg_write(109, 0x1E);
 }
 
+/*!
+ * Function to generate vgen3--1.8V
+ */ 
 void pf0100_enable_vgen3_1v8(void)
 {
     unsigned char data;
 
-    i2c_init(PMIC_PF0100_I2C_BASE, 170000);
+    i2c_init(g_pmic_pf0100_i2c_device.port, 170000);
     data = pf0100_reg_read(110);
     pf0100_reg_write(110, 0x10);
 }
 
+/*!
+ * Function to generate vgen4--1.8V
+ */
 void pf0100_enable_vgen4_1v8(void)
 {
     unsigned char data;
 
-    i2c_init(PMIC_PF0100_I2C_BASE, 170000);
+    i2c_init(g_pmic_pf0100_i2c_device.port, 170000);
     data = pf0100_reg_read(111);
     pf0100_reg_write(111, 0x10);
 }
 
+/*!
+ * Function to generate vgen2--2.5V
+ */
 void pf0100_enable_vgen4_2v5(void)
 {
     unsigned char data;
 
-    i2c_init(PMIC_PF0100_I2C_BASE, 170000);
+    i2c_init(g_pmic_pf0100_i2c_device.port, 170000);
     data = pf0100_reg_read(112);
     pf0100_reg_write(112, 0x17);
 }
 
+/*!
+ * Function to generate vgen6--2.8V
+ */
 void pf0100_enable_vgen6_2v8(void)
 {
     unsigned char data;
 
-    i2c_init(PMIC_PF0100_I2C_BASE, 170000);
+    i2c_init(g_pmic_pf0100_i2c_device.port, 170000);
     data = pf0100_reg_read(113);
     pf0100_reg_write(113, 0x1A);
 }
@@ -135,7 +168,7 @@ static int pf0100_i2c_device_id_check(void)
 
     //PROMPT_RUN_TEST("PMIC PF0100 ID TEST");
 
-    i2c_init(PMIC_PF0100_I2C_BASE, 170000);
+    i2c_init(g_pmic_pf0100_i2c_device.port, 170000);
 
     data = 0x0;
     data = pf0100_reg_read(0x0);    //Device ID

@@ -14,8 +14,8 @@ Advanced_Information.Cortex-A9={\
     :Register.G_VPU_CODERUN={\
       gui_name="CODERUN":start=0x2040000:length=4:\
       read_only=false:write_only=true\
-      :bit_fields.B_VPU_CODERUN_VPU_CODERUN={\
-        gui_name="VPU_CODERUN":position=0:size=1:read_only=false\
+      :bit_fields.B_VPU_CODERUN_CODERUN={\
+        gui_name="CODERUN":position=0:size=1:read_only=false\
       }\
     }\
     :Register.G_VPU_CODEDOWN={\
@@ -67,7 +67,7 @@ Advanced_Information.Cortex-A9={\
   :Register_window.VPU={\
     line="$+":\
     line="=G_VPU_CODERUN":\
-    line="B_VPU_CODERUN_VPU_CODERUN":\
+    line="B_VPU_CODERUN_CODERUN":\
     line="$$":\
     line="$+":\
     line="=G_VPU_CODEDOWN":\

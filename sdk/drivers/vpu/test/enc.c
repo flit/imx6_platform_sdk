@@ -35,8 +35,6 @@
 
 static int32_t frameRateInfo = 0;
 
-uint8_t in_enc_file[] = "indir/raw_nv12.yuv";
-
 /*get the output of encoder to the destination*/
 static int32_t enc_read_line_buffer(struct encode *enc, PhysicalAddress paBsBufAddr,
                                     int32_t bsBufsize)
@@ -44,11 +42,11 @@ static int32_t enc_read_line_buffer(struct encode *enc, PhysicalAddress paBsBufA
     uint32_t vbuf;
 
     vbuf = enc->virt_bsbuf_addr + paBsBufAddr - enc->phy_bsbuf_addr;
-    return vpu_stream_write(enc->cmdl, (void *)vbuf, bsBufsize);
+    return vpu_stream_write(enc->codecctrl, (void *)vbuf, bsBufsize);
 }
 
 static int32_t
-enc_readbs_ring_buffer(EncHandle handle, struct cmd_line *cmd,
+enc_readbs_ring_buffer(EncHandle handle, struct codec_control *cmd,
                        uint32_t bs_va_startaddr, uint32_t bs_va_endaddr, uint32_t bs_pa_startaddr,
                        int32_t defaultsize)
 {
@@ -103,7 +101,7 @@ static int32_t encoder_set_header(struct encode *enc)
     RetCode ret;
 
     /* Must put encode header before encoding */
-    if (enc->cmdl->format == STD_MPEG4) {
+    if (enc->codecctrl->format == STD_MPEG4) {
         enchdr_param.headerType = VOS_HEADER;
         VPU_EncGiveCommand(handle, ENC_PUT_MP4_HEADER, &enchdr_param);
         if (enc->ringBufferEnable == 0) {
@@ -127,7 +125,7 @@ static int32_t encoder_set_header(struct encode *enc)
             if (ret < 0)
                 return -1;
         }
-    } else if (enc->cmdl->format == STD_AVC) {
+    } else if (enc->codecctrl->format == STD_AVC) {
         if (!enc->mvc_extension || !enc->mvc_paraset_refresh_en) {
             enchdr_param.headerType = SPS_RBSP;
             VPU_EncGiveCommand(handle, ENC_PUT_AVC_HEADER, &enchdr_param);
@@ -203,9 +201,9 @@ int32_t encoder_allocate_framebuffer(struct encode *enc)
     src_fbheight = (enc->src_picheight + 15) & ~15;
 
     if (cpu_is_mx6q()) {
-        if (enc->cmdl->format == STD_AVC && enc->mvc_extension) /* MVC */
+        if (enc->codecctrl->format == STD_AVC && enc->mvc_extension)    /* MVC */
             extrafbcount = 2 + 2;   /* Subsamp [2] + Subsamp MVC [2] */
-        else if (enc->cmdl->format == STD_MJPG)
+        else if (enc->codecctrl->format == STD_MJPG)
             extrafbcount = 0;
         else
             extrafbcount = 2;   /* Subsamp buffer [2] */
@@ -230,10 +228,10 @@ int32_t encoder_allocate_framebuffer(struct encode *enc)
         return -1;
     }
 
-    if (enc->cmdl->mapType == LINEAR_FRAME_MAP) {
+    if (enc->codecctrl->mapType == LINEAR_FRAME_MAP) {
         /* All buffers are linear */
         for (i = 0; i < minfbcount + extrafbcount; i++) {
-            pfbpool[i] = framebuf_alloc(enc->cmdl->format, enc->mjpg_fmt,
+            pfbpool[i] = framebuf_alloc(enc->codecctrl->format, enc->mjpg_fmt,
                                         enc_fbwidth, enc_fbheight, 0);
             if (pfbpool[i] == NULL) {
                 goto err1;
@@ -242,14 +240,15 @@ int32_t encoder_allocate_framebuffer(struct encode *enc)
     } else {
         /* Encoded buffers are tiled */
         for (i = 0; i < minfbcount; i++) {
-            pfbpool[i] = tiled_framebuf_alloc(enc->cmdl->format, enc->mjpg_fmt,
-                                              enc_fbwidth, enc_fbheight, 0, enc->cmdl->mapType);
+            pfbpool[i] = tiled_framebuf_alloc(enc->codecctrl->format, enc->mjpg_fmt,
+                                              enc_fbwidth, enc_fbheight, 0,
+                                              enc->codecctrl->mapType);
             if (pfbpool[i] == NULL)
                 goto err1;
         }
         /* sub frames are linear */
         for (i = minfbcount; i < minfbcount + extrafbcount; i++) {
-            pfbpool[i] = framebuf_alloc(enc->cmdl->format, enc->mjpg_fmt,
+            pfbpool[i] = framebuf_alloc(enc->codecctrl->format, enc->mjpg_fmt,
                                         enc_fbwidth, enc_fbheight, 0);
             if (pfbpool[i] == NULL)
                 goto err1;
@@ -265,17 +264,17 @@ int32_t encoder_allocate_framebuffer(struct encode *enc)
         fb[i].strideC = pfbpool[i]->strideC;
     }
 
-    if (cpu_is_mx6q() && (enc->cmdl->format != STD_MJPG)) {
+    if (cpu_is_mx6q() && (enc->codecctrl->format != STD_MJPG)) {
         subSampBaseA = fb[minfbcount].bufY;
         subSampBaseB = fb[minfbcount + 1].bufY;
-        if (enc->cmdl->format == STD_AVC && enc->mvc_extension) {   /* MVC */
+        if (enc->codecctrl->format == STD_AVC && enc->mvc_extension) {  /* MVC */
             extbufinfo.subSampBaseAMvc = fb[minfbcount + 2].bufY;
             extbufinfo.subSampBaseBMvc = fb[minfbcount + 3].bufY;
         }
     }
 
     /* Must be a multiple of 16 */
-    if (enc->cmdl->rot_angle == 90 || enc->cmdl->rot_angle == 270)
+    if (enc->codecctrl->rot_angle == 90 || enc->codecctrl->rot_angle == 270)
         enc_stride = (enc->enc_picheight + 15) & ~15;
     else
         enc_stride = (enc->enc_picwidth + 15) & ~15;
@@ -291,7 +290,7 @@ int32_t encoder_allocate_framebuffer(struct encode *enc)
 
     {
         /* Allocate a single frame buffer for source frame */
-        pfbpool[src_fbid] = framebuf_alloc(enc->cmdl->format, enc->mjpg_fmt,
+        pfbpool[src_fbid] = framebuf_alloc(enc->codecctrl->format, enc->mjpg_fmt,
                                            src_fbwidth, src_fbheight, 0);
         if (pfbpool[src_fbid] == NULL) {
             err_msg("failed to allocate single framebuf\n");
@@ -364,7 +363,7 @@ static int32_t encoder_start(struct encode *enc)
     while (1) {
         pfb = pfbpool[src_fbid];
         yuv_addr = pfb->addrY;
-        ret = vpu_stream_read(enc->cmdl, (char *)yuv_addr, img_size);
+        ret = vpu_stream_read(enc->codecctrl, (char *)yuv_addr, img_size);
         //wait untill the SD read finished
         while (1) {
             int usdhc_status = 0;
@@ -386,7 +385,7 @@ static int32_t encoder_start(struct encode *enc)
         while (VPU_IsBusy()) {
             VPU_WaitForInt(200);
             if (enc->ringBufferEnable == 1) {
-                ret = enc_readbs_ring_buffer(handle, enc->cmdl,
+                ret = enc_readbs_ring_buffer(handle, enc->codecctrl,
                                              virt_bsbuf_start, virt_bsbuf_end,
                                              phy_bsbuf_start, STREAM_READ_SIZE);
                 if (ret < 0) {
@@ -404,7 +403,7 @@ static int32_t encoder_start(struct encode *enc)
         }
 
         if (outinfo.skipEncoded)
-            info_msg("Skip encoding one Frame!\n");
+            printf("Skip encoding one Frame!\n");
 
         if (enc->ringBufferEnable == 0) {
             ret = enc_read_line_buffer(enc, outinfo.bitstreamBuffer, outinfo.bitstreamSize);
@@ -413,12 +412,13 @@ static int32_t encoder_start(struct encode *enc)
                 goto err2;
             }
         } else
-            enc_readbs_ring_buffer(handle, enc->cmdl, virt_bsbuf_start,
+            enc_readbs_ring_buffer(handle, enc->codecctrl, virt_bsbuf_start,
                                    virt_bsbuf_end, phy_bsbuf_start, 0);
 
         frame_id++;
+        printf("encoded frame %05d\n", frame_id);
         if (encode_end == 1) {
-            info_msg("Total encoded %d frames\n", frame_id);
+            printf("Total encoded %d frames\n", frame_id);
             break;
         }
     }
@@ -438,11 +438,11 @@ int32_t encoder_configure(struct encode * enc)
     RetCode ret;
     MirrorDirection mirror;
 
-    if (enc->cmdl->rot_en) {
+    if (enc->codecctrl->rot_en) {
         VPU_EncGiveCommand(handle, ENABLE_ROTATION, 0);
         VPU_EncGiveCommand(handle, ENABLE_MIRRORING, 0);
-        VPU_EncGiveCommand(handle, SET_ROTATION_ANGLE, &enc->cmdl->rot_angle);
-        mirror = enc->cmdl->mirror;
+        VPU_EncGiveCommand(handle, SET_ROTATION_ANGLE, &enc->codecctrl->rot_angle);
+        mirror = enc->codecctrl->mirror;
         VPU_EncGiveCommand(handle, SET_MIRROR_DIRECTION, &mirror);
     }
 
@@ -482,27 +482,27 @@ int32_t encoder_open(struct encode *enc)
     /* Fill up parameters for encoding */
     encop.bitstreamBuffer = enc->phy_bsbuf_addr;
     encop.bitstreamBufferSize = STREAM_BUF_SIZE;
-    encop.bitstreamFormat = enc->cmdl->format;
-    encop.mapType = enc->cmdl->mapType;
+    encop.bitstreamFormat = enc->codecctrl->format;
+    encop.mapType = enc->codecctrl->mapType;
     encop.linear2TiledEnable = enc->linear2TiledEnable;
 
     /* width and height in command line means source image size */
-    if (enc->cmdl->width && enc->cmdl->height) {
-        enc->src_picwidth = enc->cmdl->width;
-        enc->src_picheight = enc->cmdl->height;
+    if (enc->codecctrl->width && enc->codecctrl->height) {
+        enc->src_picwidth = enc->codecctrl->width;
+        enc->src_picheight = enc->codecctrl->height;
     }
 
     /* enc_width and enc_height in command line means encoder output size */
-    if (enc->cmdl->enc_width && enc->cmdl->enc_height) {
-        enc->enc_picwidth = enc->cmdl->enc_width;
-        enc->enc_picheight = enc->cmdl->enc_height;
+    if (enc->codecctrl->enc_width && enc->codecctrl->enc_height) {
+        enc->enc_picwidth = enc->codecctrl->enc_width;
+        enc->enc_picheight = enc->codecctrl->enc_height;
     } else {
         enc->enc_picwidth = enc->src_picwidth;
         enc->enc_picheight = enc->src_picheight;
     }
 
     /* If rotation angle is 90 or 270, pic width and height are swapped */
-    if (enc->cmdl->rot_angle == 90 || enc->cmdl->rot_angle == 270) {
+    if (enc->codecctrl->rot_angle == 90 || enc->codecctrl->rot_angle == 270) {
         encop.picWidth = enc->enc_picheight;
         encop.picHeight = enc->enc_picwidth;
     } else {
@@ -512,8 +512,8 @@ int32_t encoder_open(struct encode *enc)
 
     /*Note: Frame rate cannot be less than 15fps per H.263 spec */
     encop.frameRateInfo = frameRateInfo = 30;
-    encop.bitRate = enc->cmdl->bitrate;
-    encop.gopSize = enc->cmdl->gop;
+    encop.bitRate = enc->codecctrl->bitrate;
+    encop.gopSize = enc->codecctrl->gop;
     encop.slicemode.sliceMode = 0;  /* 0: 1 slice per picture; 1: Multiple slices per picture */
     encop.slicemode.sliceSizeMode = 0;  /* 0: silceSize defined by bits; 1: sliceSize defined by MB number */
     encop.slicemode.sliceSize = 4000;   /* Size of a slice in bits or MB numbers */
@@ -542,21 +542,21 @@ int32_t encoder_open(struct encode *enc)
 
     encop.ringBufferEnable = enc->ringBufferEnable = 0;
     encop.dynamicAllocEnable = 0;
-    encop.chromaInterleave = enc->cmdl->chromaInterleave;
+    encop.chromaInterleave = enc->codecctrl->chromaInterleave;
 
-    if (enc->cmdl->format == STD_MPEG4) {
+    if (enc->codecctrl->format == STD_MPEG4) {
         encop.EncStdParam.mp4Param.mp4_dataPartitionEnable = 0;
         enc->mp4_dataPartitionEnable = encop.EncStdParam.mp4Param.mp4_dataPartitionEnable;
         encop.EncStdParam.mp4Param.mp4_reversibleVlcEnable = 0;
         encop.EncStdParam.mp4Param.mp4_intraDcVlcThr = 0;
         encop.EncStdParam.mp4Param.mp4_hecEnable = 0;
         encop.EncStdParam.mp4Param.mp4_verid = 2;
-    } else if (enc->cmdl->format == STD_H263) {
+    } else if (enc->codecctrl->format == STD_H263) {
         encop.EncStdParam.h263Param.h263_annexIEnable = 0;
         encop.EncStdParam.h263Param.h263_annexJEnable = 1;
         encop.EncStdParam.h263Param.h263_annexKEnable = 0;
         encop.EncStdParam.h263Param.h263_annexTEnable = 0;
-    } else if (enc->cmdl->format == STD_AVC) {
+    } else if (enc->codecctrl->format == STD_AVC) {
         encop.EncStdParam.avcParam.avc_constrainedIntraPredFlag = 0;
         encop.EncStdParam.avcParam.avc_disableDeblk = 1;
         encop.EncStdParam.avcParam.avc_deblkFilterOffsetAlpha = 6;
@@ -567,15 +567,15 @@ int32_t encoder_open(struct encode *enc)
             encop.EncStdParam.avcParam.interview_en = 0;
             encop.EncStdParam.avcParam.paraset_refresh_en = enc->mvc_paraset_refresh_en = 0;
             encop.EncStdParam.avcParam.prefix_nal_en = 0;
-            encop.EncStdParam.avcParam.mvc_extension = enc->cmdl->mp4_h264Class;
-            enc->mvc_extension = enc->cmdl->mp4_h264Class;
+            encop.EncStdParam.avcParam.mvc_extension = enc->codecctrl->mp4_h264Class;
+            enc->mvc_extension = enc->codecctrl->mp4_h264Class;
             encop.EncStdParam.avcParam.avc_frameCroppingFlag = 0;
             encop.EncStdParam.avcParam.avc_frameCropLeft = 0;
             encop.EncStdParam.avcParam.avc_frameCropRight = 0;
             encop.EncStdParam.avcParam.avc_frameCropTop = 0;
             encop.EncStdParam.avcParam.avc_frameCropBottom = 0;
-            if (enc->cmdl->rot_angle != 90 &&
-                enc->cmdl->rot_angle != 270 && enc->enc_picheight == 1080) {
+            if (enc->codecctrl->rot_angle != 90 &&
+                enc->codecctrl->rot_angle != 270 && enc->enc_picheight == 1080) {
                 /*
                  * In case of AVC encoder, when we want to use
                  * unaligned display width frameCroppingFlag
@@ -606,14 +606,14 @@ int32_t encoder_open(struct encode *enc)
 
 int32_t encoder_setup(void *arg)
 {
-    struct cmd_line *cmdl = NULL;
+    struct codec_control *codecctrl = NULL;
     vpu_mem_desc mem_desc = { 0 };
     vpu_mem_desc scratch_mem_desc = { 0 };
     struct encode *enc;
     int32_t ret = 0;
 
     /*set the parameters of encoder input here!! */
-    cmdl = (struct cmd_line *)arg;
+    codecctrl = (struct codec_control *)arg;
 
     /* allocate memory for must remember stuff */
     enc = (struct encode *)calloc(1, sizeof(struct encode));
@@ -624,7 +624,7 @@ int32_t encoder_setup(void *arg)
 
     /* get the contigous bit stream buffer */
     mem_desc.size = STREAM_BUF_SIZE;
-    ret = IOGetMem(&mem_desc);
+    ret = vpu_malloc(&mem_desc);
     if (ret) {
         err_msg("Unable to obtain physical memory\n");
         free(enc);
@@ -632,25 +632,25 @@ int32_t encoder_setup(void *arg)
     }
 
     /* mmap that physical buffer, in OS the virt and phy addr could be different */
-    enc->virt_bsbuf_addr = mem_desc.virt_uaddr;
+    enc->virt_bsbuf_addr = mem_desc.virt_addr;
     enc->phy_bsbuf_addr = mem_desc.phy_addr;
-    enc->cmdl = cmdl;
+    enc->codecctrl = codecctrl;
 
     /* get the contigous bit stream buffer */
     mem_desc.size = ENCODER_OUTPUT_SIZE;
-    ret = IOGetMem(&mem_desc);
+    ret = vpu_malloc(&mem_desc);
     if (ret) {
         err_msg("Unable to obtain physical memory\n");
         free(enc);
         return -1;
     }
-    enc->cmdl->output_mem_addr = mem_desc.phy_addr;
-    bsmem.bs_start = enc->cmdl->output_mem_addr;
-    bsmem.bs_end = enc->cmdl->output_mem_addr;
+    enc->codecctrl->output_mem_addr = mem_desc.phy_addr;
+    g_bs_memory.bs_start = enc->codecctrl->output_mem_addr;
+    g_bs_memory.bs_end = enc->codecctrl->output_mem_addr;
 
-    if (enc->cmdl->mapType) {
+    if (enc->codecctrl->mapType) {
         enc->linear2TiledEnable = 1;
-        enc->cmdl->chromaInterleave = 1;    /* Must be CbCrInterleave for tiled */
+        enc->codecctrl->chromaInterleave = 1;   /* Must be CbCrInterleave for tiled */
     } else
         enc->linear2TiledEnable = 0;
 
@@ -664,9 +664,9 @@ int32_t encoder_setup(void *arg)
     if (ret)
         goto err1;
 
-    if ((cmdl->format == STD_MPEG4) && enc->mp4_dataPartitionEnable) {
+    if ((codecctrl->format == STD_MPEG4) && enc->mp4_dataPartitionEnable) {
         scratch_mem_desc.size = MPEG4_SCRATCH_SIZE;
-        ret = IOGetMem(&scratch_mem_desc);
+        ret = vpu_malloc(&scratch_mem_desc);
         if (ret) {
             err_msg("Unable to obtain physical slice save mem\n");
             goto err1;
@@ -682,7 +682,9 @@ int32_t encoder_setup(void *arg)
     /* start encoding */
     ret = encoder_start(enc);
 
-    info_msg("Encoded output is stored from 0x%08x to 0x%08x\n", bsmem.bs_start, bsmem.bs_end);
+    if (enc->codecctrl->dst_scheme == PATH_MEM)
+        printf("Encoded output is stored from 0x%08x to 0x%08x\n", g_bs_memory.bs_start,
+               g_bs_memory.bs_end);
 
     /* free the allocated framebuffers */
     encoder_free_framebuffer(enc);
@@ -696,118 +698,56 @@ int32_t encoder_setup(void *arg)
 
 int32_t encode_test(void *arg)
 {
-    uint8_t revchar = 0xFF;
-    int32_t count = 0;
-    struct cmd_line *cmdl;
-    int32_t err = 0;
-    int32_t file_in;
+    struct codec_control *codecctrl;
+    int32_t file_in, file_out;
 
-    cmdl = (struct cmd_line *)calloc(1, sizeof(struct cmd_line));
-    if (cmdl == NULL) {
+    uint8_t in_enc_file[] = "indir/raw_nv12.yuv";
+    uint8_t out_enc_file[] = "out.264";
+
+    codecctrl = (struct codec_control *)calloc(1, sizeof(struct codec_control));
+    if (codecctrl == NULL) {
         err_msg("Failed to allocate command structure\n");
         return -1;
     }
 
     if ((file_in = Fopen(in_enc_file, (uint8_t *) "r")) < 0) {
         printf("Can't open the file: %s !\n", in_enc_file);
-        err = 0;
+        goto err2;
+    }
+
+    if ((file_out = Fopen(out_enc_file, (uint8_t *) "w")) < 0) {
+        printf("Can't open the file: %s !\n", out_enc_file);
+        goto err1;
     }
 
     /*now enable the INTERRUPT mode of usdhc */
     SDHC_INTR_mode = 0;
     SDHC_ADMA_mode = 0;
-    memset((void *)&bsmem, 0, sizeof(bs_mem_t));
-    cmdl->input = file_in;     /* Input file name */
-    cmdl->format = STD_AVC;
-    cmdl->src_scheme = PATH_FILE;
-    cmdl->dst_scheme = PATH_MEM;
-    cmdl->dering_en = 0;
-    cmdl->deblock_en = 0;
-    cmdl->chromaInterleave = 0; //partial interleaved mode
-    cmdl->mapType = LINEAR_FRAME_MAP;
-    cmdl->bs_mode = 0;          /*disable pre-scan */
-    cmdl->fps = 24;
-    cmdl->enc_width = 320;
-    cmdl->enc_height = 240;
-    cmdl->width = 320;
-    cmdl->height = 240;
-    cmdl->gop = 0;
-    cmdl->read_mode = 0;
-    encoder_setup(cmdl);
+    memset((void *)&g_bs_memory, 0, sizeof(bs_mem_t));
+    codecctrl->input = file_in; /* Input file name */
+    codecctrl->output = file_out;   /* Output file name */
+    codecctrl->format = STD_AVC;
+    codecctrl->src_scheme = PATH_FILE;
+    codecctrl->dst_scheme = PATH_FILE;
+    codecctrl->dering_en = 0;
+    codecctrl->deblock_en = 0;
+    codecctrl->chromaInterleave = 0;    //partial interleaved mode
+    codecctrl->mapType = LINEAR_FRAME_MAP;
+    codecctrl->bs_mode = 0;     /*disable pre-scan */
+    codecctrl->fps = 24;
+    codecctrl->enc_width = 320;
+    codecctrl->enc_height = 240;
+    codecctrl->width = 320;
+    codecctrl->height = 240;
+    codecctrl->gop = 0;
+    codecctrl->read_mode = 0;
+    encoder_setup(codecctrl);
 
-    info_msg("Do you want to play the encoded bitstream??\n");
-    info_msg("Y/y - play the video from memory.\n");
-    info_msg("N/n - exit the encoder test, will check the data on host PC.\n");
+  err1:
+    Fclose(file_out);
 
-    do {
-        revchar = getchar();
-    } while (revchar == (uint8_t) 0xFF);
-    if ((revchar == 'Y') || (revchar == 'y')) {
-        multi_instance = 0;
+  err2:
+    Fclose(file_in);
 
-        /* initialize video streams and configure IPUs */
-        ips_hannstar_xga_yuv_stream(1);
-        if (cmdl != NULL) {
-            free(cmdl);
-            cmdl = NULL;
-        }
-        cmdl = (struct cmd_line *)calloc(1, sizeof(struct cmd_line));
-        if (cmdl == NULL) {
-            err_msg("Failed to allocate command structure\n");
-            return -1;
-        }
-        /*set the decoder command args */
-        cmdl->input = 0;        /* Input file name */
-        cmdl->format = STD_AVC;
-        cmdl->src_scheme = PATH_MEM;
-        cmdl->dst_scheme = PATH_MEM;
-        cmdl->dering_en = 0;
-        cmdl->deblock_en = 0;
-        cmdl->chromaInterleave = 1; //partial interleaved mode
-        cmdl->mapType = LINEAR_FRAME_MAP;
-        cmdl->bs_mode = 0;      /*disable pre-scan */
-        cmdl->fps = 30;
-        decoder_setup((void *)cmdl);
-
-        printf("Now start decoding test ... \n");
-
-        while (1) {
-            DecOutputInfo outinfo = { 0 };
-            DecParam decparam = { 0 };
-            decparam.dispReorderBuf = 0;
-
-            decparam.prescanEnable = 0;
-            decparam.prescanMode = 0;
-
-            decparam.skipframeMode = 0;
-            decparam.skipframeNum = 0;
-            decparam.iframeSearchEnable = 0;
-
-            if (!VPU_IsBusy() && !dec_fifo_is_full(&gDecFifo[0])) {
-                VPU_DecStartOneFrame(gDecInstance[0]->handle, &decparam);
-                while (VPU_IsBusy()) {
-                    /*If there is enough space, read the bitstream from the SD card to the bitstream buffer */
-                    dec_fill_bsbuffer(gDecInstance[0]->handle, gDecInstance[0]->cmdl,
-                                      gBsBuffer[0], gBsBuffer[0] + STREAM_BUF_SIZE,
-                                      gBsBuffer[0], STREAM_BUF_SIZE >> 2);
-                };
-
-                VPU_DecGetOutputInfo(gDecInstance[0]->handle, &outinfo);
-                if (outinfo.indexFrameDisplay >= 0) {
-                    count++;
-                    /*push the decoded frame into fifo */
-                    dec_fifo_push(&gDecFifo[0],
-                                  &(gDecInstance[0]->pfbpool[outinfo.indexFrameDisplay]),
-                                  outinfo.indexFrameDisplay);
-                } else if (outinfo.indexFrameDisplay == -1) {
-                    printf("Video play to the end, total %d frames!\n", count);
-                    break;
-                }
-            }
-
-            decoder_frame_display();
-        }
-
-    }
     return 0;
 }

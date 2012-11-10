@@ -31,6 +31,7 @@
 #include "sdk.h"
 #include "spi_nor_numonyx.h"
 #include "spi/ecspi_ifc.h"
+#include "registers/regsiomuxc.h"
 
 static int numonyx_spi_nor_test(void);
 
@@ -53,6 +54,17 @@ static int numonyx_spi_nor_test(void)
 {
     uint8_t id[4];
     uint32_t retv, idx, len = TEST_BUF_SZ * sizeof(uint32_t);
+
+#if defined(BOARD_SABRE_AI) && !defined(BOARD_REV_A) 
+    printf("Please remove the jumper within J3 on the board.\n");
+    if(!is_input_char('y', NULL))
+	return FALSE;
+
+    HW_IOMUXC_SW_MUX_CTL_PAD_EIM_ADDR24_WR(
+    		BF_IOMUXC_SW_MUX_CTL_PAD_EIM_ADDR24_MUX_MODE_V(ALT5));
+    gpio_set_direction(GPIO_PORT5, 4, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT5, 4, GPIO_LOW_LEVEL);
+#endif
 
     // eCSPI device setup 
     dev_spi_nor = DEV_ECSPI1;

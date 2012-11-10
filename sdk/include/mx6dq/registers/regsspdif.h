@@ -89,7 +89,7 @@ typedef union _hw_spdif_scr
         unsigned RXAUTOSYNC : 1; //!< [18] 
         unsigned RXFIFOFULL_SEL : 2; //!< [20:19] 
         unsigned RXFIFO_RST : 1; //!< [21] 
-        unsigned RXFIFO_OFF : 1; //!< [22] 
+        unsigned RXFIFO_OFF_ON : 1; //!< [22] 
         unsigned RXFIFO_CTRL : 1; //!< [23] 
         unsigned UNIMPLEMENTED : 8; //!< [31:24] This is a 24-bit register the upper byte is unimplemented.
     } B;
@@ -406,25 +406,25 @@ typedef union _hw_spdif_scr
 #endif
 //@}
 
-/*! @name Register SPDIF_SCR, field RXFIFO_OFF[22] (RW)
+/*! @name Register SPDIF_SCR, field RXFIFO_OFF_ON[22] (RW)
  *
  * Values:
  * - 0 - SPDIF Rx FIFO is on
  * - 1 - SPDIF Rx FIFO is off. Does not accept data from interface
  */
 //@{
-#define BP_SPDIF_SCR_RXFIFO_OFF      (22)      //!< Bit position for SPDIF_SCR_RXFIFO_OFF.
-#define BM_SPDIF_SCR_RXFIFO_OFF      (0x00400000)  //!< Bit mask for SPDIF_SCR_RXFIFO_OFF.
+#define BP_SPDIF_SCR_RXFIFO_OFF_ON      (22)      //!< Bit position for SPDIF_SCR_RXFIFO_OFF_ON.
+#define BM_SPDIF_SCR_RXFIFO_OFF_ON      (0x00400000)  //!< Bit mask for SPDIF_SCR_RXFIFO_OFF_ON.
 
-//! @brief Get value of SPDIF_SCR_RXFIFO_OFF from a register value.
-#define BG_SPDIF_SCR_RXFIFO_OFF(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SCR_RXFIFO_OFF) >> BP_SPDIF_SCR_RXFIFO_OFF)
+//! @brief Get value of SPDIF_SCR_RXFIFO_OFF_ON from a register value.
+#define BG_SPDIF_SCR_RXFIFO_OFF_ON(r)   ((__REG_VALUE_TYPE((r), reg32_t) & BM_SPDIF_SCR_RXFIFO_OFF_ON) >> BP_SPDIF_SCR_RXFIFO_OFF_ON)
 
-//! @brief Format value for bitfield SPDIF_SCR_RXFIFO_OFF.
-#define BF_SPDIF_SCR_RXFIFO_OFF(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDIF_SCR_RXFIFO_OFF) & BM_SPDIF_SCR_RXFIFO_OFF)
+//! @brief Format value for bitfield SPDIF_SCR_RXFIFO_OFF_ON.
+#define BF_SPDIF_SCR_RXFIFO_OFF_ON(v)   ((__REG_VALUE_TYPE((v), reg32_t) << BP_SPDIF_SCR_RXFIFO_OFF_ON) & BM_SPDIF_SCR_RXFIFO_OFF_ON)
 
 #ifndef __LANGUAGE_ASM__
-//! @brief Set the RXFIFO_OFF field to a new value.
-#define BW_SPDIF_SCR_RXFIFO_OFF(v)   (HW_SPDIF_SCR_WR((HW_SPDIF_SCR_RD() & ~BM_SPDIF_SCR_RXFIFO_OFF) | BF_SPDIF_SCR_RXFIFO_OFF(v)))
+//! @brief Set the RXFIFO_OFF_ON field to a new value.
+#define BW_SPDIF_SCR_RXFIFO_OFF_ON(v)   (HW_SPDIF_SCR_WR((HW_SPDIF_SCR_RD() & ~BM_SPDIF_SCR_RXFIFO_OFF_ON) | BF_SPDIF_SCR_RXFIFO_OFF_ON(v)))
 #endif
 //@}
 
@@ -2573,5 +2573,5 @@ typedef struct _hw_spdif
 #endif
 
 #endif // __HW_SPDIF_REGISTERS_H__
-// v17/121010/1.2.0
+// v18/121106/1.2.2
 // EOF

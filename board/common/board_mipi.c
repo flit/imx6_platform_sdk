@@ -147,28 +147,25 @@ void mipi_csi2_clock_set(void)
 {
     //set VIDPLL(PLL5) to 596MHz 
     HW_CCM_ANALOG_PLL_VIDEO_WR(BF_CCM_ANALOG_PLL_VIDEO_DIV_SELECT(0) |
-                               BF_CCM_ANALOG_PLL_VIDEO_HALF_LF(1) |
-                               BF_CCM_ANALOG_PLL_VIDEO_DOUBLE_LF(1) |
                                BF_CCM_ANALOG_PLL_VIDEO_ENABLE(1));
     HW_CCM_ANALOG_PLL_VIDEO_NUM_WR(0x00000000);
     HW_CCM_ANALOG_PLL_VIDEO_DENOM_WR(0x00000001);
     while (!HW_CCM_ANALOG_PLL_VIDEO.B.LOCK) ;   //waiting for PLL lock
     BF_CLR(CCM_ANALOG_PLL_VIDEO, BYPASS);
 
-    //select CSI0_MCLK osc_clk 24MHz, CKO1 output drives cko2 clock 
-    HW_IOMUXC_SW_MUX_CTL_PAD_CSI0_MCLK_WR(BV_FLD(IOMUXC_SW_MUX_CTL_PAD_CSI0_MCLK, MUX_MODE, ALT3));
-    HW_IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK_WR(BV_FLD(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, DSE, 40OHM) |
-                                          BV_FLD(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, SPEED, 100MHZ) |
-                                          BV_FLD(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, PKE, ENABLED) |
-                                          BV_FLD(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, PUE, PULL) |
-                                          BV_FLD(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, PUS,
-                                                 100KOHM_PU) |
-                                          BV_FLD(IOMUXC_SW_PAD_CTL_PAD_CSI0_MCLK, HYS, ENABLED));
+    //select CSI0_HSYNC osc_clk 24MHz, CKO1 output drives cko2 clock
+    HW_IOMUXC_SW_MUX_CTL_PAD_CSI0_HSYNC_WR(BF_IOMUXC_SW_MUX_CTL_PAD_CSI0_HSYNC_MUX_MODE(BV_IOMUXC_SW_MUX_CTL_PAD_CSI0_HSYNC_MUX_MODE__ALT3));
+    HW_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_WR(BF_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_DSE(BV_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_DSE__40_OHM) |
+                                          BF_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_SPEED(BV_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_SPEED__100MHZ) |
+                                          BF_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_PKE(BV_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_PKE__ENABLED) |
+                                          BF_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_PUE(BV_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_PUE__PULL) |
+                                          BF_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_PUS(BV_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_PUS__100K_OHM_PU) |
+                                          BF_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_HYS(BV_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_HYS__ENABLED));
     HW_CCM_CCOSR_WR(
                     BF_CCM_CCOSR_CLKO1_SEL(0) |
                     BF_CCM_CCOSR_CLKO1_DIV(0) |
                     BF_CCM_CCOSR_CLKO1_EN(1) |
-                    BF_CCM_CCOSR_CLKO1_CLKO2_SEL(1) | // select cko2 for cko1 output
+                    BF_CCM_CCOSR_CLKO_SEL(1) | // select cko2 for cko1 output
                     BF_CCM_CCOSR_CLKO2_SEL(0xe) |    // osc_clk
                     BF_CCM_CCOSR_CLKO2_DIV(0) |  // div 1
                     BF_CCM_CCOSR_CLKO2_EN(1));

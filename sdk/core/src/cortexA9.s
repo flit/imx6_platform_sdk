@@ -37,22 +37,6 @@
     .code 32
     .section ".text","ax"
 
-	.equ STRONGLY_ORDERED,  0x00010C02
-	.equ OUTER_INNER_WB_WA, 0x00001C0E	
-	.equ OUTER_INNER_WT,	0x00000C0A
-	.equ OUTER_INNER_WT_S,	0x00010C0A
-	.equ DEVICE_SHARED,		0x00010C06
-	.equ DEVICE_NSHARED,	0x00002C02
-	.equ NON_CACHABLE,		0x00001C02
-
-	.equ PAGE_TABLE_ADDR,	0x00930000 @ store the page table in IRAM
-
-	.equ L2CC_REG1_CTRL,	0x00A02100
-	.equ L2CC_INV_REG,		0x00A0277C
-	.equ L2CC_TAG_R_CTRL,	0x00A02108
-	.equ L2CC_DAT_R_CTRL,	0x00A0210C
-	.equ L2CC_PREFETCH_CTRL,0x00A02F60
-
   .global cpu_get_current
   @ int cpu_get_current(void)@
   @ get current CPU ID

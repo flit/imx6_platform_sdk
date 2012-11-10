@@ -245,6 +245,10 @@ int32_t spdif_config(void *priv, audio_dev_para_p para)
         cchannel.l.ctrl.sample_freq = IEC958_CON_SAMPLE_FREQ_44100;
     else if (para->sample_rate == SAMPLERATE_32KHz)
         cchannel.l.ctrl.sample_freq = IEC958_CON_SAMPLE_FREQ_32000;
+    else if (para->sample_rate == SAMPLERATE_16KHz)	
+	// There's no 16KHz sample rate defined in IEC958, it is supposed that the receiver
+	// will measure the sample rate automatically.
+	cchannel.l.ctrl.sample_freq = IEC958_CON_SAMPLE_FREQ_NOT_INDICATED;
     else                        //48K
         cchannel.l.ctrl.sample_freq = IEC958_CON_SAMPLE_FREQ_48000;
 
@@ -297,20 +301,22 @@ int32_t spdif_write_fifo(void *priv, uint8_t * buf, uint32_t size, uint32_t * by
     audio_ctrl_p ctrl = (audio_ctrl_p) priv;
     uint32_t instance = ctrl->instance;
     uint32_t i = 0;
-    uint32_t val;
+    uint32_t val_right, val_left;
 
     UNUSED_VARIABLE(instance);
 
     while (i < size) {
         if (HW_SPDIF_SIS_RD() & BM_SPDIF_SIS_TXEM) {
-            val = *((uint16_t *) (buf + i));
+            val_right = (uint32_t)(*((uint16_t *) (buf + i)));
+	    val_left = (uint32_t)(*((uint16_t *) (buf + i + 2)));
             /* TODO: the msb bit of the audio data should be always at 23bit of stl or str  */
-            val = (val << 8) & 0x00ffffff;
+            val_right = (val_right << 8) & 0x00ffffff;
+            val_left = (val_left << 8) & 0x00ffffff;
 
-	    HW_SPDIF_STL_WR(val);
-	    HW_SPDIF_STR_WR(val);
+	    HW_SPDIF_STR_WR(val_right);
+	    HW_SPDIF_STL_WR(val_left);
 
-            i += 2;
+            i += 4;
         }
     }
 

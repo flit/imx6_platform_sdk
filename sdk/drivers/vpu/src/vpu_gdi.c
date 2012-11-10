@@ -166,18 +166,18 @@ void SetGDIRegs(GdiTiledMap * pTiledInfo)
     int i;
 
     for (i = 0; i < 16; i++)
-        VpuWriteReg(GDI_XY2_CAS_0 + 4 * i, pTiledInfo->xy2ca_map[i]);
+        vpu_reg_write(GDI_XY2_CAS_0 + 4 * i, pTiledInfo->xy2ca_map[i]);
 
     for (i = 0; i < 4; i++)
-        VpuWriteReg(GDI_XY2_BA_0 + 4 * i, pTiledInfo->xy2ba_map[i]);
+        vpu_reg_write(GDI_XY2_BA_0 + 4 * i, pTiledInfo->xy2ba_map[i]);
 
     for (i = 0; i < 16; i++)
-        VpuWriteReg(GDI_XY2_RAS_0 + 4 * i, pTiledInfo->xy2ra_map[i]);
+        vpu_reg_write(GDI_XY2_RAS_0 + 4 * i, pTiledInfo->xy2ra_map[i]);
 
-    VpuWriteReg(GDI_XY2_RBC_CONFIG, pTiledInfo->xy2rbc_config);
+    vpu_reg_write(GDI_XY2_RBC_CONFIG, pTiledInfo->xy2rbc_config);
 
     for (i = 0; i < 32; i++)
-        VpuWriteReg(GDI_RBC2_AXI_0 + 4 * i, pTiledInfo->rbc2axi_map[i]);
+        vpu_reg_write(GDI_RBC2_AXI_0 + 4 * i, pTiledInfo->rbc2axi_map[i]);
 }
 
 int VPU_GetXY2AXIAddr(DecHandle handle, int ycbcr, int posY, int posX, int stride,

@@ -58,6 +58,9 @@ int32_t ips_rotate_test(ips_dev_panel_t * panel)
     /*enable ipu display channel */
     ipu_enable_display(ipu_index);
 
+    /*load image */
+    load_centralized_image(rot_out_mem, panel);
+
     /*setup ic task and dma channel for rotate. */
     switch (taskType) {
     case PrP_ENC_TASK:

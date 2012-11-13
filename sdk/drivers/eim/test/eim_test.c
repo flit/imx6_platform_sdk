@@ -89,7 +89,10 @@ static int eim_nor_test(void)
     for (idx = 0; idx < EIM_BUFFER_SZ; idx++) {
         eim_test_buffer[idx] = idx + 0x5A5A0000;
     }
-
+#if defined(BOARD_SABRE_AI)
+    // for EIM_D18 steering
+    gpio_set_level(GPIO_PORT5, 4, GPIO_LOW_LEVEL);
+#endif
     /* HW init */
     eim_hw_prepare();
 

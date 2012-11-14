@@ -40,7 +40,7 @@
 #include "sdk.h"
 #include "uart/imx_uart.h"
 #include "text_color.h"
-#include "sdk.h"
+#include "registers/regsccm.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code
@@ -196,3 +196,21 @@ int read_int(void)
 // EOF
 ////////////////////////////////////////////////////////////////////////////////
 
+/*!
+ * @brief Function to jump into the ROM Serial Download Protocol.
+ *        It never returns when called.
+ */
+void jump_to_sdp(void)
+{
+	/* Re-configure the clock gating like the ROM expects it */
+    HW_CCM_CCGR0_WR(0xF0C03F0F);
+    HW_CCM_CCGR1_WR(0xF0FC0000);
+    HW_CCM_CCGR2_WR(0xFC3FF00C);
+    HW_CCM_CCGR3_WR(0x3FF00000);
+    HW_CCM_CCGR4_WR(0x0000FF00);
+    HW_CCM_CCGR5_WR(0xF0033F0F);
+    HW_CCM_CCGR6_WR(0xFFFF0303);
+
+	/* enter the ROM Serial Download Protocol */
+    hab_rvt_failsafe();
+}

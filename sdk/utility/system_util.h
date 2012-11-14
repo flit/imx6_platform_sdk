@@ -37,8 +37,6 @@
 #ifndef _SYSTEM_UTIL_H_
 #define _SYSTEM_UTIL_H_
 
-#include "sdk.h"
-
 //! @addtogroup diag_util
 //! @{
 
@@ -87,6 +85,18 @@ int32_t is_input_char(uint8_t c, const char* const indent);
 uint32_t get_input_hex(void);
 
 int read_int(void);
+
+
+/*!
+ * @brief Function to jump into the ROM Serial Download Protocol.
+ *        It never returns when called.
+ */
+void jump_to_sdp(void);
+
+typedef void hab_rvt_failsafe_t(void);
+/* ROM Vector Table starts at address 0x94 */
+#define HAB_RVT_FAILSAFE (*(uint32_t *) 0x000000BC)
+#define hab_rvt_failsafe ((hab_rvt_failsafe_t *) HAB_RVT_FAILSAFE)
 
 #if defined(__cplusplus)
 }

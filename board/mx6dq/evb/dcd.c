@@ -35,6 +35,10 @@
 //! @brief dcd data, list of (register, value) pairs to initialize ddr
 uint8_t input_dcd[] __attribute__ ((section (".dcd_data")))= {
     /*Use default DDR frequency: 528MHz*/
+// To allow DDR re-initialization if it was already set up:
+// reset the MMDC and disable the chip selects.
+    DCD_DATA(MMDC_P0_BASE_ADDR + MDMISC_OFFSET, 0x00001602),
+    DCD_DATA(MMDC_P0_BASE_ADDR + MDCTL_OFFSET, 0x03110000),
     /* configure the IOMUX for the DDR3 interface */
 //DDR IO TYPE:
     DCD_DATA(IOMUXC_SW_PAD_CTL_GRP_DDR_TYPE, 0x000c0000),

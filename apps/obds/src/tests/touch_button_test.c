@@ -48,8 +48,6 @@ static int touch_button_reg_write(unsigned int i2c_base_addr, unsigned char reg_
     rq.buffer = buf;
 
     return i2c_xfer(&rq, I2C_WRITE);
-
-//    return i2c_xfer(i2c_base_addr, &rq, I2C_WRITE);
 }
 
 static unsigned char touch_button_reg_read(unsigned int i2c_base_addr, unsigned char reg_addr)
@@ -65,7 +63,6 @@ static unsigned char touch_button_reg_read(unsigned int i2c_base_addr, unsigned 
     rq.buffer_sz = 1;
     rq.buffer = buf;
     i2c_xfer(&rq, I2C_READ);
-//    i2c_xfer(i2c_base_addr, &rq, I2C_READ);
     reg_data = buf[0];
 
     return reg_data;
@@ -170,17 +167,12 @@ static int touch_button_init(unsigned int i2c_base_addr)
     return ret;
 }
 
-int touch_button_test_enable = 0;
 
 int touch_button_test(void)
 {
     unsigned char pval_old = 0, pval_new;
     unsigned char input;
     int i;
-
-    if (!touch_button_test_enable) {
-        return TEST_NOT_PRESENT;
-    }
 
     PROMPT_RUN_TEST("TOUCH BUTTON", NULL);
 
@@ -222,7 +214,5 @@ int touch_button_test(void)
 
     return TEST_PASSED;
 }
-
-//RUN_TEST("Touch Button Test", touch_button_test)
 
 #endif

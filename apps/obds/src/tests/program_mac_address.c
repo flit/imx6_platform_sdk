@@ -103,7 +103,7 @@ const char * const mac_address_str(const char* const mac_data)
  *
  * @return  0 if successful; non-zero otherwise
  */
-test_return_t program_mac_address_fuses(const char* const mac_data, const char* const indent)
+test_return_t program_mac_address_fuses(const char* const mac_data) 
 {
     /* Create a 32-bit formated MAC address from mac_data */
     reg32_t mac0_reg =
@@ -120,8 +120,8 @@ test_return_t program_mac_address_fuses(const char* const mac_data, const char* 
 
     char existing_mac_addr[6];
     read_mac_otp_registers(existing_mac_addr);
-    debug_printf("%s  ** MAC Address Fuses before program: 0x%08X, 0x%08X\n",
-    		indent, HW_OCOTP_MAC0_RD(), HW_OCOTP_MAC1_RD());
+    debug_printf("  ** MAC Address Fuses before program: 0x%08X, 0x%08X\n",
+    		 HW_OCOTP_MAC0_RD(), HW_OCOTP_MAC1_RD());
 
     /* blow the fuses */
     ocotp_fuse_blow_row(HW_OCOTP_MAC0_BANK, HW_OCOTP_MAC0_ROW, mac0_reg);
@@ -130,11 +130,11 @@ test_return_t program_mac_address_fuses(const char* const mac_data, const char* 
     if ( ocotp_sense_fuse(HW_OCOTP_MAC0_BANK, HW_OCOTP_MAC0_ROW) != mac0_reg ||
     	 ocotp_sense_fuse(HW_OCOTP_MAC1_BANK, HW_OCOTP_MAC1_ROW) != mac1_reg )
     {
-        printf("%s  ** Fuse read-back-verify failed.\n", indent);
-        printf("%s  ** Read back: 0x%08X, 0x%08X\n", indent,
+        printf("  ** Fuse read-back-verify failed.\n");
+        printf("  ** Read back: 0x%08X, 0x%08X\n",
         		ocotp_sense_fuse(HW_OCOTP_MAC0_BANK, HW_OCOTP_MAC0_ROW),
         		ocotp_sense_fuse(HW_OCOTP_MAC1_BANK, HW_OCOTP_MAC1_ROW));
-        printf("%s  ** Should be: 0x%08X, 0x%08X\n", indent, mac0_reg, mac1_reg);
+        printf("  ** Should be: 0x%08X, 0x%08X\n",  mac0_reg, mac1_reg);
 
         /* TODO: Is it still needed? => ask design */
         /* Disable fuse programming in the CCM CGPR register by clearing the 'efuse_prog_supply_gate' bit */
@@ -145,15 +145,15 @@ test_return_t program_mac_address_fuses(const char* const mac_data, const char* 
         return TEST_FAILED;
     }
 
-    debug_printf("%s  ** Fuses programmed successfully.\n\n", indent);
-    debug_printf("%s  ** MAC Address Fuses after program: 0x%08X, 0x%08X\n",
-    		indent, HW_OCOTP_MAC0_RD(), HW_OCOTP_MAC1_RD());
+    debug_printf("  ** Fuses programmed successfully.\n\n");
+    debug_printf("  ** MAC Address Fuses after program: 0x%08X, 0x%08X\n",
+    		HW_OCOTP_MAC0_RD(), HW_OCOTP_MAC1_RD());
 
     /* reload the otp shadow registers */
     ocotp_reload_otp_shadow_registers();
 
-    debug_printf("%s  ** MAC Address Fuses after reload: 0x%08X, 0x%08X\n",
-    		indent, HW_OCOTP_MAC0_RD(), HW_OCOTP_MAC1_RD());
+    debug_printf("  ** MAC Address Fuses after reload: 0x%08X, 0x%08X\n",
+    		 HW_OCOTP_MAC0_RD(), HW_OCOTP_MAC1_RD());
 
     /* TODO: Is it still needed? => ask design */
     /* Disable fuse programming in the CCM CGPR register by clearing the 'efuse_prog_supply_gate' bit */
@@ -165,46 +165,42 @@ test_return_t program_mac_address_fuses(const char* const mac_data, const char* 
 }
 
 /* Program the Ethernet MAC Address fuses if not already done */
-menu_action_t program_mac_address(const menu_context_t* context, void* param)
+//menu_action_t program_mac_address(const menu_context_t* context, void* param)
+int program_mac_address(void) 
 {
 	test_return_t result = TEST_FAILED;
-	const char* const indent = menu_get_indent(context);
 
-    if ( prompt_run_test(test_name, indent) != TEST_CONTINUE )
-    {
-    	*(test_return_t*)param = TEST_BYPASSED;
-    	return MENU_CONTINUE;
-    }
-
+    PROMPT_RUN_TEST(test_name, NULL);
+    
     //
     // Get existing MAC Address
     //
     char existing_mac_addr[6];
     read_mac_otp_registers(existing_mac_addr);
     printf("\n");
-    printf("%sExisting MAC address: %s\n", indent, mac_address_str(existing_mac_addr));
+    printf("Existing MAC address: %s\n", mac_address_str(existing_mac_addr));
 
     if ((existing_mac_addr[0] == 0) && (existing_mac_addr[1] == 0) && (existing_mac_addr[2] == 0) &&
         (existing_mac_addr[3] == 0) && (existing_mac_addr[4] == 0) && (existing_mac_addr[5] == 0))
     {
         printf("\n");
-        printf("%sThe MAC address has not been programmed.\n", indent);
-        printf("%sDo you want to program the MAC address?\n", indent);
-        if (!is_input_char('y', indent))
+        printf("The MAC address has not been programmed.\n");
+        printf("Do you want to program the MAC address?\n");
+        if (!is_input_char('y', NULL))
         {
             /* Do not program the suggested value to Board ID fuse bank */
-            printf("%sNOT programming MAC address to fuses.\n", indent);
-            print_test_skipped(test_name, indent);
+            printf("NOT programming MAC address to fuses.\n");
+            print_test_skipped(test_name, NULL);
 
-            *(test_return_t*)param = TEST_BYPASSED;
+//            *(test_return_t*)param = TEST_BYPASSED;
             return MENU_CONTINUE;
         }
 
 retry_enter_mac_address:
         // now try to read/set mac
 		printf("\n");
-        printf("%sEnter MAC address \"MOST SIGNIFICANT BYTE FIRST\"\n", indent);
-        printf("%sEnter MAC in the form of [010203040506] then hit enter:\n", indent);
+        printf("Enter MAC address \"MOST SIGNIFICANT BYTE FIRST\"\n");
+        printf("Enter MAC in the form of [010203040506] then hit enter:\n");
         char user_mac_addr[6], key_pressed, tmp1, tmp2, i = 0;
         do
         {
@@ -220,7 +216,7 @@ retry_enter_mac_address:
 				if ((key_pressed == '\n') || (key_pressed == '\r'))
 					break;
 				else {
-					printf("\n%sNot a valid input, valid inputs are [0-9,a-f,A-F]\n", indent);
+					printf("\nNot a valid input, valid inputs are [0-9,a-f,A-F]\n");
 					continue;
 				}
 			}
@@ -246,53 +242,53 @@ retry_enter_mac_address:
         if ( key_pressed != '\r' && key_pressed != '\n' )
         	printf("\n");
 
-        printf("\n%sMAC address entered: %s\n", indent, mac_address_str(user_mac_addr));
+        printf("\nMAC address entered: %s\n", mac_address_str(user_mac_addr));
 
         printf("\n");
         printf_color(g_TextAttributeBold, g_TextColorRed,
-        		"%sContinue with irreversible operation to program the MAC address?\n", indent);
-        if (!is_input_char('y', indent))
+        		"Continue with irreversible operation to program the MAC address?\n");
+        if (!is_input_char('y', NULL))
         {
             /* Give user a chance to reenter the MAC address */
-        	printf("\n%sDo you want to reenter the MAC address?\n", indent);
-            if (is_input_char('y', indent))
+        	printf("\nDo you want to reenter the MAC address?\n");
+            if (is_input_char('y', NULL))
             {
                 goto retry_enter_mac_address;
             }
             else
             {
                 /* Do not program the entered value to MAC address fuse bank */
-            	printf("%sNOT programming the MAC address to fuses.\n", indent);
-                print_test_skipped(test_name, indent);
+            	printf("NOT programming the MAC address to fuses.\n");
+                print_test_skipped(test_name, NULL);
 
-                *(test_return_t*)param = TEST_BYPASSED;
+//                *(test_return_t*)param = TEST_BYPASSED;
                 return MENU_CONTINUE;
             }
         }
 
         // DO THE PROGRAMMING
-        result = program_mac_address_fuses(user_mac_addr, indent);
+        result = program_mac_address_fuses(user_mac_addr);
     }
     else
     {
-        printf("%sIs this the correct MAC address\n", indent);
-        if (is_input_char('y', indent))
+        printf("Is this the correct MAC address\n");
+        if (is_input_char('y', NULL))
         	result = TEST_PASSED;
     }
 
     if (result == TEST_PASSED)
     {
-        print_test_passed(test_name, indent);
+        print_test_passed(test_name, NULL);
 
-        *(test_return_t*)param = TEST_PASSED;
+//        *(test_return_t*)param = TEST_PASSED;
         return MENU_CONTINUE;
     }
     else
     {
-	    printf("\n%sThe MAC address is incorrect.\n", indent);
-        print_test_failed(test_name, indent);
+	    printf("\nThe MAC address is incorrect.\n");
+        print_test_failed(test_name, NULL);
 
-        *(test_return_t*)param = TEST_FAILED;
+//        *(test_return_t*)param = TEST_FAILED;
         return MENU_CONTINUE;
     }
 }

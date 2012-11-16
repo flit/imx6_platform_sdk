@@ -65,9 +65,9 @@ void print_test_not_implemented(const char* const test_name, const char* const i
 // TODO Replasce this with function prompt_run_test
 #define PROMPT_RUN_TEST(name, indent)                       \
     do {                                                    \
-        printf("\n%s---- Running < %s >\n", indent, name);  \
+        printf("\n%---- Running < %s >\n", name);           \
         if (!auto_run_enable) {                             \
-            if (!is_input_char('y', indent))                \
+            if (!is_input_char('y', NULL))                  \
                 return TEST_BYPASSED;                       \
         }                                                   \
         else                                                \
@@ -89,14 +89,14 @@ typedef enum _select_tests
 } select_tests_t;
 
 // OBDS tests
-menu_action_t program_board_id(const menu_context_t* const context, void* const param);
-menu_action_t program_mac_address(const menu_context_t* const context, void* const param);
+//menu_action_t program_board_id(const menu_context_t* const context, void* const param);
+//menu_action_t program_mac_address(const menu_context_t* const context, void* const param);
 menu_action_t ddr_test(const menu_context_t* const context, void* const param);
 menu_action_t snvs_srtc_test(const menu_context_t* const context, void* const param);
 menu_action_t enet_test_main(const menu_context_t* const context, void* const param);
 menu_action_t ar8031_test_main(const menu_context_t* const context, void* const param);
 menu_action_t KSZ9021RN_test_main(const menu_context_t* const context, void* const param);
-menu_action_t android_buttons_test(const menu_context_t* const context, void* const param);
+//menu_action_t android_buttons_test(const menu_context_t* const context, void* const param);
 menu_action_t flexcan_test(const menu_context_t* const context, void* const param);
 menu_action_t i2c_device_id_check(const menu_context_t* const context, void* const param);
 menu_action_t i2s_audio_test(const menu_context_t* const context, void* const param);
@@ -116,7 +116,6 @@ void select_tests(menuitem_t* const menuitems, const select_tests_t select_tests
 
 //list of tests from obds
 
-extern int touch_button_test_enable;
 extern int eeprom_test_enable;
 //extern int ddr_test_enable;
 //extern int i2c_device_id_check_p1003_test_enable;

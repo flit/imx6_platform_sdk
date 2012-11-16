@@ -50,10 +50,58 @@
 #include "print_clock_info.h"
 #include "print_version.h"
 
+//! @brief Macro to help create test menu items.
+#define DEFINE_TEST_MENU_ITEM(k, m, t) {MENUITEM_FUNCTION, k, m, NULL, run_test, t}
+
+//! @brief Typedef for one of the test functions.
+typedef void (*test_function_t)(void);
+
+extern int program_board_id(void);
+extern int program_mac_address(void);
+extern int android_buttons_test(void);
+extern int touch_button_test(void);
+
 int total_tests = 0;
 int auto_run_enable = 1; // global flag to indicate auto-run feature enabled or not
+
+//! @brief Action function to call the test function passed in as a parameter.
+menu_action_t run_test(const menu_context_t* context, void* param)
+{
+    test_function_t testFunction = (test_function_t)param;
+    testFunction();
+    
+    return MENU_SHOW;
+}
+
+//! @brief Action function to exit the menu.
+menu_action_t exit_test(const menu_context_t* context, void* param)
+{
+    return MENU_EXIT;
+}
+
+
 menuitem_t main_menuitems[MAX_TESTS];
 test_return_t test_results[MAX_TESTS];
+
+const menuitem_t obds_test_list[] = {
+    DEFINE_TEST_MENU_ITEM("01", "Board_ID Test", program_board_id),
+    DEFINE_TEST_MENU_ITEM("02", "MAC Address Test", program_mac_address), 
+    DEFINE_TEST_MENU_ITEM("10", "Android_button_test", android_buttons_test),
+    DEFINE_TEST_MENU_ITEM("e", "touch_button_test", touch_button_test),
+    // Quit menu item
+    { MENUITEM_FUNCTION, "q", "quit test system", NULL, exit_test, 0 },
+        
+    // Menu terminator
+    { MENUITEM_NULL }
+};
+
+//! @brief The test selection menu.
+const menu_t obds_menu = {
+        .header = "i.mx OBDS Tests\n"
+                  "  --------------",
+        .menuitems = obds_test_list,
+        .footer = "Select test to run:"
+    };
 
 /*!
  * main function that decides which tests to run and prompts the user before
@@ -108,7 +156,8 @@ int main(void)
 	//
 	// Show the main menu
 	//
-	menu_present(&main_menu);
+//	menu_present(&main_menu);
+      menu_present(&obds_menu);
 
 	//
 	// Report the results of the tests.
@@ -255,8 +304,9 @@ void select_tests(menuitem_t* const menuitems, const select_tests_t select_tests
 	int menu_idx = 0;
 	memset(menuitems, 0, sizeof(menuitem_t) * MAX_TESTS);
 
-	menu_make_menuitem(&menuitems[menu_idx], "00", "RUN ALL TESTS", run_all_tests, NULL);menu_idx++;
+//	menu_make_menuitem(&menuitems[menu_idx], "00", "RUN ALL TESTS", run_all_tests, NULL);menu_idx++;
 
+/*
 #if defined (CHIP_MX6DQ) || defined(CHIP_MX6SDL)
 #if defined(BOARD_TYPE_SABRE_AI)
 	if ( select_tests != SEL_MAIN_BOARD_ONLY_TESTS )
@@ -312,7 +362,7 @@ void select_tests(menuitem_t* const menuitems, const select_tests_t select_tests
 #elif defined(BOARD_EVK)
 #endif
 #endif
-
+*/
 	menu_make_menuitem_group(&menuitems[menu_idx++], "Menu functions");
 	menu_make_menuitem_showmenu(&menuitems[menu_idx++]);
 	menu_make_menuitem_exitmenu(&menuitems[menu_idx++]);

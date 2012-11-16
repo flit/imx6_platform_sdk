@@ -56,7 +56,8 @@ SUBDIRS = \
 # List of all applications to build. Applications must reside in the apps directory.
 ALL_APPS = \
     sdk_unit_test \
-    power_modes_test
+    power_modes_test \
+     obds
 
 # Apps that are only built for MX6DQ and MX6SDL.
 ifdef is_dq_or_sdl

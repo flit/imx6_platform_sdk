@@ -835,8 +835,8 @@ int32_t decode_test(void *arg)
     int32_t vplay_mode = VPLAY_30FPS;
     struct codec_control *codecctrl;
     int32_t file_in_1 = 0, file_in_2 = 0;
-    uint8_t g_dec_file_1[] = "indir/clip_1.264";
-    uint8_t g_dec_file_2[] = "indir/clip_2.264";
+    uint8_t g_dec_file_1[] = "clip_1.264";
+    uint8_t g_dec_file_2[] = "clip_2.264";
 
     while (i < MAX_NUM_INSTANCE) {
         g_is_frame_drop[i] = 0; //initialize the frame drop flag

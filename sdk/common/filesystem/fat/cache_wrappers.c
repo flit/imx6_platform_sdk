@@ -38,6 +38,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "fat_internal.h"
+#include "media_cache.h"
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -45,19 +46,162 @@
 #include <assert.h>
 
 extern uint32_t g_usdhc_instance;
+extern int totalFileOpened;
 
-typedef struct {
+typedef struct fat_cache_s{
     uint8_t * buffer;
-    uint32_t sector;
+    int32_t sector;
     bool isValid;
+    int32_t refIndex;
+    struct fat_cache_s *next;
 } fat_cache_t;
 
-fat_cache_t g_fatCache = {0};
+static fat_cache_t *g_fatCache = {0};
 uint32_t g_u32MbrStartSector = 0;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code
 ////////////////////////////////////////////////////////////////////////////////
+
+
+RtStatus_t media_cache_pinned_write(MediaCacheParamBlock_t * pb)
+{
+    RtStatus_t status;
+    status = card_data_read(g_usdhc_instance, (int *)pb->buffer, 512,
+                       (pb->sector + g_u32MbrStartSector)* 512);
+    status = SUCCESS;
+
+    return status;
+}
+
+RtStatus_t media_cache_release(uint32_t token)
+{
+    free((void *)token);
+    return 0;
+}
+
+
+
+fat_cache_t *fatCacheAllocate(int32_t sector)
+{
+    /*allocate fat cache*/
+    fat_cache_t *FatCache = (fat_cache_t *)calloc(1, sizeof(fat_cache_t));
+    if(!FatCache)
+        return NULL;
+
+    FatCache->buffer = (uint8_t *)malloc(512);
+    if(!FatCache->buffer)
+    {
+        free(FatCache);
+        return NULL;
+    }
+    FatCache->sector = sector;
+    FatCache->refIndex = totalFileOpened;
+    FatCache->isValid = 0;
+
+    /*add the fat cache into list*/
+    if(!g_fatCache)
+    {
+        g_fatCache = FatCache;
+    } else {
+        /*add to the tail*/
+        fat_cache_t *tmpFatCache = g_fatCache;
+        while(tmpFatCache->next)
+            tmpFatCache = tmpFatCache->next;
+
+        tmpFatCache->next = FatCache;
+    }
+    
+    return FatCache;
+}
+
+void updateFatCacheRefIndex(int32_t index)
+{
+    fat_cache_t *tmpFatCache = g_fatCache;
+    
+    while(tmpFatCache)
+    {
+        if(tmpFatCache->refIndex > index)
+        {
+            tmpFatCache->refIndex --;
+        }
+
+        tmpFatCache = tmpFatCache->next;
+    }    
+}
+
+void *getFatCache(int32_t sector)
+{
+    fat_cache_t *FatCache = NULL, *tmpFatCache = g_fatCache, *lastUnusedCache = NULL;
+
+    if(sector == -1) // allocate new
+    {
+        FatCache = fatCacheAllocate(sector);
+        return (void *)FatCache;
+    }
+    
+    /*find the cache from existing list*/
+    while(tmpFatCache)
+    {
+        if(tmpFatCache->sector == sector)
+        {
+            FatCache = tmpFatCache;
+            updateFatCacheRefIndex(FatCache->refIndex);
+            FatCache->refIndex = totalFileOpened; // tag the found cache as recently used
+            FatCache->isValid = 1;
+            return (void *)FatCache;
+        }
+
+        if(tmpFatCache->refIndex == 0)
+            lastUnusedCache = tmpFatCache;
+
+        tmpFatCache = tmpFatCache->next;
+    }
+
+    if(!lastUnusedCache) // Empty Cache list
+    {
+        lastUnusedCache = fatCacheAllocate(sector);    
+    } else {
+        lastUnusedCache->isValid = 0; // need to reload
+        updateFatCacheRefIndex(lastUnusedCache->refIndex);       
+        lastUnusedCache->refIndex = totalFileOpened;
+    }
+    lastUnusedCache->sector = sector;
+    
+    return (void *)lastUnusedCache;        
+}
+
+void fatCacheRelease(void *FatCache)
+{
+    fat_cache_t *tmpFatCache = (fat_cache_t *)FatCache;
+    if(!tmpFatCache) // release the least used
+    {
+        tmpFatCache = g_fatCache;
+        while(tmpFatCache)
+        {
+            if(tmpFatCache->refIndex == 0)
+                break;
+            tmpFatCache = tmpFatCache->next;
+        }    
+    }
+    
+    /*remove the fat cache in the cache list*/
+    fat_cache_t *tmp = g_fatCache;
+
+    if(g_fatCache == tmpFatCache) 
+    {
+        g_fatCache = g_fatCache->next;
+    } else {
+        while(tmp->next != tmpFatCache)
+            tmp = tmp->next;
+
+        tmp->next = tmpFatCache->next;
+    }
+    updateFatCacheRefIndex(tmpFatCache->refIndex);
+    /*free the cache memory*/
+    free(tmpFatCache->buffer);
+    free(tmpFatCache);
+}
 
 //! \brief Determines if a sector is within the first FAT.
 static bool IsFATSector(uint32_t drive, uint32_t sector)
@@ -228,55 +372,46 @@ int32_t * FSReadSector(int32_t deviceNumber, int32_t sectorNumber, int32_t write
     int status = 0;
     uint32_t actualSectorNumber = sectorNumber + g_u32MbrStartSector;
     uint32_t sectorSize = MediaTable[deviceNumber].BytesPerSector;
+    fat_cache_t* fatCache = NULL;
+    uint8_t *buffer = NULL;
 
     // Handle FAT cache.
     bool isFat = false;
-	isFat = IsFATSector(deviceNumber, actualSectorNumber);
-    if (isFat && g_fatCache.isValid && g_fatCache.sector == actualSectorNumber)
-    {
-        *token = 0;
-        return (int32_t *) g_fatCache.buffer;
-    } 
-
-    uint8_t * buffer;
+    isFat = IsFATSector(deviceNumber, actualSectorNumber);
     if (isFat)
     {
-        buffer = g_fatCache.buffer;
-        g_fatCache.sector = actualSectorNumber;
-        g_fatCache.isValid = false;
-    }
-    else
-    {
-        /* Not a fat sector, allocate a new buffer that
-           is released by FSReleaseSector() */
-		buffer = (uint8_t *)malloc(sectorSize);
+        fatCache = (fat_cache_t *)getFatCache(actualSectorNumber);
+        *token = 0;
+        if(fatCache->isValid) // already in RAM
+            return (int32_t *) fatCache->buffer;
+        else
+            buffer = fatCache->buffer;
+    } else {
+        /* Not a fat sector, allocate a new buffer that will be released by FSReleaseSector() */
+        buffer = (uint8_t *)malloc(sectorSize);
+        *token = (uint32_t)buffer;
     }
 
     status = card_data_read(g_usdhc_instance, (int *)buffer, sectorSize,
                        actualSectorNumber * sectorSize);
 
     // Give the caller the token so they can release the cache entry.
-    if ((status == 0) && token)
-    {
-        if (isFat)
-        {
-            g_fatCache.isValid = true;
-            *token = 0;
-        }
-        else
-            *token = (uint32_t)buffer;
-
-        return (int32_t *) (buffer);
-    }
-    else
+    if (status)
     {
         if (!isFat)
         {
             free(buffer);
-        }
+        } 
         // An error occurred, so return NULL.
         return NULL;
     }
+
+    if (isFat) // tag the Cache
+    {
+        fatCache->isValid = TRUE;
+    }
+    
+    return (int32_t *)buffer;
 
 }
 
@@ -314,7 +449,7 @@ RtStatus_t FSFlushSector(int32_t deviceNumber, int32_t sectorNumber, int32_t wri
 
 RtStatus_t FlushCache(void)
 {
-    g_fatCache.isValid = false;
+    g_fatCache->isValid = false;
     
     return SUCCESS;
 }
@@ -382,13 +517,8 @@ RtStatus_t FSDataDriveInit(DriveTag_t tag)
         return 1;
     }
 
-    // Setup fat cache.
-    memset(&g_fatCache, 0, sizeof(g_fatCache));
     /* initialize with a default value before getting size from FAT table */
     MediaTable[(int)tag].BytesPerSector = 512;
-    uint32_t sectorSize = MediaTable[(int)tag].BytesPerSector;
-    g_fatCache.buffer = (uint8_t *)malloc(sectorSize);
-
     // Reset partition offset.
     g_u32MbrStartSector = 0;
 
@@ -404,7 +534,7 @@ RtStatus_t FSDataDriveInit(DriveTag_t tag)
     // value. Thus, we'd get a double offset when trying to read the PBS. maybe this is not enough
     // to determine if a sector is MBR or DBR, need to investigate more!!!
 	/* Check the first sector is DBR or MBR. for removable disk there might be no MBR section */
-	if((pSectorData[0x00] == 0xEB) && (pSectorData[0x02] == 0x90) && (pSectorData[0x1c6] == 0)) // JMP NOP indicates this is DBR
+	if((pSectorData[0x00] == 0xEB) && (pSectorData[0x02] == 0x90)) // JMP NOP indicates this is DBR
 	{
 		pbsOffset = 0x0;
 	} else {

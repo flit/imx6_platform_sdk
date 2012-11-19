@@ -52,6 +52,9 @@ extern const uint8_t DriveLetter[];
 //! called HandleActive on HandleNumber.
 #define GET_FILE_SIZE(HandleNumber) (Handle[(HandleNumber)].FileSize)
 
+void *getFatCache(int32_t sector);
+void fatCacheRelease(void *FatCache);
+
 // Media cache wrappers.
 RtStatus_t FSWriteSector(int32_t deviceNumber, int32_t sectorNumber, int32_t destOffset, uint8_t * sourceBuffer, int32_t sourceOffset, int32_t numBytesToWrite, int32_t writeType);
 RtStatus_t FSEraseSector(int32_t deviceNumber, int32_t sectorNumber);

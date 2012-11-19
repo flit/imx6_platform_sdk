@@ -47,8 +47,7 @@
 #include "diroffset.h" 
 #include "media_cache.h"
 
-RtStatus_t media_cache_pinned_write(MediaCacheParamBlock_t * pb){return 0;}
-RtStatus_t media_cache_release(uint32_t token){return 0;}
+int totalFileOpened = 0;
 
 /*----------------------------------------------------------------------------
 >  Function Name: int32_t Fopen(uint8_t *filepath,uint8_t *mode)
@@ -254,6 +253,11 @@ int32_t Fopen(uint8_t *filepath,uint8_t *mode)
         Mode =  (FileSystemModeTypes_t)(READ_MODE+WRITE_MODE+APPEND_MODE);
   
     Updatehandlemode(HandleNumber, Mode);
+
+    /*get file cache for this handle*/
+    totalFileOpened++;
+    getFatCache(-1);
+    
     return (HandleNumber);
 }
 

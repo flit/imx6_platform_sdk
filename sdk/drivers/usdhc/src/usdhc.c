@@ -471,7 +471,7 @@ int card_set_blklen(uint32_t instance, int len)
  * 
  * @return             0 if successful; 1 otherwise
  */
-int card_data_read(uint32_t instance, int *dst_ptr, int length, int offset)
+int card_data_read(uint32_t instance, int *dst_ptr, int length, uint32_t offset)
 {
     int port, sector;
     command_t cmd;

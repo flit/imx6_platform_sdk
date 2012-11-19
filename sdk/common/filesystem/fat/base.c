@@ -353,6 +353,7 @@ RtStatus_t Fread_FAT(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToRe
 			int prevSectorPos = 0, prevSectorIndex = 0, sectorToBeRead = 0, prevClusterIndex = 0;
 			BytesToCopy = RemainBytesToRead - RemainBytesToRead % BytesPerSector; // need to aligned to sector
 			sectorNum = BytesToCopy / BytesPerSector;
+                     sectorNum = (sectorNum > 2048) ? 2048 : sectorNum;// limit one access no more than 1M
 
 			prevSectorIndex = Handle[HandleNumber].CurrentSector;
 			prevClusterIndex = Handle[HandleNumber].CurrentCluster;

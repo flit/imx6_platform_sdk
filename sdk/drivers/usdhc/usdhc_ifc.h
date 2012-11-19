@@ -108,7 +108,7 @@ extern int card_init(uint32_t instance, int bus_width);
  *
  * @return   0 if successful; non-zero otherwise 
 */
-extern int card_data_read(uint32_t instance, int *dst_ptr,  int length, int offset);
+extern int card_data_read(uint32_t instance, int *dst_ptr,  int length, uint32_t offset);
 
 /*!
  * @brief Write data to card

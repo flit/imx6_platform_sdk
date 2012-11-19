@@ -41,8 +41,8 @@
 #include "timer/epit.h"
 #include "usdhc/usdhc_ifc.h"
 
-uint8_t readfile[] = "indir/fsproj.h";
-uint8_t writefile[] = "fs_test1.dat";
+uint8_t readfile[] = "testin.dat";
+uint8_t writefile[] = "testout.dat";
 
 #define TEST_FILE_SIZE (1024*16)
 #define DeviceNum 0
@@ -61,26 +61,11 @@ hw_module_t count_timer = {
 
 int fat_write_speed_test(void)
 {
-	uint8_t *WriteBuffer = NULL;
+    uint8_t *WriteBuffer = NULL;
     uint32_t ClusterSize = 0, BytesWritten = 0;
     uint32_t TimeCount = 0;
-	int32_t i = 0, count = 0;
-	int32_t fout;
-	
-    printf("FSInit				");
-    if (FSInit(NULL, bufy, maxdevices, maxhandles, maxcaches) != SUCCESS) {
-        printf("FAIL\n");
-		return ERROR_GENERIC;
-    } else {
-        printf("PASS\n");
-    }
-
-    /*init the drive */
-    FSDriveInit(DeviceNum);
-    SetCWDHandle(DeviceNum);
-
-
-    print_media_fat_info(DeviceNum);
+    int32_t i = 0, count = 0;
+    int32_t fout;
 
     if ((fout = Fopen(writefile, (uint8_t *) "wb+")) < 0) {
         printf("Can't open the file: %s !\n", writefile);
@@ -88,14 +73,14 @@ int fat_write_speed_test(void)
     }
 
     ClusterSize = MediaTable[DeviceNum].SectorsPerCluster * MediaTable[DeviceNum].BytesPerSector;
-	WriteBuffer = (uint8_t *)malloc(ClusterSize);
+    WriteBuffer = (uint8_t *) malloc(ClusterSize);
     if (WriteBuffer == NULL) {
         printf("Allocating buffer failed!\n");
         return ERROR_GENERIC;
     }
-	for(i = 0; i < ClusterSize; i++){
-		*(WriteBuffer + i) = (uint8_t)i;
-	}
+    for (i = 0; i < ClusterSize; i++) {
+        *(WriteBuffer + i) = (uint8_t) i;
+    }
 
     count_timer.freq = get_main_clock(IPG_CLK);
     epit_init(&count_timer, CLKSRC_IPG_CLK, count_timer.freq / 1000000,
@@ -106,55 +91,39 @@ int fat_write_speed_test(void)
     SDHC_ADMA_mode = 1;
     SDHC_INTR_mode = 0;
 
-	while(BytesWritten < TEST_FILE_SIZE){
-		if((count = Fwrite(fout, WriteBuffer, ClusterSize)) != ClusterSize){
-			printf("Fwrite failed. Exit.\n");
+    while (BytesWritten < TEST_FILE_SIZE) {
+        if ((count = Fwrite(fout, WriteBuffer, ClusterSize)) != ClusterSize) {
+            printf("Fwrite failed. Exit.\n");
             Fclose(fout);
             return ERROR_GENERIC;
-		}	
-		BytesWritten += count;
-		printf(".");
-	}
+        }
+        BytesWritten += count;
+    }
 
     TimeCount = epit_get_counter_value(&count_timer);
     epit_counter_disable(&count_timer); //polling mode
 
     free(WriteBuffer);
-    Fclose(fout);
-    FlushCache();
 
     printf("\n*****************File Reading End********************\n");
     TimeCount = (0xFFFFFFFF - TimeCount) / 1000;    //ms
     printf("Total data written %d, time %d ms\n", GetFileSize(fout), TimeCount);
 
-	return 0;
+    Fclose(fout);
+    FlushCache();
+
+    return 0;
 }
 
 int fat_read_speed_test(void)
 {
     int count = 0;
-    int TestResult = 0;
     int32_t fin;
     uint8_t *ReadBuffer;
     uint32_t ClusterSize = 0, FileSize = 0;
     int ChunkSize = 0x80000;
-    uint8_t readfile[] = "indir/fslclip.264";
     int ReadSize = 0;
     uint32_t TimeCount = 0;
-
-    printf("FSInit				");
-    if (FSInit(NULL, bufy, maxdevices, maxhandles, maxcaches) != SUCCESS) {
-        TestResult = -1;
-        printf("FAIL\n");
-    } else {
-        printf("PASS\n");
-    }
-
-    /*init the drive */
-    FSDriveInit(DeviceNum);
-    SetCWDHandle(DeviceNum);
-
-    print_media_fat_info(DeviceNum);
 
     if ((fin = Fopen(readfile, (uint8_t *) "r")) < 0) {
         printf("Can't open the file: %s !\n", readfile);
@@ -205,11 +174,7 @@ int fat_read_speed_test(void)
 
 int fat_test(void)
 {
-    int count = 0;
     int TestResult = 0;
-    int32_t fin;
-    uint8_t *ReadBuffer;
-    uint32_t ClusterSize = 0, FileSize = 0;
 
     printf("FSInit				");
     if (FSInit(NULL, bufy, maxdevices, maxhandles, maxcaches) != SUCCESS) {
@@ -225,30 +190,11 @@ int fat_test(void)
 
     print_media_fat_info(DeviceNum);
 
-    if ((fin = Fopen(readfile, (uint8_t *) "r")) < 0) {
-        printf("Can't open the file: %s !\n", readfile);
-        return ERROR_GENERIC;
+    while (1) {
+        //fat_read_speed_test();
+        fat_write_speed_test();
     }
 
-    FileSize = GetFileSize(fin);
-    printf("File %s of size %d opened!\n", readfile, FileSize);
-
-    ClusterSize = MediaTable[DeviceNum].SectorsPerCluster * MediaTable[DeviceNum].BytesPerSector;
-    ReadBuffer = (uint8_t *) malloc(FileSize + 1);
-    printf("%X\n", ReadBuffer);
-    memset(ReadBuffer, '\0', FileSize + 1);
-
-    if ((count = Fread(fin, ReadBuffer, FileSize)) < 0) {
-        Fclose(fin);
-        return ERROR_GENERIC;
-    } else {
-        printf("%s\n", ReadBuffer);
-    }
-
-    printf("\n*****************File Reading End********************\n");
-
-    free(ReadBuffer);
-    Fclose(fin);
     FlushCache();
     return 0;
 }

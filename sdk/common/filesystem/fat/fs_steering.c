@@ -58,6 +58,8 @@
 
 #include "fs_steering.h"
 #include "ddi_media.h"
+extern void fatCacheRelease(void *FatCache);
+extern int totalFileOpened;
 
 // Array of fuction pointers for the redirection of Fclose.  There should
 // be one entry in the array for each FsType_t enum value and a NULL entry
@@ -170,7 +172,9 @@ RtStatus_t Fclose( int32_t handleNumber )
         // Call steering function
         result = function( handleNumber );
     }
-
+    totalFileOpened--;
+    fatCacheRelease(NULL);
+    
     return result;
 }
 

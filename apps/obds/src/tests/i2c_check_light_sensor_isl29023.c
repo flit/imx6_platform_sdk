@@ -35,6 +35,8 @@
 #define REG_DATA_LSB	0x02
 #define REG_DATA_MSB	0x03
 
+static const char * const test_name = "I2C_DEVICE_ISL29023 Test";
+
 static unsigned char isl29023_reg_read(unsigned int i2c_base_addr, unsigned char reg_addr)
 {
     struct imx_i2c_request rq = {0};
@@ -148,4 +150,31 @@ int i2c_device_id_check_isl29023(unsigned int i2c_base_addr)
         printf("failed, 0xA5 vs 0x%02X\n\n", data_reg);
         return 1;
     }
+}
+
+/*!
+ * @return      TEST_PASSED or  TEST_FAILED    
+ */
+menu_action_t i2c_device_isl29023_test(const menu_context_t* context, void* param)
+{
+	if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
+    {
+    	*(test_return_t*)param = TEST_BYPASSED;
+    	return MENU_CONTINUE;
+    }
+    
+    if (i2c_device_id_check_isl29023(I2C3_BASE_ADDR) == TEST_PASSED)
+    {
+        //PASS the test
+        print_test_passed(test_name, NULL);
+
+        *(test_return_t*)param = TEST_PASSED;
+    }
+    else
+    {
+        print_test_failed(test_name, NULL);
+
+        *(test_return_t*)param = TEST_FAILED;
+    }    
+    return MENU_CONTINUE;   
 }

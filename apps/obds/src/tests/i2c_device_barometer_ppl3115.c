@@ -32,6 +32,8 @@
 
 #define PPL3115_REG_DEVICE_ID_OFF	0x0C
 
+static const char * const test_name = "I2C_DEVICE_PPL3115 Test";
+
 static unsigned char ppl3115_reg_read(unsigned int i2c_base_addr, unsigned char reg_addr)
 {
     struct imx_i2c_request rq = {0};
@@ -46,7 +48,6 @@ static unsigned char ppl3115_reg_read(unsigned int i2c_base_addr, unsigned char 
     rq.buffer = buf;
 
     i2c_xfer(&rq, I2C_READ);
-//    i2c_xfer(i2c_base_addr, &rq, I2C_READ);
     reg_data = buf[0];
     return reg_data;
 }
@@ -66,7 +67,6 @@ static int ppl3115_reg_write(unsigned int i2c_base_addr, unsigned char reg_addr,
     rq.buffer = buf;
 
     return i2c_xfer(&rq, I2C_WRITE);
-//    return i2c_xfer(i2c_base_addr, &rq, I2C_WRITE);
 }
 
 int i2c_device_id_check_ppl3115(unsigned int i2c_base_addr)
@@ -83,4 +83,31 @@ int i2c_device_id_check_ppl3115(unsigned int i2c_base_addr)
         printf("failed, 0xC4 vs 0x%02X\n", reg_data);
         return 1;
     }
+}
+
+/*!
+ * @return      TEST_PASSED or  TEST_FAILED    
+ */
+menu_action_t i2c_device_ppl3115_test(const menu_context_t* context, void* param)
+{
+	if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
+    {
+    	*(test_return_t*)param = TEST_BYPASSED;
+    	return MENU_CONTINUE;
+    }
+    //TO be confirmed - i2c-base_addr
+    if (i2c_device_id_check_ppl3115(I2C3_BASE_ADDR) == TEST_PASSED)
+    {
+        //PASS the test
+        print_test_passed(test_name, NULL);
+
+        *(test_return_t*)param = TEST_PASSED;
+    }
+    else
+    {
+        print_test_failed(test_name, NULL);
+
+        *(test_return_t*)param = TEST_FAILED;
+    }    
+    return MENU_CONTINUE;   
 }

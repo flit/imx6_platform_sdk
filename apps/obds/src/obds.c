@@ -50,58 +50,10 @@
 #include "print_clock_info.h"
 #include "print_version.h"
 
-//! @brief Macro to help create test menu items.
-#define DEFINE_TEST_MENU_ITEM(k, m, t) {MENUITEM_FUNCTION, k, m, NULL, run_test, t}
-
-//! @brief Typedef for one of the test functions.
-typedef void (*test_function_t)(void);
-
-extern int program_board_id(void);
-extern int program_mac_address(void);
-extern int android_buttons_test(void);
-extern int touch_button_test(void);
-
 int total_tests = 0;
 int auto_run_enable = 1; // global flag to indicate auto-run feature enabled or not
-
-//! @brief Action function to call the test function passed in as a parameter.
-menu_action_t run_test(const menu_context_t* context, void* param)
-{
-    test_function_t testFunction = (test_function_t)param;
-    testFunction();
-    
-    return MENU_SHOW;
-}
-
-//! @brief Action function to exit the menu.
-menu_action_t exit_test(const menu_context_t* context, void* param)
-{
-    return MENU_EXIT;
-}
-
-
 menuitem_t main_menuitems[MAX_TESTS];
 test_return_t test_results[MAX_TESTS];
-
-const menuitem_t obds_test_list[] = {
-    DEFINE_TEST_MENU_ITEM("01", "Board_ID Test", program_board_id),
-    DEFINE_TEST_MENU_ITEM("02", "MAC Address Test", program_mac_address), 
-    DEFINE_TEST_MENU_ITEM("10", "Android_button_test", android_buttons_test),
-    DEFINE_TEST_MENU_ITEM("e", "touch_button_test", touch_button_test),
-    // Quit menu item
-    { MENUITEM_FUNCTION, "q", "quit test system", NULL, exit_test, 0 },
-        
-    // Menu terminator
-    { MENUITEM_NULL }
-};
-
-//! @brief The test selection menu.
-const menu_t obds_menu = {
-        .header = "i.mx OBDS Tests\n"
-                  "  --------------",
-        .menuitems = obds_test_list,
-        .footer = "Select test to run:"
-    };
 
 /*!
  * main function that decides which tests to run and prompts the user before
@@ -156,8 +108,7 @@ int main(void)
 	//
 	// Show the main menu
 	//
-//	menu_present(&main_menu);
-      menu_present(&obds_menu);
+	menu_present(&main_menu);
 
 	//
 	// Report the results of the tests.
@@ -171,7 +122,7 @@ int main(void)
 
 test_return_t prompt_run_test(const char * const test_name, const char* const indent)
 {
-    printf_color(g_TextAttributeBold, NULL, "\n%s---- Running < %s >\n", indent, test_name);
+    printf_color(g_TextAttributeBold, NULL, "\n---- Running < %s >\n", test_name);
     if (!auto_run_enable)
     {
         if (!is_input_char('y', indent))
@@ -188,22 +139,22 @@ test_return_t prompt_run_test(const char * const test_name, const char* const in
 
 void print_test_passed(const char* const test_name, const char* const indent)
 {
-	 printf_color(NULL, g_TextColorGreen, "\n%s%s PASSED.\n", indent, test_name);
+	 printf_color(NULL, g_TextColorGreen, "\n%s PASSED.\n", test_name);
 }
 
 void print_test_skipped(const char* const test_name, const char* const indent)
 {
-	 printf_color(NULL, g_TextColorYellow, "\n%s%s SKIPPED.\n", indent, test_name);
+	 printf_color(NULL, g_TextColorYellow, "\n%s SKIPPED.\n", test_name);
 }
 
 void print_test_failed(const char* const test_name, const char* const indent)
 {
-	 printf_color(g_TextAttributeBold, g_TextColorRed, "\n%s%s FAILED.\n", indent, test_name);
+	 printf_color(g_TextAttributeBold, g_TextColorRed, "\n%s FAILED.\n", test_name);
 }
 
 void print_test_not_implemented(const char* const test_name, const char* const indent)
 {
-	 printf_color(g_TextAttributeBold, g_TextColorRed, "\n%s%s is NOT IMPLEMENTED.\n", indent, test_name);
+	 printf_color(g_TextAttributeBold, g_TextColorRed, "\n%s is NOT IMPLEMENTED.\n", test_name);
 }
 
 //
@@ -304,72 +255,81 @@ void select_tests(menuitem_t* const menuitems, const select_tests_t select_tests
 	int menu_idx = 0;
 	memset(menuitems, 0, sizeof(menuitem_t) * MAX_TESTS);
 
-//	menu_make_menuitem(&menuitems[menu_idx], "00", "RUN ALL TESTS", run_all_tests, NULL);menu_idx++;
+	menu_make_menuitem(&menuitems[menu_idx], "00", "RUN ALL TESTS", run_all_tests, NULL);menu_idx++;
 
-/*
-#if defined (CHIP_MX6DQ) || defined(CHIP_MX6SDL)
-#if defined(BOARD_TYPE_SABRE_AI)
 	if ( select_tests != SEL_MAIN_BOARD_ONLY_TESTS )
 	{
+		//common tests for all chips and boards
 		menu_make_menuitem_group(&menuitems[menu_idx++], "CPU Board Tests");
 		menu_make_menuitem(&menuitems[menu_idx], "01", "BOARD ID Test", program_board_id, &test_results[menu_idx]);menu_idx++;
-		menu_make_menuitem(&menuitems[menu_idx], "02", "MAC Address Test", program_mac_address, &test_results[menu_idx]);menu_idx++;
-		menu_make_menuitem(&menuitems[menu_idx], "03", "DDR Test", ddr_test, &test_results[menu_idx]);menu_idx++;
-		menu_make_menuitem(&menuitems[menu_idx], "04", "SNVS - SRTC Test", snvs_srtc_test, &test_results[menu_idx]);menu_idx++;
-#if defined(BOARD_REV_A)
-	// use micrel ethernet for rev A board
-	// KSZ9021RN_test_enable = 1;
-#else
+    	menu_make_menuitem(&menuitems[menu_idx], "02", "MAC Address Test", program_mac_address, &test_results[menu_idx]);menu_idx++;
+//		menu_make_menuitem(&menuitems[menu_idx], "04", "SNVS - SRTC Test", snvs_srtc_test, &test_results[menu_idx]);menu_idx++;
+
     // use Atheros ethernet for all other revs (rev B)
-	menu_make_menuitem(&menuitems[menu_idx], "05", "Ethernet Test", enet_test_main, &test_results[menu_idx]);menu_idx++;    
-	menu_make_menuitem(&menuitems[menu_idx], "06", "RGMII AR8031 G-Ethernet Test", ar8031_test_main, &test_results[menu_idx]);menu_idx++;
-	menu_make_menuitem(&menuitems[menu_idx], "08", "I2C Device ID Test", i2c_device_id_check, &test_results[menu_idx]);menu_idx++;		
-	menu_make_menuitem(&menuitems[menu_idx], "09", "I2S Audio Test", i2s_audio_test, &test_results[menu_idx]);menu_idx++;
-	menu_make_menuitem(&menuitems[menu_idx], "12", "UART Test", uart_test, &test_results[menu_idx]);menu_idx++;
-	menu_make_menuitem(&menuitems[menu_idx], "13", "SPI NOR FLASH Test", spi_nor_test, &test_results[menu_idx]);menu_idx++;	
-	menu_make_menuitem(&menuitems[menu_idx], "14", "MMC/SD Test", mmcsd_test, &test_results[menu_idx]);menu_idx++;		
-	menu_make_menuitem(&menuitems[menu_idx], "15", "PMIC - PF0100 Test", pf0100_i2c_device_id_check, &test_results[menu_idx]);menu_idx++;	
-#endif
-#if defined(CHIP_MX6DQ)
-//    sata_test_enable = 1;
-#endif
-//    etm_test_enable = 1;
+//	menu_make_menuitem(&menuitems[menu_idx], "05", "Ethernet Test", enet_test_main, &test_results[menu_idx]);menu_idx++;    
+//	menu_make_menuitem(&menuitems[menu_idx], "08", "I2C Device ID Test", i2c_device_id_check, &test_results[menu_idx]);menu_idx++;		
+//	menu_make_menuitem(&menuitems[menu_idx], "09", "I2S Audio Test", i2s_audio_test, &test_results[menu_idx]);menu_idx++;
+//	menu_make_menuitem(&menuitems[menu_idx], "12", "UART Test", uart_test, &test_results[menu_idx]);menu_idx++;
+//	menu_make_menuitem(&menuitems[menu_idx], "13", "SPI NOR FLASH Test", spi_nor_test, &test_results[menu_idx]);menu_idx++;	
+//	menu_make_menuitem(&menuitems[menu_idx], "14", "MMC/SD Test", mmcsd_test, &test_results[menu_idx]);menu_idx++;		
+//	menu_make_menuitem(&menuitems[menu_idx], "15", "PMIC - PF0100 Test", pf0100_i2c_device_id_check, &test_results[menu_idx]);menu_idx++;	
+//		menu_make_menuitem(&menuitems[menu_idx], "11", "FLEXCAN1/2 LOOPBACK Test", flexcan_test, &test_results[menu_idx]);menu_idx++;
 	}
 
 	if ( select_tests != SEL_CPU_BOARD_ONLY_TESTS )
 	{
 		menu_make_menuitem_group(&menuitems[menu_idx++], "Main Board Tests");
-		menu_make_menuitem(&menuitems[menu_idx], "10", "ANDROID BUTTONS Test", android_buttons_test, &test_results[menu_idx]);menu_idx++;
-		menu_make_menuitem(&menuitems[menu_idx], "11", "FLEXCAN1/2 LOOPBACK Test", flexcan_test, &test_results[menu_idx]);menu_idx++;
-//		menu_make_menuitem(&menuitems[menu_idx], "12", "RGMII AR8031 G-Ethernet Test", ar8031_test_main, &test_results[menu_idx]);menu_idx++;
-//		menu_make_menuitem(&menuitems[menu_idx], "13", "RGMII AR8031 G-Ethernet Test", ar8031_test_main, &test_results[menu_idx]);menu_idx++;
-//		can_test_enable = 1;
-//		ard_mb_reset_test_enable = 1;
-//		ard_mb_expander_reset_test_enable = 1;
+#if defined(CHIP_MX6DQ)
+#if defined(BOARD_EVB)
+
+#elif defined(BOARD_SABRE_AI)
+
+#if defined(BOARD_REV_A)        // use micrel ethernet for rev A board
+    menu_make_menuitem(&menuitems[menu_idx], "05", "RGMII KSZ9021RN G-Ethernet Test", ar8031_test_main, &test_results[menu_idx]);menu_idx++;
+#else // use Atheros ethernet for all other revs (rev B)
+    menu_make_menuitem(&menuitems[menu_idx], "04", "RGMII AR8031 G-Ethernet Test", ar8031_test_main, &test_results[menu_idx]);menu_idx++;
+#endif
+    menu_make_menuitem(&menuitems[menu_idx], "06", "ANDROID BUTTONS Test", android_buttons_test, &test_results[menu_idx]);menu_idx++;
+    menu_make_menuitem(&menuitems[menu_idx], "07", "PMIC - PF0100 Test", pf0100_i2c_device_id_check, &test_results[menu_idx]);menu_idx++;	
+#elif defined(BOARD_SMART_DEVICE)
+    menu_make_menuitem(&menuitems[menu_idx], "04", "RGMII AR8031 G-Ethernet Test", ar8031_test_main, &test_results[menu_idx]);menu_idx++;
+    menu_make_menuitem(&menuitems[menu_idx], "06", "TOUCH BUTTONS Test", touch_button_test, &test_results[menu_idx]);menu_idx++;
+    menu_make_menuitem(&menuitems[menu_idx], "07", "PMIC - PF0100 Test", pf0100_i2c_device_id_check, &test_results[menu_idx]);menu_idx++;	
+#endif // defined(BOARD)
+#endif //chip_mx6dq
+		
+#if defined(CHIP_MX6SDL)	
+#if defined(BOARD_EVB)
+    menu_make_menuitem(&menuitems[menu_idx], "04", "RGMII AR8031 G-Ethernet Test", ar8031_test_main, &test_results[menu_idx]);menu_idx++;
+#elif defined(BOARD_SABRE_AI)
+#if defined(BOARD_REV_A)        // use micrel ethernet for rev A board
+    menu_make_menuitem(&menuitems[menu_idx], "05", "RGMII KSZ9021RN G-Ethernet Test", ar8031_test_main, &test_results[menu_idx]);menu_idx++;
+#else // use Atheros ethernet for all other revs (rev B)
+    menu_make_menuitem(&menuitems[menu_idx], "04", "RGMII AR8031 G-Ethernet Test", ar8031_test_main, &test_results[menu_idx]);menu_idx++;
+#endif
+    menu_make_menuitem(&menuitems[menu_idx], "06", "ANDROID BUTTONS Test", android_buttons_test, &test_results[menu_idx]);menu_idx++;
+    menu_make_menuitem(&menuitems[menu_idx], "07", "PMIC - PF0100 Test", pf0100_i2c_device_id_check, &test_results[menu_idx]);menu_idx++;	
+#elif defined(BOARD_SMART_DEVICE)
+    menu_make_menuitem(&menuitems[menu_idx], "04", "RGMII AR8031 G-Ethernet Test", ar8031_test_main, &test_results[menu_idx]);menu_idx++;
+    menu_make_menuitem(&menuitems[menu_idx], "06", "TOUCH BUTTONS Test", touch_button_test, &test_results[menu_idx]);menu_idx++;
+    menu_make_menuitem(&menuitems[menu_idx], "07", "PMIC - PF0100 Test", pf0100_i2c_device_id_check, &test_results[menu_idx]);menu_idx++;	
+#endif // defined(BOARD)
+#endif //chip_mx6sdl
+
+
+#if defined(CHIP_MX6SL)
+    // Tests for mx6sl evk.
+    menu_make_menuitem(&menuitems[menu_idx], "03", "DDR Test", ddr_test, &test_results[menu_idx]);menu_idx++;
+    menu_make_menuitem(&menuitems[menu_idx], "04", "RGMII AR8031 G-Ethernet Test", ar8031_test_main, &test_results[menu_idx]);menu_idx++;
+    menu_make_menuitem(&menuitems[menu_idx], "07", "PMIC - PF0100 Test", pf0100_i2c_device_id_check, &test_results[menu_idx]);menu_idx++;	
+#endif //end chip
 	}
 
-#elif defined(BOARD_TYPE_SMART_DEVICE)
-#if defined(CHIP_MX6DQ)
-//    sata_test_enable = 1;
-#endif
-#elif defined(BOARD_TYPE_EVB)
-#if defined(CHIP_MX6DQ)
-//    sata_test_enable = 1;
-#endif
-#endif
-#elif defined(CHIP_MX6SL)
-#if defined (BOARD_EVB)
-#elif defined(BOARD_EVK)
-#endif
-#endif
-*/
 	menu_make_menuitem_group(&menuitems[menu_idx++], "Menu functions");
 	menu_make_menuitem_showmenu(&menuitems[menu_idx++]);
 	menu_make_menuitem_exitmenu(&menuitems[menu_idx++]);
 	menu_make_menuitem_end(&menuitems[menu_idx]);
 }
-
-
 
 
 #if 0

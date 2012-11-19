@@ -100,11 +100,15 @@ test_return_t program_board_id_fuses(const uint32_t board_type, const uint32_t b
 }
 
 /* Program the board ID fuses if not already done */
-int program_board_id(void)
+menu_action_t program_board_id(const menu_context_t* context, void* param)
 {
-//    int status = 0;
-    PROMPT_RUN_TEST("PROGRAM BOARD_ID TEST", NULL);
-
+//    PROMPT_RUN_TEST("PROGRAM BOARD_ID TEST", NULL);
+    if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
+    {
+    	*(test_return_t*)param = TEST_BYPASSED;
+    	return MENU_CONTINUE;
+    }
+    
     char chip_str[64];
     char chip_str_full[64];
     char chip_rev_str[64];
@@ -169,7 +173,7 @@ int program_board_id(void)
             printf("NOT programming board ID to fuses.\n");
             print_test_skipped(test_name, NULL);
 
-//            status = TEST_BYPASSED;
+            *(test_return_t*)param = TEST_BYPASSED;
             return MENU_CONTINUE;
         }
 
@@ -185,7 +189,7 @@ int program_board_id(void)
         else
             print_test_failed(test_name, NULL);
 
-//        status = err;
+        *(test_return_t*)param = err;
         return MENU_CONTINUE;
     }
     else if ((board_id.B.BOARD_TYPE_ID == BOARD_TYPE_SABRE_AI || board_id.B.BOARD_REV == BOARD_REVISION_B) &&
@@ -206,7 +210,7 @@ int program_board_id(void)
         	printf("NOT programming board ID to fuses.\n");
             print_test_skipped(test_name, NULL);
 
-//            status = TEST_BYPASSED;
+            *(test_return_t*)param = TEST_BYPASSED;
             return MENU_CONTINUE;
         }
 
@@ -222,7 +226,7 @@ int program_board_id(void)
         else
             print_test_failed(test_name, NULL);
 
-//        status = err;
+        *(test_return_t*)param = err;
         return MENU_CONTINUE;
     }
     else if ( board_id.B.CHIP_TYPE_ID  != CHIP_TYPE     ||
@@ -244,7 +248,7 @@ int program_board_id(void)
 
         print_test_failed(test_name, NULL);
 
-//        status = TEST_FAILED;
+        *(test_return_t*)param = TEST_FAILED;
         return MENU_CONTINUE;
     }
     else if ( board_id.B.CHIP_TYPE_ID  == CHIP_TYPE     &&
@@ -257,7 +261,7 @@ int program_board_id(void)
 
         print_test_passed(test_name, NULL);
 
-//        status = TEST_PASSED;
+        *(test_return_t*)param = TEST_PASSED;
         return MENU_CONTINUE;
     }
     else
@@ -268,7 +272,7 @@ int program_board_id(void)
 
         print_test_failed(test_name, NULL);
 
-//        *(test_return_t*)param = TEST_FAILED;
+        *(test_return_t*)param = TEST_FAILED;
         return MENU_CONTINUE;
     }
 }

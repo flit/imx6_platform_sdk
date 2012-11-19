@@ -81,9 +81,9 @@ menu_action_t ddr_test(const menu_context_t* context, void* param)
     unsigned int *ps;
     int bank_size = ddr_density / 8;
 
-	const char* indent = menu_get_indent(context);
+//	const char* indent = menu_get_indent(context);
 
-    if ( prompt_run_test(test_name, indent) != TEST_CONTINUE )
+    if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
     {
     	*(test_return_t*)param = TEST_BYPASSED;
     	return MENU_CONTINUE;
@@ -193,14 +193,14 @@ menu_action_t ddr_test(const menu_context_t* context, void* param)
 
     if (failCount == 0)
     {
-        print_test_passed(test_name, indent);
+        print_test_passed(test_name, NULL);
 
         *(test_return_t*)param = TEST_PASSED;
         return MENU_CONTINUE;
     }
     else
     {
-        print_test_failed(test_name, indent);
+        print_test_failed(test_name, NULL);
 
         *(test_return_t*)param = TEST_FAILED;
         return MENU_CONTINUE;

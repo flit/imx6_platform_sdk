@@ -33,6 +33,8 @@
 
 #define TOUCHBUTTON_I2C_ADDR    0x5A
 
+static const char * const test_name = "TOUCH BUTTONS Test";
+
 static int touch_button_reg_write(unsigned int i2c_base_addr, unsigned char reg_addr,
                                   unsigned char reg_val)
 {
@@ -48,6 +50,8 @@ static int touch_button_reg_write(unsigned int i2c_base_addr, unsigned char reg_
     rq.buffer = buf;
 
     return i2c_xfer(&rq, I2C_WRITE);
+
+//    return i2c_xfer(i2c_base_addr, &rq, I2C_WRITE);
 }
 
 static unsigned char touch_button_reg_read(unsigned int i2c_base_addr, unsigned char reg_addr)
@@ -63,6 +67,7 @@ static unsigned char touch_button_reg_read(unsigned int i2c_base_addr, unsigned 
     rq.buffer_sz = 1;
     rq.buffer = buf;
     i2c_xfer(&rq, I2C_READ);
+//    i2c_xfer(i2c_base_addr, &rq, I2C_READ);
     reg_data = buf[0];
 
     return reg_data;
@@ -167,14 +172,17 @@ static int touch_button_init(unsigned int i2c_base_addr)
     return ret;
 }
 
-
-int touch_button_test(void)
+menu_action_t touch_button_test(const menu_context_t* context, void* param)
 {
     unsigned char pval_old = 0, pval_new;
     unsigned char input;
     int i;
 
-    PROMPT_RUN_TEST("TOUCH BUTTON", NULL);
+    if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
+    {
+    	*(test_return_t*)param = TEST_BYPASSED;
+    	return MENU_CONTINUE;
+    }
 
     printf("Please press four touch buttons and pressed information will be printed on screen.\n");
     printf("Pressing any key on the keyboard exits this test\n");
@@ -209,10 +217,11 @@ int touch_button_test(void)
             break;
         }
     }
+    
+    print_test_passed(test_name, NULL);
 
-    printf("Touch button test passed \n");
-
-    return TEST_PASSED;
+    *(test_return_t*)param = TEST_PASSED;
+    return MENU_CONTINUE;    
 }
 
 #endif

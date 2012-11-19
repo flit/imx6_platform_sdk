@@ -113,20 +113,18 @@ menu_action_t enet_test_main(const menu_context_t* const context, void* const pa
     int pkt_len_send = 0, pkt_len_recv = 0, ret = 0, i;
     unsigned int enet_events = 0;
 
-	const char* indent = menu_get_indent(context);
-
-    if ( prompt_run_test(enet_test_name, indent) != TEST_CONTINUE )
+    if ( prompt_run_test(enet_test_name, NULL) != TEST_CONTINUE )
     {
     	*(test_return_t*)param = TEST_BYPASSED;
     	return MENU_CONTINUE;
     }    
 
     // Enet loopback test
-    printf("\n%sWould you like to run the Ethernet loopback test?\n", indent);
-    printf("%s (Please note that in order to run the test, you need to\n", indent);
-    printf("%s first plug in a loopback cable to the Ethernet port.)\n", indent);
-    if (!is_input_char('y', indent)) {
-    	print_test_skipped(enet_test_name, indent);
+    printf("\nWould you like to run the Ethernet loopback test?\n");
+    printf("% (Please note that in order to run the test, you need to\n");
+    printf("%first plug in a loopback cable to the Ethernet port.)\n");
+    if (!is_input_char('y', NULL)) {
+    	print_test_skipped(enet_test_name, NULL);
     	
         *(test_return_t*)param = TEST_BYPASSED;
         return MENU_CONTINUE;
@@ -141,8 +139,8 @@ menu_action_t enet_test_main(const menu_context_t* const context, void* const pa
     //check phy status
     if (!(dev0->status & ENET_STATUS_LINK_ON)) 
     {
-        printf("%sENET link status check failed.\n", indent);
-        print_test_failed(enet_test_name, indent);
+        printf("%ENET link status check failed.\n");
+        print_test_failed(enet_test_name, NULL);
 
         *(test_return_t*)param = TEST_FAILED;
         return MENU_CONTINUE;        
@@ -151,7 +149,7 @@ menu_action_t enet_test_main(const menu_context_t* const context, void* const pa
     imx_enet_start(dev0, mac_addr0);
 
     //send packet
-    debug_printf("%sSend packet.\n", indent);
+    debug_printf("Send packet.\n", NULL);
     pkt_len_send = 120;
     pkt_fill(pkt_send, mac_addr0, 0x23, pkt_len_send);
     imx_enet_send(dev0, pkt_send, pkt_len_send, 1);
@@ -161,7 +159,7 @@ menu_action_t enet_test_main(const menu_context_t* const context, void* const pa
         enet_events = imx_enet_poll(dev0);
 
         if (ENET_EVENT_TX & enet_events) {
-            debug_printf("%senet_events = %08x\n", indent, enet_events);
+            debug_printf("enet_events = %08x\n", enet_events);
             break;
         }
 
@@ -170,8 +168,8 @@ menu_action_t enet_test_main(const menu_context_t* const context, void* const pa
 
     if (!(ENET_EVENT_TX & enet_events)) 
     {
-        printf("%sENET TX failed.\n", indent);
-        print_test_failed(enet_test_name, indent);
+        printf("ENET TX failed.\n");
+        print_test_failed(enet_test_name, NULL);
 
         *(test_return_t*)param = TEST_FAILED;
         return MENU_CONTINUE;        
@@ -179,8 +177,8 @@ menu_action_t enet_test_main(const menu_context_t* const context, void* const pa
 
     if (!(ENET_EVENT_RX & enet_events)) 
     {
-        printf("%sENET RX failed.\n", indent);
-        print_test_failed(ar8031_test_name, indent);
+        printf("ENET RX failed.\n");
+        print_test_failed(ar8031_test_name, NULL);
 
         *(test_return_t*)param = TEST_FAILED;
         return MENU_CONTINUE;        
@@ -191,8 +189,8 @@ menu_action_t enet_test_main(const menu_context_t* const context, void* const pa
 
     if (pkt_len_recv != pkt_len_send) 
     {
-        printf("%sENET RX length check failed.\n", indent);
-        print_test_failed(enet_test_name, indent);
+        printf("ENET RX length check failed.\n");
+        print_test_failed(enet_test_name, NULL);
 
         *(test_return_t*)param = TEST_FAILED;
         return MENU_CONTINUE;        
@@ -202,8 +200,8 @@ menu_action_t enet_test_main(const menu_context_t* const context, void* const pa
 
     if (ret != 0) 
     {
-        printf("%sENET RX packet check failed.\n", indent);
-        print_test_failed(enet_test_name, indent);
+        printf("ENET RX packet check failed.\n");
+        print_test_failed(enet_test_name, NULL);
 
         *(test_return_t*)param = TEST_FAILED;
         return MENU_CONTINUE;        
@@ -215,7 +213,7 @@ menu_action_t enet_test_main(const menu_context_t* const context, void* const pa
     imx_enet_stop(dev0);
 
     printf(" ENET loopback test pass\n");
-    print_test_passed(enet_test_name, indent);
+    print_test_passed(enet_test_name, NULL);
 
     *(test_return_t*)param = TEST_PASSED;
     return MENU_CONTINUE;    
@@ -233,21 +231,19 @@ menu_action_t ar8031_test_main(const menu_context_t* const context, void* const 
     int pkt_len_send = 0, pkt_len_recv = 0, ret = 0, i;
     unsigned int enet_events = 0;
 
-	const char* indent = menu_get_indent(context);
-
-    if ( prompt_run_test(ar8031_test_name, indent) != TEST_CONTINUE )
+    if ( prompt_run_test(ar8031_test_name, NULL) != TEST_CONTINUE )
     {
     	*(test_return_t*)param = TEST_BYPASSED;
     	return MENU_CONTINUE;
     }
 
     // Enet loopback test
-    printf("\n%sWould you like to run the Ethernet loopback test?\n", indent);
-    printf("%s  (Please note that in order to run the test, you need to\n", indent);
-    printf("%s   first plug in a loopback cable to the Ethernet port.)\n", indent);
-    if (!is_input_char('y', indent))
+    printf("\nWould you like to run the Ethernet loopback test?\n");
+    printf("  (Please note that in order to run the test, you need to\n");
+    printf("   first plug in a loopback cable to the Ethernet port.)\n");
+    if (!is_input_char('y', NULL))
     {
-        print_test_skipped(ar8031_test_name, indent);
+        print_test_skipped(ar8031_test_name, NULL);
 
         *(test_return_t*)param = TEST_BYPASSED;
         return MENU_CONTINUE;
@@ -265,8 +261,8 @@ menu_action_t ar8031_test_main(const menu_context_t* const context, void* const 
     //check phy status
     if (!(dev0->status & ENET_STATUS_LINK_ON))
     {
-        printf("%sENET link status check failed.\n", indent);
-        print_test_failed(ar8031_test_name, indent);
+        printf("ENET link status check failed.\n");
+        print_test_failed(ar8031_test_name, NULL);
 
         *(test_return_t*)param = TEST_FAILED;
         return MENU_CONTINUE;
@@ -275,7 +271,7 @@ menu_action_t ar8031_test_main(const menu_context_t* const context, void* const 
     imx_enet_start(dev0, mac_addr0);
 
     //send packet
-    debug_printf("%sSend packet.\n", indent);
+    debug_printf("Send packet.\n", NULL);
     pkt_len_send = 1500;
     pkt_fill(pkt_send, mac_addr0, 0x23, pkt_len_send);
     imx_enet_send(dev0, pkt_send, pkt_len_send, 1);
@@ -285,7 +281,7 @@ menu_action_t ar8031_test_main(const menu_context_t* const context, void* const 
         enet_events = imx_enet_poll(dev0);
 
         if (ENET_EVENT_TX & enet_events) {
-            debug_printf("%senet_events = %08x\n", indent, enet_events);
+            debug_printf("enet_events = %08x\n", enet_events);
             break;
         }
 
@@ -294,8 +290,8 @@ menu_action_t ar8031_test_main(const menu_context_t* const context, void* const 
 
     if (!(ENET_EVENT_TX & enet_events))
     {
-        printf("%sENET TX failed.\n", indent);
-        print_test_failed(ar8031_test_name, indent);
+        printf("ENET TX failed.\n");
+        print_test_failed(ar8031_test_name, NULL);
 
         *(test_return_t*)param = TEST_FAILED;
         return MENU_CONTINUE;
@@ -303,8 +299,8 @@ menu_action_t ar8031_test_main(const menu_context_t* const context, void* const 
 
     if (!(ENET_EVENT_RX & enet_events))
     {
-        printf("%sENET RX failed.\n", indent);
-        print_test_failed(ar8031_test_name, indent);
+        printf("ENET RX failed.\n");
+        print_test_failed(ar8031_test_name, NULL);
 
         *(test_return_t*)param = TEST_FAILED;
         return MENU_CONTINUE;
@@ -315,8 +311,8 @@ menu_action_t ar8031_test_main(const menu_context_t* const context, void* const 
 
     if (pkt_len_recv != pkt_len_send)
     {
-        printf("%sENET RX length check failed.\n", indent);
-        print_test_failed(ar8031_test_name, indent);
+        printf("ENET RX length check failed.\n");
+        print_test_failed(ar8031_test_name, NULL);
 
         *(test_return_t*)param = TEST_FAILED;
         return MENU_CONTINUE;
@@ -326,8 +322,8 @@ menu_action_t ar8031_test_main(const menu_context_t* const context, void* const 
 
     if (ret != 0)
     {
-        printf("%sENET RX packet check failed.\n", indent);
-        print_test_failed(ar8031_test_name, indent);
+        printf("ENET RX packet check failed.\n");
+        print_test_failed(ar8031_test_name, NULL);
 
         *(test_return_t*)param = TEST_FAILED;
         return MENU_CONTINUE;
@@ -339,7 +335,7 @@ menu_action_t ar8031_test_main(const menu_context_t* const context, void* const 
     imx_enet_stop(dev0);
 
     printf(" ENET loopback test pass\n");
-    print_test_passed(ar8031_test_name, indent);
+    print_test_passed(ar8031_test_name, NULL);
 
     *(test_return_t*)param = TEST_PASSED;
     return MENU_CONTINUE;

@@ -33,10 +33,8 @@
 #include "registers.h"
 #include "soc_memory_map.h"
 #include "system_util.h"
-//#include "board_id/board_id.h"
 #include "ocotp/ocotp.h"
 #include "registers/regsocotp.h"
-//extern void sendchar(unsigned char *ch);
 
 static const char * const test_name = "MAC Address Test";
 
@@ -103,7 +101,7 @@ const char * const mac_address_str(const char* const mac_data)
  *
  * @return  0 if successful; non-zero otherwise
  */
-test_return_t program_mac_address_fuses(const char* const mac_data) 
+test_return_t program_mac_address_fuses(const char* const mac_data)
 {
     /* Create a 32-bit formated MAC address from mac_data */
     reg32_t mac0_reg =
@@ -121,7 +119,7 @@ test_return_t program_mac_address_fuses(const char* const mac_data)
     char existing_mac_addr[6];
     read_mac_otp_registers(existing_mac_addr);
     debug_printf("  ** MAC Address Fuses before program: 0x%08X, 0x%08X\n",
-    		 HW_OCOTP_MAC0_RD(), HW_OCOTP_MAC1_RD());
+    		HW_OCOTP_MAC0_RD(), HW_OCOTP_MAC1_RD());
 
     /* blow the fuses */
     ocotp_fuse_blow_row(HW_OCOTP_MAC0_BANK, HW_OCOTP_MAC0_ROW, mac0_reg);
@@ -131,7 +129,7 @@ test_return_t program_mac_address_fuses(const char* const mac_data)
     	 ocotp_sense_fuse(HW_OCOTP_MAC1_BANK, HW_OCOTP_MAC1_ROW) != mac1_reg )
     {
         printf("  ** Fuse read-back-verify failed.\n");
-        printf("  ** Read back: 0x%08X, 0x%08X\n",
+        printf("  ** Read back: 0x%08X, 0x%08X\n", 
         		ocotp_sense_fuse(HW_OCOTP_MAC0_BANK, HW_OCOTP_MAC0_ROW),
         		ocotp_sense_fuse(HW_OCOTP_MAC1_BANK, HW_OCOTP_MAC1_ROW));
         printf("  ** Should be: 0x%08X, 0x%08X\n",  mac0_reg, mac1_reg);
@@ -147,7 +145,7 @@ test_return_t program_mac_address_fuses(const char* const mac_data)
 
     debug_printf("  ** Fuses programmed successfully.\n\n");
     debug_printf("  ** MAC Address Fuses after program: 0x%08X, 0x%08X\n",
-    		HW_OCOTP_MAC0_RD(), HW_OCOTP_MAC1_RD());
+    		 HW_OCOTP_MAC0_RD(), HW_OCOTP_MAC1_RD());
 
     /* reload the otp shadow registers */
     ocotp_reload_otp_shadow_registers();
@@ -165,12 +163,15 @@ test_return_t program_mac_address_fuses(const char* const mac_data)
 }
 
 /* Program the Ethernet MAC Address fuses if not already done */
-//menu_action_t program_mac_address(const menu_context_t* context, void* param)
-int program_mac_address(void) 
+menu_action_t program_mac_address(const menu_context_t* context, void* param)
 {
 	test_return_t result = TEST_FAILED;
 
-    PROMPT_RUN_TEST(test_name, NULL);
+    if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
+    {
+    	*(test_return_t*)param = TEST_BYPASSED;
+    	return MENU_CONTINUE;
+    }
     
     //
     // Get existing MAC Address
@@ -192,7 +193,7 @@ int program_mac_address(void)
             printf("NOT programming MAC address to fuses.\n");
             print_test_skipped(test_name, NULL);
 
-//            *(test_return_t*)param = TEST_BYPASSED;
+            *(test_return_t*)param = TEST_BYPASSED;
             return MENU_CONTINUE;
         }
 
@@ -261,7 +262,7 @@ retry_enter_mac_address:
             	printf("NOT programming the MAC address to fuses.\n");
                 print_test_skipped(test_name, NULL);
 
-//                *(test_return_t*)param = TEST_BYPASSED;
+                *(test_return_t*)param = TEST_BYPASSED;
                 return MENU_CONTINUE;
             }
         }
@@ -280,7 +281,7 @@ retry_enter_mac_address:
     {
         print_test_passed(test_name, NULL);
 
-//        *(test_return_t*)param = TEST_PASSED;
+        *(test_return_t*)param = TEST_PASSED;
         return MENU_CONTINUE;
     }
     else
@@ -288,7 +289,7 @@ retry_enter_mac_address:
 	    printf("\nThe MAC address is incorrect.\n");
         print_test_failed(test_name, NULL);
 
-//        *(test_return_t*)param = TEST_FAILED;
+        *(test_return_t*)param = TEST_FAILED;
         return MENU_CONTINUE;
     }
 }

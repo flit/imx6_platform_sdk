@@ -42,7 +42,7 @@
 
 #define PMIC_PF0100_I2C_ID         (0x10 >> 1)  //0x08
 
-static const char * const pmic_pf0100_test_name = "PMIC - PF0100 Test";
+static const char * const test_name = "PMIC - PF0100 Test";
 
 unsigned char pf0100_reg_read(unsigned char reg_addr)
 {
@@ -105,9 +105,8 @@ void pf0100_enable_vgen6_2v8(void)
 menu_action_t pf0100_i2c_device_id_check(const menu_context_t* context, void* param)
 {
     unsigned char data;
-	const char* indent = menu_get_indent(context);
 
-    if ( prompt_run_test(pmic_pf0100_test_name, indent) != TEST_CONTINUE )
+    if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
     {
     	*(test_return_t*)param = TEST_BYPASSED;
     	return MENU_CONTINUE;
@@ -118,11 +117,13 @@ menu_action_t pf0100_i2c_device_id_check(const menu_context_t* context, void* pa
     data = 0x0;
     data = pf0100_reg_read(0x0);    //Device ID
     if (!(data & 0x10)) {       //bit 4 should be set, 0b0001xxxx
-        printf("%s\nExpected id 0b0001xxxx (PF0100), read 0x%X\n", indent, data);
+        printf("\nExpected id 0b0001xxxx (PF0100), read 0x%X\n", data);
+        *(test_return_t*)param = TEST_FAILED;
         return TEST_FAILED;
     }
-    printf("%sPF0100 ID: 0b0001xxxx, read: 0x%X\n", indent, data);
-    printf("%s PMIC PF0100 ID test passed. \n", indent);
+    printf("PF0100 ID: 0b0001xxxx, read: 0x%X\n", data);
+    printf("PMIC PF0100 ID test passed. \n");
+    *(test_return_t*)param = TEST_PASSED;
 
     return MENU_CONTINUE;
 }

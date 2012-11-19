@@ -65,9 +65,9 @@ void print_test_not_implemented(const char* const test_name, const char* const i
 // TODO Replasce this with function prompt_run_test
 #define PROMPT_RUN_TEST(name, indent)                       \
     do {                                                    \
-        printf("\n%---- Running < %s >\n", name);           \
+        printf("\n%s---- Running < %s >\n", indent, name);  \
         if (!auto_run_enable) {                             \
-            if (!is_input_char('y', NULL))                  \
+            if (!is_input_char('y', indent))                \
                 return TEST_BYPASSED;                       \
         }                                                   \
         else                                                \
@@ -89,14 +89,18 @@ typedef enum _select_tests
 } select_tests_t;
 
 // OBDS tests
-//menu_action_t program_board_id(const menu_context_t* const context, void* const param);
-//menu_action_t program_mac_address(const menu_context_t* const context, void* const param);
+menu_action_t program_board_id(const menu_context_t* const context, void* const param);
+menu_action_t program_mac_address(const menu_context_t* const context, void* const param);
 menu_action_t ddr_test(const menu_context_t* const context, void* const param);
 menu_action_t snvs_srtc_test(const menu_context_t* const context, void* const param);
 menu_action_t enet_test_main(const menu_context_t* const context, void* const param);
 menu_action_t ar8031_test_main(const menu_context_t* const context, void* const param);
 menu_action_t KSZ9021RN_test_main(const menu_context_t* const context, void* const param);
-//menu_action_t android_buttons_test(const menu_context_t* const context, void* const param);
+menu_action_t android_buttons_test(const menu_context_t* const context, void* const param);
+menu_action_t touch_button_test(const menu_context_t* context, void* param);
+menu_action_t touch_screen_test(const menu_context_t* context, void* param);
+menu_action_t pf0100_i2c_device_id_check(const menu_context_t* context, void* param);
+
 menu_action_t flexcan_test(const menu_context_t* const context, void* const param);
 menu_action_t i2c_device_id_check(const menu_context_t* const context, void* const param);
 menu_action_t i2s_audio_test(const menu_context_t* const context, void* const param);
@@ -117,14 +121,14 @@ void select_tests(menuitem_t* const menuitems, const select_tests_t select_tests
 //list of tests from obds
 
 extern int eeprom_test_enable;
-//extern int ddr_test_enable;
+
 //extern int i2c_device_id_check_p1003_test_enable;
 //extern int i2c_device_id_check_mma8451_test_enable;
 //extern int i2c_device_id_check_mag3110_test_enable;
 //extern int i2c_device_id_check_mag3112_test_enable;
 //extern int i2c_device_id_check_isl29023_test_enable;
 //extern int i2c_device_id_check_cs42888_test_enable;
-extern int touch_screen_test_enable;
+
 extern int adv7180_test_enable;
 extern int ard_mb_reset_test_enable;
 extern int ard_mb_expander_reset_test_enable;
@@ -136,24 +140,17 @@ extern int usbh_EHCI_test_mode_test_enable;
 extern int usbh_dev_enum_test_enable;
 extern int usbo_dev_enum_test_enable;
 extern int usbh_hub251x_test_enable;
-//extern int spi_nor_test_enable;
 extern int smbus_test_enable;
 extern int i2c_device_id_check_DA9053_test_enable;
 extern int ltc3589_i2c_device_id_test_enable;
 extern int pmic_mc13892_test_enable;
-//extern int mmcsd_test_enable;
 extern int sdio_test_enable;
 extern int gps_test_enable;
 extern int ipu_display_test_enable;
 extern int si476x_test_enable;
-//extern int enet_test_enable;
-//extern int ar8031_test_enable;
 //extern int KSZ9021RN_test_enable;
 extern int camera_flashtest_ebable;
-//extern int i2s_audio_test_enable;
 extern int esai_test_enable;
-//extern int spi_nor_test_enable;
-//extern int snvs_srtc_test_enable;
 
 //Add variables from obds
 extern uint32_t usbh_EHCI_test_mode_base;

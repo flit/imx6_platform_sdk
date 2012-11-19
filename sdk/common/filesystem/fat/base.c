@@ -353,7 +353,6 @@ RtStatus_t Fread_FAT(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToRe
 			int prevSectorPos = 0, prevSectorIndex = 0, sectorToBeRead = 0, prevClusterIndex = 0;
 			BytesToCopy = RemainBytesToRead - RemainBytesToRead % BytesPerSector; // need to aligned to sector
 			sectorNum = BytesToCopy / BytesPerSector;
-                     sectorNum = (sectorNum > 2048) ? 2048 : sectorNum;// limit one access no more than 1M
 
 			prevSectorIndex = Handle[HandleNumber].CurrentSector;
 			prevClusterIndex = Handle[HandleNumber].CurrentCluster;
@@ -538,89 +537,122 @@ RtStatus_t Fwrite_FAT(int32_t HandleNumber,
 
     while(RemainBytesToWrite >0)
     {
-    
-        if ((RetValue = UpdateHandleOffsets(HandleNumber)))
-        {   
-#if 0 // By Ray        
-            if(RetValue == ERROR_OS_FILESYSTEM_INVALID_CLUSTER_NO)
+        if (RemainBytesInSector || (RemainBytesToWrite < BytesPerSector)) { /*head and tail */
+            if ((RetValue = UpdateHandleOffsets(HandleNumber))) //update the sector information
             {
-                Handle[HandleNumber].ErrorCode = ERROR_OS_FILESYSTEM_INVALID_CLUSTER_NO;
-                ddi_ldl_pop_media_task();
-                return 0;
+                if ((RetValue = GetNewcluster(HandleNumber)) < 0) {
+                    Handle[HandleNumber].ErrorCode = RetValue;
+                    ddi_ldl_pop_media_task();
+                    return (NumBytesToWrite - RemainBytesToWrite);
+                }
+                if (Handle[HandleNumber].Mode & CREATE_MODE) {
+                    if ((RetValue = ClearCluster(HandleNumber)) < 0) {
+                        ddi_ldl_pop_media_task();
+                        return RetValue;
+                    }
+                }
             }
-#endif
 
-            if((RetValue = GetNewcluster(HandleNumber)) < 0)
-            {
-                Handle[HandleNumber].ErrorCode = RetValue;
-                ddi_ldl_pop_media_task();
-                return (NumBytesToWrite - RemainBytesToWrite);
-            }     
-            if (Handle[HandleNumber].Mode & CREATE_MODE)
-            {
-                 if((RetValue = ClearCluster(HandleNumber)) <0)
-                 {
-                     ddi_ldl_pop_media_task();
-                     return RetValue;
-                 }
-            }                             
-        }    
-
-        if ((RemainBytesInSector != 0)&&(RemainBytesToWrite > RemainBytesInSector))
-        {
-            BytesToCopy    = RemainBytesInSector;
-            RemainBytesInSector = 0;
-        }
-        else
-        {    
-            BytesToCopy = RemainBytesToWrite;
-            if(BytesToCopy > BytesPerSector)
-            {
-                BytesToCopy = BytesPerSector;
+            if ((RemainBytesInSector != 0) && (RemainBytesToWrite > RemainBytesInSector)) {
+                BytesToCopy = RemainBytesInSector;
+                RemainBytesInSector = 0;
+            } else {
+                BytesToCopy = RemainBytesToWrite;
+                if (BytesToCopy > BytesPerSector) {
+                    BytesToCopy = BytesPerSector;
+                }
             }
-        }
-        RemainBytesToWrite-=BytesToCopy;
+            RemainBytesToWrite -= BytesToCopy;
 
-        if((FileSize - Handle[HandleNumber].CurrentOffset)<=0)
-        {   
-             Handle[HandleNumber].Mode |= SEQ_WRITE_MODE;
-             Mode = WRITE_TYPE_NOREADBACK;
+            if ((FileSize - Handle[HandleNumber].CurrentOffset) <= 0) {
+                Handle[HandleNumber].Mode |= SEQ_WRITE_MODE;
+                Mode = WRITE_TYPE_NOREADBACK;
 
-            }
-        else
+            } else
                 Mode = WRITE_TYPE_RANDOM;
-#ifdef SUPPORT_SEQ_WRITE
-    if (((Handle[HandleNumber].Mode & SEQ_WRITE_MODE)==SEQ_WRITE_MODE) &&
-            (Handle[HandleNumber].SectorPosInCluster==0))
-      Mode = WRITE_TYPE_SEQ_FIRST;
-     else
-          if (((Handle[HandleNumber].Mode & SEQ_WRITE_MODE)==SEQ_WRITE_MODE) &&
-              (Handle[HandleNumber].SectorPosInCluster!=0))
-        
-          Mode = WRITE_TYPE_SEQ_NEXT;
 
-#endif    
-    
-        if((RetValue = FSWriteSector(Device,
-                       Handle[HandleNumber].CurrentSector,
-                       Handle[HandleNumber].BytePosInSector,
-                   Buffer,
-                   BuffOffset,
-                   BytesToCopy,
-                   Mode)) 
-              <0)
-        {
-            ddi_ldl_pop_media_task();
-            return RetValue;
+            if ((RetValue = FSWriteSector(Device,
+                                          Handle[HandleNumber].CurrentSector,
+                                          Handle[HandleNumber].BytePosInSector,
+                                          Buffer, BuffOffset, BytesToCopy, Mode))
+                < 0) {
+                ddi_ldl_pop_media_task();
+                return RetValue;
+            }
+
+            Handle[HandleNumber].CurrentOffset += BytesToCopy;
+            Handle[HandleNumber].BytePosInSector += BytesToCopy;
+
+            BuffOffset += BytesToCopy;
+        } else {
+            int sectorNum = 0, sectorStart = 0;
+            int prevSectorPos = 0, prevSectorIndex = 0, sectorToWrite = 0, prevClusterIndex = 0;
+            BytesToCopy = RemainBytesToWrite - RemainBytesToWrite % BytesPerSector; // need to aligned to sector
+            sectorNum = BytesToCopy / BytesPerSector;
+            sectorNum = (sectorNum > 4096) ? 4096 : sectorNum;  // limit one access no more than 1M
+
+            prevSectorIndex = Handle[HandleNumber].CurrentSector;
+            prevClusterIndex = Handle[HandleNumber].CurrentCluster;
+
+            while (sectorNum--) {
+                if ((RetValue = UpdateHandleOffsets(HandleNumber))) //update the sector information
+                {
+                    if ((RetValue = GetNewcluster(HandleNumber)) < 0) {
+                        Handle[HandleNumber].ErrorCode = RetValue;
+                        ddi_ldl_pop_media_task();
+                        return (NumBytesToWrite - RemainBytesToWrite);
+                    }
+                    if (Handle[HandleNumber].Mode & CREATE_MODE) {
+                        if ((RetValue = ClearCluster(HandleNumber)) < 0) {
+                            ddi_ldl_pop_media_task();
+                            return RetValue;
+                        }
+                    }
+                } 
+
+                if(sectorStart == 0)
+                    sectorStart = Handle[HandleNumber].CurrentSector;
+
+                if (prevSectorIndex + 1 == Handle[HandleNumber].CurrentSector) {    /*adjacent sectors */
+                    sectorToWrite++;
+                    prevSectorIndex = Handle[HandleNumber].CurrentSector;
+                    prevClusterIndex = Handle[HandleNumber].CurrentCluster;
+                    prevSectorPos = Handle[HandleNumber].SectorPosInCluster;
+                    Handle[HandleNumber].BytePosInSector = BytesPerSector; //always aligned to sector
+                } else {
+                    /*backwards to the previous sector index, if the sector is not continous in physical address. */
+                    Handle[HandleNumber].CurrentSector = prevSectorIndex;
+                    Handle[HandleNumber].CurrentCluster = prevClusterIndex;
+                    Handle[HandleNumber].SectorPosInCluster = prevSectorPos;
+                    break;
+                }
+
+
+            }
+            BytesToCopy = sectorToWrite * BytesPerSector;
+            if ((RetValue = FSWriteMultiSectors(Device,
+                                          sectorStart,
+                                          WRITE_TYPE_RANDOM,
+                                          (uint8_t *)(Buffer + BuffOffset), BytesToCopy))
+                < 0) {
+                ddi_ldl_pop_media_task();
+                return RetValue;
+            }
+            if ((FileSize - Handle[HandleNumber].CurrentOffset) <= 0) {
+                Handle[HandleNumber].Mode |= SEQ_WRITE_MODE;
+                Mode = WRITE_TYPE_NOREADBACK;
+
+            } else
+                Mode = WRITE_TYPE_RANDOM;
+            
+            Handle[HandleNumber].CurrentOffset += BytesToCopy;
+            Handle[HandleNumber].BytePosInSector = BytesPerSector;
+            RemainBytesToWrite -= BytesToCopy;
+            BuffOffset += BytesToCopy;
         }
 
-
-        Handle[HandleNumber].CurrentOffset += BytesToCopy;
-        Handle[HandleNumber].BytePosInSector += BytesToCopy;
-
-        BuffOffset+=BytesToCopy;            
-        
     }
+
 
     if((FileSize - Handle[HandleNumber].CurrentOffset)<0)
     {   

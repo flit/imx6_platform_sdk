@@ -54,7 +54,6 @@ static vpu_test_t vpu_tests[] = {
     {"VPU ENCODER TEST", encode_test},
 };
 
-extern int fat_write_speed_test(void);
 int vpu_test(void)
 {
     int32_t err = 0, i = 0;

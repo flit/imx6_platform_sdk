@@ -58,6 +58,7 @@ typedef struct fat_cache_s{
 
 static fat_cache_t *g_fatCache = {0};
 uint32_t g_u32MbrStartSector = 0;
+RtStatus_t FsFlushCache(void *cache);
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code
@@ -162,10 +163,14 @@ void *getFatCache(int32_t sector)
     {
         lastUnusedCache = fatCacheAllocate(sector);    
     } else {
+        //flush the cache to be updated
+        FsFlushCache(lastUnusedCache);
         lastUnusedCache->isValid = 0; // need to reload
         updateFatCacheRefIndex(lastUnusedCache->refIndex);       
         lastUnusedCache->refIndex = totalFileOpened;
     }
+
+
     lastUnusedCache->sector = sector;
     
     return (void *)lastUnusedCache;        
@@ -185,9 +190,15 @@ void fatCacheRelease(void *FatCache)
         }    
     }
     
-    /*remove the fat cache in the cache list*/
     fat_cache_t *tmp = g_fatCache;
+    /*Flush all fat cache*/
+    while(tmp) {
+        FsFlushCache(tmp);
+        tmp = tmp->next;
+    }
 
+    /*remove the fat cache in the cache list*/
+    tmp = g_fatCache;
     if(g_fatCache == tmpFatCache) 
     {
         g_fatCache = g_fatCache->next;
@@ -198,6 +209,7 @@ void fatCacheRelease(void *FatCache)
         tmp->next = tmpFatCache->next;
     }
     updateFatCacheRefIndex(tmpFatCache->refIndex);
+
     /*free the cache memory*/
     free(tmpFatCache->buffer);
     free(tmpFatCache);
@@ -236,6 +248,30 @@ void print_media_fat_info(uint32_t DeviceNum)
     printf("FSInfoSector = %X\n",       MediaTable[DeviceNum].FSInfoSector);
 }
 
+RtStatus_t FsFlushCache(void *cache)
+{
+    int usdhc_status = 0, sectorSize = 512;
+    fat_cache_t *fatCache = (fat_cache_t *)cache;
+
+    if(fatCache->isValid == FALSE)
+        return SUCCESS;
+    
+    while(1) {
+        card_xfer_result(g_usdhc_instance, &usdhc_status);
+        if (usdhc_status == 1)
+            break;
+    }
+    card_data_write(g_usdhc_instance, (int *)fatCache->buffer, sectorSize, fatCache->sector * sectorSize);             
+     while(1) {
+        card_xfer_result(g_usdhc_instance, &usdhc_status);
+        if (usdhc_status == 1)
+            break;
+    }
+    fatCache->isValid = FALSE;
+    
+     return SUCCESS;
+}
+
 /*this is only for single sector!!*/
 RtStatus_t FSWriteSector(int32_t deviceNumber, int32_t sectorNumber, int32_t destOffset, uint8_t * sourceBuffer, int32_t sourceOffset, int32_t numBytesToWrite, int32_t writeType)
 {
@@ -247,61 +283,54 @@ RtStatus_t FSWriteSector(int32_t deviceNumber, int32_t sectorNumber, int32_t des
     int destAddrOffset = (sectorNumber  + g_u32MbrStartSector ) * sectorSize;
         int usdhc_status = 0; 
 
-#if 0
+#if 1
     // Handle FAT cache.
     bool isFat = false;
-	isFat = IsFATSector(deviceNumber, sectorNumber  + g_u32MbrStartSector);
+    isFat = IsFATSector(deviceNumber, sectorNumber  + g_u32MbrStartSector);
+    fat_cache_t *fatCache = NULL;
    
     /*Note:  destination and write size should be align with the sector size*/
     if((numBytesToWrite % sectorSize) || destOffset)
     {
         writeSize = sectorSize; // this is for single sector reading
 
-        if(isFat && g_fatCache.isValid ) {
-            g_fatCache.isValid = false;
-            if (g_fatCache.sector == sectorNumber  + g_u32MbrStartSector)
+        if(isFat) {
+            fatCache = (fat_cache_t *)getFatCache(sectorNumber  + g_u32MbrStartSector);
+            if(fatCache->isValid) // already in RAM
             {
-                // do nothing, reuse the fat cache buffer
-                buffer = (uint8_t *)g_fatCache.buffer;
-            } else { 
-                /*put the fat buffer back to SD card and refetch FAT table*/
-                 while(1) {
-                    card_xfer_result(g_usdhc_instance, &usdhc_status);
-                    if (usdhc_status == 1)
-                        break;
-                }
-                status = card_data_write(g_usdhc_instance, (int *)g_fatCache.buffer, writeSize, destAddrOffset);
-               
+                /*copy the fat entry into the cache*/
+                memcpy((uint8_t *)((uint32_t)fatCache->buffer + destOffset), 
+                    (uint8_t *)(sourceBuffer + sourceOffset), numBytesToWrite);     
+                return SUCCESS;
+            } else {
                 while(1) {
                     card_xfer_result(g_usdhc_instance, &usdhc_status);
                     if (usdhc_status == 1)
                         break;
                 }
-                status = card_data_read(g_usdhc_instance, (int *)g_fatCache.buffer, writeSize, destAddrOffset);
-                buffer = (uint8_t *)g_fatCache.buffer;            
-                g_fatCache.isValid = true;
+                status = card_data_read(g_usdhc_instance, (int *)fatCache->buffer, writeSize, destAddrOffset);
+                memcpy((uint8_t *)((uint32_t)fatCache->buffer + destOffset), 
+                    (uint8_t *)(sourceBuffer + sourceOffset), numBytesToWrite);  
+                return SUCCESS;
+            } 
+        } else {
+                buffer = (uint8_t *)malloc(sectorSize);
+                if(!buffer)
+                    return FAIL;
+                status = card_data_read(g_usdhc_instance, (int *)buffer, writeSize, destAddrOffset);
+
+                memcpy((uint8_t *)((uint32_t)buffer + destOffset), (uint8_t *)(sourceBuffer + sourceOffset), numBytesToWrite);
+                status = card_data_write(g_usdhc_instance, (int *)buffer, writeSize, destAddrOffset);
+
+                //wait write done then we can release the buffer
+                while(1) {
+                    card_xfer_result(g_usdhc_instance, &usdhc_status);
+                    if (usdhc_status == 1)
+                        break;
+                }
+                free(buffer);
             }
-            memcpy((uint8_t *)((uint32_t)buffer + destOffset), (uint8_t *)(sourceBuffer + sourceOffset), numBytesToWrite);            
-        }else {
-            buffer = (uint8_t *)malloc(sectorSize);
-            if(!buffer)
-                return FAIL;
-            status = card_data_read(g_usdhc_instance, (int *)buffer, writeSize, destAddrOffset);
-
-            memcpy((uint8_t *)((uint32_t)buffer + destOffset), (uint8_t *)(sourceBuffer + sourceOffset), numBytesToWrite);
-            status = card_data_write(g_usdhc_instance, (int *)buffer, writeSize, destAddrOffset);
-
-            //wait write done then we can release the buffer
-            while(1) {
-                card_xfer_result(g_usdhc_instance, &usdhc_status);
-                if (usdhc_status == 1)
-                    break;
-            }
-            free(buffer);
-        }
-
-    }
-    else {
+    } else {
         writeSize = numBytesToWrite;
         while(1) {
             card_xfer_result(g_usdhc_instance, &usdhc_status);
@@ -343,6 +372,22 @@ RtStatus_t FSWriteSector(int32_t deviceNumber, int32_t sectorNumber, int32_t des
 
     return status;
 }
+
+RtStatus_t FSWriteMultiSectors(int32_t deviceNumber, int32_t sectorNumber, int32_t writeType, 
+	uint8_t *buffer, int size)
+{
+    assert(deviceNumber == 0);
+
+    int status = 0;
+    uint32_t actualSectorNumber = sectorNumber + g_u32MbrStartSector;
+    uint32_t sectorSize = MediaTable[deviceNumber].BytesPerSector;
+
+    status = card_data_write(g_usdhc_instance, (int *)buffer, size,
+                       actualSectorNumber * sectorSize);
+
+	return SUCCESS;
+}
+
 
 // Used only in clearcluster() in the FAT filesystem. Can replace with call to writesector.
 RtStatus_t FSEraseSector(int32_t deviceNumber, int32_t sectorNumber)
@@ -448,9 +493,7 @@ RtStatus_t FSFlushSector(int32_t deviceNumber, int32_t sectorNumber, int32_t wri
 }
 
 RtStatus_t FlushCache(void)
-{
-    g_fatCache->isValid = false;
-    
+{    
     return SUCCESS;
 }
 
@@ -534,7 +577,7 @@ RtStatus_t FSDataDriveInit(DriveTag_t tag)
     // value. Thus, we'd get a double offset when trying to read the PBS. maybe this is not enough
     // to determine if a sector is MBR or DBR, need to investigate more!!!
 	/* Check the first sector is DBR or MBR. for removable disk there might be no MBR section */
-	if((pSectorData[0x00] == 0xEB) && (pSectorData[0x02] == 0x90)) // JMP NOP indicates this is DBR
+	if((pSectorData[0x00] == 0xEB) && (pSectorData[0x02] == 0x90) &&(pSectorData[0x0E] == 0x20)) // JMP NOP indicates this is DBR
 	{
 		pbsOffset = 0x0;
 	} else {

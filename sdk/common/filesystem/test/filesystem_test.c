@@ -40,14 +40,16 @@
 #include "filesystem/fat/fat_internal.h"
 #include "timer/epit.h"
 #include "usdhc/usdhc_ifc.h"
+#include "core/cortex_a9.h"
+#include "core/mmu.h"
 
 uint8_t readfile[] = "testin.dat";
 uint8_t writefile[] = "testout.dat";
-
-#define TEST_FILE_SIZE (1024*16)
+#define TEST_BUFFER_ADDR 0x28000000
+#define CHUNCK_SIZE (1024*512)
+#define TEST_FILE_SIZE (1024*1024*32)
 #define DeviceNum 0
 
-extern void print_media_fat_info(uint32_t);
 
 hw_module_t count_timer = {
     "EPIT2 for system tick",
@@ -59,40 +61,36 @@ hw_module_t count_timer = {
     NULL
 };
 
+extern void print_media_fat_info(uint32_t);
+
 int fat_write_speed_test(void)
 {
     uint8_t *WriteBuffer = NULL;
     uint32_t ClusterSize = 0, BytesWritten = 0;
     uint32_t TimeCount = 0;
-    int32_t i = 0, count = 0;
+    uint32_t ChunkSize = CHUNCK_SIZE;
+    int32_t count = 0;
     int32_t fout;
 
-    if ((fout = Fopen(writefile, (uint8_t *) "wb+")) < 0) {
+    if ((fout = Fopen(writefile, (uint8_t *) "w")) < 0) {
         printf("Can't open the file: %s !\n", writefile);
         return ERROR_GENERIC;
     }
 
     ClusterSize = MediaTable[DeviceNum].SectorsPerCluster * MediaTable[DeviceNum].BytesPerSector;
-    WriteBuffer = (uint8_t *) malloc(ClusterSize);
-    if (WriteBuffer == NULL) {
-        printf("Allocating buffer failed!\n");
-        return ERROR_GENERIC;
-    }
-    for (i = 0; i < ClusterSize; i++) {
-        *(WriteBuffer + i) = (uint8_t) i;
-    }
-
+    WriteBuffer = (uint8_t *) TEST_BUFFER_ADDR;
+    
     count_timer.freq = get_main_clock(IPG_CLK);
     epit_init(&count_timer, CLKSRC_IPG_CLK, count_timer.freq / 1000000,
               SET_AND_FORGET, 10000, WAIT_MODE_EN | STOP_MODE_EN);
     epit_setup_interrupt(&count_timer, FALSE);
     epit_counter_enable(&count_timer, 0xFFFFFFFF, 0);   //polling mode
 
-    SDHC_ADMA_mode = 1;
+    SDHC_ADMA_mode = 0;
     SDHC_INTR_mode = 0;
 
     while (BytesWritten < TEST_FILE_SIZE) {
-        if ((count = Fwrite(fout, WriteBuffer, ClusterSize)) != ClusterSize) {
+        if ((count = Fwrite(fout, (uint8_t *)(WriteBuffer + BytesWritten), ChunkSize)) != ChunkSize) {
             printf("Fwrite failed. Exit.\n");
             Fclose(fout);
             return ERROR_GENERIC;
@@ -103,14 +101,11 @@ int fat_write_speed_test(void)
     TimeCount = epit_get_counter_value(&count_timer);
     epit_counter_disable(&count_timer); //polling mode
 
-    free(WriteBuffer);
-
     printf("\n*****************File Reading End********************\n");
     TimeCount = (0xFFFFFFFF - TimeCount) / 1000;    //ms
-    printf("Total data written %d, time %d ms\n", GetFileSize(fout), TimeCount);
-
+    printf("Total data written %d Bytes, time %d ms\n", GetFileSize(fout), TimeCount);
+   
     Fclose(fout);
-    FlushCache();
 
     return 0;
 }
@@ -120,8 +115,8 @@ int fat_read_speed_test(void)
     int count = 0;
     int32_t fin;
     uint8_t *ReadBuffer;
-    uint32_t ClusterSize = 0, FileSize = 0;
-    int ChunkSize = 0x80000;
+    uint32_t FileSize = 0;
+    int ChunkSize = CHUNCK_SIZE;
     int ReadSize = 0;
     uint32_t TimeCount = 0;
 
@@ -133,12 +128,7 @@ int fat_read_speed_test(void)
     FileSize = GetFileSize(fin);
     printf("File %s of size %d opened!\n", readfile, FileSize);
 
-    ClusterSize = MediaTable[DeviceNum].SectorsPerCluster * MediaTable[DeviceNum].BytesPerSector;
-    ReadBuffer = (uint8_t *) malloc(ChunkSize);
-    if (ReadBuffer == NULL) {
-        printf("Allocating buffer failed!\n");
-        return ERROR_GENERIC;
-    }
+    ReadBuffer = (uint8_t *) TEST_BUFFER_ADDR;
 
     count_timer.freq = get_main_clock(IPG_CLK);
     epit_init(&count_timer, CLKSRC_IPG_CLK, count_timer.freq / 1000000,
@@ -146,10 +136,10 @@ int fat_read_speed_test(void)
     epit_setup_interrupt(&count_timer, FALSE);
     epit_counter_enable(&count_timer, 0xFFFFFFFF, 0);   //polling mode
 
-    SDHC_ADMA_mode = 1;
+    SDHC_ADMA_mode = 0;
     SDHC_INTR_mode = 0;
-    while (1) {
-        if ((count = Fread(fin, ReadBuffer, ChunkSize)) < 0) {
+    while (ReadSize < TEST_FILE_SIZE) {
+        if ((count = Fread(fin, (uint8_t *)(ReadBuffer + ReadSize), ChunkSize)) < 0) {
             Fclose(fin);
             return ERROR_GENERIC;
         }
@@ -164,17 +154,21 @@ int fat_read_speed_test(void)
 
     printf("\n*****************File Reading End********************\n");
     TimeCount = (0xFFFFFFFF - TimeCount) / 1000;    //ms
-    printf("Total data read %d, time %d ms\n", ReadSize, TimeCount);
+    printf("Total data read %d Bytes, time %d ms\n", ReadSize, TimeCount);
 
-    free(ReadBuffer);
     Fclose(fin);
-    FlushCache();
     return 0;
 }
 
 int fat_test(void)
 {
     int TestResult = 0;
+
+    /* enable L1 cache for mx6dq and mx6sdl */
+    arm_icache_enable();
+    arm_dcache_invalidate();
+    mmu_enable();
+    arm_dcache_enable();
 
     printf("FSInit				");
     if (FSInit(NULL, bufy, maxdevices, maxhandles, maxcaches) != SUCCESS) {
@@ -190,11 +184,13 @@ int fat_test(void)
 
     print_media_fat_info(DeviceNum);
 
-    while (1) {
-        //fat_read_speed_test();
-        fat_write_speed_test();
-    }
+    do {
+        /*read input file to TEST BUFFER*/
+        fat_read_speed_test();
 
-    FlushCache();
+        /*Dump the test buffer to SD card*/
+        fat_write_speed_test();
+    } while(0);
+
     return 0;
 }

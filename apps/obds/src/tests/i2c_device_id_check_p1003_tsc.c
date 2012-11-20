@@ -31,6 +31,9 @@
 //#include "imx_i2c.h"
 #include "obds.h"
 
+static const char * const test_name = "I2C_DEVICE_P1003 Test";
+
+extern const i2c_device_info_t g_p1003_tsc_i2c_device;
 int p1003_show_touch(unsigned int i2c_base_addr);
 
 unsigned char p1003_version_reg_read(unsigned int i2c_base_addr, unsigned char reg_addr,
@@ -46,7 +49,6 @@ unsigned char p1003_version_reg_read(unsigned int i2c_base_addr, unsigned char r
     rq.buffer = ret_val;
 
     if (i2c_xfer(&rq, I2C_READ) != 0) {
-//    if (i2c_xfer(i2c_base_addr, &rq, I2C_READ) != 0) {
         printf("%s() error. return\n", __FUNCTION__);
         return -1;
     }
@@ -66,7 +68,6 @@ unsigned char p1003_version_reg_write(unsigned int i2c_base_addr, unsigned char 
     rq.buffer = buffer;
 
     if (i2c_xfer(&rq, I2C_WRITE) != 0) {
-//    if (i2c_xfer(i2c_base_addr, &rq, I2C_WRITE) != 0) {
         printf("%s() error. return\n", __FUNCTION__);
         return -1;
     }
@@ -257,4 +258,31 @@ int p1003_show_touch(unsigned int i2c_base_addr)
         return 1;
     }
     return 0;
+}
+
+/*!
+ * @return      TEST_PASSED or  TEST_FAILED    
+ */
+menu_action_t i2c_device_P1003_test(const menu_context_t* context, void* param)
+{
+	if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
+    {
+    	*(test_return_t*)param = TEST_BYPASSED;
+    	return MENU_CONTINUE;
+    }
+    //TO be confirmed - i2c-base_addr
+    if (i2c_device_id_check_p1003(g_p1003_tsc_i2c_device.port) == TEST_PASSED)
+    {
+        //PASS the test
+        print_test_passed(test_name, NULL);
+
+        *(test_return_t*)param = TEST_PASSED;
+    }
+    else
+    {
+        print_test_failed(test_name, NULL);
+
+        *(test_return_t*)param = TEST_FAILED;
+    }    
+    return MENU_CONTINUE;   
 }

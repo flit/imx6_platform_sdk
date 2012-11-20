@@ -65,6 +65,8 @@
 
 #define TSI_CONT_B_TSI_MAN			(0x01<<6)
 
+static const char * const test_name = "TOUCH SCREEN Test";
+
 bool pen_status[2] = { false, false };
 
 void DA9053_Write(unsigned char val, unsigned int reg_addr)
@@ -196,7 +198,6 @@ int touch_screen_prompt(void)
 
     do {
         recvCh = getchar();
-//        recvCh = receive_char();
     } while (recvCh == NONE_CHAR);
     printf("%c\n", recvCh);
 
@@ -208,17 +209,16 @@ int touch_screen_prompt(void)
         return 3;               //try again
 }
 
-int touch_screen_test_enable;
-int touch_screen_test(void)
+menu_action_t touch_screen_test(const menu_context_t* context, void* param)
 {
     int ret = 3, event;
     unsigned int x = 0, y = 0;
 
-    if (!touch_screen_test_enable) {
-        return TEST_NOT_PRESENT;
+    if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
+    {
+    	*(test_return_t*)param = TEST_BYPASSED;
+    	return MENU_CONTINUE;
     }
-
-    PROMPT_RUN_TEST("TOUCH SCREEN", NULL);
 
     printf("Touch screen test. Press the screen and you'll get the coordinate. \n");
     printf("To exit test, just left the screen un-touched for a while. \n");
@@ -245,6 +245,8 @@ int touch_screen_test(void)
     }
 
     return ret;
+    
+    *(test_return_t*)param = ret;
+    return MENU_CONTINUE;    
 }
 
-//RUN_TEST_INTERACTIVE("TOUCH SCREEN", touch_screen_test)

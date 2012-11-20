@@ -32,6 +32,8 @@
 #include "gpio/gpio.h"
 #include "io.h"
 
+static const char * const test_name = "ANDROID BUTTONS Test"; 
+
 extern void android_buttons_iomux_config(void); // define in hardware.c
 
 void configure_android_button(int32_t gpio_port, int32_t gpio_pin)
@@ -120,12 +122,13 @@ void check_android_button_status(void)
 /*!
  * @return      TEST_PASSED or  TEST_FAILED    
  */
-int android_buttons_test(void)
+menu_action_t android_buttons_test(const menu_context_t* context, void* param)
 {
-	unsigned char input;
-
-    PROMPT_RUN_TEST("ANDROID BUTTONS TEST", NULL);
-
+    if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
+    {
+    	*(test_return_t*)param = TEST_BYPASSED;
+    	return MENU_CONTINUE;
+    }
     printf("Press all the Android buttons (on SABRE AI main board) you wish to test\n");
     printf("%Pressing each button should result in an equivalent unique message to screen\n");
     printf("%Pressing any key on the keyboard exits this test\n");
@@ -133,65 +136,25 @@ int android_buttons_test(void)
     {
         check_android_button_status();
 
-        input = getchar();
-        if (input != NONE_CHAR)
-            break;
-    }
-
-    printf("Did you get unique message for HOME, PROG, VOL+, VOL-, and BACK buttons? [y/n]\n");
-	input = getchar();
-	input = getchar();
-
-    if (is_input_char('y', NULL)) {
-        printf("  ANDROID BUTTONS test passed \n");
-        return TEST_PASSED;
-    }
-    //if (input == 'y' || input == 'Y') {
-    //    printf("  ANDROID BUTTONS test passed \n");
-    //    return TEST_PASSED;
-    //}
-    printf("  ** ANDROID BUTTONS test failed ** \n");
-    return TEST_FAILED;
-} 
- 
- 
-#if 0 
-menu_action_t android_buttons_test(const menu_context_t* context, void* param)
-{
-	const char* const indent = menu_get_indent(context);
-
-    if ( prompt_run_test(test_name, indent) != TEST_CONTINUE )
-    {
-    	*(test_return_t*)param = TEST_BYPASSED;
-    	return MENU_CONTINUE;
-    }
-
-    printf("%sPress all the Android buttons (on SABRE AI main board) you wish to test\n", indent);
-    printf("%sPressing each button should result in an equivalent unique message to screen\n", indent);
-    printf("%sPressing any key on the keyboard exits this test\n", indent);
-    while (1)
-    {
-        check_android_button_status(indent);
-
         char key_pressed = fgetc(stdin);
         if (key_pressed != NONE_CHAR)
             break;
     }
 
-    printf("%sDid you get unique message for HOME, PROG, VOL+, VOL-, and BACK buttons?\n", indent);
-    if (is_input_char('y', indent))
+    printf("Did you get unique message for HOME, PROG, VOL+, VOL-, and BACK buttons?\n");
+    if (is_input_char('y', NULL))
     {
-        print_test_passed(test_name, indent);
+        print_test_passed(test_name, NULL);
 
         *(test_return_t*)param = TEST_PASSED;
         return MENU_CONTINUE;
     }
     else
     {
-        print_test_failed(test_name, indent);
+        print_test_failed(test_name, NULL);
 
         *(test_return_t*)param = TEST_FAILED;
         return MENU_CONTINUE;
     }
-}
-#endif
+} 
+ 

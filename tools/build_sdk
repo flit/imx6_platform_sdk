@@ -41,7 +41,7 @@ usage()
     echo "Usage: "
     echo "   $script [-t <target>] [-b <board>] [-v <rev>] [-r <test>] [-n] [-c] [-l]"
     echo
-    echo "Generates makefiles for the i.MX SDK project."
+    echo "Builds one or more configurations of the i.MX6 Platform SDK."
     echo
     echo "Options:"
     echo "   -t, -target=<target>     Specify the target name. Optional, and the default is all."
@@ -60,10 +60,10 @@ usage()
     echo "   The '=' is optional for long options; arguments can be specified as -arg=value or"
     echo "   -arg value. Short options require a space between the option and value."
     echo
-    echo "Generates makefiles for the specified combination of options. If -clean was specified,"
-    echo "'make clean' will be run. Then a regular build will be executed, unless the -no-build"
-    echo "argument is present. Makefiles are generated only for packages that are part of the"
-    echo "selected board."
+    echo "If -clean was specified, 'make clean' will be run first. Then a regular build will be executed,"
+    echo "unless the -no-build argument is present. If -target, -board, or -board_rev are set to 'all',"
+    echo "or not specified, then multiple builds will be run for all valid combinations of the"
+    echo "unspecified configuration parameters."
     echo
     echo "Valid target and board combinations:"
     echo
@@ -80,11 +80,6 @@ usage()
     echo "  target=mx6sl boards:"
     echo "       evk              rev a"
     echo
-    echo "  target=all"
-    echo "       builds all valid combinations of target, board, and board_rev"
-    echo "       [-r <test>] is a valid option."
-    echo "       -clean      Only does clean builds."
-    echo
     echo "Examples:"
     echo
     echo "  $script -target mx6dq -board evb"
@@ -96,11 +91,7 @@ usage()
     echo "      Build the mx6dq sabre_ai board with explicit board rev a, but only build the sdma test."
     echo "      Clean before building."
     echo
-    echo "  $script -target=mx6dq -board=evb -test=gpmi -no-build"
-    echo
-    echo "      Generate the makefiles for mx6dq evb and the gpmi test, but don't actually run make."
-    echo
-    echo "  $script -target=all -test vpu"
+    echo "  $script -clean -target=all -test vpu"
     echo
     echo "      Clean build of vpu_test for all valid combinations of target, board, and board_rev."
     echo

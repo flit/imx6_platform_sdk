@@ -33,6 +33,8 @@
 #define PMIC_DA9053_I2C_REG_BYTE    0x1 // Number of Bytes to transfer the PMIC reg number
 #define PMIC_DA9053_I2C_DATA_BYTE   0x1 // Number of Bytes to transfer the PMIC reg data
 
+static const char * const test_name = "PMIC_DA9053 Test";
+
 unsigned char da9053_i2c_reg(unsigned int reg, unsigned char val, unsigned int dir)
 {
     struct imx_i2c_request rq = {0};
@@ -211,16 +213,9 @@ static void da9053_eval(void)
     }
 }
 
-int i2c_device_id_check_DA9053_test_enable;
 int i2c_device_id_check_DA9053(void)
 {
     unsigned char reg_data = 0;
-
-    if (!i2c_device_id_check_DA9053_test_enable) {
-        return TEST_NOT_PRESENT;
-    }
-
-    PROMPT_RUN_TEST("PMIC DA9053 Device ID test", NULL);
 
     reg_data = da9053_i2c_reg(0x78, 0, I2C_READ);
 
@@ -258,4 +253,29 @@ int i2c_device_id_check_DA9053(void)
     return TEST_FAILED;
 }
 
-//RUN_TEST("PMIC DA9053", i2c_device_id_check_DA9053)
+/*!
+ * @return      TEST_PASSED or  TEST_FAILED    
+ */
+menu_action_t pmic_da9053_test(const menu_context_t* context, void* param)
+{
+	if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
+    {
+    	*(test_return_t*)param = TEST_BYPASSED;
+    	return MENU_CONTINUE;
+    }
+    
+    if (i2c_device_id_check_DA9053() == TEST_PASSED)
+    {
+        //PASS the test
+        print_test_passed(test_name, NULL);
+
+        *(test_return_t*)param = TEST_PASSED;
+    }
+    else
+    {
+        print_test_failed(test_name, NULL);
+
+        *(test_return_t*)param = TEST_FAILED;
+    }    
+    return MENU_CONTINUE;   
+}

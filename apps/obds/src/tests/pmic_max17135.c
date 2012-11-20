@@ -33,6 +33,8 @@
 #define PMIC_MAX17135_I2C_REG_BYTE    0x1   // Number of Bytes to transfer the PMIC reg number
 #define PMIC_MAX17135_I2C_DATA_BYTE   0x1   // Number of Bytes to transfer the PMIC reg data
 
+static const char * const test_name = "PMIC_MAX17135 Test";
+
 unsigned char max17135_reg_read(unsigned char reg)
 {
     struct imx_i2c_request rq = {0};
@@ -98,4 +100,31 @@ int i2c_device_id_check_MAX17135(void)
         printf("failed, 0x4D vs 0x%02X\n\n", reg_data);
         return TEST_FAILED;
     }
+}
+
+/*!
+ * @return      TEST_PASSED or  TEST_FAILED    
+ */
+menu_action_t pmic_MAX17135_test(const menu_context_t* context, void* param)
+{
+	if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
+    {
+    	*(test_return_t*)param = TEST_BYPASSED;
+    	return MENU_CONTINUE;
+    }
+    
+    if  (i2c_device_id_check_MAX17135() == TEST_PASSED)
+    {
+        //PASS the test
+        print_test_passed(test_name, NULL);
+
+        *(test_return_t*)param = TEST_PASSED;
+    }
+    else
+    {
+        print_test_failed(test_name, NULL);
+
+        *(test_return_t*)param = TEST_FAILED;
+    }    
+    return MENU_CONTINUE;   
 }

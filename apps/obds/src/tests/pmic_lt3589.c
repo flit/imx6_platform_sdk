@@ -37,6 +37,8 @@
 
 #define PGSTAT_REG 0x13
 
+static const char * const test_name = "PMIC_LT3589 Test";
+
 unsigned char ltc3589_reg_read(unsigned char reg_addr)
 {
     struct imx_i2c_request rq = {0};
@@ -508,16 +510,9 @@ void sil9024_hdmi_power_on1(void)
     }
 }
 
-int ltc3589_i2c_device_id_test_enable;
 int ltc3589_i2c_device_id_check(void)
 {
     unsigned char data;
-
-    if (!ltc3589_i2c_device_id_test_enable) {
-        return TEST_NOT_PRESENT;
-    }
-
-    PROMPT_RUN_TEST("PMIC LTC3589", NULL);
 
     i2c_init(g_pmic_ltc3589_i2c_device.port, g_pmic_ltc3589_i2c_device.freq);
 
@@ -551,4 +546,30 @@ int ltc3589_i2c_device_id_check(void)
     return TEST_PASSED;
 }
 
-//RUN_TEST("PMIC LTC3589", ltc3589_i2c_device_id_check)
+/*!
+ * @return      TEST_PASSED or  TEST_FAILED    
+ */
+menu_action_t pmic_lt3589_test(const menu_context_t* context, void* param)
+{
+	if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
+    {
+    	*(test_return_t*)param = TEST_BYPASSED;
+    	return MENU_CONTINUE;
+    }
+    
+    if (ltc3589_i2c_device_id_check() == TEST_PASSED)
+    {
+        //PASS the test
+        print_test_passed(test_name, NULL);
+
+        *(test_return_t*)param = TEST_PASSED;
+    }
+    else
+    {
+        print_test_failed(test_name, NULL);
+
+        *(test_return_t*)param = TEST_FAILED;
+    }    
+    return MENU_CONTINUE;   
+}
+

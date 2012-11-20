@@ -46,6 +46,7 @@
 #define PMIC_MC13892_I2C_REG_BYTE   0x1 // Number of Bytes to transfer the PMIC reg number
 #define PMIC_MC13892_I2C_DATA_BYTE  0x3 // Number of Bytes to transfer the PMIC reg data
 
+static const char * const test_name = "PMIC_MC13892 Test";
 
 typedef unsigned int (*pmic_mc13892_reg_t) (unsigned int reg, unsigned int val, unsigned int write);
 
@@ -208,15 +209,29 @@ printf("read reg\n");
 return TEST_PASSED;
 }
 
-int pmic_mc13892_test_enable;
-int device_id_mc13892_test(void)
+/*!
+ * @return      TEST_PASSED or  TEST_FAILED    
+ */
+menu_action_t pmic_mc13892_test(const menu_context_t* context, void* param)
 {
-    if (!pmic_mc13892_test_enable) {
-        return TEST_NOT_PRESENT;
+	if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
+    {
+    	*(test_return_t*)param = TEST_BYPASSED;
+    	return MENU_CONTINUE;
     }
+    
+    if (device_id_check_mc13892() == TEST_PASSED)
+    {
+        //PASS the test
+        print_test_passed(test_name, NULL);
 
-    PROMPT_RUN_TEST("PMIC ID test", NULL);
-    return device_id_check_mc13892();
+        *(test_return_t*)param = TEST_PASSED;
+    }
+    else
+    {
+        print_test_failed(test_name, NULL);
+
+        *(test_return_t*)param = TEST_FAILED;
+    }    
+    return MENU_CONTINUE;   
 }
-
-//RUN_TEST("PMIC ID Test", device_id_mc13892_test)

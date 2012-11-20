@@ -44,7 +44,36 @@ extern menu_action_t i2c_device_mc1323_test(const menu_context_t* context, void*
 //extern int i2c_device_check_cs42888(void);
 //int i2c_device_id_check_cs42888_test_enable = 1;
 
+//PMIC device tests
+menu_action_t pmic_mc13892_test(const menu_context_t* context, void* param);
+menu_action_t pmic_MAX17135_test(const menu_context_t* context, void* param);
+menu_action_t pmic_lt3589_test(const menu_context_t* context, void* param);
+menu_action_t pmic_da9053_test(const menu_context_t* context, void* param);
+menu_action_t pf0100_i2c_device_id_check(const menu_context_t* context, void* param);
+
 static const char * const i2c_device_test_name = "I2C Device ID Test";
+static const char * const pmic_test_name = "PMIC Test";
+
+/*!
+ * This test performs PMIC device test on i2c 
+ * 
+ * @return TEST_PASSED or TEST_FAILED
+ */
+menu_action_t pmic_test(const menu_context_t* const context, void* const param) 
+{
+	if ( prompt_run_test(pmic_test_name, NULL) != TEST_CONTINUE )
+    {
+    	*(test_return_t*)param = TEST_BYPASSED;
+    	return MENU_CONTINUE;
+    }  
+	pmic_mc13892_test(context, param);
+    pmic_MAX17135_test(context, param);
+    pmic_lt3589_test(context, param);
+    pmic_da9053_test(context, param);
+    pf0100_i2c_device_id_check(context, param);
+    
+    return MENU_CONTINUE;  
+}
 
 /*!
  * This test performs i2c device id check 
@@ -68,23 +97,25 @@ menu_action_t i2c_device_id_check(const menu_context_t* const context, void* con
     hal_delay_us(1000);
     gpio_set_level(GPIO_PORT2, 31, GPIO_HIGH_LEVEL);
 #if defined(BOARD_SMART_DEVICE) 
-    test_count = 4;
+    test_count = 5;
     i2c_device_MMA8451_test(context, param);
     i2c_device_isl29023_test(context, param);
     i2c_device_mag3110_test(context, param);
     i2c_device_P1003_test(context, param);
+    i2c_device_emc1046_test(context, param);
     //rc |= i2c_device_id_check_mc1323(I2C2_BASE_ADDR);
     
 #elif defined(BOARD_SABRE_LITE) 
     test_count = 1;
     i2c_device_P1003_test(context, param);
 #elif defined(BOARD_SABRE_AI)      
-    test_count = 5;   
+    test_count = 6;   
     i2c_device_P1003_test(context, param);
     i2c_device_isl29023_test(context, param);
     i2c_device_mag3110_test(context, param);
     i2c_device_mag3112_test(context, param);
     i2c_device_MMA8451_test(context, param);
+    i2c_device_emc1046_test(context, param);
     
 /*        if (i2c_device_id_check_cs42888_test_enable == 1) {
             ++test_count;
@@ -102,11 +133,12 @@ menu_action_t i2c_device_id_check(const menu_context_t* const context, void* con
     gpio_set_level(GPIO_PORT2, 31, GPIO_HIGH_LEVEL);
 
 #if defined(BOARD_SMART_DEVICE) 
-    test_count = 4;
+    test_count = 5;
     i2c_device_MMA8451_test(context, param);
     i2c_device_isl29023_test(context, param);
     i2c_device_mag3110_test(context, param);
     i2c_device_P1003_test(context, param);
+    i2c_device_emc1046_test(context, param);
 #elif defined(BOARD_SABRE_LITE)
     test_count = 1;
     i2c_device_P1003_test(context, param);    

@@ -57,20 +57,21 @@
 <
 ----------------------------------------------------------------------------*/
 RtStatus_t Freehandle(int32_t HandleNumber)
-{ 
+{
 
     // Ensure the handle table pointer is not NULL.
     assert(Handle);
 
     // Check whether the passed handle number is within range
-    if((HandleNumber <0) || (HandleNumber >=maxhandles))
+    if ((HandleNumber < 0) || (HandleNumber >= maxhandles))
         return ERROR_OS_FILESYSTEM_MAX_HANDLES_EXCEEDED;
 
-    Handle[HandleNumber].HandleActive=0;
-    Handle[HandleNumber].ErrorCode=0;
+    Handle[HandleNumber].HandleActive = 0;
+    Handle[HandleNumber].ErrorCode = 0;
 
     return SUCCESS;
 }
+
 /*----------------------------------------------------------------------------
 >  Function Name: RtStatus_t Updatehandlemode(int32_t HandleNumber,int32_t Mode)
 
@@ -85,16 +86,16 @@ RtStatus_t Freehandle(int32_t HandleNumber)
                   the specified mode.
 <
 ----------------------------------------------------------------------------*/
-RtStatus_t Updatehandlemode(int32_t HandleNumber,int32_t Mode)
-{ 
+RtStatus_t Updatehandlemode(int32_t HandleNumber, int32_t Mode)
+{
     // Ensure the handle table pointer is not NULL.
     assert(Handle);
 
     // Check whether the passed handle number is within range
-    if((HandleNumber <0) || (HandleNumber >=maxhandles))
+    if ((HandleNumber < 0) || (HandleNumber >= maxhandles))
         return ERROR_OS_FILESYSTEM_MAX_HANDLES_EXCEEDED;
 
-    Handle[HandleNumber].Mode = (FileSystemModeTypes_t)Mode;
+    Handle[HandleNumber].Mode = (FileSystemModeTypes_t) Mode;
     return SUCCESS;
 }
 
@@ -113,15 +114,16 @@ RtStatus_t Updatehandlemode(int32_t HandleNumber,int32_t Mode)
 <
 ----------------------------------------------------------------------------*/
 int32_t Gethandlemode(int32_t HandleNumber)
-{ 
+{
     // Ensure the handle table pointer is not NULL.
     assert(Handle);
 
     // Check whether the passed handle number is within range
-    if((HandleNumber <0) || (HandleNumber >=maxhandles))
+    if ((HandleNumber < 0) || (HandleNumber >= maxhandles))
         return ERROR_OS_FILESYSTEM_MAX_HANDLES_EXCEEDED;
     return Handle[HandleNumber].Mode;
 }
+
 /*----------------------------------------------------------------------------
 >  Function Name: RtStatus_t IsHandleWriteAllocated(int32_t HandleNumber)
 
@@ -137,45 +139,39 @@ int32_t Gethandlemode(int32_t HandleNumber)
 <
 ----------------------------------------------------------------------------*/
 FileSystemModeTypes_t IsHandleWriteAllocated(int32_t HandleNumber)
-{ 
+{
     int32_t i;
 
     // Ensure the handle table pointer is not NULL.
     assert(Handle);
-   
-	EnterNonReentrantSection();
-    // Check whether the passed handle number is within range
-    if((HandleNumber <0) || (HandleNumber >=maxhandles))
-	{
-	    LeaveNonReentrantSection();
-        // Cast to FileSystem mode to prevent errors.
-        return (FileSystemModeTypes_t)ERROR_OS_FILESYSTEM_MAX_HANDLES_EXCEEDED;
-	}
 
-    for(i=FIRST_VALID_HANDLE;i < maxhandles;i++)
-    {
-        if( i !=HandleNumber)
-        {
-            if(Handle[i].HandleActive == 1)
-            {
-                if(Handle[HandleNumber].Device == Handle[i].Device)
-		        {
-                    if(Handle[HandleNumber].DirSector == Handle[i].DirSector)
-                    {
-                        if(Handle[HandleNumber].diroffset == Handle[i].diroffset)
-                            if(Handle[i].Mode & WRITE_MODE)
-					        {
-                 	            LeaveNonReentrantSection();
+    EnterNonReentrantSection();
+    // Check whether the passed handle number is within range
+    if ((HandleNumber < 0) || (HandleNumber >= maxhandles)) {
+        LeaveNonReentrantSection();
+        // Cast to FileSystem mode to prevent errors.
+        return (FileSystemModeTypes_t) ERROR_OS_FILESYSTEM_MAX_HANDLES_EXCEEDED;
+    }
+
+    for (i = FIRST_VALID_HANDLE; i < maxhandles; i++) {
+        if (i != HandleNumber) {
+            if (Handle[i].HandleActive == 1) {
+                if (Handle[HandleNumber].Device == Handle[i].Device) {
+                    if (Handle[HandleNumber].DirSector == Handle[i].DirSector) {
+                        if (Handle[HandleNumber].diroffset == Handle[i].diroffset)
+                            if (Handle[i].Mode & WRITE_MODE) {
+                                LeaveNonReentrantSection();
                                 return WRITE_MODE;
                             }
-		            }
+                    }
                 }
-	        }
+            }
         }
     }
     LeaveNonReentrantSection();
     return NOT_WRITE_MODE;
 }
+
 /*----------------------------------------------------------------------------
 >  Function Name: int32_t Searchfreehandleallocate(void)
 
@@ -191,32 +187,31 @@ FileSystemModeTypes_t IsHandleWriteAllocated(int32_t HandleNumber)
 <
 ----------------------------------------------------------------------------*/
 int32_t Searchfreehandleallocate(void)
-{ 
+{
     int32_t i;
 
     // Ensure the handle table pointer is not NULL.
     assert(Handle);
-	
-	EnterNonReentrantSection();
-    for(i=FIRST_VALID_HANDLE; i < maxhandles; i++)
-    {
-        if(Handle[i].HandleActive==0)
-        {
-            Handle[i].HandleActive=1;
-		    Handle[i].ErrorCode=0;
-		    Handle[i].FileSize=0;
-		    Handle[i].Mode=0;
-		    Handle[i].DirSector=0;
-		    Handle[i].diroffset=0;
-		    SeekPoint_InitializeBuffer(i);
-	        LeaveNonReentrantSection();
+
+    EnterNonReentrantSection();
+    for (i = FIRST_VALID_HANDLE; i < maxhandles; i++) {
+        if (Handle[i].HandleActive == 0) {
+            Handle[i].HandleActive = 1;
+            Handle[i].ErrorCode = 0;
+            Handle[i].FileSize = 0;
+            Handle[i].Mode = 0;
+            Handle[i].DirSector = 0;
+            Handle[i].diroffset = 0;
+            SeekPoint_InitializeBuffer(i);
+            LeaveNonReentrantSection();
             return i;
         }
     }
-	
-	LeaveNonReentrantSection();
+
+    LeaveNonReentrantSection();
     return ERROR_OS_FILESYSTEM_NO_FREE_HANDLE;
 }
+
 /*----------------------------------------------------------------------------
 >  Function Name: RtStatus_t Isfileopen(int32_t HandleNumber)
 
@@ -231,7 +226,7 @@ int32_t Searchfreehandleallocate(void)
 <
 ----------------------------------------------------------------------------*/
 RtStatus_t Isfileopen(int32_t HandleNumber)
-{ 
+{
     int32_t i;
 
     // Ensure the handle table pointer is not NULL.
@@ -239,28 +234,24 @@ RtStatus_t Isfileopen(int32_t HandleNumber)
 
     // Check whether the passed handle number is within range
     // To Fix -> stmp00014483.
-    if((HandleNumber < FIRST_VALID_HANDLE-1) || (HandleNumber >=maxhandles))
+    if ((HandleNumber < FIRST_VALID_HANDLE - 1) || (HandleNumber >= maxhandles))
         return ERROR_OS_FILESYSTEM_MAX_HANDLES_EXCEEDED;
 
-    for(i=FIRST_VALID_HANDLE-1;i < maxhandles;i++)
-    {
-        if( i !=HandleNumber)
-        {
-            if(Handle[HandleNumber].Device == Handle[i].Device)
-            {
-                if(Handle[i].HandleActive == 1)
-                {
-                    if(Handle[HandleNumber].CurrentSector == Handle[i].DirSector)
-                    {
-                        if(Handle[HandleNumber].BytePosInSector == Handle[i].diroffset)
+    for (i = FIRST_VALID_HANDLE - 1; i < maxhandles; i++) {
+        if (i != HandleNumber) {
+            if (Handle[HandleNumber].Device == Handle[i].Device) {
+                if (Handle[i].HandleActive == 1) {
+                    if (Handle[HandleNumber].CurrentSector == Handle[i].DirSector) {
+                        if (Handle[HandleNumber].BytePosInSector == Handle[i].diroffset)
                             return ERROR_OS_FILESYSTEM_FILE_OPEN;
-                    }                             
+                    }
                 }
-		    }
+            }
         }
     }
     return SUCCESS;
 }
+
 /*----------------------------------------------------------------------------
 >  Function Name: RtStatus_t IsCurrWorkDir(int32_t HandleNumber)
 
@@ -281,27 +272,24 @@ RtStatus_t IsCurrWorkDir(int32_t HandleNumber)
     assert(Handle);
 
     EnterNonReentrantSection();
-    if((HandleNumber <0) || (HandleNumber >=maxhandles))
-	{
-	    LeaveNonReentrantSection();
+    if ((HandleNumber < 0) || (HandleNumber >= maxhandles)) {
+        LeaveNonReentrantSection();
         return ERROR_OS_FILESYSTEM_MAX_HANDLES_EXCEEDED;
-	}
- 
-    if(Handle[HandleNumber].Device == Handle[CWD_HANDLE].Device)
-	{
-        if(Handle[HandleNumber].DirSector == Handle[CWD_HANDLE].DirSector)
-        {
-            if(Handle[HandleNumber].diroffset == Handle[CWD_HANDLE].diroffset)
-            {
-    	        LeaveNonReentrantSection();
-		  	    return ERROR_OS_FILESYSTEM_CURRENT_WORK_DIR;
-			}
-		}
+    }
+
+    if (Handle[HandleNumber].Device == Handle[CWD_HANDLE].Device) {
+        if (Handle[HandleNumber].DirSector == Handle[CWD_HANDLE].DirSector) {
+            if (Handle[HandleNumber].diroffset == Handle[CWD_HANDLE].diroffset) {
+                LeaveNonReentrantSection();
+                return ERROR_OS_FILESYSTEM_CURRENT_WORK_DIR;
+            }
+        }
     }
 
     LeaveNonReentrantSection();
-	return SUCCESS;
+    return SUCCESS;
 }
+
 /*----------------------------------------------------------------------------
 >  Function Name: int32_t GetCWDHandle(void)
 
@@ -315,26 +303,27 @@ RtStatus_t IsCurrWorkDir(int32_t HandleNumber)
 <----------------------------------------------------------------------------*/
 int32_t GetCWDHandle(void)
 {
-    int32_t    HandleNumber;
+    int32_t HandleNumber;
 
     // Ensure the handle table pointer is not NULL.
     assert(Handle);
 
-	if((HandleNumber = Searchfreehandleallocate())<0)
-        return(ERROR_OS_FILESYSTEM_NO_FREE_HANDLE);
+    if ((HandleNumber = Searchfreehandleallocate()) < 0)
+        return (ERROR_OS_FILESYSTEM_NO_FREE_HANDLE);
 
     EnterNonReentrantSection();
 
     /* copy the handle 0 (CWD handle) to this new handle found */
-    Handle[HandleNumber]=Handle[CWD_HANDLE];
+    Handle[HandleNumber] = Handle[CWD_HANDLE];
 
     LeaveNonReentrantSection();
 
     /* Remove Handle Write Mode */
-    Handle[HandleNumber].Mode = (FileSystemModeTypes_t)(DIRECTORY_MODE + READ_MODE);
+    Handle[HandleNumber].Mode = (FileSystemModeTypes_t) (DIRECTORY_MODE + READ_MODE);
 
     return HandleNumber;
 }
+
 /*----------------------------------------------------------------------------
 >  Function Name:  RtStatus_t GetDeviceFromHandle(int32_t HandleNumber, int32_t *pDeviceNumber)
 
@@ -348,26 +337,26 @@ int32_t GetCWDHandle(void)
    Description:    Reads the handle's device number
 <
 ----------------------------------------------------------------------------*/
-RtStatus_t GetDeviceFromHandle(int32_t HandleNumber, int32_t *pDeviceNumber)
-{ 
+RtStatus_t GetDeviceFromHandle(int32_t HandleNumber, int32_t * pDeviceNumber)
+{
     // Ensure the handle table pointer is not NULL.
     assert(Handle);
 
     // Check whether the passed handle number is within range
-    if((HandleNumber <0) || (HandleNumber >=maxhandles))
+    if ((HandleNumber < 0) || (HandleNumber >= maxhandles))
         return ERROR_OS_FILESYSTEM_MAX_HANDLES_EXCEEDED;
 
-    if(HandleNumber == 0)
-        return  ERROR_OS_FILESYSTEM_HANDLE_NOT_ACTIVE;
-    
-    if(Handle[HandleNumber].HandleActive != 0)
-        return  ERROR_OS_FILESYSTEM_HANDLE_NOT_ACTIVE;
-    else
-	{
-		*pDeviceNumber = Handle[HandleNumber].Device;
-		return SUCCESS;
-	}
+    if (HandleNumber == 0)
+        return ERROR_OS_FILESYSTEM_HANDLE_NOT_ACTIVE;
+
+    if (Handle[HandleNumber].HandleActive != 0)
+        return ERROR_OS_FILESYSTEM_HANDLE_NOT_ACTIVE;
+    else {
+        *pDeviceNumber = Handle[HandleNumber].Device;
+        return SUCCESS;
+    }
 }
+
 /*----------------------------------------------------------------------------
 >  Function Name: RtStatus_t UpdateHandle(int32_t HandleNumber,int32_t clusterno)
 
@@ -382,24 +371,25 @@ RtStatus_t GetDeviceFromHandle(int32_t HandleNumber, int32_t *pDeviceNumber)
 
 <
 ----------------------------------------------------------------------------*/
-RtStatus_t UpdateHandle(int32_t HandleNumber,int32_t clusterno)
+RtStatus_t UpdateHandle(int32_t HandleNumber, int32_t clusterno)
 {
     // Ensure the handle table pointer is not NULL.
     assert(Handle);
 
-    if((HandleNumber <0) || (HandleNumber >=maxhandles))
+    if ((HandleNumber < 0) || (HandleNumber >= maxhandles))
         return ERROR_OS_FILESYSTEM_MAX_HANDLES_EXCEEDED;
 
     Handle[HandleNumber].diroffset = Handle[HandleNumber].BytePosInSector;
     Handle[HandleNumber].DirSector = Handle[HandleNumber].CurrentSector;
-    Handle[HandleNumber].StartingCluster=clusterno;
+    Handle[HandleNumber].StartingCluster = clusterno;
     Handle[HandleNumber].CurrentCluster = clusterno;
-    Handle[HandleNumber].CurrentSector = Firstsectorofcluster(Handle[HandleNumber].Device,clusterno);
+    Handle[HandleNumber].CurrentSector =
+        Firstsectorofcluster(Handle[HandleNumber].Device, clusterno);
     Handle[HandleNumber].CurrentOffset = 0;
     Handle[HandleNumber].BytePosInSector = 0;
-    Handle[HandleNumber].SectorPosInCluster=0;
-	 
-	return SUCCESS;
+    Handle[HandleNumber].SectorPosInCluster = 0;
+
+    return SUCCESS;
 }
 
 /*----------------------------------------------------------------------------
@@ -415,18 +405,18 @@ RtStatus_t UpdateHandle(int32_t HandleNumber,int32_t clusterno)
 <
 ----------------------------------------------------------------------------*/
 RtStatus_t Handleactive(int32_t HandleNumber)
-{ 
+{
     // Check whether the passed handle number is within range
-    if((HandleNumber <0) || (HandleNumber >=maxhandles))
+    if ((HandleNumber < 0) || (HandleNumber >= maxhandles))
         return ERROR_OS_FILESYSTEM_MAX_HANDLES_EXCEEDED;
 
-    if(HandleNumber == 0)
-        return  ERROR_OS_FILESYSTEM_HANDLE_NOT_ACTIVE;
+    if (HandleNumber == 0)
+        return ERROR_OS_FILESYSTEM_HANDLE_NOT_ACTIVE;
 
-    if(Handle == NULL )
-        return  ERROR_OS_FILESYSTEM_HANDLE_NOT_ACTIVE;
-    
-    if(Handle[HandleNumber].HandleActive == 1)
+    if (Handle == NULL)
+        return ERROR_OS_FILESYSTEM_HANDLE_NOT_ACTIVE;
+
+    if (Handle[HandleNumber].HandleActive == 1)
         return SUCCESS;
 
     else
@@ -464,22 +454,20 @@ uint8_t CheckMode(uint32_t HandleNumber)
 ----------------------------------------------------------------------------*/
 int32_t Ferror(int32_t HandleNumber)
 {
-    RtStatus_t RetValue;    // Don't init to save memory.
-	
-	EnterNonReentrantSection();
-    
-    // Check whether the passed handle number is within range
-    if((HandleNumber < 0)||(HandleNumber >=maxhandles))
-	{
-	    LeaveNonReentrantSection();
-        return ERROR_OS_FILESYSTEM_MAX_HANDLES_EXCEEDED;
-	}
+    RtStatus_t RetValue;        // Don't init to save memory.
 
-	if((RetValue = Handleactive(HandleNumber)) <0)
-    {
-	    LeaveNonReentrantSection();
-		return RetValue;
-	}
+    EnterNonReentrantSection();
+
+    // Check whether the passed handle number is within range
+    if ((HandleNumber < 0) || (HandleNumber >= maxhandles)) {
+        LeaveNonReentrantSection();
+        return ERROR_OS_FILESYSTEM_MAX_HANDLES_EXCEEDED;
+    }
+
+    if ((RetValue = Handleactive(HandleNumber)) < 0) {
+        LeaveNonReentrantSection();
+        return RetValue;
+    }
     LeaveNonReentrantSection();
     return Handle[HandleNumber].ErrorCode;
 }

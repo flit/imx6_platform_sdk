@@ -79,7 +79,7 @@ typedef int32_t RtStatus_t;
 
 //! @name Error groups
 //@{
-#define OS_GROUP                  (0x00300000) //0x80300000
+#define OS_GROUP                  (0x00300000)  //0x80300000
 #define OS_FILESYSTEM_GROUP       (OS_GROUP|0x00005000)
 #define ERROR_OS_FILESYSTEM_GROUP       (ERROR_MASK|OS_FILESYSTEM_GROUP)
 //@}
@@ -140,6 +140,4 @@ typedef int32_t RtStatus_t;
 #define ERROR_OS_FILESYSTEM_NOT_EOF                              (ERROR_OS_FILESYSTEM_GROUP + 51)
 //@}
 
-#endif//_OS_FILESYSTEM_ERRORDEFS_H 
-
-
+#endif //_OS_FILESYSTEM_ERRORDEFS_H

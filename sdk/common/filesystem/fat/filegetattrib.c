@@ -59,29 +59,30 @@
 
 <
 ----------------------------------------------------------------------------*/
-RtStatus_t filegetattrib(uint8_t *FilePath)
+RtStatus_t filegetattrib(uint8_t * FilePath)
 {
-    int32_t dirattribute,HandleNumber;
+    int32_t dirattribute, HandleNumber;
     uint8_t *buf;
     uint32_t cacheToken;
 
-    if((HandleNumber = Fopen(FilePath,(uint8_t *)"r")) <0)
-    {
+    if ((HandleNumber = Fopen(FilePath, (uint8_t *) "r")) < 0) {
         return HandleNumber;
     }
-    
-	EnterNonReentrantSection();
-    if((buf = (uint8_t *)FSReadSector(Handle[HandleNumber].Device,Handle[HandleNumber].DirSector,WRITE_TYPE_RANDOM, &cacheToken)) ==(uint8_t*)0)
-	{
-    	    LeaveNonReentrantSection();
-		return ERROR_OS_FILESYSTEM_READSECTOR_FAIL;
-	}
-    dirattribute = FSGetByte((uint8_t*)buf,(DIR_ATTRIBUTEOFFSET + Handle[HandleNumber].diroffset));
+
+    EnterNonReentrantSection();
+    if ((buf =
+         (uint8_t *) FSReadSector(Handle[HandleNumber].Device, Handle[HandleNumber].DirSector,
+                                  WRITE_TYPE_RANDOM, &cacheToken)) == (uint8_t *) 0) {
+        LeaveNonReentrantSection();
+        return ERROR_OS_FILESYSTEM_READSECTOR_FAIL;
+    }
+    dirattribute =
+        FSGetByte((uint8_t *) buf, (DIR_ATTRIBUTEOFFSET + Handle[HandleNumber].diroffset));
     FSReleaseSector(cacheToken);
-	LeaveNonReentrantSection();
-    
-	Freehandle(HandleNumber);
-    return  dirattribute;
+    LeaveNonReentrantSection();
+
+    Freehandle(HandleNumber);
+    return dirattribute;
 }
 
 /*----------------------------------------------------------------------------
@@ -103,18 +104,21 @@ RtStatus_t filegetattribhandle(int32_t HandleNumber)
     RtStatus_t dirattribute;
     uint8_t *buf;
     uint32_t cacheToken;
-        
+
     EnterNonReentrantSection();
-    if((buf = (uint8_t *)FSReadSector(Handle[HandleNumber].Device,Handle[HandleNumber].DirSector,WRITE_TYPE_RANDOM, &cacheToken)) ==(uint8_t*)0)
-    {
+    if ((buf =
+         (uint8_t *) FSReadSector(Handle[HandleNumber].Device, Handle[HandleNumber].DirSector,
+                                  WRITE_TYPE_RANDOM, &cacheToken)) == (uint8_t *) 0) {
         LeaveNonReentrantSection();
         return ERROR_OS_FILESYSTEM_READSECTOR_FAIL;
     }
-    dirattribute = (RtStatus_t) FSGetByte((uint8_t*)buf,(DIR_ATTRIBUTEOFFSET + Handle[HandleNumber].diroffset));
+    dirattribute =
+        (RtStatus_t) FSGetByte((uint8_t *) buf,
+                               (DIR_ATTRIBUTEOFFSET + Handle[HandleNumber].diroffset));
     FSReleaseSector(cacheToken);
     LeaveNonReentrantSection();
-    
-    return  dirattribute;
+
+    return dirattribute;
 }
 
 /*----------------------------------------------------------------------------
@@ -134,51 +138,50 @@ RtStatus_t filegetattribhandle(int32_t HandleNumber)
                   the file referenced by the given handle number.
 <
 ----------------------------------------------------------------------------*/
-RtStatus_t filegetdate(int32_t HandleNumber,int32_t crt_mod_date_time_para,DIR_DATE *dirdate,DIR_TIME *dirtime)
+RtStatus_t filegetdate(int32_t HandleNumber, int32_t crt_mod_date_time_para, DIR_DATE * dirdate,
+                       DIR_TIME * dirtime)
 {
-    int32_t date_time,offset=0;
+    int32_t date_time, offset = 0;
     uint8_t *buf;
     uint32_t cacheToken;
 
-    if((HandleNumber < 0)||(HandleNumber >= maxhandles))
+    if ((HandleNumber < 0) || (HandleNumber >= maxhandles))
         return ERROR_OS_FILESYSTEM_MAX_HANDLES_EXCEEDED;
-        
-    if(crt_mod_date_time_para == CREATION_DATE)
-	    offset = DIR_CRTDATEOFFSET;
-    
-    else if(crt_mod_date_time_para == CREATION_TIME)
-	    offset = DIR_CRTTIMEOFFSET;
 
-    else if(crt_mod_date_time_para == MODIFICATION_DATE)
-	    offset = DIR_WRTDATEOFFSET;
+    if (crt_mod_date_time_para == CREATION_DATE)
+        offset = DIR_CRTDATEOFFSET;
 
-    else if(crt_mod_date_time_para == MODIFICATION_TIME)
-	    offset = DIR_WRTTIMEOFFSET;
+    else if (crt_mod_date_time_para == CREATION_TIME)
+        offset = DIR_CRTTIMEOFFSET;
+
+    else if (crt_mod_date_time_para == MODIFICATION_DATE)
+        offset = DIR_WRTDATEOFFSET;
+
+    else if (crt_mod_date_time_para == MODIFICATION_TIME)
+        offset = DIR_WRTTIMEOFFSET;
 
     EnterNonReentrantSection();
 
-    if((buf = (uint8_t *)FSReadSector(Handle[HandleNumber].Device,Handle[HandleNumber].DirSector,WRITE_TYPE_RANDOM, &cacheToken))==(uint8_t*)0)
-	{
-	    LeaveNonReentrantSection();
-		return ERROR_OS_FILESYSTEM_READSECTOR_FAIL;
-	}
-    date_time = FSGetWord((uint8_t*)buf,(offset + Handle[HandleNumber].diroffset));
+    if ((buf =
+         (uint8_t *) FSReadSector(Handle[HandleNumber].Device, Handle[HandleNumber].DirSector,
+                                  WRITE_TYPE_RANDOM, &cacheToken)) == (uint8_t *) 0) {
+        LeaveNonReentrantSection();
+        return ERROR_OS_FILESYSTEM_READSECTOR_FAIL;
+    }
+    date_time = FSGetWord((uint8_t *) buf, (offset + Handle[HandleNumber].diroffset));
     FSReleaseSector(cacheToken);
     LeaveNonReentrantSection();
 
-    if(crt_mod_date_time_para == CREATION_DATE || crt_mod_date_time_para == MODIFICATION_DATE)
-    {
-	    dirdate->Day = date_time & 0x001F;
-	    dirdate->Month = (date_time & 0x01E0) >> 5;
-	    dirdate->Year = ((date_time & 0xFE00) >> 9) + 1980;
-	}
-	else
-	{
-		dirtime->Second = (date_time & 0x001F)*2;
-		dirtime->Minute = (date_time & 0x07E0) >> 5;
-		dirtime->Hour = ((date_time & 0xF800) >> 11);
-	}
-    return  SUCCESS;
+    if (crt_mod_date_time_para == CREATION_DATE || crt_mod_date_time_para == MODIFICATION_DATE) {
+        dirdate->Day = date_time & 0x001F;
+        dirdate->Month = (date_time & 0x01E0) >> 5;
+        dirdate->Year = ((date_time & 0xFE00) >> 9) + 1980;
+    } else {
+        dirtime->Second = (date_time & 0x001F) * 2;
+        dirtime->Minute = (date_time & 0x07E0) >> 5;
+        dirtime->Hour = ((date_time & 0xF800) >> 11);
+    }
+    return SUCCESS;
 }
 
 /*----------------------------------------------------------------------------
@@ -196,25 +199,24 @@ RtStatus_t filegetdate(int32_t HandleNumber,int32_t crt_mod_date_time_para,DIR_D
 
 <
 ----------------------------------------------------------------------------*/
-RtStatus_t filesetattrib(int32_t HandleNumber,int32_t dirattribute)
+RtStatus_t filesetattrib(int32_t HandleNumber, int32_t dirattribute)
 {
     RtStatus_t Retval;
     EnterNonReentrantSection();
-    if((HandleNumber <0 )||(HandleNumber >= maxhandles))
-    {
+    if ((HandleNumber < 0) || (HandleNumber >= maxhandles)) {
         LeaveNonReentrantSection();
         return ERROR_OS_FILESYSTEM_MAX_HANDLES_EXCEEDED;
-	}
+    }
 
-    if((Retval = FSWriteSector(Handle[HandleNumber].Device,Handle[HandleNumber].DirSector,
-    (DIR_ATTRIBUTEOFFSET + Handle[HandleNumber].diroffset),(uint8_t *)&dirattribute,0,2,WRITE_TYPE_RANDOM)) <0)
-	{
-	    LeaveNonReentrantSection();
-		return Retval;
-	}
+    if ((Retval = FSWriteSector(Handle[HandleNumber].Device, Handle[HandleNumber].DirSector,
+                                (DIR_ATTRIBUTEOFFSET + Handle[HandleNumber].diroffset),
+                                (uint8_t *) & dirattribute, 0, 2, WRITE_TYPE_RANDOM)) < 0) {
+        LeaveNonReentrantSection();
+        return Retval;
+    }
 
     LeaveNonReentrantSection();
-    return  SUCCESS;
+    return SUCCESS;
 }
 
 /*----------------------------------------------------------------------------
@@ -249,50 +251,48 @@ RtStatus_t filesetattrib(int32_t HandleNumber,int32_t dirattribute)
      Bits  5–10: Minutes, valid value range 0–59 inclusive
      Bits 11–15: Hours, valid value range 0–23 inclusive
 <----------------------------------------------------------------------------*/
-RtStatus_t filesetdate(uint8_t *FilePath,int32_t crt_mod_date_time_para,DIR_DATE *dirdate,DIR_TIME *dirtime)
+RtStatus_t filesetdate(uint8_t * FilePath, int32_t crt_mod_date_time_para, DIR_DATE * dirdate,
+                       DIR_TIME * dirtime)
 {
-    uint32_t offset=0;
+    uint32_t offset = 0;
     int32_t HandleNumber;
     RtStatus_t Retval = SUCCESS;
-    int32_t date_time,year,month;
-    int32_t hour,minute,second;
+    int32_t date_time, year, month;
+    int32_t hour, minute, second;
 
-    if((HandleNumber = Fopen(FilePath,(uint8_t *)"r")) < 0)
-        return (RtStatus_t)HandleNumber;
+    if ((HandleNumber = Fopen(FilePath, (uint8_t *) "r")) < 0)
+        return (RtStatus_t) HandleNumber;
 
-    if(crt_mod_date_time_para == CREATION_DATE)
+    if (crt_mod_date_time_para == CREATION_DATE)
         offset = DIR_CRTDATEOFFSET;
-    
-    else if(crt_mod_date_time_para == CREATION_TIME)
+
+    else if (crt_mod_date_time_para == CREATION_TIME)
         offset = DIR_CRTTIMEOFFSET;
 
-    else if(crt_mod_date_time_para == MODIFICATION_DATE)
+    else if (crt_mod_date_time_para == MODIFICATION_DATE)
         offset = DIR_WRTDATEOFFSET;
 
-    else if(crt_mod_date_time_para == MODIFICATION_TIME)
+    else if (crt_mod_date_time_para == MODIFICATION_TIME)
         offset = DIR_WRTTIMEOFFSET;
 
-    if(crt_mod_date_time_para == CREATION_DATE || crt_mod_date_time_para == MODIFICATION_DATE)
-    {
+    if (crt_mod_date_time_para == CREATION_DATE || crt_mod_date_time_para == MODIFICATION_DATE) {
         // Local vars must have room to left shift the 8-bit dirdate fields
-        month = ((dirdate->Month << 5 ) & 0x01E0);
-        year = ((dirdate->Year -1980) << 9 );
-        date_time = (dirdate->Day | month | year); 
-    }
-    else
-    {
+        month = ((dirdate->Month << 5) & 0x01E0);
+        year = ((dirdate->Year - 1980) << 9);
+        date_time = (dirdate->Day | month | year);
+    } else {
         // Local vars must have room to left shift the 8-bit dirtime fields
         second = dirtime->Second >> 1;
-        minute = ((dirtime->Minute  << 5) & 0x07E0);
-        hour = ((dirtime->Hour  << 11 ) & 0xF800);
+        minute = ((dirtime->Minute << 5) & 0x07E0);
+        hour = ((dirtime->Hour << 11) & 0xF800);
         date_time = (second | minute | hour);
     }
 
-    if((Retval = FSWriteSector(Handle[HandleNumber].Device,Handle[HandleNumber].DirSector,
-    (offset + Handle[HandleNumber].diroffset),(uint8_t *)&date_time,0,2,WRITE_TYPE_RANDOM)) <0)
+    if ((Retval = FSWriteSector(Handle[HandleNumber].Device, Handle[HandleNumber].DirSector,
+                                (offset + Handle[HandleNumber].diroffset), (uint8_t *) & date_time,
+                                0, 2, WRITE_TYPE_RANDOM)) < 0)
         return Retval;
 
     Freehandle(HandleNumber);
-    return  SUCCESS;
+    return SUCCESS;
 }
-

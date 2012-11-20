@@ -64,44 +64,44 @@ extern int totalFileOpened;
 // Array of fuction pointers for the redirection of Fclose.  There should
 // be one entry in the array for each FsType_t enum value and a NULL entry
 // to terminate the array.
-Fclose_t const pRedirectFclose[FS_TYPE_MAX+1] = {
-    Fclose_FAT,         // For FAT handles
+Fclose_t const pRedirectFclose[FS_TYPE_MAX + 1] = {
+    Fclose_FAT,                 // For FAT handles
     NULL,
 //    os_resource_Close,   // For resource handles
     // Future       // Add more file system redirection functions here when needed
-    NULL            // For steering of invalid handles
+    NULL                        // For steering of invalid handles
 };
 
 // Array of fuction pointers for the redirection of Fwrite.  There should
 // be one entry in the array for each FsType_t enum value and a NULL entry
 // to terminate the array.
-Fwrite_t const pRedirectFwrite[FS_TYPE_MAX+1] = {
-    Fwrite_FAT,         // For FAT handles
-    NULL,           // Fwrite not supported for resources
+Fwrite_t const pRedirectFwrite[FS_TYPE_MAX + 1] = {
+    Fwrite_FAT,                 // For FAT handles
+    NULL,                       // Fwrite not supported for resources
     // Future       // Add more file system redirection functions here when needed
-    NULL            // For steering of invalid handles
+    NULL                        // For steering of invalid handles
 };
 
 // Array of fuction pointers for the redirection of Fseek.  There should
 // be one entry in the array for each FsType_t enum value and a NULL entry
 // to terminate the array.
-Fseek_t const pRedirectFseek[FS_TYPE_MAX+1] = {
-    Fseek_FAT,          // For FAT handles
+Fseek_t const pRedirectFseek[FS_TYPE_MAX + 1] = {
+    Fseek_FAT,                  // For FAT handles
     NULL,
 //    os_resource_Seek,    // For resource handles
     // Future       // Add more file system redirection functions here when needed
-    NULL            // For steering of invalid handles
+    NULL                        // For steering of invalid handles
 };
 
 // Array of fuction pointers for the redirection of Fread.  There should
 // be one entry in the array for each FsType_t enum value and a NULL entry
 // to terminate the array.
-Fread_t const pRedirectFread[FS_TYPE_MAX+1] = {
-    Fread_FAT,          // For FAT handles
+Fread_t const pRedirectFread[FS_TYPE_MAX + 1] = {
+    Fread_FAT,                  // For FAT handles
     NULL,
 //    os_resource_Read,    // For resource handles
     // Future       // Add more file system redirection functions here when needed
-    NULL            // For steering of invalid handles
+    NULL                        // For steering of invalid handles
 };
 
 //! \brief Determines the FsType_t of a file handle
@@ -118,25 +118,20 @@ Fread_t const pRedirectFread[FS_TYPE_MAX+1] = {
 //! \retval FS_TYPE_MAX      If \c handleNumber is of an unknown value
 //!                  
 //                  
-FsType_t FileSystemType( int32_t handleNumber )
+FsType_t FileSystemType(int32_t handleNumber)
 {
     // Is the handle within the range for FAT
-    if( handleNumber >= FAT_HANDLE_MIN &&
-        handleNumber <= FAT_HANDLE_MAX )
-    {
+    if (handleNumber >= FAT_HANDLE_MIN && handleNumber <= FAT_HANDLE_MAX) {
         // Type is FAT
         return FS_TYPE_FAT;
     }
     // Is the handle within the range for resources
-    else if( handleNumber >= RESOURCE_HANDLE_MIN &&
-             handleNumber <= RESOURCE_HANDLE_MAX )
-    {
+    else if (handleNumber >= RESOURCE_HANDLE_MIN && handleNumber <= RESOURCE_HANDLE_MAX) {
         // Type is resource
         return FS_TYPE_RESOURCE;
     }
     // Indicate an error if we get here
-    else
-    {
+    else {
         // Error
         return FS_TYPE_MAX;
     }
@@ -155,26 +150,25 @@ FsType_t FileSystemType( int32_t handleNumber )
 //! \retval ERROR_OS_FILESYSTEM_NO_STEERING_FUNCTION If there is no steering function defined for \c filehandle
 //! \retval The return value of the steering function
 //                  
-RtStatus_t Fclose( int32_t handleNumber )
+RtStatus_t Fclose(int32_t handleNumber)
 {
     RtStatus_t result = ERROR_OS_FILESYSTEM_NO_STEERING_FUNCTION;
     FsType_t type;
     Fclose_t function;
 
     // Determine filesystem type
-    type = FileSystemType( handleNumber );
+    type = FileSystemType(handleNumber);
     // Get steering function
     function = pRedirectFclose[type];
 
     // Is steering function defined for this type
-    if( function != NULL )
-    {
+    if (function != NULL) {
         // Call steering function
-        result = function( handleNumber );
+        result = function(handleNumber);
     }
     totalFileOpened--;
     fatCacheRelease(NULL);
-    
+
     return result;
 }
 
@@ -195,7 +189,7 @@ RtStatus_t Fclose( int32_t handleNumber )
 //! \retval Number of bytes written if the steering function was successful
 //!                  
 //                  
-int32_t Fwrite( int32_t handleNumber, uint8_t *pBuffer, int32_t numBytesToWrite )
+int32_t Fwrite(int32_t handleNumber, uint8_t * pBuffer, int32_t numBytesToWrite)
 {
     int32_t result = ERROR_OS_FILESYSTEM_NO_STEERING_FUNCTION;
     FsType_t type;
@@ -205,17 +199,16 @@ int32_t Fwrite( int32_t handleNumber, uint8_t *pBuffer, int32_t numBytesToWrite 
     ddi_ldl_push_media_task("Fwrite");
 
     // Determine filesystem type
-    type = FileSystemType( handleNumber );
+    type = FileSystemType(handleNumber);
     // Get steering function
     function = pRedirectFwrite[type];
 
     // Is steering function defined for this type
-    if( function != NULL )
-    {
+    if (function != NULL) {
         // Call steering function
-        result = function( handleNumber, pBuffer, numBytesToWrite );
+        result = function(handleNumber, pBuffer, numBytesToWrite);
     }
-    
+
     ddi_ldl_pop_media_task();
     ddi_ldl_pop_media_task();
 
@@ -237,22 +230,21 @@ int32_t Fwrite( int32_t handleNumber, uint8_t *pBuffer, int32_t numBytesToWrite 
 //! \retval ERROR_OS_FILESYSTEM_NO_STEERING_FUNCTION If there is no steering function defined for \c filehandle
 //! \retval RtStatus_t The return value of the steering function
 //                  
-RtStatus_t Fseek( int32_t handleNumber, int32_t numBytesToSeek, int32_t seekPosition )
+RtStatus_t Fseek(int32_t handleNumber, int32_t numBytesToSeek, int32_t seekPosition)
 {
     RtStatus_t result = ERROR_OS_FILESYSTEM_NO_STEERING_FUNCTION;
     FsType_t type;
     Fseek_t function;
 
     // Determine filesystem type
-    type = FileSystemType( handleNumber );
+    type = FileSystemType(handleNumber);
     // Get steering function
     function = pRedirectFseek[type];
 
     // Is steering function defined for this type
-    if( function != NULL )
-    {
+    if (function != NULL) {
         // Call steering function
-        result = function( handleNumber, numBytesToSeek, seekPosition );
+        result = function(handleNumber, numBytesToSeek, seekPosition);
     }
 
     return result;
@@ -274,27 +266,26 @@ RtStatus_t Fseek( int32_t handleNumber, int32_t numBytesToSeek, int32_t seekPosi
 //! \retval Number of bytes read if the steering function was successful
 //!                  
 //                  
-int32_t Fread( int32_t handleNumber, uint8_t *pBuffer, int32_t numBytesToRead )
+int32_t Fread(int32_t handleNumber, uint8_t * pBuffer, int32_t numBytesToRead)
 {
     int32_t result = ERROR_OS_FILESYSTEM_NO_STEERING_FUNCTION;
     FsType_t type;
     Fread_t function;
-    
+
     ddi_ldl_push_media_task((const char *)__builtin_return_address(0));
     ddi_ldl_push_media_task("Fread");
 
     // Determine filesystem type
-    type = FileSystemType( handleNumber );
+    type = FileSystemType(handleNumber);
     // Get steering function
     function = pRedirectFread[type];
 
     // Is steering function defined for this type
-    if( function != NULL )
-    {
+    if (function != NULL) {
         // Call steering function
-        result = function( handleNumber, pBuffer, numBytesToRead );
+        result = function(handleNumber, pBuffer, numBytesToRead);
     }
-    
+
     ddi_ldl_pop_media_task();
     ddi_ldl_pop_media_task();
 
@@ -302,4 +293,3 @@ int32_t Fread( int32_t handleNumber, uint8_t *pBuffer, int32_t numBytesToRead )
 }
 
 //! @}
-

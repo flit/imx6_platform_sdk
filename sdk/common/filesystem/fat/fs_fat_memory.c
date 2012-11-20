@@ -59,7 +59,6 @@
 #include "filespec.h"
 #include "sectordef.h"
 
-
 ////////////////////////////////////////////////////////////////////////////////
 // Variables
 ////////////////////////////////////////////////////////////////////////////////
@@ -67,19 +66,18 @@
 // Include filesystem memory only if the number of filesystem devices is non-zero.
 #if (NUMDEVICES > 0)
 
-const int32_t maxcaches  = NUMCACHES;
+const int32_t maxcaches = NUMCACHES;
 const int32_t maxdevices = NUMDEVICES;
 const int32_t maxhandles = NUMHANDLES;
 const uint8_t DriveLetter[] = DRIVELETTERS;
 
 //! All other global, custom configurable data is in Y memory.
 //! Two handles are reserved by the file system, so the number of handles must be more than 2
-uint8_t bufy[ NUMDEVICES*sizeof(FileSystemMediaTable_t) +
-              NUMHANDLES*sizeof(HandleTable_t) +
-              NUMHANDLES*sizeof(FileSpecs_t) ] __attribute__ ((aligned(4)));
+uint8_t bufy[NUMDEVICES * sizeof(FileSystemMediaTable_t) +
+             NUMHANDLES * sizeof(HandleTable_t) +
+             NUMHANDLES * sizeof(FileSpecs_t)] __attribute__ ((aligned(4)));
 
 #endif //#if (NUMDEVICES > 0)
-
 
 // eof fs_fat_memory.c
 //! @}

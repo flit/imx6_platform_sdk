@@ -44,8 +44,8 @@
 #include "fat_internal.h"
 #include "filesystem/fsapi.h"
 #include <string.h>
-#include "bootsecoffset.h" 
-#include "ddi_media.h" 
+#include "bootsecoffset.h"
+#include "ddi_media.h"
 #include "diroffset.h"
 
 /*----------------------------------------------------------------------------
@@ -69,153 +69,144 @@
                   touching the Media Table.
 <
 ----------------------------------------------------------------------------*/
-RtStatus_t Readdevicerecord(int32_t DeviceNum,int32_t SectorNum)
-{ 
-    int64_t     DataSec;
-    int32_t     *buf;
-    int32_t     shift,temp;
-    uint32_t    cacheToken;
-    uint16_t    fsInfoSector;
-    RtStatus_t  rtStatus;
+RtStatus_t Readdevicerecord(int32_t DeviceNum, int32_t SectorNum)
+{
+    int64_t DataSec;
+    int32_t *buf;
+    int32_t shift, temp;
+    uint32_t cacheToken;
+    uint16_t fsInfoSector;
+    RtStatus_t rtStatus;
 
-    if((DeviceNum < 0) || (DeviceNum >=maxdevices))
-    {
+    if ((DeviceNum < 0) || (DeviceNum >= maxdevices)) {
         return ERROR_OS_FILESYSTEM_DEVICE_NOT_SUPPORTED;
     }
 
     EnterNonReentrantSection();
- 
-    /* Read the BootSector */ 
-    if((buf = FSReadSector(DeviceNum, SectorNum,WRITE_TYPE_RANDOM, &cacheToken))==(int32_t *)0)
-    {
+
+    /* Read the BootSector */
+    if ((buf = FSReadSector(DeviceNum, SectorNum, WRITE_TYPE_RANDOM, &cacheToken)) == (int32_t *) 0) {
         LeaveNonReentrantSection();
         return ERROR_OS_FILESYSTEM_READSECTOR_FAIL;
     }
-
     // Confirm that this is really the boot sector.
-    rtStatus = FileSystemBootSectorVerify( (uint8_t *) buf );
-    if ( SUCCESS != rtStatus )
-    {
+    rtStatus = FileSystemBootSectorVerify((uint8_t *) buf);
+    if (SUCCESS != rtStatus) {
         FSReleaseSector(cacheToken);
         LeaveNonReentrantSection();
-        return (RtStatus_t)INVALID_FILESYSTEM;
+        return (RtStatus_t) INVALID_FILESYSTEM;
     }
-      
-    MediaTable[ DeviceNum].DevicePresent=1;
-    MediaTable[ DeviceNum].BytesPerSector     = FSGetWord((uint8_t *)buf,BYTESPERSECTOROFFSET);
-    MediaTable[ DeviceNum].SectorsPerCluster  = FSGetByte((uint8_t  *)buf,SECPERCLUSTEROFFSET);
-    MediaTable[ DeviceNum].RsvdSectors       =  FSGetWord((uint8_t  *)buf,RSVDSECOFFSET);
-    MediaTable[ DeviceNum].NoOfFATs           = FSGetByte((uint8_t  *)buf,NOFATSOFFSET);
+
+    MediaTable[DeviceNum].DevicePresent = 1;
+    MediaTable[DeviceNum].BytesPerSector = FSGetWord((uint8_t *) buf, BYTESPERSECTOROFFSET);
+    MediaTable[DeviceNum].SectorsPerCluster = FSGetByte((uint8_t *) buf, SECPERCLUSTEROFFSET);
+    MediaTable[DeviceNum].RsvdSectors = FSGetWord((uint8_t *) buf, RSVDSECOFFSET);
+    MediaTable[DeviceNum].NoOfFATs = FSGetByte((uint8_t *) buf, NOFATSOFFSET);
 
     // Make the fat type invalid before we can confirm
-    MediaTable[DeviceNum].FATType           = FAT_TYPE_INVALID;
+    MediaTable[DeviceNum].FATType = FAT_TYPE_INVALID;
 
-    if (MediaTable[ DeviceNum].NoOfFATs == 0)
-    {
-        FSReleaseSector(cacheToken);
-        LeaveNonReentrantSection();    
-        return (RtStatus_t)INVALID_FILESYSTEM;
-    }
-
-    MediaTable[ DeviceNum].MaxRootDirEntries =  FSGetWord((uint8_t  *)buf,ROOTDIRENTRYOFFSET);
-    MediaTable[ DeviceNum].TotalSectors      =  FSGetWord((uint8_t  *)buf,TOTSECTOROFFSET);
-    /* if total sectors are zero then this is FAT32 and find total sectors 
-    from total big sector offset */ 
-    if (MediaTable[ DeviceNum].TotalSectors == 0)
-        MediaTable[ DeviceNum].TotalSectors  =  FSGetDWord((uint8_t  *)buf,TOTBIGSECOFFSET);
-    
-    if (MediaTable[ DeviceNum].TotalSectors == 0)
-    {
+    if (MediaTable[DeviceNum].NoOfFATs == 0) {
         FSReleaseSector(cacheToken);
         LeaveNonReentrantSection();
-        return (RtStatus_t)INVALID_FILESYSTEM; 
-    }    
-
-    MediaTable[ DeviceNum].FATSize           =  FSGetWord((uint8_t  *)buf,FATSIZEOFFSET);
-    /* if FAT size is zero then this is FAT32 and find FAT size 
-    from FAT32 size offset */ 
-
-    MediaTable[ DeviceNum].RootdirCluster = 0;
-
-    if (MediaTable[ DeviceNum].FATSize == 0)
-    {
-        MediaTable[ DeviceNum].FATSize           =  FSGetDWord((uint8_t  *)buf,FAT32SIZEOFFSET);
-        MediaTable[ DeviceNum].RootdirCluster    =  FSGetDWord((uint8_t  *)buf,FAT32ROOTCLUSOFFSET);
+        return (RtStatus_t) INVALID_FILESYSTEM;
     }
-    
+
+    MediaTable[DeviceNum].MaxRootDirEntries = FSGetWord((uint8_t *) buf, ROOTDIRENTRYOFFSET);
+    MediaTable[DeviceNum].TotalSectors = FSGetWord((uint8_t *) buf, TOTSECTOROFFSET);
+    /* if total sectors are zero then this is FAT32 and find total sectors 
+       from total big sector offset */
+    if (MediaTable[DeviceNum].TotalSectors == 0)
+        MediaTable[DeviceNum].TotalSectors = FSGetDWord((uint8_t *) buf, TOTBIGSECOFFSET);
+
+    if (MediaTable[DeviceNum].TotalSectors == 0) {
+        FSReleaseSector(cacheToken);
+        LeaveNonReentrantSection();
+        return (RtStatus_t) INVALID_FILESYSTEM;
+    }
+
+    MediaTable[DeviceNum].FATSize = FSGetWord((uint8_t *) buf, FATSIZEOFFSET);
+    /* if FAT size is zero then this is FAT32 and find FAT size 
+       from FAT32 size offset */
+
+    MediaTable[DeviceNum].RootdirCluster = 0;
+
+    if (MediaTable[DeviceNum].FATSize == 0) {
+        MediaTable[DeviceNum].FATSize = FSGetDWord((uint8_t *) buf, FAT32SIZEOFFSET);
+        MediaTable[DeviceNum].RootdirCluster = FSGetDWord((uint8_t *) buf, FAT32ROOTCLUSOFFSET);
+    }
     // Read FSInfo sector while we still own the buffer.
-    fsInfoSector = FSGetWord((uint8_t *)buf, FAT32FSINFOOFFSET);
+    fsInfoSector = FSGetWord((uint8_t *) buf, FAT32FSINFOOFFSET);
 
     FSReleaseSector(cacheToken);
     LeaveNonReentrantSection();
 
-    if (MediaTable[ DeviceNum].FATSize == 0)
-    {
-        return (RtStatus_t)INVALID_FILESYSTEM;
-    }    
+    if (MediaTable[DeviceNum].FATSize == 0) {
+        return (RtStatus_t) INVALID_FILESYSTEM;
+    }
 
-    temp = MediaTable[ DeviceNum].BytesPerSector*MediaTable[ DeviceNum].SectorsPerCluster;
-    MediaTable[ DeviceNum].ClusterMask = temp - 1;
+    temp = MediaTable[DeviceNum].BytesPerSector * MediaTable[DeviceNum].SectorsPerCluster;
+    MediaTable[DeviceNum].ClusterMask = temp - 1;
     shift = 0;
-    while (temp >>= 1)
-    {
+    while (temp >>= 1) {
         shift++;
     }
-    MediaTable[ DeviceNum].ClusterShift = shift;
- 
-    temp = MediaTable[ DeviceNum].BytesPerSector;    
+    MediaTable[DeviceNum].ClusterShift = shift;
+
+    temp = MediaTable[DeviceNum].BytesPerSector;
     shift = 0;
-    while (temp >>= 1)
-    {
+    while (temp >>= 1) {
         shift++;
     }
-    MediaTable[ DeviceNum].SectorShift = shift;
+    MediaTable[DeviceNum].SectorShift = shift;
 
-    MediaTable[ DeviceNum].SectorMask = MediaTable[ DeviceNum].BytesPerSector - 1;
+    MediaTable[DeviceNum].SectorMask = MediaTable[DeviceNum].BytesPerSector - 1;
 
     // Expected values:
     //  MaxRootDirEntries   = 512 (FAT16) or 0 (FAT32)
     //  SectorShift         = Used to divide by the quantity of bytes in a sector. {512 (FAT16), 2k, or 4k}
     //  RootDirSectors      = 0 or 1.
     //
-    MediaTable[ DeviceNum].RootDirSectors = (MediaTable[ DeviceNum].MaxRootDirEntries * DIRRECORDSIZE) >> MediaTable[ DeviceNum].SectorShift;
- 
-    /* First data sector after reserved sectors, primary and secondary FAT table and 
-    Root directory sectors */
-    MediaTable[ DeviceNum].FIRSTDataSector = MediaTable[ DeviceNum].RsvdSectors + (MediaTable[ DeviceNum].NoOfFATs * MediaTable[DeviceNum].FATSize) + MediaTable[DeviceNum].RootDirSectors;
-  
-    /* To determine FATtype find total no of clusters on the volume */
-    DataSec = MediaTable[ DeviceNum].TotalSectors - (MediaTable[ DeviceNum].RsvdSectors + 
-                                                  (MediaTable[ DeviceNum].NoOfFATs*MediaTable[ DeviceNum].FATSize)
-                                                  + MediaTable[ DeviceNum].RootDirSectors);
+    MediaTable[DeviceNum].RootDirSectors =
+        (MediaTable[DeviceNum].MaxRootDirEntries *
+         DIRRECORDSIZE) >> MediaTable[DeviceNum].SectorShift;
 
-    temp = MediaTable[ DeviceNum].SectorsPerCluster;
-    shift =0;
-    while (temp >>= 1)
-    {
+    /* First data sector after reserved sectors, primary and secondary FAT table and 
+       Root directory sectors */
+    MediaTable[DeviceNum].FIRSTDataSector =
+        MediaTable[DeviceNum].RsvdSectors +
+        (MediaTable[DeviceNum].NoOfFATs * MediaTable[DeviceNum].FATSize) +
+        MediaTable[DeviceNum].RootDirSectors;
+
+    /* To determine FATtype find total no of clusters on the volume */
+    DataSec = MediaTable[DeviceNum].TotalSectors - (MediaTable[DeviceNum].RsvdSectors +
+                                                    (MediaTable[DeviceNum].NoOfFATs *
+                                                     MediaTable[DeviceNum].FATSize)
+                                                    + MediaTable[DeviceNum].RootDirSectors);
+
+    temp = MediaTable[DeviceNum].SectorsPerCluster;
+    shift = 0;
+    while (temp >>= 1) {
         shift++;
     }
-    MediaTable[ DeviceNum].TotalNoofclusters    =( DataSec >> shift);
+    MediaTable[DeviceNum].TotalNoofclusters = (DataSec >> shift);
 
     /* if total data clusters are less than 4085, File system is FAT12 type */
-    if (MediaTable[ DeviceNum].TotalNoofclusters < 4085)
-    {
-        MediaTable[ DeviceNum].FATType = FAT12; 
+    if (MediaTable[DeviceNum].TotalNoofclusters < 4085) {
+        MediaTable[DeviceNum].FATType = FAT12;
     }
     /* if total data clusters are less than 65525, File system is FAT16 type */
-    else if (MediaTable[ DeviceNum].TotalNoofclusters < 65525 )
-    {
-        MediaTable[ DeviceNum].FATType = FAT16;       
-    }
-    else
-    {   /* total data clusters are more than 65525, so File system is FAT32 type */
-        MediaTable[ DeviceNum].FATType = FAT32; 
+    else if (MediaTable[DeviceNum].TotalNoofclusters < 65525) {
+        MediaTable[DeviceNum].FATType = FAT16;
+    } else {                    /* total data clusters are more than 65525, so File system is FAT32 type */
+        MediaTable[DeviceNum].FATType = FAT32;
     }
 
-    if (MediaTable[DeviceNum].FATType == FAT32)
-    {
+    if (MediaTable[DeviceNum].FATType == FAT32) {
         DataSec = MediaTable[DeviceNum].RootdirCluster;
-        MediaTable[DeviceNum].FirRootdirsec = ((DataSec - 2) * MediaTable[DeviceNum].SectorsPerCluster) + MediaTable[ DeviceNum].FIRSTDataSector;
+        MediaTable[DeviceNum].FirRootdirsec =
+            ((DataSec - 2) * MediaTable[DeviceNum].SectorsPerCluster) +
+            MediaTable[DeviceNum].FIRSTDataSector;
         MediaTable[DeviceNum].FSInfoSector = fsInfoSector;
 
         /* Add a fix here for the Win98 support */
@@ -223,23 +214,23 @@ RtStatus_t Readdevicerecord(int32_t DeviceNum,int32_t SectorNum)
 
         /* Write undertermined FSinfo size into the FAT, so that we can force the Win98 
            to compute for free cluster count. This operation should not affect Win2000, WinXP */
-        DataSec = 0xFFFFFFFFFFFF;       /* To save some memory let's reuse this variable */
+        DataSec = 0xFFFFFFFFFFFF;   /* To save some memory let's reuse this variable */
 
         /* Write FAT32FSIFREECOUNT with 0xffffffff to make it become unknown size for FAT32. 
            Ignore the return code for FSWriteSector because this is not a crucial operation, 
            if it fails we are still OK */
 
-        if( FSWriteSector(DeviceNum,MediaTable[DeviceNum].FSInfoSector,FAT32FSIFREECOUNTOFFSET,
-                        (uint8_t*)&DataSec,0,FAT32FSIFREECOUNTSIZE,WRITE_TYPE_RANDOM) != 0)
-        { ;  /* (DebugBuildAssert(0); */ 
-        }        
+        if (FSWriteSector(DeviceNum, MediaTable[DeviceNum].FSInfoSector, FAT32FSIFREECOUNTOFFSET, (uint8_t *) & DataSec, 0, FAT32FSIFREECOUNTSIZE, WRITE_TYPE_RANDOM) != 0) {;  /* (DebugBuildAssert(0); */
+        }
         LeaveNonReentrantSection();
-    }/* end FAT32 case. */
+    }
+    /* end FAT32 case. */
     /* if FAT Type is FAT12 or FAT16 then root directory starts after reserved sector 
        and primary and secondary FAT table */
-    else if( (MediaTable[DeviceNum].FATType == FAT12) ||  (MediaTable[DeviceNum].FATType == FAT16) )
-    {
-        MediaTable[DeviceNum].FirRootdirsec = MediaTable[DeviceNum].RsvdSectors +  (MediaTable[DeviceNum].NoOfFATs * MediaTable[DeviceNum].FATSize);
+    else if ((MediaTable[DeviceNum].FATType == FAT12) || (MediaTable[DeviceNum].FATType == FAT16)) {
+        MediaTable[DeviceNum].FirRootdirsec =
+            MediaTable[DeviceNum].RsvdSectors +
+            (MediaTable[DeviceNum].NoOfFATs * MediaTable[DeviceNum].FATSize);
     }
 
     /* Modified for i.MX SDK */
@@ -261,7 +252,10 @@ RtStatus_t Readdevicerecord(int32_t DeviceNum,int32_t SectorNum)
 ----------------------------------------------------------------------------*/
 int32_t FSSize(int32_t DeviceNum)
 {
-    int64_t fsize = (int64_t)MediaTable[ DeviceNum].TotalNoofclusters*(int64_t)MediaTable[ DeviceNum].SectorsPerCluster*(int64_t)MediaTable[ DeviceNum].BytesPerSector;
+    int64_t fsize =
+        (int64_t) MediaTable[DeviceNum].TotalNoofclusters *
+        (int64_t) MediaTable[DeviceNum].SectorsPerCluster *
+        (int64_t) MediaTable[DeviceNum].BytesPerSector;
     fsize = fsize >> 20;
     return fsize;
 }
@@ -327,7 +321,8 @@ int64_t FSFreeSpace(int32_t Device)
     // Don't just return 0 when FSDriveInit and Computefreecluster() haven't succeeded yet.
     //      .DevicePresent is only set to non-zero by Readdevicerecord().
     // I don't think checking .DevicePresent is a reliable approach though.
-    return (int64_t)( ((uint64_t) MediaTable[Device].TotalFreeClusters) << MediaTable[Device].ClusterShift);
+    return (int64_t) (((uint64_t) MediaTable[Device].TotalFreeClusters) << MediaTable[Device].
+                      ClusterShift);
 }
 
 /*----------------------------------------------------------------------------
@@ -373,7 +368,7 @@ int32_t FSMediaPresent(int32_t DeviceNum)
    Outputs:       Returns FAT type.
 <
 ----------------------------------------------------------------------------*/
-int32_t FSFATType (int32_t DeviceNum)
+int32_t FSFATType(int32_t DeviceNum)
 {
     return MediaTable[DeviceNum].FATType;
 }
@@ -392,12 +387,12 @@ int32_t FSFATType (int32_t DeviceNum)
 <
 ----------------------------------------------------------------------------*/
 RtStatus_t Cleardevicerecord(int32_t DeviceNum)
-{ 
- 
-    if((DeviceNum < 0) || (DeviceNum >=maxdevices))
+{
+
+    if ((DeviceNum < 0) || (DeviceNum >= maxdevices))
         return ERROR_OS_FILESYSTEM_DEVICE_NOT_SUPPORTED;
-  
-    memset((void *)&MediaTable[DeviceNum],0,sizeof(FileSystemMediaTable_t));
+
+    memset((void *)&MediaTable[DeviceNum], 0, sizeof(FileSystemMediaTable_t));
 
     return SUCCESS;
 }
@@ -419,33 +414,32 @@ RtStatus_t Cleardevicerecord(int32_t DeviceNum)
 <
 ----------------------------------------------------------------------------*/
 RtStatus_t FileSystemPresent(int32_t DeviceNum)
-{ 
-    uint8_t     *buf;
-    uint32_t    cacheToken;
-    RtStatus_t  rtStatus = SUCCESS;
+{
+    uint8_t *buf;
+    uint32_t cacheToken;
+    RtStatus_t rtStatus = SUCCESS;
 
-	if((DeviceNum <0 ) || (DeviceNum >= maxdevices))
-    {
-		return ERROR_OS_FILESYSTEM_DEVICE_NOT_SUPPORTED;
+    if ((DeviceNum < 0) || (DeviceNum >= maxdevices)) {
+        return ERROR_OS_FILESYSTEM_DEVICE_NOT_SUPPORTED;
     }
 
     EnterNonReentrantSection();
-    /* Read the BootSector */ 
-    if((buf = (uint8_t*)FSReadSector(DeviceNum, BOOTSECTOR,WRITE_TYPE_RANDOM, &cacheToken)) ==(uint8_t*)0)
-	{
-		rtStatus = ERROR_OS_FILESYSTEM_READSECTOR_FAIL;
+    /* Read the BootSector */
+    if ((buf =
+         (uint8_t *) FSReadSector(DeviceNum, BOOTSECTOR, WRITE_TYPE_RANDOM,
+                                  &cacheToken)) == (uint8_t *) 0) {
+        rtStatus = ERROR_OS_FILESYSTEM_READSECTOR_FAIL;
         goto _exit;
-	}
+    }
 
-    rtStatus = FileSystemBootSectorVerify( buf );
+    rtStatus = FileSystemBootSectorVerify(buf);
 
-_exit:
+  _exit:
     FSReleaseSector(cacheToken);
-	LeaveNonReentrantSection();
-    
+    LeaveNonReentrantSection();
+
     return rtStatus;
 }
-
 
 ////////////////////////////////////////////////////////////////////////////////
 //! \brief      Check for the standard PBS 0xaa55 signature.
@@ -462,30 +456,19 @@ _exit:
 //! \retval ERROR_OS_FILESYSTEM_FILESYSTEM_NOT_FOUND    If not found.
 //!
 ////////////////////////////////////////////////////////////////////////////////
-RtStatus_t FileSystemBootSectorVerify( uint8_t* buf )
+RtStatus_t FileSystemBootSectorVerify(uint8_t * buf)
 {
-    int32_t  signature; 
+    int32_t signature;
 
     // To determine whether the filesystem is present or not, get the two bytes of Bootsector
     // at offsets 510 and 511, regardless of the sector size.
-    signature = FSGetWord((uint8_t*)buf, BPB_AND_FSI_SIGNATURE_OFFSET_512B_SECTOR);
+    signature = FSGetWord((uint8_t *) buf, BPB_AND_FSI_SIGNATURE_OFFSET_512B_SECTOR);
 
     /* compare the last two bytes with the signature 0xaa55 */
-    if (signature == BOOT_SECTOR_SIGNATURE)
-    {
+    if (signature == BOOT_SECTOR_SIGNATURE) {
         return SUCCESS;
-    }
-    else
-    {
+    } else {
         return ERROR_OS_FILESYSTEM_FILESYSTEM_NOT_FOUND;
     }
 
 }
-
-
-
-
-
-
-
-

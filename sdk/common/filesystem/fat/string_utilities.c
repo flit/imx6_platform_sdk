@@ -57,27 +57,25 @@
    Description:   Arranges the file name as short file name in 8+3 format
 <
 ----------------------------------------------------------------------------*/
-int32_t Convert_itoa(int32_t Number,uint8_t *string)
+int32_t Convert_itoa(int32_t Number, uint8_t * string)
 {
     uint8_t Temp[12];
-    int32_t i=0,j=0,Flag;
-    int32_t Length=0;
-   
-    while(Number!=0)
-    { 
-   	    Flag = Number/10;
-	    Temp[Length] = Number -(Flag*10);
-	    Number = Flag;
-	    Length++;
+    int32_t i = 0, j = 0, Flag;
+    int32_t Length = 0;
+
+    while (Number != 0) {
+        Flag = Number / 10;
+        Temp[Length] = Number - (Flag * 10);
+        Number = Flag;
+        Length++;
     }
-    j=Length-1; 
-    for(i=0;i<Length;i++)
-    {
-        string[i] = Temp[j]+0x30;;
+    j = Length - 1;
+    for (i = 0; i < Length; i++) {
+        string[i] = Temp[j] + 0x30;;
         j--;
     }
     return Length;
-}      
+}
 
 /*----------------------------------------------------------------------------
 >  Function Name:  int32_t Changecase(int32_t filenameword)
@@ -92,12 +90,12 @@ int32_t Convert_itoa(int32_t Number,uint8_t *string)
 ----------------------------------------------------------------------------*/
 int32_t Changecase(int32_t filenameword)
 {
-    if (filenameword>=97 && filenameword <= 122)
-	    filenameword = filenameword - 32;
-    else if (filenameword>=65 && filenameword <= 90)
-	    filenameword = filenameword + 32;
+    if (filenameword >= 97 && filenameword <= 122)
+        filenameword = filenameword - 32;
+    else if (filenameword >= 65 && filenameword <= 90)
+        filenameword = filenameword + 32;
     return (filenameword);
-} 
+}
 
 /*----------------------------------------------------------------------------
 >  Function Name:  int32_t StrlengthW(uint8_t *filepath)
@@ -112,15 +110,14 @@ int32_t Changecase(int32_t filenameword)
    Description:    Finds the no. of characters in the string i.e. length of the string. 
 <
 ----------------------------------------------------------------------------*/
-int32_t StrlengthW(uint8_t *filepath)
+int32_t StrlengthW(uint8_t * filepath)
 {
-    int32_t strlength=0, word,offset=0;      
+    int32_t strlength = 0, word, offset = 0;
 
-    while(1)
-    {
-        if((word =FSGetWord(filepath,offset))=='\0')
+    while (1) {
+        if ((word = FSGetWord(filepath, offset)) == '\0')
             break;
-        offset+=2;
+        offset += 2;
         strlength++;
     }
     (void)word;
@@ -140,15 +137,14 @@ int32_t StrlengthW(uint8_t *filepath)
    Description:    Finds the no. of characters in the string i.e. length of the string.
 <
 ----------------------------------------------------------------------------*/
-int32_t Strlength(uint8_t *filepath)
+int32_t Strlength(uint8_t * filepath)
 {
-    int32_t strlength=0, offset=0;     
+    int32_t strlength = 0, offset = 0;
     int32_t Char;
 
-    while(1)
-    {
-        Char = GetChar(filepath,&offset);
-        if(Char == '\0')
+    while (1) {
+        Char = GetChar(filepath, &offset);
+        if (Char == '\0')
             break;
         strlength++;
     }
@@ -170,17 +166,16 @@ int32_t Strlength(uint8_t *filepath)
    Description:    This function copies the first string to second string.
 <
 ----------------------------------------------------------------------------*/
-RtStatus_t Strcpy(uint8_t *filepath, uint8_t *file_path1,int32_t length, int32_t index)
+RtStatus_t Strcpy(uint8_t * filepath, uint8_t * file_path1, int32_t length, int32_t index)
 {
-    int32_t Char,offset=index,offset_dest=0;
-	while(offset < length)
-	{
-        Char = GetChar(filepath,&offset);
-		PutChar(file_path1,&offset_dest,Char);
-     	if(offset >(MAXFILENAME_CH-1))
-		    break;
-	}
-	PutChar(file_path1,&offset_dest,0);
+    int32_t Char, offset = index, offset_dest = 0;
+    while (offset < length) {
+        Char = GetChar(filepath, &offset);
+        PutChar(file_path1, &offset_dest, Char);
+        if (offset > (MAXFILENAME_CH - 1))
+            break;
+    }
+    PutChar(file_path1, &offset_dest, 0);
 
     return SUCCESS;
 }
@@ -201,23 +196,22 @@ RtStatus_t Strcpy(uint8_t *filepath, uint8_t *file_path1,int32_t length, int32_t
 				   It considers the string as UNICODE.
 <
 ----------------------------------------------------------------------------*/
-RtStatus_t Strcpyw(uint8_t *filepath, uint8_t *file_path,int32_t length,int32_t index)
+RtStatus_t Strcpyw(uint8_t * filepath, uint8_t * file_path, int32_t length, int32_t index)
 {
-    int32_t word,Strlen,offset=index,offset_dest=0;
+    int32_t word, Strlen, offset = index, offset_dest = 0;
     int32_t j;
-	Strlen = (length - index)>>1;
-	
-	if(Strlen > MAXFILENAME_CH)
-	    Strlen = MAXFILENAME_CH;
-   
-    for(j = 0; j < Strlen; j++)
-	{
-	    word = FSGetWord(filepath,offset);
-		PutWord(file_path,word,offset_dest);
-		offset=offset +2;
-		offset_dest=offset_dest +2;
+    Strlen = (length - index) >> 1;
+
+    if (Strlen > MAXFILENAME_CH)
+        Strlen = MAXFILENAME_CH;
+
+    for (j = 0; j < Strlen; j++) {
+        word = FSGetWord(filepath, offset);
+        PutWord(file_path, word, offset_dest);
+        offset = offset + 2;
+        offset_dest = offset_dest + 2;
     }
-    PutWord(file_path,0,offset_dest);
+    PutWord(file_path, 0, offset_dest);
 
     return SUCCESS;
 }
@@ -236,13 +230,14 @@ RtStatus_t Strcpyw(uint8_t *filepath, uint8_t *file_path,int32_t length,int32_t 
                    given offset and updates the offset accordingly.
 <
 ----------------------------------------------------------------------------*/
-int32_t GetChar(uint8_t *Buffer,int32_t *offset)
+int32_t GetChar(uint8_t * Buffer, int32_t * offset)
 {
     int32_t Char;
-    Char = FSGetByte(Buffer,*offset);
-	*offset =*offset +1;
+    Char = FSGetByte(Buffer, *offset);
+    *offset = *offset + 1;
     return Char;
-}       	
+}
+
 /*----------------------------------------------------------------------------
 >  Function Name:  int32_t GetCharW(uint8_t *Buffer,int32_t *offset)
 
@@ -257,11 +252,11 @@ int32_t GetChar(uint8_t *Buffer,int32_t *offset)
                    given offset and updates the offset accordingly.
 <
 ----------------------------------------------------------------------------*/
-int32_t GetCharW(uint8_t *Buffer,int32_t *offset)
+int32_t GetCharW(uint8_t * Buffer, int32_t * offset)
 {
     int32_t Word;
-    Word = FSGetWord(Buffer,*offset);
-	*offset =*offset +2;
+    Word = FSGetWord(Buffer, *offset);
+    *offset = *offset + 2;
     return Word;
 }
 
@@ -279,11 +274,11 @@ int32_t GetCharW(uint8_t *Buffer,int32_t *offset)
    Description:   This function puts a character in the given string at given offset 
                   and updates the offset accordingly. 
 ----------------------------------------------------------------------------*/
-void PutChar(uint8_t *Buffer,int32_t *offset,int32_t Char)
+void PutChar(uint8_t * Buffer, int32_t * offset, int32_t Char)
 {
-    PutByte(Buffer,Char,*offset);
-	*offset =*offset +1;
-}       	
+    PutByte(Buffer, Char, *offset);
+    *offset = *offset + 1;
+}
 
 /*----------------------------------------------------------------------------
 >  Function Name: void PutCharW(uint8_t *Buffer,int32_t *offset,int32_t Char)
@@ -299,12 +294,12 @@ void PutChar(uint8_t *Buffer,int32_t *offset,int32_t Char)
    Description:   This function puts a word in the given Unicode string at given offset 
                   and updates the offset accordingly. 
 ----------------------------------------------------------------------------*/
-void PutCharW(uint8_t *Buffer,int32_t *offset,int32_t Char)
+void PutCharW(uint8_t * Buffer, int32_t * offset, int32_t Char)
 {
-    PutWord(Buffer,Char,*offset);
+    PutWord(Buffer, Char, *offset);
     //PutByte(Buffer,Char,*offset);
-	*offset =*offset +2;
-}       	
+    *offset = *offset + 2;
+}
 
 /*----------------------------------------------------------------------------
 >  Function Name:  int32_t GetnameW(uint8_t *filepath,int32_t currentPosition)
@@ -321,15 +316,14 @@ void PutCharW(uint8_t *Buffer,int32_t *offset,int32_t Char)
                    another string called name.Current position is set to next 
                    directory separator or to end of file path. (It considers the string as UNICODE)
 ----------------------------------------------------------------------------*/
-int32_t GetnameW(uint8_t *filepath,int32_t currentPosition)
+int32_t GetnameW(uint8_t * filepath, int32_t currentPosition)
 {
     int32_t word;
-    while(1)
-	{
-	    word = FSGetWord(filepath, currentPosition);
-		if(word =='/' || word =='\0')
-		    break;
-	    currentPosition+=2;
+    while (1) {
+        word = FSGetWord(filepath, currentPosition);
+        if (word == '/' || word == '\0')
+            break;
+        currentPosition += 2;
     }
 
     return (currentPosition);
@@ -350,14 +344,13 @@ int32_t GetnameW(uint8_t *filepath,int32_t currentPosition)
                    another string called name.Current position is set to next 
                    directory separator or to end of file path. (It considers the string as DBCS)
 ----------------------------------------------------------------------------*/
-int32_t Getname(uint8_t *filepath, int32_t currentPosition)
+int32_t Getname(uint8_t * filepath, int32_t currentPosition)
 {
     int Char;
-    while(1)
-	{
-	    Char = GetChar(filepath,&currentPosition);
-		if(Char =='/' || Char =='\0')
-		    break;
+    while (1) {
+        Char = GetChar(filepath, &currentPosition);
+        if (Char == '/' || Char == '\0')
+            break;
     }
 
     return (currentPosition);
@@ -378,14 +371,13 @@ int32_t Getname(uint8_t *filepath, int32_t currentPosition)
                    another string called name.Current position is set to next 
                    directory separator or to end of file path. (It considers the string as UNICODE)
 ----------------------------------------------------------------------------*/
-int32_t GetDirnameW(uint8_t *filepath,int32_t currentPosition)
+int32_t GetDirnameW(uint8_t * filepath, int32_t currentPosition)
 {
     int32_t word;
-    while(1)
-	{
-	    word = GetCharW(filepath, &currentPosition);
-		if(word =='/' || word =='\0')
-		    break;
+    while (1) {
+        word = GetCharW(filepath, &currentPosition);
+        if (word == '/' || word == '\0')
+            break;
     }
 
     return (currentPosition);
@@ -405,17 +397,16 @@ int32_t GetDirnameW(uint8_t *filepath,int32_t currentPosition)
    Description:    This function copies the string from last directory separator 
                    to end of file to another string called filename.
 ----------------------------------------------------------------------------*/
-int32_t Extractfilename(uint8_t *filepath,int32_t strlength,int32_t *index)
+int32_t Extractfilename(uint8_t * filepath, int32_t strlength, int32_t * index)
 {
-    int32_t currentposition=*index,strlen=0;
-   
- 	while(currentposition  < strlength)
-	{
-        strlen	= currentposition;
-	    currentposition  = Getname(filepath,currentposition); 
+    int32_t currentposition = *index, strlen = 0;
+
+    while (currentposition < strlength) {
+        strlen = currentposition;
+        currentposition = Getname(filepath, currentposition);
     }
-	  		
-	return strlen;
+
+    return strlen;
 }
 
 /*----------------------------------------------------------------------------
@@ -433,29 +424,28 @@ int32_t Extractfilename(uint8_t *filepath,int32_t strlength,int32_t *index)
 				   the file name in UNICODE.
 <
 ----------------------------------------------------------------------------*/
-int32_t Extractfilenamew(uint8_t *filepath, int32_t *index)
+int32_t Extractfilenamew(uint8_t * filepath, int32_t * index)
 {
     int32_t word, strlen;
     int32_t i;
 
     strlen = StrlengthW(filepath);
-    
+
     // StrlenthW returns in terms of number of Wide characters = 2 bytes per character. 
-    i = strlen<<1;
-    
-    while(i >*index)
-	{
-	    word = FSGetWord(filepath, i);
-		if( word =='/')
-		{
-		    i+=2;
-		    break;
-		}
-	    i-=2;
-	}
-  
+    i = strlen << 1;
+
+    while (i > *index) {
+        word = FSGetWord(filepath, i);
+        if (word == '/') {
+            i += 2;
+            break;
+        }
+        i -= 2;
+    }
+
     return i;
 }
+
 /*----------------------------------------------------------------------------
 >  Function Name:  int32_t Extractdirnamew(uint8_t *filepath,int32_t strlength,int32_t *index)
 
@@ -470,17 +460,16 @@ int32_t Extractfilenamew(uint8_t *filepath, int32_t *index)
    Description:    This function copies the string from last directory separator 
                    to end of file to another string called filename.
 ----------------------------------------------------------------------------*/
-int32_t Extractdirnamew(uint8_t *filepath,int32_t strlength,int32_t *index)
+int32_t Extractdirnamew(uint8_t * filepath, int32_t strlength, int32_t * index)
 {
-    int32_t currentposition=*index,strlen=0;
-   
- 	while(currentposition  < strlength)
-	{
-        strlen	= currentposition;
-	    currentposition  = GetDirnameW(filepath,currentposition); 
+    int32_t currentposition = *index, strlen = 0;
+
+    while (currentposition < strlength) {
+        strlen = currentposition;
+        currentposition = GetDirnameW(filepath, currentposition);
     }
-	  		
-	return strlen;
+
+    return strlen;
 }
 
 /*----------------------------------------------------------------------------
@@ -498,22 +487,21 @@ int32_t Extractdirnamew(uint8_t *filepath,int32_t strlength,int32_t *index)
                    string as UNICODE.
 <
 ----------------------------------------------------------------------------*/
-int32_t ExtractPathW(uint8_t *filepath,int32_t *index)
+int32_t ExtractPathW(uint8_t * filepath, int32_t * index)
 {
-    int32_t word,Strlen,k=0,offset=*index;
+    int32_t word, Strlen, k = 0, offset = *index;
 
-	Strlen = StrlengthW(filepath);
-    while(1)
-    {
- 	    word = FSGetWord(filepath,offset);
- 		if(word =='/' || word == '\0')
- 		    break;
- 	    offset+=2;
-		k++;
+    Strlen = StrlengthW(filepath);
+    while (1) {
+        word = FSGetWord(filepath, offset);
+        if (word == '/' || word == '\0')
+            break;
+        offset += 2;
+        k++;
     }
-    *index = offset+2;
-	if(k == Strlen)
-	    return END_OF_DIR_PATH ;
+    *index = offset + 2;
+    if (k == Strlen)
+        return END_OF_DIR_PATH;
 
     return SUCCESS;
 }
@@ -533,19 +521,18 @@ int32_t ExtractPathW(uint8_t *filepath,int32_t *index)
                    string as DBCS.
 <
 ----------------------------------------------------------------------------*/
-int32_t ExtractPath(uint8_t *filepath,int32_t *index)
+int32_t ExtractPath(uint8_t * filepath, int32_t * index)
 {
-    int32_t Strlen,offset=*index;
+    int32_t Strlen, offset = *index;
     int32_t Char;
-	Strlen = Strlength(filepath);
-    while(1)
-    {
- 	    Char = GetChar(filepath,&offset);
- 		if(Char =='/' || Char == '\0')
- 		    break;
+    Strlen = Strlength(filepath);
+    while (1) {
+        Char = GetChar(filepath, &offset);
+        if (Char == '/' || Char == '\0')
+            break;
     }
     *index = offset;
-    if(offset >= Strlen)
+    if (offset >= Strlen)
         return END_OF_DIR_PATH;
 
     return SUCCESS;
@@ -566,31 +553,27 @@ int32_t ExtractPath(uint8_t *filepath,int32_t *index)
    Description:   This function removes all the trailing periods from the given string. 
 <
 -----------------------------------------------------------------------------*/
-int32_t DiscardTrailigPeriods(uint8_t *Buffer,int32_t length,int32_t index,int32_t Flag)
+int32_t DiscardTrailigPeriods(uint8_t * Buffer, int32_t length, int32_t index, int32_t Flag)
 {
-    int32_t Char, strlen, offset=index;
-    int32_t dotfound=0;   
+    int32_t Char, strlen, offset = index;
+    int32_t dotfound = 0;
 
-	if(Flag)
-	    strlen = length -1;
-	else
-	    strlen =  length;
-	while(offset<strlen)
-	{
-	    Char = GetChar(Buffer,&offset);
-	    if(Char == '.')
-		{
-		    dotfound++;
-		}
-		else
-		{
-		    dotfound =0;
-		}
+    if (Flag)
+        strlen = length - 1;
+    else
+        strlen = length;
+    while (offset < strlen) {
+        Char = GetChar(Buffer, &offset);
+        if (Char == '.') {
+            dotfound++;
+        } else {
+            dotfound = 0;
+        }
     }
-	length = (length - dotfound);
-  
+    length = (length - dotfound);
+
     return length;
-}		          
+}
 
 /*----------------------------------------------------------------------------
 >  Function Name: int32_t  DiscardTrailigPeriodsw(uint8_t *Buffer,int32_t length,int32_t index)
@@ -606,27 +589,23 @@ int32_t DiscardTrailigPeriods(uint8_t *Buffer,int32_t length,int32_t index,int32
    Description:   This function removes all the trailing periods from the given string. 
 <                 It considers the string in UNICODE.
 -----------------------------------------------------------------------------*/
-int32_t  DiscardTrailigPeriodsw(uint8_t *Buffer,int32_t length,int32_t index)
+int32_t DiscardTrailigPeriodsw(uint8_t * Buffer, int32_t length, int32_t index)
 {
-    int32_t Char,offset=index;
-    int32_t dotfound=0;   
+    int32_t Char, offset = index;
+    int32_t dotfound = 0;
 
-  	while(offset<length)
-	{
-	    Char = FSGetWord(Buffer,offset);
-		if(Char == '.')
-		{
-		    dotfound++;
-		}
-		else 
-		{
-		    dotfound =0;
-		}
-	    offset+=2;
-	}
-	length = (length - (dotfound<<1));
+    while (offset < length) {
+        Char = FSGetWord(Buffer, offset);
+        if (Char == '.') {
+            dotfound++;
+        } else {
+            dotfound = 0;
+        }
+        offset += 2;
+    }
+    length = (length - (dotfound << 1));
     return length;
-}     
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 //! \brief      Returns a byte from buffer.
@@ -641,10 +620,10 @@ int32_t  DiscardTrailigPeriodsw(uint8_t *Buffer,int32_t length,int32_t index)
 //! \retval int32_t             A byte that was in buffer at offset iOffsetInUint8.
 //!
 ////////////////////////////////////////////////////////////////////////////////
-int32_t FSGetByte(uint8_t *buffer, int32_t iOffsetInUint8)
+int32_t FSGetByte(uint8_t * buffer, int32_t iOffsetInUint8)
 {
     int32_t temp;
-    temp = ((uint8_t)buffer[iOffsetInUint8]);
+    temp = ((uint8_t) buffer[iOffsetInUint8]);
     return temp;
 }
 
@@ -661,10 +640,12 @@ int32_t FSGetByte(uint8_t *buffer, int32_t iOffsetInUint8)
 //! \retval int32_t             A u16 that was in buffer at offset iOffsetInUint8.
 //!
 ////////////////////////////////////////////////////////////////////////////////
-int32_t FSGetWord(uint8_t *buffer, int32_t iOffsetInUint8)
+int32_t FSGetWord(uint8_t * buffer, int32_t iOffsetInUint8)
 {
     int32_t temp;
-    temp = (((uint32_t)buffer[iOffsetInUint8]) | ((((uint32_t)buffer[iOffsetInUint8+1]) & 0xff) << 8));
+    temp =
+        (((uint32_t) buffer[iOffsetInUint8]) |
+         ((((uint32_t) buffer[iOffsetInUint8 + 1]) & 0xff) << 8));
     return temp;
 }
 
@@ -681,11 +662,14 @@ int32_t FSGetWord(uint8_t *buffer, int32_t iOffsetInUint8)
 //! \retval int32_t             A u32 that was in buffer at offset iOffsetInUint8.
 //!
 ////////////////////////////////////////////////////////////////////////////////
-uint32_t FSGetDWord(uint8_t *buffer, int32_t iOffsetInUint8)
+uint32_t FSGetDWord(uint8_t * buffer, int32_t iOffsetInUint8)
 {
     uint32_t temp;
-    temp = (((uint32_t)buffer[iOffsetInUint8]) | ((((uint32_t)buffer[iOffsetInUint8+1]) & 0xff) << 8) |
-            ((((uint32_t)buffer[iOffsetInUint8+2]) & 0xff) << 16)  | ((((uint32_t)buffer[iOffsetInUint8+3]) & 0xff) << 24));
+    temp =
+        (((uint32_t) buffer[iOffsetInUint8]) |
+         ((((uint32_t) buffer[iOffsetInUint8 + 1]) & 0xff) << 8) |
+         ((((uint32_t) buffer[iOffsetInUint8 + 2]) & 0xff) << 16) |
+         ((((uint32_t) buffer[iOffsetInUint8 + 3]) & 0xff) << 24));
     return temp;
 }
 
@@ -703,9 +687,9 @@ uint32_t FSGetDWord(uint8_t *buffer, int32_t iOffsetInUint8)
    Description:   Puts byte into buffer at given offset.
 <
 ----------------------------------------------------------------------------*/
-void PutByte(uint8_t *buffer, uint8_t byte,int32_t Offset)
+void PutByte(uint8_t * buffer, uint8_t byte, int32_t Offset)
 {
-    buffer[Offset] = (uint8_t)(byte & 0xff);
+    buffer[Offset] = (uint8_t) (byte & 0xff);
 }
 
 /*----------------------------------------------------------------------------
@@ -722,10 +706,10 @@ void PutByte(uint8_t *buffer, uint8_t byte,int32_t Offset)
    Description:   Puts word into byte buffer starting from given offset.
 <
 ----------------------------------------------------------------------------*/
-void PutWord(uint8_t *buffer, int32_t word, int32_t Offset)
+void PutWord(uint8_t * buffer, int32_t word, int32_t Offset)
 {
-    buffer[Offset] = (uint8_t)(word & 0xff);
-    buffer[Offset+1] = (uint8_t)((word >> 8) & 0xff);
+    buffer[Offset] = (uint8_t) (word & 0xff);
+    buffer[Offset + 1] = (uint8_t) ((word >> 8) & 0xff);
 }
 
 /*----------------------------------------------------------------------------
@@ -742,12 +726,10 @@ void PutWord(uint8_t *buffer, int32_t word, int32_t Offset)
    Description:   Puts dword into byte buffer starting from given offset.
 <
 ----------------------------------------------------------------------------*/
-void PutDword(uint8_t *buffer, uint32_t dword, int32_t Offset)
+void PutDword(uint8_t * buffer, uint32_t dword, int32_t Offset)
 {
-    buffer[Offset] = (uint8_t)(dword & 0xff);
-    buffer[Offset+1] = (uint8_t)((dword >> 8) & 0xff);
-    buffer[Offset+2] = (uint8_t)((dword >> 16) & 0xff);
-    buffer[Offset+3] = (uint8_t)((dword >> 24) & 0xff);
+    buffer[Offset] = (uint8_t) (dword & 0xff);
+    buffer[Offset + 1] = (uint8_t) ((dword >> 8) & 0xff);
+    buffer[Offset + 2] = (uint8_t) ((dword >> 16) & 0xff);
+    buffer[Offset + 3] = (uint8_t) ((dword >> 24) & 0xff);
 }
-
-

@@ -45,23 +45,22 @@
 
 // Override these from the project file if needed
 #ifndef NUMDEVICES
-    #define NUMDEVICES      3
+#define NUMDEVICES      3
 #endif
 
 // Set default number of handles.
 #ifndef NUMHANDLES
-    #define NUMHANDLES      32
+#define NUMHANDLES      32
 #endif
 
 // Set default number of cached sectors.
 #ifndef NUMCACHES
-    #define NUMCACHES       32
+#define NUMCACHES       32
 #endif
 
 #ifndef DRIVELETTERS
 #define DRIVELETTERS    "acd"
 #endif
-
 
 #define BPB_AND_FSI_SIGNATURE_OFFSET_512B_SECTOR  (512-2)
 #define BPB_AND_FSI_SIGNATURE_OFFSET_1K_SECTOR (1024-2)
@@ -74,10 +73,9 @@
 //! Signature in last two bytes of the boot sector that identify it as such.
 #define BOOT_SECTOR_SIGNATURE (0xaa55)
 
-#define CREATE_MODE  32  // change
+#define CREATE_MODE  32         // change
 
-typedef enum
-{
+typedef enum {
     NOT_WRITE_MODE = 0,
     READ_MODE = 1,
     WRITE_MODE = 2,
@@ -89,20 +87,17 @@ typedef enum
     DIRECTORY_MODE = 16
 } FileSystemModeTypes_t;
 
-typedef enum
-{
-	FAT_TYPE_INVALID = 0,
+typedef enum {
+    FAT_TYPE_INVALID = 0,
     FAT12 = 1,
     FAT16 = 2,
     FAT32 = 3,
 } FAT_Types_t;
 
-typedef struct
-{
+typedef struct {
     int32_t CurrentOffset;
     int32_t CurrentCluster;
-}HANDLECONTEXT;
-
+} HANDLECONTEXT;
 
 #define FAT12EOF            0x0FFF
 #define FAT16EOF            0xFFFF
@@ -113,8 +108,7 @@ typedef struct
 #define FAT32FREECX         0x00000000
 
 //! Supported character encoding formats for the filesystem.
-enum _fs_character_encoding
-{
+enum _fs_character_encoding {
     kDBCSEncoding = 1,
     kUTF16Encoding = 2
 };
@@ -137,4 +131,4 @@ enum _fs_character_encoding
 
 #define     FAT32FSIFREECOUNTSIZE	4
 
-#endif  //FS_TYPES_H
+#endif //FS_TYPES_H

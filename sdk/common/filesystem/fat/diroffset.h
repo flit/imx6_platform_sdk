@@ -29,10 +29,8 @@
  */
 /* Fields of Directory Record and their offset in Byte */
 
-
-
 #define DIR_NAMEOFFSET					0
- 
+
 #define DIR_EXTOFFSET					8
 
 #define DIR_ATTRIBUTEOFFSET				11
@@ -53,8 +51,6 @@
 
 #define DIR_FILESIZEOFFSET				28
 
-
-
 /* Fields of Long Directory record and their offset in byte */
 
 #define    LDIRORDOFFSET				0
@@ -73,15 +69,13 @@
 
 #define    LDIRNAME3OFFSET				28
 
-
-
-#define DIRRECORDSIZE					32 
+#define DIRRECORDSIZE					32
 
 #define LDIRNAME1SIZE					10
 
-#define LDIRNAME2SIZE					14 
+#define LDIRNAME2SIZE					14
 
-#define LDIRNAME3SIZE					 4 
+#define LDIRNAME3SIZE					 4
 
 #define DIR_NAME_SIZE					11
 

@@ -72,32 +72,26 @@
 #define ATTR_LONG_NAME      (ATTR_READ_ONLY|ATTR_HIDDEN|ATTR_SYSTEM|ATTR_VOLUME_ID)
 #define MAX_FILESNAME   13
 
-typedef struct _FindData
-{
+typedef struct _FindData {
     uint8_t attrib;
     int32_t FileSize;
     uint8_t device;
     uint32_t startrecord;
     uint8_t name[MAX_FILESNAME];
     int64_t Key;
-}
-FindData_t;
+} FindData_t;
 
-typedef struct
-{
+typedef struct {
     uint8_t Day;
     uint8_t Month;
     int16_t Year;
-}
-DIR_DATE;
+} DIR_DATE;
 
-typedef struct
-{
+typedef struct {
     uint8_t Second;
     uint8_t Minute;
     uint8_t Hour;
-}
-DIR_TIME;
+} DIR_TIME;
 
 // Use for 'crt_mod_date_time_para' parameter
 #define CREATION_DATE       1
@@ -173,7 +167,7 @@ extern uint8_t bufy[];
 
 #if defined(__cplusplus)
 extern "C" {
-#endif // __cplusplus
+#endif                          // __cplusplus
 
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Redirects an Fclose request
@@ -191,7 +185,7 @@ extern "C" {
 //! \internal
 //! \see To view the function definition, see fs_steering.c.
 ///////////////////////////////////////////////////////////////////////////////
-RtStatus_t Fclose( int32_t handleNumber );
+    RtStatus_t Fclose(int32_t handleNumber);
 
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Redirects an Fread request
@@ -211,10 +205,8 @@ RtStatus_t Fclose( int32_t handleNumber );
 //! \internal
 //! \see To view the function definition, see fs_steering.c.
 ///////////////////////////////////////////////////////////////////////////////
-int32_t Fread( int32_t handleNumber,
-                                 uint8_t *pBuffer,
-                                 int32_t numBytesToRead );                                 
-                                 
+    int32_t Fread(int32_t handleNumber, uint8_t * pBuffer, int32_t numBytesToRead);
+
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Redirects an Fwrite request
 //!                  
@@ -233,10 +225,8 @@ int32_t Fread( int32_t handleNumber,
 //! \internal
 //! \see To view the function definition, see fs_steering.c.
 ///////////////////////////////////////////////////////////////////////////////
-int32_t Fwrite( int32_t handleNumber,
-                                  uint8_t *pBuffer,
-                                  int32_t numBytesToWrite );
-                                                                   
+    int32_t Fwrite(int32_t handleNumber, uint8_t * pBuffer, int32_t numBytesToWrite);
+
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Redirects an Fseek request
 //!                  
@@ -254,9 +244,7 @@ int32_t Fwrite( int32_t handleNumber,
 //! \internal
 //! \see To view the function definition, see fs_steering.c.
 ///////////////////////////////////////////////////////////////////////////////
-RtStatus_t Fseek( int32_t handleNumber,
-                                    int32_t numBytesToSeek,
-                                    int32_t seekPosition );
+    RtStatus_t Fseek(int32_t handleNumber, int32_t numBytesToSeek, int32_t seekPosition);
 
 ////////////////////////////////////////////////////////////////////////////////
 //!
@@ -266,14 +254,14 @@ RtStatus_t Fseek( int32_t handleNumber,
 //!
 //! \param[in] mode Null-terminated ASCII string that specifies how the file will be accessed. It must be one of the following:
 //!
-//!		-	"r"		=	open for reading only
-//!		-	"r+"		=	same as "r", also allows writing
-//!		-	"w"		=	open for writing only, file will be created if it does 
-//!						not exist, and will be overwritten if it does exist
-//!		-	"w+"		=	same as "w", also allows reading
-//!		-	"a"		=	open for appending to end of file, upon opening
-//!						file position is set to end-of-file
-//!		-	"a+"		=	same as "a", also allows reading/writing
+//!     -   "r"     =   open for reading only
+//!     -   "r+"        =   same as "r", also allows writing
+//!     -   "w"     =   open for writing only, file will be created if it does 
+//!                     not exist, and will be overwritten if it does exist
+//!     -   "w+"        =   same as "w", also allows reading
+//!     -   "a"     =   open for appending to end of file, upon opening
+//!                     file position is set to end-of-file
+//!     -   "a+"        =   same as "a", also allows reading/writing
 //!
 //!
 //!  \param[out] handle Returns an int32_t which uniquely identifies the file while it is open, and which must be
@@ -288,19 +276,19 @@ RtStatus_t Fseek( int32_t handleNumber,
 //!  the file name will be stored on the media with a short name only (older
 //!  style) or with both a short name and a long name.
 //!
-//! -	The file name is parsed into 2 parts, the part before the period (filespec) and the part after (extension)
+//! -   The file name is parsed into 2 parts, the part before the period (filespec) and the part after (extension)
 //!
-//! -	If more than one period is found during parsing, a long file name is created.
+//! -   If more than one period is found during parsing, a long file name is created.
 //!
-//! -	If the filespec is more than 11 characters long a long file name is created.
+//! -   If the filespec is more than 11 characters long a long file name is created.
 //!
-//! -	If the extension is more than 3 characters long a long file name is created
+//! -   If the extension is more than 3 characters long a long file name is created
 //!
-//! -	If the filespec or the extension contains a space character or any one of +,;=[](plus-sign,comma,semi-colon,
-//!		equal-sign,open-brace,close-brace) then a long file name is created.
+//! -   If the filespec or the extension contains a space character or any one of +,;=[](plus-sign,comma,semi-colon,
+//!     equal-sign,open-brace,close-brace) then a long file name is created.
 //!
-//! -	If a long file name is not used, the filepec and extension are converted 
-//!		to upper case, and the resulting short file name is created.
+//! -   If a long file name is not used, the filepec and extension are converted 
+//!     to upper case, and the resulting short file name is created.
 //!
 //!
 //!  \internal
@@ -309,7 +297,7 @@ RtStatus_t Fseek( int32_t handleNumber,
 //!   the function 'IsShortNameValid()' (which is in 'isshortnamevalid.c')
 //!
 ///////////////////////////////////////////////////////////////////////////////
-RtStatus_t Fopen(uint8_t *filepath, uint8_t *mode);
+    RtStatus_t Fopen(uint8_t * filepath, uint8_t * mode);
 
 ///////////////////////////////////////////////////////////////////////////////
 //!
@@ -319,14 +307,14 @@ RtStatus_t Fopen(uint8_t *filepath, uint8_t *mode);
 //!
 //! \param[in] mode Null-terminated ASCII string that specifies how the file will be accessed. It must be one of the following:
 //!
-//!		-	"r"		=	open for reading only
-//!		-	"r+"		=	same as "r", also allows writing
-//!		-	"w"		=	open for writing only, file will be created if it does 
-//!						not exist, and will be overwritten if it does exist
-//!		-	"w+"		=	same as "w", also allows reading
-//!		-	"a"		=	open for appending to end of file, upon opening
-//!						file position is set to end-of-file
-//!		-	"a+"		=	same as "a", also allows reading/writing
+//!     -   "r"     =   open for reading only
+//!     -   "r+"        =   same as "r", also allows writing
+//!     -   "w"     =   open for writing only, file will be created if it does 
+//!                     not exist, and will be overwritten if it does exist
+//!     -   "w+"        =   same as "w", also allows reading
+//!     -   "a"     =   open for appending to end of file, upon opening
+//!                     file position is set to end-of-file
+//!     -   "a+"        =   same as "a", also allows reading/writing
 //!
 //!
 //!  \param[out] handle Returns an int32_t which uniquely identifies the file while it is open, and which must be
@@ -337,22 +325,22 @@ RtStatus_t Fopen(uint8_t *filepath, uint8_t *mode);
 //!
 //!  Since the input filepath is in UNICODE, this function ALWAYS creates a long file name
 //!
-RtStatus_t Fopenw(uint8_t *filepath, uint8_t *mode);
+    RtStatus_t Fopenw(uint8_t * filepath, uint8_t * mode);
 
-RtStatus_t Fclose_FAT(int32_t HandleNumber);
-RtStatus_t Fgetc(int32_t HandleNumber);
-RtStatus_t Fputc(int32_t HandleNumber, int32_t ByteToWrite);
-uint8_t *Fgets(int32_t HandleNumber, int32_t NumBytes, uint8_t *Buffer);
-uint8_t *Fputs(int32_t HandleNumber, uint8_t *Buffer);
-RtStatus_t Fread_FAT(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToRead);
-RtStatus_t Fwrite_FAT(int32_t HandleNumber, uint8_t *Buffer, int32_t NumBytesToWrite);
-int32_t Feof(int32_t HandleNumber);
-int32_t Ftell(int32_t HandleNumber);
-int32_t Ferror(int32_t HandleNumber);
-RtStatus_t Fseek_FAT(int32_t HandleNumber, int32_t NumBytesToSeek, int32_t SeekPosition);
-RtStatus_t Fflush(int32_t HandleNumber);
-RtStatus_t Fremove(const uint8_t *filepath);
-RtStatus_t Fremovew(uint8_t *filepath);
+    RtStatus_t Fclose_FAT(int32_t HandleNumber);
+    RtStatus_t Fgetc(int32_t HandleNumber);
+    RtStatus_t Fputc(int32_t HandleNumber, int32_t ByteToWrite);
+    uint8_t *Fgets(int32_t HandleNumber, int32_t NumBytes, uint8_t * Buffer);
+    uint8_t *Fputs(int32_t HandleNumber, uint8_t * Buffer);
+    RtStatus_t Fread_FAT(int32_t HandleNumber, uint8_t * Buffer, int32_t NumBytesToRead);
+    RtStatus_t Fwrite_FAT(int32_t HandleNumber, uint8_t * Buffer, int32_t NumBytesToWrite);
+    int32_t Feof(int32_t HandleNumber);
+    int32_t Ftell(int32_t HandleNumber);
+    int32_t Ferror(int32_t HandleNumber);
+    RtStatus_t Fseek_FAT(int32_t HandleNumber, int32_t NumBytesToSeek, int32_t SeekPosition);
+    RtStatus_t Fflush(int32_t HandleNumber);
+    RtStatus_t Fremove(const uint8_t * filepath);
+    RtStatus_t Fremovew(uint8_t * filepath);
 
 ////////////////////////////////////////////////////////////////////////////////
 // Miscellaneous File System Prototypes
@@ -370,10 +358,11 @@ RtStatus_t Fremovew(uint8_t *filepath);
 //! \return Status of the call.
 //! \retval 0 If the call was successful.
 ///////////////////////////////////////////////////////////////////////////////
-RtStatus_t FSInit(uint8_t *bufx, uint8_t *bufy, int32_t maxdevices, int32_t maxhandles, int32_t maxcaches);
+    RtStatus_t FSInit(uint8_t * bufx, uint8_t * bufy, int32_t maxdevices, int32_t maxhandles,
+                      int32_t maxcaches);
 
-int32_t FSDriveInit(int32_t DeviceNumber);
-int32_t FSDriveShutdown(int32_t DeviceNumber);
+    int32_t FSDriveInit(int32_t DeviceNumber);
+    int32_t FSDriveShutdown(int32_t DeviceNumber);
 
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Determines free space by reading the all records 
@@ -381,7 +370,7 @@ int32_t FSDriveShutdown(int32_t DeviceNumber);
 //! \return Status of the call.
 //! \retval 0 If successful.
 ///////////////////////////////////////////////////////////////////////////////
-RtStatus_t FSShutdown(void);
+    RtStatus_t FSShutdown(void);
 
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Determines total free clusters by first checking FAT type.
@@ -390,7 +379,7 @@ RtStatus_t FSShutdown(void);
 //!
 //! \return Returns total number of free clusters.
 ///////////////////////////////////////////////////////////////////////////////
-int32_t Computefreecluster(int32_t DeviceNumber);
+    int32_t Computefreecluster(int32_t DeviceNumber);
 
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Gets the size of the file.
@@ -401,7 +390,7 @@ int32_t Computefreecluster(int32_t DeviceNumber);
 //! \retval 0 If the call was successful.
 //! \retval error If an error occurred.
 ///////////////////////////////////////////////////////////////////////////////
-RtStatus_t GetFileSize(int32_t HandleNumber);
+    RtStatus_t GetFileSize(int32_t HandleNumber);
 
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Flushes only the dirty cache buffers that contain valid
@@ -409,20 +398,20 @@ RtStatus_t GetFileSize(int32_t HandleNumber);
 //!
 //! \return Status of the call.
 ///////////////////////////////////////////////////////////////////////////////
-RtStatus_t FlushCache(void);
+    RtStatus_t FlushCache(void);
 
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief For device "deviceNumber", flushes only the dirty cache buffers that contain valid
 //!        data to the disk, and invalidates their cache entries.
 ///////////////////////////////////////////////////////////////////////////////
-int32_t FSFlushDriveCache(int32_t deviceNumber); //The real code calls for RtStatus_t
+    int32_t FSFlushDriveCache(int32_t deviceNumber);    //The real code calls for RtStatus_t
 
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Returns FAT type.
 //!
 //! \param[in] DeviceNum
 ///////////////////////////////////////////////////////////////////////////////
-int32_t FSFATType(int32_t DeviceNum);
+    int32_t FSFATType(int32_t DeviceNum);
 
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Returns a value that indicates whether the specified device is present.
@@ -431,12 +420,12 @@ int32_t FSFATType(int32_t DeviceNum);
 //!
 //! \return A value that indicates whether the device is present.
 ///////////////////////////////////////////////////////////////////////////////
-int32_t FSMediaPresent(int32_t DeviceNum);
+    int32_t FSMediaPresent(int32_t DeviceNum);
 
-int32_t FSFreeClusters(int32_t Device);
-int64_t FSFreeSpace(int32_t Device);
-int64_t FSFreeSpaceFromHandle(int32_t HandleNumber);
-int32_t FSSize(int32_t DeviceNum);
+    int32_t FSFreeClusters(int32_t Device);
+    int64_t FSFreeSpace(int32_t Device);
+    int64_t FSFreeSpaceFromHandle(int32_t HandleNumber);
+    int32_t FSSize(int32_t DeviceNum);
 
 ////////////////////////////////////////////////////////////////////////////////
 // Directory API
@@ -452,7 +441,7 @@ int32_t FSSize(int32_t DeviceNum);
 //! \retval SUCCESS
 //! \retval Error If error occurs.
 ///////////////////////////////////////////////////////////////////////////////
-RtStatus_t Chdir(uint8_t *filepath);
+    RtStatus_t Chdir(uint8_t * filepath);
 
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Searches for the given directoy path for UNICODE string and if the path is found 
@@ -464,10 +453,10 @@ RtStatus_t Chdir(uint8_t *filepath);
 //! \retval SUCCESS
 //! \retval Error If error occurs.
 ///////////////////////////////////////////////////////////////////////////////
-RtStatus_t Chdirw(uint8_t *filepath);
+    RtStatus_t Chdirw(uint8_t * filepath);
 
-RtStatus_t Mkdir(uint8_t *filepath);
-RtStatus_t Mkdirw(uint8_t *filepath);
+    RtStatus_t Mkdir(uint8_t * filepath);
+    RtStatus_t Mkdirw(uint8_t * filepath);
 
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Searches for the given directory, and if it is found, empties and 
@@ -479,7 +468,7 @@ RtStatus_t Mkdirw(uint8_t *filepath);
 //! \retval FS_SUCCESS If call was successful.
 //! \retval Error      If error occurs.
 ///////////////////////////////////////////////////////////////////////////////
-RtStatus_t Rmdir(uint8_t *filepath);
+    RtStatus_t Rmdir(uint8_t * filepath);
 
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Searches for the given directory, and if it is found, empties and 
@@ -493,7 +482,7 @@ RtStatus_t Rmdir(uint8_t *filepath);
 //!
 //! \note This function considers the string to be Unicode.
 ///////////////////////////////////////////////////////////////////////////////
-RtStatus_t Rmdirw(uint8_t *filepath);
+    RtStatus_t Rmdirw(uint8_t * filepath);
 
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Deletes all the files and directories of the specified path.
@@ -504,16 +493,16 @@ RtStatus_t Rmdirw(uint8_t *filepath);
 //! \retval 0     If the call was successful.
 //! \retval Error If an error occurs.
 ///////////////////////////////////////////////////////////////////////////////
-int32_t DeleteTree(uint8_t *Path);
+    int32_t DeleteTree(uint8_t * Path);
 
-int32_t Frename(uint8_t *oldFilename, uint8_t *newFilename);
+    int32_t Frename(uint8_t * oldFilename, uint8_t * newFilename);
 
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Returns the pointer to the \c gCurrentWorkingdirectory string buffer.
 //!
 //! \return Pointer to current working directory buffer.
 ///////////////////////////////////////////////////////////////////////////////
-uint8_t *Getcwd(void);
+    uint8_t *Getcwd(void);
 
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief TBD
@@ -522,7 +511,7 @@ uint8_t *Getcwd(void);
 //!
 //! \retval 0 If successful
 ///////////////////////////////////////////////////////////////////////////////
-int32_t  SetCWDHandle(int32_t DeviceNo);
+    int32_t SetCWDHandle(int32_t DeviceNo);
 
 ////////////////////////////////////////////////////////////////////////////////
 // Find file API
@@ -540,12 +529,12 @@ int32_t  SetCWDHandle(int32_t DeviceNo);
 //!
 //! \note This function should not be called from multiple tasks.
 ///////////////////////////////////////////////////////////////////////////////
-RtStatus_t FindFirstLFN(FindData_t *_finddata, uint8_t *FileName,void*);
+    RtStatus_t FindFirstLFN(FindData_t * _finddata, uint8_t * FileName, void *);
 
-RtStatus_t FindFirst(FindData_t *_finddata, uint8_t *FileName);
-RtStatus_t FindNextLFN(int32_t HandleNumber, FindData_t *_finddata,void*);
-RtStatus_t FindNext(int32_t HandleNumber, FindData_t *_finddata);
-RtStatus_t FindClose(int32_t HandleNumber);
+    RtStatus_t FindFirst(FindData_t * _finddata, uint8_t * FileName);
+    RtStatus_t FindNextLFN(int32_t HandleNumber, FindData_t * _finddata, void *);
+    RtStatus_t FindNext(int32_t HandleNumber, FindData_t * _finddata);
+    RtStatus_t FindClose(int32_t HandleNumber);
 
 ////////////////////////////////////////////////////////////////////////////////
 // File attribute API
@@ -564,7 +553,8 @@ RtStatus_t FindClose(int32_t HandleNumber);
 //! \retval 0 If successful.
 //! \retval ERROR If an error occurs.
 ///////////////////////////////////////////////////////////////////////////////
-RtStatus_t filegetdate(int32_t HandleNumber, int32_t crt_mod_date_time_para, DIR_DATE *dirdate, DIR_TIME *dirtime);
+    RtStatus_t filegetdate(int32_t HandleNumber, int32_t crt_mod_date_time_para, DIR_DATE * dirdate,
+                           DIR_TIME * dirtime);
 
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Sets the creation or modification date or time of 
@@ -579,7 +569,8 @@ RtStatus_t filegetdate(int32_t HandleNumber, int32_t crt_mod_date_time_para, DIR
 //! \retval 0 If successful.
 //! \retval Error 
 ///////////////////////////////////////////////////////////////////////////////
-RtStatus_t filesetdate(uint8_t *FilePath, int32_t crt_mod_date_time_para, DIR_DATE *dirdate, DIR_TIME *dirtime);
+    RtStatus_t filesetdate(uint8_t * FilePath, int32_t crt_mod_date_time_para, DIR_DATE * dirdate,
+                           DIR_TIME * dirtime);
 
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Gets directory attributes for a file based on the file handle.
@@ -588,7 +579,7 @@ RtStatus_t filesetdate(uint8_t *FilePath, int32_t crt_mod_date_time_para, DIR_DA
 //!
 //! \return Returns directory attributes for a file or an error Code if an error occurs.
 ///////////////////////////////////////////////////////////////////////////////
-RtStatus_t filegetattribhandle(int32_t HandleNumber);
+    RtStatus_t filegetattribhandle(int32_t HandleNumber);
 
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Gets directory attributes for a file.
@@ -597,7 +588,7 @@ RtStatus_t filegetattribhandle(int32_t HandleNumber);
 //!
 //! \return Returns directory attributes for a file or an error Code if an error occurs.
 ///////////////////////////////////////////////////////////////////////////////
-RtStatus_t filegetattrib(uint8_t *FilePath);
+    RtStatus_t filegetattrib(uint8_t * FilePath);
 
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Sets directory attributes for a file.
@@ -609,8 +600,8 @@ RtStatus_t filegetattrib(uint8_t *FilePath);
 //! \retval SUCCESS If call was successful.
 //! \retval ERROR   If an error occurs.
 ///////////////////////////////////////////////////////////////////////////////
-RtStatus_t filesetattrib(int32_t HandleNumber, int32_t dirattribute);
- 
+    RtStatus_t filesetattrib(int32_t HandleNumber, int32_t dirattribute);
+
 ///////////////////////////////////////////////////////////////////////////////
 //! \brief Provides long file name.
 //!
@@ -620,14 +611,10 @@ RtStatus_t filesetattrib(int32_t HandleNumber, int32_t dirattribute);
 //!
 //! \return Returns length of the long file name string.
 ///////////////////////////////////////////////////////////////////////////////
-int32_t ConstructLongFileName(int32_t HandleNumber, int32_t RecordNumber, int8_t *LFNBuffer);
+    int32_t ConstructLongFileName(int32_t HandleNumber, int32_t RecordNumber, int8_t * LFNBuffer);
 
 #if defined(__cplusplus)
-} // extern "C"
-#endif // __cplusplus
-
-#endif  //_FS_API_H
-///////////////////////////////////////////////////////////////////////////////
-// End of file
-///////////////////////////////////////////////////////////////////////////////
-//! @}
+}                               // extern "C"
+#endif                          // __cplusplus
+#endif                          //_FS_API_H
+///////////////////////////////////////////////////////////////////////////////// End of file/////////////////////////////////////////////////////////////////////////////////! @}

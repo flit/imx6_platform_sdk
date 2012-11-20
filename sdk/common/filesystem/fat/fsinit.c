@@ -54,9 +54,9 @@
 ----------------------------------------------------------------------------*/
 
 int32_t g_FSinitErrorCode = 0;
-HandleTable_t * Handle;
-FileSystemMediaTable_t * MediaTable;
-FileSpecs_t * filespec;
+HandleTable_t *Handle;
+FileSystemMediaTable_t *MediaTable;
+FileSpecs_t *filespec;
 
 /* start sector */
 extern uint32_t g_u32MbrStartSector;
@@ -79,20 +79,13 @@ extern uint32_t g_u32MbrStartSector;
 <
 --------- -------------------------------------------------------------------*/
 
-RtStatus_t  FSInit
-(
-    uint8_t *bufx, 
-    uint8_t *bufy, 
-    int32_t maxdevices, 
-    int32_t maxhandles, 
-    int32_t maxcaches
-)
-{
+RtStatus_t FSInit
+    (uint8_t * bufx, uint8_t * bufy, int32_t maxdevices, int32_t maxhandles, int32_t maxcaches) {
     // Assign pointers
-    MediaTable =  (FileSystemMediaTable_t *)&bufy[0];
-    Handle = (HandleTable_t *)&bufy[maxdevices*sizeof(FileSystemMediaTable_t)];
-    filespec = (FileSpecs_t *)&bufy[maxdevices*sizeof(FileSystemMediaTable_t) +
-                                   maxhandles*sizeof(HandleTable_t)];
+    MediaTable = (FileSystemMediaTable_t *) & bufy[0];
+    Handle = (HandleTable_t *) & bufy[maxdevices * sizeof(FileSystemMediaTable_t)];
+    filespec = (FileSpecs_t *) & bufy[maxdevices * sizeof(FileSystemMediaTable_t) +
+                                      maxhandles * sizeof(HandleTable_t)];
 
     // Now initialize the handle table to 0.
     memset(&Handle[0], 0, sizeof(Handle[0]) * maxhandles);
@@ -109,7 +102,6 @@ RtStatus_t  FSInit
    Inputs:         Single input param is logical data drive number.
    
 
-
    Outputs:        Returns 0, if Success, else ERROR CODE
                    Writes g_FSinitErrorCode static.
                    
@@ -117,43 +109,39 @@ RtStatus_t  FSInit
    Description:    Initialization of FileSystem.
 <
 --------- -------------------------------------------------------------------*/
-int32_t  FSDriveInit(int32_t DeviceNumber)
+int32_t FSDriveInit(int32_t DeviceNumber)
 {
     int32_t RetValue;
 
     /* Clear drive buffer */
 
-    FSClearDriveBuf( DeviceNumber, maxhandles );
+    FSClearDriveBuf(DeviceNumber, maxhandles);
 
     Cleardevicerecord(DeviceNumber);
 
     //if MMC then Shift g_FSinitErrorCode 2 bits left    (comment doesn't match code)
-    g_FSinitErrorCode=(g_FSinitErrorCode << 1);
+    g_FSinitErrorCode = (g_FSinitErrorCode << 1);
 
     // Read sector 0 to get PBS address
     // Read PBS itself
     // Verify PBS.
-    if ((RetValue= FSDataDriveInit(DeviceNumber))!=0)   // Non zero return value indicates error
+    if ((RetValue = FSDataDriveInit(DeviceNumber)) != 0)    // Non zero return value indicates error
     {
         // Could not find or confirm the PBS
 
-        if(RetValue == INVALID_FILESYSTEM)
-        {
-            g_FSinitErrorCode= (g_FSinitErrorCode|0x01);
+        if (RetValue == INVALID_FILESYSTEM) {
+            g_FSinitErrorCode = (g_FSinitErrorCode | 0x01);
             RetValue = ERROR_OS_FILESYSTEM_FILESYSTEM_NOT_FOUND;
         }
         return RetValue;
     }
-
     // Formerly, this code called FileSystemPresent(DeviceNumber) read
     // and confirm the PBS signature.  However,
     // At this point the PBS has been verified by FSDataDriveInit(), so there is no need to check it
     // again with FileSystemPresent(DeviceNumber)
-    if ((RetValue= Readdevicerecord(DeviceNumber,BOOTSECTOR))!=0)
-    {
-        if(RetValue == INVALID_FILESYSTEM)
-        {
-            g_FSinitErrorCode= (g_FSinitErrorCode|0x01);
+    if ((RetValue = Readdevicerecord(DeviceNumber, BOOTSECTOR)) != 0) {
+        if (RetValue == INVALID_FILESYSTEM) {
+            g_FSinitErrorCode = (g_FSinitErrorCode | 0x01);
             RetValue = ERROR_OS_FILESYSTEM_FILESYSTEM_NOT_FOUND;
         }
         return RetValue;
@@ -161,6 +149,7 @@ int32_t  FSDriveInit(int32_t DeviceNumber)
 
     return SUCCESS;
 }
+
 /*----------------------------------------------------------------------------
 
 >  Function Name:  int32_t FSInit(int32_t _X *bufx, int32_t _Y *bufy, int32_t maxdevices, int32_t maxhandles, int32_t maxcaches)
@@ -178,15 +167,14 @@ int32_t  FSDriveInit(int32_t DeviceNumber)
    Description:    Initialization of FileSystem.
 <
 --------- -------------------------------------------------------------------*/
-void  FSClearDriveBuf(int32_t DriveNumber,int32_t maxhandles)
+void FSClearDriveBuf(int32_t DriveNumber, int32_t maxhandles)
 {
     int32_t i;
-    
+
     // setup handle
-    for (i=0; i < maxhandles; i++)
-    {
-        if(Handle[i].Device == DriveNumber)
-            Handle[i].HandleActive=0;
+    for (i = 0; i < maxhandles; i++) {
+        if (Handle[i].Device == DriveNumber)
+            Handle[i].HandleActive = 0;
     }
 
 }
@@ -208,42 +196,37 @@ void  FSClearDriveBuf(int32_t DriveNumber,int32_t maxhandles)
    Description:    Initialization of FileSystem.
 <
 --------- -------------------------------------------------------------------*/
-int32_t  FSDriveShutdown(int32_t deviceNumber)
+int32_t FSDriveShutdown(int32_t deviceNumber)
 {
     int32_t i;
-    
 
-	/* Close all the active handles */
+    /* Close all the active handles */
 
-	for (i =0; i < maxhandles; i++)
-	{
-		if((Handleactive(i))==SUCCESS)
-		{
+    for (i = 0; i < maxhandles; i++) {
+        if ((Handleactive(i)) == SUCCESS) {
             int32_t iDeviceNumberCheck;
-            if( GetDeviceFromHandle(i, &iDeviceNumberCheck) == SUCCESS )
-            {
-                if( iDeviceNumberCheck == deviceNumber )
-                {
-					Fclose(i);
+            if (GetDeviceFromHandle(i, &iDeviceNumberCheck) == SUCCESS) {
+                if (iDeviceNumberCheck == deviceNumber) {
+                    Fclose(i);
                 }
             }
-		}
-	}
+        }
+    }
 
-	/* Flush the drive cache */
+    /* Flush the drive cache */
 
-	FSFlushDriveCache(deviceNumber);
-		
-	/* Clear the drive buff */
-	
-    FSClearDriveBuf( deviceNumber, maxhandles );
+    FSFlushDriveCache(deviceNumber);
 
-	/* Deallocate drive_specific system resource */
-	/* TODOFSINITSHUTDOWN */
+    /* Clear the drive buff */
 
-	/* Clear drive specific file system data structures */
+    FSClearDriveBuf(deviceNumber, maxhandles);
 
-	Cleardevicerecord(deviceNumber);	 
+    /* Deallocate drive_specific system resource */
+    /* TODOFSINITSHUTDOWN */
+
+    /* Clear drive specific file system data structures */
+
+    Cleardevicerecord(deviceNumber);
 
     return SUCCESS;
 }
@@ -264,37 +247,32 @@ int32_t  FSDriveShutdown(int32_t deviceNumber)
 ----------------------------------------------------------------------------*/
 RtStatus_t FSShutdown(void)
 {
-    int32_t i=0;
-	RtStatus_t RetValue = SUCCESS;
+    int32_t i = 0;
+    RtStatus_t RetValue = SUCCESS;
 
-	/* Close all the active file handles */
-	
-	for (i =0; i < maxhandles; i++)
-    {
-	    if((Handleactive(i))==SUCCESS)
-	    {
-	        if(Fclose(i) <0)
-		        continue;
-	    }
+    /* Close all the active file handles */
+
+    for (i = 0; i < maxhandles; i++) {
+        if ((Handleactive(i)) == SUCCESS) {
+            if (Fclose(i) < 0)
+                continue;
+        }
     }
 
-	/* Flush the cache */
-	
-    if((RetValue = (RtStatus_t)FlushCache()) != SUCCESS)
-    {
+    /* Flush the cache */
+
+    if ((RetValue = (RtStatus_t) FlushCache()) != SUCCESS) {
         return RetValue;
-    }          
-
-	/* Shutdown external and internal drive */
-
-	for( i=0; i<maxdevices-1; i++ )
-    {
-		FSDriveShutdown(i);
     }
 
-	/* Clear any global data */
-	/* TODOFSINITSHUTDOWN */
-	
+    /* Shutdown external and internal drive */
+
+    for (i = 0; i < maxdevices - 1; i++) {
+        FSDriveShutdown(i);
+    }
+
+    /* Clear any global data */
+    /* TODOFSINITSHUTDOWN */
+
     return RetValue;
 }
-

@@ -58,35 +58,31 @@
 ----------------------------------------------------------------------------*/
 RtStatus_t UpdateHandleOffsets(int32_t HandleNumber)
 {
-    HandleTable_t * handle = &Handle[HandleNumber];
+    HandleTable_t *handle = &Handle[HandleNumber];
     int32_t Device = handle->Device;
-    FileSystemMediaTable_t * media = &MediaTable[Device];
+    FileSystemMediaTable_t *media = &MediaTable[Device];
     uint32_t bytesPerSector = media->BytesPerSector;
     uint32_t sectorsPerCluster = media->SectorsPerCluster;
     RtStatus_t RetValue = SUCCESS;
-    
-    while (handle->BytePosInSector >= bytesPerSector)
-    {
+
+    while (handle->BytePosInSector >= bytesPerSector) {
         handle->BytePosInSector -= bytesPerSector;
         handle->CurrentSector++;
         handle->SectorPosInCluster++;
-        
-        if (handle->SectorPosInCluster >= sectorsPerCluster)
-        {
-            if ((RetValue = FindNextSector(Device, HandleNumber)) == ERROR_OS_FILESYSTEM_EOF)
-            {
+
+        if (handle->SectorPosInCluster >= sectorsPerCluster) {
+            if ((RetValue = FindNextSector(Device, HandleNumber)) == ERROR_OS_FILESYSTEM_EOF) {
                 handle->BytePosInSector = bytesPerSector;
                 handle->SectorPosInCluster = sectorsPerCluster - 1;
                 return RetValue;
             }
-            
-		    if (RetValue == ERROR_OS_FILESYSTEM_INVALID_CLUSTER_NO)
-            {
-			    return ERROR_OS_FILESYSTEM_INVALID_CLUSTER_NO;
+
+            if (RetValue == ERROR_OS_FILESYSTEM_INVALID_CLUSTER_NO) {
+                return ERROR_OS_FILESYSTEM_INVALID_CLUSTER_NO;
             }
-        }    
+        }
     }
-    
+
     return RetValue;
 }
 
@@ -105,20 +101,17 @@ RtStatus_t UpdateHandleOffsets(int32_t HandleNumber)
 ----------------------------------------------------------------------------*/
 RtStatus_t FindNextSector(int32_t Device, int32_t HandleNumber)
 {
-    HandleTable_t * handle = &Handle[HandleNumber];
+    HandleTable_t *handle = &Handle[HandleNumber];
     int32_t ClusterNumber = Findnextcluster(Device, handle->CurrentCluster);
-    if (ClusterNumber == ERROR_OS_FILESYSTEM_EOF)
-    {
+    if (ClusterNumber == ERROR_OS_FILESYSTEM_EOF) {
         return ERROR_OS_FILESYSTEM_EOF;
-    }
-    else if (ClusterNumber <= 0)
-    {
+    } else if (ClusterNumber <= 0) {
         return ERROR_OS_FILESYSTEM_INVALID_CLUSTER_NO;
     }
-    
+
     handle->CurrentCluster = ClusterNumber;
     handle->SectorPosInCluster = 0;
     handle->CurrentSector = Firstsectorofcluster(Device, handle->CurrentCluster);
-    
+
     return SUCCESS;
 }

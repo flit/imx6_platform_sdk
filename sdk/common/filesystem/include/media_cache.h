@@ -97,8 +97,7 @@
 //! that is passed to the core media cache API functions for reading, writing,
 //! and flushing. Not all flags apply to all functions. See the documentation for
 //! each function for a list to applicable flags.
-enum media_cache_flags
-{
+enum media_cache_flags {
     //! Operate on buffers the size of the underlying media sectors rather than
     //! software-defined sector sizes. This size is equivalent to the value returned
     //! from DriveGetInfo() with the #kDriveInfoNativeSectorSizeInBytes selector.
@@ -106,7 +105,7 @@ enum media_cache_flags
     //! param block must be in units of native sectors and not the normal nominal
     //! sectors.
     kMediaCacheFlag_UseNativeSectors = 1 << 0,
-    
+
     //! This flag does not actually bypass the cache. Instead, it causes the cache
     //! entry for the targeted sector to be reused immediately. More specifically, it
     //! places the entry at the head of the LRU list (the least recently used end),
@@ -116,46 +115,46 @@ enum media_cache_flags
     //! nominal sector sizes smaller than the native sector size can still be
     //! transparently supported.
     kMediaCacheFlag_BypassCache = 1 << 1,
-    
+
     //! Set this flag when calling media_cache_flush() to flush a single drive,
     //! specified by the \a drive field of the param block.
     kMediaCacheFlag_FlushDrive = 1 << 2,
-    
+
     //! Set this flag when calling media_cache_flush() to flush the entire cache.
     //! If this flag is not set, the \a drive parameter is used to determine which
     //! drive to flush. 
     kMediaCacheFlag_FlushAllDrives = 1 << 3,
-    
+
     //! When set, a write operation will cause the cache entry to immediately be flushed
     //! to media. Please be aware that if nominal sector size is not equal to native
     //! sector size, then this option can cause a great deal of thrashing.
     kMediaCacheFlag_WriteThrough = 1 << 4,
-    
+
     //! Normally, the offset to the beginning of the PBS for the FAT partition,
     //! for drives that have an MBR, is added to any sector number passed into the
     //! media cache operations. When this flag is set, the PBS offset is no longer
     //! added, thus allowing the caller to read and write the MBR and other sectors
     //! before the FAT partition.
     kMediaCacheFlag_NoPartitionOffset = 1 << 5,
-    
+
     //! When applied to pinned write operations, this flag indicates that the caller
     //! does not care about the previous contents of the sectors being written. If
     //! a new cache entry has to be used, evicting an older one, an initial read to
     //! fill the entry with the previous sector contents will not be performed. In
     //! the case that the sector is already in the cache, this flag has no effect.
     kMediaCacheFlag_NoReadback = 1 << 6,
-    
+
     //! Set this flag to enable the use of the \a media_cache_param_block::weight
     //! field of the param block. Without this flag set, that field is ignored
     //! and the weighting is assumed to be #kMediaCacheWeight_Low.
     kMediaCacheFlag_ApplyWeight = 1 << 7,
-    
+
     //! Invalidates all flushed cache entries in addition to writing them to media.
     //! This option is most useful when the contents of a sector change are changed
     //! on the media without going through the media cache (i.e., a direct write
     //! through the LDL).
     kMediaCacheFlag_Invalidate = 1 << 8,
-    
+
     //! Setting this flag in conjunction with #kMediaCacheFlag_NoReadback will cause
     //! the media cache to not perform a readback when loading a sector into the cache,
     //! regardless of whether the write fills the complete native sector. The implication
@@ -168,8 +167,7 @@ enum media_cache_flags
 };
 
 //! \brief Constants for sector weights in the cache.
-enum media_cache_weights
-{
+enum media_cache_weights {
     kMediaCacheWeight_Low = 0,
     kMediaCacheWeight_Medium = 5,
     kMediaCacheWeight_High = 10
@@ -183,19 +181,18 @@ enum media_cache_weights
  *
  * \todo Do we really need #media_cache_param_block::mode?
  */
-struct media_cache_param_block
-{
-    int16_t weight;         //!< Weight value used to modify cache entry persistence.
-    uint8_t mode;           //!< One of WRITE_TYPE_xxx in ddi_media.h.
-    uint8_t drive;          //!< Index of the drive to which the sector belongs.
-    uint32_t sector;        //!< Sector or starting sector.
-    uint32_t flags;         //!< Optional flags to modify the operation.
-    uint8_t * buffer;       //!< Pointer to the buffer.
-    uint16_t requestSectorCount;  //!< Requested number of sectors.
-    uint16_t actualSectorCount;   //!< Number of sectors big the buffer is.
-    uint32_t token;         //!< The token passed to media_cache_release() when done with the buffer.
-    uint16_t writeOffset;   //!< Offset into the sector buffer to write the source buffer.
-    uint16_t writeByteCount;  //!< Number of bytes to write from the source buffer.
+struct media_cache_param_block {
+    int16_t weight;             //!< Weight value used to modify cache entry persistence.
+    uint8_t mode;               //!< One of WRITE_TYPE_xxx in ddi_media.h.
+    uint8_t drive;              //!< Index of the drive to which the sector belongs.
+    uint32_t sector;            //!< Sector or starting sector.
+    uint32_t flags;             //!< Optional flags to modify the operation.
+    uint8_t *buffer;            //!< Pointer to the buffer.
+    uint16_t requestSectorCount;    //!< Requested number of sectors.
+    uint16_t actualSectorCount; //!< Number of sectors big the buffer is.
+    uint32_t token;             //!< The token passed to media_cache_release() when done with the buffer.
+    uint16_t writeOffset;       //!< Offset into the sector buffer to write the source buffer.
+    uint16_t writeByteCount;    //!< Number of bytes to write from the source buffer.
 };
 
 //! Typedef for media cache param block structure.
@@ -227,13 +224,13 @@ extern "C" {
 //! \retval ERROR_DDI_MEDIA_CACHE_INVALID_BUFFER If the \a cacheBuffer is not large
 //!     enough for at least a single sector, or if it is not data cache aligned, then
 //!     this error is returned.
-RtStatus_t media_cache_init(uint8_t * cacheBuffer, uint32_t cacheBufferLength);
+    RtStatus_t media_cache_init(uint8_t * cacheBuffer, uint32_t cacheBufferLength);
 
 //! \brief Clean up the media cache and free allocated memory.
 //!
 //! \retval SUCCESS The media cache was shut down and all dynamically allocated memory
 //!     was freed.
-RtStatus_t media_cache_shutdown(void);
+    RtStatus_t media_cache_shutdown(void);
 
 //! \brief Performs a cached read operation.
 //!
@@ -267,7 +264,7 @@ RtStatus_t media_cache_shutdown(void);
 //! \retval ERROR_DDI_LDL_LDRIVE_INVALID_DRIVE_NUMBER An invalid drive number was passed in the param block.
 //! \retval ERROR_DDI_LDL_LDRIVE_SECTOR_OUT_OF_BOUNDS The sector passed in the param block is larger than
 //!     the actual number of sectors that the drive has.
-RtStatus_t media_cache_read(MediaCacheParamBlock_t * pb);
+    RtStatus_t media_cache_read(MediaCacheParamBlock_t * pb);
 
 //! \brief Performs a cached write operation.
 //!
@@ -308,7 +305,7 @@ RtStatus_t media_cache_read(MediaCacheParamBlock_t * pb);
 //! \retval ERROR_DDI_LDL_LDRIVE_INVALID_DRIVE_NUMBER An invalid drive number was passed in the param block.
 //! \retval ERROR_DDI_LDL_LDRIVE_SECTOR_OUT_OF_BOUNDS The sector passed in the param block is larger than
 //!     the actual number of sectors that the drive has.
-RtStatus_t media_cache_write(MediaCacheParamBlock_t * pb);
+    RtStatus_t media_cache_write(MediaCacheParamBlock_t * pb);
 
 //! \brief Returns a sector buffer into which the caller can write.
 //!
@@ -358,7 +355,7 @@ RtStatus_t media_cache_write(MediaCacheParamBlock_t * pb);
 //! \retval ERROR_DDI_LDL_LDRIVE_INVALID_DRIVE_NUMBER An invalid drive number was passed in the param block.
 //! \retval ERROR_DDI_LDL_LDRIVE_SECTOR_OUT_OF_BOUNDS The sector passed in the param block is larger than
 //!     the actual number of sectors that the drive has.
-RtStatus_t media_cache_pinned_write(MediaCacheParamBlock_t * pb);
+    RtStatus_t media_cache_pinned_write(MediaCacheParamBlock_t * pb);
 
 //! \brief Flushes part or all of the cache.
 //!
@@ -402,7 +399,7 @@ RtStatus_t media_cache_pinned_write(MediaCacheParamBlock_t * pb);
 //! \retval ERROR_DDI_LDL_LDRIVE_INVALID_DRIVE_NUMBER An invalid drive number was passed in the param block.
 //! \retval ERROR_DDI_LDL_LDRIVE_SECTOR_OUT_OF_BOUNDS The sector passed in the param block is larger than
 //!     the actual number of sectors that the drive has.
-RtStatus_t media_cache_flush(MediaCacheParamBlock_t * pb);
+    RtStatus_t media_cache_flush(MediaCacheParamBlock_t * pb);
 
 //! \brief Releases the lock on a cache entry.
 //!
@@ -416,20 +413,14 @@ RtStatus_t media_cache_flush(MediaCacheParamBlock_t * pb);
 //!     returned from a media_cache_read() call. This token value uniquely identifies which
 //!     cache entry to unlock.
 //! \retval SUCCESS The specified cache entry was unlocked.
-RtStatus_t media_cache_release(uint32_t token);
+    RtStatus_t media_cache_release(uint32_t token);
 
-RtStatus_t media_cache_resume(void);
-RtStatus_t media_cache_increase(int32_t cacheNumIncreased);
-RtStatus_t media_cache_DiscardDrive (int32_t iDrive);
+    RtStatus_t media_cache_resume(void);
+    RtStatus_t media_cache_increase(int32_t cacheNumIncreased);
+    RtStatus_t media_cache_DiscardDrive(int32_t iDrive);
 #ifdef __cplusplus
 }
 #endif
-
-////////////////////////////////////////////////////////////////////////////////
-// End of file
-////////////////////////////////////////////////////////////////////////////////
-
-#endif // _media_cache_h_
+////////////////////////////////////////////////////////////////////////////////// End of file////////////////////////////////////////////////////////////////////////////////
+#endif                          // _media_cache_h_
 //! @}
-
-

@@ -38,7 +38,6 @@
 //! \todo [PUBS] Add definitions for TBDs in this file
 ///////////////////////////////////////////////////////////////////////////////
 
-
 #ifndef _TYPES_H
 #define _TYPES_H
 
@@ -52,21 +51,21 @@
 //------------------------------------------------------------------------------
 
 //! \brief TBD
-typedef bool        BOOL;
+typedef bool BOOL;
 
 // //! \brief TBD
 // typedef uint8_t     UINT8;
 
 // //! \brief TBD
-typedef uint8_t     BYTE;
+typedef uint8_t BYTE;
 
 //! \brief TBD
-typedef uint32_t    WORD;
+typedef uint32_t WORD;
 
 // //! \brief TBD
-typedef uint32_t    SECTOR_BUFFER;
+typedef uint32_t SECTOR_BUFFER;
 //! \brief TBD
-typedef uint32_t *  P_SECTOR_BUFFER;
+typedef uint32_t *P_SECTOR_BUFFER;
 
 #define REENTRANT
 

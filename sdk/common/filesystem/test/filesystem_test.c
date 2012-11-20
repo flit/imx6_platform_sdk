@@ -50,7 +50,6 @@ uint8_t writefile[] = "testout.dat";
 #define TEST_FILE_SIZE (1024*1024*32)
 #define DeviceNum 0
 
-
 hw_module_t count_timer = {
     "EPIT2 for system tick",
     2,
@@ -79,7 +78,7 @@ int fat_write_speed_test(void)
 
     ClusterSize = MediaTable[DeviceNum].SectorsPerCluster * MediaTable[DeviceNum].BytesPerSector;
     WriteBuffer = (uint8_t *) TEST_BUFFER_ADDR;
-    
+
     count_timer.freq = get_main_clock(IPG_CLK);
     epit_init(&count_timer, CLKSRC_IPG_CLK, count_timer.freq / 1000000,
               SET_AND_FORGET, 10000, WAIT_MODE_EN | STOP_MODE_EN);
@@ -90,7 +89,8 @@ int fat_write_speed_test(void)
     SDHC_INTR_mode = 0;
 
     while (BytesWritten < TEST_FILE_SIZE) {
-        if ((count = Fwrite(fout, (uint8_t *)(WriteBuffer + BytesWritten), ChunkSize)) != ChunkSize) {
+        if ((count =
+             Fwrite(fout, (uint8_t *) (WriteBuffer + BytesWritten), ChunkSize)) != ChunkSize) {
             printf("Fwrite failed. Exit.\n");
             Fclose(fout);
             return ERROR_GENERIC;
@@ -104,7 +104,7 @@ int fat_write_speed_test(void)
     printf("\n*****************File Reading End********************\n");
     TimeCount = (0xFFFFFFFF - TimeCount) / 1000;    //ms
     printf("Total data written %d Bytes, time %d ms\n", GetFileSize(fout), TimeCount);
-   
+
     Fclose(fout);
 
     return 0;
@@ -139,7 +139,7 @@ int fat_read_speed_test(void)
     SDHC_ADMA_mode = 0;
     SDHC_INTR_mode = 0;
     while (ReadSize < TEST_FILE_SIZE) {
-        if ((count = Fread(fin, (uint8_t *)(ReadBuffer + ReadSize), ChunkSize)) < 0) {
+        if ((count = Fread(fin, (uint8_t *) (ReadBuffer + ReadSize), ChunkSize)) < 0) {
             Fclose(fin);
             return ERROR_GENERIC;
         }
@@ -185,12 +185,12 @@ int fat_test(void)
     print_media_fat_info(DeviceNum);
 
     do {
-        /*read input file to TEST BUFFER*/
+        /*read input file to TEST BUFFER */
         fat_read_speed_test();
 
-        /*Dump the test buffer to SD card*/
+        /*Dump the test buffer to SD card */
         fat_write_speed_test();
-    } while(0);
+    } while (0);
 
     return 0;
 }

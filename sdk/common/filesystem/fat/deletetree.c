@@ -49,16 +49,17 @@
 /*----------------------------------------------------------------------------
 		Extern Declarations
 ----------------------------------------------------------------------------*/
-extern RtStatus_t FindNext(int32_t HandleNumber,FindData_t *_finddata);
-extern RtStatus_t FindFirst(FindData_t *_finddata,uint8_t *FileName);
+extern RtStatus_t FindNext(int32_t HandleNumber, FindData_t * _finddata);
+extern RtStatus_t FindFirst(FindData_t * _finddata, uint8_t * FileName);
 /*----------------------------------------------------------------------------
 		Global Declarations
 ----------------------------------------------------------------------------*/
-RtStatus_t DeleteAllRecords(int32_t StartingCluster,FindData_t *_finddata);
-RtStatus_t FileRemove(int32_t RecordNumber,int32_t HandleNumber);
-RtStatus_t DelGetRecordNumber(int32_t HandleNumber,int32_t ClusterNumber);
-RtStatus_t ChangeToLowLevelDir(int32_t HandleNumber,FindData_t *_finddata,int32_t StartingCluster);
-void ClearData(FindData_t *_finddata);
+RtStatus_t DeleteAllRecords(int32_t StartingCluster, FindData_t * _finddata);
+RtStatus_t FileRemove(int32_t RecordNumber, int32_t HandleNumber);
+RtStatus_t DelGetRecordNumber(int32_t HandleNumber, int32_t ClusterNumber);
+RtStatus_t ChangeToLowLevelDir(int32_t HandleNumber, FindData_t * _finddata,
+                               int32_t StartingCluster);
+void ClearData(FindData_t * _finddata);
 /*----------------------------------------------------------------------------
 >  Function Name: RtStatus_t DeleteTree(uint8_t *filePath)
 
@@ -71,50 +72,50 @@ void ClearData(FindData_t *_finddata);
    Description:   Deletes all the files and directories of the specified path
 <
 ----------------------------------------------------------------------------*/
-RtStatus_t DeleteTree(uint8_t *filePath)
+RtStatus_t DeleteTree(uint8_t * filePath)
 {
     RtStatus_t RetValue = SUCCESS;
-	int32_t HandleNumber=0;
-	int32_t StartingCluster;
-	FindData_t _finddata; 
-	uint8_t Buf[32];
-	HandleTable_t TempHandle;
-//	int64_t lTemp;
+    int32_t HandleNumber = 0;
+    int32_t StartingCluster;
+    FindData_t _finddata;
+    uint8_t Buf[32];
+    HandleTable_t TempHandle;
+//  int64_t lTemp;
 
-	if((RetValue = Chdir(filePath))<0)
-	    return RetValue;
+    if ((RetValue = Chdir(filePath)) < 0)
+        return RetValue;
 
-	TempHandle = Handle[CWD_HANDLE];
+    TempHandle = Handle[CWD_HANDLE];
 
-	if((HandleNumber = Searchfreehandleallocate()) < 0)
-	    return (RtStatus_t)HandleNumber;
+    if ((HandleNumber = Searchfreehandleallocate()) < 0)
+        return (RtStatus_t) HandleNumber;
 
-	Handle[HandleNumber]=Handle[CWD_HANDLE];
+    Handle[HandleNumber] = Handle[CWD_HANDLE];
 
-	if((Handle[HandleNumber].StartingCluster)==MediaTable[Handle[HandleNumber].Device].RootdirCluster)
-	    return 	ERROR_OS_FILESYSTEM_DIR_NOT_REMOVABLE;
+    if ((Handle[HandleNumber].StartingCluster) ==
+        MediaTable[Handle[HandleNumber].Device].RootdirCluster)
+        return ERROR_OS_FILESYSTEM_DIR_NOT_REMOVABLE;
 
-	if((ReadDirectoryRecord(HandleNumber,1,Buf)) <=0)
-		return ERROR_OS_FILESYSTEM_INVALID_RECORD_NUMBER;
+    if ((ReadDirectoryRecord(HandleNumber, 1, Buf)) <= 0)
+        return ERROR_OS_FILESYSTEM_INVALID_RECORD_NUMBER;
 
     // sdk 2.6 first corrected the shift direction to left instead of right.  3.095 release had left since it had fix from sdk2.6.
-	StartingCluster = ((FSGetWord(Buf,DIR_FSTCLUSLOOFFSET))|(FSGetWord(Buf,DIR_FSTCLUSHIOFFSET)<<16));
-	 
-	if((RetValue = Fseek(HandleNumber,0,SEEK_SET))<0)
-		return RetValue;
+    StartingCluster =
+        ((FSGetWord(Buf, DIR_FSTCLUSLOOFFSET)) | (FSGetWord(Buf, DIR_FSTCLUSHIOFFSET) << 16));
 
-	Freehandle(HandleNumber);
+    if ((RetValue = Fseek(HandleNumber, 0, SEEK_SET)) < 0)
+        return RetValue;
 
-	if((RetValue = DeleteAllRecords(StartingCluster,&_finddata))==ERROR_OS_FILESYSTEM_DIR_NOT_REMOVABLE)
-	{
-	    Handle[CWD_HANDLE] = TempHandle;
-		return SUCCESS;
-	}
-	else
-	{
-		Handle[CWD_HANDLE] = TempHandle;
-		return RetValue;
-	}
+    Freehandle(HandleNumber);
+
+    if ((RetValue =
+         DeleteAllRecords(StartingCluster, &_finddata)) == ERROR_OS_FILESYSTEM_DIR_NOT_REMOVABLE) {
+        Handle[CWD_HANDLE] = TempHandle;
+        return SUCCESS;
+    } else {
+        Handle[CWD_HANDLE] = TempHandle;
+        return RetValue;
+    }
 }
 
 /*----------------------------------------------------------------------------
@@ -130,96 +131,82 @@ RtStatus_t DeleteTree(uint8_t *filePath)
    Description:   Deletes all the files and directories of the specified path
 <
 ----------------------------------------------------------------------------*/
-RtStatus_t DeleteAllRecords(int32_t StartingCluster,FindData_t *_finddata)
+RtStatus_t DeleteAllRecords(int32_t StartingCluster, FindData_t * _finddata)
 {
     RtStatus_t RetValue = SUCCESS;
-    int32_t HandleNumber=0;
-	uint8_t Buf[5];
-	int32_t TemphandleNumber=0;
+    int32_t HandleNumber = 0;
+    uint8_t Buf[5];
+    int32_t TemphandleNumber = 0;
 
-	ClearData(_finddata);
+    ClearData(_finddata);
 
-	PutWord(Buf,0x2e2a,0);
-	Buf[2] = 0x2a;
+    PutWord(Buf, 0x2e2a, 0);
+    Buf[2] = 0x2a;
 
-	while(1)
-	{
-	    TemphandleNumber = HandleNumber;
-		if((HandleNumber = FindFirst(_finddata,(uint8_t *)Buf)) <0)
-		{
-		    /* FindFirst function returns handle number with setting mode = READ + DIRECTORY 
-			so we have to set write mode for this handle */
-			HandleNumber = TemphandleNumber;
+    while (1) {
+        TemphandleNumber = HandleNumber;
+        if ((HandleNumber = FindFirst(_finddata, (uint8_t *) Buf)) < 0) {
+            /* FindFirst function returns handle number with setting mode = READ + DIRECTORY 
+               so we have to set write mode for this handle */
+            HandleNumber = TemphandleNumber;
             Handle[HandleNumber].HandleActive = 1;
-		    Handle[HandleNumber].Mode = (FileSystemModeTypes_t)(Handle[HandleNumber].Mode | WRITE_MODE);
+            Handle[HandleNumber].Mode =
+                (FileSystemModeTypes_t) (Handle[HandleNumber].Mode | WRITE_MODE);
 
-			if((RetValue =  ChangeToLowLevelDir(HandleNumber,_finddata,StartingCluster)) <0)
-			{
-			    Freehandle(HandleNumber);
-				return RetValue;
-			}
-			
-			ClearData(_finddata);
-			Freehandle(HandleNumber);
-			continue;
-		}
-		Handle[HandleNumber].Mode = (FileSystemModeTypes_t)(Handle[HandleNumber].Mode | WRITE_MODE);
-		if((_finddata->attrib & DIRECTORY)==DIRECTORY)
-		{
-		    if((RetValue =  ChangeToLowLevelDir(HandleNumber,_finddata,StartingCluster)) <0)
-			{
-			    Freehandle(HandleNumber);
-				return RetValue;
-			}
+            if ((RetValue = ChangeToLowLevelDir(HandleNumber, _finddata, StartingCluster)) < 0) {
+                Freehandle(HandleNumber);
+                return RetValue;
+            }
 
-			ClearData(_finddata);
-			Freehandle(HandleNumber);
-			continue;
-		}
-		else
-		{
-			if((RetValue = FileRemove(_finddata->startrecord-1,HandleNumber)) <0)
-			{
-				Freehandle(HandleNumber);
-				return RetValue;
-			}
-		}
-		while(1)
-		{
-			if((RetValue = FindNext(HandleNumber,_finddata)) <0)
-			{
-				if((RetValue =  ChangeToLowLevelDir(HandleNumber,_finddata,StartingCluster)) <0)
-				{
-					Freehandle(HandleNumber);
-					return RetValue;
-				}
-				ClearData(_finddata);
-				Freehandle(HandleNumber);
-				break;
-			}
+            ClearData(_finddata);
+            Freehandle(HandleNumber);
+            continue;
+        }
+        Handle[HandleNumber].Mode =
+            (FileSystemModeTypes_t) (Handle[HandleNumber].Mode | WRITE_MODE);
+        if ((_finddata->attrib & DIRECTORY) == DIRECTORY) {
+            if ((RetValue = ChangeToLowLevelDir(HandleNumber, _finddata, StartingCluster)) < 0) {
+                Freehandle(HandleNumber);
+                return RetValue;
+            }
 
-			if((_finddata->attrib & DIRECTORY)==DIRECTORY)
-			{
-				if((RetValue =  ChangeToLowLevelDir(HandleNumber,_finddata,StartingCluster)) <0)
-				{
-					Freehandle(HandleNumber);
-					return RetValue;
-				}
-	
-				ClearData(_finddata);
-				Freehandle(HandleNumber);
-				break;
-			}
-			else
-			{
-				if((RetValue = FileRemove(_finddata->startrecord-1,HandleNumber)) <0)
-				{
-					Freehandle(HandleNumber);
-					return RetValue;
-				}
-			}
-		}
-	} // while(1)
+            ClearData(_finddata);
+            Freehandle(HandleNumber);
+            continue;
+        } else {
+            if ((RetValue = FileRemove(_finddata->startrecord - 1, HandleNumber)) < 0) {
+                Freehandle(HandleNumber);
+                return RetValue;
+            }
+        }
+        while (1) {
+            if ((RetValue = FindNext(HandleNumber, _finddata)) < 0) {
+                if ((RetValue = ChangeToLowLevelDir(HandleNumber, _finddata, StartingCluster)) < 0) {
+                    Freehandle(HandleNumber);
+                    return RetValue;
+                }
+                ClearData(_finddata);
+                Freehandle(HandleNumber);
+                break;
+            }
+
+            if ((_finddata->attrib & DIRECTORY) == DIRECTORY) {
+                if ((RetValue = ChangeToLowLevelDir(HandleNumber, _finddata, StartingCluster)) < 0) {
+                    Freehandle(HandleNumber);
+                    return RetValue;
+                }
+
+                ClearData(_finddata);
+                Freehandle(HandleNumber);
+                break;
+            } else {
+                if ((RetValue = FileRemove(_finddata->startrecord - 1, HandleNumber)) < 0) {
+                    Freehandle(HandleNumber);
+                    return RetValue;
+                }
+            }
+        }
+    }                           // while(1)
 }
 
 /*----------------------------------------------------------------------------
@@ -232,16 +219,15 @@ RtStatus_t DeleteAllRecords(int32_t StartingCluster,FindData_t *_finddata)
    Outputs:       Cleares FindData_t Structure
 <
 ----------------------------------------------------------------------------*/
-void ClearData(FindData_t *_finddata)
+void ClearData(FindData_t * _finddata)
 {
-	int32_t i;
-    _finddata->startrecord=0;
-	_finddata->attrib=0;
-	_finddata->FileSize=0;
-	for(i=0; i < MAX_FILESNAME/3; i++)
-	{
-		_finddata->name[i]=0;
-	}
+    int32_t i;
+    _finddata->startrecord = 0;
+    _finddata->attrib = 0;
+    _finddata->FileSize = 0;
+    for (i = 0; i < MAX_FILESNAME / 3; i++) {
+        _finddata->name[i] = 0;
+    }
 }
 
 /*----------------------------------------------------------------------------
@@ -259,62 +245,67 @@ void ClearData(FindData_t *_finddata)
                   and updates the Handle
 <
 ----------------------------------------------------------------------------*/
-RtStatus_t ChangeToLowLevelDir(int32_t HandleNumber,FindData_t *_finddata,int32_t StartingCluster)
+RtStatus_t ChangeToLowLevelDir(int32_t HandleNumber, FindData_t * _finddata,
+                               int32_t StartingCluster)
 {
-    RtStatus_t RetValue=SUCCESS;
-	int32_t RecordNumber;
-	uint8_t Buffer[32];
-	int32_t ClusterNumber =0;
-	uint8_t Buf[5];
-       // int64_t lTemp;
+    RtStatus_t RetValue = SUCCESS;
+    int32_t RecordNumber;
+    uint8_t Buffer[32];
+    int32_t ClusterNumber = 0;
+    uint8_t Buf[5];
+    // int64_t lTemp;
 
-	PutWord(Buf,0x2e2e,0);
+    PutWord(Buf, 0x2e2e, 0);
 
-	if((RetValue = Fseek(HandleNumber,-DIRRECORDSIZE,SEEK_CUR)))
-	    return RetValue;
+    if ((RetValue = Fseek(HandleNumber, -DIRRECORDSIZE, SEEK_CUR)))
+        return RetValue;
 
-	if((RetValue = Isdirectoryempty(HandleNumber))==SUCCESS)
-	{
-		if((ReadDirectoryRecord(HandleNumber,0,Buffer)) <=0)
-			return ERROR_OS_FILESYSTEM_NO_MATCHING_RECORD;
+    if ((RetValue = Isdirectoryempty(HandleNumber)) == SUCCESS) {
+        if ((ReadDirectoryRecord(HandleNumber, 0, Buffer)) <= 0)
+            return ERROR_OS_FILESYSTEM_NO_MATCHING_RECORD;
 
         // sdk2.6 changed this from right shift to a left shift.   
-		ClusterNumber = ((FSGetWord(Buffer,DIR_FSTCLUSLOOFFSET))|(FSGetWord(Buffer,DIR_FSTCLUSHIOFFSET)<<16));
-		 
-		if((RetValue = Fseek(HandleNumber,0,SEEK_SET))<0)
-			return RetValue;
+        ClusterNumber =
+            ((FSGetWord(Buffer, DIR_FSTCLUSLOOFFSET)) |
+             (FSGetWord(Buffer, DIR_FSTCLUSHIOFFSET) << 16));
 
-		if((RetValue = Chdir((uint8_t *)&Buf)) < 0)
-			return RetValue;
+        if ((RetValue = Fseek(HandleNumber, 0, SEEK_SET)) < 0)
+            return RetValue;
 
-		Handle[HandleNumber] = Handle[CWD_HANDLE];
+        if ((RetValue = Chdir((uint8_t *) & Buf)) < 0)
+            return RetValue;
 
-		if((RecordNumber = DelGetRecordNumber(HandleNumber,ClusterNumber))<0)
-			return ERROR_OS_FILESYSTEM_NO_MATCHING_RECORD;
-		
-		if((RetValue = FileRemove(RecordNumber,HandleNumber))<0)
-			return RetValue;
+        Handle[HandleNumber] = Handle[CWD_HANDLE];
 
-		if(Handle[HandleNumber].StartingCluster==MediaTable[Handle[HandleNumber].Device].RootdirCluster ||Handle[HandleNumber].StartingCluster==StartingCluster)
-			return ERROR_OS_FILESYSTEM_DIR_NOT_REMOVABLE;
+        if ((RecordNumber = DelGetRecordNumber(HandleNumber, ClusterNumber)) < 0)
+            return ERROR_OS_FILESYSTEM_NO_MATCHING_RECORD;
 
-		return SUCCESS; 
-	}
+        if ((RetValue = FileRemove(RecordNumber, HandleNumber)) < 0)
+            return RetValue;
 
-	if((ReadDirectoryRecord(HandleNumber,(_finddata->startrecord-1),Buffer))<=0)
-		return ERROR_OS_FILESYSTEM_NO_MATCHING_RECORD;
+        if (Handle[HandleNumber].StartingCluster ==
+            MediaTable[Handle[HandleNumber].Device].RootdirCluster
+            || Handle[HandleNumber].StartingCluster == StartingCluster)
+            return ERROR_OS_FILESYSTEM_DIR_NOT_REMOVABLE;
 
-	if((RetValue = Fseek(HandleNumber,-DIRRECORDSIZE,SEEK_CUR)))
-		return RetValue;
+        return SUCCESS;
+    }
+
+    if ((ReadDirectoryRecord(HandleNumber, (_finddata->startrecord - 1), Buffer)) <= 0)
+        return ERROR_OS_FILESYSTEM_NO_MATCHING_RECORD;
+
+    if ((RetValue = Fseek(HandleNumber, -DIRRECORDSIZE, SEEK_CUR)))
+        return RetValue;
 
     // sdk2.6 changed this from a right shift to a left shift.
-	ClusterNumber = ((FSGetWord(Buffer,DIR_FSTCLUSLOOFFSET))|(FSGetWord(Buffer,DIR_FSTCLUSHIOFFSET)<<16));
+    ClusterNumber =
+        ((FSGetWord(Buffer, DIR_FSTCLUSLOOFFSET)) | (FSGetWord(Buffer, DIR_FSTCLUSHIOFFSET) << 16));
 
-	UpdateHandle(HandleNumber,ClusterNumber);
+    UpdateHandle(HandleNumber, ClusterNumber);
 
-	Handle[CWD_HANDLE]=Handle[HandleNumber];
+    Handle[CWD_HANDLE] = Handle[HandleNumber];
 
-	return SUCCESS;
+    return SUCCESS;
 }
 
 /*----------------------------------------------------------------------------
@@ -330,43 +321,43 @@ RtStatus_t ChangeToLowLevelDir(int32_t HandleNumber,FindData_t *_finddata,int32_
    Description:   Updates Record Number as per deleted directory record
 <
 ----------------------------------------------------------------------------*/
-RtStatus_t DelGetRecordNumber(int32_t HandleNumber,int32_t StartingCluster)
+RtStatus_t DelGetRecordNumber(int32_t HandleNumber, int32_t StartingCluster)
 {
 
-	int32_t RecordNumber=0;
-	uint8_t Buffer[32];
-	int32_t Byte1,Byte2; 
-	int32_t ClusterNumber; 
+    int32_t RecordNumber = 0;
+    uint8_t Buffer[32];
+    int32_t Byte1, Byte2;
+    int32_t ClusterNumber;
     //int64_t lTemp;
 
-	while(1)
-	{
-           if(ReadDirectoryRecord(HandleNumber,RecordNumber,Buffer)<0)
-	          return ERROR_OS_FILESYSTEM_NO_MATCHING_RECORD;
+    while (1) {
+        if (ReadDirectoryRecord(HandleNumber, RecordNumber, Buffer) < 0)
+            return ERROR_OS_FILESYSTEM_NO_MATCHING_RECORD;
 
-        if((Byte1 = FSGetByte(Buffer,0))==0)
-			return ERROR_OS_FILESYSTEM_FS_ERROR;
+        if ((Byte1 = FSGetByte(Buffer, 0)) == 0)
+            return ERROR_OS_FILESYSTEM_FS_ERROR;
 
-		if(Byte1==0x2e)
-		{
-	        RecordNumber++;
-			continue;
-		}
+        if (Byte1 == 0x2e) {
+            RecordNumber++;
+            continue;
+        }
 
-		if((Byte2 = FSGetByte(Buffer,DIR_ATTRIBUTEOFFSET))==LONGDIRATTRIBUTE)
-		{
-	        RecordNumber++;
-			continue;
-		}
+        if ((Byte2 = FSGetByte(Buffer, DIR_ATTRIBUTEOFFSET)) == LONGDIRATTRIBUTE) {
+            RecordNumber++;
+            continue;
+        }
         // sdk2.6 changed this from a right shift to a left shift.
-		ClusterNumber = ((FSGetWord(Buffer,DIR_FSTCLUSLOOFFSET))|(FSGetWord(Buffer,DIR_FSTCLUSHIOFFSET)<<16));
+        ClusterNumber =
+            ((FSGetWord(Buffer, DIR_FSTCLUSLOOFFSET)) |
+             (FSGetWord(Buffer, DIR_FSTCLUSHIOFFSET) << 16));
 
-		if((Byte1!=0xe5) && ((Byte2 & DIRECTORY)==DIRECTORY)&& (StartingCluster == ClusterNumber))
-			break;
+        if ((Byte1 != 0xe5) && ((Byte2 & DIRECTORY) == DIRECTORY)
+            && (StartingCluster == ClusterNumber))
+            break;
 
         RecordNumber++;
-	}
-	return (RtStatus_t)RecordNumber;
+    }
+    return (RtStatus_t) RecordNumber;
 }
 
 /*----------------------------------------------------------------------------
@@ -385,57 +376,55 @@ RtStatus_t DelGetRecordNumber(int32_t HandleNumber,int32_t StartingCluster)
 
 <
 ----------------------------------------------------------------------------*/
-RtStatus_t FileRemove(int32_t RecordNumber,int32_t HandleNumber)
+RtStatus_t FileRemove(int32_t RecordNumber, int32_t HandleNumber)
 {
-    RtStatus_t RetValue=SUCCESS;
-	uint8_t Buffer[32];
-	int32_t ClusterNumber=0,FileSize;
-	HandleTable_t Temp;
+    RtStatus_t RetValue = SUCCESS;
+    uint8_t Buffer[32];
+    int32_t ClusterNumber = 0, FileSize;
+    HandleTable_t Temp;
     //  int64_t lTemp;
 
-	Temp = Handle[HandleNumber];
+    Temp = Handle[HandleNumber];
 
-    if (Handle[HandleNumber].StartingCluster != 0)
-  	{
-		if((RetValue = Fseek(HandleNumber,-DIRRECORDSIZE,SEEK_CUR)))
-			return RetValue;
-	}
-
-	if( ReadDirectoryRecord(HandleNumber,RecordNumber,Buffer)<0)
-		return ERROR_OS_FILESYSTEM_NO_MATCHING_RECORD;
-
-    if (Handle[HandleNumber].StartingCluster != 0)
-    {
-		if((RetValue = Fseek(HandleNumber,-DIRRECORDSIZE,SEEK_CUR)))
-			return RetValue;
+    if (Handle[HandleNumber].StartingCluster != 0) {
+        if ((RetValue = Fseek(HandleNumber, -DIRRECORDSIZE, SEEK_CUR)))
+            return RetValue;
     }
 
-    if((RetValue=DeleteRecord(HandleNumber,RecordNumber))<0)
-	    return RetValue;
+    if (ReadDirectoryRecord(HandleNumber, RecordNumber, Buffer) < 0)
+        return ERROR_OS_FILESYSTEM_NO_MATCHING_RECORD;
+
+    if (Handle[HandleNumber].StartingCluster != 0) {
+        if ((RetValue = Fseek(HandleNumber, -DIRRECORDSIZE, SEEK_CUR)))
+            return RetValue;
+    }
+
+    if ((RetValue = DeleteRecord(HandleNumber, RecordNumber)) < 0)
+        return RetValue;
 
     /* Set the Handle to original position */
-    if((RetValue = Fseek(HandleNumber,(RecordNumber *DIRRECORDSIZE),SEEK_SET)) <0)
-		return RetValue;
+    if ((RetValue = Fseek(HandleNumber, (RecordNumber * DIRRECORDSIZE), SEEK_SET)) < 0)
+        return RetValue;
 
-	FileSize = FSGetDWord(Buffer,DIR_FILESIZEOFFSET);
+    FileSize = FSGetDWord(Buffer, DIR_FILESIZEOFFSET);
 
     // sdk2.6 changed this to left shift instead of right shift. 
-	ClusterNumber = ((FSGetWord(Buffer,DIR_FSTCLUSLOOFFSET))|(FSGetWord(Buffer,DIR_FSTCLUSHIOFFSET)<<16));
+    ClusterNumber =
+        ((FSGetWord(Buffer, DIR_FSTCLUSLOOFFSET)) | (FSGetWord(Buffer, DIR_FSTCLUSHIOFFSET) << 16));
 
-	if(((FSGetByte(Buffer,DIR_ATTRIBUTEOFFSET))& DIRECTORY_MODE) == DIRECTORY_MODE)
-		FileSize = 0x7fffffff;
+    if (((FSGetByte(Buffer, DIR_ATTRIBUTEOFFSET)) & DIRECTORY_MODE) == DIRECTORY_MODE)
+        FileSize = 0x7fffffff;
 
-	if((ClusterNumber!=0) && (FileSize)!=0)
-	{
-	    /* update the handle to associate with the file to be deleted */
-	    UpdateHandle(HandleNumber,ClusterNumber);
+    if ((ClusterNumber != 0) && (FileSize) != 0) {
+        /* update the handle to associate with the file to be deleted */
+        UpdateHandle(HandleNumber, ClusterNumber);
 
-	    /* Delete the contents of the file (i.e. Mark all the clusters occupied by 
-	    the file as zero in FAT Table) */
-		if((RetValue = DeleteContent(HandleNumber,0))<0)
-		 	return RetValue;
-	}
-	Handle[HandleNumber] = Temp;
+        /* Delete the contents of the file (i.e. Mark all the clusters occupied by 
+           the file as zero in FAT Table) */
+        if ((RetValue = DeleteContent(HandleNumber, 0)) < 0)
+            return RetValue;
+    }
+    Handle[HandleNumber] = Temp;
 
-	return SUCCESS;
+    return SUCCESS;
 }

@@ -61,27 +61,23 @@ RtStatus_t Fclose_FAT(int32_t HandleNumber)
 {
     RtStatus_t RetValue;
 
-	if((HandleNumber < 0)||(HandleNumber >=maxhandles))
-    {
-	    return ERROR_OS_FILESYSTEM_MAX_HANDLES_EXCEEDED;
-	}
-    
-    if((RetValue = Handleactive(HandleNumber)) <0)
-    {
+    if ((HandleNumber < 0) || (HandleNumber >= maxhandles)) {
+        return ERROR_OS_FILESYSTEM_MAX_HANDLES_EXCEEDED;
+    }
+
+    if ((RetValue = Handleactive(HandleNumber)) < 0) {
         return RetValue;
-	}
-    
-    if(Handle[HandleNumber].Mode & (WRITE_MODE|APPEND_MODE))
-    {
+    }
+
+    if (Handle[HandleNumber].Mode & (WRITE_MODE | APPEND_MODE)) {
         // If file is opened in write mode flush the sector
-        if((RetValue = Fflush(HandleNumber)) < 0)
-        {
+        if ((RetValue = Fflush(HandleNumber)) < 0) {
             return RetValue;
         }
-    }        
+    }
 
     RetValue = Freehandle(HandleNumber);
-    
+
     return RetValue;
 }
 
@@ -99,21 +95,21 @@ RtStatus_t Fclose_FAT(int32_t HandleNumber)
 ----------------------------------------------------------------------------*/
 RtStatus_t Fgetc(int32_t HandleNumber)
 {
-    int32_t ReturnByte=0;
+    int32_t ReturnByte = 0;
     RtStatus_t RetValue;
 
-    if((HandleNumber <0)||(HandleNumber >= maxhandles))
+    if ((HandleNumber < 0) || (HandleNumber >= maxhandles))
         return ERROR_OS_FILESYSTEM_MAX_HANDLES_EXCEEDED;
 
-    if((RetValue = Handleactive(HandleNumber))<0)
+    if ((RetValue = Handleactive(HandleNumber)) < 0)
         return ERROR_OS_FILESYSTEM_HANDLE_NOT_ACTIVE;
 
-    if((Feof(HandleNumber))==ERROR_OS_FILESYSTEM_EOF)
+    if ((Feof(HandleNumber)) == ERROR_OS_FILESYSTEM_EOF)
         return ERROR_OS_FILESYSTEM_EOF;
-    
-    if((RetValue = (RtStatus_t)(Fread(HandleNumber,(uint8_t *)&ReturnByte,1))) <= 0 )
+
+    if ((RetValue = (RtStatus_t) (Fread(HandleNumber, (uint8_t *) & ReturnByte, 1))) <= 0)
         return RetValue;
-    
+
     return ReturnByte;
 }
 
@@ -131,29 +127,27 @@ RtStatus_t Fgetc(int32_t HandleNumber)
    Description:   Reads the string from file.
 <
 ----------------------------------------------------------------------------*/
-uint8_t *Fgets(int32_t HandleNumber, int32_t NumBytesToRead, uint8_t *Buffer)
+uint8_t *Fgets(int32_t HandleNumber, int32_t NumBytesToRead, uint8_t * Buffer)
 {
     int32_t i;
     RtStatus_t RetValue;
 
-    if((HandleNumber <0)||(HandleNumber >= maxhandles))
-        return (uint8_t *)0;
+    if ((HandleNumber < 0) || (HandleNumber >= maxhandles))
+        return (uint8_t *) 0;
 
-    if((RetValue = Handleactive(HandleNumber))<0)
-        return (uint8_t *)0;
+    if ((RetValue = Handleactive(HandleNumber)) < 0)
+        return (uint8_t *) 0;
 
-    for(i=0; i < NumBytesToRead; i++)
-    {
-        if((RetValue = Fgetc(HandleNumber)) < 0)
-            return (uint8_t *)0;
-        PutByte(Buffer,RetValue,i);
-        if( RetValue=='\n')
-        {
-            PutByte(Buffer,0,i+1);
+    for (i = 0; i < NumBytesToRead; i++) {
+        if ((RetValue = Fgetc(HandleNumber)) < 0)
+            return (uint8_t *) 0;
+        PutByte(Buffer, RetValue, i);
+        if (RetValue == '\n') {
+            PutByte(Buffer, 0, i + 1);
             return Buffer;
         }
-    }    
-    PutByte(Buffer,0,i);
+    }
+    PutByte(Buffer, 0, i);
     return Buffer;
 }
 
@@ -170,21 +164,21 @@ uint8_t *Fgets(int32_t HandleNumber, int32_t NumBytesToRead, uint8_t *Buffer)
    Description:   Writes the Byte to file 
 <
 ----------------------------------------------------------------------------*/
-RtStatus_t Fputc(int32_t HandleNumber,int32_t ByteToWrite)
+RtStatus_t Fputc(int32_t HandleNumber, int32_t ByteToWrite)
 {
     int32_t RetValue = SUCCESS;
 
-    if((HandleNumber <0)||(HandleNumber >= maxhandles))
+    if ((HandleNumber < 0) || (HandleNumber >= maxhandles))
         return ERROR_OS_FILESYSTEM_MAX_HANDLES_EXCEEDED;
 
-    if((RetValue = Handleactive(HandleNumber))<0)
+    if ((RetValue = Handleactive(HandleNumber)) < 0)
         return ERROR_OS_FILESYSTEM_HANDLE_NOT_ACTIVE;
 
-    if((RetValue = (RtStatus_t)Fwrite(HandleNumber,(uint8_t *)&ByteToWrite,1)) <= 0)
+    if ((RetValue = (RtStatus_t) Fwrite(HandleNumber, (uint8_t *) & ByteToWrite, 1)) <= 0)
         return ERROR_OS_FILESYSTEM_EOF;
 
     //! todo - what does the following line do?
-    (void)RetValue;    
+    (void)RetValue;
     return ByteToWrite;
 }
 
@@ -201,22 +195,21 @@ RtStatus_t Fputc(int32_t HandleNumber,int32_t ByteToWrite)
    Description:   Writes the string to the file
 <
 ----------------------------------------------------------------------------*/
-uint8_t *Fputs(int32_t HandleNumber,uint8_t *Buffer)
+uint8_t *Fputs(int32_t HandleNumber, uint8_t * Buffer)
 {
-    int32_t  NumBytesToWrite,i;
+    int32_t NumBytesToWrite, i;
     RtStatus_t RetValue = SUCCESS;
 
-    if((HandleNumber <0)||(HandleNumber >= maxhandles))
-        return (uint8_t *)0;
+    if ((HandleNumber < 0) || (HandleNumber >= maxhandles))
+        return (uint8_t *) 0;
 
-    if((RetValue = Handleactive(HandleNumber))<0)
-        return (uint8_t *)0;
+    if ((RetValue = Handleactive(HandleNumber)) < 0)
+        return (uint8_t *) 0;
 
-    NumBytesToWrite = Strlength((uint8_t *)Buffer);
-    for(i=0; i < NumBytesToWrite;i++)
-    {
-        if((RetValue = Fputc(HandleNumber,FSGetByte(Buffer,i))) < 0)
-            return (uint8_t *)0;
+    NumBytesToWrite = Strlength((uint8_t *) Buffer);
+    for (i = 0; i < NumBytesToWrite; i++) {
+        if ((RetValue = Fputc(HandleNumber, FSGetByte(Buffer, i))) < 0)
+            return (uint8_t *) 0;
     }
 
     (void)RetValue;

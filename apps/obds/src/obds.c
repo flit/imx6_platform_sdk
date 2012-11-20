@@ -296,6 +296,7 @@ void select_tests(menuitem_t* const menuitems, const select_tests_t select_tests
     menu_make_menuitem(&menuitems[menu_idx], "06", "TOUCH BUTTONS Test", touch_button_test, &test_results[menu_idx]);menu_idx++;
     menu_make_menuitem(&menuitems[menu_idx], "07", "PMIC - PF0100 Test", pf0100_i2c_device_id_check, &test_results[menu_idx]);menu_idx++;	
 #endif // defined(BOARD)
+    menu_make_menuitem(&menuitems[menu_idx], "08", "I2C DEVICE_ID Test", i2c_device_id_check, &test_results[menu_idx]);menu_idx++;	
 #endif //chip_mx6dq
 		
 #if defined(CHIP_MX6SDL)	
@@ -314,14 +315,16 @@ void select_tests(menuitem_t* const menuitems, const select_tests_t select_tests
     menu_make_menuitem(&menuitems[menu_idx], "06", "TOUCH BUTTONS Test", touch_button_test, &test_results[menu_idx]);menu_idx++;
     menu_make_menuitem(&menuitems[menu_idx], "07", "PMIC - PF0100 Test", pf0100_i2c_device_id_check, &test_results[menu_idx]);menu_idx++;	
 #endif // defined(BOARD)
+    menu_make_menuitem(&menuitems[menu_idx], "08", "I2C DEVICE_ID Test", i2c_device_id_check, &test_results[menu_idx]);menu_idx++;
 #endif //chip_mx6sdl
 
 
 #if defined(CHIP_MX6SL)
     // Tests for mx6sl evk.
     menu_make_menuitem(&menuitems[menu_idx], "03", "DDR Test", ddr_test, &test_results[menu_idx]);menu_idx++;
-    menu_make_menuitem(&menuitems[menu_idx], "04", "RGMII AR8031 G-Ethernet Test", ar8031_test_main, &test_results[menu_idx]);menu_idx++;
+//    menu_make_menuitem(&menuitems[menu_idx], "04", "RGMII AR8031 G-Ethernet Test", ar8031_test_main, &test_results[menu_idx]);menu_idx++;
     menu_make_menuitem(&menuitems[menu_idx], "07", "PMIC - PF0100 Test", pf0100_i2c_device_id_check, &test_results[menu_idx]);menu_idx++;	
+    menu_make_menuitem(&menuitems[menu_idx], "08", "I2C DEVICE_ID Test", i2c_device_id_check, &test_results[menu_idx]);menu_idx++;
 #endif //end chip
 	}
 

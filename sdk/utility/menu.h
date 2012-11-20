@@ -46,9 +46,9 @@
 
 //! @name Menu Framework configuration values
 //@{
-#define INDENT 4         //!< Default number of spaces for each level of indent.
-#define INDENT_MAX 120   //!< The maximum number of allowed for indent. Used for allocation purposes.
-#define KEY_MAX 8        //!< The maximum number of characters allowed for a menu key. Used for allocation purposes.
+#define MENU_INDENT 4         //!< Default number of spaces for each level of indent.
+#define MENU_INDENT_MAX 120   //!< The maximum number of allowed for indent. Used for allocation purposes.
+#define MENU_KEY_MAX 8        //!< The maximum number of characters allowed for a menu key. Used for allocation purposes.
 //@}
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -63,29 +63,28 @@ typedef struct _menu menu_t;
 //! @brief Available Menu Actions.
 typedef enum _menu_actions
 {
-    MENU_SHOW,             //!< Print the menu header, all of the menuitems, and the menu footer.
-    MENU_EXIT,             //!< Exit all levels of the menu.
-    MENU_CONTINUE,         //!< Continue processing the menu loop. Default.
-    MENU_CONTINUE_PRINT,   //!< Print the menu then continue processing the menu loop.
-    MENU_BACK              //!< Exit current menu level and print the parent menu.
+    MenuAction_Show,           //!< Print the menu header, all of the menuitems, and the menu footer.
+    MenuAction_Exit,           //!< Exit all levels of the menu.
+    MenuAction_Continue,       //!< Continue processing the menu loop. Default.
+    MenuAction_ContinuePrint,  //!< Print the menu then continue processing the menu loop.
+    MenuAction_Back            //!< Exit current menu level and print the parent menu.
 } menu_action_t;
 
 /*!
  * @brief Menu Execution function definition. Called in response to a menuitem being selected by the user.
  *
- * @param   context Menu context that allows function to discern indent level among other things.
- * @param   param Function specific parameter passed down from the menu framework.
  * @return  How to proceed with menu processing.
  */
-typedef menu_action_t (*menu_function_t) (const menu_context_t* context, void* param);
+typedef menu_action_t (*menu_function_t) (void* param);
 
 //! @brief Available MenuItem Types.
 typedef enum _menuitem_types
 {
-    MENUITEM_GROUP,    //!< Describes a menu group and inserts a blank line in the menu before the optional description.
-    MENUITEM_SUBMENU,  //!< Describes a selectable (by key) submenu with description.
-    MENUITEM_FUNCTION, //!< Describes a "regular" selectable (by key) menuitem with description and executable function.
-    MENUITEM_NULL      //!< Describes an end marker of a menu list.
+    MenuItem_Group,    //!< Describes a menu group and inserts a blank line in the menu before the optional description.
+    MenuItem_Submenu,  //!< Describes a selectable (by key) submenu with description.
+    MenuItem_Function, //!< Describes a "regular" selectable (by key) menuitem with description and executable function.
+    MenuItem_Null      //!< Describes an end marker of a menu list.
+
 } menuitem_type_t;
 
 //! @brief MenuItem container to hold data needed to process each menu item.
@@ -100,14 +99,20 @@ struct _menuitem
     //! @brief The text associated with the menuitem describing the function. Can be NULL.
     const char* description;
 
-    //! @brief A pointer to the submenu's menuitems. Valid for #MENUITEM_SUBMENU menuitems. Ignored otherwise.
-    const menu_t* submenu;
+    union action_t
+    {
+		//! @brief A pointer to the submenu's menuitems. Valid for #MENUITEM_SUBMENU menuitems. Ignored otherwise.
+		const menu_t* submenu;
 
-    //! @brief A pointer to the menu execution function. Valid for #MENUITEM_FUNCTION menuitems. Ignored otherwise.
-    menu_function_t func;
+		union func_t
+		{
+			//! @brief A pointer to the menu execution function. Valid for #MENUITEM_FUNCTION menuitems. Ignored otherwise.
+			menu_function_t ptr;
 
-    //! @brief A pointer to the function specific object passed to the execution function for #MENUITEM_FUNCTION menuitems. Ignored otherwise.
-    void* param;
+			void* param;
+		} func;
+
+    }action;
 };
 
 //! @brief Menu container to hold data needed to describe a menu or submenu.
@@ -121,18 +126,12 @@ struct _menu
 
     //! @brief Instructional text to help user execute the menu.
     const char* footer;
-
 };
 
-//! @brief Menu Context provided to execution functions.
-struct _menu_context
-{
-    //! @brief Pointer to the menu containing the executing menu item.
-    const menu_t* menu;
-
-    //! @brief Depth of the current menu.
-    int depth;
-};
+//////////////////////////////////////////////////////////////////////////////////////////
+// Private Variables
+//////////////////////////////////////////////////////////////////////////////////////////
+static char MenuIndent[];
 
 ////////////////////////////////////////////////////////////////////////////////
 // API
@@ -156,11 +155,11 @@ extern "C" {
  *
  * @param[in] menu A pointer to the menu structure to be presented and processed.
  * @return  How to proceed with menu processing.
- * @retval #MENU_SHOW Print the menu header, all of the menuitems, and the menu footer.
- * @retval #MENU_EXIT Exit all levels of the menu.
- * @retval #MENU_CONTINUE Continue processing the menu loop. Default.
- * @retval #MENU_CONTINUE_PRINT Print the menu then continue processing the menu loop.
- * @retval #MENU_BACK Exit current menu level and print the parent menu.
+ * @retval #MenuAction_Show Print the menu header, all of the menuitems, and the menu footer.
+ * @retval #MenuAction_Exit Exit all levels of the menu.
+ * @retval #MenuAction_Continue Continue processing the menu loop. Default.
+ * @retval #MenuAction_ContinuePrint Print the menu then continue processing the menu loop.
+ * @retval #MenuAction_Back Exit current menu level and print the parent menu.
  */
 menu_action_t menu_present(const menu_t* menu);
 
@@ -170,8 +169,25 @@ menu_action_t menu_present(const menu_t* menu);
  * @param   context Menu context that allows function to discern indent level among other things.
  * @return  String of space characters used to align output text for the current menu level.
  */
-const char* const menu_get_indent(const menu_context_t* context);
+const char* menu_get_indent();
 //@}
+
+//@}
+
+/*!
+ * @brief Default "Show Menu" handler.
+ *
+ * @return  MENU_SHOW.
+ */
+menu_action_t menuitem_cmd_showmenu(void* param);
+
+/*!
+ * @brief Default "Exit Menu" handler.
+ *
+ * @return  MENU_EXIT.
+ */
+menu_action_t menuitem_cmd_exitmenu(void* param);
+
 
 //! @name Menu construction
 //!
@@ -198,6 +214,7 @@ void menu_make_menu(menu_t* menu, const char* header, const menuitem_t* menuitem
  *                       pass the return the results of the function.
  */
 void menu_make_menuitem(menuitem_t* menuitem, const char* key, const char* description, menu_function_t func, void* func_param);
+#define MENU_MAKE_MENUITEM(k,d,f,p) { MenuItem_Function, (k), (d), {.func = {.ptr = f, .param = p}} }
 
 /*!
  * @brief Initializes the passed in menuitem stuct to represent a "Show menu" menu item.
@@ -208,6 +225,7 @@ void menu_make_menuitem(menuitem_t* menuitem, const char* key, const char* descr
  * @param[in,out] menuitem Menuitem struct to be initialized.
  */
 void menu_make_menuitem_showmenu(menuitem_t* menuitem);
+#define MENU_MAKE_MENUITEM_SHOW() { MenuItem_Function, "m", "Display menu.", {.func = {.ptr = menuitem_cmd_showmenu, .param = NULL}} }
 
 /*!
  * @brief Initializes the passed in menuitem stuct to represent a "Exit menu" menu item.
@@ -218,6 +236,7 @@ void menu_make_menuitem_showmenu(menuitem_t* menuitem);
  * @param[in,out] menuitem Menuitem struct to be initialized.
  */
 void menu_make_menuitem_exitmenu(menuitem_t* menuitem);
+#define MENU_MAKE_MENUITEM_EXIT() { MenuItem_Function, "q", "Exit menu.", {.func = {.ptr = menuitem_cmd_exitmenu, .param = NULL}} }
 
 /*!
  * @brief Initializes the passed in menuitem stuct to represent a selectable submenu.
@@ -253,6 +272,7 @@ void menu_make_menuitem_group(menuitem_t* menuitem, const char* description);
  * @param[in,out] menuitem Menuitem struct representing the terminating element of a menu.
  */
 void menu_make_menuitem_end(menuitem_t* menuitem);
+#define MENU_MAKE_MENUITEM_END() { MenuItem_Null, NULL, NULL, {.func = {.ptr = NULL, .param = NULL}} }
 //@}
 
 //! @}

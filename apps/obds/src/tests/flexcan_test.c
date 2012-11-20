@@ -48,15 +48,13 @@ static const char * const test_name = "FLEXCAN1/2 LOOPBACK Test";
  *
  * @return      TEST_PASSED or TEST_FAILED
  */
-menu_action_t flexcan_test(const menu_context_t* context, void* param)
+test_return_t flexcan_test(void)
 {
-	const char* indent = menu_get_indent(context);
+	const char* indent = menu_get_indent();
 
     if ( prompt_run_test(test_name, indent) != TEST_CONTINUE )
-    {
-    	*(test_return_t*)param = TEST_BYPASSED;
-    	return MENU_CONTINUE;
-    }
+    	return TEST_BYPASSED;
+
     test_return_t result1 = TEST_NOT_IMPLEMENTED, result2 = TEST_NOT_IMPLEMENTED;
 
 #if defined(SABRE_AI)
@@ -64,12 +62,8 @@ menu_action_t flexcan_test(const menu_context_t* context, void* param)
     printf("%s(on SABRE AI main board): connect J35.6 to J34.7 and connect J35.7 to J34.2\n\n", indent);
     printf("%sWould you like to run the FLEXCAN1/FLEXCAN2 loopback tests?\n", indent);
     if (!is_input_char('y'))
-    {
-        print_test_skipped(test_name, indent);
+        return TEST_BYPASSED;
 
-        *(test_return_t*)param = TEST_BYPASSED;
-        return MENU_CONTINUE;
-    }
 /* TODO: Call new functions
     can_io_cfg(CAN0_BASE_ADDR);
     can_io_cfg(CAN1_BASE_ADDR);
@@ -94,8 +88,7 @@ menu_action_t flexcan_test(const menu_context_t* context, void* param)
 */
     print_test_not_implemented(test_name, indent);
 
-    *(test_return_t*)param = result1 = result2;
-    return MENU_CONTINUE;
+    return result1 = result2;
 
 /* TODO: Reinstate this code and remove the above code
  * after implementing testsImplemnent CAN1 TX -> CAN2 RX

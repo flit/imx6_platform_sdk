@@ -121,7 +121,7 @@ int spi_nor_erase(uint32_t addr, uint32_t length, uint32_t spi_nor_flash_type)
     return 0;
 }
 
-menu_action_t spi_nor_test(const menu_context_t* const context, void* const param)
+test_return_t spi_nor_test(void)
 {
     uint32_t src[128];
     uint32_t dst[128];
@@ -131,13 +131,11 @@ menu_action_t spi_nor_test(const menu_context_t* const context, void* const para
     param_ecspi_t  spiParams = SPI_INIT_PARAM;
 
 
-	const char* indent = menu_get_indent(context);
+	const char* indent = menu_get_indent();
 
     if ( prompt_run_test(spinorflash_test_name, indent) != TEST_CONTINUE )
-    {
-    	*(test_return_t*)param = TEST_BYPASSED;
-    	return MENU_CONTINUE;
-    }    
+    	return TEST_BYPASSED;
+
     //This variable should be set base on board.
     spi_nor_flash_type = M25P32;
 
@@ -147,12 +145,7 @@ menu_action_t spi_nor_test(const menu_context_t* const context, void* const para
     printf("%sHas jumper J3 been properly configured?\n", indent);
 
     if (!is_input_char('y', indent)) 
-    {
-    	print_test_skipped(spinorflash_test_name, indent);
-    	
-        *(test_return_t*)param = TEST_BYPASSED;
-        return MENU_CONTINUE;
-    }    
+    	return TEST_BYPASSED;
 #endif
 
     dev_spi_nor = DEV_ECSPI1;
@@ -174,10 +167,8 @@ menu_action_t spi_nor_test(const menu_context_t* const context, void* const para
 
         } else {
             printf("%sChip id checking FAIL.\n", indent);
-            print_test_failed(spinorflash_test_name, indent);
 
-            *(test_return_t*)param = TEST_FAILED;
-            return MENU_CONTINUE;                    
+            return TEST_FAILED;
         }
     } else if (spi_nor_flash_type == M25P32) {
         if ((id[0] == M25P32_id.id0) && (id[1] == M25P32_id.id1)
@@ -187,10 +178,8 @@ menu_action_t spi_nor_test(const menu_context_t* const context, void* const para
 
         } else {
             printf("%sChip id checking FAIL.\n", indent);
-            print_test_failed(spinorflash_test_name, indent);
 
-            *(test_return_t*)param = TEST_FAILED;
-            return MENU_CONTINUE;      
+            return TEST_FAILED;
         }
     }
 
@@ -208,10 +197,8 @@ menu_action_t spi_nor_test(const menu_context_t* const context, void* const para
     if (spi_nor_write(0, (void *)src, 512, spi_nor_flash_type) == 1) {
         /* Not tested as we need a power cycle */
         printf("%s SPI NOR test has been bypassed \n", indent);
-        print_test_failed(spinorflash_test_name, indent);
 
-        *(test_return_t*)param = TEST_FAILED;
-        return MENU_CONTINUE;              
+        return TEST_FAILED;
     }
     printf("%sRead back data from spi-nor flash \n", indent);
     memset((void *)dst, 0x0, 512);
@@ -223,14 +210,11 @@ menu_action_t spi_nor_test(const menu_context_t* const context, void* const para
         if (dst[i] != src[i]) {
             printf("%sSPI NOR verify failed. \n", indent);
             printf("%s [0x%x] src: 0x%x, dst: 0x%x\n", indent, i, src[i], dst[i]);
-            print_test_failed(spinorflash_test_name, indent);
 
-            *(test_return_t*)param = TEST_FAILED;
-            return MENU_CONTINUE;       
+            return TEST_FAILED;
         }
     }
-    printf("%sspi-nor test PASS \n", indent);
     
-    return MENU_CONTINUE;
+    return TEST_PASSED;
 }
 

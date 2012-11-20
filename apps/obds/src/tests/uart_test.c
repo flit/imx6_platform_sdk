@@ -80,17 +80,14 @@ void uart_interrupt_handler(void)
  * 
  * @return TEST_PASSED or TEST_FAILED
  */
-menu_action_t uart_test(const menu_context_t* const context, void* const param)
+test_return_t uart_test(void)
 {
     uint8_t sel;
     
-	const char* const indent = menu_get_indent(context);
+	const char* const indent = menu_get_indent();
 
     if ( prompt_run_test(uart_test_name, indent) != TEST_CONTINUE )
-    {
-    	*(test_return_t*)param = TEST_BYPASSED;
-    	return MENU_CONTINUE;
-    }
+    	return TEST_BYPASSED;
 
     printf("\n%s---- Running UART test, type 'x' to exit.\n", indent);
 
@@ -105,7 +102,7 @@ menu_action_t uart_test(const menu_context_t* const context, void* const param)
 
     do {
         g_wait_for_irq = 1;
-        printf("%sPlease type a character - x to exit:\n", indent);
+        printf("%sPlease type x to exit:\n", indent);
         do {
             sel = getchar();
         } while (sel == (uint8_t) 0xFF);
@@ -125,5 +122,5 @@ menu_action_t uart_test(const menu_context_t* const context, void* const param)
 
     } while (1);
 
-    return 0;
+    return TEST_PASSED;
 }

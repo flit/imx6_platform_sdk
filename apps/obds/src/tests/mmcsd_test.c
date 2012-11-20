@@ -43,15 +43,13 @@ extern int mmc_sd_test(unsigned int bus_width, uint32_t instance);
 
 uint32_t mmcsd_bus_width, instance;
 #if defined(CHIP_MX6SL) && defined(BOARD_EVK)
-menu_action_t mmcsd_test(const menu_context_t* const context, void* const param)
+test_return_t mmcsd_test(void)
 {
- 	const char* indent = menu_get_indent(context);
+ 	const char* indent = menu_get_indent();
 
     if ( prompt_run_test(mmcsd_test_name, indent) != TEST_CONTINUE )
-    {
-    	*(test_return_t*)param = TEST_BYPASSED;
-    	return MENU_CONTINUE;
-    }
+    	return TEST_BYPASSED;
+
     /* Always try maximum bus width */
     mmcsd_bus_width = 8;
 
@@ -60,10 +58,8 @@ menu_action_t mmcsd_test(const menu_context_t* const context, void* const param)
 
 	if (!is_input_char('y', indent)) {
 		printf("skip MMC SD test on SD2\n");
-   	    print_test_skipped(mmcsd_test_name, indent);
     	
-        *(test_return_t*)param = TEST_BYPASSED;
-        return MENU_CONTINUE;
+		return TEST_BYPASSED;
 	} else {
 
 		instance = HW_USDHC2;
@@ -84,10 +80,8 @@ menu_action_t mmcsd_test(const menu_context_t* const context, void* const param)
 
 		if (mmc_sd_test(mmcsd_bus_width, instance) == TEST_FAILED) {
 			printf("    Test for MMC/SD card on SD2 FAILED.\n");
-            print_test_failed(mmcsd_test_name, indent);
 
-            *(test_return_t*)param = TEST_FAILED;
-            return MENU_CONTINUE;      
+			return TEST_FAILED;
 		}
 	}
 	/* USDHC3 test */
@@ -95,10 +89,8 @@ menu_action_t mmcsd_test(const menu_context_t* const context, void* const param)
 
 	if (!is_input_char('y', indent)) {
 		printf("skip MMC SD test on SD3\n");
-   	    print_test_skipped(mmcsd_test_name, indent);
     	
-        *(test_return_t*)param = TEST_BYPASSED;
-        return MENU_CONTINUE;
+		return TEST_BYPASSED;
 	}
 
 	instance = HW_USDHC3;
@@ -119,24 +111,19 @@ menu_action_t mmcsd_test(const menu_context_t* const context, void* const param)
 
 	if (mmc_sd_test(mmcsd_bus_width, instance) == TEST_FAILED) {
 		printf("    Test for MMC/SD card on SD3 FAILED.\n");
-        print_test_failed(mmcsd_test_name, indent);
 
-        *(test_return_t*)param = TEST_FAILED;
-        return MENU_CONTINUE;      
+		return TEST_FAILED;
 	}
 
-	return MENU_CONTINUE;
+	return TEST_PASSED;
 }
 #else // #if defined(MX6SL) && defined(EVB)
-menu_action_t mmcsd_test(const menu_context_t* const context, void* const param)
+test_return_t mmcsd_test(void)
 {
- 	const char* indent = menu_get_indent(context);
+ 	const char* indent = menu_get_indent();
 
     if ( prompt_run_test(mmcsd_test_name, indent) != TEST_CONTINUE )
-    {
-    	*(test_return_t*)param = TEST_BYPASSED;
-    	return MENU_CONTINUE;
-    }
+    	return TEST_BYPASSED;
 
     /* Always try maximum bus width */
     mmcsd_bus_width = 8;
@@ -144,10 +131,8 @@ menu_action_t mmcsd_test(const menu_context_t* const context, void* const param)
     printf("Please make sure to insert an MMC/SD card into SD slot #3\n");
     printf("Please enter y or Y to confirm\n");
     if (!is_input_char('y', indent)) {
-   	    print_test_skipped(mmcsd_test_name, indent);
 
-        *(test_return_t*)param = TEST_BYPASSED;
-        return MENU_CONTINUE;
+    	return TEST_BYPASSED;
     }
 
     instance = HW_USDHC3;
@@ -157,10 +142,8 @@ menu_action_t mmcsd_test(const menu_context_t* const context, void* const param)
     printf("Please insert an MMC/SD card into the SD slot on the bottom of the main board.\n");
     if (!is_input_char('y', indent)) {
         printf("  skip MMC SD test \n");
-  	    print_test_skipped(mmcsd_test_name, indent);
     	
-        *(test_return_t*)param = TEST_BYPASSED;
-        return MENU_CONTINUE;
+        return TEST_BYPASSED;
     }
     instance = HW_USDHC1;
 
@@ -168,10 +151,8 @@ menu_action_t mmcsd_test(const menu_context_t* const context, void* const param)
     printf("Please make sure to insert an MMC/SD card into SD slot 2 \n");
     if (!is_input_char('y', indent)) {
         printf("  skip MMC SD test \n");
- 	    print_test_skipped(mmcsd_test_name, indent);
     	
-        *(test_return_t*)param = TEST_BYPASSED;
-        return MENU_CONTINUE;
+        return TEST_BYPASSED;
     }
 
     instance = HW_USDHC2;
@@ -194,8 +175,7 @@ menu_action_t mmcsd_test(const menu_context_t* const context, void* const param)
     }
 #endif
 
-    mmc_sd_test(mmcsd_bus_width, instance);
-    return MENU_CONTINUE;
+    return mmc_sd_test(mmcsd_bus_width, instance) == true ? TEST_PASSED : TEST_FAILED;
 }
 #endif
 

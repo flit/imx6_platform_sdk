@@ -567,9 +567,8 @@ int32_t Searchdirectory(int32_t HandleNumber, uint8_t * file, int32_t stringtype
                                  (uint8_t *) Shortname)) == ERROR_OS_FILESYSTEM_FILE_FOUND) {
                 dirattribute = FSGetByte(buf, DIR_ATTRIBUTEOFFSET);
                 if (dirattribute == LONGDIRATTRIBUTE) {
-                    if (!
-                        ((FSGetWord(file, index) == 0x2E) && (FSGetWord(file, (index + 2)) == 0x2E)
-                         && ((length - index) == 4))) {
+                    if (!((FSGetWord(file, index) == 0x2E) && (FSGetWord(file, (index + 2)) == 0x2E)
+                          && ((length - index) == 4))) {
                         RecordNo++;
                         if ((Retval = ReadDirectoryRecord(HandleNumber, RecordNo, buf)) < 0) {
 #ifdef FS_USE_MALLOC

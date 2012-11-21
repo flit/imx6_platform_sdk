@@ -456,8 +456,8 @@ int card_set_blklen(uint32_t instance, int len)
     /* Send CMD16 */
     if (host_send_cmd(instance, &cmd) == SUCCESS) {
         status = SUCCESS;
-    }
-
+    } 
+    
     return status;
 }
 
@@ -510,7 +510,7 @@ int card_data_read(uint32_t instance, int *dst_ptr, int length, uint32_t offset)
 
     /* Set block length to card */
     if (card_set_blklen(instance, BLK_LEN) == FAIL) {
-        printf("Fail to set block length to card.\n");
+        printf("Fail to set block length to card in reading sector %d.\n", offset / BLK_LEN);
         return FAIL;
     }
 
@@ -600,7 +600,7 @@ int card_data_write(uint32_t instance, int *src_ptr, int length, int offset)
 
     /* Set block length to card */
     if (card_set_blklen(instance, BLK_LEN) == FAIL) {
-        printf("Fail to set block length to card.\n");
+        printf("Fail to set block length to card in writing sector %d.\n", offset / BLK_LEN);
         return FAIL;
     }
 
@@ -657,4 +657,30 @@ int card_xfer_result(uint32_t instance, int *result)
     *result = usdhc_device[idx].status;
 
     return SUCCESS;
+}
+
+/*!
+ * @brief Wait for the transfer complete. It covers the interrupt mode, DMA mode and PIO mode
+ *
+ * @param instance     Instance number of the uSDHC module.
+ * 
+ * @return             0 if successful; 1 otherwise
+ */
+int card_wait_xfer_done(uint32_t instance)
+{
+    int usdhc_status = 0;
+    int timeout = 0x40000000;
+    if(SDHC_INTR_mode)
+    {
+        while (timeout--) {
+            card_xfer_result(instance, &usdhc_status);
+            if (usdhc_status == 1)
+                return SUCCESS;
+        }
+     } else {
+            /*do nothing, since in PIO/DMA mode, will check the flag in host send data*/
+            return SUCCESS;
+     }
+
+     return FAIL;
 }

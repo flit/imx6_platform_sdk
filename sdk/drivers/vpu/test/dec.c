@@ -770,14 +770,8 @@ int32_t decoder_setup(void *arg)
                             dec->virt_bsbuf_addr,
                             (dec->virt_bsbuf_addr + STREAM_BUF_SIZE),
                             dec->phy_bsbuf_addr, fillsize);
-    while (1) {
-        int usdhc_status = 0;
-        card_xfer_result(SD_PORT_INDEX, &usdhc_status);
-        if (usdhc_status == 1)
-            break;              //wait untill the SD read finished!
-        else
-            hal_delay_us(1000);
-    }
+        card_wait_xfer_done(SD_PORT_INDEX);
+
     if (ret < 0) {
         err_msg("dec_fill_bsbuffer failed\n");
         goto err1;
@@ -942,7 +936,6 @@ int32_t decode_test(void *arg)
     }
     /*now enable the INTERRUPT mode of usdhc */
     SDHC_INTR_mode = 1;
-    SDHC_ADMA_mode = 0;
 
     /* initialize video streams and configure IPUs */
     if (primary_disp == 1)

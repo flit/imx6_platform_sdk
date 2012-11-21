@@ -365,14 +365,8 @@ static int32_t encoder_start(struct encode *enc)
         yuv_addr = pfb->addrY;
         ret = vpu_stream_read(enc->codecctrl, (char *)yuv_addr, img_size);
         //wait untill the SD read finished
-        while (1) {
-            int usdhc_status = 0;
-            card_xfer_result(g_usdhc_instance, &usdhc_status);
-            if (usdhc_status == 1)
-                break;          //wait untill the SD read finished!
-            else
-                hal_delay_us(1000);
-        }
+            card_wait_xfer_done(SD_PORT_INDEX);
+
         if (ret <= 0)
             break;
 
@@ -722,7 +716,6 @@ int32_t encode_test(void *arg)
 
     /*now enable the INTERRUPT mode of usdhc */
     SDHC_INTR_mode = 0;
-    SDHC_ADMA_mode = 0;
     memset((void *)&g_bs_memory, 0, sizeof(bs_mem_t));
     codecctrl->input = file_in; /* Input file name */
     codecctrl->output = file_out;   /* Output file name */

@@ -344,6 +344,15 @@ extern int card_data_write(uint32_t instance, int *src_ptr, int length, int offs
 extern int card_xfer_result(uint32_t instance, int *result);
 
 /*!
+ * @brief Wait for the transfer complete. It covers the interrupt mode, DMA mode and PIO mode
+ *
+ * @param instance     Instance number of the uSDHC module.
+ * 
+ * @return             0 if successful; 1 otherwise
+ */
+extern int card_wait_xfer_done(uint32_t instance);
+
+/*!
  * @brief Initialize MMC - Get Card ID, Set RCA, Frequency and bus width.
  * 
  * @param instance     Instance number of the uSDHC module.

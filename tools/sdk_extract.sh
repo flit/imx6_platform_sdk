@@ -123,16 +123,19 @@ cat > "$ExcludesFile" <<***DONE-EXCLUDES***
 # Exclude the extraction directory.
 #- ${ReleaseDirName}/
 
-# First, explicitly include only the dirs and files we want.
+# First, explicitly include only the dirs we want.
 + /apps
 + /board
 + /doc
 + /mk
 + /sdk
 + /tools
+
+# Files in root to include.
 + /Makefile
 + /Doxyfile
 + /README.pdf
++ /LICENSE.txt
 
 # Now exclude all other root files and directories.
 - /*

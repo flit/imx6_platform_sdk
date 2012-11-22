@@ -42,7 +42,6 @@ extern void print_media_fat_info(uint32_t);
 
 #define DeviceNum 0
 
-uint32_t g_usdhc_instance = SD_PORT_INDEX;
 vpu_resource_t vpu_resource = { 0 };
 struct decode *g_dec_instance[MAX_NUM_INSTANCE];
 struct encode *g_enc_instance[MAX_NUM_INSTANCE];

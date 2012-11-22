@@ -71,6 +71,9 @@ void _sys_exit(int32_t return_code);
  */
 void mybkpt(void);
 
+int _raw_puts(char str[]);
+
+
 /*!
  * This function waits for an input char to be received from the UART. Once a char is received,
  * it tests against the passed in char and return 0 if they don't match. 

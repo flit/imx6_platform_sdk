@@ -198,6 +198,28 @@ int _write(int fd, char *buf, int nbytes)
     return nbytes;
 }
 
+
+/*!
+ * @brief Write string to the serial port without buffering
+ *
+ * @param   str      not used
+ * @return  number of bytes to write to the serial port
+ */
+int _raw_puts(char str[])
+{
+    int i;
+
+    int len = strlen(str);
+    
+    for (i = 0; i < len; i++)
+    {        
+        // Send the char out the debug UART.
+        uart_putchar(&g_debug_uart, (uint8_t *)&str[i]);
+    }
+
+    return len;
+}
+
 /*!
  * @brief The low level system call upon which malloc is built.
  *

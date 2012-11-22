@@ -28,13 +28,39 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #-------------------------------------------------------------------------------
 
+#
+# SDK unit test application
+#
+
 include $(SDK_ROOT)/mk/common.mk
 
+# Set up to link application.
+export APP_NAME = filesystem
+export ARCHIVE_APP_OBJECTS = 0
 
-SOURCES = filesystem_test.c
+LINK_APP = 1
 
-INCLUDES += \
-	-I$(SDK_LIB_ROOT)/common/filesystem/include
+# Local source files.
+define SOURCES
+	src/fs_test.c
+    $(APPS_ROOT)/common/platform_init.c
+    $(APPS_ROOT)/common/print_clock_info.c
+    $(APPS_ROOT)/common/print_version.c
+    $(APPS_ROOT)/common/ivt.c
+endef
 
+# Need to include the SDK library!
+LIBRARIES = \
+    $(LIBSDK) \
+    $(LIBBOARD)
 
+# Specify our linker script.
+LD_FILE = $(APPS_ROOT)/common/basic_sdk_app.ld.S
+
+# Add common to include paths.
+INCLUDES += -I$(APPS_ROOT)/common -I$(SDK_ROOT)/sdk/common/filesystem/include
+
+# Standard targets.
 include $(SDK_ROOT)/mk/targets.mk
+
+

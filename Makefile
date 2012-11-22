@@ -67,7 +67,8 @@ ifdef is_dq_or_sdl
 ALL_APPS += \
     gpu_demo \
     multicore_demo \
-    caam_blob_gen
+    caam_blob_gen \
+	filesystem
 endif
 
 # Default target.

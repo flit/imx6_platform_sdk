@@ -61,7 +61,6 @@ define SUBDIRS
     $(SDK_LIB_ROOT)/drivers/audio/test
     $(SDK_LIB_ROOT)/drivers/caam/test
     $(SDK_LIB_ROOT)/drivers/cpu_utility/test
-    $(SDK_LIB_ROOT)/common/filesystem/test
     $(SDK_LIB_ROOT)/core/test
     $(SDK_LIB_ROOT)/drivers/i2c/test
     $(SDK_LIB_ROOT)/drivers/ocotp/test

@@ -45,7 +45,7 @@
 #include "usdhc/usdhc_ifc.h"
 #include <assert.h>
 
-static uint32_t g_usdhc_instance = HW_USDHC3;
+uint32_t g_usdhc_instance = HW_USDHC3;
 extern int totalFileOpened;
 
 typedef struct fat_cache_s {

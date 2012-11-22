@@ -1,8 +1,7 @@
 include $(SDK_ROOT)/mk/common.mk
 
 
-# Recurse into the filesystem.
-SUBDIRS = filesystem
+SUBDIRS = filesystem usb_stack
 
 # Determine if the target is either the MX6DQ or MX6SDL.
 ifeq "$(TARGET)" "mx6dq"

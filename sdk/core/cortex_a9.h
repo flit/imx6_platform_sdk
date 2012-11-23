@@ -87,8 +87,13 @@ void disable_strict_align_check(void);
 uint32_t get_arm_private_peripheral_base(void);
 //@}
 
+
 //! @name Data cache operations
 //@{
+
+//! @brief Check if dcache is enabled or disabled.
+int arm_dcache_state_query();
+
 //! @brief Enables data cache at any available cache level.
 //!
 //! Works only if MMU is enabled!

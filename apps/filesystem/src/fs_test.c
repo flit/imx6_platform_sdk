@@ -60,30 +60,32 @@
 #define FS_CHUNK_SIZE_16M       (1024*1024*16)
 
 #define TEST_BUFFER_ADDR    0x28000000
-#define TEST_FILE_SIZE  FS_CHUNK_SIZE_16M
+#define TEST_FILE_SIZE  FS_CHUNK_SIZE_4M
 #define DeviceNum 0
-
+#define SD_TEST_OFFSET  0x1000000   //offset from 16MB
 typedef struct fs_rw_speed_data_s {
     int WorkMode;               // PIO or ADMA
     int ChunkSize;
     float ReadSpeed;
     float WriteSpeed;
+    float RawReadSpeed;
+    float RawWriteSpeed;
 } fs_rw_speed_data_t;
 
 char test_mode[2][8] = { "PIO", "ADMA" };
 char status_tag[4][2] = { "-", "\\", "|", "/" };
 
 fs_rw_speed_data_t rw_test_data[] = {
-    {.WorkMode = 0,.ChunkSize = FS_CHUNK_SIZE_512B,.ReadSpeed = 0,.WriteSpeed = 0},
-    {.WorkMode = 0,.ChunkSize = FS_CHUNK_SIZE_1K,.ReadSpeed = 0,.WriteSpeed = 0},
-    {.WorkMode = 0,.ChunkSize = FS_CHUNK_SIZE_4K,.ReadSpeed = 0,.WriteSpeed = 0},
-    {.WorkMode = 0,.ChunkSize = FS_CHUNK_SIZE_32K,.ReadSpeed = 0,.WriteSpeed = 0},
-    {.WorkMode = 0,.ChunkSize = FS_CHUNK_SIZE_1M,.ReadSpeed = 0,.WriteSpeed = 0},
-    {.WorkMode = 1,.ChunkSize = FS_CHUNK_SIZE_512B,.ReadSpeed = 0,.WriteSpeed = 0},
-    {.WorkMode = 1,.ChunkSize = FS_CHUNK_SIZE_1K,.ReadSpeed = 0,.WriteSpeed = 0},
-    {.WorkMode = 1,.ChunkSize = FS_CHUNK_SIZE_4K,.ReadSpeed = 0,.WriteSpeed = 0},
-    {.WorkMode = 1,.ChunkSize = FS_CHUNK_SIZE_32K,.ReadSpeed = 0,.WriteSpeed = 0},
-    {.WorkMode = 1,.ChunkSize = FS_CHUNK_SIZE_1M,.ReadSpeed = 0,.WriteSpeed = 0}
+    {.WorkMode = 0,.ChunkSize = FS_CHUNK_SIZE_512B},
+    {.WorkMode = 0,.ChunkSize = FS_CHUNK_SIZE_1K},
+    {.WorkMode = 0,.ChunkSize = FS_CHUNK_SIZE_4K},
+    {.WorkMode = 0,.ChunkSize = FS_CHUNK_SIZE_32K},
+    {.WorkMode = 0,.ChunkSize = FS_CHUNK_SIZE_1M},
+    {.WorkMode = 1,.ChunkSize = FS_CHUNK_SIZE_512B},
+    {.WorkMode = 1,.ChunkSize = FS_CHUNK_SIZE_1K},
+    {.WorkMode = 1,.ChunkSize = FS_CHUNK_SIZE_4K},
+    {.WorkMode = 1,.ChunkSize = FS_CHUNK_SIZE_32K},
+    {.WorkMode = 1,.ChunkSize = FS_CHUNK_SIZE_1M}
 };
 
 uint8_t readfile[] = "testin.dat";
@@ -100,6 +102,7 @@ hw_module_t count_timer = {
     NULL
 };
 
+extern uint32_t g_usdhc_instance;
 extern void print_media_fat_info(uint32_t);
 
 static void get_data_size(uint32_t size, char *str)
@@ -172,6 +175,50 @@ int fat_write_speed_test(fs_rw_speed_data_t * test_data, int i)
     return 0;
 }
 
+int sd_raw_write_speed_test(fs_rw_speed_data_t * test_data, int i)
+{
+    uint8_t *WriteBuffer = NULL;
+    uint32_t BytesWritten = 0;
+    uint32_t TimeCount = 0;
+    uint32_t ChunkSize = test_data->ChunkSize;
+    int32_t nMB = 0;
+    uint32_t sdcard_offset = SD_TEST_OFFSET;
+
+    SDHC_ADMA_mode = test_data->WorkMode;
+    SDHC_INTR_mode = 0;
+
+    WriteBuffer = (uint8_t *) TEST_BUFFER_ADDR;
+
+    count_timer.freq = get_main_clock(IPG_CLK);
+    epit_init(&count_timer, CLKSRC_IPG_CLK, count_timer.freq / 1000000,
+              SET_AND_FORGET, 10000, WAIT_MODE_EN | STOP_MODE_EN);
+    epit_setup_interrupt(&count_timer, FALSE);
+    epit_counter_enable(&count_timer, 0xFFFFFFFF, 0);   //polling mode
+
+    _raw_puts("\tWriting sdcard directly     ");
+    while (BytesWritten < TEST_FILE_SIZE) {
+        card_data_write(g_usdhc_instance, (int *)(WriteBuffer + BytesWritten), ChunkSize,
+                        sdcard_offset + BytesWritten);
+        BytesWritten += ChunkSize;
+        if (BytesWritten / FS_CHUNK_SIZE_1M > nMB) {
+            _raw_puts("\b");
+            _raw_puts(status_tag[nMB % 4]);
+            nMB++;
+        }
+    }
+
+    TimeCount = epit_get_counter_value(&count_timer);
+    epit_counter_disable(&count_timer); //polling mode
+
+    TimeCount = (0xFFFFFFFF - TimeCount) / 1000;    //ms
+    get_data_size(BytesWritten, dataSize);
+    printf(" Done! write %s in %d ms\n", dataSize, TimeCount);
+
+    test_data->RawWriteSpeed = ((float)BytesWritten / FS_CHUNK_SIZE_1M * 1000) / (float)TimeCount;
+
+    return 0;
+}
+
 int fat_read_speed_test(fs_rw_speed_data_t * test_data, int i)
 {
     int32_t fin;
@@ -232,11 +279,56 @@ int fat_read_speed_test(fs_rw_speed_data_t * test_data, int i)
     return 0;
 }
 
+int sd_raw_read_speed_test(fs_rw_speed_data_t * test_data, int i)
+{
+    uint8_t *ReadBuffer;
+    int ChunkSize = test_data->ChunkSize;
+    int BytesRead = 0;
+    int32_t nMB = 0;
+    uint32_t TimeCount = 0;
+    uint32_t sdcard_offset = SD_TEST_OFFSET;
+
+    SDHC_ADMA_mode = test_data->WorkMode;
+    SDHC_INTR_mode = 0;
+
+    ReadBuffer = (uint8_t *) TEST_BUFFER_ADDR;
+
+    count_timer.freq = get_main_clock(IPG_CLK);
+    epit_init(&count_timer, CLKSRC_IPG_CLK, count_timer.freq / 1000000,
+              SET_AND_FORGET, 10000, WAIT_MODE_EN | STOP_MODE_EN);
+    epit_setup_interrupt(&count_timer, FALSE);
+    epit_counter_enable(&count_timer, 0xFFFFFFFF, 0);   //polling mode
+
+    _raw_puts("\tReading sdcard directly     ");
+    while (BytesRead < TEST_FILE_SIZE) {
+        card_data_read(g_usdhc_instance, (int *)(ReadBuffer + BytesRead), ChunkSize,
+                       sdcard_offset + BytesRead);
+
+        BytesRead += ChunkSize;
+        if (BytesRead / FS_CHUNK_SIZE_1M > nMB) {
+            _raw_puts("\b");
+            _raw_puts(status_tag[nMB % 4]);
+            nMB++;
+        }
+    }
+    TimeCount = epit_get_counter_value(&count_timer);
+    epit_counter_disable(&count_timer); //polling mode
+
+    TimeCount = (0xFFFFFFFF - TimeCount) / 1000;    //ms
+    get_data_size(BytesRead, dataSize);
+    printf(" Done! read %s in %d ms\n", dataSize, TimeCount);
+    test_data->RawReadSpeed = ((float)BytesRead / FS_CHUNK_SIZE_1M * 1000) / (float)TimeCount;
+
+    return 0;
+}
+
 void dump_test_results(void)
 {
     int i = 0;
-    printf("_______________________________________________________________________________\n");
-    printf("R/W Size        Test Mode       Per Access      Read Speed      Write Speed \n");
+    printf
+        ("_______________________________________________________________________________________________\n");
+    printf
+        ("R/W Size        Test Mode       Per Access      Read Speed      Write Speed    Raw RD Speed    Raw WR Speed\n");
     while (i < sizeof(rw_test_data) / sizeof(rw_test_data[0])) {
         printf("%4dMB          ", TEST_FILE_SIZE / FS_CHUNK_SIZE_1M);
 
@@ -247,12 +339,18 @@ void dump_test_results(void)
 
         printf("%2d.%04dMB       ", (int)rw_test_data[i].ReadSpeed,
                (int)(rw_test_data[i].ReadSpeed * 10000) % 10000);
-        printf("%2d.%04dMB       \n", (int)rw_test_data[i].WriteSpeed,
+        printf("%2d.%04dMB       ", (int)rw_test_data[i].WriteSpeed,
                (int)(rw_test_data[i].WriteSpeed * 10000) % 10000);
+
+        printf("%2d.%04dMB       ", (int)rw_test_data[i].RawReadSpeed,
+               (int)(rw_test_data[i].RawReadSpeed * 10000) % 10000);
+        printf("%2d.%04dMB       \n", (int)rw_test_data[i].RawWriteSpeed,
+               (int)(rw_test_data[i].RawWriteSpeed * 10000) % 10000);
 
         i++;
     }
-    printf("_______________________________________________________________________________\n");
+    printf
+        ("_______________________________________________________________________________________________\n");
 }
 
 int fat_test(void)
@@ -262,11 +360,16 @@ int fat_test(void)
 
     /* configure cache */
     arm_icache_enable();
+#if 0
     arm_dcache_invalidate();
     mmu_disable();
     arm_dcache_disable();
-
-    SDHC_ADMA_mode = 1;
+#else
+    arm_dcache_invalidate();
+    mmu_enable();
+    arm_dcache_enable();
+#endif
+    SDHC_ADMA_mode = 0;
     SDHC_INTR_mode = 0;
 
     dbprintf("FSInit				");
@@ -286,6 +389,20 @@ int fat_test(void)
 #endif
 
     while (i < sizeof(rw_test_data) / sizeof(rw_test_data[0])) {
+        if (rw_test_data[i].WorkMode == 1) {
+            arm_dcache_flush();
+            arm_dcache_invalidate();
+            mmu_disable();
+            arm_dcache_disable();
+        } else {
+            if (arm_dcache_state_query() == 0)  // dcache disabled
+            {
+                arm_dcache_invalidate();
+                mmu_enable();
+                arm_dcache_enable();
+            }
+        }
+
         get_data_size(rw_test_data[i].ChunkSize, dataSize);
         printf("\n** Test loop #%d, read/write in %s per access in %s mode\n", i, dataSize,
                test_mode[rw_test_data[i].WorkMode]);
@@ -295,6 +412,12 @@ int fat_test(void)
 
         /*Dump the test buffer to SD card */
         fat_write_speed_test(&rw_test_data[i], i);
+
+        /*Read from raw SD card */
+        sd_raw_read_speed_test(&rw_test_data[i], i);
+
+        /*Write to raw SD card */
+        sd_raw_write_speed_test(&rw_test_data[i], i);
 
         i++;
     }

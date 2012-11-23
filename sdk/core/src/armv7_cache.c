@@ -35,6 +35,22 @@
 // Code
 ////////////////////////////////////////////////////////////////////////////////
 
+//! @brief Check if dcache is enabled or disabled
+int arm_dcache_state_query()
+{
+    uint32_t sctlr; // System Control Register 
+    
+    // read sctlr 
+    _ARM_MRC(15, 0, sctlr, 1, 0, 0);
+        
+    if (sctlr & BM_SCTLR_C)
+    {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
 void arm_dcache_enable()
 {
     uint32_t sctlr; // System Control Register 

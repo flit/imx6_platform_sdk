@@ -702,7 +702,7 @@ int32_t encode_test(void *arg)
     struct codec_control *codecctrl;
     int32_t file_in, file_out;
 
-    uint8_t in_enc_file[] = "raw_nv12.yuv";
+    uint8_t in_enc_file[] = "raw_yv12.yuv";
     uint8_t out_enc_file[] = "out.264";
 
     codecctrl = (struct codec_control *)calloc(1, sizeof(struct codec_control));

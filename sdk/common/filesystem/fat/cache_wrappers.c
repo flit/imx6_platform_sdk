@@ -526,12 +526,10 @@ RtStatus_t FSDataDriveInit(DriveTag_t tag)
 
     /*Note by Ray: in this function, intialize the uSDHC controller */
     retval = card_init(g_usdhc_instance, 8);
-    /*now enable the INTERRUPT mode of usdhc */
-    SDHC_INTR_mode = 0;
-    SDHC_ADMA_mode = 0;
     if (retval == 1) {
         return 1;
     }
+    SDHC_INTR_mode = 0;
 
     /* initialize with a default value before getting size from FAT table */
     MediaTable[(int)tag].BytesPerSector = 512;

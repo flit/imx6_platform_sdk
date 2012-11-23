@@ -37,15 +37,19 @@
  *
  * @brief header file for codec registers in VPU
  *
- * @ingroup VPU
+ * @ingroup diag_vpu
  */
 
 #ifndef __VPU__REG__H
-#define __VPU__REG__H
+#define __VPU_REG__H
 
-/*---------------------------------------------------------------------------
- * HARDWARE REGISTER
- *-------------------------------------------------------------------------*/
+//! @addtogroup diag_vpu
+//! @{
+
+////////////////////////////////////////////////////////////////////////////////
+// DEFINITIONS
+////////////////////////////////////////////////////////////////////////////////
+
 #define GDMA_BASE	0x1000
 #define NPT_BASE        0x3000
 
@@ -557,5 +561,10 @@ NIEUPORT REGISTERS
 #define MJPEG_BBC_BAS_ADDR_REG	 (NPT_BASE + 0x230)
 #define MJPEG_BBC_STRM_CTRL_REG	 (NPT_BASE + 0x234)
 
-#define MJPEG_BBC_FLUSH_CMD_REG	 (NPT_BASE + 0x238)
+//! @}
+
 #endif
+
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////#define MJPEG_BBC_FLUSH_CMD_REG  (NPT_BASE + 0x238)

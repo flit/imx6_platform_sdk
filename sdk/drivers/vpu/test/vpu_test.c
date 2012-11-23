@@ -65,7 +65,11 @@ int vpu_test(void)
 
     /* enable L1 cache for mx6dq and mx6sdl */
     arm_icache_enable();
-    SDHC_ADMA_mode = 1;
+    arm_dcache_invalidate();
+    mmu_enable();
+    arm_dcache_enable();
+    SDHC_ADMA_mode = 0;
+    SDHC_INTR_mode = 0;
 
     /* FAT filesystem setup from SD card */
     if (FSInit(NULL, bufy, maxdevices, maxhandles, maxcaches) != SUCCESS) {
@@ -118,6 +122,8 @@ int vpu_test(void)
             vpu_codec_io_deinit();
         }
     } while (1);
+
+    VPU_UnInit();
 
     return 0;
 }

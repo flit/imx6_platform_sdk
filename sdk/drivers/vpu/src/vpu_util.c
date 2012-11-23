@@ -42,6 +42,10 @@
 #include "vpu/vpu_debug.h"
 #include "BitAsmTable_CODA_960.h"
 
+////////////////////////////////////////////////////////////////////////////////
+// DEFINITIONS
+////////////////////////////////////////////////////////////////////////////////
+
 #define MAX_VSIZE       8192
 #define MAX_HSIZE       8192
 
@@ -63,8 +67,17 @@ typedef struct {
     uint32_t size;
 } headerInfo;
 
+////////////////////////////////////////////////////////////////////////////////
+// VARIABLES
+////////////////////////////////////////////////////////////////////////////////
+
 extern uint32_t *virt_paraBuf;
 vpu_resource_t *g_vpu_hw_map;
+
+////////////////////////////////////////////////////////////////////////////////
+// CODE
+////////////////////////////////////////////////////////////////////////////////
+
 RetCode DownloadBitCodeTable(uint32_t * virtCodeBuf)
 {
     int i, size;
@@ -166,7 +179,7 @@ RetCode CheckDecInstanceValidity(DecHandle handle)
         return RETCODE_INVALID_HANDLE;
     }
 
-    if (cpu_is_mx6q()) {
+    if (cpu_is_mx6()) {
         if (pCodecInst->codecMode != MP4_DEC &&
             pCodecInst->codecMode != AVC_DEC &&
             pCodecInst->codecMode != VC1_DEC &&
@@ -394,15 +407,15 @@ void EncodeHeader(EncHandle handle, EncHeaderParam * encHeaderParam)
     pCodecInst = handle;
     pEncInfo = &pCodecInst->CodecInfo.encInfo;
 
-    if (cpu_is_mx6q() && (pEncInfo->ringBufferEnable == 0)) {
+    if (cpu_is_mx6() && (pEncInfo->ringBufferEnable == 0)) {
         vpu_reg_write(CMD_ENC_HEADER_BB_START, pEncInfo->streamBufStartAddr);
         vpu_reg_write(CMD_ENC_HEADER_BB_SIZE, pEncInfo->streamBufSize / 1024);
-    } else if (!cpu_is_mx6q() && (pEncInfo->dynamicAllocEnable == 1)) {
+    } else if (!cpu_is_mx6() && (pEncInfo->dynamicAllocEnable == 1)) {
         vpu_reg_write(CMD_ENC_HEADER_BB_START, encHeaderParam->buf);
         vpu_reg_write(CMD_ENC_HEADER_BB_SIZE, encHeaderParam->size);
     }
 
-    if (cpu_is_mx6q() && (encHeaderParam->headerType == 0) &&
+    if (cpu_is_mx6() && (encHeaderParam->headerType == 0) &&
         (pEncInfo->openParam.bitstreamFormat == STD_AVC)) {
         EncOpenParam *encOP;
         uint32_t CropV, CropH;
@@ -419,7 +432,7 @@ void EncodeHeader(EncHandle handle, EncHeaderParam * encHeaderParam)
         }
     }
 
-    if (cpu_is_mx6q()) {
+    if (cpu_is_mx6()) {
         vpu_reg_write(CMD_ENC_HEADER_CODE, encHeaderParam->headerType | frameCroppingFlag << 2);
     } else {
         if (encHeaderParam->headerType == VOS_HEADER || encHeaderParam->headerType == SPS_RBSP) {
@@ -435,8 +448,8 @@ void EncodeHeader(EncHandle handle, EncHeaderParam * encHeaderParam)
     BitIssueCommand(pCodecInst, ENCODE_HEADER);
     while (vpu_reg_read(BIT_BUSY_FLAG)) ;
 
-    if ((cpu_is_mx6q() && (pEncInfo->ringBufferEnable == 0)) ||
-        (!cpu_is_mx6q() && (pEncInfo->dynamicAllocEnable == 1))) {
+    if ((cpu_is_mx6() && (pEncInfo->ringBufferEnable == 0)) ||
+        (!cpu_is_mx6() && (pEncInfo->dynamicAllocEnable == 1))) {
         rdPtr = vpu_reg_read(CMD_ENC_HEADER_BB_START);
         wrPtr = vpu_reg_read(BIT_WR_PTR);
         pCodecInst->ctxRegs[CTX_BIT_WR_PTR] = wrPtr;
@@ -459,7 +472,7 @@ RetCode CheckDecOpenParam(DecOpenParam * pop)
         return RETCODE_INVALID_PARAM;
     }
 
-    if (cpu_is_mx6q() & (pop->bitstreamFormat == STD_MJPG)) {
+    if (cpu_is_mx6() & (pop->bitstreamFormat == STD_MJPG)) {
         if (!pop->jpgLineBufferMode) {
             if (pop->bitstreamBufferSize % 1024 || pop->bitstreamBufferSize < 1024)
                 return RETCODE_INVALID_PARAM;
@@ -474,7 +487,7 @@ RetCode CheckDecOpenParam(DecOpenParam * pop)
     if (pop->bitstreamFormat == STD_H263)
         pop->bitstreamFormat = STD_MPEG4;
 
-    if (cpu_is_mx6q()) {
+    if (cpu_is_mx6()) {
         if (pop->bitstreamFormat != STD_MPEG4 &&
             pop->bitstreamFormat != STD_AVC &&
             pop->bitstreamFormat != STD_VC1 &&
@@ -549,7 +562,7 @@ void GetParaSet(EncHandle handle, int paraSetType, EncParamSet * para)
     pCodecInst = handle;
     pEncInfo = &pCodecInst->CodecInfo.encInfo;
 
-    if (cpu_is_mx6q() && (paraSetType == 0) && (pEncInfo->openParam.bitstreamFormat == STD_AVC)) {
+    if (cpu_is_mx6() && (paraSetType == 0) && (pEncInfo->openParam.bitstreamFormat == STD_AVC)) {
         EncOpenParam *encOP;
         uint32_t CropV, CropH;
 
@@ -729,7 +742,6 @@ void SetDecSecondAXIIRAM(SecAxiUse * psecAxiIramInfo, SetIramParam * parm)
 
     memset(psecAxiIramInfo, 0, sizeof(SecAxiUse));
 
-    //IOGetIramBase(&iram);
     size = iram.end - iram.start + 1;
 
     mbNumX = (parm->width + 15) / 16;
@@ -772,7 +784,7 @@ void SetDecSecondAXIIRAM(SecAxiUse * psecAxiIramInfo, SetIramParam * parm)
             psecAxiIramInfo->bufOvlUse = psecAxiIramInfo->bufIpAcDcUse + ipacdc_size;
             size -= ovl_size;
         }
-        if (cpu_is_mx6q()) {
+        if (cpu_is_mx6()) {
             btp_size = ((((mbNumX + 15) / 16) * mbNumY + 1) * 6 + 255) & ~255;
             if (size >= btp_size) {
                 psecAxiIramInfo->useHostBtpEnable = 1;
@@ -808,12 +820,11 @@ void SetEncSecondAXIIRAM(SecAxiUse * psecAxiIramInfo, SetIramParam * parm)
 
     memset(psecAxiIramInfo, 0, sizeof(SecAxiUse));
 
-    //IOGetIramBase(&iram);
     size = iram.end - iram.start + 1;
 
     mbNumX = (parm->width + 15) / 16;
 
-    if (cpu_is_mx6q()) {
+    if (cpu_is_mx6()) {
         psecAxiIramInfo->searchRamSize = 0;
         psecAxiIramInfo->searchRamAddr = 0;
         goto set_dbk;
@@ -954,3 +965,7 @@ vpu_resource_t *vpu_semaphore_open(void)
     g_vpu_system_mem_size += share_mem.size;
     return semap;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////

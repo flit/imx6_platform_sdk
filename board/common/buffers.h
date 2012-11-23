@@ -66,7 +66,6 @@
 /* put the TWO video instance on different CS to
    improve the performance.
  */
-#define FAT_DRIVER_BUFFER       (0x44000000)
 #define VPU_WORK_BUFFERS        (0x44100000)
 #define VIDEO_BUFFERS_START     (0x48000000)
 #define VIDEO_BUFFERS_END       (0x4FFFFFFF)

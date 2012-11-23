@@ -37,7 +37,7 @@
  *
  * @brief This file implements codec API funcitons for VPU
  *
- * @ingroup VPU
+ * @ingroup diag_vpu
  */
 
 #include <stdio.h>
@@ -52,10 +52,23 @@
 #include "vpu/vpu_gdi.h"
 #include "timer/timer.h"
 
+////////////////////////////////////////////////////////////////////////////////
+// DEFINITIONS
+////////////////////////////////////////////////////////////////////////////////
+
 #define IMAGE_ENDIAN			0
 #define STREAM_ENDIAN			0
 
+////////////////////////////////////////////////////////////////////////////////
+// VARIABLES
+////////////////////////////////////////////////////////////////////////////////
+
+#if defined(CHIP_MX6DQ)
+uint32_t system_rev = 0x63 << 12;
+#elif defined(CHIP_MX6SDL)
 uint32_t system_rev = 0x61 << 12;
+#endif
+
 extern const unsigned short bit_code[];
 
 /* If a frame is started, pendingInst is set to the proper instance. */
@@ -70,15 +83,10 @@ extern vpu_resource_t *g_vpu_hw_map;
 
 static int32_t decoded_pictype[32];
 
-/*!
- * @brief
- * This functure indicate whether processing(encoding/decoding) a frame
- * is completed or not yet.
- *
- * @return
- * @li 0: VPU hardware is idle.
- * @li Non-zero value: VPU hardware is busy processing a frame.
- */
+////////////////////////////////////////////////////////////////////////////////
+// CODE
+////////////////////////////////////////////////////////////////////////////////
+
 int32_t VPU_IsBusy()
 {
     int32_t vpu_busy;
@@ -88,20 +96,6 @@ int32_t VPU_IsBusy()
     return vpu_busy != 0;
 }
 
-int32_t VPU_WaitForInt(int32_t timeout_in_ms)
-{
-    hal_delay_us(timeout_in_ms * 10);
-
-    return 0;
-}
-
-/*!
- * @brief VPU initialization.
- * This function initializes VPU hardware and proper data structures/resources.
- * The user must call this function only once before using VPU codec.
- *
- * @return  This function always returns RETCODE_SUCCESS.
- */
 RetCode VPU_Init(void)
 {
     int32_t i, err;
@@ -197,9 +191,6 @@ RetCode VPU_SWReset(int32_t forcedReset)
     return RETCODE_SUCCESS;
 }
 
-/*!
- * @brief Get VPU Firmware Version.
- */
 RetCode VPU_GetVersionInfo(vpu_versioninfo * verinfo)
 {
     uint32_t ver, fw_code = 0;
@@ -218,7 +209,7 @@ RetCode VPU_GetVersionInfo(vpu_versioninfo * verinfo)
     while (vpu_reg_read(BIT_BUSY_FLAG)) ;
 
     ver = vpu_reg_read(RET_VER_NUM);
-    if (cpu_is_mx6q())
+    if (cpu_is_mx6())
         fw_code = vpu_reg_read(RET_FW_CODE_REV);
 
     if (ver == 0)
@@ -254,24 +245,6 @@ RetCode VPU_GetVersionInfo(vpu_versioninfo * verinfo)
     return ret;
 }
 
-/*!
- * @brief VPU encoder initialization
- *
- * @param pHandle [Output] Pointer to EncHandle type
-    where a handle will be written by which you can refer
-    to an encoder instance. If no instance is available,
-    null handle is returned via pHandle.
- *
- * @param pop  [Input] Pointer to EncOpenParam type
- * which describes parameters necessary for encoding.
- *
- * @return
- * @li RETCODE_SUCCESS: Success in acquisition of an encoder instance.
- * @li RETCODE_FAILURE: Failed in acquisition of an encoder instance.
- * @li RETCODE_INVALID_PARAM: pop is a null pointer, or some parameter
- * passed does not satisfy conditions described in the paragraph for
- * EncOpenParam type.
- */
 RetCode VPU_EncOpen(EncHandle * pHandle, EncOpenParam * pop)
 {
     CodecInst *pCodecInst;
@@ -308,7 +281,7 @@ RetCode VPU_EncOpen(EncHandle * pHandle, EncOpenParam * pop)
         pCodecInst->codecMode = MP4_ENC;
     else if (pop->bitstreamFormat == STD_AVC)
         pCodecInst->codecMode = AVC_ENC;
-    if (cpu_is_mx6q())
+    if (cpu_is_mx6())
         pCodecInst->codecModeAux = pop->EncStdParam.avcParam.mvc_extension;
     else if (pop->bitstreamFormat == STD_MJPG)
         pCodecInst->codecMode = MJPG_ENC;
@@ -349,7 +322,7 @@ RetCode VPU_EncOpen(EncHandle * pHandle, EncOpenParam * pop)
     val &= ~BITS_STREAMCTRL_MASK;
     val |= (STREAM_ENDIAN | STREAM_FULL_EMPTY_CHECK_DISABLE << BIT_BUF_CHECK_DIS);
     if (pEncInfo->ringBufferEnable == 0) {
-        if (!cpu_is_mx6q())
+        if (!cpu_is_mx6())
             val |= (pEncInfo->dynamicAllocEnable << BIT_ENC_DYN_BUFALLOC_EN);
         val |= 1 << BIT_BUF_PIC_RESET;
     } else
@@ -364,22 +337,12 @@ RetCode VPU_EncOpen(EncHandle * pHandle, EncOpenParam * pop)
 
     pCodecInst->ctxRegs[CTX_BIT_FRAME_MEM_CTRL] = val | (pEncInfo->openParam.chromaInterleave << 2);
 
-    if (cpu_is_mx6q())
+    if (cpu_is_mx6())
         vpu_reg_write(GDI_WPROT_RGN_EN, 0);
 
     return RETCODE_SUCCESS;
 }
 
-/*!
- * @brief Encoder system close.
- *
- * @param encHandle [Input] The handle obtained from vpu_EncOpen().
- *
- * @return
- * @li RETCODE_SUCCESS Successful closing.
- * @li RETCODE_INVALID_HANDLE encHandle is invalid.
- * @li RETCODE_FRAME_NOT_COMPLETE A frame has not been finished.
- */
 RetCode VPU_EncClose(EncHandle handle)
 {
     CodecInst *pCodecInst;
@@ -407,21 +370,6 @@ RetCode VPU_EncClose(EncHandle handle)
     return RETCODE_SUCCESS;
 }
 
-/*!
- * @brief user could allocate frame buffers
- * according to the information obtained from this function.
- * @param handle [Input] The handle obtained from VPU_EncOpen().
- * @param info [Output] The information required before starting
- * encoding will be put to the data structure pointed to by initialInfo.
- *
- * @return
- * @li RETCODE_SUCCESS Successful operation.
- * @li RETCODE_FAILURE There was an error in getting information and
- *                                    configuring the encoder.
- * @li RETCODE_INVALID_HANDLE encHandle is invalid.
- * @li RETCODE_FRAME_NOT_COMPLETE A frame has not been finished
- * @li RETCODE_INVALID_PARAM initialInfo is a null pointer.
- */
 RetCode VPU_EncGetInitialInfo(EncHandle handle, EncInitialInfo * info)
 {
     CodecInst *pCodecInst;
@@ -459,7 +407,7 @@ RetCode VPU_EncGetInitialInfo(EncHandle handle, EncInitialInfo * info)
 
     if (pEncOP->bitstreamFormat == STD_MPEG4) {
         pEncInfo->mp4_dataPartitionEnable = pEncOP->EncStdParam.mp4Param.mp4_dataPartitionEnable;
-        if (cpu_is_mx6q())
+        if (cpu_is_mx6())
             vpu_reg_write(CMD_ENC_SEQ_COD_STD, 3);
         else
             vpu_reg_write(CMD_ENC_SEQ_COD_STD, 0);
@@ -472,7 +420,7 @@ RetCode VPU_EncGetInitialInfo(EncHandle handle, EncInitialInfo * info)
                  ? 0 : 1) << 6;
         vpu_reg_write(CMD_ENC_SEQ_MP4_PARA, data);
     } else if (pEncOP->bitstreamFormat == STD_H263) {
-        if (cpu_is_mx6q())
+        if (cpu_is_mx6())
             vpu_reg_write(CMD_ENC_SEQ_COD_STD, 11);
         data = pEncOP->EncStdParam.h263Param.h263_annexIEnable << 3 |
             pEncOP->EncStdParam.h263Param.h263_annexJEnable << 2 |
@@ -480,7 +428,7 @@ RetCode VPU_EncGetInitialInfo(EncHandle handle, EncInitialInfo * info)
             pEncOP->EncStdParam.h263Param.h263_annexTEnable;
         vpu_reg_write(CMD_ENC_SEQ_263_PARA, data);
     } else if (pEncOP->bitstreamFormat == STD_AVC) {
-        if (cpu_is_mx6q())
+        if (cpu_is_mx6())
             vpu_reg_write(CMD_ENC_SEQ_COD_STD, 0);
         else
             vpu_reg_write(CMD_ENC_SEQ_COD_STD, 2);
@@ -492,7 +440,7 @@ RetCode VPU_EncGetInitialInfo(EncHandle handle, EncInitialInfo * info)
             pEncOP->EncStdParam.avcParam.avc_constrainedIntraPredFlag
             << 5 | (pEncOP->EncStdParam.avcParam.avc_chromaQpOffset & 31);
         vpu_reg_write(CMD_ENC_SEQ_264_PARA, data);
-    } else if ((!cpu_is_mx6q()) && pEncOP->bitstreamFormat == STD_MJPG) {
+    } else if ((!cpu_is_mx6()) && pEncOP->bitstreamFormat == STD_MJPG) {
         vpu_reg_write(CMD_ENC_SEQ_JPG_PARA,
                       pEncInfo->openParam.EncStdParam.mjpgParam.mjpg_sourceFormat);
         vpu_reg_write(CMD_ENC_SEQ_JPG_RST_INTERVAL,
@@ -530,7 +478,7 @@ RetCode VPU_EncGetInitialInfo(EncHandle handle, EncInitialInfo * info)
 
     if (pEncOP->bitRate) {      /* rate control enabled */
         data = pEncOP->initialDelay << 16 | pEncOP->bitRate << 1 | 1;
-        if (cpu_is_mx6q())
+        if (cpu_is_mx6())
             data |= (!pEncInfo->openParam.enableAutoSkip) << 31;
         vpu_reg_write(CMD_ENC_SEQ_RC_PARA, data);
     } else {
@@ -551,7 +499,7 @@ RetCode VPU_EncGetInitialInfo(EncHandle handle, EncInitialInfo * info)
 
     if (pCodecInst->codecMode == AVC_ENC) {
         data |= (pEncOP->EncStdParam.avcParam.avc_audEnable << 2);
-        if (!cpu_is_mx6q())
+        if (!cpu_is_mx6())
             data |= (pEncOP->EncStdParam.avcParam.avc_fmoEnable << 4);
         else if (pCodecInst->codecModeAux == AVC_AUX_MVC) {
             data |= (pEncInfo->openParam.EncStdParam.avcParam.interview_en << 4);
@@ -560,7 +508,7 @@ RetCode VPU_EncGetInitialInfo(EncHandle handle, EncInitialInfo * info)
         }
     }
 
-    if (cpu_is_mx6q()) {
+    if (cpu_is_mx6()) {
         if (pEncInfo->openParam.userQpMax) {
             data |= (1 << 6);
             vpu_reg_write(CMD_ENC_SEQ_RC_QP_MIN_MAX, pEncInfo->openParam.userQpMax);
@@ -587,7 +535,7 @@ RetCode VPU_EncGetInitialInfo(EncHandle handle, EncInitialInfo * info)
         }
     }
 
-    if ((!cpu_is_mx6q()) && pCodecInst->codecMode == AVC_ENC) {
+    if ((!cpu_is_mx6()) && pCodecInst->codecMode == AVC_ENC) {
         if (pEncOP->avcIntra16x16OnlyModeEnable)
             data |= (1 << 9);
     }
@@ -601,7 +549,7 @@ RetCode VPU_EncGetInitialInfo(EncHandle handle, EncInitialInfo * info)
     iramParam.width = pEncOP->picWidth;
     SetEncSecondAXIIRAM(&pEncInfo->secAxiUse, &iramParam);
 
-    if (!cpu_is_mx6q()) {
+    if (!cpu_is_mx6()) {
         /* Use external memory if IRAM is disabled for searchMe */
         if (pEncInfo->secAxiUse.useHostMeEnable == 0) {
             pEncInfo->searchRamMem.size = pEncInfo->secAxiUse.searchRamSize;
@@ -620,7 +568,7 @@ RetCode VPU_EncGetInitialInfo(EncHandle handle, EncInitialInfo * info)
     BitIssueCommand(pCodecInst, SEQ_INIT);
     while (vpu_reg_read(BIT_BUSY_FLAG)) ;
 
-    if (cpu_is_mx6q() && vpu_reg_read(RET_ENC_SEQ_ENC_SUCCESS) & (1 << 31)) {
+    if (cpu_is_mx6() && vpu_reg_read(RET_ENC_SEQ_ENC_SUCCESS) & (1 << 31)) {
         return RETCODE_MEMORY_ACCESS_VIOLATION;
     }
 
@@ -647,7 +595,7 @@ RetCode VPU_EncGetInitialInfo(EncHandle handle, EncInitialInfo * info)
     pEncInfo->initialInfo = *info;
     pEncInfo->initialInfoObtained = 1;
 
-    if (cpu_is_mx6q()) {
+    if (cpu_is_mx6()) {
         SetTiledMapTypeInfo(pEncInfo->mapType, &pEncInfo->sTiledInfo);
         /* Enable 2-D cache */
         SetMaverickCache(&pEncInfo->cacheConfig, 0, pEncInfo->openParam.chromaInterleave);
@@ -656,23 +604,6 @@ RetCode VPU_EncGetInitialInfo(EncHandle handle, EncInitialInfo * info)
     return RETCODE_SUCCESS;
 }
 
-/*!
- * @brief Registers frame buffers
- * @param handle [Input] The handle obtained from VPU_EncOpen().
- * @param bufArray [Input] Pointer to the first element of an array
- *			of FrameBuffer data structures.
- * @param num [Input] Number of elements of the array.
- * @param stride [Input] Stride value of frame buffers being registered.
- *
- * @return
- * @li RETCODE_SUCCESS Successful operation.
- * @li RETCODE_INVALID_HANDLE encHandle is invalid.
- * @li RETCODE_FRAME_NOT_COMPLETE A frame has not been finished
- * @li RETCODE_WRONG_CALL_SEQUENCE Function call in wrong sequence.
- * @li RETCODE_INVALID_FRAME_BUFFER pBuffer is a null pointer.
- * @li RETCODE_INSUFFICIENT_FRAME_BUFFERS num is smaller than requested.
- * @li RETCODE_INVALID_STRIDE stride is smaller than the picture width.
- */
 RetCode VPU_EncRegisterFrameBuffer(EncHandle handle, FrameBuffer * bufArray,
                                    int32_t num, int32_t frameBufStride, int32_t sourceBufStride,
                                    PhysicalAddress subSampBaseA, PhysicalAddress subSampBaseB,
@@ -733,10 +664,10 @@ RetCode VPU_EncRegisterFrameBuffer(EncHandle handle, FrameBuffer * bufArray,
     vpu_reg_write(CMD_SET_FRAME_BUF_NUM, num);
     vpu_reg_write(CMD_SET_FRAME_BUF_STRIDE, frameBufStride);
 
-    if (!cpu_is_mx6q())
+    if (!cpu_is_mx6())
         vpu_reg_write(CMD_SET_FRAME_SOURCE_BUF_STRIDE, sourceBufStride);
 
-    if (cpu_is_mx6q()) {
+    if (cpu_is_mx6()) {
         /* Maverick Cache Configuration */
         val = (pEncInfo->cacheConfig.luma.cfg.PageSizeX << 28) |
             (pEncInfo->cacheConfig.luma.cfg.PageSizeY << 24) |
@@ -762,7 +693,7 @@ RetCode VPU_EncRegisterFrameBuffer(EncHandle handle, FrameBuffer * bufArray,
     vpu_reg_write(CMD_SET_FRAME_AXI_DBKC_ADDR, pEncInfo->secAxiUse.bufDbkCUse);
     vpu_reg_write(CMD_SET_FRAME_AXI_OVL_ADDR, pEncInfo->secAxiUse.bufOvlUse);
 
-    if (cpu_is_mx6q()) {
+    if (cpu_is_mx6()) {
         vpu_reg_write(CMD_SET_FRAME_AXI_BTP_ADDR, pEncInfo->secAxiUse.bufBtpUse);
 
         /*
@@ -800,7 +731,7 @@ RetCode VPU_EncRegisterFrameBuffer(EncHandle handle, FrameBuffer * bufArray,
 
     while (vpu_reg_read(BIT_BUSY_FLAG)) ;
 
-    if (cpu_is_mx6q() && vpu_reg_read(RET_SET_FRAME_SUCCESS) & (1 << 31)) {
+    if (cpu_is_mx6() && vpu_reg_read(RET_SET_FRAME_SUCCESS) & (1 << 31)) {
         return RETCODE_MEMORY_ACCESS_VIOLATION;
     }
 
@@ -909,21 +840,6 @@ RetCode VPU_EncUpdateBitstreamBuffer(EncHandle handle, uint32_t size)
     return RETCODE_SUCCESS;
 }
 
-/*!
- * @brief Starts encoding one frame.
- *
- * @param handle [Input] The handle obtained from VPU_EncOpen().
- * @param pParam [Input] Pointer to EncParam data structure.
- *
- * @return
- * @li RETCODE_SUCCESS Successful operation.
- * @li RETCODE_INVALID_HANDLE encHandle is invalid.
- * @li RETCODE_FRAME_NOT_COMPLETE A frame has not been finished.
- * @li RETCODE_WRONG_CALL_SEQUENCE Wrong calling sequence.
- * @li RETCODE_INVALID_PARAM pParam is invalid.
- * @li RETCODE_INVALID_FRAME_BUFFER skipPicture in EncParam is 0
- * and sourceFrame in EncParam is a null pointer.
- */
 RetCode VPU_EncStartOneFrame(EncHandle handle, EncParam * param)
 {
     CodecInst *pCodecInst;
@@ -1004,9 +920,9 @@ RetCode VPU_EncStartOneFrame(EncHandle handle, EncParam * param)
     }
 
     /* Set GDI related registers per tiled map info for mx6q */
-    if (cpu_is_mx6q())
+    if (cpu_is_mx6())
         SetGDIRegs(&pEncInfo->sTiledInfo);
-    if (!cpu_is_mx6q())
+    if (!cpu_is_mx6())
         rotMirMode = rotatorModeConversion[rotMirMode];
     rotMirMode |= rotMirEnable;
     vpu_reg_write(CMD_ENC_PIC_ROT_MODE, rotMirMode);
@@ -1019,7 +935,7 @@ RetCode VPU_EncStartOneFrame(EncHandle handle, EncParam * param)
                       (pEncInfo->encReportMVInfo.enable << 4) |
                       (pEncInfo->encReportMBInfo.enable << 3) | 1);
     } else {
-        if (cpu_is_mx6q()) {
+        if (cpu_is_mx6()) {
             vpu_reg_write(CMD_ENC_PIC_SRC_INDEX, pSrcFrame->myIndex);
             vpu_reg_write(CMD_ENC_PIC_SRC_STRIDE, pSrcFrame->strideY);
         }
@@ -1033,7 +949,7 @@ RetCode VPU_EncStartOneFrame(EncHandle handle, EncParam * param)
         val = (pEncInfo->encReportSliceInfo.enable << 5) |
             (pEncInfo->encReportMVInfo.enable << 4) |
             (pEncInfo->encReportMBInfo.enable << 3) | (param->forceIPicture << 1 & 0x2);
-        if (!cpu_is_mx6q())
+        if (!cpu_is_mx6())
             val |= (!param->enableAutoSkip) << 2;
         vpu_reg_write(CMD_ENC_PIC_OPTION, val);
     }
@@ -1079,7 +995,7 @@ RetCode VPU_EncStartOneFrame(EncHandle handle, EncParam * param)
         }
     }
 
-    if (cpu_is_mx6q()) {
+    if (cpu_is_mx6()) {
         val = (pEncInfo->secAxiUse.useBitEnable |
                pEncInfo->secAxiUse.useIpEnable << 1 |
                pEncInfo->secAxiUse.useDbkEnable << 2 |
@@ -1106,7 +1022,7 @@ RetCode VPU_EncStartOneFrame(EncHandle handle, EncParam * param)
     }
     vpu_reg_write(BIT_AXI_SRAM_USE, val);
 
-    if (cpu_is_mx6q()) {
+    if (cpu_is_mx6()) {
         val = (pEncInfo->subFrameSyncConfig.subFrameSyncOn << 15 |
                pEncInfo->subFrameSyncConfig.sourceBufNumber << 8 |
                pEncInfo->subFrameSyncConfig.sourceBufIndexBase << 0);
@@ -1120,18 +1036,6 @@ RetCode VPU_EncStartOneFrame(EncHandle handle, EncParam * param)
     return RETCODE_SUCCESS;
 }
 
-/*!
- * @brief Get information of the output of encoding.
- *
- * @param encHandle [Input] The handle obtained from VPU_EncOpen().
- * @param info [Output] Pointer to EncOutputInfo data structure.
- *
- * @return
- * @li RETCODE_SUCCESS Successful operation.
- * @li RETCODE_INVALID_HANDLE encHandle is invalid.
- * @li RETCODE_WRONG_CALL_SEQUENCE Wrong calling sequence.
- * @li RETCODE_INVALID_PARAM info is a null pointer.
- */
 RetCode VPU_EncGetOutputInfo(EncHandle handle, EncOutputInfo * info)
 {
     CodecInst *pCodecInst;
@@ -1162,7 +1066,7 @@ RetCode VPU_EncGetOutputInfo(EncHandle handle, EncOutputInfo * info)
 
     /* Clock is gated off when received interrupt in driver, so need to gate on here. */
 
-    if (cpu_is_mx6q() && vpu_reg_read(RET_ENC_PIC_SUCCESS) & (1 << 31)) {
+    if (cpu_is_mx6() && vpu_reg_read(RET_ENC_PIC_SUCCESS) & (1 << 31)) {
         return RETCODE_MEMORY_ACCESS_VIOLATION;
     }
 
@@ -1253,18 +1157,6 @@ RetCode VPU_EncGetOutputInfo(EncHandle handle, EncOutputInfo * info)
     return RETCODE_SUCCESS;
 }
 
-/*!
- * @brief This function gives a command to the encoder.
- *
- * @param encHandle [Input] The handle obtained from VPU_EncOpen().
- * @param cmd [Intput] user command.
- * @param param [Intput/Output] param  for cmd.
- *
- * @return
- * @li RETCODE_INVALID_COMMAND cmd is not one of 8 values above.
- * @li RETCODE_INVALID_HANDLE encHandle is invalid.
- * @li RETCODE_FRAME_NOT_COMPLETE A frame has not been finished
- */
 RetCode VPU_EncGiveCommand(EncHandle handle, CodecCommand cmd, void *param)
 {
     CodecInst *pCodecInst;
@@ -1647,17 +1539,6 @@ RetCode VPU_EncGiveCommand(EncHandle handle, CodecCommand cmd, void *param)
     return RETCODE_SUCCESS;
 }
 
-/*!
- * @brief Decoder initialization
- *
- * @param pHandle [Output] Pointer to DecHandle type
- * @param pop [Input] Pointer to DecOpenParam type.
- *
- * @return
- * @li RETCODE_SUCCESS Success in acquisition of a decoder instance.
- * @li RETCODE_FAILURE Failed in acquisition of a decoder instance.
- * @li RETCODE_INVALID_PARAM pop is a null pointer or invalid.
- */
 RetCode VPU_DecOpen(DecHandle * pHandle, DecOpenParam * pop)
 {
     CodecInst *pCodecInst;
@@ -1734,9 +1615,6 @@ RetCode VPU_DecOpen(DecHandle * pHandle, DecOpenParam * pop)
     pDecInfo->streamBufStartAddr = pop->bitstreamBuffer;
     pDecInfo->streamBufSize = pop->bitstreamBufferSize;
     pDecInfo->streamBufEndAddr = pop->bitstreamBuffer + pop->bitstreamBufferSize;
-    pDecInfo->jpgInfo.pVirtBitStream = pop->pBitStream;
-    pDecInfo->jpgInfo.frameOffset = 0;
-    pDecInfo->jpgInfo.lineBufferMode = pop->jpgLineBufferMode;
 
     pDecInfo->frameBufPool = 0;
 
@@ -1794,16 +1672,6 @@ RetCode VPU_DecOpen(DecHandle * pHandle, DecOpenParam * pop)
     return RETCODE_SUCCESS;
 }
 
-/*!
- * @brief Decoder close function
- *
- * @param  handle [Input] The handle obtained from VPU_DecOpen().
- *
- * @return
- * @li RETCODE_SUCCESS Successful closing.
- * @li RETCODE_INVALID_HANDLE decHandle is invalid.
- * @li RETCODE_FRAME_NOT_COMPLETE A frame has not been finished.
- */
 RetCode VPU_DecClose(DecHandle handle)
 {
     CodecInst *pCodecInst;
@@ -1850,20 +1718,6 @@ RetCode VPU_DecSetEscSeqInit(DecHandle handle, int32_t escape)
     return RETCODE_SUCCESS;
 }
 
-/*!
- * @brief Get header information of bitstream.
- *
- * @param handle [Input] The handle obtained from VPU_DecOpen().
- * @param info [Output] Pointer to DecInitialInfo data structure.
- *
- * @return
- * @li RETCODE_SUCCESS Successful operation.
- * @li RETCODE_FAILURE There was an error in getting initial information.
- * @li RETCODE_INVALID_HANDLE decHandle is invalid.
- * @li RETCODE_INVALID_PARAM info is an invalid pointer.
- * @li RETCODE_FRAME_NOT_COMPLETE A frame has not been finished.
- * @li RETCODE_WRONG_CALL_SEQUENCE Wrong calling sequence.
- */
 RetCode VPU_DecGetInitialInfo(DecHandle handle, DecInitialInfo * info)
 {
     CodecInst *pCodecInst;
@@ -2054,24 +1908,6 @@ RetCode VPU_DecGetInitialInfo(DecHandle handle, DecInitialInfo * info)
     return RETCODE_SUCCESS;
 }
 
-/*!
- * @brief Register decoder frame buffers.
- *
- * @param handle [Input] The handle obtained from VPU_DecOpen().
- * @param bufArray [Input] Pointer to the first element of an array of FrameBuffer.
- * @param num [Input] Number of elements of the array.
- * @param stride [Input] Stride value of frame buffers being registered.
- *
- * @return
- * @li RETCODE_SUCCESS Successful operation.
- * @li RETCODE_INVALID_HANDLE decHandle is invalid.
- * @li RETCODE_FRAME_NOT_COMPLETE A frame has not been finished.
- * @li RETCODE_WRONG_CALL_SEQUENCE Wrong calling sequence.
- * @li RETCODE_INVALID_FRAME_BUFFER Buffer is an invalid pointer.
- * @li RETCODE_INSUFFICIENT_FRAME_BUFFERS num is less than
- * the value requested by VPU_DecGetInitialInfo().
- * @li RETCODE_INVALID_STRIDE stride is less than the picture width.
- */
 RetCode VPU_DecRegisterFrameBuffer(DecHandle handle,
                                    FrameBuffer * bufArray, int32_t num, int32_t stride,
                                    DecBufInfo * pBufInfo)
@@ -2178,25 +2014,13 @@ RetCode VPU_DecRegisterFrameBuffer(DecHandle handle,
 
     while (vpu_reg_read(BIT_BUSY_FLAG)) ;
 
-    if (cpu_is_mx6q() && vpu_reg_read(RET_SET_FRAME_SUCCESS) & (1 << 31)) {
+    if (cpu_is_mx6() && vpu_reg_read(RET_SET_FRAME_SUCCESS) & (1 << 31)) {
         return RETCODE_MEMORY_ACCESS_VIOLATION;
     }
 
     return RETCODE_SUCCESS;
 }
 
-/*!
- * @brief Get bitstream for decoder.
- *
- * @param handle [Input] The handle obtained from VPU_DecOpen().
- * @param bufAddr [Output] Bitstream buffer physical address.
- * @param size [Output] Bitstream size.
- *
- * @return
- * @li RETCODE_SUCCESS Successful operation.
- * @li RETCODE_INVALID_HANDLE decHandle is invalid.
- * @li RETCODE_INVALID_PARAM buf or size is invalid.
- */
 RetCode VPU_DecGetBitstreamBuffer(DecHandle handle,
                                   PhysicalAddress * paRdPtr,
                                   PhysicalAddress * paWrPtr, uint32_t * size)
@@ -2239,17 +2063,6 @@ RetCode VPU_DecGetBitstreamBuffer(DecHandle handle,
     return RETCODE_SUCCESS;
 }
 
-/*!
- * @brief Update the current bit stream position.
- *
- * @param handle [Input] The handle obtained from VPU_DecOpen().
- * @param size [Input] Size of bit stream you put.
- *
- * @return
- * @li RETCODE_SUCCESS Successful operation.
- * @li RETCODE_INVALID_HANDLE decHandle is invalid.
- * @li RETCODE_INVALID_PARAM Invalid input parameters.
- */
 RetCode VPU_DecUpdateBitstreamBuffer(DecHandle handle, uint32_t size)
 {
     CodecInst *pCodecInst;
@@ -2286,7 +2099,7 @@ RetCode VPU_DecUpdateBitstreamBuffer(DecHandle handle, uint32_t size)
     rdPtr = (pCodecInst->instIndex == instIndex) ?
         vpu_reg_read(BIT_RD_PTR) : pCodecInst->ctxRegs[CTX_BIT_RD_PTR];
 
-    if ((!cpu_is_mx6q() && pDecInfo->filePlayEnable != 1) || cpu_is_mx6q()) {
+    if ((!cpu_is_mx6() && pDecInfo->filePlayEnable != 1) || cpu_is_mx6()) {
         if (wrPtr < rdPtr) {
             if (rdPtr <= wrPtr + size) {
                 return RETCODE_INVALID_PARAM;
@@ -2315,17 +2128,6 @@ RetCode VPU_DecUpdateBitstreamBuffer(DecHandle handle, uint32_t size)
     return RETCODE_SUCCESS;
 }
 
-/*!
- * @brief Start decoding one frame.
- *
- * @param handle [Input] The handle obtained from VPU_DecOpen().
- *
- * @return
- * @li RETCODE_SUCCESS Successful operation.
- * @li RETCODE_INVALID_HANDLE decHandle is invalid.
- * @li RETCODE_FRAME_NOT_COMPLETE A frame has not been finished.
- * @li RETCODE_WRONG_CALL_SEQUENCE Wrong calling sequence.
- */
 RetCode VPU_DecStartOneFrame(DecHandle handle, DecParam * param)
 {
     CodecInst *pCodecInst;
@@ -2427,7 +2229,7 @@ RetCode VPU_DecStartOneFrame(DecHandle handle, DecParam * param)
     } else {
         if (param->skipframeMode)
             val |= (param->skipframeMode << 3);
-        if (!cpu_is_mx6q()) {
+        if (!cpu_is_mx6()) {
             val |= (param->prescanMode << 1);
             val |= (param->prescanEnable);
         }
@@ -2455,18 +2257,6 @@ RetCode VPU_DecStartOneFrame(DecHandle handle, DecParam * param)
     return RETCODE_SUCCESS;
 }
 
-/*!
- * @brief Get the information of output of decoding.
- *
- * @param handle [Input] The handle obtained from VPU_DecOpen().
- * @param info [Output] Pointer to DecOutputInfo data structure.
- *
- * @return
- * @li RETCODE_SUCCESS Successful operation.
- * @li RETCODE_INVALID_HANDLE decHandle is invalid.
- * @li RETCODE_WRONG_CALL_SEQUENCE Wrong calling sequence.
- * @li RETCODE_INVALID_PARAM Info is an invalid pointer.
- */
 RetCode VPU_DecGetOutputInfo(DecHandle handle, DecOutputInfo * info)
 {
     CodecInst *pCodecInst;
@@ -2501,7 +2291,7 @@ RetCode VPU_DecGetOutputInfo(DecHandle handle, DecOutputInfo * info)
     val = vpu_reg_read(RET_DEC_PIC_SUCCESS);
     info->decodingSuccess = (val & 0x01);
 
-    if (cpu_is_mx6q()) {
+    if (cpu_is_mx6()) {
         if (val & (1 << 31)) {
             *ppendingInst = 0;
             return RETCODE_MEMORY_ACCESS_VIOLATION;
@@ -2524,7 +2314,7 @@ RetCode VPU_DecGetOutputInfo(DecHandle handle, DecOutputInfo * info)
     info->decPicHeight = val & 0xFFFF;
     info->decPicWidth = (val >> 16) & 0xFFFF;
 
-    if (cpu_is_mx6q()) {
+    if (cpu_is_mx6()) {
         info->frameStartPos = vpu_reg_read(BIT_BYTE_POS_FRAME_START);
         info->frameEndPos = vpu_reg_read(BIT_BYTE_POS_FRAME_END);
         if (info->frameEndPos > (int32_t) pDecInfo->streamBufEndAddr) {
@@ -2534,7 +2324,7 @@ RetCode VPU_DecGetOutputInfo(DecHandle handle, DecOutputInfo * info)
             info->consumedByte = info->frameEndPos - info->frameStartPos;
     }
 
-    if (cpu_is_mx6q() && pCodecInst->codecMode == VC1_DEC) {
+    if (cpu_is_mx6() && pCodecInst->codecMode == VC1_DEC) {
         val = vpu_reg_read(RET_DEC_PIC_POST);
         info->hScaleFlag = val >> 1 & 1;
         info->vScaleFlag = val >> 2 & 1;
@@ -2593,7 +2383,7 @@ RetCode VPU_DecGetOutputInfo(DecHandle handle, DecOutputInfo * info)
         info->picType = val & 0x3f;
     else
         info->picType = val & 0x7;
-    if (cpu_is_mx6q()) {
+    if (cpu_is_mx6()) {
         info->picTypeFirst = (val & 0x38) >> 3;
         info->idrFlg = (val & 0xC0) >> 6;
     }
@@ -2610,7 +2400,7 @@ RetCode VPU_DecGetOutputInfo(DecHandle handle, DecOutputInfo * info)
         info->progressiveFrame = (val >> 23) & 0x0003;
     info->fieldSequence = (val >> 25) & 0x0007;
 
-    if (cpu_is_mx6q()) {
+    if (cpu_is_mx6()) {
         info->frameRateRes = vpu_reg_read(RET_DEC_PIC_FRATE_NR);
         info->frameRateDiv = vpu_reg_read(RET_DEC_PIC_FRATE_DR);
         if (pCodecInst->codecMode == AVC_DEC && info->frameRateDiv)
@@ -2622,7 +2412,7 @@ RetCode VPU_DecGetOutputInfo(DecHandle handle, DecOutputInfo * info)
     }
 
     info->numOfErrMBs = vpu_reg_read(RET_DEC_PIC_ERR_MB);
-    if (!cpu_is_mx6q())
+    if (!cpu_is_mx6())
         info->prescanresult = vpu_reg_read(RET_DEC_PIC_OPTION);
 
     info->indexFrameDisplay = vpu_reg_read(RET_DEC_PIC_FRAME_IDX);
@@ -2657,7 +2447,7 @@ RetCode VPU_DecGetOutputInfo(DecHandle handle, DecOutputInfo * info)
         info->mvcPicInfo.viewIdxDecoded = (val >> 1) & 1;
     }
 
-    if (cpu_is_mx6q() && (pCodecInst->codecMode == AVC_DEC)) {
+    if (cpu_is_mx6() && (pCodecInst->codecMode == AVC_DEC)) {
         val = vpu_reg_read(RET_DEC_PIC_AVC_FPA_SEI0);
 
         if (val < 0)
@@ -2729,7 +2519,7 @@ RetCode VPU_DecBitBufferFlush(DecHandle handle)
         return RETCODE_WRONG_CALL_SEQUENCE;
     }
 
-    if (cpu_is_mx6q())
+    if (cpu_is_mx6())
         pCodecInst->ctxRegs[CTX_BIT_RD_PTR] = pDecInfo->streamBufStartAddr;
 
     BitIssueCommand(pCodecInst, DEC_BUF_FLUSH);
@@ -2782,11 +2572,6 @@ static int BitCount(uint32_t u32)
     return ((int)tmp);
 }
 
-/*!
- * check the VPU decoder buffer status. if there is avaible buffer for output,
- * VPU can start to decode the next frame, or else, skip this loop and wait 
- * untill available.
- */
 RetCode VPU_DecBufferCheck(DecHandle handle)
 {
     CodecInst *pCodecInst;
@@ -2811,18 +2596,6 @@ RetCode VPU_DecBufferCheck(DecHandle handle)
 
 }
 
-/*!
- * @brief Give command to the decoder.
- *
- * @param handle [Input] The handle obtained from VPU_DecOpen().
- * @param cmd [Intput] Command.
- * @param param [Intput/Output] param  for cmd.
- *
- * @return
- * @li RETCODE_INVALID_COMMANDcmd is not valid.
- * @li RETCODE_INVALID_HANDLE decHandle is invalid.
- * @li RETCODE_FRAME_NOT_COMPLETE A frame has not been finished.
- */
 RetCode VPU_DecGiveCommand(DecHandle handle, CodecCommand cmd, void *param)
 {
     CodecInst *pCodecInst;
@@ -3079,3 +2852,7 @@ RetCode VPU_ClearInterrupt(void)
 
     return RETCODE_SUCCESS;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////

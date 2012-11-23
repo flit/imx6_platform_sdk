@@ -770,7 +770,7 @@ int32_t decoder_setup(void *arg)
                             dec->virt_bsbuf_addr,
                             (dec->virt_bsbuf_addr + STREAM_BUF_SIZE),
                             dec->phy_bsbuf_addr, fillsize);
-        card_wait_xfer_done(SD_PORT_INDEX);
+    card_wait_xfer_done(SD_PORT_INDEX);
 
     if (ret < 0) {
         err_msg("dec_fill_bsbuffer failed\n");

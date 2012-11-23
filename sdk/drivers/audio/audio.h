@@ -40,6 +40,11 @@
 
 #include "i2c/imx_i2c.h"
 
+/*
+ * This macro is for test purpose only, do not define it unless you know what you are doing.
+ */
+//#define ESAI_AC97_SUPPORT
+
 #define AUDIO_RECORD_BUF_LEN    0x100000
 
 //! @brief AUDIO bus types

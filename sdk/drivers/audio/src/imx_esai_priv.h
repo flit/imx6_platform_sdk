@@ -38,7 +38,7 @@
 #ifndef _IMX_ESAI_PRIV_H_
 #define _IMX_ESAI_PRIV_H_
 
-#define ESAI_TX_FIFO_SIZE	120
+#define ESAI_TX_FIFO_SIZE	128
 
 #define ESAI_TFCR_TE(x) ((0x3f >> (6 - (((x) + 1) >> 1))) << 2)
 #define ESAI_TFCR_TFWM(x)	(((x) - 1) << 8)

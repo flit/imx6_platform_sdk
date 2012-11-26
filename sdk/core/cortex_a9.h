@@ -128,6 +128,10 @@ void arm_dcache_flush_mlines(const void * addr, size_t length);
 
 //! @name Instrution cache operations
 //@{
+
+//! @brief Check if icache is enabled or disabled.
+int arm_icache_state_query();
+
 //! @brief Enables instruction cache at any available cache level.
 //!
 //! Works without enabled MMU too!

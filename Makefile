@@ -68,7 +68,8 @@ ALL_APPS += \
     gpu_demo \
     multicore_demo \
     caam_blob_gen \
-	filesystem
+	filesystem \
+	cpu_workpoint
 endif
 
 # Default target.

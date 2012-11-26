@@ -205,6 +205,21 @@ void arm_dcache_flush_mlines(const void * addr, size_t length)
     _ARM_DSB();
 }
 
+int arm_icache_state_query()
+{
+    uint32_t sctlr; // System Control Register 
+    
+    // read sctlr 
+    _ARM_MRC(15, 0, sctlr, 1, 0, 0);
+        
+    if (sctlr & BM_SCTLR_I)
+    {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
 void arm_icache_enable()
 {
     uint32_t sctlr  ;// System Control Register 

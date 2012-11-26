@@ -110,29 +110,29 @@ void board_name(char* const name, const uint32_t board_id)
 {
     switch (board_id)
     {
-		case BOARD_TYPE_SABRE_AI:
-			sprintf(name, "Sabre AI (ARD)");
-			break;
-		case BOARD_TYPE_SMART_DEVICE:
-			sprintf(name, "Smart Device (SD)");
-			break;
-		case BOARD_TYPE_EVB:
-			sprintf(name, "EVB");
-			break;
-		case BOARD_TYPE_EVK:
-		{
-			if ( HW_OCOTP_CFG2_RD() & EPDC_DISABLED_MASK )
-				sprintf(name, "EVK SPDC");
-			else if ( HW_OCOTP_CFG2_RD() & SIPIX_DISABLED_MASK )
-				sprintf(name, "EVK EPDC");
-			else
-				sprintf(name, "EVK");
+        case BOARD_TYPE_SABRE_AI:
+            sprintf(name, "Sabre AI (ARD)");
+            break;
+        case BOARD_TYPE_SMART_DEVICE:
+            sprintf(name, "Smart Device (SD)");
+            break;
+        case BOARD_TYPE_EVB:
+            sprintf(name, "EVB");
+            break;
+        case BOARD_TYPE_EVK:
+        {
+            if ( HW_OCOTP_CFG2_RD() & EPDC_DISABLED_MASK )
+                sprintf(name, "EVK SPDC");
+            else if ( HW_OCOTP_CFG2_RD() & SIPIX_DISABLED_MASK )
+                sprintf(name, "EVK EPDC");
+            else
+                sprintf(name, "EVK");
 
-			break;
-		}
-		default:
-			sprintf(name, "UNKNOWN BOARD");
-			break;
+            break;
+        }
+        default:
+            sprintf(name, "UNKNOWN BOARD");
+            break;
     }
 }
 
@@ -207,7 +207,7 @@ void show_board_id(const fsl_board_id_t board_id, const char* const indent)
 {
     const char* const loc_indent = indent == NULL ? "" : indent;
 
-	printf("%s========== board id\n", loc_indent);
+    printf("%s========== board id\n", loc_indent);
 
     char chip_str[64] = { 0 };
     char chip_str_full[64] = { 0 };
@@ -225,7 +225,7 @@ void show_board_id(const fsl_board_id_t board_id, const char* const indent)
            board_id.U);
     printf("%s    Chip Type       = %s (0x%02X)\n", loc_indent, chip_str_full, board_id.B.CHIP_TYPE_ID);
     printf("%s    Chip Revision   = %s (0x%02X)(0x%02X)\n", loc_indent, chip_rev_str,
-    		board_id.B.CHIP_REV_MAJOR, board_id.B.CHIP_REV_MINOR);
+            board_id.B.CHIP_REV_MAJOR, board_id.B.CHIP_REV_MINOR);
     printf("%s    Board Type      = %s (0x%02X)\n", loc_indent, board_str, board_id.B.BOARD_TYPE_ID);
     printf("%s    Board Revision  = %s (0x%02X)\n", loc_indent, board_rev_str, board_id.B.BOARD_REV);
 

@@ -39,16 +39,14 @@
 #include "registers/regsocotp.h"
 #include "registers/regssnvs.h"
 
-static const char * const test_name = "SNVS - SRTC Test";
+const char g_snvs_srtc_test_name[] = "SNVS - SRTC Test";
+
 /*!
  * The SRTC test enables the SRTC of the SNVS and check if the SRTC LP counter toggles.
  */
 test_return_t snvs_srtc_test(void)
 {
 	const char* indent = menu_get_indent();
-
-    if ( prompt_run_test(test_name, indent) != TEST_CONTINUE )
-    	return TEST_BYPASSED;
 
     // Check to see if Secure Clock can run
     // SEC_CONFIG[0] ( 0x440[7:0] bit 1 )
@@ -64,9 +62,7 @@ test_return_t snvs_srtc_test(void)
     	printf("%s%s%sWARNING!! SNVS SRTC TEST MAY FAIL BECAUSE DEVICE IS IN AN INVALID\n", indent, NULL, g_TextColorYellow);
     	printf(    "%sSECURITY MODE. FREESCALE DOES NOT DISTRIBUTE BOARDS IN THIS MODE.\n", indent);
     	printf(    "%sPLEASE CONTACT YOUR FREESCALE REPRESENTATIVE FOR INSTRUCTIONS TO\n", indent);
-    	printf(    "%sRECONFIGURE THIS DEVICE TO A VALID SECURITY MODE.\n", indent);
-
-    	printf( "\n%s%s SKIPPED.%s\n", indent, test_name, g_TextAttributeDefault);
+    	printf(    "%sRECONFIGURE THIS DEVICE TO A VALID SECURITY MODE.%s\n", indent, g_TextAttributeDefault);
 
     	return TEST_BYPASSED;
     }

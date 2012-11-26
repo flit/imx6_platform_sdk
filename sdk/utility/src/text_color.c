@@ -58,6 +58,10 @@ const char* const g_TextColorBlue          = "\033[34m";
 const char* const g_TextColorMagenta       = "\033[35m";
 const char* const g_TextColorCyan          = "\033[36m";
 const char* const g_TextColorWhite         = "\033[37m";
+const char* const g_TextColorOrange        = "\033[38;5;172m";
+const char* const g_TextColorLightBlue     = "\033[38;5;039m";
+const char* const g_TextColorGray          = "\033[38;5;008m";
+const char* const g_TextColorPurple        = "\033[38;5;097m";
 
 void printf_color(const char* const attrib, const char* const color, const char* format, ...)
 {

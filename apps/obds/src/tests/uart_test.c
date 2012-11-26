@@ -40,7 +40,11 @@
 #include "irq_numbers.h"
 #include "uart/imx_uart.h"
 
+const char g_uart_test_name[] = "UART Test";
+
+
 void uart_interrupt_handler(void);
+static volatile uint8_t g_wait_for_irq;
 
 /* UART3 port is free for i.MX6DQ/SDL and i.MX53 platforms */
 static hw_module_t uart_port = {
@@ -51,10 +55,6 @@ static hw_module_t uart_port = {
     IMX_INT_UART3,
     &uart_interrupt_handler,
 };
-
-static volatile uint8_t g_wait_for_irq;
-
-static const char * const uart_test_name = "UART Test";
 
 /*! 
  * UART interrupt handler.
@@ -83,13 +83,9 @@ void uart_interrupt_handler(void)
 test_return_t uart_test(void)
 {
     uint8_t sel;
-    
 	const char* const indent = menu_get_indent();
 
-    if ( prompt_run_test(uart_test_name, indent) != TEST_CONTINUE )
-    	return TEST_BYPASSED;
-
-    printf("\n%s---- Running UART test, type 'x' to exit.\n", indent);
+    printf("\n%sTest will echo characters to the terminal.\n\n%sType 'x' to exit.\n", indent, indent);
 
     /* Initialize the UART port */
     uart_init(&uart_port, 115200, PARITY_NONE, STOPBITS_ONE, EIGHTBITS, FLOWCTRL_OFF);
@@ -108,7 +104,7 @@ test_return_t uart_test(void)
         } while (sel == (uint8_t) 0xFF);
 
         if (sel == 'x') {
-            printf("%s\nTest exit.\n", indent);
+            printf("\n%sTest exit.\n", indent);
             /* Disable the interrupts for UART3 */
             uart_setup_interrupt(&uart_port, FALSE);
             break;

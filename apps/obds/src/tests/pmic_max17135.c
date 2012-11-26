@@ -105,26 +105,10 @@ int i2c_device_id_check_MAX17135(void)
 /*!
  * @return      TEST_PASSED or  TEST_FAILED    
  */
-menu_action_t pmic_MAX17135_test(const menu_context_t* context, void* param)
+test_return_t pmic_MAX17135_test(void)
 {
-	if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
-    {
-    	*(test_return_t*)param = TEST_BYPASSED;
-    	return MENU_CONTINUE;
-    }
-    
-    if  (i2c_device_id_check_MAX17135() == TEST_PASSED)
-    {
-        //PASS the test
-        print_test_passed(test_name, NULL);
+    if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
+        return TEST_BYPASSED;
 
-        *(test_return_t*)param = TEST_PASSED;
-    }
-    else
-    {
-        print_test_failed(test_name, NULL);
-
-        *(test_return_t*)param = TEST_FAILED;
-    }    
-    return MENU_CONTINUE;   
+    return i2c_device_id_check_MAX17135();
 }

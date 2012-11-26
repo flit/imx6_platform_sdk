@@ -202,35 +202,25 @@ int mma8451_show_accel(unsigned int i2c_base_addr)
 /*!
  * @return      TEST_PASSED or  TEST_FAILED    
  */
-menu_action_t i2c_device_MMA8451_test(const menu_context_t* context, void* param)
+test_return_t i2c_device_MMA8451_test(void)
 {
-	unsigned int i2c_base_addr;
-	
-	if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
-    {
-    	*(test_return_t*)param = TEST_BYPASSED;
-    	return MENU_CONTINUE;
-    }
-       if ((BOARD_TYPE == BOARD_TYPE_DEFAULT) || (BOARD_TYPE == BOARD_TYPE_EVB)) {
+    unsigned int i2c_base_addr;
 
-    } else if (BOARD_TYPE == BOARD_TYPE_SMART_DEVICE) {
+    if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
+        return TEST_BYPASSED;
+
+    if ((BOARD_TYPE == BOARD_TYPE_DEFAULT) || (BOARD_TYPE == BOARD_TYPE_EVB))
+    {
+
+    }
+    else if (BOARD_TYPE == BOARD_TYPE_SMART_DEVICE)
+    {
         i2c_base_addr = I2C1_BASE_ADDR;
-    } else if (BOARD_TYPE == BOARD_TYPE_SABRE_AI) {
-    	i2c_base_addr = I2C3_BASE_ADDR;
     }
-    
-    if (i2c_device_id_check_MMA8451(i2c_base_addr) == TEST_PASSED)
+    else if (BOARD_TYPE == BOARD_TYPE_SABRE_AI)
     {
-        //PASS the test
-        print_test_passed(test_name, NULL);
-
-        *(test_return_t*)param = TEST_PASSED;
+        i2c_base_addr = I2C3_BASE_ADDR;
     }
-    else
-    {
-        print_test_failed(test_name, NULL);
 
-        *(test_return_t*)param = TEST_FAILED;
-    }    
-    return MENU_CONTINUE;   
+    return i2c_device_id_check_MMA8451(i2c_base_addr);
 }

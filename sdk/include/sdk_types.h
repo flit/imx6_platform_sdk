@@ -89,8 +89,9 @@ static inline void debug_printf(const char * format, ...)
 //! @name Test results
 typedef enum _test_return
 {
-	TEST_NOT_IMPLEMENTED = -2, // present in the menu, but not functional
-	TEST_FAILED          = -1,
+    TEST_NOT_STARTED     = -3, // present in the menu, but not run
+    TEST_NOT_IMPLEMENTED = -2, // present in the menu, but not functional
+    TEST_FAILED          = -1,
     TEST_PASSED          = 0,
     TEST_BYPASSED        = 2,  // user elected to exit the test before it was run
     TEST_NOT_PRESENT     = 3,  // not present in the menu.

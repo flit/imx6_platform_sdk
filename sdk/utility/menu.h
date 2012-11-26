@@ -99,20 +99,13 @@ struct _menuitem
     //! @brief The text associated with the menuitem describing the function. Can be NULL.
     const char* description;
 
-    union action_t
-    {
-		//! @brief A pointer to the submenu's menuitems. Valid for #MENUITEM_SUBMENU menuitems. Ignored otherwise.
-		const menu_t* submenu;
+    //! @brief A pointer to the submenu's menuitems. Valid for #MENUITEM_SUBMENU menuitems. Ignored otherwise.
+    const menu_t* submenu;
 
-		union func_t
-		{
-			//! @brief A pointer to the menu execution function. Valid for #MENUITEM_FUNCTION menuitems. Ignored otherwise.
-			menu_function_t ptr;
+    //! @brief A pointer to the menu execution function. Valid for #MENUITEM_FUNCTION menuitems. Ignored otherwise.
+    menu_function_t func_ptr;
 
-			void* param;
-		} func;
-
-    }action;
+    void* func_param;
 };
 
 //! @brief Menu container to hold data needed to describe a menu or submenu.
@@ -194,6 +187,16 @@ menu_action_t menuitem_cmd_exitmenu(void* param);
 //! These functions allow the caller to easily construct a menu at runtime.
 //@{
 /*!
+ * @brief Appends source_menuitems list to target_menuitems.
+ *
+ * @param[in,out] target_menuitems Menuitem array pointer for the target menuitems.
+ * @param[in] target_size Maximum number of menuitems the target_menuitems can hold.
+ * @param[in] source_menuitems Menuitem array pointer for the source menuitems.
+ *
+ * @return new size of the target menuitem array.
+ */
+int menu_append_menuitems(menuitem_t* target_menuitems, int target_size, const menuitem_t* source_menuitems);
+/*!
  * @brief Initializes the passed in menu stuct with the menu elements.
  *
  * @param[in,out] menu Menu struct container for menu elements.
@@ -201,7 +204,7 @@ menu_action_t menuitem_cmd_exitmenu(void* param);
  * @param[in] menuitems Array of menu items representing grouping and selections of the menu.
  * @param[in] footer Instructions for the user presented after the list of menu items.
  */
-void menu_make_menu(menu_t* menu, const char* header, const menuitem_t* menuitems, const char* footer);
+//void menu_make_menu(menu_t* menu, const char* header, const menuitem_t* menuitems, const char* footer);
 
 /*!
  * @brief Initializes the passed in menuitem stuct with the menuitem elements.
@@ -213,8 +216,8 @@ void menu_make_menu(menu_t* menu, const char* header, const menuitem_t* menuitem
  * @param[in] param Object pointer that is passed to the executed function. Generally used to
  *                       pass the return the results of the function.
  */
-void menu_make_menuitem(menuitem_t* menuitem, const char* key, const char* description, menu_function_t func, void* func_param);
-#define MENU_MAKE_MENUITEM(k,d,f,p) { MenuItem_Function, (k), (d), {.func = {.ptr = f, .param = p}} }
+//void menu_make_menuitem(menuitem_t* menuitem, const char* key, const char* description, menu_function_t func, void* func_param);
+#define MENU_MAKE_MENUITEM(k,d,f,p) { MenuItem_Function, k, d, NULL, f, p }
 
 /*!
  * @brief Initializes the passed in menuitem stuct to represent a "Show menu" menu item.
@@ -224,8 +227,8 @@ void menu_make_menuitem(menuitem_t* menuitem, const char* key, const char* descr
  *
  * @param[in,out] menuitem Menuitem struct to be initialized.
  */
-void menu_make_menuitem_showmenu(menuitem_t* menuitem);
-#define MENU_MAKE_MENUITEM_SHOW() { MenuItem_Function, "m", "Display menu.", {.func = {.ptr = menuitem_cmd_showmenu, .param = NULL}} }
+//void menu_make_menuitem_showmenu(menuitem_t* menuitem);
+#define MENU_MAKE_MENUITEM_SHOW() { MenuItem_Function, "m", "Display menu.", NULL, menuitem_cmd_showmenu, NULL }
 
 /*!
  * @brief Initializes the passed in menuitem stuct to represent a "Exit menu" menu item.
@@ -235,8 +238,8 @@ void menu_make_menuitem_showmenu(menuitem_t* menuitem);
  *
  * @param[in,out] menuitem Menuitem struct to be initialized.
  */
-void menu_make_menuitem_exitmenu(menuitem_t* menuitem);
-#define MENU_MAKE_MENUITEM_EXIT() { MenuItem_Function, "q", "Exit menu.", {.func = {.ptr = menuitem_cmd_exitmenu, .param = NULL}} }
+//void menu_make_menuitem_exitmenu(menuitem_t* menuitem);
+#define MENU_MAKE_MENUITEM_EXIT() { MenuItem_Function, "q", "Exit menu.", NULL, menuitem_cmd_exitmenu, NULL }
 
 /*!
  * @brief Initializes the passed in menuitem stuct to represent a selectable submenu.
@@ -249,7 +252,7 @@ void menu_make_menuitem_exitmenu(menuitem_t* menuitem);
  * @param[in] description String used to describe the submenu.
  * @param[in,out] menu Menu to be presented as a submenu when selected.
  */
-void menu_make_menuitem_submenu(menuitem_t* menuitem, const char* key, const char* description, const menu_t* menu);
+//void menu_make_menuitem_submenu(menuitem_t* menuitem, const char* key, const char* description, const menu_t* menu);
 
 /*!
  * @brief Initializes the passed in menuitem stuct to represent a menu group.
@@ -261,7 +264,8 @@ void menu_make_menuitem_submenu(menuitem_t* menuitem, const char* key, const cha
  * @param[in,out] menuitem Menuitem struct to be initialized.
  * @param[in] description String used to describe the following group of menu items. Can be NULL.
  */
-void menu_make_menuitem_group(menuitem_t* menuitem, const char* description);
+//void menu_make_menuitem_group(menuitem_t* menuitem, const char* description);
+#define MENU_MAKE_MENUITEM_GROUP(d) { MenuItem_Group, NULL, d, NULL, NULL, NULL }
 
 /*!
  * @brief Initializes the passed in menuitem stuct to represent the terminating element of a menu.
@@ -271,8 +275,10 @@ void menu_make_menuitem_group(menuitem_t* menuitem, const char* description);
  *
  * @param[in,out] menuitem Menuitem struct representing the terminating element of a menu.
  */
-void menu_make_menuitem_end(menuitem_t* menuitem);
-#define MENU_MAKE_MENUITEM_END() { MenuItem_Null, NULL, NULL, {.func = {.ptr = NULL, .param = NULL}} }
+//void menu_make_menuitem_end(menuitem_t* menuitem);
+#define MENU_MAKE_MENUITEM_END() { MenuItem_Null, NULL, NULL, NULL, NULL, NULL }
+
+void menu_print_menuitem(menuitem_t* menuitem);
 //@}
 
 //! @}

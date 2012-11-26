@@ -178,26 +178,12 @@ int i2c_device_id_check_emc1046(unsigned int i2c_base_addr)
 /*!
  * @return      TEST_PASSED or  TEST_FAILED    
  */
-menu_action_t i2c_device_emc1046_test(const menu_context_t* context, void* param)
+test_return_t i2c_device_emc1046_test(void)
 {
-	if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
-    {
-    	*(test_return_t*)param = TEST_BYPASSED;
-    	return MENU_CONTINUE;
-    }
+    const char * indent = menu_get_indent();
 
-    if (i2c_device_id_check_emc1046(I2C3_BASE_ADDR) == TEST_PASSED)
-    {
-        //PASS the test
-        print_test_passed(test_name, NULL);
+    if ( prompt_run_test(test_name, indent) != TEST_CONTINUE )
+        return TEST_BYPASSED;
 
-        *(test_return_t*)param = TEST_PASSED;
-    }
-    else
-    {
-        print_test_failed(test_name, NULL);
-
-        *(test_return_t*)param = TEST_FAILED;
-    }    
-    return MENU_CONTINUE;   
+    return i2c_device_id_check_emc1046(I2C3_BASE_ADDR);
 }

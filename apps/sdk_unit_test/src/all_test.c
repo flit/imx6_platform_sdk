@@ -86,7 +86,7 @@ extern void spdc_test(void);
 ////////////////////////////////////////////////////////////////////////////////
 
 //! @brief Macro to help create test menu items.
-#define DEFINE_TEST_MENU_ITEM(k, m, t) { MenuItem_Function, k, m, {.func = {.ptr = run_test, .param = t}} }
+#define DEFINE_TEST_MENU_ITEM(k, m, t) MENU_MAKE_MENUITEM(k, m, run_test, t)
 
 //! @brief Typedef for one of the test functions.
 typedef void (*test_function_t)(void);
@@ -96,7 +96,6 @@ typedef void (*test_function_t)(void);
 ////////////////////////////////////////////////////////////////////////////////
 
 menu_action_t run_test(void* param);
-//menu_action_t exit_test(const menu_context_t* context, void* param);
 
 ////////////////////////////////////////////////////////////////////////////////
 // Variables
@@ -144,7 +143,7 @@ const menuitem_t k_menuItems[] = {
         DEFINE_TEST_MENU_ITEM("ei",  "eim test",        eim_test),
         DEFINE_TEST_MENU_ITEM("mi", "mipi test",        mipi_test),
         DEFINE_TEST_MENU_ITEM("f",  "flexcan test",     flexcan_test),
-        DEFINE_TEST_MENU_ITEM("us", "usb test",     	usb_test),
+        DEFINE_TEST_MENU_ITEM("us", "usb test",         usb_test),
         DEFINE_TEST_MENU_ITEM("n",  "spi nor test",     spi_test),
         DEFINE_TEST_MENU_ITEM("pc", "pcie test",        pcie_test),
 #elif defined(BOARD_SMART_DEVICE)
@@ -170,11 +169,9 @@ const menuitem_t k_menuItems[] = {
         
         // Quit menu item
         MENU_MAKE_MENUITEM_EXIT(),
-//        { MENUITEM_FUNCTION, "q", "quit test system", NULL, exit_test, 0 },
         
         // Menu terminator
         MENU_MAKE_MENUITEM_END()
-//        { MENUITEM_NULL }
     };
 
 //! @brief The test selection menu.
@@ -193,13 +190,7 @@ menu_action_t run_test(void* param)
     
     return MenuAction_Show;
 }
-/*
-//! @brief Action function to exit the menu.
-menu_action_t exit_test(const menu_context_t* context, void* param)
-{
-    return MENU_EXIT;
-}
-*/
+
 void ALL_test(void)
 {
     // Just run the test selection menu.

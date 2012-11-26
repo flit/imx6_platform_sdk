@@ -41,7 +41,7 @@
 //extern int can_tx0rx1(void);
 //extern int can_tx1rx0(void);
 
-static const char * const test_name = "FLEXCAN1/2 LOOPBACK Test";
+const char * const flexcan_test_name[] = {"FLEXCAN1/2 LOOPBACK Test\0"};
 
 /*!
  * Test can0 and can1 tx/rx.
@@ -51,9 +51,6 @@ static const char * const test_name = "FLEXCAN1/2 LOOPBACK Test";
 test_return_t flexcan_test(void)
 {
 	const char* indent = menu_get_indent();
-
-    if ( prompt_run_test(test_name, indent) != TEST_CONTINUE )
-    	return TEST_BYPASSED;
 
     test_return_t result1 = TEST_NOT_IMPLEMENTED, result2 = TEST_NOT_IMPLEMENTED;
 
@@ -86,8 +83,6 @@ test_return_t flexcan_test(void)
 /* TODO: Implemnent CAN1 TX -> CAN2 RX
     result2 = can_tx0rx1();
 */
-    print_test_not_implemented(test_name, indent);
-
     return result1 = result2;
 
 /* TODO: Reinstate this code and remove the above code

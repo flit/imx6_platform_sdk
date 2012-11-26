@@ -33,7 +33,7 @@
 
 #define TOUCHBUTTON_I2C_ADDR    0x5A
 
-static const char * const test_name = "TOUCH BUTTONS Test";
+const char g_touch_buttons_test_name[] = "TOUCH BUTTONS Test";
 
 static int touch_button_reg_write(unsigned int i2c_base_addr, unsigned char reg_addr,
                                   unsigned char reg_val)
@@ -172,20 +172,15 @@ static int touch_button_init(unsigned int i2c_base_addr)
     return ret;
 }
 
-menu_action_t touch_button_test(const menu_context_t* context, void* param)
+test_return_t touch_button_test(void)
 {
     unsigned char pval_old = 0, pval_new;
     unsigned char input;
+    const char* const indent = menu_get_indent();
     int i;
 
-    if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
-    {
-    	*(test_return_t*)param = TEST_BYPASSED;
-    	return MENU_CONTINUE;
-    }
-
-    printf("Please press four touch buttons and pressed information will be printed on screen.\n");
-    printf("Pressing any key on the keyboard exits this test\n");
+    printf("%sPlease press four touch buttons and pressed information will be printed on screen.\n", indent);
+    printf("%sPressing any key on the keyboard exits this test\n", indent);
 
     touch_button_init(I2C2_BASE_ADDR);
 
@@ -197,13 +192,13 @@ menu_action_t touch_button_test(const menu_context_t* context, void* param)
 #endif
             pval_new = touch_button_reg_read(I2C2_BASE_ADDR, 0x00);
             if ((pval_new ^ pval_old) & 0x01)
-                printf("SEARCH Press\n");
+                printf("%sSEARCH Press\n", indent);
             if ((pval_new ^ pval_old) & 0x02)
-                printf("BACK Press\n");
+                printf("%sBACK Press\n", indent);
             if ((pval_new ^ pval_old) & 0x04)
-                printf("HOME Press\n");
+                printf("%sHOME Press\n", indent);
             if ((pval_new ^ pval_old) & 0x08)
-                printf("MENU Press\n");
+                printf("%sMENU Press\n", indent);
 
 #if defined(CHIP_MX6DQ)
             writel((1 << 1), GPIO2_BASE_ADDR + GPIO_ISR_OFFSET);    // clear ISR status
@@ -218,10 +213,7 @@ menu_action_t touch_button_test(const menu_context_t* context, void* param)
         }
     }
     
-    print_test_passed(test_name, NULL);
-
-    *(test_return_t*)param = TEST_PASSED;
-    return MENU_CONTINUE;    
+    return TEST_PASSED;
 }
 
 #endif

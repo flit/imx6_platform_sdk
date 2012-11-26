@@ -38,16 +38,30 @@
 #include "obds_hardware.h"
 
 ////////////////////////////////////////////////////////////////////////////////
+// Forward type declarations
+////////////////////////////////////////////////////////////////////////////////
+typedef struct _test_result_node test_result_node_t;
+
+////////////////////////////////////////////////////////////////////////////////
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
 
+//! @brief Flag indicating tests should run with minimal user interaction.
 extern int auto_run_enable;
+
+/*!
+ * @brief OBDS Test function definition. Called in response to a menuitem being selected by the user.
+ *
+ * @return  The result of the test.
+ */
+typedef test_return_t (*obds_test_function_t) (void);
 
 test_return_t prompt_run_test(const char * const test_name, const char* const indent);
 void print_test_passed(const char* const test_name, const char* const indent);
 void print_test_skipped(const char* const test_name, const char* const indent);
 void print_test_failed(const char* const test_name, const char* const indent);
 void print_test_not_implemented(const char* const test_name, const char* const indent);
+void free_test_results(void);
 
 //#define OBDS_DEBUG
 #ifdef OBDS_DEBUG
@@ -62,7 +76,7 @@ void print_test_not_implemented(const char* const test_name, const char* const i
 #define printf2(fmt,args...)
 #endif
 
-// TODO Replasce this with function prompt_run_test
+// TODO Replace this with function prompt_run_test
 #define PROMPT_RUN_TEST(name, indent)                       \
     do {                                                    \
         printf("\n%s---- Running < %s >\n", indent, name);  \
@@ -77,37 +91,97 @@ void print_test_not_implemented(const char* const test_name, const char* const i
 /*!
  * maximum number of tests currently supported
  */
-#define MAX_TESTS              200
+#define MAX_TESTS              50
 
 typedef enum _select_tests
 {
-	SEL_CPU_BOARD_ONLY_TESTS,
-	SEL_MAIN_BOARD_ONLY_TESTS,
-	SEL_CPU_AND_MAIN_BOARD_TESTS,
-	SEL_MENU_TESTS
+    SelectTests_CpuBoardOnly,
+    SelectTests_MainBoardOnly,
+    SelectTests_CpuAndMainBoard,
+    SelectTests_Menu
 
 } select_tests_t;
 
-// OBDS tests
-menu_action_t program_board_id(const menu_context_t* const context, void* const param);
-menu_action_t program_mac_address(const menu_context_t* const context, void* const param);
-menu_action_t ddr_test(const menu_context_t* const context, void* const param);
-menu_action_t android_buttons_test(const menu_context_t* const context, void* const param);
-menu_action_t touch_button_test(const menu_context_t* context, void* param);
-menu_action_t touch_screen_test(const menu_context_t* context, void* param);
-menu_action_t ar8031_test_main(const menu_context_t* const context, void* const param);
-menu_action_t KSZ9021RN_test_main(const menu_context_t* const context, void* const param);
-menu_action_t i2c_device_id_check(const menu_context_t* const context, void* const param); 
-menu_action_t pmic_test(const menu_context_t* const context, void* const param);
+//! @brief OBDS Test container to hold description and results for each test.
+typedef struct _obds_test
+{
+    //! @brief The key associated with the test.
+    const char* key;
 
-menu_action_t snvs_srtc_test(const menu_context_t* const context, void* const param);
-menu_action_t enet_test_main(const menu_context_t* const context, void* const param);
-menu_action_t flexcan_test(const menu_context_t* const context, void* const param);
-menu_action_t i2s_audio_test(const menu_context_t* const context, void* const param);
-menu_action_t uart_test(const menu_context_t* const context, void* const param);
-menu_action_t spi_nor_test(const menu_context_t* const context, void* const param);
-menu_action_t mmcsd_test(const menu_context_t* const context, void* const param);
-menu_action_t pf0100_i2c_device_id_check(const menu_context_t* const context, void* const param);
+    //! @brief The description the test.
+    const char* description;
+
+    //! @brief The test function pointer.
+    obds_test_function_t test_function;
+
+    //! @brief A pointer to the linked list of test results.
+    test_result_node_t* result_node;
+
+} obds_test_t;
+
+//! @brief OBDS Test result linked list node for recording tests results for multiple iterations of the same test.
+typedef struct _test_result_node
+{
+    test_return_t result;
+    test_result_node_t * next;
+} test_result_node_t;
+
+/*!
+ * @brief Menu Execution function definition. Abstraction layer between menu and test.
+ *
+ *        Calls the OBDS test function and stores the result in the global result vector.
+ *
+ * @param   param OBDS test function to call.
+ * @return  How to proceed with menu processing.
+ */
+menu_action_t run_test(void*  param);
+
+// OBDS Test Groups
+extern const menuitem_t MenuList_All_Tests[];
+extern const menuitem_t CPU_Tests[];
+extern const menuitem_t MainBoard_Tests[];
+extern const menuitem_t Menu_Commands[];
+
+// OBDS tests
+extern const char g_program_board_id_test_name[];
+test_return_t program_board_id(void);
+extern const char g_program_mac_address_test_name[];
+test_return_t program_mac_address(void);
+extern const char g_ddr_test_name[];
+test_return_t ddr_test(void);
+extern const char g_snvs_srtc_test_name[];
+test_return_t snvs_srtc_test(void);
+extern const char g_KSZ9021RN_test_name[];
+test_return_t KSZ9021RN_test_main(void);
+extern const char g_ar8031_test_name[];
+test_return_t ar8031_test_main(void);
+extern const char g_eim_NOR_flash_test_name[];
+test_return_t eim_nor_flash_test(void);
+extern const char g_hs_tsc_p1003_i2c_device_id_test_name[];
+test_return_t i2c_device_id_check_p1003(void);
+extern const char g_max7310_i2c_device_id_test_name[];
+test_return_t max7310_i2c_device_id_check(void);
+
+extern const char g_sata_test_name[];
+int sata_test(void);
+
+test_return_t android_buttons_test(void);
+extern const char g_touch_buttons_test_name[];
+test_return_t touch_button_test(void);
+test_return_t touch_screen_test(void);
+test_return_t i2c_device_id_check(void);
+test_return_t pmic_test(void);
+
+test_return_t enet_test_main(void);
+extern const char * const flexcan_test_name[];
+test_return_t flexcan_test(void);
+test_return_t i2s_audio_test(void);
+extern const char * const uart_test_name[];
+test_return_t uart_test(void);
+extern const char * const spi_nor_test_name[];
+test_return_t spi_nor_test(void);
+test_return_t mmcsd_test(void);
+test_return_t pf0100_i2c_device_id_check(void);
 
 //
 // PRIVATE
@@ -115,8 +189,8 @@ menu_action_t pf0100_i2c_device_id_check(const menu_context_t* const context, vo
 extern menuitem_t main_menuitems[];
 
 void report_test_results(void);
-menu_action_t run_all_tests(const menu_context_t* const context, void* const param);
-void select_tests(menuitem_t* const menuitems, const select_tests_t select_tests);
+menu_action_t run_all_tests(void* const param);
+void select_tests(menuitem_t* menuitems, const select_tests_t select_tests);
 
 //list of tests from obds
 extern int eeprom_test_enable;
@@ -136,7 +210,6 @@ extern int sdio_test_enable;
 extern int gps_test_enable;
 extern int ipu_display_test_enable;
 extern int si476x_test_enable;
-//extern int KSZ9021RN_test_enable;
 extern int camera_flashtest_ebable;
 extern int esai_test_enable;
 

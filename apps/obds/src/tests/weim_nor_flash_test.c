@@ -41,6 +41,8 @@
 
 #include "obds.h"
 
+const char g_eim_NOR_flash_test_name[] = "EIM NOR FLASH Test";
+
 /*!
  * Add the following defines to support a new NOR:
  * Only one NOR should be defined here, other must be commented !!!!!!!
@@ -79,17 +81,12 @@ void weim_nor_flash_cs_setup(void)
  * 
  * @return TEST_PASSED or TEST_FAILED
  */
-int weim_nor_flash_test(void)
+test_return_t eim_nor_flash_test(void)
 {
     int rc = 0;
 
-    if (!weim_nor_flash_test_enable) {
-        return TEST_NOT_PRESENT;
-    }
-    PROMPT_RUN_TEST("WEIM NOR FLASH", NULL);
-
     /* init the weim interface for the NOR flash */
-    weim_iomux_config();
+    eim_iomux_config();
 #if defined(BOARD_SABRE_AI) && !defined(BOARD_REV_A)  // for I2C3 steering
     reg32_write(IOMUXC_SW_MUX_CTL_PAD_DISP0_DAT8, ALT5);
     gpio_set_direction(GPIO_PORT4, 29, GPIO_GDIR_OUTPUT);

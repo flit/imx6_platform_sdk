@@ -44,7 +44,7 @@
     
 //#define  SPI_INIT_PARAM  0x00000084
 
-static const char * const spinorflash_test_name = "SPI NOR FLASH Test";
+const char* const spi_nor_test_name[] = {"SPI NOR FLASH Test\0"};
 
 extern int spi_nor_query_atmel(uint32_t * data);
 extern int spi_nor_write_atmel(uint32_t addr, uint8_t * data, uint32_t length);
@@ -127,14 +127,8 @@ test_return_t spi_nor_test(void)
     uint32_t dst[128];
     uint32_t i;
     uint8_t id[4];
-
+    const char* indent = menu_get_indent();
     param_ecspi_t  spiParams = SPI_INIT_PARAM;
-
-
-	const char* indent = menu_get_indent();
-
-    if ( prompt_run_test(spinorflash_test_name, indent) != TEST_CONTINUE )
-    	return TEST_BYPASSED;
 
     //This variable should be set base on board.
     spi_nor_flash_type = M25P32;

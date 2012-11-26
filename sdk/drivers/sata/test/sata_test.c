@@ -33,6 +33,8 @@
 
 #include "sata/imx_sata.h"
 
+const char g_sata_test_name[] = "SATA Test";
+
 extern sata_ahci_regs_t *imx_sata_host;
 extern sata_port_regs_t *imx_sata_port0;
 extern void sata_clock_disable(void);

@@ -215,26 +215,13 @@ int mma8450_show_accel(unsigned int i2c_base_addr)
 /*!
  * @return      TEST_PASSED or  TEST_FAILED    
  */
-menu_action_t i2c_device_MMA8450_test(const menu_context_t* context, void* param)
+test_return_t i2c_device_MMA8450_test(void)
 {
-	if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
-    {
-    	*(test_return_t*)param = TEST_BYPASSED;
-    	return MENU_CONTINUE;
-    }
+    const char * indent = menu_get_indent();
+
+    if ( prompt_run_test(test_name, indent) != TEST_CONTINUE )
+        return TEST_BYPASSED;
+
     //TO be confirmed - i2c-base_addr
-    if (i2c_device_id_check_MMA8450(I2C1_BASE_ADDR) == TEST_PASSED)
-    {
-        //PASS the test
-        print_test_passed(test_name, NULL);
-
-        *(test_return_t*)param = TEST_PASSED;
-    }
-    else
-    {
-        print_test_failed(test_name, NULL);
-
-        *(test_return_t*)param = TEST_FAILED;
-    }    
-    return MENU_CONTINUE;   
+    return i2c_device_id_check_MMA8450(I2C1_BASE_ADDR);
 }

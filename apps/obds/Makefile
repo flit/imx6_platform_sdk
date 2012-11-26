@@ -37,6 +37,7 @@ include $(SDK_ROOT)/mk/common.mk
 # Determine if the target is either the MX6DQ or MX6SDL.
 ifeq "$(TARGET)" "mx6dq"
 is_dq_or_sdl = 1
+is_dq = 1
 else ifeq "$(TARGET)" "mx6sdl"
 is_dq_or_sdl = 1
 endif
@@ -90,11 +91,13 @@ define SOURCES
     src/tests/touch_screen.c
     src/tests/touch_screen_max11801.c
     src/tests/uart_test.c
+    src/tests/weim_nor_flash_test.c
 endef
 
 # Add drivers that are only available of mx6dq or mx6sdl.
 ifdef is_dq_or_sdl
 SOURCES += \
+    $(SDK_LIB_ROOT)/common/ioexpander/test/max7310_test.c \
     src/tests/audio_ssi_test.c \
     src/tests/android_buttons_test.c \
     src/tests/deserializer_ds90ur124.c \
@@ -105,6 +108,12 @@ SOURCES += \
     src/tests/video_dec_adv7180.c \
     src/tests/video_dec_ARD_MB_reset_button.c \
     src/tests/video_dec_ARD_MBrst_from_cpu_expander.c
+endif
+
+# Add drivers that are only available of mx6dq.
+ifdef is_dq
+SOURCES += \
+    $(SDK_LIB_ROOT)/drivers/sata/test/sata_test.c
 endif
 
 # Need to include the SDK library!

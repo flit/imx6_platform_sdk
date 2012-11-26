@@ -60,14 +60,14 @@
 #define CSD1_BASE_ADDR      MMDC1_BASE_ADDR
 #endif
 
-static const char * const test_name = "DDR Test";
+const char g_ddr_test_name[] = "DDR Test";
 
 /*!
  * Run the DDR test.
  *
  * @return      TEST_PASSED or TEST_FAILED
  */
-menu_action_t ddr_test(const menu_context_t* context, void* param)
+test_return_t ddr_test()
 {
 	//
 	// TODO: Get DDR density and nnumber of chip selects from DDR driver?
@@ -80,14 +80,6 @@ menu_action_t ddr_test(const menu_context_t* context, void* param)
     unsigned int *mem_src;
     unsigned int *ps;
     int bank_size = ddr_density / 8;
-
-//	const char* indent = menu_get_indent(context);
-
-    if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
-    {
-    	*(test_return_t*)param = TEST_BYPASSED;
-    	return MENU_CONTINUE;
-    }
 
     /* Data bus, walking ones test */
     /* Looking for shorts on the board, so no need to test both chip selects */
@@ -192,17 +184,7 @@ menu_action_t ddr_test(const menu_context_t* context, void* param)
     }
 
     if (failCount == 0)
-    {
-        print_test_passed(test_name, NULL);
-
-        *(test_return_t*)param = TEST_PASSED;
-        return MENU_CONTINUE;
-    }
+        return TEST_PASSED;
     else
-    {
-        print_test_failed(test_name, NULL);
-
-        *(test_return_t*)param = TEST_FAILED;
-        return MENU_CONTINUE;
-    }
+        return TEST_FAILED;
 }

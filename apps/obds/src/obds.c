@@ -401,10 +401,25 @@ void select_tests(menuitem_t menuitems[], const select_tests_t select_tests)
 
 #if defined(BOARD_SABRE_AI)
 
-    menu_append_menuitems(menuitems, MAX_TESTS, CPU_Tests);
-    menu_append_menuitems(menuitems, MAX_TESTS, MainBoard_Tests);
+    int display = 0;
 
-#endif // defined(BOARD_TYPE_SABRE_AI)
+    if ( select_tests != SelectTests_MainBoardOnly )
+    {
+        menu_append_menuitems(menuitems, MAX_TESTS, CPU_Tests);
+        ipu_display_panel[display++] = DISP_DEV_TFTLCD;
+        ipu_display_panel[display++] = DISP_DEV_LVDS;
+        ipu_display_panel[display++] = DISP_DEV_HDMI;
+    }
+    if ( select_tests != SelectTests_CpuBoardOnly )
+    {
+        menu_append_menuitems(menuitems, MAX_TESTS, MainBoard_Tests);
+        if ( select_tests == SelectTests_MainBoardOnly )
+            ipu_display_panel[display++] = DISP_DEV_LVDS;
+    }
+
+    ipu_display_panel[display++] = DISP_DEV_NULL;
+
+#endif // defined(BOARD_SABRE_AI)
 
     menu_append_menuitems(menuitems, MAX_TESTS, Menu_Commands);
 }
@@ -441,25 +456,24 @@ const menuitem_t Menu_Commands[] =
         MENU_MAKE_MENUITEM("05", g_ar8031_test_name, run_test, ar8031_test_main),
 #endif
         MENU_MAKE_MENUITEM("06", g_eim_NOR_flash_test_name, run_test, eim_nor_flash_test),
-        MENU_MAKE_MENUITEM("07", g_hs_tsc_p1003_i2c_device_id_test_name, run_test, i2c_device_id_check_p1003),
-        MENU_MAKE_MENUITEM("08", g_max7310_i2c_device_id_test_name, run_test, max7310_i2c_device_id_check),
-//        MENU_MAKE_MENUITEM("09", "I2S Audio Test", run_test, i2s_audio_test),
-//        MENU_MAKE_MENUITEM("12", uart_test_name, run_test, uart_test),
-//        MENU_MAKE_MENUITEM("13", spi_nor_test_name, run_test, spi_nor_test),
-//        MENU_MAKE_MENUITEM("14", "MMC/SD Test", run_test, mmcsd_test),
-//        MENU_MAKE_MENUITEM("15", "PMIC - PF0100 Test", run_test, pf0100_i2c_device_id_check),
+        MENU_MAKE_MENUITEM("07", g_max7310_i2c_device_id_test_name, run_test, max7310_i2c_device_id_check),
+        MENU_MAKE_MENUITEM("08", g_hs_tsc_p1003_i2c_device_id_test_name, run_test, i2c_device_id_check_p1003),
+        MENU_MAKE_MENUITEM("09", g_pmic_pf0100_i2c_device_id_test_name, run_test, pf0100_i2c_device_id_check),
+        MENU_MAKE_MENUITEM("10", g_spi_nor_test_name, run_test, spi_nor_test),
+        MENU_MAKE_MENUITEM("11", g_usb_otg_dev_enum_test_name, run_test, usbo_dev_enum_test),
 #if defined(CHIP_MX6DQ)
-//    sata_test_enable = 1;
-        MENU_MAKE_MENUITEM("07", "SATA Test", run_test, sata_test),
+        MENU_MAKE_MENUITEM("25", g_sata_test_name, run_test, sata_test),
 #endif
-//    etm_test_enable = 1;
         MENU_MAKE_MENUITEM_END()
     };
 
 
     const menuitem_t MainBoard_Tests[] =
     {
-//c        MENU_MAKE_MENUITEM_GROUP("Main Board Tests"),
+        MENU_MAKE_MENUITEM_GROUP("Main Board Tests"),
+//        MENU_MAKE_MENUITEM("09", "I2S Audio Test", run_test, i2s_audio_test),
+//        MENU_MAKE_MENUITEM("12", uart_test_name, run_test, uart_test),
+//        MENU_MAKE_MENUITEM("14", "MMC/SD Test", run_test, mmcsd_test),
 //c        MENU_MAKE_MENUITEM("10", "ANDROID BUTTONS Test", run_test, android_buttons_test),
 //c        MENU_MAKE_MENUITEM("11", flexcan_test_name, run_test, flexcan_test),
 //      MENU_MAKE_MENUITEM("12", "RGMII AR8031 G-Ethernet Test", run_test, ar8031_test_main),

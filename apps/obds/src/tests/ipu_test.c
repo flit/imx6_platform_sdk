@@ -48,6 +48,8 @@
 
 #include "registers/regsipu.h"
 
+const char g_ipu_display_tests_name[] = "IPU Display Tests";
+
 #define WVGA_FW      800
 #define WVGA_FH      480
 #define XGA_FW       1024
@@ -73,7 +75,7 @@ typedef struct display_device {
 
 display_device_t dispDev = { 0 };
 
-int single_image_disp(void);
+test_return_t single_image_disp(void);
 void ipu_panel_enable(int panel_type_sel, int bit_mode, char *panel_name);
 void ldb_config_ipu(int);
 
@@ -208,9 +210,9 @@ void image_center_copy(void)
 /*!
  * Display the image and promt to check if it works
  */
-int single_image_disp(void)
+test_return_t single_image_disp(void)
 {
-    int ret = TEST_FAILED;
+    test_return_t ret = TEST_FAILED;
 
     memset((void *)CH23_EBA0, 0xFF, dispDev.width * dispDev.height * 2);
     image_center_copy();
@@ -228,7 +230,7 @@ int single_image_disp(void)
  *@param  disp_dev_type  display panel type
  *
  */
-static int ipu_display_test(int disp_dev_type)
+static test_return_t ipu_display_test(int disp_dev_type)
 {
     char recvCh = NONE_CHAR;
 //    uint32_t disp_mem;
@@ -362,7 +364,7 @@ static int ipu_display_test(int disp_dev_type)
         } while (1);
         break;
     default:
-        printf("Such kind of display device can not be supportted yet.\n");
+        printf("This type (%d) of display device can not be supported yet.\n", disp_dev_type);
         return -1;
     }
 
@@ -386,7 +388,6 @@ static const char *display_type_name[] = {
     "MIPI"
 };
 
-int ipu_display_test_enable;
 int32_t ipu_display_panel[20];
 
 /*!
@@ -398,13 +399,10 @@ int32_t ipu_display_panel[20];
  *          TEST_FAILED if any of the chosen tests fail;
  *          TEST_PASSED if all the chosen tests pass.
  */
-int ipu_display_test_main(void)
+test_return_t ipu_display_test_main(void)
 {
     int i, fail = 0, pass = 0, panel_index;
 
-    if (!ipu_display_test_enable) {
-        return TEST_NOT_PRESENT;
-    }
     for (i = 0;; i++) {
         panel_index = ipu_display_panel[i];
         if (panel_index == DISP_DEV_NULL) {
@@ -437,5 +435,3 @@ int ipu_display_test_main(void)
     printf("\nPASSED: IPU display %d out of total %d selected tests\n", pass, fail + pass);
     return TEST_PASSED;
 }
-
-//RUN_TEST_INTERACTIVE("DISPLAY", ipu_display_test_main)

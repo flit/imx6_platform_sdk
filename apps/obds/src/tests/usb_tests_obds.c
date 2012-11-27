@@ -36,12 +36,15 @@
 #include <string.h>
 #include "io.h"
 #include "obds.h"
-#include "usb/usb_hub_class.h"
-#if defined(CHIP_MX6SL)
-	#include "registers/regsusbcore.h"
-	#include "registers/regsusbnoncore.h"
-	#include "registers/regsusbphy.h"
-#endif
+//#include "usb/usb_hub_class.h"
+#include "registers/regsusbcore.h"
+#include "registers/regsusbnoncore.h"
+#include "registers/regsusbphy.h"
+
+const char g_usb_otg_dev_enum_test_name[] = "USB OTG Device Enumeration Test";
+const char g_usb_host1_dev_enum_test_name[] = "USB Host1 Device Enumeration Test";
+const char g_usb_EHCI_test_modes_name[] = "Set EHCI Test Modes";
+
 /*qh and td pointers defintion*/
 usbhQueueHead_t *pQH = (usbhQueueHead_t *) QH_BUFFER;
 usbhTransferDescriptor_t *pTD = (usbhTransferDescriptor_t *) TD_BUFFER;
@@ -123,8 +126,9 @@ static void usbh_hub_enumeration(usb_module_t *port)
     usbEndpointDescriptor_t ep_descriptor[2];
     usb_hub_descriptor_t hub_descriptor;
 
-    uint32_t i, temp, stride, dev_status, port_status;
-    uint32_t hub_port_num = 0, hub_addr = 0, if_num = 0, ep_num = 0;
+    uint32_t i, temp, stride;
+//c    uint32_t dev_status, port_status, hub_addr = 0;
+    uint32_t hub_port_num = 0, if_num = 0, ep_num = 0;
 
     memset((void *)&dev_descriptor, 0, sizeof(usbDeviceDescriptor_t));
     memset((void *)&config_descriptor, 0, sizeof(usbConfigurationDescriptor_t));
@@ -198,7 +202,7 @@ static void usbh_hub_enumeration(usb_module_t *port)
         failCount++;
         return;
     }
-
+/*c
     //Hub Class - Get HUB Descriptor 
     usbhub_get_hub_descriptor(pQH, pTD, buffer, port);
     memcpy((void *)&hub_descriptor, (void *)buffer, sizeof(usb_hub_descriptor_t));
@@ -242,12 +246,12 @@ static void usbh_hub_enumeration(usb_module_t *port)
             break;
         }
     }
-
+*///c
     if (i > hub_port_num) {
         printf("+ Found no device on hub port 1-%d\n", hub_port_num);
         return;
     }
-
+/*c
     usbhub_hub_get_port_status(pQH, pTD, buffer, hub_addr, i, port);
     //reset portX where a device is attached 
     // Hub Class - SetPortFeature(PORT_RESET) 
@@ -261,7 +265,7 @@ static void usbh_hub_enumeration(usb_module_t *port)
     do {
         port_status = usbhub_hub_get_port_status(pQH, pTD, buffer, hub_addr, i, port);
     } while ((port_status & HUB_PORT_CHANGE_PORT_RESET_COMPLETE));
-
+*///c
     // After reset, the device should be at default state, and wait to be enumerated 
     // Start to enumerate the device on portX 
     memset((void *)&dev_descriptor, 0, sizeof(usbDeviceDescriptor_t));
@@ -373,10 +377,6 @@ int EHCI_test_mode(void)
     int controller;
 
     usbport = &usbModuleInfo;
-    if (!usbh_EHCI_test_mode_test_enable) {
-        return TEST_NOT_PRESENT;
-    }
-    PROMPT_RUN_TEST("Set EHCI test modes", NULL);
 
     /*initialize the USB host controller */
     controller = -1;
@@ -385,13 +385,13 @@ int EHCI_test_mode(void)
         switch (controller) {
         case 0:
             usbport->moduleName = "OTG controller";
-            usbport->moduleBaseAddress = (usbRegisters_t *)(usbh_EHCI_test_mode_base);
+//c            usbport->moduleBaseAddress = (usbRegisters_t *)(usbh_EHCI_test_mode_base);
             usbport->controllerID = OTG;
             usbport->phyType = Utmi; 
             break;
         case 1:
             usbport->moduleName = "Host1 controller";
-            usbport->moduleBaseAddress = (usbRegisters_t *)(usbh_EHCI_test_mode_base + 0x200);
+//c            usbport->moduleBaseAddress = (usbRegisters_t *)(usbh_EHCI_test_mode_base + 0x200);
             usbport->controllerID = Host1;
             usbport->phyType = Utmi;
 
@@ -407,9 +407,6 @@ int EHCI_test_mode(void)
     return TEST_PASSED;
 
 }
-
-//RUN_TEST("EHCI test modes", EHCI_test_mode)
-
 
 int usbh_dev_enum_test_enable;
 uint32_t usbh_dev_enum_test_base;
@@ -427,14 +424,10 @@ int usbh_dev_enum_test(void)
 printf("usbh_dev_enum func\n");
     usbport = &usbModuleInfo;
     usbport->moduleName = "Host1 controller";
-    usbport->moduleBaseAddress = (usbRegisters_t*) usbh_dev_enum_test_base;
+//c    usbport->moduleBaseAddress = (usbRegisters_t*) usbh_dev_enum_test_base;
     usbport->controllerID = Host1;
     usbport->phyType = Utmi;
 
-    if (!usbh_dev_enum_test_enable) {
-        return TEST_NOT_PRESENT;
-    }
-    PROMPT_RUN_TEST("USBH1 Dev Enumeration", NULL);
     printf("\nRun the USBH1 device enumeration test? Make sure plug in a USB device!\n");
     if (!is_input_char('y', NULL)) {
         return TEST_BYPASSED;
@@ -474,17 +467,17 @@ void dump_usb_regs(unsigned int usb_controller_base_addr)
 		case HW_USBC_UOG1_ID_ADDR:
 			sprintf(usb_controller_string, "OTG1");
 			sprintf(usb_phy_string, "PHY1");
-			usb_phy_base_addr = REGS_USB_PHY1_BASE;
+			usb_phy_base_addr = REGS_USBPHY1_BASE;
 			break;
 		case HW_USBC_UOG2_ID_ADDR:
 			sprintf(usb_controller_string, "OTG2");
 			sprintf(usb_phy_string, "PHY2");
-			usb_phy_base_addr = REGS_USB_PHY2_BASE;
+			usb_phy_base_addr = REGS_USBPHY2_BASE;
 			break;
 		case HW_USBC_UH1_ID_ADDR:
 			sprintf(usb_controller_string, "HOST1");
 			sprintf(usb_phy_string, "PHY2");
-			usb_phy_base_addr = REGS_USB_PHY2_BASE;
+			usb_phy_base_addr = REGS_USBPHY2_BASE;
 			break;
 		default:
 			sprintf(usb_controller_string, "UNKNOWN");
@@ -515,33 +508,27 @@ void dump_usb_regs(unsigned int usb_controller_base_addr)
 #endif
 }
 
-int usbo_dev_enum_test_enable;
-uint32_t usbo_dev_enum_test_base;
 /*!
  * USB device enumeration test
  * This tests the usb OTG interface and enumerates a usb device
  * @param usb_base_addr      base address of desired usb module under test
  *
- * @return          0 on success; non-zero otherwise
+ * @return          TEST_PASS or TEST_FAILED
  */
-int usbo_dev_enum_test(void)
+test_return_t usbo_dev_enum_test(void)
 {
+    const char* indent = menu_get_indent();
+
     usb_module_t usbModuleInfo, *usbport;
     usbport = &usbModuleInfo;
     usbport->moduleName = "";
-    usbport->moduleBaseAddress = (usbRegisters_t *) usbo_dev_enum_test_base;
+//c    usbport->moduleBaseAddress = (usbRegisters_t *) REGS_USBC_BASE;
     usbport->controllerID = OTG;
     usbport->phyType = Utmi;
     
-
-    if (!usbo_dev_enum_test_enable) {
-        return TEST_NOT_PRESENT;
-    }
-    PROMPT_RUN_TEST("USBOTG Dev Enumeration", NULL);
-    printf("\nRun the USBOTG device enumeration test? Make sure plug in a USB device!\n");
-    if (!is_input_char('y', NULL)) {
+    printf("%sIs there a USB OTG device connected to the OTG port?\n", indent);
+    if (!is_input_char('y', indent))
         return TEST_BYPASSED;
-    }
 
 #if defined(CHIP_MX6SL)
     dump_usb_regs(HW_USBC_UOG1_ID_ADDR);
@@ -554,15 +541,11 @@ printf("pass USBH init, then enumeration\n");
 
     usbh_dev_enumeration(usbport);
 
-    if (failCount == 0) {
-        TEST_EXIT("PASSED");
+    if (failCount == 0)
         return TEST_PASSED;
-    } else {
-        TEST_EXIT("FAILED");
+    else
         return TEST_FAILED;
-    }
 }
-//RUN_TEST("USBOTG Enum", usbo_dev_enum_test)
 
 int usbh_hub251x_test_enable;
 uint32_t usbh_hub251x_test_base;
@@ -579,7 +562,7 @@ int usbh_hub251x_test(void)
 
     usbPort = &usbModuleInfo;
     usbPort->moduleName = "Host1 controller";
-    usbPort->moduleBaseAddress = (usbRegisters_t *)(usbh_hub251x_test_base);
+//c    usbPort->moduleBaseAddress = (usbRegisters_t *)(usbh_hub251x_test_base);
     usbPort->controllerID = Host1;
     usbPort->phyType = Utmi;
 

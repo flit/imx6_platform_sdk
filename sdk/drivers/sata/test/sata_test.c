@@ -55,7 +55,7 @@ void fill_buffer(u32 buff, u32 size_in_byte)
     }
 }
 
-int sata_test(void)
+test_return_t sata_test(void)
 {
     sata_return_t ret;
     uint8_t sel;

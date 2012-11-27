@@ -157,13 +157,20 @@ extern const char g_ar8031_test_name[];
 test_return_t ar8031_test_main(void);
 extern const char g_eim_NOR_flash_test_name[];
 test_return_t eim_nor_flash_test(void);
-extern const char g_hs_tsc_p1003_i2c_device_id_test_name[];
-test_return_t i2c_device_id_check_p1003(void);
 extern const char g_max7310_i2c_device_id_test_name[];
 test_return_t max7310_i2c_device_id_check(void);
-
+extern const char g_hs_tsc_p1003_i2c_device_id_test_name[];
+test_return_t i2c_device_id_check_p1003(void);
+extern const char g_pmic_pf0100_i2c_device_id_test_name[];
+test_return_t pf0100_i2c_device_id_check(void);
+extern const char g_spi_nor_test_name[];
+test_return_t spi_nor_test(void);
+extern const char g_usb_otg_dev_enum_test_name[];
+test_return_t usbo_dev_enum_test(void);
 extern const char g_sata_test_name[];
-int sata_test(void);
+test_return_t sata_test(void);
+extern const char g_ipu_display_tests_name[];
+test_return_t ipu_display_test_main(void);
 
 test_return_t android_buttons_test(void);
 extern const char g_touch_buttons_test_name[];
@@ -178,10 +185,9 @@ test_return_t flexcan_test(void);
 test_return_t i2s_audio_test(void);
 extern const char * const uart_test_name[];
 test_return_t uart_test(void);
-extern const char * const spi_nor_test_name[];
-test_return_t spi_nor_test(void);
 test_return_t mmcsd_test(void);
-test_return_t pf0100_i2c_device_id_check(void);
+extern const char g_usb_host1_dev_enum_test_name[];
+extern const char g_usb_EHCI_test_modes_name[];
 
 //
 // PRIVATE
@@ -208,7 +214,6 @@ extern int smbus_test_enable;
 
 extern int sdio_test_enable;
 extern int gps_test_enable;
-extern int ipu_display_test_enable;
 extern int si476x_test_enable;
 extern int camera_flashtest_ebable;
 extern int esai_test_enable;
@@ -216,7 +221,6 @@ extern int esai_test_enable;
 //Add variables from obds
 extern uint32_t usbh_EHCI_test_mode_base;
 extern uint32_t usbh_dev_enum_test_base;
-extern uint32_t usbo_dev_enum_test_base;
 extern uint32_t usbh_hub251x_test_base;
 extern uint32_t sdio_bus_width;
 extern uint32_t sdio_base_address;

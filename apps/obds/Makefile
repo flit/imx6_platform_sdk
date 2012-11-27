@@ -91,6 +91,9 @@ define SOURCES
     src/tests/touch_screen.c
     src/tests/touch_screen_max11801.c
     src/tests/uart_test.c
+    src/tests/usb_tests_obds.c
+    $(SDK_LIB_ROOT)/drivers/usb/test/usb0_host_test.c
+    $(SDK_LIB_ROOT)/drivers/usb/test/usb0_host_testmodes_test.c
     src/tests/weim_nor_flash_test.c
 endef
 
@@ -104,6 +107,11 @@ SOURCES += \
     src/tests/enet_mx6dldq_test.c \
     src/tests/fm_tuner_si476x_test.c \
     src/tests/i2c_device_id_check_p1003_tsc.c \
+    src/tests/ipu_test.c \
+    $(SDK_LIB_ROOT)/drivers/hdmi/test/hdmi_test.c \
+    $(SDK_LIB_ROOT)/drivers/hdmi/test/init_dma_data.c \
+    $(SDK_LIB_ROOT)/drivers/ipu/test/ips_display.c \
+    $(SDK_LIB_ROOT)/drivers/ipu/test/ipu_image.c \
     src/tests/mlb_os81050.c \
     src/tests/video_dec_adv7180.c \
     src/tests/video_dec_ARD_MB_reset_button.c \

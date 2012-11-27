@@ -44,7 +44,7 @@
     
 //#define  SPI_INIT_PARAM  0x00000084
 
-const char* const spi_nor_test_name[] = {"SPI NOR FLASH Test\0"};
+const char g_spi_nor_test_name[] = "SPI NOR FLASH Test";
 
 extern int spi_nor_query_atmel(uint32_t * data);
 extern int spi_nor_write_atmel(uint32_t addr, uint8_t * data, uint32_t length);
@@ -130,11 +130,12 @@ test_return_t spi_nor_test(void)
     const char* indent = menu_get_indent();
     param_ecspi_t  spiParams = SPI_INIT_PARAM;
 
-    //This variable should be set base on board.
+#if defined(BOARD_SABRE_AI) || defined(BOARD_SMART_DEVICE) || defined(BOARD_EVB) || defined(BOARD_EVK)
     spi_nor_flash_type = M25P32;
+#endif
 
 #if defined(BOARD_SABRE_AI)
-    printf("%s\nConfigure J3 to 2-3 position when running the test,\n", indent);
+    printf("%sConfigure J3 to 2-3 position when running the test,\n", indent);
     printf("%s and when test is over configure J3 to 1-2 position.\n", indent);
     printf("%sHas jumper J3 been properly configured?\n", indent);
 
@@ -151,16 +152,16 @@ test_return_t spi_nor_test(void)
     spi_nor_query((uint32_t *) id, spi_nor_flash_type);
 
     // Do we find the device? If not, return error.
-    printf("%sGet chip id: 0x%x, 0x%x, 0x%x, 0x%x\n", indent, id[0], id[1], id[2], id[3]);
+    printf("%sGet chip id: 0x%02X, 0x%02X, 0x%02X, 0x%02X\n", indent, id[0], id[1], id[2], id[3]);
 
     if (spi_nor_flash_type == AT45DB321D) {
         if ((id[0] == AT45DB321D_id.id0) && (id[1] == AT45DB321D_id.id1)
             && (id[2] == AT45DB321D_id.id2)) {
             printf("%sSPI nor flash chip AT45DBxx found.\n", indent);
-            printf("%sChip id checking PASS.\n", indent);
+            printf("%sChip id check PASS.\n", indent);
 
         } else {
-            printf("%sChip id checking FAIL.\n", indent);
+            printf("%sChip id check FAIL.\n", indent);
 
             return TEST_FAILED;
         }
@@ -168,10 +169,10 @@ test_return_t spi_nor_test(void)
         if ((id[0] == M25P32_id.id0) && (id[1] == M25P32_id.id1)
             && (id[2] == M25P32_id.id2)) {
             printf("%sSPI nor flash chip M25P32xx found.\n", indent);
-            printf("%sChip id checking PASS.\n", indent);
+            printf("%sChip id check PASS.\n", indent);
 
         } else {
-            printf("%sChip id checking FAIL.\n", indent);
+            printf("%sChip id check FAIL.\n", indent);
 
             return TEST_FAILED;
         }
@@ -203,7 +204,7 @@ test_return_t spi_nor_test(void)
     for (i = 0; i < 128; i++) {
         if (dst[i] != src[i]) {
             printf("%sSPI NOR verify failed. \n", indent);
-            printf("%s [0x%x] src: 0x%x, dst: 0x%x\n", indent, i, src[i], dst[i]);
+            printf("%s [%d] src: 0x%08X, dst: 0x%08X\n", indent, i, src[i], dst[i]);
 
             return TEST_FAILED;
         }

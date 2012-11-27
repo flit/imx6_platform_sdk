@@ -64,6 +64,9 @@ test_return_t max7310_i2c_device_id_check(void)
     imx_i2c_request_t* max7310_i2c_req = NULL;
     test_return_t ret = TEST_NOT_STARTED, ret_all = TEST_PASSED;
 
+#if defined(SABRE_AI)
+    io_cfg_i2c(I2C3_BASE_ADDR);
+#endif
     for (i = 0; i < MAX7310_NBR; i++) {
         max7310_i2c_req = &max7310_i2c_req_array[i];
         data = max7310_reg_read(timeout_reg);

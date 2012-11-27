@@ -30,6 +30,8 @@
 
 #include "obds.h"
 
+const char g_pmic_pf0100_i2c_device_id_test_name[] = "PMIC PF0100 I2C Device ID Test";
+
 #if defined(BOARD_EVK)
 #define PMIC_PF0100_I2C_BASE       I2C1_BASE_ADDR 
 #else
@@ -42,8 +44,6 @@
 
 #define PMIC_PF0100_I2C_ID         (0x10 >> 1)  //0x08
 
-static const char * const pmic_pf0100_test_name = "PMIC - PF0100 Test";
-
 unsigned char pf0100_reg_read(unsigned char reg_addr)
 {
     struct imx_i2c_request rq;
@@ -55,6 +55,7 @@ unsigned char pf0100_reg_read(unsigned char reg_addr)
     rq.reg_addr_sz = 1;
     rq.buffer_sz = 1;
     rq.buffer = &buf;
+    rq.device = NULL;
 
     i2c_xfer(&rq, I2C_READ);
 
@@ -71,6 +72,7 @@ void pf0100_reg_write(unsigned char reg_addr, unsigned char reg_data)
     rq.reg_addr_sz = 1;
     rq.buffer_sz = 1;
     rq.buffer = &reg_data;
+    rq.device = NULL;
 
     i2c_xfer(&rq, I2C_WRITE);
 }
@@ -107,19 +109,16 @@ test_return_t pf0100_i2c_device_id_check(void)
     unsigned char data;
 	const char* indent = menu_get_indent();
 
-    if ( prompt_run_test(pmic_pf0100_test_name, indent) != TEST_CONTINUE )
-    	return TEST_BYPASSED;
-
     i2c_init(PMIC_PF0100_I2C_BASE, 170000);
 
     data = 0x0;
     data = pf0100_reg_read(0x0);    //Device ID
     if (!(data & 0x10)) {       //bit 4 should be set, 0b0001xxxx
-        printf("%s\nExpected id 0b0001xxxx (PF0100), read 0x%X\n", indent, data);
+        printf("%sExpected id 0b0001xxxx (PF0100), read 0x%X\n", indent, data);
         return TEST_FAILED;
     }
     printf("%sPF0100 ID: 0b0001xxxx, read: 0x%X\n", indent, data);
-    printf("%s PMIC PF0100 ID test passed. \n", indent);
+    printf("%s PMIC PF0100 ID test passed.\n", indent);
 
     return TEST_PASSED;
 }

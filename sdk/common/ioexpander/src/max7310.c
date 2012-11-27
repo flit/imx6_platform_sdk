@@ -104,6 +104,9 @@ void max7310_set_gpio_output(uint32_t slave_id, uint32_t io_x, uint32_t level)
 {
     uint8_t data;
 
+#if defined(SABRE_AI)
+    io_cfg_i2c(I2C3_BASE_ADDR);
+#endif
     max7310_i2c_req = &max7310_i2c_req_array[slave_id];
     // read output state first through the input register 
     data = max7310_reg_read(input_port_reg);

@@ -241,7 +241,7 @@ int menu_append_menuitems(menuitem_t* target_menuitems, int target_size, const m
 
     // Move to the end of the target
     while(target_menuitems[target_idx].type != MenuItem_Null) ++target_idx;
-    printf("target_idx       = %d\n", target_idx);
+//    printf("target_idx       = %d\n", target_idx);
 
     // Get source size
     while(source_menuitems[source_size].type != MenuItem_Null) ++source_size;

@@ -127,7 +127,7 @@ void kpp_scan_matrix(uint16_t *keypad_state)
             if (col_mask)
             {
                 HW_KPP_KPDR_WR(~col_mask << 8);
-                hal_delay_us(1);
+				hal_delay_us(1);
                 port_state[tested_col] = ~HW_KPP_KPDR_RD();
             }
             else
@@ -182,7 +182,7 @@ void kpp_get_keypad_state(uint16_t *rd_keys, bool returnImmediately)
     HW_KPP_KPCR.B.KCO = ALL_COLUMNS;
 
     // Scan sequence function 
-    kpp_scan_matrix(rd_keys);
+     kpp_scan_matrix(rd_keys);
 
     // Set a low level on each columns 
     HW_KPP_KPDR_WR(0);

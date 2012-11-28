@@ -38,95 +38,28 @@
 #include "core/cortex_a9.h"
 #include "core/mmu.h"
 #include "pmu/pmu_driver.h"
-#include "registers/regsccm.h"
-#include "registers/regsccmanalog.h"
-#include "registers/regspmu.h"
-
-typedef struct cpu_wp_s {
-    uint32_t cpu_freq;          // MHz
-    uint32_t vdd_pu;            //mV
-    uint32_t vdd_soc;           //mV
-    uint32_t vdd_arm;           //mV
-} cpu_wp_t;
-
-static cpu_wp_t mx6_cpu_wp[] = {
-    {
-     .cpu_freq = 1200,
-     .vdd_pu = 1275,
-     .vdd_soc = 1275,
-     .vdd_arm = 1275,
-     },
-    {
-     .cpu_freq = 996,
-     .vdd_pu = 1250,
-     .vdd_soc = 1250,
-     .vdd_arm = 1250,
-     },
-    {
-     .cpu_freq = 792,
-     .vdd_pu = 1175,
-     .vdd_soc = 1175,
-     .vdd_arm = 1150,
-     },
-    {
-     .cpu_freq = 396,
-     .vdd_pu = 1175,
-     .vdd_soc = 1175,
-     .vdd_arm = 950,
-     },
-};
-
-void cpu_workpoint_set(cpu_wp_t * wp)
-{
-    unsigned int div = 0;
-
-    /* calculate the pll loop divider. target Fout = Fin * div / 2 */
-    div = wp->cpu_freq * 2 / 24;
-
-    /* first, switch the cpu clock root to step clock */
-    HW_CCM_CCSR.B.PLL1_SW_CLK_SEL = 1;
-
-    /* set clock to target frequency */
-    HW_CCM_ANALOG_PLL_ARM.B.POWERDOWN = 1;
-    HW_CCM_ANALOG_PLL_ARM.B.DIV_SELECT = div;
-    HW_CCM_ANALOG_PLL_ARM.B.POWERDOWN = 0;
-    while (!HW_CCM_ANALOG_PLL_ARM.B.LOCK) ;
-    HW_CCM_ANALOG_PLL_ARM.B.BYPASS = 0;
-
-    /* set the power rail */
-    switch (wp->cpu_freq) {
-    case 1200:
-    case 996:
-    case 792:
-    case 396:
-        pmu_set_property(kPMURegulator_ArmCore, kPMUProperty_OutputMillivolts, &wp->vdd_arm);
-        pmu_set_property(kPMURegulator_Graphics, kPMUProperty_OutputMillivolts, &wp->vdd_pu);
-        pmu_set_property(kPMURegulator_SoC, kPMUProperty_OutputMillivolts, &wp->vdd_soc);
-        break;
-    default:
-        printf("Unsupported CPU workpoint mode!!\n");
-        return;
-    }
-
-    /*switch back to PLL1 */
-    HW_CCM_CCSR.B.PLL1_SW_CLK_SEL = 0;
-}
+#include "cpu_utility/cpu_utility.h"
 
 void my_memcpy(char *dst, char *src, int size)
 {
-    asm volatile ("push {r0-r6}");
+    asm volatile ("push {r3-r6}");
     asm volatile ("loop:");
     asm volatile ("ldmia r1!, {r3-r6}");
     asm volatile ("stmia r0!, {r3-r6}");
     asm volatile ("subs r2, r2, #16");
     asm volatile ("bne loop");
-    asm volatile ("pop {r4-r6}");
+    asm volatile ("pop {r3-r6}");
 }
 
 uint32_t memcpy_perf_record(int size)
 {
+#ifdef CHIP_MX6SL
+    char *dst = (char *)0x94000000;
+    char *src = (char *)0x98000000;
+#else
     char *dst = (char *)0x24000000;
     char *src = (char *)0x28000000;
+#endif
     uint32_t time_counter;
 
     static hw_module_t count_timer = {
@@ -158,6 +91,7 @@ uint32_t memcpy_perf_record(int size)
 int cpu_wp_test(void)
 {
     int i = 0;
+    uint32_t cpu_freq;
     int time_elapsed = 0;
     int size = 0x1000000;
 
@@ -170,11 +104,11 @@ int cpu_wp_test(void)
 
     pmu_init();
 
-    while (i < sizeof(mx6_cpu_wp) / sizeof(mx6_cpu_wp[0])) {
-        cpu_workpoint_set(&mx6_cpu_wp[i]);
+    while (i < CPU_WORKPOINT_OUTOFRANGE) {
+        cpu_freq = cpu_workpoint_set(i);
         time_elapsed = memcpy_perf_record(size);
         printf(" Copying %dMB data takes %d ms when cpu running at %dMHz\n", size / (1024 * 1024),
-               time_elapsed, mx6_cpu_wp[i].cpu_freq);
+               time_elapsed, cpu_freq);
         hal_delay_us(3000);
         i++;
     }
@@ -186,7 +120,10 @@ int main(void)
 {
     platform_init();
     print_version();
+
     cpu_wp_test();
+    
     _sys_exit(0);
+    
     return 0;
 }

@@ -17,6 +17,7 @@ define SOURCES
 board_id/src/board_id.c
 camera/src/camera_profile.c
 cpu_utility/src/cpu_get_cores.c
+cpu_utility/src/cpu_workpoint.c
 eim/src/eim.c
 gpio/src/gpio.c
 i2c/src/imx_i2c_slave.c

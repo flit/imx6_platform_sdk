@@ -56,12 +56,6 @@
     asm volatile ("mcr p" #coproc ", " #opcode1 ", %[input], c" #CRn ", c" #CRm ", " #opcode2 "\n" :: [input] "r" (Rt))
 //@}
 
-//! @name Cache sizes
-//@{
-//! @brief Eight 32-bit words per cache line.
-#define L1_CACHE_LINE_SIZE (32)
-//@}
-
 ////////////////////////////////////////////////////////////////////////////////
 // Code
 ////////////////////////////////////////////////////////////////////////////////

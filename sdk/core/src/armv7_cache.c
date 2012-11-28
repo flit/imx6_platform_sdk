@@ -120,8 +120,14 @@ void arm_dcache_invalidate()
 
 void arm_dcache_invalidate_line(const void * addr)
 {
-    uint32_t va = (uint32_t) addr & 0xfffffff0; //addr & va_VIRTUAL_ADDRESS_MASK
+    uint32_t csidr = 0, line_size = 0;
+    uint32_t va;
     
+    // get the cache line size
+    _ARM_MRC(15, 1, csidr, 0, 0, 0);
+    line_size = 1 << ((csidr & 0x7) + 4);    
+    va = (uint32_t) addr & (~(line_size - 1)); //addr & va_VIRTUAL_ADDRESS_MASK
+
     // Invalidate data cache line by va to PoC (Point of Coherency). 
     _ARM_MCR(15, 0, va, 7, 6, 1);
     
@@ -132,15 +138,22 @@ void arm_dcache_invalidate_line(const void * addr)
 void arm_dcache_invalidate_mlines(const void * addr, size_t length)
 {
     uint32_t va;
-    const void * end_addr = (const void *)((uint32_t)addr + length);
+    uint32_t csidr = 0, line_size = 0;
     
+    // get the cache line size
+    _ARM_MRC(15, 1, csidr, 0, 0, 0);
+    line_size = 1 << ((csidr & 0x7) + 4);
+
+    // align the address with line
+    const void * end_addr = (const void *)((uint32_t)addr + length);
+            
     do
     {
         // Clean data cache line to PoC (Point of Coherence) by va. 
-        va = (uint32_t) ((uint32_t)addr & 0xfffffff0); //addr & va_VIRTUAL_ADDRESS_MASK
+        va = (uint32_t) ((uint32_t)addr & (~(line_size - 1))); //addr & va_VIRTUAL_ADDRESS_MASK
         _ARM_MCR(15, 0, va, 7, 6, 1);
         // increment addres to next line and decrement lenght 
-        addr = (const void *) ((uint32_t)addr + L1_CACHE_LINE_SIZE);
+        addr = (const void *) ((uint32_t)addr + line_size);
     } while (addr < end_addr);
     
     // All Cache, Branch predictor and TLB maintenance operations before followed instruction complete
@@ -177,7 +190,13 @@ void arm_dcache_flush()
 
 void arm_dcache_flush_line(const void * addr)
 {
-    uint32_t va = (uint32_t) addr & 0xfffffff0; //addr & va_VIRTUAL_ADDRESS_MASK
+    uint32_t csidr = 0, line_size = 0;
+    uint32_t va;
+    
+    // get the cache line size
+    _ARM_MRC(15, 1, csidr, 0, 0, 0);
+    line_size = 1 << ((csidr & 0x7) + 4);    
+    va = (uint32_t) addr & (~(line_size - 1)); //addr & va_VIRTUAL_ADDRESS_MASK
     
     // Clean data cache line to PoC (Point of Coherence) by va. 
     _ARM_MCR(15, 0, va, 7, 10, 1);
@@ -189,16 +208,21 @@ void arm_dcache_flush_line(const void * addr)
 void arm_dcache_flush_mlines(const void * addr, size_t length)
 {
     uint32_t va;
+    uint32_t csidr = 0, line_size = 0;
     const void * end_addr = (const void *)((uint32_t)addr + length);
+
+    // get the cache line size
+    _ARM_MRC(15, 1, csidr, 0, 0, 0);
+    line_size = 1 << ((csidr & 0x7) + 4);
     
     do
     {
         // Clean data cache line to PoC (Point of Coherence) by va. 
-        va = (uint32_t) ((uint32_t)addr & 0xfffffff0); //addr & va_VIRTUAL_ADDRESS_MASK
+        va = (uint32_t) ((uint32_t)addr & (~(line_size  - 1))); //addr & va_VIRTUAL_ADDRESS_MASK
         _ARM_MCR(15, 0, va, 7, 10, 1);
         
         // increment addres to next line and decrement lenght 
-        addr = (const void *) ((uint32_t)addr + L1_CACHE_LINE_SIZE);
+        addr = (const void *) ((uint32_t)addr + line_size);
     } while (addr < end_addr);
     
     // All Cache, Branch predictor and TLB maintenance operations before followed instruction complete
@@ -280,7 +304,13 @@ void arm_icache_invalidate_is()
 
 void arm_icache_invalidate_line(const void * addr)
 {
-    uint32_t va = (uint32_t) addr & 0xfffffff0; //addr & va_VIRTUAL_ADDRESS_MASK
+    uint32_t csidr = 0, line_size = 0;
+    uint32_t va;
+    
+    // get the cache line size
+    _ARM_MRC(15, 1, csidr, 0, 0, 0);
+    line_size = 1 << ((csidr & 0x7) + 4);    
+    va = (uint32_t) addr & (~(line_size - 1)); //addr & va_VIRTUAL_ADDRESS_MASK
     
     // Invalidate instruction cache by va to PoU (Point of unification). 
     _ARM_MCR(15, 0, va, 7, 5, 1);
@@ -292,15 +322,20 @@ void arm_icache_invalidate_line(const void * addr)
 void arm_icache_invalidate_mlines(const void * addr, size_t length)
 {
     uint32_t va;
+    uint32_t csidr = 0, line_size = 0;
     const void * end_addr = (const void *)((uint32_t)addr + length);
+
+    // get the cache line size
+    _ARM_MRC(15, 1, csidr, 0, 0, 0);
+    line_size = 1 << ((csidr & 0x7) + 4);    
     
     do
     {
         // Clean data cache line to PoC (Point of Coherence) by va. 
-        va = (uint32_t) ((uint32_t)addr & 0xfffffff0); //addr & va_VIRTUAL_ADDRESS_MASK
+        va = (uint32_t) ((uint32_t)addr & (~(line_size - 1))); //addr & va_VIRTUAL_ADDRESS_MASK
         _ARM_MCR(15, 0, va, 7, 5, 1);
         // increment addres to next line and decrement lenght 
-        addr = (const void *) ((uint32_t)addr + L1_CACHE_LINE_SIZE);
+        addr = (const void *) ((uint32_t)addr + line_size);
     } while (addr < end_addr);
     
     // synchronize context on this processor 

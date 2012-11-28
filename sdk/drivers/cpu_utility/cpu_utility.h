@@ -30,6 +30,8 @@
 #if !defined(__CPU_UTILITY_H__)
 #define __CPU_UTILITY_H__
 
+#include "sdk_types.h"
+
 //! @addtogroup cpu_utility
 //! @{
 

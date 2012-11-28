@@ -141,7 +141,7 @@ int esai_test(void)
         printf("For MX6DQ/MX6SDL EVB board, only Rev X3 supported, and R394 should be mounted.\n");
 #endif
         printf("Please connect LINE_OUT signal in your PC ");
-#if defined(SABRE_AI)
+#if defined(BOARD_SABRE_AI)
         printf("to \"LINE-IN\" on the main board.");
 #else
         printf(" to AIN1 and AIN2 on \"Automative Port card \".");
@@ -201,7 +201,7 @@ int esai_test(void)
             goto CleanUP1;
         }
     }
-#endif // !defined(SABRE_AI) - per Babin 5/8/12
+#endif // !defined(BOARD_SABRE_AI) - per Babin 5/8/12
 
     /***************************** MIC-IN recording test ***********************************/
 #if !defined(BOARD_SABRE_AI)          // per Babin 5/8/12
@@ -281,7 +281,7 @@ int esai_test(void)
             }
         }
     }
-#endif // !defined(SABRE_AI) - per Babin 5/8/12
+#endif // !defined(BOARD_SABRE_AI) - per Babin 5/8/12
 
   CleanUP1:
     snd_card->ops->deinit(snd_card);

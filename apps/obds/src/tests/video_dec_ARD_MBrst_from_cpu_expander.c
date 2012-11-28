@@ -56,6 +56,7 @@ int ard_mb_expander_reset_test(void)
     adv7180_reg_write(0x00, 0x03);  //when reset will be set to 0
 
     // rset via io expander on CPU card
+    board_ioexpander_iomux_config();
     /* toggle MAIN_PER_RST_B(PORT_EXP_A3) on Expander A  */
     max7310_set_gpio_output(0, 3, GPIO_LOW_LEVEL);  //expander a, io3
     hal_delay_us(500000);

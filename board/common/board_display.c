@@ -43,6 +43,7 @@
 void lvds_power_on(void)
 {
 #if defined(BOARD_EVB)
+    board_ioexpander_iomux_config();
     /*3.3V power supply through the load switch FDC6331L */
     max7310_set_gpio_output(0, 0, GPIO_HIGH_LEVEL);
     max7310_set_gpio_output(1, 1, GPIO_HIGH_LEVEL);
@@ -67,6 +68,7 @@ void lvds_power_on(void)
 #endif
 
 #ifdef BOARD_SABRE_AI
+    board_ioexpander_iomux_config();
     /*3.3V power supply through IOexpander */
     max7310_set_gpio_output(0, 0, GPIO_HIGH_LEVEL);
 

@@ -42,6 +42,7 @@
 void mipi_cam_power_on(void)
 {
 #if defined(BOARD_EVB)
+    board_ioexpander_iomux_config();
     /*reset of camera sensor, pin 27 */
     max7310_set_gpio_output(0, 2, GPIO_LOW_LEVEL);
     hal_delay_us(1000);
@@ -55,6 +56,7 @@ void mipi_cam_power_on(void)
 #endif
 
 #if defined(BOARD_SABRE_AI)
+    board_ioexpander_iomux_config();
     /*power supply through pin25 of connector, direct connected to P3V3_DELAY,
        controlled by CPU_PER_RST_B */
     /*reset of camera sensor, together with the reset button */

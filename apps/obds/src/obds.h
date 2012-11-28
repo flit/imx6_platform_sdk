@@ -120,11 +120,11 @@ typedef struct _obds_test
 } obds_test_t;
 
 //! @brief OBDS Test result linked list node for recording tests results for multiple iterations of the same test.
-typedef struct _test_result_node
+struct _test_result_node
 {
     test_return_t result;
     test_result_node_t * next;
-} test_result_node_t;
+};
 
 /*!
  * @brief Menu Execution function definition. Abstraction layer between menu and test.

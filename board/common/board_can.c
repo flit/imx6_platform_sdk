@@ -45,6 +45,7 @@ void hw_can_iomux_config(uint32_t module_instance)
 {
 
 #ifdef BOARD_SABRE_AI
+    board_ioexpander_iomux_config();
     /* CAN_EN active high output */
     max7310_set_gpio_output(1, 6, GPIO_HIGH_LEVEL); //expander b, io6
 
@@ -58,6 +59,7 @@ void hw_can_iomux_config(uint32_t module_instance)
     switch (module_instance)
     {
     case HW_FLEXCAN1:
+        board_ioexpander_iomux_config();
         /* Select CAN, ENET_CAN1_STEER(PORT_EXP_B3) */
         max7310_set_gpio_output(1, 3, GPIO_HIGH_LEVEL); //expander b, io3
         /* Select ALT5 mode of GPIO_4 for GPIO1_4 - CAN1_NERR_B */

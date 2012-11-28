@@ -60,6 +60,7 @@ void mlb_io_config(void)
 void os81050_i2c_init(void)
 {
     /* set os81050 into reset */
+    board_ioexpander_iomux_config();
     max7310_set_gpio_output(0, 5, GPIO_LOW_LEVEL);
     /* Init MLB I/Os */
     mlb_io_config();

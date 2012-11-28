@@ -54,11 +54,11 @@ test_return_t flexcan_test(void)
 
     test_return_t result1 = TEST_NOT_IMPLEMENTED, result2 = TEST_NOT_IMPLEMENTED;
 
-#if defined(SABRE_AI)
+#if defined(BOARD_SABRE_AI)
     printf("%s(Please note that in order to run the test, you need to first\n", indent);
     printf("%s(on SABRE AI main board): connect J35.6 to J34.7 and connect J35.7 to J34.2\n\n", indent);
     printf("%sWould you like to run the FLEXCAN1/FLEXCAN2 loopback tests?\n", indent);
-    if (!is_input_char('y'))
+    if (!is_input_char('y', indent))
         return TEST_BYPASSED;
 
 /* TODO: Call new functions

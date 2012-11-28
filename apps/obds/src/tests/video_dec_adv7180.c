@@ -50,6 +50,7 @@ struct imx_i2c_request adv7180_i2c_req;
 void adv7180_i2c_init_obds(void)
 {
     /* reset the ADV7180 */
+    board_ioexpander_iomux_config();
     max7310_set_gpio_output(0, 3, GPIO_LOW_LEVEL);
     hal_delay_us(5000);
     max7310_set_gpio_output(0, 3, GPIO_HIGH_LEVEL);

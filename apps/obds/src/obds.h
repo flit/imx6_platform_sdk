@@ -141,8 +141,11 @@ extern const menuitem_t MenuList_All_Tests[];
 extern const menuitem_t CPU_Tests[];
 extern const menuitem_t MainBoard_Tests[];
 extern const menuitem_t Menu_Commands[];
+extern const menuitem_t Display_Test[];
 
 // OBDS tests
+extern const char g_uart_test_name[];
+test_return_t uart_test(void);                          // UART Test
 extern const char g_program_board_id_test_name[];
 test_return_t program_board_id(void);
 extern const char g_program_mac_address_test_name[];
@@ -167,12 +170,38 @@ extern const char g_spi_nor_test_name[];
 test_return_t spi_nor_test(void);
 extern const char g_usb_otg_dev_enum_test_name[];
 test_return_t usbo_dev_enum_test(void);
-extern const char g_sata_test_name[];
-test_return_t sata_test(void);
+extern const char g_gpio_led_test_name[];
+test_return_t gpio_led_test(void);                      // GPIO LED Test
 extern const char g_ipu_display_tests_name[];
 test_return_t ipu_display_test_main(void);
+extern const char g_sata_test_name[];
+test_return_t sata_test(void);
 
-test_return_t android_buttons_test(void);
+extern const char g_video_dec_test_name[];
+test_return_t adv7180_test_main(void);
+extern const char g_audio_esai_test_name[];
+test_return_t esai_test(void);
+extern const char g_usb_host1_dev_enum_test_name[];     // usb host1 device enumeration test
+test_return_t usbh_dev_enum_test(void);
+extern const char g_cs42888_i2c_device_id_test_name[];
+test_return_t i2c_device_check_cs42888(void);           // audio codec i2c device id test
+extern const char g_isl29023_i2c_device_id_test_name[];
+test_return_t i2c_device_id_check_isl29023(void);       // Light Sensor ISL29023 I2C Device ID Test
+extern const char g_mag3110_i2c_device_id_test_name[];
+test_return_t i2c_device_id_check_mag3110(void);        // Compass MAG3110 I2C Device ID Test
+extern const char g_mma8451_i2c_device_id_test_name[];
+test_return_t i2c_device_id_check_MMA8451(void);        // Accelerometer MMA8451 I2C Device ID Test
+extern const char g_android_buttons_test_name[];
+test_return_t android_buttons_test(void);               // Android Buttons Test
+extern const char g_flexcan_test_name[];
+test_return_t flexcan_test(void);                       // FlexCan1 <-> FlexCan2 Loopback Test
+extern const char g_ard_main_board_reset_button_test[];
+test_return_t ard_mb_reset_test(void);                  // SABRE AI Main Board Reset Button
+extern const char g_ard_mb_expander_reset_test_name[];
+test_return_t ard_mb_expander_reset_test(void);         // SABRE AI Main Board Reset via IO Expander
+extern const char g_mmcsd_test_name[];
+test_return_t mmcsd_test(void);                         // MMC/SD Test
+
 extern const char g_touch_buttons_test_name[];
 test_return_t touch_button_test(void);
 test_return_t touch_screen_test(void);
@@ -180,13 +209,8 @@ test_return_t i2c_device_id_check(void);
 test_return_t pmic_test(void);
 
 test_return_t enet_test_main(void);
-extern const char * const flexcan_test_name[];
-test_return_t flexcan_test(void);
 test_return_t i2s_audio_test(void);
 extern const char * const uart_test_name[];
-test_return_t uart_test(void);
-test_return_t mmcsd_test(void);
-extern const char g_usb_host1_dev_enum_test_name[];
 extern const char g_usb_EHCI_test_modes_name[];
 
 //
@@ -200,15 +224,9 @@ void select_tests(menuitem_t* menuitems, const select_tests_t select_tests);
 
 //list of tests from obds
 extern int eeprom_test_enable;
-extern int adv7180_test_enable;
-extern int ard_mb_reset_test_enable;
-extern int ard_mb_expander_reset_test_enable;
 extern int ds90ur124_test_enable;
 extern int mlb_os81050_test_enable;
-extern int weim_nor_flash_test_enable;
 extern int usbh_EHCI_test_mode_test_enable;
-extern int usbh_dev_enum_test_enable;
-extern int usbo_dev_enum_test_enable;
 extern int usbh_hub251x_test_enable;
 extern int smbus_test_enable;
 
@@ -216,11 +234,9 @@ extern int sdio_test_enable;
 extern int gps_test_enable;
 extern int si476x_test_enable;
 extern int camera_flashtest_ebable;
-extern int esai_test_enable;
 
 //Add variables from obds
 extern uint32_t usbh_EHCI_test_mode_base;
-extern uint32_t usbh_dev_enum_test_base;
 extern uint32_t usbh_hub251x_test_base;
 extern uint32_t sdio_bus_width;
 extern uint32_t sdio_base_address;
@@ -231,12 +247,6 @@ extern audio_card_t snd_card_ssi;
 extern audio_card_t snd_card_ssi_sgtl5000;
 extern audio_card_t snd_card_ssi_wm8958;
 extern audio_card_t snd_card_ssi_wm8962;
-
-//Provide macros for test enter and exit outputs
-#define TEST_ENTER(name) printf("Running test: %s\n", name)
-#define TEST_EXIT(name) do {printf("..Test: %s\n", name); } while(0) 
-
-
 
 #endif // __OBDS_H__
 ////////////////////////////////////////////////////////////////////////////////

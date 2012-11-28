@@ -30,6 +30,8 @@
 
 #include "obds.h"
 
+const char g_cs42888_i2c_device_id_test_name[] = "CS42888 I2C Device ID Test";
+
 ////////////////////////////////////////////////////////////////////////////////
 // Code
 ////////////////////////////////////////////////////////////////////////////////
@@ -38,7 +40,7 @@
 //!
 //! The original test attempted to read each of the device's registers, from
 //! register 0x01 through 0x19.
-int i2c_device_check_cs42888(void)
+test_return_t i2c_device_check_cs42888(void)
 {
 //     unsigned int i, ret;
 //     unsigned char data;
@@ -53,7 +55,7 @@ int i2c_device_check_cs42888(void)
 // 
 //     printf("CS42888 I2C device check passed. \n\n");
 
-    return TEST_PASSED;
+    return TEST_NOT_IMPLEMENTED;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

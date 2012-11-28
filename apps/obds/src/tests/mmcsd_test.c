@@ -37,7 +37,7 @@ extern int SDHC_ADMA_mode;
 int SDHC_UHSI_mode;
 int card_detect_en;
 
-static const char * const mmcsd_test_name = "MMC/SD Test";
+const char g_mmcsd_test_name[] = "MMC/SD Test";
 
 extern int mmc_sd_test(unsigned int bus_width, uint32_t instance);
 
@@ -47,31 +47,28 @@ test_return_t mmcsd_test(void)
 {
  	const char* indent = menu_get_indent();
 
-    if ( prompt_run_test(mmcsd_test_name, indent) != TEST_CONTINUE )
-    	return TEST_BYPASSED;
-
     /* Always try maximum bus width */
     mmcsd_bus_width = 8;
 
 	/* USDHC2 test */
-	printf("Please insert MMC/SD card into SD2\n");
+	printf("%sPlease insert MMC/SD card into SD2\n", indent);
 
 	if (!is_input_char('y', indent)) {
-		printf("skip MMC SD test on SD2\n");
+		printf("%sSkip MMC SD test on SD2\n", indent);
     	
 		return TEST_BYPASSED;
 	} else {
 
 		instance = HW_USDHC2;
 
-        printf("Would you like to check the Card Detection status?");
+        printf("%sWould you like to check the Card Detection status?", indent);
         if(is_input_char('y', indent)) {
             card_detect_en = 1;
         } else {
             card_detect_en = 0;
         }
 
-		printf("U-HSI(make sure voltage switch circuit on board) mode test?\n");
+		printf("%sU-HSI(make sure voltage switch circuit on board) mode test?\n", indent);
 		if (is_input_char('y', indent)) {
 			SDHC_UHSI_mode = 1;
 		} else {
@@ -79,30 +76,30 @@ test_return_t mmcsd_test(void)
 		}
 
 		if (mmc_sd_test(mmcsd_bus_width, instance) == TEST_FAILED) {
-			printf("    Test for MMC/SD card on SD2 FAILED.\n");
+			printf("%s    Test for MMC/SD card on SD2 FAILED.\n", indent);
 
 			return TEST_FAILED;
 		}
 	}
 	/* USDHC3 test */
-	printf("Please insert MMC/SD card into SD3\n");
+	printf("%sPlease insert MMC/SD card into SD3\n", indent);
 
 	if (!is_input_char('y', indent)) {
-		printf("skip MMC SD test on SD3\n");
+		printf("%sSkip MMC SD test on SD3\n", indent);
     	
 		return TEST_BYPASSED;
 	}
 
 	instance = HW_USDHC3;
 
-    printf("Would you like to check the Card Detection status?\n");
+    printf("%sWould you like to check the Card Detection status?\n", indent);
     if(is_input_char('y', indent)) {
         card_detect_en = 1;
     } else {
         card_detect_en = 0;
     }
 
-	printf("U-HSI(make sure voltage switch circuit on board) mode test?\n");
+	printf("%sU-HSI(make sure voltage switch circuit on board) mode test?\n", indent);
 	if (is_input_char('y', indent)) {
 		SDHC_UHSI_mode = 1;
 	} else {
@@ -110,7 +107,7 @@ test_return_t mmcsd_test(void)
 	}
 
 	if (mmc_sd_test(mmcsd_bus_width, instance) == TEST_FAILED) {
-		printf("    Test for MMC/SD card on SD3 FAILED.\n");
+		printf("%s    Test for MMC/SD card on SD3 FAILED.\n", indent);
 
 		return TEST_FAILED;
 	}
@@ -122,14 +119,11 @@ test_return_t mmcsd_test(void)
 {
  	const char* indent = menu_get_indent();
 
-    if ( prompt_run_test(mmcsd_test_name, indent) != TEST_CONTINUE )
-    	return TEST_BYPASSED;
-
     /* Always try maximum bus width */
     mmcsd_bus_width = 8;
 #if ((!defined(CHIP_MX6SL) && defined(BOARD_EVB)) || defined(BOARD_SMART_DEVICE) )
-    printf("Please make sure to insert an MMC/SD card into SD slot #3\n");
-    printf("Please enter y or Y to confirm\n");
+    printf("%sPlease make sure to insert an MMC/SD card into SD slot #3\n", indent);
+    printf("%sPlease enter y or Y to confirm\n", indent);
     if (!is_input_char('y', indent)) {
 
     	return TEST_BYPASSED;
@@ -139,18 +133,18 @@ test_return_t mmcsd_test(void)
 
 #elif defined(BOARD_SABRE_AI)
 
-    printf("Please insert an MMC/SD card into the SD slot on the bottom of the main board.\n");
+    printf("%sPlease insert an MMC/SD card into the SD slot on the bottom of the main board.\n", indent);
     if (!is_input_char('y', indent)) {
-        printf("  skip MMC SD test \n");
+        printf("%s  Skip MMC SD test \n", indent);
     	
         return TEST_BYPASSED;
     }
     instance = HW_USDHC1;
 
 #else
-    printf("Please make sure to insert an MMC/SD card into SD slot 2 \n");
+    printf("%sPlease make sure to insert an MMC/SD card into SD slot 2 \n", indent);
     if (!is_input_char('y', indent)) {
-        printf("  skip MMC SD test \n");
+        printf("%s  Skip MMC SD test \n", indent);
     	
         return TEST_BYPASSED;
     }
@@ -158,7 +152,7 @@ test_return_t mmcsd_test(void)
     instance = HW_USDHC2;
 #endif
 
-    printf("Would you like to check the Card Detection status? Please enter y or Y to confirm");
+    printf("%sWould you like to check the Card Detection status? Please enter y or Y to confirm", indent);
     if(is_input_char('y', indent)) {
         card_detect_en = 1;
     } else {
@@ -167,7 +161,7 @@ test_return_t mmcsd_test(void)
 
 #if (!defined(CHIP_MX6SL) && defined(BOARD_EVB))
     /* Test for voltage switch & reset */
-    printf("U-HSI(make sure voltage switch circuit on board) mode test?\n");
+    printf("%sU-HSI(make sure voltage switch circuit on board) mode test?\n", indent);
     if (is_input_char('y', indent)) {
         SDHC_UHSI_mode = 1;
     } else {

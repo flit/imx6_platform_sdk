@@ -30,12 +30,12 @@
 
 #include "obds.h"
 
-extern int i2c_device_id_check_MMA8451(unsigned int i2c_base_addr);
-extern int i2c_device_id_check_isl29023(unsigned int i2c_base_addr);
+//extern int i2c_device_id_check_MMA8451(unsigned int i2c_base_addr);
+//extern int i2c_device_id_check_isl29023(unsigned int i2c_base_addr);
 extern int i2c_device_id_check_mag3112(unsigned int i2c_base_addr);
-extern int i2c_device_id_check_mag3110(unsigned int i2c_base_addr);
+//extern int i2c_device_id_check_mag3110(unsigned int i2c_base_addr);
 extern int i2c_device_check_max11801(unsigned int i2c_base_addr);
-extern int i2c_device_check_cs42888(void);
+//extern int i2c_device_check_cs42888(void);
 //extern int i2c_device_id_check_p1003(unsigned int i2c_base_addr);
 extern int i2c_device_id_check_emc1046(unsigned int i2c_base_addr);
 
@@ -77,15 +77,15 @@ test_return_t i2c_device_id_check(void)
         //rc |= i2c_device_id_check_mc1323(I2C2_BASE_ADDR);
         if (i2c_device_id_check_mma8451_test_enable == 1) {
             ++test_count;
-            rc |= i2c_device_id_check_MMA8451(I2C1_BASE_ADDR);  // accelerometer
+            rc |= i2c_device_id_check_MMA8451();  // accelerometer
         }
         if (i2c_device_id_check_isl29023_test_enable == 1) {
             ++test_count;
-            rc |= i2c_device_id_check_isl29023(I2C3_BASE_ADDR); // light sensor
+            rc |= i2c_device_id_check_isl29023(); // light sensor
         }
         if (i2c_device_id_check_mag3110_test_enable == 1) {
             ++test_count;
-            rc |= i2c_device_id_check_mag3110(I2C3_BASE_ADDR);  // eCompass mag3110
+            rc |= i2c_device_id_check_mag3110();  // eCompass mag3110
         }
 //c        if (i2c_device_id_check_p1003_test_enable == 1) {
 //c            ++test_count;
@@ -102,7 +102,7 @@ test_return_t i2c_device_id_check(void)
         }
         if (i2c_device_id_check_isl29023_test_enable == 1) {
             ++test_count;
-            rc |= i2c_device_id_check_isl29023(I2C3_BASE_ADDR); // light sensor on main board
+            rc |= i2c_device_id_check_isl29023(); // light sensor on main board
         }
         if (i2c_device_id_check_mag3112_test_enable == 1) {
             ++test_count;
@@ -110,7 +110,7 @@ test_return_t i2c_device_id_check(void)
         }
         if (i2c_device_id_check_mma8451_test_enable == 1) {
             ++test_count;
-            rc |= i2c_device_id_check_MMA8451(I2C3_BASE_ADDR);  // accelerometer on main board
+            rc |= i2c_device_id_check_MMA8451();  // accelerometer on main board
         }       
 #endif    
 
@@ -306,15 +306,15 @@ int i2c_device_id_check(void)
         //rc |= i2c_device_id_check_mc1323(I2C2_BASE_ADDR);
         if (i2c_device_id_check_mma8451_test_enable == 1) {
             ++test_count;
-            rc |= i2c_device_id_check_MMA8451(I2C1_BASE_ADDR);  // accelerometer
+            rc |= i2c_device_id_check_MMA8451();  // accelerometer
         }
         if (i2c_device_id_check_isl29023_test_enable == 1) {
             ++test_count;
-            rc |= i2c_device_id_check_isl29023(I2C3_BASE_ADDR); // light sensor
+            rc |= i2c_device_id_check_isl29023(); // light sensor
         }
         if (i2c_device_id_check_mag3110_test_enable == 1) {
             ++test_count;
-            rc |= i2c_device_id_check_mag3110(I2C3_BASE_ADDR);  // eCompass mag3110
+            rc |= i2c_device_id_check_mag3110();  // eCompass mag3110
         }
 //c        if (i2c_device_id_check_p1003_test_enable == 1) {
 //c            ++test_count;
@@ -334,7 +334,7 @@ int i2c_device_id_check(void)
         }
         if (i2c_device_id_check_isl29023_test_enable == 1) {
             ++test_count;
-            rc |= i2c_device_id_check_isl29023(I2C3_BASE_ADDR); // light sensor on main board
+            rc |= i2c_device_id_check_isl29023(); // light sensor on main board
         }
         if (i2c_device_id_check_mag3112_test_enable == 1) {
             ++test_count;
@@ -342,7 +342,7 @@ int i2c_device_id_check(void)
         }
         if (i2c_device_id_check_mma8451_test_enable == 1) {
             ++test_count;
-            rc |= i2c_device_id_check_MMA8451(I2C3_BASE_ADDR);  // accelerometer on main board
+            rc |= i2c_device_id_check_MMA8451();  // accelerometer on main board
         }
     }
 

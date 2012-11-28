@@ -63,8 +63,10 @@ define SOURCES
     $(SDK_LIB_ROOT)/drivers/usdhc/test/usdhc_test.c
     src/obds.c
     src/obds_utils.c
+    src/tests/audio_esai_test.c
     src/tests/ddr_test.c
     src/tests/flexcan_test.c
+    src/tests/gpio_led.c
     src/tests/gps_test.c
     src/tests/i2c_dev_tests.c
     src/tests/i2c_check_light_sensor_isl29023.c
@@ -90,7 +92,7 @@ define SOURCES
     src/tests/touch_button_test.c
     src/tests/touch_screen.c
     src/tests/touch_screen_max11801.c
-    src/tests/uart_test.c
+    $(SDK_LIB_ROOT)/drivers/uart/test/uart_test.c
     src/tests/usb_tests_obds.c
     $(SDK_LIB_ROOT)/drivers/usb/test/usb0_host_test.c
     $(SDK_LIB_ROOT)/drivers/usb/test/usb0_host_testmodes_test.c

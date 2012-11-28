@@ -360,10 +360,23 @@ menu_action_t run_all_tests(void* const param)
 
     if (BOARD_TYPE == BOARD_TYPE_SABRE_AI || BOARD_TYPE == BOARD_TYPE_EVB)
     {
-        printf("%sDo you wish to run the CPU-ONLY set of tests?\n", indent);
+        printf("%sDo you only wish to run the CPU Board set of tests?\n", indent);
         if (is_input_char('y', indent)) {
-            printf("%s  Run CPU-ONLY tests.\n\n", indent);
+            printf("%s  Run CPU Board ONLY tests.\n\n", indent);
             tests = SelectTests_CpuBoardOnly;
+        }
+        else
+        {
+            printf("%sDo you only wish to run the Main Board set of tests?\n", indent);
+            if (is_input_char('y', indent)) {
+                printf("%s  Run MAIN Board ONLY tests.\n\n", indent);
+                tests = SelectTests_MainBoardOnly;
+            }
+            else
+            {
+                printf("%s  Run CPU & MAIN Board tests.\n\n", indent);
+                tests = SelectTests_CpuAndMainBoard;
+            }
         }
     }
     select_tests(main_menuitems, tests);
@@ -414,7 +427,10 @@ void select_tests(menuitem_t menuitems[], const select_tests_t select_tests)
     {
         menu_append_menuitems(menuitems, MAX_TESTS, MainBoard_Tests);
         if ( select_tests == SelectTests_MainBoardOnly )
+        {
+            menu_append_menuitems(menuitems, MAX_TESTS, Display_Test);
             ipu_display_panel[display++] = DISP_DEV_LVDS;
+        }
     }
 
     ipu_display_panel[display++] = DISP_DEV_NULL;
@@ -461,8 +477,11 @@ const menuitem_t Menu_Commands[] =
         MENU_MAKE_MENUITEM("09", g_pmic_pf0100_i2c_device_id_test_name, run_test, pf0100_i2c_device_id_check),
         MENU_MAKE_MENUITEM("10", g_spi_nor_test_name, run_test, spi_nor_test),
         MENU_MAKE_MENUITEM("11", g_usb_otg_dev_enum_test_name, run_test, usbo_dev_enum_test),
+        MENU_MAKE_MENUITEM("12", g_uart_test_name, run_test, uart_test),
+        MENU_MAKE_MENUITEM("13", g_gpio_led_test_name, run_test, gpio_led_test),
+        MENU_MAKE_MENUITEM("14", g_ipu_display_tests_name, run_test, ipu_display_test_main),
 #if defined(CHIP_MX6DQ)
-        MENU_MAKE_MENUITEM("25", g_sata_test_name, run_test, sata_test),
+        MENU_MAKE_MENUITEM("15", g_sata_test_name, run_test, sata_test),
 #endif
         MENU_MAKE_MENUITEM_END()
     };
@@ -471,26 +490,34 @@ const menuitem_t Menu_Commands[] =
     const menuitem_t MainBoard_Tests[] =
     {
         MENU_MAKE_MENUITEM_GROUP("Main Board Tests"),
-//        MENU_MAKE_MENUITEM("09", "I2S Audio Test", run_test, i2s_audio_test),
-//        MENU_MAKE_MENUITEM("12", uart_test_name, run_test, uart_test),
-//        MENU_MAKE_MENUITEM("14", "MMC/SD Test", run_test, mmcsd_test),
-//c        MENU_MAKE_MENUITEM("10", "ANDROID BUTTONS Test", run_test, android_buttons_test),
-//c        MENU_MAKE_MENUITEM("11", flexcan_test_name, run_test, flexcan_test),
-//      MENU_MAKE_MENUITEM("12", "RGMII AR8031 G-Ethernet Test", run_test, ar8031_test_main),
-//      MENU_MAKE_MENUITEM("13", "RGMII AR8031 G-Ethernet Test", run_test, ar8031_test_main),
-//      can_test_enable = 1;
-//      ard_mb_reset_test_enable = 1;
-//      ard_mb_expander_reset_test_enable = 1;
+        MENU_MAKE_MENUITEM("20", g_video_dec_test_name, run_test, adv7180_test_main),
+        MENU_MAKE_MENUITEM("21", g_audio_esai_test_name, run_test, esai_test),
+        MENU_MAKE_MENUITEM("22", g_usb_host1_dev_enum_test_name, run_test, usbh_dev_enum_test),
+        MENU_MAKE_MENUITEM("23", g_cs42888_i2c_device_id_test_name, run_test, i2c_device_check_cs42888),
+        MENU_MAKE_MENUITEM("24", g_isl29023_i2c_device_id_test_name, run_test, i2c_device_id_check_isl29023),
+        MENU_MAKE_MENUITEM("25", g_mag3110_i2c_device_id_test_name, run_test, i2c_device_id_check_mag3110),
+        MENU_MAKE_MENUITEM("26", g_mma8451_i2c_device_id_test_name, run_test, i2c_device_id_check_MMA8451),
+        MENU_MAKE_MENUITEM("27", g_android_buttons_test_name, run_test, android_buttons_test),
+        MENU_MAKE_MENUITEM("28", g_flexcan_test_name, run_test, flexcan_test),
+        MENU_MAKE_MENUITEM("29", g_ard_main_board_reset_button_test, run_test, ard_mb_reset_test),
+        MENU_MAKE_MENUITEM("30", g_ard_mb_expander_reset_test_name, run_test, ard_mb_expander_reset_test),
+        MENU_MAKE_MENUITEM("31", g_mmcsd_test_name, run_test, mmcsd_test),
+        MENU_MAKE_MENUITEM_END()
+    };
+
+    const menuitem_t Display_Test[] =
+    {
+        MENU_MAKE_MENUITEM("49", g_ipu_display_tests_name, run_test, ipu_display_test_main),
         MENU_MAKE_MENUITEM_END()
     };
 
 #elif defined(BOARD_SMART_DEVICE)
 #if defined(CHIP_MX6DQ)
-//    sata_test_enable = 1;
+//    MENU_MAKE_MENUITEM("12", g_sata_test_name, run_test, sata_test),
 #endif
 #elif defined(BOARD_EVB)
 #if defined(CHIP_MX6DQ)
-//    sata_test_enable = 1;
+//    MENU_MAKE_MENUITEM("12", g_sata_test_name, run_test, sata_test),
 #endif
 #endif
 #elif defined(CHIP_MX6SL)
@@ -503,6 +530,7 @@ const menuitem_t Menu_Commands[] =
         MENU_MAKE_MENUITEM("03", g_ddr_test_name, run_test, ddr_test),
         MENU_MAKE_MENUITEM("04", g_snvs_srtc_test_name, run_test, snvs_srtc_test),
 //        MENU_MAKE_MENUITEM("05", "Ethernet Test", run_test, enet_test_main),
+//        MENU_MAKE_MENUITEM("09", "I2S Audio Test", run_test, i2s_audio_test),
         MENU_MAKE_MENUITEM_END()
     };
 

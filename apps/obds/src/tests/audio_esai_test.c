@@ -36,6 +36,8 @@
 #include "soc_memory_map.h"
 #include "audio/audio.h"
 
+const char g_audio_esai_test_name[] = "Audio ESAI Test";
+
 extern audio_pcm_t pcm_music;
 extern audio_pcm_para_t pcm_para;
 extern audio_pcm_t pcm_record;
@@ -43,14 +45,17 @@ extern audio_card_p snd_card_esai;
 
 extern audio_card_p snd_card;
 
-int esai_test_enable;
-
-int esai_test(void)
+test_return_t esai_test(void)
 {
-    int nRet1 = TEST_FAILED, nRet2 = TEST_FAILED, nRet3 = TEST_FAILED;
+//    int nRet1 = TEST_FAILED, nRet2 = TEST_FAILED, nRet3 = TEST_FAILED;
+    int nRet1 = TEST_FAILED;
+#if !defined(BOARD_SABRE_AI) // per Babin 5/8/12
+    int nRet2 = TEST_FAILED, nRet3 = TEST_FAILED;
+#endif
     uint8_t recvCh = 0;
     audio_dev_para_t dev_para;
     uint32_t bytes_written = 0;
+    const char* indent = menu_get_indent();
 
     dev_para.bus_mode = AUDIO_BUS_MODE_MASTER;
     dev_para.trans_dir = AUDIO_TRANS_DIR_TX;
@@ -58,20 +63,15 @@ int esai_test(void)
     dev_para.word_length = (pcm_music.para)->word_length;
     dev_para.channel_number = (pcm_music.para)->channel_number;
 
-    if (!esai_test_enable) {
-        return TEST_NOT_PRESENT;
-    }
-
-    PROMPT_RUN_TEST("ESAI", NULL);
 #if defined(BOARD_SABRE_AI)
     printf
-        ("Please make sure the SABRE AI board was mounted on the main board and headphone was plugged. Type 'y' to confirm.\n");
+        ("%sPlease make sure the SABRE AI board is mounted on the main board and the headphone is inserted. Type 'y' to confirm.\n", indent);
 #else
     printf
-        ("Please make sure the \"Automative Port card \" was mounted and headphone was plugged. Type 'y' to confirm.\n");
+        ("%sPlease make sure the \"Automotive Port card \" is mounted and the headphone is inserted. Type 'y' to confirm.\n", indent);
 #endif
     do {
-        recvCh = getchar();
+        recvCh = fgetc(stdin);
     } while (0xFF == recvCh);
     if ((recvCh != 'y') && (recvCh != 'Y')) {
         return TEST_BYPASSED;
@@ -95,14 +95,14 @@ int esai_test(void)
 
     while (1) {
         if (0 != snd_card->ops->write(snd_card, pcm_music.buf, pcm_music.size, &bytes_written)) {
-            printf("esai_output_data timeout.\n");
+            printf("%sesai_output_data timeout.\n", indent);
             nRet1 = TEST_FAILED;
             goto CleanUP2;
         }
 
-        printf("Do you need to replay it? Type 'y' or 'n'.\n");
+        printf("%sDo you need to replay it? Type 'y' or 'n'.\n", indent);
         do {
-            recvCh = getchar();
+            recvCh = fgetc(stdin);
         } while (0xFF == recvCh);
         if ((recvCh == 'y') || (recvCh == 'Y'))
             continue;
@@ -110,15 +110,15 @@ int esai_test(void)
             break;
     }
 
-    printf("Do you hear audio? Type 'y' or 'n'.\n");
+    printf("%sDo you hear audio? Type 'y' or 'n'.\n", indent);
     do {
-        recvCh = getchar();
+        recvCh = fgetc(stdin);
     } while (0xFF == recvCh);
     if ((recvCh == 'y') || (recvCh == 'Y')) {
-        printf(" ESAI playback test passed.\n");
+        printf("%s ESAI playback test passed.\n", indent);
         nRet1 = TEST_PASSED;
     } else {
-        printf(" ESAI playback test failed.\n");
+        printf("%s ESAI playback test failed.\n", indent);
         nRet1 = TEST_FAILED;
         goto CleanUP1;
     }
@@ -128,49 +128,49 @@ int esai_test(void)
 
 //    audio_pcm_t pcm_record;
 
-    printf("Do you wanna run the LINE-IN recording test? Type 'y' or 'n'.\n");
+    printf("%sDo you want to run the LINE-IN recording test? Type 'y' or 'n'.\n", indent);
     do {
-        recvCh = getchar();
+        recvCh = fgetc(stdin);
     } while (0xFF == recvCh);
     if ((recvCh != 'y') && (recvCh != 'Y')) {
-        printf("ESAI recording test bypassed.\n");
+        printf("%sESAI recording test bypassed.\n", indent);
         nRet2 = TEST_BYPASSED;
     }
     if (nRet2 != TEST_BYPASSED) {
 #if (!defined(CHIP_MX6SL) && defined(BOARD_EVB))
-        printf("For MX6DQ/MX6SDL EVB board, only Rev X3 supported, and R394 should be mounted.\n");
+        printf("%sFor MX6DQ/MX6SDL EVB board, only Rev X3 supported, and R394 should be mounted.\n", indent);
 #endif
-        printf("Please connect LINE_OUT signal in your PC ");
+        printf("%sPlease connect LINE_OUT signal in your PC ", indent);
 #if defined(BOARD_SABRE_AI)
         printf("to \"LINE-IN\" on the main board.");
 #else
-        printf(" to AIN1 and AIN2 on \"Automative Port card \".");
+        printf("to AIN1 and AIN2 on \"Automotive Port card \".");
 #endif
 
-        printf("Type 'y' or 'Y' to confirm.\n");
+        printf(" Type 'y' or 'Y' to confirm.\n");
         do {
-            recvCh = getchar();
+            recvCh = fgetc(stdin);
         } while (0xFF == recvCh);
         if ((recvCh != 'y') && (recvCh != 'Y')) {
-            printf("ESAI recording test bypassed.\n");
+            printf("%sESAI recording test bypassed.\n", indent);
             nRet2 = TEST_BYPASSED;
             goto CleanUP1;
         }
 
-        printf("Recording...\n");
+        printf("%sRecording...\n", indent);
         if (snd_card->ops->read(snd_card, pcm_record.buf, pcm_record.size, &bytes_written) <= 0) {
 //        if (0 != esai_input_data(audio_record_buf, AUDIO_RECORD_BUF_LEN)) {
-            printf("esai_input_data timeout.\n");
+            printf("%sesai_input_data timeout.\n", indent);
             nRet2 = TEST_FAILED;
             goto CleanUP1;
         }
 
-        printf("Press anykey to hear the audio recorded? \n");
+        printf("%sPress any key to hear the audio recorded? \n", indent);
         do {
-            recvCh = getchar();
+            recvCh = fgetc(stdin);
         } while (0xFF == recvCh);
 
-        printf("Playback the music recorded...\n");
+        printf("%sPlayback the music recorded...\n", indent);
 
         memcpy(&pcm_record, &pcm_music, sizeof(audio_pcm_t));
 
@@ -178,9 +178,9 @@ int esai_test(void)
             snd_card->ops->write(snd_card, pcm_record.buf, pcm_record.size, &bytes_written);
 //            esai_output_data((audio_pcm_p) & pcm_record);
 
-            printf("Do you need to replay it? Type 'y' or 'n'.\n");
+            printf("%sDo you need to replay it? Type 'y' or 'n'.\n", indent);
             do {
-                recvCh = getchar();
+                recvCh = fgetc(stdin);
             } while (0xFF == recvCh);
             if ((recvCh == 'y') || (recvCh == 'Y'))
                 continue;
@@ -188,16 +188,16 @@ int esai_test(void)
                 break;
         }
 
-        printf("Do you hear audio? Type 'y' or 'n'.\n");
+        printf("%sDo you hear audio? Type 'y' or 'n'.\n", indent);
         do {
-            recvCh = getchar();
+            recvCh = fgetc(stdin);
         } while (0xFF == recvCh);
         if ((recvCh == 'y') || (recvCh == 'Y')) {
-            printf(" ESAI record test passed.\n");
+            printf("%s ESAI record test passed.\n", indent);
             nRet2 = TEST_PASSED;
         } else {
             nRet2 = TEST_FAILED;;
-            printf(" ESAI record test failed.\n");
+            printf("%s ESAI record test failed.\n", indent);
             goto CleanUP1;
         }
     }
@@ -205,43 +205,43 @@ int esai_test(void)
 
     /***************************** MIC-IN recording test ***********************************/
 #if !defined(BOARD_SABRE_AI)          // per Babin 5/8/12
-    printf("Do you wanna run the MIC-IN recording test? Type 'y' or 'n'.\n");
+    printf("%sDo you want to run the MIC-IN recording test? Type 'y' or 'n'.\n", indent);
     do {
-        recvCh = getchar();
+        recvCh = fgetc(stdin);
     } while (0xFF == recvCh);
     if ((recvCh != 'y') && (recvCh != 'Y')) {
-        printf("ESAI recording test bypassed.\n");
+        printf("%sESAI recording test bypassed.\n", indent);
         nRet3 = TEST_BYPASSED;
     }
     if (nRet3 != TEST_BYPASSED) {
-        printf("Please connect headphone");
-        printf("to \"MICS1+2\" on the main board.");
+        printf("%sPlease connect headphone", indent);
+        printf(" to \"MICS1+2\" on the main board.");
 
         printf("Type 'y' or 'Y' to confirm.\n");
         do {
-            recvCh = getchar();
+            recvCh = fgetc(stdin);
         } while (0xFF == recvCh);
         if ((recvCh != 'y') && (recvCh != 'Y')) {
-            printf("ESAI MIC-IN recording test bypassed.\n");
+            printf("%sESAI MIC-IN recording test bypassed.\n", indent);
             nRet3 = TEST_BYPASSED;
             goto CleanUP1;
         }
 
-        printf("Recording...\n");
+        printf("%sRecording...\n", indent);
         
         if (0 != snd_card->ops->read(snd_card, pcm_record.buf, pcm_record.size, &bytes_written)) {
 //        if (0 != esai_input_data(audio_record_buf, AUDIO_RECORD_BUF_LEN)) {
-            printf("esai_input_data timeout.\n");
+            printf("%sesai_input_data timeout.\n", indent);
             nRet3 = TEST_FAILED;
             goto CleanUP1;
         }
 
-        printf("Press anykey to hear the audio recorded? \n");
+        printf("%sPress any key to hear the audio recorded? \n", indent);
         do {
-            recvCh = getchar();
+            recvCh = fgetc(stdin);
         } while (0xFF == recvCh);
 
-        printf("Playback the music recorded...\n");
+        printf("%sPlayback the music recorded...\n", indent);
 
         memcpy(&pcm_record, &pcm_music, sizeof(audio_pcm_t));
 
@@ -249,9 +249,9 @@ int esai_test(void)
             snd_card->ops->write(snd_card, pcm_record.buf, pcm_record.size, &bytes_written);
 //            esai_output_data((audio_pcm_p) & pcm_record);
 
-            printf("Do you need to replay it? Type 'y' or 'n'.\n");
+            printf("%sDo you need to replay it? Type 'y' or 'n'.\n", indent);
             do {
-                recvCh = getchar();
+                recvCh = fgetc(stdin);
             } while (0xFF == recvCh);
             if ((recvCh == 'y') || (recvCh == 'Y'))
                 continue;
@@ -259,23 +259,23 @@ int esai_test(void)
                 break;
         }
 
-        printf("Do you hear audio? Type 'y' or 'n'.\n");
+        printf("%sDo you hear audio? Type 'y' or 'n'.\n", indent);
         do {
-            recvCh = getchar();
+            recvCh = fgetc(stdin);
         } while (0xFF == recvCh);
         if ((recvCh == 'y') || (recvCh == 'Y')) {
-            printf(" ESAI record test passed.\n");
+            printf("%s ESAI record test passed.\n", indent);
             nRet3 = TEST_PASSED;
         } else {
             nRet3 = TEST_FAILED;;
-            printf(" ESAI record test failed.\n");
+            printf("%s ESAI record test failed.\n", indent);
             goto CleanUP1;
-            printf("Do you wanna run the LINE-IN recording test? Type 'y' or 'n'.\n");
+            printf("%sDo you want to run the LINE-IN recording test? Type 'y' or 'n'.\n", indent);
             do {
-                recvCh = getchar();
+                recvCh = fgetc(stdin);
             } while (0xFF == recvCh);
             if ((recvCh != 'y') && (recvCh != 'Y')) {
-                printf("ESAI recording test bypassed.\n");
+                printf("%sESAI recording test bypassed.\n", indent);
                 nRet3 = TEST_BYPASSED;
                 goto CleanUP1;
             }
@@ -288,11 +288,14 @@ int esai_test(void)
 //   esai_deinit();
 
   CleanUP2:
+#if !defined(BOARD_SABRE_AI) // per Babin 5/8/12
     if ((nRet1 == TEST_FAILED) || (nRet2 == TEST_FAILED) || (nRet3 == TEST_FAILED))
         return TEST_FAILED;
     else
         return TEST_PASSED;
+#else
+    return nRet1;
+#endif
 }
 
-//RUN_TEST_INTERACTIVE("ESAI", esai_test)
-#endif //MX6SL
+#endif // #ifndef CHIP_MX6SL

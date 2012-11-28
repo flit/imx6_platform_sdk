@@ -32,7 +32,7 @@
 #include "gpio/gpio.h"
 #include "io.h"
 
-static const char * const test_name = "ANDROID BUTTONS Test";
+const char g_android_buttons_test_name[] = "Android Buttons Test";
 
 extern void android_buttons_iomux_config(void); // define in hardware.c
 
@@ -124,12 +124,7 @@ void check_android_button_status(const char* const indent)
  */
 test_return_t android_buttons_test(void)
 {
-	const char* const indent = menu_get_indent();
-
-    if ( prompt_run_test(test_name, indent) != TEST_CONTINUE )
-    {
-    	return TEST_BYPASSED;
-    }
+	const char* indent = menu_get_indent();
 
     printf("%sPress all the Android buttons (on SABRE AI main board) you wish to test\n", indent);
     printf("%sPressing each button should result in an equivalent unique message to screen\n", indent);

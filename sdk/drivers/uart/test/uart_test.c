@@ -35,7 +35,10 @@
  */
 
 #include <stdio.h>
+#include "utility/menu.h"
 #include "uart_test.h"
+
+const char g_uart_test_name[] = "UART Test";
 
 /* UART3 port is free for i.MX6DQ/SDL and i.MX53 platforms */
 static hw_module_t uart_port = {
@@ -70,14 +73,15 @@ void uart_interrupt_handler(void)
  * This character is sent to the tested UART Tx FIFO, and the IRQ routine
  * triggered when the data is received display this character to the terminal.
  * It is like an echo test which uses the tested UART for the echo.
- *
- * @return  none
+ * 
+ * @return TEST_PASSED or TEST_FAILED
  */
-int32_t uart_test(void)
+test_return_t uart_test(void)
 {
     uint8_t sel;
+	const char* const indent = menu_get_indent();
 
-    printf("\n---- Running UART test, type 'x' to exit.\n");
+    printf("\n%sTest will echo characters to the terminal.\n\n%sType 'x' to exit.\n", indent, indent);
 
     /* Initialize the UART port */
     uart_init(&uart_port, 115200, PARITY_NONE, STOPBITS_ONE, EIGHTBITS, FLOWCTRL_OFF);
@@ -90,13 +94,13 @@ int32_t uart_test(void)
 
     do {
         g_wait_for_irq = 1;
-        printf("Please type a character - x to exit:\n");
+        printf("%sPlease type x to exit:\n", indent);
         do {
             sel = getchar();
         } while (sel == (uint8_t) 0xFF);
 
         if (sel == 'x') {
-            printf("\nTest exit.\n");
+            printf("\n%sTest exit.\n", indent);
             /* Disable the interrupts for UART3 */
             uart_setup_interrupt(&uart_port, FALSE);
             break;
@@ -110,5 +114,5 @@ int32_t uart_test(void)
 
     } while (1);
 
-    return 0;
+    return TEST_PASSED;
 }

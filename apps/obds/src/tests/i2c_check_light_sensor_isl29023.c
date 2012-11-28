@@ -30,12 +30,12 @@
 
 #include "obds.h"
 
+const char g_isl29023_i2c_device_id_test_name[] = "Light Sensor ISL29023 I2C Device ID Test";
+
 #define REG_COMMAND_1 	0x00
 #define REG_COMMAND_2	0x01
 #define REG_DATA_LSB	0x02
 #define REG_DATA_MSB	0x03
-
-static const char * const test_name = "I2C_DEVICE_ISL29023 Test";
 
 static unsigned char isl29023_reg_read(unsigned int i2c_base_addr, unsigned char reg_addr)
 {
@@ -103,23 +103,22 @@ static int isl29023_show_lux(unsigned int i2c_base_addr)
 {
     unsigned char uc = 0;
     unsigned int lux = 0;
+    const char* indent = menu_get_indent();
 
-    printf("    Do you want to check the light sensor?(y/n)\n\n");
+    printf("%s    Do you want to check the light sensor?(y/n)\n\n", indent);
 
     do {
-        uc = getchar();
-//        uc = receive_char();
+        uc = fgetc(stdin);
     } while (uc == NONE_CHAR);
 
     if (uc == 'y' || uc == 'Y') {
         isl29023_set_config(i2c_base_addr);
 
-        printf("    Start show luminance. Type 'x' to exit.\n\n");
+        printf("%s    Start show luminance. Type 'x' to exit.\n\n", indent);
         while (1) {
             lux = isl29023_get_lux(i2c_base_addr);
-            printf("\r    The luminance is: %8d lux\t\t   ", lux);
-            uc = getchar();
-//            uc = receive_char();
+            printf("\r%s    The luminance is: %8d lux\t\t   ", indent, lux);
+            uc = fgetc(stdin);
             if (uc == 'x' || uc == 'X') {
                 printf("\n\n");
                 break;
@@ -131,10 +130,15 @@ static int isl29023_show_lux(unsigned int i2c_base_addr)
     return 0;
 }
 
-int i2c_device_id_check_isl29023(unsigned int i2c_base_addr)
+/*!
+ * @return      TEST_PASSED or  TEST_FAILED
+ */
+test_return_t i2c_device_id_check_isl29023(void)
 {
     unsigned int data_saved = 0, data_reg = 0;
-    printf("Test ISL29023 Device ID - ");
+    unsigned int i2c_base_addr = I2C3_BASE_ADDR;
+    const char* indent = menu_get_indent();
+
     i2c_init(i2c_base_addr, 170000);
     data_saved = isl29023_reg_read(i2c_base_addr, 0x04);    //read  INT_LT_LSB
 
@@ -142,25 +146,12 @@ int i2c_device_id_check_isl29023(unsigned int i2c_base_addr)
 
     data_reg = isl29023_reg_read(i2c_base_addr, 0x04);
     if (0xA5 == data_reg) {
-        printf("passed 0x%02X\n\n", data_reg);
+        printf("%sRead I2C ID passed (0xA5).\n\n", indent);
         isl29023_reg_write(i2c_base_addr, 0x04, data_saved);
         isl29023_show_lux(i2c_base_addr);
-        return 0;
+        return TEST_PASSED;
     } else {
-        printf("failed, 0xA5 vs 0x%02X\n\n", data_reg);
-        return 1;
+        printf("%sRead I2C ID failed (0x%02X). Expected 0xA5\n\n", indent, data_reg);
+        return TEST_FAILED;
     }
-}
-
-/*!
- * @return      TEST_PASSED or  TEST_FAILED    
- */
-test_return_t i2c_device_isl29023_test(void)
-{
-	const char * indent = menu_get_indent();
-
-	if ( prompt_run_test(test_name, indent) != TEST_CONTINUE )
-		return TEST_BYPASSED;
-    
-	return i2c_device_id_check_isl29023(I2C3_BASE_ADDR);
 }

@@ -56,8 +56,6 @@ const char g_eim_NOR_flash_test_name[] = "EIM NOR FLASH Test";
 int nor_flash_auto_manu_id(void);
 int nor_flash_auto_dev_id(void);
 
-int weim_nor_flash_test_enable;
-
 // Set up the chip select registers for the weim "parallel" nor flash
 void weim_nor_flash_cs_setup(void)
 {

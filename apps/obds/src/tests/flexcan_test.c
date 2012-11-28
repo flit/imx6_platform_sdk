@@ -41,7 +41,7 @@
 //extern int can_tx0rx1(void);
 //extern int can_tx1rx0(void);
 
-const char * const flexcan_test_name[] = {"FLEXCAN1/2 LOOPBACK Test\0"};
+const char g_flexcan_test_name[] = "FlexCan1 <-> FlexCan2 Loopback Test";
 
 /*!
  * Test can0 and can1 tx/rx.

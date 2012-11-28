@@ -408,7 +408,6 @@ int EHCI_test_mode(void)
 
 }
 
-int usbh_dev_enum_test_enable;
 uint32_t usbh_dev_enum_test_base;
 /*!
  * USB device enumeration test  
@@ -417,18 +416,19 @@ uint32_t usbh_dev_enum_test_base;
  *
  * @return          0 on success; non-zero otherwise
  */
-int usbh_dev_enum_test(void)
+test_return_t usbh_dev_enum_test(void)
 {
+    const char* indent = menu_get_indent();
 
     usb_module_t usbModuleInfo, *usbport;
 printf("usbh_dev_enum func\n");
     usbport = &usbModuleInfo;
     usbport->moduleName = "Host1 controller";
-//c    usbport->moduleBaseAddress = (usbRegisters_t*) usbh_dev_enum_test_base;
+//c    usbport->moduleBaseAddress = (usbRegisters_t*) USBOH3_BASE_ADDR + 0x200;
     usbport->controllerID = Host1;
     usbport->phyType = Utmi;
 
-    printf("\nRun the USBH1 device enumeration test? Make sure plug in a USB device!\n");
+    printf("\n%sIs there a USB device connected to the HOST port?\n", indent);
     if (!is_input_char('y', NULL)) {
         return TEST_BYPASSED;
     }
@@ -444,13 +444,10 @@ printf("usbh_dev_enum func\n");
     /*request the device descriptor of attached device */
     usbh_dev_enumeration(usbport);
 
-    if (failCount == 0) {
-        TEST_EXIT("PASSED");
+    if (failCount == 0)
         return TEST_PASSED;
-    } else {
-        TEST_EXIT("FAILED");
+    else
         return TEST_FAILED;
-    }
 }
 
 //RUN_TEST("USBH1 Enum", usbh_dev_enum_test)
@@ -526,7 +523,7 @@ test_return_t usbo_dev_enum_test(void)
     usbport->controllerID = OTG;
     usbport->phyType = Utmi;
     
-    printf("%sIs there a USB OTG device connected to the OTG port?\n", indent);
+    printf("%sIs there a USB device connected to the OTG port?\n", indent);
     if (!is_input_char('y', indent))
         return TEST_BYPASSED;
 
@@ -570,7 +567,7 @@ int usbh_hub251x_test(void)
         return TEST_NOT_PRESENT;
     }
 
-    PROMPT_RUN_TEST("USBH HUB", NULL);
+    PROMPT_RUN_TEST("USBH1 HUB", NULL);
     // USB HUB test
     printf("\nWould you like to run the USBH1 HUB test?\n");
     if (!is_input_char('y', NULL)) {
@@ -585,13 +582,8 @@ int usbh_hub251x_test(void)
     /*hub enumeration & read sata device descriptor */
     usbh_hub_enumeration(usbPort);
 
-    if (failCount == 0) {
-        TEST_EXIT("PASSED");
+    if (failCount == 0)
         return TEST_PASSED;
-    } else {
-        TEST_EXIT("FAILED");
+    else
         return TEST_FAILED;
-    }
 }
-
-//RUN_TEST("USBH1 HUB", usbh_hub251x_test)

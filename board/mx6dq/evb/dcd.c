@@ -28,9 +28,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "hab.h"
-#include "hab_types.h"
-#include "hab_cmd.h"
+#include "hab_defines.h"
 #include "soc_memory_map.h"
 #include "sdk.h"
 

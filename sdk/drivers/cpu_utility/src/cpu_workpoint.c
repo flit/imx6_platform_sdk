@@ -85,6 +85,8 @@ uint32_t cpu_workpoint_set(cpu_wp_e cpu_wp_mode)
 
     cpu_wp_t *wp = &mx6_cpu_wp[cpu_wp_mode];
 
+    pmu_init();
+
     /* calculate the pll loop divider. target Fout = Fin * div / 2 */
     div = wp->cpu_freq * 2 / 24;
 

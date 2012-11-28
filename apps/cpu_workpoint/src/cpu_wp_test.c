@@ -102,8 +102,6 @@ int cpu_wp_test(void)
         arm_dcache_disable();
     }
 
-    pmu_init();
-
     while (i < CPU_WORKPOINT_OUTOFRANGE) {
         cpu_freq = cpu_workpoint_set(i);
         time_elapsed = memcpy_perf_record(size);

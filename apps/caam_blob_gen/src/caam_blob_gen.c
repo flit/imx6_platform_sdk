@@ -108,6 +108,4 @@ void main(void)
 
     // Run the blob generator
     caam_blob_gen();
-
-    _sys_exit(0);
 }

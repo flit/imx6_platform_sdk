@@ -138,7 +138,6 @@ int main(void)
 
 
     free_test_results();
-    _sys_exit(0);
 
     return 0;
 }
@@ -189,7 +188,7 @@ int printf_hook(const char *format, ...)
      /* If needed, put your change to arguments in here,
       * char *argv = NULL;
       * argv = va_arg(args, char *);
-      * argv …
+      * argv ?
       */
 
      n = vprintf("inside obds_printf\n", args);

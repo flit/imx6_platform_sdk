@@ -127,7 +127,7 @@ primary_cpu_init:
     
     @ branch to c library entry point 
     ldr     r12, =main               /* save this in register for possible long jump */
-    bx      r12                         /* branch to __main */ 
+    blx      r12                         /* branch to __main */ 
 
     @ if either main() or the secondary cpu entry point return, which they should not,
     @ then call _sys_exit().

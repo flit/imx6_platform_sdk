@@ -102,6 +102,4 @@ void main(void)
 
     // Perform the power test.
     power_modes_test();
-
-    _sys_exit(0);
 }

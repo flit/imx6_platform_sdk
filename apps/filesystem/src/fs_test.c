@@ -435,7 +435,5 @@ int main(void)
 
     fat_test();
 
-    _sys_exit(0);
-
     return 0;
 }

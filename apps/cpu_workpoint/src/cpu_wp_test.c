@@ -121,7 +121,5 @@ int main(void)
 
     cpu_wp_test();
     
-    _sys_exit(0);
-    
     return 0;
 }

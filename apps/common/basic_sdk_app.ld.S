@@ -81,6 +81,11 @@ ENTRY(_start)
 #define STACK_SIZE 48K
 #endif
 
+// Size of the malloc heap, defaults to 128MB
+#if !defined(HEAP_SIZE)
+#define HEAP_SIZE 128M
+#endif
+
 // Size of the L1 page table.
 #define L1_PAGE_TABLE_SIZE 16K
 
@@ -259,17 +264,16 @@ SECTIONS
     /* Region to contain exception handler stacks */
     .stacks (NOLOAD) :
     {
+        __stacks_start = .;
         . += STACK_SIZE;
+        __stacks_end = .;
         top_of_stacks = .;
     } > DDR
     
-    /* define section for the malloc heap */
-    .heap (NOLOAD) : ALIGN(32)
-    {
-        free_memory_start = .; /* malloc starts allocating from here */
-        . += ORIGIN(DDR) + LENGTH(DDR) - .;
-        free_memory_end = .;
-    } > DDR
+    /* define range of the malloc heap */
+    free_memory_start = ALIGN(32); /* malloc starts allocating from here */
+    . += HEAP_SIZE;
+    free_memory_end = .;
 
     _end = .;
 }

@@ -97,7 +97,7 @@ void epit_delay_test(void)
     };
 }
 
-/* EPIT2 port is free for i.MX6DQ/SDL and i.MX53 SDK as EPIT1 is used
+/* EPIT2 port is free for i.MX6DQ/SDL as EPIT1 is used
    for a global delay function */
 static hw_module_t g_tick_timer = {
     "EPIT2 for system tick",
@@ -130,7 +130,7 @@ void epit_tick_test(void)
     uint32_t max_duration = 10;
 
     printf("EPIT is programmed to generate an interrupt every 10ms as a tick timer.\n");
-    printf("The test exists after %d seconds.\n",max_duration);
+    printf("The test exits after %d seconds.\n",max_duration);
 
     /* Initialize the EPIT timer used for tick timer. An interrupt
        is generated every 10ms */

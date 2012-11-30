@@ -181,14 +181,18 @@ extern const char g_video_dec_test_name[];
 test_return_t adv7180_test_main(void);
 extern const char g_audio_esai_test_name[];
 test_return_t esai_test(void);
-extern const char g_usb_host1_dev_enum_test_name[];     // usb host1 device enumeration test
-test_return_t usbh_dev_enum_test(void);
+extern const char g_audio_ssi_test_name[];
+test_return_t i2s_audio_test(void);                     // I2S Audio Test
+extern const char g_usb_host1_dev_enum_test_name[];
+test_return_t usbh_dev_enum_test(void);                 // usb host1 device enumeration test
 extern const char g_cs42888_i2c_device_id_test_name[];
 test_return_t i2c_device_check_cs42888(void);           // audio codec i2c device id test
 extern const char g_isl29023_i2c_device_id_test_name[];
 test_return_t i2c_device_id_check_isl29023(void);       // Light Sensor ISL29023 I2C Device ID Test
 extern const char g_mag3110_i2c_device_id_test_name[];
 test_return_t i2c_device_id_check_mag3110(void);        // Compass MAG3110 I2C Device ID Test
+extern const char g_mag3112_i2c_device_id_test_name[];
+test_return_t i2c_device_id_check_mag3112(void);        // Compass MAG3112 I2C Device ID Test
 extern const char g_mma8451_i2c_device_id_test_name[];
 test_return_t i2c_device_id_check_MMA8451(void);        // Accelerometer MMA8451 I2C Device ID Test
 extern const char g_android_buttons_test_name[];
@@ -201,16 +205,15 @@ extern const char g_ard_mb_expander_reset_test_name[];
 test_return_t ard_mb_expander_reset_test(void);         // SABRE AI Main Board Reset via IO Expander
 extern const char g_mmcsd_test_name[];
 test_return_t mmcsd_test(void);                         // MMC/SD Test
+extern const char g_camera_test_name[];
+test_return_t camera_test(void);                         // Camera Test
 
 extern const char g_touch_buttons_test_name[];
 test_return_t touch_button_test(void);
 test_return_t touch_screen_test(void);
 test_return_t i2c_device_id_check(void);
 test_return_t pmic_test(void);
-
 test_return_t enet_test_main(void);
-test_return_t i2s_audio_test(void);
-extern const char * const uart_test_name[];
 extern const char g_usb_EHCI_test_modes_name[];
 
 //

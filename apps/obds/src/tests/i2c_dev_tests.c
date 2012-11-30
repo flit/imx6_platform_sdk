@@ -32,7 +32,7 @@
 
 //extern int i2c_device_id_check_MMA8451(unsigned int i2c_base_addr);
 //extern int i2c_device_id_check_isl29023(unsigned int i2c_base_addr);
-extern int i2c_device_id_check_mag3112(unsigned int i2c_base_addr);
+//extern int i2c_device_id_check_mag3112(unsigned int i2c_base_addr);
 //extern int i2c_device_id_check_mag3110(unsigned int i2c_base_addr);
 extern int i2c_device_check_max11801(unsigned int i2c_base_addr);
 //extern int i2c_device_check_cs42888(void);
@@ -47,7 +47,7 @@ int i2c_device_id_check_mag3112_test_enable = 1;
 int i2c_device_id_check_mag3110_test_enable = 1;
 int i2c_device_id_check_isl29023_test_enable = 1;
 int i2c_device_id_check_mma8451_test_enable = 1;
-//int i2c_device_id_check_p1003_test_enable = 1;
+int i2c_device_id_check_p1003_test_enable = 1;
 int i2c_device_id_check_cs42888_test_enable = 1;
 
 static const char * const i2c_device_test_name = "I2C Device ID Test";
@@ -87,15 +87,15 @@ test_return_t i2c_device_id_check(void)
             ++test_count;
             rc |= i2c_device_id_check_mag3110();  // eCompass mag3110
         }
-//c        if (i2c_device_id_check_p1003_test_enable == 1) {
-//c            ++test_count;
-//c            rc |= i2c_device_id_check_p1003(g_p1003_tsc_i2c_device.port);    // hannstar display TSC via lvds
-//c        }
+        if (i2c_device_id_check_p1003_test_enable == 1) {
+            ++test_count;
+            rc |= i2c_device_id_check_p1003(g_p1003_tsc_i2c_device.port);    // hannstar display TSC via lvds
+        }
 #elif (BOARD_TYPE == BOARD_TYPE_SABRE_AI) 
-//c        if (i2c_device_id_check_p1003_test_enable == 1) {
-//c            ++test_count;
-//c            rc |= i2c_device_id_check_p1003(g_p1003_tsc_i2c_device.port);    // hannstar display TSC via lvds
-//c        }
+        if (i2c_device_id_check_p1003_test_enable == 1) {
+            ++test_count;
+            rc |= i2c_device_id_check_p1003(g_p1003_tsc_i2c_device.port);    // hannstar display TSC via lvds
+        }
         if (i2c_device_id_check_cs42888_test_enable == 1) {
             ++test_count;
             rc |= i2c_device_check_cs42888();   // audio codec on main board
@@ -104,9 +104,9 @@ test_return_t i2c_device_id_check(void)
             ++test_count;
             rc |= i2c_device_id_check_isl29023(); // light sensor on main board
         }
-        if (i2c_device_id_check_mag3112_test_enable == 1) {
+        if (i2c_device_id_check_mag3110_test_enable == 1) {
             ++test_count;
-            rc |= i2c_device_id_check_mag3112(I2C3_BASE_ADDR);  // eCompass on main board
+            rc |= i2c_device_id_check_mag3110();  // eCompass on main board
         }
         if (i2c_device_id_check_mma8451_test_enable == 1) {
             ++test_count;

@@ -37,6 +37,8 @@
 #include <stdio.h>
 #include "sdk.h"
 
+const char g_camera_test_name[] = "Camera Test";
+
 extern int32_t csi_sensor_capture(void);
 extern int32_t sensor_capture(void);
 extern int32_t adv7180_capture(void);
@@ -58,9 +60,10 @@ static camera_test_t camera_tests[] = {
 #endif
 };
 
-int32_t camera_test(void)
+test_return_t camera_test(void)
 {
-    int32_t retv = TRUE, i;
+    int32_t retv = TEST_FAILED;
+    int32_t i;
     int32_t test_num = sizeof(camera_tests) / sizeof(camera_test_t);
     uint8_t revchar;
 

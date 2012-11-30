@@ -46,12 +46,9 @@ const char g_gpio_led_test_name[] = "GPIO LED Test";
 
 test_return_t gpio_led_test(void)
 {
-    unsigned char input;
+    unsigned char input = NONE_CHAR;
     const char* indent = menu_get_indent();
     unsigned int bit, gpio_inst = 0, mux_val;
-#if defined(BOARD_SMART_DEVICE)
-    unsigned int bit2, gpio_inst2, mux_val2;
-#endif
 
 #if defined(BOARD_SABRE_AI)
     mux_val = HW_IOMUXC_SW_MUX_CTL_PAD_DISP0_DATA21_RD();               // save the original value
@@ -73,11 +70,6 @@ test_return_t gpio_led_test(void)
     gpio_inst = HW_GPIO1;
     bit = 2;
     // user-def-green, gpio_1 pin
-    mux_val2 = HW_IOMUXC_SW_MUX_CTL_PAD_GPIO01_RD();                    // save the original value
-    HW_IOMUXC_SW_MUX_CTL_PAD_GPIO01_WR(
-            BF_IOMUXC_SW_MUX_CTL_PAD_GPIO01_MUX_MODE_V(ALT5));          // GPIO1[1]
-    gpio_inst2 = HW_GPIO1;
-    bit2 = 1;
 #elif defined(CHIP_MX6SL) && defined(BOARD_EVK)
     mux_val = HW_IOMUXC_SW_MUX_CTL_PAD_USB_H_STROBE_RD();                // save the original value
     HW_IOMUXC_SW_MUX_CTL_PAD_USB_H_STROBE_WR(
@@ -90,24 +82,15 @@ test_return_t gpio_led_test(void)
         return TEST_NOT_IMPLEMENTED;
 
     gpio_set_direction(gpio_inst, bit, GPIO_GDIR_OUTPUT);
-#if defined(BOARD_SMART_DEVICE)
-    gpio_set_direction(gpio_inst2, bit2, GPIO_GDIR_OUTPUT);
-#endif
 
     printf("%sIs the USER LED blinking? [y/n]\n", indent);
     while (1)
     {
         gpio_set_level(gpio_inst, bit, GPIO_LOW_LEVEL);
-#if defined(BOARD_SMART_DEVICE)
-        gpio_set_level(gpio_inst2, bit2, GPIO_LOW_LEVEL);
-#endif
 
         hal_delay_us(200000);
 
         gpio_set_level(gpio_inst, bit, GPIO_HIGH_LEVEL);
-#if defined(BOARD_SMART_DEVICE)
-        gpio_set_level(gpio_inst2, bit2, GPIO_HIGH_LEVEL);
-#endif
 
         hal_delay_us(200000);
 
@@ -123,7 +106,6 @@ test_return_t gpio_led_test(void)
     HW_IOMUXC_SW_MUX_CTL_PAD_EIM_DATA25_WR(mux_val);
 #elif defined(BOARD_SMART_DEVICE)
     HW_IOMUXC_SW_MUX_CTL_PAD_GPIO02_WR(mux_val);
-    HW_IOMUXC_SW_MUX_CTL_PAD_GPIO01_WR(mux_val2);
 #elif defined(CHIP_MX6SL) && defined(BOARD_EVK)
     HW_IOMUXC_SW_MUX_CTL_PAD_USB_H_STROBE_WR(mux_val);
 #endif

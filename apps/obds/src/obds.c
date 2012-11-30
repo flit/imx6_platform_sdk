@@ -436,6 +436,18 @@ void select_tests(menuitem_t menuitems[], const select_tests_t select_tests)
 
 #endif // defined(BOARD_SABRE_AI)
 
+#if defined(BOARD_SMART_DEVICE)
+
+    int display = 0;
+
+    menu_append_menuitems(menuitems, MAX_TESTS, CPU_Tests);
+    ipu_display_panel[display++] = DISP_DEV_TFTLCD;
+    ipu_display_panel[display++] = DISP_DEV_LVDS;
+    ipu_display_panel[display++] = DISP_DEV_HDMI;
+    ipu_display_panel[display++] = DISP_DEV_NULL;
+
+#endif // defined(BOARD_SMART_DEVICE)
+
     menu_append_menuitems(menuitems, MAX_TESTS, Menu_Commands);
 }
 
@@ -511,9 +523,34 @@ const menuitem_t Menu_Commands[] =
     };
 
 #elif defined(BOARD_SMART_DEVICE)
+
+    const menuitem_t CPU_Tests[] =
+    {
+        MENU_MAKE_MENUITEM_GROUP("CPU Board Tests"),
+        MENU_MAKE_MENUITEM("01", g_program_board_id_test_name, run_test, program_board_id),
+        MENU_MAKE_MENUITEM("02", g_program_mac_address_test_name, run_test, program_mac_address),
+        MENU_MAKE_MENUITEM("03", g_ddr_test_name, run_test, ddr_test),
+        MENU_MAKE_MENUITEM("04", g_snvs_srtc_test_name, run_test, snvs_srtc_test),
+        MENU_MAKE_MENUITEM("05", g_ar8031_test_name, run_test, ar8031_test_main),
+        MENU_MAKE_MENUITEM("06", g_hs_tsc_p1003_i2c_device_id_test_name, run_test, i2c_device_id_check_p1003),
+        MENU_MAKE_MENUITEM("07", g_pmic_pf0100_i2c_device_id_test_name, run_test, pf0100_i2c_device_id_check),
+        MENU_MAKE_MENUITEM("08", g_spi_nor_test_name, run_test, spi_nor_test),
+        MENU_MAKE_MENUITEM("09", g_usb_otg_dev_enum_test_name, run_test, usbo_dev_enum_test),
+        MENU_MAKE_MENUITEM("10", g_uart_test_name, run_test, uart_test),
+        MENU_MAKE_MENUITEM("11", g_gpio_led_test_name, run_test, gpio_led_test),
+        MENU_MAKE_MENUITEM("12", g_ipu_display_tests_name, run_test, ipu_display_test_main),
+        MENU_MAKE_MENUITEM("13", g_audio_ssi_test_name, run_test, i2s_audio_test),
+        MENU_MAKE_MENUITEM("14", g_isl29023_i2c_device_id_test_name, run_test, i2c_device_id_check_isl29023),
+        MENU_MAKE_MENUITEM("15", g_mag3112_i2c_device_id_test_name, run_test, i2c_device_id_check_mag3112),
+        MENU_MAKE_MENUITEM("16", g_mma8451_i2c_device_id_test_name, run_test, i2c_device_id_check_MMA8451),
+        MENU_MAKE_MENUITEM("17", g_mmcsd_test_name, run_test, mmcsd_test),
+        MENU_MAKE_MENUITEM("18", g_camera_test_name, run_test, camera_test),
 #if defined(CHIP_MX6DQ)
-//    MENU_MAKE_MENUITEM("12", g_sata_test_name, run_test, sata_test),
+        MENU_MAKE_MENUITEM("19", g_sata_test_name, run_test, sata_test),
 #endif
+        MENU_MAKE_MENUITEM_END()
+    };
+
 #elif defined(BOARD_EVB)
 #if defined(CHIP_MX6DQ)
 //    MENU_MAKE_MENUITEM("12", g_sata_test_name, run_test, sata_test),

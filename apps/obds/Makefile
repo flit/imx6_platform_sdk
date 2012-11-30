@@ -58,17 +58,20 @@ define SOURCES
     $(APPS_ROOT)/common/print_clock_info.c
     $(APPS_ROOT)/common/print_version.c
     $(APPS_ROOT)/common/ivt.c
+    $(SDK_LIB_ROOT)/common/pmic/pfuse/pf0100.c
+    $(SDK_LIB_ROOT)/drivers/audio/src/snd_card.c
     $(SDK_LIB_ROOT)/drivers/spi/test/spi_nor_numonyx.c
     $(SDK_LIB_ROOT)/drivers/spi/test/imx_spi_nor_atmel.c
     $(SDK_LIB_ROOT)/drivers/usdhc/test/usdhc_test.c
     src/obds.c
     src/obds_utils.c
     src/tests/audio_esai_test.c
+    src/tests/audio_ssi_test.c
+    src/tests/audio_ssi_test.c
     src/tests/ddr_test.c
     src/tests/flexcan_test.c
     src/tests/gpio_led.c
     src/tests/gps_test.c
-    src/tests/i2c_dev_tests.c
     src/tests/i2c_check_light_sensor_isl29023.c
     src/tests/i2c_device_barometer_ppl3115.c
     src/tests/i2c_device_check_cs42888.c
@@ -76,7 +79,6 @@ define SOURCES
     src/tests/i2c_device_digital_compass_mag3112.c
     src/tests/i2c_device_id_check_mma8450.c
     src/tests/i2c_device_id_check_mma8451.c
-    src/tests/i2c_device_pmic_pf0100.c
     src/tests/i2c_device_temp_sensor_emc1046.c
     src/tests/i2c_device_zigbee_mc1323.c
     src/tests/i2c_eeprom_at24cxx_test.c
@@ -103,6 +105,13 @@ endef
 ifdef is_dq_or_sdl
 SOURCES += \
     $(SDK_LIB_ROOT)/common/ioexpander/test/max7310_test.c \
+    $(SDK_LIB_ROOT)/drivers/camera/test/camera_test.c \
+    $(SDK_LIB_ROOT)/drivers/camera/test/sensor_capture.c \
+    $(SDK_LIB_ROOT)/drivers/camera/test/adv7180_capture.c \
+    $(SDK_LIB_ROOT)/drivers/hdmi/test/hdmi_test.c \
+    $(SDK_LIB_ROOT)/drivers/hdmi/test/init_dma_data.c \
+    $(SDK_LIB_ROOT)/drivers/ipu/test/ips_display.c \
+    $(SDK_LIB_ROOT)/drivers/ipu/test/ipu_image.c \
     src/tests/audio_ssi_test.c \
     src/tests/android_buttons_test.c \
     src/tests/deserializer_ds90ur124.c \
@@ -110,10 +119,6 @@ SOURCES += \
     src/tests/fm_tuner_si476x_test.c \
     src/tests/i2c_device_id_check_p1003_tsc.c \
     src/tests/ipu_test.c \
-    $(SDK_LIB_ROOT)/drivers/hdmi/test/hdmi_test.c \
-    $(SDK_LIB_ROOT)/drivers/hdmi/test/init_dma_data.c \
-    $(SDK_LIB_ROOT)/drivers/ipu/test/ips_display.c \
-    $(SDK_LIB_ROOT)/drivers/ipu/test/ipu_image.c \
     src/tests/mlb_os81050.c \
     src/tests/video_dec_adv7180.c \
     src/tests/video_dec_ARD_MB_reset_button.c \

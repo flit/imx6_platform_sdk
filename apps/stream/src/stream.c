@@ -64,6 +64,14 @@
 #define OFFSET	0
 #endif
 
+#define SPLIT_VAL(x) (int)(x), ((int)(((float)(x))*1000000+0.5))%1000000
+
+#ifdef STREAM_DEBUG
+#define dprintf printf
+#else
+#define dprintf(fmt, ...)
+#endif
+
 /*
  *	3) Compile the code with full optimization.  Many compilers
  *	   generate unreasonably bad code before the optimizer tightens
@@ -96,10 +104,6 @@
 
 static double a[N + OFFSET], b[N + OFFSET], c[N + OFFSET];
 
-static double avgtime[4] = { 0 }, maxtime[4] = {
-0}, mintime[4] = {
-FLT_MAX, FLT_MAX, FLT_MAX, FLT_MAX};
-
 static char *label[4] = { "Copy:      ", "Scale:     ",
     "Add:       ", "Triad:     "
 };
@@ -129,27 +133,29 @@ int streammain()
     register int j, k;
     double scalar, t, times[4][NTIMES];
 
+    /* initialize time record */
+    double avgtime[4] = { 0 };
+    double maxtime[4] = {0}; 
+    double mintime[4] = {FLT_MAX, FLT_MAX, FLT_MAX, FLT_MAX};
+
     /* --- SETUP --- determine precision and check timing --- */
 
-    printf(HLINE);
-    printf("STREAM version $Revision: 5.9 $\n");
-    printf(HLINE);
+    dprintf(HLINE);
+    dprintf("STREAM version $Revision: 5.9 $\n");
+    dprintf(HLINE);
     BytesPerWord = sizeof(double);
-    printf("This system uses %d bytes per DOUBLE PRECISION word.\n", BytesPerWord);
+    dprintf("This system uses %d bytes per DOUBLE PRECISION word.\n", BytesPerWord);
 
-    printf(HLINE);
-#ifdef NO_LONG_LONG
-    printf("Array size = %d, Offset = %d\n", N, OFFSET);
-#else
-    printf("Array size = %llu, Offset = %d\n", (unsigned long long)N, OFFSET);
-#endif
+    dprintf(HLINE);
+    dprintf("Array size = %d, Offset = %d\n", N, OFFSET);
 
-    printf("Total memory required = %.1f MB.\n", (3.0 * BytesPerWord) * ((double)N / 1048576.0));
-    printf("Each test is run %d times, but only\n", NTIMES);
-    printf("the *best* time for each is used.\n");
+    dprintf("Total memory required = %d.%6d MB.\n",
+            SPLIT_VAL((3.0 * BytesPerWord) * N / 1048576.0));
+    dprintf("Each test is run %d times, but only\n", NTIMES);
+    dprintf("the *best* time for each is used.\n");
 
 #ifdef _OPENMP
-    printf(HLINE);
+    dprintf(HLINE);
 //#pragma omp parallel 
     {
 //#pragma omp master
@@ -160,10 +166,10 @@ int streammain()
     }
 #endif
 
-    printf(HLINE);
+    dprintf(HLINE);
 //#pragma omp parallel
     {
-        printf("Printing one line per active thread....\n");
+        dprintf("Printing one line per active thread....\n");
     }
 
     /* Get initial value for system clock. */
@@ -174,12 +180,12 @@ int streammain()
         c[j] = 0.0;
     }
 
-    printf(HLINE);
+    dprintf(HLINE);
 
     if ((quantum = checktick()) >= 1)
-        printf("Your clock granularity/precision appears to be " "%d microseconds.\n", quantum);
+        dprintf("Your clock granularity/precision appears to be " "%d microseconds.\n", quantum);
     else {
-        printf("Your clock granularity appears to be " "less than one microsecond.\n");
+        dprintf("Your clock granularity appears to be " "less than one microsecond.\n");
         quantum = 1;
     }
 
@@ -189,17 +195,17 @@ int streammain()
         a[j] = 2.0E0 * a[j];
     t = 1.0E6 * (mysecond() - t);
 
-    printf("Each test below will take on the order" " of %d microseconds.\n", (int)t);
-    printf("   (= %d clock ticks)\n", (int)(t / quantum));
-    printf("Increase the size of the arrays if this shows that\n");
-    printf("you are not getting at least 20 clock ticks per test.\n");
+    dprintf("Each test below will take on the order" " of %d microseconds.\n", (int)t);
+    dprintf("   (= %d clock ticks)\n", (int)(t / quantum));
+    dprintf("Increase the size of the arrays if this shows that\n");
+    dprintf("you are not getting at least 20 clock ticks per test.\n");
 
-    printf(HLINE);
+    dprintf(HLINE);
 
-    printf("WARNING -- The above is only a rough guideline.\n");
-    printf("For best results, please be sure you know the\n");
-    printf("precision of your system timer.\n");
-    printf(HLINE);
+    dprintf("WARNING -- The above is only a rough guideline.\n");
+    dprintf("For best results, please be sure you know the\n");
+    dprintf("precision of your system timer.\n");
+    dprintf(HLINE);
 
     /*  --- MAIN LOOP --- repeat test cases NTIMES times --- */
 
@@ -260,8 +266,9 @@ int streammain()
     for (j = 0; j < 4; j++) {
         avgtime[j] = avgtime[j] / (double)(NTIMES - 1);
 
-        printf("%s%11.4f  %11.4f  %11.4f  %11.4f\n", label[j],
-               1.0E-06 * bytes[j] / mintime[j], avgtime[j], mintime[j], maxtime[j]);
+        printf("%s%4d.%06d  %4d.%06d  %4d.%06d  %4d.%06d\n", label[j],
+               SPLIT_VAL(1.0E-06 * bytes[j] / avgtime[j]), SPLIT_VAL(avgtime[j]),
+               SPLIT_VAL(mintime[j]), SPLIT_VAL(maxtime[j]));
     }
     printf(HLINE);
 
@@ -351,9 +358,9 @@ void checkSTREAMresults()
         csum += c[j];
     }
 #ifdef VERBOSE
-    printf("Results Comparison: \n");
-    printf("        Expected  : %f %f %f \n", aj, bj, cj);
-    printf("        Observed  : %f %f %f \n", asum, bsum, csum);
+    dprintf("Results Comparison: \n");
+    dprintf("        Expected  : %f %f %f \n", aj, bj, cj);
+    dprintf("        Observed  : %f %f %f \n", asum, bsum, csum);
 #endif
 
 #ifndef abs

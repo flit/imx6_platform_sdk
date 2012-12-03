@@ -69,7 +69,7 @@ static int mma8451_reg_write(unsigned int i2c_base_addr, unsigned char reg_addr,
     rq.buffer_sz = 1;
     rq.buffer = buf;
 
-    return i2c_xfer(&rq, I2C_WRITE); 
+    return i2c_xfer(&rq, I2C_WRITE);
 }
 
 /*!

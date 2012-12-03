@@ -30,6 +30,8 @@
 
 #include "obds.h"
 
+const char g_mma8450_i2c_device_id_test_name[] = "Accelerometer MMA8450 I2C Device ID Test";
+
 #define REG_CTRL_REG1		0x38
 #define REG_XYZ_DATA_CFG	0x16
 #define REG_SYS_MODE		0x14
@@ -41,8 +43,6 @@
 #define REG_OUT_Y_MSB		0x08
 #define REG_OUT_Z_LSB		0x09
 #define REG_OUT_Z_MSB		0x0A
-
-static const char * const test_name = "I2C_DEVICE_MMA8450 Test";
 
 int mma8450_show_accel(unsigned int i2c_base_addr);
 
@@ -71,7 +71,6 @@ static int mma8450_reg_write(unsigned int i2c_base_addr, unsigned char reg_addr,
     unsigned char buf[1];
 
     buf[0] = reg_val;
-
     rq.ctl_addr = i2c_base_addr;
     rq.dev_addr = MMA8450_I2C_ID;
     rq.reg_addr = reg_addr;
@@ -82,19 +81,25 @@ static int mma8450_reg_write(unsigned int i2c_base_addr, unsigned char reg_addr,
     return i2c_xfer(&rq, I2C_WRITE);
 }
 
-int i2c_device_id_check_MMA8450(unsigned int i2c_base_addr)
+/*!
+ * @return      TEST_PASSED or  TEST_FAILED
+ */
+test_return_t i2c_device_id_check_MMA8450(void)
 {
     unsigned int reg_data = 0;
-    printf("Test MMA8450 Device ID - ");
+    const char* indent = menu_get_indent();
+    unsigned int i2c_base_addr = 0;
+    i2c_base_addr = I2C1_BASE_ADDR;
+
     i2c_init(i2c_base_addr, 170000);
     reg_data = mma8450_reg_read(i2c_base_addr, 0x0F);   //read  WHO_AM_I reg
 
     if (0xC6 == reg_data) {
-        printf("passed 0x%02X\n\n", reg_data);
+        printf("%sRead I2C ID passed (0xC6).\n\n", indent);
         mma8450_show_accel(i2c_base_addr);
         return TEST_PASSED;
     } else {
-        printf("failed, 0xC6 vs 0x%02X\n\n", reg_data);
+        printf("%sRead I2C ID failed (0x%02X). Expected 0xC6\n\n", indent, reg_data);
         return TEST_FAILED;
     }
 }
@@ -108,6 +113,12 @@ int mma8450_set_config(unsigned int i2c_base_addr)
     val &= ~(0x03);
     mma8450_reg_write(i2c_base_addr, REG_CTRL_REG1, val);
 
+    /*Set the range, -8g to 8g and activate the sensor */
+    val = mma8450_reg_read(i2c_base_addr, REG_CTRL_REG1);
+    val &= ~0x03;
+    val |= 0x03;
+    mma8450_reg_write(i2c_base_addr, REG_CTRL_REG1, val);
+
     /*Set the F_MODE, disable FIFO */
     val = mma8450_reg_read(i2c_base_addr, REG_F_SETUP);
     val &= 0x3F;
@@ -117,12 +128,6 @@ int mma8450_set_config(unsigned int i2c_base_addr)
     val = mma8450_reg_read(i2c_base_addr, REG_XYZ_DATA_CFG);
     val |= 0x7;                 //enable XYZ event
     mma8450_reg_write(i2c_base_addr, REG_XYZ_DATA_CFG, val);
-
-    /*Set the range, -8g to 8g and activate the sensor */
-    val = mma8450_reg_read(i2c_base_addr, REG_CTRL_REG1);
-    val &= ~0x03;
-    val |= 0x03;
-    mma8450_reg_write(i2c_base_addr, REG_CTRL_REG1, val);
 
     val = mma8450_reg_read(i2c_base_addr, REG_CTRL_REG1);
     return 0;
@@ -184,23 +189,22 @@ int mma8450_get_accel(unsigned int i2c_base_addr, Accel * acc)
 int mma8450_show_accel(unsigned int i2c_base_addr)
 {
     unsigned char uc = NONE_CHAR;
+    const char* indent = menu_get_indent();
     Accel acc;
 
-    printf("    Do you want to check the accelerometer?(y/n)\n\n");
+    printf("%s    Do you want to check the accelerometer?(y/n)\n\n", indent);
 
     do {
-        uc = getchar();
-//        uc = receive_char();
+       uc = fgetc(stdin);
     } while (uc == NONE_CHAR);
 
     if (uc == 'y' || uc == 'Y') {
         mma8450_set_config(i2c_base_addr);
 
-        printf("    Start show acceleration. Type 'x' to exit.\n\n");
+        printf("%s    Start show acceleration. Type 'x' to exit.\n\n", indent);
         while (1) {
             mma8450_get_accel(i2c_base_addr, &acc);
-            uc = getchar();
-//          uc = receive_char();
+            uc = fgetc(stdin);
             if (uc == 'x' || uc == 'X') {
                 printf("\n\n");
                 break;
@@ -210,18 +214,4 @@ int mma8450_show_accel(unsigned int i2c_base_addr)
         return 1;
     }
     return 0;
-}
-
-/*!
- * @return      TEST_PASSED or  TEST_FAILED    
- */
-test_return_t i2c_device_MMA8450_test(void)
-{
-    const char * indent = menu_get_indent();
-
-    if ( prompt_run_test(test_name, indent) != TEST_CONTINUE )
-        return TEST_BYPASSED;
-
-    //TO be confirmed - i2c-base_addr
-    return i2c_device_id_check_MMA8450(I2C1_BASE_ADDR);
 }

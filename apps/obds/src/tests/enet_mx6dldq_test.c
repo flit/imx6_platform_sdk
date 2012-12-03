@@ -42,7 +42,6 @@
 #include "obds.h"
 #include "io.h"
 
-const char g_enet_test_name[] = "Ethernet Test";
 const char g_ar8031_test_name[] = "RGMII AR8031 G-Ethernet Test";
 const char g_KSZ9021RN_test_name[] = "RGMII KSZ9021RN G-Ethernet Test";
 

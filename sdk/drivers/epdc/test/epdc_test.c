@@ -30,7 +30,10 @@
 
 #include "epdc/epdc_regs.h"
 #include "epdc/epdc.h"
+#include "utility/menu.h"
 #include "sdk_types.h"
+
+const char g_epdc_test_name[] = "EPDC Test";
 
 void epdc_pvi_svga_sdr_init(void);
 void epdc_pvi_svga_sdr_test(void);
@@ -42,11 +45,10 @@ void epdc_send_erase_to_color(unsigned int lut, unsigned int mode,
 
 static int epdc_initialized = 0;
 
-int epdc_test(void)
+test_return_t epdc_test(void)
 {
-    int ret = 0;
-
     char recvCh = NONE_CHAR;
+    const char* indent = menu_get_indent();
 
     if (epdc_initialized == 0) {
         epdc_iomux_config();
@@ -64,7 +66,7 @@ int epdc_test(void)
 
     epdc_update_image(600, 230, IMAGE_STORE_0_ADDR);
 
-    printf("Do you see Freescale logo displayed on the e-ink panel?(Y/y for yes, other for no)\n");
+    printf("%sDo you see Freescale logo displayed on the e-ink panel?(Y/y for yes, other for no)\n", indent);
 
     do {
         recvCh = getchar();
@@ -73,13 +75,10 @@ int epdc_test(void)
 
     printf("%c\n", recvCh);
 
-    if (recvCh == 'Y' || recvCh == 'y') {
-        ret = 0;
-    } else {
-        ret = -1;
-    }
-
-    return ret;
+    if (recvCh == 'Y' || recvCh == 'y')
+        return TEST_PASSED;
+    else
+        return TEST_FAILED;
 }
 
 void epdc_pvi_svga_sdr_init(void)

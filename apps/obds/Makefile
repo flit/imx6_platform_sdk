@@ -40,6 +40,10 @@ is_dq_or_sdl = 1
 is_dq = 1
 else ifeq "$(TARGET)" "mx6sdl"
 is_dq_or_sdl = 1
+is_sdl_or_sl = 1
+else ifeq "$(TARGET)" "mx6sl"
+is_sdl_or_sl = 1
+is_sl = 1
 endif
 
 # Set up to link application.
@@ -60,6 +64,8 @@ define SOURCES
     $(APPS_ROOT)/common/ivt.c
     $(SDK_LIB_ROOT)/common/pmic/pfuse/pf0100.c
     $(SDK_LIB_ROOT)/drivers/audio/src/snd_card.c
+    $(SDK_LIB_ROOT)/drivers/camera/test/camera_test.c
+    $(SDK_LIB_ROOT)/drivers/camera/test/adv7180_capture.c
     $(SDK_LIB_ROOT)/drivers/spi/test/spi_nor_numonyx.c
     $(SDK_LIB_ROOT)/drivers/spi/test/imx_spi_nor_atmel.c
     $(SDK_LIB_ROOT)/drivers/usdhc/test/usdhc_test.c
@@ -101,13 +107,11 @@ define SOURCES
     src/tests/weim_nor_flash_test.c
 endef
 
-# Add drivers that are only available of mx6dq or mx6sdl.
+# Add drivers that are only available on mx6dq or mx6sdl.
 ifdef is_dq_or_sdl
 SOURCES += \
     $(SDK_LIB_ROOT)/common/ioexpander/test/max7310_test.c \
-    $(SDK_LIB_ROOT)/drivers/camera/test/camera_test.c \
     $(SDK_LIB_ROOT)/drivers/camera/test/sensor_capture.c \
-    $(SDK_LIB_ROOT)/drivers/camera/test/adv7180_capture.c \
     $(SDK_LIB_ROOT)/drivers/hdmi/test/hdmi_test.c \
     $(SDK_LIB_ROOT)/drivers/hdmi/test/init_dma_data.c \
     $(SDK_LIB_ROOT)/drivers/ipu/test/ips_display.c \
@@ -125,10 +129,24 @@ SOURCES += \
     src/tests/video_dec_ARD_MBrst_from_cpu_expander.c
 endif
 
-# Add drivers that are only available of mx6dq.
+# Add drivers that are only available on mx6dq.
 ifdef is_dq
 SOURCES += \
     $(SDK_LIB_ROOT)/drivers/sata/test/sata_test.c
+endif
+
+# Add drivers that are only available on mx6sdl or mx6sl.
+ifdef is_sdl_or_sl
+SOURCES += \
+    $(SDK_LIB_ROOT)/drivers/epdc/test/epdc_test.c
+endif
+# Add drivers that are only available on mx6sl.
+ifdef is_sl
+SOURCES += \
+    $(SDK_LIB_ROOT)/drivers/camera/test/csi_sensor_capture.c \
+    $(SDK_LIB_ROOT)/drivers/fec/test/fec_test.c \
+    $(SDK_LIB_ROOT)/drivers/lcdif/test/lcdif_display.c \
+    src/tests/keyboard_test.c
 endif
 
 # Need to include the SDK library!

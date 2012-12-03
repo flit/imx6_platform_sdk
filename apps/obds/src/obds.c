@@ -448,6 +448,12 @@ void select_tests(menuitem_t menuitems[], const select_tests_t select_tests)
 
 #endif // defined(BOARD_SMART_DEVICE)
 
+#if defined(CHIP_MX6SL) && defined(BOARD_EVK)
+
+    menu_append_menuitems(menuitems, MAX_TESTS, CPU_Tests);
+
+#endif // defined(CHIP_MX6SL) && defined(BOARD_EVK)
+
     menu_append_menuitems(menuitems, MAX_TESTS, Menu_Commands);
 }
 
@@ -548,6 +554,9 @@ const menuitem_t Menu_Commands[] =
 #if defined(CHIP_MX6DQ)
         MENU_MAKE_MENUITEM("19", g_sata_test_name, run_test, sata_test),
 #endif
+#if defined(CHIP_MX6SDL)
+        MENU_MAKE_MENUITEM("19", g_epdc_test_name, run_test, epdc_test),
+#endif
         MENU_MAKE_MENUITEM_END()
     };
 
@@ -558,6 +567,7 @@ const menuitem_t Menu_Commands[] =
 #endif
 #elif defined(CHIP_MX6SL)
 #if defined(BOARD_EVK)
+
     const menuitem_t CPU_Tests[] =
     {
         MENU_MAKE_MENUITEM_GROUP("CPU Board Tests"),
@@ -565,8 +575,20 @@ const menuitem_t Menu_Commands[] =
         MENU_MAKE_MENUITEM("02", g_program_mac_address_test_name, run_test, program_mac_address),
         MENU_MAKE_MENUITEM("03", g_ddr_test_name, run_test, ddr_test),
         MENU_MAKE_MENUITEM("04", g_snvs_srtc_test_name, run_test, snvs_srtc_test),
-//        MENU_MAKE_MENUITEM("05", "Ethernet Test", run_test, enet_test_main),
-//        MENU_MAKE_MENUITEM("09", "I2S Audio Test", run_test, i2s_audio_test),
+        MENU_MAKE_MENUITEM("05", g_fec_enet_test_name, run_test, fec_test),
+        MENU_MAKE_MENUITEM("06", g_mmcsd_test_name, run_test, mmcsd_test),
+        MENU_MAKE_MENUITEM("07", g_max17135_i2c_device_id_test_name, run_test, i2c_device_id_check_MAX17135),
+        MENU_MAKE_MENUITEM("08", g_mma8451_i2c_device_id_test_name, run_test, i2c_device_id_check_MMA8450),
+        MENU_MAKE_MENUITEM("09", g_pmic_pf0100_i2c_device_id_test_name, run_test, pf0100_i2c_device_id_check),
+        MENU_MAKE_MENUITEM("10", g_spi_nor_test_name, run_test, spi_nor_test),
+        MENU_MAKE_MENUITEM("11", g_usb_otg_dev_enum_test_name, run_test, usbo_dev_enum_test),
+        MENU_MAKE_MENUITEM("12", g_uart_test_name, run_test, uart_test),
+        MENU_MAKE_MENUITEM("13", g_audio_ssi_test_name, run_test, i2s_audio_test),
+        MENU_MAKE_MENUITEM("14", g_keypad_port_test_name, run_test, test_gpio_keyboard),
+        MENU_MAKE_MENUITEM("15", g_usb_host1_dev_enum_test_name, run_test, usbh_dev_enum_test),
+        MENU_MAKE_MENUITEM("16", g_camera_test_name, run_test, camera_test),
+        MENU_MAKE_MENUITEM("17", g_epdc_test_name, run_test, epdc_test),
+        MENU_MAKE_MENUITEM("18", g_lcd_display_test_name, run_test, lcdif_display_test),
         MENU_MAKE_MENUITEM_END()
     };
 
@@ -576,6 +598,7 @@ const menuitem_t Menu_Commands[] =
         MENU_MAKE_MENUITEM_GROUP("Main Board Tests"),
         MENU_MAKE_MENUITEM_END()
     };
+
 #endif
 #endif
 

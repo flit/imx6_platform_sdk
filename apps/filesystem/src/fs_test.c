@@ -360,15 +360,10 @@ int fat_test(void)
 
     /* configure cache */
     arm_icache_enable();
-#if 0
-    arm_dcache_invalidate();
-    mmu_disable();
-    arm_dcache_disable();
-#else
     arm_dcache_invalidate();
     mmu_enable();
     arm_dcache_enable();
-#endif
+
     SDHC_ADMA_mode = 0;
     SDHC_INTR_mode = 0;
 
@@ -389,20 +384,6 @@ int fat_test(void)
 #endif
 
     while (i < sizeof(rw_test_data) / sizeof(rw_test_data[0])) {
-        if (rw_test_data[i].WorkMode == 1) {
-            arm_dcache_flush();
-            arm_dcache_invalidate();
-            mmu_disable();
-            arm_dcache_disable();
-        } else {
-            if (arm_dcache_state_query() == 0)  // dcache disabled
-            {
-                arm_dcache_invalidate();
-                mmu_enable();
-                arm_dcache_enable();
-            }
-        }
-
         get_data_size(rw_test_data[i].ChunkSize, dataSize);
         printf("\n** Test loop #%d, read/write in %s per access in %s mode\n", i, dataSize,
                test_mode[rw_test_data[i].WorkMode]);

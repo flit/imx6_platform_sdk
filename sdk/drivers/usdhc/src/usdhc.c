@@ -35,6 +35,7 @@
 #include "usdhc_host.h"
 #include "registers/regsusdhc.h"
 #include "buffers.h"
+#include "core/cortex_a9.h"
 
 /* Global Variables */
 
@@ -461,6 +462,15 @@ int card_set_blklen(uint32_t instance, int len)
     return status;
 }
 
+static void card_buffer_flush(void *buffer, int length)
+{
+    if(!arm_dcache_state_query())
+        return;
+
+        arm_dcache_flush_mlines(buffer, length);
+        arm_dcache_invalidate_mlines(buffer, length);
+}
+
 /*!
  * @brief Read data from card
  *
@@ -523,6 +533,7 @@ int card_data_read(uint32_t instance, int *dst_ptr, int length, uint32_t offset)
     /* If DMA mode enabled, configure BD chain */
     if (SDHC_ADMA_mode == TRUE) {
         host_setup_adma(instance, dst_ptr, length);
+        card_buffer_flush(dst_ptr, length);
     }
 
     /* Use CMD18 for multi-block read */
@@ -610,6 +621,7 @@ int card_data_write(uint32_t instance, int *src_ptr, int length, int offset)
     /* If DMA mode enabled, configure BD chain */
     if (SDHC_ADMA_mode == TRUE) {
         host_setup_adma(instance, src_ptr, length);
+        card_buffer_flush(src_ptr, length);        
     }
 
     /* Use CMD25 for multi-block write */

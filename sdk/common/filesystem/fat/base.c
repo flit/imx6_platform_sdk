@@ -47,6 +47,7 @@
 #include <string.h>
 
 #define INVALID_CLUSTER     0x7fffffff
+extern int SDHC_ADMA_mode;
 
 /*----------------------------------------------------------------------------
 
@@ -592,14 +593,34 @@ RtStatus_t Fwrite_FAT(int32_t HandleNumber, uint8_t * Buffer, int32_t NumBytesTo
 
             }
             BytesToCopy = sectorToWrite * BytesPerSector;
-            if ((RetValue = FSWriteMultiSectors(Device,
-                                                sectorStart,
-                                                WRITE_TYPE_RANDOM,
-                                                (uint8_t *) (Buffer + BuffOffset), BytesToCopy))
-                < 0) {
-                ddi_ldl_pop_media_task();
-                return RetValue;
+            if (SDHC_ADMA_mode && (((uint32_t) Buffer + BuffOffset) & 0x3)) // in ADMA mode, the buffer address must be word-aligned
+            {
+                uint8_t *tempBuffer = 0;
+                uint8_t *tempToken = 0;
+                extern int cache_line;
+                tempToken = malloc(BytesToCopy + 2 * cache_line);
+                tempBuffer =
+                    (uint8_t *) (((uint32_t) tempToken + cache_line) & (~(cache_line - 1)));
+                memcpy(tempBuffer, (uint8_t *) (Buffer + BuffOffset), BytesToCopy);
+                if ((RetValue = FSWriteMultiSectors(Device,
+                                                    sectorStart,
+                                                    WRITE_TYPE_RANDOM, tempBuffer, BytesToCopy))
+                    < 0) {
+                    ddi_ldl_pop_media_task();
+                    return RetValue;
+                }
+                free(tempToken);
+            } else {
+                if ((RetValue = FSWriteMultiSectors(Device,
+                                                    sectorStart,
+                                                    WRITE_TYPE_RANDOM,
+                                                    (uint8_t *) (Buffer + BuffOffset), BytesToCopy))
+                    < 0) {
+                    ddi_ldl_pop_media_task();
+                    return RetValue;
+                }
             }
+
             if ((FileSize - Handle[HandleNumber].CurrentOffset) <= 0) {
                 Handle[HandleNumber].Mode |= SEQ_WRITE_MODE;
                 Mode = WRITE_TYPE_NOREADBACK;

@@ -65,9 +65,7 @@ void platform_init(void)
 #endif
 
     // Enable interrupts.
-    gic_set_cpu_priority_mask(0xff);
-    gic_cpu_enable(true);
-    gic_enable(true);
+    gic_init();
     
     // Initialize clock sources, dividers, ... 
     ccm_init();

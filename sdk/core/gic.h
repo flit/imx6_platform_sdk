@@ -66,13 +66,32 @@ enum _gicd_sgi_filter
 extern "C" {
 #endif
 
+//! @name Initialization
+//@{
+//! @brief Init interrupt handling.
+//!
+//! This function is intended to be called only by the primary CPU init code, so it will
+//! only be called once during system bootup.
+//!
+//! Also inits the current CPU. You don't need to call gic_init_cpu() separately.
+//!
+//! @post The interrupt distributor and the current CPU interface are enabled. All interrupts
+//!     that were pending are cleared, and all interrupts are made secure (group 0).
+void gic_init(void);
+
+//! @brief Init the current CPU's GIC interface.
+//!
+//! @post Enables the CPU interface and sets the priority mask to 255. Interrupt preemption
+//!     is disabled by setting the Binary Point to a value of 7.
+void gic_init_cpu(void);
+//@}
 
 //! @name GIC Interrupt Distributor Functions
 //@{
 //! @brief Enable or disable the GIC Distributor.
 //!
-//! Both secure and non-secure access is enabled for the GIC distributor. When
-//! disabling, only the non-secure access is disabled.
+//! Enables or disables the GIC distributor passing both secure (group 0) and non-secure
+//! (group 1) interrupts to the CPU interfaces.
 //!
 //! @param enableIt Pass true to enable or false to disable.
 void gic_enable(bool enableIt);

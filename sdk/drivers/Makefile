@@ -30,7 +30,6 @@ rtc/src/rtc.c
 rtc/src/srtc.c
 sdma/src/sdma_script_info.c
 sdma/src/sdma.c
-smbus/src/smbus.c
 snvs/src/snvs.c
 spi/src/ecspi.c
 tempmon/src/tempmon.c

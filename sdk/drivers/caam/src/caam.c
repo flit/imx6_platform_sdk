@@ -404,9 +404,7 @@ void caam_open(void)
 {
     uint32_t temp_reg;
 
-    /* switch on the clock
-     * (for i.MX6, IOMUXC GPR11 has a bit to enable clocks to perfmon)
-     */
+    /* switch on the clock */
     clock_gating_config(CAAM_BASE_ADDR, CLOCK_ON);
 
     /* MID for CAAM - already done by HAB in ROM during preconfigure,

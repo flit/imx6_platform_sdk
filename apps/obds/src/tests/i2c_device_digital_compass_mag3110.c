@@ -64,6 +64,15 @@ test_return_t i2c_device_id_check_mag3110(void)
     unsigned int i2c_base_addr = I2C3_BASE_ADDR;
     const char* indent = menu_get_indent();
 
+#if defined(BOARD_SMART_DEVICE)
+    //  USB_OTG_PWR_EN (EIM_D22)
+    writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_EIM_EB3);
+    gpio_set_direction(GPIO_PORT2, 31, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT2, 31, GPIO_LOW_LEVEL);
+    hal_delay_us(1000);
+    gpio_set_level(GPIO_PORT2, 31, GPIO_HIGH_LEVEL);
+#endif    
+
     i2c_init(i2c_base_addr, 170000);
 
     ret_data = mag3110_reg_read(i2c_base_addr, 0x07);

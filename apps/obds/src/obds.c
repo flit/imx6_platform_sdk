@@ -378,6 +378,7 @@ menu_action_t run_all_tests(void* const param)
             }
         }
     }
+    
     select_tests(main_menuitems, tests);
 
     printf("%sEnable auto-run feature?\n", indent);
@@ -455,6 +456,8 @@ void select_tests(menuitem_t menuitems[], const select_tests_t select_tests)
 #endif // defined(CHIP_MX6SL) && defined(BOARD_EVK)
 
     menu_append_menuitems(menuitems, MAX_TESTS, Menu_Commands);
+    
+    config_i2c_pin();
 }
 
 const menuitem_t MenuList_All_Tests[] =
@@ -547,7 +550,7 @@ const menuitem_t Menu_Commands[] =
         MENU_MAKE_MENUITEM("12", g_ipu_display_tests_name, run_test, ipu_display_test_main),
         MENU_MAKE_MENUITEM("13", g_audio_ssi_test_name, run_test, i2s_audio_test),
         MENU_MAKE_MENUITEM("14", g_isl29023_i2c_device_id_test_name, run_test, i2c_device_id_check_isl29023),
-        MENU_MAKE_MENUITEM("15", g_mag3112_i2c_device_id_test_name, run_test, i2c_device_id_check_mag3112),
+        MENU_MAKE_MENUITEM("15", g_mag3110_i2c_device_id_test_name, run_test, i2c_device_id_check_mag3110),
         MENU_MAKE_MENUITEM("16", g_mma8451_i2c_device_id_test_name, run_test, i2c_device_id_check_MMA8451),
         MENU_MAKE_MENUITEM("17", g_mmcsd_test_name, run_test, mmcsd_test),
         MENU_MAKE_MENUITEM("18", g_camera_test_name, run_test, camera_test),

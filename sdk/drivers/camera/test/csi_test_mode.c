@@ -29,74 +29,59 @@
  */
 
 /*!
- * @file camera_test.c
- * @brief Main camera test.
+ * @file csi_test_mode.c
+ * @brief camera sensor works in test mode and display on LVDS test.
  * @ingroup diag_camera
  */
 
 #include <stdio.h>
-#include "sdk.h"
+#include "ipu/ipu_common.h"
+#include "camera/camera_def.h"
+#include "iomux_config.h"
+#include "registers/regsipu.h"
 
-const char g_camera_test_name[] = "Camera Test";
-
-extern int32_t csi_sensor_capture(void);
-extern int32_t sensor_capture(void);
-extern int32_t adv7180_capture(void);
-extern int32_t csi_test_mode(void);
-
-typedef struct {
-    const char *name;
-     int32_t(*test) (void);
-} camera_test_t;
-
-static camera_test_t camera_tests[] = {
-#if defined(BOARD_SMART_DEVICE)
-    {"Sensor capture", sensor_capture},
-#endif
-#if defined(BOARD_EVB)
-    {"adv7180 capture", adv7180_capture},
-#endif
-#if defined(CHIP_MX6SL)
-    {"Sensor capture", csi_sensor_capture},
-#else
-    {"test mode", csi_test_mode},
-#endif
-};
-
-test_return_t camera_test(void)
+/*!
+ * camera sensor works in test mode and display on LVDS.
+ *
+ * @return error information
+ */
+int32_t csi_test_mode(void)
 {
-    int32_t retv = TEST_FAILED;
-    int32_t i;
-    int32_t test_num = sizeof(camera_tests) / sizeof(camera_test_t);
+    int32_t ipu_index = 1, count = 0;
+    ips_dev_panel_t *panel;
+    int32_t width = 640, height = 480;
     uint8_t revchar;
 
-    printf("\nStart camera test\n");
+    /*step 1: enable panel */
+    panel = search_panel("HannStar XGA LVDS");
+    panel->panel_init(&ipu_index);
 
+    /*step 2: setup IPU: from csi to display */
+    ipu1_iomux_config();
+    ipu_sw_reset(ipu_index, 1000);
+    ipu_capture_setup(ipu_index, CSI_TEST_MODE, width, height, width, height, panel);
+
+    /*step 4: enable ipu display channel */
+    ipu_enable_display(ipu_index);
+
+    printf("Do you see the chessboard of test mode on LVDS panel(y or n)?\n");
     do {
-        for (i = 0; i < test_num; i++) {
-            printf("\t%d - %s\n", i, camera_tests[i].name);
-        }
-        printf("\tx - to exit.\n");
+        revchar = getchar();
+    } while (revchar == (uint8_t) 0xFF);
+    if (!(revchar == 'Y' || revchar == 'y')) {
+        return TEST_FAILED;
+    }
 
-        do {
-            revchar = (uint8_t) getchar();
-        } while (revchar == (uint8_t) 0xFF);
-        if (revchar == 'x') {
-            printf("\nCamera test exit.\n");
+    printf("Press 'x/X' key on your computer to exit this test\n");
+    while (1) {
+        revchar = uart_getchar(&g_debug_uart);
+        if (revchar == 'X' || revchar == 'x')
             break;
-        }
-        i = revchar - '0';
 
-        if ((i >= 0) && (i < test_num)) {
-            retv = camera_tests[i].test();
-            if (retv == TEST_PASSED) {
-                printf("\n%s test PASSED.\n\n", camera_tests[i].name);
-            } else {
-                printf("\n%s test FAILED.\n\n", camera_tests[i].name);
-            }
+        ipu_csi_test_mode_color(ipu_index, (count++) % 8);
+        hal_delay_us(1000000);
+    }
 
-        }
-    } while (1);
-
-    return retv;
+    ipu_capture_streamoff(ipu_index);
+    return TEST_PASSED;
 }

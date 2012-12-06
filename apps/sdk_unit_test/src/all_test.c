@@ -140,6 +140,7 @@ const menuitem_t k_menuItems[] = {
         DEFINE_TEST_MENU_ITEM("n",  "spi nor test",     spi_test),
         DEFINE_TEST_MENU_ITEM("en", "enet test",    	enet_test),
         DEFINE_TEST_MENU_ITEM("us", "usb test",     	usb_test),
+        DEFINE_TEST_MENU_ITEM("ca", "camera test",      camera_test),
 #elif defined(BOARD_SABRE_AI)
         DEFINE_TEST_MENU_ITEM("ei",  "eim test",        eim_test),
         DEFINE_TEST_MENU_ITEM("mi", "mipi test",        mipi_test),
@@ -147,6 +148,7 @@ const menuitem_t k_menuItems[] = {
         DEFINE_TEST_MENU_ITEM("us", "usb test",         usb_test),
         DEFINE_TEST_MENU_ITEM("n",  "spi nor test",     spi_test),
         DEFINE_TEST_MENU_ITEM("pc", "pcie test",        pcie_test),
+        DEFINE_TEST_MENU_ITEM("ca", "camera test",      camera_test),
 #elif defined(BOARD_SMART_DEVICE)
         DEFINE_TEST_MENU_ITEM("a",  "audio test",       audio_test),
         DEFINE_TEST_MENU_ITEM("ca", "camera test",      camera_test),

@@ -257,11 +257,16 @@ void ipu_capture_setup(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_
     idmac_info.addr1 = csi_mem1;
     idmac_info.width = act_width;
     idmac_info.height = act_height;
+
+    if (csi_interface == CSI_TEST_MODE)
+        csi_pixel_format = INTERLEAVED_RGB565;
     idmac_info.pixel_format = csi_pixel_format;
+
     if (csi_interface == CSI_BT656_NTSC_INTERLACED || csi_interface == CSI_BT656_PAL_INTERLACED)
         idmac_info.so = 1;
     else
         idmac_info.so = 0;
+
     if ((csi_pixel_format & 0xF) >= INTERLEAVED_RGB) {
         idmac_info.sl = panel->width * 2;
         idmac_info.u_offset = 0;
@@ -283,19 +288,24 @@ void ipu_capture_setup(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_
     ipu_csi_config(ipu_index, csi_interface, raw_width, raw_height, act_width, act_height);
 
     /*step4: config display channel: idma, dmfc, dc, dp, di */
-    ipu_display_setup(ipu_index, csi_mem0, csi_mem1, NON_INTERLEAVED_YUV420, panel);
+    ipu_display_setup(ipu_index, csi_mem0, csi_mem1, csi_pixel_format, panel);
 
     /*step5: link csi and display */
     ipu_capture_disp_link(ipu_index, 0);
 
     /*step6: paint the other display area to white. */
-    memset((void *)CH23_EBA0, 0xFF, panel->width * panel->height);
-    memset((void *)(CH23_EBA0 + panel->width * panel->height), 0x80,
-           panel->width * panel->height / 2);
+    if (csi_pixel_format == NON_INTERLEAVED_YUV420) {
+        memset((void *)CH23_EBA0, 0xFF, panel->width * panel->height);
+        memset((void *)(CH23_EBA0 + panel->width * panel->height), 0x80,
+               panel->width * panel->height / 2);
 
-    memset((void *)CH23_EBA1, 0xFF, panel->width * panel->height);
-    memset((void *)(CH23_EBA1 + panel->width * panel->height), 0x80,
-           panel->width * panel->height / 2);
+        memset((void *)CH23_EBA1, 0xFF, panel->width * panel->height);
+        memset((void *)(CH23_EBA1 + panel->width * panel->height), 0x80,
+               panel->width * panel->height / 2);
+    } else {
+        memset((void *)CH23_EBA0, 0xBB, panel->width * panel->height * 2);
+        memset((void *)CH23_EBA1, 0xBB, panel->width * panel->height * 2);
+    }
 
     if (csi_vdi_direct_path == 1)
         ips_deinterlace_proc(act_width, act_height, panel);
@@ -318,10 +328,10 @@ void ipu_capture_streamoff(uint32_t ipu_index)
     ipu_write_field(ipu_index, IPU_IPU_INT_STAT_1__IDMAC_EOF_0, 1);
 
     while (!(ipu_read(ipu_index, IPU_IPU_INT_STAT_1__ADDR) & 0x1)) {
-	hal_delay_us(10);
-	if (timeout <= 0)
-	    break;
-	timeout--;
+        hal_delay_us(10);
+        if (timeout <= 0)
+            break;
+        timeout--;
     }
 
     ipu_disable_csi(ipu_index, 0);

@@ -460,6 +460,7 @@ enum {
     CSI_BT656_PAL_PROGRESSIVE,
     CSI_BT656_NTSC_INTERLACED,
     CSI_BT656_PAL_INTERLACED,
+    CSI_TEST_MODE,
 };
 
 typedef struct {
@@ -755,6 +756,7 @@ uint32_t ipu_smfc_fifo_allocate(uint32_t ipu_index, uint32_t channel, uint32_t m
 void ipu_capture_disp_link(uint32_t ipu_index, uint32_t smfc);
 void ipu_disable_csi(uint32_t ipu_index, uint32_t csi);
 void ipu_disable_smfc(uint32_t ipu_index);
+void ipu_csi_test_mode_color(uint32_t ipu_index, int32_t color_mode);
 
 ips_dev_panel_t *search_panel(char *panel_name);
 void load_centralized_image(uint32_t addr, ips_dev_panel_t * panel);

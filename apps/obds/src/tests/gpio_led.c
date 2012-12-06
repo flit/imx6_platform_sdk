@@ -46,7 +46,7 @@ const char g_gpio_led_test_name[] = "GPIO LED Test";
 
 test_return_t gpio_led_test(void)
 {
-    unsigned char input = NONE_CHAR;
+    char input = NONE_CHAR;
     const char* indent = menu_get_indent();
     unsigned int bit, gpio_inst = 0, mux_val;
 
@@ -84,8 +84,9 @@ test_return_t gpio_led_test(void)
     gpio_set_direction(gpio_inst, bit, GPIO_GDIR_OUTPUT);
 
     printf("%sIs the USER LED blinking? [y/n]\n", indent);
-    while (1)
+    do 
     {
+	    printf("wait for inout = %x\n", input);
         gpio_set_level(gpio_inst, bit, GPIO_LOW_LEVEL);
 
         hal_delay_us(200000);
@@ -94,11 +95,17 @@ test_return_t gpio_led_test(void)
 
         hal_delay_us(200000);
 
-        input = fgetc(stdin);
-        if (input != NONE_CHAR)
-            break;
-    }
+        input = getchar();
 
+ //       input = fgetc(stdin);
+//        if (input != NONE_CHAR)
+//            break;
+        
+//        hal_delay_us(200000); 
+     } while (input == NONE_CHAR); 
+
+printf("input = %s\n", input);
+            
     // put back the original pin mux value
 #if defined(BOARD_SABRE_AI)
     HW_IOMUXC_SW_MUX_CTL_PAD_DISP0_DATA21_WR(mux_val);
@@ -110,6 +117,7 @@ test_return_t gpio_led_test(void)
     HW_IOMUXC_SW_MUX_CTL_PAD_USB_H_STROBE_WR(mux_val);
 #endif
 
+printf("end of light\n");
     if (input == 'y' || input == 'Y')
         return TEST_PASSED;
     else

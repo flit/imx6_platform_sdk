@@ -226,6 +226,11 @@ test_return_t i2c_device_id_check(void);
 test_return_t pmic_test(void);
 extern const char g_usb_EHCI_test_modes_name[];
 
+extern const char g_emc1046_i2c_device_id_test_name[];  //temp sensor
+test_return_t i2c_device_emc1046_test(void);
+extern const char g_ppl3115_i2c_device_id_test_name[]; //Barometer
+test_return_t i2c_device_ppl3115_test(void);
+
 //
 // PRIVATE
 //

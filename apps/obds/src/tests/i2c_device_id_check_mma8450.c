@@ -91,6 +91,15 @@ test_return_t i2c_device_id_check_MMA8450(void)
     unsigned int i2c_base_addr = 0;
     i2c_base_addr = I2C1_BASE_ADDR;
 
+#if defined(BOARD_SMART_DEVICE)
+    //  USB_OTG_PWR_EN (EIM_D22)
+    writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_EIM_EB3);
+    gpio_set_direction(GPIO_PORT2, 31, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT2, 31, GPIO_LOW_LEVEL);
+    hal_delay_us(1000);
+    gpio_set_level(GPIO_PORT2, 31, GPIO_HIGH_LEVEL);
+#endif    
+
     i2c_init(i2c_base_addr, 170000);
     reg_data = mma8450_reg_read(i2c_base_addr, 0x0F);   //read  WHO_AM_I reg
 

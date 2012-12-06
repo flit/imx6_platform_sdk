@@ -95,6 +95,15 @@ test_return_t i2c_device_id_check_p1003(void)
     reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_ALE, 0x1A080);
  	gpio_set_direction(GPIO_PORT6, 8, GPIO_GDIR_INPUT);
 
+#if defined(BOARD_SMART_DEVICE)
+    //  USB_OTG_PWR_EN (EIM_D22)
+    writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_EIM_EB3);
+    gpio_set_direction(GPIO_PORT2, 31, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT2, 31, GPIO_LOW_LEVEL);
+    hal_delay_us(1000);
+    gpio_set_level(GPIO_PORT2, 31, GPIO_HIGH_LEVEL);
+#endif    
+
     // set to idle
 //	unsigned char buf0[] = {0x03, 0x06, 0x0A, 0x04, 0x36, 0x3F, 0x01, 0x00, 0, 0};
 //	if (p1003_version_reg_write(i2c_base_addr, 0, buf0) != 0) {

@@ -38,6 +38,7 @@
 #define __IPU_COMMON_H__
 
 #include "sdk.h"
+#include "sdk_types.h"
 #include "ipu_reg_def.h"
 #include "buffers.h"
 #include "ldb/ldb_def.h"
@@ -407,30 +408,12 @@ typedef enum {
 } ips_csi_clk_mode_e;
 
 enum disp_dev_flag {
-    EPSON_VGA,
     CLAA_WVGA,
+    BOUNDARYDEV_WVGA,
     TRULY_MIPI_TFT480800,
-    SEIKO_WVGA_7INCH,
-    SEIKO_WVGA_4_3INCH,
-    AUO_XGA_LVDS,
     HannStar_XGA_LVDS,
-    CHIMEI_HD1080_LVDS,
     VGAOUT_XGA,
-    DVI_SVGA,
-    DVI_XGA,
-    DVI_SXGA,
-    TV_NTSC,
-    TV_PAL,
-    TV_720P60,
-    TV_1080P30,
-    TV_1080P25,
-    TV_1080P24,
-    TV_1080I60,
-    HDMI_480P60,
     HDMI_720P60,
-    HDMI_1080P24,
-    HDMI_1080P25,
-    HDMI_1080P30,
     HDMI_1080P60,
     SII9022_1080P60,
 };
@@ -466,6 +449,7 @@ enum {
 typedef struct {
     char panel_name[32];
     uint32_t panel_id;
+    uint32_t panel_type;
     uint32_t colorimetry;
     uint32_t refresh_rate;
     uint32_t width;
@@ -759,6 +743,8 @@ void ipu_disable_smfc(uint32_t ipu_index);
 void ipu_csi_test_mode_color(uint32_t ipu_index, int32_t color_mode);
 
 ips_dev_panel_t *search_panel(char *panel_name);
+ips_dev_panel_t *get_panel_by_id(uint32_t panel_id);
+void list_panel(uint32_t panel_type);
 void load_centralized_image(uint32_t addr, ips_dev_panel_t * panel);
 void load_foreground_image(uint32_t addr, uint32_t width, uint32_t height);
 void set_background_margin(ips_dev_panel_t * panel, uint32_t width, uint32_t height);

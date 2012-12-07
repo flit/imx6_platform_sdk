@@ -384,28 +384,3 @@ void ipu_mipi_csi2_setup(uint32_t ipu_index, uint32_t csi_width, uint32_t csi_he
            panel->width * panel->height / 2);
 }
 
-/*! Set display parameters in IPU configuration structure according to your display panel name. There are only some displays are supported by this function. And you can set the display manually all by your self if the hardware is supported by IPU.
- *
- * @param panel_name 		panel name of your display
- */
-ips_dev_panel_t *search_panel(char *panel_name)
-{
-    ips_dev_panel_t *panel = &disp_dev_list[0];
-    int32_t index = 0;
-
-    while (index < num_of_panels) {
-        if (!strcmp(panel->panel_name, panel_name))
-            break;
-        else {
-            panel++;
-            index++;
-        }
-    }
-
-    if (index == num_of_panels) {
-        printf("The display panel %s is not supported!\n", panel_name);
-        return NULL;
-    }
-
-    return panel;
-}

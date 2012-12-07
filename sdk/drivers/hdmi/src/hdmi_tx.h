@@ -69,14 +69,6 @@ enum hdmi_colorimetry {
     eITU709,
 };
 
-//! @brief HDMI input source list
-enum hdmi_input_source {
-    IPU1_DI0 = 0x0,
-    IPU1_DI1 = 0x1,
-    IPU2_DI0 = 0x2,
-    IPU2_DI1 = 0x3,
-};
-
 //! @brief HDMI video mode structure
 //
 //! this is used to set the timming of HDMI output

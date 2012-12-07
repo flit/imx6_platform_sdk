@@ -96,7 +96,7 @@ void disable_para_panel(void)
  */
 void tftlcd_backlight_en(char *panel_name)
 {
-    if (!strcmp(panel_name, "CLAA 070VC01")) {
+    if (!strcmp(panel_name, "CLAA01 WVGA")) {
         /*GPIO to provide backlight */
         reg32_write(IOMUXC_SW_MUX_CTL_PAD_DI0_PIN4, ALT5);
         gpio_set_direction(GPIO_PORT4, 20, GPIO_GDIR_OUTPUT);
@@ -156,7 +156,7 @@ void tftlcd_backlight_en(char *panel_name)
  */
 void tftlcd_reset(char *panel_name)
 {
-    if (!strcmp(panel_name, "CLAA 070VC01")) {
+    if (!strcmp(panel_name, "CLAA01 WVGA")) {
 #ifdef BOARD_EVB
         reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_EB3, ALT5);
         reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_EB3, 0x1B0B0);

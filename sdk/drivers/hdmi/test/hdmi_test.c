@@ -38,6 +38,7 @@
 #include "sdk.h"
 #include "hdmi/src/hdmi_tx.h"
 #include "registers/regshdmi.h"
+#include "ipu/ipu_common.h"
 
 extern int ips_hdmi_stream(void);
 extern int ips_hdmi_1080P60_stream(int ipu_index);

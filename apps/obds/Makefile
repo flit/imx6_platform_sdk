@@ -112,6 +112,7 @@ ifdef is_dq_or_sdl
 SOURCES += \
     $(SDK_LIB_ROOT)/common/ioexpander/test/max7310_test.c \
     $(SDK_LIB_ROOT)/drivers/camera/test/sensor_capture.c \
+    $(SDK_LIB_ROOT)/drivers/camera/test/csi_test_mode.c \
     $(SDK_LIB_ROOT)/drivers/hdmi/test/hdmi_test.c \
     $(SDK_LIB_ROOT)/drivers/hdmi/test/init_dma_data.c \
     $(SDK_LIB_ROOT)/drivers/ipu/test/ips_display.c \
@@ -122,7 +123,7 @@ SOURCES += \
     src/tests/enet_mx6dldq_test.c \
     src/tests/fm_tuner_si476x_test.c \
     src/tests/i2c_device_id_check_p1003_tsc.c \
-    src/tests/ipu_test.c \
+    src/tests/display_test.c \
     src/tests/mlb_os81050.c \
     src/tests/video_dec_adv7180.c \
     src/tests/video_dec_ARD_MB_reset_button.c \

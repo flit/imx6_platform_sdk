@@ -40,6 +40,7 @@
 #include "iomux_config.h"
 #include "registers/regsipu.h"
 
+extern int csi_dma_band_mode;
 /*!
  * camera sensor works in test mode and display on LVDS.
  *
@@ -59,6 +60,17 @@ int32_t csi_test_mode(void)
     /*step 2: setup IPU: from csi to display */
     ipu1_iomux_config();
     ipu_sw_reset(ipu_index, 1000);
+    printf("Do you want to enable band mode (y or n)?\n");
+    printf("Note in band mode the whole frame is split into pieces ");
+    printf("and it is useful in memory limited system.\n");
+    do {
+        revchar = getchar();
+    } while (revchar == (uint8_t) 0xFF);
+    if ((revchar == 'Y' || revchar == 'y')) {
+        csi_dma_band_mode = 1;
+    } else {
+        csi_dma_band_mode = 0;
+    }
     ipu_capture_setup(ipu_index, CSI_TEST_MODE, width, height, width, height, panel);
 
     /*step 4: enable ipu display channel */

@@ -41,9 +41,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 //! @brief Available PWM interrupts.
-enum _pwm_interrupts
-{
-    kPwmFifoEmptyIrq = 1 << 0,       //!< FIFO empty interrupt.
+enum _pwm_interrupts {
+    kPwmFifoEmptyIrq = 1 << 0,  //!< FIFO empty interrupt.
     kPwmRolloverIrq = 1 << 1,   //!< Rollover interrupt. The counter has reached the period and reset.
     kPwmCompareIrq = 1 << 2     //!< Compare interrupt. The counter value matches the current sample value
 };
@@ -51,14 +50,29 @@ enum _pwm_interrupts
 //! @brief Clock sources for the PWM.
 //!
 //! Pass one of these values in the hw_module_t::freq member.
-enum _pwm_clksrc
-{
+enum _pwm_clksrc {
     kPwmClockSourceNone = 0,
     kPwmClockSourceIpg = 1,
     kPwmClockSourceCkih = 2,
     kPwmClockSourceCkil = 3
 };
 
+struct pwm_parms {
+    uint32_t instance;          //!< The number of this module instance. The first instance is number 1.
+    uint32_t freq;              //!< Input clock frequency.
+    uint32_t smp_cnt;
+    uint16_t prescale;
+    uint16_t period;
+    uint16_t *sample;
+    uint8_t interrupt;
+};
+
+struct pwm_interrupt_status {
+    uint32_t instance;          //!< The number of this module instance. The first instance is number 1.
+    uint8_t interrupt;           //!< PWM interrupt.
+};
+
+extern uint32_t g_pwm_test_end;
 ////////////////////////////////////////////////////////////////////////////////
 // API
 ////////////////////////////////////////////////////////////////////////////////
@@ -83,11 +97,7 @@ extern "C" {
  * @retval TRUE on success
  * @retval FALSE on fail
  */
-int pwm_init(struct hw_module * port,
-                    uint16_t prescale,
-                    uint16_t period,
-                    uint16_t * sample,
-                    uint32_t smp_cnt);
+int pwm_init(struct pwm_parms *pwm);
 
 /*!
  * @brief Setup interrupt service routine.
@@ -101,9 +111,9 @@ int pwm_init(struct hw_module * port,
  * @param state Pass true or false to enable or disable interrupts.
  * @param mask Mask of interrupts to enable or disable.
  */
-void pwm_setup_interrupt(struct hw_module * port,
-                                bool state,
-                                uint8_t mask);
+void pwm_setup_interrupt(uint32_t instance, void (*irq_subroutine) (void), uint8_t mask);
+
+void pwm_free_interrupt(uint32_t instance);
 
 /*!
  * @brief Clear status that will issue interrupt.
@@ -116,9 +126,9 @@ void pwm_setup_interrupt(struct hw_module * port,
  * @param port Device instance.
  * @param mask Mask of status bits to clear.
  */
-void pwm_clear_int_status(struct hw_module * port,
-                          uint32_t mask);
+void pwm_clear_int_status(uint32_t instance, uint32_t mask);
 
+void pwm_isr_test_end(void);
 /*!
  * @brief Enable PWM output.
  *
@@ -127,7 +137,7 @@ void pwm_clear_int_status(struct hw_module * port,
  *
  * @param port Device instance.
  */
-void pwm_enable(struct hw_module * port);
+void pwm_enable(uint32_t instance);
 
 /*!
  * @brief Disable PWM ouput.
@@ -136,14 +146,12 @@ void pwm_enable(struct hw_module * port);
  *
  * @param port Device instance.
  */
-void pwm_disable(struct hw_module * port);
+void pwm_disable(uint32_t instance);
 
 #if defined(__cplusplus)
 }
 #endif
-
 //! @}
-
 #endif
 ////////////////////////////////////////////////////////////////////////////////
 // EOF

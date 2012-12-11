@@ -39,127 +39,134 @@
 
 //! Number of sample FIFO entries.
 #define PWM_CNT_FIFO_SZ       (4)
+struct pwm_interrupt_status pwm_int_test_end;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code
 ////////////////////////////////////////////////////////////////////////////////
 
-int pwm_init(struct hw_module *port, uint16_t prescale, uint16_t period,
-             uint16_t * sample, uint32_t smp_cnt)
+int pwm_init(struct pwm_parms *pwm)
 {
     int idx;
 
-    // Configure pins.
-    pwm_iomux_config(port->instance);
-
     // Disable PWM first 
-    HW_PWM_PWMCR(port->instance).B.EN = 0;
+    HW_PWM_PWMCR(pwm->instance).B.EN = 0;
 
     // Verify and set clock source 
-    if ((port->freq < kPwmClockSourceIpg) || (port->freq > kPwmClockSourceCkil))
-    {
-#if DEBUG
+    if ((pwm->freq < kPwmClockSourceIpg) || (pwm->freq > kPwmClockSourceCkil)) {
         printf("Invalid clock source selection.\n");
         return FALSE;
-#endif
     }
 
-    HW_PWM_PWMCR(port->instance).B.CLKSRC = port->freq;
+    HW_PWM_PWMCR(pwm->instance).B.CLKSRC = pwm->freq;
 
     // Set FIFO watermark to 4 empty slots 
-    HW_PWM_PWMCR(port->instance).B.FWM = 3;
+    HW_PWM_PWMCR(pwm->instance).B.FWM = 3;
 
     // Set prescale after checking its range.
-    if (prescale >= (BM_PWM_PWMCR_PRESCALER >> BP_PWM_PWMCR_PRESCALER))
-    {
-#if DEBUG
+    if (pwm->prescale >= (BM_PWM_PWMCR_PRESCALER >> BP_PWM_PWMCR_PRESCALER)) {
         printf("Invalid prescaler value.\n");
-#endif
         return FALSE;
     }
 
-    HW_PWM_PWMCR(port->instance).B.PRESCALER = prescale;
+    HW_PWM_PWMCR(pwm->instance).B.PRESCALER = pwm->prescale;
 
     // Set period 
-    HW_PWM_PWMPR(port->instance).B.PERIOD = period;
+    HW_PWM_PWMPR(pwm->instance).B.PERIOD = pwm->period;
 
     // Write count to FIFO 
-    if ((smp_cnt > PWM_CNT_FIFO_SZ) || (smp_cnt < 1))
-    {
-#if DEBUG
+    if ((pwm->smp_cnt > PWM_CNT_FIFO_SZ) || (pwm->smp_cnt < 1)) {
         printf("Invalid number of samples.\n");
-#endif
         return FALSE;
     }
 
-    for (idx = 0; idx < smp_cnt; idx++)
-    {
-        HW_PWM_PWMSAR(port->instance).B.SAMPLE = sample[idx];
+    for (idx = 0; idx < pwm->smp_cnt; idx++) {
+        HW_PWM_PWMSAR(pwm->instance).B.SAMPLE = pwm->sample[idx];
     }
 
+    // Setup interrupt for FIFO empty
+    if (pwm->interrupt == kPwmFifoEmptyIrq) {
+	/* register FIFO Empty interrupt to end the output test */
+	pwm_int_test_end.instance = pwm->instance;
+	pwm_int_test_end.interrupt = pwm->interrupt;
+	pwm_setup_interrupt(pwm->instance, pwm_isr_test_end, pwm->interrupt);
+    }
     return TRUE;
 }
 
-void pwm_clear_int_status(struct hw_module *port, uint32_t mask)
+void pwm_clear_int_status(uint32_t instance, uint32_t mask)
 {
     // Convert mask from abstract constants to register bitmasks.
     uint32_t convertedMask = 0;
-    if (mask & kPwmFifoEmptyIrq)
-    {
+    if (mask & kPwmFifoEmptyIrq) {
         convertedMask |= BM_PWM_PWMSR_FE;
     }
-    if (mask & kPwmRolloverIrq)
-    {
+    if (mask & kPwmRolloverIrq) {
         convertedMask |= BM_PWM_PWMSR_ROV;
     }
-    if (mask & kPwmCompareIrq)
-    {
+    if (mask & kPwmCompareIrq) {
         convertedMask |= BM_PWM_PWMSR_CMP;
     }
-
     // Clear status bits by writing 1s.
-    HW_PWM_PWMSR_WR(port->instance, convertedMask);
+    HW_PWM_PWMSR_WR(instance, convertedMask);
 }
 
-void pwm_setup_interrupt(struct hw_module *port, bool state, uint8_t mask)
+void pwm_setup_interrupt(uint32_t instance, void (*irq_subroutine) (void), uint8_t mask)
 {
-    if (state)
-    {
-        // Disable the IRQ first 
-        disable_interrupt(port->irq_id, CPU_0);
+    int irq_id = IMX_INT_PWM1 + instance - 1;
 
-        // Clear status register 
-        HW_PWM_PWMSR_WR(port->instance, BM_PWM_PWMSR_FE | BM_PWM_PWMSR_ROV | BM_PWM_PWMSR_CMP | BM_PWM_PWMSR_FWE);
+    // Disable the IRQ first
+    disable_interrupt(irq_id, CPU_0);
 
-        // Register the IRQ sub-routine 
-        register_interrupt_routine(port->irq_id, port->irq_subroutine);
+    // Clear status register
+    HW_PWM_PWMSR_WR(instance,
+                    BM_PWM_PWMSR_FE | BM_PWM_PWMSR_ROV | BM_PWM_PWMSR_CMP | BM_PWM_PWMSR_FWE);
 
-        // Enable the IRQ at ARM core level 
-        enable_interrupt(port->irq_id, CPU_0, 0);
+    // Register the IRQ sub-routine
+    register_interrupt_routine(irq_id, irq_subroutine);
 
-        // Enable interrupt to status 
-        HW_PWM_PWMIR(port->instance).B.FIE = ((mask & kPwmFifoEmptyIrq) != 0);
-        HW_PWM_PWMIR(port->instance).B.RIE = ((mask & kPwmRolloverIrq) != 0);
-        HW_PWM_PWMIR(port->instance).B.CIE = ((mask & kPwmCompareIrq) != 0);
-    }
-    else
-    {
-        // Disable the IRQ at ARM core level 
-        disable_interrupt(port->irq_id, CPU_0);
+    // Enable the IRQ at ARM core level
+    enable_interrupt(irq_id, CPU_0, 0);
 
-        // Clear all interrupt enables.
-        HW_PWM_PWMIR_WR(port->instance, 0);
-    }
+    // Enable interrupt to status
+    HW_PWM_PWMIR(instance).B.FIE = ((mask & kPwmFifoEmptyIrq) != 0);
+    HW_PWM_PWMIR(instance).B.RIE = ((mask & kPwmRolloverIrq) != 0);
+    HW_PWM_PWMIR(instance).B.CIE = ((mask & kPwmCompareIrq) != 0);
 }
 
-void pwm_enable(struct hw_module *port)
+void pwm_free_interrupt(uint32_t instance)
 {
-    HW_PWM_PWMCR(port->instance).B.EN = 1;
+    int irq_id = IMX_INT_PWM1 + instance - 1;
+
+    // Disable the IRQ at ARM core level
+    disable_interrupt(irq_id, CPU_0);
+
+    // Clear all interrupt enables.
+    HW_PWM_PWMIR_WR(instance, 0);
 }
 
-void pwm_disable(struct hw_module *port)
+void pwm_isr_test_end(void)
 {
-    HW_PWM_PWMCR(port->instance).B.EN = 0;
+    printf("PWM output end.\n");
+
+    // Set PWM output end flag
+    g_pwm_test_end = TRUE;
+
+    // Clear Interrupt status
+    pwm_clear_int_status(pwm_int_test_end.instance, pwm_int_test_end.interrupt);
+}
+
+void pwm_enable(uint32_t instance)
+{
+    HW_PWM_PWMCR(instance).B.EN = 1;
+}
+
+void pwm_disable(uint32_t instance)
+{
+    // Disable PWM interrupt
+    pwm_free_interrupt(instance);
+
+    HW_PWM_PWMCR(instance).B.EN = 0;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

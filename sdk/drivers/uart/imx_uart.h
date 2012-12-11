@@ -125,6 +125,14 @@ uint8_t uart_putchar(struct hw_module *port, uint8_t * ch);
  */
 uint8_t uart_getchar(struct hw_module *port);
 
+
+/*!
+ * @brief   Receive unsigned integer input on the UART port
+ *
+ * @param   Integer pointer to the value which want to get the interget input from user.
+ * @return  If correctly get an valid interger input, return TRUE. If errors are detected, it returns FALSE.
+ */
+int uart_get_integer(uint32_t *value);
 /*!
  * @brief   Configure the RX or TX FIFO level and trigger mode
  *

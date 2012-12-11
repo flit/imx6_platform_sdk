@@ -217,3 +217,50 @@ void uart_init(struct hw_module *port, uint32_t baudrate, uint8_t parity,
        the code with a JTAG and without active IRQ */
     HW_UART_UTS_SET(instance, BM_UART_UTS_DBGEN);
 }
+
+int uart_get_integer(uint32_t *value)
+{
+    uint32_t bit_value;
+    uint8_t revchar[33] = {0}; /* 32 bit plus one terminal flag*/
+    int i, num = 0;
+
+    while (1) {
+	revchar[num] = uart_getchar(&g_debug_uart);
+	if ((char) revchar[num] == 0x0d) { /* return key*/
+	    uart_putchar(&g_debug_uart, &(revchar[num]));
+	    revchar[num] = 0x0a; /* move the cursor to the next line */
+	    uart_putchar(&g_debug_uart, &(revchar[num]));
+	    break;
+	} else if ((char) revchar[num] == 0x08 || (char) revchar[num] == 0x7F) {
+	    /* delete or backspace */
+	    uart_putchar(&g_debug_uart, &(revchar[num]));
+	    num--;
+	    continue;
+	} else if ((char) revchar[num] >= '0' && (char) revchar[num] <= '9'){
+	    uart_putchar(&g_debug_uart, &(revchar[num]));
+	    num++;
+	} else {
+	    /* none interger intput. invalid */
+	    continue;
+	}
+
+	if (num > 32)
+	    return FALSE;
+    }
+
+    /* last 1 is the terminal char return */
+    num--;
+    *value = 0;
+    for (i = 0; i <= num; i++) {
+	bit_value = revchar[i] - 48; /* '0' = 48 */
+	if (bit_value > 9 || bit_value < 0) {
+	    *value = 0;
+	    printf("bit_value %d\n", bit_value);
+	    return FALSE;
+	} else {
+	    *value = (*value * 10 + bit_value) ;
+	}
+    }
+
+    return TRUE;
+}

@@ -31,6 +31,7 @@
 #define _IMX_SATA_H_
 
 #include "sdk.h"
+#include "registers/regssata.h"
 
 //////////////////////////////////////////////////////////////////////////////
 // Definitions
@@ -56,7 +57,6 @@ typedef signed int s32;
 #define SATA_MAX_TRANSFER_SECTOR_CNT    32
 #define SATA_MAX_TRANSFER_DATA_SZ     (SATA_HDD_SECTOR_SIZE*SATA_MAX_TRANSFER_SECTOR_CNT)
 
-//#define MAX_TIMEOUT_COUNTER           0x1FFFFFF
 #define MAX_TIMEOUT_COUNTER           0x1FFFF
 #define PORT_N_INIT_TIMEOUT           500000    // 500ms
 #define PORT_N_DET_TIEMOUT            1000  // 1ms
@@ -65,8 +65,6 @@ typedef signed int s32;
 #define UMOUNT_MODE                   0
 
 #define SATA_PDMA_ENABLED             1
-
-#define SATA_PORT_N_BASE_ADDRESS(n,achi_base)   ((u32)achi_base+(0x100+n*0x80))
 
 //! @brief SATA FIS Types Definitions
 #define SATA_FIS_TYPE_RFIS_H2D             0x27 //Register FIS - Host to Device
@@ -82,39 +80,10 @@ typedef signed int s32;
 #define SATA_READ                          0x0
 #define SATA_WRITE                         0x1
 
+#define SATA_DISABLED                      0x0
+#define SATA_ENABLED                       0x1
+
 #define IOC                                0x1  //Interrupt On Complete
-
-//! @brief SATA Host Registers Macros
-//! @brief CAP
-#define SATA_AHCI_HOST_CAP_NP_SHIFT        0
-#define SATA_AHCI_HOST_CAP_NP_MASK         (0x1F<<0)    //Number of Ports
-#define SATA_AHCI_HOST_CAP_SXS             (1<<5)   //Supports External SATA
-#define SATA_AHCI_HOST_CAP_EMS             (1<<6)   //Enclosure Management Supported
-#define SATA_AHCI_HOST_CAP_CCCS            (1<<7)   //Command Completion Coalescing Supported
-#define SATA_AHCI_HOST_CAP_NCS_SHIFT       8
-#define SATA_AHCI_HOST_CAP_NCS_MASK        (0x1F<<8)    //Number of Command Slots
-#define SATA_AHCI_HOST_CAP_PSC             (1<<13)  //Partial State Capable
-#define SATA_AHCI_HOST_CAP_SSC             (1<<14)  //Slumber State Capable
-#define SATA_AHCI_HOST_CAP_PMD             (1<<15)  //PIO Multiple DRQ Block
-#define SATA_AHCI_HOST_CAP_FBSS            (1<<16)  //FIS-based Switching Supported
-#define SATA_AHCI_HOST_CAP_SPM             (1<<17)  //Supports Port Multiplier
-#define SATA_AHCI_HOST_CAP_SAM             (1<<18)  //Supports AHCI mode only
-#define SATA_AHCI_HOST_CAP_SNZO            (1<<19)  //Supports Non-Zero Offsets
-#define SATA_AHCI_HOST_CAP_ISS_SHIFT       20
-#define SATA_AHCI_HOST_CAP_ISS_MASK        (0xF<<20)    //Interface Speed Support
-#define SATA_AHCI_HOST_CAP_SCLO            (1<<24)  //Supports Command List Overrid
-#define SATA_AHCI_HOST_CAP_SAL             (1<<25)  //Supports Activity LED
-#define SATA_AHCI_HOST_CAP_SALP            (1<<26)  //Supports Aggressive Link Power Management
-#define SATA_AHCI_HOST_CAP_SSS             (1<<27)  //Supports Staggered Spin-up
-#define SATA_AHCI_HOST_CAP_SMPS            (1<<28)  //Supports Mechanical Presence Switch
-#define SATA_AHCI_HOST_CAP_SSNTF           (1<<29)  //Supports SNotification Register
-#define SATA_AHCI_HOST_CAP_SNCQ            (1<<30)  //Supports Native Command Queuing
-#define SATA_AHCI_HOST_CAP_S64A            (1<<31)  //Supports 64-bit Addressing
-
-//! @brief GHC 
-#define SATA_AHCI_HOST_GHC_AHCI_ENABLED    (1<<31)
-#define SATA_AHCI_HOST_GHC_INTR_ENABLED    (1<<1)
-#define SATA_AHCI_HOST_GHC_HBA_RESET       (1<<0)
 
 //! @brief TIMER1MS
 //! @brief 1ms is AHB Frequency 133MHz/1000, the default value is 100000 for 100Mhz frequency
@@ -124,114 +93,25 @@ typedef signed int s32;
 #define SATA_AHCI_HOST_IS_PORT_N_INTR_ISSUED(n) (1<<n)
 
 //! @brief OOBR
-#define SATA_AHCI_HOST_OOBR_WE               (1<<31)
-#define SATA_AHCI_HOST_OOBR_COMWAKE_MIN_MASK (0x7F<<24)
 #define SATA_AHCI_HOST_OOBR_COMWAKE_MIN_VAL  (0x02<<24)
-#define SATA_AHCI_HOST_OOBR_COMWAKE_MAX_MASK (0xFF<<16)
 #define SATA_AHCI_HOST_OOBR_COMWAKE_MAX_VAL  (0x06<<16)
-#define SATA_AHCI_HOST_OOBR_COMINIT_MIN_MASK (0xFF<<8)
 #define SATA_AHCI_HOST_OOBR_COMINIT_MIN_VAL  (0x0b<<8)
-#define SATA_AHCI_HOST_OOBR_COMINIT_MAX_MASK (0xFF<<0)
 #define SATA_AHCI_HOST_OOBR_COMINIT_MAX_VAL  (0x14<<0)
 
-//! @brief SATA Port Registers Macros
-//! @brief PxCMD Macros
-#define SATA_AHCI_PORT_N_CMD_START         (1<<0)   //Start to process command-list
-#define SATA_AHCI_PORT_N_CMD_SUD           (1<<1)   //Spin-Up Device
-#define SATA_AHCI_PORT_N_CMD_POD           (1<<2)   //Power On Device
-#define SATA_AHCI_PORT_N_CMD_CLO           (1<<3)   //Command List Override
-#define SATA_AHCI_PORT_N_CMD_FRE           (1<<4)   //FIS Receive Enable
-#define SATA_AHCI_PORT_N_CMD_CCS_MASK      (0x1F<<8)    //Bit12:8,Current Command Slot
-#define SATA_AHCI_PORT_N_CMD_MPSS          (1<<13)  //Mechnical Presence Switch State
-#define SATA_AHCI_PORT_N_CMD_FR            (1<<14)  //FIS Receive Running
-#define SATA_AHCI_PORT_N_CMD_CR            (1<<15)  //Command List Running
-#define SATA_AHCI_PORT_N_CMD_CPS           (1<<16)  //Cold Presence State
-#define SATA_AHCI_PORT_N_CMD_PMA           (1<<17)  //Port Multiplier Attached
-#define SATA_AHCI_PORT_N_CMD_HPCP          (1<<18)  //Hot Plug Capable Port
-#define SATA_AHCI_PORT_N_CMD_MPSP          (1<<19)  //Mechanical Presence Switch Attached to Port
-#define SATA_AHCI_PORT_N_CMD_CPD           (1<<20)  //Cold Presence Detection
-#define SATA_AHCI_PORT_N_CMD_ESP           (1<<21)  //External SATA Port
-#define SATA_AHCI_PORT_N_CMD_ATAPI         (1<<24)  //Device is ATAPI
-#define SATA_AHCI_PORT_N_CMD_DLAE          (1<<25)  //Drive LED on ATAPI Enable
-#define SATA_AHCI_PORT_N_CMD_ALPE          (1<<26)  //Aggressive Link Power Enable
-#define SATA_AHCI_PORT_N_CMD_ASP           (1<<27)  //Aggressive Slumber/Parital
-#define SATA_AHCI_PORT_N_CMD_ICC_MASK      (0xF<<28)    //Interface Communication Control
-#define SATA_AHCI_PORT_N_CMD_ICC__IDLE     (0x0<<28)    //No-Op/Idle
-#define SATA_AHCI_PORT_N_CMD_ICC__ACTIVE   (0x1<<28)    //Active
-#define SATA_AHCI_PORT_N_CMD_ICC__PARTIAL  (0x2<<28)    //Partial
-#define SATA_AHCI_PORT_N_CMD_ICC__SLUMBER  (0x6<<28)    //Slumber
-
-//! @brief PxIS Macros
-#define SATA_AHCI_PORT_N_IS_CPDS           (0x1<<31)    //Cold Port Detect Status
-#define SATA_AHCI_PORT_N_IS_ERR_TFES       (0x1<<30)    //Task File Error Status
-#define SATA_AHCI_PORT_N_IS_ERR_HBFS       (0x1<<29)    //Host Bus Fatal Error Status
-#define SATA_AHCI_PORT_N_IS_ERR_HBDS       (0x1<<28)    //Host Bus Data Error Status
-#define SATA_AHCI_PORT_N_IS_ERR_IFS        (0x1<<27)    //Interface Fatal Error Status
-#define SATA_AHCI_PORT_N_IS_ERR_INFS       (0x1<<26)    //Interface Non-Fatal Error Status
-#define SATA_AHCI_PORT_N_IS_ERR_OFS        (0x1<<24)    //Overflow Interrupt Status
-#define SATA_AHCI_PORT_N_IS_ERR_IPMS       (0x1<<23)    //Incorrect Port Multiplier Status
-#define SATA_AHCI_PORT_N_IS_PRCS           (0x1<<22)    //PHY Ready Change Status
-#define SATA_AHCI_PORT_N_IS_DMPS           (0x1<<7) //Device Mechanical Presence Status
-#define SATA_AHCI_PORT_N_IS_PCS            (0x1<<6) //Port Change Interrupt Status
-#define SATA_AHCI_PORT_N_IS_DPS            (0x1<<5) //Descriptor Processed Interrupt Status
-#define SATA_AHCI_PORT_N_IS_UFS            (0x1<<4) //Unknown FIS Interrupt Status
-#define SATA_AHCI_PORT_N_IS_SDBS           (0x1<<3) //Set Device Bits FIS Interrupt Status
-#define SATA_AHCI_PORT_N_IS_DSS            (0x1<<2) //DMA Setup FIS Interrupt Status
-#define SATA_AHCI_PORT_N_IS_PSS            (0x1<<1) //PIO Setup FIS Interrupt Status
-#define SATA_AHCI_PORT_N_IS_DHRS           (0x1<<0) //Device to Host Register FIS Interrupt
-
-#define SATA_AHCI_PORT_N_IS_ERROR_MASK     (SATA_AHCI_PORT_N_IS_ERR_TFES \
-                                           |SATA_AHCI_PORT_N_IS_ERR_HBFS \
-                                           |SATA_AHCI_PORT_N_IS_ERR_HBDS \
-                                           |SATA_AHCI_PORT_N_IS_ERR_IFS \
-                                           |SATA_AHCI_PORT_N_IS_ERR_INFS \
-                                           |SATA_AHCI_PORT_N_IS_ERR_OFS \
-                                           |SATA_AHCI_PORT_N_IS_ERR_IPMS \
-                                           |SATA_AHCI_PORT_N_IS_PRCS \
-                                           |SATA_AHCI_PORT_N_IS_PCS \
-                                           )
-
-//! @brief PxIE Macros
-#define SATA_AHCI_PORT_N_IE_CPDE           (0x1<<31)    //Cold Port Detect Enable
-#define SATA_AHCI_PORT_N_IE_TFEE           (0x1<<30)    //Task File Error Enable
-#define SATA_AHCI_PORT_N_IE_HBFE           (0x1<<29)    //Host Bus Fatal Error Enable
-#define SATA_AHCI_PORT_N_IE_HBDE           (0x1<<28)    //Host Bus Data Error Enable
-#define SATA_AHCI_PORT_N_IE_IFE            (0x1<<27)    //Interface Fatal Error Enable
-#define SATA_AHCI_PORT_N_IE_INFE           (0x1<<26)    //Interface Non-Fatal Error Enable
-#define SATA_AHCI_PORT_N_IE_OFE            (0x1<<24)    //Overflow Interrupt Enable
-#define SATA_AHCI_PORT_N_IE_IPME           (0x1<<23)    //Incorrect Port Multiplier Enable
-#define SATA_AHCI_PORT_N_IE_PRCE           (0x1<<22)    //PHY Ready Change Enable
-#define SATA_AHCI_PORT_N_IE_DMPE           (0x1<<7) //Device Mechanical Presence Enable
-#define SATA_AHCI_PORT_N_IE_PCE            (0x1<<6) //Port Change Interrupt Enable
-#define SATA_AHCI_PORT_N_IE_DPE            (0x1<<5) //Descriptor Processed Interrupt Enable
-#define SATA_AHCI_PORT_N_IE_UFE            (0x1<<4) //Unknown FIS Interrupt Enable
-#define SATA_AHCI_PORT_N_IE_SDBE           (0x1<<3) //Set Device Bits FIS Interrupt Enable
-#define SATA_AHCI_PORT_N_IE_DSE            (0x1<<2) //DMA Setup FIS Interrupt Enable
-#define SATA_AHCI_PORT_N_IE_PSE            (0x1<<1) //PIO Setup FIS Interrupt Enable
-#define SATA_AHCI_PORT_N_IE_DHRE           (0x1<<0) //Device to Host Register FIS Interrupt
-
-#define SATA_AHCI_PORT_N_INTR_ENANBLE_MASK (SATA_AHCI_PORT_N_IE_TFEE \
-                                            |SATA_AHCI_PORT_N_IE_HBFE \
-			                                |SATA_AHCI_PORT_N_IE_HBDE \
-			                                |SATA_AHCI_PORT_N_IE_IFE \
-			                                |SATA_AHCI_PORT_N_IE_INFE \
-			                                |SATA_AHCI_PORT_N_IE_DHRE \
-                                            |SATA_AHCI_PORT_N_IE_PSE \
-                                            |SATA_AHCI_PORT_N_IE_DSE \
-                                            |SATA_AHCI_PORT_N_IE_SDBE \
-                                            |SATA_AHCI_PORT_N_IE_UFE \
-                                            |SATA_AHCI_PORT_N_IE_PCE \
-                                            |SATA_AHCI_PORT_N_IE_OFE);
+#define SATA_AHCI_PORT_N_INTR_ENANBLE_MASK (BM_SATA_P0IE_TFEE \
+                                           |BM_SATA_P0IE_HBFE \
+                                           |BM_SATA_P0IE_HBDE \
+                                           |BM_SATA_P0IE_IFE \
+                                           |BM_SATA_P0IE_INFE \
+                                           |BM_SATA_P0IE_DHRE \
+                                           |BM_SATA_P0IE_PSE \
+                                           |BM_SATA_P0IE_DSE \
+                                           |BM_SATA_P0IE_SDBE \
+                                           |BM_SATA_P0IE_UFE \
+                                           |BM_SATA_P0IE_PCE \
+                                           |BM_SATA_P0IE_OFE);
 
 //! @brief PxDMACR Macros
-#define SATA_AHCI_PORT_N_DMACR_RXABL_MASK  (0xF<<12)    //Receive AHB Burst Limit
-#define SATA_AHCI_PORT_N_DMACR_RXABL_SHIFT 12
-#define SATA_AHCI_PORT_N_DMACR_TXABL_MASK  (0xF<<8) //Transmit AHB Burst Limit
-#define SATA_AHCI_PORT_N_DMACR_TXABL_SHIFT 8
-#define SATA_AHCI_PORT_N_DMACR_RXTS_MASK   (0xF<<4) //Receive Transaction Size
-#define SATA_AHCI_PORT_N_DMACR_RXTS_SHIFT  4
-#define SATA_AHCI_PORT_N_DMACR_TXTS_MASK   (0xF<<0) //Transmit Transaction Size
-#define SATA_AHCI_PORT_N_DMACR_TXTS_SHIFT  0
 #define DMACR_AHB_BURST_SIZE_1_DWORD       0x1
 #define DMACR_AHB_BURST_SIZE_2_DWORDS      0x2
 #define DMACR_AHB_BURST_SIZE_4_DWORDS      0x3
@@ -254,76 +134,36 @@ typedef signed int s32;
 #define DMACR_TRANSAC_SIZE_1K_DWORDS       0xA
 
 //! @brief PxSSTS Macros
-#define SATA_AHCI_PORT_N_SSTS_DET_MASK     0xF  //Device Detection
-#define SATA_AHCI_PORT_N_SSTS_DET_SHIFT    0
 #define  SSTS_DET_NO_DEVICE_NO_PHY         0x0  //No device detected and PHY communication not established
 #define  SSTS_DET_DEV_DET_NO_PHY           0x1  //Device detected but PHY is not establish
 #define  SSTS_DET_DEV_DET_PHY_RDY          0x3  //Device detected and PHY is establed
 #define  SSTS_DET_PHY_OFFLINE              0x4  //Phy is in offline mode or in a BIST loopback mode
 
-#define SATA_AHCI_PORT_N_SSTS_SPD_MASK     0xF0 //Current Interface Speed
-#define SATA_AHCI_PORT_N_SSTS_SPD_SHIFT    4
 #define  SSTS_SPD_NO_DEVICE                0x0  //No device detected and PHY communication not established
 #define  SSTS_SPD_GEN1_1_5G                0x1  //Generation 1 communication rate negociated
 #define  SSTS_SPD_GEN2_3_0G                0x2  //Generation 2 communication rate negociated
 
-#define SATA_AHCI_PORT_N_SSTS_IPM_MASK     0xF00    //Interface Power Management
-#define SATA_AHCI_PORT_N_SSTS_IPM_SHIFT    8
 #define  SSTS_IPM_NO_DEVICE                0x0  //No device detected and PHY communication not established
 #define  SSTS_IPM_ACTIVE                   0x1  //interface in active state
 #define  SSTS_IPM_PARTIAL                  0x2  //interface in Partial power management state
 #define  SSTS_IPM_SLUMBER                  0x6  //interface in Slumber power management state
 
 //! @brief PxSCTL Macros
-#define SATA_AHCI_PORT_N_SCTL_DET_MASK     0xF  //Device Detection Initialization
 #define  SCTL_DET_COMM_INIT                (0x1<<0) //Perform interface communication initialization sequence
 #define  SCTL_DET_PHY_OFFLINE              (0x4<<0) //Disable the SATA interface and put PHY in offline mode
 
-#define SATA_AHCI_PORT_N_SCTL_SPD_MASK     0xF0 //Speed Allowed
-#define SATA_AHCI_PORT_N_SCTL_SPD_SHIFT    4
 #define  SCTL_SPD_GEN1_NEGOCIATE           (0x1<<4) //Gen1 speed negociation
 #define  SCTL_SPD_GEN2_NEGOCIATE           (0x2<<4) //Gen2 speed negociation
 
-#define SATA_AHCI_PORT_N_SCTL_IPM_MASK     0xF00    //IPM Transitions Allowed
-#define SATA_AHCI_PORT_N_SCTL_IPM_SHIFT    8
 #define  SCTL_IPM_TRANS_TO_PARTIAL_DIS     (0x1<<8) //Transition to Partial state disabled
 #define  SCTL_IPM_TRANS_TO_SLUMBER_DIS     (0x2<<8) //Transition to Slumber state disabled
 #define  SCTL_IPM_TRANS_TO_BOTH_PM_DIS     (0x3<<8) //Transition to Both PM state disabled
-
-//! @brief PxSERR Macros
-#define SATA_AHCI_PORT_N_SERR_DIAG_X       (0x1<<26)
-#define SATA_AHCI_PORT_N_SERR_DIAG_F       (0x1<<25)
-#define SATA_AHCI_PORT_N_SERR_DIAG_T       (0x1<<24)
-#define SATA_AHCI_PORT_N_SERR_DIAG_S       (0x1<<23)
-#define SATA_AHCI_PORT_N_SERR_DIAG_H       (0x1<<22)
-#define SATA_AHCI_PORT_N_SERR_DIAG_C       (0x1<<21)
-#define SATA_AHCI_PORT_N_SERR_DIAG_D       (0x1<<20)
-#define SATA_AHCI_PORT_N_SERR_DIAG_B       (0x1<<19)
-#define SATA_AHCI_PORT_N_SERR_DIAG_W       (0x1<<18)
-#define SATA_AHCI_PORT_N_SERR_DIAG_I       (0x1<<17)
-#define SATA_AHCI_PORT_N_SERR_DIAG_N       (0x1<<16)
-
-#define SATA_AHCI_PORT_N_SERR_ERR_E        (0x1<<11)
-#define SATA_AHCI_PORT_N_SERR_ERR_P        (0x1<<10)
-#define SATA_AHCI_PORT_N_SERR_ERR_C        (0x1<<9)
-#define SATA_AHCI_PORT_N_SERR_ERR_T        (0x1<<8)
-#define SATA_AHCI_PORT_N_SERR_ERR_M        (0x1<<1)
-#define SATA_AHCI_PORT_N_SERR_ERR_I        (0x1<<0)
 
 //! @brief PxTFD Macros
 #define SATA_AHCI_PORT_N_TFD_BSY           (0x1<<7)
 #define SATA_AHCI_PORT_N_TFD_DRQ           (0x1<<3)
 #define SATA_AHCI_PORT_N_TFD_ERR           (0x1<<0)
 #define SATA_AHCI_PORT_N_TFD_MASK          (SATA_AHCI_PORT_N_TFD_BSY|SATA_AHCI_PORT_N_TFD_DRQ|SATA_AHCI_PORT_N_TFD_ERR)
-
-//! @brief bits location on cr registers
-#define SATA_CR_CTL_DATA_LOC               0
-#define SATA_CR_CTL_CAP_ADR_LOC            16
-#define SATA_CR_CTL_CAP_DAT_LOC            17
-#define SATA_CR_CTL_WR_LOC                 18
-#define SATA_CR_CTL_RD_LOC                 19
-#define SATA_CR_STAT_DATA_LOC              0
-#define SATA_CR_STAT_ACK_LOC               18
 
 //! @brief SATA PHY Control Registers
 //! @brief Reset Register
@@ -495,10 +335,10 @@ typedef struct ata_dev_signature {
     u8 lbam;
     u8 lbah;
 } ata_dev_sig_t __attribute__ ((aligned(4)));
-
+/*
 //! @brief sata AHCI registers
 typedef struct sata_ahci_regs {
-    /*Generic Host Control */
+    //Generic Host Control 
     volatile u32 cap;           //0x00, HBA Capabilities Register
     volatile u32 ghc;           //0x04, Global HBA Control Register
     volatile u32 is;            //0x08, Interrupt Status Register
@@ -510,7 +350,7 @@ typedef struct sata_ahci_regs {
     volatile u32 cap2;          //0x24, HBA Capabilities Extended Register
     volatile u32 rsv1[30];      //0x28~0x9f, reserved
 
-    /* Vendor Specific Registers */
+    // Vendor Specific Registers 
     volatile u32 bistafis;      //0xa0, BIST Activate FIS Register
     volatile u32 bistctrl;      //0xa4, BIST Control Register
     volatile u32 bistfcnt;      //0xa8, BIST FIS Count Register
@@ -553,6 +393,34 @@ typedef struct sata_port_regs {
     volatile u32 phycr;         //0x78, PHY Control Register
     volatile u32 physr;         //0x7c, PHY Status Register
 } sata_port_regs_t;
+*/
+
+typedef struct _hw_sata_port
+{
+    volatile hw_sata_p0clb_t CLB; //!< Port0 Command List Base Address Register
+    volatile reg32_t _reserved7;
+    volatile hw_sata_p0fb_t FB; //!< Port0 FIS Base Address Register
+    volatile reg32_t _reserved8;
+    volatile hw_sata_p0is_t IS; //!< Port0 Interrupt Status Register
+    volatile hw_sata_p0ie_t IE; //!< Port0 Interrupt Enable Register
+    volatile hw_sata_p0cmd_t CMD; //!< Port0 Command Register
+    volatile reg32_t _reserved9;
+    volatile hw_sata_p0tfd_t TFD; //!< Port0 Task File Data Register
+    volatile hw_sata_p0sig_t SIG; //!< Port0 Signature Register
+    volatile hw_sata_p0ssts_t SSTS; //!< Port0 Serial ATA Status Register
+    volatile hw_sata_p0sctl_t SCTL; //!< Port0 Serial ATA Control {SControl} Register
+    volatile hw_sata_p0serr_t SERR; //!< Port0 Serial ATA Error Register
+    volatile hw_sata_p0sact_t SACT; //!< Port0 Serial ATA Active Register
+    volatile hw_sata_p0ci_t CI; //!< Port0 Command Issue Register
+    volatile hw_sata_p0sntf_t SNTF; //!< Port0 Serial ATA Notification Register
+    volatile reg32_t _reserved10[12];
+    volatile hw_sata_p0dmacr_t DMACR; //!< Port0 DMA Control Register
+    volatile reg32_t _reserved11;
+    volatile hw_sata_p0phycr_t PHYCR; //!< Port0 PHY Control Register
+    volatile hw_sata_p0physr_t PHYSR; //!< Port0 PHY Status Register
+} hw_sata_port_t;
+
+#define HW_SATA_PORT(n) (*(hw_sata_port_t *)(HW_SATA_P0CLB_ADDR + n*0x80))
 
 //! @brief SATA AHCI FIS Organization, 256 Bytes
 typedef struct SATA_RX_FIS_STRUCT {
@@ -659,48 +527,47 @@ typedef struct SATA_COMMAND_TABLE {
 /*!
  * @brief Initialize SATA Controller and also identify an attached hdd
  *
- * @param ahci Sata AHCI registers handle
  * @return SATA_PASS or SATA_FAIL
  */
-sata_return_t sata_init(sata_ahci_regs_t * ahci);
+sata_return_t sata_init(void);
 
 /*!
  * @brief Deinitialize SATA Controller and also identify an attached hdd
  *
- * @param ahci Sata AHCI registers handle
  * @return SATA_PASS or SATA_FAIL
  */
-sata_return_t sata_deinit(sata_ahci_regs_t * ahci);
+sata_return_t sata_deinit(void);
 
 /*!
  * @brief Detect the attached HDD and try to initialize it
  *
- * @param ahci Base address of HBA controller
- * @param port_number Port to detect
+ * @param port        - SATA port
  * @return SATA_PASS or SATA_FAIL
  */
-sata_return_t sata_identify(sata_ahci_regs_t * ahci, u32 port_number);
+sata_return_t sata_identify(u32 port);
 
 
 /*!
  * @brief Write some sectors to SATA disk with r/w thread
  *
- * @param start_block Address of start sector
- * @param buf Pointer of destination buffer
- * @param len Length to read
+ * @param start_block - Address of start sector
+ * @param buf         - Pointer of destination buffer
+ * @param len         - Length to read
+ * @param port        - SATA port
  * @return SATA_PASS or SATA_FAIL
  */
-sata_return_t sata_disk_write_sector(u32 start_block, u8 * buf, u32 len);
+sata_return_t sata_disk_write_sector(u32 start_block, u8 * buf, u32 len, u32 port);
 
 /*!
  * @brief Read some sectors to SATA disk with r/w thread
  *
- * @param start_block Address of start sector
- * @param buf Pointer of destination buffer
- * @param len Length to read
+ * @param start_block    - Address of start sector
+ * @param buf            - Pointer of destination buffer
+ * @param len            - Length to read
+ *  * @param port        - SATA port
  * @return SATA_PASS or SATA_FAIL
  */
-sata_return_t sata_disk_read_sector(u32 start_block, u8 * buf, u32 len);
+sata_return_t sata_disk_read_sector(u32 start_block, u8 * buf, u32 len, u32 port);
 
 /*!
  * @brief Print out buffer data

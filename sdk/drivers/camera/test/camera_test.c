@@ -63,7 +63,9 @@ static camera_test_t camera_tests[] = {
 #endif
 };
 
+#if !defined(CHIP_MX6SL)
 extern int csi_dma_band_mode;
+#endif
 test_return_t camera_test(void)
 {
     int32_t retv = TEST_FAILED;
@@ -74,7 +76,9 @@ test_return_t camera_test(void)
     printf("\nStart camera test\n");
 
     do {
+#if !defined(CHIP_MX6SL)
         csi_dma_band_mode = 0;
+#endif
         for (i = 0; i < test_num; i++) {
             printf("\t%d - %s\n", i, camera_tests[i].name);
         }

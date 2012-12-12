@@ -180,9 +180,10 @@ void i2c_slave_handler(const imx_i2c_request_t *rq)
     }
 }
 
-void i2c_slave_xfer(hw_module_t *port, imx_i2c_request_t *rq)
+void i2c_slave_xfer(imx_i2c_request_t *rq)
 {
     uint32_t instance = i2c_get_request_instance(rq);
+    uint32_t irq_id = IMX_INT_I2C1 + instance - 1;
 
     // enable the I2C controller 
     HW_I2C_I2CR_WR(instance, BM_I2C_I2CR_IEN);
@@ -195,12 +196,10 @@ void i2c_slave_xfer(hw_module_t *port, imx_i2c_request_t *rq)
     // set the chosen I2C slave address 
     HW_I2C_IADR_WR(instance, (rq->device ? rq->device->address : rq->dev_addr));
 
-    // assign the IRQ handler to the used port 
-    port->irq_subroutine = &i2c_slave_interrupt_routine;
     s_slaveState.slavePortInstance = instance;
 
     // Enable the interrupts for the I2C controller 
-    i2c_setup_interrupt(port, true);
+    i2c_setup_interrupt(instance, irq_id, &i2c_slave_interrupt_routine, true);
 
     // The slave behaves like a EEPROM of rq.reg_addr_sz bytes for 
     // and g_data_cycle bytes for data
@@ -266,7 +265,7 @@ void i2c_slave_xfer(hw_module_t *port, imx_i2c_request_t *rq)
     }
 
     // Disable the interrupts for the I2C controller 
-    i2c_setup_interrupt(port, false);
+    i2c_setup_interrupt(instance, irq_id, NULL, false);
 
     // disable the controller 
     HW_I2C_I2CR_WR(instance, 0);

@@ -194,7 +194,7 @@ int32_t i2c_imx6_slave_test(void)
         {
             printf("    Waiting for the access from the master...\n");
 
-            i2c_slave_xfer(&imx6_i2c_slave_port, &imx6_i2c_req);
+            i2c_slave_xfer(&imx6_i2c_req);
 
             if (!s_masterDidWrite)
             {

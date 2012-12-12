@@ -103,6 +103,7 @@ static int isl29023_show_lux(unsigned int i2c_base_addr)
 {
     unsigned char uc = 0;
     unsigned int lux = 0;
+    int count = 2000;
     const char* indent = menu_get_indent();
 
     printf("%s    Do you want to check the light sensor?(y/n)\n\n", indent);
@@ -118,11 +119,17 @@ static int isl29023_show_lux(unsigned int i2c_base_addr)
         while (1) {
             lux = isl29023_get_lux(i2c_base_addr);
             printf("\r%s    The luminance is: %8d lux\t\t   ", indent, lux);
-            uc = fgetc(stdin);
+            do {
+                uc = fgetc(stdin);
+                --count;
+            } while ((count > 0) && (uc == NONE_CHAR));
+
             if (uc == 'x' || uc == 'X') {
                 printf("\n\n");
                 break;
             }
+            count = 2000;
+            hal_delay_us(200000);
         }
     } else {
         return 1;

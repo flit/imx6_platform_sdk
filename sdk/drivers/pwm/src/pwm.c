@@ -44,35 +44,41 @@ struct pwm_interrupt_status pwm_int_test_end;
 ////////////////////////////////////////////////////////////////////////////////
 // Code
 ////////////////////////////////////////////////////////////////////////////////
-
-int pwm_init(struct pwm_parms *pwm)
+int pwm_init(uint32_t instance, struct pwm_parms *pwm)
 {
     int idx;
 
     // Disable PWM first 
-    HW_PWM_PWMCR(pwm->instance).B.EN = 0;
+    HW_PWM_PWMCR(instance).B.EN = 0;
 
     // Verify and set clock source 
-    if ((pwm->freq < kPwmClockSourceIpg) || (pwm->freq > kPwmClockSourceCkil)) {
+    if ((pwm->clock < kPwmClockSourceIpg) || (pwm->clock > kPwmClockSourceCkil)) {
         printf("Invalid clock source selection.\n");
         return FALSE;
     }
 
-    HW_PWM_PWMCR(pwm->instance).B.CLKSRC = pwm->freq;
+    HW_PWM_PWMCR(instance).B.CLKSRC = pwm->clock;
 
     // Set FIFO watermark to 4 empty slots 
-    HW_PWM_PWMCR(pwm->instance).B.FWM = 3;
+    HW_PWM_PWMCR(instance).B.FWM = 3;
 
     // Set prescale after checking its range.
-    if (pwm->prescale >= (BM_PWM_PWMCR_PRESCALER >> BP_PWM_PWMCR_PRESCALER)) {
+    if (pwm->prescale - 1 >= (BM_PWM_PWMCR_PRESCALER >> BP_PWM_PWMCR_PRESCALER)) {
         printf("Invalid prescaler value.\n");
         return FALSE;
     }
 
-    HW_PWM_PWMCR(pwm->instance).B.PRESCALER = pwm->prescale;
+    // 0 - divide by 1, 1 - divide by 2
+    HW_PWM_PWMCR(instance).B.PRESCALER = pwm->prescale - 1;
+
+    // Set active polarity: 0 set at rollover, 1 clear at rollover
+    HW_PWM_PWMCR(instance).B.POUTC = pwm->active_pol;
 
     // Set period 
-    HW_PWM_PWMPR(pwm->instance).B.PERIOD = pwm->period;
+    HW_PWM_PWMPR(instance).B.PERIOD = pwm->period;
+
+    // Set sample repeat
+    HW_PWM_PWMCR(instance).B.REPEAT = pwm->repeat;
 
     // Write count to FIFO 
     if ((pwm->smp_cnt > PWM_CNT_FIFO_SZ) || (pwm->smp_cnt < 1)) {
@@ -81,15 +87,15 @@ int pwm_init(struct pwm_parms *pwm)
     }
 
     for (idx = 0; idx < pwm->smp_cnt; idx++) {
-        HW_PWM_PWMSAR(pwm->instance).B.SAMPLE = pwm->sample[idx];
+        HW_PWM_PWMSAR(instance).B.SAMPLE = pwm->sample[idx];
     }
 
     // Setup interrupt for FIFO empty
     if (pwm->interrupt == kPwmFifoEmptyIrq) {
 	/* register FIFO Empty interrupt to end the output test */
-	pwm_int_test_end.instance = pwm->instance;
+	pwm_int_test_end.instance = instance;
 	pwm_int_test_end.interrupt = pwm->interrupt;
-	pwm_setup_interrupt(pwm->instance, pwm_isr_test_end, pwm->interrupt);
+	pwm_setup_interrupt(instance, pwm_isr_test_end, pwm->interrupt);
     }
     return TRUE;
 }
@@ -147,13 +153,11 @@ void pwm_free_interrupt(uint32_t instance)
 
 void pwm_isr_test_end(void)
 {
-    printf("PWM output end.\n");
+    // Clear Interrupt status
+    pwm_clear_int_status(pwm_int_test_end.instance, pwm_int_test_end.interrupt);
 
     // Set PWM output end flag
     g_pwm_test_end = TRUE;
-
-    // Clear Interrupt status
-    pwm_clear_int_status(pwm_int_test_end.instance, pwm_int_test_end.interrupt);
 }
 
 void pwm_enable(uint32_t instance)
@@ -167,6 +171,32 @@ void pwm_disable(uint32_t instance)
     pwm_free_interrupt(instance);
 
     HW_PWM_PWMCR(instance).B.EN = 0;
+}
+
+int pwm_get_clock_freq(uint32_t clock)
+{
+    int freq;
+    switch (clock) {
+	case kPwmClockSourceIpg:
+	    freq = get_main_clock(IPG_CLK);
+	    break;
+	case kPwmClockSourceCkih:
+	    /* Extern High Frequency: CKIH:
+	     * XTALOSC 24MHz*/
+	    freq = 24000000;
+	    break;
+	case kPwmClockSourceCkil:
+	    /* Extern Low Frequency: CKIH:
+	     * XTALOSC 32kHz or 32.768kHz
+	     * on current all mx6dq or mx6sl evk board, are 32.768KHz */
+	    freq = 32768;
+	    break;
+	default:
+	    freq = 0;
+	    break;
+    }
+
+    return freq;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

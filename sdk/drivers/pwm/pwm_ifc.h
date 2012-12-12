@@ -58,13 +58,14 @@ enum _pwm_clksrc {
 };
 
 struct pwm_parms {
-    uint32_t instance;          //!< The number of this module instance. The first instance is number 1.
-    uint32_t freq;              //!< Input clock frequency.
+    uint32_t clock;              //!< Input clock frequency.
     uint32_t smp_cnt;
     uint16_t prescale;
     uint16_t period;
     uint16_t *sample;
     uint8_t interrupt;
+    uint8_t active_pol;
+    uint8_t repeat;
 };
 
 struct pwm_interrupt_status {
@@ -97,7 +98,7 @@ extern "C" {
  * @retval TRUE on success
  * @retval FALSE on fail
  */
-int pwm_init(struct pwm_parms *pwm);
+int pwm_init(uint32_t instance, struct pwm_parms *pwm);
 
 /*!
  * @brief Setup interrupt service routine.
@@ -148,6 +149,7 @@ void pwm_enable(uint32_t instance);
  */
 void pwm_disable(uint32_t instance);
 
+int pwm_get_clock_freq(uint32_t clock);
 #if defined(__cplusplus)
 }
 #endif

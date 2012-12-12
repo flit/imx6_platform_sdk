@@ -234,7 +234,8 @@ int uart_get_integer(uint32_t *value)
 	} else if ((char) revchar[num] == 0x08 || (char) revchar[num] == 0x7F) {
 	    /* delete or backspace */
 	    uart_putchar(&g_debug_uart, &(revchar[num]));
-	    num--;
+	    if (num > 0)
+		num--;
 	    continue;
 	} else if ((char) revchar[num] >= '0' && (char) revchar[num] <= '9'){
 	    uart_putchar(&g_debug_uart, &(revchar[num]));

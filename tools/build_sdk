@@ -55,6 +55,8 @@ usage()
     echo "   -c, -clean               Optional flag to force a clean build."
     echo "   -n, -no-build            Don't actually run make."
     echo "   -l, -list-builds         Optional flag to list target, board, board_rev combinations to be built."
+    echo "   -j, -jobs=<n>            Set the number of parallel processes to use for each build. Default"
+    echo "                            is the SDK_JOBS env variable, or 2 if not set."
     echo
     echo "   Short options take the same arguments as their respective long options."
     echo "   The '=' is optional for long options; arguments can be specified as -arg=value or"
@@ -126,11 +128,18 @@ else
     color_failed=
 fi
 
+# Set the default number of jobs.
+if [ "$SDK_JOBS" = "" ]; then
+    parallel_jobs=2
+else
+    parallel_jobs=$SDK_JOBS
+fi
+
 do_build()
 {
     # Run make if requested.
     if [ "$build_flag" = y ]; then
-        make $app_name TARGET=$soc_name BOARD=$board_name BOARD_REVISION=$board_rev TEST=$test_name
+        make -j "$parallel_jobs" $app_name TARGET=$soc_name BOARD=$board_name BOARD_REVISION=$board_rev TEST=$test_name
         result=$?
         
         build_name="${soc_name} ${board_name} rev_${board_rev} ${test_name}"
@@ -224,6 +233,12 @@ while [ $# -gt 0 ]; do
                                 test_name=ALL
                             fi
 	        ;;
+    @(-j|-jobs?(=*)) )      parallel_jobs=${1#-jobs=}
+                            if [ "$parallel_jobs" = "$1" ]; then
+                                parallel_jobs=$2
+                                shift
+                            fi
+            ;;
     -c|-clean )             clean_flag=y
             ;;
     -n|-no-build )          build_flag=n

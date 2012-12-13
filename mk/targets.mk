@@ -155,9 +155,12 @@ $(OBJS_ROOT)/%.o: $(SDK_ROOT)/%.s
 #
 # Note that we're checking the archive's mod date and not each entry in the archive. This
 # lets us do a single update operation with all modified object files.
+#
+# flock is used to protect the archive file from multiple processes trying to write to it
+# simultaneously, in case we're using parallel processes.
 $(TARGET_LIB): $(OBJECTS_ALL)
 	@$(call printmessage,ar,Archiving, $(shell echo $? | wc -w) files in $(@F))
-	$(at)$(AR) -rucs $@ $?
+	$(at)flock $(@).lock $(AR) -rucs $@ $?
 
 #-------------------------------------------------------------------------------
 # Subdirs
@@ -205,7 +208,7 @@ endif
 # Wrap the link objects in start/end group so that ld re-checks each
 # file for dependencies.  Otherwise linking static libs can be a pain
 # since order matters.
-$(APP_ELF): $(app_objs) $(the_ld_file) $(LIBRARIES) $(APP_LIBS)
+$(APP_ELF): $(SUBDIRS) $(app_objs) $(the_ld_file) $(LIBRARIES) $(APP_LIBS)
 	@$(call printmessage,link,Linking, $(APP_NAME))
 	$(at)$(LD) -Bstatic -nostartfiles -nostdlib $(LDFLAGS) \
 	      -T $(the_ld_file) \

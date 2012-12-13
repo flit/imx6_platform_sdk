@@ -43,6 +43,11 @@
 
 include mk/common.mk
 
+# Turn off parallel jobs for this makefile only. Child makefiles will still use the
+# specified number of jobs. This isn't strictly necessary, and actually slows the build
+# a little bit, but greatly improves the readability of the log output.
+.NOTPARALLEL:
+
 # Determine if the target is either the MX6DQ or MX6SDL.
 ifeq "$(TARGET)" "mx6dq"
 is_dq_or_sdl = 1

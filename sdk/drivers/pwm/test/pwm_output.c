@@ -42,7 +42,7 @@ static uint32_t pwm_get_valid_int(uint32_t low, uint32_t high)
     int32_t retv = TRUE;
 
     while (1) {
-        retv = uart_get_integer(&get_value);
+        get_value = read_int();
         if (retv == TRUE) {
             if (get_value >= low && get_value <= high)
                 break;
@@ -86,13 +86,13 @@ int32_t pwm_output_test(void)
     pwm.active_pol = pwm_get_valid_int(0, 1);
 
     printf("\nConfirm your PWM settings\n"
-           "\tclock\t\t- %d\n"
+           "\tclock\t\t- %dHz\n"
            "\tprescale\t- %d\n"
            "\tperiod\t\t- %d\n"
            "\trepeat\t\t- %d times per sample\n"
            "\tpolarity\t- %s\n\n",
            pwm_get_clock_freq(pwm.clock), pwm.prescale, pwm.period,
-           pwm.active_pol * 2, pwm.active_pol == 0 ? "active low" : "active high");
+           1 << pwm.repeat, pwm.active_pol == 0 ? "active low" : "active high");
 
     pwm.sample = sample;
     pwm.smp_cnt = 3;

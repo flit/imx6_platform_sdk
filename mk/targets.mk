@@ -105,7 +105,7 @@ endif
 # if subdirs modified the library file after local files were compiled but before they were added
 # to the library.
 .PHONY: all
-all : $(SUBDIRS) $(OBJECTS_DIRS) $(archive_or_objs) $(APP_ELF)
+all : $(SUBDIRS) $(archive_or_objs) $(APP_ELF)
 
 # For RedHat we have to force always archiving. It seems that fractions of a second are not
 # recorded in file modification dates on RedHat (at least the server we tested with), which
@@ -122,7 +122,11 @@ $(OBJECTS_DIRS) :
 $(OBJECTS_ALL) $(APP_ELF): $(this_makefile)
 
 # Object files depend on the directories where they will be created.
-$(OBJECTS_ALL): $(OBJECTS_DIRS)
+#
+# The dirs are made order-only prerequisites (by being listed after the '|') so they won't cause
+# the objects to be rebuilt, as the modification date on a directory changes whenver its contents
+# change. This would cause the objects to always be rebuilt if the dirs were normal prerequisites.
+$(OBJECTS_ALL): | $(OBJECTS_DIRS)
 
 #-------------------------------------------------------------------------------
 # Pattern rules for compilation

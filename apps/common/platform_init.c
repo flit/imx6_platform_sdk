@@ -77,12 +77,13 @@ void platform_init(void)
     freq_populate();
 
     // Initialize the debug/console UART 
-    uart_init(&g_debug_uart, 115200, PARITY_NONE, STOPBITS_ONE, EIGHTBITS, FLOWCTRL_OFF);
+    uart_init(g_debug_uart_port, 115200, PARITY_NONE, STOPBITS_ONE, EIGHTBITS, FLOWCTRL_OFF);
+
 
     // flush UART RX FIFO 
     uint8_t c;
     do {
-        c = uart_getchar(&g_debug_uart);
+        c = uart_getchar(g_debug_uart_port);
     } while (c != NONE_CHAR);
 
     // Some init for the board 

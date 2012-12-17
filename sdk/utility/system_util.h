@@ -51,7 +51,7 @@
 //! This hw_module is used by the driver in order to factor out board
 //! specific functionality. It must be defined by the board support
 //! library or the application.
-extern hw_module_t g_debug_uart;
+extern uint32_t g_debug_uart_port;
 //@}
 
 ////////////////////////////////////////////////////////////////////////////////

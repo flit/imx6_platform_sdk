@@ -143,7 +143,7 @@ int _read(int fd, char *buf, int nbytes)
 
     for (i = 0; i < nbytes; ++i, ++buf)
     {
-        *buf = uart_getchar(&g_debug_uart);
+        *buf = uart_getchar(g_debug_uart_port);
 
         if ((*buf == '\n') || (*buf == '\r'))
         {
@@ -183,12 +183,12 @@ int _write(int fd, char *buf, int nbytes)
         if (*buf == '\n' && !lastCharWasCR)
         {
             uint8_t cr = '\r';
-            uart_putchar(&g_debug_uart, &cr);
+            uart_putchar(g_debug_uart_port, &cr);
         }
 #endif // CONVERT_LF_TO_CRLF
         
         // Send the char out the debug UART.
-        uart_putchar(&g_debug_uart, (uint8_t *)buf);
+        uart_putchar(g_debug_uart_port, (uint8_t *)buf);
         
 #if CONVERT_LF_TO_CRLF
         lastCharWasCR = (*buf == '\r');
@@ -214,7 +214,7 @@ int _raw_puts(char str[])
     for (i = 0; i < len; i++)
     {        
         // Send the char out the debug UART.
-        uart_putchar(&g_debug_uart, (uint8_t *)&str[i]);
+        uart_putchar(g_debug_uart_port, (uint8_t *)&str[i]);
     }
 
     return len;

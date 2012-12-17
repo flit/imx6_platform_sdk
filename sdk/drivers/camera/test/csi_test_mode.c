@@ -86,7 +86,7 @@ int32_t csi_test_mode(void)
 
     printf("Press 'x/X' key on your computer to exit this test\n");
     while (1) {
-        revchar = uart_getchar(&g_debug_uart);
+        revchar = uart_getchar(g_debug_uart_port);
         if (revchar == 'X' || revchar == 'x')
             break;
 

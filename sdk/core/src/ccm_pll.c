@@ -163,10 +163,10 @@ uint32_t get_peri_clock(peri_clocks_t clock)
     uint32_t ret_val = 0;
 
     switch (clock) {
-    case UART1_BAUD:
-    case UART2_BAUD:
-    case UART3_BAUD:
-    case UART4_BAUD:
+    case UART1_MODULE_CLK:
+    case UART2_MODULE_CLK:
+    case UART3_MODULE_CLK:
+    case UART4_MODULE_CLK:
         // UART source clock is a fixed PLL3 / 6
         ret_val = PLL3_OUTPUT[0] / 6 / (HW_CCM_CSCDR1.B.UART_CLK_PODF + 1);
         break;

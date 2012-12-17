@@ -45,25 +45,24 @@
 //#define UART_UFCR_RFDIV     UART_UFCR_RFDIV_4
 //#define UART_UFCR_RFDIV     UART_UFCR_RFDIV_7
 
-uint32_t uart_get_reffreq(struct hw_module *port)
+uint32_t uart_get_reffreq(uint32_t instance)
 {
     uint32_t div = UART_UFCR_RFDIV;
     uint32_t ret = 0;
+    uint32_t freq = get_peri_clock(UART_MODULE_CLK(instance));
 
     if (div == BF_UART_UFCR_RFDIV(4))
-        ret = port->freq / 2;
+        ret = freq / 2;
     else if (div == BF_UART_UFCR_RFDIV(2))
-        ret = port->freq / 4;
+        ret = freq / 4;
     else if (div == BF_UART_UFCR_RFDIV(6))
-        ret = port->freq / 7;
+        ret = freq / 7;
 
     return ret;
 }
 
-uint8_t uart_putchar(struct hw_module * port, uint8_t * ch)
+uint8_t uart_putchar(uint32_t instance, uint8_t * ch)
 {
-    uint32_t instance = port->instance;
-
     /* Wait for Tx FIFO not full */
     while (HW_UART_UTS(instance).B.TXFULL);
 
@@ -72,9 +71,8 @@ uint8_t uart_putchar(struct hw_module * port, uint8_t * ch)
     return *ch;
 }
 
-uint8_t uart_getchar(struct hw_module * port)
+uint8_t uart_getchar(uint32_t instance)
 {
-    uint32_t instance = port->instance;
     uint32_t read_data;
 
     /* If Rx FIFO has no data ready */
@@ -90,10 +88,9 @@ uint8_t uart_getchar(struct hw_module * port)
     return (uint8_t) read_data;
 }
 
-void uart_set_FIFO_mode(struct hw_module *port, uint8_t fifo, uint8_t trigger_level,
+void uart_set_FIFO_mode(uint32_t instance, uint8_t fifo, uint8_t trigger_level,
                         uint8_t service_mode)
 {
-    uint32_t instance = port->instance;
     if (fifo == TX_FIFO) {
         /* Configure the TX_FIFO trigger level */
         HW_UART_UFCR_CLR(instance,BM_UART_UFCR_TXTL);
@@ -119,36 +116,38 @@ void uart_set_FIFO_mode(struct hw_module *port, uint8_t fifo, uint8_t trigger_le
     }
 }
 
-void uart_set_loopback_mode(struct hw_module *port, uint8_t state)
+void uart_set_loopback_mode(uint32_t instance, uint8_t state)
 {
-    uint32_t instance = port->instance;
     if (state == TRUE)
 	HW_UART_UTS_SET(instance, BM_UART_UTS_LOOP);
     else
         HW_UART_UTS_CLR(instance, BM_UART_UTS_LOOP);
 }
 
-void uart_setup_interrupt(struct hw_module *port, uint8_t state)
+void uart_setup_interrupt(uint32_t instance, void (*irq_subroutine)(void), uint8_t state)
 {
+    uint32_t irq_id = UART_IRQS(instance);
+
     if (state == TRUE) {
         /* register the IRQ sub-routine */
-        register_interrupt_routine(port->irq_id, port->irq_subroutine);
+        register_interrupt_routine(irq_id, irq_subroutine);
         /* enable the IRQ */
-        enable_interrupt(port->irq_id, CPU_0, 0);
+        enable_interrupt(irq_id, CPU_0, 0);
     } else
         /* disable the IRQ */
-        disable_interrupt(port->irq_id, CPU_0);
+        disable_interrupt(irq_id, CPU_0);
 }
 
-void uart_init(struct hw_module *port, uint32_t baudrate, uint8_t parity,
+void uart_init(uint32_t instance, uint32_t baudrate, uint8_t parity,
                uint8_t stopbits, uint8_t datasize, uint8_t flowcontrol)
 {
-    uint32_t instance = port->instance;
+    uint32_t base = REGS_UART_BASE(instance);
+
    /* configure the I/O for the port */
-    uart_iomux_config(port->instance);
+    uart_iomux_config(instance);
 
     /* enable the source clocks to the UART port */
-    clock_gating_config(port->base, CLOCK_ON);
+    clock_gating_config(base, CLOCK_ON);
 
     /* Wait for UART to finish transmitting before changing the configuration */
     while (!(HW_UART_UTS(instance).B.TXEMPTY)) ;
@@ -160,7 +159,7 @@ void uart_init(struct hw_module *port, uint32_t baudrate, uint8_t parity,
     HW_UART_UFCR_WR(instance, BF_UART_UFCR_RXTL(16) | UART_UFCR_RFDIV | BF_UART_UFCR_TXTL(16)); 
 
     /* Setup One Millisecond timer */
-    HW_UART_ONEMS_WR(instance, uart_get_reffreq(port) / 1000);
+    HW_UART_ONEMS_WR(instance, uart_get_reffreq(instance) / 1000);
 
     /* Set parity */
     if (parity == PARITY_NONE)
@@ -211,7 +210,7 @@ void uart_init(struct hw_module *port, uint32_t baudrate, uint8_t parity,
     HW_UART_UBIR_WR(instance, (baudrate / 100) - 1);
 
     /* Set the denominator value minus one of the BRM ratio */
-    HW_UART_UBMR_WR(instance,  ((uart_get_reffreq(port) / 1600) - 1));
+    HW_UART_UBMR_WR(instance,  ((uart_get_reffreq(instance) / 1600) - 1));
 
     /* Optional: prevent the UART to enter debug state. Useful when debugging
        the code with a JTAG and without active IRQ */

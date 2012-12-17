@@ -74,10 +74,10 @@ typedef enum _main_clocks {
 
 //! @brief Peripheral clocks.
 typedef enum _peri_clocks {
-    UART1_BAUD,
-    UART2_BAUD,
-    UART3_BAUD,
-    UART4_BAUD,
+    UART1_MODULE_CLK,
+    UART2_MODULE_CLK,
+    UART3_MODULE_CLK,
+    UART4_MODULE_CLK,
     SSI1_BAUD,
     SSI2_BAUD,
     CSI_BAUD,

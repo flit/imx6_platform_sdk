@@ -37,18 +37,12 @@
 #include <stdio.h>
 #include "utility/menu.h"
 #include "uart_test.h"
+#include "registers/regsuart.h"
 
 const char g_uart_test_name[] = "UART Test";
 
 /* UART3 port is free for i.MX6DQ/SDL and i.MX53 platforms */
-static hw_module_t uart_port = {
-    "UART3 for test",
-    3,
-    UART3_BASE_ADDR,
-    27000000,
-    IMX_INT_UART3,
-    &uart_interrupt_handler,
-};
+static uint32_t uart_loopback_instance = HW_UART3;
 
 static volatile uint8_t g_wait_for_irq;
 
@@ -61,7 +55,7 @@ void uart_interrupt_handler(void)
 {
     uint8_t read_char;
 
-    read_char = uart_getchar(&uart_port);
+    read_char = uart_getchar(uart_loopback_instance);
     printf("IRQ subroutine of tested UART - Read char is %c\n", read_char);
     g_wait_for_irq = 0;
 }
@@ -84,13 +78,13 @@ test_return_t uart_test(void)
     printf("\n%sTest will echo characters to the terminal.\n\n%sType 'x' to exit.\n", indent, indent);
 
     /* Initialize the UART port */
-    uart_init(&uart_port, 115200, PARITY_NONE, STOPBITS_ONE, EIGHTBITS, FLOWCTRL_OFF);
+    uart_init(uart_loopback_instance, 115200, PARITY_NONE, STOPBITS_ONE, EIGHTBITS, FLOWCTRL_OFF);
     /* Set the IRQ mode for the Rx FIFO */
-    uart_set_FIFO_mode(&uart_port, RX_FIFO, 1, IRQ_MODE);
+    uart_set_FIFO_mode(uart_loopback_instance, RX_FIFO, 1, IRQ_MODE);
     /* Enable loopback mode */
-    uart_set_loopback_mode(&uart_port, TRUE);
+    uart_set_loopback_mode(uart_loopback_instance, TRUE);
     /* Set the ISR and enable the interrupts for UART3 */
-    uart_setup_interrupt(&uart_port, TRUE);
+    uart_setup_interrupt(uart_loopback_instance, uart_interrupt_handler, TRUE);
 
     do {
         g_wait_for_irq = 1;
@@ -102,13 +96,13 @@ test_return_t uart_test(void)
         if (sel == 'x') {
             printf("\n%sTest exit.\n", indent);
             /* Disable the interrupts for UART3 */
-            uart_setup_interrupt(&uart_port, FALSE);
+            uart_setup_interrupt(uart_loopback_instance, NULL, FALSE);
             break;
         }
 
         /* send the character to the tested UART */
         /* it will be displayed once read in the tested UART ISR */
-        uart_putchar(&uart_port, &sel);
+        uart_putchar(uart_loopback_instance, &sel);
         /* wait for ISR to clear the flag before continuing */
         while (g_wait_for_irq == 1) ;
 

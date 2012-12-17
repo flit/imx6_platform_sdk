@@ -35,6 +35,7 @@
 #include "sdma_event.h"
 #include "sdma_test.h"
 #include "sdk.h"
+#include "registers/regsuart.h"
 
 #define UART_LOOPBACK_TEST_BUF_SZ 	1024
 #define UART_REF_FREQ 			27000000
@@ -86,47 +87,27 @@ static void ccm_clock_gates_on(void)
 }
 
 #ifdef CHIP_MX53
-// UART3 port
-static hw_module_t uart3_sdma_test = {
-    "UART3 for SDMA test",
-    3,
-    UART3_BASE_ADDR,
-    UART_REF_FREQ,
-};
+static uint32_t uart_shp_test_instance = HW_UART3;
 #else
-// UART1 port
-static hw_module_t uart1_sdma_test = {
-    "UART1 for SDMA test",
-    1,
-    UART1_BASE_ADDR,
-    UART_REF_FREQ,
-};
+static uint32_t uart_shp_test_instance = HW_UART1;
 #endif /* CHIP_MX53 */
 
 // UART5 port
-static hw_module_t uart5_sdma_test = {
-    "UART5 for SDMA test",
-    5,
-    UART5_BASE_ADDR,
-    UART_REF_FREQ,
-};
+static uint32_t uart_app_test_instance = HW_UART5;
 
-static void uart_loopback_init(struct hw_module *port, uint32_t baudrate)
+static void uart_loopback_init(uint32_t instance, uint32_t baudrate)
 {
-    /* Initialize the clock frequency - in i.MX6DQ/SDL, all UART port uses the same source clock */
-    port->freq = get_peri_clock(UART1_BAUD);
-
     /* Initialize the UART port */
-    uart_init(port, baudrate, PARITY_NONE, STOPBITS_ONE, EIGHTBITS, FLOWCTRL_OFF);
+    uart_init(instance, baudrate, PARITY_NONE, STOPBITS_ONE, EIGHTBITS, FLOWCTRL_OFF);
 
     /* Enable loopback mode */
-    uart_set_loopback_mode(port, TRUE);
+    uart_set_loopback_mode(instance, TRUE);
 
     /* Set the DMA mode for the Rx FIFO */
-    uart_set_FIFO_mode(port, RX_FIFO, RX_FIFO_WATERMARK_LEVEL, DMA_MODE);
+    uart_set_FIFO_mode(instance, RX_FIFO, RX_FIFO_WATERMARK_LEVEL, DMA_MODE);
 
     /* Set the DMA mode for the Tx FIFO */
-    uart_set_FIFO_mode(port, TX_FIFO, TX_FIFO_WATERMARK_LEVEL, DMA_MODE);
+    uart_set_FIFO_mode(instance, TX_FIFO, TX_FIFO_WATERMARK_LEVEL, DMA_MODE);
 
 
     return;
@@ -219,7 +200,7 @@ int uart_app_test(void)
         return FALSE;
     }
 
-    uart_loopback_init(&uart5_sdma_test, 115200);
+    uart_loopback_init(uart_app_test_instance, 115200);
 
     /* Start channels */
     printf("Channel %d and Channel %d opened, starting transfer...\n", channel[0], channel[1]);
@@ -266,11 +247,7 @@ int uart_shp_test(void)
     uart_access_config();
     ccm_clock_gates_on();
 
-#ifdef CHIP_MX53
-    printf("UART3 loopback test starts.\n");
-#else
-    printf("UART1 loopback test starts.\n");
-#endif
+    printf("UART%d loopback test starts.\n", uart_shp_test_instance);
 
     MEM_VIRTUAL_2_PHYSICAL(tx_buf, sizeof(tx_buf), MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
     MEM_VIRTUAL_2_PHYSICAL(rx_buf, sizeof(tx_buf), MEM_PRO_UNCACHEABLE | MEM_PRO_UNBUFFERABEL);
@@ -369,11 +346,8 @@ int uart_shp_test(void)
     printf("Channel %d and Channel %d opened, starting transfer...\n", channel[0], channel[1]);
     sdma_channel_start(channel[0]);
     sdma_channel_start(channel[1]);
-#ifdef CHIP_MX53
-    uart_loopback_init(&uart3_sdma_test, 115200);
-#else
-    uart_loopback_init(&uart1_sdma_test, 115200);
-#endif
+    uart_loopback_init(uart_shp_test_instance, 115200);
+
     /* Wait channels stop */
     uint32_t status;
     do {
@@ -513,7 +487,7 @@ int uart_app_interrupt_test(void)
     sdma_channel_start(channel[0]);
     sdma_channel_start(channel[1]);
 
-    uart_loopback_init(&uart5_sdma_test, 115200);
+    uart_loopback_init(uart_app_test_instance, 115200);
     /*Wait transfer finished */
     while (!trans_done) ;
 

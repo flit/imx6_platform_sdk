@@ -48,8 +48,6 @@ enum _pwm_interrupts {
 };
 
 //! @brief Clock sources for the PWM.
-//!
-//! Pass one of these values in the hw_module_t::freq member.
 enum _pwm_clksrc {
     kPwmClockSourceNone = 0,
     kPwmClockSourceIpg = 1,
@@ -89,11 +87,8 @@ extern "C" {
  * - Pulse Width = (prescale * period) / Fsrc (second)
  * - Duty Cycle = sample[idx] / period
  *
- * @param port Device instance.
- * @param prescale Frequency prescale.
- * @param period Period value.
- * @param sample Sample list.
- * @param smp_cnt Sample count.
+ * @param instance the PWM instance number.
+ * @param pwm pointer to the pwm setting parameters structure.
  *
  * @retval TRUE on success
  * @retval FALSE on fail
@@ -108,12 +103,17 @@ int pwm_init(uint32_t instance, struct pwm_parms *pwm);
  *    - #kPwmRolloverIrq
  *    - #kPwmCompareIrq
  *
- * @param port Device instance.
- * @param state Pass true or false to enable or disable interrupts.
- * @param mask Mask of interrupts to enable or disable.
+ * @param instance the PWM instance number.
+ * @param irq_subroutine the PWM interrupt interrupt routine.
+ * @param mask mask of PWM interrupt bits to enable.
  */
 void pwm_setup_interrupt(uint32_t instance, void (*irq_subroutine) (void), uint8_t mask);
 
+/*!
+ * @brief Free interrupt service.
+ *
+ * @param instance the PWM instance number.
+ */
 void pwm_free_interrupt(uint32_t instance);
 
 /*!
@@ -124,19 +124,26 @@ void pwm_free_interrupt(uint32_t instance);
  *    - #kPwmRolloverIrq
  *    - #kPwmCompareIrq
  *
- * @param port Device instance.
- * @param mask Mask of status bits to clear.
+ * @param instance the PWM instance number.
+ * @param mask mask of PWM interrupt status bits to clear.
  */
 void pwm_clear_int_status(uint32_t instance, uint32_t mask);
 
+/*!
+ * @brief PWM interrupt routine of FIFO empty.
+ *
+ * FIFO empty interrupt will set the global variable test_end as TRUE,
+ * which serves as a flag of ending PWM test.
+ */
 void pwm_isr_test_end(void);
+
 /*!
  * @brief Enable PWM output.
  *
  * The PWM counter starts counting and the waveform is produced on the output
- * pin. Interrupts will be triggered upon compare and rollover.
+ * pin. Interrupts will be triggered upon fifo empty, compare and rollover.
  *
- * @param port Device instance.
+ * @param instance the PWM instance number.
  */
 void pwm_enable(uint32_t instance);
 
@@ -145,11 +152,20 @@ void pwm_enable(uint32_t instance);
  *
  * Stops the PWM counter.
  *
- * @param port Device instance.
+ * @param instance the PWM instance number.
  */
 void pwm_disable(uint32_t instance);
 
+/*!
+ * @brief Get current frequency of corresponding PWM clock source.
+ *
+ * @param clock PWM clock souce. The @a clock parameter should be composed of one of the below:
+ *    - #kPwmClockSourceIpg
+ *    - #kPwmClockSourceCkih
+ *    - #kPwmClockSourceCkil
+ */
 int pwm_get_clock_freq(uint32_t clock);
+
 #if defined(__cplusplus)
 }
 #endif

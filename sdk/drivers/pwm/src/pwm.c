@@ -39,6 +39,10 @@
 
 //! Number of sample FIFO entries.
 #define PWM_CNT_FIFO_SZ       (4)
+
+//! IRQ id of pwm
+#define PWM_IRQS(x) ( (x) == HW_PWM1 ? IMX_INT_PWM1 : (x) == HW_PWM2 ? IMX_INT_PWM2 : (x) == HW_PWM3 ? IMX_INT_PWM3 : (x) == HW_PWM4 ? IMX_INT_PWM4 : 0xFFFFFFFF)
+
 struct pwm_interrupt_status pwm_int_test_end;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -119,7 +123,7 @@ void pwm_clear_int_status(uint32_t instance, uint32_t mask)
 
 void pwm_setup_interrupt(uint32_t instance, void (*irq_subroutine) (void), uint8_t mask)
 {
-    int irq_id = IMX_INT_PWM1 + instance - 1;
+    int irq_id = PWM_IRQS(instance);
 
     // Disable the IRQ first
     disable_interrupt(irq_id, CPU_0);

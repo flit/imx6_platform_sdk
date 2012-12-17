@@ -86,8 +86,12 @@ ifneq "$(APP_NAME)" ""
 APP_ELF ?= $(APP_OUTPUT_ROOT)/$(APP_NAME).elf
 endif
 
+# Select the output target.
 ifneq "$(TARGET_LIB)" ""
+# Only use the target lib if there are actually objects to put into it.
+ifneq "$(strip $(OBJECTS_ALL))" ""
 archive_or_objs = $(TARGET_LIB)
+endif
 else
 archive_or_objs = $(OBJECTS_ALL)
 endif
@@ -115,7 +119,10 @@ $(OBJECTS_DIRS) :
 	$(at)mkdir -p $@
 
 # Everything depends upon the current makefile.
-$(OBJECTS_ALL) $(TARGET_LIB) $(APP_ELF): $(this_makefile)
+$(OBJECTS_ALL) $(APP_ELF): $(this_makefile)
+
+# Object files depend on the directories where they will be created.
+$(OBJECTS_ALL): $(OBJECTS_DIRS)
 
 #-------------------------------------------------------------------------------
 # Pattern rules for compilation
@@ -153,6 +160,10 @@ $(OBJS_ROOT)/%.o: $(SDK_ROOT)/%.s
 
 # Add objects to the target library.
 #
+# We use mkdir to explicitly ensure that the archive's directory exists before calling
+# the ar tool. The dir can't be made a dependancy because make will try to add it to the
+# archive.
+#
 # Note that we're checking the archive's mod date and not each entry in the archive. This
 # lets us do a single update operation with all modified object files.
 #
@@ -160,6 +171,7 @@ $(OBJS_ROOT)/%.o: $(SDK_ROOT)/%.s
 # simultaneously, in case we're using parallel processes.
 $(TARGET_LIB): $(OBJECTS_ALL)
 	@$(call printmessage,ar,Archiving, $(shell echo $? | wc -w) files in $(@F))
+	$(at)mkdir -p $(dir $(@))
 	$(at)flock $(@).lock $(AR) -rucs $@ $?
 
 #-------------------------------------------------------------------------------

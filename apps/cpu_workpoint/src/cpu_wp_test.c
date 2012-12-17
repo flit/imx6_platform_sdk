@@ -39,6 +39,7 @@
 #include "core/mmu.h"
 #include "pmu/pmu_driver.h"
 #include "cpu_utility/cpu_utility.h"
+#include "registers/regsepit.h"
 
 void my_memcpy(char *dst, char *src, int size)
 {
@@ -61,27 +62,18 @@ uint32_t memcpy_perf_record(int size)
     char *src = (char *)0x28000000;
 #endif
     uint32_t time_counter;
+    uint32_t epit_instance = HW_EPIT2, epit_freq = 0;
 
-    static hw_module_t count_timer = {
-        "EPIT2 for system tick",
-        2,
-        EPIT2_BASE_ADDR,
-        27000000,
-        IMX_INT_EPIT2,
-        NULL,
-        NULL
-    };
-
-    count_timer.freq = get_main_clock(IPG_CLK);
-    epit_init(&count_timer, CLKSRC_IPG_CLK, count_timer.freq / 1000000,
+    epit_freq = get_main_clock(IPG_CLK);
+    epit_init(epit_instance, CLKSRC_IPG_CLK, epit_freq / 1000000,
               SET_AND_FORGET, 10000, WAIT_MODE_EN | STOP_MODE_EN);
-    epit_setup_interrupt(&count_timer, FALSE);
-    epit_counter_enable(&count_timer, 0xFFFFFFFF, 0);   //polling mode
+    epit_setup_interrupt(epit_instance, NULL, FALSE);
+    epit_counter_enable(epit_instance, 0xFFFFFFFF, 0);   //polling mode
 
     my_memcpy(dst, src, size);
 
-    time_counter = epit_get_counter_value(&count_timer);
-    epit_counter_disable(&count_timer); //polling mode
+    time_counter = epit_get_counter_value(epit_instance);
+    epit_counter_disable(epit_instance); //polling mode
 
     time_counter = (0xFFFFFFFF - time_counter) / 1000;  //ms
 

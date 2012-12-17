@@ -42,6 +42,7 @@
 #include "usdhc/usdhc_ifc.h"
 #include "core/cortex_a9.h"
 #include "core/mmu.h"
+#include "registers/regsepit.h"
 
 //#define FS_DEBUG
 #ifdef FS_DEBUG
@@ -91,16 +92,7 @@ fs_rw_speed_data_t rw_test_data[] = {
 uint8_t readfile[] = "testin.dat";
 uint8_t writefile[] = "testoutx.dat";
 char dataSize[16];
-
-hw_module_t count_timer = {
-    "EPIT2 for system tick",
-    2,
-    EPIT2_BASE_ADDR,
-    27000000,
-    IMX_INT_EPIT2,
-    NULL,
-    NULL
-};
+uint32_t epit_instance = HW_EPIT2, epit_freq = 0;
 
 extern uint32_t g_usdhc_instance;
 extern void print_media_fat_info(uint32_t);
@@ -137,11 +129,11 @@ int fat_write_speed_test(fs_rw_speed_data_t * test_data, int i)
 
     WriteBuffer = (uint8_t *) TEST_BUFFER_ADDR;
 
-    count_timer.freq = get_main_clock(IPG_CLK);
-    epit_init(&count_timer, CLKSRC_IPG_CLK, count_timer.freq / 1000000,
+    epit_freq = get_main_clock(IPG_CLK);
+    epit_init(epit_instance, CLKSRC_IPG_CLK, epit_freq / 1000000,
               SET_AND_FORGET, 10000, WAIT_MODE_EN | STOP_MODE_EN);
-    epit_setup_interrupt(&count_timer, FALSE);
-    epit_counter_enable(&count_timer, 0xFFFFFFFF, 0);   //polling mode
+    epit_setup_interrupt(epit_instance, NULL, FALSE);
+    epit_counter_enable(epit_instance, 0xFFFFFFFF, 0);   //polling mode
 
     _raw_puts("\tWriting file ");
     _raw_puts((char *)writefile);
@@ -161,8 +153,8 @@ int fat_write_speed_test(fs_rw_speed_data_t * test_data, int i)
         }
     }
 
-    TimeCount = epit_get_counter_value(&count_timer);
-    epit_counter_disable(&count_timer); //polling mode
+    TimeCount = epit_get_counter_value(epit_instance);
+    epit_counter_disable(epit_instance); //polling mode
 
     TimeCount = (0xFFFFFFFF - TimeCount) / 1000;    //ms
     get_data_size(BytesWritten, dataSize);
@@ -189,11 +181,11 @@ int sd_raw_write_speed_test(fs_rw_speed_data_t * test_data, int i)
 
     WriteBuffer = (uint8_t *) TEST_BUFFER_ADDR;
 
-    count_timer.freq = get_main_clock(IPG_CLK);
-    epit_init(&count_timer, CLKSRC_IPG_CLK, count_timer.freq / 1000000,
+    epit_freq = get_main_clock(IPG_CLK);
+    epit_init(epit_instance, CLKSRC_IPG_CLK, epit_freq / 1000000,
               SET_AND_FORGET, 10000, WAIT_MODE_EN | STOP_MODE_EN);
-    epit_setup_interrupt(&count_timer, FALSE);
-    epit_counter_enable(&count_timer, 0xFFFFFFFF, 0);   //polling mode
+    epit_setup_interrupt(epit_instance, NULL, FALSE);
+    epit_counter_enable(epit_instance, 0xFFFFFFFF, 0);   //polling mode
 
     _raw_puts("\tWriting sdcard directly     ");
     while (BytesWritten < TEST_FILE_SIZE) {
@@ -207,8 +199,8 @@ int sd_raw_write_speed_test(fs_rw_speed_data_t * test_data, int i)
         }
     }
 
-    TimeCount = epit_get_counter_value(&count_timer);
-    epit_counter_disable(&count_timer); //polling mode
+    TimeCount = epit_get_counter_value(epit_instance);
+    epit_counter_disable(epit_instance); //polling mode
 
     TimeCount = (0xFFFFFFFF - TimeCount) / 1000;    //ms
     get_data_size(BytesWritten, dataSize);
@@ -242,11 +234,11 @@ int fat_read_speed_test(fs_rw_speed_data_t * test_data, int i)
 
     ReadBuffer = (uint8_t *) TEST_BUFFER_ADDR;
 
-    count_timer.freq = get_main_clock(IPG_CLK);
-    epit_init(&count_timer, CLKSRC_IPG_CLK, count_timer.freq / 1000000,
+    epit_freq = get_main_clock(IPG_CLK);
+    epit_init(epit_instance, CLKSRC_IPG_CLK, epit_freq / 1000000,
               SET_AND_FORGET, 10000, WAIT_MODE_EN | STOP_MODE_EN);
-    epit_setup_interrupt(&count_timer, FALSE);
-    epit_counter_enable(&count_timer, 0xFFFFFFFF, 0);   //polling mode
+    epit_setup_interrupt(epit_instance, NULL, FALSE);
+    epit_counter_enable(epit_instance, 0xFFFFFFFF, 0);   //polling mode
 
     _raw_puts("\tReading file ");
     _raw_puts((char *)readfile);
@@ -267,8 +259,8 @@ int fat_read_speed_test(fs_rw_speed_data_t * test_data, int i)
             break;
         }
     }
-    TimeCount = epit_get_counter_value(&count_timer);
-    epit_counter_disable(&count_timer); //polling mode
+    TimeCount = epit_get_counter_value(epit_instance);
+    epit_counter_disable(epit_instance); //polling mode
 
     TimeCount = (0xFFFFFFFF - TimeCount) / 1000;    //ms
     get_data_size(BytesRead, dataSize);
@@ -293,11 +285,11 @@ int sd_raw_read_speed_test(fs_rw_speed_data_t * test_data, int i)
 
     ReadBuffer = (uint8_t *) TEST_BUFFER_ADDR;
 
-    count_timer.freq = get_main_clock(IPG_CLK);
-    epit_init(&count_timer, CLKSRC_IPG_CLK, count_timer.freq / 1000000,
+    epit_freq = get_main_clock(IPG_CLK);
+    epit_init(epit_instance, CLKSRC_IPG_CLK, epit_freq / 1000000,
               SET_AND_FORGET, 10000, WAIT_MODE_EN | STOP_MODE_EN);
-    epit_setup_interrupt(&count_timer, FALSE);
-    epit_counter_enable(&count_timer, 0xFFFFFFFF, 0);   //polling mode
+    epit_setup_interrupt(epit_instance, NULL, FALSE);
+    epit_counter_enable(epit_instance, 0xFFFFFFFF, 0);   //polling mode
 
     _raw_puts("\tReading sdcard directly     ");
     while (BytesRead < TEST_FILE_SIZE) {
@@ -311,8 +303,8 @@ int sd_raw_read_speed_test(fs_rw_speed_data_t * test_data, int i)
             nMB++;
         }
     }
-    TimeCount = epit_get_counter_value(&count_timer);
-    epit_counter_disable(&count_timer); //polling mode
+    TimeCount = epit_get_counter_value(epit_instance);
+    epit_counter_disable(epit_instance); //polling mode
 
     TimeCount = (0xFFFFFFFF - TimeCount) / 1000;    //ms
     get_data_size(BytesRead, dataSize);

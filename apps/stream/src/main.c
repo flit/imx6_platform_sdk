@@ -39,6 +39,7 @@
 #include "utility/system_util.h"
 #include "timer/epit.h"
 #include "print_version.h"
+#include "registers/regsepit.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Externs
@@ -62,26 +63,19 @@ double mysecond()
 
     // use hardware timer
     uint32_t usec = 0;
-    static hw_module_t count_timer = {
-        "EPIT2 for system tick",
-        2,
-        EPIT2_BASE_ADDR,
-        27000000,
-        IMX_INT_EPIT2,
-        NULL,
-        NULL
-    };
+    uint32_t epit_instance = HW_EPIT2, epit_freq = 0;
     static int timer_init = 0;
+
     if (!timer_init) {
-        count_timer.freq = get_main_clock(IPG_CLK);
-        epit_init(&count_timer, CLKSRC_IPG_CLK, count_timer.freq / 1000000,
+        epit_freq = get_main_clock(IPG_CLK);
+        epit_init(epit_instance, CLKSRC_IPG_CLK, epit_freq / 1000000,
                   SET_AND_FORGET, 10000, WAIT_MODE_EN | STOP_MODE_EN);
-        epit_setup_interrupt(&count_timer, FALSE);
-        epit_counter_enable(&count_timer, 0xFFFFFFFF, 0);   //polling mode
+        epit_setup_interrupt(epit_instance, NULL, FALSE);
+        epit_counter_enable(epit_instance, 0xFFFFFFFF, 0);   //polling mode
         timer_init = 1;
     }
 
-    usec = 0xFFFFFFFF - epit_get_counter_value(&count_timer);
+    usec = 0xFFFFFFFF - epit_get_counter_value(epit_instance);
 
     return ((double)usec) * 1.e-6;
 }

@@ -35,6 +35,7 @@
 #include "vpu/vpu_debug.h"
 #include "vpu/vpu_lib.h"
 #include "timer/epit.h"
+#include "registers/regsepit.h"
 
 bs_mem_t g_bs_memory;
 int32_t g_current_active_instance = 0;
@@ -693,21 +694,14 @@ void decoder_frame_display(void)
 }
 
 int counter = 0;
+static uint32_t epit_instance = HW_EPIT2;
+
 void epit_isr_frame_control(void)
 {
-    epit_get_compare_event(&g_hw_epit2);
+    epit_get_compare_event(epit_instance);
 
     decoder_frame_display();
 }
-
-hw_module_t g_hw_epit2 = {
-    "EPIT for video control",
-    2,
-    EPIT2_BASE_ADDR,
-    32768,
-    IMX_INT_EPIT2,
-    &epit_isr_frame_control,
-};
 
 int32_t decoder_setup(void *arg)
 {
@@ -831,6 +825,7 @@ int32_t decode_test(void *arg)
     int32_t file_in_1 = 0, file_in_2 = 0;
     uint8_t g_dec_file_1[] = "clip_1.264";
     uint8_t g_dec_file_2[] = "clip_2.264";
+    int32_t epit_freq = 0;
 
     while (i < MAX_NUM_INSTANCE) {
         g_is_frame_drop[i] = 0; //initialize the frame drop flag
@@ -998,11 +993,10 @@ int32_t decode_test(void *arg)
     printf("Now start decoding test ... \n");
 
     if (vplay_mode != VPLAY_FREE_RUN) { /*Frame control used */
-        g_hw_epit2.freq = get_main_clock(IPG_CLK);
-        epit_init(&g_hw_epit2, CLKSRC_IPG_CLK, g_hw_epit2.freq / 1000000, SET_AND_FORGET, 0, 0);
-        register_interrupt_routine(g_hw_epit2.irq_id, g_hw_epit2.irq_subroutine);
-        epit_setup_interrupt(&g_hw_epit2, TRUE);
-        epit_counter_enable(&g_hw_epit2, 1000000 / vplay_mode, IRQ_MODE);
+        epit_freq = get_main_clock(IPG_CLK);
+        epit_init(epit_instance, CLKSRC_IPG_CLK, epit_freq / 1000000, SET_AND_FORGET, 0, 0);
+        epit_setup_interrupt(epit_instance, epit_isr_frame_control, TRUE);
+        epit_counter_enable(epit_instance, 1000000 / vplay_mode, IRQ_MODE);
     }
 
     while (1) {
@@ -1090,7 +1084,7 @@ int32_t decode_test(void *arg)
         Fclose(file_in_2);
 
     if (vplay_mode != VPLAY_FREE_RUN) { /*disable the timer for frame control */
-        epit_counter_disable(&g_hw_epit2);
+        epit_counter_disable(epit_instance);
     }
 
     return 0;

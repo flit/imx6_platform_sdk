@@ -144,6 +144,10 @@ primary_cpu_init:
     stmltia r1!,{r3}
     blt     1b
     
+    @ take care of C++ static initialization. this won't cause any harm for plain C apps.
+    ldr     r12,=__libc_init_array
+    blx     r12
+    
     @ branch to c library entry point 
     mov     r0,#0 @ argc
     mov     r1,#0 @ argv

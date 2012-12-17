@@ -169,22 +169,17 @@ SECTIONS
     {
         *(.dcd_data)
     } > DDR
-
-    .init :
-    {
-        KEEP (*(.init))
-    } > DDR =0
     
     .text : ALIGN(8)
     {
+        CREATE_OBJECT_SYMBOLS
         *(.startup)
-        *(.text .text.*)
+        *(.text .text.* .gnu.linkonce.t.*)
+        *(.glue_7t) *(.glue_7) *(.vfp11_veneer)
+        
+        *(.ARM.extab* .gnu.linkonce.armextab.*)
+        *(.gcc_except_table)
     } > DDR
-
-    .fini :
-    {
-        KEEP (*(.fini))
-    } > DDR =0
 
     .ctors :
     {
@@ -218,7 +213,26 @@ SECTIONS
 
     .rodata :
     {
-        *(.rodata .rodata.*)
+        *(.rodata .rodata.* .gnu.linkonce.r.*)
+
+        . = ALIGN(4);
+        KEEP(*(.init))
+
+        . = ALIGN(4);
+        __init_array_start = .;
+        KEEP (*(SORT(.init_array.*)))
+        KEEP (*(.init_array))
+        __init_array_end = .;
+        
+        . = ALIGN(4);
+        KEEP(*(.fini))
+        
+        . = ALIGN(4);
+        __fini_array_start = .;
+        KEEP (*(.fini_array))
+        KEEP (*(SORT(.fini_array.*)))
+        __fini_array_end = .;
+
     } > DDR
 
     /* Unwind index. This section is related to C++ exceptions, and is required even
@@ -232,9 +246,9 @@ SECTIONS
 
     /* -- read-write sections -- */
     
-    .data :
+    .data : ALIGN(8)
     {
-        *(.data .data.*)
+        *(.data .data.* .gnu.linkonce.d.*)
         SORT(CONSTRUCTORS)
     } > DDR
 

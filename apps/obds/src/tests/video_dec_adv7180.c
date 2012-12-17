@@ -43,26 +43,19 @@ const char g_video_dec_test_name[] = "Video Input Test";
 #define GPO_REG 0x59
 #define OUTPUT_CTRL_REG 0x03
 
-struct imx_i2c_request adv7180_i2c_req;
+static imx_i2c_request_t adv7180_i2c_req;
 
 /*!
  * I2C init function to control the video A/D converter ADV7180.
  */
 void adv7180_i2c_init_obds(void)
 {
-    /* reset the ADV7180 */
-    board_ioexpander_iomux_config();
-    max7310_set_gpio_output(0, 3, GPIO_LOW_LEVEL);
-    hal_delay_us(5000);
-    max7310_set_gpio_output(0, 3, GPIO_HIGH_LEVEL);
-    
     /* I2C initialization */
     i2c_init(g_adv7180_i2c_device.port, g_adv7180_i2c_device.freq);
 
-    adv7180_i2c_req.ctl_addr = g_adv7180_i2c_device.port;
-    adv7180_i2c_req.dev_addr = g_adv7180_i2c_device.address;  // the I2C DEVICE address
-    adv7180_i2c_req.reg_addr_sz = 1;    // number of bytes of I2C device register's address
-    adv7180_i2c_req.buffer_sz = 1;  // number of data bytes
+    max7310_set_gpio_output(1, 2, GPIO_LOW_LEVEL);
+    hal_delay_us(5000);
+    max7310_set_gpio_output(1, 2, GPIO_HIGH_LEVEL);
 }
 
 /*!
@@ -76,8 +69,11 @@ unsigned char adv7180_reg_read(unsigned char reg_addr)
 {
     unsigned char buf[1];
     adv7180_i2c_req.ctl_addr = g_adv7180_i2c_device.port;
+    adv7180_i2c_req.dev_addr = g_adv7180_i2c_device.address;
     adv7180_i2c_req.reg_addr = reg_addr;
     adv7180_i2c_req.buffer = buf;
+    adv7180_i2c_req.reg_addr_sz = 1;
+    adv7180_i2c_req.buffer_sz = 1;
 //    i2c_xfer(ADV7180_I2C_BASE, &adv7180_i2c_req, I2C_READ);
     i2c_xfer(&adv7180_i2c_req, I2C_READ);
     return buf[0];
@@ -94,8 +90,11 @@ unsigned char adv7180_reg_read(unsigned char reg_addr)
 int adv7180_reg_write(unsigned char reg_addr, unsigned char data)
 {
     adv7180_i2c_req.ctl_addr = g_adv7180_i2c_device.port; 
+    adv7180_i2c_req.dev_addr = g_adv7180_i2c_device.address;
     adv7180_i2c_req.reg_addr = reg_addr;
     adv7180_i2c_req.buffer = &data;
+    adv7180_i2c_req.reg_addr_sz = 1;
+    adv7180_i2c_req.buffer_sz = 1;
   
     return i2c_xfer(&adv7180_i2c_req, I2C_WRITE);
 //    return i2c_xfer(ADV7180_I2C_BASE, &adv7180_i2c_req, I2C_WRITE);
@@ -175,10 +174,17 @@ test_return_t adv7180_test_main(void)
             adv7180_set_gpio_output(2, GPIO_HIGH_LEVEL);
             adv7180_set_gpio_output(3, GPIO_HIGH_LEVEL);
             hal_delay_us(500000);
-
-            recvCh = fgetc(stdin);
+            
+            int tloop = 0x400;      //drain the buffer
+            while (tloop--) {
+                if (getchar() != (uint8_t) 0xFF) {
+                    break;
+                }
+            }
+            if(tloop >= 0)
+               break;
         }
-        while (recvCh == NONE_CHAR);
+        while (1);
 
         if ((recvCh == 'n') || (recvCh == 'N'))
             ret = TEST_FAILED;

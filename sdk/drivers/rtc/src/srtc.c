@@ -46,24 +46,12 @@
  * @brief SRTC strucures used by the driver.
  */
 typedef struct snvs_srtc_module_ {
-    hw_module_t *port;
     funct_t onetime_timer_callback;
 } snvs_srtc_module_t;
 
-void snvs_srtc_setup_interrupt(struct hw_module *port, uint8_t state);
-void snvs_srtc_interrupt_handler(void);
-
-static hw_module_t port = {
-        "SNVS SRTC Driver",                 // Driver Name 
-        1,                                  // Instance number 
-        REGS_SNVS_BASE,                     // Block base address in memory map
-        0,                                  // Frequency 
-        IMX_INT_SNVS,                   // Interrupt ID
-        &snvs_srtc_interrupt_handler        // Irq handler 
-};
+void snvs_srtc_setup_interrupt(void (*irq_subroutine)(void), uint8_t state);
 
 static snvs_srtc_module_t s_snvs_srtc_module = {
-    &port,
     NULL
 };
 
@@ -80,20 +68,22 @@ static snvs_srtc_module_t s_snvs_srtc_module = {
  * @param   port Pointer to the SNVS module structure.
  * @param   state true to enable or false to disable.
  */
-void snvs_srtc_setup_interrupt(struct hw_module *port, uint8_t state)
+void snvs_srtc_setup_interrupt(void (*irq_subroutine)(void), uint8_t state)
 {
+    uint32_t irq_id = IMX_INT_SNVS;
+
     if (state)
     {
         // register the IRQ sub-routine 
-        register_interrupt_routine(port->irq_id, port->irq_subroutine);
+        register_interrupt_routine(irq_id, irq_subroutine);
         
         // enable the IRQ 
-        enable_interrupt(port->irq_id, CPU_0, 0);
+        enable_interrupt(irq_id, CPU_0, 0);
     }
     else
     {
         // disable the IRQ 
-        disable_interrupt(port->irq_id, CPU_0);
+        disable_interrupt(irq_id, CPU_0);
     }
 }
 
@@ -102,7 +92,7 @@ void snvs_srtc_setup_interrupt(struct hw_module *port, uint8_t state)
  */
 void snvs_srtc_interrupt_handler(void)
 {
-    snvs_srtc_setup_interrupt(s_snvs_srtc_module.port, false);
+    snvs_srtc_setup_interrupt(NULL, false);
 
     if (HW_SNVS_LPSR.B.LPTA && s_snvs_srtc_module.onetime_timer_callback != NULL)
     {
@@ -110,55 +100,55 @@ void snvs_srtc_interrupt_handler(void)
 
         s_snvs_srtc_module.onetime_timer_callback();
         s_snvs_srtc_module.onetime_timer_callback = NULL;
-        snvs_srtc_alarm(s_snvs_srtc_module.port, false);
+        snvs_srtc_alarm(false);
     }   
     else
     {
-        snvs_srtc_setup_interrupt(s_snvs_srtc_module.port, true);
+        snvs_srtc_setup_interrupt(snvs_srtc_interrupt_handler, true);
     }
 }
 
 void srtc_init(void)
 {
     // Initialize SNVS driver 
-    snvs_init(s_snvs_srtc_module.port);
+    snvs_init();
 
     // Start SRTC counter 
-    snvs_srtc_counter(s_snvs_srtc_module.port, true);
+    snvs_srtc_counter(true);
 
     // Keep time alarm disabled 
-    snvs_srtc_alarm(s_snvs_srtc_module.port, false);
+    snvs_srtc_alarm(false);
 }
 
 void srtc_deinit(void)
 {
     // Disable the interrupt 
-    snvs_srtc_setup_interrupt(s_snvs_srtc_module.port, false);
+    snvs_srtc_setup_interrupt(NULL, false);
 
     // Disable the counter 
-    snvs_srtc_counter(s_snvs_srtc_module.port, false);
-    snvs_srtc_alarm(s_snvs_srtc_module.port, false);
+    snvs_srtc_counter(false);
+    snvs_srtc_alarm(false);
 
     // Deinitialize SNVS 
-    snvs_deinit(s_snvs_srtc_module.port);
+    snvs_deinit();
 }
 
 void srtc_setup_onetime_timer(uint32_t timeout, funct_t callback)
 {
     // Disables the interrupt 
-    snvs_srtc_setup_interrupt(s_snvs_srtc_module.port, false);
+    snvs_srtc_setup_interrupt(NULL, false);
 
     // Clear the SRTC counter 
-    snvs_srtc_set_counter(s_snvs_srtc_module.port, 0);
+    snvs_srtc_set_counter(0);
 
     // Program the timeout value 
-    snvs_srtc_set_alarm_timeout(s_snvs_srtc_module.port, timeout);
+    snvs_srtc_set_alarm_timeout(timeout);
 
     // Set the callback function 
     s_snvs_srtc_module.onetime_timer_callback = callback;
 
     // Reanable the interrupt 
-    snvs_srtc_setup_interrupt(s_snvs_srtc_module.port, true);
+    snvs_srtc_setup_interrupt(snvs_srtc_interrupt_handler, true);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

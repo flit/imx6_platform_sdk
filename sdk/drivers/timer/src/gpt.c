@@ -51,7 +51,7 @@ static inline void gpt_clear_all_events(void)
     HW_GPT_SR_WR(kGPTAllEvents);
 }
 
-uint32_t gpt_get_rollover_event(struct hw_module *port)
+uint32_t gpt_get_rollover_event(void)
 {
     // clear it if found set 
     if (HW_GPT_SR.B.ROV)
@@ -64,8 +64,7 @@ uint32_t gpt_get_rollover_event(struct hw_module *port)
     return 0;
 }
 
-uint32_t gpt_get_capture_event(struct hw_module *port, uint8_t flag,
-                               uint32_t * capture_val)
+uint32_t gpt_get_capture_event(uint8_t flag, uint32_t * capture_val)
 {
     // get the capture status bit 
     flag &= kGPTInputCapture1 | kGPTInputCapture2;
@@ -91,8 +90,7 @@ uint32_t gpt_get_capture_event(struct hw_module *port, uint8_t flag,
     return status_register;
 }
 
-void gpt_set_capture_event(struct hw_module *port, uint8_t cap_input,
-                           uint8_t cap_input_mode)
+void gpt_set_capture_event(uint8_t cap_input, uint8_t cap_input_mode)
 {
     // set the new input mode 
     switch (cap_input)
@@ -107,7 +105,7 @@ void gpt_set_capture_event(struct hw_module *port, uint8_t cap_input,
     }
 }
 
-uint32_t gpt_get_compare_event(struct hw_module *port, uint8_t flag)
+uint32_t gpt_get_compare_event(uint8_t flag)
 {
     // get the active compare flags 
     flag &= kGPTOutputCompare1 | kGPTOutputCompare2 | kGPTOutputCompare3;
@@ -123,8 +121,7 @@ uint32_t gpt_get_compare_event(struct hw_module *port, uint8_t flag)
     return status_register;
 }
 
-void gpt_set_compare_event(struct hw_module *port, uint8_t cmp_output,
-                           uint8_t cmp_output_mode, uint32_t cmp_value)
+void gpt_set_compare_event(uint8_t cmp_output, uint8_t cmp_output_mode, uint32_t cmp_value)
 {
     // set the value to compare with 
     switch (cmp_output)
@@ -146,7 +143,7 @@ void gpt_set_compare_event(struct hw_module *port, uint8_t cmp_output,
     }
 }
 
-void gpt_counter_disable(struct hw_module *port)
+void gpt_counter_disable(void)
 {
     // disable the counter 
     HW_GPT_CR.B.EN = 0;
@@ -158,7 +155,7 @@ void gpt_counter_disable(struct hw_module *port)
     gpt_clear_all_events();
 }
 
-void gpt_counter_enable(struct hw_module *port, uint32_t irq_mode)
+void gpt_counter_enable(uint32_t irq_mode)
 {
     // ensure to start the counter in a proper state by clearing possible remaining events
     gpt_clear_all_events();
@@ -170,30 +167,32 @@ void gpt_counter_enable(struct hw_module *port, uint32_t irq_mode)
     HW_GPT_CR.B.EN = 1;
 }
 
-void gpt_setup_interrupt(struct hw_module *port, bool enableIt)
+void gpt_setup_interrupt(void (*irq_subroutine)(void), bool enableIt)
 {
+    uint32_t irq_id = IMX_INT_GPT;
+
     if (enableIt)
     {    
         // register the IRQ sub-routine 
-        register_interrupt_routine(port->irq_id, port->irq_subroutine);
+        register_interrupt_routine(irq_id, irq_subroutine);
         
         // enable the IRQ 
-        enable_interrupt(port->irq_id, CPU_0, 0);
+        enable_interrupt(irq_id, CPU_0, 0);
     }
     else
     {
         // disable the IRQ 
-        disable_interrupt(port->irq_id, CPU_0);
+        disable_interrupt(irq_id, CPU_0);
     }
 }
 
-void gpt_init(struct hw_module *port, uint32_t clock_src, uint32_t prescaler,
-              uint32_t counter_mode, uint32_t low_power_mode)
+void gpt_init(uint32_t clock_src, uint32_t prescaler, uint32_t counter_mode, uint32_t low_power_mode)
 {
     uint32_t control_reg_tmp = 0;
+    uint32_t base = GPT_BASE_ADDR;
 
     // enable the source clocks to the GPT port 
-    clock_gating_config(port->base, CLOCK_ON);
+    clock_gating_config(base, CLOCK_ON);
 
     // start with a known state by disabling and reseting the module 
     HW_GPT_CR_WR(BM_GPT_CR_SWR);

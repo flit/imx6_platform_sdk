@@ -60,7 +60,7 @@ uint32_t g_microsecondTimerMultiple;
 
 void hal_delay_us(uint32_t usecs)
 {
-    uint32_t instance = g_system_timer.instance;
+    uint32_t instance = g_system_timer_port;
     if (usecs == 0) {
         return;
     }
@@ -86,7 +86,7 @@ void system_time_init(void)
     /* typical IPG_CLK is in MHz, so divide it to get a reference
        clock of 1MHz => 1us per count */
     freq = get_main_clock(IPG_CLK);
-    epit_init(g_system_timer.instance, CLKSRC_IPG_CLK, freq / 1000000,
+    epit_init(g_system_timer_port, CLKSRC_IPG_CLK, freq / 1000000,
               SET_AND_FORGET, 1000, WAIT_MODE_EN | STOP_MODE_EN);
 }
 

@@ -42,6 +42,7 @@
 #include "registers/regspmu.h"
 #include "registers/regsccm.h"
 #include "registers/regsuart.h"
+#include "registers/regsepit.h"
 #include "sdk.h"
 
 #define DUMMY_ARM_CORE_BASE_ADDR 0x12345789
@@ -94,6 +95,8 @@ hw_module_t g_system_timer = {
     IMX_INT_EPIT1,
     &default_interrupt_routine,
 };
+
+uint32_t g_system_timer_port = HW_EPIT1;
 
 hw_module_t g_ddr = {
     "DDR memory",

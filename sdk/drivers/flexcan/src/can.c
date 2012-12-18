@@ -55,16 +55,15 @@ static struct time_segment time_segments[18] = {
     {7, 7, 7} /* 17: total 25 timequanta */
 };
 
-void can_init(struct hw_module *port, uint32_t max_mb)
+void can_init(uint32_t instance, uint32_t max_mb)
 {
-    uint32_t instance = port->instance;
     uint32_t ctl;
     int i;
 
     /* configure the I/O for the port */
     hw_can_iomux_config(instance);
 
-    can_sw_reset(port);         //software reset
+    can_sw_reset(instance);         //software reset
 
     ctl = HW_FLEXCAN_MCR_RD(instance);
     ctl &= ~BM_FLEXCAN_MCR_MAXMB;    	//clear MAXMB field
@@ -78,7 +77,7 @@ void can_init(struct hw_module *port, uint32_t max_mb)
 
     // initialize MBs to zero
     for (i = 0; i < CAN_NUMBER_OF_BUFFERS; i++) {
-        set_can_mb(port, i, 0, 0, 0, 0);
+        set_can_mb(instance, i, 0, 0, 0, 0);
     }
 
     // disable all MB interrupts
@@ -86,51 +85,46 @@ void can_init(struct hw_module *port, uint32_t max_mb)
     HW_FLEXCAN_IMASK2_WR(instance, 0);
 }
 
-void can_set_can_attributes(struct imx_flexcan *can_module, uint32_t bitrate, struct hw_module *hw_port)
+void can_update_bitrate(uint32_t instance, enum can_bitrate bitrate)
 {
-    can_module->bitrate = bitrate;
-    can_module->port = hw_port;
-}
-
-void can_update_bitrate(struct imx_flexcan *can_module)
-{
-    uint32_t instance = can_module->port->instance;
-    unsigned int can_PE_CLK = can_module->port->freq;  //can protocol engine clock, input from CCM
+    unsigned int can_PE_CLK = get_peri_clock(CAN_CLK);  //can protocol engine clock, input from CCM
     unsigned int temp;
-    
+    uint32_t presdiv;	// Clock pre-divider
+    struct time_segment ts;
+
     if (can_PE_CLK == 30000000){
-        switch (can_module->bitrate){
+        switch (bitrate){
             case MBPS_1: // 
-                can_module->presdiv = 1; // sets sclk ftq to 15MHz = PEclk/2
-                can_module->ts = time_segments[7]; // 15 time quanta (15-8=7 for array ID)
+                presdiv = 1; // sets sclk ftq to 15MHz = PEclk/2
+                ts = time_segments[7]; // 15 time quanta (15-8=7 for array ID)
                 break;
             case KBPS_800:
-                can_module->presdiv = 1; // sets sclk ftq to 15MHz = PEclk/2
-                can_module->ts = time_segments[11]; // 19 time quanta (19-8=11 for array ID)
+                presdiv = 1; // sets sclk ftq to 15MHz = PEclk/2
+                ts = time_segments[11]; // 19 time quanta (19-8=11 for array ID)
                 break;
             case KBPS_500:
-                can_module->presdiv = 2; // sets sclk ftq to 10MHz = PEclk/3
-                can_module->ts = time_segments[12]; // 20 time quanta (20-8=12 for array ID) 
+                presdiv = 2; // sets sclk ftq to 10MHz = PEclk/3
+                ts = time_segments[12]; // 20 time quanta (20-8=12 for array ID)
                 break;   
             case KBPS_250:
-                can_module->presdiv = 4; // sets sclk ftq to 6MHz = PEclk/5
-                can_module->ts = time_segments[16]; // 24 time quanta (24-8=16 for array ID) 
+                presdiv = 4; // sets sclk ftq to 6MHz = PEclk/5
+                ts = time_segments[16]; // 24 time quanta (24-8=16 for array ID)
                 break;
             case KBPS_125:
-                can_module->presdiv = 9; // sets sclk ftq to 3MHz = PEclk/10
-                can_module->ts = time_segments[16]; // 24 time quanta (24-8=16 for array ID)
+                presdiv = 9; // sets sclk ftq to 3MHz = PEclk/10
+                ts = time_segments[16]; // 24 time quanta (24-8=16 for array ID)
                 break;
             case KBPS_62:  //62.5kps 
-                can_module->presdiv = 19; // sets sclk ftq to 1.5MHz = PEclk/20
-                can_module->ts = time_segments[16]; // 24 time quanta (24-8=16 for array ID)
+                presdiv = 19; // sets sclk ftq to 1.5MHz = PEclk/20
+                ts = time_segments[16]; // 24 time quanta (24-8=16 for array ID)
                 break;
             case KBPS_20:
-                can_module->presdiv = 59; // sets sclk ftq to 500KHz = PEclk/60
-                can_module->ts = time_segments[17]; // 25 time quanta (25-8=17 for array ID)
+                presdiv = 59; // sets sclk ftq to 500KHz = PEclk/60
+                ts = time_segments[17]; // 25 time quanta (25-8=17 for array ID)
                 break;
             case KBPS_10:
-                can_module->presdiv = 119; // sets sclk ftq to 500KHz = PEclk/60
-                can_module->ts = time_segments[17]; // 25 time quanta (25-8=17 for array ID)
+                presdiv = 119; // sets sclk ftq to 500KHz = PEclk/60
+                ts = time_segments[17]; // 25 time quanta (25-8=17 for array ID)
                 break;
             default:
                 printf("CAN bitrate not supported\n");
@@ -141,13 +135,13 @@ void can_update_bitrate(struct imx_flexcan *can_module)
     
     // Update the the bit timing segments
     temp = HW_FLEXCAN_CTRL_RD(instance) & CAN_TIMING_MASK;
-    temp += (can_module->presdiv <<24) + (can_module->ts.pseg1 <<19) + (can_module->ts.pseg2 <<16) + (can_module->ts.propseg); 
+    temp += (presdiv <<24) + (ts.pseg1 <<19) + (ts.pseg2 <<16) + (ts.propseg);
     HW_FLEXCAN_CTRL_WR(instance, temp);
 }
 
-void can_sw_reset(struct hw_module *port)
+void can_sw_reset(uint32_t instance)
 {
-    uint32_t instance = port->instance, val;
+    uint32_t val;
 
     val = HW_FLEXCAN_MCR_RD(instance);
     val |= BF_FLEXCAN_MCR_SOFT_RST(1);
@@ -155,30 +149,32 @@ void can_sw_reset(struct hw_module *port)
     while (HW_FLEXCAN_MCR_RD(instance) & BF_FLEXCAN_MCR_SOFT_RST(1)) ;  // poll until complete
 }
 
-void set_can_mb(struct hw_module *port, uint32_t mbID, uint32_t cs, uint32_t id, uint32_t data0,
-                uint32_t data1)
+void set_can_mb(uint32_t instance, uint32_t mbID, uint32_t cs, uint32_t id, uint32_t data0, uint32_t data1)
 {
+    uint32_t base = REGS_FLEXCAN_BASE(instance);
     volatile struct can_message_buffers *can_mb =
-        (volatile struct can_message_buffers *)(port->base + CAN_MB_OFFSET);
+        (volatile struct can_message_buffers *)(base + CAN_MB_OFFSET);
 
     can_mb->MB[mbID].cs = cs;
     can_mb->MB[mbID].id = id;
     can_mb->MB[mbID].data0 = data0;
     can_mb->MB[mbID].data1 = data1;
 }
-void print_can_mb(struct hw_module *port, uint32_t mbID)
+
+void print_can_mb(uint32_t instance, uint32_t mbID)
 {
+    uint32_t base = REGS_FLEXCAN_BASE(instance);
     volatile struct can_message_buffers *can_mb =
-        (volatile struct can_message_buffers *)(port->base + CAN_MB_OFFSET);
+        (volatile struct can_message_buffers *)(base + CAN_MB_OFFSET);
     printf("\tMB[%d].cs    = 0x%x\n", mbID, can_mb->MB[mbID].cs);
     printf("\tMB[%d].id    = 0x%x\n", mbID, can_mb->MB[mbID].id);
     printf("\tMB[%d].data0 = 0x%x\n", mbID, can_mb->MB[mbID].data0);
     printf("\tMB[%d].data1 = 0x%x\n\n", mbID, can_mb->MB[mbID].data1);
 }
 
-void can_enable_mb_interrupt(struct hw_module *port, uint32_t mbID)
+void can_enable_mb_interrupt(uint32_t instance, uint32_t mbID)
 {
-    uint32_t instance = port->instance, val;
+    uint32_t val;
 
     if (mbID < 32) {
 	val = HW_FLEXCAN_IMASK1_RD(instance);
@@ -191,9 +187,9 @@ void can_enable_mb_interrupt(struct hw_module *port, uint32_t mbID)
     }
 }
 
-void can_disable_mb_interrupt(struct hw_module *port, uint32_t mbID)
+void can_disable_mb_interrupt(uint32_t instance, uint32_t mbID)
 {
-    uint32_t instance = port->instance, val;
+    uint32_t val;
 
     if (mbID < 32) {
 	val = HW_FLEXCAN_IMASK1_RD(instance);
@@ -206,27 +202,26 @@ void can_disable_mb_interrupt(struct hw_module *port, uint32_t mbID)
     }
 }
 
-void can_exit_freeze(struct hw_module *port)
+void can_exit_freeze(uint32_t instance)
 {
-    uint32_t instance = port->instance, val;
+    uint32_t val;
 
     val = HW_FLEXCAN_MCR_RD(instance);
     val &= ~BM_FLEXCAN_MCR_FRZ;
     HW_FLEXCAN_MCR_WR(instance, val);
 }
 
-void can_freeze(struct hw_module *port)
+void can_freeze(uint32_t instance)
 {
-    uint32_t instance = port->instance, val;
+    uint32_t val;
 
     val = HW_FLEXCAN_MCR_RD(instance);
     val |= BM_FLEXCAN_MCR_FRZ;
     HW_FLEXCAN_MCR_WR(instance, val);
 }
 
-uint64_t can_mb_int_flag(struct hw_module *port)
+uint64_t can_mb_int_flag(uint32_t instance)
 {
-    uint32_t instance = port->instance;
     uint64_t val;
 
     val = (uint64_t)HW_FLEXCAN_IFLAG2_RD(instance);
@@ -236,9 +231,8 @@ uint64_t can_mb_int_flag(struct hw_module *port)
     return val;
 }
 
-void can_mb_int_ack(struct hw_module *port, uint32_t mbID)
+void can_mb_int_ack(uint32_t instance, uint32_t mbID)
 {
-    uint32_t instance = port->instance;
     uint32_t val;
 
     if(mbID < 32){
@@ -249,5 +243,24 @@ void can_mb_int_ack(struct hw_module *port, uint32_t mbID)
     	val = HW_FLEXCAN_IFLAG2_RD(instance);	
     	val |= (0x01 << (mbID - 32));
 	HW_FLEXCAN_IFLAG2_WR(instance, val);
+    }
+}
+
+void can_setup_interrupt(uint32_t instance, void (*irq_subroutine)(void), bool enableIt)
+{
+    uint32_t irq_id = CAN_IRQS(instance);
+
+    if (enableIt)
+    {
+	// register the IRQ sub-routine
+        register_interrupt_routine(irq_id, irq_subroutine);
+
+        // enable the IRQ
+        enable_interrupt(irq_id, CPU_0, 0);
+    }
+    else
+    {
+        // disable the IRQ
+        disable_interrupt(irq_id, CPU_0);
     }
 }

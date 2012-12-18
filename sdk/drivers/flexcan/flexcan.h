@@ -38,6 +38,7 @@
 #define CAN_LAST_MB 63
 #define CAN_TIMING_PARAMETERS 0x0892
 #define CAN_MB_OFFSET 0x80
+#define CAN_IRQS(x) ( (x) == HW_FLEXCAN1 ? IMX_INT_FLEXCAN1 : (x) == HW_FLEXCAN2 ? IMX_INT_FLEXCAN2 : 0xFFFFFFFF)
 
 //! @brief  CAN message buffer structure
 struct can_mb {
@@ -71,14 +72,6 @@ enum can_bitrate {
       KBPS_10
 };
 
-// @brief CAN structure with attributes
-struct imx_flexcan {
-    hw_module_t *port;
-    uint32_t presdiv;	//! Clock pre-divider
-    enum can_bitrate bitrate;  //! default 500kbps
-    struct time_segment ts;
-};
-
 ////////////////////////////////////////////////////////////////////////////////
 // API
 ////////////////////////////////////////////////////////////////////////////////
@@ -87,103 +80,107 @@ struct imx_flexcan {
 /*!
  * @brief Reset FlexCAN controller
  *
- * @param   port	pointer to the hw_module which presents this FlexCAN 
+ * @param   instance	the FlexCAN instance number.
  */
-void can_sw_reset(struct hw_module *port);
+void can_sw_reset(uint32_t instance);
 
 /*!
  * @brief Initialize CAN controller
  *
- * @param   port	pointer to FlexCAN module
+ * @param   instance 	the FlexCAN instance number.
  * @param   max_mb	Max mailbox will be used
  */
-void can_init(struct hw_module *port, uint32_t max_mb);
+void can_init(uint32_t instance, uint32_t max_mb);
 
 /*!
  * @brief Set message box fields
  *
- * @param   port	pointer to the hw_module which presents this FlexCAN 
+ * @param   instance	the FlexCAN instance number.
  * @param   mbID	Index of the message box 
  * @param   cs		control/statuc code
  * @param   id		ID of the message to be transfer
  * @param   data0	first 4 bytes of the CAN message 
  * @param   data1	last 4 bytes of the CAN message 
  */
-void set_can_mb(struct hw_module *port, uint32_t mbID, uint32_t cs, uint32_t id, uint32_t data0,
-                uint32_t data1);
+void set_can_mb(uint32_t instance, uint32_t mbID, uint32_t cs, uint32_t id, uint32_t data0, uint32_t data1);
 
 /*!
  * @brief Dump the message box
  *
- * @param   port        pointer to the hw_module which presents this FlexCAN
+ * @param   instance	the FlexCAN instance number.
  * @param   mbID	Index of the message box 
  */
-void print_can_mb(struct hw_module *port, uint32_t mbID);
+void print_can_mb(uint32_t instance, uint32_t mbID);
 
 /*!
  * @brief Enable the interrupt of the FlexCAN module
  *
- * @param   port        pointer to the hw_module which presents this FlexCAN
+ * @param   instance	the FlexCAN instance number.
  * @param   mbID	Index of the message box 
  */
-void can_enable_mb_interrupt(struct hw_module *port, uint32_t mbID);
+void can_enable_mb_interrupt(uint32_t instance, uint32_t mbID);
 
 /*!
  * @brief Disable the interrupt of the FlexCAN module
  *
- * @param   port        pointer to the hw_module which presents this FlexCAN
+ * @param   instance	the FlexCAN instance number.
  * @param   mbID	Index of the message box 
  */
-void can_disable_mb_interrupt(struct hw_module *port, uint32_t mbID);
+void can_disable_mb_interrupt(uint32_t instance, uint32_t mbID);
+
+
+/*!
+ * @brief Setup the interrupt of the FlexCAN module
+ *
+ * It enables or disables the related HW module interrupt, and attached the related sub-routine
+ * into the vector table.
+ *
+ * @param   instance	the FlexCAN instance number.
+ * @param   irq_subroutine the FlexCAN interrupt interrupt routine.
+ * @param   enableIt True to enable the interrupt, false to disable.
+ */
+void can_setup_interrupt(uint32_t instance, void (*irq_subroutine)(void), bool enableIt);
 
 /*!
  * @brief Un-freeze the FlexCAN module
  *
- * @param   port        pointer to the hw_module which presents this FlexCAN
+ * @param   instance	the FlexCAN instance number.
  */
-void can_exit_freeze(struct hw_module *port);
+void can_exit_freeze(uint32_t instance);
 
 /*!
  * @brief Freeze the FlexCAN module
  *
- * @param   port        pointer to the hw_module which presents this FlexCAN
+ * @param   instance	the FlexCAN instance number.
  */
-void can_freeze(struct hw_module *port);
+void can_freeze(uint32_t instance);
 
 /*!
  * @brief Set bit rate
  *
  * CAN bit rate = sclk (aka Freq-TQ) / number-of-time-quanta
  *
- * @param   can_module	pointer to this FlexCAN module
+ * @param   instance	the FlexCAN instance number.
+ * @param   bitrate	CAN bit rate.
  */
-void can_update_bitrate(struct imx_flexcan *can_module);
-
-/*!
- * @brief  Set the attributes of the FlexCAN module
- *
- * @param   can_module	pointer to FlexCAN module
- * @param   bitrate	bit rate to be set
- * @param   hw_port	pointer to the hw_module which presents this FlexCAN 
- */
-void can_set_can_attributes(struct imx_flexcan *can_module, uint32_t bitrate, struct hw_module *hw_port);
+void can_update_bitrate(uint32_t instance, enum can_bitrate bitrate);
 
 /*!
  * @brief Get the interrupt flags(iflag1 | (iflag2<<32))
  *
- * @param   port        pointer to the hw_module which presents this FlexCAN
+ * @param   instance	the FlexCAN instance number.
  * 
  * @return 	interrupt flags(ie, iflag1 | (iflag2<<32))
  */
-uint64_t can_mb_int_flag(struct hw_module *port);
+uint64_t can_mb_int_flag(uint32_t instance);
 
 /*!
  * @brief Clear the interrupt flag of the message box
  *
- * @param   port        pointer to the hw_module which presents this FlexCAN
+ * @param   instance	the FlexCAN instance number.
  * @param   mbID	Index of the message box 
  */
-void can_mb_int_ack(struct hw_module *port, uint32_t mbID);
+void can_mb_int_ack(uint32_t instance, uint32_t mbID);
 
 //! @name Board support functions
 //!

@@ -30,24 +30,24 @@
 
 //#include "imx_i2c.h"
 #include "obds.h"
+#include "registers/regsi2c.h"
 
 const char g_hs_tsc_p1003_i2c_device_id_test_name[] = "HannStar TSC P1003 I2C Device ID Test";
 
 extern const i2c_device_info_t g_p1003_tsc_i2c_device;
-int p1003_show_touch(unsigned int i2c_base_addr, const char* indent);
+int p1003_show_touch(unsigned int i2c_port, const char* indent);
 
-unsigned char p1003_version_reg_read(unsigned int i2c_base_addr, unsigned char reg_addr,
+unsigned char p1003_version_reg_read(unsigned int i2c_port, unsigned char reg_addr,
                                      unsigned char *ret_val)
 {
     struct imx_i2c_request rq = {0};
 
-    rq.ctl_addr = i2c_base_addr;
+    rq.ctl_addr = REGS_I2C_BASE(i2c_port);
     rq.dev_addr = g_p1003_tsc_i2c_device.address; // 4
     rq.reg_addr = reg_addr;
     rq.reg_addr_sz = 1;
     rq.buffer_sz = 10;
     rq.buffer = ret_val;
-    rq.device = NULL;
 
     if (i2c_xfer(&rq, I2C_READ) != 0) {
         printf("%s() error. return\n", __FUNCTION__);
@@ -57,17 +57,16 @@ unsigned char p1003_version_reg_read(unsigned int i2c_base_addr, unsigned char r
     return 0;
 }
 
-unsigned char p1003_version_reg_write(unsigned int i2c_base_addr, unsigned char reg_addr,
+unsigned char p1003_version_reg_write(unsigned int i2c_port, unsigned char reg_addr,
                                      unsigned char *buffer)
 {
 	struct imx_i2c_request rq = {0};
-    rq.ctl_addr = i2c_base_addr;
+    rq.ctl_addr = REGS_I2C_BASE(i2c_port);
     rq.dev_addr = g_p1003_tsc_i2c_device.address; // 4
     rq.reg_addr = reg_addr;
     rq.reg_addr_sz = 1;
     rq.buffer_sz = 2 + buffer[1];
     rq.buffer = buffer;
-    rq.device = NULL;
 
     if (i2c_xfer(&rq, I2C_WRITE) != 0) {
         printf("%s() error. return\n", __FUNCTION__);
@@ -84,103 +83,26 @@ test_return_t i2c_device_id_check_p1003(void)
 {
     const char* indent = menu_get_indent();
     //TO be confirmed - i2c-base_addr
-    unsigned int i2c_base_addr = g_p1003_tsc_i2c_device.port;
-    i2c_init(i2c_base_addr, 100000);
+    unsigned int i2c_port = g_p1003_tsc_i2c_device.port;
+    i2c_init(i2c_port, 100000);
 
 	unsigned char ret_buf1[10] = {0};
-//	unsigned char ret_buf2[10] = {0};
-
-	// route interrupt signal
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_ALE, ALT5);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_ALE, 0x1A080);
- 	gpio_set_direction(GPIO_PORT6, 8, GPIO_GDIR_INPUT);
-
-#if defined(BOARD_SMART_DEVICE)
-    //  USB_OTG_PWR_EN (EIM_D22)
-    writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_EIM_EB3);
-    gpio_set_direction(GPIO_PORT2, 31, GPIO_GDIR_OUTPUT);
-    gpio_set_level(GPIO_PORT2, 31, GPIO_LOW_LEVEL);
-    hal_delay_us(1000);
-    gpio_set_level(GPIO_PORT2, 31, GPIO_HIGH_LEVEL);
-#endif    
-
-    // set to idle
-//	unsigned char buf0[] = {0x03, 0x06, 0x0A, 0x04, 0x36, 0x3F, 0x01, 0x00, 0, 0};
-//	if (p1003_version_reg_write(i2c_base_addr, 0, buf0) != 0) {
-//        printf("failed to send set_to_idle command.\n");
-//        return TEST_FAILED;
-//    }
-//    // check active
-//	unsigned char buf3[] = {0x03, 0x03, 0x0A, 0x01, 'A', 0, 0, 0, 0, 0};
-//	if (p1003_version_reg_write(i2c_base_addr, 0, buf3) != 0) {
-//        printf("failed to send set_to_idle command.\n");
-//        return TEST_FAILED;
-//    } else
-//    {
-//    	// wait for INT line to go low
-////    	while (gpio_get_level(GPIO_PORT6, 8) == GPIO_HIGH_LEVEL)
-////    		printf(".");
-//
-//		if (p1003_version_reg_read(i2c_base_addr, 0, ret_buf1) != 0) {
-//			printf("failed to read 1st HannStar firmware version packet\n");
-//			return TEST_FAILED;
-//		}
-//		printf("HannStar TSC check active: 0x%02X\n", ret_buf1[0]);
-////		printf("\t0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x\n",   ret_buf1[0], ret_buf1[1], ret_buf1[2], ret_buf1[3], ret_buf1[4], ret_buf1[5], ret_buf1[6], ret_buf1[7], ret_buf1[8], ret_buf1[9]);
-//    }
 
 	// read firmware version
 	unsigned char buf[] = {0x03, 0x03, 0x0A, 0x01, 'D', 0, 0, 0, 0, 0};
-    if (p1003_version_reg_write(i2c_base_addr, 0, buf) != 0) {
+    if (p1003_version_reg_write(i2c_port, 0, buf) != 0) {
         printf("%s  failed to send get_hanstar_firmware_version command.\n", indent);
         return TEST_FAILED;
-    } else
-    {
-    	// wait for INT line to go low
-//    	while (gpio_get_level(GPIO_PORT6, 8) == GPIO_HIGH_LEVEL)
-//    		printf(".");
-
-		if (p1003_version_reg_read(i2c_base_addr, 0, ret_buf1) != 0) {
+    } else {
+		if (p1003_version_reg_read(i2c_port, 0, ret_buf1) != 0) {
 			printf("%s  failed to read 1st HannStar firmware version packet\n", indent);
 			return TEST_FAILED;
 		}
 		printf("%sHannStar firmware version: 0x%02X\n", indent, ret_buf1[5]);
     }
-//		  else if (p1003_version_reg_read(i2c_base_addr, 0, ret_buf2) != 0) {
-//			printf("failed to read 2nd HannStar firmware version packet\n");
-//			return 1;
-//		} else {
-//			printf("HannStar TSC firmware version:\n");
-//			printf("\t0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x\n",   ret_buf1[0], ret_buf1[1], ret_buf1[2], ret_buf1[3], ret_buf1[4], ret_buf1[5], ret_buf1[6], ret_buf1[7], ret_buf1[8], ret_buf1[9]);
-//			printf("\t0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x\n\n", ret_buf2[0], ret_buf2[1], ret_buf2[2], ret_buf2[3], ret_buf2[4], ret_buf2[5], ret_buf2[6], ret_buf2[7], ret_buf2[8], ret_buf2[9]);
-//		}
-//    }
-//
-//    buf[4] = 'E';
-//    if (p1003_version_reg_write(i2c_base_addr, 0, buf) != 0) {
-//        printf("failed to send get_hanstar_controller_name command.\n");
-//        return 1;
-//    } else
-//    {
-//    	// wait for INT line to go low
-//    	while (gpio_get_level(GPIO_PORT6, 8) == GPIO_HIGH_LEVEL)
-//    		printf(".");
-//
-//    	if (p1003_version_reg_read(i2c_base_addr, 0, ret_buf1) != 0) {
-//			printf("failed to read 1st HannStar controller name packet\n");
-//			return 1;
-//		} else if (p1003_version_reg_read(i2c_base_addr, 0, ret_buf2) != 0) {
-//			printf("failed to read 2nd HannStar controller name packet\n");
-//			return 1;
-//		} else {
-//			printf("HannStar TSC controller name:\n");
-//			printf("\t0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x\n",   ret_buf1[0], ret_buf1[1], ret_buf1[2], ret_buf1[3], ret_buf1[4], ret_buf1[5], ret_buf1[6], ret_buf1[7], ret_buf1[8], ret_buf1[9]);
-//			printf("\t0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x, 0x%x\n\n", ret_buf2[0], ret_buf2[1], ret_buf2[2], ret_buf2[3], ret_buf2[4], ret_buf2[5], ret_buf2[6], ret_buf2[7], ret_buf2[8], ret_buf2[9]);
-//		}
-//    }
 
 	printf("%s  Read HannStar firmware version passed.\n", indent);
-    p1003_show_touch(i2c_base_addr, indent);
+    p1003_show_touch(i2c_port, indent);
     return TEST_PASSED;
 }
 
@@ -192,7 +114,7 @@ typedef struct {
 
 #define REPORTID_MTOUCH 0x04
 
-int p1003_get_touch(unsigned int i2c_base_addr, Accel * acc, const char* indent)
+int p1003_get_touch(unsigned int i2c_port, Accel * acc, const char* indent)
 {
 
 	unsigned char ret_buf[10] = {0};
@@ -200,7 +122,7 @@ int p1003_get_touch(unsigned int i2c_base_addr, Accel * acc, const char* indent)
 	char untouched_count = 0;
 
 	do {
-		if (p1003_version_reg_read(i2c_base_addr, 0, ret_buf) != 0) {
+		if (p1003_version_reg_read(i2c_port, 0, ret_buf) != 0) {
 			printf("%s  failed to read HannStar position packet\n", indent);
 			return 1;
 		}
@@ -246,7 +168,7 @@ int p1003_get_touch(unsigned int i2c_base_addr, Accel * acc, const char* indent)
     return 0;
 }
 
-int p1003_show_touch(unsigned int i2c_base_addr, const char* indent)
+int p1003_show_touch(unsigned int i2c_port, const char* indent)
 {
     unsigned char uc = NONE_CHAR;
     Accel acc;
@@ -261,12 +183,13 @@ int p1003_show_touch(unsigned int i2c_base_addr, const char* indent)
     {
         printf("    Start show touch screen. Type 'x' to exit.\n\n");
         while (1) {
-            p1003_get_touch(i2c_base_addr, &acc, indent);
+            p1003_get_touch(i2c_port, &acc, indent);
             uc = getchar();
             if (uc == 'x' || uc == 'X') {
                 printf("\n\n");
                 break;
             }
+            hal_delay_us(100000);
         }
     } else {
         return 1;

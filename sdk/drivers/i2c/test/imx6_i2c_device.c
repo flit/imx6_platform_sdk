@@ -36,17 +36,10 @@
  */
 
 #include "sdk.h"
+#include "registers/regsi2c.h"
 
 // I2C3 is used to be a slave port
-hw_module_t imx6_i2c_slave_port = {
-    "I2C3 is slave port",
-    3,
-    I2C3_BASE_ADDR,
-    66000000,
-    IMX_INT_I2C3,
-    &default_interrupt_routine,
-};
-
+static uint32_t imx6_i2c_slave_port = HW_I2C3;
 static imx_i2c_request_t imx6_i2c_req;
 
 static uint8_t test_buffer[] = {'F', 'R', 'E', 'E', 'S', 'C', 'A', 'L', 'E', 'I', '2', 'C', 'T', 'E', 'S', 'T', '!', '!'};
@@ -157,7 +150,7 @@ int32_t i2c_imx6_slave_test(void)
     printf("  Starting i.MX6DQ/SDL slave test...\n");
 
     // Initialize the request
-    imx6_i2c_req.ctl_addr = imx6_i2c_slave_port.base;   /* the I2C controller base address */
+    imx6_i2c_req.ctl_addr = imx6_i2c_slave_port;   /* the I2C controller instance */
     imx6_i2c_req.dev_addr = IMX6_DEFAULT_SLAVE_ID;  /* the I2C DEVICE address - keep default */
     imx6_i2c_req.reg_addr = 0;          /* not used in slave mode */
     imx6_i2c_req.reg_addr_sz = 1;       /* used to set the address size of this slave */
@@ -168,7 +161,7 @@ int32_t i2c_imx6_slave_test(void)
     /* initialize the buffer with known data */
     memset(imx6_i2c_req.buffer, 0, sizeof(imx6_i2c_req.buffer));
 
-    i2c_init(imx6_i2c_req.ctl_addr, 170000);
+    i2c_init(imx6_i2c_slave_port, 170000);
 
 #if defined(BOARD_EVB)
     /*Set iomux and daisy chain for eeprom test */

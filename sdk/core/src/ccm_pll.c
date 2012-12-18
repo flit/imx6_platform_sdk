@@ -176,6 +176,10 @@ uint32_t get_peri_clock(peri_clocks_t clock)
             PLL3_OUTPUT[0] / (HW_CCM_CS2CDR.B.ENFC_CLK_PRED + 1) / (HW_CCM_CS2CDR.B.ENFC_CLK_PODF +
                                                                     1);
         break;
+    case CAN_CLK:
+        // For i.mx6dq/sdl CAN source clock is a fixed PLL3 / 8
+	ret_val = PLL3_OUTPUT[0] / 8 / (HW_CCM_CSCMR2.B.CAN_CLK_PODF + 1);
+	break;
 #endif
     default:
         break;

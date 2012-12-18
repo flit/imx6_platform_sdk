@@ -29,17 +29,17 @@
  */
 
 #include "obds.h"
-
+#include "registers/regsiomuxc.h"
 #define SPI_NOR_XFER_SZ     512
 
 #define SPI_INIT_PARAM { \
-    .channel = 0, \
+    .channel = 1, \
     .mode = 1, \
     .ss_pol = 0, \
     .sclk_pol = 0, \
     .sclk_pha = 0, \
-    .pre_div = 3, \
-    .post_div = 0 \
+    .pre_div = 0, \
+    .post_div = 3 \
     }
     
 //#define  SPI_INIT_PARAM  0x00000084
@@ -141,6 +141,11 @@ test_return_t spi_nor_test(void)
 
     if (!is_input_char('y', indent)) 
     	return TEST_BYPASSED;
+
+	 HW_IOMUXC_SW_MUX_CTL_PAD_EIM_ADDR24_WR(
+			               BF_IOMUXC_SW_MUX_CTL_PAD_EIM_ADDR24_MUX_MODE_V(ALT5));
+     gpio_set_direction(GPIO_PORT5, 4, GPIO_GDIR_OUTPUT);
+	 gpio_set_level(GPIO_PORT5, 4, GPIO_LOW_LEVEL);
 #endif
 
     dev_spi_nor = DEV_ECSPI1;

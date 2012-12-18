@@ -32,6 +32,7 @@
 #include "iomux_config.h"
 #include "registers/regsecspi.h"
 #include "timer/timer.h"
+#include "registers/regsiomuxc.h" 
 
 static void ecspi_start_transfer(unsigned instance, uint16_t brs_bts);
 static int ecspi_xfer_slv(unsigned instance, const uint8_t * tx_buf, uint8_t * rx_buf, int bytes);

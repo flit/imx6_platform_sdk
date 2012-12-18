@@ -124,12 +124,9 @@ int gpu_test(void)
 
     printf("GPU test running, press any key to exit.\n");
     while (1) {
-        int tloop = 0x400;      //drain the buffer
-        while (tloop--) {
-            if (getchar() != (uint8_t) 0xFF) {
-                printf("GPU test exits.\n");
-                return 0;
-            }
+        if (getchar() != (uint8_t) 0xFF) {
+            printf("GPU test exits.\n");
+            return 0;
         }
         rotateTexture(CMD_BUFFER_ADDR);
     }

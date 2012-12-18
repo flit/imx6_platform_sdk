@@ -196,7 +196,7 @@ int mma8451_show_accel(unsigned int i2c_base_addr)
     printf("%s    Do you want to check the accelerometer?(y/n)\n\n", indent);
 
     do {
-       uc = fgetc(stdin);
+       uc = getchar();
     } while (uc == NONE_CHAR);
 
     if (uc == 'y' || uc == 'Y') {
@@ -205,7 +205,7 @@ int mma8451_show_accel(unsigned int i2c_base_addr)
         printf("%s    Start show acceleration. Type 'x' to exit.\n\n", indent);
         while (1) {
             mma8451_get_accel(i2c_base_addr, &acc);
-            uc = fgetc(stdin);
+            uc = getchar();
             if (uc == 'x' || uc == 'X') {
                 printf("\n\n");
                 break;

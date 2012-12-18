@@ -71,7 +71,7 @@ test_return_t esai_test(void)
         ("%sPlease make sure the \"Automotive Port card \" is mounted and the headphone is inserted. Type 'y' to confirm.\n", indent);
 #endif
     do {
-        recvCh = fgetc(stdin);
+        recvCh = getchar();
     } while (0xFF == recvCh);
     if ((recvCh != 'y') && (recvCh != 'Y')) {
         return TEST_BYPASSED;
@@ -102,7 +102,7 @@ test_return_t esai_test(void)
 
         printf("%sDo you need to replay it? Type 'y' or 'n'.\n", indent);
         do {
-            recvCh = fgetc(stdin);
+            recvCh = getchar();
         } while (0xFF == recvCh);
         if ((recvCh == 'y') || (recvCh == 'Y'))
             continue;
@@ -112,7 +112,7 @@ test_return_t esai_test(void)
 
     printf("%sDo you hear audio? Type 'y' or 'n'.\n", indent);
     do {
-        recvCh = fgetc(stdin);
+        recvCh = getchar();
     } while (0xFF == recvCh);
     if ((recvCh == 'y') || (recvCh == 'Y')) {
         printf("%s ESAI playback test passed.\n", indent);
@@ -130,7 +130,7 @@ test_return_t esai_test(void)
 
     printf("%sDo you want to run the LINE-IN recording test? Type 'y' or 'n'.\n", indent);
     do {
-        recvCh = fgetc(stdin);
+        recvCh = getchar();
     } while (0xFF == recvCh);
     if ((recvCh != 'y') && (recvCh != 'Y')) {
         printf("%sESAI recording test bypassed.\n", indent);
@@ -149,7 +149,7 @@ test_return_t esai_test(void)
 
         printf(" Type 'y' or 'Y' to confirm.\n");
         do {
-            recvCh = fgetc(stdin);
+            recvCh = getchar();
         } while (0xFF == recvCh);
         if ((recvCh != 'y') && (recvCh != 'Y')) {
             printf("%sESAI recording test bypassed.\n", indent);
@@ -167,7 +167,7 @@ test_return_t esai_test(void)
 
         printf("%sPress any key to hear the audio recorded? \n", indent);
         do {
-            recvCh = fgetc(stdin);
+            recvCh = getchar();
         } while (0xFF == recvCh);
 
         printf("%sPlayback the music recorded...\n", indent);
@@ -180,7 +180,7 @@ test_return_t esai_test(void)
 
             printf("%sDo you need to replay it? Type 'y' or 'n'.\n", indent);
             do {
-                recvCh = fgetc(stdin);
+                recvCh = getchar();
             } while (0xFF == recvCh);
             if ((recvCh == 'y') || (recvCh == 'Y'))
                 continue;
@@ -190,7 +190,7 @@ test_return_t esai_test(void)
 
         printf("%sDo you hear audio? Type 'y' or 'n'.\n", indent);
         do {
-            recvCh = fgetc(stdin);
+            recvCh = getchar();
         } while (0xFF == recvCh);
         if ((recvCh == 'y') || (recvCh == 'Y')) {
             printf("%s ESAI record test passed.\n", indent);
@@ -207,7 +207,7 @@ test_return_t esai_test(void)
 #if !defined(BOARD_SABRE_AI)          // per Babin 5/8/12
     printf("%sDo you want to run the MIC-IN recording test? Type 'y' or 'n'.\n", indent);
     do {
-        recvCh = fgetc(stdin);
+        recvCh = getchar();
     } while (0xFF == recvCh);
     if ((recvCh != 'y') && (recvCh != 'Y')) {
         printf("%sESAI recording test bypassed.\n", indent);
@@ -219,7 +219,7 @@ test_return_t esai_test(void)
 
         printf("Type 'y' or 'Y' to confirm.\n");
         do {
-            recvCh = fgetc(stdin);
+            recvCh = getchar();
         } while (0xFF == recvCh);
         if ((recvCh != 'y') && (recvCh != 'Y')) {
             printf("%sESAI MIC-IN recording test bypassed.\n", indent);
@@ -238,7 +238,7 @@ test_return_t esai_test(void)
 
         printf("%sPress any key to hear the audio recorded? \n", indent);
         do {
-            recvCh = fgetc(stdin);
+            recvCh = getchar();
         } while (0xFF == recvCh);
 
         printf("%sPlayback the music recorded...\n", indent);
@@ -251,7 +251,7 @@ test_return_t esai_test(void)
 
             printf("%sDo you need to replay it? Type 'y' or 'n'.\n", indent);
             do {
-                recvCh = fgetc(stdin);
+                recvCh = getchar();
             } while (0xFF == recvCh);
             if ((recvCh == 'y') || (recvCh == 'Y'))
                 continue;
@@ -261,7 +261,7 @@ test_return_t esai_test(void)
 
         printf("%sDo you hear audio? Type 'y' or 'n'.\n", indent);
         do {
-            recvCh = fgetc(stdin);
+            recvCh = getchar();
         } while (0xFF == recvCh);
         if ((recvCh == 'y') || (recvCh == 'Y')) {
             printf("%s ESAI record test passed.\n", indent);
@@ -272,7 +272,7 @@ test_return_t esai_test(void)
             goto CleanUP1;
             printf("%sDo you want to run the LINE-IN recording test? Type 'y' or 'n'.\n", indent);
             do {
-                recvCh = fgetc(stdin);
+                recvCh = getchar();
             } while (0xFF == recvCh);
             if ((recvCh != 'y') && (recvCh != 'Y')) {
                 printf("%sESAI recording test bypassed.\n", indent);

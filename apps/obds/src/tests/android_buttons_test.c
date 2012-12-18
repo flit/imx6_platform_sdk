@@ -133,7 +133,7 @@ test_return_t android_buttons_test(void)
     {
         check_android_button_status(indent);
 
-        char key_pressed = fgetc(stdin);
+        char key_pressed = getchar();
         if (key_pressed != NONE_CHAR)
             break;
     }

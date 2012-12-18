@@ -139,20 +139,22 @@ int _fstat(int fd, struct stat * st)
  */
 int _read(int fd, char *buf, int nbytes)
 {
-    int i = 0;
+    int i = 0, j = 1;
 
-    for (i = 0; i < nbytes; ++i, ++buf)
+    for (i = 0; i < nbytes; ++i)
     {
         *buf = uart_getchar(g_debug_uart_port);
 
         if ((*buf == '\n') || (*buf == '\r'))
         {
-            ++i;
             break;
+        } else if(*buf != 0xFF) {
+            ++j;
+            ++buf;
         }
     }
 
-    return i;
+    return j;
 }
 
 /*!

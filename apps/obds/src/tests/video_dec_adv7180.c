@@ -175,14 +175,9 @@ test_return_t adv7180_test_main(void)
             adv7180_set_gpio_output(3, GPIO_HIGH_LEVEL);
             hal_delay_us(500000);
             
-            int tloop = 0x400;      //drain the buffer
-            while (tloop--) {
-                if (getchar() != (uint8_t) 0xFF) {
-                    break;
-                }
+            if (getchar() != (uint8_t) 0xFF) {
+                break;
             }
-            if(tloop >= 0)
-               break;
         }
         while (1);
 

@@ -345,7 +345,7 @@ menu_action_t menu_present(const menu_t* menu)
 
     while (1) // processing menu selections
     {
-        while (fgetc(stdin) != NONE_CHAR); // empty key buffer
+        while (getchar() != NONE_CHAR); // empty key buffer
         char key[MENU_KEY_MAX];
         memset(key, 0, MENU_KEY_MAX);
         int key_idx = 0;
@@ -355,7 +355,7 @@ menu_action_t menu_present(const menu_t* menu)
         while (1) // getting user input to specify which menu_idx to run
         {
             // get a key press
-            while ((key_pressed = fgetc(stdin)) == NONE_CHAR);
+            while ((key_pressed = getchar()) == NONE_CHAR);
 
             if (key_pressed == '\n' || key_pressed == '\r')
             {

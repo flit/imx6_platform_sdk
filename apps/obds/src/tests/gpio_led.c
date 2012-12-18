@@ -47,7 +47,6 @@ const char g_gpio_led_test_name[] = "GPIO LED Test";
 test_return_t gpio_led_test(void)
 {
     unsigned char recvCh = NONE_CHAR;
-    int count = 2000;
     const char* indent = menu_get_indent();
     unsigned int bit, gpio_inst = 0, mux_val;
 
@@ -95,16 +94,9 @@ test_return_t gpio_led_test(void)
 
         hal_delay_us(200000);
        
-        do { 
-//            recvCh = getchar();
-            recvCh = fgetc(stdin);
-            --count;
-        } while ((count > 0) && (recvCh == NONE_CHAR));
- //       input = fgetc(stdin);
+        recvCh = getchar();
         if ((recvCh == 'y') || (recvCh == 'Y') || (recvCh == 'n') || (recvCh == 'N'))
             break;
-       
-        count = 2000; 
      }  
 
     // put back the original pin mux value

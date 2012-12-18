@@ -120,7 +120,7 @@ uint32_t get_input_hex(void)
 
     q = 0;
     do {
-        recvCh = fgetc(stdin);
+        recvCh = getchar();
         if (recvCh != NONE_CHAR) {
             if (recvCh >= '0' && recvCh <= '9') {
                 tmp[q] = recvCh - '0';
@@ -156,7 +156,7 @@ int read_int(void)
     
     while (!isDone)
     {
-        char c = fgetc(stdin);
+        char c = getchar();
         switch (c)
         {
             case NONE_CHAR:

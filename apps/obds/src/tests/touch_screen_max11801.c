@@ -281,8 +281,7 @@ int max11801_ts_test(unsigned int i2c_base_addr)
 		}
 
 		hal_delay_us(1000*500);  // wait 1 msec * 500 = 500msecs 
-                uc = getchar();
-//		uc = receive_char();
+        uc = getchar();
 		if (uc == 'x' || uc == 'X') {
 			printf("\n");
 			break;
@@ -366,8 +365,7 @@ int i2c_device_check_max11801_AUX(unsigned int i2c_base_addr)
 		printf("AUX value =%04d,   Press 'x' to exit.\n\n",ret);	
 		
 		hal_delay_us(1000*500);  // wait 1 msec * 500 = 500msecs 
-                uc = getchar();
-//		uc = receive_char();
+        uc = getchar();
 		if (uc == 'x' || uc == 'X') {
 			printf("\n");
 			break;

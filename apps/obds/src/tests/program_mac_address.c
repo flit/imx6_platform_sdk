@@ -198,7 +198,7 @@ retry_enter_mac_address:
         char user_mac_addr[6], key_pressed, tmp1, tmp2, i = 0;
         do
         {
-        	while ((key_pressed = fgetc(stdin)) == NONE_CHAR);
+        	while ((key_pressed = getchar()) == NONE_CHAR);
 
         	if (key_pressed >= '0' && key_pressed <= '9') {
 				tmp1 = key_pressed - '0';

@@ -255,7 +255,6 @@ int p1003_show_touch(unsigned int i2c_base_addr, const char* indent)
 
     do {
         uc = getchar();
-//        uc = receive_char();
     } while (uc == NONE_CHAR);
 
     if (uc == 'y' || uc == 'Y')
@@ -263,7 +262,7 @@ int p1003_show_touch(unsigned int i2c_base_addr, const char* indent)
         printf("    Start show touch screen. Type 'x' to exit.\n\n");
         while (1) {
             p1003_get_touch(i2c_base_addr, &acc, indent);
-            uc = fgetc(stdin);
+            uc = getchar();
             if (uc == 'x' || uc == 'X') {
                 printf("\n\n");
                 break;

@@ -42,10 +42,10 @@ LINK_APP = 1
 
 # Local source files.
 define SOURCES
-    src/rotate_texture.c
+    src/rotate_texture.o
     src/sdk_gpu_utilities.c
-	src/texture.c
-	src/gpu_test.c
+    src/texture.o
+    src/gpu_test.c
     $(APPS_ROOT)/common/platform_init.c
     $(APPS_ROOT)/common/print_clock_info.c
     $(APPS_ROOT)/common/print_version.c

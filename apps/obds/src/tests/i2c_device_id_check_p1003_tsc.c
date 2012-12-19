@@ -84,7 +84,8 @@ test_return_t i2c_device_id_check_p1003(void)
     const char* indent = menu_get_indent();
     //TO be confirmed - i2c-base_addr
     unsigned int i2c_port = g_p1003_tsc_i2c_device.port;
-    i2c_init(i2c_port, 100000);
+    i2c_init(i2c_port, g_p1003_tsc_i2c_device.freq);
+    hal_delay_us(10000);
 
 	unsigned char ret_buf1[10] = {0};
 
@@ -172,6 +173,7 @@ int p1003_show_touch(unsigned int i2c_port, const char* indent)
 {
     unsigned char uc = NONE_CHAR;
     Accel acc;
+    int fail_count = 0;
 
     printf("%sDo you want to check the touch screen?(y/n)\n\n", indent);
 
@@ -183,13 +185,19 @@ int p1003_show_touch(unsigned int i2c_port, const char* indent)
     {
         printf("    Start show touch screen. Type 'x' to exit.\n\n");
         while (1) {
-            p1003_get_touch(i2c_port, &acc, indent);
+            fail_count = 0;
+            while(p1003_get_touch(i2c_port, &acc, indent))
+            {
+                if(++fail_count > 10) // if failed retry to read the coordination
+                    return 1;
+            } 
+            
             uc = getchar();
             if (uc == 'x' || uc == 'X') {
                 printf("\n\n");
                 break;
             }
-            hal_delay_us(100000);
+            hal_delay_us(10000);
         }
     } else {
         return 1;

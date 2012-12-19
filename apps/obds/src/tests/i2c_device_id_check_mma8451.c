@@ -96,6 +96,8 @@ test_return_t i2c_device_id_check_MMA8451(void)
 #endif    
 
     i2c_init(i2c_base_addr, 170000);
+    hal_delay_us(100000);
+
     reg_data = mma8451_reg_read(i2c_base_addr, 0x0D);   //read  WHO_AM_I reg
 
     if (0x1A == reg_data) {

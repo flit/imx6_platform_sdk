@@ -64,8 +64,10 @@ OBJECTS_CXX := $(addprefix $(OBJS_ROOT)/,$(CXX_SOURCES:.cpp=.o))
 OBJECTS_ASM := $(addprefix $(OBJS_ROOT)/,$(ASM_s_SOURCES:.s=.o))
 OBJECTS_ASM_S := $(addprefix $(OBJS_ROOT)/,$(ASM_S_SOURCES:.S=.o))
 
+PREBUILT_OBJECTS = $(addprefix $(SDK_ROOT)/,$(filter %.o,$(SOURCES_REL)))
+
 # Complete list of all object files.
-OBJECTS_ALL := $(sort $(OBJECTS_C) $(OBJECTS_CXX) $(OBJECTS_ASM) $(OBJECTS_ASM_S))
+OBJECTS_ALL := $(sort $(OBJECTS_C) $(OBJECTS_CXX) $(OBJECTS_ASM) $(OBJECTS_ASM_S) $(PREBUILT_OBJECTS))
 
 #-------------------------------------------------------------------------------
 # Target library
@@ -208,14 +210,17 @@ endif
 app_bin = $(basename $(APP_ELF)).bin
 app_map = $(basename $(APP_ELF)).map
 
-# Preprocess the linker script.
+# Preprocess the linker script if it has an ".S" extension.
 ifeq "$(filter %.S,$(LD_FILE))" ""
 the_ld_file = $(LD_FILE)
 else
 rel_ld_file = $(basename $(subst $(SDK_ROOT)/,,$(abspath $(LD_FILE))))
 the_ld_file = $(addprefix $(OBJS_ROOT)/,$(rel_ld_file))
+the_ld_file_dir = $(dir $(the_ld_file))
 
-$(the_ld_file): $(LD_FILE)
+# Rule to preprocess the ld file. The ld file's parent directory is made an order-only
+# prerequisite so it cannot by itself cause this recipe to be invoked.
+$(the_ld_file): $(LD_FILE) | $(the_ld_file_dir)
 	@$(call printmessage,cpp,Preprocessing, $(subst $(SDK_ROOT)/,,$<))
 	$(at)cd $(dir $<) && $(CC) -E -P $(INCLUDES) $(DEFINES) -o $@ $<
 endif
@@ -240,8 +245,9 @@ $(APP_ELF): $(SUBDIRS) $(app_objs) $(the_ld_file) $(LIBRARIES) $(APP_LIBS)
 	$(at)$(OBJCOPY) --gap-fill 0x00 -I elf32-little -O binary $@ $(app_bin)
 	@echo "Output ELF:" ; echo "  $(APP_ELF)"
 	@echo "Output binary:" ; echo "  $(app_bin)"
+
 else
-# Empty target to prevent an error. Needed because $(APP) is a prereq for the 'all' target.
+# Empty target to prevent an error. Needed because $(APP_ELF) is a prereq for the 'all' target.
 $(APP_ELF): ;
 endif
 

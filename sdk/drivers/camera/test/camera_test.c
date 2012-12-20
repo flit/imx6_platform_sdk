@@ -53,7 +53,7 @@ static camera_test_t camera_tests[] = {
 #if defined(BOARD_SMART_DEVICE)
     {"Sensor capture", sensor_capture},
 #endif
-#if defined(BOARD_EVB)
+#if defined(BOARD_EVB)||defined(BOARD_SABRE_AI)
     {"adv7180 capture", adv7180_capture},
 #endif
 #if defined(CHIP_MX6SL)

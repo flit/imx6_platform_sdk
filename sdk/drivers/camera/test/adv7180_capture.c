@@ -34,7 +34,7 @@
  * @ingroup diag_camera
  */
 
-#if defined(BOARD_EVB)
+#if defined(BOARD_EVB) || defined(BOARD_SABRE_AI)
 
 #include <stdio.h>
 #include "ipu/ipu_common.h"

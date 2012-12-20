@@ -226,7 +226,8 @@ static int32_t adv7180_read_reg(uint8_t reg)
  */
 static void adv7180_pwdn(int32_t pwdn)
 {
-	/*Tvin power down: PORT2_P97 -- CSI0_DAT5 (GPIO5_23) */
+#if defined(BOARD_EVB)
+    /*Tvin power down: PORT2_P97 -- CSI0_DAT5 (GPIO5_23) */
 	BW_IOMUXC_SW_MUX_CTL_PAD_CSI0_DATA05_MUX_MODE(BV_IOMUXC_SW_MUX_CTL_PAD_CSI0_DATA05_MUX_MODE__ALT5);
 	gpio_set_direction(GPIO_PORT5, 23, GPIO_GDIR_OUTPUT);
 
@@ -234,6 +235,12 @@ static void adv7180_pwdn(int32_t pwdn)
 		gpio_set_level(GPIO_PORT5, 23, GPIO_HIGH_LEVEL);
 	else
 		gpio_set_level(GPIO_PORT5, 23, GPIO_LOW_LEVEL);
+#elif defined(BOARD_SABRE_AI)
+	if (pwdn == 1)
+        max7310_set_gpio_output(1, 2, GPIO_HIGH_LEVEL);
+    else
+        max7310_set_gpio_output(1, 2, GPIO_LOW_LEVEL);
+#endif
 }
 
 /*!
@@ -246,10 +253,12 @@ static void adv7180_reset(void)
 {
 	int32_t reset_delay = 100000;
 
+#if defined(BOARD_EVB)
 	/*Tvin reset: PORT2_P95 -- CSI0_DAT7 ALT5 (GPIO5-25) */
 	BW_IOMUXC_SW_MUX_CTL_PAD_CSI0_DATA07_MUX_MODE(BV_IOMUXC_SW_MUX_CTL_PAD_CSI0_DATA07_MUX_MODE__ALT5);
 	gpio_set_direction(GPIO_PORT5, 25, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT5, 25, GPIO_HIGH_LEVEL);
+#endif
 
 	/*Tvin power down: PORT2_P97 */
 	adv7180_pwdn(0);

@@ -41,7 +41,7 @@ const char g_audio_esai_test_name[] = "Audio ESAI Test";
 extern audio_pcm_t pcm_music;
 extern audio_pcm_para_t pcm_para;
 extern audio_pcm_t pcm_record;
-extern audio_card_p snd_card_esai;
+extern audio_card_t snd_card_esai;
 
 extern audio_card_p snd_card;
 
@@ -77,7 +77,7 @@ test_return_t esai_test(void)
         return TEST_BYPASSED;
     }
     
-    snd_card = snd_card_esai;
+    snd_card = &snd_card_esai;
  
     if (0 != snd_card->ops->init(snd_card)) {
         nRet1 = TEST_FAILED;

@@ -113,7 +113,9 @@ int32_t cs42888_dev_info(void *priv, uint8_t *reg_data)
 {
 	audio_codec_p codec = (audio_codec_p) priv;
 
-	cs42888_reg_read(codec, CS42888_REG_CHIP_ID_REV, reg_data);
+	if (cs42888_reg_read(codec, CS42888_REG_CHIP_ID_REV, reg_data) != 0) {
+		return -1;
+	}
 
 	return 0;
 }

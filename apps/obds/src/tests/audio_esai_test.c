@@ -44,7 +44,6 @@ extern audio_pcm_t pcm_record;
 extern audio_card_t snd_card_esai;
 
 extern audio_card_p snd_card;
-extern int32_t cs42888_dev_info(void *, uint8_t *);
 
 test_return_t esai_test(void)
 {
@@ -65,7 +64,6 @@ test_return_t esai_test(void)
     dev_para.channel_number = (pcm_music.para)->channel_number;
 
 #if defined(BOARD_SABRE_AI)
-	uint8_t dev_id = 0;
     printf
         ("%sPlease make sure the SABRE AI board is mounted on the main board and the headphone is inserted. Type 'y' to confirm.\n", indent);
 #else
@@ -86,8 +84,6 @@ test_return_t esai_test(void)
         goto CleanUP2;
     }
 #if defined(BOARD_SABRE_AI)
-	cs42888_dev_info(snd_card, &dev_id);
-	printf("CS42888 device id is %x, device rev is %x\n", ( dev_id & 0xf0 ) >> 4, ( dev_id & 0x0f ));
     dev_para.bus_mode = AUDIO_BUS_MODE_SLAVE;
     snd_card->ops->config(snd_card, &dev_para);
 //    esai_config(0, TX_CH_SEL_CH0 | TX_CH_SEL_CH1 | TX_CH_SEL_CH2 | TX_CH_SEL_CH3, RX_CH_SEL_CH0);   //Config as slave

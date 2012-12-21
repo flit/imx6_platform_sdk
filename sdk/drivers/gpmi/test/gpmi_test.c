@@ -33,7 +33,7 @@
 #include "sdk.h"
 #include "gpmi/gpmi.h"
 
-#define ENABLE_ECC_TEST 0
+#define ENABLE_ECC_TEST 1
 
 #define __ALIGN4__ __attribute__((aligned(4)))
 
@@ -232,7 +232,7 @@ int gpmi_test(void)
     
     // ---------- ECC r/w test
     
-#if ENABLE_ECC_RW
+#if ENABLE_ECC_TEST
     // Erase block 0.
     printf("Erasing block 0...\n");
     status = gpmi_nand_erase_block(0, 0);

@@ -205,7 +205,7 @@ static int usdhc_check_response(uint32_t instance)
         !(HW_USDHC_INT_STATUS(instance).B.CEBE)) {
         status = SUCCESS;
     } else {
-        printf("Error status: 0x%x\n", HW_USDHC_INT_STATUS(instance).U);
+        usdhc_printf("Error status: 0x%x\n", HW_USDHC_INT_STATUS(instance).U);
 
         /* Clear CIHB and CDIHB status */
         if ((HW_USDHC_PRES_STATE(instance).B.CIHB) ||

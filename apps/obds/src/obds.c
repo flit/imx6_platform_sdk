@@ -514,7 +514,7 @@ const menuitem_t Menu_Commands[] =
         MENU_MAKE_MENUITEM("22", g_usb_host1_dev_enum_test_name, run_test, usbh_dev_enum_test),
         MENU_MAKE_MENUITEM("23", g_cs42888_i2c_device_id_test_name, run_test, i2c_device_check_cs42888),
         MENU_MAKE_MENUITEM("24", g_isl29023_i2c_device_id_test_name, run_test, i2c_device_id_check_isl29023),
-        MENU_MAKE_MENUITEM("25", g_mag3110_i2c_device_id_test_name, run_test, i2c_device_id_check_mag3110),
+        MENU_MAKE_MENUITEM("25", g_mag3112_i2c_device_id_test_name, run_test, i2c_device_id_check_mag3112),
         MENU_MAKE_MENUITEM("26", g_mma8451_i2c_device_id_test_name, run_test, i2c_device_id_check_MMA8451),
         MENU_MAKE_MENUITEM("27", g_android_buttons_test_name, run_test, android_buttons_test),
         MENU_MAKE_MENUITEM("28", g_flexcan_test_name, run_test, flexcan_test),

@@ -54,7 +54,6 @@ test_return_t esai_test(void)
     int nRet2 = TEST_FAILED, nRet3 = TEST_FAILED;
 #endif
     uint8_t recvCh = 0;
-	uint8_t dev_id = 0;
     audio_dev_para_t dev_para;
     uint32_t bytes_written = 0;
     const char* indent = menu_get_indent();
@@ -66,6 +65,7 @@ test_return_t esai_test(void)
     dev_para.channel_number = (pcm_music.para)->channel_number;
 
 #if defined(BOARD_SABRE_AI)
+	uint8_t dev_id = 0;
     printf
         ("%sPlease make sure the SABRE AI board is mounted on the main board and the headphone is inserted. Type 'y' to confirm.\n", indent);
 #else

@@ -122,12 +122,6 @@ int mma8450_set_config(unsigned int i2c_base_addr)
     val &= ~(0x03);
     mma8450_reg_write(i2c_base_addr, REG_CTRL_REG1, val);
 
-    /*Set the range, -8g to 8g and activate the sensor */
-    val = mma8450_reg_read(i2c_base_addr, REG_CTRL_REG1);
-    val &= ~0x03;
-    val |= 0x03;
-    mma8450_reg_write(i2c_base_addr, REG_CTRL_REG1, val);
-
     /*Set the F_MODE, disable FIFO */
     val = mma8450_reg_read(i2c_base_addr, REG_F_SETUP);
     val &= 0x3F;
@@ -137,8 +131,13 @@ int mma8450_set_config(unsigned int i2c_base_addr)
     val = mma8450_reg_read(i2c_base_addr, REG_XYZ_DATA_CFG);
     val |= 0x7;                 //enable XYZ event
     mma8450_reg_write(i2c_base_addr, REG_XYZ_DATA_CFG, val);
-
+    
+    /*Set the range, -8g to 8g and activate the sensor, and active the sensor */
     val = mma8450_reg_read(i2c_base_addr, REG_CTRL_REG1);
+    val &= ~0x03;
+    val |= 0x03;
+    mma8450_reg_write(i2c_base_addr, REG_CTRL_REG1, val);
+
     return 0;
 }
 
@@ -159,7 +158,7 @@ int mma8450_get_accel(unsigned int i2c_base_addr, Accel * acc)
     /*wait until there is new data overwritten */
     do {
         ucStatus = mma8450_reg_read(i2c_base_addr, REG_DATA_STATUS);
-    } while (!(ucStatus & 0x08));
+    } while(!(ucStatus & 0x08)); 
 
     ucVal1 = mma8450_reg_read(i2c_base_addr, REG_OUT_X_MSB);
     ucVal2 = mma8450_reg_read(i2c_base_addr, REG_OUT_X_LSB);

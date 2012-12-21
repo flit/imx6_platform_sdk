@@ -581,7 +581,7 @@ const menuitem_t Menu_Commands[] =
         MENU_MAKE_MENUITEM("05", g_fec_enet_test_name, run_test, fec_test),
         MENU_MAKE_MENUITEM("06", g_mmcsd_test_name, run_test, mmcsd_test),
         MENU_MAKE_MENUITEM("07", g_max17135_i2c_device_id_test_name, run_test, i2c_device_id_check_MAX17135),
-        MENU_MAKE_MENUITEM("08", g_mma8451_i2c_device_id_test_name, run_test, i2c_device_id_check_MMA8450),
+        MENU_MAKE_MENUITEM("08", g_mma8450_i2c_device_id_test_name, run_test, i2c_device_id_check_MMA8450),
         MENU_MAKE_MENUITEM("09", g_pmic_pf0100_i2c_device_id_test_name, run_test, pf0100_i2c_device_id_check),
         MENU_MAKE_MENUITEM("10", g_spi_nor_test_name, run_test, spi_nor_test),
         MENU_MAKE_MENUITEM("11", g_usb_otg_dev_enum_test_name, run_test, usbo_dev_enum_test),

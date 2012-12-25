@@ -56,7 +56,7 @@
 enum _nand_timeouts
 {
     kNandResetTimeout = 2000000,       //!< The time, in microseconds, to wait for a reset to finish. (2 sec)
-    kNandReadPageTimeout = 5000000,     //!< The time, in microseconds, to wait for a page read to finish. (0.5 sec)
+    kNandReadPageTimeout = 500000,     //!< The time, in microseconds, to wait for a page read to finish. (0.5 sec)
     kNandWritePageTimeout = 1000000,   //!< The time, in microseconds, to wait for a page write to finish. (1 sec)
     kNandEraseBlockTimeout = 2000000   //!< The time, in microseconds, to wait for block erase to finish. (2 sec)
 };

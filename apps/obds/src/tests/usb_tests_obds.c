@@ -73,10 +73,13 @@ test_return_t usbh_dev_enum_test(void)
     usbPort = &usbModuleInfo;
 
 #ifdef CHIP_MX6SL
-    usbPort->moduleName = "OTG controller1";
-    usbPort->controllerID = Host;
+#ifdef BOARD_TYPE_EVK
+    /* For EVK board, the USB HOST connecdter was routed from OTG2 */
+    usbPort->moduleName = "OTG controller2";
+    usbPort->controllerID = OTG2;
+#endif
 #else
-    usbPort->moduleName = "OTG controller";
+    usbPort->moduleName = "Host controller1";
     usbPort->controllerID = Host1;
 #endif
     usbPort->phyType = Utmi;

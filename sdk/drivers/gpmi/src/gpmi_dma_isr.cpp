@@ -157,8 +157,8 @@ void gpmi_dma_complete_isr()
     pWaitStruct->u16DmaWaitStatus |= kNandGpmiDmaWaitMask_GpmiDma;
 
     // See if all criteria have been met, to declare the DMA finished.
-  //  if (pWaitStruct->u16DmaWaitMask == pWaitStruct->u16DmaWaitStatus)
-    //{
+    if (pWaitStruct->u16DmaWaitMask == pWaitStruct->u16DmaWaitStatus)
+    {
 
         // There is code waiting for the completion of ECC.
         if ( !bSomeError )
@@ -166,7 +166,7 @@ void gpmi_dma_complete_isr()
             // If there was no error, then signal the completion.
             spinlock_unlock(&g_gpmi.dmaInfo.irqSpinlock);
         }
-    //}
+    }
 
     // clear the APBH dma IRQ and re-enable the associated vector in icoll.
     gpmi_clear_dma_isr_enable( pWaitStruct->dmaChannel );

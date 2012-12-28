@@ -414,7 +414,7 @@ void ReadEccData::setBuffers(void * dataBuffer, void * auxBuffer, uint32_t readS
 uint16_t ReadEccData::getDmaWaitMask() const
 {
     // The BCH engine generates interrupts for read completion.
-    return kNandGpmiDmaWaitMask_GpmiDma | kNandGpmiDmaWaitMask_Ecc;
+    return kNandGpmiDmaWaitMask_GpmiDma ;
 }
 
 void WriteRawData::init(unsigned chipSelect, uint8_t command1, uint8_t * addressBytes, unsigned addressByteCount, uint8_t command2, const void * dataBuffer, uint32_t dataSize, const void * auxBuffer, uint32_t auxSize)

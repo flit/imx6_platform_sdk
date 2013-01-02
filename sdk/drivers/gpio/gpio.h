@@ -58,7 +58,6 @@ typedef enum {
 } GPIO_PORT;
 
 //! @name GPIO bitfield values
-//! @todo Add these to register definition XML.
 //@{
 #define GPIO_GDIR_INPUT             0   //!< GPIO pin is input
 #define GPIO_GDIR_OUTPUT            1   //!< GPIO pin is output
@@ -104,6 +103,16 @@ int32_t gpio_get_port_count(void);
  * @return  INVALID_PARAMETER(-1)
  */
 int32_t gpio_set_direction(int32_t port, int32_t pin, int32_t dir);
+
+/*!
+ * @brief Returns the current direction for the specified pin.
+ *
+ * @param   port GPIO module instance, GPIO_PORT1, GPIO_PORT2, ... gpio_get_port_count().
+ * @param   pin GPIO pin 0 to 31.
+ * @retval GPIO_GDIR_INPUT The pin is currently set as an input.
+ * @retval GPIO_GDIR_OUTPUT The pin is currently set as an output.
+ */
+int32_t gpio_get_direction(int32_t port, int32_t pin);
 
 /*!
  * @brief Sets the GPIO level(high or low) for the specified pin.

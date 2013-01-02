@@ -20,8 +20,11 @@ cpu_utility/src/cpu_get_cores.c
 cpu_utility/src/cpu_workpoint.c
 eim/src/eim.c
 gpio/src/gpio.c
+gpio/src/gpio_pin.cpp
 i2c/src/imx_i2c_slave.c
 i2c/src/imx_i2c.c
+i2c/src/i2c_device.cpp
+i2c/src/software_i2c_port.cpp
 keypad/src/keypad_port.c
 ocotp/src/ocotp.c
 pmu/src/pmu_driver.cpp

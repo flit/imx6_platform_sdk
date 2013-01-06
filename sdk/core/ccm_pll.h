@@ -86,8 +86,7 @@ typedef enum _peri_clocks {
     RAWNAND_CLK,
     USB_CLK,
     VPU_CLK,
-    SPI1_CLK,
-    SPI2_CLK,
+    SPI_CLK,
     CAN_CLK
 } peri_clocks_t;
 

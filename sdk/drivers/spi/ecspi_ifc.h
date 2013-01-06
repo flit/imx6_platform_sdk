@@ -52,19 +52,22 @@ typedef enum {
 
 //! @brief eCSPI port configuration settings.
 //!
-//! The pre- and post-divider values should be the actual desired divider values. That is,
+//! The pre-divider value should be the actual desired divider values. That is,
 //! use a value of 1 to divide by 1, a value of 4 to divide by 4, and so on. This may
 //! seem obvious, but the eCSPI divider register is set to the divisor minus 1 such that
-//! a value of 0 equals an actual divisor of 1.
+//! a value of 0 equals an actual divisor of 1. In contrast, the post divider is the power
+//! of 2 that will be divided by. For instance, a post_div of 3 will divide by 2^3=8.
+//! pre_div ranges from 1-16, while post_div ranges from 0-15 (thus resulting in a divisor
+//! of 2^0=1 through 2^15=65536).
 typedef struct {
     unsigned channel:2;     //!< SS channel
     unsigned mode:1;        //!< 0: slave, 1: master
     unsigned ss_pol:1;      //!< 0: active low, 1: active high
     unsigned sclk_pol:1;    //!< 0: active high, 1: active low
     unsigned sclk_pha:1;    //!< 0: phase 0 op, 1: phase 1 op
-    unsigned pre_div:4;     //!< Clock pre-divider
-    unsigned post_div:4;    //!< Clock post-divider
-    unsigned _reserved:18;  //!< Reserved.
+    unsigned pre_div:5;     //!< Clock pre-divider, from 1-16
+    unsigned post_div:4;    //!< Clock post-divider, from 0-15, actual divisor = 2^post_div
+    unsigned _reserved:17;  //!< Reserved.
 } param_ecspi_t;
 
 ////////////////////////////////////////////////////////////////////////////////

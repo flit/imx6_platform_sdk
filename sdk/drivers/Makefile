@@ -35,6 +35,7 @@ sdma/src/sdma_script_info.c
 sdma/src/sdma.c
 snvs/src/snvs.c
 spi/src/ecspi.c
+spi/src/spi_device.cpp
 tempmon/src/tempmon.c
 timer/src/epit.c
 timer/src/gpt.c

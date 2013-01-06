@@ -49,7 +49,7 @@
     .sclk_pol = 0, \
     .sclk_pha = 0, \
     .pre_div = 0, \
-    .post_div = 3 \
+    .post_div = 2 \
     }
 #else
 #define NUMONYX_INIT_PARAM { \
@@ -59,7 +59,7 @@
     .sclk_pol = 0, \
     .sclk_pha = 0, \
     .pre_div = 0, \
-    .post_div = 3 \
+    .post_div = 2 \
     }
 #endif
 // ((uint32_t)0x00000445)

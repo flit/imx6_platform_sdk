@@ -41,6 +41,7 @@
 #include "registers/regsspdif.h"
 #include "registers/regsspba.h"
 #include "registers/regssdmaarm.h"
+#include "registers/regsecspi.h"
 
 #if defined(CHIP_MX6DQ)
 #include "registers/regssata.h"
@@ -162,27 +163,37 @@ uint32_t get_peri_clock(peri_clocks_t clock)
 {
     uint32_t ret_val = 0;
 
-    switch (clock) {
-    case UART1_MODULE_CLK:
-    case UART2_MODULE_CLK:
-    case UART3_MODULE_CLK:
-    case UART4_MODULE_CLK:
-        // UART source clock is a fixed PLL3 / 6
-        ret_val = PLL3_OUTPUT[0] / 6 / (HW_CCM_CSCDR1.B.UART_CLK_PODF + 1);
-        break;
+    switch (clock)
+    {
+        case UART1_MODULE_CLK:
+        case UART2_MODULE_CLK:
+        case UART3_MODULE_CLK:
+        case UART4_MODULE_CLK:
+            // UART source clock is a fixed PLL3 / 6
+            ret_val = PLL3_OUTPUT[0] / 6 / (HW_CCM_CSCDR1.B.UART_CLK_PODF + 1);
+            break;
+        
+        // eCSPI clock:
+        //     PLL3(480) -> /8 -> CSCDR2[ECSPI_CLK_PODF]
+        case SPI_CLK:
+            ret_val = PLL3_OUTPUT[0] / 8 / (HW_CCM_CSCDR2.B.ECSPI_CLK_PODF + 1);
+            break;
+        
 #if !defined (CHIP_MX6SL)
-    case RAWNAND_CLK:
-        ret_val =
-            PLL3_OUTPUT[0] / (HW_CCM_CS2CDR.B.ENFC_CLK_PRED + 1) / (HW_CCM_CS2CDR.B.ENFC_CLK_PODF +
-                                                                    1);
+        case RAWNAND_CLK:
+            ret_val =
+                PLL3_OUTPUT[0] / (HW_CCM_CS2CDR.B.ENFC_CLK_PRED + 1) / (HW_CCM_CS2CDR.B.ENFC_CLK_PODF +
+                                                                        1);
+            break;
+            
+        case CAN_CLK:
+            // For i.mx6dq/sdl CAN source clock is a fixed PLL3 / 8
+        ret_val = PLL3_OUTPUT[0] / 8 / (HW_CCM_CSCMR2.B.CAN_CLK_PODF + 1);
         break;
-    case CAN_CLK:
-        // For i.mx6dq/sdl CAN source clock is a fixed PLL3 / 8
-	ret_val = PLL3_OUTPUT[0] / 8 / (HW_CCM_CSCMR2.B.CAN_CLK_PODF + 1);
-	break;
 #endif
-    default:
-        break;
+
+        default:
+            break;
     }
 
     return ret_val;
@@ -250,7 +261,7 @@ void clock_gating_config(uint32_t base_address, uint32_t gating_mode)
             ccm_ccgrx = HW_CCM_CCGR5_ADDR;
             cgx_offset = CG(2);
             break;
-#endif
+#endif // CHIP_MX6DQ
         case REGS_EPIT1_BASE:
             ccm_ccgrx = HW_CCM_CCGR1_ADDR;
             cgx_offset = CG(6);
@@ -275,6 +286,28 @@ void clock_gating_config(uint32_t base_address, uint32_t gating_mode)
             ccm_ccgrx = HW_CCM_CCGR2_ADDR;
             cgx_offset = CG(5);
             break;
+        case REGS_ECSPI1_BASE:
+            ccm_ccgrx = HW_CCM_CCGR1_ADDR;
+            cgx_offset = CG(0);
+            break;        
+        case REGS_ECSPI2_BASE:
+            ccm_ccgrx = HW_CCM_CCGR1_ADDR;
+            cgx_offset = CG(1);
+            break;        
+        case REGS_ECSPI3_BASE:
+            ccm_ccgrx = HW_CCM_CCGR1_ADDR;
+            cgx_offset = CG(2);
+            break;        
+        case REGS_ECSPI4_BASE:
+            ccm_ccgrx = HW_CCM_CCGR1_ADDR;
+            cgx_offset = CG(3);
+            break;        
+#if CHIP_MX6DQ
+        case REGS_ECSPI5_BASE:
+            ccm_ccgrx = HW_CCM_CCGR1_ADDR;
+            cgx_offset = CG(4);
+            break;        
+#endif // CHIP_MX6DQ
 #if !defined (CHIP_MX6SL)
         case REGS_GPMI_BASE:
             ccm_ccgrx = HW_CCM_CCGR4_ADDR;
@@ -288,7 +321,7 @@ void clock_gating_config(uint32_t base_address, uint32_t gating_mode)
             ccm_ccgrx = HW_CCM_CCGR0_ADDR;
             cgx_offset = CG(6) | CG(5) | CG(4);
             break;
-#endif
+#endif // !defined (CHIP_MX6SL)
         default:
             break;
     }

@@ -147,7 +147,7 @@ int ecspi_configure(dev_ecspi_e instance, const param_ecspi_t * param)
 
     // Setup pre & post clock divider 
     HW_ECSPI_CONREG(instance).B.PRE_DIVIDER = (param->pre_div == 0) ? 0 : (param->pre_div - 1);
-    HW_ECSPI_CONREG(instance).B.POST_DIVIDER = (param->post_div == 0) ? 0 : (param->post_div - 1);
+    HW_ECSPI_CONREG(instance).B.POST_DIVIDER = param->post_div;
 
     // Enable eCSPI 
     HW_ECSPI_CONREG(instance).B.EN = 1;
@@ -170,10 +170,11 @@ int ecspi_configure(dev_ecspi_e instance, const param_ecspi_t * param)
 //! @todo Validate @a dev value for the chip, since not all chips will have all 5 instances.
 int ecspi_open(dev_ecspi_e dev, const param_ecspi_t * param)
 {
-    // Configure clock gating here if necessary 
-
     // Configure IO signals 
     ecspi_iomux_config(dev);
+    
+    // Ungate the module clock.
+    clock_gating_config(REGS_ECSPI_BASE(dev), CLOCK_ON);
 
     // Configure eCSPI registers 
     ecspi_configure(dev, param);
@@ -185,6 +186,9 @@ int ecspi_close(dev_ecspi_e dev)
 {
     // Disable controller 
     HW_ECSPI_CONREG(dev).B.EN = 0;
+    
+    // Gate the module clock.
+    clock_gating_config(REGS_ECSPI_BASE(dev), CLOCK_OFF);
 
     return SUCCESS;
 }

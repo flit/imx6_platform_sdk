@@ -95,6 +95,14 @@ extern "C" {
 int32_t gpio_get_port_count(void);
 
 /*!
+ * @brief Sets a GPIO pin to GPIO mode in the IOMUX controller.
+ *
+ * @retval SUCCESS
+ * @retval INVALID_PARAMETER
+ */
+int gpio_set_gpio(int32_t port, int32_t pin);
+
+/*!
  * @brief Sets the GPIO direction for the specified pin.
  *
  * @param   port GPIO module instance, GPIO_PORT1, GPIO_PORT2, ... gpio_get_port_count().

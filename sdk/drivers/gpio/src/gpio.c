@@ -37,10 +37,38 @@
 #include "sdk.h"
 #include "gpio/gpio.h"
 #include "registers/regsgpio.h"
+#include "registers/regsiomuxc.h"
+#include "gpio_map.h"
 
 int32_t gpio_get_port_count(void)
 {
     return HW_GPIO_INSTANCE_COUNT;
+}
+
+int gpio_set_gpio(int32_t port, int32_t pin)
+{
+    // Validate port and pin before indexing into the map arrays.
+    if (port < 1 || port > HW_GPIO_INSTANCE_COUNT || pin < 0 || pin > 31)
+    {
+        debug_printf("Invalid GPIO port or pin number.\n");
+        return INVALID_PARAMETER;
+    }
+    
+    // Look up mux register address.
+    uint32_t addr = k_gpio_mux_registers[port - 1][pin];
+    if (!addr)
+    {
+        return INVALID_PARAMETER;
+    }
+    
+    volatile uint32_t * reg = (volatile uint32_t *)addr;
+    
+    // Switch mux to ALT5, which is always GPIO mode. We're just using this register's
+    // BM_ and BF_ macros because they are convenient, and is present on all three mx6.
+    *reg = (*reg & ~BM_IOMUXC_SW_MUX_CTL_PAD_KEY_COL0_MUX_MODE)
+         | BF_IOMUXC_SW_MUX_CTL_PAD_KEY_COL0_MUX_MODE_V(ALT5);
+    
+    return SUCCESS;
 }
 
 int32_t gpio_set_direction(int32_t port, int32_t pin, int32_t dir)

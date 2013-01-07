@@ -125,4 +125,14 @@ SOURCES += \
 	dcp/src/dcp.c
 endif
 
+# Select the GPIO map source file based on chip.
+ifeq "$(TARGET)" "mx6dq"
+SOURCES += gpio/src/imx6dq_gpio_map.c
+else ifeq "$(TARGET)" "mx6sdl"
+SOURCES += gpio/src/imx6sdl_gpio_map.c
+else ifeq "$(TARGET)" "mx6sl"
+SOURCES += gpio/src/imx6sl_gpio_map.c
+endif
+
+
 include $(SDK_ROOT)/mk/targets.mk

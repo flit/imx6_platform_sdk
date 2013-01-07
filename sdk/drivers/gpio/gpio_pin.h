@@ -53,7 +53,12 @@
 /*!
  * @brief GPIO pin.
  *
- * 
+ * When you construct a GpioPin object, the specified pin is configured as a GPIO pin by
+ * setting the appropriate register in the IOMUX controller. This also happens if you
+ * change the pin by calling setPin(). The only exceptions to this are the default constructor
+ * and copy constructor, which don't adjust mux settings for the pin. (The pin should already
+ * be muxed as a GPIO when copied.) At no point will this class restore a pin to its previous
+ * mux setting.
  */
 class GpioPin
 {
@@ -118,9 +123,6 @@ protected:
 
     uint8_t m_bank; //!< Bank number.
     uint8_t m_pin;  //!< Pin number.
-    
-    //! @brief Set the pinmux to make the pin a GPIO.
-    void makeGpio();
     
 };
 

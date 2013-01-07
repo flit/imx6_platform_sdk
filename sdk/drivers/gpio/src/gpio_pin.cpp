@@ -40,24 +40,28 @@ GpioPin::GpioPin(uint8_t bank, uint8_t pin)
 :   m_bank(bank),
     m_pin(pin)
 {
+    gpio_set_gpio(m_bank, m_pin);
 }
 
 GpioPin::GpioPin(uint32_t combinedPin)
 :   m_bank(GPIO_EXTRACT_BANK(combinedPin)),
     m_pin(GPIO_EXTRACT_PIN(combinedPin))
 {
+    gpio_set_gpio(m_bank, m_pin);
 }
 
 void GpioPin::setPin(uint8_t bank, uint8_t pin)
 {
     m_bank = bank;
     m_pin = pin;
+    gpio_set_gpio(m_bank, m_pin);
 }
 
 void GpioPin::setPin(uint32_t combinedPin)
 {
     m_bank = GPIO_EXTRACT_BANK(combinedPin);
     m_pin = GPIO_EXTRACT_PIN(combinedPin);
+    gpio_set_gpio(m_bank, m_pin);
 }
 
 void GpioPin::setDirection(pin_direction_t direction)

@@ -29,101 +29,45 @@
  */
 #include <cassert>
 #include "gpio/gpio_pin.h"
-#include "gpio/gpio.h"
-#include "registers/regsiomuxc.h"
+#include "timer/timer.h"
+
+///////////////////////////////////////////////////////////////////////////////
+// Definitions
+///////////////////////////////////////////////////////////////////////////////
+
+// Make it use C linkage so we can call it from sdk_unit_test.
+extern "C" void gpio_led_test(void);
+
+// Definition for the debug LED on various boards.
+#if CHIP_MX6DQ || CHIP_MX6SDL
+#   if BOARD_EVB
+#       define LED_PIN GPIO_MAKE_PIN(3, 25)
+#   elif BOARD_SMART_DEVICE
+#       define LED_PIN GPIO_MAKE_PIN(1, 2) // green is 1,2; red is 1,1
+#   elif BOARD_SABRE_AI
+#       define LED_PIN GPIO_MAKE_PIN(5, 15)
+#   endif
+#elif CHIP_MX6SL
+#   if BOARD_EVK
+#       define LED_PIN GPIO_MAKE_PIN(3, 20)
+#   endif
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////
 // Code
 ///////////////////////////////////////////////////////////////////////////////
 
-GpioPin::GpioPin(uint8_t bank, uint8_t pin, pin_direction_t dir)
-:   m_bank(bank),
-    m_pin(pin)
+//! This test simply blinks the debug LED at a 1 Hz rate.
+void gpio_led_test(void)
 {
-    gpio_set_gpio(m_bank, m_pin);
-    setDirection(dir);
-}
+    GpioOutput led(LED_PIN);
 
-GpioPin::GpioPin(uint32_t combinedPin, pin_direction_t dir)
-:   m_bank(GPIO_EXTRACT_BANK(combinedPin)),
-    m_pin(GPIO_EXTRACT_PIN(combinedPin))
-{
-    gpio_set_gpio(m_bank, m_pin);
-    setDirection(dir);
-}
-
-void GpioPin::setPin(uint8_t bank, uint8_t pin)
-{
-    m_bank = bank;
-    m_pin = pin;
-    gpio_set_gpio(m_bank, m_pin);
-}
-
-void GpioPin::setPin(uint32_t combinedPin)
-{
-    m_bank = GPIO_EXTRACT_BANK(combinedPin);
-    m_pin = GPIO_EXTRACT_PIN(combinedPin);
-    gpio_set_gpio(m_bank, m_pin);
-}
-
-void GpioPin::setDirection(pin_direction_t direction)
-{
-    int32_t dir = (direction == kInput) ? GPIO_GDIR_INPUT : GPIO_GDIR_OUTPUT;
-    gpio_set_direction(m_bank, m_pin, dir);
-}
-
-GpioPin::pin_direction_t GpioPin::getDirection() const
-{
-    return (gpio_get_direction(m_bank, m_pin) == GPIO_GDIR_INPUT) ? kInput : kOutput;
-}
-
-void GpioPin::set(bool driveHigh)
-{
-    if (driveHigh)
+    while (true)
     {
-        set();
+        led = !led;
+        
+        hal_delay_us(500000);
     }
-    else
-    {
-        clear();
-    }
-}
-
-void GpioPin::set()
-{
-    gpio_set_level(m_bank, m_pin, 1);
-}
-
-void GpioPin::clear()
-{
-    gpio_set_level(m_bank, m_pin, 0);
-}
-
-bool GpioPin::get() const
-{
-    return gpio_get_level(m_bank, m_pin);
-}
-
-#if defined(__hide_from_compiler__)
-    #pragma mark -
-#endif
-
-GpioOutput & GpioOutput::operator = (const GpioPin & rhs)
-{
-    setPin(rhs.getBank(), rhs.getPin());
-    setDirection(kOutput);
-    return *this;
-}
-
-#if defined(__hide_from_compiler__)
-    #pragma mark -
-#endif
-
-GpioInput & GpioInput::operator = (const GpioPin & rhs)
-{
-    setPin(rhs.getBank(), rhs.getPin());
-    setDirection(kInput);
-    return *this;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

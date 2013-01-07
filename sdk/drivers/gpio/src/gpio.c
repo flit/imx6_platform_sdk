@@ -173,7 +173,7 @@ int32_t gpio_get_level(int32_t port, int32_t pin)
 
     uint32_t mask = 1 << pin;
 
-    return HW_GPIO_PSR_RD(port) & mask ? GPIO_HIGH_LEVEL : GPIO_LOW_LEVEL;
+    return HW_GPIO_DR_RD(port) & mask ? GPIO_HIGH_LEVEL : GPIO_LOW_LEVEL;
 }
 
 int32_t gpio_set_interrupt_config(int32_t port, int32_t pin, int32_t config)

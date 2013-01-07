@@ -73,6 +73,7 @@ define SUBDIRS
     $(SDK_LIB_ROOT)/drivers/usdhc/test
     $(SDK_LIB_ROOT)/drivers/pwm/test
     $(SDK_LIB_ROOT)/drivers/wdog/test
+    $(SDK_LIB_ROOT)/drivers/gpio/test
 endef
 
 # Tests that are not available for CHIP_MX6SL only.

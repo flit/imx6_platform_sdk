@@ -78,10 +78,10 @@ public:
     //! @brief Constructor to set the bank and pin.
     //!
     //! Configures the pin mux setting to be a GPIO.
-    GpioPin(uint8_t bank, uint8_t pin);
+    GpioPin(uint8_t bank, uint8_t pin, pin_direction_t dir=kOutput);
     
     //! @brief Constructor taking a combined bank and pin value.
-    GpioPin(uint32_t combinedPin);
+    GpioPin(uint32_t combinedPin, pin_direction_t dir=kOutput);
     
     //! @brief Copy constructor.
     GpioPin(const GpioPin & other) : m_bank(other.m_bank), m_pin(other.m_pin) {}
@@ -115,6 +115,8 @@ public:
     //@{
     operator bool () const { return get(); }
     GpioPin & operator = (bool driveHigh) { set(driveHigh); return *this; }
+    bool operator == (bool other) const { return get() == other; }
+    bool operator != (bool other) const { return get() != other; }
     bool operator == (const GpioPin & rhs) const { return (m_bank == rhs.m_bank) && (m_pin == rhs.m_pin); }
     bool operator != (const GpioPin & rhs) const { return !(operator == (rhs)); }
     //@}
@@ -124,6 +126,73 @@ protected:
     uint8_t m_bank; //!< Bank number.
     uint8_t m_pin;  //!< Pin number.
     
+};
+
+/*!
+ * @briefGeneral purpose digital output.
+ */
+class GpioOutput : public GpioPin
+{
+public:
+    //! @brief Default constructor.
+    GpioOutput() : GpioPin() {}
+    
+    //! @brief Constructor to set the bank and pin.
+    //!
+    //! Configures the pin mux setting to be a GPIO.
+    GpioOutput(uint8_t bank, uint8_t pin) : GpioPin(bank, pin, kOutput) {}
+    
+    //! @brief Constructor taking a combined bank and pin value.
+    GpioOutput(uint32_t combinedPin) : GpioPin(combinedPin, kOutput) {}
+    
+    //! @brief Copy constructor.
+    GpioOutput(const GpioPin & other) : GpioPin(other.getBank(), other.getPin(), kOutput) {}
+    
+    //! @brief Assignment operator.
+    GpioOutput & operator = (const GpioPin & rhs);
+    
+    //! @name Operators
+    //@{
+    operator bool () const { return get(); }
+    GpioPin & operator = (bool driveHigh) { set(driveHigh); return *this; }
+    bool operator == (bool other) const { return get() == other; }
+    bool operator != (bool other) const { return get() != other; }
+    bool operator == (const GpioPin & rhs) const { return (getBank() == rhs.getBank()) && (getPin() == rhs.getPin()); }
+    bool operator != (const GpioPin & rhs) const { return !(operator == (rhs)); }
+    //@}
+};
+
+/*!
+ * @brief General purpose digital input.
+ */
+class GpioInput : public GpioPin
+{
+public:
+    //! @brief Default constructor.
+    GpioInput() : GpioPin() {}
+    
+    //! @brief Constructor to set the bank and pin.
+    //!
+    //! Configures the pin mux setting to be a GPIO.
+    GpioInput(uint8_t bank, uint8_t pin) : GpioPin(bank, pin, kInput) {}
+    
+    //! @brief Constructor taking a combined bank and pin value.
+    GpioInput(uint32_t combinedPin) : GpioPin(combinedPin, kInput) {}
+    
+    //! @brief Copy constructor.
+    GpioInput(const GpioPin & other) : GpioPin(other.getBank(), other.getPin(), kInput) {}
+    
+    //! @brief Assignment operator.
+    GpioInput & operator = (const GpioPin & rhs);
+    
+    //! @name Operators
+    //@{
+    operator bool () const { return get(); }
+    bool operator == (bool other) const { return get() == other; }
+    bool operator != (bool other) const { return get() != other; }
+    bool operator == (const GpioPin & rhs) const { return (getBank() == rhs.getBank()) && (getPin() == rhs.getPin()); }
+    bool operator != (const GpioPin & rhs) const { return !(operator == (rhs)); }
+    //@}
 };
 
 #endif // __cplusplus

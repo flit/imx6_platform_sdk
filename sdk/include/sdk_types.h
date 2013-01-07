@@ -100,8 +100,10 @@ typedef enum _test_return
 
 //! @name Return codes
 //@{
-// #define SUCCESS (0)
-// #define ERROR (1)
+#define SUCCESS (0)
+#define FAIL (1)
+#define ERROR_GENERIC (-1)
+#define ERROR_OUT_OF_MEMORY (-2)
 //@}
 
 //! @brief Defines a pointer to a function.

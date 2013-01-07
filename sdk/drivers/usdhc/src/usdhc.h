@@ -40,17 +40,6 @@
 
 /*------------------------------------------- Macros --------------------------------------------*/
 
-#ifndef TRUE
-#define TRUE 1
-#endif
-
-#ifndef FALSE
-#define FALSE 0
-#endif
-
-#define SUCCESS 0
-#define FAIL 1
-
 #define ZERO 0
 #define ONE 1
 #define FOUR 4

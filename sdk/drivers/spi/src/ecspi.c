@@ -27,12 +27,16 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "ecspi.h"
+
 #include "spi/ecspi_ifc.h"
 #include "iomux_config.h"
 #include "registers/regsecspi.h"
 #include "timer/timer.h"
 #include "registers/regsiomuxc.h" 
+
+#define ECSPI_FIFO_SIZE 64
+
+#define SPI_RETRY_TIMES 100
 
 static void ecspi_start_transfer(unsigned instance, uint16_t brs_bts);
 static int ecspi_xfer_slv(unsigned instance, const uint8_t * tx_buf, uint8_t * rx_buf, int bytes);
@@ -54,7 +58,7 @@ static void ecspi_start_transfer(unsigned instance, uint16_t brs_bts)
 static int ecspi_xfer_slv(unsigned instance, const uint8_t * tx_buf, uint8_t * rx_buf, int bytes)
 {
     printf("Slave mode transfer code not implemented yet.\n");
-    return FAIL;
+    return ERROR_GENERIC;
 }
 
 //! @brief Perform a SPI master transfer.
@@ -98,7 +102,7 @@ static int ecspi_xfer_mst(unsigned instance, const uint8_t * tx_buf, uint8_t * r
 #if DEBUG
             printf("ecspi_xfer: Transfer timeout.\n");
 #endif
-            return FAIL;
+            return ERROR_GENERIC;
         }
 
         hal_delay_us(500);
@@ -213,7 +217,7 @@ int ecspi_xfer(dev_ecspi_e dev, const uint8_t * tx_buf, uint8_t * rx_buf, uint16
 #if DEBUG
         printf("ecspi_xfer: Burst out of length.\n");
 #endif
-        retv = FAIL;
+        retv = ERROR_GENERIC;
     }
 
     if (retv == SUCCESS)

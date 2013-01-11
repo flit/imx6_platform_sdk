@@ -58,6 +58,7 @@ endif
 # Library subdirectories that the apps depend upon. Handled automatically by targets.mk.
 SUBDIRS = \
     sdk \
+    lwip \
     $(BOARD_ROOT)
 
 # List of all applications to build. Applications must reside in the apps directory.

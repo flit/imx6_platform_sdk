@@ -6,6 +6,8 @@
 #ifndef _LWIPOPTS_H_
 #define _LWIPOPTS_H_
 
+#define NO_SYS (1)
+
 /*
    -----------------------------------------------
    ---------- Platform specific locking ----------
@@ -32,7 +34,7 @@
    ------------------------------------------------
 */
 #define MEMP_NUM_PBUF                   16
-#define MEMP_NUM_RAW_PCB				0
+#define MEMP_NUM_RAW_PCB				32
 #define MEMP_NUM_UDP_PCB				8
 #define MEMP_NUM_TCP_PCB				32
 #define MEMP_NUM_TCP_PCB_LISTEN			8
@@ -86,14 +88,14 @@
    ---------- RAW options ----------
    ---------------------------------
 */
-#define LWIP_RAW						0
+#define LWIP_RAW						1
 
 /*
    ----------------------------------
    ---------- DHCP options ----------
    ----------------------------------
 */
-#define LWIP_DHCP						0
+#define LWIP_DHCP						1
 
 /*
    ------------------------------------
@@ -101,14 +103,14 @@
    ------------------------------------
 */
 #define LWIP_AUTOIP						1
-#define LWIP_DHCP_AUTOIP_COOP			0
+#define LWIP_DHCP_AUTOIP_COOP			1
 
 /*
    ----------------------------------
    ---------- SNMP options ----------
    ----------------------------------
 */
-#define LWIP_SNMP						0
+#define LWIP_SNMP						1
 
 /*
    ----------------------------------
@@ -122,7 +124,7 @@
    ---------- DNS options -----------
    ----------------------------------
 */
-#define LWIP_DNS						0
+#define LWIP_DNS						1
 
 /*
    ---------------------------------

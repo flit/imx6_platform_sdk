@@ -54,10 +54,15 @@ lwip/src/core/snmp/mib2.c
 lwip/src/core/snmp/msg_in.c
 lwip/src/core/snmp/msg_out.c
 lwip/src/netif/etharp.c
-lwip/src/netif/ethernetif.c
 lwip/src/netif/slipif.c
 mx6/sys_arch.c
 endef
+
+ifneq "$(TARGET)" "mx6dq"
+SOURCES += mx6/fec_ethernetif.c
+else
+SOURCES += mx6/enet_ethernetif.c
+endif
 
 CFLAGS += -Wno-address
 

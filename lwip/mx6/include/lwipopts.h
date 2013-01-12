@@ -21,6 +21,10 @@
    ------------------------------------
 */
 
+// Use C library malloc() for all memory.
+#define MEM_LIBC_MALLOC 1
+#define MEMP_MEM_MALLOC 1
+
 #define MEM_ALIGNMENT					4
 #define MEM_SIZE						(128 * 1024)
 
@@ -246,6 +250,9 @@
    ---------- Debugging options ----------
    ---------------------------------------
 */
+
+#define LWIP_DEBUG (1)
+
 #define LWIP_DBG_MIN_LEVEL              LWIP_DBG_LEVEL_ALL
 #define LWIP_DBG_TYPES_ON				LWIP_DBG_STATE
 #define ETHARP_DEBUG                    LWIP_DBG_OFF

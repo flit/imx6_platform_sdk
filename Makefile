@@ -67,7 +67,8 @@ ALL_APPS = \
     power_modes_test \
     obds \
     stream \
-	cpu_workpoint
+	cpu_workpoint \
+	ping
 
 # Apps that are only built for MX6DQ and MX6SDL.
 ifdef is_dq_or_sdl

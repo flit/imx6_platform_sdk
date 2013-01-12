@@ -34,6 +34,7 @@
 #include "lwip/stats.h"
 #include "lwip/err.h"
 #include <string.h>
+#include "timer/timer.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Cdde
@@ -253,6 +254,11 @@ sys_thread_t sys_thread_new(const char *name, lwip_thread_fn thread, void *arg, 
 }
 
 #endif
+
+u32_t sys_now(void)
+{
+    return time_get_microseconds() / 1000;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // EOF

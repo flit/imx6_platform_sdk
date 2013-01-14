@@ -67,8 +67,9 @@ ALL_APPS = \
     power_modes_test \
     obds \
     stream \
-	cpu_workpoint \
-	ping
+    cpu_workpoint \
+    ping \
+    httpd
 
 # Apps that are only built for MX6DQ and MX6SDL.
 ifdef is_dq_or_sdl
@@ -76,7 +77,7 @@ ALL_APPS += \
     gpu_demo \
     multicore_demo \
     caam_blob_gen \
-	filesystem 
+    filesystem 
 endif
 
 # Default target.

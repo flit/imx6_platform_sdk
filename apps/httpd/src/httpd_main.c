@@ -32,7 +32,10 @@
 #include "platform_init.h"
 #include "iomux_config.h"
 #include "timer/timer.h"
-#include "ping.h"
+#include "httpd.h"
+#include "fs.h"
+#include "fsdata.h"
+#include "httpd_structs.h"
 
 #include "lwip/opt.h"
 #include "lwip/init.h"
@@ -56,7 +59,6 @@
 #define CLOCKTICKS_PER_MS (1)
 
 struct netif g_netif;
-ip_addr_t g_ping_target_addr;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code
@@ -114,7 +116,7 @@ void init_lwip(void)
         netif_set_up(&g_netif);
     }
     
-    ping_init();
+    httpd_init();
 
     printf("TCP/IP initialized.\n");
 }
@@ -125,9 +127,6 @@ void run(void)
     uint32_t last_time = 0;
     uint32_t last_dhcp_coarse_time = 0;
     uint32_t last_dhcp_fine_time = 0;
-    
-    IP4_ADDR(&g_ping_target_addr, 10, 81, 4, 140);
-    ping_send_to(&g_ping_target_addr);
     
     while (true)
     {
@@ -144,7 +143,7 @@ void run(void)
         {  
             tcp_tmr();  
             last_time = sys_now();  
-        }      
+        }
         if (sys_now() - last_dhcp_coarse_time >= DHCP_COARSE_TIMER_MSECS * CLOCKTICKS_PER_MS)
         {  
             dhcp_coarse_tmr();  

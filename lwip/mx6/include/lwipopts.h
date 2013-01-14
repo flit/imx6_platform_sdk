@@ -163,7 +163,7 @@
    ---------- Pbuf options ----------
    ----------------------------------
 */
-#define PBUF_POOL_BUFSIZE				1520		// + sizeof(pbuf) = 1536 = 12 cache lines of 128 bytes
+#define PBUF_POOL_BUFSIZE				1520
 #define PBUF_LINK_HLEN					(14 + ETH_PAD_SIZE)
 
 /*
@@ -175,7 +175,8 @@
 #define LWIP_NETIF_API					(!NO_SYS)
 #define LWIP_NETIF_HWADDRHINT			1
 #define LWIP_NETIF_LOOPBACK				1
-#define LWIP_NETIF_LINK_CALLBACK		0
+#define LWIP_NETIF_STATUS_CALLBACK      1
+#define LWIP_NETIF_LINK_CALLBACK		1
 
 /*
    ------------------------------------
@@ -194,7 +195,6 @@
 #define DEFAULT_TCP_RECVMBOX_SIZE		32
 #define DEFAULT_ACCEPTMBOX_SIZE			4
 
-// thread priorities are in VDK terms - 1 is highest, 30 is lowest
 #define TCPIP_THREAD_PRIO				5
 #define DEFAULT_THREAD_PRIO				10
 #define LOW_THREAD_PRIO					29
@@ -238,7 +238,7 @@
 #define MEM_STATS						1
 #define MEMP_STATS						1
 #define SYS_STATS						1
-#define LWIP_STATS_DISPLAY				0
+#define LWIP_STATS_DISPLAY				1
 #endif /* STATS */
 
 
@@ -251,7 +251,9 @@
    ---------------------------------------
 */
 
-#define LWIP_DEBUG (1)
+#if DEBUG
+#define LWIP_DEBUG                      (1)
+#endif
 
 #define LWIP_DBG_MIN_LEVEL              LWIP_DBG_LEVEL_ALL
 #define LWIP_DBG_TYPES_ON				LWIP_DBG_STATE

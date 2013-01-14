@@ -1,11 +1,24 @@
-include $(SDK_ROOT)/mk/common.mk
+#-------------------------------------------------------------------------------
+# Copyright (C) 2013 Freescale Semiconductor, Inc. All Rights Reserved.
+#
+# THIS SOFTWARE IS PROVIDED BY FREESCALE "AS IS" AND ANY EXPRESS OR IMPLIED
+# WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+# MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+# SHALL FREESCALE BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+# OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+# IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+# OF SUCH DAMAGE.
+#-------------------------------------------------------------------------------
 
+include $(SDK_ROOT)/mk/common.mk
 
 # Export the target library name to all child make invocations.
 TARGET_LIB_NAME = lwip
-export TARGET_LIB_NAME
 
-
+# Note: PPP sources are not included in the build.
 define SOURCES
 lwip/src/api/api_lib.c
 lwip/src/api/api_msg.c
@@ -56,14 +69,10 @@ lwip/src/core/snmp/msg_out.c
 lwip/src/netif/etharp.c
 lwip/src/netif/slipif.c
 mx6/sys_arch.c
+mx6/mx6_ethernetif.c
 endef
 
-ifneq "$(TARGET)" "mx6dq"
-SOURCES += mx6/fec_ethernetif.c
-else
-SOURCES += mx6/enet_ethernetif.c
-endif
-
+# Turn off this warning to get the lwIP sources to compile unmodified.
 CFLAGS += -Wno-address
 
 include $(SDK_ROOT)/mk/targets.mk

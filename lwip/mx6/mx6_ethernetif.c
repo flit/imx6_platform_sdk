@@ -50,9 +50,16 @@
 #include "netif/ppp_oe.h"
 
 #include "sdk.h"
-#include "enet/enet.h"
 #include "iomux_config.h"
+#include "registers/regsiomuxc.h"
 
+#if CHIP_MX6DQ || CHIP_MX6SDL
+#include "enet/enet.h"
+#elif CHIP_MX6SL
+#include "fec/fec.h"
+#endif
+
+#if CHIP_MX6DQ || CHIP_MX6SDL
 //! @todo Fix me to make me board-independant!! Put me in board lib.
 #if defined(BOARD_SMART_DEVICE) || defined(BOARD_SABRE_AI)
 #define ENET_PHY_ADDR 1
@@ -61,7 +68,7 @@
 #else
 #error Unknown ENET_PHY_ADDR
 #endif
-
+#endif // CHIP_MX6DQ || CHIP_MX6SDL
 
 /* Define those to better describe your network interface. */
 #define IFNAME0 'e'
@@ -73,24 +80,40 @@
  * as it is already kept in the struct netif.
  * But this is only an example, anyway...
  */
-struct enet {
-    struct eth_addr *ethaddr;
-    /* Add whatever per-interface state that is needed here. */
-};
+// struct enet {
+//     struct eth_addr *ethaddr;
+//     /* Add whatever per-interface state that is needed here. */
+// };
+
+#if CHIP_MX6DQ || CHIP_MX6SDL
 
 static imx_enet_priv_t enet0;
-static unsigned char s_pkt_send[2048];
-static unsigned char s_pkt_recv[2048];
-static unsigned char mac_addr0[6] = { 0x00, 0x04, 0x9f, 0x00, 0x00, 0x01 };
-
-imx_enet_priv_t *dev0 = &enet0;
+static imx_enet_priv_t *dev0 = &enet0;
 
 extern int imx_enet_mii_type(imx_enet_priv_t * dev, enum imx_mii_type mii_type);
 extern void imx_enet_iomux(void);
 extern void imx_enet_phy_reset(void);
 
+#elif CHIP_MX6SL
+
+static imx_fec_priv_t fec0;
+static imx_fec_priv_t *dev0 = &fec0;
+
+extern int imx_fec_mii_type(imx_fec_priv_t * dev, enum imx_mii_type mii_type);
+extern void imx_feciomux(void);
+extern void imx_fec_phy_reset(void);
+
+#endif
+
+static unsigned char s_pkt_send[2048];
+static unsigned char s_pkt_recv[2048];
+static unsigned char mac_addr0[6] = { 0x00, 0x04, 0x9f, 0x00, 0x00, 0x01 };
+
 /* Forward declarations. */
 static void  enet_input(struct netif *netif);
+
+
+#if CHIP_MX6DQ || CHIP_MX6SDL
 
 void init_enet(void)
 {
@@ -113,6 +136,58 @@ void init_enet(void)
 
     imx_enet_start(dev0, mac_addr0);
 }
+
+#elif CHIP_MX6SL
+
+int imx_fec_setup(void)
+{
+	unsigned int reg=0;
+//	unsigned int timeout = 100000;
+	
+	/* config iomux */
+	fec_iomux_config();
+	
+	/* gpio4_21 controls the power of FEC PHY */
+	gpio_set_direction(4, 21, 1);
+	gpio_set_level(4, 21, 1);
+	hal_delay_us(100000);
+	
+	/* get enet tx reference clk from internal clock from anatop
+	 * GPR1[14] = 0, GPR1[18:17] = 00
+	 */
+	reg = HW_IOMUXC_GPR1_RD();
+	reg &= ~(BM_IOMUXC_GPR1_ENET_CLK_SEL_FROM_ANALOG_LOOPBACK);
+	reg &= ~(BM_IOMUXC_GPR1_ENET_CLK_SEL);
+	HW_IOMUXC_GPR1_WR(reg);
+	
+	/* Enable ENET PLLs */
+	/* already done in ccm_init() */
+
+	return 0;
+}
+
+void init_fec(void)
+{
+    // setup iomux for ENET
+    imx_fec_setup();
+
+    // init fec0
+    imx_fec_init(dev0, REGS_FEC_BASE, 0);
+    imx_fec_mii_type(dev0, RMII);
+    
+    // init phy0.
+    imx_fec_phy_init(dev0);
+
+    // Check PHY link status.
+    if (!(dev0->status & FEC_STATUS_LINK_ON))
+    {
+            printf("FEC link status check fail\n");
+    }
+
+    imx_fec_start(dev0, mac_addr0);
+}
+
+#endif // CHIP_MX6SL
 
 /**
  * In this function, the hardware should be initialized.
@@ -141,7 +216,11 @@ low_level_init(struct netif *netif)
     netif->flags = NETIF_FLAG_BROADCAST | NETIF_FLAG_ETHARP | NETIF_FLAG_LINK_UP;
  
     /* Do whatever else is needed to initialize interface. */    
+#if CHIP_MX6DQ || CHIP_MX6SDL
     init_enet();
+#elif CHIP_MX6SL
+    init_fec();
+#endif
 }
 
 /**
@@ -181,7 +260,11 @@ low_level_output(struct netif *netif, struct pbuf *p)
         l += q->len;
     }
 
-        imx_enet_send(dev0, s_pkt_send, l, 1);
+#if CHIP_MX6DQ || CHIP_MX6SDL
+    imx_enet_send(dev0, s_pkt_send, l, 1);
+#elif CHIP_MX6SL
+    imx_fec_send(dev0, s_pkt_send, l, 1);
+#endif
 
 #if ETH_PAD_SIZE
     pbuf_header(p, ETH_PAD_SIZE); /* reclaim the padding word */
@@ -210,7 +293,11 @@ low_level_input(struct netif *netif)
 
     /* Obtain the size of the packet and put it into the "len"
          variable. */
+#if CHIP_MX6DQ || CHIP_MX6SDL
     imx_enet_recv(dev0, s_pkt_recv, &len);
+#elif CHIP_MX6SL
+    imx_fec_recv(dev0, s_pkt_recv, &len);
+#endif
 
 #if ETH_PAD_SIZE
     len += ETH_PAD_SIZE; /* allow room for Ethernet padding */
@@ -306,12 +393,23 @@ enet_input(struct netif *netif)
 
 void enet_poll_for_packet(struct netif * netif)
 {
-    unsigned long enet_events = imx_enet_poll(dev0);
+    unsigned long enet_events;
+    
+#if CHIP_MX6DQ || CHIP_MX6SDL
+    enet_events = imx_enet_poll(dev0);
     
     if (enet_events & ENET_EVENT_RX)
     {
         enet_input(netif);
     }
+#elif CHIP_MX6SL
+    enet_events = imx_fec_poll(dev0);
+    
+    if (enet_events & FEC_EVENT_RX)
+    {
+        enet_input(netif);
+    }
+#endif
 }
 
 /**
@@ -329,15 +427,15 @@ void enet_poll_for_packet(struct netif * netif)
 err_t
 enet_init(struct netif *netif)
 {
-    struct enet *enet;
+//     struct enet *enet;
 
     LWIP_ASSERT("netif != NULL", (netif != NULL));
         
-    enet = mem_malloc(sizeof(struct enet));
-    if (enet == NULL) {
-        LWIP_DEBUGF(NETIF_DEBUG, ("enet_init: out of memory\n"));
-        return ERR_MEM;
-    }
+//     enet = mem_malloc(sizeof(struct enet));
+//     if (enet == NULL) {
+//         LWIP_DEBUGF(NETIF_DEBUG, ("enet_init: out of memory\n"));
+//         return ERR_MEM;
+//     }
 
 #if LWIP_NETIF_HOSTNAME
     /* Initialize interface hostname */
@@ -351,7 +449,8 @@ enet_init(struct netif *netif)
      */
     NETIF_INIT_SNMP(netif, snmp_ifType_ethernet_csmacd, 1000000);
 
-    netif->state = enet;
+//     netif->state = enet;
+    netif->state = NULL;
     netif->name[0] = IFNAME0;
     netif->name[1] = IFNAME1;
     /* We directly use etharp_output() here to save a function call.
@@ -364,7 +463,7 @@ enet_init(struct netif *netif)
 #endif /* LWIP_IPV6 */
     netif->linkoutput = low_level_output;
     
-    enet->ethaddr = (struct eth_addr *)&(netif->hwaddr[0]);
+//     enet->ethaddr = (struct eth_addr *)&(netif->hwaddr[0]);
     
     /* initialize the hardware */
     low_level_init(netif);

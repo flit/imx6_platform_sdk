@@ -37,6 +37,7 @@
 
 #include "sdk.h"
 #include "fec/fec.h"
+#include "fec_private.h"
 
 /*!
  *Global variable which defines the buffer descriptions for receiving frame

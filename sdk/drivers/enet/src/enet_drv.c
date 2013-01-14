@@ -37,6 +37,7 @@
 
 #include "sdk.h"
 #include "enet/enet.h"
+#include "enet_private.h"
 
 /*!
  *Global variable which defines the buffer descriptions for receiving frame

@@ -88,7 +88,7 @@
 #if CHIP_MX6DQ || CHIP_MX6SDL
 
 static imx_enet_priv_t enet0;
-static imx_enet_priv_t *dev0 = &enet0;
+imx_enet_priv_t *dev0 = &enet0;
 
 extern int imx_enet_mii_type(imx_enet_priv_t * dev, enum imx_mii_type mii_type);
 extern void imx_enet_iomux(void);
@@ -97,7 +97,7 @@ extern void imx_enet_phy_reset(void);
 #elif CHIP_MX6SL
 
 static imx_fec_priv_t fec0;
-static imx_fec_priv_t *dev0 = &fec0;
+imx_fec_priv_t *dev0 = &fec0;
 
 extern int imx_fec_mii_type(imx_fec_priv_t * dev, enum imx_mii_type mii_type);
 extern void imx_feciomux(void);
@@ -260,6 +260,7 @@ low_level_output(struct netif *netif, struct pbuf *p)
         l += q->len;
     }
 
+    printf("enetif: sending %d bytes\n", l);
 #if CHIP_MX6DQ || CHIP_MX6SDL
     imx_enet_send(dev0, s_pkt_send, l, 1);
 #elif CHIP_MX6SL
@@ -298,6 +299,7 @@ low_level_input(struct netif *netif)
 #elif CHIP_MX6SL
     imx_fec_recv(dev0, s_pkt_recv, &len);
 #endif
+    printf("enetif: received %d bytes\n", len);
 
 #if ETH_PAD_SIZE
     len += ETH_PAD_SIZE; /* allow room for Ethernet padding */
@@ -397,7 +399,10 @@ void enet_poll_for_packet(struct netif * netif)
     
 #if CHIP_MX6DQ || CHIP_MX6SDL
     enet_events = imx_enet_poll(dev0);
-    
+    if (enet_events)
+    {
+        printf("enet_events = 0x%x\n", enet_events);
+    }
     if (enet_events & ENET_EVENT_RX)
     {
         enet_input(netif);

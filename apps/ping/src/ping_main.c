@@ -33,6 +33,7 @@
 #include "iomux_config.h"
 #include "timer/timer.h"
 #include "ping.h"
+#include "enet/enet.h"
 
 #include "lwip/opt.h"
 #include "lwip/init.h"
@@ -54,6 +55,8 @@
 #include "mx6_lwip.h"
 
 #define CLOCKTICKS_PER_MS (1)
+
+extern imx_enet_priv_t *dev0;
 
 struct netif g_netif;
 ip_addr_t g_ping_target_addr;
@@ -78,6 +81,15 @@ void netif_link_status_callback(struct netif *netif)
 
 void init_lwip(void)
 {
+    // Set CTRL_3 high to power on the PHY.
+    max7310_set_gpio_output(0, 2, 0);
+    max7310_set_gpio_output(1, 3, 0);
+    hal_delay_us(100000);
+    max7310_set_gpio_output(1, 3, 1);
+    hal_delay_us(100000);
+    max7310_set_gpio_output(0, 2, 1);
+    
+    
     lwip_init();
 
     ip_addr_t addr;
@@ -98,6 +110,20 @@ void init_lwip(void)
 
     dns_init();
 
+    // Wait for link to come up.
+    printf("Waiting for link...\n");
+    while (true) 
+    {
+        uint32_t status = imx_enet_get_phy_status(dev0);
+        if (status & ENET_STATUS_LINK_ON)
+        {
+            printf("Ethernet link is up!\n");
+            break;
+        }
+        
+        hal_delay_us(100000); // 100 ms
+    }
+    
     // DHCP
     if (0)
     {
@@ -125,9 +151,13 @@ void run(void)
     uint32_t last_time = 0;
     uint32_t last_dhcp_coarse_time = 0;
     uint32_t last_dhcp_fine_time = 0;
+    uint32_t last_phy_status = 0;
+    uint32_t last_ping_sent = 0;
     
-    IP4_ADDR(&g_ping_target_addr, 10, 81, 4, 140);
-    ping_send_to(&g_ping_target_addr);
+    // Send ping.
+//     printf("Sending ping...\n");
+//     IP4_ADDR(&g_ping_target_addr, 10, 81, 4, 140);
+//     ping_send_to(&g_ping_target_addr);
     
     while (true)
     {
@@ -135,25 +165,38 @@ void run(void)
         enet_poll_for_packet(&g_netif);
 
         // Call timers.
-        if (sys_now() - last_arp_time >= ARP_TMR_INTERVAL * CLOCKTICKS_PER_MS)  
-        {  
-            etharp_tmr();  
-            last_arp_time = sys_now();  
-        }  
+        if (sys_now() - last_arp_time >= ARP_TMR_INTERVAL * CLOCKTICKS_PER_MS)
+        {
+            etharp_tmr();
+            last_arp_time = sys_now();
+        }
         if (sys_now() - last_time >= TCP_TMR_INTERVAL * CLOCKTICKS_PER_MS)
-        {  
-            tcp_tmr();  
-            last_time = sys_now();  
-        }      
+        {
+            tcp_tmr();
+            last_time = sys_now();
+        }
         if (sys_now() - last_dhcp_coarse_time >= DHCP_COARSE_TIMER_MSECS * CLOCKTICKS_PER_MS)
-        {  
-            dhcp_coarse_tmr();  
-            last_dhcp_coarse_time = sys_now();  
+        {
+            dhcp_coarse_tmr();
+            last_dhcp_coarse_time = sys_now();
         }
         if (sys_now() - last_dhcp_fine_time >= DHCP_FINE_TIMER_MSECS * CLOCKTICKS_PER_MS)
-        {  
-            dhcp_fine_tmr();  
-            last_dhcp_fine_time = sys_now();  
+        {
+            dhcp_fine_tmr();
+            last_dhcp_fine_time = sys_now();
+        }
+        if (sys_now() - last_phy_status >= 10000 * CLOCKTICKS_PER_MS)
+        {
+            imx_enet_get_phy_status(dev0);
+            last_phy_status = sys_now();
+        }
+        if (sys_now() - last_ping_sent >= 5000 * CLOCKTICKS_PER_MS)
+        {
+            printf("Sending ping...\n");
+            IP4_ADDR(&g_ping_target_addr, 10, 81, 4, 140);
+            ping_send_to(&g_ping_target_addr);
+
+            last_ping_sent = sys_now();
         }
     }
 }

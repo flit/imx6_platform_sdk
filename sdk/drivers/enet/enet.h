@@ -70,18 +70,19 @@ typedef struct imx_enet_bd imx_enet_bd_t;
 
 //! @brief  Data structure for ENET device
 typedef struct imx_enet_priv_s {
-    hw_enet_t *enet_reg;     /*the reister base address of ENET */
-    unsigned char phy_addr;     /*the address of PHY which associated with ENET controller */
-    unsigned char tx_busy;      /*0:free, 1:transmitting frame */
-    unsigned char res[2];
-    unsigned long status;       /*the status of ENET device:link-status etc. */
-    unsigned long tx_key;       /*save the key delivered from send function */
-    imx_enet_bd_t *rx_bd;       /*the receive buffer description ring */
-    imx_enet_bd_t *rx_cur;      /*the next recveive buffer description */
-    imx_enet_bd_t *tx_bd;       /*the transmit buffer description rign */
-    imx_enet_bd_t *tx_cur;      /*the next transmit buffer description */
-    /*TODO: Add interrupt about fields */
-    /*TODO: Add timer about fields */
+    hw_enet_t *enet_reg;        //!< the reister base address of ENET
+    uint8_t phy_addr;     //!< the address of PHY which associated with ENET controller 
+    uint32_t phy_id;            //!< ID of the PHY
+    uint8_t tx_busy;      //!< 0:free, 1:transmitting frame 
+    uint8_t res[2];
+    uint32_t status;       //!< the status of ENET device:link-status etc. 
+    uint32_t tx_key;       //!< save the key delivered from send function 
+    imx_enet_bd_t *rx_bd;       //!< the receive buffer description ring 
+    imx_enet_bd_t *rx_cur;      //!< the next recveive buffer description 
+    imx_enet_bd_t *tx_bd;       //!< the transmit buffer description rign 
+    imx_enet_bd_t *tx_cur;      //!< the next transmit buffer description 
+    // TODO: Add interrupt about fields 
+    // TODO: Add timer about fields 
 } imx_enet_priv_t;
 
 //! @brief Definitions of the status field of imx_enet_priv_t.
@@ -126,6 +127,14 @@ void imx_enet_stop(imx_enet_priv_t * dev);
  * @return      none
  */
 void imx_enet_phy_init(imx_enet_priv_t * dev);
+
+/*!
+ * @brief Reads the current status from the PHY.
+ * @param dev Pointer to the enet interface struct.
+ * @return Current status of the PHY. This is a bitmask composed of the ENET_STATUS_x enums,
+ *      such as #ENET_STATUS_LINK_ON and #ENET_STATUS_100M.
+ */
+uint32_t imx_enet_get_phy_status(imx_enet_priv_t * dev);
 
 /*! 
  * @brief Initialize ENET interface, including buffer descriptor and MAC

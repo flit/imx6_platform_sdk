@@ -293,39 +293,51 @@ void enet_phy_rework_ksz9021(imx_enet_priv_t * dev)
  */
 void imx_enet_phy_init(imx_enet_priv_t * dev)
 {
-    unsigned short value = 0, phy_type=0;
-    unsigned long id = 0, timeout = 50;
+    unsigned short value = 0;
+    unsigned long id = 0;//, timeout = 50;
 	
     imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_IDENTIFY_1, &value);
     id = (value & PHY_ID1_MASK) << PHY_ID1_SHIFT;
     imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_IDENTIFY_2, &value);
     id |= (value & PHY_ID2_MASK) << PHY_ID2_SHIFT;
-    switch (id & 0xfffffff0) {
-    case 0x00540088:
-        break;
-    case 0x0007c0c0:
-        printf("ENET LAN8700 PHY: ID=%lx\n", id);
-		phy_type = 0x10;
-        break;
-    case 0x0007c0f0:
-        printf("ENET LAN8720 PHY: ID=%lx\n", id);
-        break;
-    case 0x004dd070:
-        printf("ENET AR8031 PHY: ID=%lx\n", id);
-		enet_phy_rework_ar8031(dev);
-		phy_type = 0x20;
-        break;
-    case 0x00221610:
-        printf("ENET KSZ9021RN PHY: ID=%lx\n", id);
-		enet_phy_rework_ksz9021(dev);
-		phy_type = 0x30;
-        break;
-    default:
-        printf("[Warning] ENET not connect right PHY: ID=%lx\n", id);
+    switch (id & 0xfffffff0)
+    {
+        case 0x00540088:
+            break;
+        case PHY_LAN8700_ID:
+            printf("ENET LAN8700 PHY: ID=%lx\n", id);
+//             phy_type = 0x10;
+            break;
+        case PHY_LAN8720_ID:
+            printf("ENET LAN8720 PHY: ID=%lx\n", id);
+            break;
+        case PHY_AR8031_ID:
+            printf("ENET AR8031 PHY: ID=%lx\n", id);
+    // 		enet_phy_rework_ar8031(dev);
+//             phy_type = 0x20;
+            break;
+        case PHY_KSZ9021RN_ID:
+            printf("ENET KSZ9021RN PHY: ID=%lx\n", id);
+            enet_phy_rework_ksz9021(dev);
+//             phy_type = 0x30;
+            break;
+        default:
+            printf("[Warning] ENET not connect right PHY: ID=%lx\n", id);
     }
+    dev->phy_id = id;
 
+    // Reset PHY
+	imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_CTRL_REG, &value);
+	value |= PHY_CTRL_RESET;
+	imx_enet_mii_write(dev->enet_reg, dev->phy_addr, PHY_CTRL_REG, value);
+    
+    // Wait for reset to complete.
+    do {
+        imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_CTRL_REG, &value);
+    } while (value & PHY_CTRL_RESET);
+    
 	/* restart auto-negotiation */
-#if 0	
+#if 1	
 #if 1	
 	imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_CTRL_REG, &value);
 	value |= 0x1200;
@@ -336,23 +348,50 @@ void imx_enet_phy_init(imx_enet_priv_t * dev)
 #endif
 #endif
 
-    imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_STATUS_REG, &value);
-    printf("ENET phy status %x\n", value);
-    timeout = 5;
-    while ((0 == (value & PHY_STATUS_LINK_ST)) && (timeout > 0)) {
-        hal_delay_us(500000);
+//     imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_STATUS_REG, &value);
+//     printf("ENET phy status %x\n", value);
+//     timeout = 5;
+//     while ((0 == (value & PHY_STATUS_LINK_ST)) && (timeout > 0)) {
+//         hal_delay_us(500000);
+//         imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_STATUS_REG, &value);
+//         printf("enet phy status %0d: %04x\n", dev->phy_addr, value);    //  0x7809 or 0x782d
+//         timeout--;
+//     }
+    
+    // Read current PHY status.
+    imx_enet_get_phy_status(dev);
+}
+
+uint32_t imx_enet_get_phy_status(imx_enet_priv_t * dev)
+{
+    uint16_t value;
+    
+    // Reset saved status.
+    dev->status = 0;
+    
+//     imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_STATUS_REG, &value);
+//     printf("ENET phy status %x\n", value);
+//     timeout = 5;
+    
+//     while ((0 == (value & PHY_STATUS_LINK_ST)) && (timeout > 0)) {
+//         hal_delay_us(500000);
         imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_STATUS_REG, &value);
         printf("enet phy status %0d: %04x\n", dev->phy_addr, value);    //  0x7809 or 0x782d
-        timeout--;
-    }
-    if (value & PHY_STATUS_LINK_ST) {
+//         timeout--;
+//     }
+    if (value & PHY_STATUS_LINK_ST)
+    {
         dev->status |= ENET_STATUS_LINK_ON;
-    } else {
+    }
+    else
+    {
         dev->status &= ~ENET_STATUS_LINK_ON;
     }
-	if(phy_type == 0x20) {
+    
+	if (dev->phy_id == PHY_AR8031_ID)
+	{
 #if 0
-	    imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0x1b, &value);
+	    imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0x1b, &value); // Cable Diagnostic Tester (CDT)
 	    if (value & (1 << 2))
 	        dev->status |= ENET_STATUS_FULL_DPLX;
 	    else
@@ -365,7 +404,7 @@ void imx_enet_phy_init(imx_enet_priv_t * dev)
 	    else
 	        dev->status |= ENET_STATUS_10M;
 #else
-		imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0x11, &value);
+		imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0x11, &value); // PHY-Specific status reg
 		printf("AR8031 reg 0x11 = %04x\n", value);
 		if(value & (1<<13))
 			dev->status |= ENET_STATUS_FULL_DPLX;
@@ -379,7 +418,8 @@ void imx_enet_phy_init(imx_enet_priv_t * dev)
 	        dev->status |= ENET_STATUS_10M;
 #endif
 	}
-	else if (phy_type == 0x30) {
+	else if (dev->phy_id == PHY_KSZ9021RN_ID)
+	{
 		imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0x1f, &value);
 		printf("KSZ9021 reg 0x1f = %04x\n", value);
 		if (value & (1 << 3))
@@ -393,7 +433,8 @@ void imx_enet_phy_init(imx_enet_priv_t * dev)
 		else
 			dev->status |= ENET_STATUS_10M;
 	}
-	else {
+	else
+	{
 		if (value & 0xe000)
 			dev->status |= ENET_STATUS_100M;
 		else
@@ -409,7 +450,8 @@ void imx_enet_phy_init(imx_enet_priv_t * dev)
            (dev->status & ENET_STATUS_LINK_ON) ? "connected" : "disconnected",
            (dev->status & ENET_STATUS_1000M) ? "1000M bps" : (dev->status & ENET_STATUS_100M) ?
            "100M bps" : "10M bps");
-    return;
+
+    return dev->status;
 }
 
 unsigned long imx_enet_poll(imx_enet_priv_t * dev)

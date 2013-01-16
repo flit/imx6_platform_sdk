@@ -54,12 +54,13 @@
 
 #include "mx6_lwip.h"
 
-#define CLOCKTICKS_PER_MS (1)
-
-extern imx_enet_priv_t *dev0;
+#define PING_INTERVAL_MS (5000) //!< 5 seconds
 
 struct netif g_netif;
 ip_addr_t g_ping_target_addr;
+bool g_isNetifUp = false;
+
+const uint8_t kMACAddress[] = { 0x00, 0x04, 0x9f, 0x00, 0x00, 0x01 };
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code
@@ -68,19 +69,21 @@ ip_addr_t g_ping_target_addr;
 void netif_status_callback(struct netif *netif)
 {
     char buf[64];
-    bool isUp = (g_netif.flags & NETIF_FLAG_UP);
+    g_isNetifUp = (g_netif.flags & NETIF_FLAG_UP);
     printf("netif: %s (ip=%s)\n",
-        isUp ? "up" : "down",
+        g_isNetifUp ? "up" : "down",
         ipaddr_ntoa_r(&g_netif.ip_addr, buf, sizeof(buf)));
 }
 
 void netif_link_status_callback(struct netif *netif)
 {
-    printf("netif: link %s\n", (g_netif.flags & NETIF_FLAG_LINK_UP) ? "up" : "down");
+    bool isLinkUp = g_netif.flags & NETIF_FLAG_LINK_UP;
+    printf("netif: link %s\n", isLinkUp ? "up" : "down");
 }
 
 void init_lwip(void)
 {
+#if BOARD_EVB
     // Set CTRL_3 high to power on the PHY.
     max7310_set_gpio_output(0, 2, 0);
     max7310_set_gpio_output(1, 3, 0);
@@ -88,7 +91,7 @@ void init_lwip(void)
     max7310_set_gpio_output(1, 3, 1);
     hal_delay_us(100000);
     max7310_set_gpio_output(0, 2, 1);
-    
+#endif
     
     lwip_init();
 
@@ -103,6 +106,10 @@ void init_lwip(void)
     g_netif.hostname = "lwip";
 #endif
 
+    // Set the MAC address.
+    enet_set_mac(kMACAddress);
+
+    // Create the netif.
     netif_add(&g_netif, &addr, &netmask, &gw, NULL, enet_init, ethernet_input);
     netif_set_status_callback(&g_netif, netif_status_callback);
     netif_set_link_callback(&g_netif, netif_link_status_callback);
@@ -114,7 +121,7 @@ void init_lwip(void)
     printf("Waiting for link...\n");
     while (true) 
     {
-        uint32_t status = imx_enet_get_phy_status(dev0);
+        uint32_t status = imx_enet_get_phy_status(g_en0);
         if (status & ENET_STATUS_LINK_ON)
         {
             printf("Ethernet link is up!\n");
@@ -125,7 +132,7 @@ void init_lwip(void)
     }
     
     // DHCP
-    if (0)
+    if (1)
     {
         dhcp_start(&g_netif);
     }
@@ -147,56 +154,18 @@ void init_lwip(void)
 
 void run(void)
 {
-    uint32_t last_arp_time = 0;
-    uint32_t last_time = 0;
-    uint32_t last_dhcp_coarse_time = 0;
-    uint32_t last_dhcp_fine_time = 0;
-    uint32_t last_phy_status = 0;
     uint32_t last_ping_sent = 0;
-    
-    // Send ping.
-//     printf("Sending ping...\n");
-//     IP4_ADDR(&g_ping_target_addr, 10, 81, 4, 140);
-//     ping_send_to(&g_ping_target_addr);
     
     while (true)
     {
-        // Poll for incoming packet.
-        enet_poll_for_packet(&g_netif);
-
-        // Call timers.
-        if (sys_now() - last_arp_time >= ARP_TMR_INTERVAL * CLOCKTICKS_PER_MS)
-        {
-            etharp_tmr();
-            last_arp_time = sys_now();
-        }
-        if (sys_now() - last_time >= TCP_TMR_INTERVAL * CLOCKTICKS_PER_MS)
-        {
-            tcp_tmr();
-            last_time = sys_now();
-        }
-        if (sys_now() - last_dhcp_coarse_time >= DHCP_COARSE_TIMER_MSECS * CLOCKTICKS_PER_MS)
-        {
-            dhcp_coarse_tmr();
-            last_dhcp_coarse_time = sys_now();
-        }
-        if (sys_now() - last_dhcp_fine_time >= DHCP_FINE_TIMER_MSECS * CLOCKTICKS_PER_MS)
-        {
-            dhcp_fine_tmr();
-            last_dhcp_fine_time = sys_now();
-        }
-        if (sys_now() - last_phy_status >= 10000 * CLOCKTICKS_PER_MS)
-        {
-            imx_enet_get_phy_status(dev0);
-            last_phy_status = sys_now();
-        }
-        if (sys_now() - last_ping_sent >= 5000 * CLOCKTICKS_PER_MS)
+        mx6_run_lwip(&g_netif);
+        
+        // Only send pings after the link is up.
+        if (g_isNetifUp && check_and_update_ms_timer(&last_ping_sent, PING_INTERVAL_MS))
         {
             printf("Sending ping...\n");
             IP4_ADDR(&g_ping_target_addr, 10, 81, 4, 140);
             ping_send_to(&g_ping_target_addr);
-
-            last_ping_sent = sys_now();
         }
     }
 }
@@ -207,9 +176,6 @@ void main(void)
     init_lwip();
 
     run();
-
-    // Disable Ethernet.
-//     imx_enet_stop(dev0);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

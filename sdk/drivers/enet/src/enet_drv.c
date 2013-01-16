@@ -209,9 +209,9 @@ static void imx_enet_chip_init(imx_enet_priv_t * dev)
 void enet_phy_rework_ar8031(imx_enet_priv_t * dev)
 {
     unsigned short val = 0;
-#if 1
+#if 0
 	int i;
-    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1d, 0x1F);
+    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1d, 0x1F); // ?? unknown debug reg
     imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0x1e, &val);
     //printf("debug before 0x1F val = 0x%x\n", val);
     val |= 0x4;
@@ -219,9 +219,11 @@ void enet_phy_rework_ar8031(imx_enet_priv_t * dev)
     imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0x1e, &val);
     //printf("debug after 0x1F val = 0x%x\n", val);
 
-    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0xd, 0x7);
-    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0xe, 0x8016);
-    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0xd, 0x4007);
+    // Set CLK_25M Clock Select MDIO register
+    // select_clk25m = 3'b110 = 125 MHz from local PLL source
+    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0xd, 0x7); // MMD Access Control; device addr=7
+    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0xe, 0x8016); // MMD Access Address Data; reg=0x8016 (CLK_25M Clock Select)
+    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0xd, 0x4007); // MMD Access Control; func=data, device addr=7
     imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0xe, &val);
     //printf("debug read from 0x8016 val = 0x%x\n", val);
     val &= 0xffe3;
@@ -232,19 +234,20 @@ void enet_phy_rework_ar8031(imx_enet_priv_t * dev)
     for (i = 0; i < 100000; i++) ;
 
     //debug register 0x5[8]=1'b1 - suggest add 2ns GTX_CLK delay
-    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1d, 0x5);
+    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1d, 0x5); // debug reg 0x05 = SerDes Test and System Mode Control
     imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0x1e, &val);
-    val |= 0x0100;
+    val |= 0x0100; // bit 8 = RGMII_tx_clk_dly
     imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1e, val);
 
-    // Config to external loopback
-    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1d, 0xb);
+    // Disable hibernate
+    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1d, 0xb); // Hib Control and Auto-negotiation Test
     imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0x1e, &val);
-    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1e, 0x3c40);
+    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1e, 0x3c40); // disable hibernate
 
-    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1d, 0x11);
+    // Config to external loopback
+    imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1d, 0x11); // External Loopback selection
     imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0x1e, &val);
-    val |= 0x0001;
+    val |= 0x0001; // enable ext loopback
     imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1e, val);
 
 	// PHY AR8031 Integrated 10/100/1000 Gigabit
@@ -294,32 +297,32 @@ void enet_phy_rework_ksz9021(imx_enet_priv_t * dev)
 void imx_enet_phy_init(imx_enet_priv_t * dev)
 {
     unsigned short value = 0;
-    unsigned long id = 0;//, timeout = 50;
+    unsigned long id = 0;
 	
+	// Read PHY ID registers.
     imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_IDENTIFY_1, &value);
     id = (value & PHY_ID1_MASK) << PHY_ID1_SHIFT;
     imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_IDENTIFY_2, &value);
     id |= (value & PHY_ID2_MASK) << PHY_ID2_SHIFT;
-    switch (id & 0xfffffff0)
+    id &= 0xfffffff0; // mask off lower 4 bits
+    
+    switch (id)
     {
-        case 0x00540088:
+        case 0x00540088: // ?? PHY
             break;
         case PHY_LAN8700_ID:
             printf("ENET LAN8700 PHY: ID=%lx\n", id);
-//             phy_type = 0x10;
             break;
         case PHY_LAN8720_ID:
             printf("ENET LAN8720 PHY: ID=%lx\n", id);
             break;
         case PHY_AR8031_ID:
             printf("ENET AR8031 PHY: ID=%lx\n", id);
-    // 		enet_phy_rework_ar8031(dev);
-//             phy_type = 0x20;
+     		enet_phy_rework_ar8031(dev);
             break;
         case PHY_KSZ9021RN_ID:
             printf("ENET KSZ9021RN PHY: ID=%lx\n", id);
             enet_phy_rework_ksz9021(dev);
-//             phy_type = 0x30;
             break;
         default:
             printf("[Warning] ENET not connect right PHY: ID=%lx\n", id);
@@ -347,16 +350,6 @@ void imx_enet_phy_init(imx_enet_priv_t * dev)
     imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1f, value);
 #endif
 #endif
-
-//     imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_STATUS_REG, &value);
-//     printf("ENET phy status %x\n", value);
-//     timeout = 5;
-//     while ((0 == (value & PHY_STATUS_LINK_ST)) && (timeout > 0)) {
-//         hal_delay_us(500000);
-//         imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_STATUS_REG, &value);
-//         printf("enet phy status %0d: %04x\n", dev->phy_addr, value);    //  0x7809 or 0x782d
-//         timeout--;
-//     }
     
     // Read current PHY status.
     imx_enet_get_phy_status(dev);

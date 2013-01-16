@@ -70,6 +70,7 @@ lwip/src/netif/etharp.c
 lwip/src/netif/slipif.c
 mx6/sys_arch.c
 mx6/mx6_ethernetif.c
+mx6/mx6_lwip.c
 endef
 
 # Turn off this warning to get the lwIP sources to compile unmodified.

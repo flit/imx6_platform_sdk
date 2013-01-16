@@ -88,7 +88,7 @@
 #if CHIP_MX6DQ || CHIP_MX6SDL
 
 static imx_enet_priv_t enet0;
-imx_enet_priv_t *dev0 = &enet0;
+imx_enet_priv_t *g_en0 = &enet0;
 
 extern int imx_enet_mii_type(imx_enet_priv_t * dev, enum imx_mii_type mii_type);
 extern void imx_enet_iomux(void);
@@ -97,7 +97,7 @@ extern void imx_enet_phy_reset(void);
 #elif CHIP_MX6SL
 
 static imx_fec_priv_t fec0;
-imx_fec_priv_t *dev0 = &fec0;
+imx_fec_priv_t *g_en0 = &fec0;
 
 extern int imx_fec_mii_type(imx_fec_priv_t * dev, enum imx_mii_type mii_type);
 extern void imx_feciomux(void);
@@ -113,6 +113,11 @@ static unsigned char mac_addr0[6] = { 0x00, 0x04, 0x9f, 0x00, 0x00, 0x01 };
 static void  enet_input(struct netif *netif);
 
 
+void enet_set_mac(const uint8_t * macAddress)
+{
+    memcpy(mac_addr0, macAddress, sizeof(mac_addr0));
+}
+
 #if CHIP_MX6DQ || CHIP_MX6SDL
 
 void init_enet(void)
@@ -122,19 +127,19 @@ void init_enet(void)
     imx_enet_phy_reset();
 
     // init enet0
-    imx_enet_init(dev0, ENET_BASE_ADDR, ENET_PHY_ADDR);
-    imx_enet_mii_type(dev0, RGMII);
+    imx_enet_init(g_en0, ENET_BASE_ADDR, ENET_PHY_ADDR);
+    imx_enet_mii_type(g_en0, RGMII);
     
     // init phy0.
-    imx_enet_phy_init(dev0);
+    imx_enet_phy_init(g_en0);
 
     // Check PHY link status.
-    if (!(dev0->status & ENET_STATUS_LINK_ON))
+    if (!(g_en0->status & ENET_STATUS_LINK_ON))
     {
             printf("ENET link status check fail\n");
     }
 
-    imx_enet_start(dev0, mac_addr0);
+    imx_enet_start(g_en0, mac_addr0);
 }
 
 #elif CHIP_MX6SL
@@ -172,19 +177,19 @@ void init_fec(void)
     imx_fec_setup();
 
     // init fec0
-    imx_fec_init(dev0, REGS_FEC_BASE, 0);
-    imx_fec_mii_type(dev0, RMII);
+    imx_fec_init(g_en0, REGS_FEC_BASE, 0);
+    imx_fec_mii_type(g_en0, RMII);
     
     // init phy0.
-    imx_fec_phy_init(dev0);
+    imx_fec_phy_init(g_en0);
 
     // Check PHY link status.
-    if (!(dev0->status & FEC_STATUS_LINK_ON))
+    if (!(g_en0->status & FEC_STATUS_LINK_ON))
     {
             printf("FEC link status check fail\n");
     }
 
-    imx_fec_start(dev0, mac_addr0);
+    imx_fec_start(g_en0, mac_addr0);
 }
 
 #endif // CHIP_MX6SL
@@ -260,11 +265,11 @@ low_level_output(struct netif *netif, struct pbuf *p)
         l += q->len;
     }
 
-    printf("enetif: sending %d bytes\n", l);
+//     printf("enetif: sending %d bytes\n", l);
 #if CHIP_MX6DQ || CHIP_MX6SDL
-    imx_enet_send(dev0, s_pkt_send, l, 1);
+    imx_enet_send(g_en0, s_pkt_send, l, 1);
 #elif CHIP_MX6SL
-    imx_fec_send(dev0, s_pkt_send, l, 1);
+    imx_fec_send(g_en0, s_pkt_send, l, 1);
 #endif
 
 #if ETH_PAD_SIZE
@@ -295,11 +300,11 @@ low_level_input(struct netif *netif)
     /* Obtain the size of the packet and put it into the "len"
          variable. */
 #if CHIP_MX6DQ || CHIP_MX6SDL
-    imx_enet_recv(dev0, s_pkt_recv, &len);
+    imx_enet_recv(g_en0, s_pkt_recv, &len);
 #elif CHIP_MX6SL
-    imx_fec_recv(dev0, s_pkt_recv, &len);
+    imx_fec_recv(g_en0, s_pkt_recv, &len);
 #endif
-    printf("enetif: received %d bytes\n", len);
+//     printf("enetif: received %d bytes\n", len);
 
 #if ETH_PAD_SIZE
     len += ETH_PAD_SIZE; /* allow room for Ethernet padding */
@@ -398,17 +403,17 @@ void enet_poll_for_packet(struct netif * netif)
     unsigned long enet_events;
     
 #if CHIP_MX6DQ || CHIP_MX6SDL
-    enet_events = imx_enet_poll(dev0);
-    if (enet_events)
-    {
-        printf("enet_events = 0x%x\n", enet_events);
-    }
+    enet_events = imx_enet_poll(g_en0);
+//     if (enet_events)
+//     {
+//         printf("enet_events = 0x%x\n", enet_events);
+//     }
     if (enet_events & ENET_EVENT_RX)
     {
         enet_input(netif);
     }
 #elif CHIP_MX6SL
-    enet_events = imx_fec_poll(dev0);
+    enet_events = imx_fec_poll(g_en0);
     
     if (enet_events & FEC_EVENT_RX)
     {

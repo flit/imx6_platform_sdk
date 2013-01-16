@@ -75,7 +75,9 @@ void netif_status_callback(struct netif *netif)
 
 void netif_link_status_callback(struct netif *netif)
 {
-    printf("netif: link %s\n", (g_netif.flags & NETIF_FLAG_LINK_UP) ? "up" : "down");
+    bool isUp = (g_netif.flags & NETIF_FLAG_LINK_UP);
+    printf("netif: link %s\n",
+        isUp ? "up" : "down");
 }
 
 void init_lwip(void)
@@ -101,7 +103,7 @@ void init_lwip(void)
     dns_init();
 
     // DHCP
-    if (0)
+    if (1)
     {
         dhcp_start(&g_netif);
     }
@@ -121,51 +123,15 @@ void init_lwip(void)
     printf("TCP/IP initialized.\n");
 }
 
-void run(void)
-{
-    uint32_t last_arp_time = 0;
-    uint32_t last_time = 0;
-    uint32_t last_dhcp_coarse_time = 0;
-    uint32_t last_dhcp_fine_time = 0;
-    
-    while (true)
-    {
-        // Poll for incoming packet.
-        enet_poll_for_packet(&g_netif);
-
-        // Call timers.
-        if (sys_now() - last_arp_time >= ARP_TMR_INTERVAL * CLOCKTICKS_PER_MS)  
-        {  
-            etharp_tmr();  
-            last_arp_time = sys_now();  
-        }  
-        if (sys_now() - last_time >= TCP_TMR_INTERVAL * CLOCKTICKS_PER_MS)
-        {  
-            tcp_tmr();  
-            last_time = sys_now();  
-        }
-        if (sys_now() - last_dhcp_coarse_time >= DHCP_COARSE_TIMER_MSECS * CLOCKTICKS_PER_MS)
-        {  
-            dhcp_coarse_tmr();  
-            last_dhcp_coarse_time = sys_now();  
-        }
-        if (sys_now() - last_dhcp_fine_time >= DHCP_FINE_TIMER_MSECS * CLOCKTICKS_PER_MS)
-        {  
-            dhcp_fine_tmr();  
-            last_dhcp_fine_time = sys_now();  
-        }
-    }
-}
-
 void main(void)
 {
     platform_init();
     init_lwip();
 
-    run();
-
-    // Disable Ethernet.
-//     imx_enet_stop(dev0);
+    while (true)
+    {
+        mx6_run_lwip(&g_netif);
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -205,25 +205,28 @@ static void imx_fec_chip_init(imx_fec_priv_t * dev)
 void imx_fec_phy_init(imx_fec_priv_t * dev)
 {
     unsigned short value = 0;
-    unsigned long id = 0, timeout = 50;
+    unsigned long id = 0;
 	
 	/* read phy id */
     imx_fec_mii_read(dev->fec_reg, dev->phy_addr, PHY_IDENTIFY_1, &value);
     id = (value & PHY_ID1_MASK) << PHY_ID1_SHIFT;
     imx_fec_mii_read(dev->fec_reg, dev->phy_addr, PHY_IDENTIFY_2, &value);
     id |= (value & PHY_ID2_MASK) << PHY_ID2_SHIFT;
-    switch (id & 0xfffffff0) {
-    case 0x00540088:
-        break;
-    case 0x0007c0c0:
-        printf("FEC LAN8700 PHY: ID=%lx\n", id);
-        break;
-    case 0x0007c0f0:
-        printf("FEC LAN8720 PHY: ID=%lx\n", id);
-        break;
-    default:
-        printf("[Warning] FEC not connect right PHY: ID=%lx\n", id);
+    
+    switch (id & 0xfffffff0)
+    {
+        case 0x00540088:
+            break;
+        case PHY_LAN8700_ID:
+            printf("FEC LAN8700 PHY: ID=%lx\n", id);
+            break;
+        case PHY_LAN8720_ID:
+            printf("FEC LAN8720 PHY: ID=%lx\n", id);
+            break;
+        default:
+            printf("[Warning] FEC not connect right PHY: ID=%lx\n", id);
     }
+    dev->phy_id = id;
 
 	/* re-start Auto Neg */
     imx_fec_mii_read(dev->fec_reg, dev->phy_addr, PHY_CTRL_REG, &value);
@@ -231,15 +234,19 @@ void imx_fec_phy_init(imx_fec_priv_t * dev)
     imx_fec_mii_write(dev->fec_reg, dev->phy_addr, PHY_CTRL_REG, value);
 	
 	/* read phy status */
+	imx_fec_get_phy_status(dev);
+}
+
+uint32_t imx_fec_get_phy_status(imx_fec_priv_t * dev)
+{
+    uint16_t value;
+    
+    // Reset saved status.
+    dev->status = 0;
+    
     imx_fec_mii_read(dev->fec_reg, dev->phy_addr, PHY_STATUS_REG, &value);
-    printf("FEC phy status %x\n", value);
-    timeout = 5;
-    while ((0 == (value & PHY_STATUS_LINK_ST)) && (timeout > 0)) {
-        hal_delay_us(500000);
-        imx_fec_mii_read(dev->fec_reg, dev->phy_addr, PHY_STATUS_REG, &value);
-        printf("fec phy status %0d: %04x\n", dev->phy_addr, value);    //  0x7809 or 0x782d
-        timeout--;
-    }
+    printf("fec phy status %0d: %04x\n", dev->phy_addr, value);    //  0x7809 or 0x782d
+
     if (value & PHY_STATUS_LINK_ST) {
         dev->status |= FEC_STATUS_LINK_ON;
     } else {
@@ -254,12 +261,13 @@ void imx_fec_phy_init(imx_fec_priv_t * dev)
 	else
 		dev->status &= ~FEC_STATUS_FULL_DPLX;
 
-    printf("FEC %0d: [ %s ] [ %s ] [ %s ]:\n", dev->phy_addr,
-           (dev->status & FEC_STATUS_FULL_DPLX) ? "FULL_DUPLEX" : "HALF_DUPLEX",
-           (dev->status & FEC_STATUS_LINK_ON) ? "connected" : "disconnected",
-           (dev->status & FEC_STATUS_1000M) ? "1000M bps" : (dev->status & FEC_STATUS_100M) ?
-           "100M bps" : "10M bps");
-    return;
+//     printf("FEC %0d: [ %s ] [ %s ] [ %s ]:\n", dev->phy_addr,
+//            (dev->status & FEC_STATUS_FULL_DPLX) ? "FULL_DUPLEX" : "HALF_DUPLEX",
+//            (dev->status & FEC_STATUS_LINK_ON) ? "connected" : "disconnected",
+//            (dev->status & FEC_STATUS_1000M) ? "1000M bps" : (dev->status & FEC_STATUS_100M) ?
+//            "100M bps" : "10M bps");
+    
+    return dev->status;
 }
 
 unsigned long imx_fec_poll(imx_fec_priv_t * dev)

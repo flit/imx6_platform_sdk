@@ -162,6 +162,14 @@ typedef struct imx_fec_bd {
 
 #define MXC_FEC_PRIVATE(x)  ((imx_fec_priv_t *)(x)->driver_private)
 
+enum
+{
+    PHY_LAN8700_ID = 0x0007c0c0,
+    PHY_LAN8720_ID = 0x0007c0f0,
+    PHY_AR8031_ID = 0x004dd070,
+    PHY_KSZ9021RN_ID = 0x00221610
+};
+
 #define PHY_CTRL_REG        0x00
 
 #define PHY_CTRL_RESET      0x8000

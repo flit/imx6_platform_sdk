@@ -177,6 +177,11 @@ int imx_enet_recv(imx_enet_priv_t * dev, unsigned char *buf, int *length);
  */
 int imx_enet_send(imx_enet_priv_t * dev, unsigned char *buf, int length, unsigned long key);
 
+/*!
+ * @brief Switch the PHY to external loopback mode for testing.
+ */
+void imx_enet_phy_enable_external_loopback(imx_enet_priv_t * dev);
+
 #if defined(__cplusplus)
 }
 #endif

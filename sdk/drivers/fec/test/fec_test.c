@@ -140,6 +140,12 @@ test_return_t fec_test(void)
     //init phy0.
     imx_fec_phy_init(dev0);
 
+    printf("FEC %0d: [ %s ] [ %s ] [ %s ]:\n", dev0->phy_addr,
+           (dev0->status & FEC_STATUS_FULL_DPLX) ? "FULL_DUPLEX" : "HALF_DUPLEX",
+           (dev0->status & FEC_STATUS_LINK_ON) ? "connected" : "disconnected",
+           (dev0->status & FEC_STATUS_1000M) ? "1000M bps" : (dev0->status & FEC_STATUS_100M) ?
+           "100M bps" : "10M bps");
+
     //check phy status
     if (!(dev0->status & FEC_STATUS_LINK_ON)) {
         printf("%sFEC link status check fail\n", indent);

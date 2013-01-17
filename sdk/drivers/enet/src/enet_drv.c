@@ -362,16 +362,9 @@ uint32_t imx_enet_get_phy_status(imx_enet_priv_t * dev)
     // Reset saved status.
     dev->status = 0;
     
-//     imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_STATUS_REG, &value);
-//     printf("ENET phy status %x\n", value);
-//     timeout = 5;
-    
-//     while ((0 == (value & PHY_STATUS_LINK_ST)) && (timeout > 0)) {
-//         hal_delay_us(500000);
-        imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_STATUS_REG, &value);
-        printf("enet phy status %0d: %04x\n", dev->phy_addr, value);    //  0x7809 or 0x782d
-//         timeout--;
-//     }
+    imx_enet_mii_read(dev->enet_reg, dev->phy_addr, PHY_STATUS_REG, &value);
+    printf("enet phy status %0d: %04x\n", dev->phy_addr, value);    //  0x7809 or 0x782d
+
     if (value & PHY_STATUS_LINK_ST)
     {
         dev->status |= ENET_STATUS_LINK_ON;
@@ -438,13 +431,32 @@ uint32_t imx_enet_get_phy_status(imx_enet_priv_t * dev)
 			dev->status &= ~ENET_STATUS_FULL_DPLX;
 	}	
 	
-    printf("ENET %0d: [ %s ] [ %s ] [ %s ]:\n", dev->phy_addr,
-           (dev->status & ENET_STATUS_FULL_DPLX) ? "FULL_DUPLEX" : "HALF_DUPLEX",
-           (dev->status & ENET_STATUS_LINK_ON) ? "connected" : "disconnected",
-           (dev->status & ENET_STATUS_1000M) ? "1000M bps" : (dev->status & ENET_STATUS_100M) ?
-           "100M bps" : "10M bps");
+//     printf("ENET %0d: [ %s ] [ %s ] [ %s ]:\n", dev->phy_addr,
+//            (dev->status & ENET_STATUS_FULL_DPLX) ? "FULL_DUPLEX" : "HALF_DUPLEX",
+//            (dev->status & ENET_STATUS_LINK_ON) ? "connected" : "disconnected",
+//            (dev->status & ENET_STATUS_1000M) ? "1000M bps" : (dev->status & ENET_STATUS_100M) ?
+//            "100M bps" : "10M bps");
 
     return dev->status;
+}
+
+void imx_enet_phy_enable_external_loopback(imx_enet_priv_t * dev)
+{
+    uint16_t val;
+    
+    if (dev->phy_id == PHY_AR8031_ID)
+    {
+        // Disable hibernate
+        imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1d, 0xb); // Hib Control and Auto-negotiation Test
+        imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0x1e, &val);
+        imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1e, 0x3c40); // disable hibernate
+
+        // Config to external loopback
+        imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1d, 0x11); // External Loopback selection
+        imx_enet_mii_read(dev->enet_reg, dev->phy_addr, 0x1e, &val);
+        val |= 0x0001; // enable ext loopback
+        imx_enet_mii_write(dev->enet_reg, dev->phy_addr, 0x1e, val);
+    }
 }
 
 unsigned long imx_enet_poll(imx_enet_priv_t * dev)

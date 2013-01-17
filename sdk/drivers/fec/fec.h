@@ -70,18 +70,19 @@ typedef struct imx_fec_bd imx_fec_bd_t;
 
 //! @brief  Data structure for FEC device
 typedef struct imx_fec_priv_s {
-    hw_fec_t *fec_reg;     /*the reister base address of FEC */
-    unsigned char phy_addr;     /*the address of PHY which associated with FEC controller */
-    unsigned char tx_busy;      /*0:free, 1:transmitting frame */
+    hw_fec_t *fec_reg;     //!< the reister base address of FEC 
+    unsigned char phy_addr;     //!< the address of PHY which associated with FEC controller 
+    uint32_t phy_id;            //!< ID of the PHY
+    unsigned char tx_busy;      //!< 0:free, 1:transmitting frame 
     unsigned char res[2];
-    unsigned long status;       /*the status of FEC device:link-status etc. */
-    unsigned long tx_key;       /*save the key delivered from send function */
-    imx_fec_bd_t *rx_bd;       /*the receive buffer description ring */
-    imx_fec_bd_t *rx_cur;      /*the next recveive buffer description */
-    imx_fec_bd_t *tx_bd;       /*the transmit buffer description rign */
-    imx_fec_bd_t *tx_cur;      /*the next transmit buffer description */
-    /*TODO: Add interrupt about fields */
-    /*TODO: Add timer about fields */
+    unsigned long status;       //!< the status of FEC device:link-status etc. 
+    unsigned long tx_key;       //!< save the key delivered from send function 
+    imx_fec_bd_t *rx_bd;       //!< the receive buffer description ring 
+    imx_fec_bd_t *rx_cur;      //!< the next recveive buffer description 
+    imx_fec_bd_t *tx_bd;       //!< the transmit buffer description rign 
+    imx_fec_bd_t *tx_cur;      //!< the next transmit buffer description 
+    // TODO: Add interrupt about fields 
+    // TODO: Add timer about fields 
 } imx_fec_priv_t;
 
 //! @brief Definitions of the status field of imx_fec_priv_t.
@@ -126,6 +127,14 @@ void imx_fec_stop(imx_fec_priv_t * dev);
  * @return      none
  */
 void imx_fec_phy_init(imx_fec_priv_t * dev);
+
+/*!
+ * @brief Reads the current status from the PHY.
+ * @param dev Pointer to the enet interface struct.
+ * @return Current status of the PHY. This is a bitmask composed of the FEC_STATUS_x enums,
+ *      such as #FEC_STATUS_LINK_ON and #FEC_STATUS_100M.
+ */
+uint32_t imx_fec_get_phy_status(imx_fec_priv_t * dev);
 
 /*! 
  * @brief Initialize FEC interface, including buffer descriptor and MAC

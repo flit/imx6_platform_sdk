@@ -102,6 +102,25 @@ void init_lwip(void)
 
     dns_init();
 
+    // Wait for link to come up.
+    printf("Waiting for link...\n");
+    while (true) 
+    {
+#if CHIP_MX6DQ || CHIP_MX6SDL
+        uint32_t status = imx_enet_get_phy_status(g_en0);
+        if (status & ENET_STATUS_LINK_ON)
+#elif CHIP_MX6SL
+        uint32_t status = imx_fec_get_phy_status(g_en0);
+        if (status & FEC_STATUS_LINK_ON)
+#endif
+        {
+            printf("Ethernet link is up!\n");
+            break;
+        }
+        
+        hal_delay_us(100000); // 100 ms
+    }
+
     // DHCP
     if (1)
     {

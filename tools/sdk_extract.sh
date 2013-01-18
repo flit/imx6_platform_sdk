@@ -130,6 +130,7 @@ cat > "$ExcludesFile" <<***DONE-EXCLUDES***
 + /mk
 + /sdk
 + /tools
++ /lwip
 
 # Files in root to include.
 + /Makefile

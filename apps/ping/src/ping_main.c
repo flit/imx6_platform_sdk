@@ -56,8 +56,11 @@
 #define PING_INTERVAL_MS (5000) //!< 5 seconds
 
 struct netif g_netif;
+char * g_ping_target_hostname = NULL;
 ip_addr_t g_ping_target_addr;
 bool g_isNetifUp = false;
+bool g_isTargetValid = false;
+bool g_askedForName = false;
 
 const uint8_t kMACAddress[] = { 0x00, 0x04, 0x9f, 0x00, 0x00, 0x01 };
 
@@ -156,6 +159,37 @@ void init_lwip(void)
     printf("TCP/IP initialized.\n");
 }
 
+void dns_found(const char *name, ip_addr_t *ipaddr, void *callback_arg)
+{
+    if (ipaddr)
+    {
+        char buf[64];
+        printf("Resolved %s to %s\n", name,
+            ipaddr_ntoa_r(ipaddr, buf, sizeof(buf)));
+        
+        // Setting this flag will start pings.
+        g_isTargetValid = true;
+    }
+    else
+    {
+        printf("Could not resolve hostname %s\n", name);
+        g_askedForName = false;
+    }
+}
+
+void get_target_address(void)
+{
+    printf("\n== Ping test ==\n");
+    printf("Enter the target IP address or host name:\n");
+    printf("> ");
+    fflush(stdout);
+    
+    g_ping_target_hostname = read_input_string(NULL);
+    
+    // Convert name to IP.
+    dns_gethostbyname(g_ping_target_hostname, &g_ping_target_addr, dns_found, NULL);
+}
+
 void run(void)
 {
     uint32_t last_ping_sent = 0;
@@ -164,8 +198,15 @@ void run(void)
     {
         mx6_run_lwip(&g_netif);
         
+        // Once the netif is up, ask for the ping target.
+        if (g_isNetifUp && !g_askedForName)
+        {
+            g_askedForName = true;
+            get_target_address();
+        }
+        
         // Only send pings after the link is up.
-        if (g_isNetifUp && check_and_update_ms_timer(&last_ping_sent, PING_INTERVAL_MS))
+        if (g_isNetifUp && g_isTargetValid && check_and_update_ms_timer(&last_ping_sent, PING_INTERVAL_MS))
         {
             printf("Sending ping...\n");
             IP4_ADDR(&g_ping_target_addr, 10, 81, 4, 140);
@@ -177,6 +218,7 @@ void run(void)
 void main(void)
 {
     platform_init();
+    
     init_lwip();
 
     run();

@@ -141,6 +141,7 @@ char * read_input_string(input_string_filter_t filter)
         else if (c == kEscapeChar)
         {
             len = 0;
+            fputc('\n', stdout);
             break;
         }
         // Support both backspace and delete so it works regardless of terminal config.
@@ -150,6 +151,11 @@ char * read_input_string(input_string_filter_t filter)
             {
                 result[--len] = 0;
             }
+            
+            // Erase the char.
+            fputc(c, stdout);
+            fputc(' ', stdout);
+            fputc(c, stdout);
             
             continue;
         }

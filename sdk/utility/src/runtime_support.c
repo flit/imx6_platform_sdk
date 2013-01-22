@@ -29,18 +29,19 @@
  */
 
 /*!
- * @file  system_util.c
- * @brief The system utility functions for the environment.
+ * @file  runtime_support.c
+ * @brief Support routines for the newlib C Standard Library implementation.
  *
  * @ingroup diag_util
  */
 
 #include <reent.h>
 #include <sys/stat.h>
-#include <time.h>
+#include <sys/time.h>
 #include <errno.h>
 #include "uart/imx_uart.h"
 #include "sdk.h"
+#include "timer/timer.h"
 
 //! Set this define to 1 to have _write() convert LF line endings to CRLF
 #define CONVERT_LF_TO_CRLF 1
@@ -299,8 +300,14 @@ clock_t _times(struct tms *buf)
 
 int _gettimeofday(struct timeval *ptimeval, void *ptimezone)
 {
-    errno = EINVAL;
-    return -1;
+    if (ptimeval)
+    {
+        uint64_t us = time_get_microseconds();
+        ptimeval->tv_sec = us / 1000000;
+        ptimeval->tv_usec = us - ptimeval->tv_sec;
+    }
+    
+    return 0;
 }
 
 int _wait(int *status)

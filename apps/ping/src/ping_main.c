@@ -53,14 +53,23 @@
 
 #include "mx6_lwip.h"
 
-#define PING_INTERVAL_MS (5000) //!< 5 seconds
+#define PING_INTERVAL_MS (1000) //!< 1 second
+
+enum _fsm_states
+{
+    kInitingState,
+    kAskForTargetState,
+    kSendPingState,
+    kWaitState,
+    kPauseBetweenPingsState
+};
 
 struct netif g_netif;
+char g_buf[64];
 char * g_ping_target_hostname = NULL;
 ip_addr_t g_ping_target_addr;
+int g_state = kInitingState;
 bool g_isNetifUp = false;
-bool g_isTargetValid = false;
-bool g_askedForName = false;
 
 const uint8_t kMACAddress[] = { 0x00, 0x04, 0x9f, 0x00, 0x00, 0x01 };
 
@@ -70,11 +79,12 @@ const uint8_t kMACAddress[] = { 0x00, 0x04, 0x9f, 0x00, 0x00, 0x01 };
 
 void netif_status_callback(struct netif *netif)
 {
-    char buf[64];
     g_isNetifUp = (g_netif.flags & NETIF_FLAG_UP);
     printf("netif: %s (ip=%s)\n",
         g_isNetifUp ? "up" : "down",
-        ipaddr_ntoa_r(&g_netif.ip_addr, buf, sizeof(buf)));
+        ipaddr_ntoa_r(&g_netif.ip_addr, g_buf, sizeof(g_buf)));
+    
+    g_state = kAskForTargetState;
 }
 
 void netif_link_status_callback(struct netif *netif)
@@ -100,9 +110,9 @@ void init_lwip(void)
     ip_addr_t addr;
     ip_addr_t netmask;
     ip_addr_t gw;
-    IP4_ADDR(&addr, 10, 81, 4, 142); //192, 168, 10, 159);
+    IP4_ADDR(&addr, 192, 168, 10, 159);
     IP4_ADDR(&netmask, 255, 255, 255, 0);
-    IP4_ADDR(&gw, 10, 81, 7, 254); //192, 168, 10, 200);
+    IP4_ADDR(&gw, 192, 168, 10, 200);
 
 #if LWIP_NETIF_HOSTNAME
     g_netif.hostname = "lwip";
@@ -163,17 +173,16 @@ void dns_found(const char *name, ip_addr_t *ipaddr, void *callback_arg)
 {
     if (ipaddr)
     {
-        char buf[64];
         printf("Resolved %s to %s\n", name,
-            ipaddr_ntoa_r(ipaddr, buf, sizeof(buf)));
+            ipaddr_ntoa_r(ipaddr, g_buf, sizeof(g_buf)));
         
         // Setting this flag will start pings.
-        g_isTargetValid = true;
+        g_state = kSendPingState;
     }
     else
     {
         printf("Could not resolve hostname %s\n", name);
-        g_askedForName = false;
+        g_state = kAskForTargetState;
     }
 }
 
@@ -190,6 +199,20 @@ void get_target_address(void)
     dns_gethostbyname(g_ping_target_hostname, &g_ping_target_addr, dns_found, NULL);
 }
 
+void ping_received(const struct icmp_echo_hdr * echo, const ip_addr_t *addr, int elapsed)
+{
+    if (echo)
+    {
+        printf("ping: recv seq=%d %d ms\n", ntohs(echo->seqno), elapsed);
+    }
+    else
+    {
+        printf("ping: timed out\n");
+    }
+    
+    g_state = kPauseBetweenPingsState;
+}
+
 void run(void)
 {
     uint32_t last_ping_sent = 0;
@@ -198,19 +221,35 @@ void run(void)
     {
         mx6_run_lwip(&g_netif);
         
-        // Once the netif is up, ask for the ping target.
-        if (g_isNetifUp && !g_askedForName)
+        switch (g_state)
         {
-            g_askedForName = true;
-            get_target_address();
-        }
-        
-        // Only send pings after the link is up.
-        if (g_isNetifUp && g_isTargetValid && check_and_update_ms_timer(&last_ping_sent, PING_INTERVAL_MS))
-        {
-            printf("Sending ping...\n");
-            IP4_ADDR(&g_ping_target_addr, 10, 81, 4, 140);
-            ping_send_to(&g_ping_target_addr);
+            // Do nothing while waiting for netif to come up.
+            case kInitingState:
+                break;
+                
+            case kAskForTargetState:
+                get_target_address();
+                g_state = kWaitState;
+                break;
+            
+            // Wait for either DNS response or ping reply.
+            case kWaitState:
+                break;
+            
+            case kSendPingState:
+                IP4_ADDR(&g_ping_target_addr, 10, 81, 4, 140);
+                ping_send_to(&g_ping_target_addr, ping_received);
+
+                last_ping_sent = sys_now();
+                g_state = kWaitState;
+                break;
+            
+            case kPauseBetweenPingsState:
+                if (check_and_update_ms_timer(&last_ping_sent, PING_INTERVAL_MS))
+                {
+                    g_state = kSendPingState;
+                }
+                break;
         }
     }
 }

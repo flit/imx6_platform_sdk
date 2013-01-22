@@ -141,9 +141,13 @@ cat > "$ExcludesFile" <<***DONE-EXCLUDES***
 # Now exclude all other root files and directories.
 - /*
 
-# Remove documentation source files.
+# Remove documentation source files and doxygen output.
 - doc/*.docx
 - doc/html
+- lwip/html
+
+# include prebuilt .o files in the gpu_demo
++ /apps/gpu_demo/src/*.o
 
 # excludes based on file extension
 - *.o
@@ -175,15 +179,16 @@ cat > "$ExcludesFile" <<***DONE-EXCLUDES***
 # exclude the output directory
 - /output
 
-# exclude obds for now
-- apps/obds
-
 # Exclude mx53 stuff
 - sdma_script_code_mx53.h
 
 # Exclude perfmon
 - perfmon_imx.h
 - **/perfmon/
+
+# Exclude ports for other chips in lwip contrib
+- /lwip/contrib/ports/blackfin
+- /lwip/contrib/ports/c674x
 
 # Exclude Silicon Image sources
 - sdk/common/hdmi_transmitter
@@ -256,7 +261,7 @@ if [ $bArchive == $ARCHIVE ]; then
     pushd $ReleaseDir
 
     # construct archive file names
-    tarball_sdk="platform_sdk_${Version}_release.tar.gz"
+    tarball_sdk="platform_sdk_${Version}_release.tgz"
     zip_sdk="platform_sdk_${Version}_release.zip"
 
     # tar/gz everything

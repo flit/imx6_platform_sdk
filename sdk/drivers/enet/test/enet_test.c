@@ -117,6 +117,14 @@ int enet_test(void)
     imx_enet_mii_type(dev0, RGMII);
     //init phy0.
     imx_enet_phy_init(dev0);
+    
+    imx_enet_phy_enable_external_loopback(dev0);
+
+    printf("ENET %0d: [ %s ] [ %s ] [ %s ]:\n", dev0->phy_addr,
+           (dev0->status & ENET_STATUS_FULL_DPLX) ? "FULL_DUPLEX" : "HALF_DUPLEX",
+           (dev0->status & ENET_STATUS_LINK_ON) ? "connected" : "disconnected",
+           (dev0->status & ENET_STATUS_1000M) ? "1000M bps" : (dev0->status & ENET_STATUS_100M) ?
+           "100M bps" : "10M bps");
 
     //check phy status
     if (!(dev0->status & ENET_STATUS_LINK_ON)) {

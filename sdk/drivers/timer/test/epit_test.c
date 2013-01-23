@@ -39,6 +39,7 @@
 #include "timer/epit.h"
 #include "timer/timer.h"
 #include "epit_test.h"
+#include "registers/regsepit.h"
 
 static volatile uint8_t g_wait_for_irq;
 
@@ -97,16 +98,8 @@ void epit_delay_test(void)
     };
 }
 
-/* EPIT2 port is free for i.MX6DQ/SDL and i.MX53 SDK as EPIT1 is used
-   for a global delay function */
-static hw_module_t g_tick_timer = {
-    "EPIT2 for system tick",
-    2,
-    EPIT2_BASE_ADDR,
-    27000000,
-    IMX_INT_EPIT2,
-    &tick_timer_interrupt_routine,
-};
+/* epit instance for system tick */
+static uint32_t epit_instance = HW_EPIT2;
 
 /*! 
  * Tick timer interrupt handler.
@@ -115,7 +108,7 @@ void tick_timer_interrupt_routine(void)
 {
     g_wait_for_irq = 0;
     /* clear the compare event flag */
-    epit_get_compare_event(&g_tick_timer);
+    epit_get_compare_event(epit_instance);
 }
 
 /*!
@@ -128,19 +121,20 @@ void epit_tick_test(void)
     uint32_t counter = 0;
     /* stops after xx seconds */
     uint32_t max_duration = 10;
+    uint32_t freq = 0;
 
     printf("EPIT is programmed to generate an interrupt every 10ms as a tick timer.\n");
-    printf("The test exists after %d seconds.\n",max_duration);
+    printf("The test exits after %d seconds.\n",max_duration);
 
     /* Initialize the EPIT timer used for tick timer. An interrupt
        is generated every 10ms */
     /* typical IPG_CLK is in MHz, so divide it to get a reference
        clock of 1MHz => 1us per count */
-    g_tick_timer.freq = get_main_clock(IPG_CLK);
-    epit_init(&g_tick_timer, CLKSRC_IPG_CLK, g_tick_timer.freq/1000000,
+    freq = get_main_clock(IPG_CLK);
+    epit_init(epit_instance, CLKSRC_IPG_CLK, freq/1000000,
               SET_AND_FORGET, 10000, WAIT_MODE_EN | STOP_MODE_EN);
-    epit_setup_interrupt(&g_tick_timer, TRUE);
-    epit_counter_enable(&g_tick_timer, 10000, IRQ_MODE);
+    epit_setup_interrupt(epit_instance, tick_timer_interrupt_routine, TRUE);
+    epit_counter_enable(epit_instance, 10000, IRQ_MODE);
 
     while ((counter/100) != max_duration) {
         g_wait_for_irq = 1;
@@ -151,5 +145,5 @@ void epit_tick_test(void)
             printf("Elapsed time %d seconds <=> %d ticks.\n", counter/100, counter);
     };
 
-    epit_counter_disable(&g_tick_timer);
+    epit_counter_disable(epit_instance);
 }

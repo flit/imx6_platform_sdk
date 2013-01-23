@@ -31,6 +31,8 @@
 #ifndef _OS_FILESYSTEM_ERRORDEFS_H
 #define _OS_FILESYSTEM_ERRORDEFS_H
 
+#include "sdk_types.h"
+
 ///////////////////////////////////////////////////////////////////////////////
 //! \addtogroup os_fat_errors
 //! \ingroup os_fat
@@ -64,13 +66,6 @@
 typedef int32_t RtStatus_t;
 #endif
 #endif
-
-//! @name Generic errors
-//@{
-#define SUCCESS                         (0x00000000)
-#define ERROR_GENERIC                          (-1)
-#define ERROR_OUT_OF_MEMORY             (0xfffffffe)
-//@}
 
 //! @name Error mask
 //@{

@@ -33,7 +33,7 @@
  *
  * @brief VPU system ioctrl definition
  *
- * @ingroup VPU
+ * @ingroup diag_vpu
  */
 
 #ifndef __VPU__IO__H
@@ -41,35 +41,117 @@
 
 #include "sdk.h"
 
-/*!
- * @brief  vpu memory description structure
- */
+//! @addtogroup diag_vpu
+//! @{
+
+//////////////////////////////////////////////////////////////////////////////
+// DEFINITIONS
+//////////////////////////////////////////////////////////////////////////////
+
+//! @brief  vpu memory description structure
 typedef struct vpu_mem_desc {
     int size;                   /*!requested memory size */
-    unsigned long phy_addr;     /*!physical memory address allocated */
-    unsigned long virt_addr;    /*!virtual user space address */
+    uint32_t phy_addr;          /*!physical memory address allocated */
+    uint32_t virt_addr;         /*!virtual user space address */
 } vpu_mem_desc;
 
-typedef struct iram_t {
-    unsigned long start;
-    unsigned long end;
+//! @brief  vpu iram usage structure
+typedef struct iram_s {
+    uint32_t start;
+    uint32_t end;
 } iram_t;
 
+//////////////////////////////////////////////////////////////////////////////
+// API
+//////////////////////////////////////////////////////////////////////////////
+
+/*!
+ * @brief IO system initialization.
+ * before starting the codec, this function must be called first.
+ * the work buffer address and vpu base address are settled here
+ *
+ * @return 0 for success others for failure
+ */
 int vpu_io_init(void);
+
+/*!
+ * @brief IO system shut down.
+ *
+ * When user wants to stop the codec system, this
+ * function call is needed, to release the interrupt
+ * signal, free the working buffer/code buffer/parameter
+ * buffer, unmap the register into user space, and
+ * close the codec device.
+ *
+ * @return
+ * @li   0	IO init success.
+ * @li   -1 IO uninit failure.
+ */
 int vpu_io_uninit(void);
+
+/*!
+ * @brief Allocated buffer of requested size
+ * When user wants to get massive memory for the system, they needs to fill
+ * the required size in buff structure, and if this function succeeds in
+ * allocating memory and returns 0, the returned physical memory is filled in
+ * phy_addr of buff structure. If the function fails and return -1,
+ * the phy_addr remains the same as before.
+ *
+ * @param buff	the structure contains the memory information to be retrieved;
+ *
+ * @return
+ * @li 0		Allocation memory success.
+ * @li -1		Allocation memory failure.
+ */
 int vpu_malloc(vpu_mem_desc * buff);
+
+/*!
+ * @brief Free specified memory
+ * When user wants to free massive memory for the system,
+ * they needs to fill the physical address and size to be freed
+ * in buff structure.
+ *
+ * @param buff	the structure containing memory information to be freed;
+ *
+ * @return
+ * @li 0            Freeing memory success.
+ * @li -1		Freeing memory failure.
+ */
 int vpu_codec_io_deinit(void);
-int IOWaitForInt(int timeout_in_ms);
-int IOGetIramBase(iram_t * iram);
-int IOGetPhyShareMem(vpu_mem_desc * buff);
-int IOFreePhyPicParaMem(vpu_mem_desc * buff);
-int IOFreePhyUserDataMem(vpu_mem_desc * buff);
-int IOSysSWReset(void);
 
-unsigned long vpu_reg_write(unsigned long addr, unsigned int data);
-unsigned long vpu_reg_read(unsigned long addr);
+/*!
+ * @brief Write VPU registers
+ * 
+ * @param addr register address
+ * @param data register value
+ */
+void vpu_reg_write(uint32_t addr, uint32_t data);
 
+/*!
+ * @brief Write VPU registers
+ * 
+ * @param addr register address
+ *
+ * @return data register value
+ */
+uint32_t vpu_reg_read(uint32_t addr);
+
+/*!
+ * @brief When the system starts up, resetting is needed in advance.
+ */
 void vpu_reset(void);
+
+/*!
+ * @brief Check is VPU is initialized by checking the PC.
+ *
+ * @return 1 for initialized, 0 for uninitialized
+ */
 int vpu_is_initialized(void);
 
+//! @}
+
 #endif
+
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////

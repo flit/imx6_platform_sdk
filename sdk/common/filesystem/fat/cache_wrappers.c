@@ -45,11 +45,12 @@
 #include "usdhc/usdhc_ifc.h"
 #include <assert.h>
 
-extern uint32_t g_usdhc_instance;
+uint32_t g_usdhc_instance = HW_USDHC3;
 extern int totalFileOpened;
-
+int cache_line = 32;
 typedef struct fat_cache_s {
     uint8_t *buffer;
+    uint8_t *token;             // for memory release
     int32_t sector;
     bool isValid;
     int32_t refIndex;
@@ -87,10 +88,13 @@ fat_cache_t *fatCacheAllocate(int32_t sector)
     if (!FatCache)
         return NULL;
 
-    FatCache->buffer = (uint8_t *) malloc(512);
-    if (!FatCache->buffer) {
+    FatCache->token = (uint8_t *) malloc(512 + 2 * cache_line);
+    if (!FatCache->token) {
         free(FatCache);
         return NULL;
+    } else {
+        FatCache->buffer =
+            (uint8_t *) (((uint32_t) FatCache->token + cache_line) & (~(cache_line - 1)));
     }
     FatCache->sector = sector;
     FatCache->refIndex = totalFileOpened;
@@ -199,7 +203,7 @@ void fatCacheRelease(void *FatCache)
     updateFatCacheRefIndex(tmpFatCache->refIndex);
 
     /*free the cache memory */
-    free(tmpFatCache->buffer);
+    free(tmpFatCache->token);
     free(tmpFatCache);
 }
 
@@ -238,24 +242,17 @@ void print_media_fat_info(uint32_t DeviceNum)
 
 RtStatus_t FsFlushCache(void *cache)
 {
-    int usdhc_status = 0, sectorSize = 512;
+    int sectorSize = 512;
     fat_cache_t *fatCache = (fat_cache_t *) cache;
 
     if (fatCache->isValid == FALSE)
         return SUCCESS;
 
-    while (1) {
-        card_xfer_result(g_usdhc_instance, &usdhc_status);
-        if (usdhc_status == 1)
-            break;
-    }
+    card_wait_xfer_done(g_usdhc_instance);
     card_data_write(g_usdhc_instance, (int *)fatCache->buffer, sectorSize,
                     fatCache->sector * sectorSize);
-    while (1) {
-        card_xfer_result(g_usdhc_instance, &usdhc_status);
-        if (usdhc_status == 1)
-            break;
-    }
+    card_wait_xfer_done(g_usdhc_instance);
+
     fatCache->isValid = FALSE;
 
     return SUCCESS;
@@ -272,9 +269,7 @@ RtStatus_t FSWriteSector(int32_t deviceNumber, int32_t sectorNumber, int32_t des
     uint8_t *buffer;
     int writeSize = 0;
     int destAddrOffset = (sectorNumber + g_u32MbrStartSector) * sectorSize;
-    int usdhc_status = 0;
 
-#if 1
     // Handle FAT cache.
     bool isFat = false;
     isFat = IsFATSector(deviceNumber, sectorNumber + g_u32MbrStartSector);
@@ -293,76 +288,43 @@ RtStatus_t FSWriteSector(int32_t deviceNumber, int32_t sectorNumber, int32_t des
                        (uint8_t *) (sourceBuffer + sourceOffset), numBytesToWrite);
                 return SUCCESS;
             } else {
-                while (1) {
-                    card_xfer_result(g_usdhc_instance, &usdhc_status);
-                    if (usdhc_status == 1)
-                        break;
-                }
+                card_wait_xfer_done(g_usdhc_instance);
                 status =
                     card_data_read(g_usdhc_instance, (int *)fatCache->buffer, writeSize,
                                    destAddrOffset);
+                card_wait_xfer_done(g_usdhc_instance);
                 memcpy((uint8_t *) ((uint32_t) fatCache->buffer + destOffset),
                        (uint8_t *) (sourceBuffer + sourceOffset), numBytesToWrite);
                 return SUCCESS;
             }
         } else {
-            buffer = (uint8_t *) malloc(sectorSize);
-            if (!buffer)
+            uint8_t *buffer_token = (uint8_t *) malloc(sectorSize + 2 * cache_line);
+            if (!buffer_token) {
                 return FAIL;
+            } else {
+                buffer = (uint8_t *) (((uint32_t) buffer_token + cache_line) & (~(cache_line - 1)));
+            }
+
+            card_wait_xfer_done(g_usdhc_instance);
             status = card_data_read(g_usdhc_instance, (int *)buffer, writeSize, destAddrOffset);
+            card_wait_xfer_done(g_usdhc_instance);
 
             memcpy((uint8_t *) ((uint32_t) buffer + destOffset),
                    (uint8_t *) (sourceBuffer + sourceOffset), numBytesToWrite);
             status = card_data_write(g_usdhc_instance, (int *)buffer, writeSize, destAddrOffset);
-
-            //wait write done then we can release the buffer
-            while (1) {
-                card_xfer_result(g_usdhc_instance, &usdhc_status);
-                if (usdhc_status == 1)
-                    break;
-            }
-            free(buffer);
+            card_wait_xfer_done(g_usdhc_instance);
+            free(buffer_token);
         }
     } else {
         writeSize = numBytesToWrite;
-        while (1) {
-            card_xfer_result(g_usdhc_instance, &usdhc_status);
-            if (usdhc_status == 1)
-                break;
-        }
+        card_wait_xfer_done(g_usdhc_instance);
         status =
             card_data_write(g_usdhc_instance, (int *)(sourceBuffer + sourceOffset), writeSize,
                             destAddrOffset);
+        card_wait_xfer_done(g_usdhc_instance);  // wait tranfer done is import since the buffer will be release after return
 
     }
-#else
-    if ((numBytesToWrite % sectorSize) || destOffset) {
-        writeSize = ((destOffset + numBytesToWrite) / sectorSize + ((destOffset + numBytesToWrite) % sectorSize ? 1 : 0)) * sectorSize; // this is for single sector reading
 
-        buffer = (uint8_t *) malloc(writeSize);
-        if (!buffer)
-            return FAIL;
-        status = card_data_read(g_usdhc_instance, (int *)buffer, writeSize, destAddrOffset);
-
-        memcpy((uint8_t *) ((uint32_t) buffer + destOffset),
-               (uint8_t *) (sourceBuffer + sourceOffset), numBytesToWrite);
-        status = card_data_write(g_usdhc_instance, (int *)buffer, writeSize, destAddrOffset);
-
-        //wait write done then we can release the buffer
-        while (1) {
-            card_xfer_result(g_usdhc_instance, &usdhc_status);
-            if (usdhc_status == 1)
-                break;
-        }
-        free(buffer);
-    } else {
-        writeSize = numBytesToWrite;
-        status =
-            card_data_write(g_usdhc_instance, (int *)(sourceBuffer + sourceOffset), writeSize,
-                            destAddrOffset);
-
-    }
-#endif
     status = SUCCESS;
 
     return status;
@@ -377,8 +339,10 @@ RtStatus_t FSWriteMultiSectors(int32_t deviceNumber, int32_t sectorNumber, int32
     uint32_t actualSectorNumber = sectorNumber + g_u32MbrStartSector;
     uint32_t sectorSize = MediaTable[deviceNumber].BytesPerSector;
 
+    card_wait_xfer_done(g_usdhc_instance);
     status = card_data_write(g_usdhc_instance, (int *)buffer, size,
                              actualSectorNumber * sectorSize);
+    card_wait_xfer_done(g_usdhc_instance);
 
     return SUCCESS;
 }
@@ -391,7 +355,12 @@ RtStatus_t FSEraseSector(int32_t deviceNumber, int32_t sectorNumber)
 
     // Acquire a buffer to hold the empty sector.
     uint32_t bufferSize = MediaTable[deviceNumber].BytesPerSector;
-    buffer = (uint8_t *) malloc(bufferSize);
+    uint8_t *buffer_token = (uint8_t *) malloc(bufferSize + 2 * cache_line);
+    if (!buffer_token) {
+        return FAIL;
+    } else {
+        buffer = (uint8_t *) (((uint32_t) buffer_token + cache_line) & (~(cache_line - 1)));
+    }
 
     // Clear the sector buffer to all zeroes.
     memset(buffer, 0, MediaTable[deviceNumber].BytesPerSector);
@@ -399,7 +368,7 @@ RtStatus_t FSEraseSector(int32_t deviceNumber, int32_t sectorNumber)
     status = FSWriteSector(deviceNumber, sectorNumber, 0, buffer, 0, bufferSize, 0);
 
     // Let go of the sector buffer.
-    free(buffer);
+    free(buffer_token);
 
     return status;
 }
@@ -427,17 +396,24 @@ int32_t *FSReadSector(int32_t deviceNumber, int32_t sectorNumber, int32_t writeT
             buffer = fatCache->buffer;
     } else {
         /* Not a fat sector, allocate a new buffer that will be released by FSReleaseSector() */
-        buffer = (uint8_t *) malloc(sectorSize);
-        *token = (uint32_t) buffer;
+        buffer = (uint8_t *) malloc(sectorSize + 2 * cache_line);
+        if (!buffer) {
+            return NULL;
+        } else {
+            *token = (uint32_t) buffer;
+            buffer = (uint8_t *) ((*token + cache_line) & (~(cache_line - 1))); // align the buffer
+        }
     }
 
+    card_wait_xfer_done(g_usdhc_instance);
     status = card_data_read(g_usdhc_instance, (int *)buffer, sectorSize,
                             actualSectorNumber * sectorSize);
+    card_wait_xfer_done(g_usdhc_instance);
 
     // Give the caller the token so they can release the cache entry.
     if (status) {
         if (!isFat) {
-            free(buffer);
+            free((void *)(*token));
         }
         // An error occurred, so return NULL.
         return NULL;
@@ -464,6 +440,7 @@ int32_t *FSReadMultiSectors(int32_t deviceNumber, int32_t sectorNumber, int32_t 
     uint32_t actualSectorNumber = sectorNumber + g_u32MbrStartSector;
     uint32_t sectorSize = MediaTable[deviceNumber].BytesPerSector;
 
+    card_wait_xfer_done(g_usdhc_instance);
     status = card_data_read(g_usdhc_instance, (int *)buffer, size, actualSectorNumber * sectorSize);
 
     return (int32_t *) (buffer);
@@ -539,12 +516,11 @@ RtStatus_t FSDataDriveInit(DriveTag_t tag)
 
     /*Note by Ray: in this function, intialize the uSDHC controller */
     retval = card_init(g_usdhc_instance, 8);
-    /*now enable the INTERRUPT mode of usdhc */
-    SDHC_INTR_mode = 0;
-    SDHC_ADMA_mode = 0;
     if (retval == 1) {
         return 1;
     }
+    set_card_access_mode(1, 0);
+//    SDHC_INTR_mode = 0;
 
     /* initialize with a default value before getting size from FAT table */
     MediaTable[(int)tag].BytesPerSector = 512;

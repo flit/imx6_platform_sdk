@@ -41,6 +41,25 @@ void imx_ar8031_iomux()
 }
 
 /*CPU_PER_RST_B low to high*/
+void imx_KSZ9021RN_reset(void)
+{
+    //max7310_set_gpio_output(0, 2, GPIO_LOW_LEVEL);
+    //hal_delay_us(1000000);
+    //max7310_set_gpio_output(0, 2, GPIO_HIGH_LEVEL);
+#ifdef SABRE_LITE
+    // Config gpio3_GPIO[23] to pad EIM_D23(D25)
+    writel((SION_DISABLED & 0x1) << 4 | (ALT5 & 0x7), IOMUXC_SW_MUX_CTL_PAD_EIM_D23);
+    writel((HYS_ENABLED & 0x1) << 16 | (PUS_100KOHM_PU & 0x3) << 14 | (PUE_PULL & 0x1) << 13 |
+           (PKE_ENABLED & 0x1) << 12 | (ODE_DISABLED & 0x1) << 11 | (SPD_100MHZ & 0x3) << 6 |
+           (DSE_40OHM & 0x7) << 3 | (SRE_SLOW & 0x1), IOMUXC_SW_PAD_CTL_PAD_EIM_D23);
+    writel((readl(GPIO3_BASE_ADDR + 0x4) | (1 << 23)), GPIO3_BASE_ADDR + 0x4);  /*output */
+    writel(readl(GPIO3_BASE_ADDR + 0x0) & ~(1 << 23), GPIO3_BASE_ADDR + 0x0);   // output low
+    hal_delay_us(1000000);      // hold in reset for a delay
+    writel(readl(GPIO3_BASE_ADDR + 0x0) | (1 << 23), GPIO3_BASE_ADDR + 0x0);
+#endif
+}
+
+/*CPU_PER_RST_B low to high*/
 void imx_ar8031_reset(void)
 {
 #if defined(BOARD_SMART_DEVICE)

@@ -52,6 +52,7 @@ struct imx_i2c_request si476x_i2c_req;
 static void si476x_i2c_init(void)
 {
     /* reset the si476x */
+    board_ioexpander_iomux_config();
     max7310_set_gpio_output(0, 3, GPIO_LOW_LEVEL);
     hal_delay_us(5000);
     max7310_set_gpio_output(0, 3, GPIO_HIGH_LEVEL);

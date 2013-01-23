@@ -37,9 +37,12 @@
 #include <stdio.h>
 #include "sdk.h"
 
+const char g_camera_test_name[] = "Camera Test";
+
 extern int32_t csi_sensor_capture(void);
 extern int32_t sensor_capture(void);
 extern int32_t adv7180_capture(void);
+extern int32_t csi_test_mode(void);
 
 typedef struct {
     const char *name;
@@ -50,23 +53,32 @@ static camera_test_t camera_tests[] = {
 #if defined(BOARD_SMART_DEVICE)
     {"Sensor capture", sensor_capture},
 #endif
-#if defined(BOARD_EVB)
-	{"adv7180 capture", adv7180_capture},
+#if defined(BOARD_EVB)||defined(BOARD_SABRE_AI)
+    {"adv7180 capture", adv7180_capture},
 #endif
 #if defined(CHIP_MX6SL)
     {"Sensor capture", csi_sensor_capture},
+#else
+    {"test mode", csi_test_mode},
 #endif
 };
 
-int32_t camera_test(void)
+#if !defined(CHIP_MX6SL)
+extern int csi_dma_band_mode;
+#endif
+test_return_t camera_test(void)
 {
-    int32_t retv = TRUE, i;
+    int32_t retv = TEST_FAILED;
+    int32_t i;
     int32_t test_num = sizeof(camera_tests) / sizeof(camera_test_t);
     uint8_t revchar;
 
     printf("\nStart camera test\n");
 
     do {
+#if !defined(CHIP_MX6SL)
+        csi_dma_band_mode = 0;
+#endif
         for (i = 0; i < test_num; i++) {
             printf("\t%d - %s\n", i, camera_tests[i].name);
         }
@@ -84,9 +96,9 @@ int32_t camera_test(void)
         if ((i >= 0) && (i < test_num)) {
             retv = camera_tests[i].test();
             if (retv == TEST_PASSED) {
-                printf("\n%s test PASSED.\n", camera_tests[i].name);
+                printf("\n%s test PASSED.\n\n", camera_tests[i].name);
             } else {
-                printf("\n%s test FAILED.\n", camera_tests[i].name);
+                printf("\n%s test FAILED.\n\n", camera_tests[i].name);
             }
 
         }

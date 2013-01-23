@@ -33,7 +33,7 @@
 #define PMIC_MAX17135_I2C_REG_BYTE    0x1   // Number of Bytes to transfer the PMIC reg number
 #define PMIC_MAX17135_I2C_DATA_BYTE   0x1   // Number of Bytes to transfer the PMIC reg data
 
-static const char * const test_name = "PMIC_MAX17135 Test";
+const char g_max17135_i2c_device_id_test_name[] = "PMIC MAX17135 I2C Device ID Test";
 
 unsigned char max17135_reg_read(unsigned char reg)
 {
@@ -83,48 +83,23 @@ static void max17135_output_seq_set(void)
 
 }
 
-int i2c_device_id_check_MAX17135(void)
+/*!
+ * @return      TEST_PASSED or  TEST_FAILED
+ */
+test_return_t i2c_device_id_check_MAX17135(void)
 {
     unsigned char reg_data = 0;
-
-    printf("Test MAX17135 Device ID - ");
+    const char* indent = menu_get_indent();
 
     i2c_init(g_pmic_max17135_i2c_device.port, g_pmic_max17135_i2c_device.freq);
 
     reg_data = max17135_reg_read(0x07);
     if (0x4D == reg_data) {
-        printf("passed 0x%02X\n\n", reg_data);
+        printf("%spassed 0x%02X\n\n", indent, reg_data);
 //      max17135_output_seq_set();
         return TEST_PASSED;
     } else {
-        printf("failed, 0x4D vs 0x%02X\n\n", reg_data);
+        printf("%sfailed, 0x4D vs 0x%02X\n\n", indent, reg_data);
         return TEST_FAILED;
     }
-}
-
-/*!
- * @return      TEST_PASSED or  TEST_FAILED    
- */
-menu_action_t pmic_MAX17135_test(const menu_context_t* context, void* param)
-{
-	if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
-    {
-    	*(test_return_t*)param = TEST_BYPASSED;
-    	return MENU_CONTINUE;
-    }
-    
-    if  (i2c_device_id_check_MAX17135() == TEST_PASSED)
-    {
-        //PASS the test
-        print_test_passed(test_name, NULL);
-
-        *(test_return_t*)param = TEST_PASSED;
-    }
-    else
-    {
-        print_test_failed(test_name, NULL);
-
-        *(test_return_t*)param = TEST_FAILED;
-    }    
-    return MENU_CONTINUE;   
 }

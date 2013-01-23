@@ -40,6 +40,7 @@
  */
 
 #include "obds.h"
+#include "registers/regsmmdc.h"
 
 // TODO: PUT #DEFINES WHERE THEY GO
 /*
@@ -60,34 +61,43 @@
 #define CSD1_BASE_ADDR      MMDC1_BASE_ADDR
 #endif
 
-static const char * const test_name = "DDR Test";
+const char g_ddr_test_name[] = "DDR Test";
+
+/*!
+ * 
+ */
+uint32_t get_ddr_density(void)
+{
+    uint32_t mdctl, mdmisc, bank, row, col, dsize;
+
+    mdctl = HW_MMDC_MDCTL_RD(HW_MMDC1);
+    mdmisc = HW_MMDC_MDMISC_RD(HW_MMDC1);
+
+    row = ((mdctl & (0x07000000)) >> 24) + 11;
+    col = ((mdctl & (0x00700000)) >> 20) + 9;
+    bank = (!((mdmisc & (0x00000020)) >> 5)) * 4 + 4;
+    dsize = 0x02 << ((mdctl & (0x00030000)) >> 16);
+
+    return (0x01 << row) * (0x01 << col) * bank * dsize;
+}
 
 /*!
  * Run the DDR test.
  *
  * @return      TEST_PASSED or TEST_FAILED
  */
-menu_action_t ddr_test(const menu_context_t* context, void* param)
+test_return_t ddr_test()
 {
-	//
-	// TODO: Get DDR density and nnumber of chip selects from DDR driver?
-	//
-	const uint32_t ddr_density = 1024 * 1024 * 1024;
-	const uint32_t ddr_num_of_cs = 1;
+    const uint32_t ddr_num_of_cs = 1;
+    uint32_t ddr_density = get_ddr_density();
 
-	unsigned int failCount = 0;
+    unsigned int failCount = 0;
     unsigned int i;
     unsigned int *mem_src;
     unsigned int *ps;
     int bank_size = ddr_density / 8;
 
-//	const char* indent = menu_get_indent(context);
-
-    if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
-    {
-    	*(test_return_t*)param = TEST_BYPASSED;
-    	return MENU_CONTINUE;
-    }
+    //printf("DDR density: %dMB\n", ddr_density/1024/1024);
 
     /* Data bus, walking ones test */
     /* Looking for shorts on the board, so no need to test both chip selects */
@@ -151,18 +161,18 @@ menu_action_t ddr_test(const menu_context_t* context, void* param)
     /* DDR ADDRESS test, test the last two banks for each chip select */
     /* CS0 */
     /* First, write data to each row */
-    mem_src = (unsigned int*)(CSD0_BASE_ADDR + bank_size * 6);
+    mem_src = (unsigned int *)(CSD0_BASE_ADDR + bank_size * 6);
 
     for (i = 0; i < bank_size * 2; i = i + 512) {
-        ps = mem_src + i;
+        ps = (unsigned int *)((unsigned int)mem_src + i);
         *ps = 0x12345678 + 0x11111111 * i;
     }
 
     /* Second, read back data from each row to verify */
-    mem_src = (unsigned int*)(CSD0_BASE_ADDR + bank_size * 6);
+    mem_src = (unsigned int *)(CSD0_BASE_ADDR + bank_size * 6);
 
     for (i = 0; i < bank_size * 2; i = i + 512) {
-        ps = mem_src + i;
+        ps = (unsigned int *)((unsigned int)mem_src + i);
 
         if (*ps != (0x12345678 + 0x11111111 * i)) {
             failCount++;
@@ -172,18 +182,18 @@ menu_action_t ddr_test(const menu_context_t* context, void* param)
     if (ddr_num_of_cs == 2) {
         /* CS1 */
         /* First, write data to each row */
-        mem_src = (unsigned int*)(CSD1_BASE_ADDR + bank_size * 6);
+        mem_src = (unsigned int *)(CSD1_BASE_ADDR + bank_size * 6);
 
         for (i = 0; i < bank_size * 2; i = i + 512) {
-            ps = mem_src + i;
+            ps = (unsigned int *)((unsigned int)mem_src + i);
             *ps = 0x87654321 + 0x11111111 * i;
         }
 
         /* Second, read back data from each row to verify */
-        mem_src = (unsigned int*)(CSD1_BASE_ADDR + bank_size * 6);
+        mem_src = (unsigned int *)(CSD1_BASE_ADDR + bank_size * 6);
 
         for (i = 0; i < bank_size * 2; i = i + 512) {
-            ps = mem_src + i;
+            ps = (unsigned int *)((unsigned int)mem_src + i);
 
             if (*ps != (0x87654321 + 0x11111111 * i)) {
                 failCount++;
@@ -192,17 +202,7 @@ menu_action_t ddr_test(const menu_context_t* context, void* param)
     }
 
     if (failCount == 0)
-    {
-        print_test_passed(test_name, NULL);
-
-        *(test_return_t*)param = TEST_PASSED;
-        return MENU_CONTINUE;
-    }
+        return TEST_PASSED;
     else
-    {
-        print_test_failed(test_name, NULL);
-
-        *(test_return_t*)param = TEST_FAILED;
-        return MENU_CONTINUE;
-    }
+        return TEST_FAILED;
 }

@@ -41,6 +41,8 @@
 #include "registers/regsipu.h"
 #include "registers/regspmu.h"
 #include "registers/regsccm.h"
+#include "registers/regsuart.h"
+#include "registers/regsepit.h"
 #include "sdk.h"
 
 #define DUMMY_ARM_CORE_BASE_ADDR 0x12345789
@@ -67,6 +69,9 @@ hw_module_t g_debug_uart = {
     IMX_INT_UART1,
     &default_interrupt_routine,
 };
+
+uint32_t g_debug_uart_port = HW_UART1;
+
 #else
 // UART4 is the serial debug/console port for EVB and sabre_ai
 hw_module_t g_debug_uart = {
@@ -77,6 +82,8 @@ hw_module_t g_debug_uart = {
     IMX_INT_UART4,
     &default_interrupt_routine,
 };
+
+uint32_t g_debug_uart_port = HW_UART4;
 #endif
 
 /* EPIT1 used for time functions */
@@ -88,6 +95,8 @@ hw_module_t g_system_timer = {
     IMX_INT_EPIT1,
     &default_interrupt_routine,
 };
+
+uint32_t g_system_timer_port = HW_EPIT1;
 
 hw_module_t g_ddr = {
     "DDR memory",
@@ -119,7 +128,7 @@ uint32_t get_module_freq(uint32_t module_base)
     else if (module_base == MMDC_P0_BASE_ADDR)
         return get_main_clock(MMDC_CH0_AXI_CLK);
     else if (module_base == g_debug_uart.base)
-        return get_peri_clock(UART4_BAUD);
+        return get_peri_clock(UART4_MODULE_CLK);
     else if (module_base == g_system_timer.base)
         /* value depends on how the timer is configured, 
            and this is actually initialized in system_time_init() */

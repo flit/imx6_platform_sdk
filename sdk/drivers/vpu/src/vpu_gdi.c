@@ -31,6 +31,15 @@
 /*
  * Copyright (c) 2006, Chips & Media.  All rights reserved.
  */
+
+/*!
+ * @file vpu_gdi.c
+ *
+ * @brief VPU GDI control
+ *
+ * @ingroup diag_vpu
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -39,15 +48,12 @@
 #include "vpu/vpu_util.h"
 #include "vpu/vpu_debug.h"
 
-static int GetXY2RBCLogic(int map_val, int xpos, int ypos, int tb);
-static int rbc2axi_logic(int map_val, int ra_in, int ba_in, int ca_in);
-
-int SetTiledMapTypeInfo(GDI_TILED_MAP_TYPE TiledMapType, GdiTiledMap * pTiledInfo)
+RetCode SetTiledMapTypeInfo(GDI_TILED_MAP_TYPE TiledMapType, GdiTiledMap * pTiledInfo)
 {
     int luma_map, chro_map, i;
 
-    if (!cpu_is_mx6q())
-        return 0;
+    if (!cpu_is_mx6())
+        return RETCODE_FAILURE;
 
     memset(pTiledInfo, 0, sizeof(GdiTiledMap));
 
@@ -82,7 +88,7 @@ int SetTiledMapTypeInfo(GDI_TILED_MAP_TYPE TiledMapType, GdiTiledMap * pTiledInf
 
     } else {
         err_msg("TiledMapType is %d >-- Error\n", TiledMapType);
-        return 0;
+        return RETCODE_FAILURE;
     }
 
     if (TiledMapType == TILED_FRAME_MB_RASTER_MAP) {
@@ -158,7 +164,7 @@ int SetTiledMapTypeInfo(GDI_TILED_MAP_TYPE TiledMapType, GdiTiledMap * pTiledInf
     pTiledInfo->tiledMap = (pTiledInfo->xy2rbc_config >> 17) & 0x1;
     pTiledInfo->ca_inc_hor = (pTiledInfo->xy2rbc_config >> 16) & 0x1;
 
-    return 0;
+    return RETCODE_SUCCESS;
 }
 
 void SetGDIRegs(GdiTiledMap * pTiledInfo)
@@ -178,122 +184,4 @@ void SetGDIRegs(GdiTiledMap * pTiledInfo)
 
     for (i = 0; i < 32; i++)
         vpu_reg_write(GDI_RBC2_AXI_0 + 4 * i, pTiledInfo->rbc2axi_map[i]);
-}
-
-int VPU_GetXY2AXIAddr(DecHandle handle, int ycbcr, int posY, int posX, int stride,
-                      unsigned int addrY, unsigned int addrCb, unsigned int addrCr)
-{
-    CodecInst *pCodecInst;
-    GdiTiledMap *pTiledInfo;
-    int ypos_mod, temp, temp_bit;
-    int i, tb, pix_addr = 0;
-    int ra_conv = 0, ba_conv = 0, ca_conv = 0;
-    int lum_top_base, chr_top_base, lum_bot_base, chr_bot_base;
-    int mbx, mby, mb_addr, addr;
-    int temp_val12bit, temp_val6bit;
-    int mb_raster_base = 0;
-
-    pCodecInst = handle;
-    pTiledInfo = &pCodecInst->CodecInfo.decInfo.sTiledInfo;
-
-    tb = posY & 0x1;
-    ypos_mod = pTiledInfo->tb_separate_map ? posY >> 1 : posY;
-    addr = ycbcr == 0 ? addrY : ycbcr == 2 ? addrCb : addrCr;
-
-    /* 20bit = AddrY [31:12] */
-    lum_top_base = addrY >> 12;
-    /* 20bit = AddrY [11: 0], AddrCb[31:24] */
-    chr_top_base = ((addrY & 0xfff) << 8) | ((addrCb >> 24) & 0xff);
-    /* 20bit = AddrCb[23: 4] */
-    lum_bot_base = (addrCb >> 4) & 0xfffff;
-    /* 20bit = AddrCb[ 3: 0], AddrCr[31:16] */
-    chr_bot_base = ((addrCb & 0xf) << 16) | ((addrCr >> 16) & 0xffff);
-
-    if (pTiledInfo->MapType == 0)
-        return ((posY * stride) + posX) + addr;
-
-    if (pTiledInfo->MapType == TILED_FRAME_MB_RASTER_MAP
-        || pTiledInfo->MapType == TILED_FIELD_MB_RASTER_MAP) {
-        if (ycbcr == 0) {
-            mbx = posX / 16;
-            mby = posY / 16;
-        } else {
-            mbx = posX / 16;
-            mby = posY / 8;
-        }
-
-        mb_addr = (stride >> 4) * mby + mbx;
-
-        for (i = 0; i < 8; i++) {
-            if (ycbcr == 2 || ycbcr == 3)
-                temp = pTiledInfo->xy2ca_map[i] & 0xff;
-            else
-                temp = pTiledInfo->xy2ca_map[i] >> 8;
-            temp_bit = GetXY2RBCLogic(temp, posX, ypos_mod, tb);
-            ca_conv = ca_conv + (temp_bit << i);
-        }
-
-        ca_conv = ca_conv + ((mb_addr & 0xff) << 8);
-        ra_conv = mb_addr >> 8;
-
-        for (i = 0; i < 32; i++) {
-
-            temp_val12bit = pTiledInfo->rbc2axi_map[i];
-            temp_val6bit = (ycbcr == 0) ? (temp_val12bit >> 6) : (temp_val12bit & 0x3f);
-
-            temp_bit = rbc2axi_logic(temp_val6bit, ra_conv, ba_conv, ca_conv);
-
-            pix_addr = pix_addr + (temp_bit << i);
-        }
-
-        if (pTiledInfo->tb_separate_map == 1 && tb == 1)
-            mb_raster_base = ycbcr == 0 ? lum_bot_base : chr_bot_base;
-        else
-            mb_raster_base = ycbcr == 0 ? lum_top_base : chr_top_base;
-
-        pix_addr = pix_addr + (mb_raster_base << 12);
-    }
-
-    return pix_addr;
-}
-
-static int GetXY2RBCLogic(int map_val, int xpos, int ypos, int tb)
-{
-    int invert, assign_zero, tbxor, xysel, bitsel;
-    int xypos, xybit, xybit_st1, xybit_st2, xybit_st3;
-
-    invert = map_val >> 7;
-    assign_zero = (map_val & 0x78) >> 6;
-    tbxor = (map_val & 0x3C) >> 5;
-    xysel = (map_val & 0x1E) >> 4;
-    bitsel = map_val & 0x0f;
-
-    xypos = (xysel) ? ypos : xpos;
-    xybit = (xypos >> bitsel) & 0x01;
-    xybit_st1 = (tbxor) ? xybit ^ tb : xybit;
-    xybit_st2 = (assign_zero) ? 0 : xybit_st1;
-    xybit_st3 = (invert) ? !xybit_st2 : xybit_st2;
-
-    return xybit_st3;
-}
-
-static int rbc2axi_logic(int map_val, int ra_in, int ba_in, int ca_in)
-{
-    int rbc;
-    int rst_bit;
-    int rbc_sel = (map_val >> 4) & 0x03;
-    int bit_sel = map_val & 0x0f;
-
-    if (rbc_sel == 0)
-        rbc = ca_in;
-    else if (rbc_sel == 1)
-        rbc = ba_in;
-    else if (rbc_sel == 2)
-        rbc = ra_in;
-    else
-        rbc = 0;
-
-    rst_bit = ((rbc >> bit_sel) & 1);
-
-    return rst_bit;
 }

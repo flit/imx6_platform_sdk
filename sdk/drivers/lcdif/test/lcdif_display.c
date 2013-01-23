@@ -33,24 +33,28 @@
  */
 
 #include "sdk.h"
+#include "utility/menu.h"
 #include "lcdif/lcdif_common.h"
+
+const char g_lcd_display_test_name[] = "LCD Display Test";
 
 /*!
  * LCDIF controller display test.
  *
  * The Freescale logo will appear on the middle of LCD panel.
  *
- * @return error information
+ * @return TEST_PASSED or TEST_FAILED
  */
-int32_t lcdif_display_test(void)
+test_return_t lcdif_display_test(void)
 {
     char revchar;
+    const char* indent = menu_get_indent();
 
     lcdif_display_setup();
 
     image_center_copy();
 
-    printf("Do you see Freescale logo displayed on the WVGA panel?(Y/y for yes, other for no)\n");
+    printf("%sDo you see Freescale logo displayed on the WVGA panel?(Y/y for yes, other for no)\n", indent);
 
     do {
         revchar = getchar();

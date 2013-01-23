@@ -38,8 +38,6 @@
 #ifndef _IMX_SPI_NOR_ATMEL_H_
 #define _IMX_SPI_NOR_ATMEL_H_
 
-#define SUCCESS	                0
-#define FAIL                    1
 #define SPI_NOR_XFER_SZ         512
 
 #define READ        0x03        // tx: 1 byte cmd + 3 byte addr; rx: variable bytes

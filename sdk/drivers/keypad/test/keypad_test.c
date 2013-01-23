@@ -71,17 +71,17 @@ void keypad_test(void)
 void multiple_key_press_test(void)
 {
     uint8_t row, col, exit_test, kppcol, kpprow;
-    uint16_t read_keys[8];
+    uint16_t read_keys[8] = {0};
 
     // this is a 3x3 matrix - col[7:5] x row[7:5] 
-    kppcol = kpprow = 0xE0;
+    kppcol = kpprow = 0xF0;
 
     kpp_open(kppcol, kpprow);
 
     exit_test = 1;
     do
     {
-        printf("Please press any key (SW14 to exit):\n");
+        printf("Please press any key (SW19 to exit):\n");
 
         // get the first pressed key(s) 
         kpp_get_keypad_state(read_keys, false);

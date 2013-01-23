@@ -340,7 +340,7 @@ int gpmi_nand_write_page(unsigned chipSelect, uint32_t pageNumber, const uint8_t
 //@{
 
 //! @brief Configure GPMI pins.
-void rawnand_iomux_config(void);
+void gpmi_iomux_config(void);
 
 //! @brief External function to enable and configure the GPMI clock.
 void gpmi_nand_clk_setup(void);

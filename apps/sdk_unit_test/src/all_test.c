@@ -65,6 +65,7 @@ extern void tempmon_test(void);
 extern void uart_test(void);
 extern void usb_test(void);
 extern void usdhc_test(void);
+extern void keypad_test(void);
 
 #ifdef CHIP_MX6DQ
 extern int sata_test(void);
@@ -86,7 +87,7 @@ extern void spdc_test(void);
 ////////////////////////////////////////////////////////////////////////////////
 
 //! @brief Macro to help create test menu items.
-#define DEFINE_TEST_MENU_ITEM(k, m, t) { MENUITEM_FUNCTION, k, m, NULL, run_test, t }
+#define DEFINE_TEST_MENU_ITEM(k, m, t) MENU_MAKE_MENUITEM(k, m, run_test, t)
 
 //! @brief Typedef for one of the test functions.
 typedef void (*test_function_t)(void);
@@ -95,8 +96,7 @@ typedef void (*test_function_t)(void);
 // Prototypes
 ////////////////////////////////////////////////////////////////////////////////
 
-menu_action_t run_test(const menu_context_t* context, void* param);
-menu_action_t exit_test(const menu_context_t* context, void* param);
+menu_action_t run_test(void* param);
 
 ////////////////////////////////////////////////////////////////////////////////
 // Variables
@@ -119,7 +119,7 @@ const menuitem_t k_menuItems[] = {
         DEFINE_TEST_MENU_ITEM("m",  "microseconds timer test", microseconds_test),
         DEFINE_TEST_MENU_ITEM("wa", "watchdog test",    wdog_test),
         DEFINE_TEST_MENU_ITEM("o",  "ocotp test",       ocotp_test),
-        
+
         // mx6dq and mx6sdl are grouped together because they share the same boards.
 #if defined(CHIP_MX6DQ) || defined(CHIP_MX6SDL)
         // Tests for all boards of mx6dq and mx6sdl.
@@ -140,13 +140,15 @@ const menuitem_t k_menuItems[] = {
         DEFINE_TEST_MENU_ITEM("n",  "spi nor test",     spi_test),
         DEFINE_TEST_MENU_ITEM("en", "enet test",    	enet_test),
         DEFINE_TEST_MENU_ITEM("us", "usb test",     	usb_test),
+        DEFINE_TEST_MENU_ITEM("ca", "camera test",      camera_test),
 #elif defined(BOARD_SABRE_AI)
         DEFINE_TEST_MENU_ITEM("ei",  "eim test",        eim_test),
         DEFINE_TEST_MENU_ITEM("mi", "mipi test",        mipi_test),
         DEFINE_TEST_MENU_ITEM("f",  "flexcan test",     flexcan_test),
-        DEFINE_TEST_MENU_ITEM("us", "usb test",     	usb_test),
+        DEFINE_TEST_MENU_ITEM("us", "usb test",         usb_test),
         DEFINE_TEST_MENU_ITEM("n",  "spi nor test",     spi_test),
         DEFINE_TEST_MENU_ITEM("pc", "pcie test",        pcie_test),
+        DEFINE_TEST_MENU_ITEM("ca", "camera test",      camera_test),
 #elif defined(BOARD_SMART_DEVICE)
         DEFINE_TEST_MENU_ITEM("a",  "audio test",       audio_test),
         DEFINE_TEST_MENU_ITEM("ca", "camera test",      camera_test),
@@ -154,6 +156,7 @@ const menuitem_t k_menuItems[] = {
         DEFINE_TEST_MENU_ITEM("n",  "spi nor test",     spi_test),
         DEFINE_TEST_MENU_ITEM("pc", "pcie test",        pcie_test),
 		DEFINE_TEST_MENU_ITEM("en", "enet test",		enet_test),
+		DEFINE_TEST_MENU_ITEM("k", "keypad test",      keypad_test),
 #endif // defined(BOARD_SMART_DEVICE)
 
 #elif defined(CHIP_MX6SL)
@@ -165,14 +168,14 @@ const menuitem_t k_menuItems[] = {
         DEFINE_TEST_MENU_ITEM("us", "usb test",     	usb_test),
         DEFINE_TEST_MENU_ITEM("n",  "spi nor test",     spi_test),
         DEFINE_TEST_MENU_ITEM("a",  "audio test",       audio_test),
-		DEFINE_TEST_MENU_ITEM("f",	"fec test",			fec_test),
+        DEFINE_TEST_MENU_ITEM("f",	"fec test",			fec_test),
 #endif // defined(CHIP_MX6SL)
         
         // Quit menu item
-        { MENUITEM_FUNCTION, "q", "quit test system", NULL, exit_test, 0 },
+        MENU_MAKE_MENUITEM_EXIT(),
         
         // Menu terminator
-        { MENUITEM_NULL }
+        MENU_MAKE_MENUITEM_END()
     };
 
 //! @brief The test selection menu.
@@ -184,18 +187,12 @@ const menu_t k_mainMenu = {
     };
 
 //! @brief Action function to call the test function passed in as a parameter.
-menu_action_t run_test(const menu_context_t* context, void* param)
+menu_action_t run_test(void* param)
 {
     test_function_t testFunction = (test_function_t)param;
     testFunction();
     
-    return MENU_SHOW;
-}
-
-//! @brief Action function to exit the menu.
-menu_action_t exit_test(const menu_context_t* context, void* param)
-{
-    return MENU_EXIT;
+    return MenuAction_Show;
 }
 
 void ALL_test(void)

@@ -64,8 +64,10 @@ OBJECTS_CXX := $(addprefix $(OBJS_ROOT)/,$(CXX_SOURCES:.cpp=.o))
 OBJECTS_ASM := $(addprefix $(OBJS_ROOT)/,$(ASM_s_SOURCES:.s=.o))
 OBJECTS_ASM_S := $(addprefix $(OBJS_ROOT)/,$(ASM_S_SOURCES:.S=.o))
 
+PREBUILT_OBJECTS = $(addprefix $(SDK_ROOT)/,$(filter %.o,$(SOURCES_REL)))
+
 # Complete list of all object files.
-OBJECTS_ALL := $(sort $(OBJECTS_C) $(OBJECTS_CXX) $(OBJECTS_ASM) $(OBJECTS_ASM_S))
+OBJECTS_ALL := $(sort $(OBJECTS_C) $(OBJECTS_CXX) $(OBJECTS_ASM) $(OBJECTS_ASM_S) $(PREBUILT_OBJECTS))
 
 #-------------------------------------------------------------------------------
 # Target library
@@ -86,8 +88,12 @@ ifneq "$(APP_NAME)" ""
 APP_ELF ?= $(APP_OUTPUT_ROOT)/$(APP_NAME).elf
 endif
 
+# Select the output target.
 ifneq "$(TARGET_LIB)" ""
+# Only use the target lib if there are actually objects to put into it.
+ifneq "$(strip $(OBJECTS_ALL))" ""
 archive_or_objs = $(TARGET_LIB)
+endif
 else
 archive_or_objs = $(OBJECTS_ALL)
 endif
@@ -101,7 +107,7 @@ endif
 # if subdirs modified the library file after local files were compiled but before they were added
 # to the library.
 .PHONY: all
-all : $(SUBDIRS) $(OBJECTS_DIRS) $(archive_or_objs) $(APP_ELF)
+all : $(SUBDIRS) $(archive_or_objs) $(APP_ELF)
 
 # For RedHat we have to force always archiving. It seems that fractions of a second are not
 # recorded in file modification dates on RedHat (at least the server we tested with), which
@@ -115,7 +121,14 @@ $(OBJECTS_DIRS) :
 	$(at)mkdir -p $@
 
 # Everything depends upon the current makefile.
-$(OBJECTS_ALL) $(TARGET_LIB) $(APP_ELF): $(this_makefile)
+$(OBJECTS_ALL) $(APP_ELF): $(this_makefile)
+
+# Object files depend on the directories where they will be created.
+#
+# The dirs are made order-only prerequisites (by being listed after the '|') so they won't cause
+# the objects to be rebuilt, as the modification date on a directory changes whenver its contents
+# change. This would cause the objects to always be rebuilt if the dirs were normal prerequisites.
+$(OBJECTS_ALL): | $(OBJECTS_DIRS)
 
 #-------------------------------------------------------------------------------
 # Pattern rules for compilation
@@ -153,11 +166,19 @@ $(OBJS_ROOT)/%.o: $(SDK_ROOT)/%.s
 
 # Add objects to the target library.
 #
+# We use mkdir to explicitly ensure that the archive's directory exists before calling
+# the ar tool. The dir can't be made a dependancy because make will try to add it to the
+# archive.
+#
 # Note that we're checking the archive's mod date and not each entry in the archive. This
 # lets us do a single update operation with all modified object files.
+#
+# flock is used to protect the archive file from multiple processes trying to write to it
+# simultaneously, in case we're using parallel processes.
 $(TARGET_LIB): $(OBJECTS_ALL)
 	@$(call printmessage,ar,Archiving, $(shell echo $? | wc -w) files in $(@F))
-	$(at)$(AR) -rucs $@ $?
+	$(at)mkdir -p $(dir $(@))
+	$(at)flock $(@).lock $(AR) -rucs $@ $?
 
 #-------------------------------------------------------------------------------
 # Subdirs
@@ -189,14 +210,17 @@ endif
 app_bin = $(basename $(APP_ELF)).bin
 app_map = $(basename $(APP_ELF)).map
 
-# Preprocess the linker script.
+# Preprocess the linker script if it has an ".S" extension.
 ifeq "$(filter %.S,$(LD_FILE))" ""
 the_ld_file = $(LD_FILE)
 else
 rel_ld_file = $(basename $(subst $(SDK_ROOT)/,,$(abspath $(LD_FILE))))
 the_ld_file = $(addprefix $(OBJS_ROOT)/,$(rel_ld_file))
+the_ld_file_dir = $(dir $(the_ld_file))
 
-$(the_ld_file): $(LD_FILE)
+# Rule to preprocess the ld file. The ld file's parent directory is made an order-only
+# prerequisite so it cannot by itself cause this recipe to be invoked.
+$(the_ld_file): $(LD_FILE) | $(the_ld_file_dir)
 	@$(call printmessage,cpp,Preprocessing, $(subst $(SDK_ROOT)/,,$<))
 	$(at)cd $(dir $<) && $(CC) -E -P $(INCLUDES) $(DEFINES) -o $@ $<
 endif
@@ -205,7 +229,7 @@ endif
 # Wrap the link objects in start/end group so that ld re-checks each
 # file for dependencies.  Otherwise linking static libs can be a pain
 # since order matters.
-$(APP_ELF): $(app_objs) $(the_ld_file) $(LIBRARIES) $(APP_LIBS)
+$(APP_ELF): $(SUBDIRS) $(app_objs) $(the_ld_file) $(LIBRARIES) $(APP_LIBS)
 	@$(call printmessage,link,Linking, $(APP_NAME))
 	$(at)$(LD) -Bstatic -nostartfiles -nostdlib $(LDFLAGS) \
 	      -T $(the_ld_file) \
@@ -221,8 +245,9 @@ $(APP_ELF): $(app_objs) $(the_ld_file) $(LIBRARIES) $(APP_LIBS)
 	$(at)$(OBJCOPY) --gap-fill 0x00 -I elf32-little -O binary $@ $(app_bin)
 	@echo "Output ELF:" ; echo "  $(APP_ELF)"
 	@echo "Output binary:" ; echo "  $(app_bin)"
+
 else
-# Empty target to prevent an error. Needed because $(APP) is a prereq for the 'all' target.
+# Empty target to prevent an error. Needed because $(APP_ELF) is a prereq for the 'all' target.
 $(APP_ELF): ;
 endif
 

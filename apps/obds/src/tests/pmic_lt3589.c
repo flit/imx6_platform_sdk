@@ -549,27 +549,11 @@ int ltc3589_i2c_device_id_check(void)
 /*!
  * @return      TEST_PASSED or  TEST_FAILED    
  */
-menu_action_t pmic_lt3589_test(const menu_context_t* context, void* param)
+test_return_t pmic_lt3589_test(void)
 {
-	if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
-    {
-    	*(test_return_t*)param = TEST_BYPASSED;
-    	return MENU_CONTINUE;
-    }
-    
-    if (ltc3589_i2c_device_id_check() == TEST_PASSED)
-    {
-        //PASS the test
-        print_test_passed(test_name, NULL);
+    if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
+        return TEST_BYPASSED;
 
-        *(test_return_t*)param = TEST_PASSED;
-    }
-    else
-    {
-        print_test_failed(test_name, NULL);
-
-        *(test_return_t*)param = TEST_FAILED;
-    }    
-    return MENU_CONTINUE;   
+    return ltc3589_i2c_device_id_check();
 }
 

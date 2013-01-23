@@ -30,87 +30,51 @@
 
 #include <stdio.h>
 #include "sdk.h"
-#include "pwm/pwm_ifc.h"
-#include "iomux_config.h"
 
-static void pwm_isr(void);
+int32_t pwm_output_test(void);
 
-static uint32_t pwm_test_end;
+typedef struct {
+    const char *name;
+     int32_t(*test) (void);
+} pwm_test_t;
 
-static hw_module_t pwm1 = {
-    "PWM 1",                    // name 
-    1,                          // instance number 
-    PWM1_BASE_ADDR,             // register base 
-    kPwmClockSourceCkil,        // clock source CKIL 
-    IMX_INT_PWM1,               // IRQ ID 
-    pwm_isr,                    // ISR callback 
-    pwm1_iomux_config,          // IOMUX 
+static pwm_test_t pwm_tests[] = {
+    {"PWM output test", pwm_output_test},
 };
-
-static void pwm_isr(void)
-{
-    printf("PWM output end.\n");
-
-    // Clear FIFO empty status 
-    pwm_clear_int_status(&pwm1, kPwmFifoEmptyIrq);
-
-    // Set PWM output end flag 
-    pwm_test_end = TRUE;
-}
-
-static void pwm_launch_test(void)
-{
-    uint16_t sample[3] = { 4, 8, 16 };
-
-    pwm_test_end = FALSE;
-
-    // Initialize PWM module 
-    if (FALSE == pwm_init(&pwm1, 1024, 32, sample, 3)) {
-        printf("PWM init failed.\n");
-        return;
-    }
-
-    // Setup interrupt for FIFO empty 
-    pwm_setup_interrupt(&pwm1, TRUE, kPwmFifoEmptyIrq);
-
-    printf("PWM output start.\n");
-
-    // Enable PWM output 
-    pwm_enable(&pwm1);
-
-    // Wait until FIFO empty 
-    while (pwm_test_end == FALSE) ;
-
-    // Disable PWM output 
-    pwm_disable(&pwm1);
-
-    // Disable PWM interrupt 
-    pwm_setup_interrupt(&pwm1, FALSE, kPwmFifoEmptyIrq);
-}
 
 int pwm_test(void)
 {
-    uint8_t sel;
+    int32_t retv = TEST_PASSED;
+    int32_t test_num = sizeof(pwm_tests) / sizeof(pwm_test_t);
+    uint8_t revchar;
+    int i;
 
     printf("PWM test start: \n");
 
     do {
-        printf("  s - to start PWM output.\n");
-        printf("  x - to exit.\n");
+        for (i = 0; i < test_num; i++) {
+            printf("\t%d - %s\n", i, pwm_tests[i].name);
+        }
+        printf("\tx - to exit.\n");
 
         do {
-            sel = getchar();
-        } while (sel == NONE_CHAR);
-
-        if (sel == 'x') {
-            printf("Test exit.\n");
+            revchar = (uint8_t) getchar();
+        } while (revchar == (uint8_t) 0xFF);
+        if (revchar == 'x') {
+            printf("\nPWM test exit.\n");
             break;
         }
+        i = revchar - '0';
 
-        if (sel == 's') {
-            pwm_launch_test();
+        if ((i >= 0) && (i < test_num)) {
+            retv = pwm_tests[i].test();
+            if (retv == TRUE) {
+                printf("\n%s test PASSED.\n\n", pwm_tests[i].name);
+            } else {
+                printf("\n%s test FAILED.\n\n", pwm_tests[i].name);
+            }
+
         }
-
     } while (1);
 
     return 0;

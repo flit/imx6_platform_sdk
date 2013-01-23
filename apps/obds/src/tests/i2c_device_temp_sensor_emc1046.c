@@ -32,7 +32,7 @@
 
 #define EMC1046_REG_DEVICE_ID_OFF	0xFD
 
-static const char * const test_name = "I2C_DEVICE_EMC1046 Test";
+const char g_emc1046_i2c_device_id_test_name[] = "Temp Sensor EMC1046 I2C Device ID Test";
 
 enum {
     INTERNAL_DIODE,
@@ -178,26 +178,18 @@ int i2c_device_id_check_emc1046(unsigned int i2c_base_addr)
 /*!
  * @return      TEST_PASSED or  TEST_FAILED    
  */
-menu_action_t i2c_device_emc1046_test(const menu_context_t* context, void* param)
+test_return_t i2c_device_emc1046_test(void)
 {
-	if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
-    {
-    	*(test_return_t*)param = TEST_BYPASSED;
-    	return MENU_CONTINUE;
-    }
+//    const char * indent = menu_get_indent();
 
-    if (i2c_device_id_check_emc1046(I2C3_BASE_ADDR) == TEST_PASSED)
-    {
-        //PASS the test
-        print_test_passed(test_name, NULL);
+#if defined(BOARD_SMART_DEVICE)
+    //  USB_OTG_PWR_EN (EIM_D22)
+    writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_EIM_EB3);
+    gpio_set_direction(GPIO_PORT2, 31, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT2, 31, GPIO_LOW_LEVEL);
+    hal_delay_us(1000);
+    gpio_set_level(GPIO_PORT2, 31, GPIO_HIGH_LEVEL);
+#endif    
 
-        *(test_return_t*)param = TEST_PASSED;
-    }
-    else
-    {
-        print_test_failed(test_name, NULL);
-
-        *(test_return_t*)param = TEST_FAILED;
-    }    
-    return MENU_CONTINUE;   
+    return i2c_device_id_check_emc1046(I2C3_BASE_ADDR);
 }

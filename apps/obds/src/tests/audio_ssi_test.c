@@ -37,7 +37,7 @@
 
 #define SSI_WRITE_TIMEOUT	0x400000
 
-static const char * const audio_ssi_test_name = "I2S Audio Test";
+const char g_audio_ssi_test_name[] = "I2S Audio Test";
 
 //extern audio_pcm_para_t pcm_para;
 audio_pcm_para_t pcm_para = {
@@ -76,20 +76,17 @@ int audio_test_init(void)
 {
     audio_dev_para_t dev_para;
 
-    //Default 
-    snd_card = &snd_card_ssi_sgtl5000;
-
 #if defined(BOARD_SMART_DEVICE)
 #if defined(BOARD_REV_A)
     snd_card = &snd_card_ssi_wm8958;
-#endif
-#if defined(BOARD_REV_B) || defined(BOARD_REV_C)
+#else
     snd_card = &snd_card_ssi_wm8962;
 #endif
-#endif
-
-#if (defined(CHIP_MX6SL) && defined(BOARD_EVK))
+#elif (defined(CHIP_MX6SL) && defined(BOARD_EVK))
     snd_card = &snd_card_ssi_wm8962;
+#else
+    //Default
+    snd_card = &snd_card_ssi_sgtl5000;
 #endif
 
 #if defined(BOARD_SMART_DEVICE) || (defined(CHIP_MX6SL) && defined(BOARD_EVK))
@@ -123,28 +120,17 @@ int audio_test_init(void)
  * 
  * @return TEST_PASSED or TEST_FAILED
  */
-menu_action_t i2s_audio_test(const menu_context_t* const context, void* const param)
+test_return_t i2s_audio_test(void)
 {
     char recvCh;
     uint32_t bytes_written = 0;
     test_return_t result = TEST_FAILED;
-
-	const char* indent = menu_get_indent(context);
-
-    if ( prompt_run_test(audio_ssi_test_name, indent) != TEST_CONTINUE )
-    {
-    	*(test_return_t*)param = TEST_BYPASSED;
-    	return MENU_CONTINUE;
-    }
+	const char* indent = menu_get_indent();
 
     printf("\n%sPlease plug in headphones to the HEADPHONE OUT jack.\n", indent);
 
-    if (!is_input_char('y', indent)) {
-    	print_test_skipped(audio_ssi_test_name, indent);
-    	
-        *(test_return_t*)param = TEST_BYPASSED;
-        return MENU_CONTINUE;
-    }
+    if (!is_input_char('y', indent))
+    	return TEST_BYPASSED;
 
     //printf("To power code on\n");
     audio_codec_power_on();     // in hardware.c
@@ -154,10 +140,7 @@ menu_action_t i2s_audio_test(const menu_context_t* const context, void* const pa
 
     if (0 != audio_test_init()) {
         printf("%sInitialization of audio subsystem failed.\n", indent);
-        print_test_failed(audio_ssi_test_name, indent);
-
-        *(test_return_t*)param = TEST_FAILED;
-        return MENU_CONTINUE;      
+        return TEST_FAILED;
     }
 
     printf("%sAudio output: please ensure headphones are plugged in to hear.\n", indent);
@@ -167,10 +150,8 @@ menu_action_t i2s_audio_test(const menu_context_t* const context, void* const pa
         if (snd_card->ops->write(snd_card, pcm_music.buf, pcm_music.size, &bytes_written) < 0) 
         {
             printf("%sWrite to SSI timeout.\n", indent);
-            print_test_failed(audio_ssi_test_name, indent);
 
-            *(test_return_t*)param = TEST_FAILED;
-            return MENU_CONTINUE;             	
+            return TEST_FAILED;
         }
 
         printf("\n%sDo you need to re-hear it? (y/n)\n", indent);
@@ -200,14 +181,12 @@ menu_action_t i2s_audio_test(const menu_context_t* const context, void* const pa
     } else 
     {
         printf("%s SSI playback test failed.\n", indent);
-        print_test_failed(audio_ssi_test_name, indent);
 
-        *(test_return_t*)param = TEST_FAILED;
-        return MENU_CONTINUE;
+        return TEST_FAILED;
     }
 
 #if (defined(CHIP_MX6SL) && defined(BOARD_EVK)) || (defined(BOARD_SMART_DEVICE) && (defined(BOARD_REV_B) || defined(BOARD_REV_C)))
-    printf("%s Audio input: please ensure micphone is plugged in. Press 'y/Y' to confirm.\n", indent);
+    printf("%s Audio input: please ensure microphone is plugged in. Press 'y/Y' to confirm.\n", indent);
     do {
         recvCh = getchar();
     }
@@ -218,20 +197,16 @@ menu_action_t i2s_audio_test(const menu_context_t* const context, void* const pa
         if (snd_card->ops->read(snd_card, pcm_record.buf, pcm_record.size, &bytes_written) > 0) 
         {
             printf("%sRead SSI fifo timeout.\n", indent);
-            print_test_failed(audio_ssi_test_name, indent);
 
-            *(test_return_t*)param = TEST_FAILED;
-            return MENU_CONTINUE;
+            return TEST_FAILED;
         }
 
-        printf("%s Start playbacking the voice just recorded...\n", indent);
+        printf("%s Start playing back the voice just recorded...\n", indent);
         if (snd_card->ops->write(snd_card, pcm_record.buf, pcm_record.size, &bytes_written) > 0) 
         {
             printf("%sWrite SSI fifo timeout.\n", indent);
-            print_test_failed(audio_ssi_test_name, indent);
 
-            *(test_return_t*)param = TEST_FAILED;
-            return MENU_CONTINUE;
+            return TEST_FAILED;
         }
         printf("%s Do you hear voice from headphone? (y/n)\n", indent);
 
@@ -243,34 +218,19 @@ menu_action_t i2s_audio_test(const menu_context_t* const context, void* const pa
         if ((recvCh == 'y') || (recvCh == 'Y')) 
         {
             printf("%s SSI record test passed.\n", indent);
+
             result = TEST_PASSED;
         } 
         else 
         {
             printf(" SSI record test failed.\n");
-            print_test_failed(audio_ssi_test_name, indent);
 
-            *(test_return_t*)param = TEST_FAILED;
-            return MENU_CONTINUE;
+            return TEST_FAILED;
         }
     }
 #endif
 
-    if (result == TEST_PASSED)
-    {
-        print_test_passed(audio_ssi_test_name, indent);
-
-        *(test_return_t*)param = TEST_PASSED;
-        return MENU_CONTINUE;
-    }
-    else
-    {
-	    printf("\n%sThe MAC address is incorrect.\n", indent);
-        print_test_failed(audio_ssi_test_name, indent);
-
-        *(test_return_t*)param = TEST_FAILED;
-        return MENU_CONTINUE;
-    }
+    return result;
 }
 
 #if 0

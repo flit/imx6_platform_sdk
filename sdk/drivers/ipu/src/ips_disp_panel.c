@@ -37,13 +37,31 @@
 #include "ipu/ipu_common.h"
 #include "iomux_config.h"
 #include "registers/regsipu.h"
+#include "ldb/ldb_def.h"
 
+extern void tftlcd_reset(char *panel_name);
+extern void tftlcd_backlight_en(char *panel_name);
 static int32_t claa_wvga_panel_init(int32_t * arg)
 {
+    tftlcd_reset("CLAA01 WVGA");
+    tftlcd_backlight_en("CLAA01 WVGA");
     return true;
 }
 
 static int32_t claa_wvga_panel_deinit(void)
+{
+    return true;
+}
+
+
+static int32_t boundarydev_wvga_panel_init(int32_t * arg)
+{
+    tftlcd_reset("BoundaryDev WVGA");
+    tftlcd_backlight_en("BoundaryDev WVGA");
+    return true;
+}
+
+static int32_t boundarydev_wvga_panel_deinit(void)
 {
     return true;
 }
@@ -133,7 +151,8 @@ ips_dev_panel_t disp_dev_list[] = {
     {
      "CLAA01 WVGA",             // name
      CLAA_WVGA,                 // panel id flag
-     DCMAP_RGB666,              // data format for panel
+     DISP_DEV_TFTLCD,                   // panel type
+     DCMAP_RGB565,              // data format for panel
      60,                        // refresh rate
      800,                       // panel width
      480,                       //panel height
@@ -157,8 +176,36 @@ ips_dev_panel_t disp_dev_list[] = {
      }
     ,
     {
+     "BoundaryDev WVGA",             // name
+     BOUNDARYDEV_WVGA,                 // panel id flag
+     DISP_DEV_TFTLCD,                   // panel type
+     DCMAP_RGB666,              // data format for panel
+     60,                        // refresh rate
+     800,                       // panel width
+     480,                       //panel height
+     33260000,                  // pixel clock frequency
+     216,                        // hsync start width
+     128,                        // hsync width
+     40,                        // hsyn back width
+     35,                        // vysnc start width
+     2,                        // vsync width
+     10,                         // vsync back width
+     0,                         // delay from hsync to vsync
+     0,                         // interlaced mode
+     0,                         // clock selection, internal
+     0,                         // clock polarity
+     0,                         // hsync polarity
+     0,                         // vync polarity
+     1,                         // drdy polarity
+     0,                         // data polarity
+     &boundarydev_wvga_panel_init,     // initialization
+     &boundarydev_wvga_panel_deinit,   // deinit
+     }
+    ,
+    {
      "HannStar XGA LVDS",       // name
      HannStar_XGA_LVDS,         // panel id flag
+     DISP_DEV_LVDS,                   // panel type
      DCMAP_RGB666,              // data format for panel
      60,                        // refresh rate
      1024,                      // panel width
@@ -185,6 +232,7 @@ ips_dev_panel_t disp_dev_list[] = {
     {
      "HDMI 1080P 60Hz",         // name
      HDMI_1080P60,              // panel id flag
+     DISP_DEV_HDMI,                   // panel type
      DCMAP_RGB888,              // data format for panel
      60,                        // refresh rate
      1920,                      // panel width
@@ -211,6 +259,7 @@ ips_dev_panel_t disp_dev_list[] = {
     {
      "HDMI 720P 60Hz",          // name
      HDMI_720P60,               // name flag
+     DISP_DEV_HDMI,                   // panel type
      DCMAP_RGB888,
      60,                        // refresh rate
      1280,                      // panel width
@@ -237,6 +286,7 @@ ips_dev_panel_t disp_dev_list[] = {
     {
      "SII9022 1080P 60Hz",      // name
      SII9022_1080P60,           // panel id flag
+     DISP_DEV_HDMI,                   // panel type
      DCMAP_RGB888,              // data format for panel
      60,                        // refresh rate
      1920,                      // panel width
@@ -263,6 +313,7 @@ ips_dev_panel_t disp_dev_list[] = {
     {
      "TRULY MIPI TFT480800",    // name
      TRULY_MIPI_TFT480800,      // panel_id_flag
+     DISP_DEV_MIPI,                   // panel type
      DCMAP_RGB888,              // data format for panel
      60,                        // refresh rate
      480,                       // panel width
@@ -288,3 +339,66 @@ ips_dev_panel_t disp_dev_list[] = {
 };
 
 uint32_t num_of_panels = sizeof(disp_dev_list) / sizeof(ips_dev_panel_t);
+
+/*! Set display parameters in IPU configuration structure according to your display panel name. There are only some displays are supported by this function. And you can set the display manually all by your self if the hardware is supported by IPU.
+ *
+ * @param panel_name 		panel name of your display
+ */
+ips_dev_panel_t *search_panel(char *panel_name)
+{
+    ips_dev_panel_t *panel = &disp_dev_list[0];
+    int32_t index = 0;
+
+    while (index < num_of_panels) {
+        if (!strcmp(panel->panel_name, panel_name))
+            break;
+        else {
+            panel++;
+            index++;
+        }
+    }
+
+    if (index == num_of_panels) {
+        printf("The display panel %s is not supported!\n", panel_name);
+        return NULL;
+    }
+
+    return panel;
+}
+
+
+/*! @brief list the supported panel of specific type.
+ *
+ * @param panel_type 		panel type of display
+ */
+void list_panel(uint32_t panel_type)
+{
+    ips_dev_panel_t *panel = &disp_dev_list[0];
+    int32_t index = 0;
+
+    while (index < num_of_panels) {
+        if (panel->panel_type == panel_type)
+        {
+            printf("\t%d : %s\n", panel->panel_id, panel->panel_name);
+        }
+        panel++;
+        index++;
+    }
+}
+
+ips_dev_panel_t *get_panel_by_id(uint32_t panel_id)
+{
+    ips_dev_panel_t *panel = &disp_dev_list[0];
+    int32_t index = 0;
+
+    while (index < num_of_panels) {
+        if (panel->panel_id == panel_id)
+        {
+            return panel;
+        }
+        panel++;
+        index++;
+    }
+
+    return NULL;
+}

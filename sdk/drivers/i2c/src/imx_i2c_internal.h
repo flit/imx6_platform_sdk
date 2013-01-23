@@ -61,7 +61,7 @@ extern "C" {
  * @param   port Pointer to the I2C module structure.
  * @param   state Enable or disable the interrupt. Pass true to enable.
  */
-void i2c_setup_interrupt(const hw_module_t *port, bool state);
+void i2c_setup_interrupt(uint32_t instance, void (*irq_subroutine)(void), bool state);
 
 /*!
  * @brief I2C interrupt routine for slave transfers.

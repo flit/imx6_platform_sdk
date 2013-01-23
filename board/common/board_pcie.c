@@ -61,6 +61,7 @@ void pcie_card_pwr_setup(uint32_t enable)
 {
 #if defined(BOARD_EVB)
     i2c_init(I2C3_BASE_ADDR, 100000);
+    board_ioexpander_iomux_config();
 
     if (enable) {
         //enable pciemini_3.3v
@@ -117,6 +118,7 @@ void pcie_card_rst(void)
 {
 #if defined(BOARD_EVB)
     i2c_init(I2C3_BASE_ADDR, 100000);
+    board_ioexpander_iomux_config();
 
     max7310_set_gpio_output(0, 2, 0);
 

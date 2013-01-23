@@ -37,7 +37,9 @@
 #include "core/gic.h"
 #include "core/interrupt.h"
 #include "utility/system_util.h"
-#include "timer/timer.h"
+#include "timer/epit.h"
+#include "print_version.h"
+#include "registers/regsepit.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Externs
@@ -59,16 +61,42 @@ double mysecond()
 //         i = gettimeofday(&tp,&tzp);
 //         return ( (double) tp.tv_sec + (double) tp.tv_usec * 1.e-6 );
 
-    uint64_t usec = time_get_microseconds();
+    // use hardware timer
+    uint32_t usec = 0;
+    uint32_t epit_instance = HW_EPIT2, epit_freq = 0;
+    static int timer_init = 0;
+
+    if (!timer_init) {
+        epit_freq = get_main_clock(IPG_CLK);
+        epit_init(epit_instance, CLKSRC_IPG_CLK, epit_freq / 1000000,
+                  SET_AND_FORGET, 10000, WAIT_MODE_EN | STOP_MODE_EN);
+        epit_setup_interrupt(epit_instance, NULL, FALSE);
+        epit_counter_enable(epit_instance, 0xFFFFFFFF, 0);   //polling mode
+        timer_init = 1;
+    }
+
+    usec = 0xFFFFFFFF - epit_get_counter_value(epit_instance);
+
     return ((double)usec) * 1.e-6;
 }
 
 void main(void)
 {
+    int i = 0;
+
     platform_init();
 
-    // Run the benchmark.
-    streammain();
+    print_version();
+
+    while (i < CPU_WORKPOINT_OUTOFRANGE) {
+        uint32_t cpu_freq = cpu_workpoint_set(i);
+        printf(" CPU work point set at %dMHz\n", cpu_freq);
+
+        // Run the benchmark.
+        streammain();
+
+        i++;
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////

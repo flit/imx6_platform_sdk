@@ -40,17 +40,6 @@
 
 /*------------------------------------------- Macros --------------------------------------------*/
 
-#ifndef TRUE
-#define TRUE 1
-#endif
-
-#ifndef FALSE
-#define FALSE 0
-#endif
-
-#define SUCCESS 0
-#define FAIL 1
-
 #define ZERO 0
 #define ONE 1
 #define FOUR 4
@@ -228,6 +217,16 @@ extern usdhc_inst_t usdhc_device[];
 
 /*------------------------------------------- Function Defines --------------------------------------------*/
 /*!
+ * @brief Set Card access mode
+ *
+ * @param mode     Set card access mode
+ * 
+ * @return           
+ */
+extern void set_card_access_mode(uint32_t sdma, uint32_t intr);
+extern uint32_t read_usdhc_adma_mode();
+extern uint32_t read_usdhc_intr_mode(); 
+/*!
  * @brief Card initialization
  *
  * @param instance     Instance number of the uSDHC module.
@@ -244,7 +243,6 @@ extern int card_init(uint32_t instance, int bus_width);
  * 
  * @return             0 if successful; 1 otherwise
  */
-//int card_emmc_init(int base_address)
 extern int card_emmc_init(uint32_t instance);
 
 /*!
@@ -342,6 +340,15 @@ extern int card_data_write(uint32_t instance, int *src_ptr, int length, int offs
  * @return             0 if successful; 1 otherwise
  */
 extern int card_xfer_result(uint32_t instance, int *result);
+
+/*!
+ * @brief Wait for the transfer complete. It covers the interrupt mode, DMA mode and PIO mode
+ *
+ * @param instance     Instance number of the uSDHC module.
+ * 
+ * @return             0 if successful; 1 otherwise
+ */
+extern int card_wait_xfer_done(uint32_t instance);
 
 /*!
  * @brief Initialize MMC - Get Card ID, Set RCA, Frequency and bus width.

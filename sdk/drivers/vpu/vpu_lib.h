@@ -32,18 +32,17 @@
  * Copyright (c) 2006, Chips & Media.  All rights reserved.
  */
 
-/*!
- * @file vpu_lib.h
- *
- * @brief header file for codec API funcitons for VPU
- *
- * @ingroup VPU
- */
-
 #ifndef __VPU__LIB__H
 #define __VPU__LIB__H
 
 #include "sdk.h"
+
+//! @addtogroup diag_vpu
+//! @{
+
+//////////////////////////////////////////////////////////////////////////////
+// Definitions
+//////////////////////////////////////////////////////////////////////////////
 
 typedef uint32_t PhysicalAddress;
 typedef uint32_t VirtualAddress;
@@ -54,6 +53,7 @@ typedef uint32_t VirtualAddress;
 
 #define BIT_REG_MARGIN			0x4000
 
+//!@brief List all the VPU internal versions
 #define PRJ_TRISTAN     		0xF000
 #define PRJ_TRISTAN_REV			0xF001
 #define PRJ_PRISM_CX			0xF002
@@ -75,6 +75,7 @@ typedef uint32_t VirtualAddress;
 #define DC_TABLE_INDEX1		    2
 #define AC_TABLE_INDEX1		    3
 
+//! @brief Enumeration for all video codec standards
 typedef enum {
     STD_MPEG4 = 0,
     STD_H263 = 1,
@@ -88,6 +89,7 @@ typedef enum {
     STD_VP8 = 9
 } CodStd;
 
+//! @brief Enumeration for error code
 typedef enum {
     RETCODE_SUCCESS = 0,
     RETCODE_FAILURE = -1,
@@ -113,6 +115,7 @@ typedef enum {
     RETCODE_CODEC_NOT_ISSUED = -21,
 } RetCode;
 
+//! @brief Enumeration for data map, tiled or rastered, frame or field
 typedef enum {
     LINEAR_FRAME_MAP = 0,
     TILED_FRAME_MB_RASTER_MAP = 1,
@@ -120,6 +123,7 @@ typedef enum {
     TILED_MAP_TYPE_MAX
 } GDI_TILED_MAP_TYPE;
 
+//! @brief VPU codec control command
 typedef enum {
     ENABLE_ROTATION,
     DISABLE_ROTATION,
@@ -166,6 +170,24 @@ typedef enum {
     ENC_DISABLE_SUB_FRAME_SYNC
 } CodecCommand;
 
+//! @brief Enumeration of MP4 header type
+typedef enum {
+    VOL_HEADER,                 /* video object layer header */
+    VOS_HEADER,                 /* visual object sequence header */
+    VIS_HEADER                  /* video object header */
+} Mp4HeaderType;
+
+//! @brief Enumeration of AVC header type
+typedef enum {
+    SPS_RBSP,
+    PPS_RBSP,
+    END_SEQ_RBSP,
+    END_STREAM_RBSP,
+    SPS_RBSP_MVC,
+    PPS_RBSP_MVC
+} AvcHeaderType;
+
+//! @brief Frame buffer structure, including YUV component and motion vector
 typedef struct {
     uint32_t strideY;
     uint32_t strideC;
@@ -176,6 +198,7 @@ typedef struct {
     PhysicalAddress bufMvCol;
 } FrameBuffer;
 
+//! @brief Frame rectangle structure
 typedef struct {
     uint32_t left;
     uint32_t top;
@@ -183,6 +206,7 @@ typedef struct {
     uint32_t bottom;
 } Rect;
 
+//! @brief Mirror option
 typedef enum {
     MIRDIR_NONE,
     MIRDIR_VER,
@@ -190,6 +214,7 @@ typedef enum {
     MIRDIR_HOR_VER
 } MirrorDirection;
 
+//! @brief Data color format
 typedef enum {
     FORMAT_420,
     FORMAT_422,
@@ -198,13 +223,14 @@ typedef enum {
     FORMAT_400
 } ChromaFormat;
 
+//! @brief Deblocking option
 typedef struct {
     int32_t DbkOffsetA;
     int32_t DbkOffsetB;
     int32_t DbkOffsetEnable;
 } DbkOffset;
 
-/* VP8 specific display information */
+//! @brief specific display information
 typedef struct {
     unsigned hScaleFactor:2;
     unsigned vScaleFactor:2;
@@ -212,10 +238,10 @@ typedef struct {
     unsigned picHeight:14;
 } Vp8ScaleInfo;
 
-/* Decode struct and definition */
 typedef struct CodecInst DecInst;
 typedef DecInst *DecHandle;
 
+//! @brief Decode struct and definition
 typedef struct {
     CodStd bitstreamFormat;
     PhysicalAddress bitstreamBuffer;
@@ -243,17 +269,20 @@ typedef struct {
 
 } DecOpenParam;
 
+//! @brief Decoder result report buffer size
 typedef struct {
     int32_t frameBufStatBufSize;    /* Size of buffer to save Frame Buffer Status */
     int32_t mbInfoBufSize;      /* Size of buffer to save Mb information for Error Concealment  */
     int32_t mvInfoBufSize;      /* Size of buffer to save Motion vector information */
 } DecReportBufSize;
 
+//! @brief JPEG heander buffer
 typedef struct {
     uint8_t *pHeader;
     int32_t headerSize;
 } JpegHeaderBufInfo;
 
+//! @brief Decoder intialization output
 typedef struct {
     int32_t picWidth;
     int32_t picHeight;
@@ -293,45 +322,33 @@ typedef struct {
     DecReportBufSize reportBufSize;
 } DecInitialInfo;
 
+//! @brief auxillary buffer structure, for some codec standards
 typedef struct {
     PhysicalAddress bufferBase;
     int32_t bufferSize;
 } ExtBufCfg;
 
-typedef struct {
-    int32_t sliceMode;
-    int32_t sliceSizeMode;
-    int32_t sliceSize;
-} EncSliceMode;
-typedef struct {
-    PhysicalAddress subSampBaseAMvc;
-    PhysicalAddress subSampBaseBMvc;
-    ExtBufCfg scratchBuf;
-} EncExtBufInfo;
-
+//! @brief Slice buffer information for AVC decoder
 typedef struct {
     PhysicalAddress sliceSaveBuffer;
     int32_t sliceSaveBufferSize;
 } DecAvcSliceBufInfo;
 
+//! @brief Maximun frame information for decoder
 typedef struct {
     int32_t maxMbX;
     int32_t maxMbY;
     int32_t maxMbNum;
 } DecMaxFrmInfo;
 
+//! @brief Decoder buffer information
 typedef struct {
     ExtBufCfg avcSliceBufInfo;
     ExtBufCfg vp8MbDataBufInfo;
     DecMaxFrmInfo maxDecFrmInfo;
 } DecBufInfo;
 
-typedef enum {
-    PARA_TYPE_FRM_BUF_STATUS = 1,
-    PARA_TYPE_MB_PARA = 2,
-    PARA_TYPE_MV = 4,
-} ExtParaType;
-
+//! @brief Decoder parameters setting
 typedef struct {
     int32_t prescanEnable;      /* Not used on mx6 */
     int32_t prescanMode;        /* Not used on mx6 */
@@ -347,9 +364,9 @@ typedef struct {
 
     PhysicalAddress phyJpgChunkBase;
     unsigned char *virtJpgChunkBase;
-
 } DecParam;
 
+//! @brief Decoder report information
 typedef struct {
     int32_t enable;
     int32_t size;
@@ -364,7 +381,7 @@ typedef struct {
     uint8_t *addr;
 } DecReportInfo;
 
-/* VP8 specific header information */
+//! @brief VP8 specific header information
 typedef struct {
     unsigned showFrame:1;
     unsigned versionNumber:3;
@@ -373,13 +390,13 @@ typedef struct {
     unsigned refIdxGold:8;
 } Vp8PicInfo;
 
-/* MVC specific picture information */
+//! @brief MVC specific picture information 
 typedef struct {
     int32_t viewIdxDisplay;
     int32_t viewIdxDecoded;
 } MvcPicInfo;
 
-/* AVC specific SEI information (frame packing arrangement SEI) */
+//! @brief AVC specific SEI information (frame packing arrangement SEI)
 typedef struct {
     unsigned exist;
     unsigned frame_packing_arrangement_id;
@@ -401,6 +418,7 @@ typedef struct {
     unsigned frame_packing_arrangement_repetition_period;
 } AvcFpaSei;
 
+//! @brief Decoder output information
 typedef struct {
     int32_t indexFrameDisplay;
     int32_t indexFrameDecoded;
@@ -452,10 +470,24 @@ typedef struct {
     DecReportInfo userData;
 } DecOutputInfo;
 
-/* encode struct and definition */
 typedef struct CodecInst EncInst;
 typedef EncInst *EncHandle;
 
+//! @brief Slice information for encoder
+typedef struct {
+    int32_t sliceMode;
+    int32_t sliceSizeMode;
+    int32_t sliceSize;
+} EncSliceMode;
+
+//! @brief Encoder buffer structure
+typedef struct {
+    PhysicalAddress subSampBaseAMvc;
+    PhysicalAddress subSampBaseBMvc;
+    ExtBufCfg scratchBuf;
+} EncExtBufInfo;
+
+//! @brief parameters for MP4 encoder
 typedef struct {
     int32_t mp4_dataPartitionEnable;
     int32_t mp4_reversibleVlcEnable;
@@ -464,6 +496,7 @@ typedef struct {
     int32_t mp4_verid;
 } EncMp4Param;
 
+//! @brief parameters for H263 encoder
 typedef struct {
     int32_t h263_annexIEnable;
     int32_t h263_annexJEnable;
@@ -471,6 +504,7 @@ typedef struct {
     int32_t h263_annexTEnable;
 } EncH263Param;
 
+//! @brief parameters for AVC encoder
 typedef struct {
     int32_t avc_constrainedIntraPredFlag;
     int32_t avc_disableDeblk;
@@ -493,6 +527,7 @@ typedef struct {
     int32_t prefix_nal_en;
 } EncAvcParam;
 
+//! @brief parameters for MJPEG encoder
 typedef struct {
     int32_t mjpg_sourceFormat;
     int32_t mjpg_restartInterval;
@@ -509,6 +544,7 @@ typedef struct {
 
 } EncMjpgParam;
 
+//! @brief parameters for video encoder
 typedef struct {
     PhysicalAddress bitstreamBuffer;
     uint32_t bitstreamBufferSize;
@@ -559,17 +595,20 @@ typedef struct {
     int32_t IntraCostWeight;    // Additional weight of Intra Cost for mode decision to reduce Intra MB density
 } EncOpenParam;
 
+//! @brief report buffer size of encoder
 typedef struct {
     int32_t sliceInfoBufSize;   /* Slice Info */
     int32_t mbInfoBufSize;      /* Mb Param for Error Concealment */
     int32_t mvInfoBufSize;      /* Motion vector */
 } EncReportBufSize;
 
+//! @brief initial information for video encoder
 typedef struct {
     int32_t minFrameBufferCount;
     EncReportBufSize reportBufSize;
 } EncInitialInfo;
 
+//! @brief control parameters for encoder
 typedef struct {
     FrameBuffer *sourceFrame;
     int32_t encTopOffset;
@@ -582,6 +621,7 @@ typedef struct {
     int32_t enableAutoSkip;
 } EncParam;
 
+//! @brief report information for encoder
 typedef struct {
     int32_t enable;
     int32_t type;
@@ -589,6 +629,7 @@ typedef struct {
     uint8_t *addr;
 } EncReportInfo;
 
+//! @brief output information for encoder
 typedef struct {
     PhysicalAddress bitstreamBuffer;
     uint32_t bitstreamSize;
@@ -607,17 +648,14 @@ typedef struct {
     EncReportInfo sliceInfo;
 } EncOutputInfo;
 
+//! @brief parameters set for encoder
 typedef struct {
     uint32_t *paraSet;
     uint8_t *pParaSet;
     int32_t size;
 } EncParamSet;
 
-typedef struct {
-    PhysicalAddress searchRamAddr;
-    int32_t SearchRamSize;
-} SearchRamParam;
-
+//! @brief header parameters for encoder
 typedef struct {
     PhysicalAddress buf;
     int32_t size;
@@ -626,33 +664,7 @@ typedef struct {
     int32_t userProfileLevelIndication;
 } EncHeaderParam;
 
-typedef enum {
-    VOL_HEADER,                 /* video object layer header */
-    VOS_HEADER,                 /* visual object sequence header */
-    VIS_HEADER                  /* video object header */
-} Mp4HeaderType;
-
-typedef enum {
-    SPS_RBSP,
-    PPS_RBSP,
-    END_SEQ_RBSP,
-    END_STREAM_RBSP,
-    SPS_RBSP_MVC,
-    PPS_RBSP_MVC
-} AvcHeaderType;
-
-typedef struct {
-    uint32_t gopNumber;
-    uint32_t intraQp;
-    uint32_t bitrate;
-    uint32_t framerate;
-} stChangeRcPara;
-
-/*
- * The firmware version is retrieved from bitcode table.
- *
- * The library version convention:
- */
+//! @brief vpu firmware version information
 typedef struct vpu_versioninfo {
     int32_t fw_major;           /* firmware major version */
     int32_t fw_minor;           /* firmware minor version */
@@ -684,49 +696,409 @@ static inline int32_t type## _rev (int32_t rev)         \
 }
 
 #define cpu_is_mx5x()		(mxc_is_cpu(0x51) || mxc_is_cpu(0x53))
-#define cpu_is_mx6q()		(mxc_is_cpu(0x61) || mxc_is_cpu(0x63))
+#define cpu_is_mx6()		(mxc_is_cpu(0x61) || mxc_is_cpu(0x63))
 
+//////////////////////////////////////////////////////////////////////////////
+// API
+//////////////////////////////////////////////////////////////////////////////
+
+/*!
+ * @brief VPU initialization. This function initializes VPU hardware and proper data 
+ * structures/resources. It must be called only once before using VPU codec.
+ *
+ * @return  RETCODE_SUCCESS.
+ */
 RetCode VPU_Init(void);
+
+/*!
+ * @brief VPU un-initialization. This function release all the resources that VPU 
+ * allocated/occupied. It must be called after VPU codec done.
+ */
 void VPU_UnInit(void);
+
+/*!
+ * @brief Get VPU Firmware Version.
+ *
+ *@return RETCODE_SUCCESS or RETCODE_FAILURE
+ */
 RetCode VPU_GetVersionInfo(vpu_versioninfo * verinfo);
 
+/*!
+ * @brief VPU encoder initialization
+ *
+ * @param pHandle  Pointer to EncHandle type
+ *   where a handle will be written by which you can refer
+ *   to an encoder instance. If no instance is available,
+ *   null handle is returned via pHandle.
+ *
+ * @param pop   Pointer to EncOpenParam type
+ *  which describes parameters necessary for encoding.
+ *
+ * @return
+ * @li RETCODE_SUCCESS: Success in acquisition of an encoder instance.
+ * @li RETCODE_FAILURE: Failed in acquisition of an encoder instance.
+ * @li RETCODE_INVALID_PARAM: pop is a null pointer, or some parameter
+ * passed does not satisfy conditions described in the paragraph for
+ * EncOpenParam type.
+ */
 RetCode VPU_EncOpen(EncHandle *, EncOpenParam *);
+
+/*!
+ * @brief Encoder system close.
+ *
+ * @param encHandle  The handle obtained from vpu_EncOpen().
+ *
+ * @return
+ * @li RETCODE_SUCCESS Successful closing.
+ * @li RETCODE_INVALID_HANDLE encHandle is invalid.
+ * @li RETCODE_FRAME_NOT_COMPLETE A frame has not been finished.
+ */
 RetCode VPU_EncClose(EncHandle);
+
+/*!
+ * @brief user could allocate frame buffers
+ *  according to the information obtained from this function.
+ *
+ * @param handle  The handle obtained from VPU_EncOpen().
+ * @param info  The information required before starting
+ *  encoding will be put to the data structure pointed to by initialInfo.
+ *
+ * @return
+ * @li RETCODE_SUCCESS Successful operation.
+ * @li RETCODE_FAILURE There was an error in getting information and
+ *                                    configuring the encoder.
+ * @li RETCODE_INVALID_HANDLE encHandle is invalid.
+ * @li RETCODE_FRAME_NOT_COMPLETE A frame has not been finished
+ * @li RETCODE_INVALID_PARAM initialInfo is a null pointer.
+ */
 RetCode VPU_EncGetInitialInfo(EncHandle, EncInitialInfo *);
+
+/*!
+ * @brief Registers frame buffers
+ *
+ * @param handle  The handle obtained from VPU_EncOpen().
+ * @param bufArray  Pointer to the first element of an array
+ *			of FrameBuffer data structures.
+ * @param num  Number of elements of the array.
+ * @param frameBufStride  Stride value of frame buffers being registered.
+ * @param sourceBufStride  Stride value of source buffers being registered.
+ * @param subSampBaseA  Base address of sub-sample a.
+ * @param subSampBaseB  Base address of sub-sample b.
+ * @param pBufInfo  Buffer information structure.
+ *
+ * @return
+ * @li RETCODE_SUCCESS Successful operation.
+ * @li RETCODE_INVALID_HANDLE encHandle is invalid.
+ * @li RETCODE_FRAME_NOT_COMPLETE A frame has not been finished
+ * @li RETCODE_WRONG_CALL_SEQUENCE Function call in wrong sequence.
+ * @li RETCODE_INVALID_FRAME_BUFFER pBuffer is a null pointer.
+ * @li RETCODE_INSUFFICIENT_FRAME_BUFFERS num is smaller than requested.
+ * @li RETCODE_INVALID_STRIDE stride is smaller than the picture width.
+ */
 RetCode VPU_EncRegisterFrameBuffer(EncHandle handle, FrameBuffer * bufArray,
                                    int32_t num, int32_t frameBufStride, int32_t sourceBufStride,
                                    PhysicalAddress subSampBaseA, PhysicalAddress subSampBaseB,
                                    EncExtBufInfo * pBufInfo);
+
+/*!
+ * @brief Registers frame buffers
+ *
+ * @param handle  The handle obtained from VPU_EncOpen().
+ * @param prdPrt  Read pointer.
+ * @param pwrPtr  Write pointer.
+ * @param size  Stream buffer size.
+ *
+ * @return
+ * @li RETCODE_SUCCESS Successful operation.
+ * @li RETCODE_INVALID_HANDLE encHandle is invalid.
+ * @li RETCODE_INVALID_PARAM input parameter is invalid
+ */
 RetCode VPU_EncGetBitstreamBuffer(EncHandle handle, PhysicalAddress * prdPrt,
                                   PhysicalAddress * pwrPtr, uint32_t * size);
+
+/*!
+ * @brief Registers frame buffers
+ *
+ * @param handle  The handle obtained from VPU_EncOpen().
+ * @param size  Stream buffer size.
+ *
+ * @return
+ * @li RETCODE_SUCCESS Successful operation.
+ * @li RETCODE_INVALID_HANDLE encHandle is invalid.
+ * @li RETCODE_INVALID_PARAM input parameter is invalid
+ */
 RetCode VPU_EncUpdateBitstreamBuffer(EncHandle handle, uint32_t size);
+
+/*!
+ * @brief Starts encoding one frame.
+ *
+ * @param handle  The handle obtained from VPU_EncOpen().
+ * @param pParam  Pointer to EncParam data structure.
+ *
+ * @return
+ * @li RETCODE_SUCCESS Successful operation.
+ * @li RETCODE_INVALID_HANDLE encHandle is invalid.
+ * @li RETCODE_FRAME_NOT_COMPLETE A frame has not been finished.
+ * @li RETCODE_WRONG_CALL_SEQUENCE Wrong calling sequence.
+ * @li RETCODE_INVALID_PARAM pParam is invalid.
+ * @li RETCODE_INVALID_FRAME_BUFFER skipPicture in EncParam is 0
+ * and sourceFrame in EncParam is a null pointer.
+ */
 RetCode VPU_EncStartOneFrame(EncHandle handle, EncParam * param);
+
+/*!
+ * @brief Get information of the output of encoding.
+ *
+ * @param encHandle  The handle obtained from VPU_EncOpen().
+ * @param info  Pointer to EncOutputInfo data structure.
+ *
+ * @return
+ * @li RETCODE_SUCCESS Successful operation.
+ * @li RETCODE_INVALID_HANDLE encHandle is invalid.
+ * @li RETCODE_WRONG_CALL_SEQUENCE Wrong calling sequence.
+ * @li RETCODE_INVALID_PARAM info is a null pointer.
+ */
 RetCode VPU_EncGetOutputInfo(EncHandle handle, EncOutputInfo * info);
+
+/*!
+ * @brief This function gives a command to the encoder.
+ *
+ * @param encHandle  The handle obtained from VPU_EncOpen().
+ * @param cmd [Intput] user command.
+ * @param param [Intput/Output] param  for cmd.
+ *
+ * @return
+ * @li RETCODE_INVALID_COMMAND cmd is not one of 8 values above.
+ * @li RETCODE_INVALID_HANDLE encHandle is invalid.
+ * @li RETCODE_FRAME_NOT_COMPLETE A frame has not been finished
+ */
 RetCode VPU_EncGiveCommand(EncHandle handle, CodecCommand cmd, void *parameter);
 
+/*!
+ * @brief Decoder initialization
+ *
+ * @param pHandle  Pointer to DecHandle type
+ * @param pop  Pointer to DecOpenParam type.
+ *
+ * @return
+ * @li RETCODE_SUCCESS Success in acquisition of a decoder instance.
+ * @li RETCODE_FAILURE Failed in acquisition of a decoder instance.
+ * @li RETCODE_INVALID_PARAM pop is a null pointer or invalid.
+ */
 RetCode VPU_DecOpen(DecHandle *, DecOpenParam *);
+
+/*!
+ * @brief Decoder close function
+ *
+ * @param  handle  The handle obtained from VPU_DecOpen().
+ *
+ * @return
+ * @li RETCODE_SUCCESS Successful closing.
+ * @li RETCODE_INVALID_HANDLE decHandle is invalid.
+ * @li RETCODE_FRAME_NOT_COMPLETE A frame has not been finished.
+ */
 RetCode VPU_DecClose(DecHandle);
+
+/*!
+ * @brief Decoder close function
+ *
+ * @param  handle  The handle obtained from VPU_DecOpen().
+ * @param  escape  Set the operation done if sequence initilization failed
+ *
+ * @return
+ * @li RETCODE_SUCCESS Successful Sequence initialization done.
+ * @li RETCODE_INVALID_HANDLE decHandle is invalid.
+ */
 RetCode VPU_DecSetEscSeqInit(DecHandle handle, int32_t escape);
+
+/*!
+ * @brief Get header information of bitstream.
+ *
+ * @param handle  The handle obtained from VPU_DecOpen().
+ * @param info  Pointer to DecInitialInfo data structure.
+ *
+ * @return
+ * @li RETCODE_SUCCESS Successful operation.
+ * @li RETCODE_FAILURE There was an error in getting initial information.
+ * @li RETCODE_INVALID_HANDLE decHandle is invalid.
+ * @li RETCODE_INVALID_PARAM info is an invalid pointer.
+ * @li RETCODE_FRAME_NOT_COMPLETE A frame has not been finished.
+ * @li RETCODE_WRONG_CALL_SEQUENCE Wrong calling sequence.
+ */
 RetCode VPU_DecGetInitialInfo(DecHandle handle, DecInitialInfo * info);
+
+/*!
+ * @brief Register decoder frame buffers.
+ *
+ * @param handle  The handle obtained from VPU_DecOpen().
+ * @param bufArray  Pointer to the first element of an array of FrameBuffer.
+ * @param num  Number of elements of the array.
+ * @param stride  Stride value of frame buffers being registered.
+ * @param pBufInfo  Buffer information pointer.
+ *
+ * @return
+ * @li RETCODE_SUCCESS Successful operation.
+ * @li RETCODE_INVALID_HANDLE decHandle is invalid.
+ * @li RETCODE_FRAME_NOT_COMPLETE A frame has not been finished.
+ * @li RETCODE_WRONG_CALL_SEQUENCE Wrong calling sequence.
+ * @li RETCODE_INVALID_FRAME_BUFFER Buffer is an invalid pointer.
+ * @li RETCODE_INSUFFICIENT_FRAME_BUFFERS num is less than
+ * the value requested by VPU_DecGetInitialInfo().
+ * @li RETCODE_INVALID_STRIDE stride is less than the picture width.
+ */
 RetCode VPU_DecRegisterFrameBuffer(DecHandle handle,
                                    FrameBuffer * bufArray, int32_t num, int32_t stride,
                                    DecBufInfo * pBufInfo);
+
+/*!
+ * @brief Get bitstream for decoder.
+ *
+ * @param handle  The handle obtained from VPU_DecOpen().
+ * @param bufAddr  Bitstream buffer physical address.
+ * @param size  Bitstream size.
+ *
+ * @return
+ * @li RETCODE_SUCCESS Successful operation.
+ * @li RETCODE_INVALID_HANDLE decHandle is invalid.
+ * @li RETCODE_INVALID_PARAM buf or size is invalid.
+ */
 RetCode VPU_DecGetBitstreamBuffer(DecHandle handle, PhysicalAddress * paRdPtr,
                                   PhysicalAddress * paWrPtr, uint32_t * size);
+
+/*!
+ * @brief Update the current bit stream position.
+ *
+ * @param handle  The handle obtained from VPU_DecOpen().
+ * @param size  Size of bit stream you put.
+ *
+ * @return
+ * @li RETCODE_SUCCESS Successful operation.
+ * @li RETCODE_INVALID_HANDLE decHandle is invalid.
+ * @li RETCODE_INVALID_PARAM Invalid input parameters.
+ */
 RetCode VPU_DecUpdateBitstreamBuffer(DecHandle handle, uint32_t size);
+
+/*!
+ * @brief Start decoding one frame.
+ *
+ * @param handle  The handle obtained from VPU_DecOpen().
+ *
+ * @return
+ * @li RETCODE_SUCCESS Successful operation.
+ * @li RETCODE_INVALID_HANDLE decHandle is invalid.
+ * @li RETCODE_FRAME_NOT_COMPLETE A frame has not been finished.
+ * @li RETCODE_WRONG_CALL_SEQUENCE Wrong calling sequence.
+ */
 RetCode VPU_DecStartOneFrame(DecHandle handle, DecParam * param);
+
+/*!
+ * @brief Get the information of output of decoding.
+ *
+ * @param handle  The handle obtained from VPU_DecOpen().
+ * @param info  Pointer to DecOutputInfo data structure.
+ *
+ * @return
+ * @li RETCODE_SUCCESS Successful operation.
+ * @li RETCODE_INVALID_HANDLE decHandle is invalid.
+ * @li RETCODE_WRONG_CALL_SEQUENCE Wrong calling sequence.
+ * @li RETCODE_INVALID_PARAM Info is an invalid pointer.
+ */
 RetCode VPU_DecGetOutputInfo(DecHandle handle, DecOutputInfo * info);
+
+/*!
+ * @brief Flush the Bit buffer.
+ *
+ * @param handle  The handle obtained from VPU_DecOpen().
+ *
+ * @return
+ * @li RETCODE_SUCCESS Successful operation.
+ * @li RETCODE_INVALID_HANDLE decHandle is invalid.
+ */
 RetCode VPU_DecBitBufferFlush(DecHandle handle);
+
+/*!
+ * @brief Clear the display buffer flag. This is important! once the 
+ *   flag is cleared, it means the buffer is available to use. and if
+ *   all the buffers were tagged, there would be no buffer available
+ *   so the VPU codec would be blocked untill one is released.
+ *
+ * @param handle  The handle obtained from VPU_DecOpen().
+ *
+ * @return
+ * @li RETCODE_SUCCESS Successful operation.
+ * @li RETCODE_INVALID_HANDLE decHandle is invalid.
+ * @li RETCODE_WRONG_CALL_SEQUENCE Wrong calling sequence.
+ * @li RETCODE_INVALID_PARAM Info is an invalid pointer.
+ */
 RetCode VPU_DecClrDispFlag(DecHandle handle, int32_t index);
+
+/*!
+ * @brief Check the VPU decoder buffer status. if there is avaible buffer for output,
+ *  VPU can start to decode the next frame, or else, skip this loop and wait 
+ *  untill available.
+ *
+ * @param handle  The handle obtained from VPU_DecOpen().
+ *
+ * @return
+ * @li RETCODE_SUCCESS Successful operation.
+ * @li RETCODE_FAILURE Failed operation.
+ * @li RETCODE_INVALID_HANDLE decHandle is invalid.
+ */
 RetCode VPU_DecBufferCheck(DecHandle handle);
+
+/*!
+ * @brief Give command to the decoder.
+ *
+ * @param handle  The handle obtained from VPU_DecOpen().
+ * @param cmd [Intput] Command.
+ * @param param [Intput/Output] param  for cmd.
+ *
+ * @return
+ * @li RETCODE_INVALID_COMMANDcmd is not valid.
+ * @li RETCODE_INVALID_HANDLE decHandle is invalid.
+ * @li RETCODE_FRAME_NOT_COMPLETE A frame has not been finished.
+ * @li RETCODE_SUCCESS Successful operation.
+ * @li RETCODE_FAILURE Failed operation. 
+ */
 RetCode VPU_DecGiveCommand(DecHandle handle, CodecCommand cmd, void *parameter);
+
+/*!
+ * @brief Enable VPU interrupt.
+ *
+ * @param sel  Interrupt enable bit.
+ *
+ * @return RETCODE_SUCCESS Successful operation.
+ */
 RetCode VPU_EnableInterrupt(int32_t sel);
+
+/*!
+ * @brief Disable VPU interrupt.
+ *
+ * @return RETCODE_SUCCESS Successful operation.
+ */
 RetCode VPU_ClearInterrupt(void);
+
+/*!
+ * @brief Check whether processing(encoding/decoding) a frame
+ * is completed or not yet.
+ *
+ * @return
+ * @li 0: VPU hardware is idle.
+ * @li Non-zero value: VPU hardware is busy processing a frame.
+ */
 int32_t VPU_IsBusy(void);
-int32_t jpu_IsBusy(void);
-int32_t VPU_WaitForInt(int32_t timeout_in_ms);
+
+/*!
+ * @brief VPU software reset.
+ *
+ * @return RETCODE_SUCCESS Successful operation.
+ */
 RetCode VPU_SWReset(int32_t forcedReset);
-int VPU_GetXY2AXIAddr(DecHandle handle, int ycbcr, int posY, int posX, int stride,
-                      unsigned int addrY, unsigned int addrCb, unsigned int addrCr);
+
+//! @}
 
 #endif
+
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////

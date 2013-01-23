@@ -28,8 +28,16 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#ifndef CHIP_MX6SL
+
 #include "obds.h"
 
+const char g_cs42888_i2c_device_id_test_name[] = "CS42888 I2C Device ID Test";
+extern audio_card_p snd_card;
+extern audio_card_t snd_card_esai;
+extern int32_t cs42888_dev_info(void *, uint8_t *);
+extern int32_t cs42888_init(void *);
+extern int32_t cs42888_deinit(void *);
 ////////////////////////////////////////////////////////////////////////////////
 // Code
 ////////////////////////////////////////////////////////////////////////////////
@@ -38,8 +46,29 @@
 //!
 //! The original test attempted to read each of the device's registers, from
 //! register 0x01 through 0x19.
-int i2c_device_check_cs42888(void)
+test_return_t i2c_device_check_cs42888(void)
 {
+		int nRet1 = TEST_FAILED;
+		snd_card = &snd_card_esai;
+		cs42888_init(snd_card->codec);
+
+		
+#if defined (BOARD_SABRE_AI)
+		uint8_t dev_id = 0;
+		int32_t ret;
+
+		if((ret = cs42888_dev_info(snd_card, &dev_id)) == 0) {
+				nRet1 = TEST_PASSED;
+				printf("CS42888 device ID is 0x%04x , revision level is 0x%04x.\n\n", (dev_id & 0xf0) >> 4, (dev_id & 0x0f));
+			}
+			else {
+				nRet1 = TEST_FAILED;
+				printf("CS42888 I2C device check failed.\n\n");
+			}
+#endif
+
+		cs42888_deinit(snd_card);
+
 //     unsigned int i, ret;
 //     unsigned char data;
 // 
@@ -53,9 +82,11 @@ int i2c_device_check_cs42888(void)
 // 
 //     printf("CS42888 I2C device check passed. \n\n");
 
-    return TEST_PASSED;
+    return nRet1;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // EOF
 ////////////////////////////////////////////////////////////////////////////////
+
+#endif

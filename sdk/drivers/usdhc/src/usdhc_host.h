@@ -105,7 +105,7 @@
 
 #define ESDHC_CIHB_CHK_COUNT          10    /* 10ms */
 #define ESDHC_CDIHB_CHK_COUNT         100   /* 0.1s */
-#define ESDHC_OPER_TIMEOUT_COUNT      10    /* 10ms */
+#define ESDHC_OPER_TIMEOUT_COUNT      10000    /* 10s */
 #define ESDHC_DMA_TIMEOUT_COUNT       10000 /* 10s  */
 
 //#define ESDHC_STATUS_END_CMD_RESP_MSK         ((unsigned int)0x00000001)

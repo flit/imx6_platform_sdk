@@ -27,6 +27,9 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#ifndef __USB_CORE_REGISTERS__
+#define __USB_CORE_REGISTERS__
+
 #include "sdk.h"
 #include "registers/regsusbcore.h"
 #include "registers/regsusbnoncore.h"
@@ -36,9 +39,6 @@
  * @brief USB controller registers and bit definitions.
  *
  */
-
-#ifndef __USB_CORE_REGISTERS__
-#define __USB_CORE_REGISTERS__
 
 
 /*

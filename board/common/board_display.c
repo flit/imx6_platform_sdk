@@ -43,6 +43,7 @@
 void lvds_power_on(void)
 {
 #if defined(BOARD_EVB)
+    board_ioexpander_iomux_config();
     /*3.3V power supply through the load switch FDC6331L */
     max7310_set_gpio_output(0, 0, GPIO_HIGH_LEVEL);
     max7310_set_gpio_output(1, 1, GPIO_HIGH_LEVEL);
@@ -67,6 +68,7 @@ void lvds_power_on(void)
 #endif
 
 #ifdef BOARD_SABRE_AI
+    board_ioexpander_iomux_config();
     /*3.3V power supply through IOexpander */
     max7310_set_gpio_output(0, 0, GPIO_HIGH_LEVEL);
 
@@ -94,7 +96,7 @@ void disable_para_panel(void)
  */
 void tftlcd_backlight_en(char *panel_name)
 {
-    if (!strcmp(panel_name, "CLAA 070VC01")) {
+    if (!strcmp(panel_name, "CLAA01 WVGA")) {
         /*GPIO to provide backlight */
         reg32_write(IOMUXC_SW_MUX_CTL_PAD_DI0_PIN4, ALT5);
         gpio_set_direction(GPIO_PORT4, 20, GPIO_GDIR_OUTPUT);
@@ -154,7 +156,7 @@ void tftlcd_backlight_en(char *panel_name)
  */
 void tftlcd_reset(char *panel_name)
 {
-    if (!strcmp(panel_name, "CLAA 070VC01")) {
+    if (!strcmp(panel_name, "CLAA01 WVGA")) {
 #ifdef BOARD_EVB
         reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_EB3, ALT5);
         reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_EB3, 0x1B0B0);

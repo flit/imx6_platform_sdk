@@ -30,7 +30,7 @@
 
 #include "obds.h"
 
-static const char * const test_name = "I2C_DEVICE_MAG3112 Test";
+const char g_mag3112_i2c_device_id_test_name[] = "Compass MAG3112 I2C Device ID Test";
 
 unsigned char mag3112_reg_read(unsigned int i2c_base_addr, unsigned char reg_addr)
 {
@@ -55,46 +55,33 @@ unsigned char mag3112_reg_read(unsigned int i2c_base_addr, unsigned char reg_add
     return reg_data;
 }
 
-int i2c_device_id_check_mag3112(unsigned int i2c_base_addr)
+/*!
+ * @return      TEST_PASSED or  TEST_FAILED
+ */
+test_return_t i2c_device_id_check_mag3112()
 {
     unsigned char ret_data;
+    unsigned int i2c_base_addr = I2C3_BASE_ADDR;
+    const char* indent = menu_get_indent();
+
+#if defined(BOARD_SMART_DEVICE)
+    //  USB_OTG_PWR_EN (EIM_D22)
+    writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_EIM_EB3);
+    gpio_set_direction(GPIO_PORT2, 31, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT2, 31, GPIO_LOW_LEVEL);
+    hal_delay_us(1000);
+    gpio_set_level(GPIO_PORT2, 31, GPIO_HIGH_LEVEL);
+#endif    
 
     i2c_init(i2c_base_addr, 170000);
 
     ret_data = mag3112_reg_read(i2c_base_addr, 0x07);
 
     if (ret_data != 0xC4) {
-        printf(" * MAG3112 device ID test failed, read back 0x%x but it should be 0xC4 \n\n", ret_data);
+        printf("%s * MAG3112 device ID test failed (0x%02X). Expected 0xC4\n", indent, ret_data);
         return TEST_FAILED;
     } else {
-        printf("MAG3112 I2C device check passed, read back 0x%x \n\n", ret_data);
+        printf("%sMAG3112 I2C device check passed(0xC4).\n", indent, ret_data);
         return TEST_PASSED;
     }
-}
-
-/*!
- * @return      TEST_PASSED or  TEST_FAILED    
- */
-menu_action_t i2c_device_mag3112_test(const menu_context_t* context, void* param)
-{
-	if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
-    {
-    	*(test_return_t*)param = TEST_BYPASSED;
-    	return MENU_CONTINUE;
-    }
-    
-    if (i2c_device_id_check_mag3112(I2C3_BASE_ADDR) == TEST_PASSED)
-    {
-        //PASS the test
-        print_test_passed(test_name, NULL);
-
-        *(test_return_t*)param = TEST_PASSED;
-    }
-    else
-    {
-        print_test_failed(test_name, NULL);
-
-        *(test_return_t*)param = TEST_FAILED;
-    }    
-    return MENU_CONTINUE;   
 }

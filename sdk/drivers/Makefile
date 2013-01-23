@@ -1,3 +1,17 @@
+#-------------------------------------------------------------------------------
+# Copyright (C) 2012-2013 Freescale Semiconductor, Inc. All Rights Reserved.
+#
+# THIS SOFTWARE IS PROVIDED BY FREESCALE "AS IS" AND ANY EXPRESS OR IMPLIED
+# WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+# MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+# SHALL FREESCALE BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
+# OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+# IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+# OF SUCH DAMAGE.
+#-------------------------------------------------------------------------------
 include $(SDK_ROOT)/mk/common.mk
 
 
@@ -17,10 +31,14 @@ define SOURCES
 board_id/src/board_id.c
 camera/src/camera_profile.c
 cpu_utility/src/cpu_get_cores.c
+cpu_utility/src/cpu_workpoint.c
 eim/src/eim.c
 gpio/src/gpio.c
+gpio/src/gpio_pin.cpp
 i2c/src/imx_i2c_slave.c
 i2c/src/imx_i2c.c
+i2c/src/i2c_device.cpp
+i2c/src/software_i2c_port.cpp
 keypad/src/keypad_port.c
 ocotp/src/ocotp.c
 pmu/src/pmu_driver.cpp
@@ -29,9 +47,9 @@ rtc/src/rtc.c
 rtc/src/srtc.c
 sdma/src/sdma_script_info.c
 sdma/src/sdma.c
-smbus/src/smbus.c
 snvs/src/snvs.c
 spi/src/ecspi.c
+spi/src/spi_device.cpp
 tempmon/src/tempmon.c
 timer/src/epit.c
 timer/src/gpt.c
@@ -120,5 +138,15 @@ ifeq "$(TARGET)" "mx6sl"
 SOURCES += \
 	dcp/src/dcp.c
 endif
+
+# Select the GPIO map source file based on chip.
+ifeq "$(TARGET)" "mx6dq"
+SOURCES += gpio/src/imx6dq_gpio_map.c
+else ifeq "$(TARGET)" "mx6sdl"
+SOURCES += gpio/src/imx6sdl_gpio_map.c
+else ifeq "$(TARGET)" "mx6sl"
+SOURCES += gpio/src/imx6sl_gpio_map.c
+endif
+
 
 include $(SDK_ROOT)/mk/targets.mk

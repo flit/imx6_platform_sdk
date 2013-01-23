@@ -32,9 +32,6 @@
 
 #include "sdk.h"
 
-#define SUCCESS 0
-#define FAIL 1
-
 #define SPI_NOR_XFER_SZ 512
 
 #define WREN        0x06

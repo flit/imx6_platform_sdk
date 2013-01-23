@@ -212,26 +212,12 @@ return TEST_PASSED;
 /*!
  * @return      TEST_PASSED or  TEST_FAILED    
  */
-menu_action_t pmic_mc13892_test(const menu_context_t* context, void* param)
+test_return_t pmic_mc13892_test(void)
 {
-	if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
-    {
-    	*(test_return_t*)param = TEST_BYPASSED;
-    	return MENU_CONTINUE;
-    }
-    
-    if (device_id_check_mc13892() == TEST_PASSED)
-    {
-        //PASS the test
-        print_test_passed(test_name, NULL);
+    const char * indent = menu_get_indent();
 
-        *(test_return_t*)param = TEST_PASSED;
-    }
-    else
-    {
-        print_test_failed(test_name, NULL);
+    if ( prompt_run_test(test_name, indent) != TEST_CONTINUE )
+        return  TEST_BYPASSED;
 
-        *(test_return_t*)param = TEST_FAILED;
-    }    
-    return MENU_CONTINUE;   
+    return device_id_check_mc13892();
 }

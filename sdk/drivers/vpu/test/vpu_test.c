@@ -42,7 +42,6 @@ extern void print_media_fat_info(uint32_t);
 
 #define DeviceNum 0
 
-uint32_t g_usdhc_instance = SD_PORT_INDEX;
 vpu_resource_t vpu_resource = { 0 };
 struct decode *g_dec_instance[MAX_NUM_INSTANCE];
 struct encode *g_enc_instance[MAX_NUM_INSTANCE];
@@ -69,6 +68,9 @@ int vpu_test(void)
     arm_dcache_invalidate();
     mmu_enable();
     arm_dcache_enable();
+//    SDHC_ADMA_mode = 1;
+//    SDHC_INTR_mode = 0;
+    set_card_access_mode(1, 0);
 
     /* FAT filesystem setup from SD card */
     if (FSInit(NULL, bufy, maxdevices, maxhandles, maxcaches) != SUCCESS) {
@@ -121,6 +123,8 @@ int vpu_test(void)
             vpu_codec_io_deinit();
         }
     } while (1);
+
+    VPU_UnInit();
 
     return 0;
 }

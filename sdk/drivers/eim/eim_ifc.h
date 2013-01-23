@@ -168,7 +168,7 @@ extern uint32_t eim_cfg_set(uint32_t cs, uint32_t cfg, uint32_t value);
 //! library or the application.
 //@{
 //! @brief Configure IOMUX for the EIM driver.
-void weim_iomux_config(void);
+void eim_iomux_config(void);
 //@}
 
 #if defined (__cplusplus)

@@ -270,7 +270,6 @@ extern uint32_t g_bs_buffer[];
 extern int32_t g_current_active_instance;
 extern int32_t g_total_active_instance;
 extern vpu_resource_t *g_vpu_hw_map;
-extern hw_module_t g_hw_epit2;
 extern int32_t g_disp_clr_index[];
 extern int32_t g_multi_instance;
 extern bs_mem_t g_bs_memory;

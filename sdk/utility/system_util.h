@@ -37,10 +37,22 @@
 #ifndef _SYSTEM_UTIL_H_
 #define _SYSTEM_UTIL_H_
 
-#include "sdk.h"
-
 //! @addtogroup diag_util
 //! @{
+
+////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
+
+//! @brief Typedef for an input filter function for read_input_string().
+typedef bool (*input_string_filter_t)(char newChar, const char * currentString);
+
+//! @brief HAB failsafe routine typedef.
+typedef void hab_rvt_failsafe_t(void);
+
+//! ROM Vector Table starts at address 0x94
+#define HAB_RVT_FAILSAFE (*(uint32_t *) 0x000000BC)
+#define hab_rvt_failsafe ((hab_rvt_failsafe_t *) HAB_RVT_FAILSAFE)
 
 ////////////////////////////////////////////////////////////////////////////////
 // Board support
@@ -53,7 +65,7 @@
 //! This hw_module is used by the driver in order to factor out board
 //! specific functionality. It must be defined by the board support
 //! library or the application.
-extern hw_module_t g_debug_uart;
+extern uint32_t g_debug_uart_port;
 //@}
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -64,12 +76,35 @@ extern hw_module_t g_debug_uart;
 extern "C" {
 #endif
 
+/*!
+ * @brief Exception signaling and handling for C lib functions.
+ *
+ * This function never returns.
+ *
+ * In release builds (i.e., the DEBUG macro is not defined), the processor will be put
+ * to sleep using the WFI instruction.
+ *
+ * @param    return_code     not used
+ */
 void _sys_exit(int32_t return_code);
 
 /*!
- * @brief breakpoint function
+ * @brief Breakpoint function.
  */
 void mybkpt(void);
+
+int _raw_puts(char str[]);
+
+/*!
+ * @brief Read a string from interactive console input.
+ *
+ * @param filter Optional filter function. If this parameter is not NULL, it will be called
+ *      for every character that is read from the input. If it returns true, then the
+ *      new character will be added to the output string.
+ * @return The string that was read in. The string is allocated with malloc() and must be
+ *      freed by the caller.
+ */
+char * read_input_string(input_string_filter_t filter);
 
 /*!
  * This function waits for an input char to be received from the UART. Once a char is received,
@@ -81,9 +116,23 @@ void mybkpt(void);
  */
 int32_t is_input_char(uint8_t c, const char* const indent);
 
+/*!
+ * @brief Reads a hex number from console input.
+ */
 uint32_t get_input_hex(void);
 
+/*!
+ * @brief Reads a decimal number from console input.
+ */
 int read_int(void);
+
+/*!
+ * @brief Function to jump into the ROM Serial Download Protocol.
+ * 
+ * Control never returns to the caller once this function is called.
+ */
+void jump_to_sdp(void);
+
 
 #if defined(__cplusplus)
 }

@@ -204,7 +204,7 @@ void i2c_slave_handler(const imx_i2c_request_t *rq);
  * @param   port Pointer to the I2C module structure.
  * @param   rq Pointer to #imx_i2c_request_t.
  */
-void i2c_slave_xfer(hw_module_t *port, imx_i2c_request_t *rq);
+void i2c_slave_xfer(imx_i2c_request_t *rq);
 
 ////////////////////////////////////////////////////////////////////////////////
 // Board support

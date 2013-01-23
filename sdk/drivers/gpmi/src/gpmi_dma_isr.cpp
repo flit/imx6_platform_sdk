@@ -229,6 +229,7 @@ void bch_complete_isr()
     // It is the client application's responsibility to
     // perform the aforementioned actions after the ECC STATUS
     // has been read.
+	gpmi_clear_ecc_isr_enable();
 
 }
 

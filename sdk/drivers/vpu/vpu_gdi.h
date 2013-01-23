@@ -37,6 +37,13 @@
 
 #include "vpu_lib.h"
 
+//! @addtogroup diag_vpu
+//! @{
+
+//////////////////////////////////////////////////////////////////////////////
+// DEFINITIONS
+//////////////////////////////////////////////////////////////////////////////
+
 enum {
     X_SEL = 0,
     Y_SEL = 1,
@@ -55,6 +62,7 @@ enum {
 #define RBC(A,B,C,D)                 ((A)<<10 | (B)<< 6 | (C)<<4 | (D))
 #define RBC_SAME(A,B)                ((A)<<10 | (B)<< 6 | (A)<<4 | (B))
 
+//! @brief GDI tiled map structure 
 typedef struct {
     int xy2ca_map[16];
     int xy2ba_map[16];
@@ -70,7 +78,33 @@ typedef struct {
     int value;
 } GdiTiledMap;
 
-int SetTiledMapTypeInfo(GDI_TILED_MAP_TYPE TiledMapType, GdiTiledMap * pTiledInfo);
+//////////////////////////////////////////////////////////////////////////////
+// API
+//////////////////////////////////////////////////////////////////////////////
+
+/*!
+ * @brief Configure the GDI for tiled mode. this is a new feature for imx6. tiled mode will 
+ *  lease the burden of bandwidth. but need VDOA to cooperate to convert the data.
+ *
+ * @param TiledMapType tiled map type
+ * @param pTiledInfo tiled information
+ *
+ * @li RETCODE_SUCCESS Successful operation.
+ * @li RETCODE_FAILURE When this happened it means tiled map is not supported!
+ */
+RetCode SetTiledMapTypeInfo(GDI_TILED_MAP_TYPE TiledMapType, GdiTiledMap * pTiledInfo);
+
+/*!
+ * @brief Set the GDI registers.
+ *
+ * @param pTiledInfo tiled information
+ */
 void SetGDIRegs(GdiTiledMap * pTiledInfo);
 
-#endif // end of GDI_H_INCLUDED
+//! @}
+
+#endif
+
+//////////////////////////////////////////////////////////////////////////////
+// EOF
+//////////////////////////////////////////////////////////////////////////////

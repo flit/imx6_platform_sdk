@@ -42,8 +42,11 @@ const i2c_device_info_t g_wm8962_i2c_device = { HW_I2C1, (0x34 >> 1), 48000 };
 
 const i2c_device_info_t g_sgtl5000_i2c_device = { HW_I2C2, 0x0a, 100000 };
 
+#if defined (BOARD_EVB)
 const i2c_device_info_t g_cs42888_i2c_device = { HW_I2C1, (0x90 >> 1), 100000 };
-
+#else
+const i2c_device_info_t g_cs42888_i2c_device = { HW_I2C2, (0x90 >> 1), 100000 };
+#endif
 
 const i2c_device_info_t g_pmic_ltc3589_i2c_device = { HW_I2C2, (0x68 >> 1), 170000 };
 
@@ -63,10 +66,11 @@ const i2c_device_info_t g_adv7180_i2c_device = { HW_I2C3, (0x42 >> 1), 50000 };
 
 const i2c_device_info_t g_os81050_i2c_device = { HW_I2C3, (0x40 >> 1), 50000 };
 
-
-const i2c_device_info_t g_p1003_tsc_i2c_device = { HW_I2C2, 4 };
-
-
+#if defined(BOARD_SMART_DEVICE)
+const i2c_device_info_t g_p1003_tsc_i2c_device = { HW_I2C3, (0x8 >> 1), 50000 };
+#else
+const i2c_device_info_t g_p1003_tsc_i2c_device = { HW_I2C2, (0x8 >> 1), 50000 };
+#endif
 const i2c_device_info_t g_at24cx_i2c_device = { HW_I2C3, (0xa0 >> 1), 170000 };
 
 

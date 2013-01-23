@@ -37,10 +37,38 @@
 #include "sdk.h"
 #include "gpio/gpio.h"
 #include "registers/regsgpio.h"
+#include "registers/regsiomuxc.h"
+#include "gpio_map.h"
 
 int32_t gpio_get_port_count(void)
 {
     return HW_GPIO_INSTANCE_COUNT;
+}
+
+int gpio_set_gpio(int32_t port, int32_t pin)
+{
+    // Validate port and pin before indexing into the map arrays.
+    if (port < 1 || port > HW_GPIO_INSTANCE_COUNT || pin < 0 || pin > 31)
+    {
+        debug_printf("Invalid GPIO port or pin number.\n");
+        return INVALID_PARAMETER;
+    }
+    
+    // Look up mux register address.
+    uint32_t addr = k_gpio_mux_registers[port - 1][pin];
+    if (!addr)
+    {
+        return INVALID_PARAMETER;
+    }
+    
+    volatile uint32_t * reg = (volatile uint32_t *)addr;
+    
+    // Switch mux to ALT5, which is always GPIO mode. We're just using this register's
+    // BM_ and BF_ macros because they are convenient, and is present on all three mx6.
+    *reg = (*reg & ~BM_IOMUXC_SW_MUX_CTL_PAD_KEY_COL0_MUX_MODE)
+         | BF_IOMUXC_SW_MUX_CTL_PAD_KEY_COL0_MUX_MODE_V(ALT5);
+    
+    return SUCCESS;
 }
 
 int32_t gpio_set_direction(int32_t port, int32_t pin, int32_t dir)
@@ -49,14 +77,14 @@ int32_t gpio_set_direction(int32_t port, int32_t pin, int32_t dir)
 
     if ((port > HW_GPIO_INSTANCE_COUNT) || (port < 1))
     {
-        printf("Invalid GPIO Instance GPIO_PORT%d parameter. GPIO_PORT1~GPIO_PORT%d is allowed.\n",
+        debug_printf("Invalid GPIO Instance GPIO_PORT%d parameter. GPIO_PORT1~GPIO_PORT%d is allowed.\n",
         		port, HW_GPIO_INSTANCE_COUNT);
         return INVALID_PARAMETER;
     }
 
     if ((pin > 31) || (pin < 0))
     {
-        printf("Invalid GPIO Pin %d parameter. Pin 0~31 is allowed.\n", pin);
+        debug_printf("Invalid GPIO Pin %d parameter. Pin 0~31 is allowed.\n", pin);
         return INVALID_PARAMETER;
     }
     
@@ -72,18 +100,37 @@ int32_t gpio_set_direction(int32_t port, int32_t pin, int32_t dir)
     return 0; //SUCCESS;
 }
 
-int32_t gpio_set_level(int32_t port, int32_t pin, uint32_t level)
+int32_t gpio_get_direction(int32_t port, int32_t pin)
 {
     if ((port > HW_GPIO_INSTANCE_COUNT) || (port < 1))
     {
-        printf("Invalid GPIO Instance GPIO_PORT%d parameter. GPIO_PORT1~GPIO_PORT%d is allowed.\n",
+        debug_printf("Invalid GPIO Instance GPIO_PORT%d parameter. GPIO_PORT1~GPIO_PORT%d is allowed.\n",
         		port, HW_GPIO_INSTANCE_COUNT);
         return INVALID_PARAMETER;
     }
 
     if ((pin > 31) || (pin < 0))
     {
-        printf("Invalid GPIO Pin %d parameter. Pin 0~31 is allowed.\n", pin);
+        debug_printf("Invalid GPIO Pin %d parameter. Pin 0~31 is allowed.\n", pin);
+        return INVALID_PARAMETER;
+    }
+    
+    return (HW_GPIO_GDIR_RD(port) >> pin) & 1;
+}
+
+
+int32_t gpio_set_level(int32_t port, int32_t pin, uint32_t level)
+{
+    if ((port > HW_GPIO_INSTANCE_COUNT) || (port < 1))
+    {
+        debug_printf("Invalid GPIO Instance GPIO_PORT%d parameter. GPIO_PORT1~GPIO_PORT%d is allowed.\n",
+        		port, HW_GPIO_INSTANCE_COUNT);
+        return INVALID_PARAMETER;
+    }
+
+    if ((pin > 31) || (pin < 0))
+    {
+        debug_printf("Invalid GPIO Pin %d parameter. Pin 0~31 is allowed.\n", pin);
         return INVALID_PARAMETER;
     }
 
@@ -113,34 +160,34 @@ int32_t gpio_get_level(int32_t port, int32_t pin)
 {
     if ((port > HW_GPIO_INSTANCE_COUNT) || (port < 1))
     {
-        printf("Invalid GPIO Instance GPIO_PORT%d parameter. GPIO_PORT1~GPIO_PORT%d is allowed.\n",
+        debug_printf("Invalid GPIO Instance GPIO_PORT%d parameter. GPIO_PORT1~GPIO_PORT%d is allowed.\n",
         		port, HW_GPIO_INSTANCE_COUNT);
         return INVALID_PARAMETER;
     }
 
     if ((pin > 31) || (pin < 0))
     {
-        printf("Invalid GPIO Pin %d parameter. Pin 0~31 is allowed.\n", pin);
+        debug_printf("Invalid GPIO Pin %d parameter. Pin 0~31 is allowed.\n", pin);
         return INVALID_PARAMETER;
     }
 
     uint32_t mask = 1 << pin;
 
-    return HW_GPIO_PSR_RD(port) & mask ? GPIO_HIGH_LEVEL : GPIO_LOW_LEVEL;
+    return HW_GPIO_DR_RD(port) & mask ? GPIO_HIGH_LEVEL : GPIO_LOW_LEVEL;
 }
 
 int32_t gpio_set_interrupt_config(int32_t port, int32_t pin, int32_t config)
 {
     if ((port > HW_GPIO_INSTANCE_COUNT) || (port < 1))
     {
-        printf("Invalid GPIO Instance GPIO_PORT%d parameter. GPIO_PORT1~GPIO_PORT%d is allowed.\n",
+        debug_printf("Invalid GPIO Instance GPIO_PORT%d parameter. GPIO_PORT1~GPIO_PORT%d is allowed.\n",
         		port, HW_GPIO_INSTANCE_COUNT);
         return INVALID_PARAMETER;
     }
 
     if ((pin > 31) || (pin < 0))
     {
-        printf("Invalid GPIO Pin %d parameter. Pin 0~31 is allowed.\n", pin);
+        debug_printf("Invalid GPIO Pin %d parameter. Pin 0~31 is allowed.\n", pin);
         return INVALID_PARAMETER;
     }
 
@@ -170,14 +217,14 @@ int32_t gpio_set_interrupt_mask(int32_t port, int32_t pin, int32_t mask)
 {
     if ((port > HW_GPIO_INSTANCE_COUNT) || (port < 1))
     {
-        printf("Invalid GPIO Instance GPIO_PORT%d parameter. GPIO_PORT1~GPIO_PORT%d is allowed.\n",
+        debug_printf("Invalid GPIO Instance GPIO_PORT%d parameter. GPIO_PORT1~GPIO_PORT%d is allowed.\n",
         		port, HW_GPIO_INSTANCE_COUNT);
         return INVALID_PARAMETER;
     }
 
     if ((pin > 31) || (pin < 0))
     {
-        printf("Invalid GPIO Pin %d parameter. Pin 0~31 is allowed.\n", pin);
+        debug_printf("Invalid GPIO Pin %d parameter. Pin 0~31 is allowed.\n", pin);
         return INVALID_PARAMETER;
     }
 
@@ -197,14 +244,14 @@ int32_t gpio_get_interrupt_status(int32_t port, int32_t pin)
 {
     if ((port > HW_GPIO_INSTANCE_COUNT) || (port < 1))
     {
-        printf("Invalid GPIO Instance GPIO_PORT%d parameter. GPIO_PORT1~GPIO_PORT%d is allowed.\n",
+        debug_printf("Invalid GPIO Instance GPIO_PORT%d parameter. GPIO_PORT1~GPIO_PORT%d is allowed.\n",
         		port, HW_GPIO_INSTANCE_COUNT);
         return INVALID_PARAMETER;
     }
 
     if ((pin > 31) || (pin < 0))
     {
-        printf("Invalid GPIO Pin %d parameter. Pin 0~31 is allowed.\n", pin);
+        debug_printf("Invalid GPIO Pin %d parameter. Pin 0~31 is allowed.\n", pin);
         return INVALID_PARAMETER;
     }
 
@@ -215,14 +262,14 @@ int32_t gpio_clear_interrupt(int32_t port, int32_t pin)
 {
     if ((port > HW_GPIO_INSTANCE_COUNT) || (port < 1))
     {
-        printf("Invalid GPIO Instance GPIO_PORT%d parameter. GPIO_PORT1~GPIO_PORT%d is allowed.\n",
+        debug_printf("Invalid GPIO Instance GPIO_PORT%d parameter. GPIO_PORT1~GPIO_PORT%d is allowed.\n",
         		port, HW_GPIO_INSTANCE_COUNT);
         return INVALID_PARAMETER;
     }
 
     if ((pin > 31) || (pin < 0))
     {
-        printf("Invalid GPIO Pin %d parameter. Pin 0~31 is allowed.\n", pin);
+        debug_printf("Invalid GPIO Pin %d parameter. Pin 0~31 is allowed.\n", pin);
         return INVALID_PARAMETER;
     }
 

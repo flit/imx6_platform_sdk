@@ -127,8 +127,7 @@ void multicore_test(void)
     if (cpu_id != 0)
     {
         // Enable interrupts on secondary CPUs.
-        gic_set_cpu_priority_mask(0xff);
-        gic_cpu_enable(true);
+        gic_init_cpu();
     }
 
     // primary cpu
@@ -184,8 +183,6 @@ void main(void)
 
     // Run the demo.
     multicore_test();
-
-    _sys_exit(0);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

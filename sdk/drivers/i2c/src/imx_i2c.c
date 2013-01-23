@@ -46,6 +46,10 @@
 //! Set this macro to 1 to enable tracing of data send and receive.
 #define TRACE_I2C 0
 
+//! @brief Get the irq id of I2C by instance number.
+//! @param x I2C instance number, from 1 through 3.
+#define I2C_IRQS(x) ( (x) == HW_I2C1 ? IMX_INT_I2C1 : (x) == HW_I2C2 ? IMX_INT_I2C2 : (x) == HW_I2C3 ? IMX_INT_I2C3 : 0xFFFFFFFF)
+
 ////////////////////////////////////////////////////////////////////////////////
 // Constants
 ////////////////////////////////////////////////////////////////////////////////
@@ -465,29 +469,31 @@ int i2c_write(const imx_i2c_request_t *rq)
     return i2c_xfer(rq, I2C_WRITE);
 }
 
-void i2c_setup_interrupt(const hw_module_t *port, bool state)
+void i2c_setup_interrupt(uint32_t instance, void (*irq_subroutine)(void), bool state)
 {
+    uint32_t irq_id = I2C_IRQS(instance);
+
     if (state) {
         // register the IRQ sub-routine 
-        register_interrupt_routine(port->irq_id, port->irq_subroutine);
+        register_interrupt_routine(irq_id, irq_subroutine);
         
         // enable the IRQ at the ARM core level 
-        enable_interrupt(port->irq_id, CPU_0, 0);
+        enable_interrupt(irq_id, CPU_0, 0);
         
         // clear the status register 
-        HW_I2C_I2SR_WR(port->instance, 0);
+        HW_I2C_I2SR_WR(instance, 0);
         
         // and enable the interrupts in the I2C controller 
-        HW_I2C_I2CR(port->instance).B.IIEN = 1;
+        HW_I2C_I2CR(instance).B.IIEN = 1;
     } else {
         // disable the IRQ at the ARM core level 
-        disable_interrupt(port->irq_id, CPU_0);
+        disable_interrupt(irq_id, CPU_0);
         
         // and disable the interrupts in the I2C controller 
-        HW_I2C_I2CR(port->instance).B.IIEN = 0;
+        HW_I2C_I2CR(instance).B.IIEN = 0;
         
         // clear the status register 
-        HW_I2C_I2SR_WR(port->instance, 0);
+        HW_I2C_I2SR_WR(instance, 0);
     }
 }
 

@@ -46,7 +46,7 @@ void microseconds_test(void)
     uint64_t endTime = time_get_microseconds();
 
     printf("start time = %08x%08x microseconds\n", (uint32_t)(startTime >> 32), (uint32_t)(startTime & 0xffffffff));
-    printf("end time = %08x%08x microseconds\n", (uint32_t)(endTime >> 32), (uint32_t)(startTime & 0xffffffff));
+    printf("end time = %08x%08x microseconds\n", (uint32_t)(endTime >> 32), (uint32_t)(endTime & 0xffffffff));
     printf("time delta = %ld microseconds\n", (uint32_t)(endTime - startTime));
 }
 

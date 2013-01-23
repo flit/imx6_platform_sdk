@@ -283,7 +283,8 @@ void GetDateTime(int32_t * date, int32_t * time)
 ----------------------------------------------------------------------------*/
 RtStatus_t CreateShortDirRecord(uint8_t * filename, // SFN
                                 int32_t HandleNumber,
-                                int32_t ClusterNumber, int32_t DirAttr, int32_t FileSize) {
+                                int32_t ClusterNumber, int32_t DirAttr, int32_t FileSize)
+{
     RtStatus_t RetValue;
     int32_t date, time;
     uint8_t buf[32];

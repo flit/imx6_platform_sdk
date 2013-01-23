@@ -107,7 +107,6 @@ extern "C" {
 /*!
  * @brief Initialize the GPT timer.
  *
- * @param   port Pointer to the GPT module structure.
  * @param   clock_src Source clock of the counter: CLKSRC_OFF, CLKSRC_IPG_CLK,
  *                      CLKSRC_PER_CLK, CLKSRC_CKIL, CLKSRC_CLKIN.
  * @param   prescaler Prescaler of the source clock from 1 to 4096.
@@ -115,8 +114,7 @@ extern "C" {
  * @param   low_power_mode Low power during which the timer is enabled:
  *                           WAIT_MODE_EN and/or STOP_MODE_EN.
  */
-void gpt_init(struct hw_module *port, uint32_t clock_src, uint32_t prescaler,
-              uint32_t counter_mode, uint32_t low_power_mode);
+void gpt_init(uint32_t clock_src, uint32_t prescaler, uint32_t counter_mode, uint32_t low_power_mode);
 
 /*!
  * @brief Setup GPT interrupt.
@@ -124,10 +122,10 @@ void gpt_init(struct hw_module *port, uint32_t clock_src, uint32_t prescaler,
  * It enables or disables the related HW module interrupt, and attached the
  * related sub-routine into the vector table.
  *
- * @param   port Pointer to the GPT module structure.
+ * @param   irq_subroutine the GPT interrupt interrupt routine.
  * @param   enableIt Pass true to enable the interrupt.
  */
-void gpt_setup_interrupt(struct hw_module *port, bool enableIt);
+void gpt_setup_interrupt(void (*irq_subroutine)(void), bool enableIt);
 
 /*!
  * @brief Enable the GPT module.
@@ -138,22 +136,20 @@ void gpt_setup_interrupt(struct hw_module *port, bool enableIt);
  * This effectively puts the timer into polling mode, where you must call gpt_get_x_event()
  * to check for an event having occurred.
  *
- * @param   port Pointer to the GPT module structure.
  * @param   irq_mode Mask of events to enable interrupts for, such as #kGPTRollover or
  *      #kGPTOutputCompare1. See the #_gpt_events enum for the complete list. Pass
  *      #kGPTNoEvent to prevent any interrupts from being enabled, which effectively puts
  *      the timer into polling mode.
  */
-void gpt_counter_enable(struct hw_module *port, uint32_t irq_mode);
+void gpt_counter_enable(uint32_t irq_mode);
 
 /*!
  * @brief Disable the counter.
  *
  * It saves power when not used.
  *
- * @param   port Pointer to the GPT module structure.
  */
-void gpt_counter_disable(struct hw_module *port);
+void gpt_counter_disable(void);
 
 /*!
  * @brief Get rollover event flag and clear it if set.
@@ -161,10 +157,9 @@ void gpt_counter_disable(struct hw_module *port);
  * This function can typically be used for polling method, but
  * is also used to clear the status compare flag in IRQ mode.
  *
- * @param   port Pointer to the GPT module structure.
  * @return  Either 0 of kGPTRollover.
  */
-uint32_t gpt_get_rollover_event(struct hw_module *port);
+uint32_t gpt_get_rollover_event(void);
 
 /*!
  * @brief Get a captured value when an event occured, and clear the flag if set.
@@ -176,27 +171,23 @@ uint32_t gpt_get_rollover_event(struct hw_module *port);
  * and its event mask returned as the return value from the function. If no event
  * occurred, the function returns 0.
  *
- * @param   port Pointer to the GPT module structure.
  * @param   flag Which channel to check, either #kGPTInputCapture1 or #kGPTInputCapture2.
  *      Only one channel may be specified.
  * @param   capture_val The capture register value is returned through this parameter if
  *      the specified event occurred. May be NULL if not required.
  * @return  Mask of input specified capture event that occurred, or 0 if no event occurred.
  */
-uint32_t gpt_get_capture_event(struct hw_module *port, uint8_t flag,
-                               uint32_t * capture_val);
+uint32_t gpt_get_capture_event(uint8_t flag, uint32_t * capture_val);
 
 /*!
  * @brief Set the input capture mode.
  *
- * @param   port Pointer to the GPT module structure.
  * @param   cap_input The input capture channel to configure, either #kGPTInputCapture1
  *      or #kGPTInputCapture2.
  * @param   cap_input_mode Capture input mode: #INPUT_CAP_DISABLE, #INPUT_CAP_BOTH_EDGE,
  *                            #INPUT_CAP_FALLING_EDGE, #INPUT_CAP_RISING_EDGE.
  */
-void gpt_set_capture_event(struct hw_module *port, uint8_t cap_input,
-                           uint8_t cap_input_mode);
+void gpt_set_capture_event(uint8_t cap_input, uint8_t cap_input_mode);
 
 /*!
  * @brief Get a compare event flag and clear it if set.
@@ -204,25 +195,22 @@ void gpt_set_capture_event(struct hw_module *port, uint8_t cap_input,
  * This function can typically be used for polling method, but
  * is also used to clear the status compare flag in IRQ mode.
  *
- * @param   port Pointer to the GPT module structure.
  * @param   flag Checked compare event flag such GPTSR_OF1, GPTSR_OF2, GPTSR_OF3.
  * @return  The value of the compare event flag.
  */
-uint32_t gpt_get_compare_event(struct hw_module *port, uint8_t flag);
+uint32_t gpt_get_compare_event(uint8_t flag);
 
 /*!
  * @brief Set a compare event by programming the compare register and 
  * compare output mode.
  *
- * @param   port Pointer to the GPT module structure.
  * @param   cmp_output The channel to configure. Must be one of #kGPTOutputCompare1,
  *      #kGPTOutputCompare2, or #kGPTOutputCompare3.
  * @param   cmp_output_mode Compare output mode: #OUTPUT_CMP_DISABLE, #OUTPUT_CMP_TOGGLE,
  *                            #OUTPUT_CMP_CLEAR, #OUTPUT_CMP_SET, #OUTPUT_CMP_LOWPULSE.
  * @param   cmp_value Compare value for the compare register.
  */
-void gpt_set_compare_event(struct hw_module *port, uint8_t cmp_output,
-                           uint8_t cmp_output_mode, uint32_t cmp_value);
+void gpt_set_compare_event(uint8_t cmp_output, uint8_t cmp_output_mode, uint32_t cmp_value);
 
 #if defined(__cplusplus)
 }

@@ -66,10 +66,6 @@ static int32_t snd_card_init(void *priv)
     if (NULL == priv)
         return -1;
 
-    if (0 != ctrl->ops->init((void *)ctrl)) {
-        TRACE("Initialize %s failed.\n", ctrl->name);
-        return -2;
-    }
     // Some snd card has no codec, such as spdif
     if (NULL != codec) {
         if (0 != codec->ops->init((void *)codec)) {
@@ -78,6 +74,11 @@ static int32_t snd_card_init(void *priv)
         }
     }
 
+
+    if (0 != ctrl->ops->init((void *)ctrl)) {
+        TRACE("Initialize %s failed.\n", ctrl->name);
+        return -2;
+    }
     return 0;
 }
 

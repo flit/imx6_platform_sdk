@@ -33,7 +33,7 @@
 #define REG_CTRL_REG1		0x2A
 #define REG_XYZ_DATA_CFG	0x0E
 
-static const char * const test_name = "I2C_DEVICE_MMA8451 Test";
+const char g_mma8451_i2c_device_id_test_name[] = "Accelerometer MMA8451 I2C Device ID Test";
 
 int mma8451_show_accel(unsigned int i2c_base_addr);
 
@@ -69,23 +69,44 @@ static int mma8451_reg_write(unsigned int i2c_base_addr, unsigned char reg_addr,
     rq.buffer_sz = 1;
     rq.buffer = buf;
 
-    return i2c_xfer(&rq, I2C_WRITE); 
+    return i2c_xfer(&rq, I2C_WRITE);
 }
 
-int i2c_device_id_check_MMA8451(unsigned int i2c_base_addr)
+/*!
+ * @return      TEST_PASSED or  TEST_FAILED
+ */
+test_return_t i2c_device_id_check_MMA8451(void)
 {
     unsigned int reg_data = 0;
-    printf("Test MMA8451 Device ID - ");
+    const char* indent = menu_get_indent();
+    unsigned int i2c_base_addr = 0;
+#if defined(BOARD_SMART_DEVICE)
+    i2c_base_addr = I2C1_BASE_ADDR;
+#elif defined(BOARD_SABRE_AI)
+    i2c_base_addr = I2C3_BASE_ADDR;
+#endif
+
+#if defined(BOARD_SMART_DEVICE)
+    //  USB_OTG_PWR_EN (EIM_D22)
+    writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_EIM_EB3);
+    gpio_set_direction(GPIO_PORT2, 31, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT2, 31, GPIO_LOW_LEVEL);
+    hal_delay_us(1000);
+    gpio_set_level(GPIO_PORT2, 31, GPIO_HIGH_LEVEL);
+#endif    
+
     i2c_init(i2c_base_addr, 170000);
+    hal_delay_us(100000);
+
     reg_data = mma8451_reg_read(i2c_base_addr, 0x0D);   //read  WHO_AM_I reg
 
     if (0x1A == reg_data) {
-        printf("passed 0x%02X\n\n", reg_data);
+        printf("%sRead I2C ID passed (0x1A).\n\n", indent);
         mma8451_show_accel(i2c_base_addr);
-        return 0;
+        return TEST_PASSED;
     } else {
-        printf("failed, 0x1A vs 0x%02X\n\n", reg_data);
-        return 1;
+        printf("%sRead I2C ID failed (0x%02X). Expected 0x1A\n\n", indent, reg_data);
+        return TEST_FAILED;
     }
 }
 
@@ -171,23 +192,22 @@ int mma8451_get_accel(unsigned int i2c_base_addr, Accel * acc)
 int mma8451_show_accel(unsigned int i2c_base_addr)
 {
     unsigned char uc = NONE_CHAR;
+    const char* indent = menu_get_indent();
     Accel acc;
 
-    printf("    Do you want to check the accelerometer?(y/n)\n\n");
+    printf("%s    Do you want to check the accelerometer?(y/n)\n\n", indent);
 
     do {
        uc = getchar();
-//        uc = receive_char();
     } while (uc == NONE_CHAR);
 
     if (uc == 'y' || uc == 'Y') {
         mma8451_set_config(i2c_base_addr);
 
-        printf("    Start show acceleration. Type 'x' to exit.\n\n");
+        printf("%s    Start show acceleration. Type 'x' to exit.\n\n", indent);
         while (1) {
             mma8451_get_accel(i2c_base_addr, &acc);
             uc = getchar();
-//            uc = receive_char();
             if (uc == 'x' || uc == 'X') {
                 printf("\n\n");
                 break;
@@ -197,40 +217,4 @@ int mma8451_show_accel(unsigned int i2c_base_addr)
         return 1;
     }
     return 0;
-}
-
-/*!
- * @return      TEST_PASSED or  TEST_FAILED    
- */
-menu_action_t i2c_device_MMA8451_test(const menu_context_t* context, void* param)
-{
-	unsigned int i2c_base_addr;
-	
-	if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
-    {
-    	*(test_return_t*)param = TEST_BYPASSED;
-    	return MENU_CONTINUE;
-    }
-       if ((BOARD_TYPE == BOARD_TYPE_DEFAULT) || (BOARD_TYPE == BOARD_TYPE_EVB)) {
-
-    } else if (BOARD_TYPE == BOARD_TYPE_SMART_DEVICE) {
-        i2c_base_addr = I2C1_BASE_ADDR;
-    } else if (BOARD_TYPE == BOARD_TYPE_SABRE_AI) {
-    	i2c_base_addr = I2C3_BASE_ADDR;
-    }
-    
-    if (i2c_device_id_check_MMA8451(i2c_base_addr) == TEST_PASSED)
-    {
-        //PASS the test
-        print_test_passed(test_name, NULL);
-
-        *(test_return_t*)param = TEST_PASSED;
-    }
-    else
-    {
-        print_test_failed(test_name, NULL);
-
-        *(test_return_t*)param = TEST_FAILED;
-    }    
-    return MENU_CONTINUE;   
 }

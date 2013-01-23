@@ -28,6 +28,7 @@
 */
 
 #include <iomux_config.h>
+#include "registers/regsiomuxc.h"
 
 // Function to configure iomux for i.MX6DQ board Smart_Device rev. B.
 void iomux_config(void)
@@ -128,9 +129,9 @@ void ipu2_iomux_config()
 {
 };
 
-void kpp_iomux_config()
+void kpp_iomux_config(void)
 {
-};
+}
 
 void ldb_iomux_config()
 {

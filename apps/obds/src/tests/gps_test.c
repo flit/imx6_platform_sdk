@@ -30,15 +30,9 @@
 
 #include "obds.h"
 #include "io.h"
+#include "registers/regsuart.h"
 
-hw_module_t uart2 = {
-    "UART2",
-    2,
-    UART2_BASE_ADDR,
-    27000000,
-    IMX_INT_UART2,
-    &default_interrupt_routine,
-};
+static uint32_t uart_instance = HW_UART2;
 
 #if 0
 /*!
@@ -171,7 +165,7 @@ int gps_test(void)
 //    init_uart(&uart2, 115200);
 
     uart2_iomux_config();
-    uart_init(&uart2, 115200, PARITY_NONE, STOPBITS_ONE, EIGHTBITS, FLOWCTRL_OFF); 
+    uart_init(uart_instance, 115200, PARITY_NONE, STOPBITS_ONE, EIGHTBITS, FLOWCTRL_OFF);
 
    return result;
 }

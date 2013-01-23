@@ -79,6 +79,28 @@ void board_ioexpander_init(void)
 #endif
 }
 
+void board_ioexpander_iomux_config(void)
+{
+#if defined(BOARD_SABRE_AI)
+
+    i2c3_iomux_config();
+
+#if !defined(BOARD_REV_A)
+    /*
+     * for I2C3 steering:
+     *
+     * i2c3_iomux_config() selected ALT5 mode of EIM_A24
+     * for GPIO5_4 - EIMD18_I2C3_STEER(EIM_A24)
+     *
+     * high output to select I2C3 option
+     */
+    gpio_set_direction(GPIO_PORT5, 4, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT5, 4, GPIO_HIGH_LEVEL);
+
+#endif // !defined(BOARD_REV_A)
+
+#endif // defined(BOARD_SABRE_AI)
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // EOF

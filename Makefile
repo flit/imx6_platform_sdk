@@ -43,6 +43,11 @@
 
 include mk/common.mk
 
+# Turn off parallel jobs for this makefile only. Child makefiles will still use the
+# specified number of jobs. This isn't strictly necessary, and actually slows the build
+# a little bit, but greatly improves the readability of the log output.
+.NOTPARALLEL:
+
 # Determine if the target is either the MX6DQ or MX6SDL.
 ifeq "$(TARGET)" "mx6dq"
 is_dq_or_sdl = 1
@@ -53,6 +58,7 @@ endif
 # Library subdirectories that the apps depend upon. Handled automatically by targets.mk.
 SUBDIRS = \
     sdk \
+    lwip \
     $(BOARD_ROOT)
 
 # List of all applications to build. Applications must reside in the apps directory.
@@ -60,14 +66,18 @@ ALL_APPS = \
     sdk_unit_test \
     power_modes_test \
     obds \
-    stream
+    stream \
+    cpu_workpoint \
+    ping \
+    httpd
 
 # Apps that are only built for MX6DQ and MX6SDL.
 ifdef is_dq_or_sdl
 ALL_APPS += \
     gpu_demo \
     multicore_demo \
-    caam_blob_gen
+    caam_blob_gen \
+    filesystem 
 endif
 
 # Default target.

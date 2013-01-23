@@ -305,15 +305,12 @@ void usb0_device_mouse_test(usb_module_t *port)
 	usbdEndpointDtd_t *usbDtdTop;		// First dTD of the list of 4 to be added
 	usbdEndpointDtd_t *usbDtdPointer;	//
 	while (1){
-		int tloop = 0x400;      //drain the buffer
-		while (tloop--) {
-		    if (getchar() == 'x') {
+		if (getchar() == 'x') {
 			printf("USB device test exits.\n");
     			//! Stop controller
    			HW_USBC_USBCMD_WR(core, HW_USBC_USBCMD_RD(core) & (!BM_USBC_UH1_USBCMD_RS));
 
 			return ;
-		    }
 		}
 
 		i = i % 8;					// Modulo 8 to loop through our 8 buffers

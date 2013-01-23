@@ -53,8 +53,8 @@ int32_t caam_blob_gen(void)
 
     do {
         printf("\n  To wrapped the DEK into a blob:\n");
-        printf("  1 - with provisionned DEK at 0x%X.\n",DEK_PLAINTEXT_ADDR);
-        printf("  x - to exit.\n\n");
+        printf("  1 - with provisioned DEK at 0x%X.\n",DEK_PLAINTEXT_ADDR);
+        printf("  x - to exit to SDP mode.\n\n");
 
         do {
             sel = getchar();
@@ -91,7 +91,7 @@ int32_t caam_blob_gen(void)
                     sizeof(wrapped_key_hdr));
 
         /* Print the generated DEK blob */
-        printf("DEK blob is available at 0x%08X and equals:\n",DEK_BLOB_ADDR);
+        printf("DEK blob is available at 0x%08X and is equal to:\n",DEK_BLOB_ADDR);
         for(i=0;i<(8+64);i++)
             printf("%02X ",((uint8_t *)DEK_BLOB_ADDR)[i]);
         printf("\n\n");
@@ -109,5 +109,6 @@ void main(void)
     // Run the blob generator
     caam_blob_gen();
 
-    _sys_exit(0);
+    // enter SDP mode when exiting
+    jump_to_sdp();
 }

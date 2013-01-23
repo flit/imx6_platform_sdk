@@ -373,14 +373,14 @@ void usbh_set_device_address(usb_module_t *port, usbhQueueHead_t *usb_qh_ep0, ui
  */
 void usbh_get_dev_desc(usb_module_t *port, usbhQueueHead_t *usbh_qh_ep0, usbDeviceDescriptor_t *device_descriptor)
 {
-	usbhTransferDescriptor_t *usb_qtd1, *usb_qtd2, *usb_qtd3;
-	uint32_t temp;
-	uint32_t usbhSetupCommand[2];
-        uint32_t core = (uint32_t)port->controllerID;    
-	
-	/* data for Get Descriptor command */
-	usbhSetupCommand[0] = 0x01000680;
-	usbhSetupCommand[1] = 0x00120000;
+    usbhTransferDescriptor_t *usb_qtd1, *usb_qtd2, *usb_qtd3;
+    uint32_t temp;
+    uint32_t usbhSetupCommand[2];
+    uint32_t core = (uint32_t)port->controllerID;
+
+    /* data for Get Descriptor command */
+    usbhSetupCommand[0] = 0x01000680;
+    usbhSetupCommand[1] = 0x00120000;
 
     usb_qtd1 = usbh_qtd_init(0x8, 0, SETUP_PID, usbhSetupCommand);
     usb_qtd2 = usbh_qtd_init(18, 0, IN_PID, (uint32_t*) device_descriptor);
@@ -389,42 +389,41 @@ void usbh_get_dev_desc(usb_module_t *port, usbhQueueHead_t *usbh_qh_ep0, usbDevi
     // link the transfer descriptors so they all get executed
     usb_qtd1->nextQtd = (uint32_t)usb_qtd2;
     usb_qtd2->nextQtd = (uint32_t)usb_qtd3;
-    
-	/* Point the QH to the linked list of qTDs */
-	usbh_qh_ep0->nextQtd = (uint32_t)usb_qtd1;
-        	
-	/* Wait for transaction to complete and clear int flag*/
-        while(!(HW_USBC_USBSTS_RD(core) & BM_USBC_UH1_USBSTS_UI));
-        HW_USBC_USBSTS_WR(core, HW_USBC_USBSTS_RD(core) | BM_USBC_UH1_USBSTS_UI);
-	
-	/*!
-	 * Check if the last transaction completed
-	 * This flag is what is used to recover used descriptors
-	 */
-	while (usb_qtd3->qtdToken & 0x80);
 
-	/* Check for errors */
-        if(HW_USBC_USBSTS_RD(core) & BM_USBC_UH1_USBSTS_UEI)
+    /* Point the QH to the linked list of qTDs */
+    usbh_qh_ep0->nextQtd = (uint32_t)usb_qtd1;
+
+    /* Wait for transaction to complete and clear int flag*/
+    while(!(HW_USBC_USBSTS_RD(core) & BM_USBC_UH1_USBSTS_UI));
+    HW_USBC_USBSTS_WR(core, HW_USBC_USBSTS_RD(core) | BM_USBC_UH1_USBSTS_UI);
+
+    /*!
+     * Check if the last transaction completed
+     * This flag is what is used to recover used descriptors
+    */
+    while (usb_qtd3->qtdToken & 0x80);
+
+    /* Check for errors */
+    if(HW_USBC_USBSTS_RD(core) & BM_USBC_UH1_USBSTS_UEI)
     {
-    	
-    	printf("ERROR!!!\n");
-	    temp = *(uint32_t *)((HW_USBC_ASYNCLISTADDR_RD(core)) + 0x18);
-        printf("qTD status = 0x%08x\n",temp);	
-		/* Clear the USB Error bit */
-		HW_USBC_USBSTS_WR(core, HW_USBC_USBSTS_RD(core) | BM_USBC_UH1_USBSTS_UEI);
+        printf("ERROR!!!\n");
+        temp = *(uint32_t *)((HW_USBC_ASYNCLISTADDR_RD(core)) + 0x18);
+        printf("qTD status = 0x%08x\n",temp);
+        /* Clear the USB Error bit */
+        HW_USBC_USBSTS_WR(core, HW_USBC_USBSTS_RD(core) | BM_USBC_UH1_USBSTS_UEI);
     }
-     else
-     {
-     	printf("Device descriptor has been read!!\n\n");
-		#ifdef DEBUG_PRINT	
-        	printf("USBSTS = 0x%08x\n",(HW_USBC_USBSTS_RD(core)));
-    	#endif
+    else
+    {
+        printf("Device descriptor has been read!!\n\n");
+#ifdef DEBUG_PRINT
+        printf("USBSTS = 0x%08x\n",(HW_USBC_USBSTS_RD(core)));
+#endif
     }
 
-	#ifdef DEBUG_PRINT	
-		for( i=0; i<0x12; i++)
-        	printf("device_descriptor[%02x] = 0x%02x\n",i,device_descriptor[i]);	
-	#endif
+#ifdef DEBUG_PRINT
+    for( i=0; i<0x12; i++)
+        printf("device_descriptor[%02x] = 0x%02x\n",i,device_descriptor[i]);
+#endif
     
     /* Return memory for descriptors to the heap */
     free((void *)usb_qtd1->mallocPointer);
@@ -704,4 +703,3 @@ void usbh_get_report_desc(usb_module_t *port, usbhQueueHead_t * usb_qh_ep0, uint
     free((void *)usb_qtd2->mallocPointer);
     free((void *)usb_qtd3->mallocPointer);
 }
-

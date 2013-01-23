@@ -149,5 +149,9 @@ INCLUDES += \
     -I$(SDK_ROOT)/sdk/utility \
     -I$(BOARD_ROOT) \
     -I$(SDK_ROOT)/board/$(TARGET)/common \
-    -I$(SDK_ROOT)/board/common
+    -I$(SDK_ROOT)/board/common \
+    -I$(LWIP_ROOT)/lwip/src/include \
+    -I$(LWIP_ROOT)/lwip/src/include/ipv4 \
+    -I$(LWIP_ROOT)/lwip/src/include/ipv6 \
+    -I$(LWIP_ROOT)/mx6/include
 

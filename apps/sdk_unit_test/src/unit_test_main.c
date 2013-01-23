@@ -56,7 +56,5 @@ int main(void)
     // Run the unit test function.
     SDK_TEST();
 
-    _sys_exit(0);
-
     return 0;
 }

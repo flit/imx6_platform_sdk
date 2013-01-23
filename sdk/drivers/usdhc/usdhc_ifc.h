@@ -40,6 +40,7 @@
 #define __USDHC_IFC_H__
 
 #include "sdk.h"
+#include "registers/regsusdhc.h"
 
 //////////////////////////////////////////////////////////////////////////////
 // Definitions
@@ -73,13 +74,13 @@ typedef enum {
  * Whether to enable ADMA when read/write from/to card.
  * If enabled, then use ADMA for transfer, or else, use polling IO
  */
-extern int SDHC_ADMA_mode;
+//extern int SDHC_ADMA_mode;
 
 /*!
  * Whether use interrupt to indicate end of transfer
  * If enabled, will attach the status to interrupt, or else, poll the status
  */
-extern int SDHC_INTR_mode;
+//extern int SDHC_INTR_mode;
 
 //////////////////////////////////////////////////////////////////////////////////
 // API
@@ -88,6 +89,16 @@ extern int SDHC_INTR_mode;
 #if defined(__cplusplus)
 extern "C" {
 #endif
+/*!
+ * @brief Set Card access mode
+ *
+ * @param mode     Set card access mode
+ * 
+ * @return           
+ */
+extern void set_card_access_mode(uint32_t sdma, uint32_t intr);
+extern uint32_t read_usdhc_adma_mode();
+extern uint32_t read_usdhc_intr_mode(); 
 
 /*!
  * @brief Initialize usdhc controller and card inserted
@@ -131,6 +142,15 @@ extern int card_data_write(uint32_t instance, int *src_ptr, int length, int offs
  * @return 0 if successful; non-zero otherwise
  */
 extern int card_xfer_result(uint32_t instance, int *status);
+
+/*!
+ * @brief Wait for the transfer complete. It covers the interrupt mode, DMA mode and PIO mode
+ *
+ * @param instance     Instance number of the uSDHC module.
+ * 
+ * @return             0 if successful; 1 otherwise
+ */
+extern int card_wait_xfer_done(uint32_t instance);
 
 /*!
  * eMMC specific functions

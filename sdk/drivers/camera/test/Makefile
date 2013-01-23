@@ -6,6 +6,7 @@ define SOURCES
 	adv7180_capture.c
 	camera_test.c
 	sensor_capture.c
+	csi_test_mode.c
 endef
 endif
 

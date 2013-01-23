@@ -48,6 +48,10 @@ extern const char* const g_TextColorBlue;
 extern const char* const g_TextColorMagenta;
 extern const char* const g_TextColorCyan;
 extern const char* const g_TextColorWhite;
+extern const char* const g_TextColorOrange;
+extern const char* const g_TextColorLightBlue;
+extern const char* const g_TextColorGray;
+extern const char* const g_TextColorPurple;
 
 void printf_color(const char* const attrib, const char* const color, const char* format, ...);
 

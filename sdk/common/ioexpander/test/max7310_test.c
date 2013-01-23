@@ -34,6 +34,9 @@
  */
 
 #include "ioexpander/max7310.h"
+#include "ioexpander/src/max7310_registers.h"
+
+const char g_max7310_i2c_device_id_test_name[] = "IO Expander MAX7310 I2C Device ID Test";
 
 /*! 
  * @note In hardware.h an array of I2C requests is created as multiple I/O expanders
@@ -43,7 +46,7 @@
  *       IO expander that needs to be accessed.
  *       e.g.     max7310_i2c_req = &max7310_i2c_req_array[slave_id];
  */
-extern struct imx_i2c_request *max7310_i2c_req;
+//extern struct imx_i2c_request *max7310_i2c_req;
 
 extern uint8_t max7310_reg_read(uint8_t reg_addr);
 
@@ -55,27 +58,25 @@ extern uint8_t max7310_reg_read(uint8_t reg_addr);
  * 
  * @return TEST_PASSED or TEST_FAILED
  */
-static int32_t max7310_i2c_device_id_check(void)
+test_return_t max7310_i2c_device_id_check(void)
 {
     uint32_t i, data;
-    int32_t ret = -1, ret_all = 0;
+    imx_i2c_request_t* max7310_i2c_req = NULL;
+    test_return_t ret = TEST_NOT_STARTED, ret_all = TEST_PASSED;
 
+    board_ioexpander_iomux_config();
     for (i = 0; i < MAX7310_NBR; i++) {
         max7310_i2c_req = &max7310_i2c_req_array[i];
         data = max7310_reg_read(timeout_reg);
         printf("data read back is 0x%x\n", data);
 
         if (data == 0xAC)
-            ret = 0;
+            ret = TEST_PASSED;
         else
-            ret_all = -1;
+            ret_all = TEST_FAILED;
 
         printf("I2C IO expander number %d test %s\n", i, (ret == 0) ? "passed" : "failed");
     }
 
-    if (ret_all == 0) {
-        return TEST_PASSED;
-    } else {
-        return TEST_FAILED;
-    }
+    return ret_all;
 }

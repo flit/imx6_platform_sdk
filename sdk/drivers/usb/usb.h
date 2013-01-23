@@ -212,6 +212,73 @@ typedef struct usbHidDescriptor {
     uint8_t wDescriptorLength[2];   // !!!! Not aligned on 16-bit boundary  !!!
 }  __attribute__ ((packed)) usbHidDescriptor_t;
 
+// USB HUB class-specific descriptor
+typedef struct usb_hub_descriptor {
+    uint8_t bLength;                 //Number of bytes in this descriptor
+    uint8_t bDescriptorType;         //Descriptor type, must be 29H
+    uint8_t bNbrPorts;               //Number of downstream ports supported by this hub
+    uint8_t bHubCharacteristics[2];  //Characteristics of this hub
+    uint8_t bPwrOn2PwrGood;          //Time(in 2ms intervals) from the time the power-on sequence begins
+                                     //  on a port until power is good on that port
+    uint8_t bHubContrCurrent;        //maximum current requirements of the hub controller electronics in mA
+    uint8_t DeviceRemovable;         //indicates if a port has a removable device attached
+} __attribute__ ((packed)) usb_hub_descriptor_t;
+
+/* HUB Class Feature Selctor Table 11-17*/
+#define HUB_CLASS_FEATURE_SELECTOR_C_HUB_LOCAL_POWER            0
+#define HUB_CLASS_FEATURE_SELECTOR_C_HUB_OVER_CURRENT           1
+
+#define HUB_CLASS_FEATURE_SELECTOR_PORT_CONNECTION              0
+#define HUB_CLASS_FEATURE_SELECTOR_PORT_ENABLE                  1
+#define HUB_CLASS_FEATURE_SELECTOR_PORT_SUSPEND                 2
+#define HUB_CLASS_FEATURE_SELECTOR_PORT_OVER_CURRENT            3
+#define HUB_CLASS_FEATURE_SELECTOR_PORT_RESET                   4
+#define HUB_CLASS_FEATURE_SELECTOR_PORT_POWER                   8
+#define HUB_CLASS_FEATURE_SELECTOR_PORT_LOW_SPEED               9
+
+#define HUB_CLASS_FEATURE_SELECTOR_C_PORT_CONNECTION            16
+#define HUB_CLASS_FEATURE_SELECTOR_C_PORT_ENABLE                17
+#define HUB_CLASS_FEATURE_SELECTOR_C_PORT_SUSPEND               18
+#define HUB_CLASS_FEATURE_SELECTOR_C_PORT_OVER_CURRENT          19
+#define HUB_CLASS_FEATURE_SELECTOR_C_PORT_RESET                 20
+
+#define HUB_CLASS_FEATURE_SELECTOR_PORT_TEST                    21
+#define HUB_CLASS_FEATURE_SELECTOR_PORT_INDICATOR               22
+
+
+#define NON_REMOVABLE_DEVICE_ATTACHED      0x1
+#define GANGED_POWER_SWICHING              (0<<0)
+#define INDIVIDUAL_PORT_POWER_SWITHCING    (1<<0)
+#define HUB_IS_PART_OF_COMPOUND_DEVICE     (1<<2)
+#define HUB_NOT_PART_OF_COMPOUND_DEVICE    (0<<2)
+#define GLOBAL_OVERCURRENT_PROTECT         (0<<3)
+#define INDIVIDUAL_OVERCURRENT_PROTECT     (1<<3)
+#define TT_THINK_TIME_08FS_BIT_TIMES        (0<<5)
+#define TT_THINK_TIME_16FS_BIT_TIMES        (1<<5)
+#define TT_THINK_TIME_24FS_BIT_TIMES        (2<<5)
+#define TT_THINK_TIME_32FS_BIT_TIMES        (3<<5)
+#define PORT_INDICATOR_NOT_SUPPORTED        (0<<7)
+#define PORT_INDICATOR_SUPPORTED            (1<<7)
+
+/* USB HUB Port Status, wPortStatus*/
+#define HUB_PORT_STATUS_DEVICE_PRESENT          (1<<0)
+#define HUB_PORT_STATUS_PORT_ENABLED            (1<<1)
+#define HUB_PORT_STATUS_PORT_SUSPEND            (1<<2)
+#define HUB_PORT_STATUS_PORT_OVERCURRENT        (1<<3)
+#define HUB_PORT_STATUS_PORT_RESET_ASSERTED     (1<<4)
+#define HUB_PORT_STATUS_PORT_POWER_OFF          (1<<8)
+#define HUB_PORT_STATUS_PORT_LSDEV_ATTACHED     (1<<9)
+#define HUB_PORT_STATUS_PORT_HSDEV_ATTACHED     (1<<10)
+#define HUB_PORT_STATUS_PORT_TEST               (1<<11)
+#define HUB_PORT_STATUS_PORT_INDICATOR          (1<<12)
+
+/* USB HUB Port Status, wPortChange*/
+#define HUB_PORT_CHANGE_CURRENT_CONNECT         (1<<16)
+#define HUB_PORT_CHANGE_PORT_DISABLED           (1<<17)
+#define HUB_PORT_CHANGE_PORT_RESUME_DONE        (1<<18)
+#define HUB_PORT_CHANGE_PORT_OC_INDICATOR       (1<<19)
+#define HUB_PORT_CHANGE_PORT_RESET_COMPLETE     (1<<20)
+
 /*!
  * Device driver definitions
  */

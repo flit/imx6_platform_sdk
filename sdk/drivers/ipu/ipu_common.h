@@ -38,6 +38,7 @@
 #define __IPU_COMMON_H__
 
 #include "sdk.h"
+#include "sdk_types.h"
 #include "ipu_reg_def.h"
 #include "buffers.h"
 #include "ldb/ldb_def.h"
@@ -63,6 +64,18 @@ enum {
     NO_CSC,
     RGB_YUV,
     YUV_RGB,
+};
+
+enum {
+    IPU1_ERR = 37,
+    IPU1_SYNC = 38,
+    IPU2_ERR = 39,
+    IPU2_SYNC = 40,
+};
+
+enum {
+    IPU_ERR_INTERRUPT,
+    IPU_SYNC_INTERRUPT,
 };
 
 // DI counter definitions
@@ -407,30 +420,12 @@ typedef enum {
 } ips_csi_clk_mode_e;
 
 enum disp_dev_flag {
-    EPSON_VGA,
     CLAA_WVGA,
+    BOUNDARYDEV_WVGA,
     TRULY_MIPI_TFT480800,
-    SEIKO_WVGA_7INCH,
-    SEIKO_WVGA_4_3INCH,
-    AUO_XGA_LVDS,
     HannStar_XGA_LVDS,
-    CHIMEI_HD1080_LVDS,
     VGAOUT_XGA,
-    DVI_SVGA,
-    DVI_XGA,
-    DVI_SXGA,
-    TV_NTSC,
-    TV_PAL,
-    TV_720P60,
-    TV_1080P30,
-    TV_1080P25,
-    TV_1080P24,
-    TV_1080I60,
-    HDMI_480P60,
     HDMI_720P60,
-    HDMI_1080P24,
-    HDMI_1080P25,
-    HDMI_1080P30,
     HDMI_1080P60,
     SII9022_1080P60,
 };
@@ -460,11 +455,13 @@ enum {
     CSI_BT656_PAL_PROGRESSIVE,
     CSI_BT656_NTSC_INTERLACED,
     CSI_BT656_PAL_INTERLACED,
+    CSI_TEST_MODE,
 };
 
 typedef struct {
     char panel_name[32];
     uint32_t panel_id;
+    uint32_t panel_type;
     uint32_t colorimetry;
     uint32_t refresh_rate;
     uint32_t width;
@@ -671,6 +668,7 @@ void ipu_capture_streamoff(uint32_t ipu_index);
 void ipu_mipi_csi2_setup(uint32_t ipu_index, uint32_t csi_width, uint32_t csi_height,
                          ips_dev_panel_t * panel);
 
+inline void ipu_cpmem_set_field(uint32_t base, int32_t w, int32_t bit, int32_t size, uint32_t v);
 void ipu_general_idmac_config(uint32_t ipu_index, ipu_idmac_info_t * idmac_info);
 void ipu_disp_bg_idmac_config(uint32_t ipu_index, uint32_t addr0, uint32_t addr1, uint32_t width,
                               uint32_t height, uint32_t pixel_format);
@@ -755,8 +753,11 @@ uint32_t ipu_smfc_fifo_allocate(uint32_t ipu_index, uint32_t channel, uint32_t m
 void ipu_capture_disp_link(uint32_t ipu_index, uint32_t smfc);
 void ipu_disable_csi(uint32_t ipu_index, uint32_t csi);
 void ipu_disable_smfc(uint32_t ipu_index);
+void ipu_csi_test_mode_color(uint32_t ipu_index, int32_t color_mode);
 
 ips_dev_panel_t *search_panel(char *panel_name);
+ips_dev_panel_t *get_panel_by_id(uint32_t panel_id);
+void list_panel(uint32_t panel_type);
 void load_centralized_image(uint32_t addr, ips_dev_panel_t * panel);
 void load_foreground_image(uint32_t addr, uint32_t width, uint32_t height);
 void set_background_margin(ips_dev_panel_t * panel, uint32_t width, uint32_t height);

@@ -151,13 +151,13 @@ static int usdhc_test_adma(void)
 {
     int retv = TRUE;
 
-    SDHC_ADMA_mode = TRUE;
-
+//    SDHC_ADMA_mode = TRUE;
+    set_card_access_mode(1, 0);
     /* MMC - 8 bit, SD - 4 bit  */
 //    retv = mmc_test(8, USDHC3_BASE_ADDR);    
     retv = mmc_test(8, HW_USDHC3);
 
-    SDHC_ADMA_mode = FALSE;
+//    SDHC_ADMA_mode = FALSE;
 
     return retv;
 }
@@ -166,13 +166,13 @@ static int usdhc_test_adma_intr(void)
 {
     int retv;
 
-    SDHC_INTR_mode = SDHC_ADMA_mode = TRUE;
-
+//    SDHC_INTR_mode = SDHC_ADMA_mode = TRUE;
+    set_card_access_mode(1, 0);
     /* MMC - 8 bit, SD - 4 bit  */
 //    retv = mmc_test(8, USDHC3_BASE_ADDR);
     retv = mmc_test(8, HW_USDHC3);
     
-    SDHC_INTR_mode = SDHC_ADMA_mode = FALSE;
+//    SDHC_INTR_mode = SDHC_ADMA_mode = FALSE;
 
     return retv;
 }
@@ -371,7 +371,8 @@ static int mmc_test(unsigned int bus_width, uint32_t instance)
     }
 
     /* Wait for transfer complete */
-    if (SDHC_INTR_mode == TRUE) {
+    if (read_usdhc_intr_mode() == TRUE) {
+//    if (SDHC_INTR_mode == TRUE) {
         do {
             card_xfer_result(instance, &result);
         } while (result == 0);
@@ -394,7 +395,8 @@ static int mmc_test(unsigned int bus_width, uint32_t instance)
     }
 
     /* Wait for transfer complete */
-    if (SDHC_INTR_mode == TRUE) {
+    if (read_usdhc_intr_mode() == TRUE) {
+//    if (SDHC_INTR_mode == TRUE) {
         do {
             card_xfer_result(instance, &result);
         } while (result == 0);
@@ -417,7 +419,8 @@ static int mmc_test(unsigned int bus_width, uint32_t instance)
     }
 
     /* Wait for transfer complete */
-    if (SDHC_INTR_mode == TRUE) {
+    if (read_usdhc_intr_mode() == TRUE) {
+//    if (SDHC_INTR_mode == TRUE) {
         do {
             card_xfer_result(instance, &result);
         } while (result == 0);
@@ -440,7 +443,8 @@ static int mmc_test(unsigned int bus_width, uint32_t instance)
     }
 
     /* Wait for transfer complete */
-    if (SDHC_INTR_mode == TRUE) {
+    if (read_usdhc_intr_mode() == TRUE) {
+//    if (SDHC_INTR_mode == TRUE) {
         do {
             card_xfer_result(instance, &result);
         } while (result == 0);

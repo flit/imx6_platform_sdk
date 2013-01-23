@@ -115,14 +115,14 @@ void bch_set_layout(const BchEccLayout_t * ecc)
 {
     // Fill in layout 0 from the values in the layout struct.
     HW_BCH_FLASH0LAYOUT0_WR(
-        BF_BCH_FLASH0LAYOUT0_DATA0_SIZE(ecc->block0Size)
+        BF_BCH_FLASH0LAYOUT0_DATA0_SIZE((ecc->block0Size)>>2)
         | BF_BCH_FLASH0LAYOUT0_GF13_0_GF14_1(ecc->block0GaloisField == kGaloisField_14bit)
         | BF_BCH_FLASH0LAYOUT0_ECC0(ecc->block0Level / 2)
         | BF_BCH_FLASH0LAYOUT0_META_SIZE(ecc->metadataSize)
         | BF_BCH_FLASH0LAYOUT0_NBLOCKS(ecc->blockNCount) );
 
     HW_BCH_FLASH0LAYOUT1_WR(
-        BF_BCH_FLASH0LAYOUT1_DATAN_SIZE(ecc->blockNSize)
+        BF_BCH_FLASH0LAYOUT1_DATAN_SIZE((ecc->blockNSize)>>2)
         | BF_BCH_FLASH0LAYOUT1_GF13_0_GF14_1(ecc->blockNGaloisField == kGaloisField_14bit)
         | BF_BCH_FLASH0LAYOUT1_ECCN(ecc->blockNLevel / 2)
         | BF_BCH_FLASH0LAYOUT1_PAGE_SIZE(ecc->fullPageSize) );

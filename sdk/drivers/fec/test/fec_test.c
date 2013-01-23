@@ -37,8 +37,11 @@
 
 #include "sdk.h"
 #include "fec/fec.h"
+#include "utility/menu.h"
 #include "registers/regsccmanalog.h"
 #include "registers/regsiomuxc.h"
+
+const char g_fec_enet_test_name[] = "FEC Ethernet Test";
 
 static imx_fec_priv_t fec0;
 static unsigned char pkt_send[2048], pkt_recv[2048];
@@ -114,20 +117,19 @@ static int pkt_compare(unsigned char *packet1, unsigned char *packet2, int lengt
  * 
  * @return TEST_PASSED or TEST_FAILED
  */
-int fec_test(void)
+test_return_t fec_test(void)
 {
     imx_fec_priv_t *dev0 = &fec0;
     int pkt_len_send = 0, pkt_len_recv = 0, ret = 0, i;
     unsigned int fec_events = 0;
+    const char* indent = menu_get_indent();
 
     // Enet loopback test
-    printf("\nWould you like to run the Ethernet loopback test?\n \
+    printf("\n%sWould you like to run the Ethernet loopback test?\n \
            (Please note that in order to run the test, you need to\n \
-           first plug in a loopback cable to the Ethernet port) \n");
-    if (!is_input_char('y', NULL)) {
-        printf("  skip ETHERNET test \n");
+           first plug in a loopback cable to the Ethernet port) \n", indent);
+    if (!is_input_char('y', NULL))
         return TEST_BYPASSED;
-    }
 	
     //setup iomux and power for FEC
 	imx_fec_setup();
@@ -138,9 +140,15 @@ int fec_test(void)
     //init phy0.
     imx_fec_phy_init(dev0);
 
+    printf("FEC %0d: [ %s ] [ %s ] [ %s ]:\n", dev0->phy_addr,
+           (dev0->status & FEC_STATUS_FULL_DPLX) ? "FULL_DUPLEX" : "HALF_DUPLEX",
+           (dev0->status & FEC_STATUS_LINK_ON) ? "connected" : "disconnected",
+           (dev0->status & FEC_STATUS_1000M) ? "1000M bps" : (dev0->status & FEC_STATUS_100M) ?
+           "100M bps" : "10M bps");
+
     //check phy status
     if (!(dev0->status & FEC_STATUS_LINK_ON)) {
-        printf("FEC link status check fail\n");
+        printf("%sFEC link status check fail\n", indent);
         return TEST_FAILED;
     }
 
@@ -165,12 +173,12 @@ int fec_test(void)
     }
 
     if (!(FEC_EVENT_TX & fec_events)) {
-        printf("FEC tx fail\n");
+        printf("%sFEC tx fail\n", indent);
         return TEST_FAILED;
     }
 
     if (!(FEC_EVENT_RX & fec_events)) {
-        printf("FEC rx fail\n");
+        printf("%sFEC rx fail\n", indent);
         return TEST_FAILED;
     }
 
@@ -178,21 +186,21 @@ int fec_test(void)
     imx_fec_recv(dev0, pkt_recv, &pkt_len_recv);
 
     if (pkt_len_recv != pkt_len_send) {
-        printf("FEC rx length check fail \n");
+        printf("%sFEC rx length check fail \n", indent);
         return TEST_FAILED;
     }
 
     ret = pkt_compare(pkt_send, pkt_recv, pkt_len_send);
 
     if (ret != 0) {
-        printf("FEC rx packet check fail \n");
+        printf("%sFEC rx packet check fail \n", indent);
         return TEST_FAILED;
     }
 #ifdef DEBUG_PRINT
     printf("FEC rx ok\n");
 #endif
 
-    printf(" FEC loopback test pass\n");
+    printf("%s FEC loopback test pass\n", indent);
 
     imx_fec_stop(dev0);
     return TEST_PASSED;

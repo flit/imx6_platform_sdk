@@ -41,8 +41,9 @@ extern void hdmi_1080P60_video_output(int32_t ipu_index, int32_t ipu_di);
 extern void print_media_fat_info(uint32_t);
 
 #define DeviceNum 0
-extern int SDHC_ADMA_mode;
-extern int SDHC_INTR_mode;
+//extern int SDHC_ADMA_mode;
+//extern int SDHC_INTR_mode;
+extern void set_card_access_mode(uint32_t sdma, uint32_t intr);
 
 #define IMG_WIDTH	1920 
 #define IMG_HEIGHT	832
@@ -76,8 +77,10 @@ void vdoa_test(void)
 
     buffer = (uint8_t *) (((uint32_t) buffer + 0xFFF) & 0xFFFFF000);
 
-    SDHC_ADMA_mode = 1;
-    SDHC_INTR_mode = 0;
+//    SDHC_ADMA_mode = 1;
+//    SDHC_INTR_mode = 0;
+    set_card_access_mode(1, 0);
+    
     count = Fread(fin, (uint8_t *) buffer, IMG_WIDTH * IMG_HEIGHT * 1.5);
 
     vdoa_clear_interrupt();

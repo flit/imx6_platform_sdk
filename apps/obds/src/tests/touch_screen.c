@@ -190,63 +190,63 @@ int touch_detect(int timeout)
     return -1;
 }
 
-int touch_screen_prompt(void)
+test_return_t touch_screen_prompt(const char* indent)
 {
     unsigned char recvCh = 0;
 
-    printf("\tQuit touch screen test? y=pass&quit, n=fail&quit, others=try again\n");
+    printf("%s\tQuit touch screen test? y=pass&quit, n=fail&quit, others=try again\n", indent);
 
     do {
         recvCh = getchar();
     } while (recvCh == NONE_CHAR);
-    printf("%c\n", recvCh);
+    printf("%s%c\n", indent, recvCh);
 
     if (('y' == recvCh) || ('Y' == recvCh))
-        return 0;               //pass
+        return TEST_PASSED;
     else if (('n' == recvCh) || ('N' == recvCh))
-        return 1;               //fail
+        return TEST_FAILED;
     else
-        return 3;               //try again
+        return TEST_CONTINUE; //try again
 }
 
-menu_action_t touch_screen_test(const menu_context_t* context, void* param)
+test_return_t touch_screen_test(void)
 {
-    int ret = 3, event;
+    test_return_t ret = TEST_CONTINUE;
+    int event;
     unsigned int x = 0, y = 0;
+    const char * indent = menu_get_indent();
 
-    if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
-    {
-    	*(test_return_t*)param = TEST_BYPASSED;
-    	return MENU_CONTINUE;
-    }
+    if ( prompt_run_test(test_name, indent) != TEST_CONTINUE )
+        return TEST_BYPASSED;
 
-    printf("Touch screen test. Press the screen and you'll get the coordinate. \n");
-    printf("To exit test, just left the screen un-touched for a while. \n");
+    printf("%sTouch screen test. Press the screen and you'll get the coordinate.\n", indent);
+    printf("%sTo exit test, just left the screen un-touched for a while.\n", indent);
 
     touch_init();
 
-    while (1) {
+    while (1)
+    {
         event = touch_detect(0x200);    //detect pen_down event
 
         if (0 == event)         //pen_down
         {
-            if ((0 == pen_status[0]) && (1 == pen_status[1])) {
+            if ((0 == pen_status[0]) && (1 == pen_status[1]))
+            {
                 //read coordinate
                 touch_get_xy_value(&x, &y);
-                printf("\tCoordinate: (%4d, %4d)\n", x, y);
+                printf("%s\tCoordinate: (%4d, %4d)\n",indent, x, y);
             }
-            ret = 3;
-        } else                  //timeout
-            ret = touch_screen_prompt();
-        if (3 == ret)
+            ret = TEST_CONTINUE;
+        }
+        else                  //timeout
+            ret = touch_screen_prompt(indent);
+
+        if (ret == TEST_CONTINUE)
             continue;
         else
             break;
     }
 
     return ret;
-    
-    *(test_return_t*)param = ret;
-    return MENU_CONTINUE;    
 }
 

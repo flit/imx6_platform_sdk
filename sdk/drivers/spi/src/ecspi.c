@@ -27,11 +27,16 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include "ecspi.h"
+
 #include "spi/ecspi_ifc.h"
 #include "iomux_config.h"
 #include "registers/regsecspi.h"
 #include "timer/timer.h"
+#include "registers/regsiomuxc.h" 
+
+#define ECSPI_FIFO_SIZE 64
+
+#define SPI_RETRY_TIMES 100
 
 static void ecspi_start_transfer(unsigned instance, uint16_t brs_bts);
 static int ecspi_xfer_slv(unsigned instance, const uint8_t * tx_buf, uint8_t * rx_buf, int bytes);
@@ -53,7 +58,7 @@ static void ecspi_start_transfer(unsigned instance, uint16_t brs_bts)
 static int ecspi_xfer_slv(unsigned instance, const uint8_t * tx_buf, uint8_t * rx_buf, int bytes)
 {
     printf("Slave mode transfer code not implemented yet.\n");
-    return FAIL;
+    return ERROR_GENERIC;
 }
 
 //! @brief Perform a SPI master transfer.
@@ -97,7 +102,7 @@ static int ecspi_xfer_mst(unsigned instance, const uint8_t * tx_buf, uint8_t * r
 #if DEBUG
             printf("ecspi_xfer: Transfer timeout.\n");
 #endif
-            return FAIL;
+            return ERROR_GENERIC;
         }
 
         hal_delay_us(500);
@@ -146,7 +151,7 @@ int ecspi_configure(dev_ecspi_e instance, const param_ecspi_t * param)
 
     // Setup pre & post clock divider 
     HW_ECSPI_CONREG(instance).B.PRE_DIVIDER = (param->pre_div == 0) ? 0 : (param->pre_div - 1);
-    HW_ECSPI_CONREG(instance).B.POST_DIVIDER = (param->post_div == 0) ? 0 : (param->post_div - 1);
+    HW_ECSPI_CONREG(instance).B.POST_DIVIDER = param->post_div;
 
     // Enable eCSPI 
     HW_ECSPI_CONREG(instance).B.EN = 1;
@@ -169,10 +174,11 @@ int ecspi_configure(dev_ecspi_e instance, const param_ecspi_t * param)
 //! @todo Validate @a dev value for the chip, since not all chips will have all 5 instances.
 int ecspi_open(dev_ecspi_e dev, const param_ecspi_t * param)
 {
-    // Configure clock gating here if necessary 
-
     // Configure IO signals 
     ecspi_iomux_config(dev);
+    
+    // Ungate the module clock.
+    clock_gating_config(REGS_ECSPI_BASE(dev), CLOCK_ON);
 
     // Configure eCSPI registers 
     ecspi_configure(dev, param);
@@ -184,6 +190,9 @@ int ecspi_close(dev_ecspi_e dev)
 {
     // Disable controller 
     HW_ECSPI_CONREG(dev).B.EN = 0;
+    
+    // Gate the module clock.
+    clock_gating_config(REGS_ECSPI_BASE(dev), CLOCK_OFF);
 
     return SUCCESS;
 }
@@ -208,7 +217,7 @@ int ecspi_xfer(dev_ecspi_e dev, const uint8_t * tx_buf, uint8_t * rx_buf, uint16
 #if DEBUG
         printf("ecspi_xfer: Burst out of length.\n");
 #endif
-        retv = FAIL;
+        retv = ERROR_GENERIC;
     }
 
     if (retv == SUCCESS)

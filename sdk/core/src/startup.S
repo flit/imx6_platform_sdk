@@ -50,11 +50,18 @@
     
     .global _start
     .func _start 
+    .fnstart
 _start:
-    mov 	r4, r0	@ save r0 for cores 1-3, r0 arg field passed by ROM
-                @ r0 is a function pointer for secondary cpus
+    @ save r0 for cores 1-3, r0 arg field passed by ROM
+    @ r0 is a function pointer for secondary cpus
+    mov 	r4, r0
 
-    ldr		r0, =top_of_stacks  @ symbol defined in $(TARGET).ld linker file
+    @ clear some registers
+    mov     r11,#0
+    mov     r12,#0
+    mov     lr,#0
+    
+    ldr		r0, =top_of_stacks  @ symbol defined in linker file
     mov		r1, #EXCEPTION_STACK_SIZE
 
     @ get cpu id, and subtract the offset from the stacks base address
@@ -109,25 +116,45 @@ primary_cpu_init:
     ldr     r1,=__ram_vectors_start
     ldr     r2,=__ram_vectors_end
     ldr     r3,=vectors
-1:
-    cmp     r1,r2
+1:  cmp     r1,r2
     ldmlt   r3!,{r4,r5,r6}
     stmlt   r1!,{r4,r5,r6}
     blt     1b
+    
+    /*
+     * fill the stacks with a pattern
+     * the stack must be 8 byte aligned
+     */
+    ldr     r1,=__stacks_start      @ stack region start address
+    ldr     r2,=top_of_stacks       @ stack region end address
+    bic     r2,r2,#0x7              @ round length down to nearest 8 byte alignment
+    ldr     r3,=.Ldeadfeed          @ get fill pattern address
+    ldr     r3,[r3]                 @ read fill pattern into r3
+    mov     r4,r3                   @ copy fill pattern to r4
+1:  cmp     r1,r2                   @ the fill loop
+    stmltia r1!,{r3-r4}
+    blt     1b    
 
    	/* init .bss */
     /* clear the .bss section (zero init) */
     ldr     r1,=__bss_start__
     ldr     r2,=__bss_end__
     mov     r3,#0
-1:
-    cmp     r1,r2
+1:  cmp     r1,r2
     stmltia r1!,{r3}
     blt     1b
     
+    @ take care of C++ static initialization. this won't cause any harm for plain C apps.
+    ldr     r12,=__libc_init_array
+    blx     r12
+    
     @ branch to c library entry point 
+    mov     r0,#0 @ argc
+    mov     r1,#0 @ argv
+    mov     r2,#0 @ env
+    
     ldr     r12, =main               /* save this in register for possible long jump */
-    bx      r12                         /* branch to __main */ 
+    blx     r12                         /* branch to __main */ 
 
     @ if either main() or the secondary cpu entry point return, which they should not,
     @ then call _sys_exit().
@@ -135,8 +162,14 @@ startup_exit:
     mov     r0,#0
     ldr     r12,=_sys_exit
     bx      r12
-
+    
+    .cantunwind
+    .fnend
     .endfunc    @ _start()
+
+    /* local label for the stack fill pattern */
+.Ldeadfeed:
+    .word   0xdeadfeed
 
 
     .end

@@ -42,8 +42,6 @@
 // Definitions
 ////////////////////////////////////////////////////////////////////////////////
 
-#define SUCCESS 0
-
 #define PITC_ERROR_OTP_RW (-1)
 
 #define ERROR_OTP_PROGRAM_HCLK                  (PITC_ERROR_OTP_RW)

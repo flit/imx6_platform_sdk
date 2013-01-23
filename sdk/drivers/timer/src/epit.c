@@ -45,117 +45,120 @@
 // Code
 ////////////////////////////////////////////////////////////////////////////////
 
-void epit_reload_counter(struct hw_module *port, uint32_t load_val)
+void epit_reload_counter(uint32_t instance, uint32_t load_val)
 {
     // set the load register especially if RLD=reload_mode=SET_AND_FORGET=1 
-    HW_EPIT_LR_WR(port->instance, load_val);
+    HW_EPIT_LR_WR(instance, load_val);
 }
 
-uint32_t epit_get_counter_value(struct hw_module *port)
+uint32_t epit_get_counter_value(uint32_t instance)
 {
-    return HW_EPIT_CNR_RD(port->instance);
+    return HW_EPIT_CNR_RD(instance);
 }
 
-void epit_set_compare_event(struct hw_module *port, uint32_t compare_val)
+void epit_set_compare_event(uint32_t instance, uint32_t compare_val)
 {
-    HW_EPIT_CMPR_WR(port->instance, compare_val);
+    HW_EPIT_CMPR_WR(instance, compare_val);
 }
 
-uint32_t epit_get_compare_event(struct hw_module *port)
+uint32_t epit_get_compare_event(uint32_t instance)
 {
     uint32_t status_register;
 
     // get the status 
-    status_register = HW_EPIT_SR_RD(port->instance);
+    status_register = HW_EPIT_SR_RD(instance);
     
     // clear it if found set 
     if (status_register & BM_EPIT_SR_OCIF)
     {
-        HW_EPIT_SR_SET(port->instance, BM_EPIT_SR_OCIF);
+        HW_EPIT_SR_SET(instance, BM_EPIT_SR_OCIF);
     }
 
     // return the read value before the bit was cleared 
     return status_register & BM_EPIT_SR_OCIF;
 }
 
-void epit_counter_disable(struct hw_module *port)
+void epit_counter_disable(uint32_t instance)
 {
     /* temporary workaround for the discovered issue when disabling the
      * counter during end of count/reload/set compare flag ??.
      * Set to the max value so that it ensures that the counter couldn't
      * reach 0 when it is disabled.
      */
-    HW_EPIT_LR_WR(port->instance, 0xFFFFFFFF);
+    HW_EPIT_LR_WR(instance, 0xFFFFFFFF);
 
     // disable the counter 
-    HW_EPIT_CR_CLR(port->instance, BM_EPIT_CR_EN);
+    HW_EPIT_CR_CLR(instance, BM_EPIT_CR_EN);
 
     // ensure to leave the counter in a proper state
     // by disabling the output compare interrupt
-    HW_EPIT_CR_CLR(port->instance, BM_EPIT_CR_OCIEN);
+    HW_EPIT_CR_CLR(instance, BM_EPIT_CR_OCIEN);
     
     // and clearing possible remaining compare event 
-    HW_EPIT_SR_SET(port->instance, BM_EPIT_SR_OCIF);
+    HW_EPIT_SR_SET(instance, BM_EPIT_SR_OCIF);
 }
 
-void epit_counter_enable(struct hw_module *port, uint32_t load_val, uint32_t irq_mode)
+void epit_counter_enable(uint32_t instance, uint32_t load_val, uint32_t irq_mode)
 {
     // set the load register especially if RLD=reload_mode=SET_AND_FORGET=1
     // and if the value is different from 0 which is the lowest counter value
     if (load_val != 0)
     {
-        HW_EPIT_LR_WR(port->instance, load_val);
+        HW_EPIT_LR_WR(instance, load_val);
     }
 
     // ensure to start the counter in a proper state
     // by clearing possible remaining compare event
-    HW_EPIT_SR_SET(port->instance, BM_EPIT_SR_OCIF);
+    HW_EPIT_SR_SET(instance, BM_EPIT_SR_OCIF);
 
     // set the mode when the output compare event occur: IRQ or polling 
     if (irq_mode == IRQ_MODE)
     {
-        HW_EPIT_CR_SET(port->instance, BM_EPIT_CR_OCIEN);
+        HW_EPIT_CR_SET(instance, BM_EPIT_CR_OCIEN);
     }
     else
     {
         // polling 
-        HW_EPIT_CR_CLR(port->instance, BM_EPIT_CR_OCIEN);
+        HW_EPIT_CR_CLR(instance, BM_EPIT_CR_OCIEN);
     }
 
     // finally, enable the counter 
-    HW_EPIT_CR_SET(port->instance, BM_EPIT_CR_EN);
+    HW_EPIT_CR_SET(instance, BM_EPIT_CR_EN);
 }
 
-void epit_setup_interrupt(struct hw_module *port, bool enableIt)
+void epit_setup_interrupt(uint32_t instance, void (*irq_subroutine)(void), bool enableIt)
 {
+    uint32_t irq_id = EPIT_IRQS(instance);
+
     if (enableIt)
     {    
         // register the IRQ sub-routine 
-        register_interrupt_routine(port->irq_id, port->irq_subroutine);
+        register_interrupt_routine(irq_id, irq_subroutine);
         
         // enable the IRQ 
-        enable_interrupt(port->irq_id, CPU_0, 0);
+        enable_interrupt(irq_id, CPU_0, 0);
     }
     else
     {
         // disable the IRQ 
-        disable_interrupt(port->irq_id, CPU_0);
+        disable_interrupt(irq_id, CPU_0);
     }
 }
 
-void epit_init(struct hw_module *port, uint32_t clock_src, uint32_t prescaler,
+void epit_init(uint32_t instance, uint32_t clock_src, uint32_t prescaler,
                uint32_t reload_mode, uint32_t load_val, uint32_t low_power_mode)
 {
     uint32_t control_reg_tmp = 0;
+    uint32_t base = REGS_EPIT_BASE(instance);
 
     // enable the source clocks to the EPIT port 
-    clock_gating_config(port->base, CLOCK_ON);
+    clock_gating_config(base, CLOCK_ON);
 
     // start with a known state by disabling and reseting the module 
-    HW_EPIT_CR_WR(port->instance, BM_EPIT_CR_SWR);
+    HW_EPIT_CR_WR(instance, BM_EPIT_CR_SWR);
     
     // wait for the reset to complete 
-    while ((HW_EPIT_CR(port->instance).B.SWR) != 0) ;
+    while ((HW_EPIT_CR(instance).B.SWR) != 0) ;
 
     // set the reference source clock for the counter 
     control_reg_tmp |= BF_EPIT_CR_CLKSRC(clock_src);
@@ -184,13 +187,13 @@ void epit_init(struct hw_module *port, uint32_t clock_src, uint32_t prescaler,
     control_reg_tmp |= BM_EPIT_CR_IOVW | BM_EPIT_CR_ENMOD;
 
     // finally write the control register 
-    HW_EPIT_CR_WR(port->instance, control_reg_tmp);
+    HW_EPIT_CR_WR(instance, control_reg_tmp);
 
     // initialize the load register especially if RLD=reload_mode=SET_AND_FORGET=1 
     // and if the value is different from 0 which is the lowest counter value
     if (load_val != 0)
     {
-        HW_EPIT_LR_WR(port->instance, load_val);
+        HW_EPIT_LR_WR(instance, load_val);
     }
 }
 

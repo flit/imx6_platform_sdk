@@ -241,6 +241,8 @@ void ipu_dual_display_setup(uint32_t ipu_index, ips_dev_panel_t * panel, uint32_
 
 extern int32_t ips_deinterlace_proc(int width, int height, ips_dev_panel_t * panel);
 int csi_vdi_direct_path = 0;
+int csi_dma_band_mode = 0;
+void ipu_ch0_eobnd_interrupt_register(int ipu_index);
 void ipu_capture_setup(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_width,
                        uint32_t raw_height, uint32_t act_width, uint32_t act_height,
                        ips_dev_panel_t * panel)
@@ -248,8 +250,9 @@ void ipu_capture_setup(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_
     uint32_t csi_in_channel = CSI_TO_MEM_CH0, disp_channel = MEM_TO_DP_BG_CH23;
     ipu_idmac_info_t idmac_info;
     uint32_t csi_mem0 = CH23_EBA0, csi_mem1 = 0;
+    uint32_t disp_mem0 = csi_mem0, disp_mem1 = csi_mem1;
     uint32_t csi_pixel_format = NON_INTERLEAVED_YUV420;
-
+    
     /*step1: config the csi: idma channel (csi -- mem), smfc, csi */
     memset(&idmac_info, 0, sizeof(ipu_idmac_info_t));
     idmac_info.channel = CSI_TO_MEM_CH0;
@@ -257,11 +260,16 @@ void ipu_capture_setup(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_
     idmac_info.addr1 = csi_mem1;
     idmac_info.width = act_width;
     idmac_info.height = act_height;
+
+    if (csi_interface == CSI_TEST_MODE)
+        csi_pixel_format = INTERLEAVED_RGB565;
     idmac_info.pixel_format = csi_pixel_format;
+
     if (csi_interface == CSI_BT656_NTSC_INTERLACED || csi_interface == CSI_BT656_PAL_INTERLACED)
         idmac_info.so = 1;
     else
         idmac_info.so = 0;
+
     if ((csi_pixel_format & 0xF) >= INTERLEAVED_RGB) {
         idmac_info.sl = panel->width * 2;
         idmac_info.u_offset = 0;
@@ -279,23 +287,41 @@ void ipu_capture_setup(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_
         ipu_smfc_fifo_allocate(ipu_index, 0, 0, 3);
     }
 
+    if(csi_dma_band_mode) // enable band mode
+    {
+        ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, idmac_info.channel), CPMEM_BNDM, 0x6); // set band lines, test 128 lines mode 
+        ipu_write_field(ipu_index, IPU_IDMAC_BNDM_EN_1__IDMAC_BNDM_EN_0 << idmac_info.channel, 1); // enable band mode
+        if(idmac_info.channel == 0)
+            ipu_ch0_eobnd_interrupt_register(ipu_index); 
+        else {
+            printf("CSI channel not supported! you need to modify the interrupt registration!\n");
+            ipu_cpmem_set_field(ipu_cpmem_addr(ipu_index, idmac_info.channel), CPMEM_BNDM, 0x0); 
+            ipu_write_field(ipu_index, IPU_IDMAC_BNDM_EN_1__IDMAC_BNDM_EN_0 << idmac_info.channel, 0); 
+        }
+    }
+
     /*step3: config csi for IPU */
     ipu_csi_config(ipu_index, csi_interface, raw_width, raw_height, act_width, act_height);
 
     /*step4: config display channel: idma, dmfc, dc, dp, di */
-    ipu_display_setup(ipu_index, csi_mem0, csi_mem1, NON_INTERLEAVED_YUV420, panel);
+    if(csi_dma_band_mode)
+    {
+        disp_mem0 = CH27_EBA0;
+        disp_mem1 = 0;
+    }
+    ipu_display_setup(ipu_index, disp_mem0, disp_mem1, csi_pixel_format, panel);
 
     /*step5: link csi and display */
     ipu_capture_disp_link(ipu_index, 0);
 
     /*step6: paint the other display area to white. */
-    memset((void *)CH23_EBA0, 0xFF, panel->width * panel->height);
-    memset((void *)(CH23_EBA0 + panel->width * panel->height), 0x80,
-           panel->width * panel->height / 2);
-
-    memset((void *)CH23_EBA1, 0xFF, panel->width * panel->height);
-    memset((void *)(CH23_EBA1 + panel->width * panel->height), 0x80,
-           panel->width * panel->height / 2);
+    if (csi_pixel_format == NON_INTERLEAVED_YUV420) {
+        memset((void *)disp_mem0, 0xFF, panel->width * panel->height);
+        memset((void *)(disp_mem0 + panel->width * panel->height), 0x80,
+               panel->width * panel->height / 2);
+    } else {
+        memset((void *)disp_mem0, 0xFF, panel->width * panel->height * 2);
+    }
 
     if (csi_vdi_direct_path == 1)
         ips_deinterlace_proc(act_width, act_height, panel);
@@ -318,10 +344,10 @@ void ipu_capture_streamoff(uint32_t ipu_index)
     ipu_write_field(ipu_index, IPU_IPU_INT_STAT_1__IDMAC_EOF_0, 1);
 
     while (!(ipu_read(ipu_index, IPU_IPU_INT_STAT_1__ADDR) & 0x1)) {
-	hal_delay_us(10);
-	if (timeout <= 0)
-	    break;
-	timeout--;
+        hal_delay_us(10);
+        if (timeout <= 0)
+            break;
+        timeout--;
     }
 
     ipu_disable_csi(ipu_index, 0);
@@ -374,28 +400,45 @@ void ipu_mipi_csi2_setup(uint32_t ipu_index, uint32_t csi_width, uint32_t csi_he
            panel->width * panel->height / 2);
 }
 
-/*! Set display parameters in IPU configuration structure according to your display panel name. There are only some displays are supported by this function. And you can set the display manually all by your self if the hardware is supported by IPU.
- *
- * @param panel_name 		panel name of your display
- */
-ips_dev_panel_t *search_panel(char *panel_name)
+void ipu1_ch0_eobnd_isr(void)
 {
-    ips_dev_panel_t *panel = &disp_dev_list[0];
-    int32_t index = 0;
+    static int i = 0;
+    static int frame = 0;
+    int frame_width = 1024;
+    int cap_height = 480; 
+    int band_height = 128; // must match with DMA settings
+    int band_num = (cap_height + band_height - 1) / band_height;
 
-    while (index < num_of_panels) {
-        if (!strcmp(panel->panel_name, panel_name))
-            break;
-        else {
-            panel++;
-            index++;
-        }
+    ipu_write_field(1, IPU_IPU_INT_STAT_11__IDMAC_EOBND_0, 1); // clear interrupt state
+    
+    // copy out the data before it was overwritten, data in YUV444 format
+    if(i%band_num != band_num - 1)
+        memcpy((void *)(CH27_EBA0 + frame_width*band_height*2*(i%band_num)), (void *)CH23_EBA0, frame_width*band_height*2);
+    else
+        memcpy((void *)(CH27_EBA0 + frame_width*band_height*2*(i%band_num)), (void *)CH23_EBA0, frame_width*(cap_height - band_height*(band_num-1))*2);
+
+    if((ipu_read(1, IPU_IPU_INT_STAT_1__ADDR) & 0x1) == 1) // clear interrupt state
+    {
+        ipu_write_field(1, IPU_IPU_INT_STAT_1__IDMAC_EOF_0, 1);
+        frame ++;
     }
-
-    if (index == num_of_panels) {
-        printf("The display panel %s is not supported!\n", panel_name);
-        return NULL;
-    }
-
-    return panel;
+    
+    i++;
 }
+
+void ipu_ch0_eobnd_interrupt_register(int ipu_index)
+{
+    int irq_id = IPU1_SYNC + (ipu_index - 1) * 2;
+
+    // register the IRQ routine
+    register_interrupt_routine(irq_id, &ipu1_ch0_eobnd_isr);
+
+    memset((void *)CH27_EBA0, 0xFF, 1024*768*2);
+    memset((void *)CH23_EBA0, 0xFF, 1024*768*2);
+
+    // enable interrupt
+    ipu_write_field(ipu_index, IPU_IPU_INT_CTRL_1__IDMAC_EOF_EN_0, 1); // enable band mode
+    ipu_write_field(ipu_index, IPU_IPU_INT_CTRL_11__IDMAC_EOBND_EN_0, 1); // enable band mode
+    enable_interrupt(irq_id, CPU_0, 0);
+}
+

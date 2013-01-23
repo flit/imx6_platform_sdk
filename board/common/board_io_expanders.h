@@ -109,6 +109,10 @@ extern "C" {
  */
 void board_ioexpander_init(void);
 
+/*!
+ * @brief Configure the IOMUX so we can access the I/O expander.
+ */
+void board_ioexpander_iomux_config(void);
 
 #if defined(__cplusplus)
 }

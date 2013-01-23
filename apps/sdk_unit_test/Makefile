@@ -61,7 +61,6 @@ define SUBDIRS
     $(SDK_LIB_ROOT)/drivers/audio/test
     $(SDK_LIB_ROOT)/drivers/caam/test
     $(SDK_LIB_ROOT)/drivers/cpu_utility/test
-    $(SDK_LIB_ROOT)/common/filesystem/test
     $(SDK_LIB_ROOT)/core/test
     $(SDK_LIB_ROOT)/drivers/i2c/test
     $(SDK_LIB_ROOT)/drivers/ocotp/test
@@ -74,6 +73,7 @@ define SUBDIRS
     $(SDK_LIB_ROOT)/drivers/usdhc/test
     $(SDK_LIB_ROOT)/drivers/pwm/test
     $(SDK_LIB_ROOT)/drivers/wdog/test
+    $(SDK_LIB_ROOT)/drivers/gpio/test
 endef
 
 # Tests that are not available for CHIP_MX6SL only.
@@ -110,6 +110,7 @@ ifeq "$(BOARD)" "sabre_ai"
         $(SDK_LIB_ROOT)/drivers/eim/test \
         $(SDK_LIB_ROOT)/drivers/pcie/test \
        	$(SDK_LIB_ROOT)/drivers/spi/test \
+	$(SDK_LIB_ROOT)/drivers/camera/test \
 	$(SDK_LIB_ROOT)/drivers/enet/test
 endif
 
@@ -121,7 +122,8 @@ ifeq "$(BOARD)" "smart_device"
 	$(SDK_LIB_ROOT)/drivers/usb/test \
         $(SDK_LIB_ROOT)/drivers/pcie/test \
        	$(SDK_LIB_ROOT)/drivers/spi/test \
-        $(SDK_LIB_ROOT)/drivers/enet/test 
+        $(SDK_LIB_ROOT)/drivers/enet/test \
+		$(SDK_LIB_ROOT)/drivers/keypad/test
 endif
 
 ifeq "$(BOARD)" "evk"

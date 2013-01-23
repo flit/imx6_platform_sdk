@@ -29,18 +29,19 @@
  */
 
 /*!
- * @file  system_util.c
- * @brief The system utility functions for the environment.
+ * @file  runtime_support.c
+ * @brief Support routines for the newlib C Standard Library implementation.
  *
  * @ingroup diag_util
  */
 
 #include <reent.h>
 #include <sys/stat.h>
-#include <time.h>
+#include <sys/time.h>
 #include <errno.h>
 #include "uart/imx_uart.h"
 #include "sdk.h"
+#include "timer/timer.h"
 
 //! Set this define to 1 to have _write() convert LF line endings to CRLF
 #define CONVERT_LF_TO_CRLF 1
@@ -139,20 +140,22 @@ int _fstat(int fd, struct stat * st)
  */
 int _read(int fd, char *buf, int nbytes)
 {
-    int i = 0;
+    int i = 0, j = 1;
 
-    for (i = 0; i < nbytes; ++i, ++buf)
+    for (i = 0; i < nbytes; ++i)
     {
-        *buf = uart_getchar(&g_debug_uart);
+        *buf = uart_getchar(g_debug_uart_port);
 
         if ((*buf == '\n') || (*buf == '\r'))
         {
-            ++i;
             break;
+        } else if(*buf != 0xFF) {
+            ++j;
+            ++buf;
         }
     }
 
-    return i;
+    return j;
 }
 
 /*!
@@ -183,12 +186,12 @@ int _write(int fd, char *buf, int nbytes)
         if (*buf == '\n' && !lastCharWasCR)
         {
             uint8_t cr = '\r';
-            uart_putchar(&g_debug_uart, &cr);
+            uart_putchar(g_debug_uart_port, &cr);
         }
 #endif // CONVERT_LF_TO_CRLF
         
         // Send the char out the debug UART.
-        uart_putchar(&g_debug_uart, (uint8_t *)buf);
+        uart_putchar(g_debug_uart_port, (uint8_t *)buf);
         
 #if CONVERT_LF_TO_CRLF
         lastCharWasCR = (*buf == '\r');
@@ -196,6 +199,28 @@ int _write(int fd, char *buf, int nbytes)
     }
 
     return nbytes;
+}
+
+
+/*!
+ * @brief Write string to the serial port without buffering
+ *
+ * @param   str      not used
+ * @return  number of bytes to write to the serial port
+ */
+int _raw_puts(char str[])
+{
+    int i;
+
+    int len = strlen(str);
+    
+    for (i = 0; i < len; i++)
+    {        
+        // Send the char out the debug UART.
+        uart_putchar(g_debug_uart_port, (uint8_t *)&str[i]);
+    }
+
+    return len;
 }
 
 /*!
@@ -275,8 +300,14 @@ clock_t _times(struct tms *buf)
 
 int _gettimeofday(struct timeval *ptimeval, void *ptimezone)
 {
-    errno = EINVAL;
-    return -1;
+    if (ptimeval)
+    {
+        uint64_t us = time_get_microseconds();
+        ptimeval->tv_sec = us / 1000000;
+        ptimeval->tv_usec = us - ptimeval->tv_sec;
+    }
+    
+    return 0;
 }
 
 int _wait(int *status)

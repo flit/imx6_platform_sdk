@@ -30,6 +30,8 @@
 #if !defined(__CPU_UTILITY_H__)
 #define __CPU_UTILITY_H__
 
+#include "sdk_types.h"
+
 //! @addtogroup cpu_utility
 //! @{
 
@@ -45,6 +47,16 @@ enum _get_cores_results
     TWO_CORES_ACTIVE = 2,            //!< Two available CPU cores.
     ONE_CORE_ACTIVE = 1              //!< One available CPU core.
 };
+
+//! @brief List of all the available CPU work point
+typedef enum {
+    CPU_WORKPOINT_1P2GHZ = 0,
+    CPU_WORKPOINT_1GHZ = 1,
+    CPU_WORKPOINT_800MHZ = 2,
+    CPU_WORKPOINT_400MHZ = 3,
+    CPU_WORKPOINT_OUTOFRANGE
+} cpu_wp_e;
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // Functions
@@ -67,6 +79,16 @@ extern "C" {
 //! @retval GET_CORES_ERROR Could not determine the number of cores for some
 //!     reason. The caller must assume that only one core is available.
 int cpu_get_cores(void);
+
+//! @brief Set the CPU work point
+//! 
+//! This function will switch the CPU work point by changing the core frequency
+//! and voltages.
+//!
+//! @param cpu_wp_mode enumeration value of cpu work point mode
+//!
+//! @return The current cpu frequency, 0 means failed to change the work point
+uint32_t cpu_workpoint_set(cpu_wp_e cpu_wp_mode);
 
 #if defined(__cplusplus)
 }

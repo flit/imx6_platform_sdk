@@ -36,6 +36,7 @@
 SDK_LIB_ROOT = $(SDK_ROOT)/sdk
 APPS_ROOT = $(SDK_ROOT)/apps
 BOARD_ROOT = $(SDK_ROOT)/board/$(TARGET)/$(BOARD)
+LWIP_ROOT = $(SDK_ROOT)/lwip
 
 #-------------------------------------------------------------------------------
 # Output file paths
@@ -68,5 +69,6 @@ APP_OBJS_ROOT = $(APP_OUTPUT_ROOT)/obj
 
 LIBSDK = $(LIBS_ROOT)/libsdk.a
 LIBBOARD = $(LIBS_ROOT)/libboard_$(BOARD_WITH_REV).a
+LIBLWIP = $(LIBS_ROOT)/liblwip.a
 
 

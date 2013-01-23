@@ -56,12 +56,6 @@
     asm volatile ("mcr p" #coproc ", " #opcode1 ", %[input], c" #CRn ", c" #CRm ", " #opcode2 "\n" :: [input] "r" (Rt))
 //@}
 
-//! @name Cache sizes
-//@{
-//! @brief Eight 32-bit words per cache line.
-#define L1_CACHE_LINE_SIZE (32)
-//@}
-
 ////////////////////////////////////////////////////////////////////////////////
 // Code
 ////////////////////////////////////////////////////////////////////////////////
@@ -87,8 +81,13 @@ void disable_strict_align_check(void);
 uint32_t get_arm_private_peripheral_base(void);
 //@}
 
+
 //! @name Data cache operations
 //@{
+
+//! @brief Check if dcache is enabled or disabled.
+int arm_dcache_state_query();
+
 //! @brief Enables data cache at any available cache level.
 //!
 //! Works only if MMU is enabled!
@@ -123,6 +122,10 @@ void arm_dcache_flush_mlines(const void * addr, size_t length);
 
 //! @name Instrution cache operations
 //@{
+
+//! @brief Check if icache is enabled or disabled.
+int arm_icache_state_query();
+
 //! @brief Enables instruction cache at any available cache level.
 //!
 //! Works without enabled MMU too!

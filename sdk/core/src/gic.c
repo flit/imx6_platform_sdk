@@ -84,8 +84,8 @@ void gic_enable(bool enableIt)
     }
     else
     {
-        // Clear non-secure enable bit.
-        gicd->CTLR &= ~kBM_GICD_CTLR_EnableGrp1;
+        // Clear the enable bits.
+        gicd->CTLR &= ~(kBM_GICD_CTLR_EnableGrp0 | kBM_GICD_CTLR_EnableGrp1);
     }
 }
 
@@ -176,7 +176,7 @@ void gic_cpu_enable(bool enableIt)
     }
     else
     {
-        gicc->CTLR &= ~kBM_GICC_CTLR_EnableNS;
+        gicc->CTLR &= ~(kBM_GICC_CTLR_EnableS | kBM_GICC_CTLR_EnableNS);
     }
 }
 
@@ -196,6 +196,46 @@ void gic_write_end_of_irq(uint32_t irqID)
 {
     gicc_t * gicc = gic_get_gicc();
     gicc->EOIR = irqID;
+}
+
+void gic_init(void)
+{
+    gicd_t * gicd = gic_get_gicd();
+
+    // First disable the distributor.
+    gic_enable(false);
+    
+    // Clear all pending interrupts.
+    int i;
+    for (i = 0; i < 32; ++i)
+    {
+        gicd->ICPENDRn[i] = 0xffffffff;
+    }
+    
+    // Set all interrupts to secure.
+    for (i = 0; i < 8; ++i)
+    {
+        gicd->IGROUPRn[i] = 0;
+    }
+
+    // Init the GIC CPU interface.
+    gic_init_cpu();
+    
+    // Now enable the distributor.
+    gic_enable(true);
+}
+
+void gic_init_cpu(void)
+{
+    // Init the GIC CPU interface.
+    gic_set_cpu_priority_mask(0xff);
+
+    // Disable preemption.
+    gicc_t * gicc = gic_get_gicc();
+    gicc->BPR = 7;
+
+    // Enable signaling the CPU.
+    gic_cpu_enable(true);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

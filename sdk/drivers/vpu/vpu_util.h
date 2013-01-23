@@ -32,6 +32,14 @@
  * Copyright (c) 2006, Chips & Media.  All rights reserved.
  */
 
+/*!
+ * @file vpu_util.h
+ *
+ * @brief VPU utilities. All functions and definitions here are for use of VPU library.
+ *
+ * @ingroup diag_vpu
+ */
+
 #ifndef _VPU_UTIL_H_
 #define _VPU_UTIL_H_
 
@@ -42,6 +50,13 @@
 #include "vpu_io.h"
 #include "vpu_gdi.h"
 
+//! @addtogroup diag_vpu
+//! @{
+
+//////////////////////////////////////////////////////////////////////////////
+// DEFINITIONS
+//////////////////////////////////////////////////////////////////////////////
+
 #define MAX_FW_BINARY_LEN		200 * 1024
 typedef enum {
     INT_BIT_PIC_RUN = 3,
@@ -49,16 +64,7 @@ typedef enum {
     INT_BIT_BIT_BUF_FULL = 15
 } InterruptBit;
 
-typedef enum {
-    INT_JPU_DONE = 0,
-    INT_JPU_ERROR = 1,
-    INT_JPU_BIT_BUF_EMPTY = 2,
-    INT_JPU_BIT_BUF_FULL = 2,
-    INT_JPU_PARIAL_OVERFLOW = 3
-} InterruptJpu;
-
 #if defined(CHIP_MX6DQ) || defined(CHIP_MX6SDL)
-//#define BIT_WORK_SIZE         (47*1024)
 #define BIT_WORK_SIZE			(128*1024)
 #else
 #define BIT_WORK_SIZE			(128*1024)
@@ -96,6 +102,7 @@ typedef enum {
 #define VPU_SW_RESET_VCE_BUS    0x040
 #define VPU_SW_RESET_GDI_CORE   0x080
 #define VPU_SW_RESET_GDI_BUS    0x100
+
 #if defined(CHIP_MX53)
 enum {
     AVC_DEC = 0,
@@ -337,7 +344,6 @@ typedef struct {
     SecAxiUse secAxiUse;
     MaverickCacheConfig cacheConfig;
     EncSubFrameSyncConfig subFrameSyncConfig;
-    JpgEncInfo jpgInfo;
     GdiTiledMap sTiledInfo;
 
     EncReportInfo encReportMBInfo;
@@ -356,57 +362,6 @@ typedef struct {
     int index;
     int size_in_bits;
 } GetBitContext;
-
-typedef struct {
-    /* for Nieuport */
-    int picWidth;
-    int picHeight;
-    int alignedWidth;
-    int alignedHeight;
-    int frameOffset;
-    int consumeByte;
-    int ecsPtr;
-    int pagePtr;
-    int wordPtr;
-    int bitPtr;
-    int format;
-    int rstIntval;
-
-    int userHuffTab;
-
-    int huffDcIdx;
-    int huffAcIdx;
-    int Qidx;
-
-    uint8_t huffVal[4][162];
-    uint8_t huffBits[4][256];
-    uint8_t cInfoTab[4][6];
-    uint8_t qMatTab[4][64];
-
-    uint32_t huffMin[4][16];
-    uint32_t huffMax[4][16];
-    uint8_t huffPtr[4][16];
-
-    int busReqNum;
-    int compNum;
-    int mcuBlockNum;
-    int compInfo[3];
-
-    int frameIdx;
-    int seqInited;
-
-    uint8_t *pVirtBitStream;
-    GetBitContext gbc;
-    int lineBufferMode;
-    uint8_t *pVirtJpgChunkBase;
-    int chunkSize;
-
-    uint32_t bbcEndAddr;
-    uint32_t bbcStreamCtl;
-    int quitCodec;
-    int rollBack;
-    int wrappedHeader;
-} JpgDecInfo;
 
 typedef struct {
     DecOpenParam openParam;
@@ -447,7 +402,6 @@ typedef struct {
 
     SecAxiUse secAxiUse;
     MaverickCacheConfig cacheConfig;
-    JpgDecInfo jpgInfo;
 
     vpu_mem_desc picParaBaseMem;
     vpu_mem_desc userDataBufMem;
@@ -486,8 +440,18 @@ typedef struct {
     CodecInst *pendingInst;
 } vpu_resource_t;
 
+#define swab32(x) \
+	((uint32_t)( \
+		(((uint32_t)(x) & (uint32_t)0x000000ffUL) << 24) | \
+		(((uint32_t)(x) & (uint32_t)0x0000ff00UL) <<  8) | \
+		(((uint32_t)(x) & (uint32_t)0x00ff0000UL) >>  8) | \
+		(((uint32_t)(x) & (uint32_t)0xff000000UL) >> 24) ))
+
 extern int g_vpu_system_mem_size;
 
+//////////////////////////////////////////////////////////////////////////////
+// API
+//////////////////////////////////////////////////////////////////////////////
 void BitIssueCommand(CodecInst * pCodecInst, int cmd);
 void BitIssueCommandEx(CodecInst * pCodecInst, int cmd);
 
@@ -524,14 +488,10 @@ void SetMaverickCache(MaverickCacheConfig * pCacheConf, int mapType, int chromIn
 
 vpu_resource_t *vpu_semaphore_open(void);
 
-int vpu_mx6q_swreset(int forcedReset);
-int vpu_mx6q_hwreset();
-
-#define swab32(x) \
-	((uint32_t)( \
-		(((uint32_t)(x) & (uint32_t)0x000000ffUL) << 24) | \
-		(((uint32_t)(x) & (uint32_t)0x0000ff00UL) <<  8) | \
-		(((uint32_t)(x) & (uint32_t)0x00ff0000UL) >>  8) | \
-		(((uint32_t)(x) & (uint32_t)0xff000000UL) >> 24) ))
+//! @}
 
 #endif
+
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////

@@ -32,7 +32,7 @@
 
 #define PPL3115_REG_DEVICE_ID_OFF	0x0C
 
-static const char * const test_name = "I2C_DEVICE_PPL3115 Test";
+const char g_ppl3115_i2c_device_id_test_name[] = "Barometer PPL3115 I2C Device ID Test";
 
 static unsigned char ppl3115_reg_read(unsigned int i2c_base_addr, unsigned char reg_addr)
 {
@@ -88,26 +88,17 @@ int i2c_device_id_check_ppl3115(unsigned int i2c_base_addr)
 /*!
  * @return      TEST_PASSED or  TEST_FAILED    
  */
-menu_action_t i2c_device_ppl3115_test(const menu_context_t* context, void* param)
+test_return_t i2c_device_ppl3115_test(void)
 {
-	if ( prompt_run_test(test_name, NULL) != TEST_CONTINUE )
-    {
-    	*(test_return_t*)param = TEST_BYPASSED;
-    	return MENU_CONTINUE;
-    }
+#if defined(BOARD_SMART_DEVICE)
+    //  USB_OTG_PWR_EN (EIM_D22)
+    writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_EIM_EB3);
+    gpio_set_direction(GPIO_PORT2, 31, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT2, 31, GPIO_LOW_LEVEL);
+    hal_delay_us(1000);
+    gpio_set_level(GPIO_PORT2, 31, GPIO_HIGH_LEVEL);
+#endif    
+
     //TO be confirmed - i2c-base_addr
-    if (i2c_device_id_check_ppl3115(I2C3_BASE_ADDR) == TEST_PASSED)
-    {
-        //PASS the test
-        print_test_passed(test_name, NULL);
-
-        *(test_return_t*)param = TEST_PASSED;
-    }
-    else
-    {
-        print_test_failed(test_name, NULL);
-
-        *(test_return_t*)param = TEST_FAILED;
-    }    
-    return MENU_CONTINUE;   
+    return i2c_device_id_check_ppl3115(I2C3_BASE_ADDR);
 }

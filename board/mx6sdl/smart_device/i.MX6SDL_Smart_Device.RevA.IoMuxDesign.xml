@@ -1160,18 +1160,59 @@
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_DISP0_DATA23" Address="0x020E00F0" Value="0x00000000" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_DISP0_DATA23" Address="0x020E0404" Value="0x0001B0B0" />
   </SignalDesign>
+  <SignalDesign Name="KEY_COL4" NativeInstance="kpp" Instance="kpp" InstanceAlias="kpp" IsChecked="true">
+    <Comment />
+    <Routing padNet="padNet.KEY_COL4" mode="KEY_COL4_ALT3" ball="T6" />
+    <Register Name="IOMUXC_SW_MUX_CTL_PAD_KEY_COL4" Address="0x020E0254" Value="0x00000003" />
+    <Register Name="IOMUXC_SW_PAD_CTL_PAD_KEY_COL4" Address="0x020E063C" Value="0x0001B0B0" />
+  </SignalDesign>
+  <SignalDesign Name="KEY_COL5" NativeInstance="kpp" Instance="kpp" InstanceAlias="kpp" IsChecked="true">
+    <Comment />
+    <Routing padNet="padNet.GPIO19" mode="GPIO19_ALT0" ball="P5" />
+    <Register Name="IOMUXC_SW_MUX_CTL_PAD_GPIO19" Address="0x020E0220" Value="0x00000000" />
+    <Register Name="IOMUXC_SW_PAD_CTL_PAD_GPIO19" Address="0x020E05F0" Value="0x0001B0B0" />
+    <Register Name="IOMUXC_KEY_COL5_SELECT_INPUT" Address="0x020E08C0" Value="0x00000002" />
+  </SignalDesign>
   <SignalDesign Name="KEY_COL6" NativeInstance="kpp" Instance="kpp" InstanceAlias="kpp" IsChecked="true">
     <Comment />
     <Routing padNet="padNet.GPIO09" mode="GPIO09_ALT2" ball="T2" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_GPIO09" Address="0x020E0240" Value="0x00000002" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_GPIO09" Address="0x020E0610" Value="0x0001B0B0" />
-    <Register Name="IOMUXC_KEY_COL6_SELECT_INPUT" Address="0x020E08C4" Value="0x00000000" />
+    <Register Name="IOMUXC_KEY_COL6_SELECT_INPUT" Address="0x020E08C4" Value="0x00000001" />
+  </SignalDesign>
+  <SignalDesign Name="KEY_COL7" NativeInstance="kpp" Instance="kpp" InstanceAlias="kpp" IsChecked="true">
+    <Comment />
+    <Routing padNet="padNet.GPIO04" mode="GPIO04_ALT2" ball="R6" />
+    <Register Name="IOMUXC_SW_MUX_CTL_PAD_GPIO04" Address="0x020E022C" Value="0x00000002" />
+    <Register Name="IOMUXC_SW_PAD_CTL_PAD_GPIO04" Address="0x020E05FC" Value="0x0001B0B0" />
+    <Register Name="IOMUXC_KEY_COL7_SELECT_INPUT" Address="0x020E08C8" Value="0x00000001" />
   </SignalDesign>
   <SignalDesign Name="KEY_ROW4" NativeInstance="kpp" Instance="kpp" InstanceAlias="kpp" IsChecked="true">
     <Comment />
     <Routing padNet="padNet.KEY_ROW4" mode="KEY_ROW4_ALT3" ball="V5" />
     <Register Name="IOMUXC_SW_MUX_CTL_PAD_KEY_ROW4" Address="0x020E0268" Value="0x00000003" />
     <Register Name="IOMUXC_SW_PAD_CTL_PAD_KEY_ROW4" Address="0x020E0650" Value="0x0001B0B0" />
+  </SignalDesign>
+  <SignalDesign Name="KEY_ROW5" NativeInstance="kpp" Instance="kpp" InstanceAlias="kpp" IsChecked="true">
+    <Comment />
+    <Routing padNet="padNet.GPIO01" mode="GPIO01_ALT2" ball="T4" />
+    <Register Name="IOMUXC_SW_MUX_CTL_PAD_GPIO01" Address="0x020E0210" Value="0x00000002" />
+    <Register Name="IOMUXC_SW_PAD_CTL_PAD_GPIO01" Address="0x020E05E0" Value="0x0001B0B0" />
+    <Register Name="IOMUXC_KEY_ROW5_SELECT_INPUT" Address="0x020E08CC" Value="0x00000001" />
+  </SignalDesign>
+  <SignalDesign Name="KEY_ROW6" NativeInstance="kpp" Instance="kpp" InstanceAlias="kpp" IsChecked="true">
+    <Comment />
+    <Routing padNet="padNet.GPIO02" mode="GPIO02_ALT2" ball="T1" />
+    <Register Name="IOMUXC_SW_MUX_CTL_PAD_GPIO02" Address="0x020E0224" Value="0x00000002" />
+    <Register Name="IOMUXC_SW_PAD_CTL_PAD_GPIO02" Address="0x020E05F4" Value="0x0001B0B0" />
+    <Register Name="IOMUXC_KEY_ROW6_SELECT_INPUT" Address="0x020E08D0" Value="0x00000001" />
+  </SignalDesign>
+  <SignalDesign Name="KEY_ROW7" NativeInstance="kpp" Instance="kpp" InstanceAlias="kpp" IsChecked="true">
+    <Comment />
+    <Routing padNet="padNet.GPIO05" mode="GPIO05_ALT2" ball="R4" />
+    <Register Name="IOMUXC_SW_MUX_CTL_PAD_GPIO05" Address="0x020E0230" Value="0x00000002" />
+    <Register Name="IOMUXC_SW_PAD_CTL_PAD_GPIO05" Address="0x020E0600" Value="0x0001B0B0" />
+    <Register Name="IOMUXC_KEY_ROW7_SELECT_INPUT" Address="0x020E08D4" Value="0x00000001" />
   </SignalDesign>
   <SignalDesign Name="DRAM_ADDR00" NativeInstance="mmdc" Instance="mmdc" InstanceAlias="mmdc" IsChecked="true">
     <Comment />

@@ -37,4 +37,4 @@
 #include "sdk.h"
 
 void uart_interrupt_handler(void);
-int32_t uart_test(void);
+test_return_t uart_test(void);

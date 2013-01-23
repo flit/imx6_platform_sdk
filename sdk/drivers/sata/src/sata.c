@@ -46,9 +46,9 @@
 
 sata_command_header_t *cmdhdr = NULL;
 sata_command_table_t *cmdtbl = NULL;
-sata_ahci_regs_t *imx_sata_host = (sata_ahci_regs_t *) SATA_BASE_ADDR;
-sata_port_regs_t *imx_sata_port0 =
-    (sata_port_regs_t *) SATA_PORT_N_BASE_ADDRESS(0, SATA_BASE_ADDR);
+//sata_ahci_regs_t *imx_sata_host = (sata_ahci_regs_t *) SATA_BASE_ADDR;
+//sata_port_regs_t *imx_sata_port0 =
+//    (sata_port_regs_t *) SATA_PORT_N_BASE_ADDRESS(0, SATA_BASE_ADDR);
 sata_identify_data_t hdd_ident;
 disk_identify_t ident;
 
@@ -61,17 +61,16 @@ extern void sata_clock_enable(void);
 extern void sata_power_on(void);
 void sata_get_phy_src_clk(sata_phy_ref_clk_t *);
 
-static void sata_ahci_host_info_print(sata_ahci_regs_t * ahci);
-
-static sata_return_t sata_ahci_set_port_idle(sata_port_regs_t * port_n_regs);
-static sata_return_t sata_ahci_port_reset(sata_port_regs_t * port_n_regs);
+static void sata_ahci_host_info_print(void);
+static sata_return_t sata_ahci_set_port_idle(u32 port);
+static sata_return_t sata_ahci_port_reset(u32 port);
 
 static void sata_clock_init(sata_phy_ref_clk_t * phyclk);
-static sata_return_t sata_hdd_init(void);
-static sata_return_t ahci_find_empty_slot(sata_port_regs_t * port);
-static sata_return_t sata_wait_command_done(u32 port_no);
+static sata_return_t sata_hdd_init(u32 port);
+static sata_return_t ahci_find_empty_slot(u32 port);
+static sata_return_t sata_wait_command_done(u32 port);
 
-static sata_return_t sata_reg_fis_h2d(sata_port_regs_t * port, 
+static sata_return_t sata_reg_fis_h2d(u32 port, 
                                       u32 sect_addr,
                                       u32 sect_cnt,
                                       u32 rw, 
@@ -81,22 +80,23 @@ static sata_return_t sata_reg_fis_h2d(sata_port_regs_t * port,
                                       u32 data_addr,  
                                       sata_command_header_t * cmdh, 
                                       sata_command_table_t * cmdt); 
-static sata_return_t sata_non_queued_error_recovery(void);
-static sata_return_t sata_phy_cr_ack_polling(u32 max_iterations, u32 expected_val);
-static sata_return_t sata_phy_cr_write(u32 addr, u32 val);
-static sata_return_t sata_phy_cr_read(u32 addr, u32 * data);
-static sata_return_t sata_phy_cr_addr(u32 addr);
+static sata_return_t sata_non_queued_error_recovery(u32 port);
+static sata_return_t sata_phy_cr_ack_polling(u32 max_iterations, u32 expected_val, u32 port);
+static sata_return_t sata_phy_cr_write(u32 addr, u32 val, u32 port);
+static sata_return_t sata_phy_cr_read(u32 addr, u32 * data, u32 port);
+static sata_return_t sata_phy_cr_addr(u32 addr, u32 port);
 static void sata_phy_config_mpll(char prop_ctl, char int_ctl, char ncy5, char ncy, char prescale);
 
 /*!
  * @brief Read some sectors to SATA disk from SATA HDD
  *
- * @param start_block Address of start sector
- * @param buf Pointer of destination buffer
- * @param len Length to read
+ * @param start_block - Address of start sector
+ * @param buf         - Pointer of destination buffer
+ * @param len         - Length to read
+ * @param port        - SATA port
  * @return SATA_PASS or SATA_FAIL
  */
-sata_return_t sata_pio_read_sector(u32 start_block, u8 * buf, u32 len)
+sata_return_t sata_pio_read_sector(u32 start_block, u8 * buf, u32 len, u32 port)
 {
     u32 sect_cnt = 0;
     u32 sect_start_addr = 0;
@@ -115,7 +115,7 @@ sata_return_t sata_pio_read_sector(u32 start_block, u8 * buf, u32 len)
     cmdhdr = (sata_command_header_t *) SATA_COMMAND_LIST_BASE;
     cmdtbl = (sata_command_table_t *) SATA_COMMAND_TABLE_BASE;
 
-    ret = sata_reg_fis_h2d(imx_sata_port0,
+    ret = sata_reg_fis_h2d(port,
                            sect_start_addr,
                            sect_cnt,
                            SATA_READ, ATAPI_COMMAND_READ_SECTOR, 0, len, (u32) buf, cmdhdr, cmdtbl);
@@ -124,19 +124,19 @@ sata_return_t sata_pio_read_sector(u32 start_block, u8 * buf, u32 len)
         PRINT(0, "+SATAERR: !error@sata_pio_read_sector blk%d@0x%08x,len%d\n", start_block,
               (u32) buf, len);
 
-        if (SATA_PASS == sata_non_queued_error_recovery()) {
+        if (SATA_PASS == sata_non_queued_error_recovery(port)) {
             try_times--;
             goto exec;
         }
     }
 
-    ret = sata_wait_command_done(PORT0);
+    ret = sata_wait_command_done(port);
 
     if (ret == SATA_FAIL) {
         PRINT(0, "+SATAERR: !error@sata_pio_read_sector blk%d@0x%08x,len%d\n", start_block,
               (u32) buf, len);
 
-        if (SATA_PASS == sata_non_queued_error_recovery()) {
+        if (SATA_PASS == sata_non_queued_error_recovery(port)) {
             try_times--;
             goto exec;
         }
@@ -147,6 +147,7 @@ sata_return_t sata_pio_read_sector(u32 start_block, u8 * buf, u32 len)
     return (!ret);
 }
 
+
 /*!
  * @brief Write some sectors to SATA disk from SATA HDD
  *
@@ -155,7 +156,7 @@ sata_return_t sata_pio_read_sector(u32 start_block, u8 * buf, u32 len)
  * @param len Length to read
  * @return SATA_PASS or SATA_FAIL
  */
-sata_return_t sata_pio_write_sector(u32 start_block, u8 * buf, u32 len)
+sata_return_t sata_pio_write_sector(u32 start_block, u8 * buf, u32 len, u32 port)
 {
     u32 sect_cnt = 0;
     u32 sect_start_addr = 0;
@@ -176,7 +177,7 @@ sata_return_t sata_pio_write_sector(u32 start_block, u8 * buf, u32 len)
     cmdhdr = (sata_command_header_t *) SATA_COMMAND_LIST_BASE;
     cmdtbl = (sata_command_table_t *) SATA_COMMAND_TABLE_BASE;
 
-    ret = sata_reg_fis_h2d(imx_sata_port0,
+    ret = sata_reg_fis_h2d(port,
                            sect_start_addr,
                            sect_cnt,
                            SATA_WRITE,
@@ -186,19 +187,19 @@ sata_return_t sata_pio_write_sector(u32 start_block, u8 * buf, u32 len)
         PRINT(0, "+SATAERR: !error@sata_pio_read_sector blk%d@0x%08x,len%d\n", start_block,
               (u32) buf, len);
 
-        if (SATA_PASS == sata_non_queued_error_recovery()) {
+        if (SATA_PASS == sata_non_queued_error_recovery(port)) {
             try_times--;
             goto exec;
         }
     }
 
-    ret = sata_wait_command_done(PORT0);
+    ret = sata_wait_command_done(port);
 
     if (ret == SATA_FAIL) {
         PRINT(0, "+SATAERR: !error@sata_pio_write_sector blk%d@0x%08x,len%d\n", start_block,
               (u32) buf, len);
 
-        if (SATA_PASS == sata_non_queued_error_recovery()) {
+        if (SATA_PASS == sata_non_queued_error_recovery(port)) {
             try_times--;
             goto exec;
         }
@@ -215,7 +216,7 @@ sata_return_t sata_pio_write_sector(u32 start_block, u8 * buf, u32 len)
  * @param len Length to read
  * @return SATA_PASS or SATA_FAIL
  */
-sata_return_t sata_dma_read_sector(u32 start_block, u8 * buf, u32 len)
+sata_return_t sata_dma_read_sector(u32 start_block, u8 * buf, u32 len, u32 port)
 {
     u32 sect_cnt = 0;
     u32 sect_start_addr = 0;
@@ -234,7 +235,7 @@ sata_return_t sata_dma_read_sector(u32 start_block, u8 * buf, u32 len)
     cmdhdr = (sata_command_header_t *) SATA_COMMAND_LIST_BASE;
     cmdtbl = (sata_command_table_t *) SATA_COMMAND_TABLE_BASE;
 
-    ret = sata_reg_fis_h2d(imx_sata_port0,
+    ret = sata_reg_fis_h2d(port,
                            sect_start_addr,
                            sect_cnt,
                            SATA_READ, ATAPI_COMMAND_READ_DMA, 0, len, (u32) buf, cmdhdr, cmdtbl);
@@ -243,19 +244,19 @@ sata_return_t sata_dma_read_sector(u32 start_block, u8 * buf, u32 len)
         PRINT(0, "+SATAERR: !error@sata_pio_read_sector blk%d@0x%08x,len%d\n", start_block,
               (u32) buf, len);
 
-        if (SATA_PASS == sata_non_queued_error_recovery()) {
+        if (SATA_PASS == sata_non_queued_error_recovery(port)) {
             try_times--;
             goto exec;
         }
     }
 
-    ret = sata_wait_command_done(PORT0);
+    ret = sata_wait_command_done(port);
 
     if (ret == SATA_FAIL) {
         PRINT(0, "+SATAERR: !error@sata_dma_read_sector blk%d@0x%08x,len%d\n", start_block,
               (u32) buf, len);
 
-        if (SATA_PASS == sata_non_queued_error_recovery()) {
+        if (SATA_PASS == sata_non_queued_error_recovery(port)) {
             try_times--;
             goto exec;
         }
@@ -264,7 +265,7 @@ sata_return_t sata_dma_read_sector(u32 start_block, u8 * buf, u32 len)
     return (!ret);
 }
 
-sata_return_t sata_dma_write_sector(u32 start_block, u8 * buf, u32 len)
+sata_return_t sata_dma_write_sector(u32 start_block, u8 * buf, u32 len, u32 port)
 {
     u32 sect_cnt = 0;
     u32 sect_start_addr = 0;
@@ -286,7 +287,7 @@ sata_return_t sata_dma_write_sector(u32 start_block, u8 * buf, u32 len)
     cmdhdr = (sata_command_header_t *) SATA_COMMAND_LIST_BASE;
     cmdtbl = (sata_command_table_t *) SATA_COMMAND_TABLE_BASE;
 
-    ret = sata_reg_fis_h2d(imx_sata_port0,
+    ret = sata_reg_fis_h2d(port,
                            sect_start_addr,
                            sect_cnt,
                            SATA_WRITE, ATAPI_COMMAND_WRITE_DMA, 0, len, (u32) buf, cmdhdr, cmdtbl);
@@ -295,19 +296,19 @@ sata_return_t sata_dma_write_sector(u32 start_block, u8 * buf, u32 len)
         PRINT(0, "+SATAERR: !error@sata_pio_read_sector blk%d@0x%08x,len%d\n", start_block,
               (u32) buf, len);
 
-        if (SATA_PASS == sata_non_queued_error_recovery()) {
+        if (SATA_PASS == sata_non_queued_error_recovery(port)) {
             try_times--;
             goto exec;
         }
     }
 
-    ret = sata_wait_command_done(PORT0);
+    ret = sata_wait_command_done(port);
 
     if (ret == SATA_FAIL) {
         PRINT(0, "+SATAERR: !error@sata_dma_write_sector blk%d@0x%08x,len%d\n", start_block,
               (u32) buf, len);
 
-        if (SATA_PASS == sata_non_queued_error_recovery()) {
+        if (SATA_PASS == sata_non_queued_error_recovery(port)) {
             try_times--;
             goto exec;
         }
@@ -316,7 +317,7 @@ sata_return_t sata_dma_write_sector(u32 start_block, u8 * buf, u32 len)
     return (!ret);
 }
 
-sata_return_t sata_disk_read_sector(u32 start_block, u8 * buf, u32 len)
+sata_return_t sata_disk_read_sector(u32 start_block, u8 * buf, u32 len, u32 port)
 {
     u32 i = 0;
     u32 cycle = 0;
@@ -343,9 +344,9 @@ sata_return_t sata_disk_read_sector(u32 start_block, u8 * buf, u32 len)
         PRINT(0, "+SATAINFO: sata_disk_read_sector cycle %d,blk %d,sz %d\n", i, blk, sz);
 #ifdef SATA_PDMA_ENABLED
 
-        if (!sata_dma_read_sector(blk, (buf + xfer_sz), sz))
+        if (!sata_dma_read_sector(blk, (buf + xfer_sz), sz, port))
 #else
-        if (!sata_pio_read_sector(blk, (buf + xfer_sz), sz))
+        if (!sata_pio_read_sector(blk, (buf + xfer_sz), sz, port))
 #endif
         {
             PRINT(0, "+SATAERR: sata_disk_read_sector error@blk %d, buf 0x%08x, sz %d\n", blk,
@@ -361,7 +362,7 @@ sata_return_t sata_disk_read_sector(u32 start_block, u8 * buf, u32 len)
     return SATA_PASS;
 }
 
-sata_return_t sata_disk_write_sector(u32 start_block, u8 * buf, u32 len)
+sata_return_t sata_disk_write_sector(u32 start_block, u8 * buf, u32 len, u32 port)
 {
     u32 i = 0;
     u32 cycle = 0;
@@ -391,9 +392,9 @@ sata_return_t sata_disk_write_sector(u32 start_block, u8 * buf, u32 len)
 
 #ifdef SATA_PDMA_ENABLED
 
-        if (!sata_dma_write_sector(blk, (buf + xfer_sz), sz))
+        if (!sata_dma_write_sector(blk, (buf + xfer_sz), sz, port))
 #else
-        if (!sata_pio_write_sector(blk, (buf + xfer_sz), sz))
+        if (!sata_pio_write_sector(blk, (buf + xfer_sz), sz, port))
 #endif
         {
             PRINT(0, "+SATAERR: sata_disk_write_sector error@%d\n", i);
@@ -488,43 +489,43 @@ static void _sata_identify_data_strcpy(char *dest, u16 * src, u16 size)
  * @param port_n_regs Base address of port regs
  * @return SATA_PASS or SATA_FAIL
  */
-static sata_return_t sata_ahci_set_port_idle(sata_port_regs_t * port_n_regs)
+static sata_return_t sata_ahci_set_port_idle(u32 port)
 {
     u32 v;
     sata_return_t ret = SATA_PASS;
 
-    v = port_n_regs->cmd;
+    v = (HW_SATA_PORT(port).CMD).U;
 
-    PRINT(0, "+SATAINFO: PxCMD@0x%08x = 0x%08x\n", (u32) (&(port_n_regs->cmd)), v);
+    PRINT(0, "+SATAINFO: PxCMD@0x%08x = 0x%08x\n", (u32) (&(HW_SATA_PORT(port).CMD)), v);
 
-    if (v & SATA_AHCI_PORT_N_CMD_HPCP) {
+    if (v & BM_SATA_P0CMD_HPCP) {
         PRINT(0, "+SATAINFO: Hot Plug Supported\n");
     }
 
-    if ((!(v & SATA_AHCI_PORT_N_CMD_START))
-        && (!(v & SATA_AHCI_PORT_N_CMD_CR))
-        && (!(v & SATA_AHCI_PORT_N_CMD_FRE))
-        && (!(v & SATA_AHCI_PORT_N_CMD_FR))) {
+    if ((!(v & BM_SATA_P0CMD_ST))
+        && (!(v & BM_SATA_P0CMD_CR))
+        && (!(v & BM_SATA_P0CMD_FRE))
+        && (!(v & BM_SATA_P0CMD_FR))) {
         PRINT(0, "+SATADBGMSG: The port is in IDLE state.\n");
         return ret;
     }
 
     /*------Place the port into IDLE state------*/
     /*Clear CMD.ST and wait for CMD.CR to return '0' */
-    port_n_regs->cmd &= ~SATA_AHCI_PORT_N_CMD_START;
+    (HW_SATA_PORT(port).CMD).B.ST = SATA_DISABLED;
     hal_delay_us(PORT_N_INIT_TIMEOUT);  //delay 500ms
 
-    if (port_n_regs->cmd & SATA_AHCI_PORT_N_CMD_CR) {
+    if ((HW_SATA_PORT(port).CMD).B.CR) {
         ret = SATA_FAIL;
         PRINT(0, "+SATADBGMSG:PxCMD.CR does not return to zero.\n");
         return ret;
     }
 
-    if (port_n_regs->cmd & SATA_AHCI_PORT_N_CMD_FRE) {
-        port_n_regs->cmd &= ~SATA_AHCI_PORT_N_CMD_FRE;
+    if ((HW_SATA_PORT(port).CMD).B.FRE) {
+    	(HW_SATA_PORT(port).CMD).B.FRE = SATA_DISABLED;
         hal_delay_us(PORT_N_INIT_TIMEOUT);  //delay 500ms
 
-        if (port_n_regs->cmd & SATA_AHCI_PORT_N_CMD_FR) {
+        if ((HW_SATA_PORT(port).CMD).B.FR) {
             ret = SATA_FAIL;
             PRINT(0, "+SATADBGMSG:PxCMD.FR does not return to zero.\n");
             return ret;
@@ -542,19 +543,19 @@ static sata_return_t sata_ahci_set_port_idle(sata_port_regs_t * port_n_regs)
  * @param port_n_regs Base address of port regs
  * @return SATA_PASS or SATA_FAIL
  */
-static sata_return_t sata_ahci_port_reset(sata_port_regs_t * port_n_regs)
+static sata_return_t sata_ahci_port_reset(u32 port)
 {
     sata_return_t ret;
-    port_n_regs->cmd &= ~SATA_AHCI_PORT_N_CMD_START;
+    (HW_SATA_PORT(port).CMD).B.ST = SATA_DISABLED;
     hal_delay_us(PORT_N_INIT_TIMEOUT);  //delay 500ms
 
-    if (port_n_regs->cmd & SATA_AHCI_PORT_N_CMD_CR) {
+    if ((HW_SATA_PORT(port).CMD).B.CR) {
         ret = SATA_FAIL;
         PRINT(0, "+SATADBGMSG:PxCMD.CR does not return to zero.\n");
         return ret;
     }
 
-    port_n_regs->cmd |= SATA_AHCI_PORT_N_CMD_START;
+    (HW_SATA_PORT(port).CMD).B.ST = SATA_ENABLED;
     return SATA_PASS;
 }
 
@@ -563,16 +564,16 @@ static sata_return_t sata_ahci_port_reset(sata_port_regs_t * port_n_regs)
  *
  * @param ahci AHCI register handle
  */
-static void sata_ahci_host_info_print(sata_ahci_regs_t * ahci)
+static void sata_ahci_host_info_print(void)
 {
     u32 vers, cap, speed, ip_vers;
     const char *speed_s;
 
-    vers = ahci->vs;
-    ip_vers = ahci->version;
-    cap = ahci->cap;
+    vers = HW_SATA_VS.U;
+    ip_vers = HW_SATA_VERSIONR.U;
+    cap = HW_SATA_CAP.U;
 
-    speed = (cap & SATA_AHCI_HOST_CAP_ISS_MASK) >> SATA_AHCI_HOST_CAP_ISS_SHIFT;
+    speed = HW_SATA_CAP.B.ISS;
 
     if (speed == 1)
         speed_s = "1.5";
@@ -602,7 +603,25 @@ static void sata_ahci_host_info_print(sata_ahci_regs_t * ahci)
     PRINT(1, " Flags        : "
           "%s%s%s%s%s%s%s%s%s"
           "%s%s%s%s%s%s%s%s\n",
-          cap & (1 << 31) ? "64bit" : "32bit",
+          cap & (1 << BP_SATA_CAP_S64A) ? "64bit" : "32bit",
+          cap & (1 << BP_SATA_CAP_SNCQ) ? "|SNCQ" : "",
+          cap & (1 << BP_SATA_CAP_SSNTF) ? "|SSNTF" : "",
+          cap & (1 << BP_SATA_CAP_SMPS) ? "|SMPS" : "",
+          cap & (1 << BP_SATA_CAP_SSS) ? "|SSS" : "",
+          cap & (1 << BP_SATA_CAP_SALP) ? "|SALP" : "",
+          cap & (1 << BP_SATA_CAP_SAL) ? "|SAL" : "",
+          cap & (1 << BP_SATA_CAP_SCLO) ? "|SCLO" : "",
+//          cap & (1 << 19) ? "|NZO" : "",
+          cap & (1 << BP_SATA_CAP_SAM) ? "|SAM" : "",
+          cap & (1 << BP_SATA_CAP_SMP) ? "|SMP" : "",
+          cap & (1 << BP_SATA_CAP_PMD) ? "|PMD" : "",
+          cap & (1 << BP_SATA_CAP_SSC) ? "|SSC" : "",
+          cap & (1 << BP_SATA_CAP_PSC) ? "|PSC" : "",
+          cap & (1 << BP_SATA_CAP_CCCS) ? "|CCCS" : "", 
+          cap & (1 << BP_SATA_CAP_EMS) ? "|EMS" : "", 
+          cap & (1 << BP_SATA_CAP_SXS) ? "|SXS" : "");
+          
+/*          cap & (1 << 31) ? "64bit" : "32bit",
           cap & (1 << 30) ? "|NCQ" : "",
           cap & (1 << 29) ? "|SNTF" : "",
           cap & (1 << 28) ? "|MPS" : "",
@@ -617,6 +636,7 @@ static void sata_ahci_host_info_print(sata_ahci_regs_t * ahci)
           cap & (1 << 14) ? "|SLUM" : "",
           cap & (1 << 13) ? "|PART" : "",
           cap & (1 << 7) ? "|CCC" : "", cap & (1 << 6) ? "|EMS" : "", cap & (1 << 5) ? "|SXS" : "");
+*/
     PRINT(1, "-------------------------------------\n");
 
 }
@@ -678,7 +698,7 @@ static void sata_clock_init(sata_phy_ref_clk_t * phyclk)
 /*!
  * @brief Initialize sata HDD
  */
-static sata_return_t sata_hdd_init(void)
+static sata_return_t sata_hdd_init(u32 port)
 {
     sata_return_t ret = SATA_FAIL;
     unsigned char *ident_data;  //[SATA_HDD_SECTOR_SIZE];
@@ -694,7 +714,7 @@ static sata_return_t sata_hdd_init(void)
     cmdhdr = (sata_command_header_t *) SATA_COMMAND_LIST_BASE;
     cmdtbl = (sata_command_table_t *) SATA_COMMAND_TABLE_BASE;
 
-    ret = sata_reg_fis_h2d(imx_sata_port0,
+    ret = sata_reg_fis_h2d(port,
                            0,
                            1,
                            SATA_READ,
@@ -707,7 +727,7 @@ static sata_return_t sata_hdd_init(void)
 
     hal_delay_us(5000);         //5ms
 
-    ret = sata_wait_command_done(PORT0);
+    ret = sata_wait_command_done(port);
 
     printf_buffer((u32) ident_data, SATA_HDD_SECTOR_SIZE, 0);
 
@@ -752,71 +772,71 @@ static sata_return_t sata_hdd_init(void)
 static void sata_port_status_parser(u32 status)
 {
 
-    if (status & SATA_AHCI_PORT_N_IS_CPDS) {
-        PRINT(0, "+SATAINFO: CPDS - Cold Port Detect.\n");
-    }
+//    if (status & SATA_AHCI_PORT_N_IS_CPDS) {
+//        PRINT(0, "+SATAINFO: CPDS - Cold Port Detect.\n");
+//    }
 
-    if (status & SATA_AHCI_PORT_N_IS_ERR_TFES) {
+    if (status & BM_SATA_P0IS_TFES) {
         PRINT(0, "+SATAINFO: TFES - Task File Error.\n");
     }
 
-    if (status & SATA_AHCI_PORT_N_IS_ERR_HBFS) {
+    if (status & BM_SATA_P0IS_HBFS) {
         PRINT(0, "+SATAINFO: HBFS - Host Bus Fatal Error.\n");
     }
 
-    if (status & SATA_AHCI_PORT_N_IS_ERR_HBDS) {
+    if (status & BM_SATA_P0IS_HBDS) {
         PRINT(0, "+SATAINFO: HBDS - Host Bus Data Error.\n");
     }
 
-    if (status & SATA_AHCI_PORT_N_IS_ERR_IFS) {
+    if (status & BM_SATA_P0IS_IFS) {
         PRINT(0, "+SATAINFO: IFS  - Interface Fatal Error.\n");
     }
 
-    if (status & SATA_AHCI_PORT_N_IS_ERR_INFS) {
+    if (status & BM_SATA_P0IS_INFS) {
         PRINT(0, "+SATAINFO: INFS - Interface Non-Fatal Error.\n");
     }
 
-    if (status & SATA_AHCI_PORT_N_IS_ERR_OFS) {
+    if (status & BM_SATA_P0IS_OFS) {
         PRINT(0, "+SATAINFO: OFS  - OverFlow Error.\n");
     }
 
-    if (status & SATA_AHCI_PORT_N_IS_ERR_IPMS) {
+    if (status & BM_SATA_P0IS_IPMS) {
         PRINT(0, "+SATAINFO: IPMS - Incorrect Port Multiplier Error.\n");
     }
 
-    if (status & SATA_AHCI_PORT_N_IS_PRCS) {
+    if (status & BM_SATA_P0IS_PRCS) {
         PRINT(0, "+SATAINFO: PRCS - PHY Ready Change.\n");
     }
 
-    if (status & SATA_AHCI_PORT_N_IS_DMPS) {
-        PRINT(0, "+SATAINFO: DMPS - Device Mechanical Presence.\n");
-    }
+//    if (status & SATA_AHCI_PORT_N_IS_DMPS) {
+//        PRINT(0, "+SATAINFO: DMPS - Device Mechanical Presence.\n");
+//    }
 
-    if (status & SATA_AHCI_PORT_N_IS_PCS) {
+    if (status & BM_SATA_P0IS_PCS) {
         PRINT(0, "+SATAINFO: PCS  - Port Change.\n");
     }
 
-    if (status & SATA_AHCI_PORT_N_IS_DPS) {
+    if (status & BM_SATA_P0IS_DPS) {
         PRINT(0, "+SATAINFO: DPS  - Descriptor Processed.\n");
     }
 
-    if (status & SATA_AHCI_PORT_N_IS_UFS) {
+    if (status & BM_SATA_P0IS_UFS) {
         PRINT(0, "+SATAINFO: UFS  - Unknown FIS.\n");
     }
 
-    if (status & SATA_AHCI_PORT_N_IS_SDBS) {
+    if (status & BM_SATA_P0IS_SDBS) {
         PRINT(0, "+SATAINFO: SDBS - Set Device Bits FIS.\n");
     }
 
-    if (status & SATA_AHCI_PORT_N_IS_DSS) {
+    if (status & BM_SATA_P0IS_DSS) {
         PRINT(0, "+SATAINFO: DSS  - DMA Setup FIS.\n");
     }
 
-    if (status & SATA_AHCI_PORT_N_IS_PSS) {
+    if (status & BM_SATA_P0IS_PSS) {
         PRINT(0, "+SATAINFO: PSS  - PIO Setup FIS.\n");
     }
 
-    if (status & SATA_AHCI_PORT_N_IS_DHRS) {
+    if (status & BM_SATA_P0IS_DHRS) {
         PRINT(0, "+SATAINFO: DHRS - Device to Host Register FIS.\n");
     }
 }
@@ -827,14 +847,14 @@ static void sata_port_status_parser(u32 status)
  * @param port Sata port handle
  * @return SATA_PASS or SATA_FAIL
  */
-static sata_return_t ahci_find_empty_slot(sata_port_regs_t * port)
+static sata_return_t ahci_find_empty_slot(u32 port)
 {
     u32 idx;
     u32 empty_cmd_slot = 32;
     u32 v;
 
     // Get an empty command slot
-    v = port->ci;
+    v = (HW_SATA_PORT(port).CI).U;
     idx = 0;
 
     while ((((v >> idx) & 0x1) != 0) && (idx < 32)) {
@@ -850,6 +870,7 @@ static sata_return_t ahci_find_empty_slot(sata_port_regs_t * port)
 
     PRINT(0, "+SATADBGMSG:command slot %d is empty\n", empty_cmd_slot);
     PRINT(0, "+SATADBGMSG:command slot %d is empty\n", empty_cmd_slot);
+    
     return empty_cmd_slot;
 }
 
@@ -859,7 +880,7 @@ static sata_return_t ahci_find_empty_slot(sata_port_regs_t * port)
  * @param port Sata port number
  * @return SATA_PASS or SATA_FAIL
  */
-static sata_return_t sata_wait_command_done(u32 port_no)
+static sata_return_t sata_wait_command_done(u32 port)
 {
     u32 i;
     sata_return_t ret = SATA_FAIL;
@@ -869,21 +890,21 @@ static sata_return_t sata_wait_command_done(u32 port_no)
     /* wait while device busy */
     i = MAX_TIMEOUT_COUNTER;
 
-    while (((imx_sata_host->is & SATA_AHCI_HOST_IS_PORT_N_INTR_ISSUED(port_no)) != (0x1 << port_no))
+    while (((HW_SATA_IS.U & SATA_AHCI_HOST_IS_PORT_N_INTR_ISSUED(port)) != (0x1 << port))
            && (--i > 0)) ;
 
     if (i == 0) {
         PRINT(0, "+SATAERR: wait interrupt timeout\n");
-        stat = imx_sata_port0->is;
-        err = imx_sata_port0->serr;
-        imx_sata_port0->serr = err;
-        imx_sata_port0->is = stat;  //clear port interrupt status
-        imx_sata_host->is |= SATA_AHCI_HOST_IS_PORT_N_INTR_ISSUED(port_no);
+        stat = (HW_SATA_PORT(port).IS).U; 
+        err = (HW_SATA_PORT(port).SERR).U;
+        (HW_SATA_PORT(port).SERR).U = err;
+        (HW_SATA_PORT(port).IS).U = stat;  //clear port interrupt status
+        HW_SATA_IS.U |= SATA_AHCI_HOST_IS_PORT_N_INTR_ISSUED(port);
     } else {
         /* Clear interrupt */
         //PRINT(0,"+SATAINFO: Port.IS = 0x%08x\n",imx_sata_host->is);
-        stat = imx_sata_port0->is;
-        err = imx_sata_port0->serr;
+        stat = (HW_SATA_PORT(port).IS).U;
+        err = (HW_SATA_PORT(port).SERR).U;
 //         port_stat = imx_sata_port0->ssts;
 
         if (stat & 0xff000000) {
@@ -896,11 +917,11 @@ static sata_return_t sata_wait_command_done(u32 port_no)
             ret = SATA_PASS;
         }
 
-        PRINT(0, "+SATAINFO: TFD is 0x%08x\n", imx_sata_port0->tfd);
+        PRINT(0, "+SATAINFO: TFD is 0x%08x\n", (HW_SATA_PORT(port).TFD).U);
 
-        imx_sata_port0->serr = err;
-        imx_sata_port0->is = stat;  //clear port interrupt status
-        imx_sata_host->is |= SATA_AHCI_HOST_IS_PORT_N_INTR_ISSUED(port_no); //clear host global interrupt status
+        (HW_SATA_PORT(port).SERR).U = err;
+        (HW_SATA_PORT(port).IS).U = stat;  //clear port interrupt status
+        HW_SATA_IS.U  |= SATA_AHCI_HOST_IS_PORT_N_INTR_ISSUED(port); //clear host global interrupt status
     }
 
     return ret;
@@ -921,7 +942,7 @@ static sata_return_t sata_wait_command_done(u32 port_no)
  * @param cmdt Pointer of command table
  * @return SATA_PASS or SATA_FAIL
  */
-static sata_return_t sata_reg_fis_h2d(sata_port_regs_t * port,  
+static sata_return_t sata_reg_fis_h2d(u32 port,  
                                       u32 sect_addr, 
                                       u32 sect_cnt, 
                                       u32 rw, 
@@ -981,7 +1002,7 @@ static sata_return_t sata_reg_fis_h2d(sata_port_regs_t * port,
     //printf_buffer((u32)cmdt,sizeof(sata_command_table_t),0);
 
     /*execute the command */
-    port->ci |= (1 << ept_cmd_slot);
+    (HW_SATA_PORT(port).CI).U |= (1 << ept_cmd_slot);
 
     return SATA_PASS;
 }
@@ -991,48 +1012,48 @@ static sata_return_t sata_reg_fis_h2d(sata_port_regs_t * port,
  *
  * @return SATA_PASS or SATA_FAIL
  */
-static sata_return_t sata_non_queued_error_recovery(void)
+static sata_return_t sata_non_queued_error_recovery(u32 port)
 {
     sata_return_t ret;
     u32 v;
     u32 errslot;
     u32 cnt;
     /*a - read PxCI to see which commands are still outstanding */
-    v = imx_sata_port0->ci;
+    v = (HW_SATA_PORT(port).CI).U; 
     PRINT(1, "+SATAINFO: outstanding command slots 0x%08x\n", v);
     //b - read PxCMD.CCS to determine the slot that the HBA was processing when
     //the error occured
-    errslot = (imx_sata_port0->cmd & SATA_AHCI_PORT_N_CMD_CCS_MASK) >> 8;
+    errslot = (HW_SATA_PORT(port).CMD).B.CCS;
     PRINT(1, "+SATAINFO: error occurs to command slot %d\n", errslot);
     //c - clear PxCMD.ST to 0 to reset the PxCI register, waits for PxCMD.CR to clear
     //to '0'
-    imx_sata_port0->cmd &= ~SATA_AHCI_PORT_N_CMD_START;
+    (HW_SATA_PORT(port).CMD).B.ST = SATA_DISABLED;
     hal_delay_us(PORT_N_INIT_TIMEOUT);  //delay 500ms
 
-    if (imx_sata_port0->cmd & SATA_AHCI_PORT_N_CMD_CR) {
+    if ((HW_SATA_PORT(port).CMD).B.CR) {
         ret = SATA_FAIL;
         PRINT(1, "+SATADBGMSG:PxCMD.CR does not return to zero.\n");
         return ret;
     }
     //d - clear any error bits in PxSERR to enable capturing new errors
-    v = imx_sata_port0->serr;
-    imx_sata_port0->serr = v;
+    v = (HW_SATA_PORT(port).SERR).U;
+    (HW_SATA_PORT(port).SERR).U = v;
     //e - clear status bits in PxIS as appropriate
-    v = imx_sata_port0->is;
-    imx_sata_port0->is = v;
+    v = (HW_SATA_PORT(port).IS).U;
+    (HW_SATA_PORT(port).IS).U = v;
 
-    v = imx_sata_host->is;
-    imx_sata_host->is = v;
+    v = HW_SATA_IS.U;
+    HW_SATA_IS.U = v;
 
     //f - if PxTFD.STS.BSY or PxTFD.STS.DRQ is set to '1', issue a COMRESET to the device
     //to put it in an idle state
-    if (imx_sata_port0->tfd & SATA_AHCI_PORT_N_TFD_MASK) {
-        if (imx_sata_port0->cmd & SATA_AHCI_PORT_N_CMD_SUD) {
-            imx_sata_port0->cmd &= ~SATA_AHCI_PORT_N_CMD_SUD;
+    if ((HW_SATA_PORT(port).TFD).U & SATA_AHCI_PORT_N_TFD_MASK) {
+        if ((HW_SATA_PORT(port).CMD).B.SUD) {
+            (HW_SATA_PORT(port).CMD).B.SUD = SATA_DISABLED;
         }
 
         hal_delay_us(10);       //delay 1ms
-        imx_sata_port0->cmd |= SATA_AHCI_PORT_N_CMD_SUD;
+        (HW_SATA_PORT(port).CMD).B.SUD = SATA_ENABLED;
 
         /*Start detect the attached device */
         //imx_sata_port0->sctl |= (SCTL_DET_COMM_INIT);//|SCTL_SPD_GEN2_NEGOCIATE);
@@ -1042,9 +1063,9 @@ static sata_return_t sata_non_queued_error_recovery(void)
         cnt = MAX_TIMEOUT_COUNTER;
 
         while (--cnt) {
-            if (!(imx_sata_port0->tfd & SATA_AHCI_PORT_N_TFD_MASK)) {
+            if (!((HW_SATA_PORT(port).TFD).U & SATA_AHCI_PORT_N_TFD_MASK)) {
                 PRINT(1, "+SATADBGMSG: device ready now\n");
-                PRINT(1, "+SATAERR : tfd 0x%08x\n", imx_sata_port0->tfd);
+                PRINT(1, "+SATAERR : tfd 0x%08x\n", (HW_SATA_PORT(port).TFD).U);
                 break;
             }
 
@@ -1056,7 +1077,7 @@ static sata_return_t sata_non_queued_error_recovery(void)
         }
     }
     //g - sets PxCMD.ST to '1' to enable issuing new commands
-    imx_sata_port0->cmd |= SATA_AHCI_PORT_N_CMD_START;
+    (HW_SATA_PORT(port).CMD).B.ST = SATA_ENABLED;
 
     return SATA_PASS;
 }
@@ -1068,7 +1089,7 @@ static sata_return_t sata_non_queued_error_recovery(void)
  * @param expected_val Expected value
  * @return SATA_PASS or SATA_FAIL
  */
-static sata_return_t sata_phy_cr_ack_polling(u32 max_iterations, u32 expected_val)
+static sata_return_t sata_phy_cr_ack_polling(u32 max_iterations, u32 expected_val, u32 port)
 {
     u32 v, ack;
     u32 wait_counter;
@@ -1077,8 +1098,8 @@ static sata_return_t sata_phy_cr_ack_polling(u32 max_iterations, u32 expected_va
     wait_counter = 0;
 
     while ((wait_counter < max_iterations) && (ack != expected_val)) {
-        v = imx_sata_port0->physr;
-        ack = ((v >> SATA_CR_STAT_ACK_LOC) & 0x1);
+        v = (HW_SATA_PORT(port).PHYSR).U;
+        ack = (HW_SATA_PORT(port).PHYSR).B.CR_ACK; 
         wait_counter++;
     }
 
@@ -1095,68 +1116,68 @@ static sata_return_t sata_phy_cr_ack_polling(u32 max_iterations, u32 expected_va
  * @param val value
  * @return SATA_PASS or SATA_FAIL
  */
-static sata_return_t sata_phy_cr_write(u32 addr, u32 val)
+static sata_return_t sata_phy_cr_write(u32 addr, u32 val, u32 port)
 {
     u32 v;
     // write addr
-    v = addr << SATA_CR_CTL_DATA_LOC;
-    imx_sata_port0->phycr = v;
+    v = addr << BP_SATA_P0PHYCR_CR_DATA_IN;
+    (HW_SATA_PORT(port).PHYCR).U = v;
 
     // capture addr
-    v |= (0x1 << SATA_CR_CTL_CAP_ADR_LOC);
-    imx_sata_port0->phycr = v;
+    v |= (0x1 << BP_SATA_P0PHYCR_CR_CAP_ADDR);
+    (HW_SATA_PORT(port).PHYCR).U = v;
 
     // wait for ack
-    if (sata_phy_cr_ack_polling(100, 1)) {
+    if (sata_phy_cr_ack_polling(100, 1, port)) {
         PRINT(0, "SATAERR: PHY Not responding cap addr assertion\n");
         return SATA_FAIL;
     }
     // deassert cap data
-    v &= 0xffff << SATA_CR_CTL_DATA_LOC;
-    imx_sata_port0->phycr = v;
+    v &= 0xffff << BP_SATA_P0PHYCR_CR_DATA_IN;
+    (HW_SATA_PORT(port).PHYCR).U = v;
 
     // wait for ack de-assetion
-    if (sata_phy_cr_ack_polling(100, 0)) {
+    if (sata_phy_cr_ack_polling(100, 0, port)) {
         PRINT(0, "SATAERR: PHY Not responding cap addr de-assetion\n");
         return SATA_FAIL;
     }
     // write data
-    v = val << SATA_CR_CTL_DATA_LOC;
-    imx_sata_port0->phycr = v;
+    v = val << BP_SATA_P0PHYCR_CR_DATA_IN;
+    (HW_SATA_PORT(port).PHYCR).U = v;
 
     // capture data
-    v |= (0x1 << SATA_CR_CTL_CAP_DAT_LOC);
-    imx_sata_port0->phycr = v;
+    v |= (0x1 << BP_SATA_P0PHYCR_CR_CAP_DATA);
+    (HW_SATA_PORT(port).PHYCR).U = v;
 
     // wait for ack
-    if (sata_phy_cr_ack_polling(100, 1)) {
+    if (sata_phy_cr_ack_polling(100, 1, port)) {
         PRINT(0, "SATAERR: PHY Not responding cap dat assertion\n");
         return SATA_FAIL;
     }
     // deassert cap data
-    v &= 0xffff << SATA_CR_CTL_DATA_LOC;
-    imx_sata_port0->phycr = v;
+    v &= 0xffff << BP_SATA_P0PHYCR_CR_DATA_IN;
+    (HW_SATA_PORT(port).PHYCR).U = v;
 
     // wait for ack de-assetion
-    if (sata_phy_cr_ack_polling(100, 0)) {
+    if (sata_phy_cr_ack_polling(100, 0, port)) {
         PRINT(0, "SATAERR: PHY Not responding cap data de-assetion\n");
         return SATA_FAIL;
     }
     // assert wr signal
-    v = 0x1 << SATA_CR_CTL_WR_LOC;
-    imx_sata_port0->phycr = v;
+    v = 0x1 << BP_SATA_P0PHYCR_CR_WRITE;
+    (HW_SATA_PORT(port).PHYCR).U = v;
 
     // wait for ack
-    if (sata_phy_cr_ack_polling(100, 1)) {
+    if (sata_phy_cr_ack_polling(100, 1, port)) {
         PRINT(0, "SATAERR: PHY Not responding write\n");
         return SATA_FAIL;
     }
     // deassert rd _signal
     v = 0x0;
-    imx_sata_port0->phycr = v;
+    (HW_SATA_PORT(port).PHYCR).U = v;
 
     // wait for ack de-assetion
-    if (sata_phy_cr_ack_polling(100, 0)) {
+    if (sata_phy_cr_ack_polling(100, 0, port)) {
         PRINT(0, "SATAERR: PHY Not responding write de-assetion\n");
         return SATA_FAIL;
     }
@@ -1172,50 +1193,50 @@ static sata_return_t sata_phy_cr_write(u32 addr, u32 val)
  * @param data value read
  * @return SATA_PASS or SATA_FAIL
  */
-static sata_return_t sata_phy_cr_read(u32 addr, u32 * data)
+static sata_return_t sata_phy_cr_read(u32 addr, u32 * data, u32 port)
 {
     u32 temp_rd_data;
     u32 temp_wr_data;
     // write addr
-    temp_wr_data = addr << SATA_CR_CTL_DATA_LOC;
-    imx_sata_port0->phycr = temp_wr_data;
+    temp_wr_data = addr << BP_SATA_P0PHYCR_CR_DATA_IN;
+    (HW_SATA_PORT(port).PHYCR).U = temp_wr_data;
 
     // capture addr
-    temp_wr_data |= (0x1 << SATA_CR_CTL_CAP_ADR_LOC);
-    imx_sata_port0->phycr = temp_wr_data;
+    temp_wr_data |= (0x1 << BP_SATA_P0PHYCR_CR_CAP_ADDR);
+    (HW_SATA_PORT(port).PHYCR).U = temp_wr_data;
 
     // wait for ack
-    if (sata_phy_cr_ack_polling(100, 1)) {
+    if (sata_phy_cr_ack_polling(100, 1, port)) {
         PRINT(0, "SATAERR: PHY Not responding cap addr assertion\n");
         return SATA_FAIL;
     }
     // deassert cap addr
-    temp_wr_data &= 0xffff << SATA_CR_CTL_DATA_LOC;
-    imx_sata_port0->phycr = temp_wr_data;
+    temp_wr_data &= 0xffff << BP_SATA_P0PHYCR_CR_DATA_IN;
+    (HW_SATA_PORT(port).PHYCR).U = temp_wr_data;
 
     // wait for ack de-assetion
-    if (sata_phy_cr_ack_polling(100, 0)) {
+    if (sata_phy_cr_ack_polling(100, 0, port)) {
         PRINT(0, "SATAERR: PHY Not responding cap addr de-assetion\n");
         return SATA_FAIL;
     }
     // assert rd signal
-    temp_wr_data = 0x1 << SATA_CR_CTL_RD_LOC;
-    imx_sata_port0->phycr = temp_wr_data;
+    temp_wr_data = 0x1 << BP_SATA_P0PHYCR_CR_READ;
+    (HW_SATA_PORT(port).PHYCR).U = temp_wr_data;
 
     // wait for ack
-    if (sata_phy_cr_ack_polling(100, 1)) {
+    if (sata_phy_cr_ack_polling(100, 1, port)) {
         PRINT(0, "SATAERR: PHY Not responding read\n");
         return SATA_FAIL;
     }
     // after got ack return data
-    temp_rd_data = imx_sata_port0->physr;
-    *data = (temp_rd_data & (0xffff << SATA_CR_STAT_DATA_LOC));
+    temp_rd_data = (HW_SATA_PORT(port).PHYSR).U;
+    *data = (temp_rd_data & (0xffff << BP_SATA_P0PHYSR_CR_DATA_OUT));
     // deassert rd _signal
     temp_wr_data = 0x0;
-    imx_sata_port0->phycr = temp_wr_data;
+    (HW_SATA_PORT(port).PHYCR).U = temp_wr_data;
 
     // wait for ack de-assetion
-    if (sata_phy_cr_ack_polling(100, 0)) {
+    if (sata_phy_cr_ack_polling(100, 0, port)) {
         PRINT(0, "SATAERR: PHY Not responding read de-assetion\n");
         return SATA_FAIL;
     }
@@ -1229,28 +1250,28 @@ static sata_return_t sata_phy_cr_read(u32 addr, u32 * data)
  * @param addr capture address
  * @return SATA_PASS or SATA_FAIL
  */
-static sata_return_t sata_phy_cr_addr(u32 addr)
+static sata_return_t sata_phy_cr_addr(u32 addr, u32 port)
 {
     u32 temp_wr_data;
     // write addr
-    temp_wr_data = addr << SATA_CR_CTL_DATA_LOC;
-    imx_sata_port0->phycr = temp_wr_data;
+    temp_wr_data = addr << BP_SATA_P0PHYCR_CR_DATA_IN;
+    (HW_SATA_PORT(port).PHYCR).U = temp_wr_data;
 
     // capture addr
-    temp_wr_data |= (0x1 << SATA_CR_CTL_CAP_ADR_LOC);
-    imx_sata_port0->phycr = temp_wr_data;
+    temp_wr_data |= (0x1 << BP_SATA_P0PHYCR_CR_CAP_ADDR);
+    (HW_SATA_PORT(port).PHYCR).U = temp_wr_data;
 
     // wait for ack
-    if (sata_phy_cr_ack_polling(100, 1)) {
+    if (sata_phy_cr_ack_polling(100, 1, port)) {
         PRINT(0, "SATAERR: PHY Not responding cap addr assertion\n");
         return SATA_FAIL;
     }
     // deassert cap addr
-    temp_wr_data &= 0xffff << SATA_CR_CTL_DATA_LOC;
-    imx_sata_port0->phycr = temp_wr_data;
+    temp_wr_data &= 0xffff << BP_SATA_P0PHYCR_CR_DATA_IN;
+    (HW_SATA_PORT(port).PHYCR).U = temp_wr_data;
 
     // wait for ack de-assetion
-    if (sata_phy_cr_ack_polling(100, 0)) {
+    if (sata_phy_cr_ack_polling(100, 0, port)) {
         PRINT(0, "SATAERR: PHY Not responding cap addr de-assetion\n");
         return SATA_FAIL;
     }
@@ -1274,12 +1295,12 @@ static void sata_phy_config_mpll(char prop_ctl, char int_ctl, char ncy5, char nc
     freq_ovrd = prop_ctl | (int_ctl << 3) | (ncy5 << 6) | (ncy << 8) | (prescale << 13) | (1 << 15);
     //PRINT(0,"+SATAPHY: Phy Freq Ovrd: 0x%04x\n",freq_ovrd);
     //check rd-wr to reg
-    sata_phy_cr_write(SATA_PHY_CR_CLOCK_FREQ_OVRD, freq_ovrd);
+    sata_phy_cr_write(SATA_PHY_CR_CLOCK_FREQ_OVRD, freq_ovrd, PORT0);
 
     hal_delay_us(10);
 }
 
-sata_return_t sata_init(sata_ahci_regs_t * ahci)
+sata_return_t sata_init(void)
 {
     sata_return_t ret = SATA_PASS;
     u32 i = 0;
@@ -1288,17 +1309,13 @@ sata_return_t sata_init(sata_ahci_regs_t * ahci)
     u32 cmd_slots;
     u32 v;
 
-    sata_port_regs_t *port_n_regs;
-
     sata_power_on();
-
     sata_get_phy_src_clk(&sata_phy_clk_sel);
 
     if (sata_phy_clk_sel == OSC_UNKNOWN) {
         sata_phy_clk_sel = OSC_50MHZ;
         PRINT(0, "+SATADBGMSG: Ref Clk %d\n", sata_phy_clk_sel);
     }
-
     /*SATA clock initialization. */
     sata_clock_init(&sata_phy_clk_sel);
 
@@ -1309,26 +1326,27 @@ sata_return_t sata_init(sata_ahci_regs_t * ahci)
 
     /*!!Rita specific configuration!! */
     /*Set 1ms timer count value */
-    ahci->timer1ms = SATA_AHCI_HOST_TIMER1MS_MASK;
-    PRINT(0, "+SATADBGMSG: Timer1ms@0x%08x = 0x%08x\n", (u32) (&(ahci->timer1ms)), ahci->timer1ms);
+    HW_SATA_TIMER1MS.U = SATA_AHCI_HOST_TIMER1MS_MASK;
+    PRINT(0, "+SATADBGMSG: Timer1ms@0x%08x = 0x%08x\n", (u32) (HW_SATA_TIMER1MS_ADDR), HW_SATA_TIMER1MS.U);
 
     /*Set OOBR register */
-    ahci->oobr = SATA_AHCI_HOST_OOBR_WE;
-    ahci->oobr = (SATA_AHCI_HOST_OOBR_COMWAKE_MIN_VAL
+    HW_SATA_OOBR.B.WE = SATA_ENABLED;
+
+    HW_SATA_OOBR.U = (SATA_AHCI_HOST_OOBR_COMWAKE_MIN_VAL
                   | SATA_AHCI_HOST_OOBR_COMWAKE_MAX_VAL
                   | SATA_AHCI_HOST_OOBR_COMINIT_MIN_VAL | SATA_AHCI_HOST_OOBR_COMINIT_MAX_VAL);
     /*!!Rita specific configuration end!! */
 
     /*firmware initialize */
     /*Support Staggered Spin-Up */
-    ahci->cap |= (SATA_AHCI_HOST_CAP_SSS);
+    HW_SATA_CAP.B.SSS = SATA_ENABLED;
 
     /*Reading PI register to determine which ports are implemented by HBA */
-    ports = ahci->cap & SATA_AHCI_HOST_CAP_NP_MASK;
+    ports = HW_SATA_CAP.B.NP;
     ports += 1;
 
     for (i = 0; i < ports; i++) {
-        ahci->pi |= (1 << i);
+        HW_SATA_PI.U |= (1 << i);
     }
 
     /*Clear HBA interrupt status */
@@ -1336,10 +1354,9 @@ sata_return_t sata_init(sata_ahci_regs_t * ahci)
 
     for (i = 0; i < ports; i++) {
         PRINT(0, "+SATADBGMSG: Port %d Implemented\n", i);
-        port_n_regs = (sata_port_regs_t *) SATA_PORT_N_BASE_ADDRESS(i, ahci);
-        //PRINT(0,"+SATADBGMSG: Port %d register base 0x%08x\n",i,(u32)port_n_regs);
+ 
         /*Place the port into IDLE state */
-        ret = sata_ahci_set_port_idle(port_n_regs);
+        ret = sata_ahci_set_port_idle(i);
 
         if (ret) {
             PRINT(0, "+SATADBGMSG: Error - Port reset or HBA reset is required\n");
@@ -1347,17 +1364,17 @@ sata_return_t sata_init(sata_ahci_regs_t * ahci)
         }
 
         /*Spin-up the port */
-        port_n_regs->cmd |= SATA_AHCI_PORT_N_CMD_SUD;
+        (HW_SATA_PORT(i).CMD).B.SUD = SATA_ENABLED;
 
         /*Start detect the attached device */
-        port_n_regs->sctl |= (SCTL_DET_COMM_INIT | SCTL_IPM_TRANS_TO_BOTH_PM_DIS);
+        (HW_SATA_PORT(i).SCTL).U |= (SCTL_DET_COMM_INIT | SCTL_IPM_TRANS_TO_BOTH_PM_DIS);
 
         hal_delay_us(1500);     //delay at least 1ms after communication init
         /*wait spin-up finished */
         cnt = MAX_TIMEOUT_COUNTER;
 
         while (cnt) {
-            if ((port_n_regs->cmd & SATA_AHCI_PORT_N_CMD_SUD)) {
+            if ((HW_SATA_PORT(i).CMD).B.SUD) {
                 PRINT(0, "+SATADBGMSG: Spin-Up Device completed\n");
                 break;
             }
@@ -1370,7 +1387,7 @@ sata_return_t sata_init(sata_ahci_regs_t * ahci)
             return SATA_FAIL;
         }
 
-        port_n_regs->sctl &= ~SATA_AHCI_PORT_N_SCTL_DET_MASK;
+        (HW_SATA_PORT(i).SCTL).B.DET = SATA_DISABLED;
         /*Allocate memory for each implemented port, and program PxCLB/CLBU/FB/FBU.
            It's better to clear the memory regions.
            After setting PxFB/FBU,software should set PxCMD.FRE to '1'
@@ -1383,10 +1400,10 @@ sata_return_t sata_init(sata_ahci_regs_t * ahci)
         //PRINT(0,"+SATADBGMSG: allocated fb addr 0x%08x\n",SATA_FIS_BASE);
         memset((char *)(SATA_COMMAND_LIST_BASE + i * sizeof(sata_command_header_t) * 32), 0,
                sizeof(sata_command_header_t) * 32);
-        port_n_regs->clb = (SATA_COMMAND_LIST_BASE + i * sizeof(sata_command_header_t) * 32);
+        (HW_SATA_PORT(i).CLB).U = (SATA_COMMAND_LIST_BASE + i * sizeof(sata_command_header_t) * 32);       
         memset((char *)(SATA_RECEIVED_FIS_BASE + i * sizeof(sata_rx_fis_t)), 0,
-               sizeof(sata_rx_fis_t));
-        port_n_regs->fb = SATA_RECEIVED_FIS_BASE;
+               sizeof(sata_rx_fis_t));        
+         (HW_SATA_PORT(i).FB).U = SATA_RECEIVED_FIS_BASE;
 
         /*Set the AHB burst size and transaction size
            port_n_regs->dmacr = (DMACR_AHB_BURST_SIZE_8_DWORDS<<SATA_AHCI_PORT_N_DMACR_RXABL_SHIFT)
@@ -1394,18 +1411,17 @@ sata_return_t sata_init(sata_ahci_regs_t * ahci)
            |(DMACR_TRANSAC_SIZE_16_DWORDS<<SATA_AHCI_PORT_N_DMACR_RXTS_SHIFT)
            |(DMACR_TRANSAC_SIZE_16_DWORDS<<SATA_AHCI_PORT_N_DMACR_TXTS_SHIFT);
          */
-        PRINT(0, "+SATADBGMSG: PxDMACR@0x%08x = 0x%08x\n", (u32) (&(port_n_regs->dmacr)),
-              (u32) (port_n_regs->dmacr));
-        port_n_regs->cmd |= (SATA_AHCI_PORT_N_CMD_FRE);
+        PRINT(0, "+SATADBGMSG: PxDMACR@0x%08x = 0x%08x\n", (u32) (&(HW_SATA_PORT(i).DMACR)),
+              (u32) ((HW_SATA_PORT(i).DMACR).U));
+        (HW_SATA_PORT(i).CMD).B.FRE = SATA_ENABLED;
         //PRINT(0,"+SATADBGMSG: clb addr 0x%08x\n",port_n_regs->clb);
         //PRINT(0,"+SATADBGMSG: fb addr 0x%08x\n",port_n_regs->fb);
 
         cnt = MAX_TIMEOUT_COUNTER;
 
         while (cnt) {
-            if (((port_n_regs->ssts & SATA_AHCI_PORT_N_SSTS_DET_MASK) == SSTS_DET_DEV_DET_NO_PHY)
-                || ((port_n_regs->ssts & SATA_AHCI_PORT_N_SSTS_DET_MASK) ==
-                    SSTS_DET_DEV_DET_PHY_RDY)) {
+            if (((HW_SATA_PORT(i).SSTS).B.DET == SSTS_DET_DEV_DET_NO_PHY)
+                || (((HW_SATA_PORT(i).SSTS).B.DET) == SSTS_DET_DEV_DET_PHY_RDY)) {
                 PRINT(1, "+SATADBGMSG: SATA Device Detected\n");
                 break;
             }
@@ -1422,8 +1438,8 @@ sata_return_t sata_init(sata_ahci_regs_t * ahci)
         cnt = MAX_TIMEOUT_COUNTER;
 
         while (cnt) {
-            if (port_n_regs->serr & SATA_AHCI_PORT_N_SERR_DIAG_X) {
-                PRINT(0, "+SATADBGMSG: P0SERR:0x%08x\n", port_n_regs->serr);
+            if ((HW_SATA_PORT(i).SERR).B.DIAG_X) {
+                PRINT(0, "+SATADBGMSG: P0SERR:0x%08x\n", (HW_SATA_PORT(i).SERR).U);
                 PRINT(0, "+SATADBGMSG: DIAG_X\n");
                 break;
             }
@@ -1436,14 +1452,14 @@ sata_return_t sata_init(sata_ahci_regs_t * ahci)
             return SATA_FAIL;
         }
 
-        v = port_n_regs->serr;
-        port_n_regs->serr = v;
+        v = (HW_SATA_PORT(i).SERR).U;
+        (HW_SATA_PORT(i).SERR).U = v;
 
         /*Check Task-File-Data */
         cnt = MAX_TIMEOUT_COUNTER;
 
         while (cnt) {
-            if ((port_n_regs->tfd & SATA_AHCI_PORT_N_TFD_MASK) == 0) {
+            if (((HW_SATA_PORT(i).TFD).U & SATA_AHCI_PORT_N_TFD_MASK) == 0) {
                 PRINT(0, "+SATADBGMSG: Device ready\n");
                 break;
             }
@@ -1468,48 +1484,46 @@ sata_return_t sata_init(sata_ahci_regs_t * ahci)
            Bit 32,CPDE, Cold Port Detect Interrupt
          */
         PRINT(0, "+SATADBGMSG: Enable the interrupts of port %d\n", i);
-        port_n_regs->is = 0xFFFFFFFF;   //clear all the old interrupt status;
+        (HW_SATA_PORT(i).IS).U = 0xFFFFFFFF;   //clear all the old interrupt status;
         /*Clear PxSERR register of each implemented port by writing '1' to each implemented
            bit loation */
         PRINT(0, "+SATADBGMSG: Clear SERR register of port %d\n", i);
-        port_n_regs->serr = 0xFFFFFFFF;
+        (HW_SATA_PORT(i).SERR).U = 0xFFFFFFFF;
 
-        port_n_regs->ie = SATA_AHCI_PORT_N_INTR_ENANBLE_MASK;
-        PRINT(0, "+SATADBGMSG: Port %d.IE = 0x%08x\n", i, port_n_regs->ie);
+        (HW_SATA_PORT(i).IE).U = SATA_AHCI_PORT_N_INTR_ENANBLE_MASK;
+        PRINT(0, "+SATADBGMSG: Port %d.IE = 0x%08x\n", i, (HW_SATA_PORT(i).IE).U);
     }
 
     /*Reading CAP.NCS to determine the command slots the HBA supports */
-    cmd_slots = (ahci->cap & SATA_AHCI_HOST_CAP_NCS_MASK) >> SATA_AHCI_HOST_CAP_NCS_SHIFT;
+    cmd_slots = HW_SATA_CAP.B.NCS;
 
     /*Enable SATA interrupt */
-    ahci->ghc |= SATA_AHCI_HOST_GHC_INTR_ENABLED;
+    HW_SATA_GHC.B.IE = SATA_ENABLED;
 
     /*Start the ports */
     for (i = 0; i < ports; i++) {
-        port_n_regs = (sata_port_regs_t *) SATA_PORT_N_BASE_ADDRESS(i, ahci);
-        port_n_regs->cmd |= SATA_AHCI_PORT_N_CMD_START;
+        (HW_SATA_PORT(i).CMD).B.ST = SATA_ENABLED;
     }
 
-    sata_ahci_host_info_print(ahci);
+    sata_ahci_host_info_print();
 
     return ret;
 }
 
-sata_return_t sata_deinit(sata_ahci_regs_t * ahci)
+sata_return_t sata_deinit(void)
 {
     sata_return_t ret = SATA_PASS;
     u32 i = 0;
     u32 ports;
 
-    sata_port_regs_t *port_n_regs;
     PRINT(0, "sata_deinit\n");
 
     /*Reading PI register to determine which ports are implemented by HBA */
-    ports = ahci->cap & SATA_AHCI_HOST_CAP_NP_MASK;
+    ports = HW_SATA_CAP.B.NP; 
     ports += 1;
 
     for (i = 0; i < ports; i++) {
-        ahci->pi |= (1 << i);
+        HW_SATA_PI.U |= (1 << i);
     }
 
     /*Clear HBA interrupt status */
@@ -1517,14 +1531,13 @@ sata_return_t sata_deinit(sata_ahci_regs_t * ahci)
 
     for (i = 0; i < ports; i++) {
         PRINT(0, "+SATADBGMSG: Port %d Implemented\n", i);
-        port_n_regs = (sata_port_regs_t *) SATA_PORT_N_BASE_ADDRESS(i, ahci);
-        //PRINT(0,"+SATADBGMSG: Port %d register base 0x%08x\n",i,(u32)port_n_regs);
-
+ 
         /*power off the port */
-        port_n_regs->cmd &= ~(SATA_AHCI_PORT_N_CMD_SUD | SATA_AHCI_PORT_N_CMD_POD);
+        (HW_SATA_PORT(i).CMD).B.SUD = SATA_DISABLED;
+        (HW_SATA_PORT(i).CMD).B.POD = SATA_DISABLED; 
 
         /*Place the port into IDLE state */
-        ret = sata_ahci_port_reset(port_n_regs);
+        ret = sata_ahci_port_reset(i);
 
         if (ret == SATA_FAIL) {
             PRINT(0, "+SATADBGMSG: Port %d reset fail.\n", i);
@@ -1532,25 +1545,23 @@ sata_return_t sata_deinit(sata_ahci_regs_t * ahci)
     }
 
     //reset HBA
-    ahci->ghc = SATA_AHCI_HOST_GHC_HBA_RESET;
+    HW_SATA_GHC_WR(SATA_ENABLED);
 
     //disable AHCI
-    ahci->ghc = ~SATA_AHCI_HOST_GHC_AHCI_ENABLED;
+    HW_SATA_GHC.B.AE = SATA_DISABLED;
 
     return ret;
 }
 
-sata_return_t sata_identify(sata_ahci_regs_t * ahci, u32 port_number)
+sata_return_t sata_identify(u32 port)
 {
-    sata_port_regs_t *port;
     u32 hdd_attached;
     u32 hdd_sig;
 
-    port = imx_sata_port0;
-    PRINT(0, "+SATADBGMSG: SATA port %d base@0x%08x.\n", port_number, (u32) port);
+    PRINT(0, "+SATADBGMSG: SATA port %d base@0x%08x.\n", port, port);
     // 1. check if there is HDD attached.
-    hdd_attached = (port->ssts & SATA_AHCI_PORT_N_SSTS_DET_MASK);
-    PRINT(0, "+SATADBGMSG: port->ssts = 0x%08x.\n", port->ssts);
+    hdd_attached = (HW_SATA_PORT(port).SSTS).B.DET; 
+    PRINT(0, "+SATADBGMSG: port->ssts = 0x%08x.\n", (HW_SATA_PORT(port).SSTS).U);
 
     switch (hdd_attached) {
     case SSTS_DET_NO_DEVICE_NO_PHY:
@@ -1559,16 +1570,16 @@ sata_return_t sata_identify(sata_ahci_regs_t * ahci, u32 port_number)
     case SSTS_DET_DEV_DET_NO_PHY:
         PRINT(0, "+SATAINFO:SATA HDD Attached, but PHY not established\n");
         //configure PHY
-        port->sctl = (SCTL_DET_COMM_INIT | SCTL_SPD_GEN2_NEGOCIATE);
+        (HW_SATA_PORT(port).SCTL).U = (SCTL_DET_COMM_INIT | SCTL_SPD_GEN2_NEGOCIATE);
         hal_delay_us(1200);     //at least 1ms is required to ensure COMRESET is sent
-        port->cmd |= SATA_AHCI_PORT_N_CMD_START;
+        (HW_SATA_PORT(port).CMD).U |= SATA_ENABLED;
 
-        if ((port->ssts & SATA_AHCI_PORT_N_SSTS_DET_MASK) != SSTS_DET_DEV_DET_PHY_RDY) {
+        if (((HW_SATA_PORT(port).SSTS).B.DET) != SSTS_DET_DEV_DET_PHY_RDY) {
             PRINT(0, "+SATAINFO:PHY establish fail\n");
             return SATA_FAIL;
         }
 
-        PRINT(0, "+SATAINFO:P0SSTS is 0x%08x\n", port->ssts);
+        PRINT(0, "+SATAINFO:P0SSTS is 0x%08x\n", (HW_SATA_PORT(port).SSTS).U);
         PRINT(0, "+SATAINFO:PHY establish done\n");
         break;
     case SSTS_DET_DEV_DET_PHY_RDY:
@@ -1581,11 +1592,11 @@ sata_return_t sata_identify(sata_ahci_regs_t * ahci, u32 port_number)
         return SATA_FAIL;       //faile
     }
 
-    PRINT(0, "+SATAINFO:SATA HDD found on the port %d, ready to get HDD info\n", port_number);
+    PRINT(0, "+SATAINFO:SATA HDD found on the port %d, ready to get HDD info\n", port);
 
-    hdd_sig = port->sig;
+    hdd_sig = (HW_SATA_PORT(port).SIG).U; 
 
-    sata_hdd_init();
+    sata_hdd_init(port);
 
     return SATA_PASS;
 }

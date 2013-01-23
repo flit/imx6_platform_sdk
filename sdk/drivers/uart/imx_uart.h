@@ -87,6 +87,10 @@ enum _uart_bits
 #define	DMA_MODE  2	  //!< Config the service mode for dma request.
 #define	IRQ_MODE  1      //!< Config the service mode for interrupt.
 
+#define UART_MODULE_CLK(x) ((x) == HW_UART1 ? UART1_MODULE_CLK : (x) == HW_UART2 ? UART2_MODULE_CLK : (x) == HW_UART3 ? UART3_MODULE_CLK : (x) == HW_UART4 ? UART4_MODULE_CLK : -1)
+
+#define UART_IRQS(x) ((x) == HW_UART1 ? IMX_INT_UART1 : (x) == HW_UART2 ? IMX_INT_UART2 : (x) == HW_UART3 ? IMX_INT_UART3 : (x) == HW_UART4 ? IMX_INT_UART4 : (x) == HW_UART5 ? IMX_INT_UART5 : 0xFFFFFFFF)
+
 //////////////////////////////////////////////////////////////////////////
 //API
 /////////////////////////////////////////////////////////////////////////
@@ -95,7 +99,7 @@ enum _uart_bits
 /*!
  * @brief   Initialize the UART port
  *
- * @param   port pointer to the UART module structure.
+ * @param   instance the UART instance number.
  * @param   baudrate serial baud rate such 9600, 57600, 115200, etc.
  * @param   parity enable parity checking: PARITY_NONE, PARITY_EVEN,
  *                   PARITY_ODD.
@@ -105,63 +109,64 @@ enum _uart_bits
  * @param   flowcontrol enable (RTS/CTS) hardware flow control:
  *                        FLOWCTRL_ON, FLOWCTRL_OFF.
  */
-void uart_init(struct hw_module *port, uint32_t baudrate, uint8_t parity,uint8_t stopbits, uint8_t datasize, uint8_t flowcontrol);
+void uart_init(uint32_t instance, uint32_t baudrate, uint8_t parity,uint8_t stopbits, uint8_t datasize, uint8_t flowcontrol);
 
 /*!
  * @brief   Output a character to UART port
  *
- * @param   port pointer to the UART module structure
+ * @param   instance the UART instance number.
  * @param   ch pointer to the character for output
  * @return  the character that has been sent
  */
-uint8_t uart_putchar(struct hw_module *port, uint8_t * ch);
+uint8_t uart_putchar(uint32_t instance, uint8_t * ch);
 
 /*!
  * @brief   Receive a character on the UART port
  *
- * @param   port pointer to the UART module structure
+ * @param   instance the UART instance number.
  * @return  a character received from the UART port; if the RX FIFO
  *          is empty or errors are detected, it returns NONE_CHAR
  */
-uint8_t uart_getchar(struct hw_module *port);
+uint8_t uart_getchar(uint32_t instance);
 
 /*!
  * @brief   Configure the RX or TX FIFO level and trigger mode
  *
- * @param   port pointer to the UART module structure
+ * @param   instance the UART instance number.
  * @param   fifo FIFO to configure: RX_FIFO or TX_FIFO.
  * @param   trigger_level set the trigger level of the FIFO to generate
  *                          an IRQ or a DMA request: number of characters.
  * @param   service_mode FIFO served with DMA or IRQ or polling (default).
  */
-void uart_set_FIFO_mode(struct hw_module *port, uint8_t fifo, uint8_t trigger_level,
+void uart_set_FIFO_mode(uint32_t instance, uint8_t fifo, uint8_t trigger_level,
                         uint8_t service_mode);
 
 /*!
  * @brief   Enables UART loopback test mode
  *
- * @param   port pointer to the UART module structure
+ * @param   instance the UART instance number.
  * @param   state enable/disable the loopback mode
  */
-void uart_set_loopback_mode(struct hw_module *port, uint8_t state);
+void uart_set_loopback_mode(uint32_t instance, uint8_t state);
 
 /*!
  * @brief   Setup UART interrupt. It enables or disables the related HW module
  * interrupt, and attached the related sub-routine into the vector table.
  *
- * @param   port pointer to the UART module structure.
+ * @param   instance the UART instance number.
+ * @param   irq_subroutine the UART interrupt interrupt routine.
  * @param   state ENABLE or DISABLE the interrupt.
  */
-void uart_setup_interrupt(struct hw_module *port, uint8_t state);
+void uart_setup_interrupt(uint32_t instance, void (*irq_subroutine)(void), uint8_t state);
 
 
 /*!
  * @brief   Obtain UART reference frequency
  *
- * @param   port pointer to the UART module structure
+ * @param   instance the UART instance number.
  * @return  reference frequency in Hz
  */
-uint32_t uart_get_reffreq(struct hw_module *port);
+uint32_t uart_get_reffreq(uint32_t instance);
 
 //! @name Board support functions
 //!

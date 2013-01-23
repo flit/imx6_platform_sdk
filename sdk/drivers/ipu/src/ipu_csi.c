@@ -45,21 +45,13 @@
 void ipu_csi_config(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_width,
                     uint32_t raw_height, uint32_t act_width, uint32_t act_height)
 {
-    int hsync_pol, vsync_pol, clock_mode, data_fmt;
-    int hsc, vsc;
+    int hsync_pol = 0, vsync_pol = 0, clock_mode, data_fmt;
+    int hsc = 0, vsc = 0;
 
     if (csi_interface == CSI_PARALLEL) {
-        hsync_pol = 0;
-        vsync_pol = 0;
-        hsc = 0;
-        vsc = 0x0;
         clock_mode = CSI_CLK_MODE_GATED_CLK;
         data_fmt = CSI_YUYV;
     } else if (csi_interface == CSI_MIPI) {
-        hsync_pol = 0;
-        vsync_pol = 0;
-        hsc = 0;
-        vsc = 0x0;
         clock_mode = CSI_CLK_MODE_NONGATED_CLK;
         data_fmt = CSI_UYVY;
     } else if (csi_interface == CSI_BT656_NTSC_INTERLACED) {
@@ -84,6 +76,10 @@ void ipu_csi_config(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_wid
         vsc = 0x0;
         clock_mode = CSI_CLK_MODE_BT656_PROGRESSIVE;
         data_fmt = CSI_UYVY;
+    } else if (csi_interface == CSI_TEST_MODE) {
+        data_fmt = CSI_YUV444;
+        clock_mode = CSI_CLK_MODE_NONGATED_CLK;
+        ipu_write_field(ipu_index, IPU_CSI0_TST_CTRL__CSI0_TEST_GEN_MODE, 1);
     } else {
         printf("Unsupport CSI interface\n");
     }
@@ -112,21 +108,8 @@ void ipu_csi_config(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_wid
         ipu_write_field(ipu_index, IPU_CSI0_DI__CSI0_MIPI_DI1, 0);
         ipu_write_field(ipu_index, IPU_CSI0_DI__CSI0_MIPI_DI2, 0);
         ipu_write_field(ipu_index, IPU_CSI0_DI__CSI0_MIPI_DI3, 0);
-    }
-
-    if (csi_vdi_direct_path == 1)
-        ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_DEST, 2);  //destination is VDI
-    else
-        ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_DEST, 4);  //destination is IDMAC
-
-    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_SENS_PRTCL, clock_mode);    // Gated clock mode
-    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DIV_RATIO, 0);  //division ratio of HSP_CLK into SENSOR_MCLK
-    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_WIDTH, 1); //8bits per color
-    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_PACK_TIGHT, 0); //only when data format is RGB/YUV, and data_width > 8
-    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_SENS_DATA_FORMAT, data_fmt);    // YUV422
-
-    /* set parallel interface information */
-    if (csi_interface != CSI_MIPI) {
+    } else {
+        /* set parallel interface information */
         ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_EN_POL, 0);
         ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_EXT_VSYNC, 1);
         ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_SENS_PIX_CLK_POL, 0);   // pos edge
@@ -134,6 +117,21 @@ void ipu_csi_config(uint32_t ipu_index, uint32_t csi_interface, uint32_t raw_wid
         ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_HSYNC_POL, hsync_pol);
         ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_VSYNC_POL, vsync_pol);
     }
+
+    /* setup destination */
+    if (csi_vdi_direct_path == 1)
+        ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_DEST, 2);  //destination is VDI
+    else
+        ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_DEST, 4);  //destination is IDMAC
+
+    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_SENS_PRTCL, clock_mode);    // Gated clock mode
+    if(csi_interface == CSI_TEST_MODE)
+        ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DIV_RATIO, 0x9F);  //division ratio of HSP_CLK into SENSOR_MCLK to slow down the frame rate in test mode
+    else
+        ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DIV_RATIO, 0);  
+    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_DATA_WIDTH, 1); //8bits per color
+    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_PACK_TIGHT, 0); //only when data format is RGB/YUV, and data_width > 8
+    ipu_write_field(ipu_index, IPU_CSI0_SENS_CONF__CSI0_SENS_DATA_FORMAT, data_fmt);    // YUV422
 
     /*CSI0 common sensor configuration for PApa */
     /*set sensor frame size */
@@ -255,9 +253,9 @@ void ipu_capture_disp_link(uint32_t ipu_index, uint32_t smfc)
 void ipu_disable_csi(uint32_t ipu_index, uint32_t csi)
 {
     if (csi == 0) {
-	ipu_write_field(ipu_index, IPU_IPU_CONF__CSI0_EN, 0);
+        ipu_write_field(ipu_index, IPU_IPU_CONF__CSI0_EN, 0);
     } else if (csi == 1) {
-	ipu_write_field(ipu_index, IPU_IPU_CONF__CSI1_EN, 0);
+        ipu_write_field(ipu_index, IPU_IPU_CONF__CSI1_EN, 0);
     }
 }
 
@@ -268,4 +266,56 @@ void ipu_disable_csi(uint32_t ipu_index, uint32_t csi)
 void ipu_disable_smfc(uint32_t ipu_index)
 {
     ipu_write_field(ipu_index, IPU_IPU_CONF__SMFC_EN, 0);
+}
+
+/*!
+ * @brief Set the color of csi test mode
+ *
+ *
+ * @param	ipu_index	ipu id
+ * @param	color_mode 	the number of color to show on chessboard
+ *
+ */
+void ipu_csi_test_mode_color(uint32_t ipu_index, int32_t color_mode)
+{
+    if (color_mode == 0) {
+        /* red chessboard */
+        ipu_write_field(ipu_index, IPU_CSI0_TST_CTRL__CSI0_PG_R_VALUE, 0xFF);
+        ipu_write_field(ipu_index, IPU_CSI0_TST_CTRL__CSI0_PG_G_VALUE, 0);
+        ipu_write_field(ipu_index, IPU_CSI0_TST_CTRL__CSI0_PG_B_VALUE, 0);
+    } else if (color_mode == 1) {
+        /* green chessboard */
+        ipu_write_field(ipu_index, IPU_CSI0_TST_CTRL__CSI0_PG_R_VALUE, 0);
+        ipu_write_field(ipu_index, IPU_CSI0_TST_CTRL__CSI0_PG_G_VALUE, 0xFF);
+        ipu_write_field(ipu_index, IPU_CSI0_TST_CTRL__CSI0_PG_B_VALUE, 0);
+    } else if (color_mode == 2) {
+        /* blue chessboard */
+        ipu_write_field(ipu_index, IPU_CSI0_TST_CTRL__CSI0_PG_R_VALUE, 0);
+        ipu_write_field(ipu_index, IPU_CSI0_TST_CTRL__CSI0_PG_G_VALUE, 0);
+        ipu_write_field(ipu_index, IPU_CSI0_TST_CTRL__CSI0_PG_B_VALUE, 0xFF);
+    } else if (color_mode == 3) {
+        ipu_write_field(ipu_index, IPU_CSI0_TST_CTRL__CSI0_PG_R_VALUE, 0xFF);
+        ipu_write_field(ipu_index, IPU_CSI0_TST_CTRL__CSI0_PG_G_VALUE, 0xFF);
+        ipu_write_field(ipu_index, IPU_CSI0_TST_CTRL__CSI0_PG_B_VALUE, 0x0);
+    } else if (color_mode == 4) {
+        ipu_write_field(ipu_index, IPU_CSI0_TST_CTRL__CSI0_PG_R_VALUE, 0);
+        ipu_write_field(ipu_index, IPU_CSI0_TST_CTRL__CSI0_PG_G_VALUE, 0xFF);
+        ipu_write_field(ipu_index, IPU_CSI0_TST_CTRL__CSI0_PG_B_VALUE, 0xFF);
+    } else if (color_mode == 5) {
+        ipu_write_field(ipu_index, IPU_CSI0_TST_CTRL__CSI0_PG_R_VALUE, 0xFF);
+        ipu_write_field(ipu_index, IPU_CSI0_TST_CTRL__CSI0_PG_G_VALUE, 0);
+        ipu_write_field(ipu_index, IPU_CSI0_TST_CTRL__CSI0_PG_B_VALUE, 0xFF);
+    } else if (color_mode == 6) {
+        /* white chessboard */
+        ipu_write_field(ipu_index, IPU_CSI0_TST_CTRL__CSI0_PG_R_VALUE, 0xFF);
+        ipu_write_field(ipu_index, IPU_CSI0_TST_CTRL__CSI0_PG_G_VALUE, 0xFF);
+        ipu_write_field(ipu_index, IPU_CSI0_TST_CTRL__CSI0_PG_B_VALUE, 0xFF);
+    } else if (color_mode == 7) {
+        /* black chessboard */
+        ipu_write_field(ipu_index, IPU_CSI0_TST_CTRL__CSI0_PG_R_VALUE, 0);
+        ipu_write_field(ipu_index, IPU_CSI0_TST_CTRL__CSI0_PG_G_VALUE, 0);
+        ipu_write_field(ipu_index, IPU_CSI0_TST_CTRL__CSI0_PG_B_VALUE, 0);
+    } else {
+        printf("\nwrong color mode for csi test mode, invalid number is 0~6\n");
+    }
 }

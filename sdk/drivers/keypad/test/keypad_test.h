@@ -48,10 +48,10 @@ static const char* KEYPAD_MAP[8][8] = {
     { NO_KEY, NO_KEY, NO_KEY, NO_KEY, NO_KEY, NO_KEY, NO_KEY, NO_KEY }, /* ROW1 */
     { NO_KEY, NO_KEY, NO_KEY, NO_KEY, NO_KEY, NO_KEY, NO_KEY, NO_KEY }, /* ROW2 */
     { NO_KEY, NO_KEY, NO_KEY, NO_KEY, NO_KEY, NO_KEY, NO_KEY, NO_KEY }, /* ROW3 */
-    { NO_KEY, NO_KEY, NO_KEY, NO_KEY, NO_KEY, NO_KEY, NO_KEY, NO_KEY }, /* ROW4 */
-    { NO_KEY, NO_KEY, NO_KEY, NO_KEY, NO_KEY, "SW4" , "SW5" , "SW7"  }, /* ROW5 */
-    { NO_KEY, NO_KEY, NO_KEY, NO_KEY, NO_KEY, "SW9" , "SW10", "SW11" }, /* ROW6 */
-    { NO_KEY, NO_KEY, NO_KEY, NO_KEY, NO_KEY, "SW12", "SW13", "SW14" }, /* ROW7 */
+    { NO_KEY, NO_KEY, NO_KEY, NO_KEY, "SW4" , "SW6" , "SW5" , "SW7"  }, /* ROW4 */
+    { NO_KEY, NO_KEY, NO_KEY, NO_KEY, "SW8" , "SW10", "SW9" , "SW11" }, /* ROW5 */
+    { NO_KEY, NO_KEY, NO_KEY, NO_KEY, "SW12", "SW14", "SW13", "SW15" }, /* ROW6 */
+    { NO_KEY, NO_KEY, NO_KEY, NO_KEY, "SW16", "SW18", "SW17", "SW19" }, /* ROW7 */
 };
 
 #endif /* __KEYPAD_TEST_H__ */

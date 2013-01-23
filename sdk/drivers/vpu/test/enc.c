@@ -200,7 +200,7 @@ int32_t encoder_allocate_framebuffer(struct encode *enc)
     src_fbwidth = (enc->src_picwidth + 15) & ~15;
     src_fbheight = (enc->src_picheight + 15) & ~15;
 
-    if (cpu_is_mx6q()) {
+    if (cpu_is_mx6()) {
         if (enc->codecctrl->format == STD_AVC && enc->mvc_extension)    /* MVC */
             extrafbcount = 2 + 2;   /* Subsamp [2] + Subsamp MVC [2] */
         else if (enc->codecctrl->format == STD_MJPG)
@@ -264,7 +264,7 @@ int32_t encoder_allocate_framebuffer(struct encode *enc)
         fb[i].strideC = pfbpool[i]->strideC;
     }
 
-    if (cpu_is_mx6q() && (enc->codecctrl->format != STD_MJPG)) {
+    if (cpu_is_mx6() && (enc->codecctrl->format != STD_MJPG)) {
         subSampBaseA = fb[minfbcount].bufY;
         subSampBaseB = fb[minfbcount + 1].bufY;
         if (enc->codecctrl->format == STD_AVC && enc->mvc_extension) {  /* MVC */
@@ -331,6 +331,8 @@ static int32_t encoder_start(struct encode *enc)
     uint32_t virt_bsbuf_start = enc->virt_bsbuf_addr;
     uint32_t virt_bsbuf_end = virt_bsbuf_start + STREAM_BUF_SIZE;
     int32_t encode_end = 0;
+    char frame_index_str[8];
+    char *backwards = "\b\b\b\b\b\b\b\b";
 
     /*put encode header */
     ret = encoder_set_header(enc);
@@ -359,21 +361,17 @@ static int32_t encoder_start(struct encode *enc)
 
     img_size = enc->src_picwidth * enc->src_picheight * 3 / 2;
 
+    _raw_puts("Frame encoding         ");
     /* The main encoding loop */
     while (1) {
         pfb = pfbpool[src_fbid];
         yuv_addr = pfb->addrY;
         ret = vpu_stream_read(enc->codecctrl, (char *)yuv_addr, img_size);
         //wait untill the SD read finished
-        while (1) {
-            int usdhc_status = 0;
-            card_xfer_result(g_usdhc_instance, &usdhc_status);
-            if (usdhc_status == 1)
-                break;          //wait untill the SD read finished!
-            else
-                hal_delay_us(1000);
-        }
+        card_wait_xfer_done(SD_PORT_INDEX);
+
         if (ret <= 0)
+
             break;
 
         ret = VPU_EncStartOneFrame(handle, &enc_param);
@@ -383,7 +381,7 @@ static int32_t encoder_start(struct encode *enc)
         }
 
         while (VPU_IsBusy()) {
-            VPU_WaitForInt(200);
+            hal_delay_us(1000);
             if (enc->ringBufferEnable == 1) {
                 ret = enc_readbs_ring_buffer(handle, enc->codecctrl,
                                              virt_bsbuf_start, virt_bsbuf_end,
@@ -416,12 +414,15 @@ static int32_t encoder_start(struct encode *enc)
                                    virt_bsbuf_end, phy_bsbuf_start, 0);
 
         frame_id++;
-        printf("encoded frame %05d\n", frame_id);
+        sprintf(frame_index_str, "%8d", frame_id);
+        _raw_puts(backwards);
+        _raw_puts(frame_index_str);
         if (encode_end == 1) {
-            printf("Total encoded %d frames\n", frame_id);
             break;
         }
     }
+
+    printf("\nTotal encoded %d frames\n", frame_id);
 
   err2:
     /* For automation of test case */
@@ -563,7 +564,7 @@ int32_t encoder_open(struct encode *enc)
         encop.EncStdParam.avcParam.avc_deblkFilterOffsetBeta = 0;
         encop.EncStdParam.avcParam.avc_chromaQpOffset = 10;
         encop.EncStdParam.avcParam.avc_audEnable = 0;
-        if (cpu_is_mx6q()) {
+        if (cpu_is_mx6()) {
             encop.EncStdParam.avcParam.interview_en = 0;
             encop.EncStdParam.avcParam.paraset_refresh_en = enc->mvc_paraset_refresh_en = 0;
             encop.EncStdParam.avcParam.prefix_nal_en = 0;
@@ -701,7 +702,7 @@ int32_t encode_test(void *arg)
     struct codec_control *codecctrl;
     int32_t file_in, file_out;
 
-    uint8_t in_enc_file[] = "raw_nv12.yuv";
+    uint8_t in_enc_file[] = "raw_yv12.yuv";
     uint8_t out_enc_file[] = "out.264";
 
     codecctrl = (struct codec_control *)calloc(1, sizeof(struct codec_control));
@@ -721,8 +722,9 @@ int32_t encode_test(void *arg)
     }
 
     /*now enable the INTERRUPT mode of usdhc */
-    SDHC_INTR_mode = 0;
-    SDHC_ADMA_mode = 0;
+//    SDHC_INTR_mode = 0;
+    set_card_access_mode(1, 0);
+    
     memset((void *)&g_bs_memory, 0, sizeof(bs_mem_t));
     codecctrl->input = file_in; /* Input file name */
     codecctrl->output = file_out;   /* Output file name */

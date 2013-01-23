@@ -59,6 +59,10 @@
 //! @brief Pass to epit_counter_enable() to enable interrupts.
 #define IRQ_MODE 1
 
+//! @brief Get the irq id of RPIT by instance number.
+//! @param x I2C instance number, from 1 through 2.
+#define EPIT_IRQS(x) ( (x) == HW_EPIT1 ? IMX_INT_EPIT1 : (x) == HW_EPIT2 ? IMX_INT_EPIT2 : 0xFFFFFFFF)
+
 ////////////////////////////////////////////////////////////////////////////////
 // API
 ////////////////////////////////////////////////////////////////////////////////
@@ -70,7 +74,7 @@ extern "C" {
 /*!
  * @brief Initialize the EPIT timer.
  *
- * @param   port Pointer to the EPIT module structure.
+ * @param   instance the EPIT instance number.
  * @param   clock_src Source clock of the counter: CLKSRC_OFF, CLKSRC_IPG_CLK,
  *                      CLKSRC_PER_CLK, CLKSRC_CKIL.
  * @param   prescaler Prescaler of source clock from 1 to 4096.
@@ -79,7 +83,7 @@ extern "C" {
  * @param   low_power_mode Low power during which the timer is enabled:
  *                           WAIT_MODE_EN and/or STOP_MODE_EN.
  */
-void epit_init(struct hw_module *port, uint32_t clock_src, uint32_t prescaler,
+void epit_init(uint32_t instance, uint32_t clock_src, uint32_t prescaler,
                uint32_t reload_mode, uint32_t load_val, uint32_t low_power_mode);
 
 /*!
@@ -88,10 +92,11 @@ void epit_init(struct hw_module *port, uint32_t clock_src, uint32_t prescaler,
  * It enables or disables the related HW module interrupt, and attached the related sub-routine
  * into the vector table.
  *
- * @param   port Pointer to the EPIT module structure.
+ * @param   instance the EPIT instance number.
+ * @param   irq_subroutine the EPIT interrupt interrupt routine.
  * @param   enableIt True to enable the interrupt, false to disable.
  */
-void epit_setup_interrupt(struct hw_module *port, bool enableIt);
+void epit_setup_interrupt(uint32_t instance, void (*irq_subroutine)(void), bool enableIt);
 
 /*!
  * @brief Enable the EPIT module. 
@@ -101,20 +106,20 @@ void epit_setup_interrupt(struct hw_module *port, bool enableIt);
  * In interrupt mode, when the interrupt fires you should call epit_get_compare_event() to
  * clear the compare flag.
  *
- * @param   port Pointer to the EPIT module structure.
+ * @param   instance the EPIT instance number.
  * @param   load_val Load value from where the counter starts.
  * @param   irq_mode Interrupt mode: IRQ_MODE or POLLING_MODE.
  */
-void epit_counter_enable(struct hw_module *port, uint32_t load_val, uint32_t irq_mode);
+void epit_counter_enable(uint32_t instance, uint32_t load_val, uint32_t irq_mode);
 
 /*!
  * @brief Disable the counter.
  *
  * It saves energy when not used.
  *
- * @param   port Pointer to the EPIT module structure.
+ * @param   instance the EPIT instance number.
  */
-void epit_counter_disable(struct hw_module *port);
+void epit_counter_disable(uint32_t instance);
 
 /*!
  * @brief Get the output compare status flag and clear it if set.
@@ -122,36 +127,36 @@ void epit_counter_disable(struct hw_module *port);
  * This function can typically be used for polling method, but
  * is also used to clear the status compare flag in IRQ mode.
  *
- * @param   port Pointer to the EPIT module structure.
+ * @param   instance the EPIT instance number.
  * @return  Value of the compare event flag.
  */
-uint32_t epit_get_compare_event(struct hw_module *port);
+uint32_t epit_get_compare_event(uint32_t instance);
 
 /*!
  * @brief Set the output compare register.
  * 
  *
- * @param   port Pointer to the EPIT module structure.
+ * @param   instance the EPIT instance number.
  * @param   Value of the compare register.
  */
-void epit_set_compare_event(struct hw_module *port, uint32_t compare_val);
+void epit_set_compare_event(uint32_t instance, uint32_t compare_val);
 
 /*!
  * @brief Get the counter value.
  * 
  *
- * @param   port Pointer to the EPIT module structure.
+ * @param   instance the EPIT instance number.
  * @return  Value of the counter register.
  */
-uint32_t epit_get_counter_value(struct hw_module *port);
+uint32_t epit_get_counter_value(uint32_t instance);
 
 /*!
  * @brief Reload the counter with a known value.
  *
- * @param port Pointer to the EPIT module structure.
+ * @param instance the EPIT instance number.
  * @param load_val Value loaded into the timer counter.
  */
-void epit_reload_counter(struct hw_module *port, uint32_t load_val);
+void epit_reload_counter(uint32_t instance, uint32_t load_val);
 
 #if defined(__cplusplus)
 }

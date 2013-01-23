@@ -474,14 +474,6 @@ int32_t esai_write_fifo(void *priv, uint8_t * buf, uint32_t size, uint32_t * byt
 
     UNUSED_VARIABLE(instance);
 
-    /*
-     * FixMe: CS42888 driver supports 48/44.1KHz only, although it was 
-     * expected to support all sample rates.  When lower sample rate used,
-     * no audio input.
-     * It is supposed that the pcm was 16KHz, and we should convert it to 48KHz,
-     * just as a workround.
-     */
-
     wl = esai_get_hw_para(ctrl, ESAI_HW_PARA_TX_WL);
 
     while (i < size) {
@@ -501,9 +493,6 @@ int32_t esai_write_fifo(void *priv, uint8_t * buf, uint32_t size, uint32_t * byt
             i = i + 4;
         }
 
-        HW_ESAI_ETDR_WR(val);
-	/* A workaround to convert the 16KHz PCM to 48KHz */
-        HW_ESAI_ETDR_WR(val);
         HW_ESAI_ETDR_WR(val);
     }
     *bytes_written = size;

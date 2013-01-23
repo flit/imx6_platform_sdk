@@ -19,10 +19,12 @@
  *****************************************************************************/
 #include "derivative.h"
 
+#if !defined(HIGH_SPEED_DEVICE)
 #if (defined MCU_MK70F12) || (defined __MCF52277_H__)
 	#define  HIGH_SPEED_DEVICE	(0)
 #else
 	#define  HIGH_SPEED_DEVICE	(0)
+#endif
 #endif
 
 #if (defined MCU_MK20D7) || (defined MCU_MK40D7)

@@ -40,14 +40,16 @@
 	#define DisableInterrupts __disable_irq();
 
 #elif defined (__GNUC__)
+    #include "core/cortex_a9.h"
 	#include <stddef.h>
 	#include "types.h"
 	
 	/*!< Macro to enable all interrupts. */
-	#define EnableInterrupts asm ("CPSIE  i")
+	#define EnableInterrupts arm_set_interrupt_state(true)
 	
 	/*!< Macro to disable all interrupts. */
-	#define DisableInterrupts asm ("CPSID  i")
+	#define DisableInterrupts arm_set_interrupt_state(false)
+
 #endif
 
 #ifdef __cplusplus

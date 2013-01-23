@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# Copyright (c) 2012 Freescale Semiconductor, Inc.
+# Copyright (c) 2012-2013 Freescale Semiconductor, Inc.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -39,17 +39,22 @@ Device/source/common/usb_class.c
 Device/source/class/usb_hid.c
 Device/source/driver/usbevent.c
 Device/source/driver/usb_driver.c
+Device/source/driver/mx6x/usb_dci_imx6.c
 endef
 
-# Extra include paths needed to build the filesystem.
+# Set defines used by the USB stack.
+DEFINES += -DMULTIPLE_DEVICES -DHIGH_SPEED_DEVICE
+
+# Extra include paths needed to build the USB stack.
 INCLUDES += \
-	-I$(SDK_ROOT)/sdk/common/usb_stack/Device/app/hid/	\
-	-I$(SDK_ROOT)/sdk/common/usb_stack/Device/app/common/	\
-	-I$(SDK_ROOT)/sdk/common/usb_stack/Device/source/common/	\
-	-I$(SDK_ROOT)/sdk/common/usb_stack/Device/source/class/	\
-	-I$(SDK_ROOT)/sdk/common/usb_stack/Device/source/driver/	\
-	-I$(SDK_ROOT)/sdk/common/usb_stack/Device/source/driver/mx6x	\
-	-I$(SDK_ROOT)/sdk/common/usb_stack/Device/app/common/$(TARGET)/
+	-I$(SDK_ROOT)/sdk/common/usb_stack/Device/app/hid \
+	-I$(SDK_ROOT)/sdk/common/usb_stack/Device/app/common \
+	-I$(SDK_ROOT)/sdk/common/usb_stack/Device/source/common \
+	-I$(SDK_ROOT)/sdk/common/usb_stack/Device/source/class \
+	-I$(SDK_ROOT)/sdk/common/usb_stack/Device/source/driver \
+	-I$(SDK_ROOT)/sdk/common/usb_stack/Device/source/driver/mx6x \
+	-I$(SDK_ROOT)/sdk/common/usb_stack/Device/app/common/mx6x
 
 C_FLAGS_WARNINGS = 
+
 include $(SDK_ROOT)/mk/targets.mk

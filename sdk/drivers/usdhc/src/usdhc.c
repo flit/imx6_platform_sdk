@@ -86,10 +86,10 @@ usdhc_inst_t usdhc_device[USDHC_NUMBER_PORTS] = {
 };
 
 /* Whether to enable ADMA */
-int SDHC_ADMA_mode = FALSE;
+static int SDHC_ADMA_mode = FALSE;
 
 /* Whether to enable Interrupt */
-int SDHC_INTR_mode = FALSE;
+static int SDHC_INTR_mode = FALSE;
 
 /********************************************* Static Function ******************************************/
 /*!
@@ -146,6 +146,31 @@ static int card_init_interrupt(uint32_t instance)
 }
 
 /********************************************* Global Function ******************************************/
+/*!
+ * @brief Set Card access mode
+ *
+ * @param mode     Set card access mode
+ * 
+ * @return           
+ */
+extern void set_card_access_mode(uint32_t sdma, uint32_t intr)
+{
+	/* Whether to enable ADMA */
+    SDHC_ADMA_mode = sdma;
+
+	/* Whether to enable Interrupt */
+    SDHC_INTR_mode = intr; 	
+}
+ 
+uint32_t read_usdhc_adma_mode()
+{
+	return SDHC_ADMA_mode;
+}
+uint32_t read_usdhc_intr_mode() 
+{
+	return SDHC_INTR_mode;
+}
+
 /*!
  * @brief Card initialization
  *

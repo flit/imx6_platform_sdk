@@ -217,6 +217,16 @@ extern usdhc_inst_t usdhc_device[];
 
 /*------------------------------------------- Function Defines --------------------------------------------*/
 /*!
+ * @brief Set Card access mode
+ *
+ * @param mode     Set card access mode
+ * 
+ * @return           
+ */
+extern void set_card_access_mode(uint32_t sdma, uint32_t intr);
+extern uint32_t read_usdhc_adma_mode();
+extern uint32_t read_usdhc_intr_mode(); 
+/*!
  * @brief Card initialization
  *
  * @param instance     Instance number of the uSDHC module.
@@ -233,7 +243,6 @@ extern int card_init(uint32_t instance, int bus_width);
  * 
  * @return             0 if successful; 1 otherwise
  */
-//int card_emmc_init(int base_address)
 extern int card_emmc_init(uint32_t instance);
 
 /*!

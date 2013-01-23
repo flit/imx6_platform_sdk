@@ -519,7 +519,8 @@ RtStatus_t FSDataDriveInit(DriveTag_t tag)
     if (retval == 1) {
         return 1;
     }
-    SDHC_INTR_mode = 0;
+    set_card_access_mode(1, 0);
+//    SDHC_INTR_mode = 0;
 
     /* initialize with a default value before getting size from FAT table */
     MediaTable[(int)tag].BytesPerSector = 512;

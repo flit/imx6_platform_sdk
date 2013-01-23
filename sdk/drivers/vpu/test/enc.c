@@ -722,7 +722,9 @@ int32_t encode_test(void *arg)
     }
 
     /*now enable the INTERRUPT mode of usdhc */
-    SDHC_INTR_mode = 0;
+//    SDHC_INTR_mode = 0;
+    set_card_access_mode(1, 0);
+    
     memset((void *)&g_bs_memory, 0, sizeof(bs_mem_t));
     codecctrl->input = file_in; /* Input file name */
     codecctrl->output = file_out;   /* Output file name */

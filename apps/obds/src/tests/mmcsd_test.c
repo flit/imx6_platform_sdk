@@ -33,7 +33,7 @@
 #include "obds.h"
 #include "registers/regsusdhc.h"
 
-extern int SDHC_ADMA_mode;
+//extern int SDHC_ADMA_mode;
 int SDHC_UHSI_mode;
 int card_detect_en;
 

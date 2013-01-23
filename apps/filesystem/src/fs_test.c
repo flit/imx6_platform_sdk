@@ -116,8 +116,9 @@ int fat_write_speed_test(fs_rw_speed_data_t * test_data, int i)
     int32_t count = 0, nMB = 0;
     int32_t fout;
 
-    SDHC_ADMA_mode = test_data->WorkMode;
-    SDHC_INTR_mode = 0;
+//    SDHC_ADMA_mode = test_data->WorkMode;
+//    SDHC_INTR_mode = 0;
+    set_card_access_mode(test_data->WorkMode, 0);
 
     char *buf = (char *)memchr(writefile, '.', strlen((char *)writefile));
     buf[-1] = (char)('0' + i);
@@ -176,8 +177,9 @@ int sd_raw_write_speed_test(fs_rw_speed_data_t * test_data, int i)
     int32_t nMB = 0;
     uint32_t sdcard_offset = SD_TEST_OFFSET;
 
-    SDHC_ADMA_mode = test_data->WorkMode;
-    SDHC_INTR_mode = 0;
+//    SDHC_ADMA_mode = test_data->WorkMode;
+//    SDHC_INTR_mode = 0;
+    set_card_access_mode(test_data->WorkMode, 0);
 
     WriteBuffer = (uint8_t *) TEST_BUFFER_ADDR;
 
@@ -221,8 +223,9 @@ int fat_read_speed_test(fs_rw_speed_data_t * test_data, int i)
     int32_t count = 0, nMB = 0;
     uint32_t TimeCount = 0;
 
-    SDHC_ADMA_mode = test_data->WorkMode;
-    SDHC_INTR_mode = 0;
+//    SDHC_ADMA_mode = test_data->WorkMode;
+//    SDHC_INTR_mode = 0;
+    set_card_access_mode(test_data->WorkMode, 0);
 
     if ((fin = Fopen(readfile, (uint8_t *) "r")) < 0) {
         printf("Can't open the file: %s !\n", readfile);
@@ -280,8 +283,9 @@ int sd_raw_read_speed_test(fs_rw_speed_data_t * test_data, int i)
     uint32_t TimeCount = 0;
     uint32_t sdcard_offset = SD_TEST_OFFSET;
 
-    SDHC_ADMA_mode = test_data->WorkMode;
-    SDHC_INTR_mode = 0;
+//    SDHC_ADMA_mode = test_data->WorkMode;
+//    SDHC_INTR_mode = 0;
+    set_card_access_mode(test_data->WorkMode, 0);
 
     ReadBuffer = (uint8_t *) TEST_BUFFER_ADDR;
 
@@ -356,8 +360,9 @@ int fat_test(void)
     mmu_enable();
     arm_dcache_enable();
 
-    SDHC_ADMA_mode = 0;
-    SDHC_INTR_mode = 0;
+//    SDHC_ADMA_mode = 0;
+//    SDHC_INTR_mode = 0;
+    set_card_access_mode(0, 0);
 
     dbprintf("FSInit				");
     if (FSInit(NULL, bufy, maxdevices, maxhandles, maxcaches) != SUCCESS) {

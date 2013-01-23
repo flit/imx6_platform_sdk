@@ -96,8 +96,10 @@
 #endif
 
 /* ping variables */
+static ip_addr_t s_ping_target;
 static u16_t ping_seq_num;
 static u32_t ping_time;
+static ping_callback_t s_ping_callback = NULL;
 #if !PING_USE_SOCKETS
 static struct raw_pcb *ping_pcb;
 #endif /* PING_USE_SOCKETS */
@@ -239,13 +241,19 @@ ping_recv(void *arg, struct raw_pcb *pcb, struct pbuf *p, ip_addr_t *addr)
   if ((p->tot_len >= (PBUF_IP_HLEN + sizeof(struct icmp_echo_hdr))) &&
       pbuf_header( p, -PBUF_IP_HLEN) == 0) {
     iecho = (struct icmp_echo_hdr *)p->payload;
+    int elapsed = sys_now()-ping_time;
+    
+      if (s_ping_callback)
+      {
+        s_ping_callback(iecho, addr, elapsed);
+      }
 
     if ((iecho->id == PING_ID) && (iecho->seqno == htons(ping_seq_num))) {
-//       LWIP_DEBUGF( PING_DEBUG, ("ping: recv "));
-      printf("ping: recv ");
+      LWIP_DEBUGF( PING_DEBUG, ("ping: recv "));
+//       printf("ping: recv ");
       ip_addr_debug_print(PING_DEBUG, addr);
-//       LWIP_DEBUGF( PING_DEBUG, (" %"U32_F" ms\n", (sys_now()-ping_time)));
-      printf(" %"U32_F" ms\n", (sys_now()-ping_time));
+      LWIP_DEBUGF( PING_DEBUG, (" %"U32_F" ms\n", (sys_now()-ping_time)));
+//       printf(" %"U32_F" ms\n", (elapsed));
 
       /* do some ping result processing */
       PING_RESULT(1);
@@ -263,12 +271,13 @@ ping_send(struct raw_pcb *raw, ip_addr_t *addr)
   struct pbuf *p;
   struct icmp_echo_hdr *iecho;
   size_t ping_size = sizeof(struct icmp_echo_hdr) + PING_DATA_SIZE;
+  
+  // Save target address.
+  s_ping_target = *addr;
 
 //   LWIP_DEBUGF( PING_DEBUG, ("ping: send "));
-  printf("ping: send ");
   ip_addr_debug_print(PING_DEBUG, addr);
 //   LWIP_DEBUGF( PING_DEBUG, ("\n"));
-  printf("\n");
   LWIP_ASSERT("ping_size <= 0xffff", ping_size <= 0xffff);
 
   p = pbuf_alloc(PBUF_IP, (u16_t)ping_size, PBUF_RAM);
@@ -279,6 +288,8 @@ ping_send(struct raw_pcb *raw, ip_addr_t *addr)
     iecho = (struct icmp_echo_hdr *)p->payload;
 
     ping_prepare_echo(iecho, (u16_t)ping_size);
+    
+    printf("ping: send seq=%d\n", ntohs(iecho->seqno));
 
     raw_sendto(raw, p, addr);
     ping_time = sys_now();
@@ -290,9 +301,14 @@ static void
 ping_timeout(void *arg)
 {
   struct raw_pcb *pcb = (struct raw_pcb*)arg;
-  ip_addr_t ping_target = PING_TARGET;
+  ip_addr_t ping_target = s_ping_target; //PING_TARGET;
   
   LWIP_ASSERT("ping_timeout: no pcb given!", pcb != NULL);
+  
+  if (s_ping_callback)
+  {
+    s_ping_callback(NULL, NULL, 0);
+  }
 
   ping_send(pcb, &ping_target);
 
@@ -305,6 +321,7 @@ ping_raw_init(void)
   ping_pcb = raw_new(IP_PROTO_ICMP);
   LWIP_ASSERT("ping_pcb != NULL", ping_pcb != NULL);
 
+    s_ping_callback = NULL;
   raw_recv(ping_pcb, ping_recv, NULL);
   raw_bind(ping_pcb, IP_ADDR_ANY);
   sys_timeout(PING_DELAY, ping_timeout, ping_pcb);
@@ -319,9 +336,10 @@ ping_send_now()
 }
 
 void
-ping_send_to(ip_addr_t * ping_target)
+ping_send_to(ip_addr_t * ping_target, ping_callback_t callback)
 {
   LWIP_ASSERT("ping_pcb != NULL", ping_pcb != NULL);
+  s_ping_callback = callback;
   ping_send(ping_pcb, ping_target);
 }
 

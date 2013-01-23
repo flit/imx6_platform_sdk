@@ -41,26 +41,29 @@
 #include "uart/imx_uart.h"
 #include "text_color.h"
 #include "registers/regsccm.h"
+#include "core/cortex_a9.h"
+
+//! Number of bytes to allocate at once while reading input strings.
+#define INPUT_STRING_ALLOC_SIZE (64)
+
+//! ASCII control characters.
+enum
+{
+    kEscapeChar = 0x1b,
+    kBackspaceChar = 0x08,
+    kDeleteChar = 0x7f
+};
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code
 ////////////////////////////////////////////////////////////////////////////////
 
-/*!
- * Exception signaling and handling for C lib functions. This function never returns.
- * @param    return_code     not used
- *
- * @todo Why isn't the WFI instruction used here?
- */
 __attribute__ ((noreturn)) void _sys_exit(int32_t return_code)
 {
     // Only go to sleep in release builds.
 #if !DEBUG
     // just put system into WFI mode
-    asm volatile (
-        "mov r1, #0x0;"
-        "mcr p15, 0, r1, c7, c0, 4;"
-        );
+    _ARM_WFI();
 #endif
 
 #if DEBUG
@@ -106,6 +109,83 @@ int32_t is_input_char(uint8_t c, const char* const indent)
         return 1;
     else
         return 0;
+}
+
+char * read_input_string(input_string_filter_t filter)
+{
+    int len = 0;
+    int maxLen = INPUT_STRING_ALLOC_SIZE;
+    char * result = (char *)malloc(maxLen + 1);
+    if (!result)
+    {
+        return NULL;
+    }
+    
+    // Start off with an empty string.
+    result[0] = 0;
+    
+    while (true)
+    {
+        char c = getchar();
+        if (c == NONE_CHAR)
+        {
+            continue;
+        }
+        else if (c == '\r' || c == '\n')
+        {
+            // End entering.
+            fputc('\n', stdout);
+            break;
+        }
+        // Escape cancels input.
+        else if (c == kEscapeChar)
+        {
+            len = 0;
+            fputc('\n', stdout);
+            break;
+        }
+        // Support both backspace and delete so it works regardless of terminal config.
+        else if (c == kBackspaceChar || c == kDeleteChar)
+        {
+            if (len > 0)
+            {
+                result[--len] = 0;
+            }
+            
+            // Erase the char.
+            fputc(c, stdout);
+            fputc(' ', stdout);
+            fputc(c, stdout);
+            
+            continue;
+        }
+        
+        // Ask the filter if the char is ok.
+        if (filter && !filter(c, result))
+        {
+            continue;
+        }
+        
+        // Reallocate the string if needed.
+        if (len >= maxLen)
+        {
+            maxLen += INPUT_STRING_ALLOC_SIZE;
+            result = (char *)realloc(result, maxLen + 1);
+            if (!result)
+            {
+                return NULL;
+            }
+        }
+        
+        // Build up the string.
+        result[len++] = c;
+        result[len] = 0;
+        
+        // Echo the character.
+        fputc(c, stdout);
+    }
+    
+    return result;
 }
 
 uint32_t get_input_hex(void)
@@ -192,14 +272,6 @@ int read_int(void)
     return result;
 }
 
-////////////////////////////////////////////////////////////////////////////////
-// EOF
-////////////////////////////////////////////////////////////////////////////////
-
-/*!
- * @brief Function to jump into the ROM Serial Download Protocol.
- *        It never returns when called.
- */
 void jump_to_sdp(void)
 {
 	/* Re-configure the clock gating like the ROM expects it */
@@ -214,3 +286,7 @@ void jump_to_sdp(void)
 	/* enter the ROM Serial Download Protocol */
     hab_rvt_failsafe();
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// EOF
+////////////////////////////////////////////////////////////////////////////////

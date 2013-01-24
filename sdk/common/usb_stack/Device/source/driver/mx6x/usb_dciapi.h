@@ -238,45 +238,45 @@ extern void USB_DCI_Assert_Resume(
 
 extern void Clear_Mem(uint_8* start_addr,uint_32 count, uint_8 val);
 
-// #define USB_DCI_Cancel_Transfer _usb_device_cancel_transfer  
+#define USB_DCI_Cancel_Transfer _usb_device_cancel_transfer  
+
+#define USB_DCI_Recv_Data _usb_device_recv_data  
+
+#define USB_DCI_Send_Data _usb_device_send_data    
+
+#define USB_DCI_Shutdown _usb_device_shutdown  
+
+#define USB_DCI_Stall_EndPoint _usb_device_stall_endpoint  
+
+#define USB_DCI_Unstall_EndPoint _usb_device_unstall_endpoint  
+
+#define USB_DCI_Get_Transfer_Status _usb_device_get_transfer_status
+
+#define USB_DCI_Get_Setup_Data _usb_device_read_setup_data 
+
+#define USB_DCI_Set_Address _usb_device_set_address  
+
+#define USB_DCI_Assert_Resume _usb_device_assert_resume
+
+// #define USB_DCI_Cancel_Transfer USB_Device_Cancel_Transfer  
 // 
-// #define USB_DCI_Recv_Data _usb_device_recv_data  
+// #define USB_DCI_Recv_Data USB_Device_Recv_Data  
 // 
-// #define USB_DCI_Send_Data _usb_device_send_data    
+// #define USB_DCI_Send_Data USB_Device_Send_Data    
 // 
-// #define USB_DCI_Shutdown _usb_device_shutdown  
+// #define USB_DCI_Shutdown USB_Device_Shutdown  
 // 
-// #define USB_DCI_Stall_EndPoint _usb_device_stall_endpoint  
+// #define USB_DCI_Stall_EndPoint USB_Device_Stall_EndPoint  
 // 
-// #define USB_DCI_Unstall_EndPoint _usb_device_unstall_endpoint  
+// #define USB_DCI_Unstall_EndPoint USB_Device_Unstall_EndPoint  
 // 
-// #define USB_DCI_Get_Transfer_Status _usb_device_get_transfer_status
+// #define USB_DCI_Get_Transfer_Status USB_Device_Get_Transfer_Status
 // 
-// #define USB_DCI_Get_Setup_Data _usb_device_read_setup_data 
+// #define USB_DCI_Get_Setup_Data USB_Device_Read_Setup_Data 
 // 
-// #define USB_DCI_Set_Address _usb_device_set_address  
+// #define USB_DCI_Set_Address USB_Device_Set_Address  
 // 
-// #define USB_DCI_Assert_Resume _usb_device_assert_resume
-
-#define USB_DCI_Cancel_Transfer USB_Device_Cancel_Transfer  
-
-#define USB_DCI_Recv_Data USB_Device_Recv_Data  
-
-#define USB_DCI_Send_Data USB_Device_Send_Data    
-
-#define USB_DCI_Shutdown USB_Device_Shutdown  
-
-#define USB_DCI_Stall_EndPoint USB_Device_Stall_EndPoint  
-
-#define USB_DCI_Unstall_EndPoint USB_Device_Unstall_EndPoint  
-
-#define USB_DCI_Get_Transfer_Status USB_Device_Get_Transfer_Status
-
-#define USB_DCI_Get_Setup_Data USB_Device_Read_Setup_Data 
-
-#define USB_DCI_Set_Address USB_Device_Set_Address  
-
-#define USB_DCI_Assert_Resume USB_Device_Assert_Resume  
+// #define USB_DCI_Assert_Resume USB_Device_Assert_Resume  
 
 #endif
 

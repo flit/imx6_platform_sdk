@@ -7,6 +7,7 @@
 #include "usb_dciapi.h" /* USB DCI API Header File */
 #include "usb_devapi.h" /* USB Device API Header File */
 #include "usb_mx6.h"
+#include "irq_numbers.h"
 #include "registers/regsusbcore.h"
 #include "registers/regsusbnoncore.h"
 #include "registers/regsusbanalog.h"
@@ -32,7 +33,7 @@ static usb_status_t usbd_usb_run(uint_8 controller_ID);
 static unsigned int usbd_get_dqh(uint_8 controller_ID, unsigned char endpt_number, unsigned char direction);
 static unsigned int usbd_get_dtd(uint_8 controller_ID, unsigned char endpt_number, unsigned char direction, unsigned int sz);
 
-static void usb0_isr(void);// *data);
+static void usb0_isr(void); // *data);
 // static void usb1_isr(void *data);
 
 static void USB_Bus_Reset_Handler(uint_8 controller_ID);
@@ -335,13 +336,13 @@ void USB_DCI_Stall_EndPoint (
 	// check if it is control endpoint
 	if(ep_num == 0){
 		// stall both directions
-		HW_USBC_UOG_ENDPTCTRL0_SET(BM_USBC_UOG_ENDPTCTRL0_TXS|BM_USBC_UOG_ENDPTCTRL0_RXS);
+		HW_USBC_UOG1_ENDPTCTRL0_SET(BM_USBC_UOG1_ENDPTCTRL0_TXS|BM_USBC_UOG1_ENDPTCTRL0_RXS);
 		
 	}else{
 		
 // 		USBHS_EPCR(endpoint_number-1) |= direction?USBHS_EPCR0_TXS_MASK:USBHS_EPCR0_RXS_MASK;
 
-		writel(readl(&usbotg[controller_ID]->endptctrl[ep_num]) | (direction?BM_USBC_UOG_ENDPTCTRL0_TXS:BM_USBC_UOG_ENDPTCTRL0_RXS), &usbotg[controller_ID]->endptctrl[ep_num]);
+		writel(readl(&usbotg[controller_ID]->endptctrl[ep_num]) | (direction?BM_USBC_UOG1_ENDPTCTRL0_TXS:BM_USBC_UOG1_ENDPTCTRL0_RXS), &usbotg[controller_ID]->endptctrl[ep_num]);
 	}
 }
 
@@ -375,11 +376,11 @@ void USB_DCI_Unstall_EndPoint (
 	// and QH
 	if(ep_num == 0){
 			// unstall both directions
-			HW_USBC_UOG_ENDPTCTRL0_CLR(BM_USBC_UOG_ENDPTCTRL0_TXS|BM_USBC_UOG_ENDPTCTRL0_RXS);
+			HW_USBC_UOG1_ENDPTCTRL0_CLR(BM_USBC_UOG1_ENDPTCTRL0_TXS|BM_USBC_UOG1_ENDPTCTRL0_RXS);
 			//~(direction ? USBHS_EPCR0_TXS_MASK:USBHS_EPCR0_RXS_MASK);
 		}else{
 // 			USBHS_EPCR(endpoint_number-1) &= ~(direction?USBHS_EPCR_TXS_MASK:USBHS_EPCR_RXS_MASK);
-            writel(readl(&usbotg[controller_ID]->endptctrl[ep_num]) &  ~(direction?BM_USBC_UOG_ENDPTCTRL0_TXS:BM_USBC_UOG_ENDPTCTRL0_RXS), &usbotg[controller_ID]->endptctrl[ep_num]);
+            writel(readl(&usbotg[controller_ID]->endptctrl[ep_num]) &  ~(direction?BM_USBC_UOG1_ENDPTCTRL0_TXS:BM_USBC_UOG1_ENDPTCTRL0_RXS), &usbotg[controller_ID]->endptctrl[ep_num]);
 		}
 }
 
@@ -558,7 +559,7 @@ void  USB_DCI_Set_Address (
 
     /* set the address */
 //    printf_info("%s, address is %d\n", __func__, address);
-    writel(BF_USBC_UOG_DEVICEADDR_USBADR(address), &usbotg[controller_ID]->deviceaddr);
+    writel(BF_USBC_UOG1_DEVICEADDR_USBADR(address), &usbotg[controller_ID]->deviceaddr);
 
 //     USB_Device_Set_Status(g_dci_controller_Id[controller_ID], USB_STATUS_DEVICE_STATE,
 //         USB_STATE_ADDRESS);
@@ -668,8 +669,10 @@ static usb_status_t usbd_usb_run(uint_8 controller_ID)
 //         // Enable USB interrupt at icoll
 //         _imx28_int_init(IMX28_USB0_VECTOR, BSPCFG_USBOTG_PRIORITY, TRUE);
 
-            register_interrupt_routine(IMX_INT_USBOH3_UOTG, usb0_isr);
-            enable_interrupt(IMX_INT_USBOH3_UOTG, CPU_0, 0);
+            uint32_t irqId = 75; //IMX_INT_USB_UOTG1;
+            
+            register_interrupt_routine(irqId, usb0_isr);
+            enable_interrupt(irqId, CPU_0, 0);
 
 //     }else if(controller_ID == 1){
 //         // Register interrupt handler
@@ -688,14 +691,14 @@ static usb_status_t usbd_usb_run(uint_8 controller_ID)
 
 
     // Enable usb deivce interrupts
-    int_enable = BM_USBC_UOG_USBINTR_UE |        // USB interrupt
-        BM_USBC_UOG_USBINTR_UEE |                // USB error
-        BM_USBC_UOG_USBINTR_PCE |                // Port chanage
-        BM_USBC_UOG_USBINTR_URE |                // Reset enable
+    int_enable = BM_USBC_UOG1_USBINTR_UE |        // USB interrupt
+        BM_USBC_UOG1_USBINTR_UEE |                // USB error
+        BM_USBC_UOG1_USBINTR_PCE |                // Port chanage
+        BM_USBC_UOG1_USBINTR_URE |                // Reset enable
         // SOF not currently used
-        BM_USBC_UOG_USBINTR_SRE |                 // SOF received
-        BM_USBC_UOG_USBINTR_SLE |                // suspend received
-        BM_USBC_UOG_USBINTR_SEE;                 // System error
+        BM_USBC_UOG1_USBINTR_SRE |                 // SOF received
+        BM_USBC_UOG1_USBINTR_SLE |                // suspend received
+        BM_USBC_UOG1_USBINTR_SEE;                 // System error
     writel(int_enable, &usbotg[controller_ID]->usbintr);
 
     // USB start to run
@@ -839,7 +842,7 @@ static usb_status_t usb_set_device_mode(uint_8 controller_ID)
     //enable USB work in device mode
     reg = readl(&usbotg[controller_ID]->usbmode);
     reg &= ~0x3;
-    reg |= 2; //BV_USBC_UOG_USBMODE_CM__DEVICE;
+    reg |= 2; //BV_USBC_UOG1_USBMODE_CM__DEVICE;
     // Disable Setup Lockout by writing '1' to SLOM in USBMODE
     reg |= (0x1 << 3);
     reg &= ~(0x1 << 4);  //disable stream mode
@@ -847,14 +850,14 @@ static usb_status_t usb_set_device_mode(uint_8 controller_ID)
     writel(reg, &usbotg[controller_ID]->usbmode);
 
     //todo change to processor speed independent wait
-    while (((readl(&usbotg[controller_ID]->usbmode) & 0x3) != 2 /*BV_USBC_UOG_USBMODE_CM__DEVICE*/) && (--count)) ;
+    while (((readl(&usbotg[controller_ID]->usbmode) & 0x3) != 2 /*BV_USBC_UOG1_USBMODE_CM__DEVICE*/) && (--count)) ;
 
     if (count == 0)
         return USBERR_INIT_FAILED;               //timeout
 
 #if FORCE_FULLSPEED
 	reg = readl(&usbotg[controller_ID]->portsc1);
-    reg |= BM_USBC_UOG_PORTSC1_PFSC;
+    reg |= BM_USBC_UOG1_PORTSC1_PFSC;
 	writel(reg, &usbotg[controller_ID]->portsc1); /* force full speed */
 #endif
 
@@ -886,16 +889,16 @@ static void usbd_ep_setup(uint_8 controller_ID, unsigned char endpt_number, unsi
 	
 	if (direction) {
 		if (endpt_number)
-			temp |= BM_USBC_UOG_ENDPTCTRL1_TXR;
-		temp |= BM_USBC_UOG_ENDPTCTRL1_TXE;
+			temp |= BM_USBC_UOG1_ENDPTCTRL1_TXR;
+		temp |= BM_USBC_UOG1_ENDPTCTRL1_TXE;
 		temp |= ((unsigned int)(ep_type)
-				<< BP_USBC_UOG_ENDPTCTRL1_TXT);
+				<< BP_USBC_UOG1_ENDPTCTRL1_TXT);
 	} else {
 		if (endpt_number)
-			temp |= BM_USBC_UOG_ENDPTCTRL1_RXR;
-		temp |= BM_USBC_UOG_ENDPTCTRL1_RXE;
+			temp |= BM_USBC_UOG1_ENDPTCTRL1_RXR;
+		temp |= BM_USBC_UOG1_ENDPTCTRL1_RXE;
 		temp |= ((unsigned int)(ep_type)
-				<< BP_USBC_UOG_ENDPTCTRL1_RXT);
+				<< BP_USBC_UOG1_ENDPTCTRL1_RXT);
 	}
 	
 	writel(temp, &usbotg[controller_ID]->endptctrl[endpt_number]);
@@ -1171,10 +1174,10 @@ static void usb0_isr(void)// *data)
     event.ep_num = (uint_8)UNINITIALISED_VAL;
 
     // Handle SOF interrupt
-	if (intr_stat & BM_USBC_UOG_USBSTS_SRI)
+	if (intr_stat & BM_USBC_UOG1_USBSTS_SRI)
 	{
         /* Clear Interrupt */
-        writel(BM_USBC_UOG_USBSTS_SRI, &usbotg[0]->usbsts);
+        writel(BM_USBC_UOG1_USBSTS_SRI, &usbotg[0]->usbsts);
 #if FORCE_FULLSPEED
 		sof_counter[0]++;
 #else
@@ -1187,18 +1190,18 @@ static void usb0_isr(void)// *data)
     }
 	
     // Handle suspend
-    if (intr_stat & BM_USBC_UOG_USBSTS_SLI)
+    if (intr_stat & BM_USBC_UOG1_USBSTS_SLI)
 	{
 		printf_info("receive suspend irq on device 0\n");
-		writel(BM_USBC_UOG_USBSTS_SLI, &usbotg[0]->usbsts);
+		writel(BM_USBC_UOG1_USBSTS_SLI, &usbotg[0]->usbsts);
 		return;
 	}
 
     // Handle bus reset
-    if (intr_stat & BM_USBC_UOG_USBSTS_URI)
+    if (intr_stat & BM_USBC_UOG1_USBSTS_URI)
     {
         /* Clear Interrupt */
-		writel(BM_USBC_UOG_USBSTS_URI, &usbotg[0]->usbsts);
+		writel(BM_USBC_UOG1_USBSTS_URI, &usbotg[0]->usbsts);
 
         /* Handle RESET Interrupt */
         USB_Bus_Reset_Handler(0);
@@ -1211,10 +1214,10 @@ static void usb0_isr(void)// *data)
     }
 
     // Handle Transaction complete
-    if (intr_stat & BM_USBC_UOG_USBSTS_UI)
+    if (intr_stat & BM_USBC_UOG1_USBSTS_UI)
     {
         /* Clear Interrupt */
-		writel(BM_USBC_UOG_USBSTS_UI, &usbotg[0]->usbsts);
+		writel(BM_USBC_UOG1_USBSTS_UI, &usbotg[0]->usbsts);
 
         // todo This does happen, what else triggers this interrupt?
 //        if (!(readl(&usbotg->endptsetupstat) && !(readl(&usbotg->endptcomplete))))
@@ -1230,38 +1233,38 @@ static void usb0_isr(void)// *data)
 			usbd_ep_complete_handler(&event);
         }
         // Handle setup compete packet interrupt
-		if (readl(&usbotg[0]->endptsetupstat) & BF_USBC_UOG_ENDPTSETUPSTAT_ENDPTSETUPSTAT(1))
+		if (readl(&usbotg[0]->endptsetupstat) & BF_USBC_UOG1_ENDPTSETUPSTAT_ENDPTSETUPSTAT(1))
         {
         	usbd_setup_packet_handler(&event);
         }
     }
 
     // Handle port change interrupt
-    if (intr_stat & BM_USBC_UOG_USBSTS_PCI)
+    if (intr_stat & BM_USBC_UOG1_USBSTS_PCI)
     {
         /* Clear Interrupt */
-		writel(BM_USBC_UOG_USBSTS_PCI, &usbotg[0]->usbsts);
+		writel(BM_USBC_UOG1_USBSTS_PCI, &usbotg[0]->usbsts);
     }
 
     // Handle USB error
-    if (intr_stat & BM_USBC_UOG_USBSTS_UEI)
+    if (intr_stat & BM_USBC_UOG1_USBSTS_UEI)
     {
         /* Clear Interrupt */
-		writel(BM_USBC_UOG_USBSTS_UEI, &usbotg[0]->usbsts);
+		writel(BM_USBC_UOG1_USBSTS_UEI, &usbotg[0]->usbsts);
 
-        event.errors = (uint_8)BM_USBC_UOG_USBSTS_UEI;
+        event.errors = (uint_8)BM_USBC_UOG1_USBSTS_UEI;
 
         /* Notify Device Layer of ERROR Event to error service */
        (void)USB_Device_Call_Service(USB_SERVICE_ERROR, &event);
     }
 
     // Handle System error (this bit will always 0 on mx28 controller)
-    if (intr_stat & BM_USBC_UOG_USBSTS_SEI)
+    if (intr_stat & BM_USBC_UOG1_USBSTS_SEI)
     {
         /* Clear Interrupt */
-		writel(BM_USBC_UOG_USBSTS_SEI, &usbotg[0]->usbsts);
+		writel(BM_USBC_UOG1_USBSTS_SEI, &usbotg[0]->usbsts);
 
-        event.errors = (uint_8)BM_USBC_UOG_USBSTS_SEI;
+        event.errors = (uint_8)BM_USBC_UOG1_USBSTS_SEI;
 
         /* Notify Device Layer of ERROR Event to error service */
        (void)USB_Device_Call_Service(USB_SERVICE_ERROR, &event);
@@ -1307,10 +1310,10 @@ static void usb1_isr(void *data)
     event.ep_num = (uint_8)UNINITIALISED_VAL;
 
     // Handle SOF interrupt
-	if (intr_stat & BM_USBC_UOG_USBSTS_SRI)
+	if (intr_stat & BM_USBC_UOG1_USBSTS_SRI)
 	{
         /* Clear Interrupt */
-        writel(BM_USBC_UOG_USBSTS_SRI, &usbotg[1]->usbsts);
+        writel(BM_USBC_UOG1_USBSTS_SRI, &usbotg[1]->usbsts);
 #if FORCE_FULLSPEED
 		sof_counter[1]++;
 #else
@@ -1323,18 +1326,18 @@ static void usb1_isr(void *data)
     }
 	
     // Handle suspend
-    if (intr_stat & BM_USBC_UOG_USBSTS_SLI)
+    if (intr_stat & BM_USBC_UOG1_USBSTS_SLI)
 	{
 		printf_info("receive suspend irq on device 1\n");
-		writel(BM_USBC_UOG_USBSTS_SLI, &usbotg[1]->usbsts);
+		writel(BM_USBC_UOG1_USBSTS_SLI, &usbotg[1]->usbsts);
 		return;
 	}
 
     // Handle bus reset
-    if (intr_stat & BM_USBC_UOG_USBSTS_URI)
+    if (intr_stat & BM_USBC_UOG1_USBSTS_URI)
     {
         /* Clear Interrupt */
-		writel(BM_USBC_UOG_USBSTS_URI, &usbotg[1]->usbsts);
+		writel(BM_USBC_UOG1_USBSTS_URI, &usbotg[1]->usbsts);
 
         /* Handle RESET Interrupt */
         USB_Bus_Reset_Handler(1);
@@ -1347,10 +1350,10 @@ static void usb1_isr(void *data)
     }
 
     // Handle Transaction complete
-    if (intr_stat & BM_USBC_UOG_USBSTS_UI)
+    if (intr_stat & BM_USBC_UOG1_USBSTS_UI)
     {
         /* Clear Interrupt */
-		writel(BM_USBC_UOG_USBSTS_UI, &usbotg[1]->usbsts);
+		writel(BM_USBC_UOG1_USBSTS_UI, &usbotg[1]->usbsts);
 
         // todo This does happen, what else triggers this interrupt?
 //        if (!(readl(&usbotg[1]->endptsetupstat) && !(readl(&usbotg[1]->endptcomplete))))
@@ -1366,24 +1369,24 @@ static void usb1_isr(void *data)
 			usbd_ep_complete_handler(&event);
         }
         // Handle setup compete packet interrupt
-		if (readl(&usbotg[1]->endptsetupstat) & BF_USBC_UOG_ENDPTSETUPSTAT_ENDPTSETUPSTAT(1))
+		if (readl(&usbotg[1]->endptsetupstat) & BF_USBC_UOG1_ENDPTSETUPSTAT_ENDPTSETUPSTAT(1))
         {
         	usbd_setup_packet_handler(&event);
         }
     }
 
     // Handle port change interrupt
-    if (intr_stat & BM_USBC_UOG_USBSTS_PCI)
+    if (intr_stat & BM_USBC_UOG1_USBSTS_PCI)
     {
         /* Clear Interrupt */
-		writel(BM_USBC_UOG_USBSTS_PCI, &usbotg[1]->usbsts);
+		writel(BM_USBC_UOG1_USBSTS_PCI, &usbotg[1]->usbsts);
     }
 
     // Handle USB error
-    if (intr_stat & BM_USBC_UOG_USBSTS_UEI)
+    if (intr_stat & BM_USBC_UOG1_USBSTS_UEI)
     {
         /* Clear Interrupt */
-		writel(BM_USBC_UOG_USBSTS_UEI, &usbotg[1]->usbsts);
+		writel(BM_USBC_UOG1_USBSTS_UEI, &usbotg[1]->usbsts);
 
         //todo how to get error num
         //event.errors = (uint_8)(USB0_ERRSTAT & USB0_ERREN);
@@ -1393,10 +1396,10 @@ static void usb1_isr(void *data)
     }
 
     // Handle System error
-    if (intr_stat & BM_USBC_UOG_USBSTS_SEI)
+    if (intr_stat & BM_USBC_UOG1_USBSTS_SEI)
     {
         /* Clear Interrupt */
-		writel(BM_USBC_UOG_USBSTS_SEI, &usbotg[1]->usbsts);
+		writel(BM_USBC_UOG1_USBSTS_SEI, &usbotg[1]->usbsts);
 
         //todo how to get error num
         //event.errors = (uint_8)(USB0_ERRSTAT & USB0_ERREN);
@@ -1795,17 +1798,17 @@ static void usbd_add_td(uint_8 controller_ID, unsigned char ep_num, unsigned cha
             {
                 /* write '1' to Add Tripwire (ATDTW) in USBCMD register */
                 temp = readl(&usbotg[controller_ID]->usbcmd);
-                temp |= (0x1 << BP_USBC_UOG_USBCMD_ATDTW);
+                temp |= (0x1 << BP_USBC_UOG1_USBCMD_ATDTW);
                 writel(temp, &usbotg[controller_ID]->usbcmd);
 
                 // Read endpoint status
                 ep_status = readl(&usbotg[controller_ID]->endptstat) & (ep_mask << ep_num);
 
-            } while (!readl(&usbotg[controller_ID]->usbcmd) & (0x1 << BP_USBC_UOG_USBCMD_ATDTW));
+            } while (!readl(&usbotg[controller_ID]->usbcmd) & (0x1 << BP_USBC_UOG1_USBCMD_ATDTW));
 
             /* write '0' to Add Tripwire (ATDTW) in USBCMD register */
             temp = readl(&usbotg[controller_ID]->usbcmd);
-            temp &= ~(0x1 << BP_USBC_UOG_USBCMD_ATDTW);
+            temp &= ~(0x1 << BP_USBC_UOG1_USBCMD_ATDTW);
             writel(temp, &usbotg[controller_ID]->usbcmd);
 
             if (!ep_status)

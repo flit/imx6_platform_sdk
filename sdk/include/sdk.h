@@ -60,7 +60,7 @@
 #include "i2c/imx_i2c.h"
 #include "uart/imx_uart.h"
 #include "timer/timer.h"
-#include "usb/usb.h"
+// #include "usb/usb.h"
 #include "keypad/keypad_port.h"
 #include "spi/ecspi_ifc.h"
 #if !defined(CHIP_MX6SL)

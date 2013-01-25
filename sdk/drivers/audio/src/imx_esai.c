@@ -228,11 +228,11 @@ static uint32_t esai_get_hw_para(audio_ctrl_p ctrl, uint32_t type)
         val = ((HW_ESAI_RSMB_RD() << 16) & 0xFFFF0000) | (HW_ESAI_RSMA_RD() & 0xFFFF);
         break;
     case ESAI_HW_PARA_TX_WL:
-        val = BG_ESAI_TFCR_TWA(HW_ESAI_TFCR_RD());
+	val = BG_ESAI_TFCR_TWA(HW_ESAI_TFCR_RD());
         val = 32 - val * 4;
         break;
     case ESAI_HW_PARA_RX_WL:
-        val = BG_ESAI_RFCR_RWA(HW_ESAI_RFCR_RD());
+	val = BG_ESAI_RFCR_RWA(HW_ESAI_RFCR_RD());
         val = 32 - val * 4;
         break;
     }
@@ -292,7 +292,7 @@ static int32_t esai_sub_enable(audio_ctrl_p ctrl, uint32_t type, uint32_t val)
     case ESAI_SUB_ENABLE_TYPE_TX:
         v = HW_ESAI_TCR_RD();
         v &= ~(BM_ESAI_TCR_TE0 | BM_ESAI_TCR_TE1 | BM_ESAI_TCR_TE2 |
-               BM_ESAI_TCR_TE3 | BM_ESAI_TCR_TE4 | BM_ESAI_TCR_TE5);
+		BM_ESAI_TCR_TE3 | BM_ESAI_TCR_TE4 | BM_ESAI_TCR_TE5);
         v |= ESAI_TCR_TE(val);
         HW_ESAI_TCR_WR(v);
         break;
@@ -373,7 +373,7 @@ int32_t esai_config(void *priv, audio_dev_para_p para)
          */
         printf("Configure ESAI module as AC97 mode.\n");
 
-        val = BM_ESAI_TCR_PADC |    //TX ZERO PADDING ,BIT17  1: pad 0, 0:repeat
+    val = BM_ESAI_TCR_PADC |       //TX ZERO PADDING ,BIT17  1: pad 0, 0:repeat
             ESAI_TCR_TSWS_STL20_WDL20 | ESAI_TCR_TMOD_AC97;
         esai_set_hw_para(ctrl, ESAI_HW_PARA_TCR, val);
 
@@ -409,72 +409,72 @@ int32_t esai_config(void *priv, audio_dev_para_p para)
 //        esai_sub_enable(ctrl, ESAI_SUB_ENABLE_TYPE_TX, 1);
     } else {
         val = BM_ESAI_TCR_PADC |    //TX ZERO PADDING ,BIT17  1: pad 0, 0:repeat
-            ESAI_TCR_TSWS_STL32_WDL24 | //32bit slot len, 24bit word len
-            ESAI_TCR_TMOD_NETWORK;  //network mode
-        esai_set_hw_para(ctrl, ESAI_HW_PARA_TCR, val);
+        ESAI_TCR_TSWS_STL32_WDL24 | //32bit slot len, 24bit word len
+        ESAI_TCR_TMOD_NETWORK;  //network mode
+    esai_set_hw_para(ctrl, ESAI_HW_PARA_TCR, val);
 
-        /*
-         * FixMe: CS42888 driver supports 48/44.1KHz only, although it was 
-         * expected to support all sample rates.  When lower sample rate used,
-         * no audio input.
-         */
-        if (AUDIO_BUS_MODE_MASTER == para->bus_mode) {
-            val = BM_ESAI_TCCR_THCKD |  //HCKT is output (bit23=1)
-                BM_ESAI_TCCR_TFSD | //FST is output (bit22=1) 
-                BM_ESAI_TCCR_TCKD | //SCKT is output (bit21=1)
-                BM_ESAI_TCCR_TCKP | //tX clock polarity bit 18, clock out on falling edge
-                ESAI_TCCR_TDC(para->channel_number - 1);    //frame rate devider
-            if (SAMPLERATE_44_1KHz == para->sample_rate) {
-                /*
-                 * So the Tx_CLK = Fsys/2/((TPM+1) + (TFP+1)) = 133/2/(6*4) = 2.771MHz.
-                 * the HCKT = Fsys/2/((TPM+1) = 133/2/6 = 11.08MHz.
-                 * The Tx_CLK is not very accurate for 44.1K sample rate(2.822MHz).
-                 */
-                val |= ESAI_TCCR_TFP(3) |   // clk div 4
-                    ESAI_TCCR_TPSR_BYPASS | //bypass
-                    ESAI_TCCR_TPM(5);
-            } else if (SAMPLERATE_16KHz == para->sample_rate) {
-                /*
-                 * Tx_Clk = 133/2/(13*5) = 1.023MHz(1.024MHz expected), HCKT = 133/2/5 = 13.2MHz 
-                 */
-                val |= ESAI_TCCR_TFP(12) |  // clk div 11
-                    ESAI_TCCR_TPSR_BYPASS | //bypass
-                    ESAI_TCCR_TPM(4);
-            } else if (SAMPLERATE_32KHz == para->sample_rate) {
-                /*
-                 * Tx_Clk = 133/2/(4*8) = 2.031MHz(32*2*32 = 2.048MHz was expected). HCKT = 133/2/4 = 16.625MHz
-                 */
+    /*
+     * FixMe: CS42888 driver supports 48/44.1KHz only, although it was 
+     * expected to support all sample rates.  When lower sample rate used,
+     * no audio input.
+     */
+    if (AUDIO_BUS_MODE_MASTER == para->bus_mode) {
+        val = BM_ESAI_TCCR_THCKD | //HCKT is output (bit23=1)
+            BM_ESAI_TCCR_TFSD |    //FST is output (bit22=1) 
+            BM_ESAI_TCCR_TCKD |    //SCKT is output (bit21=1)
+            BM_ESAI_TCCR_TCKP |    //tX clock polarity bit 18, clock out on falling edge
+            ESAI_TCCR_TDC(para->channel_number - 1);    //frame rate devider
+        if (SAMPLERATE_44_1KHz == para->sample_rate) {
+  	    /*
+             * So the Tx_CLK = Fsys/2/((TPM+1) + (TFP+1)) = 133/2/(6*4) = 2.771MHz.
+             * the HCKT = Fsys/2/((TPM+1) = 133/2/6 = 11.08MHz.
+             * The Tx_CLK is not very accurate for 44.1K sample rate(2.822MHz).
+             */
+            val |= ESAI_TCCR_TFP(3) |   // clk div 4
+                ESAI_TCCR_TPSR_BYPASS | //bypass
+                ESAI_TCCR_TPM(5);
+        } else if(SAMPLERATE_16KHz == para->sample_rate){
+	    /*
+	     * Tx_Clk = 133/2/(13*5) = 1.023MHz(1.024MHz expected), HCKT = 133/2/5 = 13.2MHz 
+             */
+            val |= ESAI_TCCR_TFP(12) |   // clk div 11
+		ESAI_TCCR_TPSR_BYPASS | //bypass
+		ESAI_TCCR_TPM(4);
+        }else if(SAMPLERATE_32KHz == para->sample_rate){
+	    /*
+ 	     * Tx_Clk = 133/2/(4*8) = 2.031MHz(32*2*32 = 2.048MHz was expected). HCKT = 133/2/4 = 16.625MHz
+	     */
                 val |= ESAI_TCCR_TFP(7) | ESAI_TCCR_TPSR_BYPASS | ESAI_TCCR_TPM(3);
-            } else if (SAMPLERATE_48KHz == para->sample_rate) {
-                /*
-                 * Tx_Clk = 133/2/(5*4) = 3.3MHz(48*2*32 = 3.08MHz was expected). HCKT = 133/2/5 = 13.3MHz
-                 */
+	}else if(SAMPLERATE_48KHz == para->sample_rate){
+            /*
+             * Tx_Clk = 133/2/(5*4) = 3.3MHz(48*2*32 = 3.08MHz was expected). HCKT = 133/2/5 = 13.3MHz
+             */
                 val |= ESAI_TCCR_TFP(3) | ESAI_TCCR_TPSR_BYPASS | ESAI_TCCR_TPM(4);
-            }
-        } else {
-            val = BM_ESAI_TCCR_TCKP | ESAI_TCCR_TDC(para->channel_number - 1);  //frame rate devider
-        }
-        esai_set_hw_para(ctrl, ESAI_HW_PARA_TCCR, val);
+	}
+    } else {
+        val = BM_ESAI_TCCR_TCKP | ESAI_TCCR_TDC(para->channel_number - 1); //frame rate devider
+    }
+    esai_set_hw_para(ctrl, ESAI_HW_PARA_TCCR, val);
 
-        esai_set_hw_para(ctrl, ESAI_HW_PARA_TSM, ESAI_TSM_NUM(para->channel_number));
+    esai_set_hw_para(ctrl, ESAI_HW_PARA_TSM, ESAI_TSM_NUM(para->channel_number));
 
-        val = HW_ESAI_TFCR_RD();
-        val |= BM_ESAI_TFCR_TFR;
-        HW_ESAI_TFCR_WR(val);
+    val = HW_ESAI_TFCR_RD();
+    val |= BM_ESAI_TFCR_TFR;
+    HW_ESAI_TFCR_WR(val);
 
-        val = BM_ESAI_TFCR_TIEN |
-            ESAI_TFCR_TFWM(ESAI_WATERMARK) | ESAI_TFCR_TE(para->channel_number) | BM_ESAI_TFCR_TFE;
-        if (WL_16 == para->word_length)
-            val |= ESAI_WORD_LEN_16;
-        else if (WL_24 == para->word_length)
-            val |= ESAI_WORD_LEN_24;
-        else if (WL_20 == para->word_length)
-            val |= ESAI_WORD_LEN_20;
-        esai_set_hw_para(ctrl, ESAI_HW_PARA_TFCR, val);
+    val = BM_ESAI_TFCR_TIEN |
+        ESAI_TFCR_TFWM(ESAI_WATERMARK) | ESAI_TFCR_TE(para->channel_number) | BM_ESAI_TFCR_TFE;
+    if (WL_16 == para->word_length)
+        val |= ESAI_WORD_LEN_16;
+    else if (WL_24 == para->word_length)
+        val |= ESAI_WORD_LEN_24;
+    else if (WL_20 == para->word_length)
+        val |= ESAI_WORD_LEN_20;
+    esai_set_hw_para(ctrl, ESAI_HW_PARA_TFCR, val);
 
-        esai_stuff_tx_fifo(ctrl);
+    esai_stuff_tx_fifo(ctrl);
 
-        esai_sub_enable(ctrl, ESAI_SUB_ENABLE_TYPE_TX, para->channel_number);
+    esai_sub_enable(ctrl, ESAI_SUB_ENABLE_TYPE_TX, para->channel_number);
     }
 
     esai_connect_pins(ctrl);
@@ -523,14 +523,6 @@ int32_t esai_write_fifo(void *priv, uint8_t * buf, uint32_t size, uint32_t * byt
     UNUSED_VARIABLE(instance);
     UNUSED_VARIABLE(wl);
 
-    /*
-     * FixMe: CS42888 driver supports 48/44.1KHz only, although it was 
-     * expected to support all sample rates.  When lower sample rate used,
-     * no audio input.
-     * It is supposed that the pcm was 16KHz, and we should convert it to 48KHz,
-     * just as a workround.
-     */
-
     wl = esai_get_hw_para(ctrl, ESAI_HW_PARA_TX_WL);
 
     HW_ESAI_TCR_WR(HW_ESAI_TCR_RD() | BM_ESAI_TCR_TE0);
@@ -548,24 +540,19 @@ int32_t esai_write_fifo(void *priv, uint8_t * buf, uint32_t size, uint32_t * byt
     i = 0;
     while (i < size) {
         for (j = 0; (j < ESAI_WATERMARK) && (i < size); j++) {
-            if (wl <= 8) {
-                val = *((uint8_t *) (buf + i));
-                i++;
-            } else if (wl <= 16) {
-                val = *((uint16_t *) (buf + i));
-                i = i + 2;
-            } else {
-                val = *((uint32_t *) (buf + i));
-                i = i + 4;
-            }
-
-            HW_ESAI_ETDR_WR(val);
-#ifndef ESAI_AC97_SUPPORT
-            /* FIXME:A workaround to convert the 16KHz PCM to 48KHz */
-            HW_ESAI_ETDR_WR(val);
-            HW_ESAI_ETDR_WR(val);
-#endif
+        if (wl <= 8) {
+            val = *((uint8_t *) (buf + i));
+            i++;
+        } else if (wl <= 16) {
+            val = *((uint16_t *) (buf + i));
+            i = i + 2;
+        } else {
+            val = *((uint32_t *) (buf + i));
+            i = i + 4;
         }
+
+        HW_ESAI_ETDR_WR(val);
+    }
 
         while (!(HW_ESAI_ESR_RD() & BM_ESAI_ESR_TFE)) ;
     }

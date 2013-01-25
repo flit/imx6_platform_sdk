@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# Copyright (c) 2012-2013 Freescale Semiconductor, Inc.
+# Copyright (c) 2013 Freescale Semiconductor, Inc.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification,
@@ -28,29 +28,35 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #-------------------------------------------------------------------------------
 
+#
+# Power test application
+#
+
 include $(SDK_ROOT)/mk/common.mk
 
 
+# Set up to link application.
+APP_NAME = usb_hid_mouse
+LINK_APP = 1
+
+# Local source files.
 define SOURCES
-Device/app/hid/mouse_button.c
-Device/app/hid/usb_descriptor.c
-Device/source/common/usb_framework.c
-Device/source/common/usb_class.c
-Device/source/class/usb_hid.c
-Device/source/driver/usbevent.c
-Device/source/driver/usb_driver.c
+    $(APPS_ROOT)/common/platform_init.c
+    $(APPS_ROOT)/common/ivt.c
+    src/mouse_button.c
+    src/usb_descriptor.c
 endef
 
-ifeq "$(TARGET)" "mx6sl"
-SOURCES += Device/source/driver/mx6x/usb_dci_imx6sl.c
-else
-SOURCES += Device/source/driver/mx6x/usb_dci_imx6.c
-endif
+# Need to include the SDK library!
+LIBRARIES = \
+    $(LIBSDK) \
+    $(LIBBOARD)
 
-# Set defines used by the USB stack.
-DEFINES += \
-    -DMULTIPLE_DEVICES \
-    -DHIGH_SPEED_DEVICE
+# Specify our linker script.
+LD_FILE = $(APPS_ROOT)/common/basic_sdk_app.ld.S
+
+# Add common to include paths.
+INCLUDES += -I$(APPS_ROOT)/common
 
 # Extra include paths needed to build the USB stack.
 INCLUDES += \
@@ -61,8 +67,7 @@ INCLUDES += \
 	-I$(SDK_ROOT)/sdk/common/usb_stack/Device/source/driver/mx6x \
 	-I$(SDK_ROOT)/sdk/common/usb_stack/Device/app/common/mx6x
 
-# 	-I$(SDK_ROOT)/sdk/common/usb_stack/Device/app/hid \
-
+# Disable warnings...
 C_FLAGS_WARNINGS = 
 
 include $(SDK_ROOT)/mk/targets.mk

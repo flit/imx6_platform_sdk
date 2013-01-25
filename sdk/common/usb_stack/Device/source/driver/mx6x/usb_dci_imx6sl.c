@@ -89,11 +89,6 @@ static inline unsigned int readl(volatile unsigned int * addr);
 /* control endpoint transfer types */
 #define USB_TRF_UNKNOWN      			(0xFF)
 
-// Interrupt prioritiy if not already defined in PDK header file
-#ifndef BSPCFG_USBOTG_PRIORITY
-    #define BSPCFG_USBOTG_PRIORITY (IMX28_ICOLL_INTERRUPT_PRIORITY_3)
-#endif
-
 /*****************************************************************************
  * Variables
  *****************************************************************************/
@@ -661,28 +656,10 @@ static usb_status_t usbd_usb_run(uint_8 controller_ID)
     printf("%s %d\n", __FUNCTION__, controller_ID);
     if(controller_ID == 0){
         // Register interrupt handler
-//         if (!_int_install_isr(IMX28_USB0_VECTOR, usb0_isr, NULL))
-//         {
-//             printf_error("Error: could not install usb0 isr\n");
-//             return USBERR_INIT_FAILED;
-//         }
-//         // Enable USB interrupt at icoll
-//         _imx28_int_init(IMX28_USB0_VECTOR, BSPCFG_USBOTG_PRIORITY, TRUE);
-
-            uint32_t irqId = 75; //IMX_INT_USB_UOTG1;
-            
-            register_interrupt_routine(irqId, usb0_isr);
-            enable_interrupt(irqId, CPU_0, 0);
-
-//     }else if(controller_ID == 1){
-//         // Register interrupt handler
-//         if (!_int_install_isr(IMX28_USB1_VECTOR, usb1_isr, NULL))
-//         {
-//             printf_error("Error: could not install usb1 isr\n");
-//             return USBERR_INIT_FAILED;
-//         }
-//         // Enable USB interrupt at icoll
-//         _imx28_int_init(IMX28_USB1_VECTOR, BSPCFG_USBOTG_PRIORITY, TRUE);
+        uint32_t irqId = 75; //IMX_INT_USB_UOTG1;
+        
+        register_interrupt_routine(irqId, usb0_isr);
+        enable_interrupt(irqId, CPU_0, 0);
     }else{
         printf("Wrong USB controller ID! (%d)\n", controller_ID);
         return USBERR_INIT_FAILED;
@@ -710,7 +687,7 @@ static usb_status_t usbd_usb_run(uint_8 controller_ID)
 }
 
 /*!
- * MX28 USB device HW initialization
+ * MX6SL USB device HW initialization
  */
 static usb_status_t usbd_mx6_dev_init(uint_8 controller_ID)
 {
@@ -1159,6 +1136,8 @@ static void usb0_isr(void)// *data)
 {
     uint_32 intr_stat;
     USB_DEV_EVENT_STRUCT event;
+    
+    printf("usb0_isr\n");
 
     intr_stat = readl(&usbotg[0]->usbsts);
     // Only process the interrupts that are enabled
@@ -1258,7 +1237,7 @@ static void usb0_isr(void)// *data)
        (void)USB_Device_Call_Service(USB_SERVICE_ERROR, &event);
     }
 
-    // Handle System error (this bit will always 0 on mx28 controller)
+    // Handle System error (this bit will always 0 on mx6sl controller)
     if (intr_stat & BM_USBC_UOG1_USBSTS_SEI)
     {
         /* Clear Interrupt */

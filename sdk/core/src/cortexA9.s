@@ -37,6 +37,23 @@
     .code 32
     .section ".text","ax"
 
+/*
+ * bool arm_set_interrupt_state(bool enable)
+ */
+    .global arm_set_interrupt_state
+    .func arm_set_interrupt_state
+arm_set_interrupt_state:
+    mrs             r2,CPSR            @ read CPSR (Current Program Status Register)
+    teq     r0,#0
+    bicne   r1,r2,#0xc0        @ disable IRQ and FIQ
+    orreq   r1,r2,#0xc0        @ enable IRQ and FIQ
+    msr     CPSR_c,r1
+    tst     r2,#0x80
+    movne   r0,#0
+    moveq   r0,#1
+    bx      lr
+    .endfunc
+
   .global cpu_get_current
   @ int cpu_get_current(void)@
   @ get current CPU ID

@@ -31,6 +31,7 @@
 #define __CORTEX_A9_H__
 
 #include <stdint.h>
+#include <stdbool.h>
 #include <stdlib.h>
 
 //! @addtogroup cortexa9
@@ -66,6 +67,9 @@ extern "C" {
 
 //! @name Misc
 //@{
+//! @brief Enable or disable the IRQ and FIQ state.
+bool arm_set_interrupt_state(bool enable);
+
 //! @brief Get current CPU ID.
 int cpu_get_current(void);
 

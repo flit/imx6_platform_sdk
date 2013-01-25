@@ -1,5 +1,5 @@
 //=============================================================================			
-//init script for i.MX6DL DDR3			
+//init script for i.MX6Solo DDR3 SabreSD			
 //=============================================================================			
 // Revision History			
 // v01			
@@ -48,37 +48,37 @@ setmem /32	0x020e04b8 =	0x00000030	// IOMUXC_SW_PAD_CTL_PAD_DRAM_SDODT1
 setmem /32	0x020e076c =	0x00000030	// IOMUXC_SW_PAD_CTL_GRP_CTLDS 
 			
 //DATA STROBE:			
-setmem /32	0x020e0750 =	0x00000000	// IOMUXC_SW_PAD_CTL_GRP_DDRMODE_CTL 
+setmem /32	0x020e0750 =	0x00020000	// IOMUXC_SW_PAD_CTL_GRP_DDRMODE_CTL 
 			
-setmem /32	0x020e04bc =	0x00000038	// IOMUXC_SW_PAD_CTL_PAD_DRAM_SDQS0 
-setmem /32	0x020e04c0 =	0x00000038	// IOMUXC_SW_PAD_CTL_PAD_DRAM_SDQS1 
-setmem /32	0x020e04c4 =	0x00000038	// IOMUXC_SW_PAD_CTL_PAD_DRAM_SDQS2 
-setmem /32	0x020e04c8 =	0x00000038	// IOMUXC_SW_PAD_CTL_PAD_DRAM_SDQS3 
-setmem /32	0x020e04cc =	0x00000038	// IOMUXC_SW_PAD_CTL_PAD_DRAM_SDQS4 
-setmem /32	0x020e04d0 =	0x00000038	// IOMUXC_SW_PAD_CTL_PAD_DRAM_SDQS5 
-setmem /32	0x020e04d4 =	0x00000038	// IOMUXC_SW_PAD_CTL_PAD_DRAM_SDQS6 
-setmem /32	0x020e04d8 =	0x00000038	// IOMUXC_SW_PAD_CTL_PAD_DRAM_SDQS7 
+setmem /32	0x020e04bc =	0x00000030	// IOMUXC_SW_PAD_CTL_PAD_DRAM_SDQS0 
+setmem /32	0x020e04c0 =	0x00000030	// IOMUXC_SW_PAD_CTL_PAD_DRAM_SDQS1 
+setmem /32	0x020e04c4 =	0x00000030	// IOMUXC_SW_PAD_CTL_PAD_DRAM_SDQS2 
+setmem /32	0x020e04c8 =	0x00000030	// IOMUXC_SW_PAD_CTL_PAD_DRAM_SDQS3 
+//setmem /32	0x020e04cc =	0x00000030	// IOMUXC_SW_PAD_CTL_PAD_DRAM_SDQS4 , not used for 32-bit bus
+//setmem /32	0x020e04d0 =	0x00000030	// IOMUXC_SW_PAD_CTL_PAD_DRAM_SDQS5 , not used for 32-bit bus
+//setmem /32	0x020e04d4 =	0x00000030	// IOMUXC_SW_PAD_CTL_PAD_DRAM_SDQS6 , not used for 32-bit bus
+//setmem /32	0x020e04d8 =	0x00000030	// IOMUXC_SW_PAD_CTL_PAD_DRAM_SDQS7 , not used for 32-bit bus
 			
 //DATA:			
-setmem /32	0x020e0760 =	0x00000000	// IOMUXC_SW_PAD_CTL_GRP_DDRMODE
+setmem /32	0x020e0760 =	0x00020000	// IOMUXC_SW_PAD_CTL_GRP_DDRMODE
 			
 setmem /32	0x020e0764 =	0x00000030	// IOMUXC_SW_PAD_CTL_GRP_B0DS 
 setmem /32	0x020e0770 =	0x00000030	// IOMUXC_SW_PAD_CTL_GRP_B1DS 
 setmem /32	0x020e0778 =	0x00000030	// IOMUXC_SW_PAD_CTL_GRP_B2DS 
 setmem /32	0x020e077c =	0x00000030	// IOMUXC_SW_PAD_CTL_GRP_B3DS 
-setmem /32	0x020e0780 =	0x00000030	// IOMUXC_SW_PAD_CTL_GRP_B4DS 
-setmem /32	0x020e0784 =	0x00000030	// IOMUXC_SW_PAD_CTL_GRP_B5DS 
-setmem /32	0x020e078c =	0x00000030	// IOMUXC_SW_PAD_CTL_GRP_B6DS 
-setmem /32	0x020e0748 =	0x00000030	// IOMUXC_SW_PAD_CTL_GRP_B7DS 
+//setmem /32	0x020e0780 =	0x00000030	// IOMUXC_SW_PAD_CTL_GRP_B4DS , not used for 32-bit bus
+//setmem /32	0x020e0784 =	0x00000030	// IOMUXC_SW_PAD_CTL_GRP_B5DS , not used for 32-bit bus
+//setmem /32	0x020e078c =	0x00000030	// IOMUXC_SW_PAD_CTL_GRP_B6DS , not used for 32-bit bus
+//setmem /32	0x020e0748 =	0x00000030	// IOMUXC_SW_PAD_CTL_GRP_B7DS , not used for 32-bit bus
 			
 setmem /32	0x020e0470 =	0x00000030	// IOMUXC_SW_PAD_CTL_PAD_DRAM_DQM0
 setmem /32	0x020e0474 =	0x00000030	// IOMUXC_SW_PAD_CTL_PAD_DRAM_DQM1
 setmem /32	0x020e0478 =	0x00000030	// IOMUXC_SW_PAD_CTL_PAD_DRAM_DQM2
 setmem /32	0x020e047c =	0x00000030	// IOMUXC_SW_PAD_CTL_PAD_DRAM_DQM3
-setmem /32	0x020e0480 =	0x00000030	// IOMUXC_SW_PAD_CTL_PAD_DRAM_DQM4
-setmem /32	0x020e0484 =	0x00000030	// IOMUXC_SW_PAD_CTL_PAD_DRAM_DQM5
-setmem /32	0x020e0488 =	0x00000030	// IOMUXC_SW_PAD_CTL_PAD_DRAM_DQM6
-setmem /32	0x020e048c =	0x00000030	// IOMUXC_SW_PAD_CTL_PAD_DRAM_DQM7
+//setmem /32	0x020e0480 =	0x00000030	// IOMUXC_SW_PAD_CTL_PAD_DRAM_DQM4, not used for 32-bit bus
+//setmem /32	0x020e0484 =	0x00000030	// IOMUXC_SW_PAD_CTL_PAD_DRAM_DQM5, not used for 32-bit bus
+//setmem /32	0x020e0488 =	0x00000030	// IOMUXC_SW_PAD_CTL_PAD_DRAM_DQM6, not used for 32-bit bus
+//setmem /32	0x020e048c =	0x00000030	// IOMUXC_SW_PAD_CTL_PAD_DRAM_DQM7, not used for 32-bit bus
 			
 //=============================================================================			
 // DDR Controller Registers			
@@ -86,12 +86,12 @@ setmem /32	0x020e048c =	0x00000030	// IOMUXC_SW_PAD_CTL_PAD_DRAM_DQM7
 // Manufacturer:	Micron		
 // Device Part Number:	MT41J128M16HA-15E		
 // Clock Freq.: 	400MHz		
-// Density per CS in Gb: 	8		
+// Density per CS in Gb: 	4		
 // Chip Selects used:	1		
 // Number of Banks:	8		
 // Row address:    	14		
 // Column address: 	10		
-// Data bus width	64		
+// Data bus width	32		
 //=============================================================================			
 setmem /32	0x021b0800 =	0xa1390003 	// DDR_PHY_P0_MPZQHWCTRL, enable both one-time & periodic HW ZQ calibration.
 			
@@ -102,8 +102,6 @@ setmem /32	0x021b0800 =	0xa1390003 	// DDR_PHY_P0_MPZQHWCTRL, enable both one-ti
 // should either be cleared or write leveling calibration can be run			
 setmem /32	0x021b080c = 	0x001F001F	
 setmem /32	0x021b0810 = 	0x001F001F	
-setmem /32	0x021b480c = 	0x001F001F	
-setmem /32	0x021b4810 = 	0x001F001F	
 			
 //######################################################			
 //calibration values based on calibration compare of 0x00ffff00:			
@@ -112,36 +110,28 @@ setmem /32	0x021b4810 = 	0x001F001F
 //######################################################			
 			
 //Read DQS Gating calibration			
-setmem /32	0x021b083c =	0x42480248	// MPDGCTRL0 PHY0
-setmem /32	0x021b0840 =	0x0211020B	// MPDGCTRL1 PHY0
-setmem /32	0x021b483c =	0x417F0211	// MPDGCTRL0 PHY1
-setmem /32	0x021b4840 =	0x015D0166	// MPDGCTRL1 PHY1
+setmem /32	0x021b083c =	0x42190219	// MPDGCTRL0 PHY0
+setmem /32	0x021b0840 =	0x017B0177	// MPDGCTRL1 PHY0
 			
 //Read calibration			
-setmem /32	0x021b0848 =	0x4B4C504D	// MPRDDLCTL PHY0
-setmem /32	0x021b4848 =	0x494C4F48	// MPRDDLCTL PHY1
+setmem /32	0x021b0848 =	0x4B4D4E4D	// MPRDDLCTL PHY0
 			
 //Write calibration			
-setmem /32	0x021b0850 =	0x3F3F2E31	// MPWRDLCTL PHY0
-setmem /32	0x021b4850 =	0x2B35382B	// MPWRDLCTL PHY1
+setmem /32	0x021b0850 =	0x3F3E2D36	// MPWRDLCTL PHY0
 			
 //read data bit delay: (3 is the reccommended default value, although out of reset value is 0):			
 setmem /32	0x021b081c =	0x33333333	// DDR_PHY_P0_MPREDQBY0DL3
 setmem /32	0x021b0820 =	0x33333333	// DDR_PHY_P0_MPREDQBY1DL3
 setmem /32	0x021b0824 =	0x33333333	// DDR_PHY_P0_MPREDQBY2DL3
 setmem /32	0x021b0828 =	0x33333333	// DDR_PHY_P0_MPREDQBY3DL3
-setmem /32	0x021b481c =	0x33333333	// DDR_PHY_P1_MPREDQBY0DL3
-setmem /32	0x021b4820 =	0x33333333	// DDR_PHY_P1_MPREDQBY1DL3
-setmem /32	0x021b4824 =	0x33333333	// DDR_PHY_P1_MPREDQBY2DL3
-setmem /32	0x021b4828 =	0x33333333	// DDR_PHY_P1_MPREDQBY3DL3
-			
-//For i.mx6qd parts of versions A & B (v1.0, v1.1), uncomment the following lines. For version C (v1.2), keep commented			
-//setmem /32	0x021b08c0 =	0x24911492	// fine tune SDCLK duty cyc to low - seen to improve measured duty cycle of i.mx6
-//setmem /32	0x021b48c0 =	0x24911492	
+//setmem /32	0x021b481c =	0x33333333	// DDR_PHY_P1_MPREDQBY0DL3, not used for 32-bit bus
+//setmem /32	0x021b4820 =	0x33333333	// DDR_PHY_P1_MPREDQBY1DL3, not used for 32-bit bus
+//setmem /32	0x021b4824 =	0x33333333	// DDR_PHY_P1_MPREDQBY2DL3, not used for 32-bit bus
+//setmem /32	0x021b4828 =	0x33333333	// DDR_PHY_P1_MPREDQBY3DL3, not used for 32-bit bus
 			
 // Complete calibration by forced measurement:			
 setmem /32	0x021b08b8 =	0x00000800 	// DDR_PHY_P0_MPMUR0, frc_msr
-setmem /32	0x021b48b8 =	0x00000800 	// DDR_PHY_P0_MPMUR0, frc_msr
+//setmem /32	0x021b48b8 =	0x00000800 	// DDR_PHY_P1_MPMUR0, frc_msr, not used for 32-bit bus
 			
 //MMDC init:			
 setmem /32	0x021b0004 =	0x0002002D	// MMDC0_MDPDC 
@@ -159,12 +149,9 @@ setmem /32	0x021b0018 =	0x00001740	// MMDC0_MDMISC
 setmem /32	0x021b001c =	0x00008000	// MMDC0_MDSCR, set the Configuration request bit during MMDC set up
 setmem /32	0x021b002c =	0x000026d2	// MMDC0_MDRWD; recommend to maintain the default values
 setmem /32	0x021b0030 =	0x00431023	// MMDC0_MDOR
-setmem /32	0x021b0040 =	0x00000027	// CS0_END 
+setmem /32	0x021b0040 =	0x00000017	// CS0_END 
 			
-setmem /32 0x021b0400 = 0x11420000      //MMDC0_MAARCR ADOPT optimized priorities. Dyn jump disabled			
-setmem /32 0x021b4400 = 0x11420000    			
-			
-setmem /32	0x021b0000 =	0x831A0000	// MMDC0_MDCTL
+setmem /32	0x021b0000 =	0x83190000	// MMDC0_MDCTL
 			
 // Mode register writes			
 setmem /32	0x021b001c =	0x04008032	// MMDC0_MDSCR, MR2 write, CS0
@@ -181,13 +168,8 @@ setmem /32	0x021b001c =	0x04008040	// MMDC0_MDSCR, ZQ calibration command sent t
 			
 			
 setmem /32	0x021b0020 =	0x00005800	// MMDC0_MDREF
-			
-// Per the judgement of the core team it was decided to disable the MX6 ODT on the for the SabreSD board 			
-// in an attempt to save some power at the risk of stability. It is recommended for new board designs and for customer boards			
-// to first program these registers to a value of "0x00011117" and once stability is ensured, to clear it and re-ascertain stability			
-// The DRAM ODT remains enabled and it is required to leave the DRAM ODT enabled			
-setmem /32	0x021b0818 =	0x00000007	// DDR_PHY_P0_MPODTCTRL
-setmem /32	0x021b4818 =	0x00000007	// DDR_PHY_P1_MPODTCTRL
+setmem /32	0x021b0818 =	0x00011117	// DDR_PHY_P0_MPODTCTRL
+//setmem /32	0x021b4818 =	0x00011117	// DDR_PHY_P1_MPODTCTRL, not used for 32-bit bus
 			
 			
 setmem /32	0x021b0004 =	0x0002556D	// MMDC0_MDPDC with PWDT bits set

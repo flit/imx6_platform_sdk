@@ -38,19 +38,6 @@
 // Code
 ////////////////////////////////////////////////////////////////////////////////
 
-//! @brief Fills in the frequency info in each module's structure.
-void freq_populate(void)
-{
-    int32_t i;
-    hw_module_t *tmp;
-
-    // Populate module frequency settings (important for UART driver)
-    for (i = 0; (tmp = g_imx_modules[i]) != NULL; i++)
-    {
-        tmp->freq = get_module_freq(tmp->base);
-    }
-}
-
 void platform_init(void)
 {
     enable_neon_fpu();
@@ -73,12 +60,8 @@ void platform_init(void)
     // Configure the EPIT timer used for system delay function. 
     system_time_init();
     
-    // populate the freq member of the referenced hw_module in mx6dq_module 
-    freq_populate();
-
     // Initialize the debug/console UART 
     uart_init(g_debug_uart_port, 115200, PARITY_NONE, STOPBITS_ONE, EIGHTBITS, FLOWCTRL_OFF);
-
 
     // flush UART RX FIFO 
     uint8_t c;

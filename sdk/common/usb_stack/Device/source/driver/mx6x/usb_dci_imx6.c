@@ -13,6 +13,7 @@
 #include "registers/regsusbphy.h"
 #include "registers/regsccm.h"
 #include "registers/regsccmanalog.h"
+#include "buffers.h"
 
 /*****************************************************************************
  * Forward function declarations
@@ -99,15 +100,17 @@ static inline unsigned int readl(volatile unsigned int * addr);
 usb_mx6_hardware_t *usbotg[MAX_USB_STACKS] = {(usb_mx6_hardware_t *) REGS_USBC_BASE}; //,
                                                 //(usb_mx6_hardware_t *) REGS_USBCTRL1_BASE};
 
-#pragma data_alignment=(0x1000)
-unsigned char g_usbd0_qh_buf[TOTAL_QHD_SIZE];
-#pragma data_alignment=(0x1000)
-unsigned char g_usbd1_qh_buf[TOTAL_QHD_SIZE];
-#pragma data_alignment=(0x800)
-unsigned char g_usbd0_td_buf[TOTAL_QTD_SIZE];
-#pragma data_alignment=(0x800)
-unsigned char g_usbd1_td_buf[TOTAL_QTD_SIZE];
+// #pragma data_alignment=(0x1000)
+// unsigned char g_usbd0_qh_buf[TOTAL_QHD_SIZE];
+// #pragma data_alignment=(0x1000)
+// unsigned char g_usbd1_qh_buf[TOTAL_QHD_SIZE];
+// #pragma data_alignment=(0x800)
+// unsigned char g_usbd0_td_buf[TOTAL_QTD_SIZE];
+// #pragma data_alignment=(0x800)
+// unsigned char g_usbd1_td_buf[TOTAL_QTD_SIZE];
 
+unsigned char * g_usbd_qh_bufs[MAX_USB_STACKS] = {0};
+unsigned char * g_usbd_td_bufs[MAX_USB_STACKS] = {0};
 
 static uint_8 g_dci_address_state[MAX_USB_STACKS] = {0};
 static uint_8 g_dci_controller_Id[MAX_USB_STACKS] = {0};
@@ -152,7 +155,12 @@ uint_8 USB_DCI_Init(
 )
 {
     usb_status_t status;
-    unsigned char *qh_buf = controller_ID ? g_usbd1_qh_buf : g_usbd0_qh_buf;
+    
+    g_usbd_qh_bufs[controller_ID] = (unsigned char *)(QH_BUFFER + TOTAL_QHD_SIZE * controller_ID);
+    g_usbd_td_bufs[controller_ID] = (unsigned char *)(TD_BUFFER + TOTAL_QTD_SIZE * controller_ID);
+    
+//     unsigned char *qh_buf = controller_ID ? g_usbd1_qh_buf : g_usbd0_qh_buf;
+    unsigned char *qh_buf = g_usbd_qh_bufs[controller_ID];
 
     printf_info("%s\n", __func__);
 
@@ -826,7 +834,8 @@ static usb_status_t usb_set_device_mode(uint_8 controller_ID)
 {
     unsigned int count = 10000;
     unsigned int reg;
-    unsigned char *qh_buf = controller_ID ? g_usbd1_qh_buf : g_usbd0_qh_buf;
+//     unsigned char *qh_buf = controller_ID ? g_usbd1_qh_buf : g_usbd0_qh_buf;
+    unsigned char *qh_buf = g_usbd_qh_bufs[controller_ID];
 
     printf_info("set usb%d as device\n", controller_ID);
 
@@ -1084,8 +1093,8 @@ static void usbd_setup_td(struct dtd_t *td)
  */
 static unsigned int usbd_get_dqh(uint_8 controller_ID, unsigned char endpt_number, unsigned char direction)
 {
-
-    unsigned char *qh_buf = controller_ID ? g_usbd1_qh_buf : g_usbd0_qh_buf;
+//     unsigned char *qh_buf = controller_ID ? g_usbd1_qh_buf : g_usbd0_qh_buf;
+    unsigned char *qh_buf = g_usbd_qh_bufs[controller_ID];
 
     /* direction OUT = 0 and IN = 1 */
     return (unsigned int)(qh_buf + (SIZE_OF_QHD * (endpt_number * 2 + direction)));
@@ -1101,7 +1110,8 @@ static unsigned int usbd_get_dqh(uint_8 controller_ID, unsigned char endpt_numbe
  */
 static unsigned int usbd_get_dtd(uint_8 controller_ID, unsigned char endpt_number, unsigned char direction, unsigned int sz)
 {
-    unsigned char *td_buf = controller_ID ? g_usbd1_td_buf : g_usbd0_td_buf;
+//     unsigned char *td_buf = controller_ID ? g_usbd1_td_buf : g_usbd0_td_buf;
+    unsigned char *td_buf = g_usbd_td_bufs[controller_ID];
     int td_index = (endpt_number * 2) + direction;
     uint_8 *enq_idx = &g_usbd_queue_info[controller_ID][td_index].enq_idx;
     unsigned int phys_td;

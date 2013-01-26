@@ -48,14 +48,13 @@ void snvs_rtc_setup_interrupt(void (*irq_subroutine)(void), uint8_t state);
  * RTC structures used by the driver.
  */
 typedef struct snvs_rtc_module_ {
-    funct_t onetime_timer_callback;
-    funct_t periodic_timer_callback;
+    rtc_callback_t onetime_timer_callback;
+    void * onetimeCallbackArg;
+    rtc_callback_t periodic_timer_callback;
+    void * periodicCallbackArg;
 } snvs_rtc_module_t;
 
-static snvs_rtc_module_t s_snvs_rtc_module = {
-    NULL,
-    NULL
-};
+static snvs_rtc_module_t s_snvs_rtc_module;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code
@@ -72,8 +71,9 @@ void snvs_rtc_interrupt_handler(void)
     {
         if (s_snvs_rtc_module.onetime_timer_callback != NULL)
         {
-            s_snvs_rtc_module.onetime_timer_callback();
+            s_snvs_rtc_module.onetime_timer_callback(s_snvs_rtc_module.onetimeCallbackArg);
             s_snvs_rtc_module.onetime_timer_callback = NULL;
+            s_snvs_rtc_module.onetimeCallbackArg = 0;
             snvs_rtc_alarm(false);
         }
     }
@@ -82,7 +82,7 @@ void snvs_rtc_interrupt_handler(void)
     {
         if (s_snvs_rtc_module.periodic_timer_callback != NULL)
         {
-            s_snvs_rtc_module.periodic_timer_callback();
+            s_snvs_rtc_module.periodic_timer_callback(s_snvs_rtc_module.periodicCallbackArg);
         }
     }
     
@@ -122,6 +122,12 @@ void snvs_rtc_setup_interrupt(void (*irq_subroutine)(void), uint8_t state)
 
 void rtc_init(void)
 {
+    // Init state.
+    s_snvs_rtc_module.onetime_timer_callback = NULL;
+    s_snvs_rtc_module.onetimeCallbackArg = 0;
+    s_snvs_rtc_module.periodic_timer_callback = NULL;
+    s_snvs_rtc_module.periodicCallbackArg = 0;
+
     // Initialize SNVS driver 
     snvs_init();
 
@@ -152,7 +158,7 @@ void rtc_deinit(void)
     snvs_deinit();
 }
 
-void rtc_setup_onetime_timer(uint64_t timeout, funct_t callback)
+void rtc_setup_onetime_timer(uint64_t timeout, rtc_callback_t callback, void * arg)
 {
     // Disables interrupt 
     snvs_rtc_setup_interrupt(NULL, false);
@@ -165,12 +171,13 @@ void rtc_setup_onetime_timer(uint64_t timeout, funct_t callback)
 
     // Set callback pointer 
     s_snvs_rtc_module.onetime_timer_callback = callback;
+    s_snvs_rtc_module.onetimeCallbackArg = arg;
 
     // Enable the interrupt 
     snvs_rtc_setup_interrupt(snvs_rtc_interrupt_handler, true);
 }
 
-void rtc_setup_periodic_timer(uint32_t periodic_bit, funct_t callback)
+void rtc_setup_periodic_timer(uint32_t periodic_bit, rtc_callback_t callback, void * arg)
 {
     // Disable interrupt 
     snvs_rtc_setup_interrupt(NULL, false);
@@ -180,6 +187,7 @@ void rtc_setup_periodic_timer(uint32_t periodic_bit, funct_t callback)
 
     // Set the callback pointer 
     s_snvs_rtc_module.periodic_timer_callback = callback;
+    s_snvs_rtc_module.periodicCallbackArg = arg;
 
     // Enable counter and periodic interrupt 
     snvs_rtc_counter(true);
@@ -199,6 +207,7 @@ void rtc_disable_periodic_timer(void)
 
     // Remove callback 
     s_snvs_rtc_module.periodic_timer_callback = NULL;
+    s_snvs_rtc_module.periodicCallbackArg = 0;
 
     // Reenable interrupts 
     snvs_rtc_setup_interrupt(snvs_rtc_interrupt_handler, true);

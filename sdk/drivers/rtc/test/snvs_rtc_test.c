@@ -43,12 +43,12 @@
 static int32_t onetime_tick = 0;
 static int32_t periodic_tick = 0;
 
-void one_time_tick_callback(void)
+void one_time_tick_callback(void * arg)
 {
     onetime_tick = 1;
 }
 
-void periodic_tick_callback(void)
+void periodic_tick_callback(void * arg)
 {
     periodic_tick ++;
     if(periodic_tick > 10)
@@ -63,7 +63,7 @@ void one_time_timer_test(void)
 
     rtc_init();
     
-    rtc_setup_onetime_timer(10, one_time_tick_callback);
+    rtc_setup_onetime_timer(10, one_time_tick_callback, 0);
 
     while(loop--)
     {
@@ -87,7 +87,7 @@ void periodic_timer_test(void)
 
     rtc_init();
     
-    rtc_setup_periodic_timer(2, periodic_tick_callback);
+    rtc_setup_periodic_timer(2, periodic_tick_callback, 0);
 
     while(loop--)
     {

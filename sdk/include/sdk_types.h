@@ -106,9 +106,6 @@ typedef enum _test_return
 #define ERROR_OUT_OF_MEMORY (-2)
 //@}
 
-//! @brief Defines a pointer to a function.
-typedef void (*funct_t) (void);
-
 /*!
  * @brief Details of a hardware peripheral instance.
  */

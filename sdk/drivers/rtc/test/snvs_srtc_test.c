@@ -42,7 +42,7 @@
 
 static int32_t onetime_tick = 0;
 
-void srtc_one_time_tick_callback(void)
+void srtc_one_time_tick_callback(void * arg)
 {
     onetime_tick = 1;
 }
@@ -55,7 +55,7 @@ void srtc_one_time_timer_test(void)
 
     srtc_init();
     
-    srtc_setup_onetime_timer(1, srtc_one_time_tick_callback);
+    srtc_setup_onetime_timer(1, srtc_one_time_tick_callback, 0);
 
     while(loop--)
     {

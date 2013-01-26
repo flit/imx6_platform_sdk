@@ -41,6 +41,13 @@
 #include "sdk.h"
 
 ////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
+
+//! @brief Type for an RTC timer callback function.
+typedef void (*rtc_callback_t)(void * arg);
+
+////////////////////////////////////////////////////////////////////////////////
 // API
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -66,16 +73,18 @@ void rtc_deinit(void);
  *
  * @param   timeout Set RTC alarm timeout.
  * @param   callback Callback function to be called from isr.
+ * @param   arg Arbitrary argument passed to the callacbk function.
  */
-void rtc_setup_onetime_timer(uint64_t timeout, funct_t callback);
+void rtc_setup_onetime_timer(uint64_t timeout, rtc_callback_t callback, void * arg);
 
 /*!
  * @brief Sets up a periodic timer.
  *
  * @param   periodic_bit Periodic interrupt freq (valid values 0-15)
  * @param   callback Pointer to callback function
+ * @param   arg Arbitrary argument passed to the callacbk function.
  */
-void rtc_setup_periodic_timer(uint32_t periodic_bit, funct_t callback);
+void rtc_setup_periodic_timer(uint32_t periodic_bit, rtc_callback_t callback, void * arg);
 
 /*!
  * @brief Disables the periodic timer.

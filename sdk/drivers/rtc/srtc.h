@@ -41,6 +41,13 @@
 #include "sdk.h"
 
 ////////////////////////////////////////////////////////////////////////////////
+// Definitions
+////////////////////////////////////////////////////////////////////////////////
+
+//! @brief Type for the SRTC timer callback function.
+typedef void (*srtc_callback_t)(void * arg);
+
+////////////////////////////////////////////////////////////////////////////////
 // API
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -66,8 +73,9 @@ void srtc_deinit(void);
  *
  * @param   timeout Set SRTC alarm timeout.
  * @param   callback Callback function to be called from isr.
+ * @param   arg Arbitrary argument passed to the callacbk function.
  */
-void srtc_setup_onetime_timer(uint32_t timeout, funct_t callback);
+void srtc_setup_onetime_timer(uint32_t timeout, srtc_callback_t callback, void * arg);
 
 #if defined(__cplusplus)
 }

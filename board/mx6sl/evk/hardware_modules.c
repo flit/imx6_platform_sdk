@@ -35,88 +35,17 @@
  * @ingroup diag_init
  */
 
-#include <math.h>
-#include "registers/regsccmanalog.h"
-#include "registers/regspmu.h"
-#include "registers/regsccm.h"
 #include "registers/regsuart.h"
 #include "registers/regsepit.h"
-#include "sdk.h"
-
-#define DUMMY_ARM_CORE_BASE_ADDR 0x12345789
+#include "sdk_types.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Variables
 ////////////////////////////////////////////////////////////////////////////////
 
-// ARM core.
-hw_module_t g_arm_core = {
-    "Cortex A9 core",
-    1,
-    DUMMY_ARM_CORE_BASE_ADDR,
-    792000000,
-};
-
-//! UART1 is the serial debug/console port for the mx6sl evk.
-hw_module_t g_debug_uart = {
-    "UART1 for debug",
-    1,
-    UART1_BASE_ADDR,
-    80000000,
-    IMX_INT_UART1,
-    &default_interrupt_routine,
-};
-
 uint32_t g_debug_uart_port = HW_UART1;
 
-/* EPIT1 used for time functions */
-hw_module_t g_system_timer = {
-    "EPIT1 for system timer",
-    1,
-    EPIT1_BASE_ADDR,
-    66000000,
-    IMX_INT_EPIT1,
-    &default_interrupt_routine,
-};
-
 uint32_t g_system_timer_port = HW_EPIT1;
-
-hw_module_t g_ddr = {
-    "DDR memory",
-    1,
-    MMDC_P0_BASE_ADDR,
-    400000000,
-};
-
-hw_module_t *g_imx_modules[] = {
-    &g_arm_core,
-    &g_ddr,
-    &g_debug_uart,
-    &g_system_timer,
-    NULL,
-};
-
-////////////////////////////////////////////////////////////////////////////////
-// Code
-////////////////////////////////////////////////////////////////////////////////
-
-uint32_t get_module_freq(uint32_t module_base)
-{
-    if (module_base == DUMMY_ARM_CORE_BASE_ADDR)
-        return get_main_clock(CPU_CLK);
-    else if (module_base == MMDC_P0_BASE_ADDR)
-        return get_main_clock(MMDC_CH0_AXI_CLK);
-    else if (module_base == g_debug_uart.base)
-        return get_peri_clock(UART1_MODULE_CLK);
-    else if (module_base == g_system_timer.base)
-        /* value depends on how the timer is configured, 
-           and this is actually initialized in system_time_init() */
-        return g_system_timer.freq;
-    else {
-        printf("Not a valid module base address \n");
-        return 0;
-    }
-}
 
 ////////////////////////////////////////////////////////////////////////////////
 // EOF

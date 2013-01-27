@@ -568,7 +568,7 @@ void gpmi_set_timing_internal(const GpmiNandTimings_t * theTimings,
                     printf("(DelayTime > GPMI max %d) and DataSetupCycles < max %d. Adjusting DelayTime.@n",u32GpmiMaxDelay_ns,MAX_DATA_SETUP_CYCLES );
                     // ...and print an interim list of timings afterward.
                     bPrintInterimTimings = true;
-}
+                }
                 #endif
                 u32DataSetupCycles++;                               // Give an additional DataSetup cycle
                 u32DataSetup_ns += u32GpmiPeriod_ns;                // Keep DataSetup time in step with cycles
@@ -586,7 +586,7 @@ void gpmi_set_timing_internal(const GpmiNandTimings_t * theTimings,
 
             #if GPMI_PRINT_TIMINGS
             if ( bPrintInterimTimings )
-{
+            {
                 _print_dynamic_timing_summary(
                     u32GpmiPeriod_ns,
                     u32GpmiDelayFraction,
@@ -615,7 +615,7 @@ void gpmi_set_timing_internal(const GpmiNandTimings_t * theTimings,
                     bPrintInterimTimings = true;
                 }
                 #endif
-                if ( ((u32DataSampleDelayCycles * u32GpmiPeriod_ns) / u32GpmiDelayFraction) > i32DelayTime_ns )
+                if ( (int32_t)((u32DataSampleDelayCycles * u32GpmiPeriod_ns) / u32GpmiDelayFraction) > i32DelayTime_ns )
                 {
                     // If quantized DelayTime is greater than max reach of the eye decrease quantized 
                     // DelayTime to get it into the eye or before the eye

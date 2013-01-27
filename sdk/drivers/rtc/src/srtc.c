@@ -36,7 +36,7 @@
  */
 
 #include "sdk.h"
-#include "rtc/rtc.h"
+#include "rtc/srtc.h"
 #include "registers/regssnvs.h"
 #include "irq_numbers.h"
 #include "interrupt.h"
@@ -46,14 +46,13 @@
  * @brief SRTC strucures used by the driver.
  */
 typedef struct snvs_srtc_module_ {
-    funct_t onetime_timer_callback;
+    srtc_callback_t onetime_timer_callback;
+    void * callbackArg;
 } snvs_srtc_module_t;
 
 void snvs_srtc_setup_interrupt(void (*irq_subroutine)(void), uint8_t state);
 
-static snvs_srtc_module_t s_snvs_srtc_module = {
-    NULL
-};
+static snvs_srtc_module_t s_snvs_srtc_module;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code
@@ -98,8 +97,9 @@ void snvs_srtc_interrupt_handler(void)
     {
         HW_SNVS_LPSR_CLR(BM_SNVS_LPSR_LPTA);
 
-        s_snvs_srtc_module.onetime_timer_callback();
+        s_snvs_srtc_module.onetime_timer_callback(s_snvs_srtc_module.callbackArg);
         s_snvs_srtc_module.onetime_timer_callback = NULL;
+        s_snvs_srtc_module.callbackArg = 0;
         snvs_srtc_alarm(false);
     }   
     else
@@ -110,6 +110,10 @@ void snvs_srtc_interrupt_handler(void)
 
 void srtc_init(void)
 {
+    // Clear state.
+    s_snvs_srtc_module.onetime_timer_callback = NULL;
+    s_snvs_srtc_module.callbackArg = 0;
+
     // Initialize SNVS driver 
     snvs_init();
 
@@ -133,7 +137,7 @@ void srtc_deinit(void)
     snvs_deinit();
 }
 
-void srtc_setup_onetime_timer(uint32_t timeout, funct_t callback)
+void srtc_setup_onetime_timer(uint32_t timeout, srtc_callback_t callback, void * arg)
 {
     // Disables the interrupt 
     snvs_srtc_setup_interrupt(NULL, false);
@@ -146,6 +150,7 @@ void srtc_setup_onetime_timer(uint32_t timeout, funct_t callback)
 
     // Set the callback function 
     s_snvs_srtc_module.onetime_timer_callback = callback;
+    s_snvs_srtc_module.callbackArg = arg;
 
     // Reanable the interrupt 
     snvs_srtc_setup_interrupt(snvs_srtc_interrupt_handler, true);

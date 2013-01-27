@@ -60,9 +60,9 @@ typedef void hab_rvt_failsafe_t(void);
 
 //! @name Board support
 //@{
-//! @brief Hardware module for debug UART.
+//! @brief UART port instance number used for the debug UART.
 //!
-//! This hw_module is used by the driver in order to factor out board
+//! This is used by the driver in order to factor out board
 //! specific functionality. It must be defined by the board support
 //! library or the application.
 extern uint32_t g_debug_uart_port;

@@ -29,7 +29,8 @@
  */
 
 #include "print_clock_info.h"
-#include "platform_init.h"
+#include "core/ccm_pll.h"
+#include "registers/regsuart.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code
@@ -37,14 +38,14 @@
 
 void show_freq(void)
 {
-    int32_t i;
-    hw_module_t *tmp;
-    printf("======== Clock frequencies(HZ) =========\n");
+    printf("========== Clock frequencies ===========\n");
 
-    for (i = 0; (tmp = g_imx_modules[i]) != NULL; i++) {
-        printf("%s\t: %d,%03d,%03d\n", tmp->name, tmp->freq / 1000000,
-               (tmp->freq % 1000000) / 1000, tmp->freq % 1000);
-    }
+    printf("CPU: %d kHz\n", get_main_clock(CPU_CLK)/1000);
+    printf("DDR: %d kHz\n", get_main_clock(MMDC_CH0_AXI_CLK)/1000);
+    printf("IPG: %d kHz\n", get_main_clock(IPG_CLK)/1000);
+    
+    peri_clocks_t clk = UART1_MODULE_CLK + (g_debug_uart_port - HW_UART1);
+    printf("Debug UART: %d Hz\n", get_peri_clock(clk));
 
     printf("========================================\n\n");
 }

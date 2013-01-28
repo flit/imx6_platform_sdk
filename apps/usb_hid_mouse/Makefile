@@ -52,6 +52,9 @@ LIBRARIES = \
     $(LIBSDK) \
     $(LIBBOARD)
 
+# Enable high speed device support. Mostly used to adjust device descriptor.
+DEFINES += -DHIGH_SPEED_DEVICE
+
 # Specify our linker script.
 LD_FILE = $(APPS_ROOT)/common/basic_sdk_app.ld.S
 

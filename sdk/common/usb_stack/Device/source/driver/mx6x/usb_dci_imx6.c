@@ -57,7 +57,7 @@ static inline unsigned int readl(volatile unsigned int * addr);
  * Definitions
  *****************************************************************************/
 
-#define PRINT_USB_INFO 0
+#define PRINT_USB_INFO 1
 #define PRINT_USB_ERRORS 1
 
 // To activate info printf's, define printf_info as printf
@@ -158,6 +158,10 @@ uint_8 USB_DCI_Init(
     
     g_usbd_qh_bufs[controller_ID] = (unsigned char *)(QH_BUFFER + TOTAL_QHD_SIZE * controller_ID);
     g_usbd_td_bufs[controller_ID] = (unsigned char *)(TD_BUFFER + TOTAL_QTD_SIZE * controller_ID);
+    
+    // Clear qh and td bufs.
+    memset(g_usbd_qh_bufs[controller_ID], 0, TOTAL_QHD_SIZE);
+    memset(g_usbd_td_bufs[controller_ID], 0, TOTAL_QTD_SIZE);
     
 //     unsigned char *qh_buf = controller_ID ? g_usbd1_qh_buf : g_usbd0_qh_buf;
     unsigned char *qh_buf = g_usbd_qh_bufs[controller_ID];
@@ -1170,6 +1174,8 @@ static void usb0_isr(void)// *data)
     intr_stat = readl(&usbotg[0]->usbsts);
     // Only process the interrupts that are enabled
     intr_stat &= readl(&usbotg[0]->usbintr);
+    
+//     printf("usb0_isr %x\n", intr_stat);
 
     /* initialize event structure */
     event.controller_ID = g_dci_controller_Id[0];

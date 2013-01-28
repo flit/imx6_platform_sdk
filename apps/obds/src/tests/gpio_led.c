@@ -86,11 +86,11 @@ test_return_t gpio_led_test(void)
     printf("%sIs the USER LED blinking? [y/n]\n", indent);
     while (1)  
     {
-        gpio_set_level(gpio_inst, bit, GPIO_LOW_LEVEL);
+        gpio_set_level(gpio_inst, bit, GPIO_HIGH_LEVEL);
 
         hal_delay_us(200000);
 
-        gpio_set_level(gpio_inst, bit, GPIO_HIGH_LEVEL);
+        gpio_set_level(gpio_inst, bit, GPIO_LOW_LEVEL);
 
         hal_delay_us(200000);
        

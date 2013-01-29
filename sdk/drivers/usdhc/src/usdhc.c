@@ -36,6 +36,7 @@
 #include "registers/regsusdhc.h"
 #include "buffers.h"
 #include "core/cortex_a9.h"
+#include "utility/menu.h"
 
 /* Global Variables */
 
@@ -84,6 +85,14 @@ usdhc_inst_t usdhc_device[USDHC_NUMBER_PORTS] = {
      }
     ,
 };
+
+/* Whether to enable Card Detect Test in card_init() */
+extern int card_detect_test_en;
+extern bool usdhc_card_detected(uint32_t instance);
+
+/* Whether to enable Card Protect Test in card_init() */
+extern int write_protect_test_en;
+extern bool usdhc_write_protected(uint32_t instance);
 
 /* Whether to enable ADMA */
 static int SDHC_ADMA_mode = FALSE;
@@ -182,6 +191,7 @@ uint32_t read_usdhc_intr_mode()
 int card_init(uint32_t instance, int bus_width)
 {
     int init_status = FAIL;
+    const char* indent = menu_get_indent();
 
     /* Initialize uSDHC Controller */
     host_init(instance);
@@ -189,9 +199,29 @@ int card_init(uint32_t instance, int bus_width)
     /* Software Reset to Interface Controller */
     host_reset(instance, ESDHC_ONE_BIT_SUPPORT, ESDHC_LITTLE_ENDIAN_MODE);
 
+    /* card detect */
+    if(card_detect_test_en) {
+        if(usdhc_card_detected(instance) == false) {
+            printf("%s   *Card on SD%d is not inserted.\n", indent, instance);
+            return FAIL;
+        } else {
+            printf("%s   Card on SD%d is inserted.\n", indent, instance);
+        }
+    }
+
+    /* write protect */
+    if(write_protect_test_en) {
+        if(usdhc_write_protected(instance) == true) {
+            printf("%s   *Card on SD%d is write protected.\n", indent, instance);
+            return FAIL;
+        } else {
+            printf("%s   Card on SD%d is not write protected.\n", indent, instance);
+        }
+    }
+
     /* Initialize interrupt */
     if (card_init_interrupt(instance) == FAIL) {
-        printf("Interrupt initialize failed.\n");
+        printf("%s   Interrupt initialize failed.\n", indent);
         return FAIL;
     }
 

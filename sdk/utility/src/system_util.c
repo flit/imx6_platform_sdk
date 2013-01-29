@@ -103,7 +103,7 @@ int32_t is_input_char(uint8_t c, const char* const indent)
     do {
         input = uart_getchar(g_debug_uart_port);
     } while (input == NONE_CHAR);
-    printf("%c\n  ", input);
+    printf("%c\n", input);
 
     if ((input == uc) || (input == lc))
         return 1;

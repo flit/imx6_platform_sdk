@@ -48,6 +48,7 @@ SOURCES := \
 	$(SDK_ROOT)/board/common/board_network.c \
 	$(SDK_ROOT)/board/common/board_pcie.c \
 	$(SDK_ROOT)/board/common/board_usb.c \
+	$(SDK_ROOT)/board/common/board_usdhc.c \
 	$(SDK_ROOT)/board/$(TARGET)/$(BOARD)/dcd.c \
 	$(wildcard iomux/*.c)
 

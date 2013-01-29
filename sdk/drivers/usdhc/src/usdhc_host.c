@@ -34,8 +34,7 @@
 #include "registers/regsusdhc.h"
 #include "timer/timer.h"
 
-//extern int SDHC_ADMA_mode;
-//extern int SDHC_INTR_mode;
+extern void usdhc_gpio_config(uint32_t instance);
 
 /*---------------------------------------------- Static Fcuntion ------------------------------------------------*/
 /*!
@@ -122,7 +121,6 @@ static void usdhc_cmd_cfg(uint32_t instance, command_t * cmd)
     HW_USDHC_PROT_CTRL_CLR(instance, BM_USDHC_PROT_CTRL_DMASEL);
 
     /* If ADMA mode enabled and command with DMA, enable ADMA2 */
-//    if ((cmd->dma_enable == TRUE) && (SDHC_ADMA_mode == TRUE)) {
     if ((cmd->dma_enable == TRUE) && (read_usdhc_adma_mode() == TRUE)) {
     	BW_USDHC_PROT_CTRL_DMASEL(instance, ESDHC_PRTCTL_ADMA2_VAL);
     }
@@ -322,6 +320,7 @@ void host_init(uint32_t instance)
 
     /* IOMUX Configuration */
     usdhc_iomux_config(instance);
+    usdhc_gpio_config(instance);
 }
 
 /*!
@@ -366,7 +365,6 @@ int host_send_cmd(uint32_t instance, command_t * cmd)
     HW_USDHC_INT_STATUS(instance).U |= ESDHC_STATUS_END_CMD_RESP_TIME_MSK;
 
     /* Enable interrupt when sending DMA commands */
-//    if ((SDHC_INTR_mode == TRUE) && (cmd->dma_enable == TRUE)) {
     if ((read_usdhc_intr_mode() == TRUE) && (cmd->dma_enable == TRUE)) {
         int idx = card_get_port(instance);
 
@@ -383,7 +381,6 @@ int host_send_cmd(uint32_t instance, command_t * cmd)
     /* If DMA Enabled */
     if (cmd->dma_enable == TRUE) {
         /* Return in interrupt mode */
- //       if (SDHC_INTR_mode == TRUE) {
         if (read_usdhc_intr_mode() == TRUE) {     
             return SUCCESS;
         }

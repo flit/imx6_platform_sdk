@@ -42,6 +42,7 @@ SOURCES := \
 	board_camera.c \
 	board_network.c \
 	board_usb.c \
+	board_usdhc.c \
 	$(SDK_ROOT)/board/$(TARGET)/$(BOARD)/dcd.c \
 	$(wildcard iomux/*.c)
 

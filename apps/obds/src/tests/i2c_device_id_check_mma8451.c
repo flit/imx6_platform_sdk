@@ -93,6 +93,14 @@ test_return_t i2c_device_id_check_MMA8451(void)
     gpio_set_level(GPIO_PORT2, 31, GPIO_LOW_LEVEL);
     hal_delay_us(1000);
     gpio_set_level(GPIO_PORT2, 31, GPIO_HIGH_LEVEL);
+
+    // Make sure Audio codec, also on I2C1, is powered up to
+    // allow I2C1 bus to work properly.
+    //
+    //CODEC PWR_EN, key_col12
+    writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_KEY_COL2);
+    gpio_set_direction(GPIO_PORT4, 10, GPIO_GDIR_OUTPUT);
+    gpio_set_level(GPIO_PORT4, 10, GPIO_HIGH_LEVEL);
 #endif    
 
     i2c_init(i2c_base_addr, 170000);

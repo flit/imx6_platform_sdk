@@ -115,16 +115,10 @@ enum _imx_interrupts
     IMX_INT_I2C2 = 69,  //!< I2C2 interrupt request.
     IMX_INT_I2C3 = 70,  //!< I2C3 interrupt request.
     IMX_INT_SATA = 71,  //!< SATA interrupt request.
-#if defined(CHIP_MX6DQ) || defined(CHIP_MX6SDL)
     IMX_INT_USBOH3_UH1 = 72,    //!< USB Host 1 interrupt request.
     IMX_INT_USBOH3_UH2 = 73,    //!< USB Host 2 interrupt request.
     IMX_INT_USBOH3_UH3 = 74,    //!< USB Host 3 interrupt request.
     IMX_INT_USBOH3_UOTG = 75,   //!< USB OTG interrupt request.
-#elif defined(CHIP_MX6SL)
-    IMX_INT_USB_UH = 72,    //!< USB Host 1 interrupt request.
-    IMX_INT_USB_UOTG2 = 74,    //!< USB OTG 2 interrupt request.
-    IMX_INT_USB_UOTG1 = 75,    //!< USB OTG 1 interrupt request.
-#endif
     IMX_INT_USB_UTMI0 = 76, //!< UTMI0 interrupt request.
     IMX_INT_USB_UTMI1 = 77, //!< UTMI1 interrupt request.
     IMX_INT_SSI1 = 78,  //!< SSI1 interrupt request.

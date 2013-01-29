@@ -39,13 +39,8 @@ Device/source/common/usb_class.c
 Device/source/class/usb_hid.c
 Device/source/driver/usbevent.c
 Device/source/driver/usb_driver.c
+Device/source/driver/mx6x/usb_dci_imx6.c
 endef
-
-ifeq "$(TARGET)" "mx6sl"
-SOURCES += Device/source/driver/mx6x/usb_dci_imx6sl.c
-else
-SOURCES += Device/source/driver/mx6x/usb_dci_imx6.c
-endif
 
 # Set defines used by the USB stack.
 DEFINES += \

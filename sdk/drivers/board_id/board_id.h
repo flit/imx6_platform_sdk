@@ -98,11 +98,12 @@ void show_board_id(const fsl_board_id_t board_id, const char* const indent);
 
 //! @name Board Revision
 //@{
-#define BOARD_REVISION_DEFAULT	0x0
-#define BOARD_REVISION_A	    0x1
-#define BOARD_REVISION_B	    0x2
+#define BOARD_REVISION_DEFAULT  0x0
+#define BOARD_REVISION_A        0x1
+#define BOARD_REVISION_B        0x2
 #define BOARD_REVISION_BX       0x3
 #define BOARD_REVISION_C        0x4
+#define BOARD_REVISION_D        0x5
 //@}
 
 #if defined(CHIP_MX6SL)
@@ -133,6 +134,8 @@ void show_board_id(const fsl_board_id_t board_id, const char* const indent);
 #define BOARD_REVISION        BOARD_REVISION_B
 #elif defined(BOARD_REV_C)
 #define BOARD_REVISION        BOARD_REVISION_C
+#elif defined(BOARD_REV_D)
+#define BOARD_REVISION        BOARD_REVISION_D
 #else
 #error Need to define a board revision
 #endif

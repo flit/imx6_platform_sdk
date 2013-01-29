@@ -154,6 +154,9 @@ void board_revision(char* const name, const uint32_t board_rev)
     case 4:
         revision[5] = 'C';
         break;
+    case 5:
+        revision[5] = 'D';
+        break;
     default:
         revision[5] = (char)((board_rev & 0xFF) + '0');
         break;

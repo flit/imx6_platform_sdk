@@ -129,17 +129,24 @@ test_return_t program_board_id(void)
         (BOARD_TYPE == BOARD_TYPE_SABRE_AI || BOARD_TYPE == BOARD_TYPE_SMART_DEVICE) &&
          BOARD_REVISION == BOARD_REVISION_B)
     {
-        printf("%sThis binary will work for REV_C, REV_BX, and REV_B boards.\n", indent);
-        printf("%sWould you like to use the REV_C board ID for this board?\n", indent);
+        printf("%sThis binary will work for REV_D, REV_C, REV_BX, and REV_B boards.\n", indent);
+        printf("%sWould you like to use the REV_D board ID for this board?\n", indent);
         if (is_input_char('y', indent)) {
-            printf("%sUsing REV_C board ID instead of REV_B board ID.\n\n", indent);
-            fw_board_rev = BOARD_REVISION_C;
+            printf("%sUsing REV_D board ID instead of REV_B board ID.\n\n", indent);
+            fw_board_rev = BOARD_REVISION_D;
         }
-        else if(BOARD_TYPE == BOARD_TYPE_SABRE_AI){
-            printf("%sWould you like to use the REV_BX board ID for this board?\n", indent);
+        else {
+            printf("%sWould you like to use the REV_C board ID for this board?\n", indent);
             if (is_input_char('y', indent)) {
-                printf("%sUsing REV_BX board ID instead of REV_B board ID.\n\n", indent);
-                fw_board_rev = BOARD_REVISION_BX;
+                printf("%sUsing REV_C board ID instead of REV_B board ID.\n\n", indent);
+                fw_board_rev = BOARD_REVISION_C;
+            }
+            else if(BOARD_TYPE == BOARD_TYPE_SABRE_AI){
+                printf("%sWould you like to use the REV_BX board ID for this board?\n", indent);
+                if (is_input_char('y', indent)) {
+                    printf("%sUsing REV_BX board ID instead of REV_B board ID.\n\n", indent);
+                    fw_board_rev = BOARD_REVISION_BX;
+                }
             }
         }
     }

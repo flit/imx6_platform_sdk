@@ -34,8 +34,8 @@
 #include "registers/regsusdhc.h"
 
 int SDHC_UHSI_mode;
-int card_detect_test_en;
-int write_protect_test_en;
+extern int card_detect_test_en;
+extern int write_protect_test_en;
 const char g_mmcsd_test_name[] = "MMC/SD Test";
 
 extern test_return_t mmc_sd_test(unsigned int bus_width, uint32_t instance);

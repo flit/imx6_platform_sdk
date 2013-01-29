@@ -87,11 +87,11 @@ usdhc_inst_t usdhc_device[USDHC_NUMBER_PORTS] = {
 };
 
 /* Whether to enable Card Detect Test in card_init() */
-extern int card_detect_test_en;
+int card_detect_test_en = 1;
 extern bool usdhc_card_detected(uint32_t instance);
 
 /* Whether to enable Card Protect Test in card_init() */
-extern int write_protect_test_en;
+int write_protect_test_en = 1;
 extern bool usdhc_write_protected(uint32_t instance);
 
 /* Whether to enable ADMA */

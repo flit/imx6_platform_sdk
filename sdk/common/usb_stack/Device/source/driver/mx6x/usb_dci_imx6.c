@@ -58,7 +58,7 @@ static inline unsigned int readl(volatile unsigned int * addr);
  * Definitions
  *****************************************************************************/
 
-#define PRINT_USB_INFO 1
+#define PRINT_USB_INFO 0
 #define PRINT_USB_ERRORS 1
 
 // To activate info printf's, define printf_info as printf

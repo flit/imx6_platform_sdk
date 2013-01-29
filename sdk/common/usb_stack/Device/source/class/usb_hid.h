@@ -71,6 +71,8 @@
 #define REPORT_SIZE                     (4)
 #define CLASS_REQ_DATA_SIZE             (0x01)
 
+#define HID_ENDPOINT (1)
+
 /******************************************************************************
  * Types
  *****************************************************************************/
@@ -103,7 +105,7 @@ typedef struct _usb_class_hid_endpoint_data
     uint_8 count;
     /* contains the endpoint info */
 #ifndef COMPOSITE_DEV
-    USB_CLASS_HID_ENDPOINT ep[HID_DESC_ENDPOINT_COUNT];
+    USB_CLASS_HID_ENDPOINT ep[USB_MAX_SUPPORTED_ENDPOINTS]; //HID_DESC_ENDPOINT_COUNT];
 #else
 	USB_CLASS_HID_ENDPOINT ep[COMPOSITE_DESC_ENDPOINT_COUNT];
 #endif

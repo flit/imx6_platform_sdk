@@ -78,6 +78,9 @@
 #define  MOVE_LEFT_RIGHT   (0x04) /* Left-Right movement*/
 #define  MOVE_UP_DOWN      (0x08) /* Up-Down movement*/
 
+// X, Y displacement info
+#define MAX_DISP	300
+
 /*****************************************************************************
  * Global variables
  *****************************************************************************/

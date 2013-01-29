@@ -59,6 +59,7 @@
 /******************************************************************************
  * Includes
  *****************************************************************************/
+#include <math.h>
 #include "sdk.h"
 #include "platform_init.h"
 #include "hidef.h"          /* for EnableInterrupts macro */
@@ -124,6 +125,46 @@ static uint_8 g_app_request_params[2];      /* for get/set idle and protocol
 /*****************************************************************************
  * Local Functions
  *****************************************************************************/
+
+void fillBuffer(uint32_t *buffer) {
+
+	static int init=1;
+	static float angle, angle_disp;
+	const float PI = 3.1415926535897932384626433832795f;
+
+	static int x, x_1;
+	static int y, y_1;
+	char x_disp, y_disp;
+
+	if(init == 1){					// if this is the first time we call this routine
+		angle = 0;
+		x_1 = x = MAX_DISP / 2;
+		y_1 = y = 0;
+		angle_disp = PI / 180;
+		init = 0;
+	}
+
+	//! - Put the data in the transfer descriptor buffers
+	// Calculate pointer positions to make the cursor move in a circle
+	//! Calculate the  mouse displacement values to fill the buffer
+	x = (int) (cosf(angle) * MAX_DISP / 2);
+	y = (int) (sinf(angle) * MAX_DISP / 2);
+
+	x_disp = x - x_1;
+	y_disp = y - y_1;
+
+	x_1 = x;
+	y_1 = y;
+
+	angle = angle + angle_disp;
+	if (angle > 2 * PI) {
+		angle -= 2 * PI;
+	}
+
+	//! Put the data in the buffer
+	*buffer = (0 | ((x_disp & 0xFF) << 16) | ((y_disp & 0xFF) << 8));
+}
+
 /******************************************************************************
  *
  *    @name       Emulate_Mouse_WithButton
@@ -141,6 +182,7 @@ static uint_8 g_app_request_params[2];      /* for get/set idle and protocol
  *****************************************************************************/
 static void Emulate_Mouse_WithButton(void)
 {
+#if 0
     if(kbi_stat > 0)
     {
         switch(kbi_stat & KBI_STAT_MASK)
@@ -187,8 +229,15 @@ static void Emulate_Mouse_WithButton(void)
 
         }
     }
+#endif // 0
+    
+    fillBuffer((uint32_t *)&rpt_buf);
+    USB_Class_HID_Send_Data(CONTROLLER_ID, HID_ENDPOINT, rpt_buf, MOUSE_BUFF_SIZE);
+    
     return;
 }
+
+
 /******************************************************************************
  *
  *    @name        USB_App_Callback

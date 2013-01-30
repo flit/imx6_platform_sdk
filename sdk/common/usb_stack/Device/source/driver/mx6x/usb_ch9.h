@@ -169,5 +169,5 @@ typedef struct usb_string_descriptor  {
     unsigned char bDescriptorType; /*STRING Descriptor Type, must be 0x3 */
     unsigned char *pString;    /*pointer to the start address of the string, the string lenth is (bLength-2) */
 } usb_string_descriptor_t;
-
+
 #endif  /*USB_CH9_H_*/

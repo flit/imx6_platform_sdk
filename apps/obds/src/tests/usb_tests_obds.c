@@ -37,6 +37,7 @@
 #include "io.h"
 #include "sdk_types.h"
 #include "obds.h"
+#include "usb/usb.h"
 
 extern void usbh_get_dev_desc(usb_module_t * port, usbhQueueHead_t * usbh_qh_ep0,
                               usbDeviceDescriptor_t * device_descriptor);

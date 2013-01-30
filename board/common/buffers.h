@@ -82,7 +82,7 @@
 
 // USB buffers
 #define QH_BUFFER               0x00908000  // internal RAM
-#define TD_BUFFER               0x00908100  // internal RAM
+#define TD_BUFFER               0x00908200  // internal RAM
 
 #define SATA_PROTOCOL_BUFFER_BASE 0x0090a000
 #define SATA_PROTOCOL_BUFFER_SIZE 0x1000

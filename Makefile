@@ -69,7 +69,8 @@ ALL_APPS = \
     stream \
     cpu_workpoint \
     ping \
-    httpd
+    httpd \
+    usb_hid_mouse
 
 # Apps that are only built for MX6DQ and MX6SDL.
 ifdef is_dq_or_sdl

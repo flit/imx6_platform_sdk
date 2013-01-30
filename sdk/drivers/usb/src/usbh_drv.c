@@ -33,6 +33,7 @@
  * @brief USB host driver.
  *
  */
+#include "sdk.h"
 #include "usb/usb.h"
 
 extern void usbEnableVbus(usb_module_t * port);

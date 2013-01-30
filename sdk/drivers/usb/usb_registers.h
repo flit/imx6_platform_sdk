@@ -49,6 +49,14 @@
 #define USB_UH1		1
 #define USB_UH2		2
 #define USB_UH3		3
+#define USB_CORE_BM(n, reg, fld)		((n) == USB_OTG ? BM_USBC_UOG_##reg##_##fld : \
+ 						(n) == USB_UH1 ? BM_USBC_UH1_##reg##_##fld: \
+ 						(n) == USB_UH2 ? BM_USBC_UH2_##reg##_##fld: \
+ 						BM_USBC_UH3_##reg##_##fld)
+#define USB_CORE_BP(n, reg, fld)		((n) == USB_OTG ? BP_USBC_UOG_##reg##_##fld : \
+ 						(n) == USB_UH1 ? BP_USBC_UH1_##reg##_##fld: \
+ 						(n) == USB_UH2 ? BP_USBC_UH2_##reg##_##fld: \
+ 						BP_USBC_UH3_##reg##_##fld)
 #define USB_CORE_REGISTER_RD(n, reg)		((n) == USB_OTG ? HW_USBC_UOG_##reg##_RD() : \
  						(n) == USB_UH1 ? HW_USBC_UH1_##reg##_RD(): \
  						(n) == USB_UH2 ? HW_USBC_UH2_##reg##_RD(): \
@@ -65,6 +73,12 @@
 #define USB_OTG1	4
 #define USB_OTG2	5
 #define USB_UH1		6
+#define USB_CORE_BM(n, reg, fld)		((n) == USB_OTG1 ? BM_USBC_UOG1_##reg##_##fld : \
+ 						(n) == USB_OTG2 ? BM_USBC_UOG2_##reg##_##fld: \
+ 						BM_USBC_UH1_##reg##_##fld)
+#define USB_CORE_BP(n, reg, fld)		((n) == USB_OTG1 ? BP_USBC_UOG1_##reg##_##fld : \
+ 						(n) == USB_OTG2 ? BP_USBC_UOG2_##reg##_##fld: \
+ 						BP_USBC_UH1_##reg##_##fld)
 #define USB_CORE_REGISTER_RD(n, reg)		((n) == USB_OTG1 ? HW_USBC_UOG1_##reg##_RD() : \
  						(n) == USB_OTG2 ? HW_USBC_UOG2_##reg##_RD(): \
  						HW_USBC_UH1_##reg##_RD())

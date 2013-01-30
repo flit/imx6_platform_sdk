@@ -38,6 +38,11 @@
 #include "sdk.h"
 #include "audio/audio.h"
 
+#ifdef ESAI_AC97_SUPPORT
+#include "core/cortex_a9.h"
+#include "core/mmu.h"
+#endif
+
 extern audio_card_t snd_card_esai;
 
 int32_t esai_playback(audio_pcm_p pcm_file)
@@ -48,12 +53,18 @@ int32_t esai_playback(audio_pcm_p pcm_file)
     audio_card_p snd_card = &snd_card_esai;
     audio_dev_para_t dev_para;
 
+    recvCh = recvCh;
+#ifdef ESAI_AC97_SUPPORT
+    dev_para.bus_protocol = AUDIO_BUS_PROTOCOL_AC97;
+#endif
     dev_para.bus_mode = AUDIO_BUS_MODE_MASTER;
     dev_para.trans_dir = AUDIO_TRANS_DIR_TX;
     /* ESAI driver supports 48KHz only because of CS42888 issue */
     dev_para.sample_rate = SAMPLERATE_48KHz;
     dev_para.word_length = pcm_file->para->word_length;
+#ifndef ESAI_AC97_SUPPORT
     dev_para.channel_number = pcm_file->para->channel_number;
+#endif
 
     printf("Please ensure:\n");
     printf
@@ -74,6 +85,31 @@ int32_t esai_playback(audio_pcm_p pcm_file)
         printf("Configure %s failed.\n", snd_card->name);
         return -1;
     }
+#ifdef ESAI_AC97_SUPPORT
+    /* enable L1 cache for mx6dq and mx6sdl */
+    arm_icache_enable();
+    arm_dcache_invalidate();
+    mmu_enable();
+    arm_dcache_enable();
+    /*
+     * Keep driving special patterns on the esai bus to easy the probing.
+     * For testing only.
+     */
+    printf("Since no mx6x reference board supports AC97, this program\n");
+    printf("keeps driving special patterns on the esai bus to easy the probing.\n");
+    unsigned short ac97_pattern[] =
+        { 0x8000, 0x0000, 0xa000, 0x0000, 0xa800, 0x0000, 0xaa00, 0x0000, 0xaa80, 0x0000, 0xaaa0,
+0x0000, 0xaaa8,
+        0x8000, 0x0000, 0xa000, 0x0000, 0xa800, 0x0000, 0xaa00, 0x0000, 0xaa80, 0x0000, 0xaaa0,
+            0x0000, 0xaaa8,
+        0x8000, 0x0000, 0xa000, 0x0000, 0xa800, 0x0000, 0xaa00, 0x0000, 0xaa80, 0x0000, 0xaaa0,
+            0x0000, 0xaaa8,
+        0x8000, 0x0000, 0xa000, 0x0000, 0xa800, 0x0000, 0xaa00, 0x0000, 0xaa80, 0x0000, 0xaaa0,
+            0x0000, 0xaaa8
+    };
+    pcm_file->buf = (unsigned char *)ac97_pattern;
+    pcm_file->size = sizeof(ac97_pattern);
+#endif
     /*
      * CS42888 driver supports 48/44.1KHz only, although it was 
      * expected to support all sample rates.  When lower sample rate used,
@@ -102,6 +138,7 @@ int32_t esai_playback(audio_pcm_p pcm_file)
 
     while (1) {
         snd_card->ops->write(snd_card, pcm_file->buf, pcm_file->size, &bytes_written);
+#ifndef ESAI_AC97_SUPPORT
         printf(" Do you need to re-hear it? (y/n)\n");
 
         do {
@@ -113,10 +150,12 @@ int32_t esai_playback(audio_pcm_p pcm_file)
             continue;           /* hear again */
         else
             break;              /* by pass */
+#endif
     }
 
     free(buf_sr_48K);
 
+#ifndef ESAI_AC97_SUPPORT
     printf(" Do you hear audio from headphone? (y/n)\n");
 
     do {
@@ -128,6 +167,7 @@ int32_t esai_playback(audio_pcm_p pcm_file)
         result = 0;             /* If user types 'Y' or 'y' test passed */
     else
         result = -1;            /* Else test failed */
+#endif
 
     return result;
 }

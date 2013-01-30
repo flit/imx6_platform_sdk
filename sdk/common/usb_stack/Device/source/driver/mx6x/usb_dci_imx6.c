@@ -252,9 +252,10 @@ uint_8 USB_DCI_Init_EndPoint(
 
 	unsigned char mult;
 
-	// No need to initialize EP0
+	// Initialize endpoint 0
     if (ep_ptr->ep_num == 0)
     {
+        usbd_ep0_init(controller_ID);
         return USB_OK;
     }
 	
@@ -971,6 +972,14 @@ static void usbd_ep_qh_init(uint_8 controller_ID,
     g_usbd_queue_info[controller_ID][td_index].enq_idx = 0;
     g_usbd_queue_info[controller_ID][td_index].deq_idx = 0;
     g_usbd_queue_info[controller_ID][td_index].tail = NULL;
+
+    // Initialize TD flags
+    for (int i = 0; i < MAX_DTDS_PER_EP; i++)
+    {
+        g_usbd_td_flag[controller_ID][td_index][i].status = DTD_FREE;
+        g_usbd_td_flag[controller_ID][td_index][i].total_bytes = 0;
+        g_usbd_td_flag[controller_ID][td_index][i].phys_td = NULL;
+   }
 }
 
 /*!
@@ -1212,7 +1221,7 @@ static void usb0_isr(void)// *data)
     // Handle suspend
     if (intr_stat & BM_USBC_(USBSTS_SLI))
 	{
-		printf_info("receive suspend irq on device 0\n");
+		printf_info("received suspend irq on device 0\n");
 		writel(BM_USBC_(USBSTS_SLI), &usbotg[0]->usbsts);
 		return;
 	}
@@ -1220,6 +1229,7 @@ static void usb0_isr(void)// *data)
     // Handle bus reset
     if (intr_stat & BM_USBC_(USBSTS_URI))
     {
+		printf_info("received bus reset irq on device 0\n");
         /* Clear Interrupt */
 		writel(BM_USBC_(USBSTS_URI), &usbotg[0]->usbsts);
 
@@ -1262,6 +1272,7 @@ static void usb0_isr(void)// *data)
     // Handle port change interrupt
     if (intr_stat & BM_USBC_(USBSTS_PCI))
     {
+		printf_info("received port change irq on device 0\n");
         /* Clear Interrupt */
 		writel(BM_USBC_(USBSTS_PCI), &usbotg[0]->usbsts);
     }
@@ -1269,6 +1280,7 @@ static void usb0_isr(void)// *data)
     // Handle USB error
     if (intr_stat & BM_USBC_(USBSTS_UEI))
     {
+		printf_info("received usb error irq on device 0\n");
         /* Clear Interrupt */
 		writel(BM_USBC_(USBSTS_UEI), &usbotg[0]->usbsts);
 
@@ -1281,6 +1293,7 @@ static void usb0_isr(void)// *data)
     // Handle System error (this bit will always 0 on mx28 controller)
     if (intr_stat & BM_USBC_(USBSTS_SEI))
     {
+		printf_info("received usb system error irq on device 0\n");
         /* Clear Interrupt */
 		writel(BM_USBC_(USBSTS_SEI), &usbotg[0]->usbsts);
 

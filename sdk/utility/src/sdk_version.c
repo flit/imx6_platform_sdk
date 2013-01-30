@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008-2012, Freescale Semiconductor, Inc.
+ * Copyright (c) 2008-2013, Freescale Semiconductor, Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -43,7 +43,7 @@
 
 const char k_sdk_version[] __attribute__ ((used)) = SDK_VERSION_STRING;
 
-const char k_sdk_copyright[] __attribute__ ((used)) = "Copyright (c) 2012 Freescale Semiconductor, Inc. All rights reserved.";
+const char k_sdk_copyright[] __attribute__ ((used)) = "Copyright (c) 2012-2013 Freescale Semiconductor, Inc. All rights reserved.";
 
 ////////////////////////////////////////////////////////////////////////////////
 // EOF

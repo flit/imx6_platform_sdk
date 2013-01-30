@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008-2012, Freescale Semiconductor, Inc.
+ * Copyright (c) 2008-2013, Freescale Semiconductor, Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -43,12 +43,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 //! @brief Current version of the SDK.
-#define SDK_VERSION_STRING	"1.0"
+#define SDK_VERSION_STRING	"1.1"
 
 //! @name SDK version number components
 //@{
 #define SDK_VERSION_MAJOR 1
-#define SDK_VERSION_MINOR 0
+#define SDK_VERSION_MINOR 1
 #define SDK_VERSION_BUGFIX 0
 //@}
 

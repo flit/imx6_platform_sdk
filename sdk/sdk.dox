@@ -200,5 +200,25 @@ peripherals present on the i.MX6 Series SoCs.
 @defgroup os_fat_errors Filesystem Errors
 @brief Errors for FAT32 filesystem.
 
+
+@defgroup diag_accel Accelerometer
+@brief Accelerometer drivers
+
+@defgroup diag_epdc EPDC
+@brief E-ink EPD display controller driver
+@ingroup graphics
+
+@defgroup diag_lcdif LCDIF
+@brief LCDIF driver
+@ingroup graphics
+
+@defgroup diag_spdc SPDC
+@brief Sipix EPD display controller driver
+@ingroup graphics
+
+@defgroup diag_vpu VPU
+@brief VPU driver
+@ingroup graphics
+
  */
 

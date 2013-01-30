@@ -190,13 +190,16 @@ cat > "$ExcludesFile" <<***DONE-EXCLUDES***
 - /lwip/contrib/ports/blackfin
 - /lwip/contrib/ports/c674x
 
+# Exclude the USB host stack since it isn't functional yet.
+- /sdk/common/usb_stack/Host
+
 # Exclude Silicon Image sources
 - sdk/common/hdmi_transmitter
 
 # Exclude some stuff in tools
 - tools/sdk_extract.sh
 - tools/makesdktags
-- tools/FreescaleNDAfooter.htm
+- tools/doxygen_config/FreescaleNDAfooter.htm
 
 
 ***DONE-EXCLUDES***

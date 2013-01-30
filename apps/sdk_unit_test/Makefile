@@ -109,9 +109,10 @@ ifeq "$(BOARD)" "sabre_ai"
         $(SDK_LIB_ROOT)/drivers/flexcan/test \
         $(SDK_LIB_ROOT)/drivers/eim/test \
         $(SDK_LIB_ROOT)/drivers/pcie/test \
-       	$(SDK_LIB_ROOT)/drivers/spi/test \
-	$(SDK_LIB_ROOT)/drivers/camera/test \
-	$(SDK_LIB_ROOT)/drivers/enet/test
+        $(SDK_LIB_ROOT)/drivers/spi/test \
+        $(SDK_LIB_ROOT)/drivers/camera/test \
+        $(SDK_LIB_ROOT)/drivers/enet/test \
+        $(SDK_LIB_ROOT)/drivers/accelerometer/test
 endif
 
 # Tests only available on the smart_device board.
@@ -119,11 +120,12 @@ ifeq "$(BOARD)" "smart_device"
     SUBDIRS += \
         $(SDK_LIB_ROOT)/drivers/camera/test \
         $(SDK_LIB_ROOT)/drivers/keypad/test \
-	$(SDK_LIB_ROOT)/drivers/usb/test \
+        $(SDK_LIB_ROOT)/drivers/usb/test \
         $(SDK_LIB_ROOT)/drivers/pcie/test \
-       	$(SDK_LIB_ROOT)/drivers/spi/test \
+        $(SDK_LIB_ROOT)/drivers/spi/test \
         $(SDK_LIB_ROOT)/drivers/enet/test \
-		$(SDK_LIB_ROOT)/drivers/keypad/test
+        $(SDK_LIB_ROOT)/drivers/keypad/test \
+        $(SDK_LIB_ROOT)/drivers/accelerometer/test
 endif
 
 ifeq "$(BOARD)" "evk"

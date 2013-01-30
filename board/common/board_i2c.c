@@ -71,10 +71,16 @@ const i2c_device_info_t g_p1003_tsc_i2c_device = { HW_I2C3, (0x8 >> 1), 50000 };
 #else
 const i2c_device_info_t g_p1003_tsc_i2c_device = { HW_I2C2, (0x8 >> 1), 50000 };
 #endif
+
 const i2c_device_info_t g_at24cx_i2c_device = { HW_I2C3, (0xa0 >> 1), 170000 };
 
-
 const i2c_device_info_t g_si476x_i2c_device = { HW_I2C2, (0xC6 >> 1), 50000 };
+
+#if defined(BOARD_SMART_DEVICE)
+const i2c_device_info_t g_mma8451_i2c_device = { HW_I2C1, 0x1C, 170000 };
+#elif defined(BOARD_SABRE_AI)
+const i2c_device_info_t g_mma8451_i2c_device = { HW_I2C3, 0x1C, 170000 };
+#endif
 
 ////////////////////////////////////////////////////////////////////////////////
 // EOF

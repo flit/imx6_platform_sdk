@@ -28,6 +28,7 @@ is_sdl_or_sl = 1
 endif
 
 define SOURCES
+accelerometer/src/mma8451.c
 board_id/src/board_id.c
 camera/src/camera_profile.c
 cpu_utility/src/cpu_get_cores.c

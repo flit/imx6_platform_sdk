@@ -68,6 +68,9 @@ extern const i2c_device_info_t g_at24cx_i2c_device;
 //! @brief Si476x FM tuner
 extern const i2c_device_info_t g_si476x_i2c_device;
 
+//! @brief MMA8451 accelerometer.
+extern const i2c_device_info_t g_mma8451_i2c_device;
+
 #endif // __BOARD_I2C_H__
 ////////////////////////////////////////////////////////////////////////////////
 // EOF

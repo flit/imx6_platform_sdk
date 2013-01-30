@@ -66,6 +66,7 @@ extern void uart_test(void);
 extern void usb_test(void);
 extern void usdhc_test(void);
 extern void keypad_test(void);
+extern void accelerometer_test(void);
 
 #ifdef CHIP_MX6DQ
 extern int sata_test(void);
@@ -149,6 +150,7 @@ const menuitem_t k_menuItems[] = {
         DEFINE_TEST_MENU_ITEM("n",  "spi nor test",     spi_test),
         DEFINE_TEST_MENU_ITEM("pc", "pcie test",        pcie_test),
         DEFINE_TEST_MENU_ITEM("ca", "camera test",      camera_test),
+        DEFINE_TEST_MENU_ITEM("x",  "accelerometer test", accelerometer_test),
 #elif defined(BOARD_SMART_DEVICE)
         DEFINE_TEST_MENU_ITEM("a",  "audio test",       audio_test),
         DEFINE_TEST_MENU_ITEM("ca", "camera test",      camera_test),
@@ -157,6 +159,7 @@ const menuitem_t k_menuItems[] = {
         DEFINE_TEST_MENU_ITEM("pc", "pcie test",        pcie_test),
 		DEFINE_TEST_MENU_ITEM("en", "enet test",		enet_test),
 		DEFINE_TEST_MENU_ITEM("k", "keypad test",      keypad_test),
+        DEFINE_TEST_MENU_ITEM("x",  "accelerometer test", accelerometer_test),
 #endif // defined(BOARD_SMART_DEVICE)
 
 #elif defined(CHIP_MX6SL)

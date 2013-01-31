@@ -360,7 +360,7 @@ void USB_Composite_Event (
  *                        Others        : When Error
  *
  ******************************************************************************
- * Handles HID Class requests and forwards vendor specific request to the
+ * Handles Class requests and forwards vendor specific request to the
  * application
  *****************************************************************************/
 uint_8 USB_Composite_Other_Requests (
@@ -374,14 +374,22 @@ uint_8 USB_Composite_Other_Requests (
     CLASS_ARC_STRUCT_PTR dev_class_ptr;  
     INTERFACE_ARC_STRUCT_PTR intf_arc_ptr; 
     uint_8 status = USBERR_INVALID_REQ_TYPE;
-    uint_8 itf_num,count,index,offset = 0;
+    uint_8 itf_num = 0xFF,count,index,offset = 0;
+    uint_8 ep_num = 0;
     
     *data = ((uint_8*)setup_packet)+USB_SETUP_PKT_SIZE;
     if(size == NULL)
     {
         return USBERR_GET_MEMORY_FAILED;
     }
-    itf_num=(uint_8)(setup_packet->index);
+    
+    /* request is for an Interface */
+    if(setup_packet->request_type & 0x01)
+        itf_num = (uint_8)(setup_packet->index);
+    /* request is for an Endpoint */
+    else if(setup_packet->request_type & 0x02)
+        ep_num = (uint_8)(setup_packet->index);
+    
     
     /* Get device architecture */
     dev_arc_ptr = (DEV_ARCHITECTURE_STRUCT *)USB_Desc_Get_Class_Architecture(controller_ID);
@@ -400,7 +408,7 @@ uint_8 USB_Composite_Other_Requests (
             case HID_COMP_CC:
                 for(index = 0;index<intf_arc_ptr->interface_count;index++)
                 {
-                    if(itf_num == intf_arc_ptr->value[index])
+                    if(itf_num == intf_arc_ptr->value[index] || ep_num != 0xFF)
                         status = USB_HID_Other_Requests(controller_ID,setup_packet,data,size); 
                 }
             break;
@@ -410,7 +418,7 @@ uint_8 USB_Composite_Other_Requests (
             case AUDIO_COMP_CC:
                 for(index = 0;index<intf_arc_ptr->interface_count;index++)
                 {
-                    if(itf_num == intf_arc_ptr->value[index])
+                    if(itf_num == intf_arc_ptr->value[index] || ep_num != 0xFF)
                         status = USB_Audio_Other_Requests(controller_ID,setup_packet,data,size);
                 }
             break;
@@ -420,7 +428,7 @@ uint_8 USB_Composite_Other_Requests (
             case VIDEO_COMP_CC:
                 for(index = 0;index<intf_arc_ptr->interface_count;index++)
                 {
-                    if(itf_num == intf_arc_ptr->value[index])
+                    if(itf_num == intf_arc_ptr->value[index] || ep_num != 0xFF)
                         status = USB_Video_Other_Requests(controller_ID,setup_packet,data,size);
                 }
             break;
@@ -430,7 +438,7 @@ uint_8 USB_Composite_Other_Requests (
             case CDC_COMP_CC:
                 for(index = 0;index<intf_arc_ptr->interface_count;index++)
                 {
-                    if(itf_num == intf_arc_ptr->value[index])
+                    if(itf_num == intf_arc_ptr->value[index] || ep_num != 0xFF)
                         status = USB_CDC_Other_Requests(controller_ID,setup_packet,data,size);
                 }
                 break;
@@ -440,7 +448,7 @@ uint_8 USB_Composite_Other_Requests (
             case MSD_COMP_CC:
                 for(index = 0;index<intf_arc_ptr->interface_count;index++)
                 {
-                    if(itf_num == intf_arc_ptr->value[index])
+                    if(itf_num == intf_arc_ptr->value[index] || ep_num != 0xFF)
                         status = USB_MSC_Other_Requests(controller_ID,setup_packet,data,size);
                 }
                 break;
@@ -450,7 +458,7 @@ uint_8 USB_Composite_Other_Requests (
             case PHDC_COMP_CC:
                 for(index = 0;index<intf_arc_ptr->interface_count;index++)
                 {
-                    if(itf_num == intf_arc_ptr->value[index])
+                    if(itf_num == intf_arc_ptr->value[index] || ep_num != 0xFF)
                         status = USB_Phdc_Other_Requests(controller_ID,setup_packet,data,size); 
                 }
                 break;
@@ -460,7 +468,7 @@ uint_8 USB_Composite_Other_Requests (
             case DFU_COMP_CC:
                 for(index = 0;index<intf_arc_ptr->interface_count;index++)
                 {
-                    if(itf_num == intf_arc_ptr->value[index])
+                    if(itf_num == intf_arc_ptr->value[index] || ep_num != 0xFF)
                         status = USB_HID_Other_Requests(controller_ID,setup_packet,data,size);
                 }
                 break;

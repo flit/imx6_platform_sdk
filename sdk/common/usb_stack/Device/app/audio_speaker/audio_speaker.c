@@ -89,7 +89,9 @@ static void USB_App_Callback(uint_8 controller_ID,
 #endif
 /* Audio speaker Application start Init Flag */
 static volatile boolean start_app = FALSE;
+#ifdef USE_FEEDBACK_ENDPOINT
 static boolean start_send = TRUE;
+#endif /* USE_FEEDBACK_ENDPOINT */
 /* Receive Buffer */
 static uint_8 g_curr_recv_buf[DATA_BUFF_SIZE];
 
@@ -142,6 +144,7 @@ void TestApp_Init(void)
     /* Initialize the USB interface */
     error = USB_Class_Audio_Init(CONTROLLER_ID,USB_App_Callback,
                                  NULL,NULL);
+    UNUSED(error);
     
     EnableInterrupts;
 #if (defined _MCF51MM256_H) || (defined _MCF51JE256_H)
@@ -236,7 +239,7 @@ static void USB_App_Callback (
         audio_event = USB_APP_DATA_RECEIVED;
         data_receive = (APP_DATA_STRUCT*)val;
 
-        memcpy(audio_data_recv, data_receive->data_ptr, data_receive->data_size);
+        (void)memcpy(audio_data_recv, data_receive->data_ptr, data_receive->data_size);
         /*for(i=0;i<data_receive->data_size;i++){
         	audio_data_recv[i] = data_receive->data_ptr[i];
         }*/

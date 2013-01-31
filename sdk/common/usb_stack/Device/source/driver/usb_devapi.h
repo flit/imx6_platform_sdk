@@ -279,6 +279,8 @@ typedef uint_8   T_EP_BITFIELD;
     	#define ALIGN  __attribute__ ((packed))		
 	#elif((defined  __IAR_SYSTEMS_ICC__) || (defined __CC_ARM))		
 		#define ALIGN
+    #else
+        #define ALIGN
 	#endif
 #else    
 	#define ALIGN

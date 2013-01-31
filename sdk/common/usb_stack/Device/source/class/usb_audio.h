@@ -42,7 +42,7 @@
 #include "usb_descriptor.h"
 #include "usb_class.h"
 #ifdef COMPOSITE_DEV
-	#include "usb_composite.h"
+#include "usb_composite.h"
 #endif
 /******************************************************************************
  * Constants - None
@@ -51,128 +51,135 @@
 /******************************************************************************
  * Macro's
  *****************************************************************************/
-#define  KBI_STAT_MASK     (0x0F)
-#define  BUTTON_0          (0x01) 
-#define  BUTTON_1          (0x02) 
-#define  BUTTON_2          (0x04) 
-#define  BUTTON_3          (0x08) 
+#define  KBI_STAT_MASK              (0x0F)
+#define  BUTTON_0                   (0x01)
+#define  BUTTON_1                   (0x02)
+#define  BUTTON_2                   (0x04) 
+#define  BUTTON_3                   (0x08)
 
-#define MAX_QUEUE_ELEMS                 (4)
+#define MAX_QUEUE_ELEMS             (4)
 
- /* class specific requests */
-#define USB_AUDIO_SET_REQUEST_INTF      (0x21)
-#define USB_AUDIO_GET_REQUEST_INTF      (0xA1)
+/* class specific requests */
+#define USB_AUDIO_SET_REQUEST_INTF  (0x21)
+#define USB_AUDIO_GET_REQUEST_INTF  (0xA1)
 
-#define REQEUST_CODE_UNDEFINED          (0x00)
-#define SET_CUR                         (0x01)
-#define GET_CUR                         (0x81)
-#define SET_MIN                         (0x02)
-#define GET_MIN                         (0x82)
-#define SET_MAX                         (0x03)
-#define GET_MAX                         (0x83)
-#define SET_RES                         (0x04)
-#define GET_RES                         (0x84)
-#define SET_MEM                         (0x05)
-#define GET_MEM                         (0x85)
-#define GET_STAT                        (0xFF)
+#define REQEUST_CODE_UNDEFINED      (0x00)
+#define SET_CUR                     (0x01)
+#define GET_CUR                     (0x81)
+#define SET_MIN                     (0x02)
+#define GET_MIN                     (0x82)
+#define SET_MAX                     (0x03)
+#define GET_MAX                     (0x83)
+#define SET_RES                     (0x04)
+#define GET_RES                     (0x84)
+#define SET_MEM                     (0x05)
+#define GET_MEM                     (0x85)
+#define GET_STAT                    (0xFF)
 
 
-#define MUTE_CONTROL                    (0x01)
-#define VOLUME_CONTROL                  (0x02)
+#define MUTE_CONTROL                (0x01)
+#define VOLUME_CONTROL              (0x02)
 /* for class specific requests */
-#define HIGH_BYTE_SHIFT                 (8)
-#define MSB_MASK                        (0xFF00)
-#define USB_AUDIO_REQUEST_DIR_MASK        (0x08)
-#define USB_AUDIO_REQUEST_TYPE_MASK       (0x01)
-#define REPORT_SIZE                     (4)
-#define CLASS_REQ_DATA_SIZE             (0x01)
+#define HIGH_BYTE_SHIFT             (8)
+#define MSB_MASK                    (0xFF00)
+#define USB_AUDIO_REQUEST_DIR_MASK  (0x08)
+#define USB_AUDIO_REQUEST_TYPE_MASK (0x01)
+#define REPORT_SIZE                 (4)
+#define CLASS_REQ_DATA_SIZE         (0x01)
 
 /* Code of bmRequest Type */
-#define SET_REQUEST_ITF                 (0x21)
-#define SET_REQUEST_EP                  (0x22)
-#define GET_REQUEST_ITF                 (0xA1)
-#define GET_REQUEST_EP                  (0xA2)
+#define SET_REQUEST_ITF             (0x21)  /* for Entities */
+#define SET_REQUEST_EP              (0x22)  /* for Endpoints */
+#define GET_REQUEST_ITF             (0xA1)  /* for Entities */
+#define GET_REQUEST_EP              (0xA2)  /* for Endpoints */
 
- 
+
 /* Audio Interface Class Code */
- #define AUDIO                          (0x01)
- 
- /* Audio Interface Subclass Codes */
- #define  AUDIOCONTROL                  (0x01)
- #define  AUDIOSTREAMING                (0x02)
- #define  MIDISTRAMING                  (0x03)
- 
- /* Audio Interface Protocol codes */
-  #define PR_PROTOCOL_UNDEFINED          (0x00)
-  
-  /* Audio Class Specific Descriptor Types */
-   #define CS_UNDEFINED                  (0x20)
-   #define CS_DEVICE                     (0x21)
-   #define CS_CONFIGURATION              (0x22)
-   #define CS_STRING                     (0x23)
-   #define CS_INTERFACE                  (0x24)
-   #define CS_ENDPOINT                   (0x25)
-   
-   /* Audio Class Specific AC Interface Descriptor */
-   #define HEADER                       (0x01)
-   #define INPUT_TERMINAL               (0x02)
-   #define OUTPUT_TERMINAL              (0x03)
-   #define MIXER_UNIT                   (0x04)
-   #define SELECTOR_UNIT                (0x05) 
-   #define FEATURE_UNIT                 (0x06)
-   #define PROCESSING_UNIT              (0x07)
-   #define EXTENSION_UNIT               (0x08)
-   
-   /* Audio Class Specific AS Interface Descriptor Subtypes */
-   #define AS_GENERAL                    (0x01)
-   #define FORMAT_TYPE                   (0x02)
-   #define FORMAT_SPECIFIC               (0x03)
-   
-   
-   /* Audio Class Specific Endpoint Descriptor subtypes */
-   #define  EP_GENRAL                     (0x01)
-   
-   /* Audio Class Specific Request Codes */
-   #define  SET_CUR                       (0x01)
-   #define  GET_CUR                       (0x81)
-   #define  SET_MIN                       (0x02)
-   #define  GET_MIN                       (0x82)
-   #define  SET_MAX                       (0x03)
-   #define  GET_MAX                       (0x83)
-   #define  SET_RES                       (0x04)
-   #define  GET_RES                       (0x84)
-   #define  SET_MEM                       (0x05)
-   #define  GET_MEM                       (0x85)
-   #define  GET_STAT                      (0xFF)
-   
-   /* Terminal Control Selector codes  */
-   #define COPY_PROTECT_CONTROL           (0x01)
-   
-   /* Feature Unit Control Selector codes */
-   #define MUTE_CONTROL                     (0x01)
-   #define VOLUME_CONTROL                   (0x02)
-   #define BASS_CONTROL                     (0x03)
-   #define MID_CONTROL                      (0x04)
-   #define TREBLE_CONTROL                   (0x05)
-   #define GRAPHIC_EQUALIZER_CONTROL        (0x06)
-   #define AUTOMATIC_GAIN_CONTROL           (0x07)
-   #define DELAY_CONTROL                    (0x08)
-   #define BASS_BOOST_CONTROL               (0x09)
-   #define LOUDNESS_CONTROL                (0x0A)
-   
-  /* Endpoint Definition */
-  #define SAMPLING_FREQ_CONTROL             (0x01)
-  #define PITCH_CONTROL                     (0x02)
-  
- /*  Definition Size */
- 
-   #define SIZE_COPY_PROTECT_CONTROL          1
+#define AUDIO                       (0x01)
+
+/* Audio Interface Subclass Codes */
+#define  AUDIOCONTROL               (0x01)
+#define  AUDIOSTREAMING             (0x02)
+#define  MIDISTRAMING               (0x03)
+
+/* Audio Interface Protocol codes */
+#define PR_PROTOCOL_UNDEFINED       (0x00)
+
+/* Audio Class Specific Descriptor Types */
+#define CS_UNDEFINED                (0x20)
+#define CS_DEVICE                   (0x21)
+#define CS_CONFIGURATION            (0x22)
+#define CS_STRING                   (0x23)
+#define CS_INTERFACE                (0x24)
+#define CS_ENDPOINT                 (0x25)
+
+/* Audio Class Specific AC Interface Descriptor */
+#define HEADER                      (0x01)
+#define INPUT_TERMINAL              (0x02)
+#define OUTPUT_TERMINAL             (0x03)
+#define MIXER_UNIT                  (0x04)
+#define SELECTOR_UNIT               (0x05) 
+#define FEATURE_UNIT                (0x06)
+#define PROCESSING_UNIT             (0x07)
+#define EXTENSION_UNIT              (0x08)
+
+/* Audio Class Specific AS Interface Descriptor Subtypes */
+#define AS_GENERAL                  (0x01)
+#define FORMAT_TYPE                 (0x02)
+#define FORMAT_SPECIFIC             (0x03)
+
+
+/* Audio Class Specific Endpoint Descriptor subtypes */
+#define  EP_GENRAL                  (0x01)
+
+/* Audio Class Specific Request Codes */
+#define  SET_CUR                    (0x01)
+#define  GET_CUR                    (0x81)
+#define  SET_MIN                    (0x02)
+#define  GET_MIN                    (0x82)
+#define  SET_MAX                    (0x03)
+#define  GET_MAX                    (0x83)
+#define  SET_RES                    (0x04)
+#define  GET_RES                    (0x84)
+#define  SET_MEM                    (0x05)
+#define  GET_MEM                    (0x85)
+#define  GET_STAT                   (0xFF)
+
+/* Terminal Control Selector codes  */
+#define COPY_PROTECT_CONTROL        (0x01)
+
+/* Feature Unit Control Selector codes */
+#define MUTE_CONTROL                (0x01)
+#define VOLUME_CONTROL              (0x02)
+#define BASS_CONTROL                (0x03)
+#define MID_CONTROL                 (0x04)
+#define TREBLE_CONTROL              (0x05)
+#define GRAPHIC_EQUALIZER_CONTROL   (0x06)
+#define AUTOMATIC_GAIN_CONTROL      (0x07)
+#define DELAY_CONTROL               (0x08)
+#define BASS_BOOST_CONTROL          (0x09)
+#define LOUDNESS_CONTROL            (0x0A)
+
+/* Endpoint Definition */
+#define SAMPLING_FREQ_CONTROL       (0x01)
+#define PITCH_CONTROL               (0x02)
+
+/*  Definition Size */
+
+#define SIZE_COPY_PROTECT_CONTROL   (1)
+
+#if AUDIO_CLASS_2_0
+/* Clock Source Control Selectors(A.17.1) */
+#define CS_CONTROL_UNDEFINED        (0x00)
+#define CS_SAM_FREQ_CONTROL         (0x01)
+#define CS_CLOCK_VALID_CONTROL      (0x02)
+#endif /* AUDIO_CLASS_2_0 */
 
 /******************************************************************************
  * Types
  *****************************************************************************/
 
- /* structure to hold a request in the endpoint queue */
+/* structure to hold a request in the endpoint queue */
 typedef struct _usb_class_audio_queue
 {
     uint_8 controller_ID;   /* Controller ID*/
@@ -245,9 +252,9 @@ extern void USB_Class_Audio_Event (
 
 #ifdef COMPOSITE_DEV
 uint_8 USB_Audio_Other_Requests(uint_8 controller_ID,
-                          USB_SETUP_STRUCT * setup_packet,
-                          uint_8_ptr *data,
-                          USB_PACKET_SIZE *size);
+    USB_SETUP_STRUCT * setup_packet,
+    uint_8_ptr *data,
+    USB_PACKET_SIZE *size);
 #endif
 #define USB_Class_Audio_Periodic_Task USB_Class_Periodic_Task
 

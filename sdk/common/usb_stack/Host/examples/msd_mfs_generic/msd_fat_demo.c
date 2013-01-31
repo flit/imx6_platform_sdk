@@ -242,21 +242,15 @@ int fat_demo(void)
 	/* Send some SCSI requests first */
 	disk_initialize(0);
 #if !HIGH_SPEED_DEVICE
-//	/time_delay(1000);
-#endif
-	// todo AI: investigate this
-	
-	/* Read LUN info (type, and some strings) */
-	res = disk_ioctl(0, UFI_INQUIRY_CMD, NULL);
-	//res = disk_ioctl(0, UFI_READ_FORMAT_CAPACITY_CMD, NULL);
-	res = disk_ioctl(0, REQUEST_SENSE_CMD, NULL);
-	//res = disk_ioctl(0, UFI_READ_FORMAT_CAPACITY_CMD, NULL);
-	
-	res = disk_ioctl(0, UFI_INQUIRY_CMD, NULL);
-	res = disk_ioctl(0, UFI_TEST_UNIT_READY_CMD, NULL);
-	res = disk_ioctl(0, UFI_READ_CAPACITY_CMD, NULL);
-	
-	
+    time_delay(1000);
+#endif        	
+    res = disk_ioctl(0, UFI_INQUIRY_CMD, NULL);          
+    res = disk_ioctl(0, UFI_INQUIRY_CMD, NULL);        
+    res = disk_ioctl(0, REQUEST_SENSE_CMD, NULL);                
+    //res = disk_ioctl(0, UFI_TEST_UNIT_READY_CMD, NULL);           /* On some devices UFI_TEST_UNIT_READY_CMD may fail*/        
+    res = disk_ioctl(0, UFI_READ_FORMAT_CAPACITY_CMD, NULL);         
+    res = disk_ioctl(0, UFI_READ_CAPACITY_CMD, NULL);	            
+
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	/* DM2.  Show logical drive status <f_getfree, f_opendir, f_readdir>                    */
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/

@@ -98,7 +98,7 @@ extern void USB_NULL_CALLBACK (PTR_USB_DEV_EVENT_STRUCT event);
 #define USB_EP1_ENABLE              TRUE
 #define USB_EP1_DIR                 EP_IN
 #define USB_EP1_HSHK                TRUE
-#define USB_EP1_SIZE                256
+#define USB_EP1_SIZE                255
 
 #define USB_EP2_ENABLE              TRUE
 #define USB_EP2_DIR                 EP_OUT

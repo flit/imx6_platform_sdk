@@ -47,12 +47,12 @@
 
 /* structure containing details of all the endpoints used by this device */
 USB_DESC_CONST USB_ENDPOINTS usb_desc_ep = { AUDIO_DESC_ENDPOINT_COUNT, 
-                                      {
+                                      {{
                                       AUDIO_ENDPOINT,
                                       USB_ISOCHRONOUS_PIPE,
                                       USB_SEND,
                                       AUDIO_ENDPOINT_PACKET_SIZE
-                                      },
+                                      }},
 };
 
 /* *********************************************************************
@@ -339,17 +339,19 @@ uint_8 const g_string_desc_size[USB_MAX_STRING_DESCRIPTORS] =
 
 uint_8_ptr const g_string_descriptors[USB_MAX_STRING_DESCRIPTORS] =
                                           {
-                                              (uint_8_ptr const) USB_STR_0,
-                                              (uint_8_ptr const) USB_STR_1,
-                                              (uint_8_ptr const) USB_STR_2,
-                                              (uint_8_ptr const) USB_STR_n
+                                              (uint_8_ptr) USB_STR_0,
+                                              (uint_8_ptr) USB_STR_1,
+                                              (uint_8_ptr) USB_STR_2,
+                                              (uint_8_ptr) USB_STR_n
                                           };
 
-USB_ALL_LANGUAGES g_languages = { USB_STR_0, sizeof(USB_STR_0),
-                                  { (uint_16 const)0x0409,
-                                   (const uint_8 **)g_string_descriptors,
-                                      g_string_desc_size}
-                                };
+USB_ALL_LANGUAGES g_languages = { 
+    USB_STR_0, 
+    sizeof(USB_STR_0),
+    {
+        { (const uint_16)0x0409, (const uint_8 **)g_string_descriptors, g_string_desc_size }
+    }
+};
 
 uint_8 const g_valid_config_values[USB_MAX_CONFIG_SUPPORTED+1]={0,1};
 
@@ -826,10 +828,10 @@ uint_8 USB_Desc_Get_Cur_Mute(
   return USBERR_INVALID_REQ_TYPE;
 }
 
-uint_8 g_cur_volume[USB_MAX_SUPPORTED_INTERFACES][2] = {0x00,0x80};
-uint_8 g_min_volume[USB_MAX_SUPPORTED_INTERFACES][2] = {0x00,0x80};
-uint_8 g_max_volume[USB_MAX_SUPPORTED_INTERFACES][2] = {0xFF,0x7F};
-uint_8 g_res_volume[USB_MAX_SUPPORTED_INTERFACES][2] = {0x01,0x00};
+uint_8 g_cur_volume[USB_MAX_SUPPORTED_INTERFACES][2] = {{0x00,0x80}};
+uint_8 g_min_volume[USB_MAX_SUPPORTED_INTERFACES][2] = {{0x00,0x80}};
+uint_8 g_max_volume[USB_MAX_SUPPORTED_INTERFACES][2] = {{0xFF,0x7F}};
+uint_8 g_res_volume[USB_MAX_SUPPORTED_INTERFACES][2] = {{0x01,0x00}};
 
 /**************************************************************************//*!
  *
@@ -2025,10 +2027,10 @@ uint_8 USB_Desc_Get_Max_Treble (
   return USBERR_INVALID_REQ_TYPE;
 }
 
-uint_8 g_cur_graphic_equalizer[USB_MAX_SUPPORTED_INTERFACES][5] = {0x00,0x00,0x00,0x00,0x00};
-uint_8 g_min_graphic_equalizer[USB_MAX_SUPPORTED_INTERFACES][5] = {0x00,0x00,0x00,0x00,0x00};
-uint_8 g_max_graphic_equalizer[USB_MAX_SUPPORTED_INTERFACES][5] = {0x00,0x00,0x00,0x00,0x00};
-uint_8 g_res_graphic_equalizer[USB_MAX_SUPPORTED_INTERFACES][5] = {0x00,0x00,0x00,0x00,0x00};
+uint_8 g_cur_graphic_equalizer[USB_MAX_SUPPORTED_INTERFACES][5] = {{0x00,0x00,0x00,0x00,0x00}};
+uint_8 g_min_graphic_equalizer[USB_MAX_SUPPORTED_INTERFACES][5] = {{0x00,0x00,0x00,0x00,0x00}};
+uint_8 g_max_graphic_equalizer[USB_MAX_SUPPORTED_INTERFACES][5] = {{0x00,0x00,0x00,0x00,0x00}};
+uint_8 g_res_graphic_equalizer[USB_MAX_SUPPORTED_INTERFACES][5] = {{0x00,0x00,0x00,0x00,0x00}};
 
 /**************************************************************************//*!
  *
@@ -2411,10 +2413,10 @@ uint_8 USB_Desc_Get_Cur_Automatic_Gain(
   return USBERR_INVALID_REQ_TYPE;
 }
 
-uint_8 g_cur_delay[USB_MAX_SUPPORTED_INTERFACES][2] = {0x00,0x40};
-uint_8 g_min_delay[USB_MAX_SUPPORTED_INTERFACES][2] = {0x00,0x00};
-uint_8 g_max_delay[USB_MAX_SUPPORTED_INTERFACES][2] = {0xFF,0xFF};
-uint_8 g_res_delay[USB_MAX_SUPPORTED_INTERFACES][2] = {0x00,0x01};
+uint_8 g_cur_delay[USB_MAX_SUPPORTED_INTERFACES][2] = {{0x00,0x40}};
+uint_8 g_min_delay[USB_MAX_SUPPORTED_INTERFACES][2] = {{0x00,0x00}};
+uint_8 g_max_delay[USB_MAX_SUPPORTED_INTERFACES][2] = {{0xFF,0xFF}};
+uint_8 g_res_delay[USB_MAX_SUPPORTED_INTERFACES][2] = {{0x00,0x01}};
 /**************************************************************************//*!
  *
  * @name  USB_Desc_Set_Cur_Delay

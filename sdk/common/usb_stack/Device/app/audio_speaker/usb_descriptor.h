@@ -34,97 +34,142 @@
 /******************************************************************************
  * Macro's
  *****************************************************************************/
-#define REMOTE_WAKEUP_SHIFT              (5)
-#define REMOTE_WAKEUP_SUPPORT            (TRUE)
+#define REMOTE_WAKEUP_SHIFT                         (5)
+#define REMOTE_WAKEUP_SUPPORT                       (TRUE)
 
-#define IMPLEMENT_QUEUING                (TRUE)
+#define IMPLEMENT_QUEUING                           (TRUE)
 
 /* Various descriptor sizes */
-#define DEVICE_DESCRIPTOR_SIZE            (18)
-#define CONFIG_DESC_SIZE                  (0x6D + 9 /*+ 9 + 7*/) 
-#define DEVICE_QUALIFIER_DESCRIPTOR_SIZE  (10)
-#define REPORT_DESC_SIZE                  (50)
-#define CONFIG_ONLY_DESC_SIZE             (9)
-#define IFACE_ONLY_DESC_SIZE              (9)
-#define AUDIO_ONLY_DESC_SIZE              (9)
-#define ENDP_ONLY_DESC_SIZE               (9)
-#define HEADER_ONLY_DESC_SIZE             (9)
-#define INPUT_TERMINAL_ONLY_DESC_SIZE     (12)
-#define OUTPUT_TERMINAL_ONLY_DESC_SIZE    (9)
-#define FEATURE_UNIT_ONLY_DESC_SIZE       (9)
-#define AUDIO_STREAMING_IFACE_DESC_SIZE   (7)
-#define AUDIO_STREAMING_ENDP_DESC_SIZE    (7)
-#define AUDIO_INTERFACE_DESC_TYPE_I_SIZE  (11)
+#define DEVICE_DESCRIPTOR_SIZE                      (18)
+#if AUDIO_CLASS_2_0 == 0
+#define CONFIG_DESC_SIZE                            (152)//(0x6D + 9)
+#else
+//#define CONFIG_DESC_SIZE                          (152) /* with 2 channels */
+#define CONFIG_DESC_SIZE                            (148) /* with 1 channel */
+#endif /* AUDIO_CLASS_2_0 */
+#define DEVICE_QUALIFIER_DESCRIPTOR_SIZE            (10)
+#define REPORT_DESC_SIZE                            (50)
+#define CONFIG_ONLY_DESC_SIZE                       (9)
+#define IFACE_ONLY_DESC_SIZE                        (9)
+#define AUDIO_ONLY_DESC_SIZE                        (9)
+#define ENDP_ONLY_DESC_SIZE                         (9)
+#define HEADER_ONLY_DESC_SIZE                       (9)
+#define INPUT_TERMINAL_ONLY_DESC_SIZE               (12)
+#define OUTPUT_TERMINAL_ONLY_DESC_SIZE              (9)
+#define FEATURE_UNIT_ONLY_DESC_SIZE                 (9)
+#define AUDIO_STREAMING_IFACE_DESC_SIZE             (7)
+#define AUDIO_STREAMING_ENDP_DESC_SIZE              (7)
+#define AUDIO_INTERFACE_DESC_TYPE_I_SIZE            (11)
 
-#define USB_DEVICE_CLASS_AUDIO            (0x01)
-#define USB_SUBCLASS_AUDIOCONTROL         (0x01)
-#define USB_SUBCLASS_AUDIOSTREAM          (0x02)
+#define USB_DEVICE_CLASS_AUDIO                      (0x01)
+#define USB_SUBCLASS_AUDIOCONTROL                   (0x01)
+#define USB_SUBCLASS_AUDIOSTREAM                    (0x02)
 
-#define AUDIO_INTERFACE_DESCRIPTOR_TYPE   (0x24)
+#define AUDIO_INTERFACE_DESCRIPTOR_TYPE             (0x24)
 
-#define AUDIO_CONTROL_HEADER              (0x01)
-#define AUDIO_CONTROL_INPUT_TERMINAL      (0x02)
-#define AUDIO_CONTROL_OUTPUT_TERMINAL     (0x03)
-#define AUDIO_CONTROL_FEATURE_UNIT        (0x06)
-#define AUDIO_STREAMING_GENERAL           (0x01)
-#define AUDIO_STREAMING_FORMAT_TYPE       (0x02)
-#define AUDIO_FORMAT_TYPE_I               (0x01)
-#define AUDIO_ENDPOINT_GENERAL            (0x01)
+#define AUDIO_CONTROL_HEADER                        (0x01)
+#define AUDIO_CONTROL_INPUT_TERMINAL                (0x02)
+#define AUDIO_CONTROL_OUTPUT_TERMINAL               (0x03)
+#define AUDIO_CONTROL_MIXER_UNIT                    (0x04)
+#define AUDIO_CONTROL_SELECTOR_UNIT                 (0x05)
+#define AUDIO_CONTROL_FEATURE_UNIT                  (0x06)
+#define AUDIO_CONTROL_EFFECT_UNIT                   (0x07)
+#define AUDIO_CONTROL_PROCESSING_UNIT               (0x08)
+#define AUDIO_CONTROL_EXTENSION_UNIT                (0x09)
 
-#define AUDIO_BUFFER_SIZE                   (8)
+#define AUDIO_STREAMING_GENERAL                     (0x01)
+#define AUDIO_STREAMING_FORMAT_TYPE                 (0x02)
+#define AUDIO_FORMAT_TYPE_I                         (0x01)
+#define AUDIO_ENDPOINT_GENERAL                      (0x01)
+
+/* AUDIO Class 2.0 */
+#if AUDIO_CLASS_2_0
+#define AUDIO_CONTROL_CLOCK_SOURCE                  (0x0A)
+#define AUDIO_CONTROL_CLOCK_SELECTOR                (0x0B)
+#define AUDIO_CONTROL_CLOCK_MULTIPLIER              (0x0C)
+#define AUDIO_CONTROL_SAMPLE_RATE_CONVERTER         (0x0D)
+#endif /* AUDIO_CLASS_2_0 */
+
+#define AUDIO_BUFFER_SIZE                           (8)
 
 /* Audio controls at Feature Unit descriptor level */
-#define AUDIO_MUTE_CONTROL                (0x01)
-#define AUDIO_VOLUME_CONTROL              (0x02)
-#define AUDIO_BASS_CONTROL                (0x04)
-#define AUDIO_MID_CONTROL                 (0x08)
-#define AUDIO_TREBLE_CONTROL              (0x10)
-#define AUDIO_GRAPHIC_EQ_CONTROL          (0x20)
-#define AUDIO_AUTOMATIC_GAIN_CONTROL      (0x40)
-#define AUDIO_DELAY_CONTROL               (0x80)
+#define AUDIO_MUTE_CONTROL                          (0x01)
+#define AUDIO_VOLUME_CONTROL                        (0x02)
+#define AUDIO_BASS_CONTROL                          (0x04)
+#define AUDIO_MID_CONTROL                           (0x08)
+#define AUDIO_TREBLE_CONTROL                        (0x10)
+#define AUDIO_GRAPHIC_EQ_CONTROL                    (0x20)
+#define AUDIO_AUTOMATIC_GAIN_CONTROL                (0x40)
+#define AUDIO_DELAY_CONTROL                         (0x80)
 
 
 /* Max descriptors provided by the Application */
-#define USB_MAX_STD_DESCRIPTORS               (8)
-#define USB_MAX_CLASS_SPECIFIC_DESCRIPTORS    (2)
+#define USB_MAX_STD_DESCRIPTORS                     (8)
+#define USB_MAX_CLASS_SPECIFIC_DESCRIPTORS          (2)
 /* Max configuration supported by the Application */
-#define USB_MAX_CONFIG_SUPPORTED          (1)
+#define USB_MAX_CONFIG_SUPPORTED                    (1)
 
 /* Max string descriptors supported by the Application */
-#define USB_MAX_STRING_DESCRIPTORS        (4)
-
+#define USB_MAX_STRING_DESCRIPTORS                  (4)
+    
 /* Max language codes supported by the USB */
-#define USB_MAX_LANGUAGES_SUPPORTED       (1)
+#define USB_MAX_LANGUAGES_SUPPORTED                 (1)
 
 
-#define AUDIO_UNIT_COUNT                  (3)
-#define AUDIO_DESC_ENDPOINT_COUNT         (2)
-#define AUDIO_ENDPOINT                    (1)
-#define AUDIO_FEEDBACK_ENDPOINT           (2)
+#if AUDIO_CLASS_2_0
+#define AUDIO_UNIT_COUNT                            (4)
+#else
+#define AUDIO_UNIT_COUNT                            (3)
+#endif /* AUDIO_CLASS_2_0 */
+#define AUDIO_DESC_ENDPOINT_COUNT                   (2)
+#define AUDIO_ENDPOINT                              (1)
+#define AUDIO_FEEDBACK_ENDPOINT                     (2)
 
 
-#define AUDIO_ENDPOINT_PACKET_SIZE (256)
-#define AUDIO_FEEDBACK_ENDPOINT_PACKET_SIZE (3)
+#define AUDIO_ENDPOINT_PACKET_SIZE                  (8)
+#define AUDIO_FEEDBACK_ENDPOINT_PACKET_SIZE         (3)
 
 /* string descriptors sizes */
-#define USB_STR_DESC_SIZE (2)
-#define USB_STR_0_SIZE  (2)
-#define USB_STR_1_SIZE  (56)
-#define USB_STR_2_SIZE  (28)
-#define USB_STR_n_SIZE  (32)
+#define USB_STR_DESC_SIZE                           (2)
+#define USB_STR_0_SIZE                              (2)
+#define USB_STR_1_SIZE                              (56)
+#define USB_STR_2_SIZE                              (28)
+#define USB_STR_n_SIZE                              (32)
 
 /* descriptors codes */
-#define USB_DEVICE_DESCRIPTOR     (1)
-#define USB_CONFIG_DESCRIPTOR     (2)
-#define USB_STRING_DESCRIPTOR     (3)
-#define USB_IFACE_DESCRIPTOR      (4)
-#define USB_ENDPOINT_DESCRIPTOR   (5)
-#define USB_DEVQUAL_DESCRIPTOR    (6)
-#define USB_AUDIO_DESCRIPTOR      (0x25)
-#define USB_REPORT_DESCRIPTOR     (0x22)
+#define USB_DEVICE_DESCRIPTOR                       (0x01)
+#define USB_CONFIG_DESCRIPTOR                       (0x02)
+#define USB_STRING_DESCRIPTOR                       (0x03)
+#define USB_IFACE_DESCRIPTOR                        (0x04)
+#define USB_ENDPOINT_DESCRIPTOR                     (0x05)
+#define USB_DEVQUAL_DESCRIPTOR                      (0x06)
+#define USB_OTHER_SPEED_CONFIGURATION_DESCRIPTOR    (0x07)
+#define USB_INTERFACE_POWER_DESCRIPTOR              (0x08)
+#define USB_OTG_DESCRIPTOR                          (0x09)
+#define USB_DEBUG_DESCRIPTOR                        (0x0A)
+#define USB_INTERFACE_ASSOCIATION_DESCRIPTOR        (0x0B)
 
-#define USB_MAX_SUPPORTED_INTERFACES     (1)
+#define USB_AUDIO_DESCRIPTOR                        (0x25)
+#define USB_REPORT_DESCRIPTOR                       (0x22)
 
+#define USB_MAX_SUPPORTED_INTERFACES                (2)
+
+#define PCM_FORMAT                                  (0x02)
+#define SUB_FRAME_SIZE                              (0x01)
+#define BIT_RESOLUTION                              (0x08)
+#define NB_CHANNELS                                 (0x01)
+
+#define EP01_IN                                     (0x81)
+#define EP01_OUT                                    (0x01)
+#define EP02_IN                                     (0x82)
+#define EP02_OUT                                    (0x02)
+#define EP03_IN                                     (0x83)
+#define EP03_OUT                                    (0x03)
+
+/* 
+ * Interface delay: number of frames approximately needed by device to process 
+ * a packet */
+#define INTERFACE_DELAY                             (0x01)
 
 /******************************************************************************
  * Types

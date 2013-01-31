@@ -899,6 +899,7 @@ int_32 _io_cdc_serial_read
     	            *data_ptr++ = *if_ptr->RX_BUFFER_APP++;
             }
             else {
+            	if_ptr->RX_READ++;
                 data_ptr += if_ptr->RX_READ;
                 num_left -= if_ptr->RX_READ;
             }
@@ -1116,6 +1117,9 @@ int_32 _io_cdc_serial_write
                 return IO_ERROR;
             }
 
+            /* TODO AI: workaround */
+            if_ptr->TX_SENT++;
+            
             data_ptr += if_ptr->TX_SENT;
             num_left -= if_ptr->TX_SENT;
 

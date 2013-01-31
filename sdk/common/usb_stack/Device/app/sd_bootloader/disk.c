@@ -188,7 +188,6 @@ void USB_App_Callback
  *    @return      None
  *
  *****************************************************************************/
-static uint_8 video_data_SD[1024];
 void MSD_Event_Callback
 (
 		uint_8 controller_ID, 
@@ -211,6 +210,7 @@ void MSD_Event_Callback
 		break;
 	case USB_MSC_START_STOP_EJECT_MEDIA :
 		load_eject_start_ptr = (uint_8_ptr)val;
+        UNUSED(load_eject_start_ptr);
 		/* Code to be added by user for starting, stopping or 
             ejecting the disk drive. e.g. starting/stopping the motor in 
             case of CD/DVD*/
@@ -316,7 +316,6 @@ void TestApp_Init(void)
 {
 	/* Body */
 	uint_8   error;
-	uint_16 count = 0;
 #if !(defined _MC9S08JM60_H)
 	//sci_init();
 #endif   
@@ -333,6 +332,7 @@ void TestApp_Init(void)
 	/* Initialize the USB interface */
 	error = USB_Class_MSC_Init(g_disk.app_controller_ID,
 			USB_App_Callback,NULL, MSD_Event_Callback);
+    UNUSED(error);
 	EnableInterrupts;
 #if (defined _MCF51MM256_H) || (defined _MCF51JE256_H)
 	usb_int_en();

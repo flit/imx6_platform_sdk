@@ -525,6 +525,7 @@ uint_8 _usb_device_register_service(
         return USBERR_ALLOC_SERVICE;
     }
 #else
+    UNUSED(type);
     return USB_OK;
 #endif
     

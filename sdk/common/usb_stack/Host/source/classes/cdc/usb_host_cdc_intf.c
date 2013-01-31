@@ -33,6 +33,9 @@
 //#include <usb_mqx.h>
 #include "usb_host_cdc.h"
 #include "mem_util.h"
+#if HIGH_SPEED_DEVICE
+#include "ehci_usbprv_host.h"
+#endif /* HIGH_SPEED_DEVICE */
 
 static CLASS_CALL_STRUCT_PTR           ctrl_anchor = NULL;
 static CLASS_CALL_STRUCT_PTR           data_anchor = NULL;
@@ -113,7 +116,6 @@ void usb_class_cdc_acm_init
 *     interface call by application.
 *
 *END*--------------------------------------------------------------------*/
-
 void usb_class_cdc_data_init
    (
       /* [IN]  structure with USB pipe information on the interface */

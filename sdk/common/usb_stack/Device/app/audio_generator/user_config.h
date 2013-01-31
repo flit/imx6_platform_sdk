@@ -60,5 +60,6 @@
 #define DOUBLE_BUFFERING_USED
 #endif
 
-
+/* Audio class 2.0 */
+#define AUDIO_CLASS_2_0             (0)
 

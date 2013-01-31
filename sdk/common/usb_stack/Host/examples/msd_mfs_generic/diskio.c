@@ -35,11 +35,25 @@
 #include "hidef.h"
 #include "poll.h"
 
+#if (defined (__CWCC__) && defined(_MK_xxx_H_))
+#define _ALIGNED_ __attribute__((aligned (4)))
+#elif (defined (__CWCC__) && !defined(_MK_xxx_H_))
+#define _ALIGNED_
+#pragma pack(4)
+#elif (defined __IAR_SYSTEMS_ICC__) || defined(__CC_ARM)
+#pragma data_alignment=4
+#define _ALIGNED_
+#else
+#define _ALIGNED_
+#error "Toolchain not supported!"
+#endif
+
 /**************************************************************************
    Global variables
 **************************************************************************/
 volatile DEVICE_STRUCT   mass_device = { 0 };   /* mass storage device struct */
 extern uint_8 endpoint_stalled;
+extern uint_8 sense_error;
 
 /**************************************************************************
 *   Local variables
@@ -47,7 +61,7 @@ extern uint_8 endpoint_stalled;
 static volatile boolean       bCallBack = FALSE;
 static volatile USB_STATUS    bStatus = USB_OK;
 /* Command object used in SCSI commands */
-static COMMAND_OBJECT_STRUCT  pCmd; 
+static _ALIGNED_ COMMAND_OBJECT_STRUCT  pCmd;
 
 /*FUNCTION*----------------------------------------------------------------
 *
@@ -128,7 +142,7 @@ DRESULT disk_read
 )
 {
 	DRESULT 	res = RES_OK;
-	USB_STATUS  status = USB_OK;
+	USB_STATUS      status = USB_OK;
 
 	UNUSED(drv)
 
@@ -148,7 +162,14 @@ DRESULT disk_read
 		{
 			Poll();
 		}
-
+                
+                if(endpoint_stalled)
+		{
+                        endpoint_stalled = FALSE;                                                             				
+                        res = disk_ioctl(0, REQUEST_SENSE_CMD, NULL);
+                                
+		}                
+                
 		if (!bStatus) 
 		{
 			res = RES_OK;
@@ -182,17 +203,17 @@ DRESULT disk_write
   	uint_8 count			
   )
 {
-	DRESULT res = RES_OK;
-	USB_STATUS   status = USB_OK;
+	DRESULT         res = RES_OK;
+	USB_STATUS      status = USB_OK;
 	
 	UNUSED(drv)
 	
 	/* Check sector count */
 	if (!count) return RES_PARERR;
 
- /* Send Write_10 SCSI command */
+        /* Send Write_10 SCSI command */
 	bCallBack = FALSE;
-  status = usb_mass_ufi_write_10(&pCmd, sector, buff, (uint_32)(512*count), count);
+        status = usb_mass_ufi_write_10(&pCmd, sector, buff, (uint_32)(512*count), count);
 	if ((status != USB_OK) && (status != USB_STATUS_TRANSFER_QUEUED))
 	{
 		 res = RES_ERROR;
@@ -200,9 +221,17 @@ DRESULT disk_write
 	else
 	{
 		while(!bCallBack)	/* Wait till command comes back */
-	  {
-	    Poll();
-	  }
+                {
+                        Poll();
+                }
+                
+                if(endpoint_stalled)
+		{
+                        endpoint_stalled = FALSE;                                                             				
+                        res = disk_ioctl(0, REQUEST_SENSE_CMD, NULL);
+                                
+		}                
+                
 		if (!bStatus) 
 		{
 			 res = RES_OK;
@@ -233,229 +262,243 @@ DRESULT disk_ioctl
   void* Buff
 )
 {
-	DRESULT										res = RES_OK;
-	USB_STATUS   								status = USB_OK;
-	MASS_STORAGE_READ_CAPACITY_CMD_STRUCT_INFO 	read_capacity;
-	CAPACITY_LIST                        capacity_list;
-	INQUIRY_DATA_FORMAT                  inquiry;
-	REQ_SENSE_DATA_FORMAT                req_sense;
+	_ALIGNED_ DRESULT										res = RES_OK;
+	_ALIGNED_ USB_STATUS   								    status = USB_OK;
+	_ALIGNED_ MASS_STORAGE_READ_CAPACITY_CMD_STRUCT_INFO 	read_capacity;
+	static _ALIGNED_ CAPACITY_LIST                          capacity_list;
+	static _ALIGNED_ INQUIRY_DATA_FORMAT                    inquiry;
+	static _ALIGNED_ REQ_SENSE_DATA_FORMAT                  req_sense;
 
-	UNUSED(Drive)
+	UNUSED(Drive);
 
-	if (UFI_TEST_UNIT_READY_CMD == Command)
-	{
-		/* Send read_capacity SCSI command */
-		bCallBack = FALSE;
-		status = usb_mass_ufi_test_unit_ready(&pCmd);
-		if ((status != USB_OK) && (status != USB_STATUS_TRANSFER_QUEUED))
+        switch (Command)
+        {
+            case UFI_TEST_UNIT_READY_CMD:
+            /* Send test unit ready SCSI command */
+            bCallBack = FALSE;
+            status = usb_mass_ufi_test_unit_ready(&pCmd);
+            if ((status != USB_OK) && (status != USB_STATUS_TRANSFER_QUEUED))
+            {
+                res = RES_ERROR;         
+            }
+            else
+            {
+                /* Wait till command comes back */
+                while(!bCallBack)	
+                {
+                    Poll();
+                }
+                
+                /*
+                * workaround AI:
+                * After the endpoint STALL flag is cleared we have to issue another 
+                * REQUEST_SENSE commmand
+                */
+		if(endpoint_stalled)
 		{
-			res = RES_ERROR;
+                      endpoint_stalled = FALSE;                                                             				
+                      res = disk_ioctl(0, REQUEST_SENSE_CMD, NULL);
+                }
+
+		if (!bStatus) 
+		{                                
+                      res = RES_OK;  
 		}
-		else
+		else 
+		{              
+                      res = RES_NOTRDY;				    
+		}         
+          }		          
+          break;
+        case UFI_READ_CAPACITY_CMD:
+          /* Send read_capacity SCSI command */
+          bCallBack = FALSE;
+          status = usb_mass_ufi_read_capacity(&pCmd, (uchar_ptr)&capacity_list,
+                   sizeof(CAPACITY_LIST));
+          if ((status != USB_OK) && (status != USB_STATUS_TRANSFER_QUEUED))
+          {
+                res = RES_ERROR;         
+          }
+          else
+          {
+                /* Wait till command comes back */
+                while(!bCallBack)	
 		{
-			/* Wait till command comes back */
-			while(!bCallBack)	
-			{
-				Poll();
-			}
-
-			/*
-			 * workaround AI:
-			 * after the endpoint STALL flag is cleared we have to issue another 
-			 * REQUEST_SENSE commmand
-			 */
-			if(endpoint_stalled)
-			{
-				endpoint_stalled = FALSE;
-				res = disk_ioctl(0, REQUEST_SENSE_CMD, NULL);
-			}
-
-			if (!bStatus) 
-			{
-				res = RES_OK;
-			}
-			else 
-			{
-				res = RES_NOTRDY;
-			}         
-		}		
-	}
-	if (UFI_READ_CAPACITY_CMD == Command)
-	{
-		/* Send read_capacity SCSI command */
-		bCallBack = FALSE;
-		status = usb_mass_ufi_read_capacity(&pCmd, (uchar_ptr)&capacity_list,
-				sizeof(CAPACITY_LIST));
-		if ((status != USB_OK) && (status != USB_STATUS_TRANSFER_QUEUED))
-		{
-			res = RES_ERROR;
-		}
-		else
-		{
-			/* Wait till command comes back */
-			while(!bCallBack)	
-			{
-				Poll();
-			}
-
+                        Poll();
+		}     
 			
-
-			if (!bStatus) 
-			{
-				res = RES_OK;
-			}
-			else 
-			{
-				res = RES_NOTRDY;
-			}         
-		}		
-	}
-	
-	if (UFI_READ_FORMAT_CAPACITY_CMD == Command)
-	{
-		/* Send read_capacity SCSI command */
-		bCallBack = FALSE;
-		status = usb_mass_ufi_format_capacity(&pCmd, (uchar_ptr)&read_capacity,\
-				sizeof(MASS_STORAGE_READ_CAPACITY_CMD_STRUCT_INFO));
-		if ((status != USB_OK) && (status != USB_STATUS_TRANSFER_QUEUED))
+                if(endpoint_stalled)
 		{
-			res = RES_ERROR;
+			endpoint_stalled = FALSE;                                
+			res = disk_ioctl(0, REQUEST_SENSE_CMD, NULL);
+		}                        
+
+		if (!bStatus) 
+		{
+			res = RES_OK;   
+		}
+		else 
+		{
+			res = RES_NOTRDY;  
+		}         
+          }		          
+          break;
+        case UFI_READ_FORMAT_CAPACITY_CMD:
+          /* Send read_capacity SCSI command */
+          bCallBack = FALSE;
+          status = usb_mass_ufi_format_capacity(&pCmd, (uchar_ptr)&read_capacity,\
+                   sizeof(MASS_STORAGE_READ_CAPACITY_CMD_STRUCT_INFO));
+          if ((status != USB_OK) && (status != USB_STATUS_TRANSFER_QUEUED))
+          {
+                res = RES_ERROR;   
+          }
+          else
+          {
+		/* Wait till command comes back */
+		while(!bCallBack)	
+		{
+			Poll();
+		}
+			
+                if(endpoint_stalled)
+		{
+			endpoint_stalled = FALSE;                                
+			res = disk_ioctl(0, REQUEST_SENSE_CMD, NULL);
+		}                        
+                        
+		if (!bStatus) 
+		{
+			res = RES_OK;    
+		}
+		else 
+		{
+			res = RES_NOTRDY;  
+		}         
+	  }		          
+          break;
+        case UFI_INQUIRY_CMD:
+          /* Send read_capacity SCSI command */
+          bCallBack = FALSE;
+          status = usb_mass_ufi_inquiry(&pCmd, (uchar_ptr) &inquiry,
+                   sizeof(INQUIRY_DATA_FORMAT));
+          if ((status != USB_OK) && (status != USB_STATUS_TRANSFER_QUEUED))
+          {
+		res = RES_ERROR;  
+          }
+          else
+          {
+		/* Wait till command comes back */
+		while(!bCallBack)	
+		{
+			Poll();
+		}
+
+		if(endpoint_stalled)
+		{
+			endpoint_stalled = FALSE;                                
+			res = disk_ioctl(0, REQUEST_SENSE_CMD, NULL);
+		}
+                        
+		if (!bStatus) 
+		{
+			res = RES_OK;   
+		}
+		else 
+		{
+			res = RES_NOTRDY;  
+		}         
+          }		          
+          break;
+        case REQUEST_SENSE_CMD:
+          /* Send read_capacity SCSI command */
+          bCallBack = FALSE;
+          status = usb_mass_ufi_request_sense(&pCmd, &req_sense,
+                   sizeof(REQ_SENSE_DATA_FORMAT));
+          if ((status != USB_OK) && (status != USB_STATUS_TRANSFER_QUEUED))
+          {
+                res = RES_ERROR;  
+          }
+          else
+          {
+		/* Wait till command comes back */
+		while(!bCallBack)
+		{
+                        Poll();
+		}
+                        
+                if (!bStatus)
+		{
+			res = RES_OK; 
+		}
+		else 
+		{
+                        res = RES_NOTRDY; 
+		}
+          }          
+          break;
+        case GET_SECTOR_COUNT:
+        case GET_SECTOR_SIZE:
+          /* Send read_capacity SCSI command */
+          bCallBack = FALSE;
+          status = usb_mass_ufi_read_capacity(&pCmd, (uchar_ptr)&read_capacity,\
+                   sizeof(MASS_STORAGE_READ_CAPACITY_CMD_STRUCT_INFO));
+          if ((status != USB_OK) && (status != USB_STATUS_TRANSFER_QUEUED))
+          {
+                res = RES_ERROR;   
+          }
+          else
+          {
+		/* Wait till command comes back */
+		while(!bCallBack)
+		{
+			Poll();
+		}
+                        
+		if(endpoint_stalled)
+		{
+			endpoint_stalled = FALSE;                                
+			res = disk_ioctl(0, REQUEST_SENSE_CMD, NULL);
+		}                        
+                        
+		if (!bStatus)
+		{
+                        res = RES_OK;    
 		}
 		else
 		{
-			/* Wait till command comes back */
-			while(!bCallBack)	
-			{
-				Poll();
-			}
+			res = RES_NOTRDY;  
+		} 
+          }
 
-			if (!bStatus) 
-			{
-				res = RES_OK;
-			}
-			else 
-			{
-				res = RES_NOTRDY;
-			}         
-		}		
-	}
-
-	if (UFI_INQUIRY_CMD == Command)
-	{
-		/* Send read_capacity SCSI command */
-		bCallBack = FALSE;
-		status = usb_mass_ufi_inquiry(&pCmd, (uchar_ptr) &inquiry,
-				sizeof(INQUIRY_DATA_FORMAT));
-		if ((status != USB_OK) && (status != USB_STATUS_TRANSFER_QUEUED))
-		{
-			res = RES_ERROR;
-		}
-		else
-		{
-			/* Wait till command comes back */
-			while(!bCallBack)	
-			{
-				Poll();
-			}
-			if (!bStatus) 
-			{
-				res = RES_OK;
-			}
-			else 
-			{
-				res = RES_NOTRDY;
-			}         
-		}		
-	}	
-
-	if (REQUEST_SENSE_CMD == Command)
-	{
-		/* Send read_capacity SCSI command */
-		bCallBack = FALSE;
-		status = usb_mass_ufi_request_sense(&pCmd, &req_sense,
-				sizeof(REQ_SENSE_DATA_FORMAT));
-		if ((status != USB_OK) && (status != USB_STATUS_TRANSFER_QUEUED))
-		{
-			res = RES_ERROR;
-		}
-		else
-		{
-			/* Wait till command comes back */
-			while(!bCallBack)
-			{
-				Poll();
-			}
-			if (!bStatus)
-			{
-				res = RES_OK;
-			}
-			else 
-			{
-				res = RES_NOTRDY;
-			}
-		}
-	}
-
-	if ((GET_SECTOR_COUNT == Command)||(GET_SECTOR_SIZE == Command))
-	{
-		/* Send read_capacity SCSI command */
-		bCallBack = FALSE;
-		status = usb_mass_ufi_read_capacity(&pCmd, (uchar_ptr)&read_capacity,\
-				sizeof(MASS_STORAGE_READ_CAPACITY_CMD_STRUCT_INFO));
-		if ((status != USB_OK) && (status != USB_STATUS_TRANSFER_QUEUED))
-		{
-			res = RES_ERROR;
-		}
-		else
-		{
-			/* Wait till command comes back */
-			while(!bCallBack)
-			{
-				Poll();
-			}
-			if (!bStatus)
-			{
-				res = RES_OK;
-			}
-			else
-			{
-				res = RES_NOTRDY;
-			}
-		}
-
-		if(!Buff)
-			return res = RES_ERROR;
+          if(!Buff)
+		return res = RES_ERROR;
 		
-		/* Get number of sectors on the disk (DWORD) */
-		if (GET_SECTOR_COUNT == Command)
-		{
-			*(uint_32 *)Buff = *(uint_32 *)read_capacity.BLLBA +1 ;
-		}
-		/* Get the sector size in byte */
-		else
-		{
-			*(uint_32 *)Buff = *(uint_32 *)read_capacity.BLENGTH;
-		}
-
-	}
-	else if (GET_BLOCK_SIZE == Command)
-	{
-		if(!Buff)
-			return res = RES_ERROR;
+          /* Get number of sectors on the disk (DWORD) */
+          if (GET_SECTOR_COUNT == Command)
+          {
+		*(uint_32 *)Buff = *(uint_32 *)read_capacity.BLLBA +1 ;
+          }
+          /* Get the sector size in byte */
+          else
+          {
+		*(uint_32 *)Buff = *(uint_32 *)read_capacity.BLENGTH;
+          }
+          break;          
+        case GET_BLOCK_SIZE:
+          if(!Buff)
+		return res = RES_ERROR;
 		
-		*(uint_32*)Buff = ERASE_BLOCK_SIZE;
-		res = RES_OK;
-	}
-	else if(CTRL_SYNC == Command)
-	{
-		res = RES_OK;
-	}
-	else
-	{
-		res = RES_PARERR;
-	}
-
-	return res;
+          *(uint_32*)Buff = ERASE_BLOCK_SIZE;
+          res = RES_OK;           
+          break;
+        case CTRL_SYNC:
+          res = RES_OK;    
+          break;
+        default:
+          res = RES_PARERR; 
+          break;
+        }  
+        return res;
 }
 
 /*FUNCTION*----------------------------------------------------------------

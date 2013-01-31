@@ -234,7 +234,7 @@ static void usb_host_hub_device_sm
             /* else */
 
             /* pass fluently to HUB_CLEAR_PORT_FEATURE_PROCESS */
-            hub_instance->STATE = HUB_CLEAR_PORT_FEATURE_PROCESS;
+            hub_instance->STATE = HUB_CLEAR_PORT_FEATURE_PROCESS;            
             hub_instance->port_iterator = 0;
         case HUB_CLEAR_PORT_FEATURE_PROCESS: 
             if (hub_instance->port_iterator < hub_instance->HUB_PORT_NR) 
@@ -286,14 +286,14 @@ static void usb_host_hub_device_sm
             usb_class_hub_set_port_feature(&hub_com, (uint_8)(hub_instance->port_iterator + 1), PORT_RESET);
 
             usb_hub_wait_for_interrupt(hub_instance);
-            break;
+            break;                
 
     	case HUB_ADDRESS_DEVICE_PORT_PROCESS:
     	    /* compute speed */
     	    if ((hub_instance->HUB_PORTS + hub_instance->port_iterator)->STATUS & (1 << PORT_HIGH_SPEED))
     	        i = USB_SPEED_HIGH;
-    	    else if ((hub_instance->HUB_PORTS + hub_instance->port_iterator)->STATUS & (1 << PORT_LOW_SPEED))
-    	        i = USB_SPEED_LOW;
+    	    else if ((hub_instance->HUB_PORTS + hub_instance->port_iterator)->STATUS & (1 << PORT_LOW_SPEED))            
+    	        i = USB_SPEED_LOW;                                
     	    else
     	        i = USB_SPEED_FULL;
     	    
@@ -369,9 +369,9 @@ static void usb_host_hub_device_sm
             }
             else if ((1 << C_PORT_RESET) & stat)
             {
-                hub_instance->STATE = HUB_ADDRESS_DEVICE_PORT_PROCESS;
-                (hub_instance->HUB_PORTS + hub_instance->port_iterator)->APP_STATUS |= APP_STATUS_ATTACHED;
-                usb_class_hub_clear_port_feature(&hub_com, (uint_8)(hub_instance->port_iterator + 1), C_PORT_RESET);
+               hub_instance->STATE = HUB_ADDRESS_DEVICE_PORT_PROCESS;
+               (hub_instance->HUB_PORTS + hub_instance->port_iterator)->APP_STATUS |= APP_STATUS_ATTACHED;
+               usb_class_hub_clear_port_feature(&hub_com, (uint_8)(hub_instance->port_iterator + 1), C_PORT_RESET);  
                 break;
             }
             else if ((1 << C_PORT_ENABLE) & stat)
@@ -435,7 +435,7 @@ static void usb_host_hub_int_callback
 { /* Body */
     HUB_DEVICE_STRUCT_PTR          hub_instance = (HUB_DEVICE_STRUCT_PTR) param;
     USB_HUB_CLASS_INTF_STRUCT_PTR  if_ptr;
-    uint_16                       i, j, port;
+    uint_16                        i, j, port;
     uint_8 _PTR_                   port_pattern= (uint_8 _PTR_) buffer;
     HUB_COMMAND                    hub_com;
    
@@ -473,15 +473,18 @@ static void usb_host_hub_int_callback
         ** Note, that if there are more ports, which changed its status, these will
         ** be invoked later (in next interrupt)
         */
- 
-        hub_com.CLASS_PTR = (CLASS_CALL_STRUCT_PTR) &hub_instance->CLASS_INTF;
-        hub_com.CALLBACK_FN = (tr_callback) usb_host_hub_device_sm;
-        hub_com.CALLBACK_PARAM = (pointer) hub_instance;
+        /* Some hubs reported port 0  status changed and the result was hard fault error */
+        if (port > 0)
+        { 
+            hub_com.CLASS_PTR = (CLASS_CALL_STRUCT_PTR) &hub_instance->CLASS_INTF;
+            hub_com.CALLBACK_FN = (tr_callback) usb_host_hub_device_sm;
+            hub_com.CALLBACK_PARAM = (pointer) hub_instance;
    
-        hub_instance->STATE = HUB_GET_PORT_STATUS_ASYNC;
-        hub_instance->port_iterator = (uint_16)(port - 1);
-        usb_class_hub_get_port_status(&hub_com, (uint_8)port, hub_instance->control_buffer, 4);
-   
+            hub_instance->STATE = HUB_GET_PORT_STATUS_ASYNC;
+       
+        	hub_instance->port_iterator = (uint_16)(port - 1);
+            usb_class_hub_get_port_status(&hub_com, (uint_8)port, hub_instance->control_buffer, 4);
+        }
     }
     else
         USB_unlock();

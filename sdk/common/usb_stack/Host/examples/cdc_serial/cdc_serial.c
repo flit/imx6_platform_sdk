@@ -235,6 +235,18 @@ void CDC_Task ()
     } 
     else 
     {        
+#ifdef MCU_mcf51jf128
+    	/* todo AI: change this for MCU_mcf51jf128 */
+    	char temp;
+    	
+    	temp = TERMIO_GetChar();
+    	if(temp)
+    	{
+    		buff_index = 1;
+    		buff[0] = temp;
+    	}
+#endif /* MCU_mcf51jf128 */
+    	
 		/* Read data from UART */
 		 DisableInterrupts;
 		 uart2usb_num = buff_index;
@@ -283,7 +295,11 @@ void CDC_Task ()
 		 {
 			 for (i = 0; i < usb2uart_num; i++) 
 			 {
+#ifdef MCU_mcf51jf128
+				 printf(" --received--> %c\n\r",usb2uart[i]);
+#else
 				 sci2_PutChar(usb2uart[i]);        
+#endif
 			 }
 			 usb2uart_num = 0;      
 		 }

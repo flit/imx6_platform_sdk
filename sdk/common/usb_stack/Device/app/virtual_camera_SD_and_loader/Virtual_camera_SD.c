@@ -247,6 +247,8 @@ void TestApp_Init(void)
 				USB_MSD_App_Callback,NULL, MSD_Event_Callback);
 	}
 
+	UNUSED(error);
+	
 #if (defined _MCF51MM256_H) || (defined _MCF51JE256_H)
 	usb_int_en();
 #endif

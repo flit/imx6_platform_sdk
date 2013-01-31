@@ -163,7 +163,7 @@ uint_8 USB_DESC_CONST g_config_descriptor_video[CONFIG_DESC_SIZE_VIDEO] =
   VC_INPUT_TERMINAL,                    /* VC_INPUT_TERMINAL subtype */
   0x01,                                 /* ID of this input terminal */
   0x01,0x02,                            /* ITT_CAMERA type. This terminal is a 
-                                        /* Camera terminal representing the CCD sensor */
+                                        Camera terminal representing the CCD sensor */
   0x00,                                 /* No association */
   0x00,                                 /* Unused */
   0x00,0x00,                            /* No optical zoom supported */
@@ -189,7 +189,7 @@ uint_8 USB_DESC_CONST g_config_descriptor_video[CONFIG_DESC_SIZE_VIDEO] =
   VC_PROCESSING_UNIT,                   /* VC_PROCESSING_UNIT */
   0x02,                                 /* ID of this unit */
   0x01,                                 /* This input pin of this is connected to
-                                        /*  unit with ID 0x04 */
+                                          unit with ID 0x04 */
   0x00,0x00,                            /* unused */
   0x02,                                 /* Size of the bmControls field */
   0x01,0x00,                            /* Brightness control supported */
@@ -252,8 +252,8 @@ uint_8 USB_DESC_CONST g_config_descriptor_video[CONFIG_DESC_SIZE_VIDEO] =
   VS_FRAME_MJPEG,                       /* VS_FRAME_MJPEG */
   0x01,                                 /* First (and only) frame descriptor */
   0x00,                                 /* Still images using capture method 1 are
-                                        /*  supported at this frame setting.*/
-                                        /*  D1: Fixed frame-rate*/
+                                          supported at this frame setting.
+                                          D1: Fixed frame-rate*/
   0x40,0x01,                            /* Width of frame is  pixels */
   0xF0,0x00,                            /* Height of frame is 240 pixels */
   0x00,0x09,0x3D,0x00,                  /* Min bit rate in bits/s */

@@ -225,7 +225,6 @@ uint_8 USB_App_Param_Callback(
 )
 {
     uint_8 status = USB_OK;
-    uint_8 direction =  (uint_8)((request & USB_HID_REQUEST_DIR_MASK) >>3);
     uint_8 index = (uint_8)((request - 2) & USB_HID_REQUEST_TYPE_MASK);
                                               /* index == 0 for get/set idle,
                                             index == 1 for get/set protocol */
@@ -307,6 +306,7 @@ void TestApp_Init(void)
     /* Initialize the USB interface */
     error = USB_Class_HID_Init(CONTROLLER_ID, USB_App_Callback, NULL,
                             USB_App_Param_Callback);
+    UNUSED(error);
 
     EnableInterrupts;
     #if (defined _MCF51MM256_H) || (defined _MCF51JE256_H)

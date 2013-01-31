@@ -44,7 +44,7 @@
 
 /* User Defined MACRO to set number of Timer Objects */
 
-#define MAX_TIMER_OBJECTS            0
+#define MAX_TIMER_OBJECTS           (0)
 #define USED_PIT1                    
 
 #if MAX_TIMER_OBJECTS
@@ -63,5 +63,6 @@
 	#define DOUBLE_BUFFERING_USED
 #endif
 
-
+/* Audio class 2.0 */
+#define AUDIO_CLASS_2_0             (0)
 

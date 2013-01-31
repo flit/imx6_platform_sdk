@@ -157,6 +157,7 @@ void TestApp_Init(void)
     /* Initialize the USB interface */
     error = USB_Class_Audio_Init(CONTROLLER_ID,USB_App_Callback,
                                 NULL,NULL);
+    UNUSED(error);
                                 
 	#if (defined _MCF51MM256_H) || (defined _MCF51JE256_H)
      usb_int_en();

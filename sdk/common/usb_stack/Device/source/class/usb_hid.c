@@ -547,7 +547,8 @@ uint_8 USB_Class_HID_Send_Data (
 )
 {
     uint_8 index;
-    volatile uint_8 producer, consumer;
+    //volatile uint_8 producer, consumer;
+    uint_8 producer, consumer;
     uint_8 status = USB_OK;
 
     USB_ENDPOINTS *ep_desc_data = (USB_ENDPOINTS *)

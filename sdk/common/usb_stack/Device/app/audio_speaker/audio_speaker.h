@@ -41,7 +41,7 @@
    supported is 16 Bytes
 */
 #ifndef _MC9S08JS16_H
-#define  DATA_BUFF_SIZE     (8)
+#define  DATA_BUFF_SIZE (AUDIO_ENDPOINT_PACKET_SIZE)
 #else
 #define  DATA_BUFF_SIZE     (16)
 #endif

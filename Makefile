@@ -78,7 +78,8 @@ ALL_APPS += \
     gpu_demo \
     multicore_demo \
     caam_blob_gen \
-    filesystem 
+    filesystem \
+    smp_primes
 endif
 
 # Default target.

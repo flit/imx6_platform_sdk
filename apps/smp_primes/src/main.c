@@ -31,35 +31,139 @@
 #include "sdk.h"
 #include "platform_init.h"
 #include "primes.h"
+#include "timer/timer.h"
+#include "cpu_utility/cpu_utility.h"
+#include "core/cortex_a9.h"
+#include "utility/spinlock.h"
 
-void main_app(void)
+////////////////////////////////////////////////////////////////////////////////
+// Variables
+////////////////////////////////////////////////////////////////////////////////
+
+// Set MAX_CPUS as desired; will be forced to no greater than actual number of cpus.
+#define MAX_CPUS 4;
+static unsigned int num_cpus = MAX_CPUS;
+
+spinlock_t print_lock;
+volatile unsigned int all_done;
+
+////////////////////////////////////////////////////////////////////////////////
+// Code
+////////////////////////////////////////////////////////////////////////////////
+void configure_cpu(uint32_t cpu)
 {
-    unsigned int id = 0;
+    const unsigned int all_ways = 0xf;
 
-    // id = getCPUID();
+    // Enable branch prediction
+    arm_branch_prediction_enable();
 
-    printf("CPU %d: Starting calculation\n", id);
+    // Enable L1 caches
+    arm_dcache_enable();
+    arm_dcache_invalidate();
+    arm_icache_enable();
+    arm_icache_invalidate();
 
-    calculatePrimes(id);
+    // Invalidate SCU copy of TAG RAMs
+    scu_secure_invalidate(cpu, all_ways);
 
-    printf("CPU %d: Finished\n", id);
+    // Join SMP
+    scu_enable();
+    scu_join_smp();
 }
 
-void smp_primes(void)
+void smp_primes(void * arg)
 {
-    printf("Starting the smp primes example.\n");
+    uint64_t start_time, done_time;
+    uint32_t cpu_id = cpu_get_current();
+    int i;
 
-    initPrimes();
+    if (cpu_id == 0)
+    {
+        int cpu_count = cpu_get_cores();
 
-    main_app();
+        printf("Starting the smp primes example.\n");
+        printf("Found %d CPU core(s)\n", cpu_count);
+        if (num_cpus > cpu_count)
+        {
+            num_cpus = cpu_count;
+        }
+        printf("Using %d CPU core(s)\n", num_cpus);
 
-    printf("Exiting from the smp primes example.\n");
+        configure_cpu(cpu_id);
+        spinlock_init(&print_lock);
+        all_done = 1;   // assume one cpu
+
+        initPrimes();
+
+        start_time = time_get_microseconds();
+
+        if (num_cpus > 1)
+        {
+            all_done = 0;
+            // start second cpu
+            cpu_start_secondary(1, &smp_primes, 0);
+        }
+
+        spinlock_lock(&print_lock, kSpinlockWaitForever);
+        printf("CPU %d: Starting calculation\n", cpu_id);
+        spinlock_unlock(&print_lock);
+
+        calculatePrimes(cpu_id);
+
+        spinlock_lock(&print_lock, kSpinlockWaitForever);
+        printf("CPU %d: Finished\n", cpu_id);
+        spinlock_unlock(&print_lock);
+
+        while (!all_done)
+        {
+            for( i=0; i <= 100000; i++) { _ARM_NOP(); }
+        }
+        done_time = time_get_microseconds();
+        printf("Application finished in %d usecs\n", (uint32_t)(done_time - start_time));
+
+        // put other cores back into reset
+        for (i = 1; i < num_cpus; i++)
+        {
+            cpu_disable(i);
+        }
+    }
+    else
+    {
+        configure_cpu(cpu_id);
+
+        // if more cpus, start the next one
+        if (cpu_id  < (num_cpus - 1))
+        {
+            cpu_start_secondary(cpu_id + 1, &smp_primes, 0);
+        }
+
+        spinlock_lock(&print_lock, kSpinlockWaitForever);
+        printf("CPU %d: Starting calculation\n", cpu_id);
+        spinlock_unlock(&print_lock);
+
+        calculatePrimes(cpu_id);
+
+        spinlock_lock(&print_lock, kSpinlockWaitForever);
+        printf("CPU %d: Finished\n", cpu_id);
+        spinlock_unlock(&print_lock);
+
+        // if last cpu, trigger test done
+        if (cpu_id == (num_cpus - 1))
+        {
+            all_done = 1;
+        }
+
+        // wait to be disabled
+        while (1)
+        {
+            for( i=0; i <= 100000; i++) { _ARM_NOP(); }
+        }
+    }
 }
 
 void main(void)
 {
     platform_init();
 
-    // Perform the SMP Primes example.
-    smp_primes();
+    smp_primes(0);
 }

@@ -5,9 +5,7 @@
 // ------------------------------------------------------------
 
 #include "sdk.h"
-//#include <stdio.h>
-//#include <time.h>
-//#include "MP_Mutexes.h"
+#include "utility/spinlock.h"
 
 #define TARGET_COUNT (100) //Number of primes to find
 
@@ -18,9 +16,8 @@ unsigned int next_number;
 
 volatile unsigned int prime_count;
 
-// Align the mutexes to the cache line size
-//mutex_t prime_lock    __attribute__ ((aligned (32)));
-//mutex_t next_num_lock __attribute__ ((aligned (32)));
+spinlock_t prime_lock;
+spinlock_t next_num_lock;
 
 // ------------------------------------------------------------
 
@@ -28,10 +25,10 @@ static unsigned int getNextNumber()
 {
   unsigned int number;
 
-//  lockMutex(&next_num_lock);
+  spinlock_lock(&next_num_lock, kSpinlockWaitForever);
   number = next_number;
   next_number = next_number + 2;
-//  unlockMutex(&next_num_lock);
+  spinlock_unlock(&next_num_lock);
 
   return number;
 }
@@ -40,7 +37,7 @@ static unsigned int getNextNumber()
 
 static void addPrime(unsigned int number, unsigned int id)
 {
-//  lockMutex(&prime_lock);
+  spinlock_lock(&prime_lock, kSpinlockWaitForever);
 
   // It is possible a CPU could skid past the target number of primes
   // so adding a check to avoid potential writes past the end of the array
@@ -51,7 +48,7 @@ static void addPrime(unsigned int number, unsigned int id)
     printf("CPU %d: %d (prime %d of %d)\n", id, number, prime_count, target_count);
   }
 
-//  unlockMutex(&prime_lock);
+  spinlock_unlock(&prime_lock);
 
   return;
 }
@@ -61,8 +58,8 @@ static void addPrime(unsigned int number, unsigned int id)
 void initPrimes(void)
 {
   // Initialize mutexes
-//  initMutex(&prime_lock);
-//  initMutex(&next_num_lock);
+  spinlock_init(&prime_lock);
+  spinlock_init(&next_num_lock);
 
   // Set initial
   target_count = TARGET_COUNT;

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, Freescale Semiconductor, Inc.
+ * Copyright (c) 2012-2013, Freescale Semiconductor, Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -57,6 +57,8 @@ typedef enum {
     CPU_WORKPOINT_OUTOFRANGE
 } cpu_wp_e;
 
+//! @brief
+typedef void (*cpu_entry_point_t)(void * arg);
 
 ////////////////////////////////////////////////////////////////////////////////
 // Functions
@@ -89,6 +91,18 @@ int cpu_get_cores(void);
 //!
 //! @return The current cpu frequency, 0 means failed to change the work point
 uint32_t cpu_workpoint_set(cpu_wp_e cpu_wp_mode);
+
+//! @brief Start up a secondary CPU core.
+//!
+//! @param coreNumber CPU index from 1 through 3.
+//! @param entryPoint Function which will be called on the requested CPU core.
+//! @param arg Arbitrary argument to pass to @a entryPoint when it is called.
+void cpu_start_secondary(uint8_t coreNumber, cpu_entry_point_t entryPoint, void * arg);
+
+//! @brief Places a secondary CPU core in reset.
+//!
+//! @param coreNumber CPU index from 1 through 3.
+void cpu_disable(uint8_t coreNumber);
 
 #if defined(__cplusplus)
 }

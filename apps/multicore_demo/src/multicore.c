@@ -31,18 +31,11 @@
 #include "sdk.h"
 #include "platform_init.h"
 #include "irq_numbers.h"
-#include "registers/regssrc.h"
 #include "cpu_utility/cpu_utility.h"
 #include "core/cortex_a9.h"
 #include "core/gic.h"
 #include "core/interrupt.h"
 #include "utility/system_util.h"
-
-////////////////////////////////////////////////////////////////////////////////
-// Externs
-////////////////////////////////////////////////////////////////////////////////
-
-extern void _start(void);    // entry function, startup routine, defined in startup.s
 
 ////////////////////////////////////////////////////////////////////////////////
 // Variables
@@ -76,36 +69,6 @@ void SGI3_ISR(void)
     }
 }
 
-void start_secondary_cpu(uint32_t cpu_num, void functPtr(void))
-{
-    // Prepare pointers for ROM code.
-    switch (cpu_num)
-    {
-        case 1:
-            HW_SRC_GPR3_WR((uint32_t) & _start);
-            HW_SRC_GPR4_WR((uint32_t) functPtr);
-    
-            HW_SRC_SCR.B.CORE1_ENABLE = 1;
-            break;
-
-#if defined(CHIP_MX6DQ)
-        case 2:
-            HW_SRC_GPR5_WR((uint32_t) & _start);
-            HW_SRC_GPR6_WR((uint32_t) functPtr);
-    
-            HW_SRC_SCR.B.CORE2_ENABLE = 1;
-            break;
-    
-        case 3:
-            HW_SRC_GPR7_WR((uint32_t) & _start);
-            HW_SRC_GPR8_WR((uint32_t) functPtr);
-    
-            HW_SRC_SCR.B.CORE3_ENABLE = 1;
-            break;
-#endif // CHIP_MX6DQ
-    }
-}
-
 //! This test first starts the secondary CPUs in order from 1 through 3. When each secondary
 //! CPU starts, it executes this function. The first thing this function does for secondary CPUs
 //! is to enable interrupts for the CPU in the GIC.
@@ -113,7 +76,7 @@ void start_secondary_cpu(uint32_t cpu_num, void functPtr(void))
 //! When the last CPU enters this function, it will start a loop of sending software interrupts
 //! to all cores in sequence by sending the first SGI to core 0. As each core handles the SGI,
 //! it will print a message and send an SGI to the next CPU in sequence.
-void multicore_test(void)
+void multicore_test(void * arg)
 {
     uint32_t cpu_id = cpu_get_current();
     int cpuCount = cpu_get_cores();
@@ -142,18 +105,15 @@ void multicore_test(void)
         printf("Starting and sending SGIs to secondary CPUs for \"hello world\" \n\n");
 
         // start second cpu
-        start_secondary_cpu(1, &multicore_test);
+        cpu_start_secondary(1, &multicore_test, 0);
 
         // cpu0 wait until test is done, that is until cpu3 completes its SGI.
         while (isTestDone);
         
-        // put other cores back into reset with SRC module
-        HW_SRC_SCR.B.CORE1_ENABLE = 0;
-        
-#if defined(CHIP_MX6DQ)
-        HW_SRC_SCR.B.CORE2_ENABLE = 0;
-        HW_SRC_SCR.B.CORE3_ENABLE = 0;
-#endif
+        // put other cores back into reset
+        cpu_disable(1);
+        cpu_disable(2);
+        cpu_disable(3);
         
         printf("\nEnd of test\n");
     }
@@ -169,7 +129,7 @@ void multicore_test(void)
         }
         else
         {
-            start_secondary_cpu(cpu_id + 1, &multicore_test);
+            cpu_start_secondary(cpu_id + 1, &multicore_test, 0);
         }
         
         // do nothing wait to be interrupted
@@ -182,7 +142,7 @@ void main(void)
     platform_init();
 
     // Run the demo.
-    multicore_test();
+    multicore_test(0);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

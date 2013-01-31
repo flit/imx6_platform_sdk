@@ -33,6 +33,7 @@ board_id/src/board_id.c
 camera/src/camera_profile.c
 cpu_utility/src/cpu_get_cores.c
 cpu_utility/src/cpu_workpoint.c
+cpu_utility/src/cpu_multicore.c
 eim/src/eim.c
 gpio/src/gpio.c
 gpio/src/gpio_pin.cpp

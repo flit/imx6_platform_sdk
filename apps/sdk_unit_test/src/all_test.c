@@ -67,6 +67,7 @@ extern void usb_test(void);
 extern void usdhc_test(void);
 extern void keypad_test(void);
 extern void accelerometer_test(void);
+extern void multicore_test(void);
 
 #ifdef CHIP_MX6DQ
 extern int sata_test(void);
@@ -126,6 +127,7 @@ const menuitem_t k_menuItems[] = {
         // Tests for all boards of mx6dq and mx6sdl.
         DEFINE_TEST_MENU_ITEM("h",  "hdmi test",        hdmi_test),
         DEFINE_TEST_MENU_ITEM("ip", "ipu test",         ipu_test),
+        DEFINE_TEST_MENU_ITEM("mc", "multicore test",   multicore_test),
         
 #if defined(CHIP_MX6DQ)
         // The sata test only applies to the mx6dq.

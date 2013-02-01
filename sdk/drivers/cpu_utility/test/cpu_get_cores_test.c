@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, Freescale Semiconductor, Inc.
+ * Copyright (c) 2012-2013, Freescale Semiconductor, Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -34,15 +34,18 @@
 #include <stdio.h>
 #include "cpu_utility/cpu_utility.h"
 
+////////////////////////////////////////////////////////////////////////////////
+// Prototypes
+////////////////////////////////////////////////////////////////////////////////
+
+void cpu_get_cores_test(void);
+
 //////////////////////////////////////////////////////////////////////////////////////////
 // Code
 //////////////////////////////////////////////////////////////////////////////////////////
 
 //! @brief Display the number of cores to the debugging terminal
 //!
-
-void cpu_get_cores_test(void);
-
 void cpu_get_cores_test(void)
 {
     // Checks whether an invalid number of cores has been returned

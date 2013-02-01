@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2012, Freescale Semiconductor, Inc.
+ * Copyright (c) 2013, Freescale Semiconductor, Inc.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -29,13 +29,20 @@
  */
 
 #include "sdk.h"
-#include "platform_init.h"
 #include "irq_numbers.h"
 #include "cpu_utility/cpu_utility.h"
 #include "core/cortex_a9.h"
 #include "core/gic.h"
 #include "core/interrupt.h"
 #include "utility/system_util.h"
+
+////////////////////////////////////////////////////////////////////////////////
+// Prototypes
+////////////////////////////////////////////////////////////////////////////////
+
+void SGI3_ISR(void);
+void multicore_entry(void * arg);
+void multicore_test(void);
 
 ////////////////////////////////////////////////////////////////////////////////
 // Variables
@@ -76,7 +83,7 @@ void SGI3_ISR(void)
 //! When the last CPU enters this function, it will start a loop of sending software interrupts
 //! to all cores in sequence by sending the first SGI to core 0. As each core handles the SGI,
 //! it will print a message and send an SGI to the next CPU in sequence.
-void multicore_test(void * arg)
+void multicore_entry(void * arg)
 {
     uint32_t cpu_id = cpu_get_current();
     int cpuCount = cpu_get_cores();
@@ -105,7 +112,7 @@ void multicore_test(void * arg)
         printf("Starting and sending SGIs to secondary CPUs for \"hello world\" \n\n");
 
         // start second cpu
-        cpu_start_secondary(1, &multicore_test, 0);
+        cpu_start_secondary(1, &multicore_entry, 0);
 
         // cpu0 wait until test is done, that is until cpu3 completes its SGI.
         while (isTestDone);
@@ -129,7 +136,7 @@ void multicore_test(void * arg)
         }
         else
         {
-            cpu_start_secondary(cpu_id + 1, &multicore_test, 0);
+            cpu_start_secondary(cpu_id + 1, &multicore_entry, 0);
         }
         
         // do nothing wait to be interrupted
@@ -137,12 +144,11 @@ void multicore_test(void * arg)
     }
 }
 
-void main(void)
+//! Simply invokes the multicore_entry() function for the primary core, which we
+//! assume we're already running on.
+void multicore_test(void)
 {
-    platform_init();
-
-    // Run the demo.
-    multicore_test(0);
+    multicore_entry(0);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

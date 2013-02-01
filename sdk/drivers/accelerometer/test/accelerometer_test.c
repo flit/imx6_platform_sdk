@@ -101,6 +101,9 @@ void accelerometer_test(void)
             break;
         }
         
+        // Delay 50 ms.
+        hal_delay_us(50000);
+        
         // Back up to start of the line by outputting a bunch of backspace chars.
         int len = strlen(buf);
         memset(buf, 0x08, sizeof(buf));

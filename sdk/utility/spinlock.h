@@ -41,7 +41,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 //! @brief Typedef for a spinlock.
-typedef volatile uint32_t spinlock_t;
+typedef struct _spinlock {
+    uint32_t owner;   //!< Lock count.
+//     uint32_t owner;     //!< Core number of the owning CPU.
+    uint32_t _cacheLineFiller[7]; //! Padding to make the lock consume a full cache line (32 bytes).
+} spinlock_t __attribute__ ((aligned (32)));
 
 //! @brief Special timeout values for the spinlock.
 enum _spinlock_timeouts

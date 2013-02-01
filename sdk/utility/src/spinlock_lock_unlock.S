@@ -43,21 +43,21 @@
     .func spinlock_lock
 spinlock_lock:
 
-    ldrex   r1, [r0]
+    ldrex   r1, [r0]                // check if the spinlock is currently unlocked
     cmp     r1, #UNLOCKED
     
-    wfene
+    wfene                           // wait for an event signal
     bne     spinlock_lock
     
-    ldr     r1, =cpu_get_current
-    blx     r1
-    strex   r2, r1, [r0]
-    cmp     r2, #0
-    bne     spinlock_lock
+    mrc     p15, 0, r1, c0, c0, 5   // get our CPU ID
+    and     r1, r1, #3
+    strex   r2, r1, [r0]            // attempt to grab lock by writing CPU number into spinlock
+    cmp     r2, #0                  // check if the write was successful
+    bne     spinlock_lock           // if the write failed, start over
     
-    dmb
+    dmb                             // Ensure that accesses to shared resource have completed
     
-    bx      lr
+    bx      lr                      // return to caller
 
     .endfunc // spinlock_lock
     
@@ -66,8 +66,8 @@ spinlock_lock:
     .func spinlock_unlock
 spinlock_unlock:
 
-    ldr     r1, =cpu_get_current    // get our CPU ID
-    blx     r1
+    mrc     p15, 0, r1, c0, c0, 5   // get our CPU ID
+    and     r1, r1, #3
     
     ldr     r2, [r0]                // read lock field of spinlock
     cmp     r1, r2                  // compare lock field with our CPU ID

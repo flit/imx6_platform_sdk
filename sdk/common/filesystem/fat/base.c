@@ -48,7 +48,6 @@
 #include <string.h>
 
 #define INVALID_CLUSTER     0x7fffffff
-//extern int SDHC_ADMA_mode;
 
 /*----------------------------------------------------------------------------
 
@@ -594,7 +593,6 @@ RtStatus_t Fwrite_FAT(int32_t HandleNumber, uint8_t * Buffer, int32_t NumBytesTo
 
             }
             BytesToCopy = sectorToWrite * BytesPerSector;
-//            if (SDHC_ADMA_mode && (((uint32_t) Buffer + BuffOffset) & 0x3)) // in ADMA mode, the buffer address must be word-aligned
             if (read_usdhc_adma_mode() && (((uint32_t) Buffer + BuffOffset) & 0x3)) 
              // in ADMA mode, the buffer address must be word-aligned
             {

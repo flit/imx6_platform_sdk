@@ -930,7 +930,6 @@ int32_t decode_test(void *arg)
         map_type = LINEAR_FRAME_MAP;
     }
     /*now enable the INTERRUPT mode of usdhc */
-//    SDHC_INTR_mode = 1;
     set_card_access_mode(1, 1);
 
     /* initialize video streams and configure IPUs */

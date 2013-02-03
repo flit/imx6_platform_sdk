@@ -68,8 +68,7 @@ int vpu_test(void)
     arm_dcache_invalidate();
     mmu_enable();
     arm_dcache_enable();
-//    SDHC_ADMA_mode = 1;
-//    SDHC_INTR_mode = 0;
+
     set_card_access_mode(1, 0);
 
     /* FAT filesystem setup from SD card */

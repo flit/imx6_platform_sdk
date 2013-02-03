@@ -70,18 +70,6 @@ typedef enum {
     EMMC_BOOT_DDR8
 } emmc_bus_width_e;
 
-/*!
- * Whether to enable ADMA when read/write from/to card.
- * If enabled, then use ADMA for transfer, or else, use polling IO
- */
-//extern int SDHC_ADMA_mode;
-
-/*!
- * Whether use interrupt to indicate end of transfer
- * If enabled, will attach the status to interrupt, or else, poll the status
- */
-//extern int SDHC_INTR_mode;
-
 //////////////////////////////////////////////////////////////////////////////////
 // API
 //////////////////////////////////////////////////////////////////////////////////
@@ -92,12 +80,21 @@ extern "C" {
 /*!
  * @brief Set Card access mode
  *
- * @param mode     Set card access mode
- * 
- * @return           
+ * @param sdma Whether to enable ADMA when read/write from/to card.
+ *      If enabled, then use ADMA for transfer, or else, use polling IO.
+ * @param intr Whether use interrupt to indicate end of transfer
+ *      If enabled, will attach the status to interrupt, or else, poll the status.
  */
 extern void set_card_access_mode(uint32_t sdma, uint32_t intr);
+
+/*!
+ * @brief Returns whether ADMA mode is currently enabled.
+ */
 extern uint32_t read_usdhc_adma_mode();
+
+/*!
+ * @brief Returns whether interrupt mode is currently enabled.
+ */
 extern uint32_t read_usdhc_intr_mode(); 
 
 /*!

@@ -44,13 +44,12 @@ static void ADP1650_reset(void)
     int reset_occupy = 1000, reset_delay = 1000;
 
     /* SMART_DEVICE: set camera LED_FLASH_EN through GPIO3_20 */
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_D20, 0x5);
-    reg32setbit(GPIO3_BASE_ADDR + 0x0004, 20);  //set GPIO1_17 as output
+    gpio_set_gpio(GPIO_PORT3, 20);
+    gpio_set_direction(GPIO_PORT3, 20, GPIO_GDIR_OUTPUT);
 
-    reg32clrbit(GPIO3_BASE_ADDR, 20);
+    gpio_set_level(GPIO_PORT3, 20, GPIO_LOW_LEVEL);
     hal_delay_us(reset_occupy);
-
-    reg32setbit(GPIO3_BASE_ADDR, 20);
+    gpio_set_level(GPIO_PORT3, 20, GPIO_HIGH_LEVEL);
     hal_delay_us(reset_delay);
 }
 

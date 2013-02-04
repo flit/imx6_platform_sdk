@@ -72,8 +72,7 @@ void pcie_card_pwr_setup(uint32_t enable)
 #endif
 
 #if defined(BOARD_SMART_DEVICE)
-   HW_IOMUXC_SW_MUX_CTL_PAD_EIM_DATA19_WR(
-		   BF_IOMUXC_SW_MUX_CTL_PAD_EIM_DATA19_MUX_MODE_V(ALT5));
+   gpio_set_gpio(GPIO_PORT3, 19);
    gpio_set_direction(GPIO_PORT3, 19, GPIO_GDIR_OUTPUT); 
 
    if(enable){
@@ -128,8 +127,7 @@ void pcie_card_rst(void)
 #endif
 
 #if defined(BOARD_SMART_DEVICE)
-    HW_IOMUXC_SW_MUX_CTL_PAD_GPIO19_WR(
-    		BF_IOMUXC_SW_MUX_CTL_PAD_GPIO19_MUX_MODE_V(ALT5));
+    gpio_set_gpio(GPIO_PORT4, 5);
     gpio_set_direction(GPIO_PORT4, 5, GPIO_GDIR_OUTPUT); 
 
     gpio_set_level(GPIO_PORT4, 5, GPIO_LOW_LEVEL);

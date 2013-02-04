@@ -88,7 +88,7 @@ test_return_t i2c_device_id_check_MMA8451(void)
 
 #if defined(BOARD_SMART_DEVICE)
     //  USB_OTG_PWR_EN (EIM_D22)
-    writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_EIM_EB3);
+    gpio_set_gpio(GPIO_PORT2, 31);
     gpio_set_direction(GPIO_PORT2, 31, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT2, 31, GPIO_LOW_LEVEL);
     hal_delay_us(1000);
@@ -98,7 +98,7 @@ test_return_t i2c_device_id_check_MMA8451(void)
     // allow I2C1 bus to work properly.
     //
     //CODEC PWR_EN, key_col12
-    writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_KEY_COL2);
+    gpio_set_gpio(GPIO_PORT4, 10);
     gpio_set_direction(GPIO_PORT4, 10, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT4, 10, GPIO_HIGH_LEVEL);
 #endif    

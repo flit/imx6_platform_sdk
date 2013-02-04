@@ -77,8 +77,7 @@ void sensor_reset(void)
     sensor_standby(0);
 
     /* MX6SL: cmos_reset_b through EPDC_SDSHR (GPIO1_26) */
-	HW_IOMUXC_SW_MUX_CTL_PAD_EPDC_SDSHR.B.MUX_MODE = ALT5;
-
+    gpio_set_gpio(GPIO_PORT1, 26);
 	gpio_set_direction(GPIO_PORT1, 26, GPIO_GDIR_OUTPUT);
 
 	gpio_set_level(GPIO_PORT1, 26, GPIO_LOW_LEVEL);
@@ -97,8 +96,7 @@ void sensor_reset(void)
 void sensor_standby(int32_t enable)
 {
     /* MX6SL:setting cmos_pwdn to EPDC_SDOE(gpio1_25), power down high active */
-	HW_IOMUXC_SW_MUX_CTL_PAD_EPDC_SDOE.B.MUX_MODE = ALT5;
-
+    gpio_set_gpio(GPIO_PORT1, 25);
 	gpio_set_direction(GPIO_PORT1, 25, GPIO_GDIR_OUTPUT);
     if (enable)
 		gpio_set_level(GPIO_PORT1, 25, GPIO_HIGH_LEVEL);

@@ -57,7 +57,7 @@ void audio_codec_power_on (void)
 {
 #ifdef BOARD_SMART_DEVICE
     //CODEC PWR_EN, key_col12
-    writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_KEY_COL2);
+    gpio_set_gpio(GPIO_PORT4, 10);
     gpio_set_direction(GPIO_PORT4, 10, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT4, 10, GPIO_HIGH_LEVEL);
 #endif

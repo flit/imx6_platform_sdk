@@ -30,12 +30,11 @@
 #include "sata/imx_sata.h"
 #include "atapi.h"
 #include "registers/regsccm.h"
+#include "registers/regsiomuxc.h"
 #include "soc_memory_map.h"
 #include "timer/timer.h"
 #include "registers.h"
 #include "buffers.h"
-#include "iomux_define.h"
-#include "iomux_register.h"
 
 //////////////////////////////////////////////////////////////////////////////
 // Definitions
@@ -646,6 +645,7 @@ static void sata_ahci_host_info_print(void)
  *
  * @param phyclk Phy clock
  */
+//! todo Fix writing undocumented bits to HW_IOMUXC_SW_PAD_CTL_PAD_GPIO03_WR()
 static void sata_clock_init(sata_phy_ref_clk_t * phyclk)
 {
 //     u32 v;
@@ -658,9 +658,11 @@ static void sata_clock_init(sata_phy_ref_clk_t * phyclk)
 
     if (clk_val == FREQ_100MHZ) {
         /*Set GPIO_3 as CLKO2 */
-        writel(ALT4, IOMUXC_SW_MUX_CTL_PAD_GPIO_3);
+        HW_IOMUXC_SW_MUX_CTL_PAD_GPIO03_WR(
+                BF_IOMUXC_SW_MUX_CTL_PAD_GPIO03_SION_V(DISABLED) |
+                BF_IOMUXC_SW_MUX_CTL_PAD_GPIO03_MUX_MODE_V(ALT4));
         /* Configure CMD SW PAD */
-        writel(0x184, IOMUXC_SW_PAD_CTL_PAD_GPIO_3);
+        HW_IOMUXC_SW_PAD_CTL_PAD_GPIO03_WR(0x184);
 
         /*Set CLKO2 to ddr_clk_root,300MHz */
 //         writel(~(0x1F << 16), CCM_CCOSR);

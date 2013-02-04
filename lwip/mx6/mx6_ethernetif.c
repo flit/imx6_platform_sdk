@@ -146,9 +146,6 @@ void init_enet(void)
 
 int imx_fec_setup(void)
 {
-	unsigned int reg=0;
-//	unsigned int timeout = 100000;
-	
 	/* config iomux */
 	fec_iomux_config();
 	
@@ -160,10 +157,9 @@ int imx_fec_setup(void)
 	/* get enet tx reference clk from internal clock from anatop
 	 * GPR1[14] = 0, GPR1[18:17] = 00
 	 */
-	reg = HW_IOMUXC_GPR1_RD();
-	reg &= ~(BM_IOMUXC_GPR1_ENET_CLK_SEL_FROM_ANALOG_LOOPBACK);
-	reg &= ~(BM_IOMUXC_GPR1_ENET_CLK_SEL);
-	HW_IOMUXC_GPR1_WR(reg);
+	HW_IOMUXC_GPR1_CLR(
+	        BM_IOMUXC_GPR1_ENET_CLK_SEL_FROM_ANALOG_LOOPBACK |
+	        BM_IOMUXC_GPR1_ENET_CLK_SEL);
 	
 	/* Enable ENET PLLs */
 	/* already done in ccm_init() */

@@ -45,7 +45,7 @@ void sata_power_on(void)
     //enable SATA_3V3 and SATA_5V with MX7310 U19 CTRL_0
 #if defined(BOARD_SMART_DEVICE)
     //AUX_5V_EN
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_RB0, ALT5);
+    gpio_set_gpio(GPIO_PORT6, 10);
     gpio_set_direction(GPIO_PORT6, 10, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT6, 10, GPIO_HIGH_LEVEL);
 #elif defined(BOARD_EVB)

@@ -30,6 +30,7 @@
 
 #include "sdk.h"
 #include "usb/usb.h"
+#include "registers/regsiomuxc.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code
@@ -52,7 +53,9 @@ void usbEnableVbus(usb_module_t * port)
     case OTG1:		// MX6SL first OTG controller.
 #if defined(BOARD_EVK)
         BW_USBNC_USB_OTG1_CTRL_PWR_POL(1);
-        reg32_write(IOMUXC_SW_MUX_CTL_PAD_KEY_COL4, ALT6);
+        HW_IOMUXC_SW_MUX_CTL_PAD_KEY_COL4_WR(
+                BF_IOMUXC_SW_MUX_CTL_PAD_KEY_COL4_SION_V(DISABLED) |
+                BF_IOMUXC_SW_MUX_CTL_PAD_KEY_COL4_MUX_MODE_V(ALT6));
 #endif
 
         break;
@@ -61,7 +64,9 @@ void usbEnableVbus(usb_module_t * port)
     case OTG2:		// MX6SL second OTG controller
 #if defined(BOARD_EVK)
         BW_USBNC_USB_OTG2_CTRL_PWR_POL(1);
-        reg32_write(IOMUXC_SW_MUX_CTL_PAD_KEY_COL5, ALT6);
+        HW_IOMUXC_SW_MUX_CTL_PAD_KEY_COL5_WR(
+                BF_IOMUXC_SW_MUX_CTL_PAD_KEY_COL5_SION_V(DISABLED) |
+                BF_IOMUXC_SW_MUX_CTL_PAD_KEY_COL5_MUX_MODE_V(ALT6));
 #endif
 
         break;
@@ -96,7 +101,9 @@ void usbDisableVbus(usb_module_t * port)
     case OTG1:		// MX6SL first OTG controller.
 #if defined(BOARD_EVK)
         BW_USBNC_USB_OTG1_CTRL_PWR_POL(0);
-        reg32_write(IOMUXC_SW_MUX_CTL_PAD_KEY_COL4, ALT6);
+        HW_IOMUXC_SW_MUX_CTL_PAD_KEY_COL4_WR(
+                BF_IOMUXC_SW_MUX_CTL_PAD_KEY_COL4_SION_V(DISABLED) |
+                BF_IOMUXC_SW_MUX_CTL_PAD_KEY_COL4_MUX_MODE_V(ALT6));
 #endif
         break;
         
@@ -104,7 +111,9 @@ void usbDisableVbus(usb_module_t * port)
     case OTG2:		// MX6SL first OTG controller.
 #if defined(BOARD_EVK)
         BW_USBNC_USB_OTG2_CTRL_PWR_POL(0);
-        reg32_write(IOMUXC_SW_MUX_CTL_PAD_KEY_COL5, ALT6);
+        HW_IOMUXC_SW_MUX_CTL_PAD_KEY_COL5_WR(
+                BF_IOMUXC_SW_MUX_CTL_PAD_KEY_COL5_SION_V(DISABLED) |
+                BF_IOMUXC_SW_MUX_CTL_PAD_KEY_COL5_MUX_MODE_V(ALT6));
 #endif
 	
 	break;

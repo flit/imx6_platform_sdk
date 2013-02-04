@@ -69,14 +69,30 @@ void mipi_cam_power_on(void)
 
 #if defined(BOARD_SMART_DEVICE)
     /*power supply through pin25 of connector, for cam_pdown */
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_WP_B, ALT5);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_WP_B, 0x1B0B0);
+    gpio_set_gpio(GPIO_PORT6, 9);
+    HW_IOMUXC_SW_PAD_CTL_PAD_NAND_WP_B_WR(
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_WP_B_HYS_V(ENABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_WP_B_PUS_V(100K_OHM_PU) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_WP_B_PUE_V(PULL) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_WP_B_PKE_V(ENABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_WP_B_ODE_V(DISABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_WP_B_SPEED_V(100MHZ) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_WP_B_DSE_V(40_OHM) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_WP_B_SRE_V(SLOW));
     gpio_set_direction(GPIO_PORT6, 9, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT6, 9, GPIO_HIGH_LEVEL);
 
     /*reset of camera sensor, pin 27 */
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_RB0, ALT5);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_RB0, 0x1B0B0);
+    gpio_set_gpio(GPIO_PORT6, 10);
+    HW_IOMUXC_SW_PAD_CTL_PAD_NAND_READY_WR(
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_READY_HYS_V(ENABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_READY_PUS_V(100K_OHM_PU) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_READY_PUE_V(PULL) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_READY_PKE_V(ENABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_READY_ODE_V(DISABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_READY_SPEED_V(100MHZ) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_READY_DSE_V(40_OHM) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_READY_SRE_V(SLOW));
     gpio_set_direction(GPIO_PORT6, 10, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT6, 10, GPIO_LOW_LEVEL);
     hal_delay_us(1000);
@@ -101,8 +117,16 @@ void mipi_backlight_en(void)
 #endif
 
 #ifdef BOARD_SMART_DEVICE
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_D0, ALT5);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_D0, 0x1B0B0);
+    gpio_set_gpio(GPIO_PORT2, 0);
+    HW_IOMUXC_SW_PAD_CTL_PAD_NAND_DATA00_WR(
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_DATA00_HYS_V(ENABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_DATA00_PUS_V(100K_OHM_PU) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_DATA00_PUE_V(PULL) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_DATA00_PKE_V(ENABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_DATA00_ODE_V(DISABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_DATA00_SPEED_V(100MHZ) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_DATA00_DSE_V(40_OHM) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_DATA00_SRE_V(SLOW));
     gpio_set_direction(GPIO_PORT2, 0, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT2, 0, GPIO_HIGH_LEVEL);
 #endif
@@ -115,8 +139,16 @@ void mipi_display_reset(void)
 {
 #ifdef BOARD_EVB
 /*pin29 of mipi connector for the LCD reset*/
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_WAIT, ALT5);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT, 0x1b0b0);
+    gpio_set_gpio(GPIO_PORT5, 0);
+    HW_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_WR(
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_HYS_V(ENABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_PUS_V(100K_OHM_PU) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_PUE_V(PULL) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_PKE_V(ENABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_ODE_V(DISABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_SPEED_V(100MHZ) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_DSE_V(40_OHM) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_SRE_V(SLOW));
     gpio_set_direction(GPIO_PORT5, 0, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT5, 0, GPIO_LOW_LEVEL);
     hal_delay_us(1000);
@@ -130,8 +162,16 @@ void mipi_display_reset(void)
 
 #ifdef BOARD_SMART_DEVICE
 /*pin29 of mipi connector for the LCD reset*/
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_CS0, ALT5);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_CS0, 0x1b0b0);
+    gpio_set_gpio(GPIO_PORT6, 11);
+    HW_IOMUXC_SW_PAD_CTL_PAD_NAND_CS0_B_WR(
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_CS0_B_HYS_V(ENABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_CS0_B_PUS_V(100K_OHM_PU) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_CS0_B_PUE_V(PULL) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_CS0_B_PKE_V(ENABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_CS0_B_ODE_V(DISABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_CS0_B_SPEED_V(100MHZ) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_CS0_B_DSE_V(40_OHM) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_CS0_B_SRE_V(SLOW));
     gpio_set_direction(GPIO_PORT6, 11, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT6, 11, GPIO_LOW_LEVEL);
     hal_delay_us(1000);
@@ -156,20 +196,27 @@ void mipi_csi2_clock_set(void)
     BF_CLR(CCM_ANALOG_PLL_VIDEO, BYPASS);
 
     //select CSI0_HSYNC osc_clk 24MHz, CKO1 output drives cko2 clock
-    HW_IOMUXC_SW_MUX_CTL_PAD_CSI0_HSYNC_WR(BF_IOMUXC_SW_MUX_CTL_PAD_CSI0_HSYNC_MUX_MODE(BV_IOMUXC_SW_MUX_CTL_PAD_CSI0_HSYNC_MUX_MODE__ALT3));
-    HW_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_WR(BF_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_DSE(BV_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_DSE__40_OHM) |
-                                          BF_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_SPEED(BV_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_SPEED__100MHZ) |
-                                          BF_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_PKE(BV_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_PKE__ENABLED) |
-                                          BF_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_PUE(BV_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_PUE__PULL) |
-                                          BF_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_PUS(BV_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_PUS__100K_OHM_PU) |
-                                          BF_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_HYS(BV_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_HYS__ENABLED));
+    HW_IOMUXC_SW_MUX_CTL_PAD_CSI0_HSYNC_WR(
+            BF_IOMUXC_SW_MUX_CTL_PAD_CSI0_HSYNC_SION_V(DISABLED) |
+            BF_IOMUXC_SW_MUX_CTL_PAD_CSI0_HSYNC_MUX_MODE_V(ALT3));
+
+    HW_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_WR(
+            BF_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_HYS_V(ENABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_PUS_V(100K_OHM_PU) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_PUE_V(PULL) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_PKE_V(ENABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_ODE_V(DISABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_SPEED_V(100MHZ) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_DSE_V(40_OHM) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_CSI0_HSYNC_SRE_V(SLOW));
+
     HW_CCM_CCOSR_WR(
                     BF_CCM_CCOSR_CLKO1_SEL(0) |
                     BF_CCM_CCOSR_CLKO1_DIV(0) |
                     BF_CCM_CCOSR_CLKO1_EN(1) |
-                    BF_CCM_CCOSR_CLKO_SEL(1) | // select cko2 for cko1 output
+                    BF_CCM_CCOSR_CLKO_SEL(1) |       // select cko2 for cko1 output
                     BF_CCM_CCOSR_CLKO2_SEL(0xe) |    // osc_clk
-                    BF_CCM_CCOSR_CLKO2_DIV(0) |  // div 1
+                    BF_CCM_CCOSR_CLKO2_DIV(0) |      // div 1
                     BF_CCM_CCOSR_CLKO2_EN(1));
 }
 

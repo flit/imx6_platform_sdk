@@ -240,17 +240,36 @@ void TXHAL_InitPostReset(void)
 // Function Name: TxHW_Reset()
 // Function Description: Hardware reset Tx
 //------------------------------------------------------------------------------
+//! todo I don't understand the purpose of the #else code. b18609
 void TxHW_Reset(void)
 {
     TPI_TRACE_PRINT((">>TxHW_Reset()\n"));
 
 #if defined(BOARD_SMART_DEVICE)||defined(BOARD_EVB)
     /*sil9024 hardware reset */
-    writel(0x5, IOMUXC_SW_MUX_CTL_PAD_EIM_WAIT);
-    writel(0xB060, IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT);
+    gpio_set_gpio(GPIO_PORT5, 0);
+    HW_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_WR(
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_HYS_V(DISABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_PUS_V(100K_OHM_PU) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_PUE_V(PULL) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_PKE_V(ENABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_ODE_V(DISABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_SPEED_V(50MHZ) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_DSE_V(60_OHM) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_SRE_V(SLOW));
 #else
-    writel(0x1, IOMUXC_SW_MUX_CTL_PAD_EIM_WAIT);
-    writel(0xE0, IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT);
+    HW_IOMUXC_SW_MUX_CTL_PAD_EIM_WAIT_WR(
+            BF_IOMUXC_SW_MUX_CTL_PAD_EIM_WAIT_SION_V(DISABLED) |
+            BF_IOMUXC_SW_MUX_CTL_PAD_EIM_WAIT_MUX_MODE_V(ALT1));
+    HW_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_WR(
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_HYS_V(DISABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_PUS_V(100K_OHM_PD) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_PUE_V(KEEP) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_PKE_V(DISABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_ODE_V(DISABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_SPEED_V(200MHZ) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_DSE_V(60_OHM) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_WAIT_SRE_V(SLOW));
 #endif
     gpio_set_direction(GPIO_PORT5, 0, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT5, 0, GPIO_LOW_LEVEL);

@@ -33,6 +33,7 @@
 #include <stdlib.h>
 #include "vpu_test.h"
 #include "vpu/vpu_debug.h"
+#include "registers/regsiomuxc.h"
 
 int32_t vpu_stream_read(struct codec_control *cmd, char *buf, int32_t n)
 {
@@ -86,9 +87,41 @@ int32_t ipu_render_refresh(uint32_t ipu_index, uint32_t buffer)
 void config_system_parameters(void)
 {
     /* set AxCACHE bits for IPU/VPU/VDOA */
-    reg32_write(IOMUXC_GPR4, reg32_read(IOMUXC_GPR4) | 0xFF0000CF);
+    HW_IOMUXC_GPR4_SET(
+            BM_IOMUXC_GPR4_IPU_RD_CACHE_CTL |
+            BM_IOMUXC_GPR4_IPU_WR_CACHE_CTL |
+            BM_IOMUXC_GPR4_VPU_P_RD_CACHE_VAL |
+            BM_IOMUXC_GPR4_VPU_P_WR_CACHE_VAL |
+            BM_IOMUXC_GPR4_VPU_RD_CACHE_SEL |
+            BM_IOMUXC_GPR4_VPU_WR_CACHE_SEL |
+            BM_IOMUXC_GPR4_PCIE_RD_CACHE_VAL |
+            BM_IOMUXC_GPR4_PCIE_WR_CACHE_VAL |
+            BM_IOMUXC_GPR4_PCIE_RD_CACHE_SEL |
+            BM_IOMUXC_GPR4_PCIE_WR_CACHE_SEL |
+            BM_IOMUXC_GPR4_VDOA_RD_CACHE_VAL |
+            BM_IOMUXC_GPR4_VDOA_WR_CACHE_VAL |
+            BM_IOMUXC_GPR4_VDOA_RD_CACHE_SEL |
+            BM_IOMUXC_GPR4_VDOA_WR_CACHE_SEL);
 
     /* increase QoS for IPUs, id 0 */
-    reg32_write(IOMUXC_GPR6, 0x22272227);
-    reg32_write(IOMUXC_GPR7, 0x22272227);
+    HW_IOMUXC_GPR6_WR(
+            BF_IOMUXC_GPR6_IPU1_ID00_WR_QOS(7) |
+            BF_IOMUXC_GPR6_IPU1_ID01_WR_QOS(2) |
+            BF_IOMUXC_GPR6_IPU1_ID10_WR_QOS(2) |
+            BF_IOMUXC_GPR6_IPU1_ID11_WR_QOS(2) |
+            BF_IOMUXC_GPR6_IPU1_ID00_RD_QOS(7) |
+            BF_IOMUXC_GPR6_IPU1_ID01_RD_QOS(2) |
+            BF_IOMUXC_GPR6_IPU1_ID10_RD_QOS(2) |
+            BF_IOMUXC_GPR6_IPU1_ID11_RD_QOS(2));
+#if defined(CHIP_MX6DQ)
+    HW_IOMUXC_GPR7_WR(
+            BF_IOMUXC_GPR7_IPU2_ID00_WR_QOS(7) |
+            BF_IOMUXC_GPR7_IPU2_ID01_WR_QOS(2) |
+            BF_IOMUXC_GPR7_IPU2_ID10_WR_QOS(2) |
+            BF_IOMUXC_GPR7_IPU2_ID11_WR_QOS(2) |
+            BF_IOMUXC_GPR7_IPU2_ID00_RD_QOS(7) |
+            BF_IOMUXC_GPR7_IPU2_ID01_RD_QOS(2) |
+            BF_IOMUXC_GPR7_IPU2_ID10_RD_QOS(2) |
+            BF_IOMUXC_GPR7_IPU2_ID11_RD_QOS(2));
+#endif
 }

@@ -45,10 +45,7 @@ void usdhc_gpio_config(uint32_t instance)
     case HW_USDHC1:
 #if defined(BOARD_SABRE_AI)
         /* Select ALT5 mode of CSI0_DATA_EN for GPIO5_20 - SDb_WP(CSI0_DATA_EN_GPIO5_20) */
-        HW_IOMUXC_SW_MUX_CTL_PAD_CSI0_DATA_EN_WR(
-                BF_IOMUXC_SW_MUX_CTL_PAD_CSI0_DATA_EN_SION_V(DISABLED) |
-                BF_IOMUXC_SW_MUX_CTL_PAD_CSI0_DATA_EN_MUX_MODE_V(ALT5));
-
+        gpio_set_gpio(GPIO_PORT5, 20);
         gpio_set_direction(GPIO_PORT5, 20, GPIO_GDIR_INPUT);
 #endif
         break;
@@ -59,17 +56,11 @@ void usdhc_gpio_config(uint32_t instance)
     case HW_USDHC3:
 #if defined(BOARD_SABRE_AI)
         /* Select ALT5 mode of NANDF_CS2 for GPIO6_15 - SDa_CD_B(GPIO6_15) */
-        HW_IOMUXC_SW_MUX_CTL_PAD_NAND_CS2_B_WR(
-                BF_IOMUXC_SW_MUX_CTL_PAD_NAND_CS2_B_SION_V(DISABLED) |
-                BF_IOMUXC_SW_MUX_CTL_PAD_NAND_CS2_B_MUX_MODE_V(ALT5));
-
+        gpio_set_gpio(GPIO_PORT6, 15);
         gpio_set_direction(GPIO_PORT6, 15, GPIO_GDIR_INPUT);
 
         /* Select ALT5 mode of SD2_DAT2 for GPIO1_13 - SDa_WP(SD2_DAT2_GPIO1_13) */
-        HW_IOMUXC_SW_MUX_CTL_PAD_SD2_DATA2_WR(
-                BF_IOMUXC_SW_MUX_CTL_PAD_SD2_DATA2_SION_V(DISABLED) |
-                BF_IOMUXC_SW_MUX_CTL_PAD_SD2_DATA2_MUX_MODE_V(ALT5));
-
+        gpio_set_gpio(GPIO_PORT1, 13);
         gpio_set_direction(GPIO_PORT1, 13, GPIO_GDIR_INPUT);
 #endif
         break;

@@ -39,6 +39,7 @@
 #include "timer/gpt.h"
 #include "timer/timer.h"
 #include "gpt_test.h"
+#include "registers/regsiomuxc.h"
 
 static volatile uint8_t g_capture_event, g_compare_event, g_rollover_event;
 static uint32_t g_counter_val;
@@ -179,10 +180,21 @@ void gpt_in_capture_test(void)
     printf("The text exits after a capture event or a timeout of %d rollover ~ 5min25sec.\n", timeout);
     g_test = 2;
 
-    // configure the pin SD1_DAT1 to be used as CAPIN2 
-    // PULL-UP of 100k enabled - use default reset value 
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD1_DAT1, ALT3);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_SD1_DAT1, 0x1B0B0);
+    // Config gpt.GPT_CAPTURE2 to pad SD1_DATA1(C20)
+    // HW_IOMUXC_SW_MUX_CTL_PAD_SD1_DATA1_WR(0x00000003);
+    // HW_IOMUXC_SW_PAD_CTL_PAD_SD1_DATA1_WR(0x0001B0B0); - use default reset value
+    HW_IOMUXC_SW_MUX_CTL_PAD_SD1_DATA1_WR(
+            BF_IOMUXC_SW_MUX_CTL_PAD_SD1_DATA1_SION_V(DISABLED) |
+            BF_IOMUXC_SW_MUX_CTL_PAD_SD1_DATA1_MUX_MODE_V(ALT3));
+    HW_IOMUXC_SW_PAD_CTL_PAD_SD1_DATA1_WR(
+            BF_IOMUXC_SW_PAD_CTL_PAD_SD1_DATA1_HYS_V(ENABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_SD1_DATA1_PUS_V(100K_OHM_PU) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_SD1_DATA1_PUE_V(PULL) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_SD1_DATA1_PKE_V(ENABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_SD1_DATA1_ODE_V(DISABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_SD1_DATA1_SPEED_V(100MHZ) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_SD1_DATA1_DSE_V(40_OHM) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_SD1_DATA1_SRE_V(SLOW));
 
     // Initialize the GPT timer 
     // The source clock for the timer will be configured to be IPG_CLK, so

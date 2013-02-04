@@ -49,7 +49,7 @@ void lvds_power_on(void)
     max7310_set_gpio_output(1, 1, GPIO_HIGH_LEVEL);
 
     /*lvds backlight enable, GPIO_9 */
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_GPIO_9, ALT5);
+    gpio_set_gpio(GPIO_PORT1, 9);
     gpio_set_direction(GPIO_PORT1, 9, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT1, 9, GPIO_HIGH_LEVEL);
 #endif
@@ -57,12 +57,12 @@ void lvds_power_on(void)
 #ifdef BOARD_SMART_DEVICE
     // 3v3 on by default
     // AUX_5V_EN LVDS0 power
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_RB0, ALT5);
+    gpio_set_gpio(GPIO_PORT6, 10);
     gpio_set_direction(GPIO_PORT6, 10, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT6, 10, GPIO_HIGH_LEVEL);
     // PMIC_5V LVDS1 power on by default
     // backlight both lvds1/0, disp0_contrast/disp0_pwm, gpio1[21]
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD1_DAT3, ALT5);
+    gpio_set_gpio(GPIO_PORT1, 21);
     gpio_set_direction(GPIO_PORT1, 21, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT1, 21, GPIO_HIGH_LEVEL);
 #endif
@@ -73,7 +73,7 @@ void lvds_power_on(void)
     max7310_set_gpio_output(0, 0, GPIO_HIGH_LEVEL);
 
     /*lvds backlight enable, GPIO_9 */
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD4_DAT1, ALT5);
+    gpio_set_gpio(GPIO_PORT2, 9);
     gpio_set_direction(GPIO_PORT2, 9, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT2, 9, GPIO_HIGH_LEVEL);
 
@@ -85,8 +85,16 @@ void lvds_power_on(void)
  */
 void disable_para_panel(void)
 {
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_EB3, ALT5);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_EB3, 0x1B0B0);
+    gpio_set_gpio(GPIO_PORT2, 31);
+    HW_IOMUXC_SW_PAD_CTL_PAD_EIM_EB3_WR(
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_EB3_HYS_V(ENABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_EB3_PUS_V(100K_OHM_PU) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_EB3_PUE_V(PULL) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_EB3_PKE_V(ENABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_EB3_ODE_V(DISABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_EB3_SPEED_V(100MHZ) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_EB3_DSE_V(40_OHM) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_EIM_EB3_SRE_V(SLOW));
     gpio_set_direction(GPIO_PORT2, 31, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT2, 31, GPIO_LOW_LEVEL);
 }
@@ -98,22 +106,22 @@ void tftlcd_backlight_en(char *panel_name)
 {
     if (!strcmp(panel_name, "CLAA01 WVGA")) {
         /*GPIO to provide backlight */
-        reg32_write(IOMUXC_SW_MUX_CTL_PAD_DI0_PIN4, ALT5);
+        gpio_set_gpio(GPIO_PORT4, 20);
         gpio_set_direction(GPIO_PORT4, 20, GPIO_GDIR_OUTPUT);
         gpio_set_level(GPIO_PORT4, 20, GPIO_HIGH_LEVEL);
     } else if (!strcmp(panel_name, "BoundaryDev WVGA")) {
 #if defined (BOARD_REV_A)
         /*lvds/parallel display backlight enable, GPIO2_0 */
-        reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD4_DAT1, ALT5);
+        gpio_set_gpio(GPIO_PORT2, 9);
         gpio_set_direction(GPIO_PORT2, 9, GPIO_GDIR_OUTPUT);
         gpio_set_level(GPIO_PORT2, 9, GPIO_HIGH_LEVEL);
 
         // lcd_contrast conflict with actual BoundaryDev display so seeting to input
         // since TSC not used on SABRE AI
-        reg32_write(IOMUXC_SW_MUX_CTL_PAD_DI0_PIN4, ALT5);
+        gpio_set_gpio(GPIO_PORT4, 20);
         gpio_set_direction(GPIO_PORT4, 20, GPIO_GDIR_INPUT);
 #elif defined (BOARD_REV_B) || defined(BOARD_REV_C)
-        reg32_write(IOMUXC_SW_MUX_CTL_PAD_DI0_PIN4, ALT5);
+        gpio_set_gpio(GPIO_PORT4, 20);
         gpio_set_direction(GPIO_PORT4, 20, GPIO_GDIR_OUTPUT);
         gpio_set_level(GPIO_PORT4, 20, GPIO_HIGH_LEVEL);
 #endif
@@ -123,27 +131,35 @@ void tftlcd_backlight_en(char *panel_name)
 #if 0
 #ifdef BOARD_SABRE_AI
     /*lvds/parallel display backlight enable, GPIO2_0 */
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD4_DAT1, ALT5);
+    gpio_set_gpio(GPIO_PORT2, 9);
     gpio_set_direction(GPIO_PORT2, 9, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT2, 9, GPIO_LOW_LEVEL);
 
     // lcd_contrast conflict with actual BoundaryDev display so seeting to input
     // since TSC not used on SABRE AI
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_DI0_PIN4, ALT5);
+    gpio_set_gpio(GPIO_PORT4, 20);
     gpio_set_direction(GPIO_PORT4, 20, GPIO_GDIR_INPUT);
 #endif
 #ifdef BOARD_SMART_DEVICE
     /* AUX_3V15 */
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_WP_B, ALT5);
-    reg32_write(IOMUXC_SW_PAD_CTL_PAD_NANDF_WP_B, 0x1B0B0);
+    gpio_set_gpio(GPIO_PORT6, 9);
+    HW_IOMUXC_SW_PAD_CTL_PAD_NAND_WP_B_WR(
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_WP_B_HYS_V(ENABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_WP_B_PUS_V(100K_OHM_PU) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_WP_B_PUE_V(PULL) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_WP_B_PKE_V(ENABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_WP_B_ODE_V(DISABLED) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_WP_B_SPEED_V(100MHZ) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_WP_B_DSE_V(40_OHM) |
+            BF_IOMUXC_SW_PAD_CTL_PAD_NAND_WP_B_SRE_V(SLOW));
     gpio_set_direction(GPIO_PORT6, 9, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT6, 9, GPIO_HIGH_LEVEL);
     // backlight both lvds1/0, disp0_contrast/disp0_pwm, gpio1[21]
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_SD1_DAT3, ALT5);
+    gpio_set_gpio(GPIO_PORT1, 21);
     gpio_set_direction(GPIO_PORT1, 21, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT1, 21, GPIO_HIGH_LEVEL);
     // AUX_5V_EN LVDS0 power
-    reg32_write(IOMUXC_SW_MUX_CTL_PAD_NANDF_RB0, ALT5);
+    gpio_set_gpio(GPIO_PORT6, 10);
     gpio_set_direction(GPIO_PORT6, 10, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT6, 10, GPIO_HIGH_LEVEL);
 #endif
@@ -158,8 +174,16 @@ void tftlcd_reset(char *panel_name)
 {
     if (!strcmp(panel_name, "CLAA01 WVGA")) {
 #ifdef BOARD_EVB
-        reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_EB3, ALT5);
-        reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_EB3, 0x1B0B0);
+        gpio_set_gpio(GPIO_PORT2, 31);
+        HW_IOMUXC_SW_PAD_CTL_PAD_EIM_EB3_WR(
+                BF_IOMUXC_SW_PAD_CTL_PAD_EIM_EB3_HYS_V(ENABLED) |
+                BF_IOMUXC_SW_PAD_CTL_PAD_EIM_EB3_PUS_V(100K_OHM_PU) |
+                BF_IOMUXC_SW_PAD_CTL_PAD_EIM_EB3_PUE_V(PULL) |
+                BF_IOMUXC_SW_PAD_CTL_PAD_EIM_EB3_PKE_V(ENABLED) |
+                BF_IOMUXC_SW_PAD_CTL_PAD_EIM_EB3_ODE_V(DISABLED) |
+                BF_IOMUXC_SW_PAD_CTL_PAD_EIM_EB3_SPEED_V(100MHZ) |
+                BF_IOMUXC_SW_PAD_CTL_PAD_EIM_EB3_DSE_V(40_OHM) |
+                BF_IOMUXC_SW_PAD_CTL_PAD_EIM_EB3_SRE_V(SLOW));
         gpio_set_direction(GPIO_PORT2, 31, GPIO_GDIR_OUTPUT);
         gpio_set_level(GPIO_PORT2, 31, GPIO_LOW_LEVEL);
         hal_delay_us(1000);
@@ -167,8 +191,16 @@ void tftlcd_reset(char *panel_name)
         hal_delay_us(1000);
 #endif
 #ifdef BOARD_SMART_DEVICE
-        reg32_write(IOMUXC_SW_MUX_CTL_PAD_EIM_DA8, ALT5);
-        reg32_write(IOMUXC_SW_PAD_CTL_PAD_EIM_DA8, 0x1B0B0);
+        gpio_set_gpio(GPIO_PORT3, 8);
+        HW_IOMUXC_SW_PAD_CTL_PAD_EIM_AD08_WR(
+                BF_IOMUXC_SW_PAD_CTL_PAD_EIM_AD08_HYS_V(ENABLED) |
+                BF_IOMUXC_SW_PAD_CTL_PAD_EIM_AD08_PUS_V(100K_OHM_PU) |
+                BF_IOMUXC_SW_PAD_CTL_PAD_EIM_AD08_PUE_V(PULL) |
+                BF_IOMUXC_SW_PAD_CTL_PAD_EIM_AD08_PKE_V(ENABLED) |
+                BF_IOMUXC_SW_PAD_CTL_PAD_EIM_AD08_ODE_V(DISABLED) |
+                BF_IOMUXC_SW_PAD_CTL_PAD_EIM_AD08_SPEED_V(100MHZ) |
+                BF_IOMUXC_SW_PAD_CTL_PAD_EIM_AD08_DSE_V(40_OHM) |
+                BF_IOMUXC_SW_PAD_CTL_PAD_EIM_AD08_SRE_V(SLOW));
         gpio_set_direction(GPIO_PORT3, 8, GPIO_GDIR_OUTPUT);
         gpio_set_level(GPIO_PORT3, 8, GPIO_LOW_LEVEL);
         hal_delay_us(1000);
@@ -227,7 +259,7 @@ void epdc_clock_setting(int freq)
 
     HW_CCM_CSCDR2.B.EPDC_PIX_PODF = 0x7;    // post divider
 
-//  HW_IOMUXC_SW_MUX_CTL_PAD_GPIO_3.B.MUX_MODE = 0x4; //set as clko
+//  HW_IOMUXC_SW_MUX_CTL_PAD_GPIO_3.B.MUX_MODE = ALT4; //set as clko
 #endif
 
 #if defined(CHIP_MX6SL)
@@ -249,22 +281,22 @@ void epdc_power_supply(void)
 #if defined(CHIP_MX6SDL)
 #if defined(BOARD_EVB)
     /*PMIC wakeup */
-    HW_IOMUXC_SW_MUX_CTL_PAD_EIM_EB3.B.MUX_MODE = 0x5;
+    gpio_set_gpio(GPIO_PORT2, 31);
     gpio_set_direction(GPIO_PORT2, 31, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT2, 31, GPIO_HIGH_LEVEL);
 
     /*PMIC vcom */
-    HW_IOMUXC_SW_MUX_CTL_PAD_EIM_DATA17.B.MUX_MODE = 0x5;
+    gpio_set_gpio(GPIO_PORT3, 17);
     gpio_set_direction(GPIO_PORT3, 17, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT3, 17, GPIO_HIGH_LEVEL);
 #elif defined(BOARD_SMART_DEVICE)
     /*PMIC wakeup */
-    HW_IOMUXC_SW_MUX_CTL_PAD_EIM_DATA20.B.MUX_MODE = 0x5;
+    gpio_set_gpio(GPIO_PORT3, 20);
     gpio_set_direction(GPIO_PORT3, 20, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT3, 20, GPIO_HIGH_LEVEL);
 
     /*PMIC vcom */
-    HW_IOMUXC_SW_MUX_CTL_PAD_EIM_DATA17.B.MUX_MODE = 0x5;
+    gpio_set_gpio(GPIO_PORT3, 17);
     gpio_set_direction(GPIO_PORT3, 17, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT3, 17, GPIO_HIGH_LEVEL);
 #endif
@@ -272,12 +304,12 @@ void epdc_power_supply(void)
 
 #if defined(CHIP_MX6SL)
     //EN : pmic_wakeup gpio2.14
-    HW_IOMUXC_SW_MUX_CTL_PAD_EPDC_PWR_WAKE.B.MUX_MODE = 0x5;
+    gpio_set_gpio(GPIO_PORT2, 14);
     gpio_set_direction(GPIO_PORT2, 14, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT2, 14, GPIO_HIGH_LEVEL);
 
     //CEN : pmic_vcom gpio2.3
-    HW_IOMUXC_SW_MUX_CTL_PAD_EPDC_VCOM0.B.MUX_MODE = 0x5;
+    gpio_set_gpio(GPIO_PORT2, 3);
     gpio_set_direction(GPIO_PORT2, 3, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT2, 3, GPIO_HIGH_LEVEL);
 #endif

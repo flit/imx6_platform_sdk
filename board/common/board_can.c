@@ -64,14 +64,14 @@ void hw_can_iomux_config(uint32_t module_instance)
         max7310_set_gpio_output(1, 3, GPIO_HIGH_LEVEL); //expander b, io3
         /* Select ALT5 mode of GPIO_4 for GPIO1_4 - CAN1_NERR_B */
         /* active low input */
-        writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_GPIO_4);
+        gpio_set_gpio(GPIO_PORT1, 4);
         gpio_set_direction(GPIO_PORT1, 4, GPIO_GDIR_INPUT);
         break;
 
     case HW_FLEXCAN2:
         /* Select ALT5 mode of SD4_DAT3 for GPIO2_11 - CAN2_NERR_B */
         /* active low input */
-        writel(ALT5, IOMUXC_SW_MUX_CTL_PAD_SD4_DAT3);
+        gpio_set_gpio(GPIO_PORT2, 11);
         gpio_set_direction(GPIO_PORT2, 11, GPIO_GDIR_INPUT);
         break;
 

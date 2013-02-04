@@ -48,7 +48,7 @@ void board_ioexpander_init(void)
 #if defined(BOARD_SABRE_AI)
     // Bring max7310 out of reset
     // (this iomux setting should be done in gpio_iomux_config())
-    HW_IOMUXC_SW_MUX_CTL_PAD_SD2_DATA0_WR(BF_IOMUXC_SW_MUX_CTL_PAD_SD2_DATA0_MUX_MODE_V(ALT5));
+    gpio_set_gpio(GPIO_PORT1, 15);
     gpio_set_direction(GPIO_PORT1, 15, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT1, 15, GPIO_HIGH_LEVEL);
  
@@ -56,7 +56,7 @@ void board_ioexpander_init(void)
     // Select ALT5 mode of EIM_A24 for GPIO5_4 - EIMD18_I2C3_STEER(EIM_A24)
     // high output to select I2C3 option
     // (this iomux setting should be done in gpio_iomux_config())
-    HW_IOMUXC_SW_MUX_CTL_PAD_EIM_ADDR24_WR(BF_IOMUXC_SW_MUX_CTL_PAD_EIM_ADDR24_MUX_MODE_V(ALT5));
+    gpio_set_gpio(GPIO_PORT5, 4);
     gpio_set_direction(GPIO_PORT5, 4, GPIO_GDIR_OUTPUT);
     gpio_set_level(GPIO_PORT5, 4, GPIO_HIGH_LEVEL);
 #endif

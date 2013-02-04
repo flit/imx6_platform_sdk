@@ -58,8 +58,8 @@ static int imx_fec_setup(void)
 	fec_iomux_config();
 	
 	/* gpio4_21 controls the power of FEC PHY */
-	gpio_set_direction(4, 21, 1);
-	gpio_set_level(4, 21, 1);
+	gpio_set_direction(GPIO_PORT4, 21, GPIO_GDIR_OUTPUT);
+	gpio_set_level(GPIO_PORT4, 21, GPIO_HIGH_LEVEL);
 	hal_delay_us(100000);
 	
 	/* get enet tx reference clk from internal clock from anatop

@@ -54,7 +54,10 @@ void configure_cpu(uint32_t cpu)
 {
     const unsigned int all_ways = 0xf;
 
+    disable_strict_align_check();
+
     // Enable branch prediction
+    arm_branch_target_cache_invalidate();
     arm_branch_prediction_enable();
 
     // Enable L1 caches
@@ -67,8 +70,8 @@ void configure_cpu(uint32_t cpu)
     scu_secure_invalidate(cpu, all_ways);
 
     // Join SMP
-    scu_enable();
     scu_join_smp();
+    scu_enable_maintenance_broadcast();
 }
 
 void smp_primes(void * arg)
@@ -89,19 +92,19 @@ void smp_primes(void * arg)
         }
         printf("Using %d CPU core(s)\n", num_cpus);
 
+        scu_enable();
         configure_cpu(cpu_id);
         spinlock_init(&print_lock);
-        all_done = 1;   // assume one cpu
+        all_done = (num_cpus == 1) ? 1 : 0;
 
         initPrimes();
 
         start_time = time_get_microseconds();
 
-        if (num_cpus > 1)
+        // start all cpus
+        for (i = 1; i < num_cpus; i++)
         {
-            all_done = 0;
-            // start second cpu
-            cpu_start_secondary(1, &smp_primes, 0);
+            cpu_start_secondary(i, &smp_primes, 0);
         }
 
         spinlock_lock(&print_lock, kSpinlockWaitForever);
@@ -116,7 +119,7 @@ void smp_primes(void * arg)
 
         while (!all_done)
         {
-            for( i=0; i <= 100000; i++) { _ARM_NOP(); }
+            for (i=0; i <= 100000; i++) { _ARM_NOP(); }
         }
         done_time = time_get_microseconds();
         printf("Application finished in %d usecs\n", (uint32_t)(done_time - start_time));
@@ -130,12 +133,6 @@ void smp_primes(void * arg)
     else
     {
         configure_cpu(cpu_id);
-
-        // if more cpus, start the next one
-        if (cpu_id  < (num_cpus - 1))
-        {
-            cpu_start_secondary(cpu_id + 1, &smp_primes, 0);
-        }
 
         spinlock_lock(&print_lock, kSpinlockWaitForever);
         printf("CPU %d: Starting calculation\n", cpu_id);
@@ -156,7 +153,7 @@ void smp_primes(void * arg)
         // wait to be disabled
         while (1)
         {
-            for( i=0; i <= 100000; i++) { _ARM_NOP(); }
+            for (i=0; i <= 100000; i++) { _ARM_NOP(); }
         }
     }
 }

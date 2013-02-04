@@ -172,9 +172,9 @@ arm_branch_prediction_disable:
   .endfunc
   
   .global arm_branch_target_cache_invalidate
-  @ void arm_invalidate_branch_target_cache_invalidate(void)
-  .func arm_invalidate_branch_target_cache_invalidate
-arm_invalidate_branch_target_cache_invalidate:
+  @ void arm_branch_target_cache_invalidate(void)
+  .func arm_branch_target_cache_invalidate
+arm_branch_target_cache_invalidate:
   mov     r0, #0
   mcr     p15, 0, r0, c7, c5, 6                 @ BPIALL - Invalidate entire branch predictor array
   bx      lr

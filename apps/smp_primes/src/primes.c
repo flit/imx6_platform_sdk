@@ -7,7 +7,7 @@
 #include "sdk.h"
 #include "utility/spinlock.h"
 
-#define TARGET_COUNT (100) //Number of primes to find
+#define TARGET_COUNT (10000) //Number of primes to find
 
 // ------------------------------------------------------------
 unsigned int target_count; // Number of primes to find, will equal TARGET_COUNT. Safe to reduce at debug time.

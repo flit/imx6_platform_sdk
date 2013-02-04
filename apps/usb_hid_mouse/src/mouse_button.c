@@ -71,6 +71,7 @@
 //#include "usbhs_common.h"
 //#include "usbhs_host_device.h"
 #endif
+#include "timer/timer.h"
 
 /* skip the inclusion in dependency state */
 #include <stdio.h>
@@ -427,6 +428,8 @@ void main(void)
     while (true)
     {
         TestApp_Task();
+        // generate a mouse move every 5 ms
+        hal_delay_us(5000);
     }
 }
 

@@ -6,6 +6,7 @@
 
 #include "sdk.h"
 #include "utility/spinlock.h"
+#include "primes.h"
 
 #define TARGET_COUNT (10000) //Number of primes to find
 

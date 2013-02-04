@@ -30,11 +30,11 @@
 
 #include "sdk.h"
 #include "platform_init.h"
-#include "primes.h"
 #include "timer/timer.h"
 #include "cpu_utility/cpu_utility.h"
 #include "core/cortex_a9.h"
 #include "utility/spinlock.h"
+#include "primes.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // Variables
@@ -44,8 +44,7 @@
 #define MAX_CPUS 4;
 static unsigned int num_cpus = MAX_CPUS;
 
-spinlock_t print_lock;
-volatile unsigned int all_done;
+static volatile unsigned int all_done;
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code
@@ -94,7 +93,7 @@ void smp_primes(void * arg)
 
         scu_enable();
         configure_cpu(cpu_id);
-        spinlock_init(&print_lock);
+        spinlock_init(&prime_lock);
         all_done = (num_cpus == 1) ? 1 : 0;
 
         initPrimes();
@@ -107,15 +106,15 @@ void smp_primes(void * arg)
             cpu_start_secondary(i, &smp_primes, 0);
         }
 
-        spinlock_lock(&print_lock, kSpinlockWaitForever);
+        spinlock_lock(&prime_lock, kSpinlockWaitForever);
         printf("CPU %d: Starting calculation\n", cpu_id);
-        spinlock_unlock(&print_lock);
+        spinlock_unlock(&prime_lock);
 
         calculatePrimes(cpu_id);
 
-        spinlock_lock(&print_lock, kSpinlockWaitForever);
+        spinlock_lock(&prime_lock, kSpinlockWaitForever);
         printf("CPU %d: Finished\n", cpu_id);
-        spinlock_unlock(&print_lock);
+        spinlock_unlock(&prime_lock);
 
         while (!all_done)
         {
@@ -134,15 +133,15 @@ void smp_primes(void * arg)
     {
         configure_cpu(cpu_id);
 
-        spinlock_lock(&print_lock, kSpinlockWaitForever);
+        spinlock_lock(&prime_lock, kSpinlockWaitForever);
         printf("CPU %d: Starting calculation\n", cpu_id);
-        spinlock_unlock(&print_lock);
+        spinlock_unlock(&prime_lock);
 
         calculatePrimes(cpu_id);
 
-        spinlock_lock(&print_lock, kSpinlockWaitForever);
+        spinlock_lock(&prime_lock, kSpinlockWaitForever);
         printf("CPU %d: Finished\n", cpu_id);
-        spinlock_unlock(&print_lock);
+        spinlock_unlock(&prime_lock);
 
         // if last cpu, trigger test done
         if (cpu_id == (num_cpus - 1))

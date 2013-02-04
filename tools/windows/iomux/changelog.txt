@@ -1,4 +1,12 @@
 *******************************
+RELEASE_IOMUX.EXE_v3.4.0.4 - PUBLIC
+*******************************
+BRANCH: http://psg-host.svn-tx30.am.freescale.net/svn/psg-host/branches/dev/0006
+02/01/2013
+
+- Another fix for incorrectly bolded unchecked signals/altmodes in signal and ballgrid tooltips.
+
+*******************************
 RELEASE_IOMUX.EXE_v3.4.0.3 - PUBLIC
 *******************************
 BRANCH: http://psg-host.svn-tx30.am.freescale.net/svn/psg-host/branches/dev/0006

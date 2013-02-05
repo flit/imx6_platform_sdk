@@ -209,6 +209,45 @@ int sd_raw_write_speed_test(fs_rw_speed_data_t * test_data, int i)
     return 0;
 }
 
+void create_input_file(void)
+{
+    uint8_t *WriteBuffer = NULL;
+    uint32_t BytesWritten = 0;
+    uint32_t ChunkSize = FS_CHUNK_SIZE_1M;
+    int32_t count = 0, nMB = 0;
+    int32_t fout;
+
+    set_card_access_mode(1, 0); // ADMA mode
+
+    if ((fout = Fopen(readfile, (uint8_t *) "w")) < 0) {
+        printf("Can't open the file: %s !\n", readfile);
+    }
+
+    WriteBuffer = (uint8_t *) TEST_BUFFER_ADDR;
+
+    _raw_puts("\tCreating file ");
+    _raw_puts((char *)readfile);
+    _raw_puts("    ");
+    while (BytesWritten < TEST_FILE_SIZE) {
+        if ((count =
+             Fwrite(fout, (uint8_t *) (WriteBuffer + BytesWritten), ChunkSize)) != ChunkSize) {
+            printf("Fwrite failed. Exit.\n");
+            Fclose(fout);
+        }
+        BytesWritten += count;
+        if (BytesWritten / FS_CHUNK_SIZE_1M > nMB) {
+            _raw_puts("\b");
+            _raw_puts(status_tag[nMB % 4]);
+            nMB++;
+        }
+    }
+
+    get_data_size(BytesWritten, dataSize);
+    printf(" Done! write %s\n", dataSize);
+
+    Fclose(fout);
+}
+
 int fat_read_speed_test(fs_rw_speed_data_t * test_data, int i)
 {
     int32_t fin;
@@ -222,8 +261,12 @@ int fat_read_speed_test(fs_rw_speed_data_t * test_data, int i)
     set_card_access_mode(test_data->WorkMode, 0);
 
     if ((fin = Fopen(readfile, (uint8_t *) "r")) < 0) {
-        printf("Can't open the file: %s !\n", readfile);
-        return ERROR_GENERIC;
+        // Create readfile if it does not exist
+        create_input_file();
+        if ((fin = Fopen(readfile, (uint8_t *) "r")) < 0) {
+            printf("Can't open the file: %s !\n", readfile);
+            return ERROR_GENERIC;
+        }
     }
 
     FileSize = GetFileSize(fin);

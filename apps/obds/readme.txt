@@ -43,7 +43,7 @@ the sdk_unit_tests.
 The application is built specifically for each CPU/Board/Board_Rev, and tests will vary from board to board
 depending on the peripherals supported by a given board.
 
-The tests included are specified by the selsct_test() function in obds.c and the following definitions of
+The tests included are specified by the select_test() function in obds.c and the following definitions of
 CPU_Tests[], MainBoard_Tests[], and Display_Test[];
 
 Known defects

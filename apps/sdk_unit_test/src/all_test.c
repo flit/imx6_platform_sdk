@@ -68,6 +68,7 @@ extern void usdhc_test(void);
 extern void keypad_test(void);
 extern void accelerometer_test(void);
 extern void multicore_test(void);
+extern int cpu_wp_test(void);
 
 #ifdef CHIP_MX6DQ
 extern int sata_test(void);
@@ -121,6 +122,7 @@ const menuitem_t k_menuItems[] = {
         DEFINE_TEST_MENU_ITEM("m",  "microseconds timer test", microseconds_test),
         DEFINE_TEST_MENU_ITEM("wa", "watchdog test",    wdog_test),
         DEFINE_TEST_MENU_ITEM("o",  "ocotp test",       ocotp_test),
+        DEFINE_TEST_MENU_ITEM("wp", "cpu workpoint test", cpu_wp_test),
 
         // mx6dq and mx6sdl are grouped together because they share the same boards.
 #if defined(CHIP_MX6DQ) || defined(CHIP_MX6SDL)

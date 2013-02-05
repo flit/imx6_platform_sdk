@@ -32,8 +32,6 @@
 		File Includes
 ----------------------------------------------------------------------------*/
 #include "sdk.h"
-#include "platform_init.h"
-#include "print_version.h"
 #include "timer/epit.h"
 #include "core/cortex_a9.h"
 #include "core/mmu.h"
@@ -102,16 +100,10 @@ int cpu_wp_test(void)
         hal_delay_us(3000);
         i++;
     }
-
-    return 0;
-}
-
-int main(void)
-{
-    platform_init();
-    print_version();
-
-    cpu_wp_test();
     
+    // Restore to default workpoint.
+    cpu_workpoint_set(CPU_WORKPOINT_800MHZ);
+
     return 0;
 }
+

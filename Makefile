@@ -71,7 +71,6 @@ SUBDIRS = \
 
 # List of all applications to build. Applications must reside in the apps directory.
 ALL_APPS = \
-    cpu_workpoint \
     filesystem \
     httpd \
     obds \

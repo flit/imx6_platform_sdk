@@ -5,7 +5,6 @@ The Platform SDK comes with a number of applications to demonstrate features of
 both the SDK and underlying hardware.
 
 caam_blob_gen       - Cryptographic blob generator for manufacturing encrypted boot images.
-cpu_workpoint       - Demonstrates the CPU workpoint API.
 filesystem          - FAT32 filesystem performance test.
 gpu_demo            - GPU demonstration.
 httpd               - Web server.

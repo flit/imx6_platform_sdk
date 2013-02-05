@@ -95,8 +95,8 @@ _start:
     mov     sp, r0
     sub     r0, r0, r1 
     
-    @ Set SVC mode stack with interrupts enabled 
-    msr     CPSR_c, #MODE_SVC
+    @ Set SVC mode stack with interrupts disabled 
+    msr     CPSR_c, #MODE_SVC | I_BIT | F_BIT
     mov     sp, r0
     sub     r0, r0, r1 
     

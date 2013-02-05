@@ -51,8 +51,9 @@ void platform_init(void)
     mmu_map_l1_range(0x20000000, 0x20000000, 0x30000000, kNoncacheable, kShareable, kRWAccess);
 #endif
 
-    // Enable interrupts.
+    // Enable interrupts. Until this point, the startup code has left interrupts disabled.
     gic_init();
+    arm_set_interrupt_state(true);
     
     // Initialize clock sources, dividers, ... 
     ccm_init();

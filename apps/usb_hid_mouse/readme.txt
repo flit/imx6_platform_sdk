@@ -8,7 +8,11 @@ Description
 -----------
 
 This application runs a USB device stack and enumerates as a HID class mouse. It is based on
-the HID class example application that comes with the bare-metal USB stack.
+the HID class example application that comes with the bare-metal USB stack, extended to send
+reports without any required user interaction.
+
+After enumeration is complete, the firmware repeatedly sends reports to the host so that the
+cursor moves in a circle.
 
 
 Requirements

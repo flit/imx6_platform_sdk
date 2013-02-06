@@ -56,9 +56,10 @@
 
 #include "mx6_lwip.h"
 
-#define CLOCKTICKS_PER_MS (1)
-
+//! The network interface.
 struct netif g_netif;
+
+const uint8_t kMACAddress[] = { 0x00, 0x04, 0x9f, 0x00, 0x00, 0x01 };
 
 ////////////////////////////////////////////////////////////////////////////////
 // Code
@@ -87,14 +88,18 @@ void init_lwip(void)
     ip_addr_t addr;
     ip_addr_t netmask;
     ip_addr_t gw;
-    IP4_ADDR(&addr, 10, 81, 4, 142); //192, 168, 10, 159);
+    IP4_ADDR(&addr, 10, 81, 4, 142);
     IP4_ADDR(&netmask, 255, 255, 255, 0);
-    IP4_ADDR(&gw, 10, 81, 7, 254); //192, 168, 10, 200);
+    IP4_ADDR(&gw, 10, 81, 7, 254);
 
 #if LWIP_NETIF_HOSTNAME
     g_netif.hostname = "lwip";
 #endif
 
+    // Set the MAC address.
+    enet_set_mac(kMACAddress);
+
+    // Create the netif.
     netif_add(&g_netif, &addr, &netmask, &gw, NULL, enet_init, ethernet_input);
     netif_set_status_callback(&g_netif, netif_status_callback);
     netif_set_link_callback(&g_netif, netif_link_status_callback);

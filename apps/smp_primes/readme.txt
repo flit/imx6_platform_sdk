@@ -10,6 +10,7 @@ Description
 This application uses multiple CPU cores running in parallel to find prime numbers.
 It demonstrates starting multiple cores, configuring cores to participate in SMP and
 locking access to shared memory resources.
+
 It was derived from the ARM DS-5 smp_primes example.
 
 Requirements

@@ -92,7 +92,7 @@ endif
 ifneq "$(TARGET_LIB)" ""
 # Only use the target lib if there are actually objects to put into it.
 ifneq "$(strip $(OBJECTS_ALL))" ""
-archive_or_objs = $(TARGET_LIB)
+archive_or_objs = $(TARGET_LIB)($(OBJECTS_ALL))
 endif
 else
 archive_or_objs = $(OBJECTS_ALL)
@@ -108,13 +108,6 @@ endif
 # to the library.
 .PHONY: all
 all : $(SUBDIRS) $(archive_or_objs) $(APP_ELF)
-
-# For RedHat we have to force always archiving. It seems that fractions of a second are not
-# recorded in file modification dates on RedHat (at least the server we tested with), which
-# caused files to be considered up to date when they weren't.
-ifeq "$(is_redhat)" "1"
-.PHONY: $(TARGET_LIB)
-endif
 
 # Recipe to create the output object file directories.
 $(OBJECTS_DIRS) :
@@ -170,13 +163,13 @@ $(OBJS_ROOT)/%.o: $(SDK_ROOT)/%.s
 # the ar tool. The dir can't be made a dependancy because make will try to add it to the
 # archive.
 #
-# Note that we're checking the archive's mod date and not each entry in the archive. This
-# lets us do a single update operation with all modified object files.
-#
 # flock is used to protect the archive file from multiple processes trying to write to it
 # simultaneously, in case we're using parallel processes.
-$(TARGET_LIB): $(OBJECTS_ALL)
-	@$(call printmessage,ar,Archiving, $(shell echo $? | wc -w) files in $(@F))
+#
+# The log message is disabled in order to reduce clutter in the build log, since you will get
+# one message for every file that is archived.
+$(TARGET_LIB)(%): %
+#	@$(call printmessage,ar,Archiving, $(?F) in $(@F))
 	$(at)mkdir -p $(dir $(@))
 	$(at)flock $(@).lock $(AR) -rucs $@ $?
 

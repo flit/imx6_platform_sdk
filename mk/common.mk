@@ -62,6 +62,11 @@ is_cygwin := $(and $(findstring CYGWIN,$(os_name)),1)
 # Set to 1 if running on redhat.
 is_redhat := $(shell if [ -f /etc/redhat-release ]; then echo 1 ; fi)
 
+# Disable parallel builds for cygwin since they hang.
+ifeq "$(is_cygwin)" "1"
+.NOTPARALLEL
+endif
+
 #-------------------------------------------------------------------------------
 # Logging options
 #-------------------------------------------------------------------------------

@@ -64,7 +64,7 @@ is_redhat := $(shell if [ -f /etc/redhat-release ]; then echo 1 ; fi)
 
 # Disable parallel builds for cygwin since they hang.
 ifeq "$(is_cygwin)" "1"
-.NOTPARALLEL
+.NOTPARALLEL:
 endif
 
 #-------------------------------------------------------------------------------

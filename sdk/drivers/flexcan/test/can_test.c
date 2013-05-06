@@ -47,7 +47,7 @@ uint32_t can_test_count;
 void flexcan_test(void)
 {
     int i;
-	uint8_t ch;
+    uint8_t ch;
     //struct imx_flexcan can1, can2;    
 
     //can_set_can_attributes(&can1, KBPS_500, &can1_port);
@@ -56,22 +56,22 @@ void flexcan_test(void)
     //can_update_bitrate(&can2);
 
     printf("\n---- Running CAN1/2 loopback test ----\n");
-	printf("Please plugin Sabre_ai board onto the main base board\n");
-	printf("Connect pin 6 in J35 to slot 7 in J34\n");
-	printf("Connect pin 7 in J35 to slot 2 in J34\n");
+    printf("Please plugin Sabre_ai board onto the main base board\n");
+    printf("Connect pin 6 in J35 to slot 7 in J34\n");
+    printf("Connect pin 7 in J35 to slot 2 in J34\n");
     printf("Please make sure accessories are availalbe. Type \"y\" or \"Y\" to confirm.\n");
-	do {
-		ch = getchar();
-	} while (ch == (uint8_t) 0xFF);
-	
-	if((ch != 'Y') && (ch != 'y')){
-		printf("\nTest exit.\n");
-		return ;
-	}
+    do {
+        ch = getchar();
+    } while (ch == (uint8_t) 0xFF);
+
+    if ((ch != 'Y') && (ch != 'y')) {
+        printf("\nTest exit.\n");
+        return;
+    }
     can_test_count = 0;
 
-    can_init(can1_port, CAN_LAST_MB);  // max 64 MB 0-63
-    can_init(can2_port, CAN_LAST_MB);  // last mb is MB[63]
+    can_init(can1_port, CAN_LAST_MB);   // max 64 MB 0-63
+    can_init(can2_port, CAN_LAST_MB);   // last mb is MB[63]
 
     printf("CAN1-TX and CAN2-RX\n");
     // configure CAN1 MBs as Tx, and CAN2 MBs as Rx
@@ -80,20 +80,20 @@ void flexcan_test(void)
         set_can_mb(can1_port, i, 0x0c000000 + (i << 16), 0x0a000000 + (i << 20), 0x12345678,
                    0x87654321);
         set_can_mb(can2_port, i, 0x04000000 + (i << 16), 0x0a000000 + (i << 20), 0, 0);
-        can_enable_mb_interrupt(can2_port, i); // enable MB interrupt for idMB=i
+        can_enable_mb_interrupt(can2_port, i);  // enable MB interrupt for idMB=i
     }
 
     //enable CAN2 interrupt
     can_setup_interrupt(can2_port, can2_rx_handler, true);
 
     // init CAN1 MB0
-    can_exit_freeze(can2_port);    // Rx
-    can_exit_freeze(can1_port);    // Tx
+    can_exit_freeze(can2_port); // Rx
+    can_exit_freeze(can1_port); // Tx
 
     while (!(can_test_count)) ;
 
-    can_freeze(can2_port);     // Rx
-    can_freeze(can1_port);     // Tx
+    can_freeze(can2_port);      // Rx
+    can_freeze(can1_port);      // Tx
 
     printf("%d MBs were transmitted \n", can_test_count);
     printf("---- CAN1/2 test complete ----\n");
@@ -108,10 +108,10 @@ void can2_rx_handler(void)
     uint64_t iflag;
 
     iflag = can_mb_int_flag(can2_port);
-    if(iflag !=0L){
+    if (iflag != 0L) {
         for (i = 0; i < 64; i++) {
             if (iflag & (1L << i)) {
-		can_mb_int_ack(can2_port, i);
+                can_mb_int_ack(can2_port, i);
                 printf("\tCAN2 MB:%d Recieved:\n", i);
                 print_can_mb(can2_port, i);
                 can_test_count++;

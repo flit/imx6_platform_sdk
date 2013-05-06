@@ -51,6 +51,18 @@ void hw_can_iomux_config(uint32_t module_instance)
 
     /* CAN_STBY active high output */
     max7310_set_gpio_output(1, 5, GPIO_HIGH_LEVEL); //expander b, io5 
+
+    
+    // For Rev C SABRE_AI boards.
+    // The new CAN PHY chip (supplier = NXP) powers up in sleep mode.
+    // OBDS should wake up the PHY before the CAN test is done (Local CAN PHY Wake-Up).
+    // This change will not cause a rev B1 or B1+ CPU Card malfunction, so this can be a
+    // running change. Rev B1 and B1+ Cards require that the ON button be pressed.
+    /* Configure Port Expander C, output 7 as an output with a hi level */
+    max7310_set_gpio_output(2, 7, GPIO_HIGH_LEVEL); //expander c, io7
+    /* Configure Port Expander C, output 7 as an output with a low level */
+    max7310_set_gpio_output(2, 7, GPIO_LOW_LEVEL); //expander c, io7
+
 #endif
 
     flexcan_iomux_config(module_instance);
